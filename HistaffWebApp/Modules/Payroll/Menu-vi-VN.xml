@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <Group>
+    <Item Text="Nghiệp vụ"  PostBack="False">
+      <Group>
+        <Item Value="PAYROLL_CALCULATE" Text="Tính lương" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlPROCESS&amp;programID=PAYROLL_CALCULATE&amp;moduleID=5" CheckPermission="true" />
+        <Item Value="TAX_INCOME_CACULATE" Text="Tổng hợp quyết toán thuế TNCN" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlPROCESS&amp;programID=TAX_INCOME_CACULATE&amp;moduleID=5" CheckPermission="true" />
+		    <Item Value="ctrlImportLuong" Text="Import lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlImportLuong&amp;group=Business" CheckPermission="true" />
+        <Item Value="ctrlImportThueTNCN" Text="Import quyết toán thuế TNCN" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlImportThueTNCN&amp;group=Business" CheckPermission="true" />
+        <Item Value="ctrlSendMailLuong" Text="Gửi mail phiếu lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlSendMailLuong&amp;group=Business" CheckPermission="true" />
+      </Group>
+    </Item>
+    
+    <Item Text="Thiết lập"  PostBack="False">
+      <Group>
+        <Item Value="ctrlPA_Period" Text="Khai báo kỳ lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_Period&amp;group=Setting" CheckPermission="true" />
+        <Item Value="ctrlPA_Formula" Text="Khai báo công thức lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_Formula&amp;group=Setting" CheckPermission="true"/>
+        <Item Value="ctrlPA_PaymentsList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_PaymentsList&amp;group=Setting" CheckPermission="true"/>
+      </Group>
+    </Item>
+    
+    <Item Text="Danh mục"  PostBack="False">
+      <Group>
+        <Item Value="ctrlHU_AllowanceList" Text="Danh mục phụ cấp" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AllowanceList&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlPA_SalaryType" Text="Nhóm lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SalaryType&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlPA_SaleCommision" Text="Đối tượng Sale Commmision" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_SaleCommision&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlPA_ListSalaries" Text="Danh mục khoản lương theo nhóm lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_ListSalaries&amp;group=list" CheckPermission="true"/>
+        <Item Value="ctrlPA_ListSal" Text="Danh mục Lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_ListSal&amp;group=list" CheckPermission="true"/>
+        <Item Value="ctrlPA_TaxationList" Text="Biểu thuế lũy tiến" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_TaxationList&amp;group=list" CheckPermission="true"/>
+        <Item Value="ctrlPA_ObjectSalary" Text="Danh mục đối tượng lương" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlPA_ObjectSalary&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlOtherList" Text="Tham số hệ thống" PostBack="True" NavigateUrl="Default.aspx?mid=Payroll&amp;fid=ctrlOtherList&amp;group=list" CheckPermission="true"/>
+      </Group>
+    </Item>
+
+    <Item Text="Báo cáo" PostBack="False">
+      <Group>
+        <Item Value="ctrlREPORT" Text="Danh sách báo cáo" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlREPORT&amp;moduleID=5" CheckPermission="true">
+        </Item>
+      </Group>
+    </Item>
+  </Group>
+</Menu>

@@ -1,0 +1,167 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Histaff.DataAccessLayer
+</name>
+</assembly>
+<members>
+<member name="M:Histaff.DataAccessLayer.DataAccess.QueryData.GetSpParameterSet(System.String,System.Boolean)">
+	<summary>
+ Dll: Oracle.DataAccess.Client
+ Get danh sách tham số của 1 StoreProcedure
+ </summary>
+	<param name="storeName">Tên store Procedure</param>
+	<param name="isInParameterOnly">True: Chỉ lấy danh sách tham số In, False: lấy tất cả tham số</param>
+	<returns>Datatable danh sách tham số</returns>
+	<remarks>Histaff Framework 2.0</remarks>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.QueryData.ExecuteToDataSet(System.String,System.Collections.Generic.List{System.Object})">
+	<summary>
+ Dll: Oracle.DataAccess.Client
+ Thực thi Store Procedure trả về 1 DataSet (1 hoặc nhiều datatable) 
+ Thứ tự value trong parameterValue phải đúng với thứ tự tham số Input (không quan tâm vị trí tham số Output) được khái báo trong Store Procedure
+ Không truyền biến Out Cursor
+ Không Output biến Scalar
+ Không cần khai báo ParameterName 
+ Có sử dụng Cache
+ </summary>
+	<param name="storeName">Tên Store Procedure Oracle</param>
+	<param name="parameterValue">Danh sách value truyền vào để thực thi Store Procedure</param>
+	<returns>Dataset (không return biến Output)</returns>
+	<remarks>Histaff Framework 2.0</remarks>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.QueryData.ExecuteStoreScalar(System.String,System.Collections.Generic.List{System.Object})">
+	<summary>
+ Dll: Oracle.DataAccess.Client
+ Thực thi Store Procedure Oracle trả về mảng cái tham số Output là Scalar (không phải Cursor)
+ Có sử dụng Cache
+ </summary>
+	<param name="storeName">Tên store procedure</param>
+	<param name="parameters">List value các tham số Input để thực thi Store</param>
+	<returns>Mảng các giá trị output</returns>
+	<remarks>Histaff Framework 2.0</remarks>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.QueryData.ExecuteBatchCommand(System.String,System.Data.DataTable)">
+	<summary>
+ Update/Insert 1 DataTable lên database Mở kết nối =&gt; duyệt từng rows cho đến khi hết row thì =&gt; đóng kết nối
+ Có transaction
+ </summary>
+	<param name="storeName">Tên Store Produre</param>
+	<param name="dtb">Datatable chứa dữ liệu update/insert, Tên Cột là tên tham số, giá trị từng Cell trên 1 row là value tương ứng</param>
+	<returns>Số dùng transaction thành công</returns>
+	<remarks>Histaff Framework 2.0</remarks>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.QueryData.ExecuteStore1_5(System.String,System.Collections.Generic.List{System.Object})">
+	<summary>
+ Execute Store Procedure chỉ truyền vào List Value của Parameters
+ Không dùng cache
+ </summary>
+	<param name="storeName">Tên store procedure</param>
+	<param name="parameters">List Value tham số In hoặc Out truyền vào</param>
+	<returns></returns>
+	<remarks>Histaff Framework 1.5</remarks>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.QueryData.ExecuteStore(System.String,System.Collections.Generic.List{System.Collections.ArrayList}@)">
+	<summary>
+ Execute Store Procedure return DataTable or DataSet. Out param will return in parameters
+ Phải truyền vào List gồm Name và Value của Parameter
+ Không dùng Cache
+ </summary>
+	<param name="parameters">List Parameters (Parameter Name in procedure, Value)</param>
+	<param name="storeName">StoreProcedure </param>
+	<returns>DataTable or DataSet and parameters</returns>
+	<remarks></remarks>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.QueryData.ExecuteStoreProcedureNonQuery(System.String,System.Collections.Generic.List{System.Collections.ArrayList})">
+	<summary>
+ NonQuery procedure có chứa tham số, bao gồm transaction (insert/update/delete)
+ Không dùng cache
+ </summary>
+	<param name="storeName">StoreName procedure</param>
+	<param name="parameters">Mảng các tham số truyền vào</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="T:Histaff.DataAccessLayer.DataAccess.QueryData">
+	<summary>
+ Thực thi Store Procdure Oracle
+ </summary>
+	<remarks></remarks>
+</member><member name="M:Histaff.DataAccessLayer.OracleHelperParameterCache.GetSpParameterSet(System.String,System.String,System.Boolean)">
+	<summary>
+ Hàm lấy danh sách OracleParameter (Name, Direction) từ Store Procedure được định nghĩa trên database
+ Sử dụng hàm này thì người dùng chỉ cần truyền Value của OracleParameter Input khi thực thi store
+ </summary>
+	<param name="ConnectionString">Chuỗi kết nối database</param>
+	<param name="StoredProceduredName">(Tên Package nếu có.)Tên store procedure </param>
+	<param name="IncludeReturnValueParameter">Có lấy OracleParameter Output (ReturnValue) hay không - Khi lấy biến Out thì = true</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:Histaff.DataAccessLayer.DataAccess.ConnectionManager.conn">
+	<summary>
+ Connection dùng chung cho cả App
+ </summary>
+</member><member name="T:Histaff.DataAccessLayer.DataAccess.ConnectionManager.ConnectionInfo">
+	<summary>
+ Thông tin về Connection
+ </summary>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.ConnectionManager.GetConnectionString">
+	<summary>
+ Tạo chuỗi ConnectionString với Key Connection String Default là DataAccess
+ </summary>
+	<returns></returns>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.ConnectionManager.GetConnectionString(System.String)">
+	<summary>
+	</summary>
+	<param name="keyConnectionString">Key trong file config để get connection string</param>
+	<returns>Chuỗi kết nối database</returns>
+	<remarks></remarks>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.ConnectionManager.GetOracleConnection">
+	<summary>
+ Tạo một OracleConnection
+ </summary>
+	<returns></returns>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.ConnectionManager.CheckConnection">
+	<summary>
+ Kiểm tra Connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.ConnectionManager.OpenConnection">
+	<summary>
+ Open connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.ConnectionManager.CloseConnection">
+	<summary>
+ Close connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.ConnectionManager.CheckLiveConnection">
+	<summary>
+ Kiểm tra trạng thái connection và khởi tạo hoặc open nếu cần
+ </summary>
+</member><member name="M:Histaff.DataAccessLayer.DataAccess.OracleCommon.GetParameter(System.String,System.Object,System.Boolean@)">
+	<summary>
+ Gán type database tương ứng với value
+ </summary>
+	<param name="sKey">Tên parameter</param>
+	<param name="sValue">Giá trị của parameter</param>
+	<returns></returns>
+	<remarks>Framework 1.0, 1.5</remarks>
+</member><member name="P:Histaff.DataAccessLayer.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Histaff.DataAccessLayer.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:Histaff.DataAccessLayer.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:Histaff.DataAccessLayer.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Write Exception Log
+ </summary>
+	<param name="exception">Exception (truyên vào biến ex)</param>
+	<param name="functionName">Tên Function</param>
+	<param name="otherText">Chuỗi text khác nếu có</param>
+	<remarks>Framework 1.0</remarks>
+</member>
+</members>
+</doc>

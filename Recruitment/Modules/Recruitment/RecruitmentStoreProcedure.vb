@@ -1,0 +1,651 @@
+﻿Imports Framework.UI.Utilities
+Imports HistaffFrameworkPublic
+Imports HistaffFrameworkPublic.FrameworkUtilities
+
+Public Class RecruitmentStoreProcedure
+    Private rep As New HistaffFrameworkRepository
+
+#Region "Đợt tuyển dụng - (RC_STAGE)"
+
+    'Cập nhật chi phí dự kiến
+    Public Function STAGE_UpdateCostestimate(ByVal ID As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.STAGE_UPDATE_COSTESTIMATE", New List(Of Object)(New Object() {ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Lấy thông tin đợt tuyển dụng theo ID
+    Public Function STAGE_GetByID(ByVal P_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.STAGE_GET_BY_ID", New List(Of Object)(New Object() {P_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Lấy danh sách đợt tuyển dụng theo: đơn vị & year
+    Public Function STAGE_GetList(ByVal P_ORG_ID As Int32, ByVal P_YEAR As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.STAGE_GETLIST_BYFILTER", New List(Of Object)(New Object() {P_ORG_ID, P_YEAR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Hiển thị ds đợt tuyển dụng trên combobox theo đơn vị
+    Public Function STAGE_GetData_Combobox(ByVal P_ORG_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.STAGE_GETDATA_COMBOBOX", New List(Of Object)(New Object() {P_ORG_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Thêm mới đợt tuyển dụng
+    Public Function STAGE_AddNew(ByVal ORG_ID As Int32,
+                                 ByVal YEAR As Int32,
+                                 ByVal ORGANIZATIONNAME As String,
+                                 ByVal TITLE As String,
+                                 ByVal STARTDATE As Date,
+                                 ByVal ENDDATE As Date,
+                                 ByVal SOURCEOFREC_ID As String,
+                                 ByVal REMARK As String,
+                                 ByVal CREATE_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_STAGE", _
+                                                   New List(Of Object)(New Object() {
+                                                    ORG_ID, YEAR, ORGANIZATIONNAME, TITLE,
+                                                    STARTDATE, ENDDATE, SOURCEOFREC_ID, REMARK,
+                                                    CREATE_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Cập nhật đợt tuyển dụng
+    Public Function STAGE_Update(ByVal ID As Int32,
+                                 ByVal ORG_ID As Int32,
+                                 ByVal YEAR As Int32,
+                                 ByVal ORGANIZATIONNAME As String,
+                                 ByVal TITLE As String,
+                                 ByVal STARTDATE As Date,
+                                 ByVal ENDDATE As Date,
+                                 ByVal SOURCEOFREC_ID As String,
+                                 ByVal REMARK As String,
+                                 ByVal MODIFY_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_STAGE", _
+                                                     New List(Of Object)(New Object() {
+                                                     ID, ORG_ID, YEAR, ORGANIZATIONNAME, TITLE,
+                                                     STARTDATE, ENDDATE, SOURCEOFREC_ID, REMARK,
+                                                     MODIFY_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Xóa đợt tuyển dụng
+    Public Function STAGE_Delete(ByVal ID As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_STAGE", New List(Of Object)(New Object() {ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+#End Region
+
+#Region "Manning - QL định biên"
+    Public Function GetCountEmpWorking(ByRef title_id As Decimal) As Integer
+        Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GETCOUNT_EMPWORKING", New List(Of Object)(New Object() {title_id, OUT_NUMBER}))
+        Return Integer.Parse(obj(0).ToString)
+    End Function
+
+    Public Function GetManningOrgId() As Integer
+        Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_MANNING_ORG_ID", New List(Of Object)(New Object() {OUT_NUMBER}))
+        Return Integer.Parse(obj(0).ToString)
+    End Function
+
+    Public Function GetOldManning(ByRef effectdate As Date) As Integer
+        Dim obj = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_OLD_MANNING", New List(Of Object)(New Object() {effectdate, OUT_NUMBER}))
+        Return Integer.Parse(obj(0).ToString)
+    End Function
+
+    'Public Function GetListManning(ByVal obj As ManningOrgDTO) As DataTable
+    '    Dim listManning As DataTable
+    '    Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GETLIST_MANNING", New List(Of Object)(New Object() {obj.ORG_ID, OUT_CURSOR}))
+    '    If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+    '        listManning = ds.Tables(0)
+    '    End If
+    '    Return listManning
+    'End Function
+
+    Public Function GetListManningByName(ByVal MANNING_ORG_ID As Integer,
+                                        ByVal ORG_ID As Integer,
+                                        ByVal YEAR As Integer) As DataTable
+        Dim listManning As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GETLIST_MANNING_BY_NAME", New List(Of Object)(New Object() {MANNING_ORG_ID, ORG_ID, YEAR, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listManning = ds.Tables(0)
+        End If
+        Return listManning
+    End Function
+
+    Public Function GetManningOrgByID(ByVal MANNING_ORG_ID As Integer) As DataTable
+        Dim listManning As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.MANNING_ORG_GET_BY_ID", New List(Of Object)(New Object() {MANNING_ORG_ID, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listManning = ds.Tables(0)
+        End If
+        Return listManning
+    End Function
+
+    Public Function AddNewManningOrg(ByVal obj As ManningOrgDTO) As Int32
+        Try
+            'Dim rep As New DataAccess.QueryData
+            Dim objAdd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_MANNING_ORG", _
+                                                    New List(Of Object)(New Object() {obj.ORG_ID, obj.MANNING_NAME, obj.EFFECT_DATE, obj.NOTE, obj.OLD_MANNING, obj.CURRENT_MANNING,
+                                                                                      obj.NEW_MANNING, obj.MOBILIZE_COUNT_MANNING, obj.STATUS, obj.YEAR, OUT_NUMBER}))
+
+            Return Int32.Parse(objAdd(0).ToString())
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function AddNewManningTitle(ByVal P_ORG_ID As Int32, ByVal P_MANNING_ORG_ID As Int32) As Int32
+        Try
+            'Dim rep As New DataAccess.QueryData
+            Dim objAdd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_MANNING_TITLE", _
+                                                    New List(Of Object)(New Object() {P_ORG_ID, P_MANNING_ORG_ID, OUT_NUMBER}))
+
+            Return Int32.Parse(objAdd(0).ToString())
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function UpdateManningOrg(ByVal obj As ManningOrgDTO) As Int32
+        Dim objUpd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_MANNING_ORG", _
+                                                   New List(Of Object)(New Object() {obj.ID, obj.MANNING_NAME, obj.EFFECT_DATE, obj.NOTE, obj.STATUS, OUT_NUMBER}))
+        Return Int32.Parse(objUpd(0).ToString())
+    End Function
+
+    Public Function UpdateNewManningOrg(ByVal P_MANNING_ORG_ID As Int32) As Int32
+        Dim objUpd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_SUMMARY_MANNING_ORG", _
+                                                   New List(Of Object)(New Object() {P_MANNING_ORG_ID, OUT_NUMBER}))
+        Return Int32.Parse(objUpd(0).ToString())
+    End Function
+
+    Public Function UpdateNewManningTitle(ByVal obj As ManningTitleDTO) As Int32
+        Dim objUpd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_NEW_MANNING_TITLE", _
+                                                   New List(Of Object)(New Object() {obj.ID, obj.NEW_MANNING, obj.NOTE, obj.MOBILIZE_COUNT_MANNING, OUT_NUMBER}))
+        Return Int32.Parse(objUpd(0).ToString())
+    End Function
+
+    Public Function DeleteManning(ByVal P_MANNING_ORG_ID As Int32) As Boolean
+        Dim objUpd As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_MANNING", _
+                                                   New List(Of Object)(New Object() {P_MANNING_ORG_ID, OUT_NUMBER}))
+        Return True
+    End Function
+
+    Public Function LoadInfoManningByOrg(ByVal listOrgId As Integer,
+                               ByVal title As Integer) As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.LOAD_INFO_MANNING_EMPBYORG", New List(Of Object)(New Object() {listOrgId, title}))
+        If ds Is Nothing Or ds.Tables Is Nothing Then
+            Dim dtb As New DataTable
+            dtb.Columns.Add("ID", GetType(Integer))
+            dtb.Columns.Add("ORG_NAME", GetType(String))
+            dtb.Columns.Add("TITLE_NAME", GetType(String))
+            dtb.Columns.Add("NAME", GetType(String))
+            dtb.Columns.Add("EFFECT_DATE", GetType(Date))
+            dtb.Columns.Add("NOTE", GetType(String))
+            dtb.Columns.Add("STATUS", GetType(Integer))
+            Return dtb
+        Else
+            Return ds.Tables(0)
+        End If
+    End Function
+
+    Public Function LoadComboboxYear(ByVal P_ORG_ID As Integer) As DataTable
+        Dim listYear As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.LOAD_COMBOBOX_YEAR", New List(Of Object)(New Object() {P_ORG_ID, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listYear = ds.Tables(0)
+        End If
+        Return listYear
+    End Function
+
+    Public Function LoadComboboxYear_PlanReg(ByVal P_ORG_ID As Integer) As DataTable
+        Dim listYear As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.LOAD_YEAR_PLANREG", New List(Of Object)(New Object() {P_ORG_ID, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listYear = ds.Tables(0)
+        End If
+        Return listYear
+    End Function
+
+    Public Function LoadComboboxListMannName(ByVal org_id As Integer, ByVal year As Integer) As DataTable
+        Dim listMannName As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.LOAD_COMBOBOX_LISTMANNINGNAME", New List(Of Object)(New Object() {org_id, year, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listMannName = ds.Tables(0)
+        End If
+        Return listMannName
+    End Function
+
+    Public Function GetCurrentManningTitle(ByVal P_ORG_ID As Integer, ByVal P_TITLE_ID As Integer) As DataTable
+        Dim listYear As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_CURRENT_MANNING_TITLE", New List(Of Object)(New Object() {P_ORG_ID, P_TITLE_ID, OUT_CURSOR}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            listYear = ds.Tables(0)
+        End If
+        Return listYear
+    End Function
+
+#End Region
+
+#Region "Phân bổ chi phí tuyển dụng - (RC_COSTALLOCATE)"
+
+    'Lấy danh sách phân bổ chi phí theo đợt tuyển dụng
+    Public Function COSTALLOCATE_GetByStage(ByVal P_RC_STAGE_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.COSTALLOCATE_GET_BY_STAGE", New List(Of Object)(New Object() {P_RC_STAGE_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Thêm mới thông tin phân bổ chi phí
+    Public Function COSTALLOCATE_AddNew(ByVal RC_STAGE_ID As Int32,
+                                 ByVal ORG_ID As Int32,
+                                 ByVal COSTAMOUNT As Decimal,
+                                 ByVal REMARK As String,
+                                 ByVal CREATE_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_COSTALLOCATE", _
+                                                   New List(Of Object)(New Object() {
+                                                    RC_STAGE_ID, ORG_ID, COSTAMOUNT, REMARK,
+                                                    CREATE_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Cập nhật thông tin phân bổ chi phí
+    Public Function COSTALLOCATE_Update(ByVal ID As Int32,
+                                 ByVal RC_STAGE_ID As Int32,
+                                 ByVal ORG_ID As Int32,
+                                 ByVal COSTAMOUNT As Decimal,
+                                 ByVal REMARK As String,
+                                 ByVal MODIFY_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_COSTALLOCATE", _
+                                                     New List(Of Object)(New Object() {
+                                                     ID, RC_STAGE_ID, ORG_ID, COSTAMOUNT, REMARK,
+                                                     MODIFY_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Xóa thông tin phân bổ chi phí
+    Public Function COSTALLOCATE_Delete(ByVal ID As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_COSTALLOCATE", New List(Of Object)(New Object() {ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+#End Region
+
+#Region "Quản lý chi phí tuyển dụng - (RC_COST)"
+
+    'Cập nhật chi phí dự kiến
+    Public Function COST_UpdateCostReality(ByVal ID As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.COST_UPDATE_COSTREALITY", New List(Of Object)(New Object() {ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Lấy thông tin chi phí tuyển dụng theo ID
+    Public Function COST_GetByID(ByVal P_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.COST_GET_BY_ID", New List(Of Object)(New Object() {P_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Lấy danh sách chi phí tuyển dụng theo đơn vị
+    Public Function COST_GetList(ByVal P_ORG_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.COST_GETLIST_BYFILTER", New List(Of Object)(New Object() {P_ORG_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Thêm mới chi phí tuyển dụng
+    Public Function COST_AddNew(ByVal RC_STAGE_ID As Int32,
+                                 ByVal ORG_ID As Int32,
+                                 ByVal SOURCEOFREC_ID As String,
+                                 ByVal COSTESTIMATE As Decimal,
+                                 ByVal COSTREALITY As Decimal,
+                                 ByVal REMARK As String,
+                                 ByVal CREATE_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_COST", _
+                                                   New List(Of Object)(New Object() {
+                                                    RC_STAGE_ID, ORG_ID, SOURCEOFREC_ID,
+                                                    COSTESTIMATE, COSTREALITY, REMARK,
+                                                    CREATE_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Cập nhật chi phí tuyển dụng
+    Public Function COST_Update(ByVal ID As Int32,
+                                 ByVal RC_STAGE_ID As Int32,
+                                 ByVal ORG_ID As Int32,
+                                 ByVal SOURCEOFREC_ID As String,
+                                 ByVal COSTESTIMATE As Decimal,
+                                 ByVal COSTREALITY As Decimal,
+                                 ByVal REMARK As String,
+                                 ByVal MODIFY_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_COST", _
+                                                     New List(Of Object)(New Object() {
+                                                     ID, RC_STAGE_ID, ORG_ID, SOURCEOFREC_ID,
+                                                     COSTESTIMATE, COSTREALITY, REMARK,
+                                                     MODIFY_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Xóa chi phí tuyển dụng
+    Public Function COST_Delete(ByVal ID As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_COST", New List(Of Object)(New Object() {ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+#End Region
+
+#Region "Phân bổ chi phí tuyển dụng - (RC_COST_COSTALLOCATE)"
+
+    'Lấy danh sách phân bổ chi phí theo COST
+    Public Function COST_COSTALLOCATE_GetByCOST(ByVal P_RC_COST_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.COST_COSTALLOCATE_GET_BY_COST", New List(Of Object)(New Object() {P_RC_COST_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Thêm mới thông tin phân bổ chi phí
+    Public Function COST_COSTALLOCATE_AddNew(ByVal RC_COST_ID As Int32,
+                                 ByVal ORG_ID As Int32,
+                                 ByVal COSTAMOUNT As Int32,
+                                 ByVal REMARK As String,
+                                 ByVal CREATE_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_COST_COSTALLOCATE", _
+                                                   New List(Of Object)(New Object() {
+                                                    RC_COST_ID, ORG_ID, COSTAMOUNT, REMARK,
+                                                    CREATE_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Cập nhật thông tin phân bổ chi phí
+    Public Function COST_COSTALLOCATE_Update(ByVal ID As Int32,
+                                 ByVal RC_COST_ID As Int32,
+                                 ByVal ORG_ID As Int32,
+                                 ByVal COSTAMOUNT As Int32,
+                                 ByVal REMARK As String,
+                                 ByVal MODIFY_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_COST_COSTALLOCATE", _
+                                                     New List(Of Object)(New Object() {
+                                                     ID, RC_COST_ID, ORG_ID, COSTAMOUNT, REMARK,
+                                                     MODIFY_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Xóa thông tin phân bổ chi phí
+    Public Function COST_COSTALLOCATE_Delete(ByVal ID As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_COST_COSTALLOCATE", New List(Of Object)(New Object() {ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+#End Region
+
+#Region "Cập nhật kết quả thi tuyển"
+
+    'Lấy danh sách ứng viên theo chương trình tuyển dụng
+    Public Function CANDIDATE_LIST_GETBYPROGRAM(ByVal P_RC_PROGRAM_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.CANDIDATE_LIST_GETBYPROGRAM", New List(Of Object)(New Object() {P_RC_PROGRAM_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Lấy danh sách môn thi/phỏng ván theo thông tin ứng viên
+    Public Function EXAMS_GETBYCANDIDATE(ByVal P_RC_PROGRAM_ID As Int32, ByVal P_RC_CANDIDATE_ID As Int32, ByVal P_IS_PV As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.EXAMS_GETBYCANDIDATE", New List(Of Object)(New Object() {P_RC_PROGRAM_ID, P_RC_CANDIDATE_ID, P_IS_PV}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Lấy điểm trung bình của điểm thi (ko áp dụng cho Phỏng vấn)
+    Public Function CANDIDATE_GET_AVERAGE_MARKS(ByVal P_RC_PROGRAM_ID As Int32, ByVal P_RC_CANDIDATE_ID As Int32) As Decimal
+        Dim objects = rep.ExecuteStoreScalar("PKG_RECRUITMENT.CANDIDATE_GET_AVERAGE_MARKS", New List(Of Object)(New Object() {P_RC_PROGRAM_ID, P_RC_CANDIDATE_ID, OUT_NUMBER}))
+        Return objects(0).ToString
+    End Function
+
+    'Cập nhật chi phí tuyển dụng
+    Public Function UPDATE_CANDIDATE_RESULT(ByVal ID As Int32,
+                                 ByVal POINT_RESULT As Decimal,
+                                 ByVal COMMENT_INFO As String,
+                                 ByVal ASSESSMENT_INFO As String,
+                                 ByVal IS_PASS As Int32) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_CANDIDATE_RESULT", _
+                                                     New List(Of Object)(New Object() {
+                                                     ID, POINT_RESULT, COMMENT_INFO, ASSESSMENT_INFO, IS_PASS, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Xóa thông tin kết quả thi tuyển / phỏng vấn
+    Public Function DELETE_CANDIDATE_RESULT(ByVal ID As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_CANDIDATE_RESULT", New List(Of Object)(New Object() {ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+#End Region
+
+#Region "Ứng viên - (RC_CANDIDATE)"
+    'Cập nhật tình trạng ứng viên
+    Public Function UPDATE_CANDIDATE_STATUS(ByVal ID As Int32,
+                                 ByVal STATUS_CODE As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_CANDIDATE_STATUS", _
+                                                     New List(Of Object)(New Object() {
+                                                     ID, STATUS_CODE, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+#End Region
+
+#Region "Lịch thi tuyển - (Program_Schedule)"
+    'Lấy danh sách lịch thi tuyển theo chương trình tuyển dụng
+    Public Function GET_PROGRAM_SCHCEDULE_LIST(ByVal P_PROGRAM_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_PROGRAM_SCHCEDULE_LIST", New List(Of Object)(New Object() {P_PROGRAM_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Lấy danh sách ứng viên đã có lịch thi tuyển
+    Public Function GET_PROGRAM_SCHCEDULE_LIST(ByVal P_PROGRAM_ID As Int32, ByVal P_PROGRAM_SCHEDULE_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_SCHCEDULE_CAN_BY_STATUS", New List(Of Object)(New Object() {P_PROGRAM_ID, P_PROGRAM_SCHEDULE_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Lấy danh sách ứng viên chưa có lịch thi tuyển
+    Public Function GET_CANDIDATE_NOT_SCHEDULE(ByVal P_PROGRAM_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_CANDIDATE_NOT_SCHEDULE", New List(Of Object)(New Object() {P_PROGRAM_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Thêm mới lịch thi tuyển cho ứng viên
+    Public Function ADDNEW_CAN_PRO_SCHEDULE(ByVal CANDIDATE_ID As Int32,
+                                 ByVal PROGRAM_SCHEDULE_ID As Int32,
+                                 ByVal PROGRAM_EXAMS_ID As Int32) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_CAN_PRO_SCHEDULE", _
+                                                   New List(Of Object)(New Object() {
+                                                    CANDIDATE_ID, PROGRAM_SCHEDULE_ID, PROGRAM_EXAMS_ID, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+
+    'Thêm mới thông tin phân bổ chi phí
+    Public Function ADDNEW_PRO_SCHEDULE(ByVal RC_PROGRAM_ID As Int32,
+                                 ByVal SCHEDULE_DATE As DateTime,
+                                 ByVal EXAMS_PLACE As String,
+                                 ByVal NOTE As String,
+                                 ByVal CREATE_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.ADDNEW_PRO_SCHEDULE", _
+                                                   New List(Of Object)(New Object() {
+                                                    RC_PROGRAM_ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
+                                                    CREATE_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Cập nhật thông tin phân bổ chi phí
+    Public Function UPDATE_PRO_SCHEDULE(ByVal ID As Int32,
+                                 ByVal SCHEDULE_DATE As DateTime,
+                                 ByVal EXAMS_PLACE As String,
+                                 ByVal NOTE As String,
+                                 ByVal MODIFY_BY As String,
+                                 ByVal LOG As String) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_PRO_SCHEDULE", _
+                                                     New List(Of Object)(New Object() {
+                                                     ID, SCHEDULE_DATE, EXAMS_PLACE, NOTE,
+                                                     MODIFY_BY, LOG, OUT_NUMBER
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Lấy Lịch thi tuyển mới nhất
+    Public Function GET_TOPID_PRO_SCHEDULE(ByVal P_RC_PROGRAM_ID As Int32) As Decimal
+        Dim objects = rep.ExecuteStoreScalar("PKG_RECRUITMENT.GET_TOPID_PRO_SCHEDULE", New List(Of Object)(New Object() {P_RC_PROGRAM_ID, OUT_NUMBER}))
+        Return objects(0).ToString
+    End Function
+
+    'Cập nhật PRO_Schedule id
+    Public Function UPDATE_PRO_SCHEDULE_ID(ByVal P_PROGRAM_SCHEDULE_ID As Int32) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.UPDATE_PRO_SCHEDULE_ID", _
+                                                     New List(Of Object)(New Object() {
+                                                     P_PROGRAM_SCHEDULE_ID
+                                                   }))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Xóa chi phí tuyển dụng
+    Public Function DELETE_PRO_SCHEDULE_CAN_ISNULL() As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_PRO_SCHEDULE_CAN_ISNULL", New List(Of Object)(New Object() {OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+
+    'Xóa thông tin phân bổ chi phí
+    Public Function DELETE_PRO_SCHEDULE_CAN(ByVal PRO_SCHEDULE_ID As Int32, ByVal CANDIDATE_ID As Int32) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_RECRUITMENT.DELETE_PRO_SCHEDULE_CAN", New List(Of Object)(New Object() {PRO_SCHEDULE_ID, CANDIDATE_ID, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
+#End Region
+
+#Region "Môn thi"
+    'Lấy danh sách môn thi theo chương trình tuyển dụng
+    Public Function GET_AllExams_ByProgram(ByVal P_PROGRAM_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_ALL_EXAMS_BYPRO", New List(Of Object)(New Object() {P_PROGRAM_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    'Kiểm tra môn thi có tồn tại trong lịch thi
+    'Public Function Check_Exams_IsExist(ByVal P_PROGRAM_EXAMS_ID As Int32) As Decimal
+    '    Dim objects = rep.ExecuteStoreScalar("PKG_RECRUITMENT.CHECK_EXAMS_PRO_SCHEDULE_CAN", New List(Of Object)(New Object() {P_PROGRAM_EXAMS_ID, OUT_NUMBER}))
+    '    Return objects(0).ToString
+    'End Function
+    Public Function Check_Exams_IsExist(ByVal P_PROGRAM_SCHEDULE_ID As Int32, ByVal P_CANDIDATE_ID As Int32) As Decimal
+        Dim objects = rep.ExecuteStoreScalar("PKG_RECRUITMENT.CHECK_EXAMS_PRO_SCHEDULE_CAN", New List(Of Object)(New Object() {P_PROGRAM_SCHEDULE_ID, P_CANDIDATE_ID, OUT_NUMBER}))
+        Return objects(0).ToString
+    End Function
+
+    'get by id
+    Public Function GET_PRO_SCHEDULE_BYID(ByVal P_PROGRAM_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_PRO_SCHEDULE_BYID", New List(Of Object)(New Object() {P_PROGRAM_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+#End Region
+
+#Region "Request"
+    'Lấy danh sách các chức danh có / không có trong kế hoạch tuyển dụng
+    Public Function GET_TITLE_IN_PLAN(ByVal P_ORG_ID As Int32, ByVal IS_PLAN As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.GET_TITLE_IN_PLAN", New List(Of Object)(New Object() {P_ORG_ID, IS_PLAN, Common.Common.SystemLanguage.Name}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    ' Kiểm tra danh sách các yêu cầu tuyển dụng có thông tin nào chưa phê duyệt
+    Public Function CHECK_REQUEST_NOT_APPROVE(ByVal P_ID As String) As Decimal
+        Dim objects = rep.ExecuteStoreScalar("PKG_RECRUITMENT.CHECK_REQUEST_NOT_APPROVE", New List(Of Object)(New Object() {P_ID, OUT_NUMBER}))
+        Return objects(0).ToString
+    End Function
+
+    'load yêu cầu tuyển dụng theo ID
+    Public Function REQUEST_GET_BY_ID(ByVal P_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.REQUEST_GET_BY_ID", New List(Of Object)(New Object() {P_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+#End Region
+
+#Region "Plan"
+    'load kế hoạch tuyển dụng theo ID
+    Public Function PLAN_GET_BY_ID(ByVal P_ID As Int32) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_RECRUITMENT.PLAN_GET_BY_ID", New List(Of Object)(New Object() {P_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+#End Region
+
+
+End Class

@@ -1,0 +1,1004 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{3D295273-0668-43F1-9C39-4010771F6A9D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Attendance</RootNamespace>
+    <AssemblyName>Attendance</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Attendance.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Attendance.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=7.0.3.0, Culture=neutral, PublicKeyToken=12d8fa3d810c48da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ref\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\AjaxControlToolkit.4.1.60623\lib\40\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.zkemkeeper">
+      <HintPath>..\ref\Interop.zkemkeeper.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="LinqToExcel, Version=1.6.5.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.6.5\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.6.5\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.6.5\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqToExcel.1.6.5\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="SanitizerProviders">
+      <HintPath>..\packages\AjaxControlToolkit.4.1.60623\lib\40\SanitizerProviders\SanitizerProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Web.Design, Version=2012.3.1205.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Telerik New\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2012.3.1205.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Telerik New\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2012.3.1205.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Telerik New\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\DataSources\Common.CommonBusiness.EmployeePopupFindDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.FunctionDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.GroupDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.GroupFunctionDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.GroupReportDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.GroupUserLogDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.ModuleDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.OrganizationDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.OrganizationFunctionDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.OrganizationStructureDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.OtherListDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.OtherListGroupDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.OtherListTypeDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.PermissionDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.TitleDTO.datasource" />
+    <None Include="My Project\DataSources\Common.CommonBusiness.UserDTO.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataSet1.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
+    <Content Include="Modules\Attendance\Business\ctrlApproveOT.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGNNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTime_Timesheet_NB.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEditMultiple.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlActionLog.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlDeclareEntitlementNB.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTime_TimeSheet_RiceEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTime_Timesheet_Rice.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlDeclare_TimeRice.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlDeclare_TimeRiceNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlSignWorkDelete.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlDeclaresOTNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlDeclaresOT.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTime_TimeSheet_OtEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTime_Timesheet_ot.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTime_TimeSheet_CCTEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlNewInout.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_EMP.ascx" />
+    <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeProject.ascx" />
+    <Content Include="Modules\Attendance\Dashboard\ctrlDashboard.ascx" />
+    <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTotalWorking.ascx" />
+    <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOff.ascx" />
+    <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOtByOrg.ascx" />
+    <Content Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
+    <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlSetUpTimeEmp.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlATTimeManual.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlGetSignDefault.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlSignWorkNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTimesheetSummary.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTime_Timesheet_CTT.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlEntitlement.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlManagementNB.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlMngIO.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlRegisterDSVM.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlRegisterDSVMNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlRegisterCO.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlRegisterCONewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlSignWork.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlRegisterOTNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlRegisterOT.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlSwipeDataDownload.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlTimeTimesheet_machine.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlSwipeMachine.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlThietLapChamCongDB.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlQuyDinhPhatDiMuonVeSom.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlQuyDinhCa.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlThietLapKieuCong.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlThietLapNNTDT.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlDMCaLamViec.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlDMKieuCong.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlDMNghiChung.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlRitual.ascx" />
+    <Content Include="Modules\Common\ctrlFindEmployeePopup.ascx" />
+    <Content Include="Modules\Common\ctrlMessageBox.ascx" />
+    <Content Include="Modules\Common\ctrlOrganization.ascx" />
+    <Content Include="Modules\Common\ctrlOrganizationPopup.ascx" />
+    <Content Include="Modules\Common\ctrlToolBar.ascx" />
+    <Content Include="Modules\Common\ctrlUpload.ascx" />
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_ACTION_LOGDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_COMPENSATORYDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_DATAINOUTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_DMVSDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_ENTITLEMENTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_FMLDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_GSIGNDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_HOLIDAYDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_HOLIDAY_GENERALDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_HOLIDAY_OBJECTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_LATE_COMBACKOUTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_LEAVESHEETDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PERIODDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PORTAL_REG_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PROJECTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PROJECT_EMPDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PROJECT_TITLEDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PROJECT_WORKDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_REGISTER_OTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SETUP_SPECIALDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SETUP_TIME_EMPDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SHIFTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SIGNDEFAULTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SWIPE_DATADTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TERMINALSDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIMESHEET_REGISTERDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIME_MANUALDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIME_RICEDTO1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIME_TIMESHEET_DAILYDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIME_TIMESHEET_MACHINETDTO1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIME_TIMESHEET_OTDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_TIME_TIMESHEET_RICEDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.ComboBoxDataDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.HistoryLeaveDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.Se_ReportDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.StatisticDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.TotalDayOffDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness.disco" />
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\configuration91.svcinfo" />
+    <None Include="Service References\AttendanceBusiness\configuration.svcinfo" />
+    <None Include="Service References\AttendanceBusiness\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <Content Include="Modules\Portal\ctrlDBRegApp.ascx" />
+    <Content Include="Modules\Portal\ctrlLeaveHistory.ascx" />
+    <Content Include="Modules\Portal\ctrlDMVSApprove.ascx" />
+    <Content Include="Modules\Portal\ctrlDMVSRegister.ascx" />
+    <Content Include="Modules\Portal\ctrlLeaveApprove.ascx" />
+    <Content Include="Modules\Portal\ctrlLeaveDisplay.ascx" />
+    <Content Include="Modules\Portal\ctrlOTApprove.ascx" />
+    <Content Include="Modules\Portal\ctrlOTRegister.ascx" />
+    <Content Include="Modules\Portal\ctrlPortalTimeTimesheetDetails.ascx" />
+    <Content Include="Modules\Portal\ctrlRegisterLeave.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness.wsdl" />
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AttendanceBusiness\AttendanceBusiness5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ATConstant.vb" />
+    <Compile Include="AttendanceRepository.List.vb" />
+    <Compile Include="AttendanceRepository.vb" />
+    <Compile Include="AttendanceRepositoryBase.vb" />
+    <Compile Include="AttendanceRepositoryStatic.vb" />
+    <Compile Include="BusinessObjects\MessageDTO.vb" />
+    <Compile Include="AttendanceRepository.Business.vb" />
+    <Compile Include="AttendanceRepository.Common.vb" />
+    <Compile Include="AttendanceRepository.Report.vb" />
+    <Compile Include="AttendanceRepository.Dashboard.vb" />
+    <Compile Include="Modules\Attendance\Business\ctrlApproveOT.ascx.designer.vb">
+      <DependentUpon>ctrlApproveOT.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlApproveOT.ascx.vb">
+      <DependentUpon>ctrlApproveOT.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGNNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlAT_PROJECT_ASSIGNNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGNNewEdit.ascx.vb">
+      <DependentUpon>ctrlAT_PROJECT_ASSIGNNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx.designer.vb">
+      <DependentUpon>ctrlAT_PROJECT_ASSIGN.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx.vb">
+      <DependentUpon>ctrlAT_PROJECT_ASSIGN.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_NB.ascx.designer.vb">
+      <DependentUpon>ctrlTime_Timesheet_NB.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_NB.ascx.vb">
+      <DependentUpon>ctrlTime_Timesheet_NB.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEditMultiple.ascx.designer.vb">
+      <DependentUpon>ctrlDeclareEntitlementNBNewEditMultiple.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEditMultiple.ascx.vb">
+      <DependentUpon>ctrlDeclareEntitlementNBNewEditMultiple.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlActionLog.ascx.designer.vb">
+      <DependentUpon>ctrlActionLog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlActionLog.ascx.vb">
+      <DependentUpon>ctrlActionLog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclareEntitlementNB.ascx.designer.vb">
+      <DependentUpon>ctrlDeclareEntitlementNB.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclareEntitlementNB.ascx.vb">
+      <DependentUpon>ctrlDeclareEntitlementNB.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlDeclareEntitlementNBNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclareEntitlementNBNewEdit.ascx.vb">
+      <DependentUpon>ctrlDeclareEntitlementNBNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_TimeSheet_RiceEdit.ascx.designer.vb">
+      <DependentUpon>ctrlTime_TimeSheet_RiceEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_TimeSheet_RiceEdit.ascx.vb">
+      <DependentUpon>ctrlTime_TimeSheet_RiceEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_Rice.ascx.designer.vb">
+      <DependentUpon>ctrlTime_Timesheet_Rice.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_Rice.ascx.vb">
+      <DependentUpon>ctrlTime_Timesheet_Rice.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclare_TimeRice.ascx.designer.vb">
+      <DependentUpon>ctrlDeclare_TimeRice.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclare_TimeRice.ascx.vb">
+      <DependentUpon>ctrlDeclare_TimeRice.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclare_TimeRiceNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlDeclare_TimeRiceNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclare_TimeRiceNewEdit.ascx.vb">
+      <DependentUpon>ctrlDeclare_TimeRiceNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSignWorkDelete.ascx.designer.vb">
+      <DependentUpon>ctrlSignWorkDelete.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSignWorkDelete.ascx.vb">
+      <DependentUpon>ctrlSignWorkDelete.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclaresOTNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlDeclaresOTNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclaresOTNewEdit.ascx.vb">
+      <DependentUpon>ctrlDeclaresOTNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclaresOT.ascx.designer.vb">
+      <DependentUpon>ctrlDeclaresOT.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlDeclaresOT.ascx.vb">
+      <DependentUpon>ctrlDeclaresOT.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_TimeSheet_OtEdit.ascx.designer.vb">
+      <DependentUpon>ctrlTime_TimeSheet_OtEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_TimeSheet_OtEdit.ascx.vb">
+      <DependentUpon>ctrlTime_TimeSheet_OtEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_ot.ascx.designer.vb">
+      <DependentUpon>ctrlTime_Timesheet_ot.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_ot.ascx.vb">
+      <DependentUpon>ctrlTime_Timesheet_ot.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_TimeSheet_CCTEdit.ascx.designer.vb">
+      <DependentUpon>ctrlTime_TimeSheet_CCTEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_TimeSheet_CCTEdit.ascx.vb">
+      <DependentUpon>ctrlTime_TimeSheet_CCTEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlNewInout.ascx.designer.vb">
+      <DependentUpon>ctrlNewInout.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlNewInout.ascx.vb">
+      <DependentUpon>ctrlNewInout.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_PROJECT_EMP.ascx.designer.vb">
+      <DependentUpon>ctrlAT_PROJECT_EMP.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlAT_PROJECT_EMP.ascx.vb">
+      <DependentUpon>ctrlAT_PROJECT_EMP.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeProject.ascx.designer.vb">
+      <DependentUpon>ctrlAT_DBTimeProject.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeProject.ascx.vb">
+      <DependentUpon>ctrlAT_DBTimeProject.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlDashboard.ascx.vb">
+      <DependentUpon>ctrlDashboard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOff.ascx.designer.vb">
+      <DependentUpon>ctrlAT_DBTimeOff.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTotalWorking.ascx.designer.vb">
+      <DependentUpon>ctrlAT_DBTotalWorking.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTotalWorking.ascx.vb">
+      <DependentUpon>ctrlAT_DBTotalWorking.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOff.ascx.vb">
+      <DependentUpon>ctrlAT_DBTimeOff.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOtByOrg.ascx.designer.vb">
+      <DependentUpon>ctrlAT_DBTimeOtByOrg.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlAT_DBTimeOtByOrg.ascx.vb">
+      <DependentUpon>ctrlAT_DBTimeOtByOrg.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx.designer.vb">
+      <DependentUpon>ctrlDashboardSixCell.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx.vb">
+      <DependentUpon>ctrlDashboardSixCell.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx.designer.vb">
+      <DependentUpon>ctrlAT_PROJECT_WORK.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx.vb">
+      <DependentUpon>ctrlAT_PROJECT_WORK.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx.designer.vb">
+      <DependentUpon>ctrlAT_PROJECT.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx.vb">
+      <DependentUpon>ctrlAT_PROJECT.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx.designer.vb">
+      <DependentUpon>ctrlAT_PROJECT_TITLE.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx.vb">
+      <DependentUpon>ctrlAT_PROJECT_TITLE.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlListParamSystem.ascx.designer.vb">
+      <DependentUpon>ctrlListParamSystem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlListParamSystem.ascx.vb">
+      <DependentUpon>ctrlListParamSystem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx.designer.vb">
+      <DependentUpon>ctrlAT_ReportList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx.vb">
+      <DependentUpon>ctrlAT_ReportList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx.designer.vb">
+      <DependentUpon>ctrlSwipeMachineStatus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx.vb">
+      <DependentUpon>ctrlSwipeMachineStatus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSetUpTimeEmp.ascx.designer.vb">
+      <DependentUpon>ctrlSetUpTimeEmp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSetUpTimeEmp.ascx.vb">
+      <DependentUpon>ctrlSetUpTimeEmp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlATTimeManual.ascx.designer.vb">
+      <DependentUpon>ctrlATTimeManual.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlATTimeManual.ascx.vb">
+      <DependentUpon>ctrlATTimeManual.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlGetSignDefault.ascx.designer.vb">
+      <DependentUpon>ctrlGetSignDefault.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlGetSignDefault.ascx.vb">
+      <DependentUpon>ctrlGetSignDefault.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSignWorkNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlSignWorkNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSignWorkNewEdit.ascx.vb">
+      <DependentUpon>ctrlSignWorkNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTimesheetSummary.ascx.designer.vb">
+      <DependentUpon>ctrlTimesheetSummary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTimesheetSummary.ascx.vb">
+      <DependentUpon>ctrlTimesheetSummary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_CTT.ascx.designer.vb">
+      <DependentUpon>ctrlTime_Timesheet_CTT.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTime_Timesheet_CTT.ascx.vb">
+      <DependentUpon>ctrlTime_Timesheet_CTT.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlEntitlement.ascx.designer.vb">
+      <DependentUpon>ctrlEntitlement.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlEntitlement.ascx.vb">
+      <DependentUpon>ctrlEntitlement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlManagementNB.ascx.designer.vb">
+      <DependentUpon>ctrlManagementNB.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlManagementNB.ascx.vb">
+      <DependentUpon>ctrlManagementNB.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlMngIO.ascx.designer.vb">
+      <DependentUpon>ctrlMngIO.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlMngIO.ascx.vb">
+      <DependentUpon>ctrlMngIO.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterDSVM.ascx.designer.vb">
+      <DependentUpon>ctrlRegisterDSVM.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterDSVM.ascx.vb">
+      <DependentUpon>ctrlRegisterDSVM.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterDSVMNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlRegisterDSVMNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterDSVMNewEdit.ascx.vb">
+      <DependentUpon>ctrlRegisterDSVMNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterCO.ascx.designer.vb">
+      <DependentUpon>ctrlRegisterCO.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterCO.ascx.vb">
+      <DependentUpon>ctrlRegisterCO.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterCONewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlRegisterCONewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterCONewEdit.ascx.vb">
+      <DependentUpon>ctrlRegisterCONewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSignWork.ascx.designer.vb">
+      <DependentUpon>ctrlSignWork.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSignWork.ascx.vb">
+      <DependentUpon>ctrlSignWork.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterOTNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlRegisterOTNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterOTNewEdit.ascx.vb">
+      <DependentUpon>ctrlRegisterOTNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterOT.ascx.designer.vb">
+      <DependentUpon>ctrlRegisterOT.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlRegisterOT.ascx.vb">
+      <DependentUpon>ctrlRegisterOT.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSwipeDataDownload.ascx.designer.vb">
+      <DependentUpon>ctrlSwipeDataDownload.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlSwipeDataDownload.ascx.vb">
+      <DependentUpon>ctrlSwipeDataDownload.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTimeTimesheet_machine.ascx.designer.vb">
+      <DependentUpon>ctrlTimeTimesheet_machine.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlTimeTimesheet_machine.ascx.vb">
+      <DependentUpon>ctrlTimeTimesheet_machine.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSwipeMachine.ascx.designer.vb">
+      <DependentUpon>ctrlSwipeMachine.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSwipeMachine.ascx.vb">
+      <DependentUpon>ctrlSwipeMachine.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlThietLapChamCongDB.ascx.designer.vb">
+      <DependentUpon>ctrlThietLapChamCongDB.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlThietLapChamCongDB.ascx.vb">
+      <DependentUpon>ctrlThietLapChamCongDB.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlQuyDinhPhatDiMuonVeSom.ascx.designer.vb">
+      <DependentUpon>ctrlQuyDinhPhatDiMuonVeSom.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlQuyDinhPhatDiMuonVeSom.ascx.vb">
+      <DependentUpon>ctrlQuyDinhPhatDiMuonVeSom.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlQuyDinhCa.ascx.designer.vb">
+      <DependentUpon>ctrlQuyDinhCa.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlQuyDinhCa.ascx.vb">
+      <DependentUpon>ctrlQuyDinhCa.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlThietLapKieuCong.ascx.designer.vb">
+      <DependentUpon>ctrlThietLapKieuCong.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlThietLapKieuCong.ascx.vb">
+      <DependentUpon>ctrlThietLapKieuCong.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlThietLapNNTDT.ascx.designer.vb">
+      <DependentUpon>ctrlThietLapNNTDT.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlThietLapNNTDT.ascx.vb">
+      <DependentUpon>ctrlThietLapNNTDT.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlDMCaLamViec.ascx.designer.vb">
+      <DependentUpon>ctrlDMCaLamViec.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlDMCaLamViec.ascx.vb">
+      <DependentUpon>ctrlDMCaLamViec.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlDMKieuCong.ascx.designer.vb">
+      <DependentUpon>ctrlDMKieuCong.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlDMKieuCong.ascx.vb">
+      <DependentUpon>ctrlDMKieuCong.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlDMNghiChung.ascx.designer.vb">
+      <DependentUpon>ctrlDMNghiChung.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlDMNghiChung.ascx.vb">
+      <DependentUpon>ctrlDMNghiChung.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlRitual.ascx.designer.vb">
+      <DependentUpon>ctrlRitual.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlRitual.ascx.vb">
+      <DependentUpon>ctrlRitual.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlDBRegApp.ascx.designer.vb">
+      <DependentUpon>ctrlDBRegApp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlDBRegApp.ascx.vb">
+      <DependentUpon>ctrlDBRegApp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveHistory.ascx.designer.vb">
+      <DependentUpon>ctrlLeaveHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveHistory.ascx.vb">
+      <DependentUpon>ctrlLeaveHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlDMVSApprove.ascx.designer.vb">
+      <DependentUpon>ctrlDMVSApprove.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlDMVSApprove.ascx.vb">
+      <DependentUpon>ctrlDMVSApprove.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlDMVSRegister.ascx.designer.vb">
+      <DependentUpon>ctrlDMVSRegister.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlDMVSRegister.ascx.vb">
+      <DependentUpon>ctrlDMVSRegister.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveApprove.ascx.designer.vb">
+      <DependentUpon>ctrlLeaveApprove.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveApprove.ascx.vb">
+      <DependentUpon>ctrlLeaveApprove.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveDisplay.ascx.designer.vb">
+      <DependentUpon>ctrlLeaveDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveDisplay.ascx.vb">
+      <DependentUpon>ctrlLeaveDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTApprove.ascx.designer.vb">
+      <DependentUpon>ctrlOTApprove.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTApprove.ascx.vb">
+      <DependentUpon>ctrlOTApprove.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegister.ascx.designer.vb">
+      <DependentUpon>ctrlOTRegister.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegister.ascx.vb">
+      <DependentUpon>ctrlOTRegister.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalTimeTimesheetDetails.ascx.designer.vb">
+      <DependentUpon>ctrlPortalTimeTimesheetDetails.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalTimeTimesheetDetails.ascx.vb">
+      <DependentUpon>ctrlPortalTimeTimesheetDetails.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlRegisterLeave.ascx.designer.vb">
+      <DependentUpon>ctrlRegisterLeave.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlRegisterLeave.ascx.vb">
+      <DependentUpon>ctrlRegisterLeave.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Service References\AttendanceBusiness\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Util.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vbproj">
+      <Project>{4B2EF214-7880-45F2-BB79-B394E552B4BE}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.vbproj">
+      <Project>{4b2ef214-7880-45f2-bb79-b394e552b4be}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Framework.UI.vbproj">
+      <Project>{514CC57F-03AA-4D18-9BF2-3F7B66F6AD9B}</Project>
+      <Name>Framework.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAppLog\WebAppLog.vbproj">
+      <Project>{780365C3-C031-4841-9B4C-B39840797596}</Project>
+      <Name>WebAppLog</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AttendanceBusiness\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>64229</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

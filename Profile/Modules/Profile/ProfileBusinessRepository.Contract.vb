@@ -1,0 +1,146 @@
+﻿Imports Profile.ProfileBusiness
+
+Partial Public Class ProfileBusinessRepository
+    Inherits ProfileRepositoryBase
+
+    Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
+                                ByVal PageSize As Integer,
+                                ByRef Total As Integer, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ContractDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetContract(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetContract(ByVal _filter As ContractDTO, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ContractDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetContract(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetContractByID(ByVal _filter As ContractDTO) As ContractDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetContractByID(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function ValidateContract(ByVal sType As String, ByVal obj As ContractDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ValidateContract(sType, obj)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function InsertContract(ByVal objContract As ContractDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertContract(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyContract(ByVal objContract As ContractDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyContract(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteContract(ByVal objContract As ContractDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteContract(objContract)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function CreateContractNo(ByVal objContract As ContractDTO) As String
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CreateContractNo(objContract)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function CheckContractNo(ByVal objContract As ContractDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckContractNo(objContract)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function GetContractEmployeeByID(ByVal gEmployeeID As Decimal) As EmployeeDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetContractEmployeeByID(gEmployeeID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function UnApproveContract(ByVal objContract As ContractDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.UnApproveContract(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+End Class

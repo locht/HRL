@@ -1,0 +1,321 @@
+﻿Imports System.IO
+Imports Framework.Data
+Imports System.Data.Objects
+Imports Framework.Data.System.Linq.Dynamic
+Imports System.Reflection
+
+Partial Class ProfileRepository
+
+#Region "WelfareMng"
+    Public Function GetWelfareListAuto(ByVal _filter As WelfareMngDTO, ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer, ByVal log As UserLog) As DataTable
+
+        Try
+            Using Sql As New DataAccess.NonQueryData
+                Using cls As New DataAccess.QueryData
+                    Dim dtData As DataTable = cls.ExecuteStore("PKG_PROFILE_BUSINESS.GET_WELFARE_AUTO",
+                                               New With {.P_USERNAME = log.Username,
+                                                         .P_ORGID = _filter.ORG_ID,
+                                                         .P_ISDISSOLVE = _filter.PARAM.IS_DISSOLVE,
+                                                         .P_WELFARE_ID = _filter.WELFARE_ID,
+                                                         .P_CUR = cls.OUT_CURSOR}, True)
+                    Return dtData
+                End Using
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+
+        End Try
+    End Function
+    Public Function GetWelfareMng(ByVal _filter As WelfareMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        ByVal UserLog As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of WelfareMngDTO)
+
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = UserLog.Username,
+                                           .P_ORGID = _filter.ORG_ID,
+                                           .P_ISDISSOLVE = IsDissolve})
+            End Using
+
+            Dim query = From p In Context.HU_WELFARE_MNG
+                        From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID)
+                        From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID)
+                        From l In Context.HU_WELFARE_LIST.Where(Function(l) p.WELFARE_ID = l.ID)
+                        From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
+                        From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And _
+                                                                   se.USERNAME = UserLog.Username.ToUpper)
+
+
+            Dim dateNow = Date.Now.Date
+            Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            If Not _filter.IS_TER Then
+                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or _
+                                        (p.e.WORK_STATUS.HasValue And _
+                                         ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
+            End If
+
+
+            ' lọc điều kiện
+            If _filter.EMPLOYEE_CODE IsNot Nothing Then
+                query = query.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.EMPLOYEE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
+            End If
+            If _filter.TITLE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.t.NAME_VN.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
+            End If
+            If _filter.WELFARE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.l.NAME.ToUpper.Contains(_filter.WELFARE_NAME.ToUpper))
+            End If
+            If _filter.MONEY IsNot Nothing Then
+                query = query.Where(Function(p) p.p.MONEY = _filter.MONEY)
+            End If
+            If _filter.EFFECT_FROM IsNot Nothing Then
+                query = query.Where(Function(p) p.p.EFFECT_DATE >= _filter.EFFECT_FROM)
+            End If
+            If _filter.EFFECT_TO IsNot Nothing Then
+                query = query.Where(Function(p) p.p.EFFECT_DATE <= _filter.EFFECT_TO)
+            End If
+            If _filter.EFFECT_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.EFFECT_DATE = _filter.EFFECT_DATE)
+            End If
+            ' select thuộc tính
+            Dim wel = query.Select(Function(p) New WelfareMngDTO With {
+                                       .ID = p.p.ID,
+                                       .PERIOD_ID = p.p.PERIOD_ID,
+                                       .YEAR_PERIOD = p.pe.YEAR,
+                                       .NAME_PERIOD = p.pe.PERIOD_NAME,
+                                       .EFFECT_DATE = p.p.EFFECT_DATE,
+                                       .EMPLOYEE_ID = p.e.ID,
+                                       .IS_TAXION = p.p.IS_TAXION,
+                                       .NAME_TAXION = If(p.p.IS_TAXION = 0, "Không tính vào lương", If(p.p.IS_TAXION = 1, "Tính vào lương (chịu thuế)", If(p.p.IS_TAXION = 2, "Tính vào lương (không chịu thuế)", ""))),
+                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                       .EXPIRE_DATE = p.p.EXPIRE_DATE,
+                                       .MONEY = p.p.MONEY,
+                                       .ORG_ID = p.o.ID,
+                                       .ORG_NAME = p.o.NAME_VN,
+                                       .ORG_DESC = p.o.DESCRIPTION_PATH,
+                                       .SDESC = p.p.SDESC,
+                                       .TITLE_NAME = p.t.NAME_VN,
+                                       .WELFARE_ID = p.p.WELFARE_ID,
+                                       .WELFARE_NAME = p.l.NAME,
+                                       .WORK_STATUS = p.e.WORK_STATUS,
+                                       .TER_LAST_DATE = p.e.TER_EFFECT_DATE,
+                                       .CREATED_DATE = p.p.CREATED_DATE})
+            wel = wel.OrderBy(Sorts)
+            Total = wel.Count
+            wel = wel.Skip(PageIndex * PageSize).Take(PageSize)
+            Return wel.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetWelfareMngById(ByVal Id As Integer
+                                        ) As WelfareMngDTO
+
+        Try
+            Dim query = From p In Context.HU_WELFARE_MNG
+                        From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID)
+                        From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
+                        From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
+                        Where p.ID = Id
+                     Order By p.EMPLOYEE_ID
+
+            ' select thuộc tính
+            Dim wel = query.Select(Function(p) New WelfareMngDTO With {
+                                       .ID = p.p.ID,
+                                       .EFFECT_DATE = p.p.EFFECT_DATE,
+                                       .EXPIRE_DATE = p.p.EXPIRE_DATE,
+                                       .EMPLOYEE_ID = p.p.ID,
+                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                       .TITLE_NAME = p.t.NAME_VN,
+                                       .ORG_NAME = p.o.NAME_VN,
+                                       .WELFARE_ID = p.p.WELFARE_ID,
+                                       .WELFARE_NAME = p.w.NAME,
+                                       .PERIOD_ID = p.p.PERIOD_ID,
+                                       .YEAR_PERIOD = p.pe.YEAR,
+                                       .MONEY = p.p.MONEY,
+                                       .WORK_STATUS = p.e.WORK_STATUS,
+                                       .SDESC = p.p.SDESC,
+            .IS_TAXION = p.p.IS_TAXION
+                                       })
+            Return wel.SingleOrDefault
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CheckWelfareMngEffect(ByVal _filter As List(Of WelfareMngDTO)) As Boolean
+        Dim lst As List(Of WelfareMngDTO)
+        Try
+            If _filter(0).ID <> 0 Then
+                Dim lstID As List(Of Decimal) = (From p In _filter Select p.ID).ToList
+                Dim lstWelID As List(Of Decimal) = (From p In _filter Select p.WELFARE_ID).ToList
+                Dim lstEmpID As List(Of Decimal) = (From p In _filter Select p.EMPLOYEE_ID).ToList
+                ' lấy max phúc lợi theo ID phúc lợi + ID quản lý phúc lợi + ID nhân viên
+                Dim welfare = (From p In Context.HU_WELFARE_MNG
+                               Where lstWelID.Contains(p.WELFARE_ID) _
+                               And Not lstID.Contains(p.ID) _
+                               And lstEmpID.Contains(p.EMPLOYEE_ID)
+                               Group p By p.WELFARE_ID, p.EMPLOYEE_ID Into pGroup = Group
+                               Select New With {
+                                  Key .WELFARE_ID = WELFARE_ID,
+                                  Key .EMPLOYEE_ID = EMPLOYEE_ID,
+                                  Key .EFFECT_DATE = pGroup.Max(Function(p) p.EFFECT_DATE)})
+                'Logger.LogInfo(welfare)
+                ' danh sách thông tin quản lý phúc lợi mới nhất
+                Dim query = (From p In Context.HU_WELFARE_MNG
+                         Join u In welfare
+                         On p.WELFARE_ID Equals u.WELFARE_ID _
+                         And p.EMPLOYEE_ID Equals u.EMPLOYEE_ID _
+                         And p.EFFECT_DATE Equals u.EFFECT_DATE
+                         Where Not lstID.Contains(p.ID)
+                         Select New WelfareMngDTO With {
+                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                             .EFFECT_DATE = p.EFFECT_DATE,
+                             .EXPIRE_DATE = p.EXPIRE_DATE})
+                ''Logger.LogError(ex)
+                lst = query.ToList
+            Else
+                Dim lstWelID As List(Of Decimal) = (From p In _filter Select p.WELFARE_ID).ToList
+                Dim lstEmpID As List(Of Decimal) = (From p In _filter Select p.EMPLOYEE_ID).ToList
+                ' lấy max phúc lợi theo ID phúc lợi + ID nhân viên
+                Dim welfare = (From p In Context.HU_WELFARE_MNG
+                               Where lstWelID.Contains(p.WELFARE_ID) _
+                               And lstEmpID.Contains(p.EMPLOYEE_ID)
+                               Group p By p.WELFARE_ID, p.EMPLOYEE_ID Into pGroup = Group
+                               Select New With {
+                                  Key .WELFARE_ID = WELFARE_ID,
+                                  Key .EMPLOYEE_ID = EMPLOYEE_ID,
+                                  Key .EFFECT_DATE = pGroup.Max(Function(p) p.EFFECT_DATE)})
+                ' danh sách thông tin quản lý phúc lợi mới nhất
+                Dim query = (From p In Context.HU_WELFARE_MNG
+                         Join u In welfare
+                         On p.WELFARE_ID Equals u.WELFARE_ID _
+                         And p.EMPLOYEE_ID Equals u.EMPLOYEE_ID _
+                         And p.EFFECT_DATE Equals u.EFFECT_DATE
+                         Select New WelfareMngDTO With {
+                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                             .EFFECT_DATE = p.EFFECT_DATE,
+                             .EXPIRE_DATE = p.EXPIRE_DATE})
+                lst = query.ToList
+            End If
+            If lst.Count > 0 Then
+                ' Check đồng loạt ngày hiệu lực của nhân viên
+                For idx = 0 To lst.Count - 1
+                    For idx1 = 0 To _filter.Count - 1
+                        If lst(idx).EMPLOYEE_ID = _filter(idx1).EMPLOYEE_ID Then
+                            If lst(idx).EXPIRE_DATE IsNot Nothing Then
+                                If Format(_filter(idx1).EFFECT_DATE, "yyyyMMdd") <= Format(lst(idx).EXPIRE_DATE, "yyyyMMdd") Then
+                                    Return False
+                                End If
+                            Else
+                                If Format(_filter(idx1).EFFECT_DATE, "yyyyMMdd") <= Format(lst(idx).EFFECT_DATE, "yyyyMMdd") Then
+                                    Return False
+                                End If
+                            End If
+                            Exit For
+                        End If
+                    Next
+                Next
+                Return True
+            Else
+                Return True
+            End If
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO),
+                                   ByVal log As UserLog) As Boolean
+        Dim iCount As Integer = 0
+        Try
+            For idx = 0 To lstWelfareMng.Count - 1
+                Dim item As WelfareMngDTO = lstWelfareMng(idx)
+                Dim objWelfareMngData As New HU_WELFARE_MNG
+                objWelfareMngData.ID = Utilities.GetNextSequence(Context, Context.HU_WELFARE_MNG.EntitySet.Name)
+                objWelfareMngData.EFFECT_DATE = item.EFFECT_DATE
+                objWelfareMngData.EMPLOYEE_ID = item.EMPLOYEE_ID
+                objWelfareMngData.EXPIRE_DATE = item.EXPIRE_DATE
+                objWelfareMngData.MONEY = item.MONEY
+                objWelfareMngData.SDESC = item.SDESC
+                objWelfareMngData.IS_TAXION = item.IS_TAXION
+                objWelfareMngData.WELFARE_ID = item.WELFARE_ID
+                objWelfareMngData.PERIOD_ID = item.PERIOD_ID
+                objWelfareMngData.CREATED_DATE = DateTime.Now
+                objWelfareMngData.CREATED_BY = log.Username
+                objWelfareMngData.CREATED_LOG = log.ComputerName
+                objWelfareMngData.MODIFIED_DATE = DateTime.Now
+                objWelfareMngData.MODIFIED_BY = log.Username
+                objWelfareMngData.MODIFIED_LOG = log.ComputerName
+                Context.HU_WELFARE_MNG.AddObject(objWelfareMngData)
+            Next
+
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function ModifyWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO),
+                                   ByVal log As UserLog) As Boolean
+        Dim lstID As List(Of Decimal) = (From p In lstWelfareMng Select p.ID).ToList
+        Dim lstWelfareMngData As New List(Of HU_WELFARE_MNG)
+        Try
+            lstWelfareMngData = (From p In Context.HU_WELFARE_MNG Where lstID.Contains(p.ID)).ToList
+
+            For idx = 0 To lstWelfareMngData.Count - 1
+                lstWelfareMngData(idx).WELFARE_ID = lstWelfareMng(idx).WELFARE_ID
+                lstWelfareMngData(idx).EFFECT_DATE = lstWelfareMng(idx).EFFECT_DATE
+                lstWelfareMngData(idx).EXPIRE_DATE = lstWelfareMng(idx).EXPIRE_DATE
+                lstWelfareMngData(idx).MONEY = lstWelfareMng(idx).MONEY
+                lstWelfareMngData(idx).SDESC = lstWelfareMng(idx).SDESC
+                lstWelfareMngData(idx).IS_TAXION = lstWelfareMng(idx).IS_TAXION
+                lstWelfareMngData(idx).WELFARE_ID = lstWelfareMng(idx).WELFARE_ID
+                lstWelfareMngData(idx).PERIOD_ID = lstWelfareMng(idx).PERIOD_ID
+                lstWelfareMngData(idx).MODIFIED_DATE = DateTime.Now
+                lstWelfareMngData(idx).MODIFIED_BY = log.Username
+                lstWelfareMngData(idx).MODIFIED_LOG = log.ComputerName
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function DeleteWelfareMng(ByVal lstWelfareMng() As WelfareMngDTO,
+                                   ByVal log As UserLog) As Boolean
+        Dim lstWelfareMngData As List(Of HU_WELFARE_MNG)
+        Dim lstIDWelfareMng As List(Of Decimal) = (From p In lstWelfareMng.ToList Select p.ID).ToList
+        lstWelfareMngData = (From p In Context.HU_WELFARE_MNG Where lstIDWelfareMng.Contains(p.ID)).ToList
+        For index = 0 To lstWelfareMngData.Count - 1
+            Context.HU_WELFARE_MNG.DeleteObject(lstWelfareMngData(index))
+        Next
+        Context.SaveChanges(log)
+        Return True
+    End Function
+
+#End Region
+
+End Class

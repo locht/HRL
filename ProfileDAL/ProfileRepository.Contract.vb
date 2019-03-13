@@ -1,0 +1,615 @@
+﻿Imports Framework.Data
+Imports Framework.Data.System.Linq.Dynamic
+Imports System.Reflection
+
+Partial Class ProfileRepository
+
+#Region "Contract"
+
+    Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
+                                ByVal PageSize As Integer,
+                                ByRef Total As Integer, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                Optional ByVal log As UserLog = Nothing) As List(Of ContractDTO)
+
+        Try
+
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
+
+            Dim query = From p In Context.HU_CONTRACT Order By p.HU_EMPLOYEE.EMPLOYEE_CODE
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE_ID = f.ID)
+                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
+                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
+                                                                       f.USERNAME = log.Username.ToUpper)
+
+
+            ' lọc điều kiện
+            Dim dateNow = Date.Now.Date
+            Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            If Not _filter.IS_TER Then
+                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or
+                                        (p.e.WORK_STATUS.HasValue And
+                                         ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
+
+            End If
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.EMPLOYEE_NAME <> "" Then
+                query = query.Where(Function(p) p.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
+            End If
+            If _filter.CONTRACTTYPE_NAME <> "" Then
+                query = query.Where(Function(p) p.c.NAME.ToUpper.Contains(_filter.CONTRACTTYPE_NAME.ToUpper))
+            End If
+            If _filter.SIGNER_NAME <> "" Then
+                query = query.Where(Function(p) p.p.SIGNER_NAME.ToUpper.Contains(_filter.SIGNER_NAME.ToUpper))
+            End If
+            If _filter.FROM_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE >= _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE <= _filter.TO_DATE)
+            End If
+            If _filter.START_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE = _filter.START_DATE)
+            End If
+            If _filter.EXPIRE_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.EXPIRE_DATE = _filter.EXPIRE_DATE)
+            End If
+            If _filter.SIGN_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.SIGN_DATE = _filter.SIGN_DATE)
+            End If
+            If _filter.STATUS_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.status.NAME_VN.ToUpper.Contains(_filter.STATUS_NAME.ToUpper))
+            End If
+
+            If _filter.MORNING_START IsNot Nothing Then
+                query = query.Where(Function(p) p.p.MORNING_START = _filter.MORNING_START)
+            End If
+            If _filter.MORNING_STOP IsNot Nothing Then
+                query = query.Where(Function(p) p.p.MORNING_STOP = _filter.MORNING_STOP)
+            End If
+            If _filter.AFTERNOON_START IsNot Nothing Then
+                query = query.Where(Function(p) p.p.AFTERNOON_START = _filter.AFTERNOON_START)
+            End If
+            If _filter.AFTERNOON_STOP IsNot Nothing Then
+                query = query.Where(Function(p) p.p.AFTERNOON_STOP = _filter.AFTERNOON_STOP)
+            End If
+
+            ' select thuộc tính
+            Dim contract = query.Select(Function(p) New ContractDTO With {
+                                            .ID = p.p.ID,
+                                            .CONTRACTTYPE_ID = p.c.ID,
+                                            .CONTRACTTYPE_NAME = p.c.NAME,
+                                            .CONTRACT_NO = p.p.CONTRACT_NO,
+                                            .START_DATE = p.p.START_DATE,
+                                            .EXPIRE_DATE = p.p.EXPIRE_DATE,
+                                            .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                            .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                            .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                            .ORG_ID = p.e.ID,
+                                            .ORG_NAME = p.o.NAME_VN,
+                                            .ORG_DESC = p.o.DESCRIPTION_PATH,
+                                            .TITLE_NAME = p.t.NAME_VN,
+                                            .SIGN_DATE = p.p.SIGN_DATE,
+                                            .SIGNER_NAME = p.p.SIGNER_NAME,
+                                            .SIGNER_TITLE = p.p.SIGNER_TITLE,
+                                            .CREATED_DATE = p.p.CREATED_DATE,
+                                            .STATUS_ID = p.status.ID,
+                                            .STATUS_NAME = p.status.NAME_VN,
+                                            .STATUS_CODE = p.status.CODE,
+                                            .MORNING_STOP = p.p.MORNING_STOP,
+                                            .MORNING_START = p.p.MORNING_START,
+                                            .AFTERNOON_START = p.p.AFTERNOON_START,
+                                            .AFTERNOON_STOP = p.p.AFTERNOON_STOP,
+                                            .CONTRACTTYPE_CODE = p.c.CODE})
+
+            contract = contract.OrderBy(Sorts)
+            Total = contract.Count
+            contract = contract.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return contract.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+
+    End Function
+
+    Public Function GetContractByID(ByVal _filter As ContractDTO) As ContractDTO
+        Try
+            Dim query = From p In Context.HU_CONTRACT
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) p.EMPLOYEE_ID = f.ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE_ID = f.ID)
+                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From staffrank In Context.HU_STAFF_RANK.Where(Function(f) e.STAFF_RANK_ID = f.ID).DefaultIfEmpty
+                        From w In Context.HU_WORKING.Where(Function(f) p.WORKING_ID = f.ID).DefaultIfEmpty
+                        From sal_group In Context.PA_SALARY_GROUP.Where(Function(f) w.SAL_GROUP_ID = f.ID).DefaultIfEmpty
+                        From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) w.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
+                        From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) w.SAL_RANK_ID = f.ID).DefaultIfEmpty
+                        From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = w.TAX_TABLE_ID).DefaultIfEmpty
+                        From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) w.SAL_TYPE_ID = f.ID).DefaultIfEmpty
+                        Where p.ID = _filter.ID
+                        Select New ContractDTO With {.ID = p.ID,
+                                                     .CONTRACTTYPE_ID = c.ID,
+                                                     .CONTRACTTYPE_NAME = c.NAME,
+                                                     .CONTRACT_NO = p.CONTRACT_NO,
+                                                     .START_DATE = p.START_DATE,
+                                                     .EXPIRE_DATE = p.EXPIRE_DATE,
+                                                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                     .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                     .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                     .ORG_ID = e.ID,
+                                                     .ORG_NAME = o.NAME_VN,
+                                                     .ORG_DESC = o.DESCRIPTION_PATH,
+                                                     .TITLE_NAME = t.NAME_VN,
+                                                     .SIGN_ID = p.SIGN_ID,
+                                                     .SIGN_DATE = p.SIGN_DATE,
+                                                     .SIGNER_NAME = p.SIGNER_NAME,
+                                                     .SIGNER_TITLE = p.SIGNER_TITLE,
+                                                     .CREATED_DATE = p.CREATED_DATE,
+                                                     .STATUS_NAME = p.OT_STATUS.NAME_VN,
+                                                     .WORKING_ID = w.ID,
+                                                     .DECISION_NO = w.DECISION_NO,
+                                                     .REMARK = p.REMARK,
+                                                     .SAL_BASIC = w.SAL_BASIC,
+                                                     .PERCENT_SALARY = w.PERCENT_SALARY,
+                                                     .SAL_GROUP_ID = w.SAL_GROUP_ID,
+                                                     .SAL_GROUP_NAME = sal_group.NAME,
+                                                     .SAL_LEVEL_ID = w.SAL_LEVEL_ID,
+                                                     .SAL_LEVEL_NAME = sal_level.NAME,
+                                                     .SAL_RANK_ID = w.SAL_RANK_ID,
+                                                     .SAL_RANK_NAME = sal_rank.RANK,
+                                                     .STATUS_ID = p.STATUS_ID,
+                                                     .STAFF_RANK_ID = e.STAFF_RANK_ID,
+                                                     .STAFF_RANK_NAME = staffrank.NAME,
+                                                     .WORK_STATUS = e.WORK_STATUS,
+                                                     .MORNING_STOP = p.MORNING_STOP,
+                                                     .MORNING_START = p.MORNING_START,
+                                                     .AFTERNOON_START = p.AFTERNOON_START,
+                                                     .AFTERNOON_STOP = p.AFTERNOON_STOP
+                            }
+            ',
+            '    .Working = New WorkingDTO With
+            '        {
+            '        .ALLOWANCE_TOTAL = w.ALLOWANCE_TOTAL,
+            '        .SAL_INS = w.SAL_INS,
+            '        .TAX_TABLE_ID = w.TAX_TABLE_ID,
+            '        .SAL_TOTAL = w.SAL_TOTAL,
+            '        .SAL_TYPE_ID = w.SAL_TYPE_ID,
+            '        .SAL_BASIC = w.SAL_BASIC,
+            '    .ID = w.ID,
+            '    .TAX_TABLE_Name = taxTable.NAME_VN,
+            '    .SAL_TYPE_NAME = sal_type.NAME
+            '        }
+            Dim result = query.FirstOrDefault
+            If result IsNot Nothing Then
+                If result.WORKING_ID > 0 Then
+                    result.Working = (From w In Context.HU_WORKING
+                                      From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = w.TAX_TABLE_ID).DefaultIfEmpty
+                                      From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) w.SAL_TYPE_ID = f.ID).DefaultIfEmpty
+                                      Where w.ID = result.WORKING_ID
+                                      Select New WorkingDTO With
+                    {
+                                .ALLOWANCE_TOTAL = w.ALLOWANCE_TOTAL,
+                                .SAL_INS = w.SAL_INS,
+                                .TAX_TABLE_ID = w.TAX_TABLE_ID,
+                                .SAL_TOTAL = w.SAL_TOTAL,
+                                .SAL_TYPE_ID = w.SAL_TYPE_ID,
+                                .SAL_BASIC = w.SAL_BASIC,
+                            .ID = w.ID,
+                            .TAX_TABLE_Name = taxTable.NAME_VN,
+                            .SAL_TYPE_NAME = sal_type.NAME
+                                }).FirstOrDefault
+                End If
+                If result.Working IsNot Nothing Then
+                    result.Working.lstAllowance = (From p In Context.HU_WORKING_ALLOW
+                                                   From allow In Context.HU_ALLOWANCE_LIST.Where(Function(f) f.ID = p.ALLOWANCE_LIST_ID)
+                                                   Where p.HU_WORKING_ID = result.Working.ID
+                                                   Select New WorkingAllowanceDTO With {.ALLOWANCE_LIST_ID = p.ALLOWANCE_LIST_ID,
+                                                                                 .ALLOWANCE_LIST_NAME = allow.NAME,
+                                                                                 .AMOUNT = p.AMOUNT,
+                                                                                 .EFFECT_DATE = p.EFFECT_DATE,
+                                                                                 .EXPIRE_DATE = p.EXPIRE_DATE,
+                                                                                 .IS_INSURRANCE = p.IS_INSURRANCE}).ToList
+                    If result.Working.lstAllowance IsNot Nothing AndAlso result.Working.lstAllowance.Count > 0 Then
+                        result.Working.ALLOWANCE_TOTAL = result.Working.lstAllowance.Sum(Function(f) f.AMOUNT)
+                    End If
+                End If
+
+            End If
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+
+    End Function
+
+    Public Function ValidateContract(ByVal sType As String, ByVal _validate As ContractDTO) As Boolean
+        Try
+            Select Case sType
+                Case "EXIST_EFFECT_DATE"
+                    Return (From e In Context.HU_CONTRACT
+                            Where e.EMPLOYEE_ID = _validate.EMPLOYEE_ID And
+                            e.START_DATE >= _validate.START_DATE And
+                            e.ID <> _validate.ID And
+                            e.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID).Count = 0
+                Case "EXIST_CONTRACT_NO"
+                    Return (From p In Context.HU_CONTRACT
+                            Where p.CONTRACT_NO.ToUpper = _validate.CONTRACT_NO.ToUpper _
+                            And p.ID <> _validate.ID).Count = 0
+            End Select
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".ValidateContract")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertContract(ByVal objContract As ContractDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objContractData As New HU_CONTRACT
+        Try
+            objContractData.ID = Utilities.GetNextSequence(Context, Context.HU_CONTRACT.EntitySet.Name)
+            objContract.ID = objContractData.ID
+            objContractData.CONTRACT_NO = objContract.CONTRACT_NO
+            objContractData.CONTRACT_TYPE_ID = objContract.CONTRACTTYPE_ID
+            objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+            objContractData.START_DATE = objContract.START_DATE
+            objContractData.EXPIRE_DATE = objContract.EXPIRE_DATE
+            objContractData.REMARK = objContract.REMARK
+            objContractData.SIGN_DATE = objContract.SIGN_DATE
+            objContractData.SIGN_ID = objContract.SIGN_ID
+            objContractData.SIGNER_NAME = objContract.SIGNER_NAME
+            objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
+            objContractData.WORKING_ID = objContract.WORKING_ID
+            objContractData.STATUS_ID = objContract.STATUS_ID
+            objContractData.MORNING_START = objContract.MORNING_START
+            objContractData.MORNING_STOP = objContract.MORNING_STOP
+            objContractData.AFTERNOON_START = objContract.AFTERNOON_START
+            objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
+            objContractData.TITLE_ID = objContract.TITLE_ID
+            objContractData.ORG_ID = objContract.ORG_ID
+            Context.HU_CONTRACT.AddObject(objContractData)
+            ' Phê duyệt
+            If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                ApproveContract(objContract)
+                If IsFirstContract(objContract) Then
+                    InsertDecision(objContract)
+                End If
+            End If
+            Context.SaveChanges(log)
+            gID = objContractData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+
+    End Function
+    Private Function IsFirstContract(ByVal contractDto As ContractDTO) As Boolean
+        Return Context.HU_CONTRACT.Count(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.EMPLOYEE_ID = contractDto.EMPLOYEE_ID) = 0
+    End Function
+    Private Sub InsertDecision(ByVal contractDto As ContractDTO)
+        Dim recruitDecision = (From otherList In Context.OT_OTHER_LIST
+                               From otherListType In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.CODE = ProfileCommon.OT_DECISION_TYPE.Name And f.ID = otherList.TYPE_ID)
+                               Select otherList).FirstOrDefault
+        'Where otherList.CODE = ProfileCommon.OT_DECISION_TYPE.RecruitDecision
+        'If recruitDecision Is Nothing Then
+        '    Throw New Exception("Chưa tạo quyết định tuyển dụng, Code='QDTD'")
+        'End If
+
+        Dim objDecision = (From wk In Context.HU_WORKING
+                           Where wk.DECISION_TYPE_ID = recruitDecision.ID And wk.EMPLOYEE_ID = contractDto.EMPLOYEE_ID
+                           Select wk).FirstOrDefault
+        Dim updateWorking = (From wk In Context.HU_WORKING
+                             Where wk.STATUS_ID = 447 And wk.IS_WAGE = -1 And wk.IS_MISSION = 0 And wk.EMPLOYEE_ID = contractDto.EMPLOYEE_ID Order By wk.EFFECT_DATE Descending Select wk).FirstOrDefault
+        Dim result = (From p In Context.HU_WORKING_ALLOW
+                                                   From allow In Context.HU_ALLOWANCE_LIST.Where(Function(f) f.ID = p.ALLOWANCE_LIST_ID)
+                                                   Where p.HU_WORKING_ID = contractDto.WORKING_ID
+                                                   Select New WorkingAllowanceDTO With {.AMOUNT = p.AMOUNT,
+                                                                                 .IS_INSURRANCE = p.IS_INSURRANCE}).ToList
+        result.Sum(Function(f) f.AMOUNT)
+        If objDecision IsNot Nothing Then
+            Context.HU_WORKING.DeleteObject(objDecision)
+        End If
+        Context.HU_WORKING.AddObject(New HU_WORKING() With {.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name),
+                                     .ORG_ID = contractDto.ORG_ID,
+                                     .TITLE_ID = contractDto.TITLE_ID,
+                                     .EMPLOYEE_ID = contractDto.EMPLOYEE_ID,
+                                     .EFFECT_DATE = contractDto.START_DATE,
+                                     .STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID,
+                                     .SIGN_ID = contractDto.SIGN_ID,
+                                     .SIGN_TITLE = contractDto.SIGNER_TITLE,
+                                     .SIGN_DATE = contractDto.SIGN_DATE,
+                                     .SIGN_NAME = contractDto.SIGNER_NAME,
+                                     .ALLOWANCE_TOTAL = result.Sum(Function(f) f.AMOUNT),
+                                     .SAL_INS = updateWorking.SAL_INS,
+                                     .TAX_TABLE_ID = updateWorking.TAX_TABLE_ID,
+                                     .SAL_TOTAL = updateWorking.SAL_TOTAL,
+                                     .SAL_TYPE_ID = updateWorking.SAL_TYPE_ID,
+                                      .SAL_BASIC = updateWorking.SAL_BASIC,
+                                    .DECISION_TYPE_ID = recruitDecision.ID,
+                                    .IS_MISSION = -1,
+                                    .IS_3B = 0,
+                                    .IS_PROCESS = -1,
+        .IS_WAGE = 0
+                                     })
+    End Sub
+    Public Function ModifyContract(ByVal objContract As ContractDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objContractData As New HU_CONTRACT With {.ID = objContract.ID}
+        Try
+            objContractData = (From p In Context.HU_CONTRACT Where p.ID = objContract.ID).FirstOrDefault
+
+            objContractData.ID = objContract.ID
+            objContractData.CONTRACT_NO = objContract.CONTRACT_NO
+            objContractData.CONTRACT_TYPE_ID = objContract.CONTRACTTYPE_ID
+            objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+            objContractData.EXPIRE_DATE = objContract.EXPIRE_DATE
+            objContractData.STATUS_ID = objContract.STATUS_ID
+            objContractData.REMARK = objContract.REMARK
+            objContractData.SIGN_DATE = objContract.SIGN_DATE
+            objContractData.SIGN_ID = objContract.SIGN_ID
+            objContractData.SIGNER_NAME = objContract.SIGNER_NAME
+            objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
+            objContractData.START_DATE = objContract.START_DATE
+            objContractData.WORKING_ID = objContract.WORKING_ID
+            objContractData.MORNING_START = objContract.MORNING_START
+            objContractData.MORNING_STOP = objContract.MORNING_STOP
+            objContractData.AFTERNOON_START = objContract.AFTERNOON_START
+            objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
+            objContractData.TITLE_ID = objContract.TITLE_ID
+            objContractData.ORG_ID = objContract.ORG_ID
+            ' Phê duyệt
+            If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                ApproveContract(objContract)
+                If IsFirstContract(objContract) Then
+                    InsertDecision(objContract)
+                End If
+            End If
+            Context.SaveChanges(log)
+            gID = objContractData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+
+    End Function
+
+    Public Sub ApproveContract(ByVal objContract As ContractDTO)
+        Try
+            If Format(objContract.START_DATE, "yyyyMMdd") > Format(Date.Now, "yyyyMMdd") Then
+                Exit Sub
+            End If
+            ' Update hợp đồng mới nhất sang employee
+            Dim Employee As HU_EMPLOYEE = (From p In Context.HU_EMPLOYEE Where p.ID = objContract.EMPLOYEE_ID).FirstOrDefault
+            Employee.CONTRACT_ID = objContract.ID
+            Employee.MODIFIED_DATE = Date.Now
+            Dim lstCtrTypeAllow As New List(Of Decimal)
+            lstCtrTypeAllow.Add(6)
+            lstCtrTypeAllow.Add(7)
+            lstCtrTypeAllow.Add(12)
+            lstCtrTypeAllow.Add(13)
+            lstCtrTypeAllow.Add(14)
+            lstCtrTypeAllow.Add(287)
+            If Employee.JOIN_DATE_STATE Is Nothing And lstCtrTypeAllow.Contains(objContract.CONTRACTTYPE_ID) Then
+                Employee.JOIN_DATE_STATE = objContract.START_DATE
+                Dim empOther As HU_EMPLOYEE_CV = (From p In Context.HU_EMPLOYEE_CV
+                                                  Where p.EMPLOYEE_ID = objContract.EMPLOYEE_ID).FirstOrDefault
+
+                If empOther IsNot Nothing Then
+                    empOther.DOAN_PHI = True
+                End If
+            End If
+            If Employee.JOIN_DATE Is Nothing Then
+                Employee.JOIN_DATE = objContract.START_DATE
+            End If
+            ' Update trạng thái Đang làm việc
+            Employee.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
+            ' update  bảo hiểm
+            'Dim wokingSalary As WorkingDTO = (From w In Context.HU_WORKING
+            '                                  Where w.ID = objContract.WORKING_ID
+            '                                  Select New WorkingDTO With {
+            '                                      .SAL_BASIC = w.SAL_BASIC,
+            '                                      .EMPLOYEE_ID = w.EMPLOYEE_ID}).FirstOrDefault
+            'If wokingSalary IsNot Nothing AndAlso wokingSalary.SAL_BASIC <> 0 Then
+            '    Dim ContactType As ContractTypeDTO = (From c In Context.HU_CONTRACT_TYPE
+            '                                          Where c.ID = objContract.CONTRACTTYPE_ID And (c.BHTN <> 0 Or c.BHXH <> 0 Or c.BHYT <> 0)
+            '                                          Select New ContractTypeDTO With {
+            '                                              .BHTN = c.BHTN,
+            '                                              .BHXH = c.BHXH,
+            '                                              .BHYT = c.BHYT}).FirstOrDefault
+            '    If ContactType IsNot Nothing Then
+            '        Dim Ins_Arising As INS_ARISING = (From p In Context.INS_ARISING
+            '                                          Where p.EMPLOYEE_ID = objContract.EMPLOYEE_ID).FirstOrDefault
+
+            '        If Ins_Arising Is Nothing Then
+            '            Ins_Arising = New INS_ARISING
+            '            Ins_Arising.ID = Utilities.GetNextSequence(Context, Context.INS_ARISING.EntitySet.Name)
+            '            Ins_Arising.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+            '            Ins_Arising.EFFECTDATE = objContract.START_DATE
+            '            Ins_Arising.DATE_CHANGE = objContract.START_DATE
+            '            Ins_Arising.STATUS = 0
+            '            Context.INS_ARISING.AddObject(Ins_Arising)
+            '        End If
+            '        Ins_Arising.ISBHTN = Utilities.Obj2Decima(ContactType.BHTN)
+            '        Ins_Arising.ISBHXH = Utilities.Obj2Decima(ContactType.BHXH)
+            '        Ins_Arising.ISBHYT = Utilities.Obj2Decima(ContactType.BHYT)
+            '    End If
+            'End If
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Sub
+
+
+    Public Function DeleteContract(ByVal objContract As ContractDTO) As Boolean
+        Dim objContractData As HU_CONTRACT
+        Try
+            ' Xóa  hợp đồng
+            objContractData = (From p In Context.HU_CONTRACT Where objContract.ID = p.ID).SingleOrDefault
+            If Not objContractData Is Nothing Then
+                Context.HU_CONTRACT.DeleteObject(objContractData)
+                Context.SaveChanges()
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function CreateContractNo(ByVal objContract As ContractDTO) As String
+        Try
+            Dim employeeCode = objContract.EMPLOYEE_CODE.Trim.ToUpper
+            If employeeCode.Length < 2 Or objContract.CONTRACTTYPE_ID < 1 Then
+                Return String.Empty
+            End If
+            If Context.HU_CONTRACT_TYPE.Any(Function(f) f.ID = objContract.CONTRACTTYPE_ID And
+                                                f.CODE = ProfileCommon.ContractType.Probation) Then
+                Return String.Empty
+            End If
+            Dim query = (From c In Context.HU_CONTRACT
+                         From type In Context.HU_CONTRACT_TYPE.Where(Function(p) p.CODE <> ProfileCommon.ContractType.Probation And
+                          p.ID = c.CONTRACT_TYPE_ID)
+                         Where c.EMPLOYEE_ID = objContract.EMPLOYEE_ID And c.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID)
+            Dim no = query.Count
+            If employeeCode.StartsWith("e") Or employeeCode.StartsWith("E") Then
+                employeeCode = employeeCode.Substring(1)
+            End If
+            Return String.Format("{0}-{1:0#} / HDLD-TMF", employeeCode, no + 1)
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function CheckContractNo(ByVal objContract As ContractDTO) As Boolean
+        Try
+            Dim query = (From p In Context.HU_CONTRACT
+                         Where p.CONTRACT_NO = objContract.CONTRACT_NO And
+                         p.ID <> objContract.ID).FirstOrDefault
+            Return (query Is Nothing)
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GetContractEmployeeByID(ByVal gID As Decimal) As EmployeeDTO
+        Dim obj As EmployeeDTO
+        Try
+            obj = (From p In Context.HU_EMPLOYEE
+                   From staffrank In Context.HU_STAFF_RANK.Where(Function(f) p.STAFF_RANK_ID = f.ID).DefaultIfEmpty
+                   From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+                   From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID)
+                   From working In Context.HU_WORKING.Where(Function(f) f.ID = p.LAST_WORKING_ID).DefaultIfEmpty
+                   Where p.ID = gID
+                   Select New EmployeeDTO With {
+                       .ID = p.ID,
+                       .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                       .FULLNAME_VN = p.FULLNAME_VN,
+                       .ORG_ID = p.ORG_ID,
+                       .ORG_NAME = o.NAME_VN,
+                       .ORG_CODE = o.CODE,
+                       .TITLE_ID = t.ID,
+                       .TITLE_NAME_VN = t.NAME_VN,
+                       .JOIN_DATE = p.JOIN_DATE,
+                       .STAFF_RANK_ID = p.STAFF_RANK_ID,
+                       .STAFF_RANK_NAME = staffrank.NAME,
+                       .WORK_STATUS = p.WORK_STATUS,
+                       .TER_EFFECT_DATE = p.TER_EFFECT_DATE,
+                       .LAST_WORKING_ID = p.LAST_WORKING_ID,
+                       .SAL_BASIC = working.SAL_BASIC,
+                       .COST_SUPPORT = working.COST_SUPPORT}).FirstOrDefault
+
+            Dim ctract = (From p In Context.HU_CONTRACT
+                          Where p.EMPLOYEE_ID = gID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                          Order By p.START_DATE Descending).FirstOrDefault
+            If ctract IsNot Nothing Then
+                obj.CONTRACT_NO = ctract.CONTRACT_NO
+                obj.CONTRACT_EFFECT_DATE = ctract.START_DATE
+                obj.CONTRACT_EXPIRE_DATE = ctract.EXPIRE_DATE
+            End If
+            Return obj
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function UnApproveContract(ByVal objContract As ContractDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objContractData As New HU_CONTRACT With {.ID = objContract.ID}
+        Try
+            objContractData = (From p In Context.HU_CONTRACT Where p.ID = objContract.ID).FirstOrDefault
+            objContractData.STATUS_ID = objContract.STATUS_ID
+            Context.SaveChanges(log)
+            gID = objContractData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GetCheckContractTypeID(ByVal listID As String) As DataTable
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataTable = cls.ExecuteStore("PKG_PROFILE_BUSINESS.GET_CHECK_TYPE_CONTRACT",
+                                           New With {.P_LIST_ID = listID,
+                                                     .PV_CUR = cls.OUT_CURSOR})
+            Return dtData
+        End Using
+        Return Nothing
+    End Function
+
+    Public Function checkFromDate(ByVal objContract As ContractDTO) As Boolean
+        Try
+            Dim query = (From p In Context.HU_CONTRACT
+                         Where p.EMPLOYEE_ID = objContract.EMPLOYEE_ID And p.EXPIRE_DATE <= objContract.START_DATE).FirstOrDefault
+            Return query Is Nothing
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+#End Region
+
+#Region "PLHD"
+    Public Function GetContractForm(ByVal formID As Decimal) As OtherListDTO
+        Try
+            Dim query = (From p In Context.OT_OTHER_LIST Where p.ID = formID
+                         Select New OtherListDTO With {.ID = p.ID,
+                                                       .CODE = p.CODE,
+                                                       .NAME_VN = p.NAME_VN}).FirstOrDefault
+            Return query
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
+End Class

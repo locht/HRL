@@ -1,0 +1,1172 @@
+﻿Imports Framework.UI
+Imports Framework.UI.Utilities
+Imports Profile.ProfileBusiness
+Imports Common
+Imports Telerik.Web.UI
+Imports HistaffFrameworkPublic
+Imports HistaffFrameworkPublic.FrameworkUtilities
+Imports Ionic.Zip
+Imports System.IO
+Public Class ctrlHU_ContractTemplete
+    Inherits CommonView
+    Private hfr As New HistaffFrameworkRepository
+#Region "Property"
+
+    Dim rep As New ProfileBusinessRepository
+    Protected asp As New HistaffFrameworkRepository
+    Private psp As New ProfileStoreProcedure()
+    Dim dtFile As New DataTable
+    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindSignPopup As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindSalaryPopup As ctrlFindSalaryPopup
+    Private Property EmpCode As EmployeeDTO
+    ' Protected WithEvents ctrlLiquidate As ctrlContract_Liquidate
+    Property Contract As FileContractDTO
+        Get
+            Return ViewState(Me.ID & "_Contract")
+        End Get
+        Set(ByVal value As FileContractDTO)
+            ViewState(Me.ID & "_Contract") = value
+        End Set
+    End Property
+
+    Property FContract As FileContractDTO
+        Get
+            Return ViewState(Me.ID & "_FContract")
+        End Get
+        Set(ByVal value As FileContractDTO)
+            ViewState(Me.ID & "_FContract") = value
+        End Set
+    End Property
+    Property Contracts As List(Of FileContractDTO)
+        Get
+            Return ViewState(Me.ID & "_Contracts")
+        End Get
+        Set(ByVal value As List(Of FileContractDTO))
+            ViewState(Me.ID & "_Contracts") = value
+        End Set
+    End Property
+
+    Property dtContracts As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtContracts")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtContracts") = value
+        End Set
+    End Property
+
+    Property objContracts As DataRow
+        Get
+            Return ViewState(Me.ID & "_objContracts")
+        End Get
+        Set(ByVal value As DataRow)
+            ViewState(Me.ID & "_objContracts") = value
+        End Set
+    End Property
+    Property ListComboData As ComboBoxDataDTO
+        Get
+            Return ViewState(Me.ID & "_ListComboData")
+        End Get
+        Set(ByVal value As ComboBoxDataDTO)
+            ViewState(Me.ID & "_ListComboData") = value
+        End Set
+    End Property
+    Property listContract As List(Of ContractDTO)
+        Get
+            Return ViewState(Me.ID & "_listContract")
+        End Get
+        Set(ByVal value As List(Of ContractDTO))
+            ViewState(Me.ID & "_listContract") = value
+        End Set
+    End Property
+    Property STT As Decimal
+        Get
+            Return ViewState(Me.ID & "_STT")
+        End Get
+        Set(value As Decimal)
+            ViewState(Me.ID & "_STT") = value
+        End Set
+    End Property
+
+    '0 - normal
+    '1 - Employee
+    '2 - Signer
+    '3 - Salary
+    Property isLoadPopup As Integer
+        Get
+            Return ViewState(Me.ID & "_isLoadPopup")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_isLoadPopup") = value
+        End Set
+    End Property
+
+    Property IDSelect As String
+        Get
+            Return ViewState(Me.ID & "_IDSelect")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_IDSelect") = value
+        End Set
+    End Property
+#End Region
+
+#Region "Page"
+
+    Public Overrides Sub ViewLoad(ByVal e As EventArgs)
+        Try
+
+            GetParams()
+            Refresh()
+            UpdateControlState()
+            'If Request.Params("IDSelect") IsNot Nothing Then
+            '    MainToolBar.Items(3).Enabled = True
+            'End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Public Overrides Sub ViewInit(ByVal e As EventArgs)
+        Try
+
+            InitControl()
+
+            'Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+            ' CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+
+
+
+
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
+    Public Overrides Sub BindData()
+        Try
+            GetDataCombo()            
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Protected Sub InitControl()
+        Try
+            If Not IsPostBack Then
+                CurrentState = CommonMessage.STATE_NORMAL
+            End If
+            Me.MainToolBar = tbarContract
+            '       ToolbarItem.Delete)
+            Common.Common.BuildToolbar(Me.MainToolBar,
+                             ToolbarItem.Save,
+                             ToolbarItem.Cancel)
+            'ToolbarItem.Seperator, ToolbarItem.Print, ToolbarItem.Delete)
+            'CType(MainToolBar.Items(2), RadToolBarButton).Enabled = False
+            'CType(MainToolBar.Items(3), RadToolBarButton).Enabled = False
+            CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            'tbarContract.Items(3).Text = Translate("Thanh lý hợp đồng")
+            'tbarContract.Items(8).Text = Translate("Thông tin nhân viên")
+
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Public Overrides Sub Refresh(Optional ByVal Message As String = "")
+        'Dim rep As New ProfileBusinessRepository
+        Try
+
+            If Contract Is Nothing Then
+                Contract = New FileContractDTO
+            End If
+            Select Case Message
+                Case "UpdateView"
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    'CreateFilterData()
+                    CurrentState = CommonMessage.STATE_NORMAL
+                Case "NormalView"
+                    ' CreateFilterData()
+            End Select
+            If dtContracts IsNot Nothing Then
+                If IDSelect <> String.Empty Then
+                  
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+#End Region
+
+#Region "Event"
+
+    Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
+        Dim objContract As New FileContractDTO
+        Dim rep As New ProfileRepository
+        Dim gID As Decimal
+        'Dim stt As OtherListDTO
+        Try
+            Select Case CType(e.Item, RadToolBarButton).CommandName
+
+                Case CommonMessage.TOOLBARITEM_SUBMIT
+                    If hidEmployeeID.Value <> String.Empty Then
+                        hidEmployeeCode.Value = txtEmployeeCode.Text.Trim()
+                        Dim str As String = "OpenEditTransfer();"
+                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                    End If
+                Case CommonMessage.TOOLBARITEM_CREATE
+                    CurrentState = CommonMessage.STATE_NEW
+                    UpdateControlState()
+                    ClearControl()
+                    'Util.ClearDataControl(NORMAL)
+                Case CommonMessage.TOOLBARITEM_EDIT
+                    'If rgContract.SelectedItems.Count = 0 Then
+                    '    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+
+                    If Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And Contract.START_DATE.Value.Date < Date.Now Then
+                        ShowMessage(Translate("Hợp đồng đã phê duyệt, không thể thực hiện thao tác này"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
+                    CurrentState = CommonMessage.STATE_EDIT
+                    UpdateControlState()
+
+                Case CommonMessage.TOOLBARITEM_SAVE
+                    If Page.IsValid Then
+                        If hidEmployeeID.Value IsNot Nothing Then
+                            objContract.EMPLOYEE_ID = hidEmployeeID.Value
+                        End If
+
+                        objContract.START_DATE = rdStartDate.SelectedDate
+                        If rdExpireDate.SelectedDate IsNot Nothing Then
+                            objContract.EXPIRE_DATE = rdExpireDate.SelectedDate
+                        End If
+                        objContract.CONTENT_APPEND = txtAppend_Content.Text
+                        objContract.EMPLOYEE_CODE = txtEmployeeCode.Text
+                        objContract.REMARK = txtRemark.Text
+                        If cboContract.SelectedValue <> "" Then
+                            objContract.CONTRACT_NO = cboContract.Text
+                            objContract.ID_CONTRACT = cboContract.SelectedValue
+                        End If
+
+                        If hidContractType_ID.Value <> "" Then
+                            objContract.CONTRACTTYPE_ID = hidContractType_ID.Value
+                        End If
+
+                        If hidOrgID.Value <> "" Then
+                            objContract.SIGN_ORG_ID = hidOrgID.Value
+                        End If
+
+                        If cboAppend_TypeID.SelectedValue <> "" Then
+                            objContract.APPEND_TYPEID = cboAppend_TypeID.SelectedValue
+                        End If
+
+                        If cboStatus_ID.SelectedValue <> "" Then
+                            objContract.STATUS_ID = cboStatus_ID.SelectedValue
+                        End If
+                        If hidSign.Value <> "" Then
+                            objContract.SIGN_ID = hidSign.Value
+                        End If
+                        If hidWorkingID.Value <> "" Then
+                            objContract.WORKING_ID = hidWorkingID.Value
+                        End If
+                        objContract.APPEND_NUMBER = txtContract_NumAppen.Text
+                        objContract.SIGN_DATE = rdSignDate.SelectedDate
+
+                        objContract.SIGNER_NAME = txtSign.Text
+                        objContract.SIGNER_TITLE = txtSign_Title.Text
+
+                        'If rdExpireDate.SelectedDate IsNot Nothing Then
+                        '    If Not rep.CheckExpireFileContract(rdStartDate.SelectedDate, rdExpireDate.SelectedDate, objContract.ID_CONTRACT) Then
+                        '        ShowMessage(Translate("Thời hạn của phụ lục hợp đồng không được lớn hơn thời hạn của hợp đồng"), NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        'End If
+
+
+                        'If listContract IsNot Nothing AndAlso listContract.Count > 0 Then
+                        '    Dim lstC = listContract.Find(Function(x) x.ID = cboContract.SelectedValue)
+                        '    If lstC IsNot Nothing AndAlso rdExpireDate.SelectedDate IsNot Nothing AndAlso lstC.EXPIRE_DATE IsNot Nothing AndAlso rdExpireDate.SelectedDate.Value.Date > lstC.EXPIRE_DATE.Value.Date Then
+                        '        ShowMessage(Translate("Ngày kết thúc của Phụ lục hợp đồng không được lớn hơn ngày kết thúc của hợp đồng"), NotifyType.Warning)
+                        '        Exit Sub
+                        '    End If
+                        'End If
+
+                        ''kiem tra xem nhan vien nay da tao phu luc gia han hop dong chua
+                        Dim count = psp.COUNT_PLGHHD(hidEmployeeID.Value, cboAppend_TypeID.SelectedValue) 'THanhNT added 27/04/2017 - truyền vào cái loại phụ lục để check thêm
+
+                        If count > 0 Then
+                            ShowMessage(Translate("Mẫu phụ lục Gia hạn hợp đồng không được khai báo quá 1 lần "), NotifyType.Warning)
+                            Exit Sub
+                        End If
+
+
+                        Select Case CurrentState
+                            Case CommonMessage.STATE_NEW
+                                If Not rep.CheckExistFileContract(hidEmployeeID.Value, rdStartDate.SelectedDate, cboAppend_TypeID.SelectedValue) Then
+                                    ShowMessage("Phụ lục này đã tạo vào ngày bắt đầu :" + rdStartDate.SelectedDate, NotifyType.Error)
+                                    Exit Sub
+                                End If
+                                If rep.InsertFileContract(objContract, gID, If(txtContract_NumAppen.Text Is Nothing, "", txtContract_NumAppen.Text)) Then
+                                    IDSelect = gID.ToString
+                                    Dim str As String = "getRadWindow().close('1');"
+                                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    'cboContract_SelectedIndexChanged(Nothing, Nothing)
+                                    'NORMAL.Enabled = False
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                End If
+
+                            Case CommonMessage.STATE_EDIT
+                                objContract.ID = Decimal.Parse(IDSelect)
+                                'objContract.NUMBER_CONTRACT = txtContractNo.Text
+                                'objContract.NUMBER_CONTRACT_INS = txtContractNo1.Text
+                                If rep.UpdateFileContract(objContract, gID) Then
+                                    IDSelect = objContract.ID.ToString
+                                    Dim str As String = "getRadWindow().close('1');"
+                                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    'Refresh("UpdateView")
+                                    'CurrentState = CommonMessage.STATE_EDIT
+                                    'ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    'cboContract_SelectedIndexChanged(Nothing, Nothing)
+                                    'NORMAL.Enabled = False
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                End If
+                            Case CommonMessage.TOOLBARITEM_PRINT
+                                If rgContract.SelectedItems.Count = 0 Then
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+
+
+                        End Select
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        Refresh()
+
+                        UpdateControlState()
+                        rep.Dispose()
+                        'ClearControl()
+                        'End If
+
+                    End If
+                    ' If Page.IsValid Then
+                    '  objContract.ID_CONTRACT = cbContract.SelectedValue
+                    
+                Case CommonMessage.TOOLBARITEM_DELETE
+
+
+                    'If Decimal.Parse(objContracts("STATUS_ID").ToString) = 471 Then
+                    '    ShowMessage(Translate("Hợp đồng đã phê duyệt, không thể thực hiện thao tác này"), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+                    If Contract IsNot Nothing Then
+                        If Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                            ShowMessage(Translate("Hợp đồng đã phê duyệt, không thể thực hiện thao tác này"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
+                    End If
+
+                    'Dim item As GridDataItem = rgContract.SelectedItems(0)
+
+                Case CommonMessage.TOOLBARITEM_CANCEL
+                    'IDSelect = ""
+                    'Refresh()
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ClearControl()
+                    UpdateControlState()
+                    'ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
+                Case CommonMessage.TOOLBARITEM_PRINT
+
+                    'If rgContract.SelectedItems.Count = 0 Then
+                    '    ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+                    Dim prp As New ProfileBusinessRepository
+                    Dim dtData As DataTable
+
+                    Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
+
+                    dtData = rep.PrintFileContract(txtEmployeeCode.Text, IDSelect)
+
+                    'ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "Contract/PLHD.docx"),
+                    '           "PhuLucHDLD.doc",
+                    '           dtData,
+                    '           Response)
+
+                    'lay danh sach bieu mau
+                    Dim filePaths() As String = Directory.GetFiles(Server.MapPath("~/Word/Contract/"))
+
+                    Dim listFile As New List(Of String)
+
+                    '
+                    If filePaths IsNot Nothing Then
+                        For Each File As String In filePaths
+                            listFile.Add(Path.GetFileName(File))
+                        Next
+                    End If
+
+                    ''kiem tra template bieu mau co hop boi bieu mau duoc chon
+                    'If listFile.Any(Function(x) x.Trim().ToUpper() = inforForm.CODE.Trim().ToUpper() + ".DOC" OrElse x.Trim().ToUpper() = inforForm.CODE.Trim().ToUpper() + ".DOCX") Then
+                    '    ExportWordMailMerge(System.IO.Path.Combine(Server.MapPath(tempPath), "Contract/" + inforForm.CODE + ".doc"),
+                    '          inforForm.NAME_VN + ".doc",
+                    '          dtData,
+                    '          Response)
+                    'Else
+                    '    ShowMessage(Translate("Không tìm thấy biểu mẫu phù hợp"), NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+            End Select
+
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+   
+    Private Sub ctrlMessageBox_ButtonCommand(sender As Object, e As Common.MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
+        'Dim rep As New ProfileBusinessRepository
+        If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+            CurrentState = CommonMessage.STATE_DELETE
+            UpdateControlState()
+            ClearControl()
+            CurrentState = CommonMessage.STATE_EDIT
+        End If
+    End Sub
+    Private Sub btnEmployee_Click(sender As Object, e As System.EventArgs) Handles btnEmployee.Click
+        Try
+            isLoadPopup = 1
+            UpdateControlState()
+            ctrlFindEmployeePopup.Show()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
+    Private Sub btnSign_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSign.Click
+        Try
+            isLoadPopup = 2
+            UpdateControlState()
+            ctrlFindSignPopup.Show()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub ctrlFindSignPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSignPopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        'Dim rep As New ProfileRepository
+        'Dim repOrg As New ProfileRepository
+        'Dim title As TitleDTO
+        Try
+            lstCommonEmployee = CType(ctrlFindSignPopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                hidSign.Value = item.ID
+                txtSign.Text = item.FULLNAME_VN
+                txtSign_Title.Text = item.TITLE_NAME
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnSalary_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSalary.Click
+        Try
+            If hidEmployeeID.Value = "" Then
+                ShowMessage(Translate("Bạn phải chọn nhân viên."), NotifyType.Warning)
+                Exit Sub
+            End If
+            isLoadPopup = 3
+            UpdateControlState()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub ctrlFind_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
+      Handles ctrlFindSignPopup.CancelClicked,
+      ctrlFindEmployeePopup.CancelClicked,
+      ctrlFindSalaryPopup.CancelClicked
+        isLoadPopup = 0
+    End Sub
+
+    Private Sub ctrlFindSalaryPopup_SalarySelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSalaryPopup.SalarySelected
+        Dim lstCommon As New List(Of WorkingDTO)
+        Dim rep As New ProfileBusinessRepository
+        Try
+            lstCommon = CType(ctrlFindSalaryPopup.SelectedSalary, List(Of WorkingDTO))
+            If lstCommon.Count <> 0 Then
+                Dim item = lstCommon(0)
+                hidWorkingID.Value = item.ID
+                Dim working = rep.GetWorkingByID(New WorkingDTO() With {.ID = item.ID})
+                Working_ID.Text = working.ID
+                rntxtBasicSal.Value = working.SAL_BASIC
+                Salary_Total.Value = working.SAL_TOTAL
+                SalaryInsurance.Value = working.SAL_INS
+                Allowance_Total.Value = working.ALLOWANCE_TOTAL
+                SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
+                SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
+                rgAllow.DataSource = working.lstAllowance
+                rgAllow.Rebind()
+            End If
+            rep.Dispose()
+            isLoadPopup = 0
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
+
+    Private Sub rgAllow_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgAllow.NeedDataSource
+        Dim lstAllow As New List(Of WorkingAllowanceDTO)
+        rgAllow.DataSource = lstAllow
+    End Sub
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(sender As Object, e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Dim rep As New ProfileRepository
+        'Dim repOrg As New ProfileRepository
+        'Dim repBus As New ProfileBusinessRepository
+        Dim title As TitleDTO
+        Try
+            IDSelect = Nothing
+            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                ''Load danh sách hợp đồng của nhân viên
+                'Dim ds As DataTable = rep.GetListContract(item.EMPLOYEE_ID)
+                ''asp.ExecuteToDataSet("PKG_HU_CONTRACT.GET_LIST_HU_CONTRACT", New List(Of Object)(New Object() {item.ID}))
+                'If ds Is Nothing Or ds.Rows.Count = 0 Then
+                '    ShowMessage("Bạn chưa tạo hợp đồng lao động cho nhân viên " & item.FULLNAME_VN, NotifyType.Warning)
+                '    Exit Sub
+                'End If
+
+                ''Load danh sách hợp đồng của nhân viên
+
+                listContract = rep.GetContractList(item.ID)
+
+                If listContract Is Nothing Or listContract.Count = 0 Then
+                    ShowMessage("Bạn chưa tạo hợp đồng lao động cho nhân viên " & item.FULLNAME_VN, NotifyType.Warning)
+                    Exit Sub
+                End If
+
+                hidOrgID.Value = item.ORG_ID.ToString
+                hidEmployeeID.Value = item.ID.ToString
+                txtEmployeeCode.Text = item.EMPLOYEE_CODE
+                txtEmployeeName.Text = item.FULLNAME_VN
+
+                'get thong tin chuc danh 
+                title = rep.GetTitileBaseOnEmp(item.TITLE_ID)
+                If title IsNot Nothing Then
+                    txtTitle.Text = title.NAME_VN
+                End If
+
+                If Not rdStartDate.SelectedDate Is Nothing Then
+                    FillData(Convert.ToDecimal(hidEmployeeID.Value), True)
+                End If
+
+                FillDropDownList(cboContract, listContract, "CONTRACT_NO", "ID", Common.Common.SystemLanguage, True)
+                cboContract.SelectedIndex = 0
+
+                'If item.EMPLOYEE_ID IsNot Nothing Then
+                '    listContract = rep.GetListContractBaseOnEmp(item.EMPLOYEE_ID)
+                '    If listContract IsNot Nothing And listContract.Count <> 0 Then
+                '        FillDropDownList(cboContract, listContract, "CONTRACT_NO", "ID", Common.Common.SystemLanguage, True)
+                '        cboContract.SelectedIndex = 0
+                '    End If
+                'End If
+
+
+                txtOrg.Text = item.ORG_NAME
+                hidOrgID.Value = item.ORG_ID
+
+
+                ' orgItem = repOrg.GetOrganizationByID(hidOrgID.Value)
+                'Tao moi ma hop dong
+                'If hidOrgID.Value <> String.Empty Then
+                '    Dim dt = DateTime.Now
+                '    If rdStartDate.SelectedDate IsNot Nothing Then
+                '        dt = rdStartDate.SelectedDate
+                '    End If
+                'End If
+
+                GetWorkingMax()
+            End If
+            isLoadPopup = 0
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Protected Sub cval_EffectDate_ExpireDate_ServerValidate(ByVal source As Object, ByVal args As ServerValidateEventArgs) Handles cval_EffectDate_ExpireDate.ServerValidate
+        Try
+            If rdExpireDate.SelectedDate IsNot Nothing Then
+                If rdExpireDate.SelectedDate < rdStartDate.SelectedDate Then
+                    args.IsValid = False
+                    Exit Sub
+                Else
+                    args.IsValid = True
+                End If
+            Else
+                args.IsValid = True
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Protected Sub rgvDataImport_NeedDataSource(ByVal sender As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgContract.NeedDataSource
+        Dim lstContract As New List(Of ContractDTO)
+        rgContract.DataSource = lstContract
+    End Sub
+    Private Sub rdStartDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdStartDate.SelectedDateChanged
+        If hidEmployeeID.Value <> "" Then
+            FillData(Convert.ToDecimal(hidEmployeeID.Value), True)
+            Dim rep As New ProfileRepository
+            If rdStartDate.SelectedDate IsNot Nothing And cboAppend_TypeID.SelectedValue <> 0 Then
+                Dim objContractType = rep.GetContractTypeID(cboAppend_TypeID.SelectedValue)
+                If objContractType IsNot Nothing Then
+                    rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(objContractType.PERIOD)
+                End If
+            End If
+            rep.Dispose()
+        End If
+        'rdSignDate.SelectedDate = rdStartDate.SelectedDate
+    End Sub
+    Private Sub cboContract_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContract.SelectedIndexChanged
+        Dim contrItem As New FileContractDTO
+        Dim rep As New ProfileRepository
+        Dim emp_id As Decimal
+        Dim idContractType As Decimal
+        If hidEmployeeID.Value IsNot Nothing Then
+            emp_id = hidEmployeeID.Value
+            contrItem.EMPLOYEE_ID = hidEmployeeID.Value
+        End If
+        If cboContract.SelectedValue <> "" Then
+            'lấy thong tin hop dong sau khi chọn hợp đồng
+            Dim inforContract = listContract.Find(Function(x) x.ID = cboContract.SelectedValue)
+
+            'Hiển thị số phụ lục hợp đồng sau khi chọn hợp đồng
+
+            If CurrentState = CommonMessage.STATE_NEW Then
+                If inforContract IsNot Nothing Then
+                    'txtContract_NumAppen.Text = rep.GetFileContract_No(inforContract, STT)
+
+                    'lay ngay het han hop dong gán vao ngày het hạn phụ lục
+                    'If inforContract.EXPIRE_DATE IsNot Nothing Then
+                    '    rdExpireDate.SelectedDate = inforContract.EXPIRE_DATE
+                    'Else
+                    '    rdExpireDate.SelectedDate = Nothing
+                    'End If
+                End If
+            End If
+            'hiển thị thông tin PLHĐ đối với trường hợp sửa thông tin
+            contrItem.ID_CONTRACT = cboContract.SelectedValue
+
+            contrItem.CONTRACT_NO = cboContract.Text
+
+            hidContract_ID.Value = cboContract.SelectedValue
+
+
+            'If inforContract IsNot Nothing AndAlso inforContract.UNIT_SIGN IsNot Nothing Then
+            '    cboLocation.SelectedValue = inforContract.UNIT_SIGN
+            'End If
+
+            idContractType = listContract.Find(Function(x) x.ID = cboContract.SelectedValue).CONTRACTTYPE_ID
+
+            Dim inforContractType = rep.GetContractTypeID(idContractType)
+
+            If inforContractType IsNot Nothing Then
+                'lay thong tin loại hợp đồng 
+                hidContractType_ID.Value = inforContractType.ID
+
+                'txtContractType.Text = inforContractType.NAME
+            End If
+
+        End If
+
+        Dim lstContract As New List(Of FileContractDTO)
+        lstContract = rep.GetContractAppendix(contrItem)
+        rgContract.DataSource = lstContract
+        rgContract.Rebind()
+        rep.Dispose()
+        'Dim ds2 As DataSet = asp.ExecuteToDataSet("PKG_HU_CONTRACT.GET_LIST_HU_FILECONTRACT", New List(Of Object)(New Object() {cboContract.SelectedValue, emp_id}))
+        'If ds2 IsNot Nothing Then
+        '    dtContracts = ds2.Tables(0)
+        '    rgContract.DataSource = dtContracts
+        '    rgContract.Rebind()
+        'End If
+    End Sub
+    Private Sub rgContract_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgContract.SelectedIndexChanged
+        Dim rep As New ProfileRepository
+
+        If rgContract.SelectedItems.Count > 0 Then
+            'ClearControl()
+            Dim slItem As GridDataItem
+            slItem = rgContract.SelectedItems(0)
+            hidID.Value = slItem("ID").Text
+            IDSelect = hidID.Value
+            If hidID.Value IsNot Nothing Or hidID.Value <> "" Then
+
+                Contract = rep.GetFileConTractID(hidID.Value)
+                'If cboContractType.DataSource = Nothing Then
+                '    GetDataCombo()
+                'End If
+                If Contract IsNot Nothing Then
+                    If Contract.APPEND_TYPEID IsNot Nothing Then
+                        cboAppend_TypeID.SelectedValue = Contract.APPEND_TYPEID
+                    End If
+                    If Contract.STATUS_ID IsNot Nothing Then
+                        cboStatus_ID.SelectedValue = Contract.STATUS_ID
+                    End If
+                    txtContract_NumAppen.Text = Contract.APPEND_NUMBER
+                    txtAppend_Content.Text = Contract.CONTENT_APPEND
+                    rdStartDate.SelectedDate = Contract.START_DATE
+                    If Contract.EXPIRE_DATE IsNot Nothing Then
+                        rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
+                    End If
+
+                    txtRemark.Text = Contract.REMARK
+
+                    If Contract.SIGN_ID IsNot Nothing Then
+                        hidSign.Value = Contract.SIGN_ID
+                    End If
+
+                    txtSign.Text = Contract.SIGNER_NAME
+                    txtSign_Title.Text = Contract.SIGNER_TITLE
+
+                    rdSignDate.SelectedDate = Contract.SIGN_DATE
+
+                    If Contract.WORKING_ID IsNot Nothing Then
+                        hidWorkingID.Value = Contract.WORKING_ID
+                    End If
+
+                    Working_ID.Text = Contract.ID
+                    rep.Dispose()
+                    'lay thong tin luong
+                    GetSalary(Contract)
+                End If
+            End If
+        End If
+
+    End Sub
+
+    Private Sub cboAppend_TypeID_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboAppend_TypeID.SelectedIndexChanged
+        Dim rep As New ProfileRepository
+        If rdStartDate.SelectedDate IsNot Nothing And cboAppend_TypeID.SelectedValue <> 0 Then
+            Dim objContractType = rep.GetContractTypeID(cboAppend_TypeID.SelectedValue)
+            If objContractType IsNot Nothing Then
+                rdExpireDate.SelectedDate = rdStartDate.SelectedDate.Value.AddMonths(objContractType.PERIOD)
+            End If
+        End If
+        rep.Dispose()
+    End Sub
+#End Region
+
+#Region "Custom"
+    Public Overrides Sub UpdateControlState()
+        Dim rep As New ProfileRepository
+        Try
+            Select Case CurrentState
+                Case CommonMessage.STATE_NORMAL
+                    UpdateControl(False)
+                    ' EnabledGrid(rgContract, True)
+                    cboContract.Enabled = True
+                    ReadOnlyRadComBo(cboContract, False)
+
+                Case CommonMessage.STATE_NEW
+                    UpdateControl(True)
+                    ' EnabledGrid(rgContract, False)
+                    btnEmployee.Enabled = True
+                    ' cbContract.Enabled = True
+
+                Case CommonMessage.STATE_EDIT
+                    UpdateControl(True)
+                    'EnabledGrid(rgContract, False)
+                    btnEmployee.Enabled = False
+                    ' cbContract.Enabled = False
+
+                Case CommonMessage.STATE_DELETE
+                    If rep.DeleteFileContract(Contract) Then
+                        Contract = Nothing
+                        IDSelect = Nothing
+                        Refresh("UpdateView")
+                        rgContract.Rebind()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
+            End Select
+            Select Case isLoadPopup
+                Case 1
+                    If Not FindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
+                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        'If Contract.ORG_ID <> 0 Then
+                        '    ctrlFindEmployeePopup.CurrentValue = Contract.ORG_ID.ToString
+                        'End If
+                        ctrlFindEmployeePopup.MustHaveContract = True
+                        FindEmployee.Controls.Add(ctrlFindEmployeePopup)
+                        ctrlFindEmployeePopup.MultiSelect = False
+                    End If
+                Case 2
+                    If Not FindSigner.Controls.Contains(ctrlFindSignPopup) Then
+                        ctrlFindSignPopup = Me.Register("ctrlFindSignPopup", "Common", "ctrlFindEmployeePopup")
+                        FindSigner.Controls.Add(ctrlFindSignPopup)
+                        ctrlFindSignPopup.MultiSelect = False
+                        ctrlFindSignPopup.MustHaveContract = False
+                        ctrlFindSignPopup.LoadAllOrganization = True
+                    End If
+                Case 3
+                    If Not FindSalary.Controls.Contains(ctrlFindSalaryPopup) Then
+                        ctrlFindSalaryPopup = Me.Register("ctrlFindSalaryPopup", "Profile", "ctrlFindSalaryPopup", "Shared")
+                        ctrlFindSalaryPopup.MultiSelect = False
+                        If hidEmployeeID.Value <> "" Then
+                            ctrlFindSalaryPopup.EmployeeID = Decimal.Parse(hidEmployeeID.Value)
+                            Session("EmployeeID") = Decimal.Parse(hidEmployeeID.Value)
+                        End If
+
+                        FindSalary.Controls.Add(ctrlFindSalaryPopup)
+                        ctrlFindSalaryPopup.Show()
+                    End If
+            End Select
+            rep.Dispose()
+        Catch ex As Exception
+            Throw ex
+        End Try
+        'ChangeToolbarState()
+    End Sub
+
+    Protected Sub UpdateControl(ByVal bCheck As Boolean)
+        Select Case CurrentState
+            Case CommonMessage.STATE_NORMAL, CommonMessage.STATE_NEW
+                btnEmployee.Enabled = True
+            Case CommonMessage.STATE_EDIT
+                btnEmployee.Enabled = True
+        End Select
+        txtEmployeeCode.Enabled = False
+        txtEmployeeName.Enabled = False
+        txtOrg.Enabled = False
+        txtTitle.Enabled = False
+        'txtContract_NumAppen.Enabled = bCheck
+        txtContract_NumAppen.Enabled = True
+        txtAppend_Content.Enabled = bCheck
+        '  ReadOnlyRadComBo(cboContractType, Not bCheck)
+        EnableRadDatePicker(rdStartDate, bCheck)
+        EnableRadDatePicker(rdExpireDate, bCheck)
+        EnableRadDatePicker(rdSignDate, bCheck)
+        ReadOnlyRadComBo(cboContract, Not bCheck)
+        ReadOnlyRadComBo(cboAppend_TypeID, Not bCheck)
+        ReadOnlyRadComBo(cboStatus_ID, Not bCheck)
+        btnSign.ReadOnly = Not bCheck
+        txtSign_Title.Enabled = bCheck
+        txtRemark.Enabled = bCheck
+        rntxtBasicSal.Enabled = bCheck
+    End Sub
+
+    Protected Sub ClearControl()
+        txtEmployeeCode.Text = String.Empty
+        txtEmployeeName.Text = String.Empty
+        txtOrg.Text = String.Empty
+        txtTitle.Text = String.Empty
+        txtContract_NumAppen.Text = String.Empty
+        ' cboContractType.SelectedIndex = 0
+        cboAppend_TypeID.SelectedIndex = 0
+        cboContract.SelectedIndex = 0
+        txtRemark.Text = String.Empty
+        txtAppend_Content.Text = String.Empty
+        rdExpireDate.SelectedDate = Nothing
+        rdStartDate.SelectedDate = Nothing
+        rdSignDate.SelectedDate = Nothing
+        cboContract.SelectedIndex = 0
+        cboStatus_ID.SelectedIndex = 0
+        txtSign_Title.Text = String.Empty
+        txtRemark.Text = String.Empty
+        rgContract.MasterTableView.ClearSelectedItems()
+        rgContract.DataSource = New List(Of FileContractDTO)
+        rgContract.Rebind()
+        txtSign.Text = String.Empty
+        rntxtBasicSal.ClearValue()
+        rgAllow.MasterTableView.ClearSelectedItems()
+        rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
+        rgAllow.DataBind()
+    End Sub
+    ''' <summary>
+    ''' lay thông tin lương
+    ''' </summary>
+    ''' <param name="wkm"></param>
+    ''' <remarks></remarks>
+    Private Sub GetSalary(ByVal fileContract As FileContractDTO)
+        If fileContract.WORKING_ID IsNot Nothing Then
+            hidWorkingID.Value = fileContract.WORKING_ID
+            Dim wkm As WorkingDTO = rep.GetWorkingByID(New WorkingDTO With {.ID = fileContract.WORKING_ID})
+            If wkm IsNot Nothing Then
+                Working_ID.Text = wkm.ID
+                rntxtBasicSal.Value = wkm.SAL_BASIC
+                If wkm.lstAllowance IsNot Nothing Then
+                    rgAllow.DataSource = wkm.lstAllowance
+                    rgAllow.DataBind()
+                End If
+                Salary_Total.Value = wkm.SAL_TOTAL
+                SetValueComboBox(cboSalTYPE, wkm.SAL_TYPE_ID, wkm.SAL_TYPE_NAME)
+                SetValueComboBox(cboTaxTable, wkm.TAX_TABLE_ID, wkm.TAX_TABLE_Name)
+                SalaryInsurance.Value = wkm.SAL_INS
+                Allowance_Total.Value = wkm.ALLOWANCE_TOTAL
+            End If
+        End If
+
+    End Sub
+    Private Sub GetDataCombo()
+        Dim rep As New ProfileRepository
+        Try
+            Dim appendData As New List(Of ContractTypeDTO)
+            appendData = rep.GetListContractType("PL")
+
+            appendData.Insert(0, New ContractTypeDTO With {.NAME = "", .ID = 0})
+
+            If ListComboData Is Nothing Then
+                ListComboData = New ComboBoxDataDTO
+                ListComboData.GET_CONTRACTTYPE = True
+                ListComboData.GET_DECISION_STATUS = True
+
+                'ListComboData.GET_TITLE = True 'ThanhNT delete: vì không load theo côm bô bốc nữa.
+                rep.GetComboList(ListComboData)
+            End If
+            '  FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboStatus_ID, ListComboData.LIST_DECISION_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+            FillDropDownList(cboAppend_TypeID, appendData, "NAME", "ID", Common.Common.SystemLanguage, False)
+            If appendData.Count > 1 Then
+                cboAppend_TypeID.SelectedValue = appendData(1).ID
+            End If
+            'Dim dtLocation As New List(Of LocationDTO)
+
+            'dtLocation = rep.GetLocation("A")
+
+            'If dtLocation IsNot Nothing Then
+            '    FillDropDownList(cboLocation, dtLocation, "LOCATION_VN_NAME", "ID", Common.Common.SystemLanguage, False)
+            '    If cboLocation.Items.Count > 0 Then
+            '        cboLocation.SelectedIndex = 0
+            '    End If
+            'End If
+            rep.Dispose()
+            'get combobox bieu mau
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GetWorkingMax()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim working As WorkingDTO
+            Using rep As New ProfileBusinessRepository
+                working = rep.GetLastWorkingSalary(New WorkingDTO With {.EMPLOYEE_ID = hidEmployeeID.Value})
+            End Using
+            If working IsNot Nothing Then
+                hidWorkingID.Value = working.ID
+                SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
+                SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
+                rntxtBasicSal.Value = working.SAL_BASIC
+                SalaryInsurance.Value = working.SAL_INS
+                Allowance_Total.Value = working.ALLOWANCE_TOTAL
+                Salary_Total.Value = working.SAL_TOTAL
+                Working_ID.Text = working.ID
+                'If rdStartDate.SelectedDate Is Nothing Then
+                '    rdStartDate.SelectedDate = working.EFFECT_DATE
+                'End If
+                rgAllow.DataSource = working.lstAllowance
+                rgAllow.Rebind()
+            Else
+                ClearControlValue(cboSalTYPE, cboTaxTable, rntxtBasicSal, SalaryInsurance, Allowance_Total, Salary_Total, rdSignDate)
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+#End Region
+
+#Region "ThanhNT added"
+
+    Private Sub GetParams()
+        Try
+
+            If Not Page.IsPostBack Then
+                'ThanhNT edited 30062016 đáp ứng cho nhu cầu process của U
+
+                'If CurrentState Is Nothing Then
+                If Request.Params("add") IsNot Nothing AndAlso Request.Params("add").ToString = "1" Then
+                    If Request.Params("EmpID") IsNot Nothing Then
+                        CurrentState = CommonMessage.STATE_NEW
+                        btnEmployee.ReadOnly = True
+                        FillData(Request.Params("EmpID"))
+                    Else
+                        CurrentState = CommonMessage.STATE_NEW
+                    End If
+                    '
+                    Refresh("NormalView")
+                ElseIf Request.Params("IDSelect") IsNot Nothing Then
+                    CurrentState = CommonMessage.STATE_EDIT
+                    ' btnEmployee.ReadOnly = True
+                    hidID.Value = Request.Params("IDSelect")
+                    FillDataDoubleClick(Request.Params("EmpID"))
+                Else 'ThanhNT added 29062016 - Trường hợp theo quy trình thì sẽ load dữ liệu lên để user thao tác
+                    If Request.Params("empID") IsNot Nothing Then
+                        btnEmployee.ReadOnly = True
+                        FillData(Request.Params("empID"))
+                        CurrentState = CommonMessage.STATE_NEW
+                    End If
+
+                    Refresh("NormalView")
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' load khi double click từ man hinh quan lý phụ lục
+    ''' </summary>
+    ''' <param name="empID"></param>
+    ''' <remarks></remarks>
+    ''' 
+    Private Sub FillDataDoubleClick(ByVal empID As Decimal)
+        Try
+            Dim rep As New ProfileRepository
+            'Dim repOrg As New ProfileRepository
+            'Dim title As TitleDTO
+            'Dim repEmp As New ProfileBusinessRepository
+            'Dim obj = repEmp.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empID})
+            'hidEmployeeID.Value = obj.EMPLOYEE_ID
+            'txtEmployeeCode.Text = obj.EMPLOYEE_CODE
+            'txtEmployeeName.Text = obj.EMPLOYEE_NAME
+            'txtOrg.Text = obj.ORG_NAME
+            'hidOrgID.Value = obj.ORG_ID
+            'txtRemark.Text = obj.REMARK
+
+            'get thong tin chuc danh 
+            'title = rep.GetTitileBaseOnEmp(obj.TITLE_ID)
+            'If title IsNot Nothing Then
+            '    txtTitle.Text = title.NAME_VN
+            'End If
+
+            listContract = rep.GetContractList(empID)
+            'listContract = rep.GetListContractBaseOnEmp(empID)
+            If listContract IsNot Nothing And listContract.Count <> 0 Then
+                FillDropDownList(cboContract, listContract, "CONTRACT_NO", "ID", Common.Common.SystemLanguage, True)
+                cboContract.SelectedIndex = 0
+            End If
+
+            ''Tao moi ma hop dong
+            'If hidOrgID.Value <> String.Empty Then
+            '    Dim dt = DateTime.Now
+            '    If rdStartDate.SelectedDate IsNot Nothing Then
+            '        dt = rdStartDate.SelectedDate
+            '    End If
+            'End If
+
+            Dim lstContractAppen As New List(Of FileContractDTO)
+            Dim contractAppen = rep.GetFileConTractID(hidID.Value)
+            If contractAppen IsNot Nothing Then
+                hidEmployeeID.Value = contractAppen.EMPLOYEE_ID
+                txtEmployeeCode.Text = contractAppen.EMPLOYEE_CODE
+                txtEmployeeName.Text = contractAppen.EMPLOYEE_NAME
+                txtOrg.Text = contractAppen.ORG_NAME
+                'hidOrgID.Value = contractAppen.ORG_ID
+                txtRemark.Text = contractAppen.REMARK
+                txtTitle.Text = contractAppen.TITLE_NAME
+
+                Contract = contractAppen
+                If contractAppen.ID_CONTRACT IsNot Nothing Then
+                    cboContract.SelectedValue = contractAppen.ID_CONTRACT
+
+                    If listContract IsNot Nothing Then
+                        If listContract.Any(Function(x) x.ID = Contract.ID_CONTRACT) Then
+                            'txtContractType.Text = listContract.Find(Function(x) x.ID = cboContract.SelectedValue).CONTRACTTYPE_NAME
+                            hidContractType_ID.Value = listContract.Find(Function(x) x.ID = cboContract.SelectedValue).CONTRACTTYPE_ID
+                        End If
+                    End If
+
+                End If
+
+                lstContractAppen.Add(contractAppen)
+                rgContract.DataSource = lstContractAppen
+                rgContract.Rebind()
+
+                rgContract.MasterTableView.Items(0).Selected = True
+                rgContract_SelectedIndexChanged(Nothing, Nothing)
+
+                If contractAppen.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                    NORMAL.Enabled = False
+                    MainToolBar.Items(0).Enabled = False
+                    MainToolBar.Items(1).Enabled = False
+                    'MainToolBar.Items(3).Enabled = True
+                End If
+            End If
+            rep.Dispose()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub FillData(ByVal empID As Decimal, Optional ByVal isChangedStartDate As Boolean = False)
+        Try
+            Dim rep As New ProfileRepository
+            'Dim repOrg As New ProfileRepository
+            Dim repEmp As New ProfileBusinessRepository
+            Dim obj = repEmp.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empID, .IS_WAGE = False, .EFFECT_DATE = If(rdStartDate.SelectedDate Is Nothing, Date.Now.Date, rdStartDate.SelectedDate)})
+            hidEmployeeID.Value = empID
+            txtEmployeeCode.Text = obj.EMPLOYEE_CODE
+            txtEmployeeName.Text = obj.EMPLOYEE_NAME
+            txtOrg.Text = obj.ORG_NAME
+            hidOrgID.Value = obj.ORG_ID
+            'get thong tin chuc danh 
+            'Dim title As TitleDTO
+            'title = rep.GetTitileBaseOnEmp(obj.TITLE_ID)
+            'If title IsNot Nothing Then
+            '    txtTitle.Text = title.NAME_VN
+            'End If
+            If obj.TITLE_ID IsNot Nothing Then
+                txtTitle.Text = obj.TITLE_NAME
+            End If
+            If isChangedStartDate Then
+                Exit Sub
+            End If
+
+            'Load danh sách hợp đồng của nhân viên
+            listContract = rep.GetContractList(empID)
+            If listContract Is Nothing Or listContract.Count = 0 Then
+                ShowMessage("Bạn chưa tạo hợp đồng lao động cho nhân viên " & obj.EMPLOYEE_NAME, NotifyType.Warning)
+                Exit Sub
+            End If
+
+            FillDropDownList(cboContract, listContract, "CONTRACT_NO", "ID", Common.Common.SystemLanguage, True)
+            cboContract.SelectedIndex = 0
+            'listContract = rep.GetListContractBaseOnEmp(empID)
+            'If listContract IsNot Nothing And listContract.Count <> 0 Then
+            '    FillDropDownList(cboContract, listContract, "CONTRACT_NO", "ID", Common.Common.SystemLanguage, True)
+            '    cboContract.SelectedIndex = 0
+            'End If
+            GetWorkingMax()
+            rep.Dispose()
+            repEmp.Dispose()
+            'Tao moi ma hop dong
+            'If hidOrgID.Value <> String.Empty Then
+            '    Dim dt = DateTime.Now
+            '    If rdStartDate.SelectedDate IsNot Nothing Then
+            '        dt = rdStartDate.SelectedDate
+            '    End If
+            'End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+#End Region
+
+End Class

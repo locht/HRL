@@ -1,0 +1,2896 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProfileModelStoreContainer" CdmEntityContainer="ProfileContext">
+    <EntitySetMapping Name="HU_PROVINCE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_PROVINCE)">
+        <MappingFragment StoreEntitySet="HU_PROVINCE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NATION_ID" ColumnName="NATION_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DISTRICT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DISTRICT)">
+        <MappingFragment StoreEntitySet="HU_DISTRICT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_NATION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_NATION)">
+        <MappingFragment StoreEntitySet="HU_NATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ASSET">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ASSET)">
+        <MappingFragment StoreEntitySet="HU_ASSET">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_BANK">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_BANK)">
+        <MappingFragment StoreEntitySet="HU_BANK">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SHORT_NAME" ColumnName="SHORT_NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_BANK_BRANCH">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_BANK_BRANCH)">
+        <MappingFragment StoreEntitySet="HU_BANK_BRANCH">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="BANK_ID" ColumnName="BANK_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OT_OTHER_LIST">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.OT_OTHER_LIST)">
+        <MappingFragment StoreEntitySet="OT_OTHER_LIST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+          <ScalarProperty Name="FIRST_NAME_VN" ColumnName="FIRST_NAME_VN" />
+          <ScalarProperty Name="LAST_NAME_VN" ColumnName="LAST_NAME_VN" />
+          <ScalarProperty Name="FULLNAME_VN" ColumnName="FULLNAME_VN" />
+          <ScalarProperty Name="FIRST_NAME_EN" ColumnName="FIRST_NAME_EN" />
+          <ScalarProperty Name="LAST_NAME_EN" ColumnName="LAST_NAME_EN" />
+          <ScalarProperty Name="FULLNAME_EN" ColumnName="FULLNAME_EN" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
+          <ScalarProperty Name="CONTRACT_ID" ColumnName="CONTRACT_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
+          <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="LAST_WORKING_ID" ColumnName="LAST_WORKING_ID" />
+          <ScalarProperty Name="TER_EFFECT_DATE" ColumnName="TER_EFFECT_DATE" />
+          <ScalarProperty Name="TER_LAST_DATE" ColumnName="TER_LAST_DATE" />
+          <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+          <ScalarProperty Name="ITIME_ID" ColumnName="ITIME_ID" />
+          <ScalarProperty Name="PA_OBJECT_SALARY_ID" ColumnName="PA_OBJECT_SALARY_ID" />
+          <ScalarProperty Name="EXPIREDATE_ENT" ColumnName="EXPIREDATE_ENT" />
+          <ScalarProperty Name="JOIN_DATE_STATE" ColumnName="JOIN_DATE_STATE" />
+          <ScalarProperty Name="LEVEL_MANAGER" ColumnName="LEVEL_MANAGER" />
+          <ScalarProperty Name="EMPLOYEE_3B_ID" ColumnName="EMPLOYEE_3B_ID" />
+          <ScalarProperty Name="EMPLOYEE_CODE_OLD" ColumnName="EMPLOYEE_CODE_OLD" />
+          <ScalarProperty Name="IS_3B" ColumnName="IS_3B" />
+          <ScalarProperty Name="EMP_STATUS" ColumnName="EMP_STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OT_OTHER_LIST_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.OT_OTHER_LIST_TYPE)">
+        <MappingFragment StoreEntitySet="OT_OTHER_LIST_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="IS_SYSTEM" ColumnName="IS_SYSTEM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_HOSPITAL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_HOSPITAL)">
+        <MappingFragment StoreEntitySet="HU_HOSPITAL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_CV">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_CV)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_CV">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+          <ScalarProperty Name="ID_DATE" ColumnName="ID_DATE" />
+          <ScalarProperty Name="ID_PLACE" ColumnName="ID_PLACE" />
+          <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
+          <ScalarProperty Name="RELIGION" ColumnName="RELIGION" />
+          <ScalarProperty Name="NATIVE" ColumnName="NATIVE" />
+          <ScalarProperty Name="PER_ADDRESS" ColumnName="PER_ADDRESS" />
+          <ScalarProperty Name="PER_PROVINCE" ColumnName="PER_PROVINCE" />
+          <ScalarProperty Name="NAV_ADDRESS" ColumnName="NAV_ADDRESS" />
+          <ScalarProperty Name="NAV_PROVINCE" ColumnName="NAV_PROVINCE" />
+          <ScalarProperty Name="HOME_PHONE" ColumnName="HOME_PHONE" />
+          <ScalarProperty Name="MOBILE_PHONE" ColumnName="MOBILE_PHONE" />
+          <ScalarProperty Name="WORK_EMAIL" ColumnName="WORK_EMAIL" />
+          <ScalarProperty Name="PER_EMAIL" ColumnName="PER_EMAIL" />
+          <ScalarProperty Name="MARITAL_STATUS" ColumnName="MARITAL_STATUS" />
+          <ScalarProperty Name="PASS_NO" ColumnName="PASS_NO" />
+          <ScalarProperty Name="PASS_DATE" ColumnName="PASS_DATE" />
+          <ScalarProperty Name="PASS_EXPIRE" ColumnName="PASS_EXPIRE" />
+          <ScalarProperty Name="PASS_PLACE" ColumnName="PASS_PLACE" />
+          <ScalarProperty Name="VISA" ColumnName="VISA" />
+          <ScalarProperty Name="VISA_DATE" ColumnName="VISA_DATE" />
+          <ScalarProperty Name="VISA_EXPIRE" ColumnName="VISA_EXPIRE" />
+          <ScalarProperty Name="VISA_PLACE" ColumnName="VISA_PLACE" />
+          <ScalarProperty Name="WORK_PERMIT" ColumnName="WORK_PERMIT" />
+          <ScalarProperty Name="WORK_PERMIT_DATE" ColumnName="WORK_PERMIT_DATE" />
+          <ScalarProperty Name="WORK_PERMIT_EXPIRE" ColumnName="WORK_PERMIT_EXPIRE" />
+          <ScalarProperty Name="WORK_PERMIT_PLACE" ColumnName="WORK_PERMIT_PLACE" />
+          <ScalarProperty Name="CONTACT_PER" ColumnName="CONTACT_PER" />
+          <ScalarProperty Name="CONTACT_PER_PHONE" ColumnName="CONTACT_PER_PHONE" />
+          <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="BANK_NO" ColumnName="BANK_NO" />
+          <ScalarProperty Name="BANK_ID" ColumnName="BANK_ID" />
+          <ScalarProperty Name="BANK_BRANCH_ID" ColumnName="BANK_BRANCH_ID" />
+          <ScalarProperty Name="PIT_CODE" ColumnName="PIT_CODE" />
+          <ScalarProperty Name="NGAY_VAO_DANG" ColumnName="NGAY_VAO_DANG" />
+          <ScalarProperty Name="NOI_VAO_DANG" ColumnName="NOI_VAO_DANG" />
+          <ScalarProperty Name="CHUC_VU_DANG" ColumnName="CHUC_VU_DANG" />
+          <ScalarProperty Name="NGAY_VAO_DOAN" ColumnName="NGAY_VAO_DOAN" />
+          <ScalarProperty Name="NOI_VAO_DOAN" ColumnName="NOI_VAO_DOAN" />
+          <ScalarProperty Name="CHUC_VU_DOAN" ColumnName="CHUC_VU_DOAN" />
+          <ScalarProperty Name="DOAN_PHI" ColumnName="DOAN_PHI" />
+          <ScalarProperty Name="DANG_PHI" ColumnName="DANG_PHI" />
+          <ScalarProperty Name="CAREER" ColumnName="CAREER" />
+          <ScalarProperty Name="PER_DISTRICT" ColumnName="PER_DISTRICT" />
+          <ScalarProperty Name="NAV_DISTRICT" ColumnName="NAV_DISTRICT" />
+          <ScalarProperty Name="PER_WARD" ColumnName="PER_WARD" />
+          <ScalarProperty Name="NAV_WARD" ColumnName="NAV_WARD" />
+          <ScalarProperty Name="WORKPLACE_ID" ColumnName="WORKPLACE_ID" />
+          <ScalarProperty Name="IS_PERMISSION" ColumnName="IS_PERMISSION" />
+          <ScalarProperty Name="INS_REGION_ID" ColumnName="INS_REGION_ID" />
+          <ScalarProperty Name="IS_PAY_BANK" ColumnName="IS_PAY_BANK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_HEALTH">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_HEALTH)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_HEALTH">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CHIEU_CAO" ColumnName="CHIEU_CAO" />
+          <ScalarProperty Name="CAN_NANG" ColumnName="CAN_NANG" />
+          <ScalarProperty Name="NHOM_MAU" ColumnName="NHOM_MAU" />
+          <ScalarProperty Name="HUYET_AP" ColumnName="HUYET_AP" />
+          <ScalarProperty Name="MAT_TRAI" ColumnName="MAT_TRAI" />
+          <ScalarProperty Name="MAT_PHAI" ColumnName="MAT_PHAI" />
+          <ScalarProperty Name="LOAI_SUC_KHOE" ColumnName="LOAI_SUC_KHOE" />
+          <ScalarProperty Name="TAI_MUI_HONG" ColumnName="TAI_MUI_HONG" />
+          <ScalarProperty Name="RANG_HAM_MAT" ColumnName="RANG_HAM_MAT" />
+          <ScalarProperty Name="TIM" ColumnName="TIM" />
+          <ScalarProperty Name="PHOI_NGUC" ColumnName="PHOI_NGUC" />
+          <ScalarProperty Name="VIEM_GAN_B" ColumnName="VIEM_GAN_B" />
+          <ScalarProperty Name="DA_HOA_LIEU" ColumnName="DA_HOA_LIEU" />
+          <ScalarProperty Name="GHI_CHU_SUC_KHOE" ColumnName="GHI_CHU_SUC_KHOE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_EDUCATION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_EDUCATION)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_EDUCATION">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ACADEMY" ColumnName="ACADEMY" />
+          <ScalarProperty Name="MAJOR" ColumnName="MAJOR" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="LANGUAGE_MARK" ColumnName="LANGUAGE_MARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TRAINING_FORM" ColumnName="TRAINING_FORM" />
+          <ScalarProperty Name="LEARNING_LEVEL" ColumnName="LEARNING_LEVEL" />
+          <ScalarProperty Name="LANGUAGE_LEVEL" ColumnName="LANGUAGE_LEVEL" />
+          <ScalarProperty Name="MAJOR_REMARK" ColumnName="MAJOR_REMARK" />
+          <ScalarProperty Name="GRADUATE_SCHOOL_ID" ColumnName="GRADUATE_SCHOOL_ID" />
+          <ScalarProperty Name="GRADUATION_YEAR" ColumnName="GRADUATION_YEAR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_CONTRACT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_CONTRACT)">
+        <MappingFragment StoreEntitySet="HU_CONTRACT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
+          <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
+          <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
+          <ScalarProperty Name="MORNING_START" ColumnName="MORNING_START" />
+          <ScalarProperty Name="MORNING_STOP" ColumnName="MORNING_STOP" />
+          <ScalarProperty Name="AFTERNOON_START" ColumnName="AFTERNOON_START" />
+          <ScalarProperty Name="AFTERNOON_STOP" ColumnName="AFTERNOON_STOP" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_FAMILY">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_FAMILY)">
+        <MappingFragment StoreEntitySet="HU_FAMILY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="RELATION_ID" ColumnName="RELATION_ID" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="IS_DEDUCT" ColumnName="IS_DEDUCT" />
+          <ScalarProperty Name="DEDUCT_FROM" ColumnName="DEDUCT_FROM" />
+          <ScalarProperty Name="DEDUCT_TO" ColumnName="DEDUCT_TO" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="DEDUCT_REG" ColumnName="DEDUCT_REG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DISCIPLINE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DISCIPLINE)">
+        <MappingFragment StoreEntitySet="HU_DISCIPLINE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DISCIPLINE_OBJ" ColumnName="DISCIPLINE_OBJ" />
+          <ScalarProperty Name="DISCIPLINE_TYPE" ColumnName="DISCIPLINE_TYPE" />
+          <ScalarProperty Name="DISCIPLINE_LEVEL" ColumnName="DISCIPLINE_LEVEL" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="DEDUCT_FROM_SALARY" ColumnName="DEDUCT_FROM_SALARY" />
+          <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+          <ScalarProperty Name="INDEMNIFY_MONEY" ColumnName="INDEMNIFY_MONEY" />
+          <ScalarProperty Name="NO" ColumnName="NO" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
+          <ScalarProperty Name="DISCIPLINE_REASON" ColumnName="DISCIPLINE_REASON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WORKING_BEFORE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WORKING_BEFORE)">
+        <MappingFragment StoreEntitySet="HU_WORKING_BEFORE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="COMPANY_ADDRESS" ColumnName="COMPANY_ADDRESS" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="TER_REASON" ColumnName="TER_REASON" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
+          <ScalarProperty Name="LEVEL_NAME" ColumnName="LEVEL_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TERMINATE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TERMINATE)">
+        <MappingFragment StoreEntitySet="HU_TERMINATE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="IS_NOHIRE" ColumnName="IS_NOHIRE" />
+          <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+          <ScalarProperty Name="TER_REASON_DETAIL" ColumnName="TER_REASON_DETAIL" />
+          <ScalarProperty Name="LAST_DATE" ColumnName="LAST_DATE" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="EMP_SENIORITY" ColumnName="EMP_SENIORITY" />
+          <ScalarProperty Name="LAST_WORKING_ID" ColumnName="LAST_WORKING_ID" />
+          <ScalarProperty Name="APPROVAL_DATE" ColumnName="APPROVAL_DATE" />
+          <ScalarProperty Name="IDENTIFI_CARD" ColumnName="IDENTIFI_CARD" />
+          <ScalarProperty Name="IDENTIFI_RDATE" ColumnName="IDENTIFI_RDATE" />
+          <ScalarProperty Name="IDENTIFI_STATUS" ColumnName="IDENTIFI_STATUS" />
+          <ScalarProperty Name="SUN_CARD" ColumnName="SUN_CARD" />
+          <ScalarProperty Name="SUN_RDATE" ColumnName="SUN_RDATE" />
+          <ScalarProperty Name="SUN_STATUS" ColumnName="SUN_STATUS" />
+          <ScalarProperty Name="INSURANCE_CARD" ColumnName="INSURANCE_CARD" />
+          <ScalarProperty Name="INSURANCE_RDATE" ColumnName="INSURANCE_RDATE" />
+          <ScalarProperty Name="INSURANCE_STATUS" ColumnName="INSURANCE_STATUS" />
+          <ScalarProperty Name="REMAINING_LEAVE" ColumnName="REMAINING_LEAVE" />
+          <ScalarProperty Name="PAYMENT_LEAVE" ColumnName="PAYMENT_LEAVE" />
+          <ScalarProperty Name="AMOUNT_VIOLATIONS" ColumnName="AMOUNT_VIOLATIONS" />
+          <ScalarProperty Name="AMOUNT_WRONGFUL" ColumnName="AMOUNT_WRONGFUL" />
+          <ScalarProperty Name="ALLOWANCE_TERMINATE" ColumnName="ALLOWANCE_TERMINATE" />
+          <ScalarProperty Name="TRAINING_COSTS" ColumnName="TRAINING_COSTS" />
+          <ScalarProperty Name="OTHER_COMPENSATION" ColumnName="OTHER_COMPENSATION" />
+          <ScalarProperty Name="COMPENSATORY_LEAVE" ColumnName="COMPENSATORY_LEAVE" />
+          <ScalarProperty Name="COMPENSATORY_PAYMENT" ColumnName="COMPENSATORY_PAYMENT" />
+          <ScalarProperty Name="DECISION_NO" ColumnName="DECISION_NO" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="SIGN_NAME" ColumnName="SIGN_NAME" />
+          <ScalarProperty Name="SIGN_TITLE" ColumnName="SIGN_TITLE" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="IDENTIFI_MONEY" ColumnName="IDENTIFI_MONEY" />
+          <ScalarProperty Name="SUN_MONEY" ColumnName="SUN_MONEY" />
+          <ScalarProperty Name="INSURANCE_MONEY" ColumnName="INSURANCE_MONEY" />
+          <ScalarProperty Name="IS_3B" ColumnName="IS_3B" />
+          <ScalarProperty Name="TYPE_TERMINATE" ColumnName="TYPE_TERMINATE" />
+          <ScalarProperty Name="SALARYMEDIUM" ColumnName="SALARYMEDIUM" />
+          <ScalarProperty Name="YEARFORALLOW" ColumnName="YEARFORALLOW" />
+          <ScalarProperty Name="MONEYALLOW" ColumnName="MONEYALLOW" />
+          <ScalarProperty Name="REMAINING_LEAVE_MONEY" ColumnName="REMAINING_LEAVE_MONEY" />
+          <ScalarProperty Name="IDENTIFI_VIOLATE_MONEY" ColumnName="IDENTIFI_VIOLATE_MONEY" />
+          <ScalarProperty Name="MONEY_RETURN" ColumnName="MONEY_RETURN" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="SUM_DEBT" ColumnName="SUM_DEBT" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WORKING_OLD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WORKING_OLD)">
+        <MappingFragment StoreEntitySet="HU_WORKING_OLD">
+          <ScalarProperty Name="d" ColumnName="d" />
+          <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+          <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
+          <ScalarProperty Name="ORG_NAME" ColumnName="ORG_NAME" />
+          <ScalarProperty Name="TRANSFER_TYPE" ColumnName="TRANSFER_TYPE" />
+          <ScalarProperty Name="TRANSFER_REASON" ColumnName="TRANSFER_REASON" />
+          <ScalarProperty Name="WORK_LEVEL" ColumnName="WORK_LEVEL" />
+          <ScalarProperty Name="INDIRECT_MANAGER" ColumnName="INDIRECT_MANAGER" />
+          <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+          <ScalarProperty Name="COST_CENTER_HR" ColumnName="COST_CENTER_HR" />
+          <ScalarProperty Name="COST_CENTER_ACC" ColumnName="COST_CENTER_ACC" />
+          <ScalarProperty Name="LOCATION_HR" ColumnName="LOCATION_HR" />
+          <ScalarProperty Name="LOCATION_ACC" ColumnName="LOCATION_ACC" />
+          <ScalarProperty Name="INDUSTRY" ColumnName="INDUSTRY" />
+          <ScalarProperty Name="IS_DECISION" ColumnName="IS_DECISION" />
+          <ScalarProperty Name="IS_CHANGE_CB" ColumnName="IS_CHANGE_CB" />
+          <ScalarProperty Name="SALARY_CB" ColumnName="SALARY_CB" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="DECISION_NO" ColumnName="DECISION_NO" />
+          <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
+          <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_MAIL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.SE_MAIL)">
+        <MappingFragment StoreEntitySet="SE_MAIL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+          <ScalarProperty Name="MAIL_FROM" ColumnName="MAIL_FROM" />
+          <ScalarProperty Name="MAIL_TO" ColumnName="MAIL_TO" />
+          <ScalarProperty Name="MAIL_CC" ColumnName="MAIL_CC" />
+          <ScalarProperty Name="MAIL_BCC" ColumnName="MAIL_BCC" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="VIEW_NAME" ColumnName="VIEW_NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_REMINDER_LOG">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_REMINDER_LOG)">
+        <MappingFragment StoreEntitySet="HU_REMINDER_LOG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="REMINDER_DATE" ColumnName="REMINDER_DATE" />
+          <ScalarProperty Name="REMINDER_TYPE" ColumnName="REMINDER_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OT_OTHER_LIST_GROUP">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.OT_OTHER_LIST_GROUP)">
+        <MappingFragment StoreEntitySet="OT_OTHER_LIST_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HUV_WORKING">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_WORKING)">
+        <MappingFragment StoreEntitySet="HUV_WORKING">
+          <ScalarProperty Name="SALARY_CB" ColumnName="SALARY_CB" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="EMP_NAME" ColumnName="EMP_NAME" />
+          <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
+          <ScalarProperty Name="ORG_NAME" ColumnName="ORG_NAME" />
+          <ScalarProperty Name="ORG_CODE" ColumnName="ORG_CODE" />
+          <ScalarProperty Name="TRANSFER_TYPE_NAME" ColumnName="TRANSFER_TYPE_NAME" />
+          <ScalarProperty Name="TRANSFER_REASON" ColumnName="TRANSFER_REASON" />
+          <ScalarProperty Name="LEVEL_NAME" ColumnName="LEVEL_NAME" />
+          <ScalarProperty Name="INDIRECT_MANAGER_NAME" ColumnName="INDIRECT_MANAGER_NAME" />
+          <ScalarProperty Name="DIRECT_MANAGER_NAME" ColumnName="DIRECT_MANAGER_NAME" />
+          <ScalarProperty Name="COST_CENTER_HR_NAME" ColumnName="COST_CENTER_HR_NAME" />
+          <ScalarProperty Name="COST_CENTER_ACC_NAME" ColumnName="COST_CENTER_ACC_NAME" />
+          <ScalarProperty Name="LOCATION_HR_NAME" ColumnName="LOCATION_HR_NAME" />
+          <ScalarProperty Name="LOCATION_ACC_NAME" ColumnName="LOCATION_ACC_NAME" />
+          <ScalarProperty Name="INDUSTRY_NAME" ColumnName="INDUSTRY_NAME" />
+          <ScalarProperty Name="DECISION_NO" ColumnName="DECISION_NO" />
+          <ScalarProperty Name="DECISION_NAME" ColumnName="DECISION_NAME" />
+          <ScalarProperty Name="DECISION_SIGNER_NAME" ColumnName="DECISION_SIGNER_NAME" />
+          <ScalarProperty Name="DECISION_SIGNER_TITLE" ColumnName="DECISION_SIGNER_TITLE" />
+          <ScalarProperty Name="DECISION_SIGN_DATE" ColumnName="DECISION_SIGN_DATE" />
+          <ScalarProperty Name="IS_CHANGE_CB" ColumnName="IS_CHANGE_CB" />
+          <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_SALARY_GROUP">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_SALARY_GROUP)">
+        <MappingFragment StoreEntitySet="PA_SALARY_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_SALARY_LEVEL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_SALARY_LEVEL)">
+        <MappingFragment StoreEntitySet="PA_SALARY_LEVEL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SAL_GROUP_ID" ColumnName="SAL_GROUP_ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_SALARY_PAGE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_SALARY_PAGE)">
+        <MappingFragment StoreEntitySet="PA_SALARY_PAGE">
+          <ScalarProperty Name="PA_PAGE_ID" ColumnName="PA_PAGE_ID" />
+          <ScalarProperty Name="PA_SALARY_ID" ColumnName="PA_SALARY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_SALARY_RANK">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_SALARY_RANK)">
+        <MappingFragment StoreEntitySet="PA_SALARY_RANK">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SAL_LEVEL_ID" ColumnName="SAL_LEVEL_ID" />
+          <ScalarProperty Name="RANK" ColumnName="RANK" />
+          <ScalarProperty Name="SALARY_BASIC" ColumnName="SALARY_BASIC" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_TRAIN">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_TRAIN)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_TRAIN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+          <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="TRAINING_FORM" ColumnName="TRAINING_FORM" />
+          <ScalarProperty Name="HIGHEST_LEVEL" ColumnName="HIGHEST_LEVEL" />
+          <ScalarProperty Name="LEARNING_LEVEL" ColumnName="LEARNING_LEVEL" />
+          <ScalarProperty Name="MAJOR" ColumnName="MAJOR" />
+          <ScalarProperty Name="GRADUATE_YEAR" ColumnName="GRADUATE_YEAR" />
+          <ScalarProperty Name="MARK" ColumnName="MARK" />
+          <ScalarProperty Name="TRAINING_CONTENT" ColumnName="TRAINING_CONTENT" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_MISSION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_MISSION)">
+        <MappingFragment StoreEntitySet="HU_MISSION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="DECISION_ID" ColumnName="DECISION_ID" />
+          <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
+          <ScalarProperty Name="MISSION_UNIT" ColumnName="MISSION_UNIT" />
+          <ScalarProperty Name="MISSION_REASON" ColumnName="MISSION_REASON" />
+          <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+          <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AT_ALDATA">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.AT_ALDATA)">
+        <MappingFragment StoreEntitySet="AT_ALDATA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HU_EMPLOYEEID" ColumnName="HU_EMPLOYEEID" />
+          <ScalarProperty Name="WORKINGDAY" ColumnName="WORKINGDAY" />
+          <ScalarProperty Name="POSID" ColumnName="POSID" />
+          <ScalarProperty Name="ORGID" ColumnName="ORGID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HUV_CURRENT_TERMINATE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_CURRENT_TERMINATE)">
+        <MappingFragment StoreEntitySet="HUV_CURRENT_TERMINATE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="DECISION_ID" ColumnName="DECISION_ID" />
+          <ScalarProperty Name="IS_REPLACE" ColumnName="IS_REPLACE" />
+          <ScalarProperty Name="IS_TERSINGLE" ColumnName="IS_TERSINGLE" />
+          <ScalarProperty Name="IS_NOHIRE" ColumnName="IS_NOHIRE" />
+          <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+          <ScalarProperty Name="TER_TYPE_ID" ColumnName="TER_TYPE_ID" />
+          <ScalarProperty Name="TER_REASON_ID" ColumnName="TER_REASON_ID" />
+          <ScalarProperty Name="TER_REASON_DETAIL" ColumnName="TER_REASON_DETAIL" />
+          <ScalarProperty Name="AREA" ColumnName="AREA" />
+          <ScalarProperty Name="LAST_DATE" ColumnName="LAST_DATE" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="EMP_SENIORITY" ColumnName="EMP_SENIORITY" />
+          <ScalarProperty Name="LAST_WORKING_ID" ColumnName="LAST_WORKING_ID" />
+          <ScalarProperty Name="ROW_NUMBER" ColumnName="ROW_NUMBER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DYNAMIC_REPORT_CONFIG">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.DYNAMIC_REPORT_CONFIG)">
+        <MappingFragment StoreEntitySet="DYNAMIC_REPORT_CONFIG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TABLE_NAME" ColumnName="TABLE_NAME" />
+          <ScalarProperty Name="COLUMN_NAME" ColumnName="COLUMN_NAME" />
+          <ScalarProperty Name="COLUMN_TYPE" ColumnName="COLUMN_TYPE" />
+          <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+          <ScalarProperty Name="IS_JOIN" ColumnName="IS_JOIN" />
+          <ScalarProperty Name="TABLE_JOIN" ColumnName="TABLE_JOIN" />
+          <ScalarProperty Name="COLUMN_JOIN" ColumnName="COLUMN_JOIN" />
+          <ScalarProperty Name="ALIAS_NAME" ColumnName="ALIAS_NAME" />
+          <ScalarProperty Name="JOIN_TYPE" ColumnName="JOIN_TYPE" />
+          <ScalarProperty Name="COLUMN_DISPLAY" ColumnName="COLUMN_DISPLAY" />
+          <ScalarProperty Name="CONDITIONS" ColumnName="CONDITIONS" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_CHOSEN_ORG">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.SE_CHOSEN_ORG)">
+        <MappingFragment StoreEntitySet="SE_CHOSEN_ORG">
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WORKING_ALLOW">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WORKING_ALLOW)">
+        <MappingFragment StoreEntitySet="HU_WORKING_ALLOW">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HU_WORKING_ID" ColumnName="HU_WORKING_ID" />
+          <ScalarProperty Name="ALLOWANCE_LIST_ID" ColumnName="ALLOWANCE_LIST_ID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="IS_INSURRANCE" ColumnName="IS_INSURRANCE" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DYNAMIC_REPORT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DYNAMIC_REPORT)">
+        <MappingFragment StoreEntitySet="HU_DYNAMIC_REPORT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VIEW_NAME" ColumnName="VIEW_NAME" />
+          <ScalarProperty Name="VIEW_DESCRIPTION" ColumnName="VIEW_DESCRIPTION" />
+          <ScalarProperty Name="ORD_NO" ColumnName="ORD_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DYNAMIC_REPORT_DTL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DYNAMIC_REPORT_DTL)">
+        <MappingFragment StoreEntitySet="HU_DYNAMIC_REPORT_DTL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VIEW_ID" ColumnName="VIEW_ID" />
+          <ScalarProperty Name="COLUMN_NAME" ColumnName="COLUMN_NAME" />
+          <ScalarProperty Name="COLUMN_TYPE" ColumnName="COLUMN_TYPE" />
+          <ScalarProperty Name="TRANSLATE" ColumnName="TRANSLATE" />
+          <ScalarProperty Name="COLUMN_ORDER" ColumnName="COLUMN_ORDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_OBJECT_SALARY">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_OBJECT_SALARY)">
+        <MappingFragment StoreEntitySet="PA_OBJECT_SALARY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
+          <ScalarProperty Name="SDESC" ColumnName="SDESC" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_FILE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_FILE)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_FILE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+          <ScalarProperty Name="FILE_SIZE" ColumnName="FILE_SIZE" />
+          <ScalarProperty Name="FILE_TYPE" ColumnName="FILE_TYPE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="UPLOAD_DATE" ColumnName="UPLOAD_DATE" />
+          <ScalarProperty Name="UPLOAD_BY" ColumnName="UPLOAD_BY" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="FILE_NO" ColumnName="FILE_NO" />
+          <ScalarProperty Name="EFFECT_LOCATION" ColumnName="EFFECT_LOCATION" />
+          <ScalarProperty Name="FILE_NUMBER" ColumnName="FILE_NUMBER" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_LABOURPROTECTION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_LABOURPROTECTION)">
+        <MappingFragment StoreEntitySet="HU_LABOURPROTECTION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+          <ScalarProperty Name="SDESC" ColumnName="SDESC" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_OCCUPATIONAL_SAFETY">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_OCCUPATIONAL_SAFETY)">
+        <MappingFragment StoreEntitySet="HU_OCCUPATIONAL_SAFETY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="DATE_OF_ACCIDENT" ColumnName="DATE_OF_ACCIDENT" />
+          <ScalarProperty Name="REASON_ID" ColumnName="REASON_ID" />
+          <ScalarProperty Name="HOLIDAY_ACCIDENTS" ColumnName="HOLIDAY_ACCIDENTS" />
+          <ScalarProperty Name="DESCRIBED_INCIDENT" ColumnName="DESCRIBED_INCIDENT" />
+          <ScalarProperty Name="EXTENT_OF_INJURY" ColumnName="EXTENT_OF_INJURY" />
+          <ScalarProperty Name="THE_COST_OF_ACCIDENTS" ColumnName="THE_COST_OF_ACCIDENTS" />
+          <ScalarProperty Name="SDESC" ColumnName="SDESC" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_CONTRACT_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_CONTRACT_TYPE)">
+        <MappingFragment StoreEntitySet="HU_CONTRACT_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="PERIOD" ColumnName="PERIOD" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="BHXH" ColumnName="BHXH" />
+          <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+          <ScalarProperty Name="BHTN" ColumnName="BHTN" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INS_ARISING">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.INS_ARISING)">
+        <MappingFragment StoreEntitySet="INS_ARISING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CHANGE_GROUP" ColumnName="CHANGE_GROUP" />
+          <ScalarProperty Name="OLD_POSNAME" ColumnName="OLD_POSNAME" />
+          <ScalarProperty Name="NEW_POSNAME" ColumnName="NEW_POSNAME" />
+          <ScalarProperty Name="OLD_ORGID" ColumnName="OLD_ORGID" />
+          <ScalarProperty Name="NEW_ORGID" ColumnName="NEW_ORGID" />
+          <ScalarProperty Name="OLD_SALARY" ColumnName="OLD_SALARY" />
+          <ScalarProperty Name="NEW_SALARY" ColumnName="NEW_SALARY" />
+          <ScalarProperty Name="ISBHXH" ColumnName="ISBHXH" />
+          <ScalarProperty Name="ISBHYT" ColumnName="ISBHYT" />
+          <ScalarProperty Name="ISBHTN" ColumnName="ISBHTN" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="DATE_CHANGE" ColumnName="DATE_CHANGE" />
+          <ScalarProperty Name="EFFECTDATE" ColumnName="EFFECTDATE" />
+          <ScalarProperty Name="PKEY_REF" ColumnName="PKEY_REF" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="REASONS" ColumnName="REASONS" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="SAL_BASE" ColumnName="SAL_BASE" />
+          <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
+          <ScalarProperty Name="TYPE_CHANE" ColumnName="TYPE_CHANE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AT_PERIOD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.AT_PERIOD)">
+        <MappingFragment StoreEntitySet="AT_PERIOD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+          <ScalarProperty Name="PERIOD_NAME" ColumnName="PERIOD_NAME" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="PERIOD_STANDARD" ColumnName="PERIOD_STANDARD" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INS_CHANGE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.INS_CHANGE)">
+        <MappingFragment StoreEntitySet="INS_CHANGE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="ORG_ID_INS" ColumnName="ORG_ID_INS" />
+          <ScalarProperty Name="OLDSALARY" ColumnName="OLDSALARY" />
+          <ScalarProperty Name="NEWSALARY" ColumnName="NEWSALARY" />
+          <ScalarProperty Name="ISBHXH" ColumnName="ISBHXH" />
+          <ScalarProperty Name="ISBHYT" ColumnName="ISBHYT" />
+          <ScalarProperty Name="ISBHTN" ColumnName="ISBHTN" />
+          <ScalarProperty Name="CHANGE_TYPE" ColumnName="CHANGE_TYPE" />
+          <ScalarProperty Name="EFFECTDATE" ColumnName="EFFECTDATE" />
+          <ScalarProperty Name="CHANGE_MONTH" ColumnName="CHANGE_MONTH" />
+          <ScalarProperty Name="RETURN_DATEBHXH" ColumnName="RETURN_DATEBHXH" />
+          <ScalarProperty Name="RETURN_DATEBHYT" ColumnName="RETURN_DATEBHYT" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="CLTFRMMONTH" ColumnName="CLTFRMMONTH" />
+          <ScalarProperty Name="CLTTOMONTH" ColumnName="CLTTOMONTH" />
+          <ScalarProperty Name="CLTBHXH" ColumnName="CLTBHXH" />
+          <ScalarProperty Name="CLTBHYT" ColumnName="CLTBHYT" />
+          <ScalarProperty Name="CLTBHTN" ColumnName="CLTBHTN" />
+          <ScalarProperty Name="REPFRMMONTH" ColumnName="REPFRMMONTH" />
+          <ScalarProperty Name="REPTOMONTH" ColumnName="REPTOMONTH" />
+          <ScalarProperty Name="REPBHXH" ColumnName="REPBHXH" />
+          <ScalarProperty Name="REPBHYT" ColumnName="REPBHYT" />
+          <ScalarProperty Name="REPBHTN" ColumnName="REPBHTN" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TER_PKEY" ColumnName="TER_PKEY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INS_CHANGE_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.INS_CHANGE_TYPE)">
+        <MappingFragment StoreEntitySet="INS_CHANGE_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ARISING_TYPE" ColumnName="ARISING_TYPE" />
+          <ScalarProperty Name="ARISING_NAME" ColumnName="ARISING_NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INS_INFORMATION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.INS_INFORMATION)">
+        <MappingFragment StoreEntitySet="INS_INFORMATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="INSCENTERKEY" ColumnName="INSCENTERKEY" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="POSITIONNAME" ColumnName="POSITIONNAME" />
+          <ScalarProperty Name="ORGNAME" ColumnName="ORGNAME" />
+          <ScalarProperty Name="SOFROM" ColumnName="SOFROM" />
+          <ScalarProperty Name="SOTO" ColumnName="SOTO" />
+          <ScalarProperty Name="SOBOOKNO" ColumnName="SOBOOKNO" />
+          <ScalarProperty Name="SOPRVDBOOKDAY" ColumnName="SOPRVDBOOKDAY" />
+          <ScalarProperty Name="SOWHRPRVBOOK" ColumnName="SOWHRPRVBOOK" />
+          <ScalarProperty Name="SOPRVDBOOKSTATUS" ColumnName="SOPRVDBOOKSTATUS" />
+          <ScalarProperty Name="HEFROM" ColumnName="HEFROM" />
+          <ScalarProperty Name="HETO" ColumnName="HETO" />
+          <ScalarProperty Name="HECARDNO" ColumnName="HECARDNO" />
+          <ScalarProperty Name="HEPRVDCARDDAY" ColumnName="HEPRVDCARDDAY" />
+          <ScalarProperty Name="HEWHRPRVCARD" ColumnName="HEWHRPRVCARD" />
+          <ScalarProperty Name="HEPRVDCARDSTATUS" ColumnName="HEPRVDCARDSTATUS" />
+          <ScalarProperty Name="HEWHRREGISKEY" ColumnName="HEWHRREGISKEY" />
+          <ScalarProperty Name="HECARDEFFFROM" ColumnName="HECARDEFFFROM" />
+          <ScalarProperty Name="HECARDEFFTO" ColumnName="HECARDEFFTO" />
+          <ScalarProperty Name="UEFROM" ColumnName="UEFROM" />
+          <ScalarProperty Name="UETO" ColumnName="UETO" />
+          <ScalarProperty Name="SO" ColumnName="SO" />
+          <ScalarProperty Name="HE" ColumnName="HE" />
+          <ScalarProperty Name="UE" ColumnName="UE" />
+          <ScalarProperty Name="REGISTER" ColumnName="REGISTER" />
+          <ScalarProperty Name="CONTRACTNO" ColumnName="CONTRACTNO" />
+          <ScalarProperty Name="SENIORITY" ColumnName="SENIORITY" />
+          <ScalarProperty Name="ORD_ID" ColumnName="ORD_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="DAYPAYMENTCOMPANY" ColumnName="DAYPAYMENTCOMPANY" />
+          <ScalarProperty Name="NOTE_SO" ColumnName="NOTE_SO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HUV_CURRENT_WORKING">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_CURRENT_WORKING)">
+        <MappingFragment StoreEntitySet="HUV_CURRENT_WORKING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HUV_CURRENT_CONTRACT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_CURRENT_CONTRACT)">
+        <MappingFragment StoreEntitySet="HUV_CURRENT_CONTRACT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
+          <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_CONDITION_COL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_CONDITION_COL)">
+        <MappingFragment StoreEntitySet="HU_CONDITION_COL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CONDITION_ID" ColumnName="CONDITION_ID" />
+          <ScalarProperty Name="COL_ID" ColumnName="COL_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DYNAMIC_CONDITION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DYNAMIC_CONDITION)">
+        <MappingFragment StoreEntitySet="HU_DYNAMIC_CONDITION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VIEW_ID" ColumnName="VIEW_ID" />
+          <ScalarProperty Name="REPORT_NAME" ColumnName="REPORT_NAME" />
+          <ScalarProperty Name="CONDITION" ColumnName="CONDITION" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WARD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WARD)">
+        <MappingFragment StoreEntitySet="HU_WARD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DISTRICT_ID" ColumnName="DISTRICT_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_CHOSEN_EMP_3B">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.SE_CHOSEN_EMP_3B)">
+        <MappingFragment StoreEntitySet="SE_CHOSEN_EMP_3B">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_PAPER">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_PAPER)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_PAPER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="HU_PAPER_ID" ColumnName="HU_PAPER_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_PRO_TRAIN_OUT_COMPANY">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_PRO_TRAIN_OUT_COMPANY)">
+        <MappingFragment StoreEntitySet="HU_PRO_TRAIN_OUT_COMPANY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+          <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+          <ScalarProperty Name="YEAR_GRA" ColumnName="YEAR_GRA" />
+          <ScalarProperty Name="NAME_SHOOLS" ColumnName="NAME_SHOOLS" />
+          <ScalarProperty Name="FORM_TRAIN_ID" ColumnName="FORM_TRAIN_ID" />
+          <ScalarProperty Name="SPECIALIZED_TRAIN" ColumnName="SPECIALIZED_TRAIN" />
+          <ScalarProperty Name="RESULT_TRAIN" ColumnName="RESULT_TRAIN" />
+          <ScalarProperty Name="CERTIFICATE" ColumnName="CERTIFICATE" />
+          <ScalarProperty Name="EFFECTIVE_DATE_FROM" ColumnName="EFFECTIVE_DATE_FROM" />
+          <ScalarProperty Name="EFFECTIVE_DATE_TO" ColumnName="EFFECTIVE_DATE_TO" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DISCIPLINE_EMP">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DISCIPLINE_EMP)">
+        <MappingFragment StoreEntitySet="HU_DISCIPLINE_EMP">
+          <ScalarProperty Name="HU_DISCIPLINE_ID" ColumnName="HU_DISCIPLINE_ID" />
+          <ScalarProperty Name="HU_EMPLOYEE_ID" ColumnName="HU_EMPLOYEE_ID" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="INDEMNIFY_MONEY" ColumnName="INDEMNIFY_MONEY" />
+          <ScalarProperty Name="MONEY_REMAIN" ColumnName="MONEY_REMAIN" />
+          <ScalarProperty Name="INDEMNIFY_MONEY_REMAIN" ColumnName="INDEMNIFY_MONEY_REMAIN" />
+          <ScalarProperty Name="MONEY_PAY" ColumnName="MONEY_PAY" />
+          <ScalarProperty Name="INDEMNIFY_MONEY_PAY" ColumnName="INDEMNIFY_MONEY_PAY" />
+          <ScalarProperty Name="IS_STOP" ColumnName="IS_STOP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_STAFF_RANK">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_STAFF_RANK)">
+        <MappingFragment StoreEntitySet="HU_STAFF_RANK">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="LEVEL_STAFF" ColumnName="LEVEL_STAFF" />
+          <ScalarProperty Name="LEAVE_COUNT" ColumnName="LEAVE_COUNT" />
+          <ScalarProperty Name="IS_OVT" ColumnName="IS_OVT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DISCIPLINE_SALARY">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DISCIPLINE_SALARY)">
+        <MappingFragment StoreEntitySet="HU_DISCIPLINE_SALARY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DISCIPLINE_ID" ColumnName="DISCIPLINE_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="INDEMNIFY_MONEY" ColumnName="INDEMNIFY_MONEY" />
+          <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+          <ScalarProperty Name="IS_STOP" ColumnName="IS_STOP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WELFARE_LIST">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WELFARE_LIST)">
+        <MappingFragment StoreEntitySet="HU_WELFARE_LIST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CONTRACT_TYPE" ColumnName="CONTRACT_TYPE" />
+          <ScalarProperty Name="CONTRACT_TYPE_NAME" ColumnName="CONTRACT_TYPE_NAME" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="GENDER_NAME" ColumnName="GENDER_NAME" />
+          <ScalarProperty Name="SENIORITY" ColumnName="SENIORITY" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="IS_AUTO" ColumnName="IS_AUTO" />
+          <ScalarProperty Name="CHILD_OLD_FROM" ColumnName="CHILD_OLD_FROM" />
+          <ScalarProperty Name="CHILD_OLD_TO" ColumnName="CHILD_OLD_TO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WELFARE_LIST_GW">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WELFARE_LIST_GW)">
+        <MappingFragment StoreEntitySet="HU_WELFARE_LIST_GW">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HU_WELFARE_LIST_ID" ColumnName="HU_WELFARE_LIST_ID" />
+          <ScalarProperty Name="GENDER_ID" ColumnName="GENDER_ID" />
+          <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ASSET_MNG">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ASSET_MNG)">
+        <MappingFragment StoreEntitySet="HU_ASSET_MNG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ASSET_DECLARE_ID" ColumnName="ASSET_DECLARE_ID" />
+          <ScalarProperty Name="RETURN_DATE" ColumnName="RETURN_DATE" />
+          <ScalarProperty Name="EMPLOYEE_RETURN_ID" ColumnName="EMPLOYEE_RETURN_ID" />
+          <ScalarProperty Name="RETURN_PRICE" ColumnName="RETURN_PRICE" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ASSET_VALUE" ColumnName="ASSET_VALUE" />
+          <ScalarProperty Name="DEPOSITS" ColumnName="DEPOSITS" />
+          <ScalarProperty Name="SDESC" ColumnName="SDESC" />
+          <ScalarProperty Name="ORG_TRANFER" ColumnName="ORG_TRANFER" />
+          <ScalarProperty Name="ORG_RECEIVE" ColumnName="ORG_RECEIVE" />
+          <ScalarProperty Name="ASSET_BARCODE" ColumnName="ASSET_BARCODE" />
+          <ScalarProperty Name="ASSET_SERIAL" ColumnName="ASSET_SERIAL" />
+          <ScalarProperty Name="ASSET_STATUS_ID" ColumnName="ASSET_STATUS_ID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_FAMILY_EDIT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_FAMILY_EDIT)">
+        <MappingFragment StoreEntitySet="HU_FAMILY_EDIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="RELATION_ID" ColumnName="RELATION_ID" />
+          <ScalarProperty Name="IS_DEDUCT" ColumnName="IS_DEDUCT" />
+          <ScalarProperty Name="DEDUCT_FROM" ColumnName="DEDUCT_FROM" />
+          <ScalarProperty Name="DEDUCT_TO" ColumnName="DEDUCT_TO" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="DEDUCT_REG" ColumnName="DEDUCT_REG" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
+          <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
+          <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_EDIT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_EDIT)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_EDIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="PER_ADDRESS" ColumnName="PER_ADDRESS" />
+          <ScalarProperty Name="PER_PROVINCE" ColumnName="PER_PROVINCE" />
+          <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+          <ScalarProperty Name="ID_DATE" ColumnName="ID_DATE" />
+          <ScalarProperty Name="NAV_ADDRESS" ColumnName="NAV_ADDRESS" />
+          <ScalarProperty Name="NAV_PROVINCE" ColumnName="NAV_PROVINCE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ID_PLACE" ColumnName="ID_PLACE" />
+          <ScalarProperty Name="PER_DISTRICT" ColumnName="PER_DISTRICT" />
+          <ScalarProperty Name="NAV_DISTRICT" ColumnName="NAV_DISTRICT" />
+          <ScalarProperty Name="PER_WARD" ColumnName="PER_WARD" />
+          <ScalarProperty Name="NAV_WARD" ColumnName="NAV_WARD" />
+          <ScalarProperty Name="MARITAL_STATUS" ColumnName="MARITAL_STATUS" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
+          <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_PRO_TRAIN_OUT_COMPANY_EDIT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT)">
+        <MappingFragment StoreEntitySet="HU_PRO_TRAIN_OUT_COMPANY_EDIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+          <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+          <ScalarProperty Name="YEAR_GRA" ColumnName="YEAR_GRA" />
+          <ScalarProperty Name="NAME_SHOOLS" ColumnName="NAME_SHOOLS" />
+          <ScalarProperty Name="FORM_TRAIN_ID" ColumnName="FORM_TRAIN_ID" />
+          <ScalarProperty Name="SPECIALIZED_TRAIN" ColumnName="SPECIALIZED_TRAIN" />
+          <ScalarProperty Name="RESULT_TRAIN" ColumnName="RESULT_TRAIN" />
+          <ScalarProperty Name="CERTIFICATE" ColumnName="CERTIFICATE" />
+          <ScalarProperty Name="EFFECTIVE_DATE_FROM" ColumnName="EFFECTIVE_DATE_FROM" />
+          <ScalarProperty Name="EFFECTIVE_DATE_TO" ColumnName="EFFECTIVE_DATE_TO" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
+          <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
+          <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WORKING_BEFORE_EDIT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WORKING_BEFORE_EDIT)">
+        <MappingFragment StoreEntitySet="HU_WORKING_BEFORE_EDIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="COMPANY_ADDRESS" ColumnName="COMPANY_ADDRESS" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+          <ScalarProperty Name="TER_REASON" ColumnName="TER_REASON" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
+          <ScalarProperty Name="LEVEL_NAME" ColumnName="LEVEL_NAME" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
+          <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
+          <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WELFARE_MNG">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WELFARE_MNG)">
+        <MappingFragment StoreEntitySet="HU_WELFARE_MNG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WELFARE_ID" ColumnName="WELFARE_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="SDESC" ColumnName="SDESC" />
+          <ScalarProperty Name="IS_TAXION" ColumnName="IS_TAXION" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TERMINATE_3B">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TERMINATE_3B)">
+        <MappingFragment StoreEntitySet="HU_TERMINATE_3B">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="EMP_SENIORITY" ColumnName="EMP_SENIORITY" />
+          <ScalarProperty Name="LAST_WORKING_ID" ColumnName="LAST_WORKING_ID" />
+          <ScalarProperty Name="IDENTIFI_CARD" ColumnName="IDENTIFI_CARD" />
+          <ScalarProperty Name="IDENTIFI_RDATE" ColumnName="IDENTIFI_RDATE" />
+          <ScalarProperty Name="IDENTIFI_STATUS" ColumnName="IDENTIFI_STATUS" />
+          <ScalarProperty Name="SUN_CARD" ColumnName="SUN_CARD" />
+          <ScalarProperty Name="SUN_RDATE" ColumnName="SUN_RDATE" />
+          <ScalarProperty Name="SUN_STATUS" ColumnName="SUN_STATUS" />
+          <ScalarProperty Name="INSURANCE_CARD" ColumnName="INSURANCE_CARD" />
+          <ScalarProperty Name="INSURANCE_RDATE" ColumnName="INSURANCE_RDATE" />
+          <ScalarProperty Name="INSURANCE_STATUS" ColumnName="INSURANCE_STATUS" />
+          <ScalarProperty Name="REMAINING_LEAVE" ColumnName="REMAINING_LEAVE" />
+          <ScalarProperty Name="COMPENSATORY_LEAVE" ColumnName="COMPENSATORY_LEAVE" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="SIGN_NAME" ColumnName="SIGN_NAME" />
+          <ScalarProperty Name="SIGN_TITLE" ColumnName="SIGN_TITLE" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="IDENTIFI_MONEY" ColumnName="IDENTIFI_MONEY" />
+          <ScalarProperty Name="SUN_MONEY" ColumnName="SUN_MONEY" />
+          <ScalarProperty Name="INSURANCE_MONEY" ColumnName="INSURANCE_MONEY" />
+          <ScalarProperty Name="IS_3B" ColumnName="IS_3B" />
+          <ScalarProperty Name="IS_REMAINING_LEAVE" ColumnName="IS_REMAINING_LEAVE" />
+          <ScalarProperty Name="IS_COMPENSATORY_LEAVE" ColumnName="IS_COMPENSATORY_LEAVE" />
+          <ScalarProperty Name="LAST_DATE" ColumnName="LAST_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_MERGE_FIELD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_MERGE_FIELD)">
+        <MappingFragment StoreEntitySet="HU_MERGE_FIELD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="HU_TEMPLATE_TYPE_ID" ColumnName="HU_TEMPLATE_TYPE_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AT_ORG_PERIOD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.AT_ORG_PERIOD)">
+        <MappingFragment StoreEntitySet="AT_ORG_PERIOD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUSCOLEX" ColumnName="STATUSCOLEX" />
+          <ScalarProperty Name="STATUSPAROX" ColumnName="STATUSPAROX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HUV_ORGANIZATION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_ORGANIZATION)">
+        <MappingFragment StoreEntitySet="HUV_ORGANIZATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ORG_NAME" ColumnName="ORG_NAME" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="DESCRIPTION_PATH" ColumnName="DESCRIPTION_PATH" />
+          <ScalarProperty Name="ORG_NAME1" ColumnName="ORG_NAME1" />
+          <ScalarProperty Name="ORG_NAME2" ColumnName="ORG_NAME2" />
+          <ScalarProperty Name="ORG_NAME3" ColumnName="ORG_NAME3" />
+          <ScalarProperty Name="ORG_NAME4" ColumnName="ORG_NAME4" />
+          <ScalarProperty Name="ORG_NAME5" ColumnName="ORG_NAME5" />
+          <ScalarProperty Name="ORG_NAME6" ColumnName="ORG_NAME6" />
+          <ScalarProperty Name="ORG_NAME7" ColumnName="ORG_NAME7" />
+          <ScalarProperty Name="ORG_NAME8" ColumnName="ORG_NAME8" />
+          <ScalarProperty Name="ORG_NAME9" ColumnName="ORG_NAME9" />
+          <ScalarProperty Name="ORG_ID1" ColumnName="ORG_ID1" />
+          <ScalarProperty Name="ORG_ID2" ColumnName="ORG_ID2" />
+          <ScalarProperty Name="ORG_ID3" ColumnName="ORG_ID3" />
+          <ScalarProperty Name="ORG_ID4" ColumnName="ORG_ID4" />
+          <ScalarProperty Name="ORG_ID5" ColumnName="ORG_ID5" />
+          <ScalarProperty Name="ORG_ID6" ColumnName="ORG_ID6" />
+          <ScalarProperty Name="ORG_ID7" ColumnName="ORG_ID7" />
+          <ScalarProperty Name="ORG_ID8" ColumnName="ORG_ID8" />
+          <ScalarProperty Name="ORG_ID9" ColumnName="ORG_ID9" />
+          <ScalarProperty Name="ORG_CODE1" ColumnName="ORG_CODE1" />
+          <ScalarProperty Name="ORG_CODE2" ColumnName="ORG_CODE2" />
+          <ScalarProperty Name="ORG_CODE3" ColumnName="ORG_CODE3" />
+          <ScalarProperty Name="ORG_CODE4" ColumnName="ORG_CODE4" />
+          <ScalarProperty Name="ORG_CODE5" ColumnName="ORG_CODE5" />
+          <ScalarProperty Name="ORG_CODE6" ColumnName="ORG_CODE6" />
+          <ScalarProperty Name="ORG_CODE7" ColumnName="ORG_CODE7" />
+          <ScalarProperty Name="ORG_CODE8" ColumnName="ORG_CODE8" />
+          <ScalarProperty Name="ORG_CODE9" ColumnName="ORG_CODE9" />
+          <ScalarProperty Name="ORG_PATH" ColumnName="ORG_PATH" />
+          <ScalarProperty Name="HU_ORG_TITLEID" ColumnName="HU_ORG_TITLEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_PAPER_FILED">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_PAPER_FILED)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_PAPER_FILED">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="HU_PAPER_ID" ColumnName="HU_PAPER_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TERMINATE_REASON">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TERMINATE_REASON)">
+        <MappingFragment StoreEntitySet="HU_TERMINATE_REASON">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HU_TERMINATE_ID" ColumnName="HU_TERMINATE_ID" />
+          <ScalarProperty Name="TER_REASON_ID" ColumnName="TER_REASON_ID" />
+          <ScalarProperty Name="DENSITY" ColumnName="DENSITY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INS_SPECIFIED_OBJECTS">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.INS_SPECIFIED_OBJECTS)">
+        <MappingFragment StoreEntitySet="INS_SPECIFIED_OBJECTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+          <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
+          <ScalarProperty Name="SI" ColumnName="SI" />
+          <ScalarProperty Name="HI" ColumnName="HI" />
+          <ScalarProperty Name="UI" ColumnName="UI" />
+          <ScalarProperty Name="SI_COM" ColumnName="SI_COM" />
+          <ScalarProperty Name="SI_EMP" ColumnName="SI_EMP" />
+          <ScalarProperty Name="HI_COM" ColumnName="HI_COM" />
+          <ScalarProperty Name="HI_EMP" ColumnName="HI_EMP" />
+          <ScalarProperty Name="UI_COM" ColumnName="UI_COM" />
+          <ScalarProperty Name="UI_EMP" ColumnName="UI_EMP" />
+          <ScalarProperty Name="SICK" ColumnName="SICK" />
+          <ScalarProperty Name="MATERNITY" ColumnName="MATERNITY" />
+          <ScalarProperty Name="OFF_IN_HOUSE" ColumnName="OFF_IN_HOUSE" />
+          <ScalarProperty Name="OFF_TOGETHER" ColumnName="OFF_TOGETHER" />
+          <ScalarProperty Name="RETIRE_MALE" ColumnName="RETIRE_MALE" />
+          <ScalarProperty Name="RETIRE_FEMALE" ColumnName="RETIRE_FEMALE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="SALARY_MIN" ColumnName="SALARY_MIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HUV_ORGANIZATION_EMP_COUNT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_ORGANIZATION_EMP_COUNT)">
+        <MappingFragment StoreEntitySet="HUV_ORGANIZATION_EMP_COUNT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="EMP_COUNT" ColumnName="EMP_COUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AT_DECLARE_ENTITLEMENT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.AT_DECLARE_ENTITLEMENT)">
+        <MappingFragment StoreEntitySet="AT_DECLARE_ENTITLEMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ADJUST_MONTH_TN" ColumnName="ADJUST_MONTH_TN" />
+          <ScalarProperty Name="REMARK_NB" ColumnName="REMARK_NB" />
+          <ScalarProperty Name="ADJUST_ENTITLEMENT" ColumnName="ADJUST_ENTITLEMENT" />
+          <ScalarProperty Name="ADJUST_MONTH_ENTITLEMENT" ColumnName="ADJUST_MONTH_ENTITLEMENT" />
+          <ScalarProperty Name="REMARK_ENTITLEMENT" ColumnName="REMARK_ENTITLEMENT" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="START_MONTH_EXTEND" ColumnName="START_MONTH_EXTEND" />
+          <ScalarProperty Name="START_MONTH_TN" ColumnName="START_MONTH_TN" />
+          <ScalarProperty Name="REMARK_TN" ColumnName="REMARK_TN" />
+          <ScalarProperty Name="START_MONTH_NB" ColumnName="START_MONTH_NB" />
+          <ScalarProperty Name="ADJUST_NB" ColumnName="ADJUST_NB" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="YEAR_NB" ColumnName="YEAR_NB" />
+          <ScalarProperty Name="YEAR_ENTITLEMENT" ColumnName="YEAR_ENTITLEMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INS_REGION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.INS_REGION)">
+        <MappingFragment StoreEntitySet="INS_REGION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="REGION_CODE" ColumnName="REGION_CODE" />
+          <ScalarProperty Name="REGION_NAME" ColumnName="REGION_NAME" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_USER">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.SE_USER)">
+        <MappingFragment StoreEntitySet="SE_USER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+          <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+          <ScalarProperty Name="IS_APP" ColumnName="IS_APP" />
+          <ScalarProperty Name="IS_PORTAL" ColumnName="IS_PORTAL" />
+          <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+          <ScalarProperty Name="IS_AD" ColumnName="IS_AD" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="IS_CHANGE_PASS" ColumnName="IS_CHANGE_PASS" />
+          <ScalarProperty Name="CHANGE_PASS_DATE" ColumnName="CHANGE_PASS_DATE" />
+          <ScalarProperty Name="REMINDER_COUNT" ColumnName="REMINDER_COUNT" />
+          <ScalarProperty Name="MODULE_ADMIN" ColumnName="MODULE_ADMIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_REPORT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.SE_REPORT)">
+        <MappingFragment StoreEntitySet="SE_REPORT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_LABOURPROTECTION_MNG">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_LABOURPROTECTION_MNG)">
+        <MappingFragment StoreEntitySet="HU_LABOURPROTECTION_MNG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LABOURPROTECTION_ID" ColumnName="LABOURPROTECTION_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="DAYS_ALLOCATED" ColumnName="DAYS_ALLOCATED" />
+          <ScalarProperty Name="SDESC" ColumnName="SDESC" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="DEPOSIT" ColumnName="DEPOSIT" />
+          <ScalarProperty Name="RETRIEVE_DATE" ColumnName="RETRIEVE_DATE" />
+          <ScalarProperty Name="RETRIEVED" ColumnName="RETRIEVED" />
+          <ScalarProperty Name="INDEMNITY" ColumnName="INDEMNITY" />
+          <ScalarProperty Name="LABOUR_SIZE_ID" ColumnName="LABOUR_SIZE_ID" />
+          <ScalarProperty Name="RECOVERY" ColumnName="RECOVERY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_GROUP">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_GROUP)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPETENCY_GROUP_ID" ColumnName="COMPETENCY_GROUP_ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_BUILD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_BUILD)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_BUILD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPETENCY_GROUP_ID" ColumnName="COMPETENCY_GROUP_ID" />
+          <ScalarProperty Name="COMPETENCY_ID" ColumnName="COMPETENCY_ID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_STANDARD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_STANDARD)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_STANDARD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPETENCY_ID" ColumnName="COMPETENCY_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_EMP">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_EMP)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_EMP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPETENCY_ID" ColumnName="COMPETENCY_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_APPENDIX">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_APPENDIX)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_APPENDIX">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_PERIOD">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_PERIOD)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_PERIOD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_ASS">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_ASS)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_ASS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPETENCY_PERIOD_ID" ColumnName="COMPETENCY_PERIOD_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_ASSDTL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_ASSDTL)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_ASSDTL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPETENCY_ASS_ID" ColumnName="COMPETENCY_ASS_ID" />
+          <ScalarProperty Name="COMPETENCY_ID" ColumnName="COMPETENCY_ID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMMEND_FORMULA">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMMEND_FORMULA)">
+        <MappingFragment StoreEntitySet="HU_COMMEND_FORMULA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="FORMULA" ColumnName="FORMULA" />
+          <ScalarProperty Name="NUMBER_ORDER" ColumnName="NUMBER_ORDER" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="COMMENDLIST_ID" ColumnName="COMMENDLIST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMMEND_ORG">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMMEND_ORG)">
+        <MappingFragment StoreEntitySet="HU_COMMEND_ORG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HU_COMMEND_ID" ColumnName="HU_COMMEND_ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMMEND_LIST">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMMEND_LIST)">
+        <MappingFragment StoreEntitySet="HU_COMMEND_LIST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DATATYPE_ID" ColumnName="DATATYPE_ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="NUMBER_ORDER" ColumnName="NUMBER_ORDER" />
+          <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+          <ScalarProperty Name="OBJECT_ID" ColumnName="OBJECT_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="EXCEL" ColumnName="EXCEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_IMPORT_COMMEND">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_IMPORT_COMMEND)">
+        <MappingFragment StoreEntitySet="HU_IMPORT_COMMEND">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="IMPORT_VALUE" ColumnName="IMPORT_VALUE" />
+          <ScalarProperty Name="FIELD_DATA_CODE" ColumnName="FIELD_DATA_CODE" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="COMMEND_DATE" ColumnName="COMMEND_DATE" />
+          <ScalarProperty Name="CALCULATE_DATA" ColumnName="CALCULATE_DATA" />
+          <ScalarProperty Name="COMMEND_OBJ" ColumnName="COMMEND_OBJ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OT_OTHER_LIST1">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.OT_OTHER_LIST1)">
+        <MappingFragment StoreEntitySet="OT_OTHER_LIST1">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+          <ScalarProperty Name="ORDERBYID" ColumnName="ORDERBYID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMMEND_EMP">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMMEND_EMP)">
+        <MappingFragment StoreEntitySet="HU_COMMEND_EMP">
+          <ScalarProperty Name="HU_COMMEND_ID" ColumnName="HU_COMMEND_ID" />
+          <ScalarProperty Name="HU_EMPLOYEE_ID" ColumnName="HU_EMPLOYEE_ID" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TITLE1">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TITLE1)">
+        <MappingFragment StoreEntitySet="HU_TITLE1">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="TITLE_GROUP_ID" ColumnName="TITLE_GROUP_ID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="LIST_PC_ID" ColumnName="LIST_PC_ID" />
+          <ScalarProperty Name="DRIVE_INFOR" ColumnName="DRIVE_INFOR" />
+          <ScalarProperty Name="WORK_INVOLVE_ID" ColumnName="WORK_INVOLVE_ID" />
+          <ScalarProperty Name="OVT" ColumnName="OVT" />
+          <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
+          <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TITLE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TITLE)">
+        <MappingFragment StoreEntitySet="HU_TITLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="TITLE_GROUP_ID" ColumnName="TITLE_GROUP_ID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="LIST_PC_ID" ColumnName="LIST_PC_ID" />
+          <ScalarProperty Name="DRIVE_INFOR" ColumnName="DRIVE_INFOR" />
+          <ScalarProperty Name="WORK_INVOLVE_ID" ColumnName="WORK_INVOLVE_ID" />
+          <ScalarProperty Name="OVT" ColumnName="OVT" />
+          <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
+          <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_PAYMENTSOURCES">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_PAYMENTSOURCES)">
+        <MappingFragment StoreEntitySet="PA_PAYMENTSOURCES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="PAY_TYPE" ColumnName="PAY_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMMEND_LEVEL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMMEND_LEVEL)">
+        <MappingFragment StoreEntitySet="HU_COMMEND_LEVEL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COMMEND_LEVEL" ColumnName="COMMEND_LEVEL" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMMEND">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMMEND)">
+        <MappingFragment StoreEntitySet="HU_COMMEND">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMMEND_OBJ" ColumnName="COMMEND_OBJ" />
+          <ScalarProperty Name="COMMEND_TYPE" ColumnName="COMMEND_TYPE" />
+          <ScalarProperty Name="COMMEND_LEVEL" ColumnName="COMMEND_LEVEL" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+          <ScalarProperty Name="NO" ColumnName="NO" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
+          <ScalarProperty Name="DEDUCT_FROM_SALARY" ColumnName="DEDUCT_FROM_SALARY" />
+          <ScalarProperty Name="COMMEND_LIST" ColumnName="COMMEND_LIST" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="COMMEND_PAY" ColumnName="COMMEND_PAY" />
+          <ScalarProperty Name="POWER_PAY_ID" ColumnName="POWER_PAY_ID" />
+          <ScalarProperty Name="UPLOADFILE" ColumnName="UPLOADFILE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="IS_TAX" ColumnName="IS_TAX" />
+          <ScalarProperty Name="PERIOD_TAX" ColumnName="PERIOD_TAX" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
+          <ScalarProperty Name="OT_CM_OBJ" ColumnName="OT_CM_OBJ" />
+          <ScalarProperty Name="OT_CM_LEVEL" ColumnName="OT_CM_LEVEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CERTIFICATE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_CERTIFICATE)">
+        <MappingFragment StoreEntitySet="TR_CERTIFICATE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="TR_CER_GROUP_ID" ColumnName="TR_CER_GROUP_ID" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="TRANSPORTATION_TYPE" ColumnName="TRANSPORTATION_TYPE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_COURSE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_COURSE)">
+        <MappingFragment StoreEntitySet="TR_COURSE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TR_CERTIFICATE_ID" ColumnName="TR_CERTIFICATE_ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TR_CER_GROUP_ID" ColumnName="TR_CER_GROUP_ID" />
+          <ScalarProperty Name="TR_TRAIN_FIELD" ColumnName="TR_TRAIN_FIELD" />
+          <ScalarProperty Name="TR_PROGRAM_GROUP" ColumnName="TR_PROGRAM_GROUP" />
+          <ScalarProperty Name="DRIVER" ColumnName="DRIVER" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_PROGRAM)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="TR_COURSE_ID" ColumnName="TR_COURSE_ID" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="TR_DURATION_UNIT_ID" ColumnName="TR_DURATION_UNIT_ID" />
+          <ScalarProperty Name="DURATION_STUDY_ID" ColumnName="DURATION_STUDY_ID" />
+          <ScalarProperty Name="DURATION_HC" ColumnName="DURATION_HC" />
+          <ScalarProperty Name="DURATION_OT" ColumnName="DURATION_OT" />
+          <ScalarProperty Name="IS_REIMBURSE" ColumnName="IS_REIMBURSE" />
+          <ScalarProperty Name="TR_LANGUAGE_ID" ColumnName="TR_LANGUAGE_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="TARGET_TRAIN" ColumnName="TARGET_TRAIN" />
+          <ScalarProperty Name="VENUE" ColumnName="VENUE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TITLES" ColumnName="TITLES" />
+          <ScalarProperty Name="DEPARTMENTS" ColumnName="DEPARTMENTS" />
+          <ScalarProperty Name="CENTERS" ColumnName="CENTERS" />
+          <ScalarProperty Name="LECTURES" ColumnName="LECTURES" />
+          <ScalarProperty Name="TR_REQUEST_ID" ColumnName="TR_REQUEST_ID" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="STUDENT_NUMBER" ColumnName="STUDENT_NUMBER" />
+          <ScalarProperty Name="COST_STUDENT" ColumnName="COST_STUDENT" />
+          <ScalarProperty Name="TR_UNIT_ID" ColumnName="TR_UNIT_ID" />
+          <ScalarProperty Name="IS_RETEST" ColumnName="IS_RETEST" />
+          <ScalarProperty Name="COST_TOTAL_US" ColumnName="COST_TOTAL_US" />
+          <ScalarProperty Name="COST_STUDENT_US" ColumnName="COST_STUDENT_US" />
+          <ScalarProperty Name="COST_TOTAL" ColumnName="COST_TOTAL" />
+          <ScalarProperty Name="TRAIN_FORM_ID" ColumnName="TRAIN_FORM_ID" />
+          <ScalarProperty Name="PROPERTIES_NEED_ID" ColumnName="PROPERTIES_NEED_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_COMMIT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_PROGRAM_COMMIT)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_COMMIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="COMMIT_NO" ColumnName="COMMIT_NO" />
+          <ScalarProperty Name="COMMIT_WORK" ColumnName="COMMIT_WORK" />
+          <ScalarProperty Name="COMMIT_DATE" ColumnName="COMMIT_DATE" />
+          <ScalarProperty Name="APPROVER_ID" ColumnName="APPROVER_ID" />
+          <ScalarProperty Name="COMMIT_REMARK" ColumnName="COMMIT_REMARK" />
+          <ScalarProperty Name="COMMIT_START" ColumnName="COMMIT_START" />
+          <ScalarProperty Name="COMMIT_END" ColumnName="COMMIT_END" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CONVERED_TIME" ColumnName="CONVERED_TIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_GROUP">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_PROGRAM_GROUP)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TRAIN_FIELD_ID" ColumnName="TRAIN_FIELD_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_RESULT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_PROGRAM_RESULT)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_RESULT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="IS_EXAMS" ColumnName="IS_EXAMS" />
+          <ScalarProperty Name="IS_END" ColumnName="IS_END" />
+          <ScalarProperty Name="IS_REACH" ColumnName="IS_REACH" />
+          <ScalarProperty Name="IS_CERTIFICATE" ColumnName="IS_CERTIFICATE" />
+          <ScalarProperty Name="CERTIFICATE_DATE" ColumnName="CERTIFICATE_DATE" />
+          <ScalarProperty Name="CERTIFICATE_NO" ColumnName="CERTIFICATE_NO" />
+          <ScalarProperty Name="TR_RANK_ID" ColumnName="TR_RANK_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TOIEC_BENCHMARK" ColumnName="TOIEC_BENCHMARK" />
+          <ScalarProperty Name="TOIEC_SCORE_IN" ColumnName="TOIEC_SCORE_IN" />
+          <ScalarProperty Name="TOIEC_SCORE_OUT" ColumnName="TOIEC_SCORE_OUT" />
+          <ScalarProperty Name="INCREMENT_SCORE" ColumnName="INCREMENT_SCORE" />
+          <ScalarProperty Name="ABSENT_REASON" ColumnName="ABSENT_REASON" />
+          <ScalarProperty Name="ABSENT_UNREASON" ColumnName="ABSENT_UNREASON" />
+          <ScalarProperty Name="CER_RECEIVE_DATE" ColumnName="CER_RECEIVE_DATE" />
+          <ScalarProperty Name="COMMIT_STARTDATE" ColumnName="COMMIT_STARTDATE" />
+          <ScalarProperty Name="COMMIT_ENDDATE" ColumnName="COMMIT_ENDDATE" />
+          <ScalarProperty Name="COMMIT_WORKMONTH" ColumnName="COMMIT_WORKMONTH" />
+          <ScalarProperty Name="IS_REFUND_FEE" ColumnName="IS_REFUND_FEE" />
+          <ScalarProperty Name="IS_RESERVES" ColumnName="IS_RESERVES" />
+          <ScalarProperty Name="FINAL_SCORE" ColumnName="FINAL_SCORE" />
+          <ScalarProperty Name="RETEST_SCORE" ColumnName="RETEST_SCORE" />
+          <ScalarProperty Name="RETEST_RANK_ID" ColumnName="RETEST_RANK_ID" />
+          <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="RETEST_REMARK" ColumnName="RETEST_REMARK" />
+          <ScalarProperty Name="RETEST_FEE" ColumnName="RETEST_FEE" />
+          <ScalarProperty Name="RESERVES_PERIOD" ColumnName="RESERVES_PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_REQUEST">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_REQUEST)">
+        <MappingFragment StoreEntitySet="TR_REQUEST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="REQUEST_DATE" ColumnName="REQUEST_DATE" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="EXPECTED_DATE" ColumnName="EXPECTED_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="EXPECTED_COST" ColumnName="EXPECTED_COST" />
+          <ScalarProperty Name="TR_CURRENCY_ID" ColumnName="TR_CURRENCY_ID" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REQUEST_SENDER_ID" ColumnName="REQUEST_SENDER_ID" />
+          <ScalarProperty Name="IS_IRREGULARLY" ColumnName="IS_IRREGULARLY" />
+          <ScalarProperty Name="TR_COURSE_ID" ColumnName="TR_COURSE_ID" />
+          <ScalarProperty Name="TRAIN_FORM_ID" ColumnName="TRAIN_FORM_ID" />
+          <ScalarProperty Name="PROPERTIES_NEED_ID" ColumnName="PROPERTIES_NEED_ID" />
+          <ScalarProperty Name="TR_UNIT_ID" ColumnName="TR_UNIT_ID" />
+          <ScalarProperty Name="TARGET_TRAIN" ColumnName="TARGET_TRAIN" />
+          <ScalarProperty Name="VENUE" ColumnName="VENUE" />
+          <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
+          <ScalarProperty Name="REJECT_REASON" ColumnName="REJECT_REASON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_REQUEST_EMPLOYEE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.TR_REQUEST_EMPLOYEE)">
+        <MappingFragment StoreEntitySet="TR_REQUEST_EMPLOYEE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_REQUEST_ID" ColumnName="TR_REQUEST_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ALLOWANCE_LIST">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ALLOWANCE_LIST)">
+        <MappingFragment StoreEntitySet="HU_ALLOWANCE_LIST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ALLOWANCE_TYPE" ColumnName="ALLOWANCE_TYPE" />
+          <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+          <ScalarProperty Name="IS_CONTRACT" ColumnName="IS_CONTRACT" />
+          <ScalarProperty Name="IS_INSURANCE" ColumnName="IS_INSURANCE" />
+          <ScalarProperty Name="IS_PAY" ColumnName="IS_PAY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_COMPETENCY_COURSE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_COMPETENCY_COURSE)">
+        <MappingFragment StoreEntitySet="HU_COMPETENCY_COURSE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COMPETENCY_GROUP_ID" ColumnName="COMPETENCY_GROUP_ID" />
+          <ScalarProperty Name="COMPETENCY_ID" ColumnName="COMPETENCY_ID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="TR_COURSE_ID" ColumnName="TR_COURSE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_WORKING">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WORKING)">
+        <MappingFragment StoreEntitySet="HU_WORKING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="DECISION_TYPE_ID" ColumnName="DECISION_TYPE_ID" />
+          <ScalarProperty Name="DECISION_NO" ColumnName="DECISION_NO" />
+          <ScalarProperty Name="SAL_GROUP_ID" ColumnName="SAL_GROUP_ID" />
+          <ScalarProperty Name="SAL_LEVEL_ID" ColumnName="SAL_LEVEL_ID" />
+          <ScalarProperty Name="SAL_RANK_ID" ColumnName="SAL_RANK_ID" />
+          <ScalarProperty Name="SAL_BASIC" ColumnName="SAL_BASIC" />
+          <ScalarProperty Name="COST_SUPPORT" ColumnName="COST_SUPPORT" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="SIGN_NAME" ColumnName="SIGN_NAME" />
+          <ScalarProperty Name="SIGN_TITLE" ColumnName="SIGN_TITLE" />
+          <ScalarProperty Name="IS_PROCESS" ColumnName="IS_PROCESS" />
+          <ScalarProperty Name="IS_WAGE" ColumnName="IS_WAGE" />
+          <ScalarProperty Name="IS_MISSION" ColumnName="IS_MISSION" />
+          <ScalarProperty Name="PERCENT_SALARY" ColumnName="PERCENT_SALARY" />
+          <ScalarProperty Name="IS_3B" ColumnName="IS_3B" />
+          <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+          <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+          <ScalarProperty Name="SAL_TOTAL" ColumnName="SAL_TOTAL" />
+          <ScalarProperty Name="EMPLOYEE_3B_ID" ColumnName="EMPLOYEE_3B_ID" />
+          <ScalarProperty Name="DECISION_WORKING_ID" ColumnName="DECISION_WORKING_ID" />
+          <ScalarProperty Name="SAL_TYPE_ID" ColumnName="SAL_TYPE_ID" />
+          <ScalarProperty Name="BONUS_TYPE_ID" ColumnName="BONUS_TYPE_ID" />
+          <ScalarProperty Name="SAL_INS" ColumnName="SAL_INS" />
+          <ScalarProperty Name="ALLOWANCE_TOTAL" ColumnName="ALLOWANCE_TOTAL" />
+          <ScalarProperty Name="TAX_TABLE_ID" ColumnName="TAX_TABLE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_SALARY_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_SALARY_TYPE)">
+        <MappingFragment StoreEntitySet="PA_SALARY_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+          <ScalarProperty Name="IS_INCENTIVE" ColumnName="IS_INCENTIVE" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TITLE_CONCURRENT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TITLE_CONCURRENT)">
+        <MappingFragment StoreEntitySet="HU_TITLE_CONCURRENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ORG_TITLE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ORG_TITLE)">
+        <MappingFragment StoreEntitySet="HU_ORG_TITLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ORGANIZATION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ORGANIZATION)">
+        <MappingFragment StoreEntitySet="HU_ORGANIZATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+          <ScalarProperty Name="DISSOLVE_DATE" ColumnName="DISSOLVE_DATE" />
+          <ScalarProperty Name="FOUNDATION_DATE" ColumnName="FOUNDATION_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="HIERARCHICAL_PATH" ColumnName="HIERARCHICAL_PATH" />
+          <ScalarProperty Name="DESCRIPTION_PATH" ColumnName="DESCRIPTION_PATH" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="REPRESENTATIVE_ID" ColumnName="REPRESENTATIVE_ID" />
+          <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+          <ScalarProperty Name="PROVINCE_NAME" ColumnName="PROVINCE_NAME" />
+          <ScalarProperty Name="COST_CENTER_CODE" ColumnName="COST_CENTER_CODE" />
+          <ScalarProperty Name="ORD_NO" ColumnName="ORD_NO" />
+          <ScalarProperty Name="NUMBER_BUSINESS" ColumnName="NUMBER_BUSINESS" />
+          <ScalarProperty Name="DATE_BUSINESS" ColumnName="DATE_BUSINESS" />
+          <ScalarProperty Name="PIT_NO" ColumnName="PIT_NO" />
+          <ScalarProperty Name="HU_ORG_TITLEID" ColumnName="HU_ORG_TITLEID" />
+          <ScalarProperty Name="U_INSURANCE" ColumnName="U_INSURANCE" />
+          <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+          <ScalarProperty Name="ORG_LEVEL" ColumnName="ORG_LEVEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TALENT_POOL">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TALENT_POOL)">
+        <MappingFragment StoreEntitySet="HU_TALENT_POOL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="EMP_SUCCESS_ID" ColumnName="EMP_SUCCESS_ID" />
+          <ScalarProperty Name="FILTER_ID" ColumnName="FILTER_ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_CV1">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_CV1)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_CV1">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
+          <ScalarProperty Name="MARITAL_STATUS" ColumnName="MARITAL_STATUS" />
+          <ScalarProperty Name="RELIGION" ColumnName="RELIGION" />
+          <ScalarProperty Name="NATIVE" ColumnName="NATIVE" />
+          <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+          <ScalarProperty Name="PER_ADDRESS" ColumnName="PER_ADDRESS" />
+          <ScalarProperty Name="PER_PROVINCE" ColumnName="PER_PROVINCE" />
+          <ScalarProperty Name="HOME_PHONE" ColumnName="HOME_PHONE" />
+          <ScalarProperty Name="MOBILE_PHONE" ColumnName="MOBILE_PHONE" />
+          <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+          <ScalarProperty Name="ID_DATE" ColumnName="ID_DATE" />
+          <ScalarProperty Name="PASS_NO" ColumnName="PASS_NO" />
+          <ScalarProperty Name="PASS_DATE" ColumnName="PASS_DATE" />
+          <ScalarProperty Name="PASS_EXPIRE" ColumnName="PASS_EXPIRE" />
+          <ScalarProperty Name="PASS_PLACE" ColumnName="PASS_PLACE" />
+          <ScalarProperty Name="VISA" ColumnName="VISA" />
+          <ScalarProperty Name="VISA_DATE" ColumnName="VISA_DATE" />
+          <ScalarProperty Name="VISA_EXPIRE" ColumnName="VISA_EXPIRE" />
+          <ScalarProperty Name="VISA_PLACE" ColumnName="VISA_PLACE" />
+          <ScalarProperty Name="WORK_PERMIT" ColumnName="WORK_PERMIT" />
+          <ScalarProperty Name="WORK_PERMIT_DATE" ColumnName="WORK_PERMIT_DATE" />
+          <ScalarProperty Name="WORK_PERMIT_EXPIRE" ColumnName="WORK_PERMIT_EXPIRE" />
+          <ScalarProperty Name="WORK_EMAIL" ColumnName="WORK_EMAIL" />
+          <ScalarProperty Name="NAV_ADDRESS" ColumnName="NAV_ADDRESS" />
+          <ScalarProperty Name="NAV_PROVINCE" ColumnName="NAV_PROVINCE" />
+          <ScalarProperty Name="PIT_CODE" ColumnName="PIT_CODE" />
+          <ScalarProperty Name="PER_EMAIL" ColumnName="PER_EMAIL" />
+          <ScalarProperty Name="CONTACT_PER" ColumnName="CONTACT_PER" />
+          <ScalarProperty Name="CONTACT_PER_PHONE" ColumnName="CONTACT_PER_PHONE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ID_PLACE" ColumnName="ID_PLACE" />
+          <ScalarProperty Name="WORK_PERMIT_PLACE" ColumnName="WORK_PERMIT_PLACE" />
+          <ScalarProperty Name="BANK_ID" ColumnName="BANK_ID" />
+          <ScalarProperty Name="BANK_BRANCH_ID" ColumnName="BANK_BRANCH_ID" />
+          <ScalarProperty Name="BANK_NO" ColumnName="BANK_NO" />
+          <ScalarProperty Name="NGAY_VAO_DOAN" ColumnName="NGAY_VAO_DOAN" />
+          <ScalarProperty Name="NOI_VAO_DOAN" ColumnName="NOI_VAO_DOAN" />
+          <ScalarProperty Name="CHUC_VU_DOAN" ColumnName="CHUC_VU_DOAN" />
+          <ScalarProperty Name="DOAN_PHI" ColumnName="DOAN_PHI" />
+          <ScalarProperty Name="NGAY_VAO_DANG" ColumnName="NGAY_VAO_DANG" />
+          <ScalarProperty Name="NOI_VAO_DANG" ColumnName="NOI_VAO_DANG" />
+          <ScalarProperty Name="CHUC_VU_DANG" ColumnName="CHUC_VU_DANG" />
+          <ScalarProperty Name="DANG_PHI" ColumnName="DANG_PHI" />
+          <ScalarProperty Name="CAREER" ColumnName="CAREER" />
+          <ScalarProperty Name="PER_DISTRICT" ColumnName="PER_DISTRICT" />
+          <ScalarProperty Name="NAV_DISTRICT" ColumnName="NAV_DISTRICT" />
+          <ScalarProperty Name="PER_WARD" ColumnName="PER_WARD" />
+          <ScalarProperty Name="NAV_WARD" ColumnName="NAV_WARD" />
+          <ScalarProperty Name="WORKPLACE_ID" ColumnName="WORKPLACE_ID" />
+          <ScalarProperty Name="IS_PERMISSION" ColumnName="IS_PERMISSION" />
+          <ScalarProperty Name="INS_REGION_ID" ColumnName="INS_REGION_ID" />
+          <ScalarProperty Name="ID_EFFECT_DATE" ColumnName="ID_EFFECT_DATE" />
+          <ScalarProperty Name="PER_COUNTRY" ColumnName="PER_COUNTRY" />
+          <ScalarProperty Name="CON_ADDRESS" ColumnName="CON_ADDRESS" />
+          <ScalarProperty Name="CON_PROVINCE" ColumnName="CON_PROVINCE" />
+          <ScalarProperty Name="CON_COUNTRY" ColumnName="CON_COUNTRY" />
+          <ScalarProperty Name="CON_DISTRICT" ColumnName="CON_DISTRICT" />
+          <ScalarProperty Name="CON_WARD" ColumnName="CON_WARD" />
+          <ScalarProperty Name="NAV_COUNTRY" ColumnName="NAV_COUNTRY" />
+          <ScalarProperty Name="IS_PAY_BANK" ColumnName="IS_PAY_BANK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_EDUCATION1">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_EDUCATION1)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_EDUCATION1">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ACADEMY" ColumnName="ACADEMY" />
+          <ScalarProperty Name="MAJOR" ColumnName="MAJOR" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TRAINING_FORM" ColumnName="TRAINING_FORM" />
+          <ScalarProperty Name="LEARNING_LEVEL" ColumnName="LEARNING_LEVEL" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="LANGUAGE_LEVEL" ColumnName="LANGUAGE_LEVEL" />
+          <ScalarProperty Name="LANGUAGE_MARK" ColumnName="LANGUAGE_MARK" />
+          <ScalarProperty Name="MAJOR_REMARK" ColumnName="MAJOR_REMARK" />
+          <ScalarProperty Name="GRADUATE_SCHOOL_ID" ColumnName="GRADUATE_SCHOOL_ID" />
+          <ScalarProperty Name="GRADUATE_SCHOOL" ColumnName="GRADUATE_SCHOOL" />
+          <ScalarProperty Name="DRIVER_TYPE" ColumnName="DRIVER_TYPE" />
+          <ScalarProperty Name="DRIVER_NO" ColumnName="DRIVER_NO" />
+          <ScalarProperty Name="COMPUTER_CERTIFICATE1" ColumnName="COMPUTER_CERTIFICATE1" />
+          <ScalarProperty Name="COMPUTER_CERTIFICATE2" ColumnName="COMPUTER_CERTIFICATE2" />
+          <ScalarProperty Name="MAJOR_RANK" ColumnName="MAJOR_RANK" />
+          <ScalarProperty Name="MAJOR_MARK" ColumnName="MAJOR_MARK" />
+          <ScalarProperty Name="SPECIALIZE" ColumnName="SPECIALIZE" />
+          <ScalarProperty Name="COMPUTER_CERTIFICATE" ColumnName="COMPUTER_CERTIFICATE" />
+          <ScalarProperty Name="COMPUTER_RANK" ColumnName="COMPUTER_RANK" />
+          <ScalarProperty Name="COMPUTER_MARK" ColumnName="COMPUTER_MARK" />
+          <ScalarProperty Name="COMPUTER_RANK1" ColumnName="COMPUTER_RANK1" />
+          <ScalarProperty Name="COMPUTER_MARK1" ColumnName="COMPUTER_MARK1" />
+          <ScalarProperty Name="COMPUTER_RANK2" ColumnName="COMPUTER_RANK2" />
+          <ScalarProperty Name="COMPUTER_MARK2" ColumnName="COMPUTER_MARK2" />
+          <ScalarProperty Name="GRADUATION_YEAR" ColumnName="GRADUATION_YEAR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_EDUCATION2">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_EMPLOYEE_EDUCATION2)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_EDUCATION2">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ACADEMY" ColumnName="ACADEMY" />
+          <ScalarProperty Name="MAJOR" ColumnName="MAJOR" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TRAINING_FORM" ColumnName="TRAINING_FORM" />
+          <ScalarProperty Name="LEARNING_LEVEL" ColumnName="LEARNING_LEVEL" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="LANGUAGE_LEVEL" ColumnName="LANGUAGE_LEVEL" />
+          <ScalarProperty Name="LANGUAGE_MARK" ColumnName="LANGUAGE_MARK" />
+          <ScalarProperty Name="MAJOR_REMARK" ColumnName="MAJOR_REMARK" />
+          <ScalarProperty Name="GRADUATE_SCHOOL_ID" ColumnName="GRADUATE_SCHOOL_ID" />
+          <ScalarProperty Name="GRADUATE_SCHOOL" ColumnName="GRADUATE_SCHOOL" />
+          <ScalarProperty Name="DRIVER_TYPE" ColumnName="DRIVER_TYPE" />
+          <ScalarProperty Name="DRIVER_NO" ColumnName="DRIVER_NO" />
+          <ScalarProperty Name="COMPUTER_CERTIFICATE1" ColumnName="COMPUTER_CERTIFICATE1" />
+          <ScalarProperty Name="COMPUTER_CERTIFICATE2" ColumnName="COMPUTER_CERTIFICATE2" />
+          <ScalarProperty Name="MAJOR_RANK" ColumnName="MAJOR_RANK" />
+          <ScalarProperty Name="MAJOR_MARK" ColumnName="MAJOR_MARK" />
+          <ScalarProperty Name="SPECIALIZE" ColumnName="SPECIALIZE" />
+          <ScalarProperty Name="COMPUTER_CERTIFICATE" ColumnName="COMPUTER_CERTIFICATE" />
+          <ScalarProperty Name="COMPUTER_RANK" ColumnName="COMPUTER_RANK" />
+          <ScalarProperty Name="COMPUTER_MARK" ColumnName="COMPUTER_MARK" />
+          <ScalarProperty Name="COMPUTER_RANK1" ColumnName="COMPUTER_RANK1" />
+          <ScalarProperty Name="COMPUTER_MARK1" ColumnName="COMPUTER_MARK1" />
+          <ScalarProperty Name="COMPUTER_RANK2" ColumnName="COMPUTER_RANK2" />
+          <ScalarProperty Name="COMPUTER_MARK2" ColumnName="COMPUTER_MARK2" />
+          <ScalarProperty Name="GRADUATION_YEAR" ColumnName="GRADUATION_YEAR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ORGANIZATION1">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ORGANIZATION1)">
+        <MappingFragment StoreEntitySet="HU_ORGANIZATION1">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+          <ScalarProperty Name="DISSOLVE_DATE" ColumnName="DISSOLVE_DATE" />
+          <ScalarProperty Name="FOUNDATION_DATE" ColumnName="FOUNDATION_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="HIERARCHICAL_PATH" ColumnName="HIERARCHICAL_PATH" />
+          <ScalarProperty Name="DESCRIPTION_PATH" ColumnName="DESCRIPTION_PATH" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="REPRESENTATIVE_ID" ColumnName="REPRESENTATIVE_ID" />
+          <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+          <ScalarProperty Name="PROVINCE_NAME" ColumnName="PROVINCE_NAME" />
+          <ScalarProperty Name="COST_CENTER_CODE" ColumnName="COST_CENTER_CODE" />
+          <ScalarProperty Name="ORD_NO" ColumnName="ORD_NO" />
+          <ScalarProperty Name="NUMBER_BUSINESS" ColumnName="NUMBER_BUSINESS" />
+          <ScalarProperty Name="DATE_BUSINESS" ColumnName="DATE_BUSINESS" />
+          <ScalarProperty Name="PIT_NO" ColumnName="PIT_NO" />
+          <ScalarProperty Name="U_INSURANCE" ColumnName="U_INSURANCE" />
+          <ScalarProperty Name="ORG_LEVEL" ColumnName="ORG_LEVEL" />
+          <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+          <ScalarProperty Name="HU_ORG_TITLEID" ColumnName="HU_ORG_TITLEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_FILECONTRACT">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_FILECONTRACT)">
+        <MappingFragment StoreEntitySet="HU_FILECONTRACT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ID_CONTRACT" ColumnName="ID_CONTRACT" />
+          <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
+          <ScalarProperty Name="AUTHORIZE_NO" ColumnName="AUTHORIZE_NO" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="SIGN_ORG_ID" ColumnName="SIGN_ORG_ID" />
+          <ScalarProperty Name="JOB" ColumnName="JOB" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="APPEND_NUMBER" ColumnName="APPEND_NUMBER" />
+          <ScalarProperty Name="CONTENT_APPEND" ColumnName="CONTENT_APPEND" />
+          <ScalarProperty Name="FILEUPLOAD" ColumnName="FILEUPLOAD" />
+          <ScalarProperty Name="AUTHOR_NUMBER" ColumnName="AUTHOR_NUMBER" />
+          <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
+          <ScalarProperty Name="AUTHOR_CHAIRMAN" ColumnName="AUTHOR_CHAIRMAN" />
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="APPEND_TYPEID" ColumnName="APPEND_TYPEID" />
+          <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
+          <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
+          <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
+          <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_FILECONTRACT_DELETED">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_FILECONTRACT_DELETED)">
+        <MappingFragment StoreEntitySet="HU_FILECONTRACT_DELETED">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ID_CONTRACT" ColumnName="ID_CONTRACT" />
+          <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
+          <ScalarProperty Name="AUTHORIZE_NO" ColumnName="AUTHORIZE_NO" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="SIGN_ORG_ID" ColumnName="SIGN_ORG_ID" />
+          <ScalarProperty Name="JOB" ColumnName="JOB" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="APPEND_NUMBER" ColumnName="APPEND_NUMBER" />
+          <ScalarProperty Name="CONTENT_APPEND" ColumnName="CONTENT_APPEND" />
+          <ScalarProperty Name="FILEUPLOAD" ColumnName="FILEUPLOAD" />
+          <ScalarProperty Name="AUTHOR_NUMBER" ColumnName="AUTHOR_NUMBER" />
+          <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
+          <ScalarProperty Name="AUTHOR_CHAIRMAN" ColumnName="AUTHOR_CHAIRMAN" />
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="APPEND_TYPEID" ColumnName="APPEND_TYPEID" />
+          <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
+          <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
+          <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
+          <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ASSET1">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ASSET1)">
+        <MappingFragment StoreEntitySet="HU_ASSET1">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ASSET2">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ASSET2)">
+        <MappingFragment StoreEntitySet="HU_ASSET2">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_HOMEBASE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_HOMEBASE)">
+        <MappingFragment StoreEntitySet="HU_HOMEBASE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
+      <EndProperty Name="SE_REPORT">
+        <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
+      </EndProperty>
+      <EndProperty Name="SE_USER">
+        <ScalarProperty Name="ID" ColumnName="SE_USER_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_HU_ORG_HU_ORG1" TypeName="ProfileModel.FK_HU_ORG_HU_ORG1" StoreEntitySet="HU_ORGANIZATION1">
+      <EndProperty Name="HU_ORGANIZATION1">
+        <ScalarProperty Name="ID" ColumnName="HU_ORGANIZATION2_ID" />
+      </EndProperty>
+      <EndProperty Name="HU_ORGANIZATION11">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition ColumnName="HU_ORGANIZATION2_ID" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

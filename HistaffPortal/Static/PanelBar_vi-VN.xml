@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PanelBar>
+  <Item Text="Thông tin cá nhân" Expanded="True" Value="Profile">
+    <Item Value="Profile;ctrlPortalEmpProfile;NoPer;NoEdit" Text="Hồ sơ nhân sự" ImageUrl="~/Static/Images/RibbonBar/user.png" />
+    <Item Value="Profile;ctrlPortalFamily_Edit;NoPer;NoEdit" Text="Quan hệ nhân thân" ImageUrl="~/Static/Images/RibbonBar/family.png" />
+    <Item Value="Profile;ctrlPortalWorking;NoPer;NoEdit" Text="Quá trình công tác hiện tại" ImageUrl="~/Static/Images/RibbonBar/working.png" />
+   
+    <Item Value="Profile;ctrlPortalContract;NoPer;NoEdit" Text="Quá trình hợp đồng lao động" ImageUrl="~/Static/Images/RibbonBar/contract.png" />
+    <Item Value="Profile;ctrlPortalSalary;NoPer;NoEdit" Text="Quá trình thay đổi lương - phụ cấp" ImageUrl="~/Static/Images/RibbonBar/salary.png" />
+    <Item Value="Profile;ctrlPortalCommend;NoPer;NoEdit" Text="Quá trình khen thưởng" ImageUrl="~/Static/Images/RibbonBar/commend.png" />
+    <Item Value="Profile;ctrlPortalDiscipline;NoPer;NoEdit" Text="Quá trình kỷ luật" ImageUrl="~/Static/Images/RibbonBar/discipline.png" />
+    
+  </Item>
+  <Item Text="Leave &amp; OT" Expanded="True" Value="Attendance">
+    <Item Value="Attendance;ctrlRegisterLeave;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
+    <Item Value="Attendance;ctrlLeaveApprove;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
+  </Item>
+  <Item Text="Phiếu lương" Expanded="True" Value="Payroll;ctrlPA_PortalSalary;NoPer;NoEdit" />
+  <Item Text="Đánh giá" Expanded="True" Value="Performance">
+    <Item Value="Performance;ctrlPE_Assess;NoPer;NoEdit" Text="Cá nhân tự đánh giá" ImageUrl="~/Static/Images/RibbonBar/user.png" />
+    <Item Value="Performance;ctrlPortalAssessmentDirect;NoPer;NoEdit" Text="Quản lý đánh giá nhân viên" ImageUrl="~/Static/Images/RibbonBar/user.png" />
+    <Item Value="Performance;ctrlPortalViewAssessEmp;NoPer;NoEdit" Text="KPI cá nhân" ImageUrl="~/Static/Images/RibbonBar/user.png" />
+  </Item>
+  <Item Value="Common;ctrlGuide;NoPer" Text="Hướng dẫn sử dụng" />
+  <Item Value="SUPPORT;NoPer" Text="Support" />
+  
+</PanelBar>

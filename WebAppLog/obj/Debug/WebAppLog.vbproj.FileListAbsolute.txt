@@ -1,0 +1,8 @@
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\bin\Debug\WebAppLog.dll
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\bin\Debug\WebAppLog.pdb
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\bin\Debug\WebAppLog.xml
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\obj\Debug\WebAppLog.Resources.resources
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\obj\Debug\WebAppLog.vbproj.GenerateResource.Cache
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\obj\Debug\WebAppLog.dll
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\obj\Debug\WebAppLog.xml
+D:\TVC\Project\TMF\3.DEPLOYMENT\Core2017\WebAppLog\obj\Debug\WebAppLog.pdb
