@@ -389,7 +389,7 @@ Public Class ctrlPE_Assess
                                 End If
                             End If
 
-                            If txtResult_Dir.Text IsNot Nothing Or txtResult_Dir.Text <> "" Then
+                            If txtResult_Dir.Text <> "" Then
                                 If rdAss_Date.SelectedDate Is Nothing Then
                                     ShowMessage(Translate("Bạn phải nhập Ngày đánh giá."), Utilities.NotifyType.Warning)
                                     Exit Sub
