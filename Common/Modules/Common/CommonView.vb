@@ -308,4 +308,74 @@ Public Class CommonView
         Thread.CurrentThread.CurrentUICulture = Common.SystemLanguage
         MyBase.FrameworkInitialize()
     End Sub
+
+#Region "View config"
+    Dim vcf As DataSet
+    Public Sub ViewConfig(ByVal rp As RadPane)
+        vcf = New DataSet
+        Using rep = New CommonRepository
+            vcf.ReadXml(New IO.StringReader(rep.GetConfigView(Me.ID).Rows(0)("config_data").ToString()))
+        End Using
+        Dim dtCtrl As DataTable = vcf.Tables("control")
+        For Each row As DataRow In dtCtrl.Rows
+            Dim myCtrl As Control = rp.FindControl(row.Field(Of String)("Ctl_ID").Trim())
+            If myCtrl IsNot Nothing Then
+                Dim myValidator As BaseValidator = rp.FindControl(row.Field(Of String)("Validator_ID").Trim())
+                Dim myLabel As Label = rp.FindControl(row.Field(Of String)("Label_ID").Trim())
+                If Boolean.Parse(row("Is_Visible").ToString()) = True Then '--==True: hide
+                    myCtrl.Visible = False
+                    myLabel.Visible = False
+                    If myValidator IsNot Nothing Then
+                        myValidator.Enabled = False '--==False: Inactive validator
+                    End If
+                Else
+                    If myValidator IsNot Nothing Then
+                        If Boolean.Parse(row("Is_Validator").ToString()) = True Then '--True: require
+                            myValidator.Enabled = True '--==True: Active validator
+                            myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim()) + "<span class='lbReq'>*</span>"
+                            myValidator.ErrorMessage = Translate(row.Field(Of String)("ErrorMessage").Trim())
+                            myValidator.ToolTip = Translate(row.Field(Of String)("ErrorToolTip").Trim())
+                        Else
+                            myValidator.Enabled = False '--==False: Inactive validator
+                            myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim())
+                        End If
+                    End If
+                End If
+            End If
+        Next
+
+    End Sub
+    Public Sub GirdConfig(ByVal rg As RadGrid)
+        Dim dtGrid As DataTable = vcf.Tables("girdColumm")
+        If dtGrid.Rows.Count = 0 AndAlso dtGrid Is Nothing Then Exit Sub
+        Dim view As DataView = New DataView(dtGrid)
+        view.Sort = "Orderby"
+        dtGrid = view.ToTable()
+
+        Dim rCol As GridBoundColumn
+        rg.MasterTableView.Columns.Clear()
+        For Each row As DataRow In dtGrid.Rows
+            rCol = New GridBoundColumn()
+            rg.MasterTableView.Columns.Add(rCol)
+            rCol.DataField = row.Field(Of String)("ID").Trim()
+            rCol.HeaderText = Translate(row.Field(Of String)("Name").Trim())
+            rCol.HeaderStyle.Width = row.Field(Of String)("Width").Trim()
+            rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+            rCol.AllowFiltering = True
+            rCol.AllowSorting = True
+            rCol.AutoPostBackOnFilter = True
+            rCol.CurrentFilterFunction = GridKnownFunction.Contains
+            rCol.ShowFilterIcon = False
+            rCol.FilterControlWidth = row.Field(Of String)("Width").Trim()
+            rCol.HeaderTooltip = Translate(row.Field(Of String)("Name").Trim())
+            rCol.FilterControlToolTip = Translate(row.Field(Of String)("Name").Trim())
+            rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
+            If row.Field(Of String)("DataType").Trim() = "DateTime" Then
+                rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
+            ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
+                rCol.DataFormatString = "{0:#,##0.##}"
+            End If
+        Next
+    End Sub
+#End Region
 End Class
