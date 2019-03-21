@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ProfileModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+<Schema Namespace="ProfileModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
   <EntityContainer Name="ProfileModelStoreContainer">
     <EntitySet Name="HU_PROVINCE" EntityType="ProfileModel.Store.HU_PROVINCE" store:Type="Tables" />
     <EntitySet Name="HU_DISTRICT" EntityType="ProfileModel.Store.HU_DISTRICT" store:Type="Tables" />
@@ -124,6 +124,8 @@
     <EntitySet Name="HU_ASSET1" EntityType="ProfileModel.Store.HU_ASSET1" store:Type="Tables" />
     <EntitySet Name="HU_ASSET2" EntityType="ProfileModel.Store.HU_ASSET2" store:Type="Tables" />
     <EntitySet Name="HU_HOMEBASE" EntityType="ProfileModel.Store.HU_HOMEBASE" store:Type="Tables" />
+    <EntitySet Name="PA_SALE_COMMISION" EntityType="ProfileModel.Store.PA_SALE_COMMISION" store:Type="Tables" />
+    <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.Store.HU_ALLOWANCE" store:Type="Tables" />
     <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables" />
     <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
       <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -596,6 +598,7 @@
     <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
     <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
     <Property Name="DEDUCT_REG" Type="date" Nullable="true" />
+    <Property Name="TAXTATION" Type="nclob" Nullable="true" />
   </EntityType>
   <EntityType Name="HU_DISCIPLINE">
     <Key>
@@ -626,6 +629,8 @@
     <Property Name="SIGN_DATE" Type="date" Nullable="true" />
     <Property Name="SIGNER_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
     <Property Name="DISCIPLINE_REASON" Type="number" Nullable="true" Precision="38" />
+    <Property Name="UPLOADFILE" Type="nclob" Nullable="true" />
+    <Property Name="FILENAME" Type="nclob" Nullable="true" />
   </EntityType>
   <EntityType Name="HU_WORKING_BEFORE">
     <Key>
@@ -708,6 +713,9 @@
     <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
     <Property Name="SUM_DEBT" Type="number" Nullable="true" Precision="38" />
     <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="SALARYMEDIUM_LOSS" Type="nclob" Nullable="true" />
+    <Property Name="UPLOADFILE" Type="nclob" Nullable="true" />
+    <Property Name="FILENAME" Type="nclob" Nullable="true" />
   </EntityType>
   <EntityType Name="HU_WORKING_OLD">
     <Key>
@@ -1374,6 +1382,8 @@
     <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
     <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
     <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="UPLOAD_FILE" Type="nclob" Nullable="true" />
+    <Property Name="FILE_NAME" Type="nclob" Nullable="true" />
   </EntityType>
   <EntityType Name="HU_DISCIPLINE_EMP">
     <Key>
@@ -1512,6 +1522,7 @@
     <Property Name="REASON_UNAPROVE" Type="nvarchar2" Nullable="true" MaxLength="250" />
     <Property Name="FK_PKEY" Type="number" Nullable="true" Precision="38" />
     <Property Name="SEND_DATE" Type="date" Nullable="true" />
+    <Property Name="TAXTATION" Type="nclob" Nullable="true" />
   </EntityType>
   <EntityType Name="HU_EMPLOYEE_EDIT">
     <Key>
@@ -2283,6 +2294,7 @@
     <Property Name="FORM_ID" Type="number" Nullable="true" Precision="38" />
     <Property Name="OT_CM_OBJ" Type="number" Nullable="true" Precision="38" />
     <Property Name="OT_CM_LEVEL" Type="number" Nullable="true" Precision="38" />
+    <Property Name="FILENAME" Type="nclob" Nullable="true" />
   </EntityType>
   <EntityType Name="TR_CERTIFICATE">
     <Key>
@@ -2572,6 +2584,9 @@
     <Property Name="SAL_INS" Type="number" Nullable="true" Precision="38" />
     <Property Name="ALLOWANCE_TOTAL" Type="number" Nullable="true" Precision="38" />
     <Property Name="TAX_TABLE_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ATTACH_FILE" Type="nclob" Nullable="true" />
+    <Property Name="FILENAME" Type="nvarchar2" Nullable="true" MaxLength="500" />
+    <Property Name="SALE_COMMISION_ID" Type="number" Nullable="true" Precision="38" />
   </EntityType>
   <EntityType Name="PA_SALARY_TYPE">
     <Key>
@@ -2999,6 +3014,50 @@
     <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
     <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
     <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="PA_SALE_COMMISION">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="CREATED_DATE" />
+      <PropertyRef Name="CREATED_BY" />
+      <PropertyRef Name="CREATED_LOG" />
+      <PropertyRef Name="MODIFIED_DATE" />
+      <PropertyRef Name="MODIFIED_BY" />
+      <PropertyRef Name="MODIFIED_LOG" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1025" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="ORDERS" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="21" />
+    <Property Name="SALE_RATE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HU_ALLOWANCE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="EMPLOYEE_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ALLOWANCE_TYPE" Type="number" Nullable="true" Precision="38" />
+    <Property Name="AMOUNT" Type="number" Nullable="true" Precision="38" />
+    <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+    <Property Name="EXP_DATE" Type="date" Nullable="true" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="FACTOR" Type="number" Nullable="true" Precision="38" />
   </EntityType>
   <EntityType Name="SE_USER_REPORT">
     <Key>

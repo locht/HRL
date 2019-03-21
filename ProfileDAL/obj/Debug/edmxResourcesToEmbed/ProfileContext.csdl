@@ -228,6 +228,8 @@
     <EntitySet Name="HU_ASSET1" EntityType="ProfileModel.HU_ASSET1" />
     <EntitySet Name="HU_ASSET2" EntityType="ProfileModel.HU_ASSET2" />
     <EntitySet Name="HU_HOMEBASE" EntityType="ProfileModel.HU_HOMEBASE" />
+    <EntitySet Name="PA_SALE_COMMISION" EntityType="ProfileModel.PA_SALE_COMMISION" />
+    <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.HU_ALLOWANCE" />
   </EntityContainer>
   <EntityType Name="HU_PROVINCE">
     <Key>
@@ -743,6 +745,7 @@
     <NavigationProperty Name="HU_EMPLOYEE" Relationship="ProfileModel.FK_HE_HF" FromRole="HU_FAMILY" ToRole="HU_EMPLOYEE" />
     <Property Type="String" Name="REMARK" Nullable="true" MaxLength="1023" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="DEDUCT_REG" Nullable="true" />
+    <Property Type="String" Name="TAXTATION" />
   </EntityType>
   <Association Name="FK_HE_HC">
     <End Type="ProfileModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
@@ -800,6 +803,8 @@
     <Property Type="DateTime" Name="SIGN_DATE" />
     <Property Type="String" Name="SIGNER_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Type="Decimal" Name="DISCIPLINE_REASON" Nullable="true" />
+    <Property Type="String" Name="UPLOADFILE" />
+    <Property Type="String" Name="FILENAME" />
   </EntityType>
   <EntityType Name="HU_WORKING_BEFORE">
     <Key>
@@ -959,6 +964,9 @@
     <Property Type="Decimal" Name="TITLE_ID" Nullable="true" />
     <Property Type="Decimal" Name="SUM_DEBT" Nullable="true" />
     <Property Type="Decimal" Name="ORG_ID" Nullable="true" />
+    <Property Type="String" Name="SALARYMEDIUM_LOSS" />
+    <Property Type="String" Name="UPLOADFILE" />
+    <Property Type="String" Name="FILENAME" />
   </EntityType>
   <Association Name="FK_HUEMD_HUEM">
     <End Type="ProfileModel.HU_EMPLOYEE" Role="HU_EMD" Multiplicity="0..1" />
@@ -1731,6 +1739,8 @@
     <Property Type="DateTime" Name="MODIFIED_DATE" />
     <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UPLOAD_FILE" />
+    <Property Type="String" Name="FILE_NAME" />
   </EntityType>
   <EntityType Name="HU_DISCIPLINE_EMP">
     <Key>
@@ -1869,6 +1879,7 @@
     <Property Type="String" Name="REASON_UNAPROVE" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Type="Decimal" Name="FK_PKEY" Precision="38" Scale="0" />
     <Property Type="DateTime" Name="SEND_DATE" />
+    <Property Type="String" Name="TAXTATION" />
   </EntityType>
   <EntityType Name="HU_EMPLOYEE_EDIT">
     <Key>
@@ -2649,6 +2660,7 @@
     <Property Type="Decimal" Name="FORM_ID" Precision="38" Scale="0" />
     <Property Type="Decimal" Name="OT_CM_OBJ" Precision="38" Scale="0" />
     <Property Type="Decimal" Name="OT_CM_LEVEL" Precision="38" Scale="0" />
+    <Property Type="String" Name="FILENAME" />
   </EntityType>
   <EntityType Name="TR_CERTIFICATE">
     <Key>
@@ -2938,6 +2950,9 @@
     <Property Type="Decimal" Name="SAL_INS" Precision="38" Scale="0" />
     <Property Type="Decimal" Name="ALLOWANCE_TOTAL" Precision="38" Scale="0" />
     <Property Type="Decimal" Name="TAX_TABLE_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="ATTACH_FILE" />
+    <Property Type="String" Name="FILENAME" MaxLength="500" />
+    <Property Type="Decimal" Name="SALE_COMMISION_ID" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="PA_SALARY_TYPE">
     <Key>
@@ -3384,5 +3399,49 @@
     <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_SALE_COMMISION">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="CREATED_DATE" />
+      <PropertyRef Name="CREATED_BY" />
+      <PropertyRef Name="CREATED_LOG" />
+      <PropertyRef Name="MODIFIED_DATE" />
+      <PropertyRef Name="MODIFIED_BY" />
+      <PropertyRef Name="MODIFIED_LOG" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1025" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACTFLG" MaxLength="21" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SALE_RATE" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HU_ALLOWANCE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="EMPLOYEE_ID" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ALLOWANCE_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="AMOUNT" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="DateTime" Name="EXP_DATE" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="FACTOR" annotation:StoreGeneratedPattern="None" />
   </EntityType>
 </Schema>

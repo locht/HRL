@@ -6,7 +6,28 @@ HistaffWebAppResources
 </name>
 </assembly>
 <members>
-<member name="P:HistaffWebAppResources.My.Resources.UI.ResourceManager">
+<member name="P:HistaffWebAppResources.My.Resources.Errors.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:HistaffWebAppResources.My.Resources.Errors.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:HistaffWebAppResources.My.Resources.Errors.NullOrInActive">
+	<summary>
+  Looks up a localized string similar to not found or inactive.
+</summary>
+</member><member name="P:HistaffWebAppResources.My.Resources.Errors.YouMustChose">
+	<summary>
+  Looks up a localized string similar to You must chose.
+</summary>
+</member><member name="T:HistaffWebAppResources.My.Resources.Errors">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="P:HistaffWebAppResources.My.Resources.UI.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
@@ -125,27 +146,6 @@ HistaffWebAppResources
   resource lookups using this strongly typed resource class.
 </summary>
 </member><member name="T:HistaffWebAppResources.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="P:HistaffWebAppResources.My.Resources.Errors.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:HistaffWebAppResources.My.Resources.Errors.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="P:HistaffWebAppResources.My.Resources.Errors.NullOrInActive">
-	<summary>
-  Looks up a localized string similar to not found or inactive.
-</summary>
-</member><member name="P:HistaffWebAppResources.My.Resources.Errors.YouMustChose">
-	<summary>
-  Looks up a localized string similar to You must chose.
-</summary>
-</member><member name="T:HistaffWebAppResources.My.Resources.Errors">
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>

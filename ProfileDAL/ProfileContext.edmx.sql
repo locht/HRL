@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 20/11/2018 5:11:50 PM
--- Generated from EDMX file: D:\MyProject\TMF\ProfileDAL\ProfileContext.edmx
+-- Date Created: 3/21/2019 10:58:43 AM
+-- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------

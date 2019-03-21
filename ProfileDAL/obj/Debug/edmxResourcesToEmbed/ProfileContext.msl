@@ -376,6 +376,7 @@
           <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
           <ScalarProperty Name="REMARK" ColumnName="REMARK" />
           <ScalarProperty Name="DEDUCT_REG" ColumnName="DEDUCT_REG" />
+          <ScalarProperty Name="TAXTATION" ColumnName="TAXTATION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -407,6 +408,8 @@
           <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
           <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
           <ScalarProperty Name="DISCIPLINE_REASON" ColumnName="DISCIPLINE_REASON" />
+          <ScalarProperty Name="UPLOADFILE" ColumnName="UPLOADFILE" />
+          <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -491,6 +494,9 @@
           <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
           <ScalarProperty Name="SUM_DEBT" ColumnName="SUM_DEBT" />
           <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="SALARYMEDIUM_LOSS" ColumnName="SALARYMEDIUM_LOSS" />
+          <ScalarProperty Name="UPLOADFILE" ColumnName="UPLOADFILE" />
+          <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1184,6 +1190,8 @@
           <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
           <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
           <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
+          <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1328,6 +1336,7 @@
           <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
           <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
           <ScalarProperty Name="SEND_DATE" ColumnName="SEND_DATE" />
+          <ScalarProperty Name="TAXTATION" ColumnName="TAXTATION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2135,6 +2144,7 @@
           <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
           <ScalarProperty Name="OT_CM_OBJ" ColumnName="OT_CM_OBJ" />
           <ScalarProperty Name="OT_CM_LEVEL" ColumnName="OT_CM_LEVEL" />
+          <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2435,6 +2445,9 @@
           <ScalarProperty Name="SAL_INS" ColumnName="SAL_INS" />
           <ScalarProperty Name="ALLOWANCE_TOTAL" ColumnName="ALLOWANCE_TOTAL" />
           <ScalarProperty Name="TAX_TABLE_ID" ColumnName="TAX_TABLE_ID" />
+          <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
+          <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+          <ScalarProperty Name="SALE_COMMISION_ID" ColumnName="SALE_COMMISION_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2872,6 +2885,46 @@
           <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
           <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
           <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PA_SALE_COMMISION">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.PA_SALE_COMMISION)">
+        <MappingFragment StoreEntitySet="PA_SALE_COMMISION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="SALE_RATE" ColumnName="SALE_RATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ALLOWANCE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ALLOWANCE)">
+        <MappingFragment StoreEntitySet="HU_ALLOWANCE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="ALLOWANCE_TYPE" ColumnName="ALLOWANCE_TYPE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXP_DATE" ColumnName="EXP_DATE" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="FACTOR" ColumnName="FACTOR" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

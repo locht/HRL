@@ -6,154 +6,7 @@ ProfileDAL
 </name>
 </assembly>
 <members>
-<member name="M:ProfileDAL.ProfileRepository.ValidateFamily(ProfileDAL.FamilyDTO)">
-	<summary>
- Hàm check trùng CMND của thân nhân.
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:ProfileDAL.ComboBoxDataDTO.GET_WORK_STATUS">
-	<summary>
- WORK_STATUS - 59 - Trạng thái nhân viên
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:ProfileDAL.ComboBoxDataDTO.GET_TITLE_LEVEL">
-	<summary>
- WORK_STATUS - 160 - Cấp chức danh
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.GetTitleByID(System.Decimal)">
-	<summary>
- Get title by ID
- </summary>
-	<param name="sID"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.CheckExistInDatabase(System.Collections.Generic.List{System.Decimal},ProfileDAL.ProfileCommon.TABLE_NAME)">
-	<summary>
- Kiểm tra dữ liệu đã được sử dụng hay chưa?
- </summary>
-	<param name="table">Enum Table_Name</param>
-	<returns>true:chưa có/false:có rồi</returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateNation(ProfileDAL.NationDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateProvince(ProfileDAL.ProvinceDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateDistrict(ProfileDAL.DistrictDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateWard(ProfileDAL.Ward_DTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateBank(ProfileDAL.BankDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateBankBranch(ProfileDAL.BankBranchDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateAsset(ProfileDAL.AssetDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateStaffRank(ProfileDAL.StaffRankDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateLabourProtection(ProfileDAL.LabourProtectionDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateCommendList(ProfileDAL.CommendListDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:ProfileDAL.ProfileRepository.ValidateCommendLevel(ProfileDAL.CommendLevelDTO)">
-	<editby>Hongdx</editby>
-	<content>Them validate Ap dung</content>
-	<summary>
- Check validate Code, Id, ACTFLG
- </summary>
-	<param name="_validate"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:ProfileDAL.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:ProfileDAL.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="T:ProfileDAL.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="M:ProfileDAL.ProfileRepository.CheckAndSendMailReminder">
+<member name="M:ProfileDAL.ProfileRepository.CheckAndSendMailReminder">
 	<summary>
  LOIVT - gửi mail nhắc nhở hợp đồng đến hạn
  </summary>
@@ -186,12 +39,36 @@ ProfileDAL
 	<param name="sLang"></param>
 	<returns></returns>
 	<remarks></remarks>
-</member><member name="M:ProfileDAL.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+</member><member name="P:ProfileDAL.ComboBoxDataDTO.GET_WORK_STATUS">
 	<summary>
- Writes the exception log.
+ WORK_STATUS - 59 - Trạng thái nhân viên
  </summary>
-	<param name="objErr">The obj err.</param>
-	<param name="sFunc">The s func.</param>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:ProfileDAL.ComboBoxDataDTO.GET_TITLE_LEVEL">
+	<summary>
+ WORK_STATUS - 160 - Cấp chức danh
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.GetReportList(ProfileDAL.WorkingDTO,System.Int32,System.Int32,System.Int32@,ProfileDAL.ParamDTO,System.String,Framework.Data.UserLog)">
+	<lastupdate>
+ 12/07/2017 14:28
+ </lastupdate>
+	<summary>
+ Lay danh sach bao cao
+ </summary>
+	<param name="_filter"></param>
+	<param name="PageIndex"></param>
+	<param name="PageSize"></param>
+	<param name="Total"></param>
+	<param name="_param"></param>
+	<param name="Sorts"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
 </member><member name="M:ProfileDAL.ProfileContext.#ctor">
 	<summary>
  Initializes a new ProfileContext object using the connection string found in the 'ProfileContext' section of the application configuration file.
@@ -11598,20 +11475,130 @@ ProfileDAL
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="M:ProfileDAL.ProfileRepository.GetReportList(ProfileDAL.WorkingDTO,System.Int32,System.Int32,System.Int32@,ProfileDAL.ParamDTO,System.String,Framework.Data.UserLog)">
-	<lastupdate>
- 12/07/2017 14:28
- </lastupdate>
+</member><member name="M:ProfileDAL.ProfileRepository.GetTitleByID(System.Decimal)">
 	<summary>
- Lay danh sach bao cao
+ Get title by ID
  </summary>
-	<param name="_filter"></param>
-	<param name="PageIndex"></param>
-	<param name="PageSize"></param>
-	<param name="Total"></param>
-	<param name="_param"></param>
-	<param name="Sorts"></param>
-	<param name="log"></param>
+	<param name="sID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.CheckExistInDatabase(System.Collections.Generic.List{System.Decimal},ProfileDAL.ProfileCommon.TABLE_NAME)">
+	<summary>
+ Kiểm tra dữ liệu đã được sử dụng hay chưa?
+ </summary>
+	<param name="table">Enum Table_Name</param>
+	<returns>true:chưa có/false:có rồi</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateNation(ProfileDAL.NationDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateProvince(ProfileDAL.ProvinceDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateDistrict(ProfileDAL.DistrictDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateWard(ProfileDAL.Ward_DTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateBank(ProfileDAL.BankDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateBankBranch(ProfileDAL.BankBranchDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateAsset(ProfileDAL.AssetDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateStaffRank(ProfileDAL.StaffRankDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateLabourProtection(ProfileDAL.LabourProtectionDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateCommendList(ProfileDAL.CommendListDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateCommendLevel(ProfileDAL.CommendLevelDTO)">
+	<editby>Hongdx</editby>
+	<content>Them validate Ap dung</content>
+	<summary>
+ Check validate Code, Id, ACTFLG
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileDAL.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member><member name="M:ProfileDAL.ProfileRepository.ValidateFamily(ProfileDAL.FamilyDTO)">
+	<summary>
+ Hàm check trùng CMND của thân nhân.
+ </summary>
+	<param name="_validate"></param>
 	<returns></returns>
 	<remarks></remarks>
 </member><member name="M:ProfileDAL.ProfileRepository.GetListEmployee(System.Collections.Generic.List{System.Decimal},ProfileDAL.EmployeeDTO)">
@@ -11709,6 +11696,19 @@ ProfileDAL
 	<param name="_empId"></param>
 	<returns></returns>
 	<remarks></remarks>
+</member><member name="P:ProfileDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ProfileDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ProfileDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
 </member>
 </members>
 </doc>
