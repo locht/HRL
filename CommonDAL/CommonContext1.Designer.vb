@@ -10851,7 +10851,9 @@ Public Partial Class SE_MAIL
         Set
             OnMAIL_TOChanging(value)
             ReportPropertyChanging("MAIL_TO")
-            _MAIL_TO = StructuralObject.SetValidValue(value, false)
+#If Not Debug Then
+            _MAIL_TO = StructuralObject.SetValidValue(Value, False)
+#End If
             ReportPropertyChanged("MAIL_TO")
             OnMAIL_TOChanged()
         End Set
