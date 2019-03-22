@@ -18,7 +18,7 @@
             <table class="table-form">
                 <tr>
                     <td class="lb">
-                        <%# Translate("Tên quy trình")%><span class="lbReq">*</span>
+                        <asp:Label ID="lblName" runat="server" Text="<%# Translate("Tên quy trình")%>"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
@@ -41,7 +41,7 @@
                 </tr>--%>
                 <tr>
                     <td class="lb" style="vertical-align: top">
-                        <%# Translate("Email thông báo")%>
+                        <asp:Label ID="lblEmail" runat="server" Text="<%# Translate("Email thông báo")%>"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox runat="server" ID="txtEmail">

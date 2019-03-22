@@ -109,7 +109,10 @@ Public Class ctrlApproveProcess
             rgApproveProcess.AllowCustomPaging = True
 
             InitControl()
-
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgApproveProcess)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
