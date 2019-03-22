@@ -1084,6 +1084,7 @@ Partial Class ProfileRepository
             objOrganizationData.U_INSURANCE = objOrganization.U_INSURANCE
             objOrganizationData.REGION_ID = objOrganization.REGION_ID
             objOrganizationData.ORG_LEVEL = objOrganization.ORG_LEVEL
+            objOrganizationData.UNIT_LEVEL = objOrganization.UNIT_LEVEL
             'objOrganizationData.AUTOGENTIMESHEET = objOrganization.AutoGenTimeSheet
             'END EDIT;
             Context.SaveChanges(log)
@@ -1201,6 +1202,7 @@ Partial Class ProfileRepository
             objOrganizationData.U_INSURANCE = objOrganization.U_INSURANCE
             objOrganizationData.REGION_ID = objOrganization.REGION_ID
             objOrganizationData.ORG_LEVEL = objOrganization.ORG_LEVEL
+            objOrganizationData.UNIT_LEVEL = objOrganization.UNIT_LEVEL
             'END EDIT;
             objOrganizationData.REPRESENTATIVE_ID = objOrganization.REPRESENTATIVE_ID
             Context.SaveChanges(log)

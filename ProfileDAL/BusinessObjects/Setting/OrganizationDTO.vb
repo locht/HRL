@@ -1,5 +1,6 @@
 ﻿Public Class OrganizationDTO
     Public Property ID As Decimal
+    Public Property UNIT_LEVEL As Decimal?
     Public Property CODE As String
     Public Property NAME_VN As String
     Public Property NAME_EN As String

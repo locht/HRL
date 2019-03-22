@@ -1,5 +1,8 @@
 ﻿Public Class ComboBoxDataDTO
 
+    Public Property GET_UNIT_LEVEL As Boolean
+    Public Property LIST_UNIT_LEVEL As List(Of OtherListDTO)
+
     'Loại nguyên nhân tai nạn.
     Public Property GET_REASON As Boolean
     Public Property LIST_REASON As List(Of OtherListDTO)

@@ -1677,6 +1677,7 @@
       <xs:element minOccurs="0" name="GET_TRANSFER_TYPE_NEW_HIRE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_TYPE_NGHI" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_UNIT" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GET_UNIT_LEVEL" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_WELFARE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_WELFARE_AUTO" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_WORKING_ALLOWANCE_LIST" type="xs:boolean" />
@@ -1737,6 +1738,7 @@
       <xs:element minOccurs="0" name="LIST_TRANSFER_TYPE_NEW_HIRE" nillable="true" type="tns:OtherListDTO" />
       <xs:element minOccurs="0" name="LIST_TYPE_NGHI" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_UNIT" nillable="true" type="tns:ArrayOfOtherListDTO" />
+      <xs:element minOccurs="0" name="LIST_UNIT_LEVEL" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_WELFARE" nillable="true" type="tns:ArrayOfWelfareListDTO" />
       <xs:element minOccurs="0" name="LIST_WELFARE_AUTO" nillable="true" type="tns:ArrayOfWelfareListDTO" />
       <xs:element minOccurs="0" name="LIST_WORKING_ALLOWANCE_LIST" nillable="true" type="tns:ArrayOfAllowanceListDTO" />
@@ -2898,6 +2900,7 @@
       <xs:element minOccurs="0" name="REPRESENTATIVE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="REPRESENTATIVE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UNIT_LEVEL" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="U_INSURANCE" nillable="true" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>

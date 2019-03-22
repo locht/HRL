@@ -2682,6 +2682,7 @@
             <Property Name="U_INSURANCE" Type="number" Nullable="true" Precision="38" />
             <Property Name="REGION_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="ORG_LEVEL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="UNIT_LEVEL" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_TALENT_POOL">
             <Key>
@@ -6497,6 +6498,7 @@
 
           <NavigationProperty Name="HU_ORGANIZATION1" Relationship="ProfileModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION" ToRole="HU_ORGANIZATION1" />
           <NavigationProperty Name="HU_ORGANIZATION2" Relationship="ProfileModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION1" ToRole="HU_ORGANIZATION" />
+          <Property Type="Decimal" Name="UNIT_LEVEL" />
         </EntityType>
         <Association Name="FK_HU_ORG_HU_ORG">
           <End Type="ProfileModel.HU_ORGANIZATION" Role="HU_ORGANIZATION" Multiplicity="0..1" />
@@ -9443,6 +9445,7 @@
                     <ScalarProperty Name="U_INSURANCE" ColumnName="U_INSURANCE" />
                     <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
                     <ScalarProperty Name="ORG_LEVEL" ColumnName="ORG_LEVEL" />
+                    <ScalarProperty Name="UNIT_LEVEL" ColumnName="UNIT_LEVEL" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10099,12 +10102,12 @@
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE_CONCURRENT" Width="2.25" PointX="29.375" PointY="0.75" Height="3.710999348958353" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORG_TITLE" Width="1.5" PointX="4.375" PointY="0.75" Height="3.134095052083353" />
-        <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION" Width="1.5" PointX="5.375" PointY="29.75" Height="7.5570279947916674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_ORGANIZATION" Width="1.5" PointX="5.375" PointY="29.75" Height="7.7493294270833388" />
         <AssociationConnector Association="ProfileModel.FK_HU_ORG_HU_ORG" >
-          <ConnectorPoint PointX="5.9069230769230767" PointY="37.307027994791667" />
-          <ConnectorPoint PointX="5.9069230769230767" PointY="37.557027994791667" />
-          <ConnectorPoint PointX="6.3534615384615378" PointY="37.557027994791667" />
-          <ConnectorPoint PointX="6.3534615384615378" PointY="37.307027994791667" />
+          <ConnectorPoint PointX="5.9069230769230767" PointY="37.499329427083339" />
+          <ConnectorPoint PointX="5.9069230769230767" PointY="37.749329427083339" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="37.749329427083339" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="37.499329427083339" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_TALENT_POOL" Width="1.5" PointX="29.375" PointY="10.75" Height="3.3263964843749818" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV1" Width="1.5" PointX="0.75" PointY="30.75" Height="14.287578124999982" />

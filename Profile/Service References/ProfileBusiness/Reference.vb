@@ -20033,6 +20033,9 @@ Namespace ProfileBusiness
         Private GET_UNITField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_UNIT_LEVELField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_WELFAREField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -20211,6 +20214,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_UNITField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_UNIT_LEVELField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_WELFAREField As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO)
@@ -20938,6 +20944,19 @@ Namespace ProfileBusiness
                 If (Me.GET_UNITField.Equals(value) <> true) Then
                     Me.GET_UNITField = value
                     Me.RaisePropertyChanged("GET_UNIT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_UNIT_LEVEL() As Boolean
+            Get
+                Return Me.GET_UNIT_LEVELField
+            End Get
+            Set
+                If (Me.GET_UNIT_LEVELField.Equals(value) <> true) Then
+                    Me.GET_UNIT_LEVELField = value
+                    Me.RaisePropertyChanged("GET_UNIT_LEVEL")
                 End If
             End Set
         End Property
@@ -21718,6 +21737,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_UNITField, value) <> true) Then
                     Me.LIST_UNITField = value
                     Me.RaisePropertyChanged("LIST_UNIT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_UNIT_LEVEL() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_UNIT_LEVELField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_UNIT_LEVELField, value) <> true) Then
+                    Me.LIST_UNIT_LEVELField = value
+                    Me.RaisePropertyChanged("LIST_UNIT_LEVEL")
                 End If
             End Set
         End Property
@@ -35078,6 +35110,9 @@ Namespace ProfileBusiness
         Private TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UNIT_LEVELField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private U_INSURANCEField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -35541,6 +35576,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UNIT_LEVEL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.UNIT_LEVELField
+            End Get
+            Set
+                If (Me.UNIT_LEVELField.Equals(value) <> true) Then
+                    Me.UNIT_LEVELField = value
+                    Me.RaisePropertyChanged("UNIT_LEVEL")
                 End If
             End Set
         End Property

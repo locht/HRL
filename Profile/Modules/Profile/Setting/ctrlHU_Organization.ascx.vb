@@ -224,6 +224,13 @@ Public Class ctrlHU_Organization
             If Not dtOrgLevel Is Nothing AndAlso dtOrgLevel.Rows.Count > 0 Then
                 FillRadCombobox(cboOrg_level, dtOrgLevel, "NAME_VN", "ID")
             End If
+            Dim rep As New ProfileRepository
+            Dim UNIT_LEVEL As New ComboBoxDataDTO
+            UNIT_LEVEL.GET_UNIT_LEVEL = True
+            Dim isUnitlevel = rep.GetComboList(UNIT_LEVEL)
+            If Not isUnitlevel Then
+                FillRadCombobox(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -269,12 +276,7 @@ Public Class ctrlHU_Organization
                             ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
                             Exit Sub
                         End If
-                        'tr01.Visible = False
-                        'tr02.Visible = False
-                        If treeOrgFunction.SelectedNode.Level = 1 Then
-                            'tr01.Visible = True
-                            'tr02.Visible = True
-                        End If
+                        
                         Organization = (From p In Organizations Where p.ID = Decimal.Parse(treeOrgFunction.SelectedNode.Value)).SingleOrDefault
                         CurrentState = CommonMessage.STATE_EDIT
                         txtNameVN.Focus()
@@ -325,43 +327,30 @@ Public Class ctrlHU_Organization
                             Exit Sub
                         End If
                         objOrgFunction.CODE = txtCode.Text
-                        'objOrgFunction.AutoGenTimeSheet = AutoGenTimeSheet.Checked
-                        'objOrgFunction.DISSOLVE_DATE = rdDissolveDate.SelectedDate
-                        'If hidParentID.Value <> "" Then
-                        '    Dim orgParent = (From p In Organizations Where p.ID = Decimal.Parse(hidParentID.Value)).SingleOrDefault
-                        '    If orgParent IsNot Nothing Then
-                        '        If rdFoundationDate.SelectedDate IsNot Nothing Then
-                        '            If rdFoundationDate.SelectedDate < orgParent.FOUNDATION_DATE Then
-                        '                ShowMessage("Ngày thành lập phải lớn hơn ngày thành lập của " + orgParent.PARENT_NAME, NotifyType.Warning)
-                        '                Exit Sub
-                        '            End If
-                        '        End If
-                        '    End If
-                        'End If
-                        'objOrgFunction.FOUNDATION_DATE = rdFoundationDate.SelectedDate
+                        
                         objOrgFunction.NAME_EN = txtNameVN.Text
                         objOrgFunction.NAME_VN = txtNameVN.Text
-                        objOrgFunction.COST_CENTER_CODE = txtCostCenter.Text
-                        'objOrgFunction.REMARK = txtRemark.Text
-                        'objOrgFunction.ADDRESS = txtAddress.Text
-                        'objOrgFunction.FAX = txtFax.Text
-                        'objOrgFunction.MOBILE = txtMobile.Text
-                        'objOrgFunction.PROVINCE_NAME = txtProvinceName.Text
-                        'objOrgFunction.ORD_NO = rntxtOrdNo.Value
-                        'objOrgFunction.COST_CENTER_CODE = cboCostCenterCode.SelectedValue
-                        'objOrgFunction.NUMBER_BUSINESS = txtNumber_business.Text
-                        'objOrgFunction.DATE_BUSINESS = rdDate_Business.SelectedDate
-                        'objOrgFunction.PIT_NO = txtPIT_NO.Text
-                        'EDIT BY: CHIENNV;EDIT DATE:11/10/2017;ADD FIELD IN CONTEX HU_ORG
+                        objOrgFunction.REMARK = rtREMARK.Text
+                        objOrgFunction.ADDRESS = rtADDRESS.Text
+                        objOrgFunction.NUMBER_BUSINESS = rtNUMBER_BUSINESS.Text
+                        objOrgFunction.DATE_BUSINESS = rdDATE_BUSINESS.SelectedDate
                         Dim ISURANCE As Decimal = 0.0
                         Dim REGION As Decimal = 0.0
                         Dim ORG_LEVEL As Decimal = 0.0
+                        If IsNumeric(cbUNIT_LEVEL.SelectedValue) Then
+                            objOrgFunction.UNIT_LEVEL = cbUNIT_LEVEL.SelectedValue
+                        End If
+                        If IsDate(rdDATE_BUSINESS.SelectedDate) Then
+                            objOrgFunction.DATE_BUSINESS = rdDATE_BUSINESS.SelectedDate
+                        End If
+                        If IsDate(rdFOUNDATION_DATE.SelectedDate) Then
+                            objOrgFunction.FOUNDATION_DATE = rdFOUNDATION_DATE.SelectedDate
+                        End If
                         If Decimal.TryParse(cboU_insurance.SelectedValue.ToString, ISURANCE) Then
                             objOrgFunction.U_INSURANCE = cboU_insurance.SelectedValue
                         Else
                             objOrgFunction.U_INSURANCE = ISURANCE
                         End If
-
                         If Decimal.TryParse(cboRegion.SelectedValue.ToString, REGION) Then
                             objOrgFunction.REGION_ID = cboRegion.SelectedValue
                         Else
@@ -786,9 +775,8 @@ Public Class ctrlHU_Organization
                     txtNameVN.CausesValidation = False
                     txtCode.CausesValidation = False
                     txtCode.ReadOnly = True
-
-                    'txtRemark.ReadOnly = True
-                    'txtAddress.ReadOnly = True
+                    rtREMARK.ReadOnly = True
+                    rtADDRESS.ReadOnly = True
                     'txtFax.ReadOnly = True
                     'txtMobile.ReadOnly = True
                     'txtProvinceName.ReadOnly = True
@@ -816,17 +804,17 @@ Public Class ctrlHU_Organization
                     txtCode.Text = ""
                     'AutoGenTimeSheet.Checked = False
                     'txtNameVN.Text = ""
-                    'txtRemark.Text = ""
-                    'txtAddress.Text = ""
+                    rtREMARK.Text = ""
+                    rtADDRESS.Text = ""
                     'txtFax.Text = ""
                     'txtMobile.Text = ""
                     'txtProvinceName.Text = ""
                     'cboCostCenterCode.Text = ""
                     txtRepresentativeName.Text = ""
-                    'txtAddress.Text = ""
+                    rtADDRESS.Text = ""
+                    rtREMARK.Text = ""
                     'txtNumber_business.Text = ""
                     cboU_insurance.Text = ""
-                    txtCostCenter.Text = ""
                     cboOrg_level.Text = ""
                     cboRegion.Text = ""
                     'lblChucDanh.Text = ""
@@ -839,11 +827,10 @@ Public Class ctrlHU_Organization
 
                     cbDissolve.Enabled = False
                     treeOrgFunction.Enabled = False
-
                     txtCode.ReadOnly = False
                     txtNameVN.ReadOnly = False
-                    'txtRemark.ReadOnly = False
-                    'txtAddress.ReadOnly = False
+                    rtREMARK.ReadOnly = False
+                    rtADDRESS.ReadOnly = False
                     'txtFax.ReadOnly = False
                     'txtMobile.ReadOnly = False
                     'txtProvinceName.ReadOnly = False
@@ -864,7 +851,6 @@ Public Class ctrlHU_Organization
                     txtCode.ReadOnly = False
                     txtCode.Text = ""
                     txtNameVN.Text = ""
-                    txtCostCenter.Text = ""
                     'txtRemark.Text = ""
                     'rdDissolveDate.SelectedDate = Nothing
                     'rdFoundationDate.SelectedDate = Nothing
@@ -872,7 +858,8 @@ Public Class ctrlHU_Organization
                     hidParentID.Value = ""
                     hidRepresentative.Value = ""
                     txtParent_Name.Text = ""
-                    'txtAddress.Text = ""
+                    rtADDRESS.Text = ""
+                    rtREMARK.Text = ""
                     'txtFax.Text = ""
                     'txtMobile.Text = ""
                     'txtProvinceName.Text = ""
@@ -1061,7 +1048,6 @@ Public Class ctrlHU_Organization
         Dim orgItem As OrganizationDTO
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
         Try
             If treeOrgFunction.SelectedNode Is Nothing Then
                 Exit Sub
@@ -1072,57 +1058,41 @@ Public Class ctrlHU_Organization
                 hidParentID.Value = orgItem.PARENT_ID.ToString
                 txtParent_Name.Text = orgItem.PARENT_NAME
                 txtCode.Text = orgItem.CODE
-                txtCostCenter.Text = orgItem.COST_CENTER_CODE
                 txtNameVN.Text = orgItem.NAME_VN
                 RadTextBox1.Text = orgItem.NAME_EN
                 cboU_insurance.SelectedValue = orgItem.U_INSURANCE
                 cboOrg_level.SelectedValue = orgItem.ORG_LEVEL
                 cboRegion.SelectedValue = orgItem.REGION_ID
                 txtRepresentativeName.Text = orgItem.REPRESENTATIVE_NAME
+                rtNUMBER_BUSINESS.Text = orgItem.NUMBER_BUSINESS
+                If IsDate(orgItem.DATE_BUSINESS) Then
+                    rdDATE_BUSINESS.SelectedDate = orgItem.DATE_BUSINESS
+                End If
+                If IsDate(orgItem.FOUNDATION_DATE) Then
+                    rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE
+                End If
+                rtADDRESS.Text = orgItem.ADDRESS
+                rtREMARK.Text = orgItem.REMARK
                 If orgItem.REPRESENTATIVE_ID IsNot Nothing Then
                     hidRepresentative.Value = orgItem.REPRESENTATIVE_ID
                 End If
+                If IsNumeric(orgItem.UNIT_LEVEL) Then
+                    cbUNIT_LEVEL.SelectedValue = orgItem.UNIT_LEVEL
+                End If
                 DisplayImage(Utilities.ObjToDecima(orgItem.REPRESENTATIVE_ID), Utilities.ObjToString(orgItem.IMAGE))
-                'tr01.Visible = False
-                'tr02.Visible = False
                 If treeOrgFunction.SelectedNode.Level = 1 Then
-                    'tr01.Visible = True
-                    'tr02.Visible = True
-                    ' Lấy logo nếu có
                     Dim logoPath = AppDomain.CurrentDomain.BaseDirectory & "ReportTemplates\Profile\Organization\Logo\"
                     If Not Directory.Exists(logoPath) Then
                         Directory.CreateDirectory(logoPath)
                     End If
                     Dim logo = treeOrgFunction.SelectedNode.Value & "_*"
                     Dim dirs As String() = Directory.GetFiles(logoPath, logo)
-                    'If dirs.Length > 0 Then
-                    '    rbiEmployeeImage.Visible = True
-                    '    Using FileStream = File.Open(dirs(0), FileMode.Open)
-                    '        Dim fileContent As Byte() = New Byte(FileStream.Length) {}
-                    '        Using ms As New MemoryStream
-                    '            FileStream.CopyTo(ms)
-                    '            fileContent = ms.ToArray
-                    '        End Using
-                    '        rbiEmployeeImage.DataValue = fileContent
-                    '        rbiEmployeeImage.DataBind()
-                    '    End Using
-                    'Else
-                    '    rbiEmployeeImage.Visible = False
-                    'End If
-
-                    ' Lấy file đính kèm
                     Dim licensePath = AppDomain.CurrentDomain.BaseDirectory & "ReportTemplates\Profile\Organization\License\"
                     If Not Directory.Exists(licensePath) Then
                         Directory.CreateDirectory(licensePath)
                     End If
                     Dim license = treeOrgFunction.SelectedNode.Value & "_*"
                     dirs = Directory.GetFiles(logoPath, license)
-                    'If dirs.Length > 0 Then
-                    '    btnDownFile.Visible = True
-                    'Else
-                    '    btnDownFile.Visible = False
-                    'End If
-
                 End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

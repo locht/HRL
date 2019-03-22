@@ -580,6 +580,16 @@ Public Class ProfileRepository
     ''' 
     Public Function GetComboList(ByRef _combolistDTO As ComboBoxDataDTO) As Boolean
         Dim query
+        If _combolistDTO.GET_UNIT_LEVEL Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "UNIT_LEVEL")
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_UNIT_LEVEL = query
+        End If
 
         If _combolistDTO.GET_REASON Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
@@ -591,6 +601,8 @@ Public Class ProfileRepository
                         .NAME_EN = p.NAME_EN}).ToList
             _combolistDTO.LIST_REASON = query
         End If
+
+
 
         'Loại NGHĨ
         'list ALLOWANCE

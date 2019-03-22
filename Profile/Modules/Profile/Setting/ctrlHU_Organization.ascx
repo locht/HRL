@@ -74,18 +74,18 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Tên đơn vị (EN)")%><span class="lbReq">*</span>
+                    <%# Translate("Tên đơn vị (EN)")%><span class="lbReq"></span>
                 </td>
                 <td colspan="3">
                     <tlk:radtextbox id="RadTextBox1" runat="server" width="100%">
                     </tlk:radtextbox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtNameVN"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Tên đơn vị %>" ToolTip="<%$ Translate: Bạn phải nhập Tên đơn vị %>"></asp:RequiredFieldValidator>
+                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtNameVN"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Tên đơn vị %>" ToolTip="<%$ Translate: Bạn phải nhập Tên đơn vị %>"></asp:RequiredFieldValidator>--%>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Quản lý đơn vị")%><span class="lbReq">*</span>
+                    <%# Translate("Quản lý đơn vị")%><span class="lbReq"></span>
                 </td>
                 <td>
                     <tlk:radtextbox id="txtRepresentativeName" runat="server" width="130px" readonly="True">
@@ -95,11 +95,11 @@
                     </tlk:radbutton>
                 </td>
                 <td class="lb">
-                    <%# Translate("CostCenter")%>
+                    <%# Translate("Bậc đơn vị")%>
                 </td>
-                <td>
-                    <tlk:radtextbox id="txtCostCenter" runat="server" width="130px">
-                    </tlk:radtextbox>
+                <td colspan ="3">
+                    <tlk:RadComboBox  id="cbUNIT_LEVEL" runat="server" width="100%">
+                    </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>
@@ -109,17 +109,17 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Mã đơn vị")%><span class="lbReq">*</span>
+                    <%# Translate("Mã đơn vị")%><span class="lbReq"></span>
                 </td>
                 <td>
                     <tlk:radtextbox id="txtCode" runat="server" skinid="Textbox50">
                     </tlk:radtextbox>
-                    <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
+                   <%-- <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập Mã đơn vị %>" ToolTip="<%$ Translate: Bạn phải nhập Mã đơn vị %>">
-                    </asp:RequiredFieldValidator>
+                    </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb">
-                    <%# Translate("Cấp phòng ban")%><span class="lbReq">*</span>
+                    <%# Translate("Cấp phòng ban")%><span class="lbReq"></span>
                 </td>
                 <td colspan="3">
                     <tlk:radcombobox id="cboOrg_level" runat="server">
@@ -131,7 +131,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Vùng")%><span class="lbReq">*</span>
+                    <%# Translate("Vùng")%><span class="lbReq"></span>
                 </td>
                 <td>
                     <tlk:radcombobox id="cboRegion" runat="server">
@@ -141,7 +141,7 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Đơn vị đóng bảo hiểm")%><span class="lbReq">*</span>
+                    <%# Translate("Đơn vị đóng bảo hiểm")%><span class="lbReq"></span>
                 </td>
                 <td colspan="3">
                     <tlk:radcombobox id="cboU_insurance" runat="server">
@@ -150,6 +150,50 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập đơn vị đóng bảo hiểm %>"
                         ToolTip="<%$ Translate: Bạn phải nhập đơn vị đóng bảo hiểm %>">
                     </asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Giấy phép ĐKKD (Mã số thuế)")%><span class="lbReq"></span>
+                </td>
+                <td>
+                    <tlk:radtextbox id="rtNUMBER_BUSINESS" runat="server" skinid="Textbox50">
+                    </tlk:radtextbox>
+                </td>
+                <td class="lb">
+                    <%# Translate("Ngày cấp giấy phép ĐKKD")%>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdDATE_BUSINESS" runat="server">
+                    </tlk:RadDatePicker>
+                </td>
+            </tr>
+            <tr>
+                 <td class="lb">
+                    <%# Translate("	Ngày thành lập")%>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdFOUNDATION_DATE" runat="server">
+                    </tlk:RadDatePicker>
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("	Địa chỉ")%><span class="lbReq"></span>
+                </td>
+                <td colspan="3">
+                    <tlk:radtextbox id="rtADDRESS" runat="server" skinid="Textbox9999"  width="100%">
+                    </tlk:radtextbox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Ghi chú")%><span class="lbReq"></span>
+                </td>
+                <td colspan="4">
+                    <tlk:radtextbox id="rtREMARK" runat="server" skinid="Textbox9999"  width="100%">
+                    </tlk:radtextbox>
                 </td>
             </tr>
         </table>

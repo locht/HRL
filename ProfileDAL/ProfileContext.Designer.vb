@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("11433c92-52c0-4efc-8f24-b69f3910253e")>
+<Assembly: EdmSchemaAttribute("695d715f-dff9-4cf5-862d-21de5c1afcdf")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -34018,6 +34018,31 @@ Public Partial Class HU_ORGANIZATION
     End Sub
 
     Private Partial Sub OnORG_LEVELChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property UNIT_LEVEL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _UNIT_LEVEL
+        End Get
+        Set
+            OnUNIT_LEVELChanging(value)
+            ReportPropertyChanging("UNIT_LEVEL")
+            _UNIT_LEVEL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("UNIT_LEVEL")
+            OnUNIT_LEVELChanged()
+        End Set
+    End Property
+
+    Private _UNIT_LEVEL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnUNIT_LEVELChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnUNIT_LEVELChanged()
     End Sub
 
     #End Region
