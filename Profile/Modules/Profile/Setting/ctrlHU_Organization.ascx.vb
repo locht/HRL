@@ -228,7 +228,7 @@ Public Class ctrlHU_Organization
             Dim UNIT_LEVEL As New ComboBoxDataDTO
             UNIT_LEVEL.GET_UNIT_LEVEL = True
             Dim isUnitlevel = rep.GetComboList(UNIT_LEVEL)
-            If Not isUnitlevel Then
+            If isUnitlevel Then
                 FillRadCombobox(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -786,11 +786,7 @@ Public Class ctrlHU_Organization
                     cboU_insurance.Enabled = False
                     cboOrg_level.Enabled = False
                     cboRegion.Enabled = False
-                    'EnableRadDatePicker(rdDate_Business, False)
-
-                    'EnableRadDatePicker(rdDissolveDate, False)
-                    'EnableRadDatePicker(rdFoundationDate, False)
-
+                    cbUNIT_LEVEL.Enabled = False
                     treeOrgFunction.Enabled = True
                     cbDissolve.Enabled = True
                     btnFindRepresentative.Enabled = False
@@ -841,6 +837,7 @@ Public Class ctrlHU_Organization
                     cboU_insurance.Enabled = True
                     cboOrg_level.Enabled = True
                     cboRegion.Enabled = True
+                    cbUNIT_LEVEL.Enabled = True
                     'EnableRadDatePicker(rdDate_Business, True)
                     'AutoGenTimeSheet.Enabled = False
                     'EnableRadDatePicker(rdDissolveDate, True)
