@@ -1,5 +1,0 @@
-impdp system/hrm@hrms content=all dumpfile=bsr.DUMP 
-
-http://www.oracle.com/technetwork/topics/dotnet/utilsoft-086879.html
-http://www.microsoft.com/en-us/download/details.aspx?id=17718 
-http://www.microsoft.com/en-us/download/details.aspx?id=6442 
