@@ -155,12 +155,11 @@ Public Class ctrlSkinAppConfig
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim lineGroup As String = ""
         Dim ckChange As Decimal = 0
         Dim strFilepath = Server.MapPath("\App_Data\RadUploadTemp\")
         Dim strFileSave = Server.MapPath("\Static\Images\")
-        Dim FilePath As String = Server.MapPath("~\Styles\Config.jquery.css")
-        Dim objW As New System.IO.StreamWriter(FilePath)
+        
+        
         Dim directory As New System.IO.DirectoryInfo(strFilepath)
         Dim File As System.IO.FileInfo() = directory.GetFiles()
         Dim FilePart As System.IO.FileInfo
@@ -172,7 +171,12 @@ Public Class ctrlSkinAppConfig
                     ColorMenu = "#" + ColorMenu
                     Dim line As String = ".mlddm li a:hover, .mlddm li a#buttonhover, .mlddm li a.selected {background: " + ColorMenu + ";}" + vbCrLf
                     Dim line2 As String = ".mlddm ul li a:hover {background-color: " + ColorMenu + ";}" + vbCrLf
-                    lineGroup += line + line2
+                    Dim FilePathColor As String = Server.MapPath("~\Styles\Config.jquery.css")
+                    Dim objColor As New System.IO.StreamWriter(FilePathColor)
+                    Dim lineGroup As String
+                    lineGroup = line + line2
+                    objColor.Write(lineGroup)
+                    objColor.Close()
                     ckChange = 1
                 End If
 
@@ -198,19 +202,20 @@ Public Class ctrlSkinAppConfig
                     Next
                     Dim rowCk = (From dr As DataRow In dt.AsEnumerable Order By dr("CreationTime") Descending).First
                     If rowCk IsNot Nothing Then
+                        Dim FilePathImg As String = Server.MapPath("~\Styles\ImgConfig.jquery.css")
+                        Dim objImg As New System.IO.StreamWriter(FilePathImg)
                         My.Computer.FileSystem.MoveFile(strFilepath + rowCk(0).ToString, strFileSave + rowCk(0).ToString)
                         Dim strBackground_Img As String = ".mlddm {background-image: url(""" + "/Static/Images/" + rowCk(0).ToString + """);}" + vbCrLf
-                        lineGroup += strBackground_Img
+                        Dim lineGroup As String
+                        lineGroup = strBackground_Img
+                        objImg.Write(lineGroup)
+                        objImg.Close()
                     End If
                     ckChange = 1
                 End If
 
                 'Check to change
                 If ckChange <> 0 Then
-                    If lineGroup <> "" Then
-                        objW.Write(lineGroup)
-                        objW.Close()
-                    End If
                     Page.Response.Redirect("Default.aspx?mid=Dashboard&fid=ctrlDashboard", False)
                     Exit Sub
                 Else
