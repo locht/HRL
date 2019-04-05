@@ -316,34 +316,65 @@ Public Class CommonView
         Using rep = New CommonRepository
             vcf.ReadXml(New IO.StringReader(rep.GetConfigView(Me.ID).Rows(0)("config_data").ToString()))
         End Using
-        Dim dtCtrl As DataTable = vcf.Tables("control")
-        For Each row As DataRow In dtCtrl.Rows
-            Dim myCtrl As Control = rp.FindControl(row.Field(Of String)("Ctl_ID").Trim())
-            If myCtrl IsNot Nothing Then
-                Dim myValidator As BaseValidator = rp.FindControl(row.Field(Of String)("Validator_ID").Trim())
-                Dim myLabel As Label = rp.FindControl(row.Field(Of String)("Label_ID").Trim())
-                If Boolean.Parse(row("Is_Visible").ToString()) = True Then '--==True: hide
-                    myCtrl.Visible = False
-                    myLabel.Visible = False
-                    If myValidator IsNot Nothing Then
-                        myValidator.Enabled = False '--==False: Inactive validator
+        Try
+            If vcf IsNot Nothing AndAlso vcf.Tables("control") IsNot Nothing Then
+                Dim dtCtrl As DataTable = vcf.Tables("control")
+                For Each ctrs As Control In rp.Controls
+                    Dim row As DataRow
+                    Try
+                        row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                    Catch ex As Exception
+                        Continue For
+                    End Try
+                    If row IsNot Nothing Then
+                        ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                        Try
+                            Dim validator As BaseValidator = rp.FindControl(row.Field(Of String)("Validator_ID").Trim())
+                            Dim labelCtr As Label = rp.FindControl(row.Field(Of String)("Label_ID").Trim())
+                            If labelCtr IsNot Nothing Then
+                                labelCtr.Visible = ctrs.Visible
+                                labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, row("Label_text"))
+                            End If
+                            If validator IsNot Nothing Then
+                                validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                            End If
+                        Catch ex As Exception
+                            Continue For
+                        End Try
                     End If
-                Else
-                    If myValidator IsNot Nothing Then
-                        If Boolean.Parse(row("Is_Validator").ToString()) = True Then '--True: require
-                            myValidator.Enabled = True '--==True: Active validator
-                            myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim()) + "<span class='lbReq'>*</span>"
-                            myValidator.ErrorMessage = Translate(row.Field(Of String)("ErrorMessage").Trim())
-                            myValidator.ToolTip = Translate(row.Field(Of String)("ErrorToolTip").Trim())
-                        Else
-                            myValidator.Enabled = False '--==False: Inactive validator
-                            myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim())
-                        End If
-                    End If
-                End If
+                Next
             End If
-        Next
+        Catch ex As Exception
+        End Try
 
+        'For Each row As DataRow In dtCtrl.Rows
+        '    Dim myCtrl As Control = rp.FindControl(row.Field(Of String)("Ctl_ID").Trim())
+        '    If myCtrl IsNot Nothing Then
+        '        Dim myValidator As BaseValidator = rp.FindControl(row.Field(Of String)("Validator_ID").Trim())
+        '        Dim myLabel As Label = rp.FindControl(row.Field(Of String)("Label_ID").Trim())
+        '        If Boolean.Parse(row("Is_Visible").ToString()) = True Then '--==True: hide
+        '            myCtrl.Visible = False
+        '            myLabel.Visible = False
+        '            If myValidator IsNot Nothing Then
+        '                myValidator.Enabled = False '--==False: Inactive validator
+        '            End If
+        '        Else
+        '            If myValidator IsNot Nothing Then
+        '                If Boolean.Parse(row("Is_Validator").ToString()) = True Then '--True: require
+        '                    myValidator.Enabled = True '--==True: Active validator
+        '                    myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim()) + "<span class='lbReq'>*</span>"
+        '                    myValidator.ErrorMessage = Translate(row.Field(Of String)("ErrorMessage").Trim())
+        '                    myValidator.ToolTip = Translate(row.Field(Of String)("ErrorToolTip").Trim())
+        '                Else
+        '                    myValidator.Enabled = False '--==False: Inactive validator
+        '                    myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim())
+        '                End If
+        '            End If
+        '        End If
+        '    End If
+        'Next
     End Sub
     Public Sub GirdConfig(ByVal rg As RadGrid)
         Dim dtGrid As DataTable = vcf.Tables("girdColumm")
@@ -355,26 +386,32 @@ Public Class CommonView
         Dim rCol As GridBoundColumn
         rg.MasterTableView.Columns.Clear()
         For Each row As DataRow In dtGrid.Rows
-            rCol = New GridBoundColumn()
-            rg.MasterTableView.Columns.Add(rCol)
-            rCol.DataField = row.Field(Of String)("ID").Trim()
-            rCol.HeaderText = Translate(row.Field(Of String)("Name").Trim())
-            rCol.HeaderStyle.Width = row.Field(Of String)("Width").Trim()
-            rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
-            rCol.AllowFiltering = True
-            rCol.AllowSorting = True
-            rCol.AutoPostBackOnFilter = True
-            rCol.CurrentFilterFunction = GridKnownFunction.Contains
-            rCol.ShowFilterIcon = False
-            rCol.FilterControlWidth = row.Field(Of String)("Width").Trim()
-            rCol.HeaderTooltip = Translate(row.Field(Of String)("Name").Trim())
-            rCol.FilterControlToolTip = Translate(row.Field(Of String)("Name").Trim())
-            rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
-            If row.Field(Of String)("DataType").Trim() = "DateTime" Then
-                rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
-            ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
-                rCol.DataFormatString = "{0:#,##0.##}"
-            End If
+            Try
+                rCol = New GridBoundColumn()
+                rg.MasterTableView.Columns.Add(rCol)
+                rCol.DataField = row.Field(Of String)("ID").Trim()
+                rCol.HeaderText = Translate(row.Field(Of String)("Name").Trim())
+                If IsNumeric(row("Width").ToString()) Then
+                    rCol.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
+                    rCol.FilterControlWidth = Integer.Parse(row("Width").ToString())
+                End If
+                rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                rCol.AllowFiltering = True
+                rCol.AllowSorting = True
+                rCol.AutoPostBackOnFilter = True
+                rCol.CurrentFilterFunction = GridKnownFunction.Contains
+                rCol.ShowFilterIcon = False
+                rCol.HeaderTooltip = (row.Field(Of String)("Name").Trim())
+                rCol.FilterControlToolTip = (row.Field(Of String)("Name").Trim())
+                rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
+                If row.Field(Of String)("DataType").Trim() = "DateTime" Then
+                    rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
+                ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
+                    rCol.DataFormatString = "{0:#,##0.##}"
+                End If
+            Catch ex As Exception
+                Continue For
+            End Try
         Next
     End Sub
 #End Region
