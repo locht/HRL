@@ -25,6 +25,7 @@
             <tlk:StyleSheetReference Path="~/Styles/RadWindow.css" />
             <tlk:StyleSheetReference Path="~/Styles/font-awesome.css" />
             <tlk:StyleSheetReference Path="~/Styles/Config.jquery.css" />
+            <tlk:StyleSheetReference Path="~/Styles/ImgConfig.jquery.css" />
         </StyleSheets>
     </tlk:RadStyleSheetManager>
     <tlk:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackTimeout="360000">
