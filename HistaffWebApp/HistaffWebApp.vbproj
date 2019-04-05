@@ -624,6 +624,7 @@
     <Content Include="Modules\Profile\List\ctrlHU_Place.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Province.ascx" />
     <Content Include="Modules\Profile\Setting\ctrlRemindConfig.ascx" />
+    <Content Include="Modules\Common\Secure\ctrlSkinAppConfig.ascx" />
     <Content Include="Modules\Profile\Setting\ctrlWelfare.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlEmpBasicInfo.ascx" />
     <Content Include="Modules\Profile\Shared\ctrlFindAssetPopup.ascx" />
@@ -1245,6 +1246,7 @@
     <Content Include="Static\Images\arrow_up.png" />
     <Content Include="Static\Images\back.png" />
     <Content Include="Static\Images\backHov.png" />
+    <Content Include="Static\Images\Banner-header.jpg" />
     <Content Include="Static\Images\banner.png" />
     <Content Include="Static\Images\bg_user.png" />
     <Content Include="Static\Images\change_password.jpg" />
@@ -1360,6 +1362,7 @@
     <Content Include="Static\Images\Quicklaunch\user.png" />
     <Content Include="Static\Images\Quicklaunch\working.png" />
     <Content Include="Static\Images\Quicklaunch\workingplan.png" />
+    <Content Include="Static\Images\skinList.png" />
     <Content Include="Static\Images\sperator.png" />
     <Content Include="Static\Images\title_bar.png" />
     <Content Include="Static\Images\Toolbar\add.png" />
@@ -1392,6 +1395,7 @@
     <Content Include="Static\Images\Validate\WarningHeader.gif" />
     <Content Include="Static\logo_default.png" />
     <Content Include="Styles\about.css" />
+    <Content Include="Styles\Config.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
     <Content Include="Styles\img\icon.png" />
