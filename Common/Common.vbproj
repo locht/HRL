@@ -159,6 +159,7 @@
     <Content Include="Modules\Common\Secure\ctrlControlsNewEdit.ascx" />
     <Content Include="Modules\Common\Secure\ctrlProGramParameters.ascx" />
     <Content Include="Modules\Common\Secure\ctrlPrograms.ascx" />
+    <Content Include="Modules\Common\Secure\ctrlSkinAppConfig.ascx" />
     <Content Include="Modules\Common\Secure\ctrlUserFunction.ascx" />
     <Content Include="Modules\Common\Secure\ctrlUserFunctionAddEdit.ascx" />
     <Content Include="Modules\Common\Secure\ctrlUserOrganization.ascx" />
@@ -603,6 +604,13 @@
     </Compile>
     <Compile Include="Modules\Common\Secure\ctrlPrograms.ascx.vb">
       <DependentUpon>ctrlPrograms.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Common\Secure\ctrlSkinAppConfig.ascx.designer.vb">
+      <DependentUpon>ctrlSkinAppConfig.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Secure\ctrlSkinAppConfig.ascx.vb">
+      <DependentUpon>ctrlSkinAppConfig.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Common\Secure\ctrlUserFunction.ascx.designer.vb">

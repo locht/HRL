@@ -5,6 +5,7 @@
     visibility: hidden;
     color: #000;
     font: 13px Arial, "Segoe UI", Verdana, Tahoma, Times !important;
+    background-image: url("/Static/Images/Header.jpg");
 }
 
     .mlddm li {
@@ -13,7 +14,6 @@
         list-style: none outside none;
         margin: 0;
         padding: 0;
-
     }
 
         .mlddm li a, .mlddm li a#buttonnohover {
@@ -28,7 +28,7 @@
         }
 
             .mlddm li a:hover, .mlddm li a#buttonhover, .mlddm li a.selected {
-                background: #2c3f6a;
+                background: #0ba522;
                 color: #fff;
                 height:30px;
                 transition: 0.03s;
@@ -83,7 +83,7 @@
             }
 
                 .mlddm ul li a:hover {
-                    background-color: #3b5998;
+                    background-color: #0ba522;
                     background-repeat: repeat-x;
                     background-position: 0 -95px;
                     background-image: none;

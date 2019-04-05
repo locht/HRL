@@ -15,7 +15,8 @@
         <Item Value="ctrlSE_LdapConfiguration" Text="Quản lý cấu hình Ldap" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlSE_LdapConfiguration&amp;group=Secure" CheckPermission="true"/>
         <Item Value="ctrlSE_Configuration" Text="Quản lý cấu hình chung" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlSE_Configuration&amp;group=Secure" CheckPermission="true"/>
         <Item Value="ctrlLanguageManagement" Text="Quản lý ngôn ngữ" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlLanguageManagement" CheckPermission="true"/>
-        </Group>
+        
+      </Group>
     </Item>
     <Item Text="Định nghĩa" PostBack="True">
       <Group>
@@ -32,6 +33,7 @@
         <Item Value="ctrlApproveSetupOrg" Text="Thiết lập Phê duyệt cho Phòng ban" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlApproveSetupOrg&amp;group=ApproveProcess" CheckPermission="true"/>
         <Item Value="ctrlApproveSetupEmp" Text="Thiết lập Phê duyệt cho Nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlApproveSetupEmp&amp;group=ApproveProcess" CheckPermission="true"/>
         <Item Value="ctrlApproveSetupExt" Text="Thiết lập Phê duyệt thay thế" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlApproveSetupExt&amp;group=ApproveProcess" CheckPermission="true"/>
+        <Item Value="ctrlSkinAppConfig" Text="Thiết lập Skin" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlSkinAppConfig&amp;group=Secure" CheckPermission="true"/>
       </Group>
     </Item>
     <Item Value="ctrlREPORT" Text="Xử lý báo cáo" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlREPORT" CheckPermission="true" />
