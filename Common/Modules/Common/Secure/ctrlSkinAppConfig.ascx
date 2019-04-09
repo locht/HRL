@@ -49,7 +49,7 @@
         <table class="table-form" align="center">
             <tr>
                 <td class="lb">
-                    <img src="~/Static/Images/skinList.png" runat="server" id="imgShow" />
+                    <img src="~/Static/Images/skinList1.png" runat="server" id="imgShow" />
                 </td>
             </tr>
         </table>
