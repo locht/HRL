@@ -85,36 +85,13 @@ Public Class ctrlSkinAppConfig
     ''' <remarks></remarks>
     Public Overrides Sub BindData()
         Try
-            Dim lstName As New List(Of String)
-            lstName.Add("Black")
-            lstName.Add("BlackMetroTouch")
-            lstName.Add("Bootstrap")
-            lstName.Add("Default")
-            lstName.Add("Glow")
-            lstName.Add("Material")
-            lstName.Add("Metro")
-            lstName.Add("MetroTouch")
-            lstName.Add("Office2007")
-            lstName.Add("Office2010Black")
-            lstName.Add("Office2010Blue")
-            lstName.Add("Office2010Silver")
-            lstName.Add("Outlook")
-            lstName.Add("Silk")
-            lstName.Add("Simple")
-            lstName.Add("Sunset")
-            lstName.Add("Telerik")
-            lstName.Add("Vista")
-            lstName.Add("Web20")
-            lstName.Add("WebBlue")
-            lstName.Add("Windows7")
-
+            Dim lstSkin As List(Of String) = Telerik.Web.SkinRegistrar.GetEmbeddedSkinNames(GetType(RadGrid))
             Dim dt As New DataTable
             dt.Columns.Add("ID", GetType(String))
 
-
-            For i As Integer = 0 To lstName.Count - 1
+            For i As Integer = 0 To lstSkin.Count - 1
                 Dim row As DataRow = dt.NewRow
-                row("ID") = lstName(i).ToString
+                row("ID") = lstSkin(i).ToString
                 dt.Rows.Add(row)
             Next
 
