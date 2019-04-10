@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class ctrlHU_ContractNewEdit
-    
+
     '''<summary>
     '''hidID control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidOrgCode control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidOrgCode As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidWorkingID control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidWorkingID As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidWorkStatus control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidWorkStatus As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidEmployeeID control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidEmployeeID As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidSign control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidSign As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hidPeriod control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hidPeriod As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''RadSplitter1 control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
-    
+
     '''<summary>
     '''RadPane1 control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
-    
+
     '''<summary>
     '''tbarContract control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbarContract As Global.Telerik.Web.UI.RadToolBar
-    
+
     '''<summary>
     '''LeftPane control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
-    
+
     '''<summary>
     '''valSum control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
-    
+
     '''<summary>
     '''txtEmployeeCode control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmployeeCode As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''btnEmployee control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnEmployee As Global.Telerik.Web.UI.RadButton
-    
+
     '''<summary>
     '''reqEmployeeCode control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqEmployeeCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''txtEmployeeName control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmployeeName As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''txtTITLE control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtTITLE As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''txtOrg_Name control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtOrg_Name As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''cboContractType control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboContractType As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''cusContractType control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusContractType As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''cusvalContractType control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusvalContractType As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''txtContractNo control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtContractNo As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''rdStartDate control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdStartDate As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''reqStartDate control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqStartDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''CompareStartDate control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareStartDate As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''rdExpireDate control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdExpireDate As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''CompareValidator2 control.
     '''</summary>
@@ -255,7 +255,34 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
-    
+
+    '''<summary>
+    '''rtAttachFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtAttachFile As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''rbtSQLLoaderDownload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rbtSQLLoaderDownload As Global.Telerik.Web.UI.RadButton
+
     '''<summary>
     '''cboStatus control.
     '''</summary>
@@ -264,7 +291,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''cusStatus control.
     '''</summary>
@@ -273,7 +300,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusStatus As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''cusvalStatus control.
     '''</summary>
@@ -282,7 +309,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusvalStatus As Global.System.Web.UI.WebControls.CustomValidator
-    
+
     '''<summary>
     '''txtSigner control.
     '''</summary>
@@ -291,7 +318,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSigner As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''btnSigner control.
     '''</summary>
@@ -300,7 +327,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSigner As Global.Telerik.Web.UI.RadButton
-    
+
     '''<summary>
     '''txtSignTitle control.
     '''</summary>
@@ -309,7 +336,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSignTitle As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''rdSignDate control.
     '''</summary>
@@ -318,7 +345,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdSignDate As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''txtRemark control.
     '''</summary>
@@ -327,7 +354,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''Working_ID control.
     '''</summary>
@@ -336,7 +363,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Working_ID As Global.Telerik.Web.UI.RadTextBox
-    
+
     '''<summary>
     '''btnSalary control.
     '''</summary>
@@ -345,7 +372,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSalary As Global.Telerik.Web.UI.RadButton
-    
+
     '''<summary>
     '''cboSalTYPE control.
     '''</summary>
@@ -354,7 +381,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboSalTYPE As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''cboTaxTable control.
     '''</summary>
@@ -363,7 +390,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboTaxTable As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''rntxtBasicSal control.
     '''</summary>
@@ -372,7 +399,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtBasicSal As Global.Telerik.Web.UI.RadNumericTextBox
-    
+
     '''<summary>
     '''SalaryInsurance control.
     '''</summary>
@@ -381,7 +408,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SalaryInsurance As Global.Telerik.Web.UI.RadNumericTextBox
-    
+
     '''<summary>
     '''Allowance_Total control.
     '''</summary>
@@ -390,7 +417,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Allowance_Total As Global.Telerik.Web.UI.RadNumericTextBox
-    
+
     '''<summary>
     '''Salary_Total control.
     '''</summary>
@@ -399,7 +426,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Salary_Total As Global.Telerik.Web.UI.RadNumericTextBox
-    
+
     '''<summary>
     '''rgAllow control.
     '''</summary>
@@ -408,7 +435,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgAllow As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''ctrlMessageBox control.
     '''</summary>
@@ -417,7 +444,16 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
-    
+
+    '''<summary>
+    '''ctrlUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
+
     '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
@@ -426,7 +462,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
-    
+
     '''<summary>
     '''FindEmployee control.
     '''</summary>
@@ -435,7 +471,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FindEmployee As Global.System.Web.UI.WebControls.PlaceHolder
-    
+
     '''<summary>
     '''FindSigner control.
     '''</summary>
@@ -444,7 +480,7 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FindSigner As Global.System.Web.UI.WebControls.PlaceHolder
-    
+
     '''<summary>
     '''FindSalary control.
     '''</summary>

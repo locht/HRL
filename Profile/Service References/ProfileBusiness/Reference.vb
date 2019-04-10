@@ -2713,6 +2713,9 @@ Namespace ProfileBusiness
         Private IS_TERField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ListAttachFilesField As System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3047,6 +3050,19 @@ Namespace ProfileBusiness
                 If (Me.IS_TERField.Equals(value) <> true) Then
                     Me.IS_TERField = value
                     Me.RaisePropertyChanged("IS_TER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ListAttachFiles() As System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO)
+            Get
+                Return Me.ListAttachFilesField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ListAttachFilesField, value) <> true) Then
+                    Me.ListAttachFilesField = value
+                    Me.RaisePropertyChanged("ListAttachFiles")
                 End If
             End Set
         End Property
@@ -4890,6 +4906,133 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.lstAllowanceField, value) <> true) Then
                     Me.lstAllowanceField = value
                     Me.RaisePropertyChanged("lstAllowance")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AttachFilesDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AttachFilesDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ATTACHFILE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTROL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_PATHField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_TYPEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FK_IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ATTACHFILE_NAME() As String
+            Get
+                Return Me.ATTACHFILE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ATTACHFILE_NAMEField, value) <> true) Then
+                    Me.ATTACHFILE_NAMEField = value
+                    Me.RaisePropertyChanged("ATTACHFILE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTROL_NAME() As String
+            Get
+                Return Me.CONTROL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTROL_NAMEField, value) <> true) Then
+                    Me.CONTROL_NAMEField = value
+                    Me.RaisePropertyChanged("CONTROL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_PATH() As String
+            Get
+                Return Me.FILE_PATHField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_PATHField, value) <> true) Then
+                    Me.FILE_PATHField = value
+                    Me.RaisePropertyChanged("FILE_PATH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_TYPE() As String
+            Get
+                Return Me.FILE_TYPEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_TYPEField, value) <> true) Then
+                    Me.FILE_TYPEField = value
+                    Me.RaisePropertyChanged("FILE_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FK_ID() As Decimal
+            Get
+                Return Me.FK_IDField
+            End Get
+            Set
+                If (Me.FK_IDField.Equals(value) <> true) Then
+                    Me.FK_IDField = value
+                    Me.RaisePropertyChanged("FK_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
                 End If
             End Set
         End Property
@@ -36688,6 +36831,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _
@@ -36873,6 +37018,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractTypeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ContractDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ContractDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AttachFilesDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendDTO))),  _

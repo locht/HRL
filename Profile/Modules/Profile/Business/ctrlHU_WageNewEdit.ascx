@@ -378,7 +378,7 @@
                                 </div>
                             </CommandItemTemplate>
                             <Columns>
-                                <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                               <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên phụ cấp %>" DataField="ALLOWANCE_LIST_NAME"
@@ -396,7 +396,7 @@
                                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURRANCE"
                                     SortExpression="IS_INSURRANCE" UniqueName="IS_INSURRANCE" HeaderStyle-Width="100px">
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </tlk:GridCheckBoxColumn>
+                                </tlk:GridCheckBoxColumn>--%>
                             </Columns>
                         </MasterTableView>
                     </tlk:RadGrid>

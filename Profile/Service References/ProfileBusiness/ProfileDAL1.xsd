@@ -229,6 +229,7 @@
       <xs:element minOccurs="0" name="FROM_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="IS_TER" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ListAttachFiles" nillable="true" type="tns:ArrayOfAttachFilesDTO" />
       <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
@@ -268,6 +269,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ContractDTO" nillable="true" type="tns:ContractDTO" />
+  <xs:complexType name="ArrayOfAttachFilesDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttachFilesDTO" nillable="true" type="tns:AttachFilesDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttachFilesDTO" nillable="true" type="tns:ArrayOfAttachFilesDTO" />
+  <xs:complexType name="AttachFilesDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ATTACHFILE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTROL_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FILE_PATH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FILE_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FK_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttachFilesDTO" nillable="true" type="tns:AttachFilesDTO" />
   <xs:complexType name="WorkingDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ALLOWANCE_TOTAL" nillable="true" type="xs:decimal" />

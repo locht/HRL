@@ -120,6 +120,22 @@
                 </td>
             </tr>
             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <tlk:RadTextBox ID="rtAttachFile" runat="server" Width="300px" MaxLength="200" Height="22" />
+                </td>
+                <td class="lb" style="text-align:left">
+                    <tlk:RadButton EnableEmbeddedSkins="false" ID="btnUpload" runat="server" CausesValidation="false" Text="<%$ Translate: CM_CTRLPROGRAMS_BROWSER %>">
+                    </tlk:RadButton>
+                    <tlk:RadButton EnableEmbeddedSkins="false" ID="rbtSQLLoaderDownload" runat="server"
+                        CausesValidation="false" OnClientClicked="rbtClicked" Text="<%$ Translate: CM_CTRLPROGRAMS_SQLLOADER_DOWNLOAD %>">
+                    </tlk:RadButton>
+                </td>
+            </tr>
+            <tr>
                 <td class="lb">
                     <%# Translate("Trạng thái")%><span class="lbReq">*</span>
                 </td>
@@ -318,6 +334,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript" language="javascript">
 
@@ -363,6 +380,9 @@
         function cusSalType(oSrc, args) {
             var cbo = $find("<%# cboSalTYPE.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
+        }
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
         }
     </script>
 </tlk:RadCodeBlock>
