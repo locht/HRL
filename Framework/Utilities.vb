@@ -562,6 +562,13 @@ Public Class Utilities
         End Get
     End Property
 
+    Public Shared ReadOnly Property PathControlAttachFolder As String
+        Get
+            Dim path As Object = ConfigurationManager.AppSettings("PathControlAttachFolder")
+            Return If(path IsNot Nothing, path, "")
+        End Get
+    End Property
+
     Public Shared ReadOnly Property PathTemplateInFolder As String
         Get
             Dim path As Object = ConfigurationManager.AppSettings("PathTemplateInFolder")

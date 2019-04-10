@@ -562,25 +562,26 @@ Public Class ctrlPA_TaxationList
 
     End Sub
 
-    '    Private Sub cvalCode_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalCode.ServerValidate
-    '        Dim rep As New ProfileRepository
-    '        Dim _validate As New CostCenterDTO
-    '        Try
-    '            If CurrentState = CommonMessage.STATE_EDIT Then
-    '                _validate.ID = rgCostCenter.SelectedValue
-    '                _validate.CODE = txtCode.Text.Trim
-    '                args.IsValid = rep.ValidateCostCenter(_validate)
-    '            Else
-    '                _validate.CODE = txtCode.Text.Trim
-    '                args.IsValid = rep.ValidateCostCenter(_validate)
-    '            End If
-
-    '        Catch ex As Exception
-    '            DisplayException(Me.ViewName, Me.ID, ex)
-    '        End Try
-    '    End Sub
-
-    '#End Region
 #End Region
 
+    Private Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgData.SelectedIndexChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            If rgData.SelectedItems.Count > 0 Then
+                Dim slItem As GridDataItem
+                slItem = rgData.SelectedItems(0)
+                hidID.Value = slItem("ID").Text
+                rnmValueFrom.Value = slItem.GetDataKeyValue("VALUE_FROM").ToString
+                rnmValueTo.Value = slItem.GetDataKeyValue("VALUE_TO").ToString
+                rnmRate.Value = slItem.GetDataKeyValue("RATE").ToString
+                rnmExceptFast.Value = slItem.GetDataKeyValue("EXCEPT_FAST").ToString
+                rdpEffectDate.SelectedDate = slItem.GetDataKeyValue("FROM_DATE")
+                rtxtDesc.Text = If(slItem.GetDataKeyValue("SDESC") IsNot Nothing, slItem.GetDataKeyValue("SDESC").Text, "")
+            End If
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 End Class
