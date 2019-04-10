@@ -312,6 +312,7 @@ Public Class CommonView
 #Region "View config"
     Dim vcf As DataSet
     Public Sub ViewConfig(ByVal rp As RadPane)
+        If LogHelper.CurrentUser.USERNAME.ToUpper = "ADMIN" Then Return
         vcf = New DataSet
         Using rep = New CommonRepository
             vcf.ReadXml(New IO.StringReader(rep.GetConfigView(Me.ID).Rows(0)("config_data").ToString()))
@@ -377,6 +378,7 @@ Public Class CommonView
         'Next
     End Sub
     Public Sub GirdConfig(ByVal rg As RadGrid)
+        If LogHelper.CurrentUser.USERNAME.ToUpper = "ADMIN" Then Return
         Dim dtGrid As DataTable = vcf.Tables("girdColumm")
         If dtGrid.Rows.Count = 0 AndAlso dtGrid Is Nothing Then Exit Sub
         Dim view As DataView = New DataView(dtGrid)
