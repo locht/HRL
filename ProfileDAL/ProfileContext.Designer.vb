@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d174db53-102b-4119-9b0f-25c503ac9e18")>
+<Assembly: EdmSchemaAttribute("c598ab8b-3329-4faa-b1b1-ef21cc64cd0c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -1847,6 +1847,20 @@ Public Partial Class ProfileContext
 
     Private _HU_ALLOWANCE As ObjectSet(Of HU_ALLOWANCE)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_ATTACHFILES() As ObjectSet(Of HU_ATTACHFILES)
+        Get
+            If (_HU_ATTACHFILES Is Nothing) Then
+                _HU_ATTACHFILES = MyBase.CreateObjectSet(Of HU_ATTACHFILES)("HU_ATTACHFILES")
+            End If
+            Return _HU_ATTACHFILES
+        End Get
+    End Property
+
+    Private _HU_ATTACHFILES As ObjectSet(Of HU_ATTACHFILES)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -2724,6 +2738,13 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToHU_ALLOWANCE(ByVal hU_ALLOWANCE As HU_ALLOWANCE)
         MyBase.AddObject("HU_ALLOWANCE", hU_ALLOWANCE)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_ATTACHFILES EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_ATTACHFILES(ByVal hU_ATTACHFILES As HU_ATTACHFILES)
+        MyBase.AddObject("HU_ATTACHFILES", hU_ATTACHFILES)
     End Sub
 
     #End Region
@@ -7161,6 +7182,186 @@ Public Partial Class HU_ASSET2
     End Sub
 
     Private Partial Sub OnQUANTITYChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="ProfileModel", Name:="HU_ATTACHFILES")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HU_ATTACHFILES
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HU_ATTACHFILES object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHU_ATTACHFILES(id As Global.System.Decimal) As HU_ATTACHFILES
+        Dim hU_ATTACHFILES as HU_ATTACHFILES = New HU_ATTACHFILES
+        hU_ATTACHFILES.ID = id
+        Return hU_ATTACHFILES
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ATTACHFILE_NAME() As Global.System.String
+        Get
+            Return _ATTACHFILE_NAME
+        End Get
+        Set
+            OnATTACHFILE_NAMEChanging(value)
+            ReportPropertyChanging("ATTACHFILE_NAME")
+            _ATTACHFILE_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("ATTACHFILE_NAME")
+            OnATTACHFILE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _ATTACHFILE_NAME As Global.System.String
+    Private Partial Sub OnATTACHFILE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnATTACHFILE_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_PATH() As Global.System.String
+        Get
+            Return _FILE_PATH
+        End Get
+        Set
+            OnFILE_PATHChanging(value)
+            ReportPropertyChanging("FILE_PATH")
+            _FILE_PATH = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILE_PATH")
+            OnFILE_PATHChanged()
+        End Set
+    End Property
+
+    Private _FILE_PATH As Global.System.String
+    Private Partial Sub OnFILE_PATHChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILE_PATHChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FK_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FK_ID
+        End Get
+        Set
+            OnFK_IDChanging(value)
+            ReportPropertyChanging("FK_ID")
+            _FK_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FK_ID")
+            OnFK_IDChanged()
+        End Set
+    End Property
+
+    Private _FK_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFK_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFK_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTROL_NAME() As Global.System.String
+        Get
+            Return _CONTROL_NAME
+        End Get
+        Set
+            OnCONTROL_NAMEChanging(value)
+            ReportPropertyChanging("CONTROL_NAME")
+            _CONTROL_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTROL_NAME")
+            OnCONTROL_NAMEChanged()
+        End Set
+    End Property
+
+    Private _CONTROL_NAME As Global.System.String
+    Private Partial Sub OnCONTROL_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTROL_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_TYPE() As Global.System.String
+        Get
+            Return _FILE_TYPE
+        End Get
+        Set
+            OnFILE_TYPEChanging(value)
+            ReportPropertyChanging("FILE_TYPE")
+            _FILE_TYPE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILE_TYPE")
+            OnFILE_TYPEChanged()
+        End Set
+    End Property
+
+    Private _FILE_TYPE As Global.System.String
+    Private Partial Sub OnFILE_TYPEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILE_TYPEChanged()
     End Sub
 
     #End Region

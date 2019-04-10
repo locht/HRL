@@ -131,6 +131,7 @@
             <EntitySet Name="HU_HOMEBASE" EntityType="ProfileModel.Store.HU_HOMEBASE" store:Type="Tables"  />
             <EntitySet Name="PA_SALE_COMMISION" EntityType="ProfileModel.Store.PA_SALE_COMMISION" store:Type="Tables"  />
             <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.Store.HU_ALLOWANCE" store:Type="Tables"  />
+            <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.Store.HU_ATTACHFILES" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3065,6 +3066,17 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="FACTOR" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_ATTACHFILES">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="ATTACHFILE_NAME" Type="nvarchar2" Nullable="true" MaxLength="225" />
+            <Property Name="FILE_PATH" Type="nvarchar2" Nullable="true" MaxLength="225" />
+            <Property Name="FK_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTROL_NAME" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="FILE_TYPE" Type="nvarchar2" Nullable="true" MaxLength="20" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -3681,6 +3693,7 @@
           <EntitySet Name="HU_HOMEBASE" EntityType="ProfileModel.HU_HOMEBASE" />
           <EntitySet Name="PA_SALE_COMMISION" EntityType="ProfileModel.PA_SALE_COMMISION" />
           <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.HU_ALLOWANCE" />
+          <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.HU_ATTACHFILES" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -6898,6 +6911,17 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="FACTOR" annotation:StoreGeneratedPattern="None" />
         </EntityType>
+        <EntityType Name="HU_ATTACHFILES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="ATTACHFILE_NAME" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FILE_PATH" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="FK_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CONTROL_NAME" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FILE_TYPE" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9832,6 +9856,18 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_ATTACHFILES">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_ATTACHFILES)">
+                <MappingFragment StoreEntitySet="HU_ATTACHFILES">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="ATTACHFILE_NAME" ColumnName="ATTACHFILE_NAME" />
+                    <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+                    <ScalarProperty Name="FK_ID" ColumnName="FK_ID" />
+                    <ScalarProperty Name="CONTROL_NAME" ColumnName="CONTROL_NAME" />
+                    <ScalarProperty Name="FILE_TYPE" ColumnName="FILE_TYPE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -10127,6 +10163,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_HOMEBASE" Width="1.5" PointX="11.125" PointY="31.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALE_COMMISION" Width="1.5" PointX="32.375" PointY="0.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE" Width="2.125" PointX="11.125" PointY="32.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_ATTACHFILES" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249818" />
         </Diagram>
     </Diagrams>
   </Designer>

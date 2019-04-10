@@ -180,19 +180,7 @@ Partial Class ProfileRepository
                                                      .AFTERNOON_START = p.AFTERNOON_START,
                                                      .AFTERNOON_STOP = p.AFTERNOON_STOP
                             }
-            ',
-            '    .Working = New WorkingDTO With
-            '        {
-            '        .ALLOWANCE_TOTAL = w.ALLOWANCE_TOTAL,
-            '        .SAL_INS = w.SAL_INS,
-            '        .TAX_TABLE_ID = w.TAX_TABLE_ID,
-            '        .SAL_TOTAL = w.SAL_TOTAL,
-            '        .SAL_TYPE_ID = w.SAL_TYPE_ID,
-            '        .SAL_BASIC = w.SAL_BASIC,
-            '    .ID = w.ID,
-            '    .TAX_TABLE_Name = taxTable.NAME_VN,
-            '    .SAL_TYPE_NAME = sal_type.NAME
-            '        }
+           
             Dim result = query.FirstOrDefault
             If result IsNot Nothing Then
                 If result.WORKING_ID > 0 Then
@@ -229,6 +217,15 @@ Partial Class ProfileRepository
                 End If
 
             End If
+            result.ListAttachFiles = (From p In Context.HU_ATTACHFILES.Where(Function(f) f.FK_ID = _filter.ID)
+                                      Select New AttachFilesDTO With {.ID = p.ID,
+                                                                      .FK_ID = p.FK_ID,
+                                                                      .FILE_TYPE = p.FILE_TYPE,
+                                                                      .FILE_PATH = p.FILE_PATH,
+                                                                      .CONTROL_NAME = p.CONTROL_NAME,
+                                                                      .ATTACHFILE_NAME = p.ATTACHFILE_NAME}).ToList()
+
+
             Return result
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -292,6 +289,16 @@ Partial Class ProfileRepository
                     InsertDecision(objContract)
                 End If
             End If
+            For Each File As AttachFilesDTO In objContract.ListAttachFiles
+                Dim objFile As New HU_ATTACHFILES
+                objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                objFile.FK_ID = objContractData.ID
+                objFile.FILE_PATH = File.FILE_PATH
+                objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                objFile.CONTROL_NAME = File.CONTROL_NAME
+                objFile.FILE_TYPE = File.FILE_TYPE
+                Context.HU_ATTACHFILES.AddObject(objFile)
+            Next
             Context.SaveChanges(log)
             gID = objContractData.ID
             Return True
@@ -382,6 +389,22 @@ Partial Class ProfileRepository
                     InsertDecision(objContract)
                 End If
             End If
+            'xoa nhung file attach cu
+            Dim lstAtt = (From p In Context.HU_ATTACHFILES Where p.FK_ID = objContractData.ID).ToList()
+            For index = 0 To lstAtt.Count - 1
+                Context.HU_ATTACHFILES.DeleteObject(lstAtt(index))
+            Next
+
+            For Each File As AttachFilesDTO In objContract.ListAttachFiles
+                Dim objFile As New HU_ATTACHFILES
+                objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                objFile.FK_ID = objContractData.ID
+                objFile.FILE_PATH = File.FILE_PATH
+                objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                objFile.CONTROL_NAME = File.CONTROL_NAME
+                objFile.FILE_TYPE = File.FILE_TYPE
+                Context.HU_ATTACHFILES.AddObject(objFile)
+            Next
             Context.SaveChanges(log)
             gID = objContractData.ID
             Return True

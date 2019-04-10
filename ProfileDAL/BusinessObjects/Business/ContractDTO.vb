@@ -59,4 +59,6 @@
     Public Property WORKING_ID As Decimal?
     Public Property TITLE_ID As Decimal?
     Public Property Working As WorkingDTO
+    Public Property ListAttachFiles As List(Of AttachFilesDTO)
+
 End Class
