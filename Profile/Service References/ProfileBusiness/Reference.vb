@@ -3620,6 +3620,9 @@ Namespace ProfileBusiness
         Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILING_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3666,6 +3669,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_DESCField As String
@@ -4092,6 +4098,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILING_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.FILING_DATEField
+            End Get
+            Set
+                If (Me.FILING_DATEField.Equals(value) <> true) Then
+                    Me.FILING_DATEField = value
+                    Me.RaisePropertyChanged("FILING_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property FROM_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.FROM_DATEField
@@ -4295,6 +4314,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
                     Me.MODIFIED_LOGField = value
                     Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECT_ATTENDANCEField
+            End Get
+            Set
+                If (Me.OBJECT_ATTENDANCEField.Equals(value) <> true) Then
+                    Me.OBJECT_ATTENDANCEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE")
                 End If
             End Set
         End Property

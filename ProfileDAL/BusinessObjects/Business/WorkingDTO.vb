@@ -1,6 +1,7 @@
 ﻿Public Class WorkingDTO
     Public Property ID As Decimal
-
+    Public OBJECT_ATTENDANCE As Decimal?
+    Public FILING_DATE As Date?
     Public Property EMPLOYEE_3B_ID As Decimal?
     Public Property CODE As String
     Public Property EMPLOYEE_ID As Decimal

@@ -161,11 +161,18 @@ Public Class ctrlHU_ChangeInfoNewEdit
             End Using
 
             FillRadCombobox(cboDecisionType, dtData, "NAME", "ID")
-
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
             End If
 
+            Using rep As New ProfileRepository
+                dtData = rep.GetOtherList(ProfileCommon.OBJECT_ATTENDANCE.Name)
+            End Using
+            FillRadCombobox(cbOBJECT_ATTENDANCE, dtData, "NAME", "ID")
+            FillRadCombobox(cbOBJECT_ATTENDANCE_OLD, dtData, "NAME", "ID")
+            If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                cbOBJECT_ATTENDANCE.SelectedValue = dtData.Rows(0)("ID")
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -225,6 +232,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If Working.WORKING_OLD IsNot Nothing Then
                         With Working.WORKING_OLD
                             txtTitleNameOld.Text = .TITLE_NAME
+                            If IsDate(Working.FILING_DATE) Then
+                                rdFILING_DATE.SelectedDate = Working.FILING_DATE
+                            End If
+                            If IsNumeric(Working.OBJECT_ATTENDANCE) Then
+                                cbOBJECT_ATTENDANCE.SelectedValue = Working.OBJECT_ATTENDANCE
+                            End If
                             ' txtTitleGroupOld.Text = .TITLE_GROUP_NAME
                             'txtDecisionNoOld.Text = .DECISION_NO
                             txtDecisionTypeOld.Text = .DECISION_TYPE_NAME
@@ -459,7 +472,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                         With objWorking
                             .EMPLOYEE_ID = hidEmp.Value
-
+                            If IsNumeric(cbOBJECT_ATTENDANCE.SelectedValue) Then
+                                .OBJECT_ATTENDANCE = cbOBJECT_ATTENDANCE.SelectedValue
+                            End If
+                            If IsDate(rdFILING_DATE.SelectedDate) Then
+                                .FILING_DATE = rdFILING_DATE.SelectedDate
+                            End If
                             If cboTitle.SelectedValue <> "" Then
                                 .TITLE_ID = cboTitle.SelectedValue
                             End If
@@ -538,7 +556,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                     Dim str As String = "getRadWindow().close('1');"
                                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-
                                     'Clear all input
                                     ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
                                                       txtTitleNameOld,
@@ -549,11 +566,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                     cboStaffRank.Text = String.Empty
                                     cboTitle.Text = String.Empty
                                     cboDecisionType.Text = String.Empty
-
+                                    cbOBJECT_ATTENDANCE.Text = String.Empty
                                     cboStatus.Text = String.Empty
-
                                     chkIsProcess.Checked = False
-                                    
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -1204,7 +1219,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 Case CommonMessage.STATE_NEW
 
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(False, btnFindEmployee)
+                    EnableControlAll(False, btnFindEmployee, cbOBJECT_ATTENDANCE_OLD)
             End Select
 
             Select Case isLoadPopup
@@ -1299,6 +1314,15 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
                 rdExpireDateOld.SelectedDate = obj.EXPIRE_DATE
                 txtStaffRankOld.Text = obj.STAFF_RANK_NAME
+
+                If IsNumeric(obj.OBJECT_ATTENDANCE) Then
+                    cbOBJECT_ATTENDANCE.SelectedValue = obj.OBJECT_ATTENDANCE
+                    cbOBJECT_ATTENDANCE_OLD.SelectedValue = obj.OBJECT_ATTENDANCE
+                End If
+                If IsDate(obj.FILING_DATE) Then
+                    rdFILING_DATE_OLD.SelectedDate = obj.FILING_DATE
+                    rdFILING_DATE.SelectedDate = obj.FILING_DATE
+                End If
 
                 If obj.STAFF_RANK_ID IsNot Nothing Then
                     cboStaffRank.SelectedValue = obj.STAFF_RANK_ID
