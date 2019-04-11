@@ -376,6 +376,7 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WORKING
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
@@ -394,6 +395,7 @@ Partial Class ProfileRepository
                                                     .DECISION_NO = p.DECISION_NO,
                                                     .FILING_DATE = p.FILING_DATE,
                                                     .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                                    .OBJECT_ATTENDANCE_NAME = ot.NAME_VN,
                                                     .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                                                     .DECISION_TYPE_NAME = deci_type.NAME_VN,
                                                     .CODE = deci_type.CODE,
@@ -495,6 +497,13 @@ Partial Class ProfileRepository
 
             If _filter.EFFECT_DATE IsNot Nothing Then
                 query = query.Where(Function(p) p.EFFECT_DATE = _filter.EFFECT_DATE)
+            End If
+            If _filter.OBJECT_ATTENDANCE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.OBJECT_ATTENDANCE_NAME >= _filter.OBJECT_ATTENDANCE_NAME)
+            End If
+
+            If _filter.FILING_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.FILING_DATE >= _filter.FILING_DATE)
             End If
 
             If _filter.FROM_DATE IsNot Nothing Then

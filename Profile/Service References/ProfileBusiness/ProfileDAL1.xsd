@@ -327,6 +327,7 @@
       <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OBJECT_ATTENDANCE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OBJECT_ATTENDANCE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ORG_MOVE_DESC" nillable="true" type="xs:string" />

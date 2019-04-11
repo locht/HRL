@@ -2010,6 +2010,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_WORKING
                         From chosen In Context.SE_CHOSEN_EMP_3B.Where(Function(f) f.EMPLOYEE_ID = p.EMPLOYEE_ID And
                                                                           f.USERNAME = log.Username.ToUpper)
+                        From OT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HUV_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
@@ -2023,6 +2024,9 @@ Partial Class ProfileRepository
                         p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                         Order By p.EFFECT_DATE Descending
                         Select New WorkingDTO With {.ID = p.ID,
+                                                    .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                                    .OBJECT_ATTENDANCE_NAME = OT.NAME_VN,
+                                                    .FILING_DATE = p.FILING_DATE,
                                                     .DECISION_NO = p.DECISION_NO,
                                                     .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                                                     .DECISION_TYPE_NAME = deci_type.NAME_VN,

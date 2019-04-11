@@ -25,6 +25,14 @@
                         UniqueName="STAFF_RANK_NAME" SortExpression="STAFF_RANK_NAME">
                     </tlk:GridBoundColumn>
                    
+                   <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME"
+                        UniqueName="OBJECT_ATTENDANCE_NAME" SortExpression="OBJECT_ATTENDANCE_NAME">
+                    </tlk:GridBoundColumn>
+
+                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nộp hồ sơ %>" DataField="FILING_DATE"
+                        UniqueName="FILING_DATE" SortExpression="FILING_DATE">
+                    </tlk:GridDateTimeColumn>
+
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         SortExpression="ORG_NAME">
                     </tlk:GridBoundColumn>
