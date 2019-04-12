@@ -120,7 +120,7 @@
                     <asp:Label ID ="lbOBJECT_ATTENDANCE_OLD" Text ="Đối tượng chấm công" runat ="server" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID ="cbOBJECT_ATTENDANCE_OLD" runat ="server" ReadOnly= "true" ></tlk:RadComboBox>
+                    <tlk:RadComboBox ID ="cbOBJECT_ATTENDANCE_OLD" runat ="server" Enabled ="false" ReadOnly= "true" ></tlk:RadComboBox>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbFILING_DATE_OLD" runat ="server" Text ="Ngày nộp đơn" ></asp:Label>
@@ -133,7 +133,7 @@
                     <asp:Label ID ="lbOBJECT_ATTENDANCE" Text ="Đối tượng chấm công" runat ="server" ></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID ="cbOBJECT_ATTENDANCE" runat ="server" Enabled ="false" ReadOnly= "true" ></tlk:RadComboBox>
+                    <tlk:RadComboBox ID ="cbOBJECT_ATTENDANCE" runat ="server"  ReadOnly= "true" ></tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="reOBJECT_ATTENDANCE" runat="server" ControlToValidate="cbOBJECT_ATTENDANCE"
                         ErrorMessage="<%$ Translate: Bạn phải chọn đối tượng chấm công. %>" ToolTip="<%$ Translate: Bạn phải chọn đối tượng chấm công. %>"></asp:RequiredFieldValidator>
                 </td>
