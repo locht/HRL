@@ -1,0 +1,194 @@
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\AT_IMPOERT_REGISTER_CO.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\AT_IMPOERT_REGISTER_CO_Error.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_DeclareTimeRice.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_DeclareTimeRice_Error.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_SingDefault.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_SingDefault_Error.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_SwipeData.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_SwipeData_Error.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_TimeSheetRice.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Import_TimeSheetRice_Error.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_DeclareEntitlement.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_DeclareEntitlement_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_DeclareOT.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_DeclareOT_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_ImportDMVS.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_ImportDMVS_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_importIO.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_importIO_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_ImportOT.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_ImportOT_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_ImportShift.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_ImportShift_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_importTimesheet_CTT.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_importTimesheet_CTT_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_importTimesheet_OT.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Import\Template_importTimesheet_Rice.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Report\AT_001.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Report\AT_003.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Report\AT_004.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Report\AT_006.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangChamCongBoiDuongLamDemThang.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangChamCongNgoaiGio.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangChamCongThang.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangCongTongHop.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangPhanCongCa.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangPhanCongLaoDong.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangPhanCongThang.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_BangTheoDoiGioCong.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_InvalidTimesheet.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_IOTEMPLATE.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\RPT_UnknowTimesheet.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Business\TEMP_IMPORT_BONNUS.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Business\TEMP_IMPORT_SALARY_FUND_MAPPING.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Business\TEMP_IMPORT_SENIORITY.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Business\TEMP_IMPORT_SENIORITY_error.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Import\Template_SALARY_PLANNING.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Import\Template_SALARY_PLANNING_error.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA005.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA006.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA008.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA010.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA012.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA013.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PhieuLuong.docx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\RPT_PA_ADVANCE.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\RPT_PA_ANNUAL.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\RPT_PA_BANK.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\RPT_PA_PayrollSheet.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\ctrlDBInfo.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\RPT_HU_CHANGE_EMP.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\RPT_HU_CHANGE_EMP_BY_TITLE.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\RPT_HU_CHANGE_EMP_BY_UNIT.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\RPT_HU_CHANGE_SALARY.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\RPT_HU_EMP_QUALITY.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\RPT_HU_TER_EMP.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\ctrlRC_CanDtlFamily.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\Bao cao tinh hinh tuyen dung.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\Bao cao tuyen dung.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\BM 01 Ke hoach tuyen dung nam.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\BM01_TT_Nhu_cau_TD.doc
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\BM04_TT_Ke_hoach_TD.doc
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\Danh sach de nghi ky HĐLĐ thu viec.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\Danh sach phong van.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\RPT_ADJTEMPLATE.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\RPT_QUESTION.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Training\Report\Bao cao dao tao.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Training\Report\Bao cao thong ke chi phi.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Training\Report\Ke hoach dao tao.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\AT_ALDATA_IMPORT.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\AT_WORKSIGN.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Report\AT_002.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Report\AT_005.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Attendance\Report\AT_007.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\17.Bao cao thu nhap so voi cung ky.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\21.Form giai trinh.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\Bang ke nguoi phu thuoc.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\Bao cao so sanh luong.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\Bao cao thu nhap theo tung tung chuc danh.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\Bao cao tien luong thu nhap theo don vi.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\Bao cao tong hop luong.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\BC_TIENLUONGTHANGTHEODONVI.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_BANGKETHUE_TNCN_COCUTRU.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_BANGKETHUE_TNCN_KHONGCUTRU.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_BANGLUONGTHANG.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_BANGTUONG_CK_THANG.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_TIENLUONGTHUNHAP_THEOCHUCDANH.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_TK_QUYLUONG_THUONG.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_TK_THUNHAP_TRICHLUONGTHANG.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_TK_THUNHAP_TRICHTHUONG_HQCVTHANG.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\IPAY_TOKHAIKHAUTRUTHUE_TNCN.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA001.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA002.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA004.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\PA007.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\Thong ke lao dong nam.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Payroll\Report\ToKhai QuyetToanThueTNCN.xlsx
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Profile\HU_ImportCommendTemplete.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\Bao cao ung vien theo nguon tuyen dung.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Recruitment\Report\Bao cao tong hop ke hoach tuyen dung.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Training\Report\Bao cao qua trinh dao tao.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ReportTemplates\Training\Report\Ho so dao tao nhan vien.xls
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Static\Images\fav-icon.ico
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Static\Images\fav-icon.png
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Static\Images\logo_large.png
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Styles\img\listicon1.png
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Styles\fontawesome-webfont.woff
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Styles\fontawesome-webfont.woff2
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Word\Insurance\ToKhai.doc
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Word\Recruitment\CONTRACT_RECIEVE.doc
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Word\Recruitment\LETTER_RECIEVE.doc
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffWebApp.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffWebApp.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffWebApp.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Aspose.Cells.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Attendance.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.Logging.Core.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.Logging.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Framework.UI.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffFramework.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffFrameworkPublic.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffWebAppResources.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Insurance.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Payroll.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Performance.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Profile.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Quartz.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Recruitment.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Telerik.Web.Design.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Telerik.Web.UI.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Telerik.Web.UI.Skins.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Training.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\WebAppLog.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\OpenExcel.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Histaff.DataAccessLayer.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Aspose.Words.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\TVC.LDAP.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\ICSharpCode.SharpZipLib.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Ionic.Zip.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Oracle.DataAccess.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffFrameworkPublic.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffFramework.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffFramework.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Attendance.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Attendance.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Framework.UI.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Framework.UI.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffWebAppResources.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\HistaffWebAppResources.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Insurance.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Insurance.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Payroll.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Payroll.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Performance.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Performance.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Profile.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Profile.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Recruitment.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Recruitment.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Training.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Training.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\WebAppLog.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\WebAppLog.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.Logging.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.Logging.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.Logging.Core.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Common.Logging.Core.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Quartz.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Quartz.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Telerik.Web.UI.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Histaff.DataAccessLayer.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Histaff.DataAccessLayer.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\Aspose.Words.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\TVC.LDAP.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\TVC.LDAP.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\bin\vi-VN\HistaffWebAppResources.resources.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\obj\Debug\HistaffWebApp.vbprojResolveAssemblyReference.cache
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\obj\Debug\HistaffWebApp.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\obj\Debug\HistaffWebApp.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\obj\Debug\HistaffWebApp.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\obj\Debug\HistaffWebApp.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebApp\obj\Debug\HistaffWebApp.pdb

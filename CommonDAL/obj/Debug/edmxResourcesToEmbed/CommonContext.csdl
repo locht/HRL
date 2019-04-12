@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CommonModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="CommonContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="SE_GROUP" EntityType="CommonModel.SE_GROUP" />
+    <EntitySet Name="SE_FUNCTION" EntityType="CommonModel.SE_FUNCTION" />
+    <EntitySet Name="SE_USER" EntityType="CommonModel.SE_USER" />
+    <AssociationSet Name="SE_GRP_SE_USR" Association="CommonModel.SE_GRP_SE_USR">
+      <End Role="SE_GROUP" EntitySet="SE_GROUP" />
+      <End Role="SE_USER" EntitySet="SE_USER" />
+    </AssociationSet>
+    <EntitySet Name="SE_MODULE" EntityType="CommonModel.SE_MODULE" />
+    <AssociationSet Name="FK_SM_SF" Association="CommonModel.FK_SM_SF">
+      <End Role="SE_MODULE" EntitySet="SE_MODULE" />
+      <End Role="SE_FUNCTION" EntitySet="SE_FUNCTION" />
+    </AssociationSet>
+    <EntitySet Name="SE_GROUP_PERMISSION" EntityType="CommonModel.SE_GROUP_PERMISSION" />
+    <AssociationSet Name="FK_SF_SGP" Association="CommonModel.FK_SF_SGP">
+      <End Role="SE_FUNCTION" EntitySet="SE_FUNCTION" />
+      <End Role="SE_GROUP_PERMISSION" EntitySet="SE_GROUP_PERMISSION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SG_SGP" Association="CommonModel.FK_SG_SGP">
+      <End Role="SE_GROUP" EntitySet="SE_GROUP" />
+      <End Role="SE_GROUP_PERMISSION" EntitySet="SE_GROUP_PERMISSION" />
+    </AssociationSet>
+    <EntitySet Name="OT_OTHER_LIST" EntityType="CommonModel.OT_OTHER_LIST" />
+    <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="CommonModel.OT_OTHER_LIST_GROUP" />
+    <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="CommonModel.OT_OTHER_LIST_TYPE" />
+    <AssociationSet Name="FK_OOLG_OOLT" Association="CommonModel.FK_OOLG_OOLT">
+      <End Role="OT_OTHER_LIST_GROUP" EntitySet="OT_OTHER_LIST_GROUP" />
+      <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OOLT_OOL" Association="CommonModel.FK_OOLT_OOL">
+      <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
+      <End Role="OT_OTHER_LIST" EntitySet="OT_OTHER_LIST" />
+    </AssociationSet>
+    <EntitySet Name="SE_REPORT" EntityType="CommonModel.SE_REPORT" />
+    <AssociationSet Name="FK_SM_SR" Association="CommonModel.FK_SM_SR">
+      <End Role="SE_MODULE" EntitySet="SE_MODULE" />
+      <End Role="SE_REPORT" EntitySet="SE_REPORT" />
+    </AssociationSet>
+    <AssociationSet Name="SE_GROUP_REPORT" Association="CommonModel.SE_GROUP_REPORT">
+      <End Role="SE_GROUP" EntitySet="SE_GROUP" />
+      <End Role="SE_REPORT" EntitySet="SE_REPORT" />
+    </AssociationSet>
+    <EntitySet Name="HU_ORGANIZATION" EntityType="CommonModel.HU_ORGANIZATION" />
+    <AssociationSet Name="FK_HU_ORG_HU_ORG" Association="CommonModel.FK_HU_ORG_HU_ORG">
+      <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
+      <End Role="HU_ORGANIZATION1" EntitySet="HU_ORGANIZATION" />
+    </AssociationSet>
+    <EntitySet Name="SE_FUNCTION_GROUP" EntityType="CommonModel.SE_FUNCTION_GROUP" />
+    <AssociationSet Name="FK_SFG_SF" Association="CommonModel.FK_SFG_SF">
+      <End Role="SE_FUNCTION_GROUP" EntitySet="SE_FUNCTION_GROUP" />
+      <End Role="SE_FUNCTION" EntitySet="SE_FUNCTION" />
+    </AssociationSet>
+    <EntitySet Name="HU_EMPLOYEE" EntityType="CommonModel.HU_EMPLOYEE" />
+    <EntitySet Name="HU_TERMINATE" EntityType="CommonModel.HU_TERMINATE" />
+    <AssociationSet Name="FK_HU_ORG_HU_EMP" Association="CommonModel.FK_HU_ORG_HU_EMP">
+      <End EntitySet="HU_ORGANIZATION" Role="HU_ORGANIZATION" />
+      <End EntitySet="HU_EMPLOYEE" Role="HU_EMPLOYEE" />
+    </AssociationSet>
+    <EntitySet Name="SE_MAIL" EntityType="CommonModel.SE_MAIL" />
+    <EntitySet Name="SE_REMINDER" EntityType="CommonModel.SE_REMINDER" />
+    <EntitySet Name="HU_TITLE" EntityType="CommonModel.HU_TITLE" />
+    <AssociationSet Name="HU_TITLEHU_EMPLOYEE" Association="CommonModel.HU_TITLEHU_EMPLOYEE">
+      <End Role="HU_TITLE" EntitySet="HU_TITLE" />
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+    </AssociationSet>
+    <EntitySet Name="SE_APP_PROCESS" EntityType="CommonModel.SE_APP_PROCESS" />
+    <EntitySet Name="SE_APP_SETUP" EntityType="CommonModel.SE_APP_SETUP" />
+    <EntitySet Name="SE_APP_SETUPEXT" EntityType="CommonModel.SE_APP_SETUPEXT" />
+    <EntitySet Name="SE_APP_TEMPLATE" EntityType="CommonModel.SE_APP_TEMPLATE" />
+    <EntitySet Name="SE_APP_TEMPLATE_DTL" EntityType="CommonModel.SE_APP_TEMPLATE_DTL" />
+    <EntitySet Name="HU_WORKING" EntityType="CommonModel.HU_WORKING" />
+    <EntitySet Name="SE_CHOSEN_ORG" EntityType="CommonModel.SE_CHOSEN_ORG" />
+    <EntitySet Name="HU_EMPLOYEE_CV" EntityType="CommonModel.HU_EMPLOYEE_CV" />
+    <EntitySet Name="HU_STAFF_RANK" EntityType="CommonModel.HU_STAFF_RANK" />
+    <EntitySet Name="SE_LDAP" EntityType="CommonModel.SE_LDAP" />
+    <AssociationSet Name="SE_USER_REPORT" Association="CommonModel.SE_USER_REPORT">
+      <End Role="SE_REPORT" EntitySet="SE_REPORT" />
+      <End Role="SE_USER" EntitySet="SE_USER" />
+    </AssociationSet>
+    <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="CommonModel.SE_USER_ORG_ACCESS" />
+    <EntitySet Name="SE_USER_PERMISSION" EntityType="CommonModel.SE_USER_PERMISSION" />
+    <EntitySet Name="HUV_SE_GRP_SE_USR" EntityType="CommonModel.HUV_SE_GRP_SE_USR" />
+    <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.SE_VIEW_CONFIG" />
+  </EntityContainer>
+  <EntityType Name="SE_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" annotation:StoreGeneratedPattern="None" Unicode="true" />
+    <NavigationProperty Name="SE_USERS" Relationship="CommonModel.SE_GRP_SE_USR" FromRole="SE_GROUP" ToRole="SE_USER" />
+    <NavigationProperty Name="SE_GROUP_PERMISSIONS" Relationship="CommonModel.FK_SG_SGP" FromRole="SE_GROUP" ToRole="SE_GROUP_PERMISSION" />
+    <Property Type="Int16" Name="IS_ADMIN" Nullable="true" DefaultValue="0" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="EFFECT_DATE" Nullable="false" />
+    <Property Type="DateTime" Name="EXPIRE_DATE" Nullable="true" />
+    <NavigationProperty Name="SE_REPORTS" Relationship="CommonModel.SE_GROUP_REPORT" FromRole="SE_GROUP" ToRole="SE_REPORT" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SE_FUNCTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="NAME" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Type="Decimal" Name="MODULE_ID" Nullable="true" />
+    <Property Type="String" Name="FID" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="SE_MODULE" Relationship="CommonModel.FK_SM_SF" FromRole="SE_FUNCTION" ToRole="SE_MODULE" />
+    <NavigationProperty Name="SE_GROUP_PERMISSION" Relationship="CommonModel.FK_SF_SGP" FromRole="SE_FUNCTION" ToRole="SE_GROUP_PERMISSION" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="GROUP_ID" Nullable="true" />
+    <NavigationProperty Name="SE_FUNCTION_GROUP" Relationship="CommonModel.FK_SFG_SF" FromRole="SE_FUNCTION" ToRole="SE_FUNCTION_GROUP" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" FixedLength="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="SE_USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" />
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SE_GROUPS" Relationship="CommonModel.SE_GRP_SE_USR" FromRole="SE_USER" ToRole="SE_GROUP" />
+    <Property Type="String" Name="PASSWORD" MaxLength="255" FixedLength="false" Unicode="true" Nullable="true" />
+    <Property Type="String" Name="FULLNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TELEPHONE" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LOCATION" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="IS_APP" Nullable="false" />
+    <Property Type="Int16" Name="IS_PORTAL" Nullable="false" />
+    <Property Type="String" Name="EMPLOYEE_CODE" Nullable="true" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="IS_AD" Nullable="true" />
+    <Property Type="DateTime" Name="EFFECT_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="EXPIRE_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" DefaultValue="" />
+    <Property Type="Int16" Name="IS_CHANGE_PASS" Nullable="true" DefaultValue="0">
+      <Documentation>
+        <Summary>Kiểm tra đã thay đổi mật khẩu đối với New User</Summary>
+      </Documentation>
+    </Property>
+    <Property Type="DateTime" Name="CHANGE_PASS_DATE" Nullable="true" />
+    <Property Type="Int16" Name="REMINDER_COUNT" Nullable="true" />
+    <Property Type="String" Name="MODULE_ADMIN" Nullable="true" Unicode="true" FixedLength="false" MaxLength="255" />
+    <NavigationProperty Name="SE_REPORT" Relationship="CommonModel.SE_USER_REPORT" FromRole="SE_USER" ToRole="SE_REPORT" />
+  </EntityType>
+  <Association Name="SE_GRP_SE_USR">
+    <End Type="CommonModel.SE_GROUP" Role="SE_GROUP" Multiplicity="*" />
+    <End Type="CommonModel.SE_USER" Role="SE_USER" Multiplicity="*" />
+  </Association>
+  <EntityType Name="SE_MODULE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MID" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SE_FUNCTIONS" Relationship="CommonModel.FK_SM_SF" FromRole="SE_MODULE" ToRole="SE_FUNCTION" />
+    <NavigationProperty Name="SE_REPORTS" Relationship="CommonModel.FK_SM_SR" FromRole="SE_MODULE" ToRole="SE_REPORT" />
+  </EntityType>
+  <Association Name="FK_SM_SF">
+    <End Type="CommonModel.SE_MODULE" Role="SE_MODULE" Multiplicity="0..1" />
+    <End Type="CommonModel.SE_FUNCTION" Role="SE_FUNCTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SE_MODULE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SE_FUNCTION">
+        <PropertyRef Name="MODULE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SE_GROUP_PERMISSION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" />
+    <Property Type="Decimal" Name="GROUP_ID" Nullable="false" />
+    <Property Type="Int16" Name="ALLOW_CREATE" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_MODIFY" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_DELETE" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_PRINT" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_IMPORT" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_EXPORT" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL1" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL2" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL3" Nullable="false" DefaultValue="0" />
+    <Property Type="Decimal" Name="FUNCTION_ID" Nullable="false" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL4" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL5" Nullable="false" DefaultValue="0" />
+    <NavigationProperty Name="SE_FUNCTION" Relationship="CommonModel.FK_SF_SGP" FromRole="SE_GROUP_PERMISSION" ToRole="SE_FUNCTION" />
+    <NavigationProperty Name="SE_GROUP" Relationship="CommonModel.FK_SG_SGP" FromRole="SE_GROUP_PERMISSION" ToRole="SE_GROUP" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_SF_SGP">
+    <End Type="CommonModel.SE_FUNCTION" Role="SE_FUNCTION" Multiplicity="1" />
+    <End Type="CommonModel.SE_GROUP_PERMISSION" Role="SE_GROUP_PERMISSION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SE_FUNCTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SE_GROUP_PERMISSION">
+        <PropertyRef Name="FUNCTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SG_SGP">
+    <End Type="CommonModel.SE_GROUP" Role="SE_GROUP" Multiplicity="1" />
+    <End Type="CommonModel.SE_GROUP_PERMISSION" Role="SE_GROUP_PERMISSION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SE_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SE_GROUP_PERMISSION">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OT_OTHER_LIST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="TYPE_ID" Nullable="false" />
+    <Property Type="String" Name="NAME_VN" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_EN" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE1" Nullable="true" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE2" Nullable="true" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE3" Nullable="true" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE4" Nullable="true" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" DefaultValue="A" MaxLength="1" FixedLength="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OT_OTHER_LIST_TYPE" Relationship="CommonModel.FK_OOLT_OOL" FromRole="OT_OTHER_LIST" ToRole="OT_OTHER_LIST_TYPE" />
+    <Property Type="String" Name="CODE" Nullable="true" FixedLength="false" MaxLength="50" />
+    <Property Type="String" Name="TYPE_CODE" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" Nullable="true" />
+  </EntityType>
+  <EntityType Name="OT_OTHER_LIST_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" DefaultValue="A" MaxLength="1" FixedLength="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OT_OTHER_LIST_TYPES" Relationship="CommonModel.FK_OOLG_OOLT" FromRole="OT_OTHER_LIST_GROUP" ToRole="OT_OTHER_LIST_TYPE" />
+  </EntityType>
+  <EntityType Name="OT_OTHER_LIST_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="GROUP_ID" Nullable="true" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" DefaultValue="A" MaxLength="1" FixedLength="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OT_OTHER_LIST_GROUP" Relationship="CommonModel.FK_OOLG_OOLT" FromRole="OT_OTHER_LIST_TYPE" ToRole="OT_OTHER_LIST_GROUP" />
+    <NavigationProperty Name="OT_OTHER_LISTS" Relationship="CommonModel.FK_OOLT_OOL" FromRole="OT_OTHER_LIST_TYPE" ToRole="OT_OTHER_LIST" />
+    <Property Type="Int16" Name="IS_SYSTEM" Nullable="true" DefaultValue="0" />
+  </EntityType>
+  <Association Name="FK_OOLG_OOLT">
+    <End Type="CommonModel.OT_OTHER_LIST_GROUP" Role="OT_OTHER_LIST_GROUP" Multiplicity="0..1" />
+    <End Type="CommonModel.OT_OTHER_LIST_TYPE" Role="OT_OTHER_LIST_TYPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OT_OTHER_LIST_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OT_OTHER_LIST_TYPE">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OOLT_OOL">
+    <End Type="CommonModel.OT_OTHER_LIST_TYPE" Role="OT_OTHER_LIST_TYPE" Multiplicity="1" />
+    <End Type="CommonModel.OT_OTHER_LIST" Role="OT_OTHER_LIST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OT_OTHER_LIST_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OT_OTHER_LIST">
+        <PropertyRef Name="TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SE_REPORT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="NAME" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true" />
+    <NavigationProperty Name="SE_MODULE" Relationship="CommonModel.FK_SM_SR" FromRole="SE_REPORT" ToRole="SE_MODULE" />
+    <NavigationProperty Name="SE_GROUPS" Relationship="CommonModel.SE_GROUP_REPORT" FromRole="SE_REPORT" ToRole="SE_GROUP" />
+    <Property Type="String" Name="CODE" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Type="Decimal" Name="MODULE_ID" Nullable="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SE_USER" Relationship="CommonModel.SE_USER_REPORT" FromRole="SE_REPORT" ToRole="SE_USER" />
+  </EntityType>
+  <Association Name="FK_SM_SR">
+    <End Type="CommonModel.SE_MODULE" Role="SE_MODULE" Multiplicity="1" />
+    <End Type="CommonModel.SE_REPORT" Role="SE_REPORT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SE_MODULE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SE_REPORT">
+        <PropertyRef Name="MODULE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SE_GROUP_REPORT">
+    <End Type="CommonModel.SE_GROUP" Role="SE_GROUP" Multiplicity="*" />
+    <End Type="CommonModel.SE_REPORT" Role="SE_REPORT" Multiplicity="*" />
+  </Association>
+  <EntityType Name="HU_ORGANIZATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" />
+    <NavigationProperty Name="CHILDREN" Relationship="CommonModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION" ToRole="HU_ORGANIZATION1" />
+    <NavigationProperty Name="PARENT" Relationship="CommonModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION1" ToRole="HU_ORGANIZATION" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="CommonModel.FK_HU_ORG_HU_EMP" FromRole="HU_ORGANIZATION" ToRole="HU_EMPLOYEE" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="50" FixedLength="false" />
+    <Property Type="String" Name="NAME_EN" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_VN" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PARENT_ID" Nullable="true" />
+    <Property Type="DateTime" Name="DISSOLVE_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="FOUNDATION_DATE" Nullable="false" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" DefaultValue="A" MaxLength="1" FixedLength="false" />
+    <Property Type="String" Name="HIERARCHICAL_PATH" Nullable="true" MaxLength="1023" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION_PATH" Nullable="true" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FAX" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="REPRESENTATIVE_ID" Nullable="false" />
+    <Property Type="Decimal" Name="ORD_NO" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_HU_ORG_HU_ORG">
+    <End Type="CommonModel.HU_ORGANIZATION" Role="HU_ORGANIZATION" Multiplicity="0..1" />
+    <End Type="CommonModel.HU_ORGANIZATION" Role="HU_ORGANIZATION1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_ORGANIZATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_ORGANIZATION1">
+        <PropertyRef Name="PARENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SE_FUNCTION_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="NAME" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Type="String" Name="CODE" Nullable="true" FixedLength="false" MaxLength="255" Unicode="true" />
+    <NavigationProperty Name="SE_FUNCTION" Relationship="CommonModel.FK_SFG_SF" FromRole="SE_FUNCTION_GROUP" ToRole="SE_FUNCTION" />
+  </EntityType>
+  <Association Name="FK_SFG_SF">
+    <End Type="CommonModel.SE_FUNCTION_GROUP" Role="SE_FUNCTION_GROUP" Multiplicity="0..1" />
+    <End Type="CommonModel.SE_FUNCTION" Role="SE_FUNCTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SE_FUNCTION_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SE_FUNCTION">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HU_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Nullable="false" Type="Decimal" />
+    <NavigationProperty Name="HU_ORGANIZATION" Relationship="CommonModel.FK_HU_ORG_HU_EMP" FromRole="HU_EMPLOYEE" ToRole="HU_ORGANIZATION" />
+    <NavigationProperty Name="HU_TITLE" Relationship="CommonModel.HU_TITLEHU_EMPLOYEE" FromRole="HU_EMPLOYEE" ToRole="HU_TITLE" />
+    <Property Type="String" Name="EMPLOYEE_CODE" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FIRST_NAME_VN" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LAST_NAME_VN" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FULLNAME_VN" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FIRST_NAME_EN" Nullable="true" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LAST_NAME_EN" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FULLNAME_EN" Nullable="true" MaxLength="255" FixedLength="false" />
+    <Property Type="Decimal" Name="ORG_ID" Nullable="true" />
+    <Property Type="Decimal" Name="WORK_STATUS" Nullable="true" />
+    <Property Type="Decimal" Name="CONTRACT_ID" Nullable="true" />
+    <Property Type="Decimal" Name="TITLE_ID" Nullable="false" />
+    <Property Type="DateTime" Name="JOIN_DATE" Nullable="true" />
+    <Property Type="Decimal" Name="DIRECT_MANAGER" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="LAST_WORKING_ID" Nullable="true" />
+    <Property Type="DateTime" Name="TER_EFFECT_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="TER_LAST_DATE" Nullable="true" />
+    <Property Type="Decimal" Name="STAFF_RANK_ID" Nullable="true" />
+    <Property Type="Decimal" Name="ITIME_ID" Nullable="true" />
+    <Property Type="Decimal" Name="PA_OBJECT_SALARY_ID" Nullable="true" />
+    <Property Type="Int16" Name="IS_3B" Nullable="true" />
+  </EntityType>
+  <EntityType Name="HU_TERMINATE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="IS_NOHIRE" />
+    <Property Type="DateTime" Name="SEND_DATE" />
+    <Property Type="String" Name="TER_REASON_DETAIL" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LAST_DATE" Nullable="true" />
+    <Property Type="Decimal" Name="STATUS_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="EMP_SENIORITY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="LAST_WORKING_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="APPROVAL_DATE" />
+    <Property Type="Decimal" Name="IDENTIFI_CARD" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="IDENTIFI_RDATE" />
+    <Property Type="String" Name="IDENTIFI_STATUS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="SUN_CARD" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="SUN_RDATE" />
+    <Property Type="String" Name="SUN_STATUS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="INSURANCE_CARD" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="INSURANCE_RDATE" />
+    <Property Type="String" Name="INSURANCE_STATUS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="REMAINING_LEAVE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PAYMENT_LEAVE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="AMOUNT_VIOLATIONS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="AMOUNT_WRONGFUL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ALLOWANCE_TERMINATE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TRAINING_COSTS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OTHER_COMPENSATION" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COMPENSATORY_LEAVE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COMPENSATORY_PAYMENT" Precision="38" Scale="0" />
+    <Property Type="String" Name="DECISION_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="SIGN_DATE" />
+    <Property Type="Decimal" Name="SIGN_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="SIGN_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SIGN_TITLE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="Decimal" Name="IDENTIFI_MONEY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SUN_MONEY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="INSURANCE_MONEY" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="IS_3B" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_HU_ORG_HU_EMP">
+    <End Type="CommonModel.HU_ORGANIZATION" Multiplicity="0..1" Role="HU_ORGANIZATION" />
+    <End Type="CommonModel.HU_EMPLOYEE" Multiplicity="*" Role="HU_EMPLOYEE" />
+    <ReferentialConstraint>
+      <Principal Role="HU_ORGANIZATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE">
+        <PropertyRef Name="ORG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SE_MAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Decimal" />
+    <Property Name="SUBJECT" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MAIL_FROM" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MAIL_TO" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MAIL_CC" Nullable="true" MaxLength="1024" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MAIL_BCC" Nullable="true" MaxLength="1024" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="CONTENT" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="VIEW_NAME" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="ACTFLG" Nullable="true" DefaultValue="I" MaxLength="1" FixedLength="false" Type="String" />
+    <Property Type="String" Name="ATTACHMENT" />
+  </EntityType>
+  <EntityType Name="SE_REMINDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="255" />
+    <Property Type="Int16" Name="TYPE" Nullable="false" />
+    <Property Type="String" Name="VALUE" Nullable="true" MaxLength="255" Unicode="true" />
+    <Property Type="Decimal" Name="ID" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HU_TITLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="CommonModel.HU_TITLEHU_EMPLOYEE" FromRole="HU_TITLE" ToRole="HU_EMPLOYEE" />
+    <Property Type="String" Name="REMARK" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="255" FixedLength="false" />
+    <Property Type="String" Name="NAME_EN" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_VN" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" DefaultValue="A" MaxLength="1" FixedLength="false" />
+    <Property Type="Decimal" Name="TITLE_GROUP_ID" Nullable="false" />
+  </EntityType>
+  <Association Name="HU_TITLEHU_EMPLOYEE">
+    <End Type="CommonModel.HU_TITLE" Role="HU_TITLE" Multiplicity="1" />
+    <End Type="CommonModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_TITLE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE">
+        <PropertyRef Name="TITLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SE_APP_PROCESS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROCESS_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="NUMREQUEST" Precision="38" Scale="0" />
+    <Property Type="String" Name="EMAIL" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SE_APP_SETUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PROCESS_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TEMPLATE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="FROM_DATE" />
+    <Property Type="DateTime" Name="TO_DATE" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SE_APP_SETUPEXT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SUB_EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PROCESS_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="FROM_DATE" />
+    <Property Type="DateTime" Name="TO_DATE" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="REPLACEALL" />
+  </EntityType>
+  <EntityType Name="SE_APP_TEMPLATE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="TEMPLATE_NAME" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="TEMPLATE_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TEMPLATE_ORDER" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SE_APP_TEMPLATE_DTL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TEMPLATE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="APP_LEVEL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="APP_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="APP_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="INFORM_DATE" Precision="38" Scale="0" />
+    <Property Type="String" Name="INFORM_EMAIL" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HU_WORKING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TRANSFER_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TRANSFER_REASON" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="INDIRECT_MANAGER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="IS_DECISION" />
+    <Property Type="Decimal" Name="DECISION_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STATUS" Precision="38" Scale="0" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="DateTime" Name="EXPIRE_DATE" />
+    <Property Type="Int16" Name="WORKING_TYPE" />
+    <Property Type="Decimal" Name="COST_CENTER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BASIC_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SOFT_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OTHER_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COEFFICIENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACTUAL_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_ENTERPRISE_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="ALLOWANCE_IDS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ALLOWANCE_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ALLOWANCE_TOTAL" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="SE_CHOSEN_ORG">
+    <Key>
+      <PropertyRef Name="ORG_ID" />
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Type="Decimal" Name="ORG_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_CV">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="GENDER" Precision="38" Scale="0" />
+    <Property Type="String" Name="IMAGE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="BIRTH_DATE" />
+    <Property Type="String" Name="BIRTH_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="MARITAL_STATUS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="RELIGION" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NATIVE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NATIONALITY" Precision="38" Scale="0" />
+    <Property Type="String" Name="PER_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PER_PROVINCE" Precision="38" Scale="0" />
+    <Property Type="String" Name="HOME_PHONE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MOBILE_PHONE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ID_NO" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="ID_DATE" />
+    <Property Type="String" Name="PASS_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="PASS_DATE" />
+    <Property Type="DateTime" Name="PASS_EXPIRE" />
+    <Property Type="String" Name="PASS_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VISA" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="VISA_DATE" />
+    <Property Type="DateTime" Name="VISA_EXPIRE" />
+    <Property Type="String" Name="VISA_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="WORK_PERMIT" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="WORK_PERMIT_DATE" />
+    <Property Type="DateTime" Name="WORK_PERMIT_EXPIRE" />
+    <Property Type="String" Name="WORK_EMAIL" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAV_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="NAV_PROVINCE" Precision="38" Scale="0" />
+    <Property Type="String" Name="PIT_CODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PER_EMAIL" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CONTACT_PER" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CONTACT_PER_PHONE" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ID_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="WORK_PERMIT_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="BANK_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BANK_BRANCH_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="NGAY_VAO_DOAN" />
+    <Property Type="String" Name="NOI_VAO_DOAN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CHUC_VU_DOAN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="DOAN_PHI" />
+    <Property Type="DateTime" Name="NGAY_VAO_DANG" />
+    <Property Type="String" Name="NOI_VAO_DANG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CHUC_VU_DANG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="DANG_PHI" />
+    <Property Type="String" Name="BANK_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CAREER" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HU_STAFF_RANK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SE_LDAP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="LDAP_NAME" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="DOMAIN_NAME" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="BASE_DN" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <Association Name="SE_USER_REPORT">
+    <End Type="CommonModel.SE_REPORT" Role="SE_REPORT" Multiplicity="*" />
+    <End Type="CommonModel.SE_USER" Role="SE_USER" Multiplicity="*" />
+  </Association>
+  <EntityType Name="SE_USER_ORG_ACCESS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="USER_ID" Nullable="false" />
+    <Property Type="Decimal" Name="ORG_ID" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SE_USER_PERMISSION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" />
+    <Property Type="Decimal" Name="USER_ID" Nullable="false" />
+    <Property Type="Int16" Name="ALLOW_CREATE" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_MODIFY" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_DELETE" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_PRINT" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_IMPORT" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_EXPORT" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL1" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL2" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL3" Nullable="false" DefaultValue="0" />
+    <Property Type="Decimal" Name="FUNCTION_ID" Nullable="false" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL4" Nullable="false" DefaultValue="0" />
+    <Property Type="Int16" Name="ALLOW_SPECIAL5" Nullable="false" DefaultValue="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="GROUP_ID" />
+  </EntityType>
+  <EntityType Name="HUV_SE_GRP_SE_USR">
+    <Key>
+      <PropertyRef Name="SE_USERS_ID" />
+      <PropertyRef Name="SE_GROUPS_ID" />
+    </Key>
+    <Property Type="Decimal" Name="SE_USERS_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SE_GROUPS_ID" Nullable="false" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="SE_VIEW_CONFIG">
+    <Key>
+      <PropertyRef Name="CODE_NAME" />
+    </Key>
+    <Property Type="String" Name="CODE_NAME" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CONFIG_DATA" />
+  </EntityType>
+</Schema>

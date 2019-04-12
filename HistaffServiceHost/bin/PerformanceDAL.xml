@@ -1,0 +1,1955 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PerformanceDAL
+</name>
+</assembly>
+<members>
+<member name="P:PerformanceDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PerformanceDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:PerformanceDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:PerformanceDAL.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member><member name="M:PerformanceDAL.PerformanceRepository.CheckExistInDatabase(System.Collections.Generic.List{System.Decimal},PerformanceDAL.PerformanceCommon.TABLE_NAME)">
+	<summary>
+ Kiểm tra dữ liệu đã được sử dụng hay chưa?
+ </summary>
+	<param name="table">Enum Table_Name</param>
+	<returns>true:chưa có/false:có rồi</returns>
+	<remarks></remarks>
+</member><member name="M:PerformanceDAL.PerformanceContext.#ctor">
+	<summary>
+ Initializes a new PerformanceContext object using the connection string found in the 'PerformanceContext' section of the application configuration file.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.#ctor(System.String)">
+	<summary>
+ Initialize a new PerformanceContext object.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new PerformanceContext object.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_CRITERIA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_OBJECT_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_OBJECT_GROUP_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.HU_STAFF_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.HUV_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_PERSONAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_EMPLOYEE_ASSESSMENT_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_CLASSIFICATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_ASSESSMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_EMPLOYEE_ASSESSMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_CRITERIA_OBJECT_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PerformanceContext.PE_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_CRITERIA(PerformanceDAL.PE_CRITERIA)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_CRITERIA EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_OBJECT_GROUP(PerformanceDAL.PE_OBJECT_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_OBJECT_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_OBJECT_GROUP_PERIOD(PerformanceDAL.PE_OBJECT_GROUP_PERIOD)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_OBJECT_GROUP_PERIOD EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToHU_EMPLOYEE(PerformanceDAL.HU_EMPLOYEE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToHU_EMPLOYEE_CV(PerformanceDAL.HU_EMPLOYEE_CV)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_CV EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToHU_ORG_TITLE(PerformanceDAL.HU_ORG_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORG_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToHU_ORGANIZATION(PerformanceDAL.HU_ORGANIZATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORGANIZATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToHU_TITLE(PerformanceDAL.HU_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToSE_CHOSEN_ORG(PerformanceDAL.SE_CHOSEN_ORG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_CHOSEN_ORG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToHU_STAFF_RANK(PerformanceDAL.HU_STAFF_RANK)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_STAFF_RANK EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToHUV_ORGANIZATION(PerformanceDAL.HUV_ORGANIZATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HUV_ORGANIZATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_PERSONAL(PerformanceDAL.PE_PERSONAL)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_PERSONAL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_EMPLOYEE_ASSESSMENT_DTL(PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_EMPLOYEE_ASSESSMENT_DTL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_ORGANIZATION(PerformanceDAL.PE_ORGANIZATION)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_ORGANIZATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_CLASSIFICATION(PerformanceDAL.PE_CLASSIFICATION)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_CLASSIFICATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToOT_OTHER_LIST(PerformanceDAL.OT_OTHER_LIST)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_ASSESSMENT(PerformanceDAL.PE_ASSESSMENT)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_ASSESSMENT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_EMPLOYEE_ASSESSMENT(PerformanceDAL.PE_EMPLOYEE_ASSESSMENT)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_EMPLOYEE_ASSESSMENT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_CRITERIA_OBJECT_GROUP(PerformanceDAL.PE_CRITERIA_OBJECT_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_CRITERIA_OBJECT_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PerformanceDAL.PerformanceContext.AddToPE_PERIOD(PerformanceDAL.PE_PERIOD)">
+	<summary>
+ Deprecated Method for adding a new object to the PE_PERIOD EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:PerformanceDAL.PerformanceContext">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.HU_EMPLOYEE.CreateHU_EMPLOYEE(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.FIRST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.LAST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.FULLNAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.FIRST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.LAST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.FULLNAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.WORK_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.JOIN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.LAST_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.TER_EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.TER_LAST_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.ITIME_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.PA_OBJECT_SALARY_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.EXPIREDATE_ENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.JOIN_DATE_STATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.LEVEL_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.EMPLOYEE_3B_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.EMPLOYEE_CODE_OLD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.IS_3B">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_EMPLOYEE_CVReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_EMPLOYEE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_EMPLOYEE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE.HU_EMPLOYEE2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.HU_EMPLOYEE_CV.CreateHU_EMPLOYEE_CV(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_CV object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.GENDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.IMAGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.BIRTH_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.BIRTH_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.MARITAL_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.RELIGION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NATIVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NATIONALITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PER_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PER_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.HOME_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.MOBILE_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.ID_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.ID_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PASS_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PASS_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PASS_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.VISA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.VISA_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.VISA_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.VISA_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.WORK_PERMIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.WORK_PERMIT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.WORK_PERMIT_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.WORK_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NAV_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NAV_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PIT_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PER_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CONTACT_PER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CONTACT_PER_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.ID_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.WORK_PERMIT_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.BANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.BANK_BRANCH_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.BANK_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NGAY_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NOI_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CHUC_VU_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.DOAN_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NGAY_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NOI_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CHUC_VU_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.DANG_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.CAREER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PER_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NAV_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.PER_WARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.NAV_WARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.WORKPLACE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.IS_PERMISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.INS_REGION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_EMPLOYEE_CV.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.HU_ORG_TITLE.CreateHU_ORG_TITLE(System.Decimal)">
+	<summary>
+ Create a new HU_ORG_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORG_TITLE.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.HU_ORGANIZATION.CreateHU_ORGANIZATION(System.Decimal)">
+	<summary>
+ Create a new HU_ORGANIZATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.PARENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.DISSOLVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.FOUNDATION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.HIERARCHICAL_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.DESCRIPTION_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.FAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.REPRESENTATIVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.MOBILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.PROVINCE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.COST_CENTER_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.ORD_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.HU_ORGANIZATION1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.HU_ORGANIZATION2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_ORGANIZATION.HU_ORGANIZATION2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.HU_STAFF_RANK.CreateHU_STAFF_RANK(System.Decimal)">
+	<summary>
+ Create a new HU_STAFF_RANK object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_STAFF_RANK.LEVEL_STAFF">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.HU_STAFF_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.HU_TITLE.CreateHU_TITLE(System.Decimal)">
+	<summary>
+ Create a new HU_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.HU_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.TITLE_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HU_TITLE.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.HUV_ORGANIZATION.CreateHUV_ORGANIZATION(System.Decimal)">
+	<summary>
+ Create a new HUV_ORGANIZATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.PARENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.DESCRIPTION_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.COST_CENTER_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.PROVINCE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME6">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME7">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME8">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_NAME9">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID6">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID7">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID8">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_ID9">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE6">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE7">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE8">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_CODE9">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER6">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER7">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER8">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_COST_CENTER9">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORG_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ORD_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.DISSOLVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.HUV_ORGANIZATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.HUV_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.OT_OTHER_LIST.CreateOT_OTHER_LIST(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.ATTRIBUTE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.ATTRIBUTE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.ATTRIBUTE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.ATTRIBUTE4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.TYPE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.ORDERBYID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.OT_OTHER_LIST.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_ASSESSMENT.CreatePE_ASSESSMENT(System.Decimal)">
+	<summary>
+ Create a new PE_ASSESSMENT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.PE_EMPLOYEE_ASSESSMENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.PE_PERIO_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.PE_OBJECT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.PE_CRITERIA_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.RESULT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.STATUS_EMP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.DIRECT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.UPDATE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.RESULT_DIRECT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.ASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.REMARK_DIRECT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.RESULT_CONVERT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.STATUS_DIRECT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ASSESSMENT.RESULT_CONVERT_QL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_ASSESSMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_CLASSIFICATION.CreatePE_CLASSIFICATION(System.Decimal)">
+	<summary>
+ Create a new PE_CLASSIFICATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.VALUE_FROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.VALUE_TO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CLASSIFICATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_CLASSIFICATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_CRITERIA.CreatePE_CRITERIA(System.Decimal)">
+	<summary>
+ Create a new PE_CRITERIA object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_CRITERIA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.CreatePE_CRITERIA_OBJECT_GROUP(System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new PE_CRITERIA_OBJECT_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="oBJECT_GROUP_ID">Initial value of the OBJECT_GROUP_ID property.</param>
+	<param name="cRITERIA_ID">Initial value of the CRITERIA_ID property.</param>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.OBJECT_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.CRITERIA_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.EXPENSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.AMONG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.FROM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP.TO_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_CRITERIA_OBJECT_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.CreatePE_EMPLOYEE_ASSESSMENT(System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new PE_EMPLOYEE_ASSESSMENT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="oBJECT_GROUP_ID">Initial value of the OBJECT_GROUP_ID property.</param>
+	<param name="pERIOD_ID">Initial value of the PERIOD_ID property.</param>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.OBJECT_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT.PE_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.CreatePE_EMPLOYEE_ASSESSMENT_DTL(System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new PE_EMPLOYEE_ASSESSMENT_DTL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="pE_EMPLOYEE_ASSESSMENT_ID">Initial value of the PE_EMPLOYEE_ASSESSMENT_ID property.</param>
+	<param name="cRITERIA_ID">Initial value of the CRITERIA_ID property.</param>
+	<param name="pOINT">Initial value of the POINT property.</param>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.PE_EMPLOYEE_ASSESSMENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.CRITERIA_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.POINT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.GROUP_OBJ_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL.CLASSIFICATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_EMPLOYEE_ASSESSMENT_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_OBJECT_GROUP.CreatePE_OBJECT_GROUP(System.Decimal)">
+	<summary>
+ Create a new PE_OBJECT_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_OBJECT_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.CreatePE_OBJECT_GROUP_PERIOD(System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new PE_OBJECT_GROUP_PERIOD object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="oBJECT_GROUP_ID">Initial value of the OBJECT_GROUP_ID property.</param>
+	<param name="pERIOD_ID">Initial value of the PERIOD_ID property.</param>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.OBJECT_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_OBJECT_GROUP_PERIOD.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_OBJECT_GROUP_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_ORGANIZATION.CreatePE_ORGANIZATION(System.Decimal)">
+	<summary>
+ Create a new PE_ORGANIZATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.RESULT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_ORGANIZATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_PERIOD.CreatePE_PERIOD(System.Decimal)">
+	<summary>
+ Create a new PE_PERIOD object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PerformanceDAL.PE_PERIOD.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.END_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.TYPE_ASS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERIOD.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.PE_PERSONAL.CreatePE_PERSONAL(System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new PE_PERSONAL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+	<param name="pERIOD_ID">Initial value of the PERIOD_ID property.</param>
+	<param name="cRITERIA_GROUP_ID">Initial value of the CRITERIA_GROUP_ID property.</param>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.CRITERIA_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.OBJECT_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.MARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.PE_PERSONAL.RATING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.PE_PERSONAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PerformanceDAL.SE_CHOSEN_ORG.CreateSE_CHOSEN_ORG(System.Decimal,System.String)">
+	<summary>
+ Create a new SE_CHOSEN_ORG object.
+ </summary>
+	<param name="oRG_ID">Initial value of the ORG_ID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+</member><member name="P:PerformanceDAL.SE_CHOSEN_ORG.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PerformanceDAL.SE_CHOSEN_ORG.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PerformanceDAL.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member>
+</members>
+</doc>

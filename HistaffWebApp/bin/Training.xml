@@ -1,0 +1,6516 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Training
+</name>
+</assembly>
+<members>
+<member name="F:Training.ctrlTR_ProgramGroup.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.cboTrainField">
+	<summary>
+cboTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.reqTrainField">
+	<summary>
+reqTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.reqName">
+	<summary>
+reqName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramGroup.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.hidID">
+	<summary>
+hidID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.hidOrgID">
+	<summary>
+hidOrgID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.hidSenderID">
+	<summary>
+hidSenderID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtOrgName">
+	<summary>
+txtOrgName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.btnFindOrg">
+	<summary>
+btnFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.rntxtYear">
+	<summary>
+rntxtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cbIrregularly">
+	<summary>
+cbIrregularly control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cboPlan">
+	<summary>
+cboPlan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cusPlan">
+	<summary>
+cusPlan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtProgramGroup">
+	<summary>
+txtProgramGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cboTrainForm">
+	<summary>
+cboTrainForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cboPropertiesNeed">
+	<summary>
+cboPropertiesNeed control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtTrainField">
+	<summary>
+txtTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.rdExpectedDate">
+	<summary>
+rdExpectedDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtContent">
+	<summary>
+txtContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.RequiredFieldValidator2">
+	<summary>
+RequiredFieldValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.lstCenter">
+	<summary>
+lstCenter control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.lstTeacher">
+	<summary>
+lstTeacher control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cboUnits">
+	<summary>
+cboUnits control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.rntxtExpectedCost">
+	<summary>
+rntxtExpectedCost control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cboCurrency">
+	<summary>
+cboCurrency control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.cboStatus">
+	<summary>
+cboStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtTargetTrain">
+	<summary>
+txtTargetTrain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtVenue">
+	<summary>
+txtVenue control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtSender">
+	<summary>
+txtSender control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.btnFindSender">
+	<summary>
+btnFindSender control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtSenderMail">
+	<summary>
+txtSenderMail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtSenderMobile">
+	<summary>
+txtSenderMobile control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.rdRequestDate">
+	<summary>
+rdRequestDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.btnUploadFile">
+	<summary>
+btnUploadFile control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.lblFilename">
+	<summary>
+lblFilename control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.lblNumOfRealTrainee">
+	<summary>
+lblNumOfRealTrainee control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.lblNumOfPlanTrainee">
+	<summary>
+lblNumOfPlanTrainee control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.btnAdd">
+	<summary>
+btnAdd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.btnRemove">
+	<summary>
+btnRemove control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.btnExport">
+	<summary>
+btnExport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.btnImport">
+	<summary>
+btnImport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.phFindOrg">
+	<summary>
+phFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.phFindEmployee">
+	<summary>
+phFindEmployee control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.ctrlUpload1">
+	<summary>
+ctrlUpload1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.ctrlUpload2">
+	<summary>
+ctrlUpload2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestNewEdit.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestReject.txtRemarkReject">
+	<summary>
+txtRemarkReject control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestReject.RequiredFieldValidator2">
+	<summary>
+RequiredFieldValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_RequestReject.cmdSave">
+	<summary>
+cmdSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.rntYear">
+	<summary>
+rntYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.cboStatus">
+	<summary>
+cboStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Request.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBFormRank.cboYear">
+	<summary>
+cboYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBFormRank.btnMax">
+	<summary>
+btnMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ManaTitleCourse.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.cboCriteriaGroup">
+	<summary>
+cboCriteriaGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.rgCriNotGroup">
+	<summary>
+rgCriNotGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.btnInsert">
+	<summary>
+btnInsert control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.rgCriGroup">
+	<summary>
+rgCriGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingCriteriaGroup.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.hidProgramID">
+	<summary>
+hidProgramID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.txtProgramName">
+	<summary>
+txtProgramName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.txtCourse">
+	<summary>
+txtCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.rdEndDate">
+	<summary>
+rdEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.CompareValidator2">
+	<summary>
+CompareValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.txtAddress">
+	<summary>
+txtAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.cboProvince">
+	<summary>
+cboProvince control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.cboDictrict">
+	<summary>
+cboDictrict control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.btnStudent">
+	<summary>
+btnStudent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.btnSchedule">
+	<summary>
+btnSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.phFindPrepare">
+	<summary>
+phFindPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClass.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.cboTrainField">
+	<summary>
+cboTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.reqTrainField">
+	<summary>
+reqTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.cboProgramGroup">
+	<summary>
+cboProgramGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.reqProgramGroup">
+	<summary>
+reqProgramGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.reqName">
+	<summary>
+reqName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.cboCertificateGroup">
+	<summary>
+cboCertificateGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.cboCertificate">
+	<summary>
+cboCertificate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.cbDriver">
+	<summary>
+cbDriver control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Course.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.reqName">
+	<summary>
+reqName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtAddress">
+	<summary>
+txtAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtPhone">
+	<summary>
+txtPhone control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtFax">
+	<summary>
+txtFax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtWeb">
+	<summary>
+txtWeb control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtTaxCode">
+	<summary>
+txtTaxCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtTrainField">
+	<summary>
+txtTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtDesc">
+	<summary>
+txtDesc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtRepresent">
+	<summary>
+txtRepresent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtContact">
+	<summary>
+txtContact control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtContactPhone">
+	<summary>
+txtContactPhone control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtContactEmail">
+	<summary>
+txtContactEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Unit.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.hidID">
+	<summary>
+hidID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.hidOrgID">
+	<summary>
+hidOrgID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.cboTitle">
+	<summary>
+cboTitle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.cboCourse">
+	<summary>
+cboCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.RequiredFieldValidator3">
+	<summary>
+RequiredFieldValidator3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TitleCourse.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.rntxtCostTrainFrom">
+	<summary>
+rntxtCostTrainFrom control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.RequiredFieldValidator4">
+	<summary>
+RequiredFieldValidator4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.rntxtCostTrainTo">
+	<summary>
+rntxtCostTrainTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.cboCurrency">
+	<summary>
+cboCurrency control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.rntxtCommitWork">
+	<summary>
+rntxtCommitWork control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.RequiredFieldValidator2">
+	<summary>
+RequiredFieldValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CommitAfterTrain.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.hidLectureID">
+	<summary>
+hidLectureID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.chkIsLocal">
+	<summary>
+chkIsLocal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.cboCenter">
+	<summary>
+cboCenter control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.cusCenter">
+	<summary>
+cusCenter control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.btnFindLecture">
+	<summary>
+btnFindLecture control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.reqName">
+	<summary>
+reqName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.txtPhone">
+	<summary>
+txtPhone control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.txtEmail">
+	<summary>
+txtEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.phFindLecture">
+	<summary>
+phFindLecture control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Lecture.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.rw1">
+	<summary>
+rw1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.rw2">
+	<summary>
+rw2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.rw3">
+	<summary>
+rw3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.rw4">
+	<summary>
+rw4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.rw5">
+	<summary>
+rw5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.rw6">
+	<summary>
+rw6 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboardSixCell.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBCourse.cboYear">
+	<summary>
+cboYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBCourse.btnMax">
+	<summary>
+btnMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboard.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboard.rw1">
+	<summary>
+rw1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboard.rw2">
+	<summary>
+rw2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboard.rw3">
+	<summary>
+rw3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboard.rw4">
+	<summary>
+rw4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlDashboard.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.rntYear">
+	<summary>
+rntYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Plan.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.cboAssForm">
+	<summary>
+cboAssForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.rgCriGroupFormNotForm">
+	<summary>
+rgCriGroupFormNotForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.btnInsert">
+	<summary>
+btnInsert control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.rgCriGroupForm">
+	<summary>
+rgCriGroupForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SettingAssessmentForm.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.rntxtSeachYear">
+	<summary>
+rntxtSeachYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.cboSearchCourse">
+	<summary>
+cboSearchCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.txtSeachEmployee">
+	<summary>
+txtSeachEmployee control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.hidEmployeeID">
+	<summary>
+hidEmployeeID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.rntxtYear">
+	<summary>
+rntxtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.reqYear">
+	<summary>
+reqYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.cboCourse">
+	<summary>
+cboCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.cusCourse">
+	<summary>
+cusCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.rntxtCostOfStudent">
+	<summary>
+rntxtCostOfStudent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.cbReserves">
+	<summary>
+cbReserves control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.RequiredFieldValidator4">
+	<summary>
+RequiredFieldValidator4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.btnFindReimbursement">
+	<summary>
+btnFindReimbursement control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.phFindReimbursement">
+	<summary>
+phFindReimbursement control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Reimbursement.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtNameVN">
+	<summary>
+txtNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.reqNameVN">
+	<summary>
+reqNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtNameEN">
+	<summary>
+txtNameEN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtAddress">
+	<summary>
+txtAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtPhone">
+	<summary>
+txtPhone control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtFax">
+	<summary>
+txtFax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtWeb">
+	<summary>
+txtWeb control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtContactPerson">
+	<summary>
+txtContactPerson control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtContactPhone">
+	<summary>
+txtContactPhone control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtContactEmail">
+	<summary>
+txtContactEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtTaxCode">
+	<summary>
+txtTaxCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtTrainField">
+	<summary>
+txtTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtRepresent">
+	<summary>
+txtRepresent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtDescription">
+	<summary>
+txtDescription control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Center.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:Training.ctrlTR_Unit.GetListSelected">
+	<summary>
+ Lấy danh sách Item được chọn - 1,2,3
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:Training.ctrlTR_Program.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.rdFromDate">
+	<summary>
+rdFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.rdToDate">
+	<summary>
+rdToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.btnPrepare">
+	<summary>
+btnPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.btnClass">
+	<summary>
+btnClass control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.btnCommit">
+	<summary>
+btnCommit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.btnResult">
+	<summary>
+btnResult control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Program.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.reqNameVN">
+	<summary>
+reqNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.rntxtPointMax">
+	<summary>
+rntxtPointMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_CriteriaGroup.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.txtNameVN">
+	<summary>
+txtNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.reqNamVN">
+	<summary>
+reqNamVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.txtNameEN">
+	<summary>
+txtNameEN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.cboCertificateGroup">
+	<summary>
+cboCertificateGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.cusCertificateGroup">
+	<summary>
+cusCertificateGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.ntxtDuration">
+	<summary>
+ntxtDuration control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.txtTransportationType">
+	<summary>
+txtTransportationType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.cboCategory">
+	<summary>
+cboCategory control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Certificate.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.hidID">
+	<summary>
+hidID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.hidOrgID">
+	<summary>
+hidOrgID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.txtOrgName">
+	<summary>
+txtOrgName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.btnFindOrg">
+	<summary>
+btnFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.RequiredFieldValidator3">
+	<summary>
+RequiredFieldValidator3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtYear">
+	<summary>
+rntxtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.reqYear">
+	<summary>
+reqYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cboCourse">
+	<summary>
+cboCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cusCourse">
+	<summary>
+cusCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.RequiredFieldValidator2">
+	<summary>
+RequiredFieldValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cboHinhThuc">
+	<summary>
+cboHinhThuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cusHinhThuc">
+	<summary>
+cusHinhThuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.txtNhomCT">
+	<summary>
+txtNhomCT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.txtLinhvuc">
+	<summary>
+txtLinhvuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbJan">
+	<summary>
+cbJan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbFeb">
+	<summary>
+cbFeb control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbMar">
+	<summary>
+cbMar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbApr">
+	<summary>
+cbApr control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbMay">
+	<summary>
+cbMay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbJun">
+	<summary>
+cbJun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbJul">
+	<summary>
+cbJul control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbAug">
+	<summary>
+cbAug control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbSep">
+	<summary>
+cbSep control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbOct">
+	<summary>
+cbOct control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbNov">
+	<summary>
+cbNov control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cbDec">
+	<summary>
+cbDec control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cboTinhchatnhucau">
+	<summary>
+cboTinhchatnhucau control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cusTinhchatnhucau">
+	<summary>
+cusTinhchatnhucau control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtDuration">
+	<summary>
+rntxtDuration control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cboDurationType">
+	<summary>
+cboDurationType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.reqDuration">
+	<summary>
+reqDuration control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtTutors">
+	<summary>
+rntxtTutors control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rgISP">
+	<summary>
+rgISP control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtStudents">
+	<summary>
+rntxtStudents control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.btnFindMEmp">
+	<summary>
+btnFindMEmp control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtTotal">
+	<summary>
+rntxtTotal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtCostPerEmp">
+	<summary>
+rntxtCostPerEmp control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtTotalUS">
+	<summary>
+rntxtTotalUS control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.rntxtCostPerEmpUS">
+	<summary>
+rntxtCostPerEmpUS control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.cboUnit">
+	<summary>
+cboUnit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.lstCenter">
+	<summary>
+lstCenter control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.txtTargetTrain">
+	<summary>
+txtTargetTrain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.txtVenue">
+	<summary>
+txtVenue control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.lstPartDepts">
+	<summary>
+lstPartDepts control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.lstPositions">
+	<summary>
+lstPositions control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.lstWork">
+	<summary>
+lstWork control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.btnUploadFile">
+	<summary>
+btnUploadFile control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.lblFilename">
+	<summary>
+lblFilename control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.phFindOrg">
+	<summary>
+phFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.pgFindMultiEmp">
+	<summary>
+pgFindMultiEmp control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.ctrlUpload2">
+	<summary>
+ctrlUpload2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_PlanNewEdit.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.LeftPane1">
+	<summary>
+LeftPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.rdFromDate">
+	<summary>
+rdFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.rdToDate">
+	<summary>
+rdToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.txtEmployee">
+	<summary>
+txtEmployee control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_SearchTranningRecord.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.hidOrg">
+	<summary>
+hidOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.hidClassID">
+	<summary>
+hidClassID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadPane5">
+	<summary>
+RadPane5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.rdEndDate">
+	<summary>
+rdEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.txtOrgName">
+	<summary>
+txtOrgName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.btnChoose">
+	<summary>
+btnChoose control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.chkIsPlan">
+	<summary>
+chkIsPlan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.rgCanNotSchedule">
+	<summary>
+rgCanNotSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.btnInsert">
+	<summary>
+btnInsert control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.rgCanSchedule">
+	<summary>
+rgCanSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.phFindOrg">
+	<summary>
+phFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassStudent.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.txtNameVN">
+	<summary>
+txtNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.txtNameEN">
+	<summary>
+txtNameEN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.rntxtPointFrom">
+	<summary>
+rntxtPointFrom control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.RequiredFieldValidator4">
+	<summary>
+RequiredFieldValidator4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.rntxtPointTo">
+	<summary>
+rntxtPointTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentRate.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.reqNameVN">
+	<summary>
+reqNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.rntxtPointMax">
+	<summary>
+rntxtPointMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_Criteria.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.reqName">
+	<summary>
+reqName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlCostCenter.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.rntxtYear">
+	<summary>
+rntxtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.cboCourse">
+	<summary>
+cboCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.txtCenters">
+	<summary>
+txtCenters control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.txtLectures">
+	<summary>
+txtLectures control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.rdEndDate">
+	<summary>
+rdEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.txtAddress">
+	<summary>
+txtAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.rgResult">
+	<summary>
+rgResult control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.ctrlUpload1">
+	<summary>
+ctrlUpload1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentResult.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.hidProgramID">
+	<summary>
+hidProgramID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.hidApproveID">
+	<summary>
+hidApproveID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.txtProgramName">
+	<summary>
+txtProgramName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.txtHinhThuc">
+	<summary>
+txtHinhThuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.rdFromDate">
+	<summary>
+rdFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.rdToDate">
+	<summary>
+rdToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.txtCommitNo">
+	<summary>
+txtCommitNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.rdCommitDate">
+	<summary>
+rdCommitDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.rnConvertedTime">
+	<summary>
+rnConvertedTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.txtAproveName">
+	<summary>
+txtAproveName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.btnFindApprove">
+	<summary>
+btnFindApprove control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.txtApproveTitle">
+	<summary>
+txtApproveTitle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.rntxtCommitWork">
+	<summary>
+rntxtCommitWork control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.phFindLecture">
+	<summary>
+phFindLecture control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCommit.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNotify.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNotify.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNotify.btnSendMail">
+	<summary>
+btnSendMail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNotify.btnPrint">
+	<summary>
+btnPrint control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNotify.phFindPrepare">
+	<summary>
+phFindPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNotify.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNotify.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.ctrlOrganization">
+	<summary>
+ctrlOrganization control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.RadSplitBar1">
+	<summary>
+RadSplitBar1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.tbarMainToolBar">
+	<summary>
+tbarMainToolBar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.lblFromDate">
+	<summary>
+lblFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.lblMonth">
+	<summary>
+lblMonth control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.rdMonth">
+	<summary>
+rdMonth control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.rdFromDate">
+	<summary>
+rdFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.lblToDate">
+	<summary>
+lblToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.lblMonthMin">
+	<summary>
+lblMonthMin control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.cboMonth">
+	<summary>
+cboMonth control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.lblYear">
+	<summary>
+lblYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.cboYear">
+	<summary>
+cboYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.rdToDate">
+	<summary>
+rdToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.CompareValidator1">
+	<summary>
+CompareValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.rgEmployeeList">
+	<summary>
+rgEmployeeList control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ReportList.scriptBlock">
+	<summary>
+scriptBlock control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.hidProgramID">
+	<summary>
+hidProgramID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.hidEmployeeID">
+	<summary>
+hidEmployeeID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.txtProgramName">
+	<summary>
+txtProgramName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.txtCourse">
+	<summary>
+txtCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.cboPrepare">
+	<summary>
+cboPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.cusPrepare">
+	<summary>
+cusPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.btnFindPrepare">
+	<summary>
+btnFindPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.phFindPrepare">
+	<summary>
+phFindPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramPrepare.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBFormCost.cboYear">
+	<summary>
+cboYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBFormCost.btnMax">
+	<summary>
+btnMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.rdFromDate">
+	<summary>
+rdFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.rdToDate">
+	<summary>
+rdToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.txtEmployee">
+	<summary>
+txtEmployee control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.cb">
+	<summary>
+cb control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.cboCourse">
+	<summary>
+cboCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.cboProgramGroup">
+	<summary>
+cboProgramGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.cboTrainField">
+	<summary>
+cboTrainField control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_TranningRecord.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBDiligence.cboYear">
+	<summary>
+cboYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_DBDiligence.btnMax">
+	<summary>
+btnMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.reqNameVN">
+	<summary>
+reqNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_AssessmentForm.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:Training.ctrlTR_ProgramGroup.GetListSelected">
+	<summary>
+ Lấy danh sách Item được chọn - 1,2,3
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.hidID">
+	<summary>
+hidID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.hidRequestID">
+	<summary>
+hidRequestID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.hidCourseID">
+	<summary>
+hidCourseID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.hidOrgID">
+	<summary>
+hidOrgID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtYear">
+	<summary>
+rntxtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.reqYear">
+	<summary>
+reqYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtOrgName">
+	<summary>
+txtOrgName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.btnFindOrg">
+	<summary>
+btnFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RequiredFieldValidator3">
+	<summary>
+RequiredFieldValidator3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.cboPlan">
+	<summary>
+cboPlan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.reqcboPlan">
+	<summary>
+reqcboPlan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RequiredFieldValidator2">
+	<summary>
+RequiredFieldValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtNhomCT">
+	<summary>
+txtNhomCT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.cboHinhThuc">
+	<summary>
+cboHinhThuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.reqcboHinhThuc">
+	<summary>
+reqcboHinhThuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.cboTinhchatnhucau">
+	<summary>
+cboTinhchatnhucau control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.reqcboTinhchatnhucau">
+	<summary>
+reqcboTinhchatnhucau control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtLinhvuc">
+	<summary>
+txtLinhvuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtDuration">
+	<summary>
+rntxtDuration control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.cboDurationType">
+	<summary>
+cboDurationType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.reqDuration">
+	<summary>
+reqDuration control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RequiredFieldValidator4">
+	<summary>
+RequiredFieldValidator4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rdEndDate">
+	<summary>
+rdEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.CompareValidator2">
+	<summary>
+CompareValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.cboDurationStudy">
+	<summary>
+cboDurationStudy control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtDurationHC">
+	<summary>
+rntxtDurationHC control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtDurationOT">
+	<summary>
+rntxtDurationOT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtNumberStudent">
+	<summary>
+rntxtNumberStudent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.btnFindOrgCost">
+	<summary>
+btnFindOrgCost control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.btnDel">
+	<summary>
+btnDel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.btnCalCost">
+	<summary>
+btnCalCost control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.lblDVT">
+	<summary>
+lblDVT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.chkThilai">
+	<summary>
+chkThilai control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.chkIsReimburse">
+	<summary>
+chkIsReimburse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.divGrid">
+	<summary>
+divGrid control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rgChiPhi">
+	<summary>
+rgChiPhi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtCostCompanyUS">
+	<summary>
+rntxtCostCompanyUS control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtCostOfStudentUS">
+	<summary>
+rntxtCostOfStudentUS control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtCostCompany">
+	<summary>
+rntxtCostCompany control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.rntxtCostOfStudent">
+	<summary>
+rntxtCostOfStudent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.lstPartDepts">
+	<summary>
+lstPartDepts control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.lstPositions">
+	<summary>
+lstPositions control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.lstWork">
+	<summary>
+lstWork control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.cboLanguage">
+	<summary>
+cboLanguage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.cboUnit">
+	<summary>
+cboUnit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.lstCenter">
+	<summary>
+lstCenter control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.lstLecture">
+	<summary>
+lstLecture control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtContent">
+	<summary>
+txtContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtTargetTrain">
+	<summary>
+txtTargetTrain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtVenue">
+	<summary>
+txtVenue control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.phFindOrg">
+	<summary>
+phFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramNewEdit.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.hidStartTime">
+	<summary>
+hidStartTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.hidEndTime">
+	<summary>
+hidEndTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.hidClassID">
+	<summary>
+hidClassID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.txtClassName">
+	<summary>
+txtClassName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.rdClassStart">
+	<summary>
+rdClassStart control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.rdClassEnd">
+	<summary>
+rdClassEnd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.dpFromDate">
+	<summary>
+dpFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.dpToDate">
+	<summary>
+dpToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.dtpFromTime">
+	<summary>
+dtpFromTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.dtpToTime">
+	<summary>
+dtpToTime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.btnRegist">
+	<summary>
+btnRegist control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.txtContent">
+	<summary>
+txtContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.sdlRegister">
+	<summary>
+sdlRegister control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.phFindPrepare">
+	<summary>
+phFindPrepare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramClassSchedule.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.hidOrgID">
+	<summary>
+hidOrgID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.hidProgramID">
+	<summary>
+hidProgramID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.txtOrgName">
+	<summary>
+txtOrgName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.btnFindOrg">
+	<summary>
+btnFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.RequiredFieldValidator3">
+	<summary>
+RequiredFieldValidator3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.rntxtCostCompany">
+	<summary>
+rntxtCostCompany control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.reqNameVN">
+	<summary>
+reqNameVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.rntxtNumberStudent">
+	<summary>
+rntxtNumberStudent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.rntxtCostOfStudent">
+	<summary>
+rntxtCostOfStudent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.phFindOrg">
+	<summary>
+phFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramCost.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:Training.My.MyWebExtension.Application">
+	<summary>
+ Returns information about the current application.
+ </summary>
+</member><member name="P:Training.My.MyWebExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:Training.My.MyWebExtension.User">
+	<summary>
+ Returns information for the current Web user.
+ </summary>
+</member><member name="P:Training.My.MyWebExtension.Request">
+	<summary>
+ Returns Request object.
+ </summary>
+</member><member name="P:Training.My.MyWebExtension.Response">
+	<summary>
+ Returns Response object.
+ </summary>
+</member><member name="P:Training.My.MyWebExtension.Log">
+	<summary>
+ Returns the Asp log object.
+ </summary>
+</member><member name="P:Training.My.MyWebExtension.WebServices">
+	<summary>
+ Provides access to WebServices added to this project.
+ </summary>
+</member><member name="T:Training.My.MyWebExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.rntxtYear">
+	<summary>
+rntxtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.reqYear">
+	<summary>
+reqYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.cboCourse">
+	<summary>
+cboCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.cusCourse">
+	<summary>
+cusCourse control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.cboAssForm">
+	<summary>
+cboAssForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.cusAssForm">
+	<summary>
+cusAssForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ChooseForm.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.hidProgramID">
+	<summary>
+hidProgramID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.txtProgramName">
+	<summary>
+txtProgramName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.txtHinhThuc">
+	<summary>
+txtHinhThuc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.rdFromDate">
+	<summary>
+rdFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.rdToDate">
+	<summary>
+rdToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.ctrlUpload1">
+	<summary>
+ctrlUpload1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Training.ctrlTR_ProgramResult.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:Training.TrainingRepositoryBase.ATClient">
+	<summary>
+ Gets the AT client.
+ </summary>
+</member>
+</members>
+</doc>

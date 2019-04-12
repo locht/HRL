@@ -1,0 +1,53 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TAS.CheckInOutDataServices.Client
+</name>
+</assembly>
+<members>
+<member name="T:TAS.CheckInOutDataServices.Client.frmMain_MCC.AddLogText">
+	<summary>
+ Because the thread that is triggering the event, and will
+ finaly end up doing your code is not created on our GUI-thread
+ so we need to create a delegate and invoke the method.
+ </summary>
+	<param name="text">string; What text to add to txtAcitivty</param>
+</member><member name="P:TAS.CheckInOutDataServices.Client.TAS.CheckInOutDataServices.Client.frmMain_MCC.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TAS.CheckInOutDataServices.Client.TAS.CheckInOutDataServices.Client.frmMain_MCC.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:TAS.CheckInOutDataServices.Client.TAS.CheckInOutDataServices.Client.frmMain_MCC.bw_TrayLocation">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Point similar to {X=242,Y=17}.
+</summary>
+</member><member name="P:TAS.CheckInOutDataServices.Client.TAS.CheckInOutDataServices.Client.frmMain_MCC.timReading_TrayLocation">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Point similar to {X=128,Y=17}.
+</summary>
+</member><member name="T:TAS.CheckInOutDataServices.Client.TAS.CheckInOutDataServices.Client.frmMain_MCC">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:TAS.CheckInOutDataServices.Client.mdlGlobal.GetDataSet(System.String)">
+	<summary>
+ Đọc File XML vào DataSet
+ </summary>
+	<param name="strXMLFile"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TAS.CheckInOutDataServices.Client.frmMain_MCC.ReadCheckInOutData(System.Decimal,System.String,System.String,System.String,System.Nullable{System.Decimal},System.Nullable{System.DateTime})">
+	<summary>
+ Get data hàng ngày (Mặc định là ngày hiện tại hoặc có thể Custom, dữ liệu IsTranfer = 0 (chưa lấy)
+ Gửi request lên Server để thực hiện import vào hệ thống =&gt; Import thành công toàn bộ thì mới update lại trạng thái IsTranfer = 1
+ Nếu thất bại 1 row data thì Rollback toàn bộ
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

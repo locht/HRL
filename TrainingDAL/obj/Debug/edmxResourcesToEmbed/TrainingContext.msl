@@ -1,0 +1,1161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrainingModelStoreContainer" CdmEntityContainer="TrainingContext">
+    <EntitySetMapping Name="TR_COST_CENTER">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_COST_CENTER)">
+        <MappingFragment StoreEntitySet="TR_COST_CENTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_CHOSEN_ORG">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.SE_CHOSEN_ORG)">
+        <MappingFragment StoreEntitySet="SE_CHOSEN_ORG">
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CENTER">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CENTER)">
+        <MappingFragment StoreEntitySet="TR_CENTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="WEB" ColumnName="WEB" />
+          <ScalarProperty Name="CONTACT_PERSON" ColumnName="CONTACT_PERSON" />
+          <ScalarProperty Name="CONTACT_PHONE" ColumnName="CONTACT_PHONE" />
+          <ScalarProperty Name="CONTACT_EMAIL" ColumnName="CONTACT_EMAIL" />
+          <ScalarProperty Name="TAX_CODE" ColumnName="TAX_CODE" />
+          <ScalarProperty Name="TRAIN_FIELD" ColumnName="TRAIN_FIELD" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="REPRESENT" ColumnName="REPRESENT" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CERTIFICATE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CERTIFICATE)">
+        <MappingFragment StoreEntitySet="TR_CERTIFICATE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="TR_CER_GROUP_ID" ColumnName="TR_CER_GROUP_ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="TRANSPORTATION_TYPE" ColumnName="TRANSPORTATION_TYPE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CLASS">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CLASS)">
+        <MappingFragment StoreEntitySet="TR_CLASS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="DISTRICT_ID" ColumnName="DISTRICT_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_COURSE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_COURSE)">
+        <MappingFragment StoreEntitySet="TR_COURSE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TR_CER_GROUP_ID" ColumnName="TR_CER_GROUP_ID" />
+          <ScalarProperty Name="TR_CERTIFICATE_ID" ColumnName="TR_CERTIFICATE_ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TR_TRAIN_FIELD" ColumnName="TR_TRAIN_FIELD" />
+          <ScalarProperty Name="TR_PROGRAM_GROUP" ColumnName="TR_PROGRAM_GROUP" />
+          <ScalarProperty Name="DRIVER" ColumnName="DRIVER" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_LECTURE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_LECTURE)">
+        <MappingFragment StoreEntitySet="TR_LECTURE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TR_CENTER_ID" ColumnName="TR_CENTER_ID" />
+          <ScalarProperty Name="IS_LOCAL" ColumnName="IS_LOCAL" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="LECTURE_ID" ColumnName="LECTURE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PLAN_JOBGRADE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PLAN_JOBGRADE)">
+        <MappingFragment StoreEntitySet="TR_PLAN_JOBGRADE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="JOBGRADE_ID" ColumnName="JOBGRADE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PLAN_TITLE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PLAN_TITLE)">
+        <MappingFragment StoreEntitySet="TR_PLAN_TITLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PLAN_UNIT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PLAN_UNIT)">
+        <MappingFragment StoreEntitySet="TR_PLAN_UNIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PREPARE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PREPARE)">
+        <MappingFragment StoreEntitySet="TR_PREPARE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="TR_LIST_PREPARE_ID" ColumnName="TR_LIST_PREPARE_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="TR_COURSE_ID" ColumnName="TR_COURSE_ID" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="TR_DURATION_UNIT_ID" ColumnName="TR_DURATION_UNIT_ID" />
+          <ScalarProperty Name="DURATION_STUDY_ID" ColumnName="DURATION_STUDY_ID" />
+          <ScalarProperty Name="DURATION_HC" ColumnName="DURATION_HC" />
+          <ScalarProperty Name="DURATION_OT" ColumnName="DURATION_OT" />
+          <ScalarProperty Name="TR_UNIT_ID" ColumnName="TR_UNIT_ID" />
+          <ScalarProperty Name="IS_REIMBURSE" ColumnName="IS_REIMBURSE" />
+          <ScalarProperty Name="TR_LANGUAGE_ID" ColumnName="TR_LANGUAGE_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="TARGET_TRAIN" ColumnName="TARGET_TRAIN" />
+          <ScalarProperty Name="VENUE" ColumnName="VENUE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TITLES" ColumnName="TITLES" />
+          <ScalarProperty Name="DEPARTMENTS" ColumnName="DEPARTMENTS" />
+          <ScalarProperty Name="CENTERS" ColumnName="CENTERS" />
+          <ScalarProperty Name="IS_RETEST" ColumnName="IS_RETEST" />
+          <ScalarProperty Name="LECTURES" ColumnName="LECTURES" />
+          <ScalarProperty Name="TR_REQUEST_ID" ColumnName="TR_REQUEST_ID" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="COST_TOTAL_US" ColumnName="COST_TOTAL_US" />
+          <ScalarProperty Name="COST_STUDENT_US" ColumnName="COST_STUDENT_US" />
+          <ScalarProperty Name="STUDENT_NUMBER" ColumnName="STUDENT_NUMBER" />
+          <ScalarProperty Name="COST_STUDENT" ColumnName="COST_STUDENT" />
+          <ScalarProperty Name="COST_TOTAL" ColumnName="COST_TOTAL" />
+          <ScalarProperty Name="TRAIN_FORM_ID" ColumnName="TRAIN_FORM_ID" />
+          <ScalarProperty Name="PROPERTIES_NEED_ID" ColumnName="PROPERTIES_NEED_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_CENTER">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_CENTER)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_CENTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="TR_CENTER_ID" ColumnName="TR_CENTER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_JOBGRADE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_JOBGRADE)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_JOBGRADE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="JOBGRADE_ID" ColumnName="JOBGRADE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_LECTURE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_LECTURE)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_LECTURE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="TR_LECTURE_ID" ColumnName="TR_LECTURE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_TITLE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_TITLE)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_TITLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_UNIT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_UNIT)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_UNIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_REQUEST">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_REQUEST)">
+        <MappingFragment StoreEntitySet="TR_REQUEST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="REQUEST_DATE" ColumnName="REQUEST_DATE" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="EXPECTED_DATE" ColumnName="EXPECTED_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="EXPECTED_COST" ColumnName="EXPECTED_COST" />
+          <ScalarProperty Name="TR_CURRENCY_ID" ColumnName="TR_CURRENCY_ID" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REQUEST_SENDER_ID" ColumnName="REQUEST_SENDER_ID" />
+          <ScalarProperty Name="IS_IRREGULARLY" ColumnName="IS_IRREGULARLY" />
+          <ScalarProperty Name="TR_COURSE_ID" ColumnName="TR_COURSE_ID" />
+          <ScalarProperty Name="TRAIN_FORM_ID" ColumnName="TRAIN_FORM_ID" />
+          <ScalarProperty Name="PROPERTIES_NEED_ID" ColumnName="PROPERTIES_NEED_ID" />
+          <ScalarProperty Name="TR_UNIT_ID" ColumnName="TR_UNIT_ID" />
+          <ScalarProperty Name="TARGET_TRAIN" ColumnName="TARGET_TRAIN" />
+          <ScalarProperty Name="VENUE" ColumnName="VENUE" />
+          <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
+          <ScalarProperty Name="REJECT_REASON" ColumnName="REJECT_REASON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_REQUEST_EMPLOYEE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_REQUEST_EMPLOYEE)">
+        <MappingFragment StoreEntitySet="TR_REQUEST_EMPLOYEE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_REQUEST_ID" ColumnName="TR_REQUEST_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CLASS_STUDENT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CLASS_STUDENT)">
+        <MappingFragment StoreEntitySet="TR_CLASS_STUDENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_CLASS_ID" ColumnName="TR_CLASS_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OT_OTHER_LIST">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.OT_OTHER_LIST)">
+        <MappingFragment StoreEntitySet="OT_OTHER_LIST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+          <ScalarProperty Name="ORDERBYID" ColumnName="ORDERBYID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OT_OTHER_LIST_GROUP">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.OT_OTHER_LIST_GROUP)">
+        <MappingFragment StoreEntitySet="OT_OTHER_LIST_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OT_OTHER_LIST_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.OT_OTHER_LIST_TYPE)">
+        <MappingFragment StoreEntitySet="OT_OTHER_LIST_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="IS_SYSTEM" ColumnName="IS_SYSTEM" />
+          <ScalarProperty Name="TABLE_RELATION" ColumnName="TABLE_RELATION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PLAN_CENTER">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PLAN_CENTER)">
+        <MappingFragment StoreEntitySet="TR_PLAN_CENTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="CENTER_ID" ColumnName="CENTER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PLAN">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PLAN)">
+        <MappingFragment StoreEntitySet="TR_PLAN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="TR_COURSE_ID" ColumnName="TR_COURSE_ID" />
+          <ScalarProperty Name="PLAN_T1" ColumnName="PLAN_T1" />
+          <ScalarProperty Name="PLAN_T2" ColumnName="PLAN_T2" />
+          <ScalarProperty Name="PLAN_T3" ColumnName="PLAN_T3" />
+          <ScalarProperty Name="PLAN_T4" ColumnName="PLAN_T4" />
+          <ScalarProperty Name="PLAN_T5" ColumnName="PLAN_T5" />
+          <ScalarProperty Name="PLAN_T6" ColumnName="PLAN_T6" />
+          <ScalarProperty Name="PLAN_T7" ColumnName="PLAN_T7" />
+          <ScalarProperty Name="PLAN_T8" ColumnName="PLAN_T8" />
+          <ScalarProperty Name="PLAN_T9" ColumnName="PLAN_T9" />
+          <ScalarProperty Name="PLAN_T10" ColumnName="PLAN_T10" />
+          <ScalarProperty Name="PLAN_T11" ColumnName="PLAN_T11" />
+          <ScalarProperty Name="PLAN_T12" ColumnName="PLAN_T12" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="TR_DURATION_UNIT_ID" ColumnName="TR_DURATION_UNIT_ID" />
+          <ScalarProperty Name="TEACHER_NUMBER" ColumnName="TEACHER_NUMBER" />
+          <ScalarProperty Name="STUDENT_NUMBER" ColumnName="STUDENT_NUMBER" />
+          <ScalarProperty Name="COST_TRAIN" ColumnName="COST_TRAIN" />
+          <ScalarProperty Name="COST_INCURRED" ColumnName="COST_INCURRED" />
+          <ScalarProperty Name="COST_TRAVEL" ColumnName="COST_TRAVEL" />
+          <ScalarProperty Name="COST_TOTAL" ColumnName="COST_TOTAL" />
+          <ScalarProperty Name="COST_OF_STUDENT" ColumnName="COST_OF_STUDENT" />
+          <ScalarProperty Name="TR_CURRENCY_ID" ColumnName="TR_CURRENCY_ID" />
+          <ScalarProperty Name="TARGET_TRAIN" ColumnName="TARGET_TRAIN" />
+          <ScalarProperty Name="VENUE" ColumnName="VENUE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="COST_OTHER" ColumnName="COST_OTHER" />
+          <ScalarProperty Name="TITLES" ColumnName="TITLES" />
+          <ScalarProperty Name="DEPARTMENTS" ColumnName="DEPARTMENTS" />
+          <ScalarProperty Name="CENTERS" ColumnName="CENTERS" />
+          <ScalarProperty Name="MONTHS" ColumnName="MONTHS" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="TRAIN_FORM_ID" ColumnName="TRAIN_FORM_ID" />
+          <ScalarProperty Name="PROPERTIES_NEED_ID" ColumnName="PROPERTIES_NEED_ID" />
+          <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+          <ScalarProperty Name="ATTACHFILE" ColumnName="ATTACHFILE" />
+          <ScalarProperty Name="COST_TOTAL_USD" ColumnName="COST_TOTAL_USD" />
+          <ScalarProperty Name="COST_OF_STUDENT_USD" ColumnName="COST_OF_STUDENT_USD" />
+          <ScalarProperty Name="WORKS" ColumnName="WORKS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_DISTRICT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_DISTRICT)">
+        <MappingFragment StoreEntitySet="HU_DISTRICT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_NATION">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_NATION)">
+        <MappingFragment StoreEntitySet="HU_NATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_PROVINCE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_PROVINCE)">
+        <MappingFragment StoreEntitySet="HU_PROVINCE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NATION_ID" ColumnName="NATION_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_CONTRACT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_CONTRACT)">
+        <MappingFragment StoreEntitySet="HU_CONTRACT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
+          <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
+          <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
+          <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+          <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
+          <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
+          <ScalarProperty Name="PERCENT_SALARY" ColumnName="PERCENT_SALARY" />
+          <ScalarProperty Name="CONTRACTTMP_ID" ColumnName="CONTRACTTMP_ID" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="LIQUI_DATE" ColumnName="LIQUI_DATE" />
+          <ScalarProperty Name="AUTHORIZE_NO" ColumnName="AUTHORIZE_NO" />
+          <ScalarProperty Name="SIGN_ORG_ID" ColumnName="SIGN_ORG_ID" />
+          <ScalarProperty Name="JOB" ColumnName="JOB" />
+          <ScalarProperty Name="WORK_TIME" ColumnName="WORK_TIME" />
+          <ScalarProperty Name="BREAK_TIME" ColumnName="BREAK_TIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_CONTRACT_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_CONTRACT_TYPE)">
+        <MappingFragment StoreEntitySet="HU_CONTRACT_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="PERIOD" ColumnName="PERIOD" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CLASS_SCHEDULE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CLASS_SCHEDULE)">
+        <MappingFragment StoreEntitySet="TR_CLASS_SCHEDULE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_CLASS_ID" ColumnName="TR_CLASS_ID" />
+          <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+          <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+          <ScalarProperty Name="IS_HC" ColumnName="IS_HC" />
+          <ScalarProperty Name="IS_HALF" ColumnName="IS_HALF" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_COMMIT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_COMMIT)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_COMMIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="COMMIT_NO" ColumnName="COMMIT_NO" />
+          <ScalarProperty Name="COMMIT_WORK" ColumnName="COMMIT_WORK" />
+          <ScalarProperty Name="COMMIT_DATE" ColumnName="COMMIT_DATE" />
+          <ScalarProperty Name="APPROVER_ID" ColumnName="APPROVER_ID" />
+          <ScalarProperty Name="COMMIT_REMARK" ColumnName="COMMIT_REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_RESULT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_RESULT)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_RESULT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="IS_EXAMS" ColumnName="IS_EXAMS" />
+          <ScalarProperty Name="IS_END" ColumnName="IS_END" />
+          <ScalarProperty Name="IS_REACH" ColumnName="IS_REACH" />
+          <ScalarProperty Name="IS_CERTIFICATE" ColumnName="IS_CERTIFICATE" />
+          <ScalarProperty Name="CERTIFICATE_DATE" ColumnName="CERTIFICATE_DATE" />
+          <ScalarProperty Name="CERTIFICATE_NO" ColumnName="CERTIFICATE_NO" />
+          <ScalarProperty Name="TR_RANK_ID" ColumnName="TR_RANK_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="TOIEC_BENCHMARK" ColumnName="TOIEC_BENCHMARK" />
+          <ScalarProperty Name="TOIEC_SCORE_IN" ColumnName="TOIEC_SCORE_IN" />
+          <ScalarProperty Name="TOIEC_SCORE_OUT" ColumnName="TOIEC_SCORE_OUT" />
+          <ScalarProperty Name="INCREMENT_SCORE" ColumnName="INCREMENT_SCORE" />
+          <ScalarProperty Name="ABSENT_REASON" ColumnName="ABSENT_REASON" />
+          <ScalarProperty Name="ABSENT_UNREASON" ColumnName="ABSENT_UNREASON" />
+          <ScalarProperty Name="CER_RECEIVE_DATE" ColumnName="CER_RECEIVE_DATE" />
+          <ScalarProperty Name="COMMIT_STARTDATE" ColumnName="COMMIT_STARTDATE" />
+          <ScalarProperty Name="COMMIT_ENDDATE" ColumnName="COMMIT_ENDDATE" />
+          <ScalarProperty Name="COMMIT_WORKMONTH" ColumnName="COMMIT_WORKMONTH" />
+          <ScalarProperty Name="IS_REFUND_FEE" ColumnName="IS_REFUND_FEE" />
+          <ScalarProperty Name="IS_RESERVES" ColumnName="IS_RESERVES" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="FINAL_SCORE" ColumnName="FINAL_SCORE" />
+          <ScalarProperty Name="RETEST_SCORE" ColumnName="RETEST_SCORE" />
+          <ScalarProperty Name="RETEST_RANK_ID" ColumnName="RETEST_RANK_ID" />
+          <ScalarProperty Name="RETEST_REMARK" ColumnName="RETEST_REMARK" />
+          <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_COST">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_COST)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_COST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="COST_COMPANY" ColumnName="COST_COMPANY" />
+          <ScalarProperty Name="STUDENT_NUMBER" ColumnName="STUDENT_NUMBER" />
+          <ScalarProperty Name="COST_OF_STUDENT" ColumnName="COST_OF_STUDENT" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_ASSESSMENT_FORM">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_ASSESSMENT_FORM)">
+        <MappingFragment StoreEntitySet="TR_ASSESSMENT_FORM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_ASSESSMENT_RATE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_ASSESSMENT_RATE)">
+        <MappingFragment StoreEntitySet="TR_ASSESSMENT_RATE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="POINT_FROM" ColumnName="POINT_FROM" />
+          <ScalarProperty Name="POINT_TO" ColumnName="POINT_TO" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CHOOSE_FORM">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CHOOSE_FORM)">
+        <MappingFragment StoreEntitySet="TR_CHOOSE_FORM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="TR_ASSESSMENT_FORM_ID" ColumnName="TR_ASSESSMENT_FORM_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_COMMIT_AFTER_TRAIN">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_COMMIT_AFTER_TRAIN)">
+        <MappingFragment StoreEntitySet="TR_COMMIT_AFTER_TRAIN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COST_TRAIN_FROM" ColumnName="COST_TRAIN_FROM" />
+          <ScalarProperty Name="TR_CURRENCY_ID" ColumnName="TR_CURRENCY_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="COMMIT_WORK" ColumnName="COMMIT_WORK" />
+          <ScalarProperty Name="COST_TRAIN_TO" ColumnName="COST_TRAIN_TO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_REIMBURSEMENT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_REIMBURSEMENT)">
+        <MappingFragment StoreEntitySet="TR_REIMBURSEMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="TR_PROGRAM_ID" ColumnName="TR_PROGRAM_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="COST_REIMBURSE" ColumnName="COST_REIMBURSE" />
+          <ScalarProperty Name="IS_RESERVES" ColumnName="IS_RESERVES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_SETTING_ASS_FORM">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_SETTING_ASS_FORM)">
+        <MappingFragment StoreEntitySet="TR_SETTING_ASS_FORM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_ASSESSMENT_FORM_ID" ColumnName="TR_ASSESSMENT_FORM_ID" />
+          <ScalarProperty Name="TR_CRITERIA_GROUP_ID" ColumnName="TR_CRITERIA_GROUP_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_SETTING_CRI_GRP">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_SETTING_CRI_GRP)">
+        <MappingFragment StoreEntitySet="TR_SETTING_CRI_GRP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_CRITERIA_ID" ColumnName="TR_CRITERIA_ID" />
+          <ScalarProperty Name="TR_CRITERIA_GROUP_ID" ColumnName="TR_CRITERIA_GROUP_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CRITERIA">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CRITERIA)">
+        <MappingFragment StoreEntitySet="TR_CRITERIA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="POINT_MAX" ColumnName="POINT_MAX" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_CRITERIA_GROUP">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_CRITERIA_GROUP)">
+        <MappingFragment StoreEntitySet="TR_CRITERIA_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="POINT_MAX" ColumnName="POINT_MAX" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_ASSESSMENT_RESULT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_ASSESSMENT_RESULT)">
+        <MappingFragment StoreEntitySet="TR_ASSESSMENT_RESULT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="TR_CHOOSE_FORM_ID" ColumnName="TR_CHOOSE_FORM_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_ASSESSMENT_RESULT_DTL">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_ASSESSMENT_RESULT_DTL)">
+        <MappingFragment StoreEntitySet="TR_ASSESSMENT_RESULT_DTL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_ASSESSMENT_RESULT_ID" ColumnName="TR_ASSESSMENT_RESULT_ID" />
+          <ScalarProperty Name="TR_CHOOSE_FORM_ID" ColumnName="TR_CHOOSE_FORM_ID" />
+          <ScalarProperty Name="TR_CRITERIA_GROUP_ID" ColumnName="TR_CRITERIA_GROUP_ID" />
+          <ScalarProperty Name="TR_CRITERIA_ID" ColumnName="TR_CRITERIA_ID" />
+          <ScalarProperty Name="POINT_ASS" ColumnName="POINT_ASS" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_EMPLOYEE)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+          <ScalarProperty Name="FIRST_NAME_VN" ColumnName="FIRST_NAME_VN" />
+          <ScalarProperty Name="LAST_NAME_VN" ColumnName="LAST_NAME_VN" />
+          <ScalarProperty Name="FULLNAME_VN" ColumnName="FULLNAME_VN" />
+          <ScalarProperty Name="FIRST_NAME_EN" ColumnName="FIRST_NAME_EN" />
+          <ScalarProperty Name="LAST_NAME_EN" ColumnName="LAST_NAME_EN" />
+          <ScalarProperty Name="FULLNAME_EN" ColumnName="FULLNAME_EN" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
+          <ScalarProperty Name="CONTRACT_ID" ColumnName="CONTRACT_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
+          <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="LAST_WORKING_ID" ColumnName="LAST_WORKING_ID" />
+          <ScalarProperty Name="TER_EFFECT_DATE" ColumnName="TER_EFFECT_DATE" />
+          <ScalarProperty Name="TER_LAST_DATE" ColumnName="TER_LAST_DATE" />
+          <ScalarProperty Name="ITIME_ID" ColumnName="ITIME_ID" />
+          <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_EMPLOYEE_CV">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_EMPLOYEE_CV)">
+        <MappingFragment StoreEntitySet="HU_EMPLOYEE_CV">
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
+          <ScalarProperty Name="MARITAL_STATUS" ColumnName="MARITAL_STATUS" />
+          <ScalarProperty Name="RELIGION" ColumnName="RELIGION" />
+          <ScalarProperty Name="NATIVE" ColumnName="NATIVE" />
+          <ScalarProperty Name="NATIONALITY" ColumnName="NATIONALITY" />
+          <ScalarProperty Name="PER_ADDRESS" ColumnName="PER_ADDRESS" />
+          <ScalarProperty Name="PER_PROVINCE" ColumnName="PER_PROVINCE" />
+          <ScalarProperty Name="HOME_PHONE" ColumnName="HOME_PHONE" />
+          <ScalarProperty Name="MOBILE_PHONE" ColumnName="MOBILE_PHONE" />
+          <ScalarProperty Name="ID_NO" ColumnName="ID_NO" />
+          <ScalarProperty Name="ID_DATE" ColumnName="ID_DATE" />
+          <ScalarProperty Name="PASS_NO" ColumnName="PASS_NO" />
+          <ScalarProperty Name="PASS_DATE" ColumnName="PASS_DATE" />
+          <ScalarProperty Name="PASS_EXPIRE" ColumnName="PASS_EXPIRE" />
+          <ScalarProperty Name="PASS_PLACE" ColumnName="PASS_PLACE" />
+          <ScalarProperty Name="VISA" ColumnName="VISA" />
+          <ScalarProperty Name="VISA_DATE" ColumnName="VISA_DATE" />
+          <ScalarProperty Name="VISA_EXPIRE" ColumnName="VISA_EXPIRE" />
+          <ScalarProperty Name="VISA_PLACE" ColumnName="VISA_PLACE" />
+          <ScalarProperty Name="WORK_PERMIT" ColumnName="WORK_PERMIT" />
+          <ScalarProperty Name="WORK_PERMIT_DATE" ColumnName="WORK_PERMIT_DATE" />
+          <ScalarProperty Name="WORK_PERMIT_EXPIRE" ColumnName="WORK_PERMIT_EXPIRE" />
+          <ScalarProperty Name="WORK_EMAIL" ColumnName="WORK_EMAIL" />
+          <ScalarProperty Name="NAV_ADDRESS" ColumnName="NAV_ADDRESS" />
+          <ScalarProperty Name="NAV_PROVINCE" ColumnName="NAV_PROVINCE" />
+          <ScalarProperty Name="PIT_CODE" ColumnName="PIT_CODE" />
+          <ScalarProperty Name="PER_EMAIL" ColumnName="PER_EMAIL" />
+          <ScalarProperty Name="CONTACT_PER" ColumnName="CONTACT_PER" />
+          <ScalarProperty Name="CONTACT_PER_PHONE" ColumnName="CONTACT_PER_PHONE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ID_PLACE" ColumnName="ID_PLACE" />
+          <ScalarProperty Name="WORK_PERMIT_PLACE" ColumnName="WORK_PERMIT_PLACE" />
+          <ScalarProperty Name="BANK_ID" ColumnName="BANK_ID" />
+          <ScalarProperty Name="BANK_BRANCH_ID" ColumnName="BANK_BRANCH_ID" />
+          <ScalarProperty Name="NGAY_VAO_DOAN" ColumnName="NGAY_VAO_DOAN" />
+          <ScalarProperty Name="NOI_VAO_DOAN" ColumnName="NOI_VAO_DOAN" />
+          <ScalarProperty Name="CHUC_VU_DOAN" ColumnName="CHUC_VU_DOAN" />
+          <ScalarProperty Name="DOAN_PHI" ColumnName="DOAN_PHI" />
+          <ScalarProperty Name="NGAY_VAO_DANG" ColumnName="NGAY_VAO_DANG" />
+          <ScalarProperty Name="NOI_VAO_DANG" ColumnName="NOI_VAO_DANG" />
+          <ScalarProperty Name="CHUC_VU_DANG" ColumnName="CHUC_VU_DANG" />
+          <ScalarProperty Name="DANG_PHI" ColumnName="DANG_PHI" />
+          <ScalarProperty Name="BANK_NO" ColumnName="BANK_NO" />
+          <ScalarProperty Name="DRIVER_LICENSE" ColumnName="DRIVER_LICENSE" />
+          <ScalarProperty Name="DRIVER_LICENSE_DATE" ColumnName="DRIVER_LICENSE_DATE" />
+          <ScalarProperty Name="DRIVER_LICENSE_EXPIRE" ColumnName="DRIVER_LICENSE_EXPIRE" />
+          <ScalarProperty Name="CAREER" ColumnName="CAREER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ORG_TITLE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_ORG_TITLE)">
+        <MappingFragment StoreEntitySet="HU_ORG_TITLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_ORGANIZATION">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_ORGANIZATION)">
+        <MappingFragment StoreEntitySet="HU_ORGANIZATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+          <ScalarProperty Name="DISSOLVE_DATE" ColumnName="DISSOLVE_DATE" />
+          <ScalarProperty Name="FOUNDATION_DATE" ColumnName="FOUNDATION_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="HIERARCHICAL_PATH" ColumnName="HIERARCHICAL_PATH" />
+          <ScalarProperty Name="DESCRIPTION_PATH" ColumnName="DESCRIPTION_PATH" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="REPRESENTATIVE_ID" ColumnName="REPRESENTATIVE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HU_TITLE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.HU_TITLE)">
+        <MappingFragment StoreEntitySet="HU_TITLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+          <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="TITLE_GROUP_ID" ColumnName="TITLE_GROUP_ID" />
+          <ScalarProperty Name="WORK_INVOLVE_ID" ColumnName="WORK_INVOLVE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PROGRAM_GROUP">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PROGRAM_GROUP)">
+        <MappingFragment StoreEntitySet="TR_PROGRAM_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TRAIN_FIELD_ID" ColumnName="TRAIN_FIELD_ID" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_REQUEST_CENTER">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_REQUEST_CENTER)">
+        <MappingFragment StoreEntitySet="TR_REQUEST_CENTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_REQUEST_ID" ColumnName="TR_REQUEST_ID" />
+          <ScalarProperty Name="CENTER_ID" ColumnName="CENTER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_REQUEST_TEACHER">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_REQUEST_TEACHER)">
+        <MappingFragment StoreEntitySet="TR_REQUEST_TEACHER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_REQUEST_ID" ColumnName="TR_REQUEST_ID" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PLAN_COST_DETAIL">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PLAN_COST_DETAIL)">
+        <MappingFragment StoreEntitySet="TR_PLAN_COST_DETAIL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MONEY_TYPE" ColumnName="MONEY_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_UNIT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_UNIT)">
+        <MappingFragment StoreEntitySet="TR_UNIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="WEB" ColumnName="WEB" />
+          <ScalarProperty Name="TAX_CODE" ColumnName="TAX_CODE" />
+          <ScalarProperty Name="TRAIN_FIELD" ColumnName="TRAIN_FIELD" />
+          <ScalarProperty Name="REPRESENT" ColumnName="REPRESENT" />
+          <ScalarProperty Name="CONTACT_PERSON" ColumnName="CONTACT_PERSON" />
+          <ScalarProperty Name="CONTACT_PHONE" ColumnName="CONTACT_PHONE" />
+          <ScalarProperty Name="CONTACT_EMAIL" ColumnName="CONTACT_EMAIL" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_PLAN_EMPLOYEE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_PLAN_EMPLOYEE)">
+        <MappingFragment StoreEntitySet="TR_PLAN_EMPLOYEE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_PLAN_ID" ColumnName="TR_PLAN_ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_TITLE_COURSE">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.TR_TITLE_COURSE)">
+        <MappingFragment StoreEntitySet="TR_TITLE_COURSE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TR_COURSE_ID" ColumnName="TR_COURSE_ID" />
+          <ScalarProperty Name="HU_TITLE_ID" ColumnName="HU_TITLE_ID" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_REPORT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.SE_REPORT)">
+        <MappingFragment StoreEntitySet="SE_REPORT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_USER">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.SE_USER)">
+        <MappingFragment StoreEntitySet="SE_USER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+          <ScalarProperty Name="IS_APP" ColumnName="IS_APP" />
+          <ScalarProperty Name="IS_PORTAL" ColumnName="IS_PORTAL" />
+          <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+          <ScalarProperty Name="IS_AD" ColumnName="IS_AD" />
+          <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+          <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+          <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+          <ScalarProperty Name="IS_CHANGE_PASS" ColumnName="IS_CHANGE_PASS" />
+          <ScalarProperty Name="CHANGE_PASS_DATE" ColumnName="CHANGE_PASS_DATE" />
+          <ScalarProperty Name="REMINDER_COUNT" ColumnName="REMINDER_COUNT" />
+          <ScalarProperty Name="MODULE_ADMIN" ColumnName="MODULE_ADMIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SE_USER_REPORT">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.SE_USER_REPORT)">
+        <MappingFragment StoreEntitySet="SE_USER_REPORT">
+          <ScalarProperty Name="SE_REPORT_ID" ColumnName="SE_REPORT_ID" />
+          <ScalarProperty Name="SE_USER_ID" ColumnName="SE_USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

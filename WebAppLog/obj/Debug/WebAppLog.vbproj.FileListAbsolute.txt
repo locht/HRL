@@ -14,3 +14,11 @@ C:\workpasces\TRUNGNAM\histaffhcm\WebAppLog\bin\Debug\WebAppLog.xml
 C:\workpasces\TRUNGNAM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.dll
 C:\workpasces\TRUNGNAM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.xml
 C:\workpasces\TRUNGNAM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.pdb
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\bin\Debug\WebAppLog.dll
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\bin\Debug\WebAppLog.pdb
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\bin\Debug\WebAppLog.xml
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.dll
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.xml
+D:\MyProject\histaffHCM\histaffhcm\WebAppLog\obj\Debug\WebAppLog.pdb

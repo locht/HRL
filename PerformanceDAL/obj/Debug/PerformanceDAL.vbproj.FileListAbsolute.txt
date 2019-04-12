@@ -1,0 +1,16 @@
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\PerformanceDAL.dll.config
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\PerformanceDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\PerformanceDAL.pdb
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\PerformanceDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\EntityFramework.dll
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\Framework.Data.dll
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\Oracle.DataAccess.dll
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\Framework.Data.pdb
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\Framework.Data.xml
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\bin\Debug\EntityFramework.xml
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\obj\Debug\PerformanceDAL.vbprojResolveAssemblyReference.cache
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\obj\Debug\PerformanceDAL.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\obj\Debug\PerformanceDAL.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\obj\Debug\PerformanceDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\obj\Debug\PerformanceDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\PerformanceDAL\obj\Debug\PerformanceDAL.pdb

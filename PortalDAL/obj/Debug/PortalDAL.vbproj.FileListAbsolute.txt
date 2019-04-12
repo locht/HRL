@@ -1,0 +1,15 @@
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\PortalDAL.dll.config
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\PortalDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\PortalDAL.pdb
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\PortalDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\Framework.Data.dll
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\Oracle.DataAccess.dll
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\EntityFramework.dll
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\Framework.Data.pdb
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\Framework.Data.xml
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\bin\Debug\EntityFramework.xml
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\obj\Debug\PortalDAL.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\obj\Debug\PortalDAL.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\obj\Debug\PortalDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\obj\Debug\PortalDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\PortalDAL\obj\Debug\PortalDAL.pdb

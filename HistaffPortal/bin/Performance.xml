@@ -1,0 +1,2462 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Performance
+</name>
+</assembly>
+<members>
+<member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadPane5">
+	<summary>
+RadPane5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.rgCanNotSchedule">
+	<summary>
+rgCanNotSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.btnInsert">
+	<summary>
+btnInsert control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.rgCanSchedule">
+	<summary>
+rgCanSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroupPeriod.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.RadPane5">
+	<summary>
+RadPane5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.cboObjectGroup">
+	<summary>
+cboObjectGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.rgEmployeeAssessmentDtl">
+	<summary>
+rgEmployeeAssessmentDtl control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.ctrlUpload1">
+	<summary>
+ctrlUpload1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessmentDTL.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.txtYear">
+	<summary>
+txtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.cboTypeAss">
+	<summary>
+cboTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CBNSViewRating.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboard.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboard.rw1">
+	<summary>
+rw1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboard.rw2">
+	<summary>
+rw2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboard.rw3">
+	<summary>
+rw3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboard.rw4">
+	<summary>
+rw4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboard.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRating.txtYear">
+	<summary>
+txtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRating.cboTypeAss">
+	<summary>
+cboTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRating.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRating.btnMax">
+	<summary>
+btnMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadPane5">
+	<summary>
+RadPane5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.cboObjectGroup">
+	<summary>
+cboObjectGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.rgCanNotSchedule">
+	<summary>
+rgCanNotSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.btnInsert">
+	<summary>
+btnInsert control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.rgCanSchedule">
+	<summary>
+rgCanSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_EmployeeAssessment.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlListClassifi.rgContract">
+	<summary>
+rgContract control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlListClassifi.RadScriptBlock1">
+	<summary>
+RadScriptBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.tbarMainToolBar">
+	<summary>
+tbarMainToolBar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblPE_CRITERIA_ID">
+	<summary>
+lblPE_CRITERIA_ID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.hidPE_OBJECT_ID">
+	<summary>
+hidPE_OBJECT_ID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.hidPE_EMPLOYEE_ASSESSMENT_ID">
+	<summary>
+hidPE_EMPLOYEE_ASSESSMENT_ID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.isDiv1">
+	<summary>
+isDiv1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtNote">
+	<summary>
+txtNote control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblMaNhanVien">
+	<summary>
+lblMaNhanVien control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblEmpID">
+	<summary>
+lblEmpID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblFullName">
+	<summary>
+lblFullName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblChucDanh">
+	<summary>
+lblChucDanh control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblDonVi">
+	<summary>
+lblDonVi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtYear">
+	<summary>
+txtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.cboTypeAss">
+	<summary>
+cboTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.cboTrangThai">
+	<summary>
+cboTrangThai control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.rdEndDate">
+	<summary>
+rdEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblTotalPoint">
+	<summary>
+lblTotalPoint control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblRating">
+	<summary>
+lblRating control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblTotalPointQL">
+	<summary>
+lblTotalPointQL control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.lblRatingQL">
+	<summary>
+lblRatingQL control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtMaKPI">
+	<summary>
+txtMaKPI control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtTrongSo">
+	<summary>
+txtTrongSo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtTieuChiKPI">
+	<summary>
+txtTieuChiKPI control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtQuyDoi">
+	<summary>
+txtQuyDoi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtChiTieu">
+	<summary>
+txtChiTieu control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.rdTuNgay">
+	<summary>
+rdTuNgay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.rdDenNgay">
+	<summary>
+rdDenNgay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtResult">
+	<summary>
+txtResult control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.rdUpdateDate">
+	<summary>
+rdUpdateDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.cboEmp_Status">
+	<summary>
+cboEmp_Status control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtResult_Dir">
+	<summary>
+txtResult_Dir control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.rdAss_Date">
+	<summary>
+rdAss_Date control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.txtRemark_Dir">
+	<summary>
+txtRemark_Dir control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Assess.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.RegularExpressionValidator1">
+	<summary>
+RegularExpressionValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.reqNamVN">
+	<summary>
+reqNamVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.RegularExpressionValidator2">
+	<summary>
+RegularExpressionValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.txtValue_From">
+	<summary>
+txtValue_From control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.reqValue_From">
+	<summary>
+reqValue_From control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.txtValue_To">
+	<summary>
+txtValue_To control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.reqValue_To">
+	<summary>
+reqValue_To control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Classification.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:Performance.My.MyWebExtension.Application">
+	<summary>
+ Returns information about the current application.
+ </summary>
+</member><member name="P:Performance.My.MyWebExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:Performance.My.MyWebExtension.User">
+	<summary>
+ Returns information for the current Web user.
+ </summary>
+</member><member name="P:Performance.My.MyWebExtension.Request">
+	<summary>
+ Returns Request object.
+ </summary>
+</member><member name="P:Performance.My.MyWebExtension.Response">
+	<summary>
+ Returns Response object.
+ </summary>
+</member><member name="P:Performance.My.MyWebExtension.Log">
+	<summary>
+ Returns the Asp log object.
+ </summary>
+</member><member name="P:Performance.My.MyWebExtension.WebServices">
+	<summary>
+ Provides access to WebServices added to this project.
+ </summary>
+</member><member name="T:Performance.My.MyWebExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:Performance.ctrlPE_ViewRatingOrg.txtYear">
+	<summary>
+txtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRatingOrg.cboTypeAss">
+	<summary>
+cboTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRatingOrg.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRatingOrg.btnMax">
+	<summary>
+btnMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalViewAssessEmp.tbarMainToolBar">
+	<summary>
+tbarMainToolBar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalViewAssessEmp.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalViewAssessEmp.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadPane5">
+	<summary>
+RadPane5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.cboObjectGroup">
+	<summary>
+cboObjectGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadSplitter2">
+	<summary>
+RadSplitter2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.rgCanNotSchedule">
+	<summary>
+rgCanNotSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.btnInsert">
+	<summary>
+btnInsert control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadPane3">
+	<summary>
+RadPane3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.rgCanSchedule">
+	<summary>
+rgCanSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_CriteriaObjectGroup.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewRating.tbarMainToolBar">
+	<summary>
+tbarMainToolBar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewRating.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewRating.txtYear">
+	<summary>
+txtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewRating.cboTypeAss">
+	<summary>
+cboTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewRating.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewRating.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewRating.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.hidID">
+	<summary>
+hidID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.hidOrgID">
+	<summary>
+hidOrgID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.cusPeriod">
+	<summary>
+cusPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.txtORG">
+	<summary>
+txtORG control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.btnFindOrg">
+	<summary>
+btnFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.RequiredFieldValidator7">
+	<summary>
+RequiredFieldValidator7 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.txtRESULT">
+	<summary>
+txtRESULT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.txtREMARK">
+	<summary>
+txtREMARK control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.phFindOrg">
+	<summary>
+phFindOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_OrganizationNewEdit.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.nmrYear">
+	<summary>
+nmrYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RequiredFieldValidator3">
+	<summary>
+RequiredFieldValidator3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RegularExpressionValidator1">
+	<summary>
+RegularExpressionValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.reqNamVN">
+	<summary>
+reqNamVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RegularExpressionValidator2">
+	<summary>
+RegularExpressionValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.cboTypeAss">
+	<summary>
+cboTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.reqTypeAss">
+	<summary>
+reqTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.rdStartDate">
+	<summary>
+rdStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.rdEndDate">
+	<summary>
+rdEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RequiredFieldValidator2">
+	<summary>
+RequiredFieldValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.CompareValidator2">
+	<summary>
+CompareValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Period.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.RegularExpressionValidator1">
+	<summary>
+RegularExpressionValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.reqNamVN">
+	<summary>
+reqNamVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.RegularExpressionValidator2">
+	<summary>
+RegularExpressionValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ObjectGroup.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:Performance.ctrlPE_Assess.Classifications">
+	<summary>
+ AT_SHIFT
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Performance.ctrlPE_Assess.ctrlMessageBox_ButtonCommand(System.Object,Common.MessageBoxEventArgs)">
+	<lastupdate>
+ 11/07/2017 13:40
+ </lastupdate>
+	<summary>
+ Xu ly su kien click vao button command ctrlMessageBox
+ voi cac trang thai xoa, duyet, huy kich hoat
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="P:Performance.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Performance.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:Performance.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:Performance.ctrlPE_ViewRatingSeniority.txtYear">
+	<summary>
+txtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRatingSeniority.cboTypeAss">
+	<summary>
+cboTypeAss control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRatingSeniority.cboPeriod">
+	<summary>
+cboPeriod control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_ViewRatingSeniority.btnMax">
+	<summary>
+btnMax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.valSum">
+	<summary>
+valSum control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.reqCode">
+	<summary>
+reqCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.cvalCode">
+	<summary>
+cvalCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.RegularExpressionValidator1">
+	<summary>
+RegularExpressionValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.txtName">
+	<summary>
+txtName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.reqNamVN">
+	<summary>
+reqNamVN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.RegularExpressionValidator2">
+	<summary>
+RegularExpressionValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.txtRemark">
+	<summary>
+txtRemark control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.rgMain">
+	<summary>
+rgMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Criteria.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.RadPane4">
+	<summary>
+RadPane4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.rntYear">
+	<summary>
+rntYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_DirectViewKPIEmp.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.rw1">
+	<summary>
+rw1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.rw2">
+	<summary>
+rw2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.rw3">
+	<summary>
+rw3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.rw4">
+	<summary>
+rw4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.rw5">
+	<summary>
+rw5 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.rw6">
+	<summary>
+rw6 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlDashboardSixCell.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.hidOrgID">
+	<summary>
+hidOrgID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.hidOrgNAME">
+	<summary>
+hidOrgNAME control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.LeftPane">
+	<summary>
+LeftPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.ctrlOrg">
+	<summary>
+ctrlOrg control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.RadSplitBar1">
+	<summary>
+RadSplitBar1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.MainPane">
+	<summary>
+MainPane control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.RadSplitter3">
+	<summary>
+RadSplitter3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.tbarMain">
+	<summary>
+tbarMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.RadPane2">
+	<summary>
+RadPane2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_Organization.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.tbarMainToolBar">
+	<summary>
+tbarMainToolBar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.splitAll">
+	<summary>
+splitAll control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.paneTop">
+	<summary>
+paneTop control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.txtYear">
+	<summary>
+txtYear control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.cboStatus">
+	<summary>
+cboStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.txtNote">
+	<summary>
+txtNote control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.btnApprove">
+	<summary>
+btnApprove control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.RadWindowManager1">
+	<summary>
+RadWindowManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.rwPopup">
+	<summary>
+rwPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPortalAssessmentDirect.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:Performance.ctrlPortalAssessmentDirect.ctrlMessageBox_ButtonCommand(System.Object,Common.MessageBoxEventArgs)">
+	<lastupdate>
+ 11/07/2017 13:40
+ </lastupdate>
+	<summary>
+ Xu ly su kien click vao button command ctrlMessageBox
+ voi cac trang thai xoa, duyet, huy kich hoat
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="F:Performance.ctrlPE_AssessHistory.splitAll">
+	<summary>
+splitAll control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_AssessHistory.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Performance.ctrlPE_AssessHistory.rgData">
+	<summary>
+rgData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

@@ -1,0 +1,452 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Portal
+</name>
+</assembly>
+<members>
+<member name="F:Portal.ctrlEventNewEdit.lblViewTitle">
+	<summary>
+lblViewTitle control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.rtbMain">
+	<summary>
+rtbMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.hidID">
+	<summary>
+hidID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.ValidationSummary1">
+	<summary>
+ValidationSummary1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.rtTITLE">
+	<summary>
+rtTITLE control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.RequiredFieldValidator2">
+	<summary>
+RequiredFieldValidator2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.CustomValidator1">
+	<summary>
+CustomValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventNewEdit.rEditor">
+	<summary>
+rEditor control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.hidStartDate">
+	<summary>
+hidStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.hidEndDate">
+	<summary>
+hidEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.splitFull">
+	<summary>
+splitFull control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.pnlRegistInfo">
+	<summary>
+pnlRegistInfo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.cboleaveType">
+	<summary>
+cboleaveType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.cboNValue">
+	<summary>
+cboNValue control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.lbAnnual">
+	<summary>
+lbAnnual control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.txtReason">
+	<summary>
+txtReason control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.chkRegister">
+	<summary>
+chkRegister control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.chkWaitForApprove">
+	<summary>
+chkWaitForApprove control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.chkApproved">
+	<summary>
+chkApproved control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.chkDenied">
+	<summary>
+chkDenied control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.pnlSchedule">
+	<summary>
+pnlSchedule control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.sdlRegister">
+	<summary>
+sdlRegister control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.rscmMenuAppointment">
+	<summary>
+rscmMenuAppointment control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.rscmRegister">
+	<summary>
+rscmRegister control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlRegisterLeave.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.RadPane1">
+	<summary>
+RadPane1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.rtbMain">
+	<summary>
+rtbMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.rnMAX_LOGIN_FAIL">
+	<summary>
+rnMAX_LOGIN_FAIL control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.rnSESSION_TIMEOUT">
+	<summary>
+rnSESSION_TIMEOUT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.rntxtPasswordLength">
+	<summary>
+rntxtPasswordLength control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.reqPASSWORD_LENGTH">
+	<summary>
+reqPASSWORD_LENGTH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.chkPasswordUpper">
+	<summary>
+chkPasswordUpper control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.chkPasswordLower">
+	<summary>
+chkPasswordLower control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.valCharacter">
+	<summary>
+valCharacter control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.chkPasswordNumber">
+	<summary>
+chkPasswordNumber control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.chkPasswordSpecial">
+	<summary>
+chkPasswordSpecial control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlConfiguration.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:Portal.My.MyWebExtension.Application">
+	<summary>
+ Returns information about the current application.
+ </summary>
+</member><member name="P:Portal.My.MyWebExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:Portal.My.MyWebExtension.User">
+	<summary>
+ Returns information for the current Web user.
+ </summary>
+</member><member name="P:Portal.My.MyWebExtension.Request">
+	<summary>
+ Returns Request object.
+ </summary>
+</member><member name="P:Portal.My.MyWebExtension.Response">
+	<summary>
+ Returns Response object.
+ </summary>
+</member><member name="P:Portal.My.MyWebExtension.Log">
+	<summary>
+ Returns the Asp log object.
+ </summary>
+</member><member name="P:Portal.My.MyWebExtension.WebServices">
+	<summary>
+ Provides access to WebServices added to this project.
+ </summary>
+</member><member name="T:Portal.My.MyWebExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:Portal.ctrlEvent.rEditor">
+	<summary>
+rEditor control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventManager.rtbMain">
+	<summary>
+rtbMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventManager.ViewPlaceHolder">
+	<summary>
+ViewPlaceHolder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventManager.rGrid">
+	<summary>
+rGrid control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:Portal.ctrlEventManager.ctrlMessageBox">
+	<summary>
+ctrlMessageBox control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:Portal.PortalRepository.GetEventInformation">
+	<summary>
+ Lấy thông tin sự kiện
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Portal.PortalRepository.GetListEventInformation">
+	<summary>
+ Lấy danh sách thông tin sự kiện
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Portal.PortalRepository.InsertEventInformation(Portal.PortalBusiness.EventDTO)">
+	<summary>
+ Thêm mới thông tin sự kiện
+ </summary>
+	<param name="_event"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Portal.PortalRepository.UpdateEventInformation(Portal.PortalBusiness.EventDTO)">
+	<summary>
+ Sửa thông tin sự kiện
+ </summary>
+	<param name="_event"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Portal.PortalRepository.DeleteEventInformation(System.Collections.Generic.List{System.Decimal})">
+	<summary>
+ Xóa thông tin sự kiện
+ </summary>
+	<param name="_listId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Portal.PortalRepository.ActiveEventInformation(System.Decimal)">
+	<summary>
+ Mở hiện sự kiện
+ </summary>
+	<param name="_id"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

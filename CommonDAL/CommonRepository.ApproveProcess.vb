@@ -691,13 +691,15 @@ Partial Public Class CommonRepository
                 .CREATED_DATE = Date.Now,
                 .MODIFIED_BY = log.Username,
                 .MODIFIED_DATE = Date.Now,
+                .REPLACEALL = item.REPALCEALL,
                 .MODIFIED_LOG = log.ComputerName
             }
 
             Context.SE_APP_SETUPEXT.AddObject(itemInsert)
 
             Context.SaveChanges()
-
+            Dim check = Context.SE_APP_SETUPEXT.OrderByDescending(Function(p) p.ID).FirstOrDefault().ID
+            UpdateIfCheckReplace(check)
             Return True
         Catch ex As Exception
             Throw ex
@@ -715,7 +717,7 @@ Partial Public Class CommonRepository
                     .SUB_EMPLOYEE_ID = item.SUB_EMPLOYEE_ID
                     .FROM_DATE = item.FROM_DATE
                     .TO_DATE = item.TO_DATE
-
+                    .REPLACEALL = item.REPALCEALL
                     .MODIFIED_BY = log.Username
                     .MODIFIED_DATE = Date.Now
                     .MODIFIED_LOG = log.ComputerName
@@ -723,12 +725,32 @@ Partial Public Class CommonRepository
 
                 Context.SaveChanges()
             End If
+            UpdateIfCheckReplace(item.ID)
             Return True
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+    Public Function UpdateIfCheckReplace(ByVal check As Integer) As Boolean
+        Try
+            Dim ktra = Context.SE_APP_SETUPEXT.FirstOrDefault(Function(p) p.ID = check).REPLACEALL
+            If ktra = -1 Then
+                Dim s1 = Context.SE_APP_SETUPEXT.FirstOrDefault(Function(p) p.ID = check).EMPLOYEE_ID
+                Dim s2 = Context.SE_APP_SETUPEXT.FirstOrDefault(Function(p) p.ID = check).SUB_EMPLOYEE_ID
 
+                Dim itemUpdate = Context.SE_APP_TEMPLATE_DTL.FirstOrDefault(Function(p) p.APP_ID = s1)
+                If itemUpdate IsNot Nothing Then
+                    With itemUpdate
+                        .APP_ID = s2
+                    End With
+                    Context.SaveChanges()
+                End If
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Function
     Public Function GetApproveSetupExt(ByVal id As Decimal) As ApproveSetupExtDTO
         Try
             Dim itemReturn = (From item In Context.SE_APP_SETUPEXT

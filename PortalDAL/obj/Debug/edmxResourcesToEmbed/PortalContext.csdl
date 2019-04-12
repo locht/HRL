@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PortalModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="PortalContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PO_EVENT" EntityType="PortalModel.PO_EVENT" />
+  </EntityContainer>
+  <EntityType Name="PO_EVENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="TITLE" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true">
+      <Documentation>
+        <Summary>Tiêu đề tin tức</Summary>
+      </Documentation>
+    </Property>
+    <Property Type="String" Name="DETAIL" Nullable="false" Unicode="true">
+      <Documentation>
+        <Summary>Nội dung tin tức</Summary>
+      </Documentation>
+    </Property>
+    <Property Type="DateTime" Name="ADD_TIME" Nullable="false">
+      <Documentation>
+        <Summary>Ngày đăng tin</Summary>
+      </Documentation>
+    </Property>
+    <Property Type="Int16" Name="IS_SHOW" Nullable="true" DefaultValue="0">
+      <Documentation>
+        <Summary>Có hiển thị. 0 - Không, 1 - Có</Summary>
+      </Documentation>
+    </Property>
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

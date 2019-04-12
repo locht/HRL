@@ -1,0 +1,16 @@
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\TrainingDAL.dll.config
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\TrainingDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\TrainingDAL.pdb
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\TrainingDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\EntityFramework.dll
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\Framework.Data.dll
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\LinqKit.dll
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\Oracle.DataAccess.dll
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\Framework.Data.pdb
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\Framework.Data.xml
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\bin\Debug\EntityFramework.xml
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\obj\Debug\TrainingDAL.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\obj\Debug\TrainingDAL.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\obj\Debug\TrainingDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\obj\Debug\TrainingDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\TrainingDAL\obj\Debug\TrainingDAL.pdb

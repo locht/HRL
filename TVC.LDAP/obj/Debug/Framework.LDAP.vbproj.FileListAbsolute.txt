@@ -1,0 +1,6 @@
+D:\MyProject\histaffHCM\histaffhcm\TVC.LDAP\bin\TVC.LDAP.dll
+D:\MyProject\histaffHCM\histaffhcm\TVC.LDAP\bin\TVC.LDAP.pdb
+D:\MyProject\histaffHCM\histaffhcm\TVC.LDAP\bin\TVC.LDAP.xml
+D:\MyProject\histaffHCM\histaffhcm\TVC.LDAP\obj\Debug\TVC.LDAP.dll
+D:\MyProject\histaffHCM\histaffhcm\TVC.LDAP\obj\Debug\TVC.LDAP.xml
+D:\MyProject\histaffHCM\histaffhcm\TVC.LDAP\obj\Debug\TVC.LDAP.pdb

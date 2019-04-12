@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PortalModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+  <EntityContainer Name="PortalModelStoreContainer">
+    <EntitySet Name="PO_EVENT" EntityType="PortalModel.Store.PO_EVENT" store:Type="Tables" />
+  </EntityContainer>
+  <EntityType Name="PO_EVENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="TITLE" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="DETAIL" Type="nclob" Nullable="false" />
+    <Property Name="ADD_TIME" Type="date" Nullable="false" />
+    <Property Name="IS_SHOW" Type="number" Nullable="true" DefaultValue="0" Precision="5" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+  </EntityType>
+</Schema>

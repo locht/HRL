@@ -1,0 +1,2653 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+CommonDAL
+</name>
+</assembly>
+<members>
+<member name="M:CommonDAL.CommonRepository.GetComboList(CommonDAL.ComboBoxDataDTO@)">
+	<summary>
+ Lấy dữ liệu cho combobox
+ </summary>
+	<param name="_combolistDTO">Trả về dữ liệu combobox</param>
+	<returns>TRUE: Success</returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.SendMail">
+	<summary>
+ Gọi hàm gửi mail queue trong DB
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonContext.#ctor">
+	<summary>
+ Initializes a new CommonContext object using the connection string found in the 'CommonContext' section of the application configuration file.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.#ctor(System.String)">
+	<summary>
+ Initialize a new CommonContext object.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new CommonContext object.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_FUNCTION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_MODULE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_GROUP_PERMISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_FUNCTION_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HU_TERMINATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_MAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_REMINDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_APP_PROCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_APP_SETUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_APP_SETUPEXT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_APP_TEMPLATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_APP_TEMPLATE_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HU_STAFF_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_LDAP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_USER_ORG_ACCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_USER_PERMISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.HUV_SE_GRP_SE_USR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.CommonContext.SE_VIEW_CONFIG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_GROUP(CommonDAL.SE_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_FUNCTION(CommonDAL.SE_FUNCTION)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_FUNCTION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_USER(CommonDAL.SE_USER)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_USER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_MODULE(CommonDAL.SE_MODULE)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_MODULE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_GROUP_PERMISSION(CommonDAL.SE_GROUP_PERMISSION)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_GROUP_PERMISSION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToOT_OTHER_LIST(CommonDAL.OT_OTHER_LIST)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToOT_OTHER_LIST_GROUP(CommonDAL.OT_OTHER_LIST_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToOT_OTHER_LIST_TYPE(CommonDAL.OT_OTHER_LIST_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_REPORT(CommonDAL.SE_REPORT)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_REPORT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHU_ORGANIZATION(CommonDAL.HU_ORGANIZATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORGANIZATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_FUNCTION_GROUP(CommonDAL.SE_FUNCTION_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_FUNCTION_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHU_EMPLOYEE(CommonDAL.HU_EMPLOYEE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHU_TERMINATE(CommonDAL.HU_TERMINATE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_TERMINATE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_MAIL(CommonDAL.SE_MAIL)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_MAIL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_REMINDER(CommonDAL.SE_REMINDER)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_REMINDER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHU_TITLE(CommonDAL.HU_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_APP_PROCESS(CommonDAL.SE_APP_PROCESS)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_APP_PROCESS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_APP_SETUP(CommonDAL.SE_APP_SETUP)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_APP_SETUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_APP_SETUPEXT(CommonDAL.SE_APP_SETUPEXT)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_APP_SETUPEXT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_APP_TEMPLATE(CommonDAL.SE_APP_TEMPLATE)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_APP_TEMPLATE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_APP_TEMPLATE_DTL(CommonDAL.SE_APP_TEMPLATE_DTL)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_APP_TEMPLATE_DTL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHU_WORKING(CommonDAL.HU_WORKING)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_WORKING EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_CHOSEN_ORG(CommonDAL.SE_CHOSEN_ORG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_CHOSEN_ORG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHU_EMPLOYEE_CV(CommonDAL.HU_EMPLOYEE_CV)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_CV EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHU_STAFF_RANK(CommonDAL.HU_STAFF_RANK)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_STAFF_RANK EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_LDAP(CommonDAL.SE_LDAP)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_LDAP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_USER_ORG_ACCESS(CommonDAL.SE_USER_ORG_ACCESS)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_USER_ORG_ACCESS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_USER_PERMISSION(CommonDAL.SE_USER_PERMISSION)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_USER_PERMISSION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToHUV_SE_GRP_SE_USR(CommonDAL.HUV_SE_GRP_SE_USR)">
+	<summary>
+ Deprecated Method for adding a new object to the HUV_SE_GRP_SE_USR EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:CommonDAL.CommonContext.AddToSE_VIEW_CONFIG(CommonDAL.SE_VIEW_CONFIG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_VIEW_CONFIG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:CommonDAL.CommonContext">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HU_EMPLOYEE.CreateHU_EMPLOYEE(System.Decimal,System.String,System.String,System.String,System.String,System.Decimal,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new HU_EMPLOYEE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="eMPLOYEE_CODE">Initial value of the EMPLOYEE_CODE property.</param>
+	<param name="fIRST_NAME_VN">Initial value of the FIRST_NAME_VN property.</param>
+	<param name="lAST_NAME_VN">Initial value of the LAST_NAME_VN property.</param>
+	<param name="fULLNAME_VN">Initial value of the FULLNAME_VN property.</param>
+	<param name="tITLE_ID">Initial value of the TITLE_ID property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.FIRST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.LAST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.FULLNAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.FIRST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.LAST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.FULLNAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.WORK_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.JOIN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.LAST_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.TER_EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.TER_LAST_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.ITIME_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.PA_OBJECT_SALARY_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.IS_3B">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HU_EMPLOYEE_CV.CreateHU_EMPLOYEE_CV(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_CV object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.GENDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.IMAGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.BIRTH_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.BIRTH_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.MARITAL_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.RELIGION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NATIVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NATIONALITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PER_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PER_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.HOME_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.MOBILE_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.ID_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.ID_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PASS_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PASS_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PASS_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.VISA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.VISA_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.VISA_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.VISA_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.WORK_PERMIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.WORK_PERMIT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.WORK_PERMIT_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.WORK_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NAV_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NAV_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PIT_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.PER_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CONTACT_PER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CONTACT_PER_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.ID_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.WORK_PERMIT_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.BANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.BANK_BRANCH_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NGAY_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NOI_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CHUC_VU_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.DOAN_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NGAY_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.NOI_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CHUC_VU_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.DANG_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.BANK_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_EMPLOYEE_CV.CAREER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HU_ORGANIZATION.CreateHU_ORGANIZATION(System.Decimal,System.String,System.String,System.DateTime,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String,System.Decimal)">
+	<summary>
+ Create a new HU_ORGANIZATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="nAME_VN">Initial value of the NAME_VN property.</param>
+	<param name="fOUNDATION_DATE">Initial value of the FOUNDATION_DATE property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+	<param name="rEPRESENTATIVE_ID">Initial value of the REPRESENTATIVE_ID property.</param>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.PARENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.DISSOLVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.FOUNDATION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.HIERARCHICAL_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.DESCRIPTION_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.FAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.REPRESENTATIVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.ORD_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.CHILDREN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.PARENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.PARENTReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_ORGANIZATION.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HU_STAFF_RANK.CreateHU_STAFF_RANK(System.Decimal)">
+	<summary>
+ Create a new HU_STAFF_RANK object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_STAFF_RANK.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HU_STAFF_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HU_TERMINATE.CreateHU_TERMINATE(System.Decimal)">
+	<summary>
+ Create a new HU_TERMINATE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.HU_TERMINATE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.IS_NOHIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SEND_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.TER_REASON_DETAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.LAST_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.STATUS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.EMP_SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.LAST_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.APPROVAL_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.IDENTIFI_CARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.IDENTIFI_RDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.IDENTIFI_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SUN_CARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SUN_RDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SUN_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.INSURANCE_CARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.INSURANCE_RDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.INSURANCE_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.REMAINING_LEAVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.PAYMENT_LEAVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.AMOUNT_VIOLATIONS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.AMOUNT_WRONGFUL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.ALLOWANCE_TERMINATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.TRAINING_COSTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.OTHER_COMPENSATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.COMPENSATORY_LEAVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.COMPENSATORY_PAYMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.DECISION_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SIGN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SIGN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SIGN_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SIGN_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.IDENTIFI_MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.SUN_MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.INSURANCE_MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TERMINATE.IS_3B">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HU_TERMINATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HU_TITLE.CreateHU_TITLE(System.Decimal,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String,System.String,System.String,System.Decimal)">
+	<summary>
+ Create a new HU_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="nAME_VN">Initial value of the NAME_VN property.</param>
+	<param name="tITLE_GROUP_ID">Initial value of the TITLE_GROUP_ID property.</param>
+</member><member name="P:CommonDAL.HU_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.TITLE_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_TITLE.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HU_WORKING.CreateHU_WORKING(System.Decimal)">
+	<summary>
+ Create a new HU_WORKING object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.HU_WORKING.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.TRANSFER_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.TRANSFER_REASON">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.INDIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.IS_DECISION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.DECISION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.WORKING_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.COST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.BASIC_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.SOFT_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.OTHER_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.COEFFICIENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.CONTRACTUAL_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.SALARY_ENTERPRISE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.ALLOWANCE_IDS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.ALLOWANCE_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HU_WORKING.ALLOWANCE_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.HUV_SE_GRP_SE_USR.CreateHUV_SE_GRP_SE_USR(System.Decimal,System.Decimal)">
+	<summary>
+ Create a new HUV_SE_GRP_SE_USR object.
+ </summary>
+	<param name="sE_USERS_ID">Initial value of the SE_USERS_ID property.</param>
+	<param name="sE_GROUPS_ID">Initial value of the SE_GROUPS_ID property.</param>
+</member><member name="P:CommonDAL.HUV_SE_GRP_SE_USR.SE_USERS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.HUV_SE_GRP_SE_USR.SE_GROUPS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.HUV_SE_GRP_SE_USR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.OT_OTHER_LIST.CreateOT_OTHER_LIST(System.Decimal,System.Decimal,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new OT_OTHER_LIST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="tYPE_ID">Initial value of the TYPE_ID property.</param>
+	<param name="nAME_VN">Initial value of the NAME_VN property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.ATTRIBUTE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.ATTRIBUTE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.ATTRIBUTE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.ATTRIBUTE4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.TYPE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST.OT_OTHER_LIST_TYPEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.OT_OTHER_LIST_GROUP.CreateOT_OTHER_LIST_GROUP(System.Decimal,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new OT_OTHER_LIST_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_GROUP.OT_OTHER_LIST_TYPES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.OT_OTHER_LIST_TYPE.CreateOT_OTHER_LIST_TYPE(System.Decimal,System.String,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new OT_OTHER_LIST_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.IS_SYSTEM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LIST_GROUPReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LISTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_APP_PROCESS.CreateSE_APP_PROCESS(System.Decimal)">
+	<summary>
+ Create a new SE_APP_PROCESS object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.SE_APP_PROCESS.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_PROCESS.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_PROCESS.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_PROCESS.PROCESS_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_PROCESS.NUMREQUEST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_PROCESS.EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_APP_PROCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_APP_SETUP.CreateSE_APP_SETUP(System.Decimal)">
+	<summary>
+ Create a new SE_APP_SETUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.SE_APP_SETUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.PROCESS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.TEMPLATE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.FROM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.TO_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_APP_SETUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_APP_SETUPEXT.CreateSE_APP_SETUPEXT(System.Decimal)">
+	<summary>
+ Create a new SE_APP_SETUPEXT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.SUB_EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.PROCESS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.FROM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.TO_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_SETUPEXT.REPLACEALL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_APP_SETUPEXT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_APP_TEMPLATE.CreateSE_APP_TEMPLATE(System.Decimal)">
+	<summary>
+ Create a new SE_APP_TEMPLATE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.TEMPLATE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.TEMPLATE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.TEMPLATE_ORDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_APP_TEMPLATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_APP_TEMPLATE_DTL.CreateSE_APP_TEMPLATE_DTL(System.Decimal)">
+	<summary>
+ Create a new SE_APP_TEMPLATE_DTL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.TEMPLATE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.APP_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.APP_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.APP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.INFORM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.INFORM_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_APP_TEMPLATE_DTL.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_APP_TEMPLATE_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_CHOSEN_ORG.CreateSE_CHOSEN_ORG(System.Decimal,System.String)">
+	<summary>
+ Create a new SE_CHOSEN_ORG object.
+ </summary>
+	<param name="oRG_ID">Initial value of the ORG_ID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+</member><member name="P:CommonDAL.SE_CHOSEN_ORG.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_CHOSEN_ORG.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_FUNCTION.CreateSE_FUNCTION(System.Decimal,System.String,System.String,System.DateTime,System.String,System.String,System.String)">
+	<summary>
+ Create a new SE_FUNCTION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="fID">Initial value of the FID property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+	<param name="aCTFLG">Initial value of the ACTFLG property.</param>
+</member><member name="P:CommonDAL.SE_FUNCTION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.MODULE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.FID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.SE_MODULE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.SE_MODULEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.SE_GROUP_PERMISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.SE_FUNCTION_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION.SE_FUNCTION_GROUPReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_FUNCTION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_FUNCTION_GROUP.CreateSE_FUNCTION_GROUP(System.Decimal,System.String)">
+	<summary>
+ Create a new SE_FUNCTION_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+</member><member name="P:CommonDAL.SE_FUNCTION_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION_GROUP.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_FUNCTION_GROUP.SE_FUNCTION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_FUNCTION_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_GROUP.CreateSE_GROUP(System.Decimal,System.String,System.String,System.DateTime,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String,System.String)">
+	<summary>
+ Create a new SE_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="eFFECT_DATE">Initial value of the EFFECT_DATE property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+	<param name="aCTFLG">Initial value of the ACTFLG property.</param>
+</member><member name="P:CommonDAL.SE_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.IS_ADMIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.SE_USERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.SE_GROUP_PERMISSIONS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP.SE_REPORTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_GROUP_PERMISSION.CreateSE_GROUP_PERMISSION(System.Decimal,System.Decimal,System.Decimal,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new SE_GROUP_PERMISSION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="gROUP_ID">Initial value of the GROUP_ID property.</param>
+	<param name="fUNCTION_ID">Initial value of the FUNCTION_ID property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_CREATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_MODIFY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_DELETE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_PRINT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_IMPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_EXPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_SPECIAL1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_SPECIAL2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_SPECIAL3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.FUNCTION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_SPECIAL4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.ALLOW_SPECIAL5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.SE_FUNCTION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.SE_FUNCTIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.SE_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_GROUP_PERMISSION.SE_GROUPReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_GROUP_PERMISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_LDAP.CreateSE_LDAP(System.Decimal,System.String,System.String,System.String)">
+	<summary>
+ Create a new SE_LDAP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="lDAP_NAME">Initial value of the LDAP_NAME property.</param>
+	<param name="dOMAIN_NAME">Initial value of the DOMAIN_NAME property.</param>
+	<param name="bASE_DN">Initial value of the BASE_DN property.</param>
+</member><member name="P:CommonDAL.SE_LDAP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_LDAP.LDAP_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_LDAP.DOMAIN_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_LDAP.BASE_DN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_LDAP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_MAIL.CreateSE_MAIL(System.Decimal,System.String,System.String,System.String,System.String)">
+	<summary>
+ Create a new SE_MAIL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="sUBJECT">Initial value of the SUBJECT property.</param>
+	<param name="mAIL_FROM">Initial value of the MAIL_FROM property.</param>
+	<param name="mAIL_TO">Initial value of the MAIL_TO property.</param>
+	<param name="cONTENT">Initial value of the CONTENT property.</param>
+</member><member name="P:CommonDAL.SE_MAIL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.SUBJECT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.MAIL_FROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.MAIL_TO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.MAIL_CC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.MAIL_BCC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.CONTENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.VIEW_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MAIL.ATTACHMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_MAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_MODULE.CreateSE_MODULE(System.Decimal,System.String,System.String)">
+	<summary>
+ Create a new SE_MODULE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="mID">Initial value of the MID property.</param>
+</member><member name="P:CommonDAL.SE_MODULE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MODULE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MODULE.MID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MODULE.SE_FUNCTIONS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_MODULE.SE_REPORTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_MODULE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_REMINDER.CreateSE_REMINDER(System.String,System.Int16,System.Decimal)">
+	<summary>
+ Create a new SE_REMINDER object.
+ </summary>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+	<param name="tYPE">Initial value of the TYPE property.</param>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:CommonDAL.SE_REMINDER.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REMINDER.TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REMINDER.VALUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REMINDER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_REMINDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_REPORT.CreateSE_REPORT(System.Decimal,System.String,System.String,System.Decimal,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new SE_REPORT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="mODULE_ID">Initial value of the MODULE_ID property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.SE_REPORT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.MODULE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.SE_MODULE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.SE_MODULEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.SE_GROUPS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_REPORT.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_USER.CreateSE_USER(System.Decimal,System.String,System.String,System.Int16,System.Int16,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new SE_USER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+	<param name="fULLNAME">Initial value of the FULLNAME property.</param>
+	<param name="iS_APP">Initial value of the IS_APP property.</param>
+	<param name="iS_PORTAL">Initial value of the IS_PORTAL property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.SE_USER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.PASSWORD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.FULLNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.TELEPHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.LOCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.IS_APP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.IS_PORTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.IS_AD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.IS_CHANGE_PASS">
+	<summary>
+ Kiểm tra đã thay đổi mật khẩu đối với New User
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.CHANGE_PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.REMINDER_COUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.MODULE_ADMIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.SE_GROUPS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_USER_ORG_ACCESS.CreateSE_USER_ORG_ACCESS(System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new SE_USER_ORG_ACCESS object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="uSER_ID">Initial value of the USER_ID property.</param>
+	<param name="oRG_ID">Initial value of the ORG_ID property.</param>
+</member><member name="P:CommonDAL.SE_USER_ORG_ACCESS.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_ORG_ACCESS.USER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_ORG_ACCESS.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_USER_ORG_ACCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_USER_PERMISSION.CreateSE_USER_PERMISSION(System.Decimal,System.Decimal,System.Decimal,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new SE_USER_PERMISSION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="uSER_ID">Initial value of the USER_ID property.</param>
+	<param name="fUNCTION_ID">Initial value of the FUNCTION_ID property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.USER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_CREATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_MODIFY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_DELETE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_PRINT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_IMPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_EXPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_SPECIAL1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_SPECIAL2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_SPECIAL3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.FUNCTION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_SPECIAL4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.ALLOW_SPECIAL5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_USER_PERMISSION.GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_USER_PERMISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.SE_VIEW_CONFIG.CreateSE_VIEW_CONFIG(System.String)">
+	<summary>
+ Create a new SE_VIEW_CONFIG object.
+ </summary>
+	<param name="cODE_NAME">Initial value of the CODE_NAME property.</param>
+</member><member name="P:CommonDAL.SE_VIEW_CONFIG.CODE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:CommonDAL.SE_VIEW_CONFIG.CONFIG_DATA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:CommonDAL.SE_VIEW_CONFIG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:CommonDAL.CommonRepository.InsertApproveTemplate(CommonDAL.ApproveTemplateDTO,Framework.Data.UserLog)">
+	<lastupdate>
+ 24/07/2017 14:03
+ </lastupdate>
+	<summary>
+ Thêm mới thiết lập template
+ </summary>
+	<param name="item"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.UpdateApproveTemplate(CommonDAL.ApproveTemplateDTO,Framework.Data.UserLog)">
+	<lastupdate>
+ 24/07/2017 14:03
+ </lastupdate>
+	<summary>
+ Cập nhật thiết lập template
+ </summary>
+	<param name="item"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.GetApproveTemplate(System.Decimal)">
+	<lastupdate>
+ 24/07/2017 14:03
+ </lastupdate>
+	<summary>
+ Lấy thiết lập template
+ </summary>
+	<param name="id"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.GetApproveTemplate">
+	<lastupdate>
+ 24/07/2017 14:03
+ </lastupdate>
+	<summary>
+ Lấy danh sách thiết lập template
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.DeleteApproveTemplate(System.Collections.Generic.List{System.Decimal})">
+	<lastupdate>
+ 24/07/2017 14:03
+ </lastupdate>
+	<summary>
+ Xóa thiết lập template
+ </summary>
+	<param name="itemDeletes"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.IsApproveTemplateUsed(System.Decimal)">
+	<summary>
+ Check thiết lập template đã được sử dụng hay chưa
+ </summary>
+	<param name="templateID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.InsertApproveTemplateDetail(CommonDAL.ApproveTemplateDetailDTO,Framework.Data.UserLog)">
+	<lastupdate>
+ 24/07/2017
+ </lastupdate>
+	<summary>
+ Thêm mới thiết lập phê duyệt chi tiết template
+ </summary>
+	<param name="item"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.UpdateApproveTemplateDetail(CommonDAL.ApproveTemplateDetailDTO,Framework.Data.UserLog)">
+	<lastupdate>
+ 24/07/2017
+ </lastupdate>
+	<summary>
+ Cập nhật thiết lập cho chi tiết template
+ </summary>
+	<param name="item"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.GetApproveTemplateDetail(System.Decimal)">
+	<lastupdate>
+ 24/07/2017
+ </lastupdate>
+	<summary>
+ Lấy thông tin thiết lập chi tiết template
+ </summary>
+	<param name="id"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.GetApproveTemplateDetailList(System.Decimal)">
+	<lastupdate>
+ 24/07/2017
+ </lastupdate>
+	<summary>
+ Lấy danh sách thông tin chi tiết thiết lập template 
+ </summary>
+	<param name="templateId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.DeleteApproveTemplateDetail(System.Collections.Generic.List{System.Decimal})">
+	<summary>
+ Xóa thông tin chi tiết thiết lập cho template
+ </summary>
+	<param name="itemDeletes"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.CheckLevelInsert(System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Kiểm tra thêm mới cấp độ
+ </summary>
+	<param name="level"></param>
+	<param name="idExclude"></param>
+	<param name="idTemplate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.GetApproveUsers(System.Decimal,System.String,System.Collections.Generic.List{System.Decimal},System.Boolean)">
+	<summary>
+ Lấy danh sách người phê duyệt đối với nhân viên đang xử lý
+ </summary>
+	<param name="employeeId">ID của nhân viên cần lấy</param>
+	<param name="processCode"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonDAL.CommonRepository.Get_FunctionWithControl_List(CommonDAL.FunctionDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Hiển thị d/sach Tên page điều chỉnh control
+ </summary>
+	<param name="_filter"></param>
+	<param name="PageIndex"></param>
+	<param name="PageSize"></param>
+	<param name="Total"></param>
+	<param name="Sorts"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CommonDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:CommonDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:CommonDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:CommonDAL.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member>
+</members>
+</doc>

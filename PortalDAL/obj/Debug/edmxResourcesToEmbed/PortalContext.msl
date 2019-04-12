@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PortalModelStoreContainer" CdmEntityContainer="PortalContext">
+    <EntitySetMapping Name="PO_EVENT">
+      <EntityTypeMapping TypeName="IsTypeOf(PortalModel.PO_EVENT)">
+        <MappingFragment StoreEntitySet="PO_EVENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
+          <ScalarProperty Name="ADD_TIME" ColumnName="ADD_TIME" />
+          <ScalarProperty Name="IS_SHOW" ColumnName="IS_SHOW" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+          <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

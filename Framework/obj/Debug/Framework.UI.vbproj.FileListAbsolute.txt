@@ -1,0 +1,9 @@
+D:\MyProject\histaffHCM\histaffhcm\ref\Framework\Framework.UI.dll
+D:\MyProject\histaffHCM\histaffhcm\ref\Framework\Framework.UI.pdb
+D:\MyProject\histaffHCM\histaffhcm\ref\Framework\Framework.UI.xml
+D:\MyProject\histaffHCM\histaffhcm\Framework\obj\Debug\Framework.UI.vbprojResolveAssemblyReference.cache
+D:\MyProject\histaffHCM\histaffhcm\Framework\obj\Debug\Framework.UI.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\Framework\obj\Debug\Framework.UI.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\Framework\obj\Debug\Framework.UI.dll
+D:\MyProject\histaffHCM\histaffhcm\Framework\obj\Debug\Framework.UI.xml
+D:\MyProject\histaffHCM\histaffhcm\Framework\obj\Debug\Framework.UI.pdb

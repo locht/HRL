@@ -1,0 +1,4395 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TrainingDAL
+</name>
+</assembly>
+<members>
+<member name="M:TrainingDAL.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member><member name="P:TrainingDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TrainingDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TrainingDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="P:TrainingDAL.TrainingRepositoryStatic.Instance">
+	<summary>
+ Gets the instance.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.#ctor">
+	<summary>
+ Initializes a new TrainingContext object using the connection string found in the 'TrainingContext' section of the application configuration file.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.#ctor(System.String)">
+	<summary>
+ Initialize a new TrainingContext object.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new TrainingContext object.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_COST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CERTIFICATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CLASS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_COURSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_LECTURE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PLAN_JOBGRADE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PLAN_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PLAN_UNIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PREPARE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_JOBGRADE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_LECTURE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_UNIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_REQUEST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_REQUEST_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CLASS_STUDENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PLAN_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PLAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_CONTRACT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_CONTRACT_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CLASS_SCHEDULE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_COMMIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_RESULT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_COST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_ASSESSMENT_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_ASSESSMENT_RATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CHOOSE_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_COMMIT_AFTER_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_REIMBURSEMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_SETTING_ASS_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_SETTING_CRI_GRP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CRITERIA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_CRITERIA_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_ASSESSMENT_RESULT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_ASSESSMENT_RESULT_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PROGRAM_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_REQUEST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_REQUEST_TEACHER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PLAN_COST_DETAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_UNIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_PLAN_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.TR_TITLE_COURSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TrainingContext.SE_USER_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_COST_CENTER(TrainingDAL.TR_COST_CENTER)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_COST_CENTER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToSE_CHOSEN_ORG(TrainingDAL.SE_CHOSEN_ORG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_CHOSEN_ORG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CENTER(TrainingDAL.TR_CENTER)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CENTER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CERTIFICATE(TrainingDAL.TR_CERTIFICATE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CERTIFICATE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CLASS(TrainingDAL.TR_CLASS)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CLASS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_COURSE(TrainingDAL.TR_COURSE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_COURSE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_LECTURE(TrainingDAL.TR_LECTURE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_LECTURE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PLAN_JOBGRADE(TrainingDAL.TR_PLAN_JOBGRADE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PLAN_JOBGRADE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PLAN_TITLE(TrainingDAL.TR_PLAN_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PLAN_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PLAN_UNIT(TrainingDAL.TR_PLAN_UNIT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PLAN_UNIT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PREPARE(TrainingDAL.TR_PREPARE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PREPARE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM(TrainingDAL.TR_PROGRAM)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_CENTER(TrainingDAL.TR_PROGRAM_CENTER)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_CENTER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_JOBGRADE(TrainingDAL.TR_PROGRAM_JOBGRADE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_JOBGRADE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_LECTURE(TrainingDAL.TR_PROGRAM_LECTURE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_LECTURE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_TITLE(TrainingDAL.TR_PROGRAM_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_UNIT(TrainingDAL.TR_PROGRAM_UNIT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_UNIT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_REQUEST(TrainingDAL.TR_REQUEST)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_REQUEST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_REQUEST_EMPLOYEE(TrainingDAL.TR_REQUEST_EMPLOYEE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_REQUEST_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CLASS_STUDENT(TrainingDAL.TR_CLASS_STUDENT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CLASS_STUDENT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToOT_OTHER_LIST(TrainingDAL.OT_OTHER_LIST)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToOT_OTHER_LIST_GROUP(TrainingDAL.OT_OTHER_LIST_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToOT_OTHER_LIST_TYPE(TrainingDAL.OT_OTHER_LIST_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PLAN_CENTER(TrainingDAL.TR_PLAN_CENTER)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PLAN_CENTER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PLAN(TrainingDAL.TR_PLAN)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PLAN EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_DISTRICT(TrainingDAL.HU_DISTRICT)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_DISTRICT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_NATION(TrainingDAL.HU_NATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_NATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_PROVINCE(TrainingDAL.HU_PROVINCE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_PROVINCE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_CONTRACT(TrainingDAL.HU_CONTRACT)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_CONTRACT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_CONTRACT_TYPE(TrainingDAL.HU_CONTRACT_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_CONTRACT_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CLASS_SCHEDULE(TrainingDAL.TR_CLASS_SCHEDULE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CLASS_SCHEDULE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_COMMIT(TrainingDAL.TR_PROGRAM_COMMIT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_COMMIT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_RESULT(TrainingDAL.TR_PROGRAM_RESULT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_RESULT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_COST(TrainingDAL.TR_PROGRAM_COST)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_COST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_ASSESSMENT_FORM(TrainingDAL.TR_ASSESSMENT_FORM)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_ASSESSMENT_FORM EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_ASSESSMENT_RATE(TrainingDAL.TR_ASSESSMENT_RATE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_ASSESSMENT_RATE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CHOOSE_FORM(TrainingDAL.TR_CHOOSE_FORM)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CHOOSE_FORM EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_COMMIT_AFTER_TRAIN(TrainingDAL.TR_COMMIT_AFTER_TRAIN)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_COMMIT_AFTER_TRAIN EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_REIMBURSEMENT(TrainingDAL.TR_REIMBURSEMENT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_REIMBURSEMENT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_SETTING_ASS_FORM(TrainingDAL.TR_SETTING_ASS_FORM)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_SETTING_ASS_FORM EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_SETTING_CRI_GRP(TrainingDAL.TR_SETTING_CRI_GRP)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_SETTING_CRI_GRP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CRITERIA(TrainingDAL.TR_CRITERIA)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CRITERIA EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_CRITERIA_GROUP(TrainingDAL.TR_CRITERIA_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_CRITERIA_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_ASSESSMENT_RESULT(TrainingDAL.TR_ASSESSMENT_RESULT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_ASSESSMENT_RESULT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_ASSESSMENT_RESULT_DTL(TrainingDAL.TR_ASSESSMENT_RESULT_DTL)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_ASSESSMENT_RESULT_DTL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_EMPLOYEE(TrainingDAL.HU_EMPLOYEE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_EMPLOYEE_CV(TrainingDAL.HU_EMPLOYEE_CV)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_CV EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_ORG_TITLE(TrainingDAL.HU_ORG_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORG_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_ORGANIZATION(TrainingDAL.HU_ORGANIZATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORGANIZATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToHU_TITLE(TrainingDAL.HU_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PROGRAM_GROUP(TrainingDAL.TR_PROGRAM_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PROGRAM_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_REQUEST_CENTER(TrainingDAL.TR_REQUEST_CENTER)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_REQUEST_CENTER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_REQUEST_TEACHER(TrainingDAL.TR_REQUEST_TEACHER)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_REQUEST_TEACHER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PLAN_COST_DETAIL(TrainingDAL.TR_PLAN_COST_DETAIL)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PLAN_COST_DETAIL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_UNIT(TrainingDAL.TR_UNIT)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_UNIT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_PLAN_EMPLOYEE(TrainingDAL.TR_PLAN_EMPLOYEE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_PLAN_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToTR_TITLE_COURSE(TrainingDAL.TR_TITLE_COURSE)">
+	<summary>
+ Deprecated Method for adding a new object to the TR_TITLE_COURSE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToSE_REPORT(TrainingDAL.SE_REPORT)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_REPORT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToSE_USER(TrainingDAL.SE_USER)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_USER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TrainingDAL.TrainingContext.AddToSE_USER_REPORT(TrainingDAL.SE_USER_REPORT)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_USER_REPORT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:TrainingDAL.TrainingContext">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_CONTRACT.CreateHU_CONTRACT(System.Decimal,System.Decimal,System.DateTime,System.Decimal)">
+	<summary>
+ Create a new HU_CONTRACT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cONTRACT_TYPE_ID">Initial value of the CONTRACT_TYPE_ID property.</param>
+	<param name="sTART_DATE">Initial value of the START_DATE property.</param>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:TrainingDAL.HU_CONTRACT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.CONTRACT_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.CONTRACT_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.SIGNER_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.SIGNER_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.SIGN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.STATUS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.SIGN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.CONTRACTTMP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.LIQUI_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.AUTHORIZE_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.SIGN_ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.JOB">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.WORK_TIME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT.BREAK_TIME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_CONTRACT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_CONTRACT_TYPE.CreateHU_CONTRACT_TYPE(System.Decimal,System.String,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new HU_CONTRACT_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_CONTRACT_TYPE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_CONTRACT_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_DISTRICT.CreateHU_DISTRICT(System.Decimal)">
+	<summary>
+ Create a new HU_DISTRICT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.HU_DISTRICT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.PROVINCE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_DISTRICT.HU_PROVINCEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_EMPLOYEE.CreateHU_EMPLOYEE(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.FIRST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.LAST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.FULLNAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.FIRST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.LAST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.FULLNAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.WORK_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.JOIN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.LAST_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.TER_EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.TER_LAST_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.ITIME_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_EMPLOYEE_CVReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_EMPLOYEE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_EMPLOYEE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE.HU_EMPLOYEE2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_EMPLOYEE_CV.CreateHU_EMPLOYEE_CV(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_CV object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.GENDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.IMAGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.BIRTH_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.BIRTH_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.MARITAL_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.RELIGION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NATIVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NATIONALITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PER_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PER_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.HOME_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.MOBILE_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.ID_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.ID_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PASS_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PASS_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PASS_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.VISA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.VISA_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.VISA_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.VISA_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.WORK_PERMIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.WORK_PERMIT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.WORK_PERMIT_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.WORK_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NAV_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NAV_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PIT_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.PER_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CONTACT_PER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CONTACT_PER_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.ID_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.WORK_PERMIT_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.BANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.BANK_BRANCH_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NGAY_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NOI_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CHUC_VU_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.DOAN_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NGAY_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.NOI_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CHUC_VU_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.DANG_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.BANK_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.DRIVER_LICENSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.DRIVER_LICENSE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.DRIVER_LICENSE_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.CAREER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_EMPLOYEE_CV.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_NATION.CreateHU_NATION(System.Decimal)">
+	<summary>
+ Create a new HU_NATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.HU_NATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_NATION.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_ORG_TITLE.CreateHU_ORG_TITLE(System.Decimal)">
+	<summary>
+ Create a new HU_ORG_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORG_TITLE.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_ORGANIZATION.CreateHU_ORGANIZATION(System.Decimal)">
+	<summary>
+ Create a new HU_ORGANIZATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.PARENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.DISSOLVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.FOUNDATION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.HIERARCHICAL_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.DESCRIPTION_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.FAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.REPRESENTATIVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.HU_ORGANIZATION1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.HU_ORGANIZATION2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_ORGANIZATION.HU_ORGANIZATION2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_PROVINCE.CreateHU_PROVINCE(System.Decimal)">
+	<summary>
+ Create a new HU_PROVINCE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.HU_PROVINCE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.NATION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.HU_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.HU_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_PROVINCE.HU_NATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.HU_TITLE.CreateHU_TITLE(System.Decimal)">
+	<summary>
+ Create a new HU_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.HU_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.TITLE_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.WORK_INVOLVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.HU_TITLE.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.OT_OTHER_LIST.CreateOT_OTHER_LIST(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.ATTRIBUTE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.ATTRIBUTE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.ATTRIBUTE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.ATTRIBUTE4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.TYPE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST.ORDERBYID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.OT_OTHER_LIST_GROUP.CreateOT_OTHER_LIST_GROUP(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.OT_OTHER_LIST_TYPE.CreateOT_OTHER_LIST_TYPE(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.IS_SYSTEM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.OT_OTHER_LIST_TYPE.TABLE_RELATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.SE_CHOSEN_ORG.CreateSE_CHOSEN_ORG(System.Decimal,System.String)">
+	<summary>
+ Create a new SE_CHOSEN_ORG object.
+ </summary>
+	<param name="oRG_ID">Initial value of the ORG_ID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+</member><member name="P:TrainingDAL.SE_CHOSEN_ORG.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_CHOSEN_ORG.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.SE_REPORT.CreateSE_REPORT(System.Decimal)">
+	<summary>
+ Create a new SE_REPORT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.SE_REPORT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_REPORT.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_REPORT.MODULE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_REPORT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_REPORT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_REPORT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_REPORT.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.SE_USER.CreateSE_USER(System.Decimal)">
+	<summary>
+ Create a new SE_USER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.SE_USER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.PASSWORD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.FULLNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.TELEPHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.IS_APP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.IS_PORTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.IS_AD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.LOCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.IS_CHANGE_PASS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.CHANGE_PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.REMINDER_COUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER.MODULE_ADMIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.SE_USER_REPORT.CreateSE_USER_REPORT(System.Decimal,System.Decimal)">
+	<summary>
+ Create a new SE_USER_REPORT object.
+ </summary>
+	<param name="sE_REPORT_ID">Initial value of the SE_REPORT_ID property.</param>
+	<param name="sE_USER_ID">Initial value of the SE_USER_ID property.</param>
+</member><member name="P:TrainingDAL.SE_USER_REPORT.SE_REPORT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.SE_USER_REPORT.SE_USER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.SE_USER_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_ASSESSMENT_FORM.CreateTR_ASSESSMENT_FORM(System.Decimal)">
+	<summary>
+ Create a new TR_ASSESSMENT_FORM object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_FORM.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_ASSESSMENT_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_ASSESSMENT_RATE.CreateTR_ASSESSMENT_RATE(System.Decimal)">
+	<summary>
+ Create a new TR_ASSESSMENT_RATE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.POINT_FROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.POINT_TO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RATE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_ASSESSMENT_RATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_ASSESSMENT_RESULT.CreateTR_ASSESSMENT_RESULT(System.Decimal)">
+	<summary>
+ Create a new TR_ASSESSMENT_RESULT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.TR_CHOOSE_FORM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_ASSESSMENT_RESULT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.CreateTR_ASSESSMENT_RESULT_DTL(System.Decimal)">
+	<summary>
+ Create a new TR_ASSESSMENT_RESULT_DTL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.TR_ASSESSMENT_RESULT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.TR_CHOOSE_FORM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.TR_CRITERIA_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.TR_CRITERIA_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.POINT_ASS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_ASSESSMENT_RESULT_DTL.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_ASSESSMENT_RESULT_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CENTER.CreateTR_CENTER(System.Decimal)">
+	<summary>
+ Create a new TR_CENTER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_CENTER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.FAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.WEB">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.CONTACT_PERSON">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.CONTACT_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.CONTACT_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.TAX_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.TRAIN_FIELD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.DESCRIPTION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.REPRESENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CENTER.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CERTIFICATE.CreateTR_CERTIFICATE(System.Decimal)">
+	<summary>
+ Create a new TR_CERTIFICATE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.TR_CER_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.DURATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.CATEGORY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.TRANSPORTATION_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CERTIFICATE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CERTIFICATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CHOOSE_FORM.CreateTR_CHOOSE_FORM(System.Decimal)">
+	<summary>
+ Create a new TR_CHOOSE_FORM object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.TR_ASSESSMENT_FORM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CHOOSE_FORM.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CHOOSE_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CLASS.CreateTR_CLASS(System.Decimal)">
+	<summary>
+ Create a new TR_CLASS object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_CLASS.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.END_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.DISTRICT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS.PROVINCE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CLASS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CLASS_SCHEDULE.CreateTR_CLASS_SCHEDULE(System.Decimal)">
+	<summary>
+ Create a new TR_CLASS_SCHEDULE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.TR_CLASS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.START_TIME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.END_TIME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.IS_HC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.IS_HALF">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_SCHEDULE.CONTENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CLASS_SCHEDULE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CLASS_STUDENT.CreateTR_CLASS_STUDENT(System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new TR_CLASS_STUDENT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="tR_CLASS_ID">Initial value of the TR_CLASS_ID property.</param>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.TR_CLASS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CLASS_STUDENT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CLASS_STUDENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_COMMIT_AFTER_TRAIN.CreateTR_COMMIT_AFTER_TRAIN(System.Decimal)">
+	<summary>
+ Create a new TR_COMMIT_AFTER_TRAIN object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.COST_TRAIN_FROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.TR_CURRENCY_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.COMMIT_WORK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COMMIT_AFTER_TRAIN.COST_TRAIN_TO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_COMMIT_AFTER_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_COST_CENTER.CreateTR_COST_CENTER(System.Decimal,System.DateTime,System.String,System.DateTime,System.String)">
+	<summary>
+ Create a new TR_COST_CENTER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COST_CENTER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_COST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_COURSE.CreateTR_COURSE(System.Decimal)">
+	<summary>
+ Create a new TR_COURSE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_COURSE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.TR_CER_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.TR_CERTIFICATE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.TR_TRAIN_FIELD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.TR_PROGRAM_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.DRIVER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_COURSE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_COURSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CRITERIA.CreateTR_CRITERIA(System.Decimal)">
+	<summary>
+ Create a new TR_CRITERIA object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_CRITERIA.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.POINT_MAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CRITERIA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_CRITERIA_GROUP.CreateTR_CRITERIA_GROUP(System.Decimal)">
+	<summary>
+ Create a new TR_CRITERIA_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.POINT_MAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_CRITERIA_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_CRITERIA_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_LECTURE.CreateTR_LECTURE(System.Decimal)">
+	<summary>
+ Create a new TR_LECTURE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_LECTURE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.TR_CENTER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.IS_LOCAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_LECTURE.LECTURE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_LECTURE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PLAN.CreateTR_PLAN(System.Decimal)">
+	<summary>
+ Create a new TR_PLAN object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PLAN.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.TR_COURSE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T6">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T7">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T8">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T9">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T10">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T11">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PLAN_T12">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.DURATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.TR_DURATION_UNIT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.TEACHER_NUMBER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.STUDENT_NUMBER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_INCURRED">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_TRAVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_OF_STUDENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.TR_CURRENCY_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.TARGET_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.VENUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_OTHER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.TITLES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.DEPARTMENTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.CENTERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.MONTHS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.TRAIN_FORM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.PROPERTIES_NEED_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.UNIT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.ATTACHFILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_TOTAL_USD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.COST_OF_STUDENT_USD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN.WORKS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PLAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PLAN_CENTER.CreateTR_PLAN_CENTER(System.Decimal)">
+	<summary>
+ Create a new TR_PLAN_CENTER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PLAN_CENTER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_CENTER.TR_PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_CENTER.CENTER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PLAN_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PLAN_COST_DETAIL.CreateTR_PLAN_COST_DETAIL(System.Decimal)">
+	<summary>
+ Create a new TR_PLAN_COST_DETAIL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PLAN_COST_DETAIL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_COST_DETAIL.PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_COST_DETAIL.TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_COST_DETAIL.MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_COST_DETAIL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_COST_DETAIL.MONEY_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PLAN_COST_DETAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PLAN_EMPLOYEE.CreateTR_PLAN_EMPLOYEE(System.Decimal)">
+	<summary>
+ Create a new TR_PLAN_EMPLOYEE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PLAN_EMPLOYEE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_EMPLOYEE.TR_PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_EMPLOYEE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PLAN_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PLAN_JOBGRADE.CreateTR_PLAN_JOBGRADE(System.Decimal)">
+	<summary>
+ Create a new TR_PLAN_JOBGRADE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PLAN_JOBGRADE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_JOBGRADE.TR_PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_JOBGRADE.JOBGRADE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PLAN_JOBGRADE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PLAN_TITLE.CreateTR_PLAN_TITLE(System.Decimal)">
+	<summary>
+ Create a new TR_PLAN_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PLAN_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_TITLE.TR_PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_TITLE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PLAN_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PLAN_UNIT.CreateTR_PLAN_UNIT(System.Decimal)">
+	<summary>
+ Create a new TR_PLAN_UNIT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PLAN_UNIT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_UNIT.TR_PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PLAN_UNIT.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PLAN_UNIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PREPARE.CreateTR_PREPARE(System.Decimal)">
+	<summary>
+ Create a new TR_PREPARE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PREPARE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.TR_LIST_PREPARE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PREPARE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PREPARE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM.CreateTR_PROGRAM(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.END_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TR_COURSE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.DURATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TR_DURATION_UNIT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.DURATION_STUDY_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.DURATION_HC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.DURATION_OT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TR_UNIT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.IS_REIMBURSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TR_LANGUAGE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.CONTENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TARGET_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.VENUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TITLES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.DEPARTMENTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.CENTERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.IS_RETEST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.LECTURES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TR_REQUEST_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TR_PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.COST_TOTAL_US">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.COST_STUDENT_US">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.STUDENT_NUMBER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.COST_STUDENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.COST_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.TRAIN_FORM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM.PROPERTIES_NEED_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_CENTER.CreateTR_PROGRAM_CENTER(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_CENTER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_CENTER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_CENTER.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_CENTER.TR_CENTER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_COMMIT.CreateTR_PROGRAM_COMMIT(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_COMMIT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.COMMIT_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.COMMIT_WORK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.COMMIT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.APPROVER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.COMMIT_REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COMMIT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_COMMIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_COST.CreateTR_PROGRAM_COST(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_COST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.COST_COMPANY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.STUDENT_NUMBER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.COST_OF_STUDENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_COST.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_COST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_GROUP.CreateTR_PROGRAM_GROUP(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.TRAIN_FIELD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_JOBGRADE.CreateTR_PROGRAM_JOBGRADE(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_JOBGRADE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_JOBGRADE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_JOBGRADE.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_JOBGRADE.JOBGRADE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_JOBGRADE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_LECTURE.CreateTR_PROGRAM_LECTURE(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_LECTURE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_LECTURE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_LECTURE.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_LECTURE.TR_LECTURE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_LECTURE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_RESULT.CreateTR_PROGRAM_RESULT(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_RESULT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.DURATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.IS_EXAMS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.IS_END">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.IS_REACH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.IS_CERTIFICATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.CERTIFICATE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.CERTIFICATE_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.TR_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.TOIEC_BENCHMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.TOIEC_SCORE_IN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.TOIEC_SCORE_OUT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.INCREMENT_SCORE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.ABSENT_REASON">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.ABSENT_UNREASON">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.CER_RECEIVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.COMMIT_STARTDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.COMMIT_ENDDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.COMMIT_WORKMONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.IS_REFUND_FEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.IS_RESERVES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.FINAL_SCORE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.RETEST_SCORE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.RETEST_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.RETEST_REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_RESULT.ATTACH_FILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_RESULT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_TITLE.CreateTR_PROGRAM_TITLE(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_TITLE.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_TITLE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_PROGRAM_UNIT.CreateTR_PROGRAM_UNIT(System.Decimal)">
+	<summary>
+ Create a new TR_PROGRAM_UNIT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_PROGRAM_UNIT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_UNIT.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_PROGRAM_UNIT.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_PROGRAM_UNIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_REIMBURSEMENT.CreateTR_REIMBURSEMENT(System.Decimal)">
+	<summary>
+ Create a new TR_REIMBURSEMENT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.TR_PROGRAM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.COST_REIMBURSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REIMBURSEMENT.IS_RESERVES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_REIMBURSEMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_REQUEST.CreateTR_REQUEST(System.Decimal)">
+	<summary>
+ Create a new TR_REQUEST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_REQUEST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.REQUEST_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.TR_PLAN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.CONTENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.EXPECTED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.EXPECTED_COST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.TR_CURRENCY_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.STATUS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.REQUEST_SENDER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.IS_IRREGULARLY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.TR_COURSE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.TRAIN_FORM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.PROPERTIES_NEED_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.TR_UNIT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.TARGET_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.VENUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.ATTACH_FILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST.REJECT_REASON">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_REQUEST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_REQUEST_CENTER.CreateTR_REQUEST_CENTER(System.Decimal)">
+	<summary>
+ Create a new TR_REQUEST_CENTER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_REQUEST_CENTER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST_CENTER.TR_REQUEST_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST_CENTER.CENTER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_REQUEST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_REQUEST_EMPLOYEE.CreateTR_REQUEST_EMPLOYEE(System.Decimal)">
+	<summary>
+ Create a new TR_REQUEST_EMPLOYEE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_REQUEST_EMPLOYEE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST_EMPLOYEE.TR_REQUEST_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST_EMPLOYEE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_REQUEST_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_REQUEST_TEACHER.CreateTR_REQUEST_TEACHER(System.Decimal)">
+	<summary>
+ Create a new TR_REQUEST_TEACHER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_REQUEST_TEACHER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST_TEACHER.TR_REQUEST_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_REQUEST_TEACHER.TEACHER_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_REQUEST_TEACHER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_SETTING_ASS_FORM.CreateTR_SETTING_ASS_FORM(System.Decimal,System.Decimal,System.Decimal,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String)">
+	<summary>
+ Create a new TR_SETTING_ASS_FORM object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="tR_ASSESSMENT_FORM_ID">Initial value of the TR_ASSESSMENT_FORM_ID property.</param>
+	<param name="tR_CRITERIA_GROUP_ID">Initial value of the TR_CRITERIA_GROUP_ID property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.TR_ASSESSMENT_FORM_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.TR_CRITERIA_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_ASS_FORM.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_SETTING_ASS_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_SETTING_CRI_GRP.CreateTR_SETTING_CRI_GRP(System.Decimal)">
+	<summary>
+ Create a new TR_SETTING_CRI_GRP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.TR_CRITERIA_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.TR_CRITERIA_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_SETTING_CRI_GRP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_SETTING_CRI_GRP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_TITLE_COURSE.CreateTR_TITLE_COURSE(System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Create a new TR_TITLE_COURSE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="tR_COURSE_ID">Initial value of the TR_COURSE_ID property.</param>
+	<param name="hU_TITLE_ID">Initial value of the HU_TITLE_ID property.</param>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.TR_COURSE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.HU_TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_TITLE_COURSE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_TITLE_COURSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TrainingDAL.TR_UNIT.CreateTR_UNIT(System.Decimal)">
+	<summary>
+ Create a new TR_UNIT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:TrainingDAL.TR_UNIT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.FAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.WEB">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.TAX_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.TRAIN_FIELD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.REPRESENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.CONTACT_PERSON">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.CONTACT_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.CONTACT_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TrainingDAL.TR_UNIT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TrainingDAL.TR_UNIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member>
+</members>
+</doc>

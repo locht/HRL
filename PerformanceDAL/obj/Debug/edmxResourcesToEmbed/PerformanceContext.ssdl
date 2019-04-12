@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PerformanceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+  <EntityContainer Name="PerformanceModelStoreContainer">
+    <EntitySet Name="PE_CRITERIA" EntityType="PerformanceModel.Store.PE_CRITERIA" store:Type="Tables" />
+    <EntitySet Name="PE_OBJECT_GROUP" EntityType="PerformanceModel.Store.PE_OBJECT_GROUP" store:Type="Tables" />
+    <EntitySet Name="PE_OBJECT_GROUP_PERIOD" EntityType="PerformanceModel.Store.PE_OBJECT_GROUP_PERIOD" store:Type="Tables" />
+    <EntitySet Name="HU_EMPLOYEE" EntityType="PerformanceModel.Store.HU_EMPLOYEE" store:Type="Tables" />
+    <EntitySet Name="HU_EMPLOYEE_CV" EntityType="PerformanceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
+    <EntitySet Name="HU_ORG_TITLE" EntityType="PerformanceModel.Store.HU_ORG_TITLE" store:Type="Tables" />
+    <EntitySet Name="HU_ORGANIZATION" EntityType="PerformanceModel.Store.HU_ORGANIZATION" store:Type="Tables" />
+    <EntitySet Name="HU_TITLE" EntityType="PerformanceModel.Store.HU_TITLE" store:Type="Tables" />
+    <EntitySet Name="SE_CHOSEN_ORG" EntityType="PerformanceModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
+    <EntitySet Name="HU_STAFF_RANK" EntityType="PerformanceModel.Store.HU_STAFF_RANK" store:Type="Tables" />
+    <EntitySet Name="HUV_ORGANIZATION" EntityType="PerformanceModel.Store.HUV_ORGANIZATION" store:Type="Tables" />
+    <EntitySet Name="PE_PERSONAL" EntityType="PerformanceModel.Store.PE_PERSONAL" store:Type="Tables" />
+    <EntitySet Name="PE_EMPLOYEE_ASSESSMENT_DTL" EntityType="PerformanceModel.Store.PE_EMPLOYEE_ASSESSMENT_DTL" store:Type="Tables" />
+    <EntitySet Name="PE_ORGANIZATION" EntityType="PerformanceModel.Store.PE_ORGANIZATION" store:Type="Tables" />
+    <EntitySet Name="PE_CLASSIFICATION" EntityType="PerformanceModel.Store.PE_CLASSIFICATION" store:Type="Tables" />
+    <EntitySet Name="OT_OTHER_LIST" EntityType="PerformanceModel.Store.OT_OTHER_LIST" store:Type="Tables" />
+    <EntitySet Name="PE_ASSESSMENT" EntityType="PerformanceModel.Store.PE_ASSESSMENT" store:Type="Tables" />
+    <EntitySet Name="PE_EMPLOYEE_ASSESSMENT" EntityType="PerformanceModel.Store.PE_EMPLOYEE_ASSESSMENT" store:Type="Tables" />
+    <EntitySet Name="PE_CRITERIA_OBJECT_GROUP" EntityType="PerformanceModel.Store.PE_CRITERIA_OBJECT_GROUP" store:Type="Tables" />
+    <EntitySet Name="PE_PERIOD" EntityType="PerformanceModel.Store.PE_PERIOD" store:Type="Tables" />
+    <AssociationSet Name="FK_HE_HEC" Association="PerformanceModel.Store.FK_HE_HEC">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE_CV" EntitySet="HU_EMPLOYEE_CV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HE_HT" Association="PerformanceModel.Store.FK_HE_HT">
+      <End Role="HU_TITLE" EntitySet="HU_TITLE" />
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HU_ORG_HU_EMP" Association="PerformanceModel.Store.FK_HU_ORG_HU_EMP">
+      <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUEMD_HUEM" Association="PerformanceModel.Store.FK_HUEMD_HUEM">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE1" EntitySet="HU_EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUOG_HUOT" Association="PerformanceModel.Store.FK_HUOG_HUOT">
+      <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
+      <End Role="HU_ORG_TITLE" EntitySet="HU_ORG_TITLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUTL_HUOT" Association="PerformanceModel.Store.FK_HUTL_HUOT">
+      <End Role="HU_TITLE" EntitySet="HU_TITLE" />
+      <End Role="HU_ORG_TITLE" EntitySet="HU_ORG_TITLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HU_ORG_HU_ORG" Association="PerformanceModel.Store.FK_HU_ORG_HU_ORG">
+      <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
+      <End Role="HU_ORGANIZATION1" EntitySet="HU_ORGANIZATION" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PE_CRITERIA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+  </EntityType>
+  <EntityType Name="PE_OBJECT_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+  </EntityType>
+  <EntityType Name="PE_OBJECT_GROUP_PERIOD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="OBJECT_GROUP_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="PERIOD_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="EMPLOYEE_CODE" Type="nvarchar2" Nullable="true" MaxLength="15" />
+    <Property Name="FIRST_NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="LAST_NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="FULLNAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="FIRST_NAME_EN" Type="varchar2" Nullable="true" MaxLength="255" />
+    <Property Name="LAST_NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="FULLNAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="WORK_STATUS" Type="number" Nullable="true" Precision="38" />
+    <Property Name="CONTRACT_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="JOIN_DATE" Type="date" Nullable="true" />
+    <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="LAST_WORKING_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="TER_EFFECT_DATE" Type="date" Nullable="true" />
+    <Property Name="TER_LAST_DATE" Type="date" Nullable="true" />
+    <Property Name="ITIME_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="STAFF_RANK_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="PA_OBJECT_SALARY_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="EXPIREDATE_ENT" Type="date" Nullable="true" />
+    <Property Name="JOIN_DATE_STATE" Type="date" Nullable="true" />
+    <Property Name="LEVEL_MANAGER" Type="number" Nullable="true" Precision="38" />
+    <Property Name="EMPLOYEE_3B_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="EMPLOYEE_CODE_OLD" Type="nvarchar2" Nullable="true" MaxLength="15" />
+    <Property Name="IS_3B" Type="number" Nullable="true" Precision="5" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_CV">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="GENDER" Type="number" Nullable="true" Precision="38" />
+    <Property Name="IMAGE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="BIRTH_DATE" Type="date" Nullable="true" />
+    <Property Name="BIRTH_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MARITAL_STATUS" Type="number" Nullable="true" Precision="38" />
+    <Property Name="RELIGION" Type="number" Nullable="true" Precision="38" />
+    <Property Name="NATIVE" Type="number" Nullable="true" Precision="38" />
+    <Property Name="NATIONALITY" Type="number" Nullable="true" Precision="38" />
+    <Property Name="PER_ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="PER_PROVINCE" Type="number" Nullable="true" Precision="38" />
+    <Property Name="HOME_PHONE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MOBILE_PHONE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ID_NO" Type="nvarchar2" Nullable="true" MaxLength="15" />
+    <Property Name="ID_DATE" Type="date" Nullable="true" />
+    <Property Name="PASS_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="PASS_DATE" Type="date" Nullable="true" />
+    <Property Name="PASS_EXPIRE" Type="date" Nullable="true" />
+    <Property Name="PASS_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="VISA" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="VISA_DATE" Type="date" Nullable="true" />
+    <Property Name="VISA_EXPIRE" Type="date" Nullable="true" />
+    <Property Name="VISA_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="WORK_PERMIT" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="WORK_PERMIT_DATE" Type="date" Nullable="true" />
+    <Property Name="WORK_PERMIT_EXPIRE" Type="date" Nullable="true" />
+    <Property Name="WORK_EMAIL" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="NAV_ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="NAV_PROVINCE" Type="number" Nullable="true" Precision="38" />
+    <Property Name="PIT_CODE" Type="varchar2" Nullable="true" MaxLength="255" />
+    <Property Name="PER_EMAIL" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CONTACT_PER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CONTACT_PER_PHONE" Type="nvarchar2" Nullable="true" MaxLength="15" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ID_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="WORK_PERMIT_PLACE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="BANK_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="BANK_BRANCH_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="BANK_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="NGAY_VAO_DOAN" Type="date" Nullable="true" />
+    <Property Name="NOI_VAO_DOAN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CHUC_VU_DOAN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="DOAN_PHI" Type="number" Nullable="true" Precision="5" />
+    <Property Name="NGAY_VAO_DANG" Type="date" Nullable="true" />
+    <Property Name="NOI_VAO_DANG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CHUC_VU_DANG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="DANG_PHI" Type="number" Nullable="true" Precision="5" />
+    <Property Name="CAREER" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="PER_DISTRICT" Type="number" Nullable="true" Precision="38" />
+    <Property Name="NAV_DISTRICT" Type="number" Nullable="true" Precision="38" />
+    <Property Name="PER_WARD" Type="number" Nullable="true" Precision="38" />
+    <Property Name="NAV_WARD" Type="number" Nullable="true" Precision="38" />
+    <Property Name="WORKPLACE_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="IS_PERMISSION" Type="number" Nullable="true" Precision="5" />
+    <Property Name="INS_REGION_ID" Type="number" Nullable="true" Precision="38" />
+  </EntityType>
+  <EntityType Name="HU_ORG_TITLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="HU_ORGANIZATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="PARENT_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="LEVEL_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="DISSOLVE_DATE" Type="date" Nullable="true" />
+    <Property Name="FOUNDATION_DATE" Type="date" Nullable="true" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="HIERARCHICAL_PATH" Type="varchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="DESCRIPTION_PATH" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="FAX" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="REPRESENTATIVE_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="MOBILE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="PROVINCE_NAME" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="COST_CENTER_CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="ORD_NO" Type="number" Nullable="true" Precision="38" />
+  </EntityType>
+  <EntityType Name="HU_TITLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="TITLE_GROUP_ID" Type="number" Nullable="true" Precision="38" />
+  </EntityType>
+  <EntityType Name="SE_CHOSEN_ORG">
+    <Key>
+      <PropertyRef Name="ORG_ID" />
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Name="ORG_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="USERNAME" Type="nvarchar2" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="HU_STAFF_RANK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="LEVEL_STAFF" Type="number" Nullable="true" Precision="38" />
+  </EntityType>
+  <EntityType Name="HUV_ORGANIZATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ORG_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="PARENT_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="DESCRIPTION_PATH" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="COST_CENTER_CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="PROVINCE_NAME" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="ORG_NAME1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_NAME9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_ID1" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID2" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID3" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID4" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID5" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID6" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID7" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID8" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID9" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_CODE1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_CODE9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER1" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER2" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER3" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER4" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER5" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER6" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER7" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER8" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_COST_CENTER9" Type="nvarchar2" Nullable="true" MaxLength="1999" />
+    <Property Name="ORG_PATH" Type="nvarchar2" Nullable="true" MaxLength="2000" />
+    <Property Name="ORD_NO" Type="number" Nullable="true" Precision="38" />
+    <Property Name="DISSOLVE_DATE" Type="date" Nullable="true" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="PE_PERSONAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="PERIOD_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CRITERIA_GROUP_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="OBJECT_GROUP_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="MARK" Type="number" Nullable="true" Precision="38" />
+    <Property Name="RATING" Type="nvarchar2" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="PE_EMPLOYEE_ASSESSMENT_DTL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="PE_EMPLOYEE_ASSESSMENT_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CRITERIA_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="POINT" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="GROUP_OBJ_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="CLASSIFICATION" Type="nvarchar2" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="PE_ORGANIZATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="RESULT" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+  </EntityType>
+  <EntityType Name="PE_CLASSIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="10" />
+    <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="100" />
+    <Property Name="VALUE_FROM" Type="number" Nullable="true" Precision="5" />
+    <Property Name="VALUE_TO" Type="number" Nullable="true" Precision="5" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="OT_OTHER_LIST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="TYPE_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="NAME_VN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="NAME_EN" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ATTRIBUTE1" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ATTRIBUTE2" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ATTRIBUTE3" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ATTRIBUTE4" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="TYPE_CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="ORDERBYID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+  </EntityType>
+  <EntityType Name="PE_ASSESSMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="PE_EMPLOYEE_ASSESSMENT_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="PE_PERIO_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="PE_OBJECT_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="PE_CRITERIA_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="RESULT" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="STATUS_EMP_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="DIRECT_ID" Type="number" Nullable="true" Precision="38" />
+    <Property Name="UPDATE_DATE" Type="date" Nullable="true" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="RESULT_DIRECT" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="ASS_DATE" Type="date" Nullable="true" />
+    <Property Name="REMARK_DIRECT" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="RESULT_CONVERT" Type="number" Nullable="true" Precision="38" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="STATUS_DIRECT" Type="number" Nullable="true" Precision="38" />
+    <Property Name="RESULT_CONVERT_QL" Type="number" Nullable="true" Precision="38" />
+  </EntityType>
+  <EntityType Name="PE_EMPLOYEE_ASSESSMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="OBJECT_GROUP_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="PERIOD_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="PE_STATUS" Type="number" Nullable="true" Precision="38" />
+  </EntityType>
+  <EntityType Name="PE_CRITERIA_OBJECT_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="OBJECT_GROUP_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CRITERIA_ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="EXPENSE" Type="nvarchar2" Nullable="true" MaxLength="100" />
+    <Property Name="AMONG" Type="number" Nullable="true" Precision="38" />
+    <Property Name="FROM_DATE" Type="date" Nullable="true" />
+    <Property Name="TO_DATE" Type="date" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PE_PERIOD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+    <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+    <Property Name="START_DATE" Type="date" Nullable="true" />
+    <Property Name="END_DATE" Type="date" Nullable="true" />
+    <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+    <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+    <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="50" />
+    <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+    <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+    <Property Name="TYPE_ASS" Type="number" Nullable="true" Precision="38" />
+    <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+  </EntityType>
+  <Association Name="FK_HE_HEC">
+    <End Role="HU_EMPLOYEE" Type="PerformanceModel.Store.HU_EMPLOYEE" Multiplicity="1" />
+    <End Role="HU_EMPLOYEE_CV" Type="PerformanceModel.Store.HU_EMPLOYEE_CV" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE_CV">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HE_HT">
+    <End Role="HU_TITLE" Type="PerformanceModel.Store.HU_TITLE" Multiplicity="0..1" />
+    <End Role="HU_EMPLOYEE" Type="PerformanceModel.Store.HU_EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_TITLE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE">
+        <PropertyRef Name="TITLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HU_ORG_HU_EMP">
+    <End Role="HU_ORGANIZATION" Type="PerformanceModel.Store.HU_ORGANIZATION" Multiplicity="0..1" />
+    <End Role="HU_EMPLOYEE" Type="PerformanceModel.Store.HU_EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_ORGANIZATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE">
+        <PropertyRef Name="ORG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUEMD_HUEM">
+    <End Role="HU_EMPLOYEE" Type="PerformanceModel.Store.HU_EMPLOYEE" Multiplicity="0..1" />
+    <End Role="HU_EMPLOYEE1" Type="PerformanceModel.Store.HU_EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE1">
+        <PropertyRef Name="DIRECT_MANAGER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUOG_HUOT">
+    <End Role="HU_ORGANIZATION" Type="PerformanceModel.Store.HU_ORGANIZATION" Multiplicity="0..1" />
+    <End Role="HU_ORG_TITLE" Type="PerformanceModel.Store.HU_ORG_TITLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_ORGANIZATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_ORG_TITLE">
+        <PropertyRef Name="ORG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUTL_HUOT">
+    <End Role="HU_TITLE" Type="PerformanceModel.Store.HU_TITLE" Multiplicity="0..1" />
+    <End Role="HU_ORG_TITLE" Type="PerformanceModel.Store.HU_ORG_TITLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_TITLE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_ORG_TITLE">
+        <PropertyRef Name="TITLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HU_ORG_HU_ORG">
+    <End Role="HU_ORGANIZATION" Type="PerformanceModel.Store.HU_ORGANIZATION" Multiplicity="0..1" />
+    <End Role="HU_ORGANIZATION1" Type="PerformanceModel.Store.HU_ORGANIZATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_ORGANIZATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_ORGANIZATION1">
+        <PropertyRef Name="PARENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

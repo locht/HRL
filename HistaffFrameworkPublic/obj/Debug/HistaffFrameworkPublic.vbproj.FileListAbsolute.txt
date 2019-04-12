@@ -1,0 +1,7 @@
+D:\MyProject\histaffHCM\histaffhcm\ref\HistaffFrameworkPublic\HistaffFrameworkPublic.dll
+D:\MyProject\histaffHCM\histaffhcm\ref\HistaffFrameworkPublic\HistaffFrameworkPublic.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffFrameworkPublic\obj\Debug\HistaffFrameworkPublic.vbprojResolveAssemblyReference.cache
+D:\MyProject\histaffHCM\histaffhcm\HistaffFrameworkPublic\obj\Debug\HistaffFrameworkPublic.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffFrameworkPublic\obj\Debug\HistaffFrameworkPublic.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\HistaffFrameworkPublic\obj\Debug\HistaffFrameworkPublic.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffFrameworkPublic\obj\Debug\HistaffFrameworkPublic.pdb

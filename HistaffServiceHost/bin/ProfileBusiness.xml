@@ -1,0 +1,501 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ProfileBusiness
+</name>
+</assembly>
+<members>
+<member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetTitleByID(System.Decimal)">
+	<summary>
+ Lay danh sach TitleByID
+ </summary>
+	<returns>danh sach Title</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ValidateOtherList(ProfileDAL.OtherListDTO)">
+	<summary>
+ Validate Tham so he thong
+ </summary>
+	<param name="objOtherList"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetNation(ProfileDAL.NationDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Quoc gia
+ </summary>
+	<returns>danh sach Quoc gia</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertNation(ProfileDAL.NationDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi Quoc gia
+ </summary>
+	<param name="objNation"> Doi tuong quoc gia can Insert</param>
+	<param name="log"> Doi tuong chua thong tin log</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyNation(ProfileDAL.NationDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Sua thong tin Quoc gia
+ </summary>
+	<param name="objNation">doi tuong chua cac thong tin can sua</param>
+	<param name="log"></param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteNation(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa danh mục quốc gia
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="strError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetProvinceByNationID(System.Decimal,System.String)">
+	<summary>
+ Lay danh sach tinh thanh theo quoc gia
+ </summary>
+	<param name="sNationID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetProvince(ProfileDAL.ProvinceDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Tinh thanh
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertProvince(ProfileDAL.ProvinceDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi Tinh thanh
+ </summary>
+	<param name="objProvince"> Doi tuong Tinh thanh can Insert</param>
+	<param name="log"> Doi tuong chua thong tin log</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyProvince(ProfileDAL.ProvinceDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Sua thong tin Tinh thanh
+ </summary>
+	<param name="objProvince">doi tuong chua cac thong tin can sua</param>
+	<param name="log"></param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteProvince(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa danh mục tỉnh thành
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<param name="strError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetDistrict(ProfileDAL.DistrictDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Quan Huyen
+ </summary>
+	<returns>danh sach Quan Huyen</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetDistrictByProvinceID(System.Decimal,System.String)">
+	<summary>
+ Lay danh sach quan huyen theo ProvinceID
+ </summary>
+	<param name="sProvinceID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertDistrict(ProfileDAL.DistrictDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi Quan Huyen
+ </summary>
+	<param name="objDistrict"> Doi tuong Quan Huyen can Insert</param>
+	<param name="log"> Doi tuong chua thong tin log</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyDistrict(ProfileDAL.DistrictDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Sua thong tin Quan Huyen
+ </summary>
+	<param name="objDistrict">doi tuong chua cac thong tin can sua</param>
+	<param name="log"></param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteDistrict(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa danh mục quận huyện
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<param name="strError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetWard(ProfileDAL.Ward_DTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Quan Huyen
+ </summary>
+	<returns>danh sach Quan Huyen</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetBank(ProfileDAL.BankDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Ngan hang
+ </summary>
+	<returns>danh sach Ngan hang</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertBank(ProfileDAL.BankDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi Ngan hang
+ </summary>
+	<param name="objBank"> Doi tuong Ngan hang can Insert</param>
+	<param name="log"> Doi tuong chua thong tin log</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyBank(ProfileDAL.BankDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Sua thong tin Ngan hang
+ </summary>
+	<param name="objBank">doi tuong chua cac thong tin can sua</param>
+	<param name="log"></param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteBank(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa danh mục ngân hàng
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<param name="strError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetBankBranch(ProfileDAL.BankBranchDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Chi nhanh Ngan hang
+ </summary>
+	<returns>danh sach Chi nhanh Ngan hang</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetBankBranchByBankID(System.Decimal)">
+	<summary>
+ Lay danh sach Chi nhanh Ngan hang theo Bank_ID
+ </summary>
+	<returns>danh sach Chi nhanh Ngan hang</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertBankBranch(ProfileDAL.BankBranchDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi Chi nhanh Ngan hang
+ </summary>
+	<param name="objBankBranch"> Doi tuong Chi nhanh Ngan hang can Insert</param>
+	<param name="log"> Doi tuong chua thong tin log</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyBankBranch(ProfileDAL.BankBranchDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Sua thong tin Chi nhanh Ngan hang
+ </summary>
+	<param name="objBankBranch">doi tuong chua cac thong tin can sua</param>
+	<param name="log"></param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteBankBranch(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa danh mcuj chi nhánh ngân hàng
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<param name="strError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetAsset(ProfileDAL.AssetDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Tai san cap phat
+ </summary>
+	<returns>danh sach Tai san cap phat</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertAsset(ProfileDAL.AssetDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi Tai san cap phat
+ </summary>
+	<param name="objAsset"> Doi tuong Tai san cap phat can Insert</param>
+	<param name="log"> Doi tuong chua thong tin log</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyAsset(ProfileDAL.AssetDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Sua thong tin Tai san cap phat
+ </summary>
+	<param name="objAsset">doi tuong chua cac thong tin can sua</param>
+	<param name="log"></param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteAsset(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa tài sản cấp phát
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<param name="strError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetEmployeeImage(System.Decimal,System.String@)">
+	<summary>
+ Trả về binary của ảnh hồ sơ nhân viên
+ </summary>
+	<param name="gEmpID"></param>
+	<param name="sError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetListEmployee(System.Collections.Generic.List{System.Decimal},ProfileDAL.EmployeeDTO)">
+	<summary>
+ Lấy danh sách nhân viên bao gồm ảnh để hiển thị trên org chart
+ </summary>
+	<param name="_orgIds"></param>
+	<param name="_filter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetEmployeeAllByID(System.Decimal,ProfileDAL.EmployeeCVDTO@,ProfileDAL.EmployeeEduDTO@,ProfileDAL.EmployeeHealthDTO@)">
+	<summary>
+ Lấy thông tin EmployeeCV 
+ </summary>
+	<param name="sEmployeeID">ID(Decimal) của nhân viên</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteEmployee(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa nhân viên
+ </summary>
+	<param name="lstEmpID"></param>
+	<param name="log"></param>
+	<param name="sError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.CheckEmpHasContract(System.String)">
+	<summary>
+ Hàm kiểm tra nhân viên đã có hợp đồng chưa
+ </summary>
+	<param name="strEmpCode"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetEmployeeFamily(ProfileDAL.FamilyDTO)">
+	<summary>
+ Lay danh sach than nhan
+ </summary>
+	<param name="_filter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertEmployeeFamily(ProfileDAL.FamilyDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi nhan than
+ </summary>
+	<param name="objFamily"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyEmployeeFamily(ProfileDAL.FamilyDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Chinh sua thong tin nhan than
+ </summary>
+	<param name="objFamily"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteEmployeeFamily(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa nhân thân
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ValidateFamily(ProfileDAL.FamilyDTO)">
+	<summary>
+ Check trùng CMND của nhân thân.
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetEmployeeFamilyEdit(ProfileDAL.FamilyEditDTO)">
+	<summary>
+ Lay danh sach than nhan
+ </summary>
+	<param name="_filter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.InsertEmployeeFamilyEdit(ProfileDAL.FamilyEditDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi nhan than
+ </summary>
+	<param name="objFamilyEdit"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.ModifyEmployeeFamilyEdit(ProfileDAL.FamilyEditDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Chinh sua thong tin nhan than
+ </summary>
+	<param name="objFamilyEdit"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.DeleteEmployeeFamilyEdit(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa nhân thân
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetComboList(ProfileDAL.ComboBoxDataDTO@)">
+	<summary>
+ Lấy dữ liệu cho combobox
+ </summary>
+	<param name="_combolistDTO">Trả về dữ liệu combobox</param>
+	<returns>TRUE: Success</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetRemind(System.String,Framework.Data.UserLog)">
+	<summary>
+ Lấy danh sách nhắc nhở
+ </summary>
+	<param name="_dayRemind"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetFamily(System.Decimal)">
+	<summary>
+ Lấy danh sách nhân thân
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetWorkingBefore(System.Decimal)">
+	<summary>
+ Lấy quá trình công tác trước khi vào công ty
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetSalaryProccess(System.Decimal,Framework.Data.UserLog)">
+	<summary>
+ Lấy quá trình lương
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetWelfareProccess(System.Decimal)">
+	<summary>
+ Lấy quá trình phúc lợi
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetContractProccess(System.Decimal)">
+	<summary>
+ Lấy quá trình hợp đồng
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetCommendProccess(System.Decimal)">
+	<summary>
+ Lấy quá trình khen thưởng
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetDisciplineProccess(System.Decimal)">
+	<summary>
+ Lấy quá trình kỷ luật
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetInsuranceProccess(System.Decimal)">
+	<summary>
+ Lấy quá trình bảo hiểm
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetAssessKPIEmployee(System.Decimal)">
+	<summary>
+ Qua trinh danh gia KPI
+ </summary>
+	<param name="_empId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetDynamicReportColumn(System.Decimal)">
+	<summary>
+ Lấy danh sách các cột của DynamicReport
+ </summary>
+	<param name="_reportID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetDynamicReport(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Collections.Generic.List{System.String},System.String,Framework.Data.UserLog)">
+	<summary>
+ Lấy dữ liệu báo cáo động
+ </summary>
+	<param name="column">Danh sách các cột cần lấy</param>
+	<param name="condition">Expression điều kiện</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetListEmployeeStatistic">
+	<summary>
+ Lấy danh sách loại thống kê nhân viên
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetListChangeStatistic">
+	<summary>
+ Lấy danh sách loại thống kê biến động
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetEmployeeStatistic(System.String,Framework.Data.UserLog)">
+	<summary>
+ Lấy nội dung thống kê nhân viên
+ </summary>
+	<param name="_type"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceContracts.IProfileBusiness.GetChangeStatistic(System.String,Framework.Data.UserLog)">
+	<summary>
+ Lấy nội dung thống kê biến động
+ </summary>
+	<param name="_type"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceImplementations.ProfileBusiness.CheckEmpHasContract(System.String)">
+	<summary>
+ Hàm kiểm tra nhân viên có hợp đồng hay chưa.
+ </summary>
+	<param name="strEmpCode"></param>
+	<returns>true: nếu có</returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceImplementations.ProfileBusiness.GetDynamicReportColumn(System.Decimal)">
+	<summary>
+ Lấy danh sách các cột của DynamicReport
+ </summary>
+	<param name="_reportID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ProfileBusiness.ServiceImplementations.ProfileBusiness.GetDynamicReport(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Collections.Generic.List{System.String},System.String,Framework.Data.UserLog)">
+	<summary>
+ Lấy dữ liệu báo cáo động
+ </summary>
+	<param name="column">Danh sách các cột cần lấy</param>
+	<param name="condition">Expression điều kiện</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

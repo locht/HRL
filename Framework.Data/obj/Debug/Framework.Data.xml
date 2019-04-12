@@ -6,7 +6,120 @@ Framework.Data
 </name>
 </assembly>
 <members>
-<member name="M:Framework.Data.AuditLogContext.#ctor">
+<member name="M:Framework.Data.Utilities.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member><member name="F:Framework.Data.DataAccess.ConnectionManager.conn">
+	<summary>
+ Connection dùng chung cho cả App
+ </summary>
+</member><member name="T:Framework.Data.DataAccess.ConnectionManager.ConnectionInfo">
+	<summary>
+ Thông tin về Connection
+ </summary>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.GetConnectionString">
+	<summary>
+ Tạo chuỗi ConnectionString
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.GetOracleConnection">
+	<summary>
+ Tạo một OracleConnection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CheckConnection">
+	<summary>
+ Kiểm tra Connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.OpenConnection">
+	<summary>
+ Open connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CloseConnection">
+	<summary>
+ Close connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CheckLiveConnection">
+	<summary>
+ Kiểm tra trạng thái connection và khởi tạo hoặc open nếu cần
+ </summary>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteSQL(System.String)">
+	<summary>
+ NonQuery 1 câu lệnh SQL, bao gồm transaction
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteSQLScalar``1(System.String,``0)">
+	<summary>
+Get value không chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Đối tượng chưa parameter</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStore(System.String)">
+	<summary>
+ NonQuery procedure có chứa tham số, bao gồm transaction
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStore``1(System.String,``0)">
+	<summary>
+ NonQuery procedure có chứa tham số, bao gồm transaction
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Mảng các tham số truyền vào</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStoreScalar``1(System.String,``0)">
+	<summary>
+ Get value procedure có chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Đối tượng chưa parameter</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.OracleCommon.GetParameter(System.String,System.Object,System.Boolean@)">
+	<summary>
+ Gán type database tương ứng với value
+ </summary>
+	<param name="sKey">Tên parameter</param>
+	<param name="sValue">Giá trị của parameter</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteSQL(System.String,System.Boolean)">
+	<summary>
+ Query 1 câu lệnh SQL
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteSQL``1(System.String,``0,System.Boolean)">
+	<summary>
+  Query 1 câu lệnh SQL có chứa tham số
+ </summary>
+	<typeparam name="T"></typeparam>
+	<param name="sql"></param>
+	<param name="obj"></param>
+	<param name="isDataTable"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteStore(System.String,System.Boolean)">
+	<summary>
+ Query procedure không chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteStore``1(System.String,``0@,System.Boolean)">
+	<summary>
+ Query procedure có chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Đối tượng chưa parameter</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.AuditLogContext.#ctor">
 	<summary>
  Initializes a new AuditLogContext object using the connection string found in the 'AuditLogContext' section of the application configuration file.
  </summary>
@@ -271,72 +384,6 @@ Framework.Data
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteSQL(System.String,System.Boolean)">
-	<summary>
- Query 1 câu lệnh SQL
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<returns>Dữ liệu trả về</returns>
-</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteSQL``1(System.String,``0,System.Boolean)">
-	<summary>
-  Query 1 câu lệnh SQL có chứa tham số
- </summary>
-	<typeparam name="T"></typeparam>
-	<param name="sql"></param>
-	<param name="obj"></param>
-	<param name="isDataTable"></param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteStore(System.String,System.Boolean)">
-	<summary>
- Query procedure không chứa tham số
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<returns>Dữ liệu trả về</returns>
-</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteStore``1(System.String,``0@,System.Boolean)">
-	<summary>
- Query procedure có chứa tham số
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<param name="obj">Đối tượng chưa parameter</param>
-	<returns>Dữ liệu trả về</returns>
-</member><member name="F:Framework.Data.DataAccess.ConnectionManager.conn">
-	<summary>
- Connection dùng chung cho cả App
- </summary>
-</member><member name="T:Framework.Data.DataAccess.ConnectionManager.ConnectionInfo">
-	<summary>
- Thông tin về Connection
- </summary>
-</member><member name="M:Framework.Data.DataAccess.ConnectionManager.GetConnectionString">
-	<summary>
- Tạo chuỗi ConnectionString
- </summary>
-	<returns></returns>
-</member><member name="M:Framework.Data.DataAccess.ConnectionManager.GetOracleConnection">
-	<summary>
- Tạo một OracleConnection
- </summary>
-	<returns></returns>
-</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CheckConnection">
-	<summary>
- Kiểm tra Connection
- </summary>
-	<returns></returns>
-</member><member name="M:Framework.Data.DataAccess.ConnectionManager.OpenConnection">
-	<summary>
- Open connection
- </summary>
-	<returns></returns>
-</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CloseConnection">
-	<summary>
- Close connection
- </summary>
-	<returns></returns>
-</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CheckLiveConnection">
-	<summary>
- Kiểm tra trạng thái connection và khởi tạo hoặc open nếu cần
- </summary>
 </member><member name="P:Framework.Data.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
@@ -368,53 +415,6 @@ Framework.Data
 	<summary>
  3 tham số trả về
  </summary>
-</member><member name="M:Framework.Data.Utilities.WriteExceptionLog(System.Exception,System.String,System.String)">
-	<summary>
- Writes the exception log.
- </summary>
-	<param name="objErr">The obj err.</param>
-	<param name="sFunc">The s func.</param>
-</member><member name="M:Framework.Data.DataAccess.OracleCommon.GetParameter(System.String,System.Object,System.Boolean@)">
-	<summary>
- Gán type database tương ứng với value
- </summary>
-	<param name="sKey">Tên parameter</param>
-	<param name="sValue">Giá trị của parameter</param>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteSQL(System.String)">
-	<summary>
- NonQuery 1 câu lệnh SQL, bao gồm transaction
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<returns>Dữ liệu trả về</returns>
-</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteSQLScalar``1(System.String,``0)">
-	<summary>
-Get value không chứa tham số
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<param name="obj">Đối tượng chưa parameter</param>
-	<returns>Dữ liệu trả về</returns>
-</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStore(System.String)">
-	<summary>
- NonQuery procedure có chứa tham số, bao gồm transaction
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<returns>Dữ liệu trả về</returns>
-</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStore``1(System.String,``0)">
-	<summary>
- NonQuery procedure có chứa tham số, bao gồm transaction
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<param name="obj">Mảng các tham số truyền vào</param>
-	<returns>Dữ liệu trả về</returns>
-</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStoreScalar``1(System.String,``0)">
-	<summary>
- Get value procedure có chứa tham số
- </summary>
-	<param name="sql">Câu lệnh SQL</param>
-	<param name="obj">Đối tượng chưa parameter</param>
-	<returns>Dữ liệu trả về</returns>
 </member>
 </members>
 </doc>

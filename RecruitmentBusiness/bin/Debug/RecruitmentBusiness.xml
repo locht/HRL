@@ -1,0 +1,226 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+RecruitmentBusiness
+</name>
+</assembly>
+<members>
+<member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.CheckExistCandidate(System.String)">
+	<summary>
+ Kiểm tra ứng viên đó có trong hệ thống ko(trừ ứng viên nghỉ việc)
+ </summary>
+	<param name="strEmpCode"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateImage(System.Decimal,System.String@)">
+	<summary>
+ Trả về binary của ảnh hồ sơ ứng viên
+ </summary>
+	<param name="gEmpID"></param>
+	<param name="sError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetListCandidatePaging(System.Int32,System.Int32,System.Int32@,RecruitmentDAL.CandidateDTO,System.String)">
+	<summary>
+ Lấy danh sách ứng viên có phân trang
+ </summary>
+	<param name="PageIndex"></param>
+	<param name="PageSize"></param>
+	<param name="Total"></param>
+	<param name="_filter"></param>
+	<param name="Sorts"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateInfo(System.String)">
+	<summary>
+ Lay thong tin nhan vien tu CandidateCode
+ </summary>
+	<param name="sCandidateCode"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateCV(System.Decimal)">
+	<summary>
+ Lấy thông tin CandidateCV 
+ </summary>
+	<param name="sCandidateID">ID(Decimal) của ứng viên</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateOtherInfo(System.Decimal)">
+	<summary>
+ Lấy thông tin khác
+ </summary>
+	<param name="sCandidateID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.DeleteCandidate(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.String@)">
+	<summary>
+ Xóa ứng viên
+ </summary>
+	<param name="lstEmpID"></param>
+	<param name="log"></param>
+	<param name="sError"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateFamily(RecruitmentDAL.CandidateFamilyDTO)">
+	<summary>
+ Lay danh sach than nhan
+ </summary>
+	<param name="_filter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.InsertCandidateFamily(RecruitmentDAL.CandidateFamilyDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi nhan than
+ </summary>
+	<param name="objFamily"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.ModifyCandidateFamily(RecruitmentDAL.CandidateFamilyDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Chinh sua thong tin nhan than
+ </summary>
+	<param name="objFamily"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.DeleteCandidateFamily(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa nhân thân
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.ValidateFamily(RecruitmentDAL.CandidateFamilyDTO)">
+	<summary>
+ Check trùng CMND của nhân thân.
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateTrainSinger(RecruitmentDAL.TrainSingerDTO)">
+	<summary>
+ Lay danh sach ngan hang
+ </summary>
+	<param name="_filter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.InsertCandidateTrainSinger(RecruitmentDAL.TrainSingerDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi ngan hang
+ </summary>
+	<param name="objTrainSinger"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.ModifyCandidateTrainSinger(RecruitmentDAL.TrainSingerDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Chinh sua thong tin ngan hang
+ </summary>
+	<param name="objTrainSinger"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.DeleteCandidateTrainSinger(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa ngan hang
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateReference(RecruitmentDAL.CandidateReferenceDTO)">
+	<summary>
+ Lay danh sach ngan hang
+ </summary>
+	<param name="_filter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.InsertCandidateReference(RecruitmentDAL.CandidateReferenceDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi ngan hang
+ </summary>
+	<param name="objTrainSinger"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.ModifyCandidateReference(RecruitmentDAL.CandidateReferenceDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Chinh sua thong tin ngan hang
+ </summary>
+	<param name="objTrainSinger"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.DeleteCandidateReference(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa ngan hang
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.GetCandidateBeforeWT(RecruitmentDAL.CandidateBeforeWTDTO)">
+	<summary>
+ Lay danh sach ngan hang
+ </summary>
+	<param name="_filter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.InsertCandidateBeforeWT(RecruitmentDAL.CandidateBeforeWTDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Them moi ngan hang
+ </summary>
+	<param name="objCandidateBeforeWT"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.ModifyCandidateBeforeWT(RecruitmentDAL.CandidateBeforeWTDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Chinh sua thong tin ngan hang
+ </summary>
+	<param name="objCandidateBeforeWT"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:RecruitmentBusiness.ServiceContracts.IRecruitmentBusiness.DeleteCandidateBeforeWT(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa ngan hang
+ </summary>
+	<param name="lstDecimals"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:RecruitmentBusiness.ServiceImplementations.RecruitmentBusiness.GetCandidateInfo(System.String)">
+	<summary>
+ Lay thong tin nhan vien tu CandidateCode
+ </summary>
+	<param name="sCandidateCode"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

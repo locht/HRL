@@ -1,0 +1,17 @@
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\ProfileDAL.dll.config
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\ProfileDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\ProfileDAL.pdb
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\ProfileDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\EntityFramework.dll
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\Framework.Data.dll
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\LinqKit.dll
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\Oracle.DataAccess.dll
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\Oracle.Web.dll
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\Framework.Data.pdb
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\Framework.Data.xml
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\bin\Debug\EntityFramework.xml
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\obj\Debug\ProfileDAL.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\obj\Debug\ProfileDAL.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\obj\Debug\ProfileDAL.dll
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\obj\Debug\ProfileDAL.xml
+D:\MyProject\histaffHCM\histaffhcm\ProfileDAL\obj\Debug\ProfileDAL.pdb

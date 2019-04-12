@@ -1,0 +1,9 @@
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\bin\Debug\Histaff.DataAccessLayer.dll
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\bin\Debug\Histaff.DataAccessLayer.pdb
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\bin\Debug\Histaff.DataAccessLayer.xml
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\bin\Debug\Oracle.DataAccess.dll
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\obj\Debug\Histaff.DataAccessLayer.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\obj\Debug\Histaff.DataAccessLayer.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\obj\Debug\Histaff.DataAccessLayer.dll
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\obj\Debug\Histaff.DataAccessLayer.xml
+D:\MyProject\histaffHCM\histaffhcm\Histaff.DataAccessLayer\obj\Debug\Histaff.DataAccessLayer.pdb

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/26/2019 10:57:20 AM
--- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\CommonDAL\CommonContext.edmx
+-- Date Created: 04/12/2019 12:00:46 PM
+-- Generated from EDMX file: D:\MyProject\histaffHCM\histaffhcm\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -457,7 +457,8 @@ CREATE TABLE "dbo"."SE_APP_SETUPEXT" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "REPLACEALL" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_APP_TEMPLATE'

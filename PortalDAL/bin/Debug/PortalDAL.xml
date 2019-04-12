@@ -1,0 +1,156 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PortalDAL
+</name>
+</assembly>
+<members>
+<member name="M:PortalDAL.PortalContext.#ctor">
+	<summary>
+ Initializes a new PortalContext object using the connection string found in the 'PortalContext' section of the application configuration file.
+ </summary>
+</member><member name="M:PortalDAL.PortalContext.#ctor(System.String)">
+	<summary>
+ Initialize a new PortalContext object.
+ </summary>
+</member><member name="M:PortalDAL.PortalContext.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new PortalContext object.
+ </summary>
+</member><member name="P:PortalDAL.PortalContext.PO_EVENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PortalDAL.PortalContext.AddToPO_EVENT(PortalDAL.PO_EVENT)">
+	<summary>
+ Deprecated Method for adding a new object to the PO_EVENT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:PortalDAL.PortalContext">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PortalDAL.PO_EVENT.CreatePO_EVENT(System.Decimal,System.String,System.String,System.DateTime,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new PO_EVENT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="tITLE">Initial value of the TITLE property.</param>
+	<param name="dETAIL">Initial value of the DETAIL property.</param>
+	<param name="aDD_TIME">Initial value of the ADD_TIME property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:PortalDAL.PO_EVENT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.TITLE">
+	<summary>
+ Tiêu đề tin tức
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.DETAIL">
+	<summary>
+ Nội dung tin tức
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.ADD_TIME">
+	<summary>
+ Ngày đăng tin
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.IS_SHOW">
+	<summary>
+ Có hiển thị. 0 - Không, 1 - Có
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PortalDAL.PO_EVENT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PortalDAL.PO_EVENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PortalDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PortalDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:PortalDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:PortalDAL.PortalRepository.GetEventInformation(Framework.Data.UserLog)">
+	<summary>
+ Lấy thông tin sự kiện
+ </summary>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PortalDAL.PortalRepository.GetListEventInformation(Framework.Data.UserLog)">
+	<summary>
+ Lấy danh sách thông tin sự kiện
+ </summary>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PortalDAL.PortalRepository.InsertEventInformation(PortalDAL.EventDTO,Framework.Data.UserLog)">
+	<summary>
+ Thêm mới thông tin sự kiện
+ </summary>
+	<param name="_event"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PortalDAL.PortalRepository.UpdateEventInformation(PortalDAL.EventDTO,Framework.Data.UserLog)">
+	<summary>
+ Sửa thông tin sự kiện
+ </summary>
+	<param name="_event"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PortalDAL.PortalRepository.DeleteEventInformation(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa thông tin sự kiện
+ </summary>
+	<param name="_listId"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PortalDAL.PortalRepository.ActiveEventInformation(System.Decimal,Framework.Data.UserLog)">
+	<summary>
+ Mở hiện sự kiện
+ </summary>
+	<param name="_id"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

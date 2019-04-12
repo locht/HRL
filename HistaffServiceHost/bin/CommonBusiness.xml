@@ -1,0 +1,477 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+CommonBusiness
+</name>
+</assembly>
+<members>
+<member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOrganizationLocationTreeView(System.String)">
+	<summary>
+ Lấy danh sách sơ đồ tổ chức hàng dọc cho TreeView phân quyền
+ </summary>
+	<param name="_username">tên tài khoản</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOrganizationLocationInfo(System.Decimal)">
+	<summary>
+ Lấy thông tin sơ đồ tổ chức Location
+ </summary>
+	<param name="_orgId">Org ID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOrganizationStructureInfo(System.Decimal)">
+	<summary>
+ Lấy thông tin cấu trúc sơ đồ tổ chức
+ </summary>
+	<param name="_orgId">Org ID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUser(CommonDAL.UserDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach tai khoan
+ </summary>
+	<returns>danh sach tai khoan</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertUser(CommonDAL.UserDTO,Framework.Data.UserLog)">
+	<summary>
+ Them tai khoan
+ </summary>
+	<param name="_user">doi tuong chua cac thong tin can them</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ValidateUser(CommonDAL.UserDTO)">
+	<summary>
+ Kiểm tra dữ liệu tài khoản
+ </summary>
+	<param name="_validate">Dữ liệu cần kiểm tra</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ModifyUser(CommonDAL.UserDTO,Framework.Data.UserLog)">
+	<summary>
+ Sua tai khoan
+ </summary>
+	<param name="_user">doi tuong chua cac thong tin can sua</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.DeleteUser(System.Collections.Generic.List{System.Decimal},System.String@,Framework.Data.UserLog)">
+	<summary>
+ Xoa tai khoan
+ </summary>
+	<param name="_lstUserID">doi tuong chua thong tin can xoa</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateUserListStatus(System.Collections.Generic.List{System.Decimal},System.String,Framework.Data.UserLog)">
+	<summary>
+ Lock or Unlock tài khoản
+ </summary>
+	<param name="_lstUserID"></param>
+	<param name="_status"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.SyncUserList(System.String@,System.String@,System.String@,Framework.Data.UserLog)">
+	<summary>
+ Đồng bộ hóa
+ </summary>
+	<param name="_newUser"></param>
+	<param name="_modifyUser"></param>
+	<param name="_deleteUser"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.SendMailConfirmUserPassword(System.Collections.Generic.List{System.Decimal},System.String,System.String)">
+	<summary>
+ Gửi Email thông báo mật khẩu
+ </summary>
+	<param name="_userid"></param>
+	<param name="_subject"></param>
+	<param name="_content"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUserNeedSendMail(System.Decimal)">
+	<summary>
+ Lấy danh sách user cần send mail từ Group
+ </summary>
+	<param name="_groupid"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetGroupListToComboListBox">
+	<summary>
+ Lấy danh sách nhóm tài khoản cho Combo
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetGroupList(CommonDAL.GroupDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lấy danh sách nhóm tài khoản
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ValidateGroupList(CommonDAL.GroupDTO)">
+	<summary>
+ Kiểm tra dữ liệu nhóm tài khoản
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertGroup(CommonDAL.GroupDTO,Framework.Data.UserLog)">
+	<summary>
+ Thêm nhóm tài khoản
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateGroup(CommonDAL.GroupDTO,Framework.Data.UserLog)">
+	<summary>
+ Sửa nhóm tài khoản
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.DeleteGroup(System.Collections.Generic.List{System.Decimal},System.String@,Framework.Data.UserLog)">
+	<summary>
+ Xóa nhóm tài khoản
+ </summary>
+	<param name="GroupID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateGroupStatus(System.Collections.Generic.List{System.Decimal},System.String,Framework.Data.UserLog)">
+	<summary>
+ Đổi trạng thái của Group
+ </summary>
+	<param name="_lstID"></param>
+	<param name="_ACTFLG"></param>
+	<param name="log"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetFunctionList(CommonDAL.FunctionDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lấy danh sách chức năng hệ thống
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ValidateFunctionList(CommonDAL.FunctionDTO)">
+	<summary>
+ Kiểm tra dữ liệu chức năng hệ thống
+ </summary>
+	<param name="_validate"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateFunctionList(System.Collections.Generic.List{CommonDAL.FunctionDTO},Framework.Data.UserLog)">
+	<summary>
+ Cập nhập chức năng hệ thống
+ </summary>
+	<param name="_item"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetModuleList">
+	<summary>
+ Lấy danh sách các Module
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUserListInGroup(System.Decimal,CommonDAL.UserDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lấy danh sách các tài khoản trong nhóm
+ </summary>
+	<param name="GroupID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUserListOutGroup(System.Decimal,CommonDAL.UserDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lấy danh sách các tài khoản ngoài nhóm
+ </summary>
+	<param name="GroupID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertUserGroup(System.Decimal,System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Thêm tài khoản vào nhóm
+ </summary>
+	<param name="_groupID"></param>
+	<param name="_lstUserID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.DeleteUserGroup(System.Decimal,System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog)">
+	<summary>
+ Xóa tài khoản khỏi nhóm
+ </summary>
+	<param name="_groupID"></param>
+	<param name="_lstUserID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetGroupFunctionPermision(System.Decimal,CommonDAL.GroupFunctionDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lấy danh sách chức năng trong nhóm
+ </summary>
+	<param name="GroupID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetGroupFunctionNotPermision(System.Decimal,CommonDAL.FunctionDTO,System.Int32,System.Int32,System.Int32@,Framework.Data.UserLog,System.String)">
+	<summary>
+ Lấy danh sách chức năng ngoài nhóm
+ </summary>
+	<param name="GroupID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertGroupFunction(System.Collections.Generic.List{CommonDAL.GroupFunctionDTO},Framework.Data.UserLog)">
+	<summary>
+ Thêm chức năng vào nhóm
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateGroupFunction(System.Collections.Generic.List{CommonDAL.GroupFunctionDTO},Framework.Data.UserLog)">
+	<summary>
+ Cập nhập phân quyền chức năng
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.DeleteGroupFunction(System.Collections.Generic.List{System.Decimal})">
+	<summary>
+ Xóa chức năng khỏi nhóm
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetGroupReportList(System.Decimal)">
+	<summary>
+ Lấy danh sách Report đã phân quyền theo nhóm tài khoản
+ </summary>
+	<param name="_groupID">ID nhóm tài khoản</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetGroupReportListFilter(System.Decimal,CommonDAL.GroupReportDTO)">
+	<summary>
+ Lấy danh sách Report đã phân quyền theo nhóm tài khoản có Filter
+ </summary>
+	<param name="_groupID">ID nhóm tài khoản</param>
+	<param name="_filter">bộ lọc</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateGroupReport(System.Decimal,System.Collections.Generic.List{CommonDAL.GroupReportDTO})">
+	<summary>
+ Cập nhập danh sách Report
+ </summary>
+	<param name="_groupID">ID nhóm tài khoản</param>
+	<param name="_lstReport">Danh sách report cần cập nhập</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUserFunctionPermision(System.Decimal,CommonDAL.UserFunctionDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lấy danh sách chức năng trong nhóm
+ </summary>
+	<param name="UserID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUserFunctionNotPermision(System.Decimal,CommonDAL.FunctionDTO,System.Int32,System.Int32,System.Int32@,Framework.Data.UserLog,System.String)">
+	<summary>
+ Lấy danh sách chức năng ngoài nhóm
+ </summary>
+	<param name="UserID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertUserFunction(System.Collections.Generic.List{CommonDAL.UserFunctionDTO},Framework.Data.UserLog)">
+	<summary>
+ Thêm chức năng vào nhóm
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateUserFunction(System.Collections.Generic.List{CommonDAL.UserFunctionDTO},Framework.Data.UserLog)">
+	<summary>
+ Cập nhập phân quyền chức năng
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.DeleteUserFunction(System.Collections.Generic.List{System.Decimal})">
+	<summary>
+ Xóa chức năng khỏi nhóm
+ </summary>
+	<param name="lst"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUserReportList(System.Decimal)">
+	<summary>
+ Lấy danh sách Report đã phân quyền theo nhóm tài khoản
+ </summary>
+	<param name="_UserID">ID nhóm tài khoản</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetUserReportListFilter(System.Decimal,CommonDAL.UserReportDTO)">
+	<summary>
+ Lấy danh sách Report đã phân quyền theo nhóm tài khoản có Filter
+ </summary>
+	<param name="_UserID">ID nhóm tài khoản</param>
+	<param name="_filter">bộ lọc</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateUserReport(System.Decimal,System.Collections.Generic.List{CommonDAL.UserReportDTO})">
+	<summary>
+ Cập nhập danh sách Report
+ </summary>
+	<param name="_UserID">ID nhóm tài khoản</param>
+	<param name="_lstReport">Danh sách report cần cập nhập</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetTitle(CommonDAL.TitleDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach Title
+ </summary>
+	<returns>danh sach Title</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetTitleFromId(System.Collections.Generic.List{System.Decimal})">
+	<summary>
+ Lấy thông tin Title từ Id
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetConfig(Framework.Data.SystemConfig.ModuleID)">
+	<summary>
+ Lấy danh sách cấu hình hệ thống
+ </summary>
+	<returns>Danh sách dạng Dictionary</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.UpdateConfig(System.Collections.Generic.Dictionary{System.String,System.String},Framework.Data.SystemConfig.ModuleID)">
+	<summary>
+ Cập nhập giá trị cấu hình hệ thống
+ </summary>
+	<param name="_lstConfig"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.SendMail">
+	<summary>
+ Gọi hàm gửi mail queue trong DB
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertMail(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ Thêm queue mail
+ </summary>
+	<param name="_from"></param>
+	<param name="_to"></param>
+	<param name="_subject"></param>
+	<param name="_content"></param>
+	<param name="_cc"></param>
+	<param name="_bcc"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOtherList(System.String)">
+	<summary>
+ Lay danh sach OtherList
+ </summary>
+	<returns>danh sach OtherList</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOtherListByType(System.Decimal,CommonDAL.OtherListDTO,System.Int32,System.Int32,System.Int32@,System.String)">
+	<summary>
+ Lay danh sach OtherListByType
+ </summary>
+	<returns>danh sach OtherList</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertOtherList(CommonDAL.OtherListDTO,Framework.Data.UserLog)">
+	<summary>
+ Them OtherList
+ </summary>
+	<param name="objOtherList">doi tuong chua cac thong tin can them</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ModifyOtherList(CommonDAL.OtherListDTO,Framework.Data.UserLog)">
+	<summary>
+ Sua OtherList
+ </summary>
+	<param name="objOtherList">doi tuong chua cac thong tin can sua</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ActiveOtherList(System.Collections.Generic.List{System.Decimal},System.String,Framework.Data.UserLog)">
+	<summary>
+ Xoa OtherList
+ </summary>
+	<param name="lstOtherList">doi tuong chua thong tin can xoa</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOtherListGroupBySystem(System.String)">
+	<summary>
+ Lay danh sach OtherListGroup theo ma phan he
+ </summary>
+	<returns>danh sach OtherListGroup</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOtherListGroup(System.String)">
+	<summary>
+ Lay danh sach OtherListGroup
+ </summary>
+	<returns>danh sach OtherListGroup</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertOtherListGroup(CommonDAL.OtherListGroupDTO,Framework.Data.UserLog)">
+	<summary>
+ Them OtherListGroup
+ </summary>
+	<param name="objOtherListGroup">doi tuong chua cac thong tin can them</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ModifyOtherListGroup(CommonDAL.OtherListGroupDTO,Framework.Data.UserLog)">
+	<summary>
+ Sua OtherListGroup
+ </summary>
+	<param name="objOtherListGroup">doi tuong chua cac thong tin can sua</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ActiveOtherListGroup(CommonDAL.OtherListGroupDTO[],System.String,Framework.Data.UserLog)">
+	<summary>
+ Xoa OtherListGroup
+ </summary>
+	<param name="lstOtherListGroup">doi tuong chua thong tin can xoa</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOtherListTypeSystem(System.String)">
+	<summary>
+ Lay danh sach OtherListType theo phan he
+ </summary>
+	<returns>danh sach OtherListType</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.GetOtherListType(System.String)">
+	<summary>
+ Lay danh sach OtherListType
+ </summary>
+	<returns>danh sach OtherListType</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.InsertOtherListType(CommonDAL.OtherListTypeDTO,Framework.Data.UserLog)">
+	<summary>
+ Them OtherListType
+ </summary>
+	<param name="objOtherListType">doi tuong chua cac thong tin can them</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ModifyOtherListType(CommonDAL.OtherListTypeDTO,Framework.Data.UserLog)">
+	<summary>
+ Sua OtherListType
+ </summary>
+	<param name="objOtherListType">doi tuong chua cac thong tin can sua</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="M:CommonBusiness.ServiceContracts.ICommonBusiness.ActiveOtherListType(CommonDAL.OtherListTypeDTO[],System.String,Framework.Data.UserLog)">
+	<summary>
+ Xoa OtherListType
+ </summary>
+	<param name="lstOtherListType">doi tuong chua thong tin can xoa</param>
+	<returns>true?false</returns>
+	<remarks></remarks>
+</member><member name="P:My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

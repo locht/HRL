@@ -1,0 +1,14 @@
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\HistaffFramework.dll.config
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\HistaffFramework.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\HistaffFramework.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\HistaffFramework.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\Histaff.DataAccessLayer.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\Oracle.DataAccess.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\Histaff.DataAccessLayer.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\bin\Debug\Histaff.DataAccessLayer.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\obj\Debug\HistaffFramework.vbprojResolveAssemblyReference.cache
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\obj\Debug\Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\obj\Debug\HistaffFramework.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\obj\Debug\HistaffFramework.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\obj\Debug\HistaffFramework.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffFramework\obj\Debug\HistaffFramework.pdb

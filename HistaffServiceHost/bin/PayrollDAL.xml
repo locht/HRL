@@ -1,0 +1,5193 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PayrollDAL
+</name>
+</assembly>
+<members>
+<member name="M:PayrollDAL.PayrollRepository.GetSalaryLevelCombo(System.Decimal,System.Boolean,System.String)">
+	<summary>
+ Include get data for U and All
+ </summary>
+	<param name="salGroupID">Ma bang luong</param>
+	<param name="isBlank">Co lay them dong data empty cho combo khong. 0: không; 1: co</param>
+	<param name="other_Use">U: Chi lay data cho U; ALL: Lay data cho Acc con lai</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:PayrollDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PayrollDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:PayrollDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:PayrollDAL.PayrollRepository.GetSalaryGroupCombo(System.DateTime,System.Boolean)">
+	<summary>
+ Lay data vao combo cho bang luong
+ </summary>
+	<param name="dateValue">Ma bang luong</param>
+	<param name="isBlank">0: Khong lay dong empty; 1: Co lay dong empty</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PayrollDAL.PayrollRepository.InsertSalaryGroup(PayrollDAL.SalaryGroupDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Insert data cho Salary Group
+ </summary>
+	<param name="objSalaryGroup"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:PayrollDAL.PayrollRepositoryStatic.Instance">
+	<summary>
+ Gets the instance.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollRepository.DeleteListSalariesStatus(System.Collections.Generic.List{System.Decimal},Framework.Data.UserLog,System.Decimal)">
+	<summary>
+ Update status deleted, khong xoa khoi he thong
+ </summary>
+	<param name="lstID"></param>
+	<param name="log"></param>
+	<param name="bActive"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PayrollDAL.PayrollRepository.InsertCostCenter(PayrollDAL.CostCenterDTO,Framework.Data.UserLog,System.Decimal@)">
+	<summary>
+ Insert data cho Cost Center
+ </summary>
+	<param name="objCostCenter"></param>
+	<param name="log"></param>
+	<param name="gID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PayrollDAL.PayrollContext.#ctor">
+	<summary>
+ Initializes a new PayrollContext object using the connection string found in the 'PayrollContext' section of the application configuration file.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.#ctor(System.String)">
+	<summary>
+ Initialize a new PayrollContext object.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new PayrollContext object.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARY_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARY_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARY_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE_EDUCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE_FILES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE_HEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE_OTHER_INFO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_EMPLOYEE_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_HOLD_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.AT_ORG_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.SE_CHOSEN_CALCULATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_OBJECT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_FORMULER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_FORMULER_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_ORG_LUNCH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_PRICE_LUNCH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_PAYMENT_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_INCENTIVE_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_INCENTIVE_RANK_DETAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARY_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARYTYPE_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_COST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_ORGBONUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_PAYMENTSOURCES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_WORKFACTOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_WORK_STANDARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.AT_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_LISTSAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_LISTSALARIES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_TAXATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_ALLOWANCE_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_ALLOWANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SEND_PAYSLIP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SEND_PAYSLIP_EMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.SE_MAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_BONUS_IMPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARY_FUND_MAPPING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SEND_BONUSSLIP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SEND_BONUSSLIP_EMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARY_FUND">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALARY_PLANNING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SENIORITY_DAILY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SENIORITY_DAILY_TEMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SENIORITY_DETAILS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SENIORITY_DETAILS_TEMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SENIORITY_MONTHLY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SENIORITY_PROCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_TITLE_COST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PayrollContext.PA_SALE_COMMISION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARY_GROUP(PayrollDAL.PA_SALARY_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARY_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARY_LEVEL(PayrollDAL.PA_SALARY_LEVEL)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARY_LEVEL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARY_RANK(PayrollDAL.PA_SALARY_RANK)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARY_RANK EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE(PayrollDAL.HU_EMPLOYEE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE_CV(PayrollDAL.HU_EMPLOYEE_CV)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_CV EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE_EDUCATION(PayrollDAL.HU_EMPLOYEE_EDUCATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_EDUCATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE_FILES(PayrollDAL.HU_EMPLOYEE_FILES)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_FILES EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE_HEALTH(PayrollDAL.HU_EMPLOYEE_HEALTH)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_HEALTH EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE_OTHER_INFO(PayrollDAL.HU_EMPLOYEE_OTHER_INFO)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_OTHER_INFO EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE_SALARY(PayrollDAL.HU_EMPLOYEE_SALARY)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_SALARY EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_EMPLOYEE_TRAIN(PayrollDAL.HU_EMPLOYEE_TRAIN)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_TRAIN EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_WORKING(PayrollDAL.HU_WORKING)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_WORKING EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToOT_OTHER_LIST(PayrollDAL.OT_OTHER_LIST)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToOT_OTHER_LIST_GROUP(PayrollDAL.OT_OTHER_LIST_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToOT_OTHER_LIST_TYPE(PayrollDAL.OT_OTHER_LIST_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_HOLD_SALARY(PayrollDAL.PA_HOLD_SALARY)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_HOLD_SALARY EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_ORGANIZATION(PayrollDAL.HU_ORGANIZATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORGANIZATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToSE_CHOSEN_ORG(PayrollDAL.SE_CHOSEN_ORG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_CHOSEN_ORG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToAT_ORG_PERIOD(PayrollDAL.AT_ORG_PERIOD)">
+	<summary>
+ Deprecated Method for adding a new object to the AT_ORG_PERIOD EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToSE_CHOSEN_CALCULATE(PayrollDAL.SE_CHOSEN_CALCULATE)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_CHOSEN_CALCULATE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_OBJECT_SALARY(PayrollDAL.PA_OBJECT_SALARY)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_OBJECT_SALARY EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_FORMULER(PayrollDAL.PA_FORMULER)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_FORMULER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_FORMULER_GROUP(PayrollDAL.PA_FORMULER_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_FORMULER_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_ORG_LUNCH(PayrollDAL.PA_ORG_LUNCH)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_ORG_LUNCH EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_PRICE_LUNCH(PayrollDAL.PA_PRICE_LUNCH)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_PRICE_LUNCH EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_PAYMENT_LIST(PayrollDAL.PA_PAYMENT_LIST)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_PAYMENT_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_INCENTIVE_RANK(PayrollDAL.PA_INCENTIVE_RANK)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_INCENTIVE_RANK EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_INCENTIVE_RANK_DETAIL(PayrollDAL.PA_INCENTIVE_RANK_DETAIL)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_INCENTIVE_RANK_DETAIL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARY_TYPE(PayrollDAL.PA_SALARY_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARY_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARYTYPE_GROUP(PayrollDAL.PA_SALARYTYPE_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARYTYPE_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_COST_CENTER(PayrollDAL.PA_COST_CENTER)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_COST_CENTER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_ORGBONUS(PayrollDAL.PA_ORGBONUS)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_ORGBONUS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_PAYMENTSOURCES(PayrollDAL.PA_PAYMENTSOURCES)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_PAYMENTSOURCES EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_WORKFACTOR(PayrollDAL.PA_WORKFACTOR)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_WORKFACTOR EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_WORK_STANDARD(PayrollDAL.PA_WORK_STANDARD)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_WORK_STANDARD EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToAT_PERIOD(PayrollDAL.AT_PERIOD)">
+	<summary>
+ Deprecated Method for adding a new object to the AT_PERIOD EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_LISTSAL(PayrollDAL.PA_LISTSAL)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_LISTSAL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_LISTSALARIES(PayrollDAL.PA_LISTSALARIES)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_LISTSALARIES EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_TAXATION(PayrollDAL.PA_TAXATION)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_TAXATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_ALLOWANCE_LIST(PayrollDAL.HU_ALLOWANCE_LIST)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ALLOWANCE_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_ALLOWANCE(PayrollDAL.HU_ALLOWANCE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ALLOWANCE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SEND_PAYSLIP(PayrollDAL.PA_SEND_PAYSLIP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SEND_PAYSLIP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SEND_PAYSLIP_EMP(PayrollDAL.PA_SEND_PAYSLIP_EMP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SEND_PAYSLIP_EMP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToSE_MAIL(PayrollDAL.SE_MAIL)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_MAIL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_BONUS_IMPORT(PayrollDAL.PA_BONUS_IMPORT)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_BONUS_IMPORT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARY_FUND_MAPPING(PayrollDAL.PA_SALARY_FUND_MAPPING)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARY_FUND_MAPPING EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SEND_BONUSSLIP(PayrollDAL.PA_SEND_BONUSSLIP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SEND_BONUSSLIP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SEND_BONUSSLIP_EMP(PayrollDAL.PA_SEND_BONUSSLIP_EMP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SEND_BONUSSLIP_EMP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARY_FUND(PayrollDAL.PA_SALARY_FUND)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARY_FUND EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALARY_PLANNING(PayrollDAL.PA_SALARY_PLANNING)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALARY_PLANNING EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SENIORITY_DAILY(PayrollDAL.PA_SENIORITY_DAILY)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SENIORITY_DAILY EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SENIORITY_DAILY_TEMP(PayrollDAL.PA_SENIORITY_DAILY_TEMP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SENIORITY_DAILY_TEMP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SENIORITY_DETAILS(PayrollDAL.PA_SENIORITY_DETAILS)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SENIORITY_DETAILS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SENIORITY_DETAILS_TEMP(PayrollDAL.PA_SENIORITY_DETAILS_TEMP)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SENIORITY_DETAILS_TEMP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SENIORITY_MONTHLY(PayrollDAL.PA_SENIORITY_MONTHLY)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SENIORITY_MONTHLY EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SENIORITY_PROCESS(PayrollDAL.PA_SENIORITY_PROCESS)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SENIORITY_PROCESS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_TITLE_COST(PayrollDAL.PA_TITLE_COST)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_TITLE_COST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToHU_TITLE(PayrollDAL.HU_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollContext.AddToPA_SALE_COMMISION(PayrollDAL.PA_SALE_COMMISION)">
+	<summary>
+ Deprecated Method for adding a new object to the PA_SALE_COMMISION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:PayrollDAL.PayrollContext">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.AT_ORG_PERIOD.CreateAT_ORG_PERIOD(System.Decimal)">
+	<summary>
+ Create a new AT_ORG_PERIOD object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.STATUSCOLEX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.STATUSPAROX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_ORG_PERIOD.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.AT_ORG_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.AT_PERIOD.CreateAT_PERIOD(System.Decimal)">
+	<summary>
+ Create a new AT_PERIOD object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.AT_PERIOD.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.MONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.PERIOD_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.END_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.PERIOD_STANDARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.BONUS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.AT_PERIOD.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.AT_PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_ALLOWANCE.CreateHU_ALLOWANCE(System.Decimal)">
+	<summary>
+ Create a new HU_ALLOWANCE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.ALLOWANCE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.AMOUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.EXP_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_ALLOWANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_ALLOWANCE_LIST.CreateHU_ALLOWANCE_LIST(System.Decimal)">
+	<summary>
+ Create a new HU_ALLOWANCE_LIST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.ALLOWANCE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.IS_CONTRACT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.IS_INSURANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ALLOWANCE_LIST.IS_PAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_ALLOWANCE_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE.CreateHU_EMPLOYEE(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.FIRST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.LAST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.FULLNAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.FIRST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.LAST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.FULLNAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.WORK_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.JOIN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.INDIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.LAST_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.TER_EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.TER_LAST_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.COST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_HEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_HEALTHReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_CVReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_EDUCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_EDUCATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_FILES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_OTHER_INFO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_OTHER_INFOReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE_SALARYReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_WORKING1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE11">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_EMPLOYEE3Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE.HU_WORKING2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE_CV.CreateHU_EMPLOYEE_CV(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_CV object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.GENDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.IMAGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.BIRTH_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.BIRTH_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.BIRTH_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.BIRTH_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.BIRTH_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.MARITAL_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.RELIGION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.NATIVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.NATIONALITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PER_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PER_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PER_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PER_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CUR_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CUR_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CUR_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CUR_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.HOME_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.MOBILE_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.ID_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.ID_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.ID_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PASS_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PASS_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PASS_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.VISA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.VISA_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.VISA_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.VISA_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.WORK_PERMIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.WORK_PERMIT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.WORK_PERMIT_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.WORK_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.RESIDENCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.RESIDENCE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.RESIDENCE_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.RESIDENCE_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.NAV_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.NAV_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.NAV_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.NAV_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.IS_RESIDENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PIT_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.PER_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CONTACT_PER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CONTACT_PER_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CONTACT_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CONTACT_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CONTACT_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CONTACT_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.CONTACT_RELATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_CV.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE_EDUCATION.CreateHU_EMPLOYEE_EDUCATION(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_EDUCATION object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.ACADEMY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.MAJOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.NLEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_CER1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_CER2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_CER3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_LEVEL1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_LEVEL2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_LEVEL3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_MARK1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_MARK2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_MARK3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_LEVEL1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_LEVEL2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_LEVEL3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_MARK1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_MARK2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_MARK3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.GRADUATE_SCHOOL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_EDUCATION.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE_EDUCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE_FILES.CreateHU_EMPLOYEE_FILES(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_FILES object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.FILE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.FILE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.FILE_SIZE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.UPLOAD_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.UPLOAD_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_FILES.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE_FILES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE_HEALTH.CreateHU_EMPLOYEE_HEALTH(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_HEALTH object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.CHIEU_CAO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.CAN_NANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.NHOM_MAU">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.HUYET_AP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.MAT_TRAI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.MAT_PHAI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.LOAI_SUC_KHOE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.TAI_MUI_HONG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.RANG_HAM_MAT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.TIM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.PHOI_NGUC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.VIEM_GAN_B">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.DA_HOA_LIEU">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.DU_SUC_KHOE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.GHI_CHU_SUC_KHOE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_HEALTH.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE_HEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.CreateHU_EMPLOYEE_OTHER_INFO(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_OTHER_INFO object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NGAY_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NOI_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NOI_SINH_HOAT_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.DOAN_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NGAY_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NOI_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NOI_SINH_HOAT_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.DANG_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.SO_TAI_KHOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NGAN_HANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.CHI_NHANH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NGAY_HIEU_LUC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.NGUOI_THU_HUONG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_OTHER_INFO.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE_OTHER_INFO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE_SALARY.CreateHU_EMPLOYEE_SALARY(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_SALARY object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.BASIC_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.SOFT_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.OTHER_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.COEFFICIENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.CONTRACTUAL_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.SALARY_ENTERPRISE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.ALLOWANCE_IDS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.ALLOWANCE_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.ALLOWANCE_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_SALARY.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_EMPLOYEE_TRAIN.CreateHU_EMPLOYEE_TRAIN(System.Decimal,System.Int16)">
+	<summary>
+ Create a new HU_EMPLOYEE_TRAIN object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="hIGHEST_LEVEL">Initial value of the HIGHEST_LEVEL property.</param>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.FROM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.TO_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.SCHOOL_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.TRAINING_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.HIGHEST_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.LEARNING_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.MAJOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.GRADUATE_YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.MARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.TRAINING_CONTENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_EMPLOYEE_TRAIN.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_EMPLOYEE_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_ORGANIZATION.CreateHU_ORGANIZATION(System.Decimal)">
+	<summary>
+ Create a new HU_ORGANIZATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.PARENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.DISSOLVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.FOUNDATION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.HIERARCHICAL_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.DESCRIPTION_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.FAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.REPRESENTATIVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.HU_ORGANIZATION1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.HU_ORGANIZATION2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_ORGANIZATION.HU_ORGANIZATION2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_TITLE.CreateHU_TITLE(System.Decimal)">
+	<summary>
+ Create a new HU_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.HU_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.TITLE_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.LIST_PC_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.DRIVE_INFOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.WORK_INVOLVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.OVT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.UPLOAD_FILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_TITLE.LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.HU_WORKING.CreateHU_WORKING(System.Decimal)">
+	<summary>
+ Create a new HU_WORKING object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.HU_WORKING.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.TRANSFER_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.TRANSFER_REASON">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.INDIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.IS_DECISION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.DECISION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.WORKING_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.COST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.BASIC_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.SOFT_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.OTHER_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.COEFFICIENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.CONTRACTUAL_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.SALARY_ENTERPRISE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.ALLOWANCE_IDS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.ALLOWANCE_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.ALLOWANCE_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.HU_EMPLOYEE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.HU_EMPLOYEE1Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.HU_EMPLOYEE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.HU_WORKING.HU_EMPLOYEE2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.OT_OTHER_LIST.CreateOT_OTHER_LIST(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.ATTRIBUTE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.ATTRIBUTE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.ATTRIBUTE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.ATTRIBUTE4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.TYPE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST.ORDERBYID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.OT_OTHER_LIST_GROUP.CreateOT_OTHER_LIST_GROUP(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_GROUP.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.OT_OTHER_LIST_TYPE.CreateOT_OTHER_LIST_TYPE(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.IS_SYSTEM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.TABLE_RELATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LIST_GROUPReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_BONUS_IMPORT.CreatePA_BONUS_IMPORT(System.Decimal)">
+	<summary>
+ Create a new PA_BONUS_IMPORT object.
+ </summary>
+	<param name="pKEY">Initial value of the PKEY property.</param>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.PKEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.SALARY_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.PAYMENTSOURCES_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.SCREATEUSER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.DCREATEDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.SUPDATEUSER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_BONUS_IMPORT.DUPDATEDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_BONUS_IMPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_COST_CENTER.CreatePA_COST_CENTER(System.Decimal,System.String,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new PA_COST_CENTER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_COST_CENTER.IS_DELETED">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_COST_CENTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_FORMULER.CreatePA_FORMULER(System.Decimal)">
+	<summary>
+ Create a new PA_FORMULER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_FORMULER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.COL_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.INDEX_FML">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.GROUP_FML">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.FORMULER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_FORMULER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_FORMULER_GROUP.CreatePA_FORMULER_GROUP(System.Decimal)">
+	<summary>
+ Create a new PA_FORMULER_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.TYPE_PAYMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.OBJ_SAL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.END_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.SDESC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_FORMULER_GROUP.IDX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_FORMULER_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_HOLD_SALARY.CreatePA_HOLD_SALARY(System.Decimal)">
+	<summary>
+ Create a new PA_HOLD_SALARY object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_HOLD_SALARY.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_HOLD_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_INCENTIVE_RANK.CreatePA_INCENTIVE_RANK(System.Decimal,System.DateTime,System.String,System.DateTime)">
+	<summary>
+ Create a new PA_INCENTIVE_RANK object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="eFFECT_DATE">Initial value of the EFFECT_DATE property.</param>
+	<param name="aCTFLG">Initial value of the ACTFLG property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.SAL_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.SAL_LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.SAL_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.SAL_INCENTIVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_INCENTIVE_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.CreatePA_INCENTIVE_RANK_DETAIL(System.Decimal,System.String,System.DateTime)">
+	<summary>
+ Create a new PA_INCENTIVE_RANK_DETAIL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="aCTFLG">Initial value of the ACTFLG property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.INCENTIVE_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.FROM_TARGET">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.TO_TARGET">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.AMOUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.INCENTIVE_PERCENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_INCENTIVE_RANK_DETAIL.INCENTIVE_AMOUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_INCENTIVE_RANK_DETAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_LISTSAL.CreatePA_LISTSAL(System.Decimal)">
+	<summary>
+ Create a new PA_LISTSAL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_LISTSAL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.COL_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.DATA_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.GROUP_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.COL_INDEX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.COL_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSAL.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_LISTSAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_LISTSALARIES.CreatePA_LISTSALARIES(System.Decimal)">
+	<summary>
+ Create a new PA_LISTSALARIES object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.TYPE_PAYMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.COL_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.DATA_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.COL_INDEX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_VISIBLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_INPUT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_CALCULATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_IMPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.INPUT_FORMULER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.COL_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_WORKARISING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_SUMARISING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_PAYBACK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_DELETED">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IMPORT_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.EFFECTIVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_WORKDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.IS_SUMDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.OBJ_SAL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_LISTSALARIES.GROUP_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_LISTSALARIES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_OBJECT_SALARY.CreatePA_OBJECT_SALARY(System.Decimal,System.DateTime)">
+	<summary>
+ Create a new PA_OBJECT_SALARY object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.EFFECTIVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.SDESC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_OBJECT_SALARY.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_OBJECT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_ORG_LUNCH.CreatePA_ORG_LUNCH(System.Decimal)">
+	<summary>
+ Create a new PA_ORG_LUNCH object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.LUNCH_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORG_LUNCH.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_ORG_LUNCH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_ORGBONUS.CreatePA_ORGBONUS(System.Decimal)">
+	<summary>
+ Create a new PA_ORGBONUS object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_ORGBONUS.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_ORGBONUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_PAYMENT_LIST.CreatePA_PAYMENT_LIST(System.Decimal,System.String,System.DateTime)">
+	<summary>
+ Create a new PA_PAYMENT_LIST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="eFFECTIVE_DATE">Initial value of the EFFECTIVE_DATE property.</param>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.OBJ_PAYMENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.EFFECTIVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.VALUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.SDESC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENT_LIST.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_PAYMENT_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_PAYMENTSOURCES.CreatePA_PAYMENTSOURCES(System.Decimal)">
+	<summary>
+ Create a new PA_PAYMENTSOURCES object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PAYMENTSOURCES.PAY_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_PAYMENTSOURCES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_PRICE_LUNCH.CreatePA_PRICE_LUNCH(System.Decimal)">
+	<summary>
+ Create a new PA_PRICE_LUNCH object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.PRICE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_PRICE_LUNCH.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_PRICE_LUNCH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARY_FUND.CreatePA_SALARY_FUND(System.Decimal,System.DateTime)">
+	<summary>
+ Create a new PA_SALARY_FUND object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.MONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.SAL_SOFT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.SAL_OTHER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.SAL_HARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.SAL_ALLOWANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.SAL_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARY_FUND">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARY_FUND_MAPPING.CreatePA_SALARY_FUND_MAPPING(System.Decimal)">
+	<summary>
+ Create a new PA_SALARY_FUND_MAPPING object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.SALARY_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.SALARY_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.SALARY_FUND">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_FUND_MAPPING.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARY_FUND_MAPPING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARY_GROUP.CreatePA_SALARY_GROUP(System.Decimal,System.String,System.String,System.DateTime,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new PA_SALARY_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="eFFECT_DATE">Initial value of the EFFECT_DATE property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.IS_COEFFICIENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.IS_INCENTIVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.IS_DELETED">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_GROUP.PA_SALARY_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARY_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARY_LEVEL.CreatePA_SALARY_LEVEL(System.Decimal,System.Decimal,System.String,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String,System.String)">
+	<summary>
+ Create a new PA_SALARY_LEVEL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="sAL_GROUP_ID">Initial value of the SAL_GROUP_ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+	<param name="oTHER_USE">Initial value of the OTHER_USE property.</param>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.SAL_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.OTHER_USE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.PA_SALARY_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.PA_SALARY_GROUPReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_LEVEL.PA_SALARY_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARY_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARY_PLANNING.CreatePA_SALARY_PLANNING(System.Decimal,System.DateTime)">
+	<summary>
+ Create a new PA_SALARY_PLANNING object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.MONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.EMP_NUMBER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_PLANNING.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARY_PLANNING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARY_RANK.CreatePA_SALARY_RANK(System.Decimal,System.Decimal,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new PA_SALARY_RANK object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="sAL_LEVEL_ID">Initial value of the SAL_LEVEL_ID property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.SAL_LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.SALARY_BASIC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.SAL_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.PA_SALARY_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_RANK.PA_SALARY_LEVELReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARY_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARY_TYPE.CreatePA_SALARY_TYPE(System.Decimal,System.String,System.String,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new PA_SALARY_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.IS_INCENTIVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARY_TYPE.PA_SALARYTYPE_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARY_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALARYTYPE_GROUP.CreatePA_SALARYTYPE_GROUP(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new PA_SALARYTYPE_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="sAL_TYPE_ID">Initial value of the SAL_TYPE_ID property.</param>
+	<param name="sAL_GROUP_ID">Initial value of the SAL_GROUP_ID property.</param>
+	<param name="iS_DIRECT_SALARY">Initial value of the IS_DIRECT_SALARY property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.SAL_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.SAL_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.IS_DIRECT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.IS_DELETED">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.PA_SALARY_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALARYTYPE_GROUP.PA_SALARY_TYPEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALARYTYPE_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SALE_COMMISION.CreatePA_SALE_COMMISION(System.Decimal,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new PA_SALE_COMMISION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SALE_COMMISION.SALE_RATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SALE_COMMISION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SEND_BONUSSLIP.CreatePA_SEND_BONUSSLIP(System.Decimal)">
+	<summary>
+ Create a new PA_SEND_BONUSSLIP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.IS_DISSOLVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.ACTION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.ACTION_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.ACTION_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.RUN_START">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.RUN_END">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP.RUN_ROW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SEND_BONUSSLIP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SEND_BONUSSLIP_EMP.CreatePA_SEND_BONUSSLIP_EMP(System.Decimal)">
+	<summary>
+ Create a new PA_SEND_BONUSSLIP_EMP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP_EMP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP_EMP.PA_SEND_BONNUSSLIP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_BONUSSLIP_EMP.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SEND_BONUSSLIP_EMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SEND_PAYSLIP.CreatePA_SEND_PAYSLIP(System.Decimal)">
+	<summary>
+ Create a new PA_SEND_PAYSLIP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.IS_DISSOLVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.ACTION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.ACTION_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.ACTION_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.RUN_START">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.RUN_END">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP.RUN_ROW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SEND_PAYSLIP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SEND_PAYSLIP_EMP.CreatePA_SEND_PAYSLIP_EMP(System.Decimal)">
+	<summary>
+ Create a new PA_SEND_PAYSLIP_EMP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP_EMP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP_EMP.PA_SEND_PAYSLIP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SEND_PAYSLIP_EMP.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SEND_PAYSLIP_EMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SENIORITY_DAILY.CreatePA_SENIORITY_DAILY(System.Decimal)">
+	<summary>
+ Create a new PA_SENIORITY_DAILY object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.WORKINGDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.DISCIPLINE_COUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.DISCIPLINE_TYPE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SENIORITY_DAILY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SENIORITY_DAILY_TEMP.CreatePA_SENIORITY_DAILY_TEMP(System.Decimal)">
+	<summary>
+ Create a new PA_SENIORITY_DAILY_TEMP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.WORKINGDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.DISCIPLINE_COUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.DISCIPLINE_TYPE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.REQUEST_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DAILY_TEMP.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SENIORITY_DAILY_TEMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SENIORITY_DETAILS.CreatePA_SENIORITY_DETAILS(System.Decimal)">
+	<summary>
+ Create a new PA_SENIORITY_DETAILS object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.DAY_COUNT1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.DAY_COUNT2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.DAY_COUNT3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.DAY_COUNT5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.SALARY_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SENIORITY_DETAILS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.CreatePA_SENIORITY_DETAILS_TEMP(System.Decimal)">
+	<summary>
+ Create a new PA_SENIORITY_DETAILS_TEMP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.DAY_COUNT1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.DAY_COUNT2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.DAY_COUNT3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.DAY_COUNT5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.SALARY_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_DETAILS_TEMP.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SENIORITY_DETAILS_TEMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SENIORITY_MONTHLY.CreatePA_SENIORITY_MONTHLY(System.Decimal)">
+	<summary>
+ Create a new PA_SENIORITY_MONTHLY object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.DAY_COUNT1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.DAY_COUNT2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.DAY_COUNT3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.DAY_COUNT5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.SALARY_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_MONTHLY.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SENIORITY_MONTHLY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_SENIORITY_PROCESS.CreatePA_SENIORITY_PROCESS(System.Decimal)">
+	<summary>
+ Create a new PA_SENIORITY_PROCESS object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D5">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D6">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D7">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D8">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D9">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D10">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D11">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D12">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D13">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D14">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D15">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D16">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D17">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D18">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D19">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D20">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D21">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D22">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D23">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D24">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D25">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D26">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D27">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D28">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D29">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D30">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.D31">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.DISCIPLINE_COUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.DISCIPLINE_TYPE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_SENIORITY_PROCESS.SENIORITY_LAST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_SENIORITY_PROCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_TAXATION.CreatePA_TAXATION(System.Decimal)">
+	<summary>
+ Create a new PA_TAXATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_TAXATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.RESIDENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.VALUE_FROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.VALUE_TO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.RATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.EXCEPT_FAST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.FROM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.TO_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.SDESC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TAXATION.ORDERS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_TAXATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_TITLE_COST.CreatePA_TITLE_COST(System.Decimal,System.DateTime)">
+	<summary>
+ Create a new PA_TITLE_COST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.SAL_BASIC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.SAL_MOBILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.SAL_RICE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.SAL_INS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.SAL_SOFT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.SAL_OTHER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.SAL_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_TITLE_COST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_TITLE_COST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_WORK_STANDARD.CreatePA_WORK_STANDARD(System.Decimal)">
+	<summary>
+ Create a new PA_WORK_STANDARD object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.PERIOD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.OBJECT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.PERIOD_STANDARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORK_STANDARD.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_WORK_STANDARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PA_WORKFACTOR.CreatePA_WORKFACTOR(System.Decimal,System.String)">
+	<summary>
+ Create a new PA_WORKFACTOR object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.XEPLOAI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.FACTOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.BONUSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.PA_WORKFACTOR.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.PA_WORKFACTOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.SE_CHOSEN_CALCULATE.CreateSE_CHOSEN_CALCULATE(System.Decimal,System.String)">
+	<summary>
+ Create a new SE_CHOSEN_CALCULATE object.
+ </summary>
+	<param name="eMPLOYEEID">Initial value of the EMPLOYEEID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+</member><member name="P:PayrollDAL.SE_CHOSEN_CALCULATE.EMPLOYEEID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_CHOSEN_CALCULATE.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.SE_CHOSEN_CALCULATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.SE_CHOSEN_ORG.CreateSE_CHOSEN_ORG(System.Decimal,System.String)">
+	<summary>
+ Create a new SE_CHOSEN_ORG object.
+ </summary>
+	<param name="oRG_ID">Initial value of the ORG_ID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+</member><member name="P:PayrollDAL.SE_CHOSEN_ORG.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_CHOSEN_ORG.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.SE_MAIL.CreateSE_MAIL(System.Decimal)">
+	<summary>
+ Create a new SE_MAIL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:PayrollDAL.SE_MAIL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.SUBJECT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.MAIL_FROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.MAIL_TO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.MAIL_CC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.MAIL_BCC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.CONTENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.VIEW_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:PayrollDAL.SE_MAIL.ATTACHMENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:PayrollDAL.SE_MAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:PayrollDAL.PayrollRepository.GetComboboxData(PayrollDAL.ComboBoxDataDTO@)">
+	<summary>
+ Gets the combobox data.
+ </summary>
+	<param name="cbxData">The CBX data.</param>
+	<returns></returns>
+</member><member name="M:PayrollDAL.PayrollRepository.CheckExistInDatabase(System.Collections.Generic.List{System.Decimal},PayrollDAL.TABLE_NAME)">
+	<summary>
+ Kiểm tra dữ liệu đã được sử dụng hay chưa?
+ </summary>
+	<param name="table">Enum Table_Name</param>
+	<returns>true:chưa có/false:có rồi</returns>
+	<remarks></remarks>
+</member><member name="M:PayrollDAL.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member><member name="M:PayrollDAL.Utility.ConverFromACTFLG(System.String)">
+	<summary>
+ Convers from ACTFLG.
+ </summary>
+	<param name="val">The val.</param>
+	<returns></returns>
+</member><member name="M:PayrollDAL.Utility.CheckEffectDate(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+	<summary>
+ Checks the effect date.
+ </summary>
+	<param name="effecdate">The effecdate.</param>
+	<param name="expiredate">The expiredate.</param>
+	<param name="startdate">The startdate.</param>
+	<param name="enddate">The enddate.</param>
+	<returns></returns>
+</member>
+</members>
+</doc>

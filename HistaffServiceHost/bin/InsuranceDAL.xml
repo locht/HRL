@@ -1,0 +1,4211 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+InsuranceDAL
+</name>
+</assembly>
+<members>
+<member name="P:InsuranceDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:InsuranceDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:InsuranceDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:InsuranceDAL.Utility.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member><member name="M:InsuranceDAL.InsuranceContext.#ctor">
+	<summary>
+ Initializes a new InsuranceContext object using the connection string found in the 'InsuranceContext' section of the application configuration file.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.#ctor(System.String)">
+	<summary>
+ Initialize a new InsuranceContext object.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new InsuranceContext object.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE_EDUCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE_FILES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE_HEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE_OTHER_INFO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_CONTRACT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_CONTRACT_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_CONTRACT_MAX_V">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_STAFF_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_ARISING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_CHANGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_COST_FOLLOW_LEVER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_ENTITLED_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_GROUP_REGIMES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_GROUP_SUN_CARE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_SUN_CARE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_WHEREHEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_WORKING_ALLOW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_WORKING_MAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_SPECIFIED_OBJECTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.HU_WORKING_ALLOW1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_INFOOLD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_INFORMATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_CHANGE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_REMIGE_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.INS_REGION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.InsuranceContext.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE(InsuranceDAL.HU_EMPLOYEE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE_EDUCATION(InsuranceDAL.HU_EMPLOYEE_EDUCATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_EDUCATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE_FILES(InsuranceDAL.HU_EMPLOYEE_FILES)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_FILES EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE_HEALTH(InsuranceDAL.HU_EMPLOYEE_HEALTH)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_HEALTH EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE_OTHER_INFO(InsuranceDAL.HU_EMPLOYEE_OTHER_INFO)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_OTHER_INFO EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE_SALARY(InsuranceDAL.HU_EMPLOYEE_SALARY)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_SALARY EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE_TRAIN(InsuranceDAL.HU_EMPLOYEE_TRAIN)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_TRAIN EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_ORG_TITLE(InsuranceDAL.HU_ORG_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORG_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_ORGANIZATION(InsuranceDAL.HU_ORGANIZATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_ORGANIZATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_TITLE(InsuranceDAL.HU_TITLE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_TITLE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_WORKING(InsuranceDAL.HU_WORKING)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_WORKING EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToOT_OTHER_LIST(InsuranceDAL.OT_OTHER_LIST)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToOT_OTHER_LIST_GROUP(InsuranceDAL.OT_OTHER_LIST_GROUP)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_GROUP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToOT_OTHER_LIST_TYPE(InsuranceDAL.OT_OTHER_LIST_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the OT_OTHER_LIST_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_DISTRICT(InsuranceDAL.HU_DISTRICT)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_DISTRICT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_NATION(InsuranceDAL.HU_NATION)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_NATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_PROVINCE(InsuranceDAL.HU_PROVINCE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_PROVINCE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToSE_CHOSEN_ORG(InsuranceDAL.SE_CHOSEN_ORG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_CHOSEN_ORG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_CONTRACT(InsuranceDAL.HU_CONTRACT)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_CONTRACT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_CONTRACT_TYPE(InsuranceDAL.HU_CONTRACT_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_CONTRACT_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_CONTRACT_MAX_V(InsuranceDAL.HU_CONTRACT_MAX_V)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_CONTRACT_MAX_V EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_STAFF_RANK(InsuranceDAL.HU_STAFF_RANK)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_STAFF_RANK EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_ARISING(InsuranceDAL.INS_ARISING)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_ARISING EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_CHANGE(InsuranceDAL.INS_CHANGE)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_CHANGE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_COST_FOLLOW_LEVER(InsuranceDAL.INS_COST_FOLLOW_LEVER)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_COST_FOLLOW_LEVER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_ENTITLED_TYPE(InsuranceDAL.INS_ENTITLED_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_ENTITLED_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_GROUP_REGIMES(InsuranceDAL.INS_GROUP_REGIMES)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_GROUP_REGIMES EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_GROUP_SUN_CARE(InsuranceDAL.INS_GROUP_SUN_CARE)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_GROUP_SUN_CARE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_SUN_CARE(InsuranceDAL.INS_SUN_CARE)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_SUN_CARE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_WHEREHEALTH(InsuranceDAL.INS_WHEREHEALTH)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_WHEREHEALTH EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_EMPLOYEE_CV(InsuranceDAL.HU_EMPLOYEE_CV)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_EMPLOYEE_CV EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_WORKING_ALLOW(InsuranceDAL.HU_WORKING_ALLOW)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_WORKING_ALLOW EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_WORKING_MAX(InsuranceDAL.HU_WORKING_MAX)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_WORKING_MAX EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_SPECIFIED_OBJECTS(InsuranceDAL.INS_SPECIFIED_OBJECTS)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_SPECIFIED_OBJECTS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToHU_WORKING_ALLOW1(InsuranceDAL.HU_WORKING_ALLOW1)">
+	<summary>
+ Deprecated Method for adding a new object to the HU_WORKING_ALLOW1 EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_INFOOLD(InsuranceDAL.INS_INFOOLD)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_INFOOLD EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_INFORMATION(InsuranceDAL.INS_INFORMATION)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_INFORMATION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_CHANGE_TYPE(InsuranceDAL.INS_CHANGE_TYPE)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_CHANGE_TYPE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_REMIGE_MANAGER(InsuranceDAL.INS_REMIGE_MANAGER)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_REMIGE_MANAGER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToINS_REGION(InsuranceDAL.INS_REGION)">
+	<summary>
+ Deprecated Method for adding a new object to the INS_REGION EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToSE_USER(InsuranceDAL.SE_USER)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_USER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:InsuranceDAL.InsuranceContext.AddToSE_REPORT(InsuranceDAL.SE_REPORT)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_REPORT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:InsuranceDAL.InsuranceContext">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_CONTRACT.CreateHU_CONTRACT(System.Decimal)">
+	<summary>
+ Create a new HU_CONTRACT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CONTRACT_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CONTRACT_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.SIGNER_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.SIGN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.STATUS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.SIGNER_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.SIGN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.IS_CHALLENGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CHALLENGE_START">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CHALLENGE_END">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.CHALLENGE_MONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_CONTRACT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_CONTRACT_MAX_V.CreateHU_CONTRACT_MAX_V(System.Decimal)">
+	<summary>
+ Create a new HU_CONTRACT_MAX_V object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.CONTRACT_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.CONTRACT_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.SIGNER_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.SIGN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.SIGNER_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.SIGN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_MAX_V.STATUS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_CONTRACT_MAX_V">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_CONTRACT_TYPE.CreateHU_CONTRACT_TYPE(System.Decimal)">
+	<summary>
+ Create a new HU_CONTRACT_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.PERIOD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.BHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.BHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_CONTRACT_TYPE.BHTN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_CONTRACT_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_DISTRICT.CreateHU_DISTRICT(System.Decimal)">
+	<summary>
+ Create a new HU_DISTRICT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.PROVINCE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_DISTRICT.HU_PROVINCEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE.CreateHU_EMPLOYEE(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.FIRST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.LAST_NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.FULLNAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.FIRST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.LAST_NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.FULLNAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.WORK_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.CONTRACT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.JOIN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.LAST_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.TER_EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.TER_LAST_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.ITIME_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_HEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_HEALTHReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_EDUCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_EDUCATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_FILES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_OTHER_INFO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_OTHER_INFOReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE_SALARYReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE.HU_EMPLOYEE2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE_CV.CreateHU_EMPLOYEE_CV(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_CV object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.GENDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.IMAGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.BIRTH_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.BIRTH_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.MARITAL_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.RELIGION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NATIVE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NATIONALITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PER_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PER_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.HOME_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.MOBILE_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.ID_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.ID_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PASS_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PASS_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PASS_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.VISA">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.VISA_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.VISA_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.VISA_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.WORK_PERMIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.WORK_PERMIT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.WORK_PERMIT_EXPIRE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.WORK_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NAV_ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NAV_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PIT_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PER_EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CONTACT_PER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CONTACT_PER_PHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.ID_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.WORK_PERMIT_PLACE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.BANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.BANK_BRANCH_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.BANK_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NGAY_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NOI_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CHUC_VU_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.DOAN_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NGAY_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NOI_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CHUC_VU_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.DANG_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.CAREER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PER_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NAV_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.PER_WARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_CV.NAV_WARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE_CV">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE_EDUCATION.CreateHU_EMPLOYEE_EDUCATION(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_EDUCATION object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.ACADEMY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.MAJOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_CER1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_CER2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_CER3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_LEVEL1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_LEVEL2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_LEVEL3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_MARK1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_MARK2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.COMPUTER_MARK3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_LEVEL1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_LEVEL2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_LEVEL3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_MARK1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_MARK2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LANGUAGE_MARK3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.GRADUATE_SCHOOL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.MARK_EDU">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.TRAINING_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.LEARNING_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_EDUCATION.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE_EDUCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE_FILES.CreateHU_EMPLOYEE_FILES(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_FILES object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.FILE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.FILE_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.FILE_SIZE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.UPLOAD_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.UPLOAD_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_FILES.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE_FILES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE_HEALTH.CreateHU_EMPLOYEE_HEALTH(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_HEALTH object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.CHIEU_CAO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.CAN_NANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.NHOM_MAU">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.HUYET_AP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.MAT_TRAI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.MAT_PHAI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.TAI_MUI_HONG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.RANG_HAM_MAT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.TIM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.PHOI_NGUC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.VIEM_GAN_B">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.DA_HOA_LIEU">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.GHI_CHU_SUC_KHOE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.LOAI_SUC_KHOE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.DU_SUC_KHOE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_HEALTH.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE_HEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.CreateHU_EMPLOYEE_OTHER_INFO(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_OTHER_INFO object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NGAY_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NOI_VAO_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NOI_SINH_HOAT_DOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.DOAN_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NGAY_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NOI_VAO_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NOI_SINH_HOAT_DANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.DANG_PHI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.SO_TAI_KHOAN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NGAN_HANG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.CHI_NHANH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NGAY_HIEU_LUC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.NGUOI_THU_HUONG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE_OTHER_INFO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE_SALARY.CreateHU_EMPLOYEE_SALARY(System.Decimal)">
+	<summary>
+ Create a new HU_EMPLOYEE_SALARY object.
+ </summary>
+	<param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.BASIC_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.SOFT_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.OTHER_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.COEFFICIENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.CONTRACTUAL_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.SALARY_ENTERPRISE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.ALLOWANCE_IDS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.ALLOWANCE_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.ALLOWANCE_TOTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_SALARY.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_EMPLOYEE_TRAIN.CreateHU_EMPLOYEE_TRAIN(System.Decimal,System.Int16)">
+	<summary>
+ Create a new HU_EMPLOYEE_TRAIN object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="hIGHEST_LEVEL">Initial value of the HIGHEST_LEVEL property.</param>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.FROM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.TO_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.SCHOOL_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.TRAINING_FORM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.HIGHEST_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.LEARNING_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.MAJOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.GRADUATE_YEAR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.MARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.TRAINING_CONTENT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_EMPLOYEE_TRAIN.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_EMPLOYEE_TRAIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_NATION.CreateHU_NATION(System.Decimal)">
+	<summary>
+ Create a new HU_NATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_NATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_NATION.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_ORG_TITLE.CreateHU_ORG_TITLE(System.Decimal)">
+	<summary>
+ Create a new HU_ORG_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORG_TITLE.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_ORGANIZATION.CreateHU_ORGANIZATION(System.Decimal)">
+	<summary>
+ Create a new HU_ORGANIZATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.PARENT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.DISSOLVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.FOUNDATION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.HIERARCHICAL_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.DESCRIPTION_PATH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.FAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.REPRESENTATIVE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.HU_ORGANIZATION1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.HU_ORGANIZATION2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.HU_ORGANIZATION2Reference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_ORGANIZATION.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_PROVINCE.CreateHU_PROVINCE(System.Decimal)">
+	<summary>
+ Create a new HU_PROVINCE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.NATION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.HU_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.HU_NATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_PROVINCE.HU_NATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_STAFF_RANK.CreateHU_STAFF_RANK(System.Decimal)">
+	<summary>
+ Create a new HU_STAFF_RANK object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_STAFF_RANK.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_STAFF_RANK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_TITLE.CreateHU_TITLE(System.Decimal)">
+	<summary>
+ Create a new HU_TITLE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_TITLE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.TITLE_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.HU_ORG_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_TITLE.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_WORKING.CreateHU_WORKING(System.Decimal)">
+	<summary>
+ Create a new HU_WORKING object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_WORKING.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.STATUS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.DECISION_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.DECISION_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SAL_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SAL_LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SAL_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SAL_BASIC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.COST_SUPPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SIGN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SIGN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SIGN_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.SIGN_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.IS_PROCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.IS_MISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.IS_WAGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.HU_EMPLOYEE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.HU_EMPLOYEEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.HU_ORGANIZATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.HU_ORGANIZATIONReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.HU_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.HU_TITLEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING.OT_OTHER_LISTReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_WORKING_ALLOW.CreateHU_WORKING_ALLOW(System.Decimal)">
+	<summary>
+ Create a new HU_WORKING_ALLOW object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW.HU_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW.ALLOWANCE_LIST_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW.AMOUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW.IS_INSURRANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_WORKING_ALLOW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_WORKING_ALLOW1.CreateHU_WORKING_ALLOW1(System.Decimal)">
+	<summary>
+ Create a new HU_WORKING_ALLOW1 object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW1.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW1.HU_WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW1.ALLOWANCE_LIST_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW1.AMOUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW1.IS_INSURRANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW1.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_ALLOW1.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_WORKING_ALLOW1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.HU_WORKING_MAX.CreateHU_WORKING_MAX(System.Decimal)">
+	<summary>
+ Create a new HU_WORKING_MAX object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.REMARK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.STATUS_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.DECISION_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.DECISION_NO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SAL_GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SAL_LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SAL_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SAL_BASIC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.COST_SUPPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SIGN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SIGN_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SIGN_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.SIGN_TITLE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.IS_PROCESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.IS_WAGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.IS_MISSION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.PERCENT_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.IS_3B">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.STAFF_RANK_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.HU_WORKING_MAX.DIRECT_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.HU_WORKING_MAX">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_ARISING.CreateINS_ARISING(System.Decimal)">
+	<summary>
+ Create a new INS_ARISING object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_ARISING.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.CHANGE_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.OLD_POSNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.NEW_POSNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.OLD_ORGID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.NEW_ORGID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.OLD_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.NEW_SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.ISBHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.ISBHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.ISBHTN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.DATE_CHANGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.EFFECTDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.PKEY_REF">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.REASONS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.SAL_BASE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.WORKING_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ARISING.TYPE_CHANE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_ARISING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_CHANGE.CreateINS_CHANGE(System.Decimal)">
+	<summary>
+ Create a new INS_CHANGE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_CHANGE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.TITLE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.ORG_ID_INS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.OLDSALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.NEWSALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.ISBHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.ISBHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.ISBHTN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CHANGE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.EFFECTDATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CHANGE_MONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.RETURN_DATEBHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.RETURN_DATEBHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CLTFRMMONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CLTTOMONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CLTBHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CLTBHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CLTBHTN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.REPFRMMONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.REPTOMONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.REPBHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.REPBHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.REPBHTN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_CHANGE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_CHANGE_TYPE.CreateINS_CHANGE_TYPE(System.Decimal)">
+	<summary>
+ Create a new INS_CHANGE_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.ARISING_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.ARISING_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.DISPLAY_COMBO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.SIGN_ARISING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_CHANGE_TYPE.SIGN_ARISING_DETAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_CHANGE_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_COST_FOLLOW_LEVER.CreateINS_COST_FOLLOW_LEVER(System.Decimal)">
+	<summary>
+ Create a new INS_COST_FOLLOW_LEVER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.COST_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.COST_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.COST_MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.EFFECTDATE_FROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.EFFECTDATE_TO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_COST_FOLLOW_LEVER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_COST_FOLLOW_LEVER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_ENTITLED_TYPE.CreateINS_ENTITLED_TYPE(System.Decimal)">
+	<summary>
+ Create a new INS_ENTITLED_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.CHANGE_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.GROUP_ARISING_TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.DAY_OFF_SUMMARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.ENJOY_LEVEL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.REGIME_SALARY_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_ENTITLED_TYPE.REGIME_DAY_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_ENTITLED_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_GROUP_REGIMES.CreateINS_GROUP_REGIMES(System.Decimal)">
+	<summary>
+ Create a new INS_GROUP_REGIMES object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.REGIMES_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_REGIMES.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_GROUP_REGIMES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_GROUP_SUN_CARE.CreateINS_GROUP_SUN_CARE(System.Decimal)">
+	<summary>
+ Create a new INS_GROUP_SUN_CARE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.TITLE_ID_OLD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.TITLE_ID_NEW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.STAFF_RANK_ID_OLD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.STAFF_RANK_ID_NEW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.COST_LEVER_ID_OLD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.COST_LEVER_ID_NEW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.EFFECTDATE_COST_NEW">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_GROUP_SUN_CARE.COST_MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_GROUP_SUN_CARE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_INFOOLD.CreateINS_INFOOLD(System.Decimal)">
+	<summary>
+ Create a new INS_INFOOLD object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.EMPLOYEEID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SOFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SOTO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SOBOOKNO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SOPRVDBOOKDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SOWHRPRVBOOK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SOSTATUS_BHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HEFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HETO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HECARDNO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HEPRVDCARDDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HEWHRPRVCARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HESTATUS_BHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HEWHRREGISKEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HECARDEFFFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HECARDEFFTO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.UEFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.UETO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.HE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.UE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.REGISTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.CONTRACTNO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.ORG_ID_INS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.ISBHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.ISBHYT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.ISBHTN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.NOTE_BHXH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.SO_DATESENDCTY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFOOLD.DAYPAYMENTCOMPANY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_INFOOLD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_INFORMATION.CreateINS_INFORMATION(System.Decimal)">
+	<summary>
+ Create a new INS_INFORMATION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.INSCENTERKEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SALARY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.POSITIONNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.ORGNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SOFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SOTO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SOBOOKNO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SOPRVDBOOKDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SOWHRPRVBOOK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SOPRVDBOOKSTATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HEFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HETO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HECARDNO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HEPRVDCARDDAY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HEWHRPRVCARD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HEPRVDCARDSTATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HEWHRREGISKEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HECARDEFFFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HECARDEFFTO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.UEFROM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.UETO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.HE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.UE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.REGISTER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.CONTRACTNO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.SENIORITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.ORD_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.DAYPAYMENTCOMPANY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.NOTE_SO">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_INFORMATION.TOTAL_TIME_INS_BEFOR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_INFORMATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_REGION.CreateINS_REGION(System.Decimal)">
+	<summary>
+ Create a new INS_REGION object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_REGION.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.EFFECTIVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.AREA_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REGION.CEILING_AMOUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_REGION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_REMIGE_MANAGER.CreateINS_REMIGE_MANAGER(System.Decimal)">
+	<summary>
+ Create a new INS_REMIGE_MANAGER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.ENTITLED_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.END_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.NUM_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.DATE_OFF_BIRT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.BABY_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.NUM_BABY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.ACCUMULATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.ALLOWANCE_SAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.ALLOWANCE_MONEY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.ALLOWANCE_MONEY_EDIT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.TIME_ALLOWANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.CONDITION_ALLOWANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.SDESC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.APPROVAL_INSURRANCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.APPROVAL_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.APPROVAL_NUM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.IS_ATHOME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_REMIGE_MANAGER.CHANGE_MONTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_REMIGE_MANAGER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_SPECIFIED_OBJECTS.CreateINS_SPECIFIED_OBJECTS(System.Decimal)">
+	<summary>
+ Create a new INS_SPECIFIED_OBJECTS object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.LOCATION_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.EFFECTIVE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.SI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.HI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.UI">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.SI_COM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.SI_EMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.HI_COM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.HI_EMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.UI_COM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.UI_EMP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.SICK">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.MATERNITY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.OFF_IN_HOUSE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.OFF_TOGETHER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.RETIRE_MALE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.RETIRE_FEMALE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.SALARY_MIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.SI_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SPECIFIED_OBJECTS.HI_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_SPECIFIED_OBJECTS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_SUN_CARE.CreateINS_SUN_CARE(System.Decimal)">
+	<summary>
+ Create a new INS_SUN_CARE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.EMPLOYEE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.START_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.END_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.LEVEL_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.COST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.THOIDIEMHUONG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_SUN_CARE.NOTE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_SUN_CARE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.INS_WHEREHEALTH.CreateINS_WHEREHEALTH(System.Decimal,System.String)">
+	<summary>
+ Create a new INS_WHEREHEALTH object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.ADDRESS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.ID_PROVINCE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.ID_DISTRICT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.INS_WHEREHEALTH.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.INS_WHEREHEALTH">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.OT_OTHER_LIST.CreateOT_OTHER_LIST(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.TYPE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.NAME_VN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.NAME_EN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.ATTRIBUTE1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.ATTRIBUTE2">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.ATTRIBUTE3">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.ATTRIBUTE4">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.TYPE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.ORDERBYID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.HU_WORKING">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST.OT_OTHER_LIST_TYPEReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.OT_OTHER_LIST_GROUP.CreateOT_OTHER_LIST_GROUP(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST_GROUP object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_GROUP.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.OT_OTHER_LIST_TYPE.CreateOT_OTHER_LIST_TYPE(System.Decimal)">
+	<summary>
+ Create a new OT_OTHER_LIST_TYPE object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.GROUP_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.IS_SYSTEM">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.TABLE_RELATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LIST">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LIST_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.OT_OTHER_LIST_TYPE.OT_OTHER_LIST_GROUPReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.OT_OTHER_LIST_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.SE_CHOSEN_ORG.CreateSE_CHOSEN_ORG(System.Decimal,System.String)">
+	<summary>
+ Create a new SE_CHOSEN_ORG object.
+ </summary>
+	<param name="oRG_ID">Initial value of the ORG_ID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+</member><member name="P:InsuranceDAL.SE_CHOSEN_ORG.ORG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_CHOSEN_ORG.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.SE_CHOSEN_ORG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.SE_REPORT.CreateSE_REPORT(System.Decimal,System.String,System.String,System.Decimal,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new SE_REPORT object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="nAME">Initial value of the NAME property.</param>
+	<param name="cODE">Initial value of the CODE property.</param>
+	<param name="mODULE_ID">Initial value of the MODULE_ID property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:InsuranceDAL.SE_REPORT.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_REPORT.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_REPORT.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_REPORT.MODULE_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_REPORT.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_REPORT.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_REPORT.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_REPORT.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:InsuranceDAL.SE_USER.CreateSE_USER(System.Decimal,System.String,System.String,System.Int16,System.Int16,System.DateTime,System.String,System.String,System.DateTime,System.String,System.String)">
+	<summary>
+ Create a new SE_USER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+	<param name="uSERNAME">Initial value of the USERNAME property.</param>
+	<param name="fULLNAME">Initial value of the FULLNAME property.</param>
+	<param name="iS_APP">Initial value of the IS_APP property.</param>
+	<param name="iS_PORTAL">Initial value of the IS_PORTAL property.</param>
+	<param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
+	<param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
+	<param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
+	<param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
+	<param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
+	<param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
+</member><member name="P:InsuranceDAL.SE_USER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.PASSWORD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.FULLNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.TELEPHONE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.LOCATION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.IS_APP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.IS_PORTAL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.EMPLOYEE_CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.IS_AD">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.EFFECT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.EXPIRE_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.CREATED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.CREATED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.CREATED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.MODIFIED_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.MODIFIED_BY">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.MODIFIED_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.ACTFLG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.IS_CHANGE_PASS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.CHANGE_PASS_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.REMINDER_COUNT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.MODULE_ADMIN">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:InsuranceDAL.SE_USER.SE_REPORT">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:InsuranceDAL.SE_USER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member>
+</members>
+</doc>

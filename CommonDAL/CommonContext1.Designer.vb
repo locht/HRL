@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("23b13cdf-2412-4795-8035-62784e358226")>
+<Assembly: EdmSchemaAttribute("14872285-36c3-46b7-9dcb-63f6b1efcc08")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -8319,6 +8319,31 @@ Public Partial Class SE_APP_SETUPEXT
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REPLACEALL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _REPLACEALL
+        End Get
+        Set
+            OnREPLACEALLChanging(value)
+            ReportPropertyChanging("REPLACEALL")
+            _REPLACEALL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("REPLACEALL")
+            OnREPLACEALLChanged()
+        End Set
+    End Property
+
+    Private _REPLACEALL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnREPLACEALLChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnREPLACEALLChanged()
     End Sub
 
     #End Region

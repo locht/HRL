@@ -1,0 +1,14 @@
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\bin\Debug\HistaffWebAppResources.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\bin\Debug\HistaffWebAppResources.pdb
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\bin\Debug\HistaffWebAppResources.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\bin\Debug\vi-VN\HistaffWebAppResources.resources.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.Errors.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.UI.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.Errors.vi-VN.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.UI.vi-VN.resources
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\vi-VN\HistaffWebAppResources.resources.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.dll
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.xml
+D:\MyProject\histaffHCM\histaffhcm\HistaffWebAppResources\obj\Debug\HistaffWebAppResources.pdb

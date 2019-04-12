@@ -17,3 +17,13 @@ C:\workpasces\TRUNGNAM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.dll
 C:\workpasces\TRUNGNAM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.xml
 C:\workpasces\TRUNGNAM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.pdb
 C:\workpasces\TRUNGNAM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.vbprojResolveAssemblyReference.cache
+D:\MyProject\histaffHCM\histaffhcm\ref\Framework.Data\Framework.Data.dll.config
+D:\MyProject\histaffHCM\histaffhcm\ref\Framework.Data\Framework.Data.dll
+D:\MyProject\histaffHCM\histaffhcm\ref\Framework.Data\Framework.Data.pdb
+D:\MyProject\histaffHCM\histaffhcm\ref\Framework.Data\Framework.Data.xml
+D:\MyProject\histaffHCM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.vbprojResolveAssemblyReference.cache
+D:\MyProject\histaffHCM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.Resources.resources
+D:\MyProject\histaffHCM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.vbproj.GenerateResource.Cache
+D:\MyProject\histaffHCM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.dll
+D:\MyProject\histaffHCM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.xml
+D:\MyProject\histaffHCM\histaffhcm\Framework.Data\obj\Debug\Framework.Data.pdb

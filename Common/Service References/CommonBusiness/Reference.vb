@@ -1439,7 +1439,7 @@ Namespace CommonBusiness
         Private EMPLOYEE_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FROM_DATEField As Date
+        Private FROM_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
@@ -1451,6 +1451,9 @@ Namespace CommonBusiness
         Private PROCESS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REPALCEALLField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUB_EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1460,7 +1463,7 @@ Namespace CommonBusiness
         Private SUB_EMPLOYEE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TO_DATEField As Date
+        Private TO_DATEField As System.Nullable(Of Date)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -1486,7 +1489,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FROM_DATE() As Date
+        Public Property FROM_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.FROM_DATEField
             End Get
@@ -1538,6 +1541,19 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REPALCEALL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.REPALCEALLField
+            End Get
+            Set
+                If (Me.REPALCEALLField.Equals(value) <> true) Then
+                    Me.REPALCEALLField = value
+                    Me.RaisePropertyChanged("REPALCEALL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SUB_EMPLOYEE_CODE() As String
             Get
                 Return Me.SUB_EMPLOYEE_CODEField
@@ -1577,7 +1593,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TO_DATE() As Date
+        Public Property TO_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.TO_DATEField
             End Get

@@ -1,0 +1,1595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="PayrollModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="PayrollContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PA_SALARY_GROUP" EntityType="PayrollModel.PA_SALARY_GROUP" />
+    <EntitySet Name="PA_SALARY_LEVEL" EntityType="PayrollModel.PA_SALARY_LEVEL" />
+    <EntitySet Name="PA_SALARY_RANK" EntityType="PayrollModel.PA_SALARY_RANK" />
+    <AssociationSet Name="FK_PSG_PSL" Association="PayrollModel.FK_PSG_PSL">
+      <End Role="PA_SALARY_GROUP" EntitySet="PA_SALARY_GROUP" />
+      <End Role="PA_SALARY_LEVEL" EntitySet="PA_SALARY_LEVEL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PSL_PSR" Association="PayrollModel.FK_PSL_PSR">
+      <End Role="PA_SALARY_LEVEL" EntitySet="PA_SALARY_LEVEL" />
+      <End Role="PA_SALARY_RANK" EntitySet="PA_SALARY_RANK" />
+    </AssociationSet>
+    <EntitySet Name="HU_EMPLOYEE" EntityType="PayrollModel.HU_EMPLOYEE" />
+    <EntitySet Name="HU_EMPLOYEE_CV" EntityType="PayrollModel.HU_EMPLOYEE_CV" />
+    <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="PayrollModel.HU_EMPLOYEE_EDUCATION" />
+    <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="PayrollModel.HU_EMPLOYEE_FILES" />
+    <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="PayrollModel.HU_EMPLOYEE_HEALTH" />
+    <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="PayrollModel.HU_EMPLOYEE_OTHER_INFO" />
+    <EntitySet Name="HU_EMPLOYEE_SALARY" EntityType="PayrollModel.HU_EMPLOYEE_SALARY" />
+    <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="PayrollModel.HU_EMPLOYEE_TRAIN" />
+    <EntitySet Name="HU_WORKING" EntityType="PayrollModel.HU_WORKING" />
+    <AssociationSet Name="FK_FE_HEH" Association="PayrollModel.FK_FE_HEH">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE_HEALTH" EntitySet="HU_EMPLOYEE_HEALTH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HE_HEC" Association="PayrollModel.FK_HE_HEC">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE_CV" EntitySet="HU_EMPLOYEE_CV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HE_HEE" Association="PayrollModel.FK_HE_HEE">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE_EDUCATION" EntitySet="HU_EMPLOYEE_EDUCATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HE_HEF" Association="PayrollModel.FK_HE_HEF">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE_FILES" EntitySet="HU_EMPLOYEE_FILES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HE_HEO" Association="PayrollModel.FK_HE_HEO">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE_OTHER_INFO" EntitySet="HU_EMPLOYEE_OTHER_INFO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HE_HES" Association="PayrollModel.FK_HE_HES">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE_SALARY" EntitySet="HU_EMPLOYEE_SALARY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HE_HW" Association="PayrollModel.FK_HE_HW">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_WORKING" EntitySet="HU_WORKING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUDM_HUWK" Association="PayrollModel.FK_HUDM_HUWK">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_WORKING" EntitySet="HU_WORKING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUEMD_HUEM" Association="PayrollModel.FK_HUEMD_HUEM">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE1" EntitySet="HU_EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUEMI_HUEM" Association="PayrollModel.FK_HUEMI_HUEM">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_EMPLOYEE1" EntitySet="HU_EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HUIM_HUWK" Association="PayrollModel.FK_HUIM_HUWK">
+      <End Role="HU_EMPLOYEE" EntitySet="HU_EMPLOYEE" />
+      <End Role="HU_WORKING" EntitySet="HU_WORKING" />
+    </AssociationSet>
+    <EntitySet Name="OT_OTHER_LIST" EntityType="PayrollModel.OT_OTHER_LIST" />
+    <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="PayrollModel.OT_OTHER_LIST_GROUP" />
+    <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="PayrollModel.OT_OTHER_LIST_TYPE" />
+    <AssociationSet Name="FK_OOLG_OOLT" Association="PayrollModel.FK_OOLG_OOLT">
+      <End Role="OT_OTHER_LIST_GROUP" EntitySet="OT_OTHER_LIST_GROUP" />
+      <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
+    </AssociationSet>
+    <EntitySet Name="PA_HOLD_SALARY" EntityType="PayrollModel.PA_HOLD_SALARY" />
+    <EntitySet Name="HU_ORGANIZATION" EntityType="PayrollModel.HU_ORGANIZATION" />
+    <AssociationSet Name="FK_HU_ORG_HU_ORG" Association="PayrollModel.FK_HU_ORG_HU_ORG">
+      <End Role="HU_ORGANIZATION" EntitySet="HU_ORGANIZATION" />
+      <End Role="HU_ORGANIZATION1" EntitySet="HU_ORGANIZATION" />
+    </AssociationSet>
+    <EntitySet Name="SE_CHOSEN_ORG" EntityType="PayrollModel.SE_CHOSEN_ORG" />
+    <EntitySet Name="AT_ORG_PERIOD" EntityType="PayrollModel.AT_ORG_PERIOD" />
+    <EntitySet Name="SE_CHOSEN_CALCULATE" EntityType="PayrollModel.SE_CHOSEN_CALCULATE" />
+    <EntitySet Name="PA_OBJECT_SALARY" EntityType="PayrollModel.PA_OBJECT_SALARY" />
+    <EntitySet Name="PA_FORMULER" EntityType="PayrollModel.PA_FORMULER" />
+    <EntitySet Name="PA_FORMULER_GROUP" EntityType="PayrollModel.PA_FORMULER_GROUP" />
+    <EntitySet Name="PA_ORG_LUNCH" EntityType="PayrollModel.PA_ORG_LUNCH" />
+    <EntitySet Name="PA_PRICE_LUNCH" EntityType="PayrollModel.PA_PRICE_LUNCH" />
+    <EntitySet Name="PA_PAYMENT_LIST" EntityType="PayrollModel.PA_PAYMENT_LIST" />
+    <EntitySet Name="PA_INCENTIVE_RANK" EntityType="PayrollModel.PA_INCENTIVE_RANK" />
+    <EntitySet Name="PA_INCENTIVE_RANK_DETAIL" EntityType="PayrollModel.PA_INCENTIVE_RANK_DETAIL" />
+    <EntitySet Name="PA_SALARY_TYPE" EntityType="PayrollModel.PA_SALARY_TYPE" />
+    <EntitySet Name="PA_SALARYTYPE_GROUP" EntityType="PayrollModel.PA_SALARYTYPE_GROUP" />
+    <AssociationSet Name="SALARYTYPE_FK" Association="PayrollModel.SALARYTYPE_FK">
+      <End Role="PA_SALARY_TYPE" EntitySet="PA_SALARY_TYPE" />
+      <End Role="PA_SALARYTYPE_GROUP" EntitySet="PA_SALARYTYPE_GROUP" />
+    </AssociationSet>
+    <EntitySet Name="PA_COST_CENTER" EntityType="PayrollModel.PA_COST_CENTER" />
+    <EntitySet Name="PA_ORGBONUS" EntityType="PayrollModel.PA_ORGBONUS" />
+    <EntitySet Name="PA_PAYMENTSOURCES" EntityType="PayrollModel.PA_PAYMENTSOURCES" />
+    <EntitySet Name="PA_WORKFACTOR" EntityType="PayrollModel.PA_WORKFACTOR" />
+    <EntitySet Name="PA_WORK_STANDARD" EntityType="PayrollModel.PA_WORK_STANDARD" />
+    <EntitySet Name="AT_PERIOD" EntityType="PayrollModel.AT_PERIOD" />
+    <EntitySet Name="PA_LISTSAL" EntityType="PayrollModel.PA_LISTSAL" />
+    <EntitySet Name="PA_LISTSALARIES" EntityType="PayrollModel.PA_LISTSALARIES" />
+    <EntitySet Name="PA_TAXATION" EntityType="PayrollModel.PA_TAXATION" />
+    <EntitySet Name="HU_ALLOWANCE_LIST" EntityType="PayrollModel.HU_ALLOWANCE_LIST" />
+    <EntitySet Name="HU_ALLOWANCE" EntityType="PayrollModel.HU_ALLOWANCE" />
+    <EntitySet Name="PA_SEND_PAYSLIP" EntityType="PayrollModel.PA_SEND_PAYSLIP" />
+    <EntitySet Name="PA_SEND_PAYSLIP_EMP" EntityType="PayrollModel.PA_SEND_PAYSLIP_EMP" />
+    <EntitySet Name="SE_MAIL" EntityType="PayrollModel.SE_MAIL" />
+    <EntitySet Name="PA_BONUS_IMPORT" EntityType="PayrollModel.PA_BONUS_IMPORT" />
+    <EntitySet Name="PA_SALARY_FUND_MAPPING" EntityType="PayrollModel.PA_SALARY_FUND_MAPPING" />
+    <EntitySet Name="PA_SEND_BONUSSLIP" EntityType="PayrollModel.PA_SEND_BONUSSLIP" />
+    <EntitySet Name="PA_SEND_BONUSSLIP_EMP" EntityType="PayrollModel.PA_SEND_BONUSSLIP_EMP" />
+    <EntitySet Name="PA_SALARY_FUND" EntityType="PayrollModel.PA_SALARY_FUND" />
+    <EntitySet Name="PA_SALARY_PLANNING" EntityType="PayrollModel.PA_SALARY_PLANNING" />
+    <EntitySet Name="PA_SENIORITY_DAILY" EntityType="PayrollModel.PA_SENIORITY_DAILY" />
+    <EntitySet Name="PA_SENIORITY_DAILY_TEMP" EntityType="PayrollModel.PA_SENIORITY_DAILY_TEMP" />
+    <EntitySet Name="PA_SENIORITY_DETAILS" EntityType="PayrollModel.PA_SENIORITY_DETAILS" />
+    <EntitySet Name="PA_SENIORITY_DETAILS_TEMP" EntityType="PayrollModel.PA_SENIORITY_DETAILS_TEMP" />
+    <EntitySet Name="PA_SENIORITY_MONTHLY" EntityType="PayrollModel.PA_SENIORITY_MONTHLY" />
+    <EntitySet Name="PA_SENIORITY_PROCESS" EntityType="PayrollModel.PA_SENIORITY_PROCESS" />
+    <EntitySet Name="PA_TITLE_COST" EntityType="PayrollModel.PA_TITLE_COST" />
+    <EntitySet Name="HU_TITLE" EntityType="PayrollModel.HU_TITLE" />
+    <EntitySet Name="PA_SALE_COMMISION" EntityType="PayrollModel.PA_SALE_COMMISION" />
+  </EntityContainer>
+  <EntityType Name="PA_SALARY_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EFFECT_DATE" Nullable="false" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PA_SALARY_LEVEL" Relationship="PayrollModel.FK_PSG_PSL" FromRole="PA_SALARY_GROUP" ToRole="PA_SALARY_LEVEL" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" />
+    <Property Type="Decimal" Name="IS_COEFFICIENT" />
+    <Property Type="Decimal" Name="IS_INCENTIVE" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="IS_DELETED" />
+  </EntityType>
+  <EntityType Name="PA_SALARY_LEVEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_GROUP_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PA_SALARY_GROUP" Relationship="PayrollModel.FK_PSG_PSL" FromRole="PA_SALARY_LEVEL" ToRole="PA_SALARY_GROUP" />
+    <NavigationProperty Name="PA_SALARY_RANK" Relationship="PayrollModel.FK_PSL_PSR" FromRole="PA_SALARY_LEVEL" ToRole="PA_SALARY_RANK" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" />
+    <Property Type="String" Name="OTHER_USE" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_SALARY_RANK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_LEVEL_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="RANK" MaxLength="255" />
+    <NavigationProperty Name="PA_SALARY_LEVEL" Relationship="PayrollModel.FK_PSL_PSR" FromRole="PA_SALARY_RANK" ToRole="PA_SALARY_LEVEL" />
+    <Property Type="Decimal" Name="SALARY_BASIC" />
+    <Property Type="String" Name="REMARK" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="SAL_GROUP_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+  </EntityType>
+  <Association Name="FK_PSG_PSL">
+    <End Type="PayrollModel.PA_SALARY_GROUP" Role="PA_SALARY_GROUP" Multiplicity="1" />
+    <End Type="PayrollModel.PA_SALARY_LEVEL" Role="PA_SALARY_LEVEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PA_SALARY_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PA_SALARY_LEVEL">
+        <PropertyRef Name="SAL_GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PSL_PSR">
+    <End Type="PayrollModel.PA_SALARY_LEVEL" Role="PA_SALARY_LEVEL" Multiplicity="1" />
+    <End Type="PayrollModel.PA_SALARY_RANK" Role="PA_SALARY_RANK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PA_SALARY_LEVEL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PA_SALARY_RANK">
+        <PropertyRef Name="SAL_LEVEL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HU_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="EMPLOYEE_CODE" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FIRST_NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LAST_NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FULLNAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FIRST_NAME_EN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LAST_NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FULLNAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="WORK_STATUS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACT_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="JOIN_DATE" />
+    <Property Type="Decimal" Name="INDIRECT_MANAGER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="LAST_WORKING_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="TER_EFFECT_DATE" />
+    <Property Type="DateTime" Name="TER_LAST_DATE" />
+    <Property Type="Decimal" Name="COST_CENTER" Precision="38" Scale="0" />
+    <NavigationProperty Name="HU_EMPLOYEE_HEALTH" Relationship="PayrollModel.FK_FE_HEH" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_HEALTH" />
+    <NavigationProperty Name="HU_EMPLOYEE_CV" Relationship="PayrollModel.FK_HE_HEC" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_CV" />
+    <NavigationProperty Name="HU_EMPLOYEE_EDUCATION" Relationship="PayrollModel.FK_HE_HEE" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_EDUCATION" />
+    <NavigationProperty Name="HU_EMPLOYEE_FILES" Relationship="PayrollModel.FK_HE_HEF" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_FILES" />
+    <NavigationProperty Name="HU_EMPLOYEE_OTHER_INFO" Relationship="PayrollModel.FK_HE_HEO" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_OTHER_INFO" />
+    <NavigationProperty Name="HU_EMPLOYEE_SALARY" Relationship="PayrollModel.FK_HE_HES" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE_SALARY" />
+    <NavigationProperty Name="HU_WORKING" Relationship="PayrollModel.FK_HE_HW" FromRole="HU_EMPLOYEE" ToRole="HU_WORKING" />
+    <NavigationProperty Name="HU_WORKING1" Relationship="PayrollModel.FK_HUDM_HUWK" FromRole="HU_EMPLOYEE" ToRole="HU_WORKING" />
+    <NavigationProperty Name="HU_EMPLOYEE1" Relationship="PayrollModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE1" />
+    <NavigationProperty Name="HU_EMPLOYEE2" Relationship="PayrollModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE1" ToRole="HU_EMPLOYEE" />
+    <NavigationProperty Name="HU_EMPLOYEE11" Relationship="PayrollModel.FK_HUEMI_HUEM" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE1" />
+    <NavigationProperty Name="HU_EMPLOYEE3" Relationship="PayrollModel.FK_HUEMI_HUEM" FromRole="HU_EMPLOYEE1" ToRole="HU_EMPLOYEE" />
+    <NavigationProperty Name="HU_WORKING2" Relationship="PayrollModel.FK_HUIM_HUWK" FromRole="HU_EMPLOYEE" ToRole="HU_WORKING" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_CV">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="GENDER" Precision="38" Scale="0" />
+    <Property Type="String" Name="IMAGE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="BIRTH_DATE" />
+    <Property Type="String" Name="BIRTH_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="BIRTH_DISTRICT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BIRTH_PROVINCE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BIRTH_NATION" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MARITAL_STATUS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="RELIGION" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NATIVE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NATIONALITY" Precision="38" Scale="0" />
+    <Property Type="String" Name="PER_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PER_DISTRICT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PER_PROVINCE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PER_NATION" Precision="38" Scale="0" />
+    <Property Type="String" Name="CUR_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="CUR_DISTRICT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CUR_PROVINCE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CUR_NATION" Precision="38" Scale="0" />
+    <Property Type="String" Name="HOME_PHONE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MOBILE_PHONE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ID_NO" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="ID_DATE" />
+    <Property Type="Decimal" Name="ID_PLACE" Precision="38" Scale="0" />
+    <Property Type="String" Name="PASS_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="PASS_DATE" />
+    <Property Type="DateTime" Name="PASS_EXPIRE" />
+    <Property Type="String" Name="PASS_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VISA" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="VISA_DATE" />
+    <Property Type="DateTime" Name="VISA_EXPIRE" />
+    <Property Type="String" Name="VISA_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="WORK_PERMIT" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="WORK_PERMIT_DATE" />
+    <Property Type="DateTime" Name="WORK_PERMIT_EXPIRE" />
+    <Property Type="String" Name="WORK_EMAIL" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="RESIDENCE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="RESIDENCE_DATE" />
+    <Property Type="DateTime" Name="RESIDENCE_EXPIRE" />
+    <Property Type="String" Name="RESIDENCE_PLACE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAV_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="NAV_DISTRICT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NAV_PROVINCE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NAV_NATION" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="IS_RESIDENT" />
+    <Property Type="String" Name="PIT_CODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PER_EMAIL" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CONTACT_PER" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CONTACT_PER_PHONE" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="CONTACT_NATION" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTACT_PROVINCE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTACT_DISTRICT" Precision="38" Scale="0" />
+    <Property Type="String" Name="CONTACT_ADDRESS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CONTACT_RELATION" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="PayrollModel.FK_HE_HEC" FromRole="HU_EMPLOYEE_CV" ToRole="HU_EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_EDUCATION">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ACADEMY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAJOR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NLEVEL" Precision="38" Scale="0" />
+    <Property Type="String" Name="COMPUTER_CER1" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="COMPUTER_CER2" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="COMPUTER_CER3" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="COMPUTER_LEVEL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COMPUTER_LEVEL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COMPUTER_LEVEL3" Precision="38" Scale="0" />
+    <Property Type="String" Name="COMPUTER_MARK1" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="COMPUTER_MARK2" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="COMPUTER_MARK3" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="LANGUAGE1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LANGUAGE2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LANGUAGE3" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LANGUAGE_LEVEL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LANGUAGE_LEVEL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LANGUAGE_LEVEL3" Precision="38" Scale="0" />
+    <Property Type="String" Name="LANGUAGE_MARK1" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LANGUAGE_MARK2" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LANGUAGE_MARK3" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="GRADUATE_SCHOOL" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="PayrollModel.FK_HE_HEE" FromRole="HU_EMPLOYEE_EDUCATION" ToRole="HU_EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_FILES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="FILE_TYPE" Precision="38" Scale="0" />
+    <Property Type="String" Name="FILE_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="FILE_SIZE" />
+    <Property Type="String" Name="NOTE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UPLOAD_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UPLOAD_DATE" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="PayrollModel.FK_HE_HEF" FromRole="HU_EMPLOYEE_FILES" ToRole="HU_EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_HEALTH">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Double" Name="CHIEU_CAO" />
+    <Property Type="Double" Name="CAN_NANG" />
+    <Property Type="String" Name="NHOM_MAU" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="HUYET_AP" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MAT_TRAI" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MAT_PHAI" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="LOAI_SUC_KHOE" Precision="38" Scale="0" />
+    <Property Type="String" Name="TAI_MUI_HONG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="RANG_HAM_MAT" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TIM" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PHOI_NGUC" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VIEM_GAN_B" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DA_HOA_LIEU" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DU_SUC_KHOE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="GHI_CHU_SUC_KHOE" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="PayrollModel.FK_FE_HEH" FromRole="HU_EMPLOYEE_HEALTH" ToRole="HU_EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_OTHER_INFO">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="NGAY_VAO_DOAN" />
+    <Property Type="String" Name="NOI_VAO_DOAN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NOI_SINH_HOAT_DOAN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="DOAN_PHI" />
+    <Property Type="DateTime" Name="NGAY_VAO_DANG" />
+    <Property Type="String" Name="NOI_VAO_DANG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NOI_SINH_HOAT_DANG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="DANG_PHI" />
+    <Property Type="String" Name="SO_TAI_KHOAN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="NGAN_HANG" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CHI_NHANH" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="NGAY_HIEU_LUC" />
+    <Property Type="String" Name="NGUOI_THU_HUONG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="PayrollModel.FK_HE_HEO" FromRole="HU_EMPLOYEE_OTHER_INFO" ToRole="HU_EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_SALARY">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="BASIC_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SOFT_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OTHER_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COEFFICIENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACTUAL_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_ENTERPRISE_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="ALLOWANCE_IDS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ALLOWANCE_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ALLOWANCE_TOTAL" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="PERCENT_SALARY" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="PayrollModel.FK_HE_HES" FromRole="HU_EMPLOYEE_SALARY" ToRole="HU_EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="HU_EMPLOYEE_TRAIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="FROM_DATE" />
+    <Property Type="DateTime" Name="TO_DATE" />
+    <Property Type="String" Name="SCHOOL_NAME" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="TRAINING_FORM" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="HIGHEST_LEVEL" Nullable="false" />
+    <Property Type="Decimal" Name="LEARNING_LEVEL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAJOR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="GRADUATE_YEAR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MARK" Precision="38" Scale="0" />
+    <Property Type="String" Name="TRAINING_CONTENT" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HU_WORKING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TRANSFER_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TRANSFER_REASON" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="INDIRECT_MANAGER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="IS_DECISION" />
+    <Property Type="Decimal" Name="DECISION_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STATUS" Precision="38" Scale="0" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="DateTime" Name="EXPIRE_DATE" />
+    <Property Type="Int16" Name="WORKING_TYPE" />
+    <Property Type="Decimal" Name="COST_CENTER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BASIC_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SOFT_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OTHER_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COEFFICIENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACTUAL_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_ENTERPRISE_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="ALLOWANCE_IDS" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ALLOWANCE_SAL" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ALLOWANCE_TOTAL" Precision="38" Scale="0" />
+    <NavigationProperty Name="HU_EMPLOYEE" Relationship="PayrollModel.FK_HE_HW" FromRole="HU_WORKING" ToRole="HU_EMPLOYEE" />
+    <NavigationProperty Name="HU_EMPLOYEE1" Relationship="PayrollModel.FK_HUDM_HUWK" FromRole="HU_WORKING" ToRole="HU_EMPLOYEE" />
+    <NavigationProperty Name="HU_EMPLOYEE2" Relationship="PayrollModel.FK_HUIM_HUWK" FromRole="HU_WORKING" ToRole="HU_EMPLOYEE" />
+  </EntityType>
+  <Association Name="FK_FE_HEH">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
+    <End Type="PayrollModel.HU_EMPLOYEE_HEALTH" Role="HU_EMPLOYEE_HEALTH" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE_HEALTH">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HE_HEC">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
+    <End Type="PayrollModel.HU_EMPLOYEE_CV" Role="HU_EMPLOYEE_CV" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE_CV">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HE_HEE">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
+    <End Type="PayrollModel.HU_EMPLOYEE_EDUCATION" Role="HU_EMPLOYEE_EDUCATION" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE_EDUCATION">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HE_HEF">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="0..1" />
+    <End Type="PayrollModel.HU_EMPLOYEE_FILES" Role="HU_EMPLOYEE_FILES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE_FILES">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HE_HEO">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
+    <End Type="PayrollModel.HU_EMPLOYEE_OTHER_INFO" Role="HU_EMPLOYEE_OTHER_INFO" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE_OTHER_INFO">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HE_HES">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="1" />
+    <End Type="PayrollModel.HU_EMPLOYEE_SALARY" Role="HU_EMPLOYEE_SALARY" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE_SALARY">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HE_HW">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="0..1" />
+    <End Type="PayrollModel.HU_WORKING" Role="HU_WORKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_WORKING">
+        <PropertyRef Name="EMPLOYEE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUDM_HUWK">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="0..1" />
+    <End Type="PayrollModel.HU_WORKING" Role="HU_WORKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_WORKING">
+        <PropertyRef Name="DIRECT_MANAGER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUEMD_HUEM">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="0..1" />
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE1">
+        <PropertyRef Name="DIRECT_MANAGER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUEMI_HUEM">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="0..1" />
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_EMPLOYEE1">
+        <PropertyRef Name="INDIRECT_MANAGER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HUIM_HUWK">
+    <End Type="PayrollModel.HU_EMPLOYEE" Role="HU_EMPLOYEE" Multiplicity="0..1" />
+    <End Type="PayrollModel.HU_WORKING" Role="HU_WORKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_WORKING">
+        <PropertyRef Name="INDIRECT_MANAGER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OT_OTHER_LIST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TYPE_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE1" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE2" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE3" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ATTRIBUTE4" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CODE" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TYPE_CODE" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERBYID" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="OT_OTHER_LIST_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OT_OTHER_LIST_TYPE" Relationship="PayrollModel.FK_OOLG_OOLT" FromRole="OT_OTHER_LIST_GROUP" ToRole="OT_OTHER_LIST_TYPE" />
+  </EntityType>
+  <EntityType Name="OT_OTHER_LIST_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="GROUP_ID" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="IS_SYSTEM" />
+    <Property Type="String" Name="TABLE_RELATION" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OT_OTHER_LIST_GROUP" Relationship="PayrollModel.FK_OOLG_OOLT" FromRole="OT_OTHER_LIST_TYPE" ToRole="OT_OTHER_LIST_GROUP" />
+  </EntityType>
+  <Association Name="FK_OOLG_OOLT">
+    <End Type="PayrollModel.OT_OTHER_LIST_GROUP" Role="OT_OTHER_LIST_GROUP" Multiplicity="0..1" />
+    <End Type="PayrollModel.OT_OTHER_LIST_TYPE" Role="OT_OTHER_LIST_TYPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OT_OTHER_LIST_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OT_OTHER_LIST_TYPE">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PA_HOLD_SALARY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HU_ORGANIZATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PARENT_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="DISSOLVE_DATE" />
+    <Property Type="DateTime" Name="FOUNDATION_DATE" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="HIERARCHICAL_PATH" MaxLength="1023" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION_PATH" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ADDRESS" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FAX" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="REPRESENTATIVE_ID" Precision="38" Scale="0" />
+    <NavigationProperty Name="HU_ORGANIZATION1" Relationship="PayrollModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION" ToRole="HU_ORGANIZATION1" />
+    <NavigationProperty Name="HU_ORGANIZATION2" Relationship="PayrollModel.FK_HU_ORG_HU_ORG" FromRole="HU_ORGANIZATION1" ToRole="HU_ORGANIZATION" />
+  </EntityType>
+  <Association Name="FK_HU_ORG_HU_ORG">
+    <End Type="PayrollModel.HU_ORGANIZATION" Role="HU_ORGANIZATION" Multiplicity="0..1" />
+    <End Type="PayrollModel.HU_ORGANIZATION" Role="HU_ORGANIZATION1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HU_ORGANIZATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HU_ORGANIZATION1">
+        <PropertyRef Name="PARENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SE_CHOSEN_ORG">
+    <Key>
+      <PropertyRef Name="ORG_ID" />
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Type="Decimal" Name="ORG_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AT_ORG_PERIOD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STATUSCOLEX" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STATUSPAROX" Precision="38" Scale="0" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SE_CHOSEN_CALCULATE">
+    <Key>
+      <PropertyRef Name="EMPLOYEEID" />
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Type="Decimal" Name="EMPLOYEEID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_OBJECT_SALARY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_VN" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_EN" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EFFECTIVE_DATE" />
+    <Property Type="String" Name="SDESC" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_FORMULER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="COL_NAME" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="INDEX_FML" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_FML" Precision="38" Scale="0" />
+    <Property Type="String" Name="FORMULER" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_FORMULER_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TYPE_PAYMENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OBJ_SAL_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME_VN" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_EN" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="START_DATE" />
+    <Property Type="DateTime" Name="END_DATE" />
+    <Property Type="Decimal" Name="STATUS" Precision="38" Scale="0" />
+    <Property Type="String" Name="SDESC" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="IDX" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_ORG_LUNCH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LUNCH_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_PRICE_LUNCH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PRICE" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="DateTime" Name="EXPIRE_DATE" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_PAYMENT_LIST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="OBJ_PAYMENT_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="EFFECTIVE_DATE" Nullable="false" />
+    <Property Type="Decimal" Name="VALUE" Precision="38" Scale="0" />
+    <Property Type="String" Name="SDESC" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" />
+  </EntityType>
+  <EntityType Name="PA_INCENTIVE_RANK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_GROUP_ID" />
+    <Property Type="Decimal" Name="SAL_LEVEL_ID" />
+    <Property Type="Decimal" Name="SAL_RANK_ID" />
+    <Property Type="Decimal" Name="SAL_INCENTIVE_ID" />
+    <Property Type="DateTime" Name="EFFECT_DATE" Nullable="false" />
+    <Property Type="String" Name="REMARK" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" />
+    <Property Type="String" Name="CREATED_LOG" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" />
+    <Property Type="String" Name="MODIFIED_LOG" />
+  </EntityType>
+  <EntityType Name="PA_INCENTIVE_RANK_DETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="INCENTIVE_RANK_ID" />
+    <Property Type="Decimal" Name="FROM_TARGET" />
+    <Property Type="Decimal" Name="TO_TARGET" />
+    <Property Type="Decimal" Name="AMOUNT" />
+    <Property Name="REMARK" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="ORDERS" Type="Decimal" />
+    <Property Type="String" Name="ACTFLG" Nullable="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" />
+    <Property Type="String" Name="CREATED_LOG" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" />
+    <Property Type="String" Name="MODIFIED_LOG" />
+    <Property Type="Decimal" Name="INCENTIVE_PERCENT" />
+    <Property Type="Decimal" Name="INCENTIVE_AMOUNT" />
+  </EntityType>
+  <EntityType Name="PA_SALARY_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" />
+    <Property Type="Decimal" Name="IS_INCENTIVE" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" />
+    <NavigationProperty Name="PA_SALARYTYPE_GROUP" Relationship="PayrollModel.SALARYTYPE_FK" FromRole="PA_SALARY_TYPE" ToRole="PA_SALARYTYPE_GROUP" />
+  </EntityType>
+  <EntityType Name="PA_SALARYTYPE_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_TYPE_ID" Nullable="false" />
+    <Property Type="Decimal" Name="SAL_GROUP_ID" Nullable="false" />
+    <Property Type="Decimal" Name="IS_DIRECT_SALARY" Nullable="false" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="IS_DELETED" />
+    <NavigationProperty Name="PA_SALARY_TYPE" Relationship="PayrollModel.SALARYTYPE_FK" FromRole="PA_SALARYTYPE_GROUP" ToRole="PA_SALARY_TYPE" />
+  </EntityType>
+  <Association Name="SALARYTYPE_FK">
+    <End Type="PayrollModel.PA_SALARY_TYPE" Role="PA_SALARY_TYPE" Multiplicity="1" />
+    <End Type="PayrollModel.PA_SALARYTYPE_GROUP" Role="PA_SALARYTYPE_GROUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PA_SALARY_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PA_SALARYTYPE_GROUP">
+        <PropertyRef Name="SAL_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PA_COST_CENTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="IS_DELETED" />
+  </EntityType>
+  <EntityType Name="PA_ORGBONUS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_PAYMENTSOURCES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PAY_TYPE" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_WORKFACTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="XEPLOAI" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="FACTOR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BONUSE" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_WORK_STANDARD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OBJECT_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERIOD_STANDARD" Precision="38" Scale="0" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AT_PERIOD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH" Precision="38" Scale="0" />
+    <Property Type="String" Name="PERIOD_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="START_DATE" />
+    <Property Type="DateTime" Name="END_DATE" />
+    <Property Type="Decimal" Name="PERIOD_STANDARD" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="BONUS_DATE" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_LISTSAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="COL_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NAME_VN" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NAME_EN" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DATA_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL_INDEX" Precision="38" Scale="0" />
+    <Property Type="String" Name="STATUS" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COL_CODE" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_LISTSALARIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TYPE_PAYMENT" Precision="38" Scale="0" />
+    <Property Type="String" Name="COL_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NAME_VN" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NAME_EN" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DATA_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL_INDEX" Precision="38" Scale="0" />
+    <Property Type="String" Name="STATUS" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="IS_VISIBLE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="IS_INPUT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="IS_CALCULATE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="IS_IMPORT" Precision="38" Scale="0" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="INPUT_FORMULER" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COL_CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="IS_WORKARISING" />
+    <Property Type="Int16" Name="IS_SUMARISING" />
+    <Property Type="Int16" Name="IS_PAYBACK" />
+    <Property Type="Int16" Name="IS_DELETED" />
+    <Property Type="Decimal" Name="IMPORT_TYPE_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="REMARK" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="EFFECTIVE_DATE" />
+    <Property Type="DateTime" Name="EXPIRE_DATE" />
+    <Property Type="Int16" Name="IS_WORKDAY" />
+    <Property Type="Int16" Name="IS_SUMDAY" />
+    <Property Type="Decimal" Name="OBJ_SAL_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_TYPE" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_TAXATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="RESIDENT_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="VALUE_FROM" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="VALUE_TO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="RATE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EXCEPT_FAST" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="FROM_DATE" />
+    <Property Type="DateTime" Name="TO_DATE" />
+    <Property Type="String" Name="SDESC" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="HU_ALLOWANCE_LIST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ALLOWANCE_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="IS_CONTRACT" />
+    <Property Type="Int16" Name="IS_INSURANCE" />
+    <Property Type="Int16" Name="IS_PAY" />
+  </EntityType>
+  <EntityType Name="HU_ALLOWANCE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="EMPLOYEE_ID" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ALLOWANCE_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="AMOUNT" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="DateTime" Name="EXP_DATE" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_SEND_PAYSLIP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="USERNAME" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="IS_DISSOLVE" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="ACTION_DATE" />
+    <Property Type="Decimal" Name="ACTION_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ACTION_STATUS" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="RUN_START" />
+    <Property Type="DateTime" Name="RUN_END" />
+    <Property Type="Decimal" Name="RUN_ROW" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SEND_PAYSLIP_EMP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PA_SEND_PAYSLIP_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="SE_MAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="SUBJECT" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MAIL_FROM" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MAIL_TO" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MAIL_CC" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MAIL_BCC" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CONTENT" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="VIEW_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ATTACHMENT" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_BONUS_IMPORT">
+    <Key>
+      <PropertyRef Name="PKEY" />
+    </Key>
+    <Property Type="Decimal" Name="PKEY" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="YEAR" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_GROUP" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PAYMENTSOURCES_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONEY" Precision="38" Scale="0" />
+    <Property Type="String" Name="SCREATEUSER" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DCREATEDATE" />
+    <Property Type="String" Name="SUPDATEUSER" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DUPDATEDATE" />
+  </EntityType>
+  <EntityType Name="PA_SALARY_FUND_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="YEAR" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_GROUP" Precision="38" Scale="0" />
+    <Property Type="String" Name="SALARY_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="SALARY_FUND" Precision="38" Scale="0" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_SEND_BONUSSLIP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="USERNAME" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="IS_DISSOLVE" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="ACTION_DATE" />
+    <Property Type="Decimal" Name="ACTION_TYPE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ACTION_STATUS" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="RUN_START" />
+    <Property Type="DateTime" Name="RUN_END" />
+    <Property Type="Decimal" Name="RUN_ROW" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SEND_BONUSSLIP_EMP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PA_SEND_BONNUSSLIP_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SALARY_FUND">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_SOFT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_OTHER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_HARD" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_ALLOWANCE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_TOTAL" Precision="38" Scale="0" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_SALARY_PLANNING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMP_NUMBER" Precision="38" Scale="0" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_SENIORITY_DAILY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="WORKINGDAY" />
+    <Property Type="Decimal" Name="SENIORITY" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SALARY" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="DISCIPLINE_COUNT" Precision="38" Scale="2" />
+    <Property Type="String" Name="DISCIPLINE_TYPE_NAME" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PA_SENIORITY_DAILY_TEMP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="WORKINGDAY" />
+    <Property Type="Decimal" Name="SENIORITY" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SALARY" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="DISCIPLINE_COUNT" Precision="38" Scale="2" />
+    <Property Type="String" Name="DISCIPLINE_TYPE_NAME" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="REQUEST_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACT_ID" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SENIORITY_DETAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SENIORITY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT3" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT5" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERCENT_SALARY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_TOTAL" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACT_ID" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SENIORITY_DETAILS_TEMP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SENIORITY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT3" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT5" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERCENT_SALARY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_TOTAL" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACT_ID" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SENIORITY_MONTHLY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SENIORITY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT3" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DAY_COUNT5" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY_TOTAL" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACT_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERCENT_SALARY" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SENIORITY_PROCESS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D3" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D4" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D5" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D6" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D7" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D8" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D9" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D10" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D11" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D12" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D13" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D14" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D15" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D16" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D17" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D18" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D19" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D20" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D21" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D22" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D23" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D24" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D25" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D26" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D27" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D28" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D29" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D30" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="D31" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SALARY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DISCIPLINE_COUNT" Precision="38" Scale="0" />
+    <Property Type="String" Name="DISCIPLINE_TYPE_NAME" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PERIOD_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PERCENT_SALARY" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CONTRACT_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SENIORITY_LAST" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_TITLE_COST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_BASIC" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_MOBILE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_RICE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_INS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_SOFT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_OTHER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SAL_TOTAL" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="EFFECT_DATE" />
+    <Property Type="DateTime" Name="EXPIRE_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HU_TITLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_EN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME_VN" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="TITLE_GROUP_ID" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="STATUS" />
+    <Property Type="Decimal" Name="LIST_PC_ID" Precision="20" Scale="0" />
+    <Property Type="Decimal" Name="DRIVE_INFOR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="WORK_INVOLVE_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OVT" Precision="38" Scale="0" />
+    <Property Type="String" Name="UPLOAD_FILE" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="LEVEL_ID" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PA_SALE_COMMISION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="REMARK" MaxLength="1025" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CREATED_DATE" Nullable="false" />
+    <Property Type="String" Name="CREATED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CREATED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
+    <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="ORDERS" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACTFLG" MaxLength="21" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="SALE_RATE" />
+  </EntityType>
+</Schema>

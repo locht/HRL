@@ -1,0 +1,924 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+HistaffWebApp
+</name>
+</assembly>
+<members>
+<member name="F:HistaffWebApp._Default.RadAjaxManager1">
+	<summary>
+RadAjaxManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.RadToolTipManager1">
+	<summary>
+RadToolTipManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.LoadingPanel">
+	<summary>
+LoadingPanel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.RadPaneMain">
+	<summary>
+RadPaneMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.Panel1">
+	<summary>
+Panel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.SessionWarning">
+	<summary>
+SessionWarning control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.rwMainPopup">
+	<summary>
+rwMainPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Default.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Login1.RadStyleSheetManager1">
+	<summary>
+RadStyleSheetManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Login1.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Login1.RadScriptManager1">
+	<summary>
+RadScriptManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Login1.Panel1">
+	<summary>
+Panel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Login1.LoginUser">
+	<summary>
+LoginUser control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Login1.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.Head1">
+	<summary>
+Head1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.Form1">
+	<summary>
+Form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.RadStyleSheetManager1">
+	<summary>
+RadStyleSheetManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.RadScriptManager1">
+	<summary>
+RadScriptManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.FormDecorator1">
+	<summary>
+FormDecorator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.RadToolTipManager1">
+	<summary>
+RadToolTipManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.RadAjaxManager1">
+	<summary>
+RadAjaxManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.RadSplitter1">
+	<summary>
+RadSplitter1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.RadPaneMain">
+	<summary>
+RadPaneMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.Panel1">
+	<summary>
+Panel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.FindSalary">
+	<summary>
+FindSalary control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.rsSkin">
+	<summary>
+rsSkin control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.rwMainPopup">
+	<summary>
+rwMainPopup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.LoadingPanel">
+	<summary>
+LoadingPanel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Dialog.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:HistaffWebApp.My.MyWebExtension.Application">
+	<summary>
+ Returns information about the current application.
+ </summary>
+</member><member name="P:HistaffWebApp.My.MyWebExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:HistaffWebApp.My.MyWebExtension.User">
+	<summary>
+ Returns information for the current Web user.
+ </summary>
+</member><member name="P:HistaffWebApp.My.MyWebExtension.Request">
+	<summary>
+ Returns Request object.
+ </summary>
+</member><member name="P:HistaffWebApp.My.MyWebExtension.Response">
+	<summary>
+ Returns Response object.
+ </summary>
+</member><member name="P:HistaffWebApp.My.MyWebExtension.Log">
+	<summary>
+ Returns the Asp log object.
+ </summary>
+</member><member name="P:HistaffWebApp.My.MyWebExtension.WebServices">
+	<summary>
+ Provides access to WebServices added to this project.
+ </summary>
+</member><member name="T:HistaffWebApp.My.MyWebExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:HistaffWebApp.Site.HeadContent">
+	<summary>
+HeadContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.Form1">
+	<summary>
+Form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.RadStyleSheetManager1">
+	<summary>
+RadStyleSheetManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.RadScriptManager1">
+	<summary>
+RadScriptManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.RadInputManager1">
+	<summary>
+RadInputManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.imglogo1">
+	<summary>
+imglogo1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.btnNotiTimer">
+	<summary>
+btnNotiTimer control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.udTimePn">
+	<summary>
+udTimePn control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrNumberRocord">
+	<summary>
+ltrNumberRocord control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dcontractRemind">
+	<summary>
+dcontractRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblWLEO">
+	<summary>
+lblWLEO control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrWLEO">
+	<summary>
+ltrWLEO control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dbirthdayRemind">
+	<summary>
+dbirthdayRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_LEAVE">
+	<summary>
+lblTime_LEAVE control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_LEAVE">
+	<summary>
+ltrTime_LEAVE control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dnoPaperRemind">
+	<summary>
+dnoPaperRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_GiayTo">
+	<summary>
+lblTime_GiayTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_GiayTo">
+	<summary>
+ltrTime_GiayTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dvisaRemind">
+	<summary>
+dvisaRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_Visa">
+	<summary>
+lblTime_Visa control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_Visa">
+	<summary>
+ltrTime_Visa control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dvisaRemind1">
+	<summary>
+dvisaRemind1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_ToTrinh">
+	<summary>
+lblTime_ToTrinh control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_ToTrinh">
+	<summary>
+ltrTime_ToTrinh control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dworPermitRemind">
+	<summary>
+dworPermitRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_GiayPhepLaoDong">
+	<summary>
+lblTime_GiayPhepLaoDong control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_GiayPhepLaoDong">
+	<summary>
+ltrTime_GiayPhepLaoDong control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dcertificateRemind">
+	<summary>
+dcertificateRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_ChungChi">
+	<summary>
+lblTime_ChungChi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_ChungChi">
+	<summary>
+ltrTime_ChungChi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dterminateRemind">
+	<summary>
+dterminateRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_NghiViec">
+	<summary>
+lblTime_NghiViec control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_NghiViec">
+	<summary>
+ltrTime_NghiViec control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dworkingRemind1">
+	<summary>
+dworkingRemind1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblTime_ToTrinhPheDuyet">
+	<summary>
+lblTime_ToTrinhPheDuyet control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrTime_ToTrinhPheDuyet">
+	<summary>
+ltrTime_ToTrinhPheDuyet control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.dProbationRemind">
+	<summary>
+dProbationRemind control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblProbation">
+	<summary>
+lblProbation control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.ltrProbation">
+	<summary>
+ltrProbation control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.LoginView1">
+	<summary>
+LoginView1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.HeadLoginName">
+	<summary>
+HeadLoginName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.RadToolTip1">
+	<summary>
+RadToolTip1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.rbiEmployeeImage">
+	<summary>
+rbiEmployeeImage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblUserName">
+	<summary>
+lblUserName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblEmail">
+	<summary>
+lblEmail control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.Label2">
+	<summary>
+Label2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.HeadLoginStatus">
+	<summary>
+HeadLoginStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.rbiEmployeeImageAll">
+	<summary>
+rbiEmployeeImageAll control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.rbiEmployeeImage1">
+	<summary>
+rbiEmployeeImage1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.lblUserName2">
+	<summary>
+lblUserName2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.rsSkin">
+	<summary>
+rsSkin control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.QuickLaunchToolbar">
+	<summary>
+QuickLaunchToolbar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.MainContent">
+	<summary>
+MainContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.rwAbout">
+	<summary>
+rwAbout control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.rwLicense">
+	<summary>
+rwLicense control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Site.RadCodeBlock1">
+	<summary>
+RadCodeBlock1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.SessionKilled.RadAjaxManager1">
+	<summary>
+RadAjaxManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.SessionKilled.rwSessionKilled">
+	<summary>
+rwSessionKilled control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.SessionKilled.LoadingPanel">
+	<summary>
+LoadingPanel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.RadAjaxManager1">
+	<summary>
+RadAjaxManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.radLogin">
+	<summary>
+radLogin control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.Panel1">
+	<summary>
+Panel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.LoginUserValidationSummary">
+	<summary>
+LoginUserValidationSummary control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.txtOLD_PASS">
+	<summary>
+txtOLD_PASS control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.UserNameRequired">
+	<summary>
+UserNameRequired control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.valiidateOldPass">
+	<summary>
+valiidateOldPass control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.txtNEW_PASS">
+	<summary>
+txtNEW_PASS control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.PasswordRequired">
+	<summary>
+PasswordRequired control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.validatePASSWORD_2">
+	<summary>
+validatePASSWORD_2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.txtNEW_PASS_AGAIN">
+	<summary>
+txtNEW_PASS_AGAIN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.RequiredFieldValidator1">
+	<summary>
+RequiredFieldValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.CompareValidator1">
+	<summary>
+CompareValidator1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.btnChangePassword">
+	<summary>
+btnChangePassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.btnCancel">
+	<summary>
+btnCancel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.ChangePassword.LoadingPanel">
+	<summary>
+LoadingPanel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp._Error.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.AccessLimit.RadAjaxManager1">
+	<summary>
+RadAjaxManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.AccessLimit.rwAccessLimit">
+	<summary>
+rwAccessLimit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.AccessLimit.LoadingPanel">
+	<summary>
+LoadingPanel control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:HistaffWebApp.Export.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>
