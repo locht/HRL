@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("23b13cdf-2412-4795-8035-62784e358226")>
+<Assembly: EdmSchemaAttribute("09288db5-2409-43d3-a5fd-190954006ac5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -8626,6 +8626,31 @@ Public Partial Class SE_APP_TEMPLATE
     Private Partial Sub OnMODIFIED_LOGChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TEMPLATE_CODE() As Global.System.String
+        Get
+            Return _TEMPLATE_CODE
+        End Get
+        Set
+            OnTEMPLATE_CODEChanging(value)
+            ReportPropertyChanging("TEMPLATE_CODE")
+            _TEMPLATE_CODE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TEMPLATE_CODE")
+            OnTEMPLATE_CODEChanged()
+        End Set
+    End Property
+
+    Private _TEMPLATE_CODE As Global.System.String
+    Private Partial Sub OnTEMPLATE_CODEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTEMPLATE_CODEChanged()
+    End Sub
+
     #End Region
 
 End Class
@@ -8979,6 +9004,31 @@ Public Partial Class SE_APP_TEMPLATE_DTL
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TITLE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TITLE_ID
+        End Get
+        Set
+            OnTITLE_IDChanging(value)
+            ReportPropertyChanging("TITLE_ID")
+            _TITLE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TITLE_ID")
+            OnTITLE_IDChanged()
+        End Set
+    End Property
+
+    Private _TITLE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTITLE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTITLE_IDChanged()
     End Sub
 
     #End Region

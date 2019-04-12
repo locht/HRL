@@ -428,6 +428,7 @@ Partial Public Class CommonRepository
                                   .TEMPLATE_NAME = s.TEMPLATE_NAME,
                                   .TEMPLATE_TYPE = s.TEMPLATE_TYPE,
                                   .TEMPLATE_ORDER = s.TEMPLATE_ORDER,
+                                  .TEMPLATE_CODE = s.TEMPLATE_CODE,
                                   .ACTFLG = s.ACTFLG
                               }).ToList
 
@@ -608,7 +609,7 @@ Partial Public Class CommonRepository
     Public Function GetApproveTemplateDetailList(ByVal templateId As Decimal) As List(Of ApproveTemplateDetailDTO)
         Try
             Dim itemReturn = (From item In Context.SE_APP_TEMPLATE_DTL
-                              From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = item.APP_ID).DefaultIfEmpty
+                              From e In Context.HU_EMPLOYEE.Where(Function(f) item.APP_ID = f.ID).DefaultIfEmpty()
                               Where item.TEMPLATE_ID = templateId
                               Select New ApproveTemplateDetailDTO With {
                                 .ID = item.ID,
@@ -619,7 +620,7 @@ Partial Public Class CommonRepository
                                 .INFORM_DATE = item.INFORM_DATE,
                                 .INFORM_EMAIL = item.INFORM_EMAIL,
                                 .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                .EMPLOYEE_NAME = e.FULLNAME_VN
+            .EMPLOYEE_NAME = e.FULLNAME_VN
                               }).ToList
 
             Return itemReturn

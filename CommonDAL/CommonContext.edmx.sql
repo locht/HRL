@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 3/26/2019 10:57:20 AM
--- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\CommonDAL\CommonContext.edmx
+-- Date Created: 11/04/2019 2:38:41 PM
+-- Generated from EDMX file: E:\HistaffHCM\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -472,7 +472,8 @@ CREATE TABLE "dbo"."SE_APP_TEMPLATE" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "TEMPLATE_CODE" NCLOB NULL
 );
 
 -- Creating table 'SE_APP_TEMPLATE_DTL'
@@ -489,7 +490,8 @@ CREATE TABLE "dbo"."SE_APP_TEMPLATE_DTL" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "TITLE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_WORKING'
