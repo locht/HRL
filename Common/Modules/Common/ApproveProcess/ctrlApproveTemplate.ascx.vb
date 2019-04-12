@@ -139,6 +139,7 @@ Public Class ctrlApproveTemplate
 #End Region
 
 #Region "Event"
+
 #Region "-- View"
     ''' <lastupdate>
     ''' 24/07/2017 11:55
