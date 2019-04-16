@@ -36,6 +36,7 @@
             <EntitySet Name="SE_USER_PERMISSION" EntityType="CommonModel.Store.SE_USER_PERMISSION" store:Type="Tables" />
             <EntitySet Name="HUV_SE_GRP_SE_USR" EntityType="CommonModel.Store.HUV_SE_GRP_SE_USR" store:Type="Tables" />
             <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.Store.SE_VIEW_CONFIG" store:Type="Tables" />
+            <EntitySet Name="AT_SIGN" EntityType="CommonModel.Store.AT_SIGN" store:Type="Tables" />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables" />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables" />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables" />
@@ -450,6 +451,14 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FROM_HOUR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TO_HOUR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROM_DAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TO_DAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MAIL_ACCEPTED" Type="nclob" Nullable="true" />
+            <Property Name="MAIL_ACCEPTING" Type="nclob" Nullable="true" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SIGN_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_APP_SETUPEXT">
             <Key>
@@ -678,6 +687,37 @@
             </Key>
             <Property Name="CODE_NAME" Type="nclob" Nullable="false" />
             <Property Name="CONFIG_DATA" Type="nclob" Nullable="true" />
+        </EntityType>
+        <EntityType Name="AT_SIGN">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nclob" Nullable="true" />
+            <Property Name="NAME" Type="nclob" Nullable="true" />
+            <Property Name="START_DATE" Type="date" Nullable="true" />
+            <Property Name="END_DATE" Type="date" Nullable="true" />
+            <Property Name="ORDNO" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NOTE" Type="nclob" Nullable="true" />
+            <Property Name="STATUS" Type="number" Nullable="false" Precision="38" />
+            <Property Name="AT_GSIGNID" Type="nclob" Nullable="true" />
+            <Property Name="AT_SIGNTYPEID" Type="nclob" Nullable="true" />
+            <Property Name="AT_SIGNMODEID" Type="nclob" Nullable="true" />
+            <Property Name="CREATE_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATE_BY" Type="nclob" Nullable="true" />
+            <Property Name="CREATE_LOG" Type="nclob" Nullable="true" />
+            <Property Name="MODIFY_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFY_BY" Type="nclob" Nullable="true" />
+            <Property Name="MODIFY_LOG" Type="nclob" Nullable="true" />
+            <Property Name="DISPLAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NAME_EN" Type="nclob" Nullable="true" />
+            <Property Name="IMPORT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_SUM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NUMBER_LEAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NAME_SIGN" Type="nclob" Nullable="true" />
+            <Property Name="TIME_SIGN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IMPORT_SIGN" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
@@ -1002,6 +1042,7 @@
           <EntitySet Name="SE_USER_PERMISSION" EntityType="CommonModel.SE_USER_PERMISSION" />
           <EntitySet Name="HUV_SE_GRP_SE_USR" EntityType="CommonModel.HUV_SE_GRP_SE_USR" />
           <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.SE_VIEW_CONFIG" />
+          <EntitySet Name="AT_SIGN" EntityType="CommonModel.AT_SIGN" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -1507,6 +1548,14 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="FROM_HOUR" Nullable="true" />
+          <Property Type="Decimal" Name="TO_HOUR" Nullable="true" />
+          <Property Type="Decimal" Name="FROM_DAY" Nullable="true" />
+          <Property Type="Decimal" Name="TO_DAY" Nullable="true" />
+          <Property Type="String" Name="MAIL_ACCEPTED" Nullable="true" />
+          <Property Type="String" Name="MAIL_ACCEPTING" Nullable="true" />
+          <Property Type="Decimal" Name="TITLE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="SIGN_ID" Nullable="true" />
         </EntityType>
         <EntityType Name="SE_APP_SETUPEXT">
           <Key>
@@ -1739,6 +1788,37 @@
           </Key>
           <Property Type="String" Name="CODE_NAME" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="CONFIG_DATA" />
+        </EntityType>
+        <EntityType Name="AT_SIGN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CODE" Nullable="true" />
+          <Property Type="String" Name="NAME" Nullable="true" />
+          <Property Type="DateTime" Name="START_DATE" Nullable="true" />
+          <Property Type="DateTime" Name="END_DATE" Nullable="true" />
+          <Property Type="Decimal" Name="ORDNO" Nullable="true" />
+          <Property Type="String" Name="NOTE" Nullable="true" />
+          <Property Type="Decimal" Name="STATUS" Nullable="false" />
+          <Property Type="String" Name="AT_GSIGNID" Nullable="true" />
+          <Property Type="String" Name="AT_SIGNTYPEID" Nullable="true" />
+          <Property Type="String" Name="AT_SIGNMODEID" Nullable="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Nullable="true" />
+          <Property Type="String" Name="CREATE_BY" Nullable="true" />
+          <Property Type="String" Name="CREATE_LOG" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFY_DATE" Nullable="true" />
+          <Property Type="String" Name="MODIFY_BY" Nullable="true" />
+          <Property Type="String" Name="MODIFY_LOG" Nullable="true" />
+          <Property Type="Decimal" Name="DISPLAY" Nullable="true" />
+          <Property Type="String" Name="NAME_EN" Nullable="true" />
+          <Property Type="Decimal" Name="IMPORT" Nullable="true" />
+          <Property Type="Decimal" Name="IS_SUM" Nullable="true" />
+          <Property Type="Decimal" Name="IS_DELETED" Nullable="true" />
+          <Property Type="Decimal" Name="NUMBER_LEAVE" Nullable="true" />
+          <Property Type="String" Name="NAME_SIGN" Nullable="true" />
+          <Property Type="Decimal" Name="TIME_SIGN" Nullable="true" />
+          <Property Type="Decimal" Name="IMPORT_SIGN" Nullable="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2108,6 +2188,14 @@
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="FROM_HOUR" ColumnName="FROM_HOUR" />
+                    <ScalarProperty Name="TO_HOUR" ColumnName="TO_HOUR" />
+                    <ScalarProperty Name="FROM_DAY" ColumnName="FROM_DAY" />
+                    <ScalarProperty Name="TO_DAY" ColumnName="TO_DAY" />
+                    <ScalarProperty Name="MAIL_ACCEPTED" ColumnName="MAIL_ACCEPTED" />
+                    <ScalarProperty Name="MAIL_ACCEPTING" ColumnName="MAIL_ACCEPTING" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -2349,6 +2437,38 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_SIGN">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.AT_SIGN)">
+                <MappingFragment StoreEntitySet="AT_SIGN">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                    <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+                    <ScalarProperty Name="ORDNO" ColumnName="ORDNO" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                    <ScalarProperty Name="AT_GSIGNID" ColumnName="AT_GSIGNID" />
+                    <ScalarProperty Name="AT_SIGNTYPEID" ColumnName="AT_SIGNTYPEID" />
+                    <ScalarProperty Name="AT_SIGNMODEID" ColumnName="AT_SIGNMODEID" />
+                    <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                    <ScalarProperty Name="CREATE_BY" ColumnName="CREATE_BY" />
+                    <ScalarProperty Name="CREATE_LOG" ColumnName="CREATE_LOG" />
+                    <ScalarProperty Name="MODIFY_DATE" ColumnName="MODIFY_DATE" />
+                    <ScalarProperty Name="MODIFY_BY" ColumnName="MODIFY_BY" />
+                    <ScalarProperty Name="MODIFY_LOG" ColumnName="MODIFY_LOG" />
+                    <ScalarProperty Name="DISPLAY" ColumnName="DISPLAY" />
+                    <ScalarProperty Name="NAME_EN" ColumnName="NAME_EN" />
+                    <ScalarProperty Name="IMPORT" ColumnName="IMPORT" />
+                    <ScalarProperty Name="IS_SUM" ColumnName="IS_SUM" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                    <ScalarProperty Name="NUMBER_LEAVE" ColumnName="NUMBER_LEAVE" />
+                    <ScalarProperty Name="NAME_SIGN" ColumnName="NAME_SIGN" />
+                    <ScalarProperty Name="TIME_SIGN" ColumnName="TIME_SIGN" />
+                    <ScalarProperty Name="IMPORT_SIGN" ColumnName="IMPORT_SIGN" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -2396,7 +2516,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="CommonContext" DisplayType="true" ZoomLevel="81" >
+      <Diagram Name="CommonContext" DisplayType="true" ZoomLevel="61" >
         <EntityTypeShape EntityType="CommonModel.SE_GROUP" Width="2.375" PointX="0.75" PointY="4.375" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_FUNCTION" Width="2.125" PointX="1" PointY="2.375" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_USER" Width="2.125" PointX="3.875" PointY="8.875" Height="0.4" IsExpanded="false" />
@@ -2487,7 +2607,7 @@
           <ConnectorPoint PointX="10" PointY="5.8187480000000065" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_APP_PROCESS" Width="1.5" PointX="13.25" PointY="8.125" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="CommonModel.SE_APP_SETUP" Width="1.5" PointX="8.75" PointY="8.125" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.SE_APP_SETUP" Width="1.5" PointX="8.75" PointY="5.75" Height="0.39999999999999858" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_SETUPEXT" Width="1.5" PointX="9.75" PointY="1.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_TEMPLATE" Width="1.5" PointX="7" PointY="7.625" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_TEMPLATE_DTL" Width="1.5" PointX="9.375" PointY="10" Height="3.7109993489583335" IsExpanded="true" />
@@ -2504,6 +2624,7 @@
         <EntityTypeShape EntityType="CommonModel.SE_USER_PERMISSION" Width="2.5" PointX="7.125" PointY="11.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.HUV_SE_GRP_SE_USR" Width="1.5" PointX="0.75" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_VIEW_CONFIG" Width="1.75" PointX="5" PointY="12.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.AT_SIGN" Width="1.5" PointX="6.8845709948263" PointY="9.4075761034188687" />
         </Diagram>
     </Diagrams>
   </Designer>

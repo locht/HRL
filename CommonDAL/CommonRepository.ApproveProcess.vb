@@ -15,6 +15,18 @@ Imports System.Configuration
 Partial Public Class CommonRepository
 
 #Region "Process Setup"
+    Public Function GetTitleList() As List(Of OtherListDTO)
+        Try
+            Dim listTitle = (From t In Context.OT_OTHER_LIST
+                             Where t.TYPE_CODE = "TITLE_LEVEL"
+                             Select New OtherListDTO With {
+                                .CODE = t.CODE, .NAME_VN = t.NAME_VN
+                             }).ToList()
+            Return listTitle
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetApproveProcess() As List(Of ApproveProcessDTO)
 
         Try
@@ -149,18 +161,28 @@ Partial Public Class CommonRepository
             Dim itemReturn = From s In Context.SE_APP_SETUP
                              From proc In Context.SE_APP_PROCESS.Where(Function(f) f.ID = s.PROCESS_ID)
                              From temp In Context.SE_APP_TEMPLATE.Where(Function(f) f.ID = s.TEMPLATE_ID)
+                             From t In Context.HU_TITLE.Where(Function(f) f.ID = s.TITLE_ID)
+                             From at In Context.AT_SIGN.Where(Function(f) f.ID = s.SIGN_ID)
                               Where s.ORG_ID = orgId
                               Select New ApproveSetupDTO With {
                                   .ID = s.ID,
                                   .EMPLOYEE_ID = s.EMPLOYEE_ID,
                                   .TEMPLATE_ID = s.TEMPLATE_ID,
                                   .ORG_ID = s.ORG_ID,
+                                  .TITLE_ID = s.TITLE_ID,
+                                  .SIGN_ID = s.SIGN_ID,
+                                  .FROM_HOUR = s.FROM_HOUR,
+                                  .TO_HOUR = s.TO_HOUR,
+                                  .FROM_DAY = s.FROM_DAY,
+                                  .TO_DAY = s.TO_DAY,
                                   .FROM_DATE = s.FROM_DATE,
                                   .TO_DATE = s.TO_DATE,
                                   .PROCESS_NAME = proc.NAME,
                                   .TEMPLATE_NAME = temp.TEMPLATE_NAME,
                                   .NUM_REQUEST = proc.NUMREQUEST,
-                                  .REQUEST_EMAIL = proc.EMAIL
+                                  .REQUEST_EMAIL = proc.EMAIL,
+                                  .MAIL_ACCEPTED = s.MAIL_ACCEPTED,
+                                  .MAIL_ACCEPTING = s.MAIL_ACCEPTING
                               }
 
             Return itemReturn.OrderBy(Function(p) Sorts).ThenByDescending(Function(p) p.FROM_DATE).ToList 'itemReturn.OrderBy(Function(p) p.PROCESS_NAME).ThenByDescending(Function(p) p.FROM_DATE).ToList
@@ -180,8 +202,16 @@ Partial Public Class CommonRepository
                                   .TEMPLATE_ID = s.TEMPLATE_ID,
                                   .EMPLOYEE_ID = s.EMPLOYEE_ID,
                                   .ORG_ID = s.ORG_ID,
+                                  .TITLE_ID = s.TITLE_ID,
+                                  .SIGN_ID = s.SIGN_ID,
+                                  .FROM_HOUR = s.FROM_HOUR,
+                                  .TO_HOUR = s.TO_HOUR,
+                                  .FROM_DAY = s.FROM_DAY,
+                                  .TO_DAY = s.TO_DAY,
                                   .FROM_DATE = s.FROM_DATE,
-                                  .TO_DATE = s.TO_DATE
+                                  .TO_DATE = s.TO_DATE,
+                                  .MAIL_ACCEPTED = s.MAIL_ACCEPTED,
+                                  .MAIL_ACCEPTING = s.MAIL_ACCEPTING
                               }).FirstOrDefault
 
             Return itemReturn
@@ -199,8 +229,16 @@ Partial Public Class CommonRepository
                 .TEMPLATE_ID = item.TEMPLATE_ID,
                 .EMPLOYEE_ID = item.EMPLOYEE_ID,
                 .ORG_ID = item.ORG_ID,
+                .TITLE_ID = item.TITLE_ID,
+                .SIGN_ID = item.SIGN_ID,
+                .FROM_HOUR = item.FROM_HOUR,
+                .TO_HOUR = item.TO_HOUR,
+                .FROM_DAY = item.FROM_DAY,
+                .TO_DAY = item.TO_DAY,
                 .FROM_DATE = item.FROM_DATE,
                 .TO_DATE = item.TO_DATE,
+                .MAIL_ACCEPTED = item.MAIL_ACCEPTED,
+                .MAIL_ACCEPTING = item.MAIL_ACCEPTING,
                 .CREATED_BY = log.Username,
                 .CREATED_LOG = log.ComputerName,
                 .CREATED_DATE = Date.Now,
@@ -228,9 +266,16 @@ Partial Public Class CommonRepository
                 With itemUpdate
                     .PROCESS_ID = item.PROCESS_ID
                     .TEMPLATE_ID = item.TEMPLATE_ID
+                    .TITLE_ID = item.TITLE_ID
+                    .SIGN_ID = item.SIGN_ID
+                    .FROM_HOUR = item.FROM_HOUR
+                    .TO_HOUR = item.TO_HOUR
+                    .FROM_DAY = item.FROM_DAY
+                    .TO_DAY = item.TO_DAY
                     .FROM_DATE = item.FROM_DATE
                     .TO_DATE = item.TO_DATE
-
+                    .MAIL_ACCEPTED = item.MAIL_ACCEPTED
+                    .MAIL_ACCEPTING = item.MAIL_ACCEPTING
                     .MODIFIED_BY = log.Username
                     .MODIFIED_DATE = Date.Now
                     .MODIFIED_LOG = log.ComputerName

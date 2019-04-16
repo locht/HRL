@@ -147,7 +147,15 @@ Partial Public Class CommonRepository
 #End Region
 
 #Region "Organization"
-
+    Public Function GetOrganizationList() As List(Of OrganizationDTO)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetOrganizationList()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetOrganizationAll() As List(Of OrganizationDTO)
         Using rep As New CommonBusinessClient
 

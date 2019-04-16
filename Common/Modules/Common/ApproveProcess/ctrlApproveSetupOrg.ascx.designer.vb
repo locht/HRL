@@ -104,6 +104,42 @@ Partial Public Class ctrlApproveSetupOrg
     Protected WithEvents cboApproveProcess As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''cboPosition control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboPosition As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboKieuCong control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboKieuCong As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''txtCCMailAccepted control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCCMailAccepted As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''emailValidator control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents emailValidator As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''cboApproveTemplate control.
     '''</summary>
     '''<remarks>
@@ -111,6 +147,60 @@ Partial Public Class ctrlApproveSetupOrg
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboApproveTemplate As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''rntxtFromHour control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtFromHour As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rntxtToHour control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtToHour As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rntxtFromDay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtFromDay As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rntxtToDay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtToDay As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtCCMailAccepting control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCCMailAccepting As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RegularExpressionValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''rdFromDate control.
@@ -183,6 +273,15 @@ Partial Public Class ctrlApproveSetupOrg
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
+
+    '''<summary>
+    '''ctrlUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
 
     '''<summary>
     '''radScriptBlock control.
