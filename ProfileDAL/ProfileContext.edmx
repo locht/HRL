@@ -558,7 +558,7 @@
             </Key>
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="CONTRACT_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="CONTRACT_TYPE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTRACT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="START_DATE" Type="date" Nullable="true" />
             <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
             <Property Name="SIGNER_TITLE" Type="nvarchar2" Nullable="true" MaxLength="255" />
@@ -4146,7 +4146,7 @@
           </Key>
           <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="CONTRACT_NO" MaxLength="255" Unicode="true" />
-          <Property Type="Decimal" Name="CONTRACT_TYPE" />
+          <Property Type="Decimal" Name="CONTRACT_TYPE_ID" Nullable="true" />
           <Property Type="DateTime" Name="START_DATE" />
           <Property Type="DateTime" Name="EXPIRE_DATE" Nullable="true" />
           <Property Type="String" Name="SIGNER_TITLE" FixedLength="false" MaxLength="255" Unicode="true" Nullable="true" />
@@ -7260,7 +7260,7 @@
                 <MappingFragment StoreEntitySet="HU_CONTRACT">
                     <ScalarProperty Name="ID" ColumnName="ID" />
                     <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
-                    <ScalarProperty Name="CONTRACT_TYPE" ColumnName="CONTRACT_TYPE" />
+                    <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
                     <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
                     <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
                     <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
