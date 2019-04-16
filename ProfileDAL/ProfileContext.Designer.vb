@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0b6fe033-c237-41b2-97d0-9950b42672f6")>
+<Assembly: EdmSchemaAttribute("1a657225-4b98-4821-add8-c58e99106890")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -14066,24 +14066,24 @@ Public Partial Class HU_CONTRACT
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CONTRACT_TYPE() As Nullable(Of Global.System.Decimal)
+    Public Property CONTRACT_TYPE_ID() As Nullable(Of Global.System.Decimal)
         Get
-            Return _CONTRACT_TYPE
+            Return _CONTRACT_TYPE_ID
         End Get
         Set
-            OnCONTRACT_TYPEChanging(value)
-            ReportPropertyChanging("CONTRACT_TYPE")
-            _CONTRACT_TYPE = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("CONTRACT_TYPE")
-            OnCONTRACT_TYPEChanged()
+            OnCONTRACT_TYPE_IDChanging(value)
+            ReportPropertyChanging("CONTRACT_TYPE_ID")
+            _CONTRACT_TYPE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CONTRACT_TYPE_ID")
+            OnCONTRACT_TYPE_IDChanged()
         End Set
     End Property
 
-    Private _CONTRACT_TYPE As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnCONTRACT_TYPEChanging(value As Nullable(Of Global.System.Decimal))
+    Private _CONTRACT_TYPE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCONTRACT_TYPE_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnCONTRACT_TYPEChanged()
+    Private Partial Sub OnCONTRACT_TYPE_IDChanged()
     End Sub
 
     ''' <summary>
@@ -44199,6 +44199,56 @@ Public Partial Class HU_WORKING
     End Sub
 
     Private Partial Sub OnSALE_COMMISION_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_ATTENDANCE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECT_ATTENDANCE
+        End Get
+        Set
+            OnOBJECT_ATTENDANCEChanging(value)
+            ReportPropertyChanging("OBJECT_ATTENDANCE")
+            _OBJECT_ATTENDANCE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECT_ATTENDANCE")
+            OnOBJECT_ATTENDANCEChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_ATTENDANCE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECT_ATTENDANCEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECT_ATTENDANCEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILING_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _FILING_DATE
+        End Get
+        Set
+            OnFILING_DATEChanging(value)
+            ReportPropertyChanging("FILING_DATE")
+            _FILING_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FILING_DATE")
+            OnFILING_DATEChanged()
+        End Set
+    End Property
+
+    Private _FILING_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnFILING_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnFILING_DATEChanged()
     End Sub
 
     #End Region

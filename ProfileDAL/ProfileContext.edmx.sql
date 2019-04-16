@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 16/04/2019 8:59:55 AM
--- Generated from EDMX file: E:\HistaffHCM\ProfileDAL\ProfileContext.edmx
+-- Date Created: 4/11/2019 9:56:39 AM
+-- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -626,7 +626,7 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_EDUCATION" (
 CREATE TABLE "dbo"."HU_CONTRACT" (
    "ID" NUMBER(38,0) NOT NULL,
    "CONTRACT_NO" NVARCHAR2(255) NULL,
-   "CONTRACT_TYPE" NUMBER(38,0) NULL,
+   "CONTRACT_TYPE_ID" NUMBER(38,0) NULL,
    "START_DATE" DATE NULL,
    "EXPIRE_DATE" DATE NULL,
    "SIGNER_TITLE" NVARCHAR2(255) NULL,
@@ -2554,7 +2554,9 @@ CREATE TABLE "dbo"."HU_WORKING" (
    "TAX_TABLE_ID" NUMBER(38,0) NULL,
    "ATTACH_FILE" NCLOB NULL,
    "FILENAME" NVARCHAR2(500) NULL,
-   "SALE_COMMISION_ID" NUMBER(38,0) NULL
+   "SALE_COMMISION_ID" NUMBER(38,0) NULL,
+   "OBJECT_ATTENDANCE" NUMBER(38,0) NULL,
+   "FILING_DATE" DATE NULL
 );
 
 -- Creating table 'PA_SALARY_TYPE'
