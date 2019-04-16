@@ -88,7 +88,7 @@ Partial Class ProfileRepository
             ' select thuộc tính
             Dim contract = query.Select(Function(p) New ContractDTO With {
                                             .ID = p.p.ID,
-                                            .CONTRACTTYPE_ID = p.c.ID,
+                                            .CONTRACTTYPE_ID = p.p.CONTRACT_TYPE_ID,
                                             .CONTRACTTYPE_NAME = p.c.NAME,
                                             .CONTRACT_NO = p.p.CONTRACT_NO,
                                             .START_DATE = p.p.START_DATE,
@@ -104,7 +104,7 @@ Partial Class ProfileRepository
                                             .SIGNER_NAME = p.p.SIGNER_NAME,
                                             .SIGNER_TITLE = p.p.SIGNER_TITLE,
                                             .CREATED_DATE = p.p.CREATED_DATE,
-                                            .STATUS_ID = p.status.ID,
+                                            .STATUS_ID = p.p.ID,
                                             .STATUS_NAME = p.status.NAME_VN,
                                             .STATUS_CODE = p.status.CODE,
                                             .MORNING_STOP = p.p.MORNING_STOP,

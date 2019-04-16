@@ -3,8 +3,52 @@
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
 
+#Region "File"
+    Public Function InsertAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertAttatch_Manager(fileInfo, fileBytes)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+    End Function
+    Public Function ModifyEmployeeHuFile(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.UpdateAttatch_Manager(fileInfo, fileBytes)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 
+    Public Function DeleteEmployeeHuFile(ByVal fileID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteAttatch_Manager(fileID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function GetEmployeeHuFile(ByVal _filter As HuFileDTO) As List(Of HuFileDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetEmployeeHuFile(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 #Region "Quá trình đào tạo ngoài công ty"
     Public Function GetProcessTraining(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTO,
                                    Optional ByRef PageIndex As Integer = 0,

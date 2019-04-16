@@ -10,6 +10,7 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetOrgsTree() As List(Of OrganizationDTO)
 
+
 #Region "Hoadm - Common"
 
 #Region "OtherList"
@@ -1752,20 +1753,26 @@ Namespace ProfileBusiness.ServiceContracts
 
 #End Region
 
-#Region "File Management"
+#Region "File Management, Tệp văn bản"
         <OperationContract()>
-        Function InsertAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean
+        Function InsertAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean
         <OperationContract()>
-        Function UpdateAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean
+        Function UpdateAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean
         <OperationContract()>
-        Function DeleteAttatch_Manager(ByVal fileID As Decimal) As Boolean
+        Function DeleteAttatch_Manager(ByVal fileID As List(Of Decimal)) As Boolean
         <OperationContract()>
-        Function GetAttachFile_Manager(ByVal fileId As Decimal) As EmployeeFileDTO
+        Function GetAttachFile_Manager(ByVal fileId As Decimal) As HuFileDTO
         <OperationContract()>
-        Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of EmployeeFileDTO)
+        Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of HuFileDTO)
         <OperationContract()>
-        Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByRef fileInfo As EmployeeFileDTO) As Byte()
+        Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As HuFileDTO) As Byte()
+        <OperationContract()>
+        Function GetEmployeeHuFile(ByVal _filter As HuFileDTO) As List(Of HuFileDTO)
+        <OperationContract()>
+        Function TestEmployeeFileDTO() As EmployeeFileDTO
+
 #End Region
+
 
 #Region "IPORTAL - Quá trình đào tạo trước khi vào công ty"
         <OperationContract()>
@@ -2390,29 +2397,6 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetListContract(ByVal ID As Decimal) As DataTable
 #End Region
 
-
-        '#Region "HomeBase"
-
-        '        <OperationContract()>
-        '        Function GetHomeBase(ByVal _filter As HomeBaseDTO, ByVal PageIndex As Integer,
-        '                                        ByVal PageSize As Integer,
-        '                                        ByRef Total As Integer,
-        '                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of HomeBaseDTO)
-        '        <OperationContract()>
-        '        Function InsertHomeBase(ByVal objHomeBase As HomeBaseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-
-        '        <OperationContract()>
-        '        Function ValidateHomeBase(ByVal _validate As HomeBaseDTO) As Boolean
-
-        '        <OperationContract()>
-        '        Function ModifyHomeBase(ByVal objHomeBase As HomeBaseDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-
-        '        <OperationContract()>
-        '        Function ActiveHomeBase(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal sActive As String) As Boolean
-
-        '        <OperationContract()>
-        '        Function DeleteHomeBase(ByVal lstHomeBase() As HomeBaseDTO, ByVal log As UserLog) As Boolean
-        '#End Region
     End Interface
 
 End Namespace

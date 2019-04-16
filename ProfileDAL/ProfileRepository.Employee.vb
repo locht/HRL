@@ -3591,4 +3591,23 @@ Partial Class ProfileRepository
 
 #End Region
 
+
+    Public Function ModifyEmployeeHuFile(ByVal objEmployeeHuF As HuFileDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objEmployeeHuFile As New HU_FILE With {.ID = objEmployeeHuF.ID}
+        Try
+            objEmployeeHuFile = (From p In Context.HU_FILE Where p.ID = objEmployeeHuF.ID).FirstOrDefault
+            objEmployeeHuFile.EMPLOYEE_ID = objEmployeeHuF.EMPLOYEE_ID
+            objEmployeeHuFile.MODIFIED_DATE = DateTime.Now
+            objEmployeeHuFile.MODIFIED_BY = log.Username
+            objEmployeeHuFile.MODIFIED_LOG = log.ComputerName
+            Context.SaveChanges(log)
+            gID = objEmployeeHuFile.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
 End Class

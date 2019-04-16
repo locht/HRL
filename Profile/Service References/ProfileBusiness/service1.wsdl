@@ -15,14 +15,26 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ProfileDAL" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
       <xsd:import />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IProfileBusiness_GetTalentPool_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTalentPool" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetTalentPool_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTalentPoolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertTalentPool_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertTalentPool" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertTalentPool_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertTalentPoolResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_ActiveTalentPool_InputMessage">
     <wsdl:part name="parameters" element="tns:ActiveTalentPool" />
   </wsdl:message>
@@ -136,6 +148,18 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetListContract_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetListContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetWelfareProccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWelfareProccess" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetWelfareProccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWelfareProccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetContractProccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContractProccess" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetContractProccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContractProccessResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetCommendProccess_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCommendProccess" />
@@ -635,18 +659,6 @@
   <wsdl:message name="IProfileBusiness_GetPortalCompetencyCourse_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPortalCompetencyCourseResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetTalentPool_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTalentPool" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetTalentPool_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTalentPoolResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertTalentPool_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertTalentPool" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertTalentPool_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertTalentPoolResponse" />
-  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetWorking3B_InputMessage">
     <wsdl:part name="parameters" element="tns:GetWorking3B" />
   </wsdl:message>
@@ -1013,6 +1025,18 @@
   <wsdl:message name="IProfileBusiness_DownloadAttachFile_Manager_OutputMessage">
     <wsdl:part name="parameters" element="tns:DownloadAttachFile_ManagerResponse" />
   </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetEmployeeHuFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeHuFile" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetEmployeeHuFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeHuFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_TestEmployeeFileDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestEmployeeFileDTO" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_TestEmployeeFileDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestEmployeeFileDTOResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetProcessTrainingEdit_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProcessTrainingEdit" />
   </wsdl:message>
@@ -1144,18 +1168,6 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetSalaryProccess_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSalaryProccessResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWelfareProccess_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetWelfareProccess" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWelfareProccess_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetWelfareProccessResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetContractProccess_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetContractProccess" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetContractProccess_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetContractProccessResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_DeleteCompetencyAss_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteCompetencyAss" />
@@ -2688,6 +2700,14 @@
     <wsdl:part name="parameters" element="tns:GetNationResponse" />
   </wsdl:message>
   <wsdl:portType name="IProfileBusiness">
+    <wsdl:operation name="GetTalentPool">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTalentPool" message="tns:IProfileBusiness_GetTalentPool_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTalentPoolResponse" message="tns:IProfileBusiness_GetTalentPool_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertTalentPool">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertTalentPool" message="tns:IProfileBusiness_InsertTalentPool_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertTalentPoolResponse" message="tns:IProfileBusiness_InsertTalentPool_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ActiveTalentPool">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ActiveTalentPool" message="tns:IProfileBusiness_ActiveTalentPool_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ActiveTalentPoolResponse" message="tns:IProfileBusiness_ActiveTalentPool_OutputMessage" />
@@ -2763,6 +2783,14 @@
     <wsdl:operation name="GetListContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetListContract" message="tns:IProfileBusiness_GetListContract_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetListContractResponse" message="tns:IProfileBusiness_GetListContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWelfareProccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWelfareProccess" message="tns:IProfileBusiness_GetWelfareProccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWelfareProccessResponse" message="tns:IProfileBusiness_GetWelfareProccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContractProccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetContractProccess" message="tns:IProfileBusiness_GetContractProccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetContractProccessResponse" message="tns:IProfileBusiness_GetContractProccess_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetCommendProccess">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetCommendProccess" message="tns:IProfileBusiness_GetCommendProccess_InputMessage" />
@@ -3096,14 +3124,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetPortalCompetencyCourse" message="tns:IProfileBusiness_GetPortalCompetencyCourse_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetPortalCompetencyCourseResponse" message="tns:IProfileBusiness_GetPortalCompetencyCourse_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTalentPool">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTalentPool" message="tns:IProfileBusiness_GetTalentPool_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTalentPoolResponse" message="tns:IProfileBusiness_GetTalentPool_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertTalentPool">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertTalentPool" message="tns:IProfileBusiness_InsertTalentPool_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertTalentPoolResponse" message="tns:IProfileBusiness_InsertTalentPool_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetWorking3B">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorking3B" message="tns:IProfileBusiness_GetWorking3B_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorking3BResponse" message="tns:IProfileBusiness_GetWorking3B_OutputMessage" />
@@ -3348,6 +3368,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DownloadAttachFile_Manager" message="tns:IProfileBusiness_DownloadAttachFile_Manager_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DownloadAttachFile_ManagerResponse" message="tns:IProfileBusiness_DownloadAttachFile_Manager_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetEmployeeHuFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeHuFile" message="tns:IProfileBusiness_GetEmployeeHuFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeHuFileResponse" message="tns:IProfileBusiness_GetEmployeeHuFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestEmployeeFileDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTO" message="tns:IProfileBusiness_TestEmployeeFileDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTOResponse" message="tns:IProfileBusiness_TestEmployeeFileDTO_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetProcessTrainingEdit">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit" message="tns:IProfileBusiness_GetProcessTrainingEdit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetProcessTrainingEditResponse" message="tns:IProfileBusiness_GetProcessTrainingEdit_OutputMessage" />
@@ -3435,14 +3463,6 @@
     <wsdl:operation name="GetSalaryProccess">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetSalaryProccess" message="tns:IProfileBusiness_GetSalaryProccess_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetSalaryProccessResponse" message="tns:IProfileBusiness_GetSalaryProccess_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetWelfareProccess">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWelfareProccess" message="tns:IProfileBusiness_GetWelfareProccess_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWelfareProccessResponse" message="tns:IProfileBusiness_GetWelfareProccess_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetContractProccess">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetContractProccess" message="tns:IProfileBusiness_GetContractProccess_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetContractProccessResponse" message="tns:IProfileBusiness_GetContractProccess_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteCompetencyAss">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCompetencyAss" message="tns:IProfileBusiness_DeleteCompetencyAss_InputMessage" />
@@ -4468,6 +4488,24 @@
   <wsdl:binding name="WSHttpBinding_IProfileBusiness" type="tns:IProfileBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IProfileBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTalentPool">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTalentPool" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTalentPool">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertTalentPool" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ActiveTalentPool">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ActiveTalentPool" style="document" />
       <wsdl:input>
@@ -4632,6 +4670,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetListContract">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetListContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWelfareProccess">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWelfareProccess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContractProccess">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetContractProccess" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5386,24 +5442,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTalentPool">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTalentPool" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertTalentPool">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertTalentPool" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetWorking3B">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWorking3B" style="document" />
       <wsdl:input>
@@ -5953,6 +5991,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEmployeeHuFile">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetEmployeeHuFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestEmployeeFileDTO">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetProcessTrainingEdit">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit" style="document" />
       <wsdl:input>
@@ -6144,24 +6200,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetSalaryProccess">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetSalaryProccess" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetWelfareProccess">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWelfareProccess" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetContractProccess">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetContractProccess" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

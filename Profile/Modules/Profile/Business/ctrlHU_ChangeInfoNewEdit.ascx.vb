@@ -1219,7 +1219,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 Case CommonMessage.STATE_NEW
 
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(False, btnFindEmployee, cbOBJECT_ATTENDANCE_OLD)
+                    EnableControlAll(False, btnFindEmployee)
             End Select
 
             Select Case isLoadPopup

@@ -11,11 +11,12 @@ Imports WebAppLog
 Public Class ctrlHU_EmpDtlFile
     Inherits CommonView
     Dim employeeCode As String
-    Public Overrides Property MustAuthorize As Boolean = False
+    'Public Overrides Property MustAuthorize As Boolean = False
 
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Profile/Module/Profile/Business/" + Me.GetType().Name.ToString()
+    Dim pathFile As String = System.Configuration.ConfigurationManager.AppSettings("PathFileEmpFolder").ToString()
 
 #Region "Properties"
     ''' <summary>
@@ -66,11 +67,11 @@ Public Class ctrlHU_EmpDtlFile
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property lstHuFile As List(Of EmployeeFileDTO)
+    Property lstHuFile As List(Of HuFileDTO)
         Get
             Return ViewState(Me.ID & "_lstHuFile")
         End Get
-        Set(ByVal value As List(Of EmployeeFileDTO))
+        Set(ByVal value As List(Of HuFileDTO))
             ViewState(Me.ID & "_lstHuFile") = value
         End Set
     End Property
@@ -174,8 +175,11 @@ Public Class ctrlHU_EmpDtlFile
                          ToolbarItem.Edit,
                          ToolbarItem.Save,
                          ToolbarItem.Cancel,
+                         ToolbarItem.Export,
                          ToolbarItem.Delete)
             CType(Me.MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -270,6 +274,7 @@ Public Class ctrlHU_EmpDtlFile
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
+                                    ResetControlValue()
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -277,6 +282,7 @@ Public Class ctrlHU_EmpDtlFile
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
+                                    ResetControlValue()
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -311,6 +317,16 @@ Public Class ctrlHU_EmpDtlFile
                         CurrentState = CommonMessage.STATE_NORMAL
                         Exit Sub
                     End If
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = lstHuFile.ToTable
+                        If dtData.Rows.Count > 0 Then
+                            rgHuFile.ExportExcel(Server, Response, dtData, "EmpDtlFile")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                        End If
+                    End Using
             End Select
             ctrlEmpBasicInfo.SetProperty("CurrentState", Me.CurrentState)
             ctrlEmpBasicInfo.Refresh()
@@ -344,14 +360,14 @@ Public Class ctrlHU_EmpDtlFile
     Private Sub rgHuFile_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgHuFile.NeedDataSource
         If EmployeeInfo IsNot Nothing Then
             Dim rep As New ProfileBusinessRepository
-            Dim objHuFile As New EmployeeFileDTO
+            Dim objHuFile As New HuFileDTO
             objHuFile.EMPLOYEE_ID = EmployeeInfo.ID
             SetValueObjectByRadGrid(rgHuFile, objHuFile)
 
             lstHuFile = rep.GetEmployeeHuFile(objHuFile)
             rgHuFile.DataSource = lstHuFile
         Else
-            rgHuFile.DataSource = New List(Of EmployeeFileDTO)
+            rgHuFile.DataSource = New List(Of HuFileDTO)
         End If
     End Sub
 
@@ -372,15 +388,15 @@ Public Class ctrlHU_EmpDtlFile
 
             Dim item As GridDataItem = rgHuFile.SelectedItems(0)
             hidHuFileID.Value = item.GetDataKeyValue("ID")
-            txtFullName.Text = item.GetDataKeyValue("NAME_VN")
-            txtNumberCode.Text = item.GetDataKeyValue("FILE_NO")
+            txtFullName.Text = item.GetDataKeyValue("NAME")
+            txtNumberCode.Text = item.GetDataKeyValue("NUMBER_CODE")
             txtAdress.Text = item.GetDataKeyValue("ADDRESS")
             rdFromDate.SelectedDate = item.GetDataKeyValue("FROM_DATE")
             rdToDate.SelectedDate = item.GetDataKeyValue("TO_DATE")
-            txtNote.Text = item.GetDataKeyValue("NOTE")
+            txtNote.Text = item.GetDataKeyValue("REMARK")
+            txtFileNameVN.Text = item.GetDataKeyValue("FILENAME")
             txtFileNameSys.Value = item.GetDataKeyValue("FILENAME_SYS")
-            txtFileName.Text = item.GetDataKeyValue("FILENAME")
-
+            txtSign.Text = item.GetDataKeyValue("SIGN_PERSON")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -444,22 +460,40 @@ Public Class ctrlHU_EmpDtlFile
             objHuFile.ADDRESS = txtAdress.Text.Trim()
             objHuFile.FROM_DATE = rdFromDate.SelectedDate
             objHuFile.TO_DATE = rdToDate.SelectedDate
-            objHuFile.NOTE = txtNote.Text.Trim()
-
+            objHuFile.REMARK = txtNote.Text.Trim()
+            objHuFile.SIGN_PERSON = txtSign.Text
             Dim gID As Decimal
             If hidHuFileID.Value = "" Then
                 If LicenseFile IsNot Nothing Then
-                    objHuFile.FILENAME_SYS = r.GenFilenameSys("ReportTemplates\Profile\File\HuFile", LicenseFile)
-                    objHuFile.FILENAME = LicenseFile.FileName
+                    Dim bytes() As Byte
+                    If txtFileNameVN.Text <> "" Then
+                        bytes = New Byte(LicenseFile.ContentLength) {}
+                        LicenseFile.InputStream.Read(bytes, 0, bytes.Length)
+                        'objHuFile.FILENAME_SYS = r.GenFilenameSys("ReportTemplates\Profile\File\HuFile", LicenseFile)
+                        objHuFile.FILENAME = LicenseFile.FileName
+                        objHuFile.FILENAME_SYS = LicenseFile.GetExtension()
+                        txtFileNameSys.Value = LicenseFile.GetExtension()
+                    Else
+                        bytes = Nothing
+                    End If
+                    If Not (rep.InsertAttatch_Manager(objHuFile, bytes)) Then
+                        Return False
+                    End If
                 End If
-                rep.InsertEmployeeHuFile(objHuFile, gID)
+
             Else
                 objHuFile.ID = Decimal.Parse(hidHuFileID.Value)
                 If LicenseFile IsNot Nothing Then
-                    objHuFile.FILENAME_SYS = r.GenFilenameSys("ReportTemplates\Profile\File\HuFile", LicenseFile)
+                    Dim bytes() As Byte = New Byte(LicenseFile.ContentLength) {}
+                    LicenseFile.InputStream.Read(bytes, 0, bytes.Length)
+                    ' objHuFile.FILENAME_SYS = r.GenFilenameSys("ReportTemplates\Profile\File\HuFile", LicenseFile)
                     objHuFile.FILENAME = LicenseFile.FileName
+                    objHuFile.FILENAME_SYS = LicenseFile.GetExtension()
+                    txtFileNameSys.Value = LicenseFile.GetExtension()
+                    If Not rep.ModifyEmployeeHuFile(objHuFile, bytes) Then
+                        Return False
+                    End If
                 End If
-                rep.ModifyEmployeeHuFile(objHuFile, gID)
             End If
             IDSelect = gID
             Return True
@@ -507,6 +541,7 @@ Public Class ctrlHU_EmpDtlFile
         txtAdress.ReadOnly = Not sTrangThai
         txtFullName.ReadOnly = Not sTrangThai
         txtNote.ReadOnly = Not sTrangThai
+        txtSign.ReadOnly = Not sTrangThai
         Utilities.EnableRadDatePicker(rdFromDate, sTrangThai)
         Utilities.EnableRadDatePicker(rdToDate, sTrangThai)
         SetStatusToolBar()
@@ -515,7 +550,7 @@ Public Class ctrlHU_EmpDtlFile
     Private Sub ResetControlValue()
         ClearControlValue(txtFullName, txtNumberCode, txtAdress, txtFullName,
                           hidHuFileID, txtNote,
-                          rdFromDate, rdToDate, txtFileName, txtFileNameSys)
+                          rdFromDate, rdToDate, txtFileNameVN, txtFileNameSys, txtFileNameDL, txtSign)
     End Sub
 
     Private Function DeleteHuFile() As Boolean
@@ -540,7 +575,7 @@ Public Class ctrlHU_EmpDtlFile
             End Using
             'Lưu file vào PageViewStates , khi insert vào Database mới lưu file này lên folder trên server.
             LicenseFile = file
-            txtFileName.Text = file.FileName
+            txtFileNameVN.Text = file.FileName
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -549,12 +584,12 @@ Public Class ctrlHU_EmpDtlFile
 
     Protected Sub btnExportFile_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnExportFile.Click
         Try
-            If txtFileNameSys IsNot Nothing Then
-                Dim filepath As String = MapPath("\\ReportTemplates\\Profile\\File\\HuFile\\" & txtFileNameSys.Value)
-                Dim bts As Byte() = System.IO.File.ReadAllBytes(filepath)
+            If hidHuFileID.Value IsNot Nothing Then
+                Dim filePath = pathFile & "\" & hidHuFileID.Value & txtFileNameSys.Value
+                Dim bts As Byte() = System.IO.File.ReadAllBytes(filePath)
                 Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
                 Response.Clear()
-                Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(txtFileNameSys.Value, "_"))
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(txtFileNameDL.Value, "_"))
                 Response.AddHeader("Content-Length", bts.Length.ToString())
                 Response.ContentType = "application/octet-stream"
                 Response.BinaryWrite(bts)
@@ -566,12 +601,12 @@ Public Class ctrlHU_EmpDtlFile
 
     Protected Sub btnDownload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnDownload.Click
         Try
-            If txtDownloadFile IsNot Nothing Then
-                Dim filepath As String = MapPath("\\ReportTemplates\\Profile\\File\\HuFile\\" & txtDownloadFile.Value)
-                Dim bts As Byte() = System.IO.File.ReadAllBytes(filepath)
+            If hidHuFileID.Value IsNot Nothing Then
+                Dim filePath = pathFile & "\" & hidHuFileID.Value & txtFileNameSys.Value
+                Dim bts As Byte() = System.IO.File.ReadAllBytes(filePath)
                 Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
                 Response.Clear()
-                Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(txtDownloadFile.Value, "_"))
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(txtFileNameDL.Value, "_"))
                 Response.AddHeader("Content-Length", bts.Length.ToString())
                 Response.ContentType = "application/octet-stream"
                 Response.BinaryWrite(bts)
@@ -581,5 +616,4 @@ Public Class ctrlHU_EmpDtlFile
         End Try
     End Sub
 #End Region
-
 End Class

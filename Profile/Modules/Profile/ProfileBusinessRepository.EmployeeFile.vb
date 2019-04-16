@@ -5,44 +5,7 @@ Partial Public Class ProfileBusinessRepository
 
 
 #Region "Employee File"
-    Public Function InsertAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean
-        Using rep As New ProfileBusinessClient
-            Try
-                Return rep.InsertAttatch_Manager(fileInfo, fileBytes)
-            Catch ex As Exception
-                rep.Abort()
-                Throw ex
-            End Try
-        End Using
-
-    End Function
-
-    Public Function UpdateAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean
-        Using rep As New ProfileBusinessClient
-            Try
-                Return rep.UpdateAttatch_Manager(fileInfo, fileBytes)
-            Catch ex As Exception
-                rep.Abort()
-                Throw ex
-            End Try
-        End Using
-
-    End Function
-
-    Public Function DeleteAttatch_Manager(ByVal fileID As Decimal) As Boolean
-        Using rep As New ProfileBusinessClient
-            Try
-                Return rep.DeleteAttatch_Manager(fileID)
-            Catch ex As Exception
-                rep.Abort()
-                Throw ex
-            End Try
-        End Using
-
-    End Function
-
-
-    Public Function GetAttachFile_Manager(ByVal fileID As Decimal) As EmployeeFileDTO
+    Public Function GetAttachFile_Manager(ByVal fileID As Decimal) As HuFileDTO
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.GetAttachFile_Manager(fileID)
@@ -54,10 +17,10 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
-    Public Function DownloadAttachFile_Manager(ByVal fileid As Decimal, ByRef fileInfo As EmployeeFileDTO) As Byte()
+    Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As HuFileDTO) As Byte()
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.DownloadAttachFile_Manager(fileid, fileInfo)
+                Return rep.DownloadAttachFile_Manager(fileid, ext, fileInfo)
             Catch ex As Exception
                 rep.Abort()
                 Throw
@@ -65,7 +28,7 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
-    Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of EmployeeFileDTO)
+    Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of HuFileDTO)
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.GetAttachFiles_Manager(fileType, page, pageSize, totalPage, Employee_id)
@@ -77,5 +40,4 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 #End Region
-
 End Class

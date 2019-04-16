@@ -7,9 +7,10 @@ Imports System.Configuration
 
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
-
-
-        Public Function InsertAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean Implements IProfileBusiness.InsertAttatch_Manager
+        Public Function TestEmployeeFileDTO() As EmployeeFileDTO Implements IProfileBusiness.TestEmployeeFileDTO
+            Return Nothing
+        End Function
+        Public Function InsertAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean Implements IProfileBusiness.InsertAttatch_Manager
             Using rep As New ProfileRepository
                 Try
 
@@ -20,7 +21,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function UpdateAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean Implements IProfileBusiness.UpdateAttatch_Manager
+        Public Function UpdateAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean Implements IProfileBusiness.UpdateAttatch_Manager
             Using rep As New ProfileRepository
                 Try
 
@@ -31,7 +32,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function DeleteAttatch_Manager(ByVal fileID As Decimal) As Boolean Implements IProfileBusiness.DeleteAttatch_Manager
+        Public Function DeleteAttatch_Manager(ByVal fileID As List(Of Decimal)) As Boolean Implements IProfileBusiness.DeleteAttatch_Manager
             Using rep As New ProfileRepository
                 Try
 
@@ -43,7 +44,7 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 
 
-        Public Function GetAttachFile_Manager(ByVal fileId As Decimal) As EmployeeFileDTO Implements IProfileBusiness.GetAttachFile_Manager
+        Public Function GetAttachFile_Manager(ByVal fileId As Decimal) As HuFileDTO Implements IProfileBusiness.GetAttachFile_Manager
             Using rep As New ProfileRepository
                 Try
 
@@ -53,8 +54,18 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetEmployeeHuFile(ByVal _filter As HuFileDTO) As List(Of HuFileDTO) Implements IProfileBusiness.GetEmployeeHuFile
+            Using rep As New ProfileRepository
+                Try
 
-        Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of EmployeeFileDTO) Implements IProfileBusiness.GetAttachFiles_Manager
+                    Return rep.GetEmployeeHuFile(_filter)
+                Catch ex As Exception
+                    Throw
+                End Try
+            End Using
+        End Function
+
+        Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of HuFileDTO) Implements IProfileBusiness.GetAttachFiles_Manager
             Using rep As New ProfileRepository
                 Try
 
@@ -65,17 +76,15 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByRef fileInfo As EmployeeFileDTO) As Byte() Implements IProfileBusiness.DownloadAttachFile_Manager
+        Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As HuFileDTO) As Byte() Implements IProfileBusiness.DownloadAttachFile_Manager
             Using rep As New ProfileRepository
                 Try
 
-                    Return rep.DownloadAttachFile_Manager(fileID, fileInfo)
+                    Return rep.DownloadAttachFile_Manager(fileID, ext, fileInfo)
                 Catch ex As Exception
                     Throw
                 End Try
             End Using
         End Function
-
-
     End Class
 End Namespace
