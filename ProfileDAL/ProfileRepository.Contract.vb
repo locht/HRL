@@ -25,7 +25,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_CONTRACT Order By p.HU_EMPLOYEE.EMPLOYEE_CODE
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
-                        From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE = f.ID)
+                        From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE_ID = f.ID)
                         From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
@@ -131,7 +131,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_CONTRACT
                         From e In Context.HU_EMPLOYEE.Where(Function(f) p.EMPLOYEE_ID = f.ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
-                        From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE = f.ID)
+                        From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE_ID = f.ID)
                         From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                         From staffrank In Context.HU_STAFF_RANK.Where(Function(f) e.STAFF_RANK_ID = f.ID).DefaultIfEmpty
                         From w In Context.HU_WORKING.Where(Function(f) p.WORKING_ID = f.ID).DefaultIfEmpty
@@ -264,7 +264,7 @@ Partial Class ProfileRepository
             objContractData.ID = Utilities.GetNextSequence(Context, Context.HU_CONTRACT.EntitySet.Name)
             objContract.ID = objContractData.ID
             objContractData.CONTRACT_NO = objContract.CONTRACT_NO
-            objContractData.CONTRACT_TYPE = objContract.CONTRACTTYPE_ID
+            objContractData.CONTRACT_TYPE_ID = objContract.CONTRACTTYPE_ID
             objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
             objContractData.START_DATE = objContract.START_DATE
             objContractData.EXPIRE_DATE = objContract.EXPIRE_DATE
@@ -365,7 +365,7 @@ Partial Class ProfileRepository
 
             objContractData.ID = objContract.ID
             objContractData.CONTRACT_NO = objContract.CONTRACT_NO
-            objContractData.CONTRACT_TYPE = objContract.CONTRACTTYPE_ID
+            objContractData.CONTRACT_TYPE_ID = objContract.CONTRACTTYPE_ID
             objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
             objContractData.EXPIRE_DATE = objContract.EXPIRE_DATE
             objContractData.STATUS_ID = objContract.STATUS_ID
@@ -513,7 +513,7 @@ Partial Class ProfileRepository
             End If
             Dim query = (From c In Context.HU_CONTRACT
                          From type In Context.HU_CONTRACT_TYPE.Where(Function(p) p.CODE <> ProfileCommon.ContractType.Probation And
-                          p.ID = c.CONTRACT_TYPE)
+                          p.ID = c.CONTRACT_TYPE_ID)
                          Where c.EMPLOYEE_ID = objContract.EMPLOYEE_ID And c.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID)
             Dim no = query.Count
             If employeeCode.StartsWith("e") Or employeeCode.StartsWith("E") Then

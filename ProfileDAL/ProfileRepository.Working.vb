@@ -376,6 +376,7 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WORKING
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
@@ -392,6 +393,9 @@ Partial Class ProfileRepository
                                                                        f.USERNAME = log.Username.ToUpper)
                         Select New WorkingDTO With {.ID = p.ID,
                                                     .DECISION_NO = p.DECISION_NO,
+                                                    .FILING_DATE = p.FILING_DATE,
+                                                    .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                                    .OBJECT_ATTENDANCE_NAME = ot.NAME_VN,
                                                     .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                                                     .DECISION_TYPE_NAME = deci_type.NAME_VN,
                                                     .CODE = deci_type.CODE,
@@ -493,6 +497,13 @@ Partial Class ProfileRepository
 
             If _filter.EFFECT_DATE IsNot Nothing Then
                 query = query.Where(Function(p) p.EFFECT_DATE = _filter.EFFECT_DATE)
+            End If
+            If _filter.OBJECT_ATTENDANCE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.OBJECT_ATTENDANCE_NAME >= _filter.OBJECT_ATTENDANCE_NAME)
+            End If
+
+            If _filter.FILING_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.FILING_DATE >= _filter.FILING_DATE)
             End If
 
             If _filter.FROM_DATE IsNot Nothing Then
@@ -624,6 +635,8 @@ Partial Class ProfileRepository
                         Order By p.EFFECT_DATE Descending
                         Select New WorkingDTO With {
                              .ID = p.ID,
+                             .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                             .FILING_DATE = p.FILING_DATE,
                              .DECISION_NO = p.DECISION_NO,
                              .EFFECT_DATE = p.EFFECT_DATE,
                              .PERCENT_SALARY = p.PERCENT_SALARY,
@@ -698,6 +711,8 @@ Partial Class ProfileRepository
                         Where p.ID = _filter.ID
                         Select New WorkingDTO With {
                              .ID = p.ID,
+                             .FILING_DATE = p.FILING_DATE,
+                             .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
                              .COST_SUPPORT = p.COST_SUPPORT,
                              .DECISION_NO = p.DECISION_NO,
                              .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
@@ -862,6 +877,8 @@ Partial Class ProfileRepository
                                  .ID = p.ID,
                                  .COST_SUPPORT = p.COST_SUPPORT,
                                  .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                 .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                 .FILING_DATE = p.FILING_DATE,
                                  .EMPLOYEE_ID = e.ID,
                                  .EMPLOYEE_NAME = e.FULLNAME_VN,
                                  .STAFF_RANK_ID = p.STAFF_RANK_ID,
@@ -948,6 +965,8 @@ Partial Class ProfileRepository
             Dim objWorkingData As New HU_WORKING
             objWorkingData.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name)
             objWorking.ID = objWorkingData.ID
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            objWorkingData.FILING_DATE = objWorking.FILING_DATE
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
             objWorkingData.TITLE_ID = objWorking.TITLE_ID
             objWorkingData.ORG_ID = objWorking.ORG_ID
@@ -1083,6 +1102,8 @@ Partial Class ProfileRepository
         Try
             Dim objWorkingData = (From p In Context.HU_WORKING Where objWorking.ID = p.ID).First()
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            objWorkingData.FILING_DATE = objWorking.FILING_DATE
             objWorkingData.TITLE_ID = objWorking.TITLE_ID
             objWorkingData.ORG_ID = objWorking.ORG_ID
             objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID

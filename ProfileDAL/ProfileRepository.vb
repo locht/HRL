@@ -911,7 +911,7 @@ Public Class ProfileRepository
                                .ID = l.ID,
                                .NAME = l.NAME,
                                .CODE = l.CODE,
-                               .CONTRACT_TYPE_ID = l.CONTRACT_TYPE,
+                               .CONTRACT_TYPE = l.CONTRACT_TYPE,
                                .CONTRACT_TYPE_NAME = l.CONTRACT_TYPE_NAME,
                                .GENDER = l.GENDER,
                                .GENDER_NAME = l.GENDER_NAME,
