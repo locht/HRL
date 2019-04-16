@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c598ab8b-3329-4faa-b1b1-ef21cc64cd0c")>
+<Assembly: EdmSchemaAttribute("0b6fe033-c237-41b2-97d0-9950b42672f6")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -14066,24 +14066,24 @@ Public Partial Class HU_CONTRACT
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CONTRACT_TYPE_ID() As Nullable(Of Global.System.Decimal)
+    Public Property CONTRACT_TYPE() As Nullable(Of Global.System.Decimal)
         Get
-            Return _CONTRACT_TYPE_ID
+            Return _CONTRACT_TYPE
         End Get
         Set
-            OnCONTRACT_TYPE_IDChanging(value)
-            ReportPropertyChanging("CONTRACT_TYPE_ID")
-            _CONTRACT_TYPE_ID = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("CONTRACT_TYPE_ID")
-            OnCONTRACT_TYPE_IDChanged()
+            OnCONTRACT_TYPEChanging(value)
+            ReportPropertyChanging("CONTRACT_TYPE")
+            _CONTRACT_TYPE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CONTRACT_TYPE")
+            OnCONTRACT_TYPEChanged()
         End Set
     End Property
 
-    Private _CONTRACT_TYPE_ID As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnCONTRACT_TYPE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    Private _CONTRACT_TYPE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCONTRACT_TYPEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnCONTRACT_TYPE_IDChanged()
+    Private Partial Sub OnCONTRACT_TYPEChanged()
     End Sub
 
     ''' <summary>

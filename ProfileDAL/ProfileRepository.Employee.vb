@@ -26,7 +26,7 @@ Partial Class ProfileRepository
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                      From c In Context.HU_CONTRACT.Where(Function(c) c.ID = p.CONTRACT_ID)
-                     From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = c.CONTRACT_TYPE_ID)
+                     From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = c.CONTRACT_TYPE)
                      Where _orgIds.Contains(p.ORG_ID) Order By p.EMPLOYEE_CODE
                         Select New EmployeeDTO With {
                          .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
@@ -39,7 +39,7 @@ Partial Class ProfileRepository
                          .TITLE_ID = p.TITLE_ID,
                          .JOIN_DATE = p.JOIN_DATE,
                          .TITLE_NAME_VN = title.NAME_VN,
-                         .CONTRACT_TYPE_ID = c.CONTRACT_TYPE_ID,
+                         .CONTRACT_TYPE_ID = c.CONTRACT_TYPE,
                          .CONTRACT_TYPE_NAME = t.NAME,
                          .WORK_STATUS = p.WORK_STATUS,
                          .CONTRACT_NO = c.CONTRACT_NO})
@@ -196,7 +196,7 @@ Partial Class ProfileRepository
                         From title In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From c In Context.HU_CONTRACT.Where(Function(c) c.ID = p.CONTRACT_ID).DefaultIfEmpty
-                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE).DefaultIfEmpty
                         Order By p.EMPLOYEE_CODE
 
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
@@ -342,7 +342,7 @@ Partial Class ProfileRepository
                         From ot In Context.HU_ORG_TITLE.Where(Function(f) f.TITLE_ID = title.ID And f.ORG_ID = org.ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From c In Context.HU_CONTRACT.Where(Function(c) c.ID = p.CONTRACT_ID).DefaultIfEmpty
-                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE).DefaultIfEmpty
                         Order By p.EMPLOYEE_CODE
 
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
@@ -487,7 +487,7 @@ Partial Class ProfileRepository
                         From title In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From c In Context.HU_CONTRACT.Where(Function(c) c.ID = p.CONTRACT_ID).DefaultIfEmpty
-                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                        From ct In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = c.CONTRACT_TYPE).DefaultIfEmpty
                         Order By p.EMPLOYEE_CODE
 
             Dim lst = query.Select(Function(p) New EmployeeDTO With {
@@ -551,7 +551,7 @@ Partial Class ProfileRepository
                      From staffRank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
                      From c In Context.HU_CONTRACT.Where(Function(c) c.ID = e.CONTRACT_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(t) t.ID = e.ORG_ID).DefaultIfEmpty
-                     From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                     From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = c.CONTRACT_TYPE).DefaultIfEmpty
                      From titlegroup In Context.OT_OTHER_LIST.Where(Function(f) f.ID = title.TITLE_GROUP_ID And
                                                                         f.TYPE_ID = 2000).DefaultIfEmpty
                      From workstatus In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.WORK_STATUS And
@@ -2174,7 +2174,7 @@ Partial Class ProfileRepository
         Try
             Dim query As List(Of ContractDTO)
             query = (From p In Context.HU_CONTRACT
-                     From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = p.CONTRACT_TYPE_ID)
+                     From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = p.CONTRACT_TYPE)
                      Where p.EMPLOYEE_ID = _empId _
                      And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Order By p.START_DATE
                      Select New ContractDTO With {

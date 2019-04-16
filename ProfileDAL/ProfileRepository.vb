@@ -1877,7 +1877,7 @@ Public Class ProfileRepository
                           From u In Context.HU_EMPLOYEE.Where(Function(x) p.EMP_ID = x.ID).DefaultIfEmpty
                           From t In Context.HU_TITLE.Where(Function(x) x.ID = u.TITLE_ID).DefaultIfEmpty
                           From c In Context.HU_CONTRACT.Where(Function(x) x.ID = p.ID_CONTRACT).DefaultIfEmpty
-                           From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                           From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE).DefaultIfEmpty
                            From org In Context.HU_ORGANIZATION.Where(Function(x) x.ID = u.ORG_ID).DefaultIfEmpty
                            From f In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.FORM_ID).DefaultIfEmpty
                             From staffrank In Context.HU_STAFF_RANK.Where(Function(x) u.STAFF_RANK_ID = f.ID).DefaultIfEmpty
@@ -1996,7 +1996,7 @@ Public Class ProfileRepository
                         From u In Context.HU_EMPLOYEE.Where(Function(x) p.EMP_ID = x.ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.STATUS_ID).DefaultIfEmpty
                         From c In Context.HU_CONTRACT.Where(Function(x) x.ID = p.ID_CONTRACT).DefaultIfEmpty
-                        From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                        From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE).DefaultIfEmpty
                         From form In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.FORM_ID).DefaultIfEmpty
                         From appendtype In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = p.APPEND_TYPEID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(x) x.ID = u.TITLE_ID).DefaultIfEmpty()
@@ -2201,7 +2201,7 @@ Public Class ProfileRepository
             Dim period As Integer = 0
             Dim inforContract = (From p In Context.HU_CONTRACT Where p.ID = ID Select p).FirstOrDefault
             If inforContract IsNot Nothing Then
-                period = Context.HU_CONTRACT_TYPE.First(Function(x) x.ID = inforContract.CONTRACT_TYPE_ID).PERIOD
+                period = Context.HU_CONTRACT_TYPE.First(Function(x) x.ID = inforContract.CONTRACT_TYPE).PERIOD
                 If period <> 0 Then
                     numDay = (EndDate - inforContract.START_DATE.Value).Days
                     numDay = Math.Round(numDay / 365 * 12, 0)
@@ -2499,7 +2499,7 @@ Public Class ProfileRepository
                           From ot In Context.OT_OTHER_LIST.Where(Function(x) x.ID = p.STATUS_ID).DefaultIfEmpty
                           From t In Context.HU_TITLE.Where(Function(x) x.ID = u.TITLE_ID).DefaultIfEmpty
                           From c In Context.HU_CONTRACT.Where(Function(x) x.ID = p.ID_CONTRACT).DefaultIfEmpty
-                           From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                           From type In Context.HU_CONTRACT_TYPE.Where(Function(x) x.ID = c.CONTRACT_TYPE).DefaultIfEmpty
                            From org In Context.HU_ORGANIZATION.Where(Function(x) x.ID = u.ORG_ID).DefaultIfEmpty
             'Select New FileContractDTO With {.ID = p.ID,
             '                                 .EMPLOYEE_ID = p.EMP_ID,
@@ -2644,7 +2644,7 @@ Public Class ProfileRepository
                            .ID = p.ID,
                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
                            .CONTRACT_NO = p.CONTRACT_NO,
-                           .CONTRACTTYPE_ID = p.CONTRACT_TYPE_ID}).ToList()
+                           .CONTRACTTYPE_ID = p.CONTRACT_TYPE}).ToList()
             Return query.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
