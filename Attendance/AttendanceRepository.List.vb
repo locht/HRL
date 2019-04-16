@@ -1277,7 +1277,7 @@ Partial Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
-    Public Function ApprovePortalRegister(ByVal regID As Guid, ByVal approveId As Decimal,
+    Public Function ApprovePortalRegister(ByVal regID As Decimal?, ByVal approveId As Decimal,
                                           ByVal status As Integer, ByVal note As String,
                                           ByVal currentUrl As String, ByVal process As String,
                                           Optional ByVal isLog As Boolean = True) As Boolean

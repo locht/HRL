@@ -29,7 +29,29 @@
     Public Const SIGNMODECODE_REGISTER As String = "RGT"
     Public Const SIGNMODECODE_SUMMARY As String = "SUM"
 
+    Public Const APPROVE As Decimal = 471
+    Public Const NOT_APPROVE As Decimal = 472
 
+    ' Tham số định nghĩa đọc từ cột nào trong file import công
+    Public Const colStart As Decimal = 3
+    Public Const rowStart As Decimal = 8
+    Public Const SUMCOL_IMPORTMONTH As Decimal = 20
+    Public Const SUMCOL_IMPORTHOUR As Decimal = 12
+    Public Const SIGINCODE_P As String = "P"
+    Public Const SIGINCODE_OT As String = "OT"
+    Public Const SIGINCODE_NB As String = "NB"
+
+    'Tham số loại import
+    Public Const IMPORT_MONTH As String = "IMPORT_MONTH"
+    Public Const IMPORT_HOUR As String = "IMPORT_HOUR"
+    Public Const HALF As String = "/2"
+
+    'Programid template Import
+    Public Const PROGRAMID_IMPORT_MONTH As Decimal = 145
+    Public Const PROGRAMID_IMPORT_HOUR As Decimal = 146
+
+    Public Const N As String = "A"
+    Public Const D As String = "M"
 
 End Class
 Public Class AT_RegisterOT_OrderBy
