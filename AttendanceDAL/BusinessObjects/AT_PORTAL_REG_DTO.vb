@@ -32,7 +32,7 @@
     Public Property SVALUE As String
     Public Property DVALUE As Nullable(Of Date)
 
-    Public Property ID_REGGROUP As Guid?
+    Public Property ID_REGGROUP As Decimal?
     Public Property LINK_POPUP As String
 
     Public Property ID_NB As Decimal?

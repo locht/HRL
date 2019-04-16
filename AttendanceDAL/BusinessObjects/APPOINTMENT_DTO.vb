@@ -1,19 +1,19 @@
 ﻿Public Class APPOINTMENT_DTO
-    Public Property ID As Guid
+    Public Property ID As Decimal
 
-    Public Property EMPLOYEEID As Guid
+    Public Property EMPLOYEEID As Decimal
     Public Property EMPLOYEECODE As String
     Public Property EMPLOYEENAME As String
 
-    Public Property SIGNID As Guid
-    Public Property SIGNTYPE As Nullable(Of Guid)
+    Public Property SIGNID As Decimal
+    Public Property SIGNTYPE As Nullable(Of Decimal)
     Public Property SIGNCODE As String
     Public Property SIGNNAME As String
     Public Property GSIGNCODE As String
 
     Public Property WORKINGDAY As DateTime
     Public Property NVALUE As Nullable(Of Decimal)
-    Public Property NVALUE_ID As Guid?
+    Public Property NVALUE_ID As Decimal?
     Public Property NVALUE_NAME As String
     Public Property SVALUE As String
     Public Property DVALUE As Nullable(Of Date)
@@ -35,7 +35,7 @@
     Public Property RecurrenceRule As String
     Public Property RecurrenceParentID As String
 
-    Public Property PLNID As Guid?
+    Public Property PLNID As Decimal?
 
     Public Property IS_INSERT As Boolean
     Public Property IS_DELETE As Boolean

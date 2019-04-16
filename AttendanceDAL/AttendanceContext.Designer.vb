@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8c9be782-5fa8-45bd-99d7-7b97e5103eec")>
+<Assembly: EdmSchemaAttribute("55e78e91-510d-4241-9eed-29408d989162")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -12603,7 +12603,7 @@ Public Partial Class AT_PORTAL_APP
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ID_REGGROUP() As Nullable(Of Global.System.Guid)
+    Public Property ID_REGGROUP() As Nullable(Of Global.System.Decimal)
         Get
             Return _ID_REGGROUP
         End Get
@@ -12616,8 +12616,8 @@ Public Partial Class AT_PORTAL_APP
         End Set
     End Property
 
-    Private _ID_REGGROUP As Nullable(Of Global.System.Guid)
-    Private Partial Sub OnID_REGGROUPChanging(value As Nullable(Of Global.System.Guid))
+    Private _ID_REGGROUP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_REGGROUPChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnID_REGGROUPChanged()
@@ -13233,7 +13233,7 @@ Public Partial Class AT_PORTAL_REG
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ID_REGGROUP() As Nullable(Of Global.System.Guid)
+    Public Property ID_REGGROUP() As Nullable(Of Global.System.Decimal)
         Get
             Return _ID_REGGROUP
         End Get
@@ -13246,8 +13246,8 @@ Public Partial Class AT_PORTAL_REG
         End Set
     End Property
 
-    Private _ID_REGGROUP As Nullable(Of Global.System.Guid)
-    Private Partial Sub OnID_REGGROUPChanging(value As Nullable(Of Global.System.Guid))
+    Private _ID_REGGROUP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_REGGROUPChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnID_REGGROUPChanged()
@@ -13301,6 +13301,106 @@ Public Partial Class AT_PORTAL_REG
     End Sub
 
     Private Partial Sub OnIS_NBChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORKING_DAY() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _WORKING_DAY
+        End Get
+        Set
+            OnWORKING_DAYChanging(value)
+            ReportPropertyChanging("WORKING_DAY")
+            _WORKING_DAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORKING_DAY")
+            OnWORKING_DAYChanged()
+        End Set
+    End Property
+
+    Private _WORKING_DAY As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnWORKING_DAYChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnWORKING_DAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TYPE_LEAVE() As Global.System.String
+        Get
+            Return _TYPE_LEAVE
+        End Get
+        Set
+            OnTYPE_LEAVEChanging(value)
+            ReportPropertyChanging("TYPE_LEAVE")
+            _TYPE_LEAVE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TYPE_LEAVE")
+            OnTYPE_LEAVEChanged()
+        End Set
+    End Property
+
+    Private _TYPE_LEAVE As Global.System.String
+    Private Partial Sub OnTYPE_LEAVEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTYPE_LEAVEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DIRECT_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DIRECT_ID
+        End Get
+        Set
+            OnDIRECT_IDChanging(value)
+            ReportPropertyChanging("DIRECT_ID")
+            _DIRECT_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DIRECT_ID")
+            OnDIRECT_IDChanged()
+        End Set
+    End Property
+
+    Private _DIRECT_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDIRECT_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDIRECT_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property APPROVE_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _APPROVE_DATE
+        End Get
+        Set
+            OnAPPROVE_DATEChanging(value)
+            ReportPropertyChanging("APPROVE_DATE")
+            _APPROVE_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("APPROVE_DATE")
+            OnAPPROVE_DATEChanged()
+        End Set
+    End Property
+
+    Private _APPROVE_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnAPPROVE_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnAPPROVE_DATEChanged()
     End Sub
 
     #End Region

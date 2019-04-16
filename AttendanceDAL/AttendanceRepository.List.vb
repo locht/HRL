@@ -2827,7 +2827,7 @@ Partial Public Class AttendanceRepository
         Try
             _isAvailable = False
             Dim itemInsert As AT_PORTAL_REG
-            Dim groupid As Guid = Guid.NewGuid
+            Dim groupid As Decimal? = Nothing
 
             If itemRegister.PROCESS = ATConstant.GSIGNCODE_LEAVE Or itemRegister.PROCESS = ATConstant.GSIGNCODE_WLEO Then
                 DeleteRegisterLeavePortal(itemRegister.ID_EMPLOYEE, itemRegister.FROM_DATE,
@@ -3162,7 +3162,7 @@ Partial Public Class AttendanceRepository
 
     Private Function SendMail(ByVal typeSend As SendMailType, ByVal registerId As Decimal,
                               ByVal approveId As Decimal, ByVal approveExtId As Decimal?,
-                              ByVal process As String, ByVal registerRecordId As Guid,
+                              ByVal process As String, ByVal registerRecordId As Decimal?,
                               ByVal url As String, Optional ByVal ccEmail As String = "",
                               Optional ByVal sReason As String = "")
         Try
@@ -3520,7 +3520,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Public Function ApprovePortalRegister(ByVal regID As Guid, ByVal approveId As Decimal,
+    Public Function ApprovePortalRegister(ByVal regID As Decimal?, ByVal approveId As Decimal,
                                           ByVal status As Integer, ByVal note As String,
                                           ByVal currentUrl As String, ByVal process As String,
                                              ByVal log As UserLog) As Boolean
@@ -3669,7 +3669,7 @@ Partial Public Class AttendanceRepository
                              approveId, If(bExt, approveExt.SUB_EMPLOYEE_ID, Nothing),
                              process, registerRecord(0).ID_REGGROUP, currentUrl, EMAILCC, note)
                 End If
-                    
+
             Else
                 For Each item In nextApproveRecords
                     item.APPROVE_STATUS = RegisterStatus.WaitForApprove  'Chờ phê duyệt
@@ -3683,15 +3683,15 @@ Partial Public Class AttendanceRepository
                        process, registerRecord(0).ID_REGGROUP, currentUrl, "", note)
                     End If
 
-                   
+
                 Next
 
             End If
 
-                'Cập nhật thay đổi vào CSDL
-                Context.SaveChanges()
+            'Cập nhật thay đổi vào CSDL
+            Context.SaveChanges()
 
-                Return True
+            Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
@@ -3700,7 +3700,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Private Function INSERTAT_LEAVESHEET(ByVal regID As System.Guid, ByVal log As UserLog) As Boolean
+    Private Function INSERTAT_LEAVESHEET(ByVal regID As Decimal?, ByVal log As UserLog) As Boolean
 
         Dim leave As AT_LEAVESHEET
         Dim fromdate As Date?
@@ -3763,7 +3763,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Private Function INSERTAT_OVERTIME(ByVal regID As System.Guid, ByVal log As UserLog) As Boolean
+    Private Function INSERTAT_OVERTIME(ByVal regID As Decimal?, ByVal log As UserLog) As Boolean
 
         Dim ot As AT_REGISTER_OT
         Dim fromdate As Date?
@@ -3831,7 +3831,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Private Function INSERTAT_LATE_COMBACKOUT(ByVal regID As System.Guid, ByVal log As UserLog) As Boolean
+    Private Function INSERTAT_LATE_COMBACKOUT(ByVal regID As Decimal?, ByVal log As UserLog) As Boolean
 
         Dim leave As AT_LATE_COMBACKOUT
         Dim fromdate As Date?
@@ -3896,7 +3896,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Private Function ApprovePortalRegisterFinallize(ByVal regID As Guid,
+    Private Function ApprovePortalRegisterFinallize(ByVal regID As Decimal?,
                                              ByVal log As UserLog) As Boolean
         Dim itm As AT_PORTAL_REG
         Dim itemAppointment As AT_TIMESHEET_REGISTERDTO

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 24/11/2018 9:57:36 PM
--- Generated from EDMX file: E:\Source\TMF\3.DEPLOYMENT\Core2017\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 16/04/2019 5:36:20 PM
+-- Generated from EDMX file: E:\HistaffHCM\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -649,7 +649,7 @@ CREATE TABLE "dbo"."AT_PORTAL_APP" (
    "ID_EMPLOYEE" NUMBER(38,0) NULL,
    "APPROVE_DATE" DATE NULL,
    "APPROVE_STATUS" NUMBER(38,0) NULL,
-   "ID_REGGROUP" RAW(16) NULL,
+   "ID_REGGROUP" NUMBER(38,0) NULL,
    "ID_REQUSERID" NUMBER(38,0) NULL
 );
 
@@ -747,9 +747,13 @@ CREATE TABLE "dbo"."AT_PORTAL_REG" (
    "SVALUE" NVARCHAR2(255) NULL,
    "DVALUE" DATE NULL,
    "NVALUE_ID" NUMBER(38,0) NULL,
-   "ID_REGGROUP" RAW(16) NULL,
+   "ID_REGGROUP" NUMBER(38,0) NULL,
    "NOTE_AT" NCLOB NULL,
-   "IS_NB" NUMBER(38,0) NULL
+   "IS_NB" NUMBER(38,0) NULL,
+   "WORKING_DAY" DATE NULL,
+   "TYPE_LEAVE" NCLOB NULL,
+   "DIRECT_ID" NUMBER(38,0) NULL,
+   "APPROVE_DATE" DATE NULL
 );
 
 -- Creating table 'HU_STAFF_RANK'
