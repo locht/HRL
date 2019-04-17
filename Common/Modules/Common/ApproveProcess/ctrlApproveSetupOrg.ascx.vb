@@ -3,8 +3,6 @@ Imports Framework.UI
 Imports Framework.UI.Utilities
 Imports Telerik.Web.UI
 Imports WebAppLog
-Imports System.IO
-Imports HistaffFrameworkPublic
 
 Public Class ctrlApproveSetupOrg
     Inherits CommonView
@@ -16,8 +14,6 @@ Public Class ctrlApproveSetupOrg
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Common/Modules/Common/ApproveProcess/" + Me.GetType().Name.ToString()
-    Dim user As UserLog
-    Private rep As New CommonProcedureNew
 
 #Region "Property"
 
@@ -102,7 +98,7 @@ Public Class ctrlApproveSetupOrg
                 Refresh()
             End If
 
-            UpdateControlState()
+            UpdateControlState()            
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -121,24 +117,16 @@ Public Class ctrlApproveSetupOrg
         Try
             Me.MainToolBar = tbarDetail
             Common.BuildToolbar(tbarDetail,
-                                           ToolbarItem.Create,
-                                           ToolbarItem.Edit, ToolbarItem.Seperator,
-                                           ToolbarItem.Save,
-                                           ToolbarItem.Cancel, ToolbarItem.Seperator,
-                                           ToolbarItem.Export,
-                                           ToolbarItem.Next,
-                                           ToolbarItem.Import, ToolbarItem.Seperator,
-                                           ToolbarItem.Delete)
+                                ToolbarItem.Create,
+                                ToolbarItem.Edit, ToolbarItem.Seperator,
+                                ToolbarItem.Save,
+                                ToolbarItem.Cancel, ToolbarItem.Seperator,
+                                ToolbarItem.Delete)
 
             CType(tbarDetail.Items(3), RadToolBarButton).CausesValidation = True
+            rgDetail.ClientSettings.EnablePostBackOnRowClick = True
 
             SetStatusToolbar(tbarDetail, CommonMessage.STATE_NORMAL, False)
-            CType(Me.MainToolBar.Items(7), RadToolBarButton).Text = Translate("Xuất file mẫu")
-            CType(Me.MainToolBar.Items(7), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(6), RadToolBarButton).ImageUrl
-            CType(Me.MainToolBar.Items(8), RadToolBarButton).Text = Translate("Nhập file mẫu")
-            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-            Me.MainToolBar.OnClientButtonClicking = "tbarDetail_ClientButtonClicking"
-            rgDetail.ClientSettings.EnablePostBackOnRowClick = True
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -214,7 +202,7 @@ Public Class ctrlApproveSetupOrg
 
             CreateDataFilter()
             UpdateControlState()
-            Refresh()
+            Refresh()            
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -238,7 +226,7 @@ Public Class ctrlApproveSetupOrg
                     Me.CurrentState = CommonMessage.STATE_NEW
                     IDDetailSelecting = Nothing
                     UpdateControlState()
-                    ClearControlForInsertOrDelete()
+                    ClearControlForInsert()
 
                 Case CommonMessage.TOOLBARITEM_EDIT
                     Me.CurrentState = CommonMessage.STATE_EDIT
@@ -259,16 +247,8 @@ Public Class ctrlApproveSetupOrg
                             .ORG_ID = OrgID
                             .PROCESS_ID = Decimal.Parse(cboApproveProcess.SelectedValue)
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
-                            .TITLE_ID = If(cboPosition.SelectedValue IsNot Nothing, Decimal.Parse(cboPosition.SelectedValue), Nothing)
-                            .SIGN_ID = If(cboKieuCong.SelectedValue IsNot Nothing, Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
-                            .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
-                            .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
-                            .FROM_DAY = If(rntxtFromDay.Value IsNot Nothing, Decimal.Parse(rntxtFromDay.Value), Nothing)
-                            .TO_DAY = If(rntxtToDay.Value IsNot Nothing, Decimal.Parse(rntxtToDay.Value), Nothing)
                             .FROM_DATE = rdFromDate.SelectedDate
                             .TO_DATE = rdToDate.SelectedDate
-                            .MAIL_ACCEPTED = txtCCMailAccepted.Text
-                            .MAIL_ACCEPTING = txtCCMailAccepting.Text
                         End With
 
                         If CheckExistValueCombo(itemAdd.PROCESS_ID, itemAdd.TEMPLATE_ID) Then
@@ -294,16 +274,8 @@ Public Class ctrlApproveSetupOrg
                         With itemEdit
                             .PROCESS_ID = Decimal.Parse(cboApproveProcess.SelectedValue)
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
-                            .TITLE_ID = If(cboPosition.SelectedValue IsNot Nothing, Decimal.Parse(cboPosition.SelectedValue), Nothing)
-                            .SIGN_ID = If(cboKieuCong.SelectedValue IsNot Nothing, Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
-                            .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
-                            .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
-                            .FROM_DAY = If(rntxtFromDay.Value IsNot Nothing, Decimal.Parse(rntxtFromDay.Value), Nothing)
-                            .TO_DAY = If(rntxtToDay.Value IsNot Nothing, Decimal.Parse(rntxtToDay.Value), Nothing)
                             .FROM_DATE = rdFromDate.SelectedDate
                             .TO_DATE = rdToDate.SelectedDate
-                            .MAIL_ACCEPTED = txtCCMailAccepted.Text
-                            .MAIL_ACCEPTING = txtCCMailAccepting.Text
                         End With
 
                         If CheckExistValueCombo(itemEdit.PROCESS_ID, itemEdit.TEMPLATE_ID) Then
@@ -330,38 +302,7 @@ Public Class ctrlApproveSetupOrg
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     Me.CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
-                Case CommonMessage.TOOLBARITEM_EXPORT
-                    Using xls As New ExcelCommon
-                        Dim dt As DataTable = rep.GET_ALL_APPROVE_SETUP_ORG()
-                        If dt.Rows.Count > 0 Then
-                            xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve/Import_Phe_Duyet_PhongBan.xls"), "DanhSachPheDuyetPhongBan", dt, Response)
-                        Else
-                            ShowMessage(Translate("Không có dữ liệu để xuất danh sách"), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    End Using
-                Case CommonMessage.TOOLBARITEM_NEXT
-                    Using xls As New ExcelCommon
-                        Dim db As New CommonRepository
-                        Dim ds As DataSet = New DataSet
-                        Dim org = (From l In db.GetOrganizationList()
-                                       Select New With {l.DESCRIPTION_PATH, l.ID}).ToList()
-                        Dim process = (From l In db.GetApproveProcessList()
-                                       Select New With {l.NAME, l.ID}).ToList()
-                        Dim template = (From l In db.GetApproveTemplateList()
-                                       Select New With {l.TEMPLATE_NAME, l.ID}).ToList()
-                        Dim title = (From l In db.GetTitleList()
-                                       Select New With {l.NAME_VN, l.CODE}).ToList()
-                        ds.Tables.Add(org.ToTable())
-                        ds.Tables.Add(process.ToTable())
-                        ds.Tables.Add(template.ToTable())
-                        ds.Tables.Add(title.ToTable())
-                        ds.Tables.Add(rep.GetSignLeaveList().Copy())
-                        xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve/Import_Phe_Duyet_PhongBan.xls"), "Template phê duyệt phòng ban", ds, Response, 1)
-                    End Using
-                Case CommonMessage.TOOLBARITEM_IMPORT
-                    ctrlUpload1.isMultiple = False
-                    ctrlUpload1.Show()
+
                 Case CommonMessage.TOOLBARITEM_DELETE
                     Dim idDelete = Decimal.Parse(CType(rgDetail.SelectedItems(0), GridDataItem).GetDataKeyValue("ID").ToString)
                     Dim db As New CommonRepository
@@ -374,7 +315,6 @@ Public Class ctrlApproveSetupOrg
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
-                    ClearControlForInsertOrDelete()
             End Select
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -516,7 +456,7 @@ Public Class ctrlApproveSetupOrg
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
 
-        Try
+        Try            
             rgDetail.Rebind()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -527,23 +467,16 @@ Public Class ctrlApproveSetupOrg
     ''' <lastupdate>25/07/2017</lastupdate>
     ''' <summary>Clear ctrl trước khi thêm mới</summary>
     ''' <remarks></remarks>
-    Private Sub ClearControlForInsertOrDelete()
+    Private Sub ClearControlForInsert()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
             cboApproveProcess.SelectedIndex = 0
             cboApproveTemplate.SelectedIndex = 0
-            cboPosition.SelectedIndex = 0
-            cboKieuCong.SelectedIndex = 0
-            rntxtFromHour.Text = String.Empty
-            rntxtToHour.Text = String.Empty
-            rntxtFromDay.Text = String.Empty
-            rntxtToDay.Text = String.Empty
             rdFromDate.SelectedDate = Nothing
             rdToDate.SelectedDate = Nothing
-            txtCCMailAccepted.Text = String.Empty
-            txtCCMailAccepting.Text = String.Empty
+
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -557,6 +490,7 @@ Public Class ctrlApproveSetupOrg
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim db As New CommonRepository
+
         Try
             Dim dbProcess = db.GetApproveProcessList().Where(Function(p) p.ACTFLG = "A").ToList()
             cboApproveProcess.DataSource = dbProcess
@@ -569,18 +503,6 @@ Public Class ctrlApproveSetupOrg
             cboApproveTemplate.DataTextField = "TEMPLATE_NAME"
             cboApproveTemplate.DataValueField = "ID"
             cboApproveTemplate.DataBind()
-
-            Dim dbTitle = db.GetTitleList()
-            cboPosition.DataSource = dbTitle
-            cboPosition.DataTextField = "NAME_VN"
-            cboPosition.DataValueField = "CODE"
-            cboPosition.DataBind()
-
-            Dim dtSignLeaveList = rep.GetSignLeaveList()
-            cboKieuCong.DataSource = dtSignLeaveList
-            cboKieuCong.DataTextField = dtSignLeaveList.Columns("AT_SIGN_NAME").ToString()
-            cboKieuCong.DataValueField = dtSignLeaveList.Columns("ID").ToString()
-            cboKieuCong.DataBind()
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -602,20 +524,8 @@ Public Class ctrlApproveSetupOrg
             If itemSelected IsNot Nothing Then
                 cboApproveProcess.SelectedValue = itemSelected.PROCESS_ID.ToString
                 cboApproveTemplate.SelectedValue = itemSelected.TEMPLATE_ID.ToString
-                cboPosition.SelectedValue = itemSelected.TITLE_ID.ToString
-                cboKieuCong.SelectedValue = itemSelected.SIGN_ID.ToString
-                rntxtFromHour.Value = itemSelected.FROM_HOUR
-                rntxtToHour.Value = itemSelected.TO_HOUR
-                rntxtFromDay.Value = itemSelected.FROM_DAY
-                rntxtToDay.Value = itemSelected.TO_DAY
-                rntxtFromHour.DisplayText = itemSelected.FROM_HOUR.ToString
-                rntxtToHour.DisplayText = itemSelected.TO_HOUR.ToString
-                rntxtFromDay.DisplayText = itemSelected.FROM_DAY.ToString
-                rntxtToDay.DisplayText = itemSelected.TO_DAY.ToString
                 rdFromDate.SelectedDate = itemSelected.FROM_DATE
                 rdToDate.SelectedDate = itemSelected.TO_DATE
-                txtCCMailAccepted.Text = itemSelected.MAIL_ACCEPTED
-                txtCCMailAccepting.Text = itemSelected.MAIL_ACCEPTING
             Else
                 ShowMessage(Translate("Đã có lỗi khi truy xuất thông tin đang chọn."), NotifyType.Error)
             End If
@@ -661,83 +571,6 @@ Public Class ctrlApproveSetupOrg
             'DisplayException(Me.ViewName, Me.ID, ex)
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
-    End Sub
-
-    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Try
-            Import_Data()
-        Catch ex As Exception
-            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
-        End Try
-    End Sub
-
-    Private Sub Import_Data()
-        Try
-            user = LogHelper.GetUserLog
-            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
-            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
-            Dim fileName As String
-            Dim savepath = Context.Server.MapPath(tempPath)
-            Dim ds As New DataSet
-            If countFile > 0 Then
-                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
-                fileName = System.IO.Path.Combine(savepath, file.FileName)
-                file.SaveAs(fileName, True)
-                ds = ExcelPackage.ReadExcelToDataSet(fileName, False)
-            End If
-            If ds Is Nothing Then
-                Exit Sub
-            End If
-
-            TableMapping(ds.Tables(0))
-
-            Dim DocXml As String = String.Empty
-            Dim sw As New StringWriter()
-            If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
-                ds.Tables(0).WriteXml(sw, False)
-                DocXml = sw.ToString
-                If rep.IMPORT_APPROVE_SETUP_ORG(DocXml, user) Then
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
-                    rgDetail.Rebind()
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Error)
-                End If
-            End If
-        Catch ex As Exception
-            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Error)
-        End Try
-    End Sub
-
-    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
-        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
-        dtTemp.Columns(0).ColumnName = "STT"
-        'dtTemp.Columns(1).ColumnName = "ORG_NAME"
-        dtTemp.Columns(2).ColumnName = "ORG_ID"
-        'dtTemp.Columns(3).ColumnName = "PROCESS_NAME"
-        dtTemp.Columns(4).ColumnName = "PROCESS_ID"
-        'dtTemp.Columns(5).ColumnName = "TEMPLATE_NAME"
-        dtTemp.Columns(6).ColumnName = "TEMPLATE_ID"
-        'dtTemp.Columns(7).ColumnName = "TITLE_NAME"
-        dtTemp.Columns(8).ColumnName = "TITLE_ID"
-        'dtTemp.Columns(9).ColumnName = "SIGN_NAME"
-        dtTemp.Columns(10).ColumnName = "SIGN_ID"
-        dtTemp.Columns(11).ColumnName = "FROM_DAY"
-        dtTemp.Columns(12).ColumnName = "TO_DAY"
-        dtTemp.Columns(13).ColumnName = "FROM_HOUR"
-        dtTemp.Columns(14).ColumnName = "TO_HOUR"
-        dtTemp.Columns(15).ColumnName = "MAIL_ACCEPTED"
-        dtTemp.Columns(16).ColumnName = "MAIL_ACCEPTING"
-
-        'XOA DONG TIEU DE VA HEADER
-        dtTemp.Rows(0).Delete()
-        'Neu template empty thi xoa row do, 
-        For i As Integer = dtTemp.Rows.Count - 1 To 1 Step -1 'dtTemp.Rows.Count - 1 To 1 => vi da xoa rows(0) o tren
-            If IsDBNull(dtTemp.Rows(i)(5)) Then
-                dtTemp.Rows(i).Delete()
-            End If
-        Next
-
-        dtTemp.AcceptChanges()
     End Sub
 
     ''' <lastupdate>25/07/2017</lastupdate>

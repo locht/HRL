@@ -24,7 +24,7 @@ Public Class GetFile
                     Dim db As New ProfileBusinessRepository
 
                     Dim fileInfo As ProfileBusiness.EmployeeFileDTO = New ProfileBusiness.EmployeeFileDTO
-                    binary = db.DownloadAttachFile_Manager(Decimal.Parse(Request.QueryString("fid")), fileInfo)
+                    'binary = db.DownloadAttachFile_Manager(Decimal.Parse(Request.QueryString("fid")), fileInfo)
                     fileName = fileInfo.FILE_NAME
                 Case "TEMPLATE"
                     Dim fileId As String = Request.QueryString("fid") & ""
@@ -37,7 +37,7 @@ Public Class GetFile
             Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
             Response.Clear()
             Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(fileName, "_"))
-            Response.AddHeader("Content-Length", binary.Length.ToString())
+            'Response.AddHeader("Content-Length", binary.Length.ToString())
             Response.ContentType = "application/octet-stream"
             Response.BinaryWrite(binary)
 

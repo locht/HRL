@@ -118,10 +118,9 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TEMPLATE_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TEMPLATE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TEMPLATE_ORDER" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TEMPLATE_TYPE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TEMPLATE_ORDER" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TEMPLATE_TYPE" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ApproveTemplateDTO" nillable="true" type="tns:ApproveTemplateDTO" />
@@ -134,15 +133,14 @@
   <xs:complexType name="ApproveTemplateDetailDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="APP_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="APP_LEVEL" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="APP_TYPE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="APP_LEVEL" type="xs:decimal" />
+      <xs:element minOccurs="0" name="APP_TYPE" type="xs:decimal" />
       <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="INFORM_DATE" type="xs:decimal" />
       <xs:element minOccurs="0" name="INFORM_EMAIL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TEMPLATE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TEMPLATE_ID" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ApproveTemplateDetailDTO" nillable="true" type="tns:ApproveTemplateDetailDTO" />
@@ -155,14 +153,15 @@
   <xs:complexType name="ApproveSetupExtDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="EMPLOYEE_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="FROM_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FROM_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="PROCESS_ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="PROCESS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REPALCEALL" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="SUB_EMPLOYEE_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SUB_EMPLOYEE_ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="SUB_EMPLOYEE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TO_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ApproveSetupExtDTO" nillable="true" type="tns:ApproveSetupExtDTO" />

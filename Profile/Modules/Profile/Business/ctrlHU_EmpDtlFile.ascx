@@ -1,16 +1,17 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_EmpDtlFile.ascx.vb"
     Inherits="Profile.ctrlHU_EmpDtlFile" %>
+    <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <%@ Register Src="../Shared/ctrlEmpBasicInfo.ascx" TagName="ctrlEmpBasicInfo" TagPrefix="Profile" %>
 <asp:HiddenField ID="hidHuFileID" runat="server" />
 <asp:HiddenField ID="txtFileNameSys" runat="server" />
-<asp:HiddenField ID="txtDownloadFile" runat="server" />
+<asp:HiddenField ID="txtFileNameDL" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter2" runat="server" Height="100%" Width="100%" Orientation="Horizontal"
     SkinID="Demo">
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane2" runat="server" Height="40px" Scrolling="None">
+    <tlk:RadPane ID="RadPane2" runat="server" Height="70px" Scrolling="None">
         <Profile:ctrlEmpBasicInfo runat="server" ID="ctrlEmpBasicInfo" />
     </tlk:RadPane>
     <tlk:RadPane ID="RadPaneLeft" runat="server" Height="210px">
@@ -39,20 +40,28 @@
                 <td class="lb">
                     <%# Translate("Tệp tin")%>
                 </td>
-                <td style="padding-left: 12px;" colspan="3">
+                <td style="padding-left: 12px;">
                     <tlk:RadAsyncUpload Width="120px" Height="20px" runat="server" ID="_radAsynceUpload1"
                         ControlObjectsVisibility="None" OnClientFileUploaded="fileUploaded1" OnClientValidationFailed="validationFailed"
                         EnableAjaxSkinRendering="true" MaxFileSize="4096000" CssClass="btnChooseImage"
                         HideFileInput="True" DisablePlugins="True" MaxFileInputsCount="1" MultipleFileSelection="Disabled">
                         <Localization Select="<%$ Translate: Chọn file %>" />
                     </tlk:RadAsyncUpload>
-                    <asp:LinkButton ID="txtFileName" runat="server" OnClientClick="txtFileName_Click()">
-                    </asp:LinkButton>
+                    <tlk:RadTextBox ID ="txtFileNameVN" runat ="server" ReadOnly="true" style="border:none;" ></tlk:RadTextBox>
+                  <%--  <asp:LinkButton ID="txtFileName" runat="server" OnClientClick="txtFileName_Click('<%# "txtDownload_Click(""" & Eval("ID").ToString() &  """ , """ &   Eval("FILENAME").ToString() & """, """ &   Eval("FILENAME_SYS").ToString() & """)" %>')">
+                    </asp:LinkButton>--%>
+                </td>
+                 <td class="lb" style="width: 130px">
+                    <%# Translate("Người ký")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtSign">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Nơi ban hành")%>
+                    <%# Translate("Cơ quan ban hành")%>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
@@ -64,6 +73,9 @@
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdFromDate">
+                     <DateInput ID="DateInput1" onkeydown="_rdFromDate_OnKeyDown(event)" runat="server"> 
+                           <ClientEvents OnFocus="_rdFromDate_OnFocus" /> 
+                      </DateInput> 
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
@@ -71,6 +83,9 @@
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdToDate">
+                     <DateInput ID="DateInput2" onkeydown="_rdToDate_OnKeyDown(event)" runat="server"> 
+                           <ClientEvents OnFocus="_rdToDate_OnFocus" /> 
+                      </DateInput> 
                     </tlk:RadDatePicker>
                     <asp:CompareValidator ID="compareFromDate_DeductToDate" runat="server" ErrorMessage="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>"
                         ToolTip="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>" ControlToValidate="rdToDate"
@@ -96,8 +111,8 @@
     <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
         <tlk:RadGrid PageSize="20" ID="rgHuFile" runat="server" AllowMultiRowSelection="true"
             Height="100%">
-            <MasterTableView DataKeyNames="ID,TYPE_ID,TYPE_NAME,NAME,NUMBER_CODE,ADDRESS,FROM_DATE,TO_DATE,FILENAME,FILENAME_SYS,NOTE,ACTFLG"
-                ClientDataKeyNames="ID,TYPE_ID,TYPE_NAME,NAME,NUMBER_CODE,ADDRESS,FROM_DATE,TO_DATE,FILENAME,FILENAME_SYS,NOTE,ACTFLG">
+            <MasterTableView DataKeyNames="ID,TYPE_ID,NAME,NUMBER_CODE,ADDRESS,FROM_DATE,TO_DATE,FILENAME,REMARK,ACTFLG,FILENAME_SYS,SIGN_PERSON"
+                ClientDataKeyNames="ID,TYPE_ID,NAME,NUMBER_CODE,ADDRESS,FROM_DATE,TO_DATE,FILENAME,REMARK,ACTFLG,FILENAME_SYS,SIGN_PERSON">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
@@ -106,29 +121,32 @@
                         <ItemStyle HorizontalAlign="Center" />
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="NUMBER_CODE" HeaderText="<%$ Translate: Số hiệu văn bản %>"
-                        UniqueName="NUMBER_CODE" Visible="True">
+                        UniqueName="NUMBER_CODE" >
                         <HeaderStyle Width="60px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="NAME" HeaderText="<%$ Translate: Tên văn bản %>"
-                        UniqueName="NAME" Visible="True">
+                        UniqueName="NAME" >
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="TYPE_NAME" HeaderText="<%$ Translate: Loại văn bản %>"
-                        UniqueName="TYPE_NAME" Visible="True">
+                    <tlk:GridBoundColumn DataField="SIGN_PERSON" HeaderText="<%$ Translate: Người ký %>"
+                        UniqueName="SIGN_PERSON" >
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="FILENAME" HeaderText="<%$ Translate: Tên file %>" Visible = "true"
+                        UniqueName="FILENAME" >
                     </tlk:GridBoundColumn>
                     <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="<%$ Translate: Ngày hiệu lực%>"
-                        UniqueName="FROM_DATE" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                        UniqueName="FROM_DATE" DataFormatString="{0:dd/MM/yyyy}">
                         <HeaderStyle HorizontalAlign="Center" Width="65px" />
                     </tlk:GridDateTimeColumn>
                     <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="<%$ Translate: Ngày hết hiệu lực %>"
-                        UniqueName="TO_DATE" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
+                        UniqueName="TO_DATE" DataFormatString="{0:dd/MM/yyyy}">
                         <HeaderStyle HorizontalAlign="Center" Width="65px" />
                     </tlk:GridDateTimeColumn>
                     <tlk:GridBoundColumn DataField="ADDRESS" HeaderText="<%$ Translate: Nơi ban hành %>"
-                        UniqueName="ADDRESS" Visible="True" EmptyDataText="">
+                        UniqueName="ADDRESS" EmptyDataText="">
                         <HeaderStyle HorizontalAlign="Center" Width="70px" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="NOTE" HeaderText="<%$ Translate: Ghi chú %>" UniqueName="NOTE"
-                        Visible="True" EmptyDataText="">
+                    <tlk:GridBoundColumn DataField="REMARK" HeaderText="<%$ Translate: Ghi chú %>" UniqueName="REMARK"
+                        EmptyDataText="">
                         <HeaderStyle HorizontalAlign="Center" Width="70px" />
                     </tlk:GridBoundColumn>
                     <%--<asp:LinkButton ID ="LinkButton1" runat="server" OnClientClick="download(<%$ Eval("FILENAME_SYS").ToString() %>)" Text="Tải tệp">
@@ -137,10 +155,10 @@
                             FilterControlAltText="Filter column column" DataNavigateUrlFields="FILENAME_SYS" 
                             Text="Tải tệp" >
                     </tlk:GridHyperLinkColumn>--%>
-                    <tlk:GridTemplateColumn DataField="FILENAME_SYS" HeaderText="FILENAME_SYS" UniqueName="FILENAME_SYS">
+                    <tlk:GridTemplateColumn DataField="ID" HeaderText="Tải tệp" UniqueName="ID">
                         <ItemTemplate>
                             <asp:LinkButton ID="txtDownload" runat="server" Text=' Tải tệp' CausesValidation="false"
-                                OnClientClick='<%# "txtDownload_Click(""" & Eval("FILENAME_SYS").ToString() &  """)" %>'></asp:LinkButton>
+                                OnClientClick='<%# "txtDownload_Click(""" & Eval("ID").ToString() &  """ , """ &   Eval("FILENAME").ToString() & """, """ &   Eval("FILENAME_SYS").ToString() & """)" %>'></asp:LinkButton>
                         </ItemTemplate>
                     </tlk:GridTemplateColumn>
                 </Columns>
@@ -153,6 +171,22 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <script type="text/javascript">
+    function _rdFromDate_OnFocus(sender, args) {
+        sender.get_owner().showPopup();
+    }
+    function _rdFromDate_OnKeyDown(e) {
+        if (e.keyCode == 9) {
+            $find("<%= rdFromDate.ClientID %>").hidePopup();
+        }
+    }
+    function _rdToDate_OnFocus(sender, args) {
+        sender.get_owner().showPopup();
+    }
+    function _rdToDate_OnKeyDown(e) {
+        if (e.keyCode == 9) {
+            $find("<%= rdToDate.ClientID %>").hidePopup();
+        }
+    }
     var enableAjax = true;
     function onRequestStart(sender, eventArgs) {
         eventArgs.set_enableAjax(enableAjax);
@@ -167,15 +201,21 @@
         var notify104126 = noty({ text: message, dismissQueue: true, type: 'error' });
         setTimeout(function () { $.noty.close(notify104126.options.id); }, 2000);
     }
-    function txtFileName_Click(val) {
-        enableAjax = false;
-        $get('<%= btnExportFile.ClientID %>').click();
-    }
-    function txtDownload_Click(val) {
-        document.getElementById('<%= txtDownloadFile.ClientID %>').value = val;
+
+    function txtDownload_Click(val1, val2, val3) {
+        document.getElementById('<%= hidHuFileID.ClientID %>').value = val1;
+        document.getElementById('<%= txtFileNameSys.ClientID %>').value = val3;
+        document.getElementById('<%= txtFileNameDL.ClientID %>').value = val2;
         //$("#txtDownloadFile").val(value);
         //alert($("#txtDownloadFile").val());
         enableAjax = false;
         $get('<%= btnDownload.ClientID %>').click();
+    }
+
+    function OnClientButtonClicking(sender, args) {
+        var item = args.get_item();
+        if (item.get_commandName() == "EXPORT") {
+            enableAjax = false;
+        }
     }
 </script>

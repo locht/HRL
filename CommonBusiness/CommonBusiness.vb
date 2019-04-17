@@ -136,17 +136,6 @@ Namespace CommonBusiness.ServiceImplementations
 #End Region
 
 #Region "Organization"
-        Public Function GetOrganizationList() As List(Of OrganizationDTO) _
-            Implements ICommonBusiness.GetOrganizationList
-            Using rep As New CommonRepository
-                Try
-                    Dim lst = rep.GetOrganizationList()
-                    Return lst
-                Catch ex As Exception
-                    Throw ex
-                End Try
-            End Using
-        End Function
         Public Function GetOrganizationAll() As List(Of OrganizationDTO) _
             Implements ICommonBusiness.GetOrganizationAll
             Using rep As New CommonRepository

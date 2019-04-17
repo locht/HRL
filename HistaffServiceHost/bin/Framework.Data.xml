@@ -1,0 +1,420 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Framework.Data
+</name>
+</assembly>
+<members>
+<member name="M:Framework.Data.AuditLogContext.#ctor">
+	<summary>
+ Initializes a new AuditLogContext object using the connection string found in the 'AuditLogContext' section of the application configuration file.
+ </summary>
+</member><member name="M:Framework.Data.AuditLogContext.#ctor(System.String)">
+	<summary>
+ Initialize a new AuditLogContext object.
+ </summary>
+</member><member name="M:Framework.Data.AuditLogContext.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new AuditLogContext object.
+ </summary>
+</member><member name="P:Framework.Data.AuditLogContext.SE_ACCESS_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.AuditLogContext.SE_ACTION_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.AuditLogContext.SE_CONFIG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.AuditLogContext.SE_REMINDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.AuditLogContext.SE_LOG_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:Framework.Data.AuditLogContext.AddToSE_ACCESS_LOG(Framework.Data.SE_ACCESS_LOG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_ACCESS_LOG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:Framework.Data.AuditLogContext.AddToSE_ACTION_LOG(Framework.Data.SE_ACTION_LOG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_ACTION_LOG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:Framework.Data.AuditLogContext.AddToSE_CONFIG(Framework.Data.SE_CONFIG)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_CONFIG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:Framework.Data.AuditLogContext.AddToSE_REMINDER(Framework.Data.SE_REMINDER)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_REMINDER EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:Framework.Data.AuditLogContext.AddToSE_LOG_DTL(Framework.Data.SE_LOG_DTL)">
+	<summary>
+ Deprecated Method for adding a new object to the SE_LOG_DTL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:Framework.Data.AuditLogContext">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:Framework.Data.SE_ACCESS_LOG.CreateSE_ACCESS_LOG(System.Decimal)">
+	<summary>
+ Create a new SE_ACCESS_LOG object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.FULLNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.MOBILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.GROUP_NAMES">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.LOGIN_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.LOGOUT_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.LOGOUT_STATUS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.ACCESS_FUNCTIONS">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.IP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACCESS_LOG.COMPUTER_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:Framework.Data.SE_ACCESS_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:Framework.Data.SE_ACTION_LOG.CreateSE_ACTION_LOG(System.Decimal)">
+	<summary>
+ Create a new SE_ACTION_LOG object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.FULLNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.MOBILE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.EMAIL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.ACTION_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.ACTION_DATE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.OBJECT_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.OBJECT_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.IP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.COMPUTER_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.VIEW_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.VIEW_DESCRIPTION">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.VIEW_GROUP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_ACTION_LOG.ACTION_TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:Framework.Data.SE_ACTION_LOG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:Framework.Data.SE_CONFIG.CreateSE_CONFIG(System.Decimal)">
+	<summary>
+ Create a new SE_CONFIG object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:Framework.Data.SE_CONFIG.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_CONFIG.CODE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_CONFIG.NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_CONFIG.VALUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_CONFIG.MODULE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:Framework.Data.SE_CONFIG">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:Framework.Data.SE_LOG_DTL.CreateSE_LOG_DTL(System.Decimal)">
+	<summary>
+ Create a new SE_LOG_DTL object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:Framework.Data.SE_LOG_DTL.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_LOG_DTL.COL_NAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_LOG_DTL.OLD_VALUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_LOG_DTL.NEW_VALUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_LOG_DTL.SE_ACTION_LOG_ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:Framework.Data.SE_LOG_DTL">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:Framework.Data.SE_REMINDER.CreateSE_REMINDER(System.Decimal)">
+	<summary>
+ Create a new SE_REMINDER object.
+ </summary>
+	<param name="id">Initial value of the ID property.</param>
+</member><member name="P:Framework.Data.SE_REMINDER.USERNAME">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_REMINDER.TYPE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_REMINDER.VALUE">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:Framework.Data.SE_REMINDER.ID">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:Framework.Data.SE_REMINDER">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteSQL(System.String,System.Boolean)">
+	<summary>
+ Query 1 câu lệnh SQL
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteSQL``1(System.String,``0,System.Boolean)">
+	<summary>
+  Query 1 câu lệnh SQL có chứa tham số
+ </summary>
+	<typeparam name="T"></typeparam>
+	<param name="sql"></param>
+	<param name="obj"></param>
+	<param name="isDataTable"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteStore(System.String,System.Boolean)">
+	<summary>
+ Query procedure không chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.QueryData.ExecuteStore``1(System.String,``0@,System.Boolean)">
+	<summary>
+ Query procedure có chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Đối tượng chưa parameter</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="F:Framework.Data.DataAccess.ConnectionManager.conn">
+	<summary>
+ Connection dùng chung cho cả App
+ </summary>
+</member><member name="T:Framework.Data.DataAccess.ConnectionManager.ConnectionInfo">
+	<summary>
+ Thông tin về Connection
+ </summary>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.GetConnectionString">
+	<summary>
+ Tạo chuỗi ConnectionString
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.GetOracleConnection">
+	<summary>
+ Tạo một OracleConnection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CheckConnection">
+	<summary>
+ Kiểm tra Connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.OpenConnection">
+	<summary>
+ Open connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CloseConnection">
+	<summary>
+ Close connection
+ </summary>
+	<returns></returns>
+</member><member name="M:Framework.Data.DataAccess.ConnectionManager.CheckLiveConnection">
+	<summary>
+ Kiểm tra trạng thái connection và khởi tạo hoặc open nếu cần
+ </summary>
+</member><member name="P:Framework.Data.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Framework.Data.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:Framework.Data.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:Framework.Data.DateDifference.monthDay">
+	<summary>
+ defining Number of days in month; index 0=&gt; january and 11=&gt; December
+ february contain either 28 or 29 days, that's why here value is -1
+ which wil be calculate later.
+ </summary>
+</member><member name="F:Framework.Data.DateDifference.fromDate">
+	<summary>
+ từ ngày
+ </summary>
+</member><member name="F:Framework.Data.DateDifference.toDate">
+	<summary>
+ đến ngày
+ </summary>
+</member><member name="F:Framework.Data.DateDifference.year">
+	<summary>
+ 3 tham số trả về
+ </summary>
+</member><member name="M:Framework.Data.Utilities.WriteExceptionLog(System.Exception,System.String,System.String)">
+	<summary>
+ Writes the exception log.
+ </summary>
+	<param name="objErr">The obj err.</param>
+	<param name="sFunc">The s func.</param>
+</member><member name="M:Framework.Data.DataAccess.OracleCommon.GetParameter(System.String,System.Object,System.Boolean@)">
+	<summary>
+ Gán type database tương ứng với value
+ </summary>
+	<param name="sKey">Tên parameter</param>
+	<param name="sValue">Giá trị của parameter</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteSQL(System.String)">
+	<summary>
+ NonQuery 1 câu lệnh SQL, bao gồm transaction
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteSQLScalar``1(System.String,``0)">
+	<summary>
+Get value không chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Đối tượng chưa parameter</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStore(System.String)">
+	<summary>
+ NonQuery procedure có chứa tham số, bao gồm transaction
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStore``1(System.String,``0)">
+	<summary>
+ NonQuery procedure có chứa tham số, bao gồm transaction
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Mảng các tham số truyền vào</param>
+	<returns>Dữ liệu trả về</returns>
+</member><member name="M:Framework.Data.DataAccess.NonQueryData.ExecuteStoreScalar``1(System.String,``0)">
+	<summary>
+ Get value procedure có chứa tham số
+ </summary>
+	<param name="sql">Câu lệnh SQL</param>
+	<param name="obj">Đối tượng chưa parameter</param>
+	<returns>Dữ liệu trả về</returns>
+</member>
+</members>
+</doc>

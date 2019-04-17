@@ -185,6 +185,15 @@ Partial Public Class ctrlApproveSetupExt
     Protected WithEvents hidEmployeeID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''chkReplaceAll control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkReplaceAll As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''rdFromDate control.
     '''</summary>
     '''<remarks>
@@ -194,15 +203,6 @@ Partial Public Class ctrlApproveSetupExt
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''reqFromDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqFromDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''rdToDate control.
     '''</summary>
     '''<remarks>
@@ -210,15 +210,6 @@ Partial Public Class ctrlApproveSetupExt
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''reqToDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqToDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''cvalFromDateToDate control.

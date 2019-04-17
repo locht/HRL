@@ -7,6 +7,8 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "File Upload Management"
+
+
     Private Function SaveFile_Manager(ByVal fileId As Decimal, ByVal fileBytes As Byte()) As Boolean
         Try
             Dim filePath = AppDomain.CurrentDomain.BaseDirectory & "\AttatchFilesManager"
@@ -30,10 +32,11 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Private Function DeleteFile_Manager(ByVal fileId As Decimal) As Boolean
+    Private Function DeleteFile_Manager(ByVal fileId As Decimal, ByVal ext As String) As Boolean
         Try
-            Dim filePath = AppDomain.CurrentDomain.BaseDirectory & "\AttatchFilesManager"
-            Dim fPath = Path.Combine(filePath, fileId.ToString)
+            Dim pathFile As String = System.Configuration.ConfigurationManager.AppSettings("PathFileEmpFolder").ToString()
+            Dim filePath = pathFile
+            Dim fPath = Path.Combine(filePath, fileId.ToString & ext)
             Dim fInfo As New FileInfo(fPath)
 
             If fInfo.Exists Then
@@ -47,11 +50,12 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByRef fileInfo As EmployeeFileDTO) As Byte()
+    Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As HuFileDTO) As Byte()
         Try
-            Dim filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AttatchFilesManager")
+            Dim pathFile As String = System.Configuration.ConfigurationManager.AppSettings("PathFileEmpFolder").ToString()
+            Dim filePath = System.IO.Path.Combine(pathFile)
 
-            Dim fPath = Path.Combine(filePath, fileID.ToString)
+            Dim fPath = Path.Combine(filePath, fileID.ToString & ext)
 
             If File.Exists(fPath) Then
 
@@ -75,32 +79,35 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function InsertAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean
+    Public Function InsertAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean
         Try
+            Dim pathFile As String = System.Configuration.ConfigurationManager.AppSettings("PathFileEmpFolder").ToString()
+            Dim attFile As HU_FILE
+            Dim fileID As Decimal = Utilities.GetNextSequence(Context, Context.HU_FILE.EntitySet.Name)
+            Dim ext As String = fileInfo.FILENAME_SYS
+            If ext <> "" Then
+                If SaveFile(fileID, ext, fileBytes) Then
 
-            Dim attFile As HU_EMPLOYEE_FILE
-            Dim fileID As Decimal = Utilities.GetNextSequence(Context, Context.HU_EMPLOYEE_FILE.EntitySet.Name)
+                    attFile = New HU_FILE With {
+                        .FILENAME = fileInfo.FILENAME,
+                        .REMARK = fileInfo.REMARK,
+                        .ID = fileID,
+                        .FROM_DATE = fileInfo.FROM_DATE,
+                        .TO_DATE = fileInfo.TO_DATE,
+                        .NUMBER_CODE = fileInfo.NUMBER_CODE,
+                        .ADDRESS = fileInfo.ADDRESS,
+                        .SIGN_PERSON = fileInfo.SIGN_PERSON,
+                        .EMPLOYEE_ID = fileInfo.EMPLOYEE_ID,
+                        .FILENAME_SYS = fileInfo.FILENAME_SYS,
+                        .CQBH = fileInfo.CQBH,
+                        .NAME = fileInfo.NAME
+                    }
 
-            If SaveFile(fileID, fileBytes) Then
+                    Context.HU_FILE.AddObject(attFile)
+                Else
+                    Return False
+                End If
 
-                attFile = New HU_EMPLOYEE_FILE With {
-                    .FILE_NAME = fileInfo.FILE_NAME,
-                    .FILE_SIZE = fileInfo.FILE_SIZE,
-                    .FILE_TYPE = fileInfo.FILE_TYPE,
-                    .NOTE = fileInfo.NOTE,
-                    .UPLOAD_BY = fileInfo.UPLOAD_BY,
-                    .UPLOAD_DATE = Date.Now,
-                    .ID = fileID,
-                    .EFFECT_DATE = fileInfo.EFFECT_DATE,
-                    .EXPIRE_DATE = fileInfo.EXPIRE_DATE,
-                    .FILE_NO = fileInfo.FILE_NO,
-                    .EFFECT_LOCATION = fileInfo.EFFECT_LOCATION,
-                    .FILE_NUMBER = fileInfo.FILE_NUMBER,
-                    .NAME_VN = fileInfo.NAME_VN,
-                    .EMPLOYEE_ID = fileInfo.EMPLOYEE_ID
-                }
-
-                Context.HU_EMPLOYEE_FILE.AddObject(attFile)
             Else
                 Return False
             End If
@@ -114,30 +121,34 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function UpdateAttatch_Manager(ByVal fileInfo As EmployeeFileDTO, ByVal fileBytes As Byte()) As Boolean
+    Public Function UpdateAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean
         Try
-            Dim objUpdate As New HU_EMPLOYEE_FILE With {.ID = fileInfo.ID}
-            Context.HU_EMPLOYEE_FILE.Attach(objUpdate)
+            Dim pathFile As String = System.Configuration.ConfigurationManager.AppSettings("PathFileEmpFolder").ToString()
+            Dim objUpdate As New HU_FILE With {.ID = fileInfo.ID}
+            Context.HU_FILE.Attach(objUpdate)
             With objUpdate
 
-                If fileInfo.FILE_NAME <> "-1" And fileInfo.FILE_SIZE > 0 Then
-                    If DeleteFile_Manager(fileInfo.ID) And SaveFile(fileInfo.ID, fileBytes) Then
-                        .FILE_NAME = fileInfo.FILE_NAME
-                        .FILE_SIZE = fileInfo.FILE_SIZE
+                If fileInfo.FILENAME <> "" Then
+                    If DeleteFile_Manager(fileInfo.ID, fileInfo.FILENAME_SYS) And SaveFile(fileInfo.ID, fileInfo.FILENAME_SYS, fileBytes) Then
+                        .FILENAME = fileInfo.FILENAME
                     Else
                         Return False
                     End If
                 End If
 
-                .FILE_TYPE = fileInfo.FILE_TYPE
-                .NOTE = fileInfo.NOTE
-                .UPLOAD_DATE = Date.Now
-                .EFFECT_DATE = fileInfo.EFFECT_DATE
-                .EXPIRE_DATE = fileInfo.EXPIRE_DATE
-                .FILE_NO = fileInfo.FILE_NO
-                .EFFECT_LOCATION = fileInfo.EFFECT_LOCATION
-                .FILE_NUMBER = fileInfo.FILE_NUMBER
-                .NAME_VN = fileInfo.NAME_VN
+                .ID = fileInfo.ID
+                .FILENAME = fileInfo.FILENAME
+                .FILENAME_SYS = fileInfo.FILENAME_SYS
+                .REMARK = fileInfo.REMARK
+                .FROM_DATE = fileInfo.FROM_DATE
+                .TO_DATE = fileInfo.TO_DATE
+                .NUMBER_CODE = fileInfo.NUMBER_CODE
+                .ADDRESS = fileInfo.ADDRESS
+                .EMPLOYEE_ID = fileInfo.EMPLOYEE_ID
+                .ACTFLG = fileInfo.ACTFLG
+                .SIGN_PERSON = fileInfo.SIGN_PERSON
+                .CQBH = fileInfo.CQBH
+                .NAME = fileInfo.NAME
 
             End With
             Context.SaveChanges()
@@ -149,62 +160,51 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function DeleteAttatch_Manager(ByVal fileID As Decimal) As Boolean
+   Public Function DeleteAttatch_Manager(ByVal fileID As List(Of Decimal)) As Boolean
         Try
-            Dim fileDelete = Context.HU_EMPLOYEE_FILE.SingleOrDefault(Function(p) p.ID = fileID)
+            Dim result As Boolean = False
+            For Each id In fileID
+                Dim fileDelete = Context.HU_FILE.SingleOrDefault(Function(p) p.ID = id)
 
-            If fileDelete IsNot Nothing Then
+                If fileDelete IsNot Nothing Then
 
-                'Clean file trên server
-
-                If DeleteFile(fileID) Then
-
-                    Context.HU_EMPLOYEE_FILE.DeleteObject(fileDelete)
-
-                    Context.SaveChanges()
-
-                    Return True
-                Else
-                    Return False
+                    'Clean file trên server
+                    If DeleteFile(id) Then
+                        Context.HU_FILE.DeleteObject(fileDelete)
+                        Context.SaveChanges()
+                        result = True
+                    End If
                 End If
-            Else
-                Return False
-            End If
+            Next
+            Return result
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw
         End Try
     End Function
 
-    Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of EmployeeFileDTO)
+    Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As List(Of HuFileDTO)
         Try
-            Dim listFile As New List(Of EmployeeFileDTO)
+            Dim listFile As New List(Of HuFileDTO)
             totalPage = 0
-            Dim fList = From a In Context.HU_EMPLOYEE_FILE
-                    Join p In Context.OT_OTHER_LIST On a.FILE_TYPE Equals p.ID
+            Dim fList = From a In Context.HU_FILE
                     Where a.EMPLOYEE_ID = Employee_id
-                        Order By p.NAME_VN Ascending, a.UPLOAD_DATE Descending
-                        Select New EmployeeFileDTO With {
+                        Order By a.CREATED_DATE Descending
+                        Select New HuFileDTO With {
                             .ID = a.ID,
-                            .FILE_NAME = a.FILE_NAME,
-                            .FILE_SIZE = a.FILE_SIZE,
-                            .FILE_TYPE = a.FILE_TYPE,
-                            .FILE_TYPE_NAME = p.NAME_VN,
-                            .NOTE = a.NOTE,
-                            .UPLOAD_DATE = a.UPLOAD_DATE,
-                            .EFFECT_DATE = a.EFFECT_DATE,
-                            .EXPIRE_DATE = a.EXPIRE_DATE,
-                            .FILE_NO = a.FILE_NO,
-                            .EFFECT_LOCATION = a.EFFECT_LOCATION,
-                            .FILE_NUMBER = a.FILE_NUMBER,
-                            .NAME_VN = a.NAME_VN,
-            .UPLOAD_BY = a.UPLOAD_BY
+                            .FILENAME = a.FILENAME,
+                            .FILENAME_SYS = a.FILENAME_SYS,
+                            .REMARK = a.REMARK,
+                            .FROM_DATE = a.FROM_DATE,
+                            .TO_DATE = a.TO_DATE,
+                            .NUMBER_CODE = a.NUMBER_CODE,
+                            .ADDRESS = a.ADDRESS,
+                            .EMPLOYEE_ID = a.EMPLOYEE_ID,
+                            .ACTFLG = a.ACTFLG,
+                            .SIGN_PERSON = a.SIGN_PERSON,
+                            .CQBH = a.CQBH
                         }
 
-
-            If fileType <> 0 Then
-                fList = fList.Where(Function(p) p.FILE_TYPE = fileType)
-            End If
 
             totalPage = fList.Count
 
@@ -218,24 +218,24 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function GetAttachFile_Manager(ByVal fileId As Decimal) As EmployeeFileDTO
+    Public Function GetAttachFile_Manager(ByVal fileId As Decimal) As HuFileDTO
         Try
-            Dim a = Context.HU_EMPLOYEE_FILE.SingleOrDefault(Function(p) p.ID = fileId)
+            Dim a = Context.HU_FILE.SingleOrDefault(Function(p) p.ID = fileId)
 
             If a IsNot Nothing Then
-                Dim fReturn As New EmployeeFileDTO With {
+                Dim fReturn As New HuFileDTO With {
                             .ID = a.ID,
-                            .FILE_NAME = a.FILE_NAME,
-                            .FILE_SIZE = a.FILE_SIZE,
-                            .FILE_TYPE = a.FILE_TYPE,
-                            .NOTE = a.NOTE,
-                            .EFFECT_DATE = a.EFFECT_DATE,
-                            .EXPIRE_DATE = a.EXPIRE_DATE,
-                            .FILE_NO = a.FILE_NO,
-                            .EFFECT_LOCATION = a.EFFECT_LOCATION,
-                            .FILE_NUMBER = a.FILE_NUMBER,
-                            .UPLOAD_BY = a.UPLOAD_BY,
-                            .NAME_VN = a.NAME_VN
+                            .FILENAME = a.FILENAME,
+                            .FILENAME_SYS = a.FILENAME_SYS,
+                            .REMARK = a.REMARK,
+                            .FROM_DATE = a.FROM_DATE,
+                            .TO_DATE = a.TO_DATE,
+                            .NUMBER_CODE = a.NUMBER_CODE,
+                            .ADDRESS = a.ADDRESS,
+                            .EMPLOYEE_ID = a.EMPLOYEE_ID,
+                            .ACTFLG = a.ACTFLG,
+                            .SIGN_PERSON = a.SIGN_PERSON,
+                            .CQBH = a.CQBH
                         }
                 Return fReturn
             Else
@@ -266,14 +266,15 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Private Function SaveFile(ByVal fileId As Decimal, ByVal fileBytes As Byte()) As Boolean
+    Private Function SaveFile(ByVal fileId As Decimal, ByVal ext As String, ByVal fileBytes As Byte()) As Boolean
         Try
-            Dim filePath = AppDomain.CurrentDomain.BaseDirectory & "\AttatchFilesManager"
+            Dim pathFile As String = System.Configuration.ConfigurationManager.AppSettings("PathFileEmpFolder").ToString()
+            Dim filePath = pathFile
             If Not Directory.Exists(filePath) Then
                 Directory.CreateDirectory(filePath)
             End If
 
-            Dim fPath = Path.Combine(filePath, fileId.ToString)
+            Dim fPath = Path.Combine(filePath, fileId.ToString & ext)
             Dim fInfo As New FileInfo(fPath)
             Dim fStream As FileStream
 
@@ -290,7 +291,76 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function GetEmployeeHuFile(ByVal _filter As HuFileDTO) As List(Of HuFileDTO)
+        Try
+            Dim listFile As New List(Of HuFileDTO)
+            'Dim sEmpCode As String = String.Empty
+            'sEmpCode = (From p In Context.HU_EMPLOYEE Where p.ID = _filter.EMPLOYEE_ID Select p.EMPLOYEE_CODE).FirstOrDefault
+            Dim fList = From a In Context.HU_FILE
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = a.EMPLOYEE_ID).DefaultIfEmpty
+                        Order By a.CREATED_DATE Descending
+                        Select New HuFileDTO With {
+                            .ID = a.ID,
+                            .FILENAME = a.FILENAME,
+                            .FILENAME_SYS = a.FILENAME_SYS,
+                            .REMARK = a.REMARK,
+                            .FROM_DATE = a.FROM_DATE,
+                            .TO_DATE = a.TO_DATE,
+                            .NUMBER_CODE = a.NUMBER_CODE,
+                            .ADDRESS = a.ADDRESS,
+                            .EMPLOYEE_ID = a.EMPLOYEE_ID,
+                            .ACTFLG = a.ACTFLG,
+                            .SIGN_PERSON = a.SIGN_PERSON,
+                            .CQBH = a.CQBH,
+                            .NAME = a.NAME
+                        }
 
+            listFile = fList.ToList
+
+            Return listFile
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw
+        End Try
+    End Function
+    Public Function DeleteEmployeeHuFile(ByVal lstDecimals As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim lst As List(Of HU_FILE)
+        Try
+            lst = (From p In Context.HU_FILE Where lstDecimals.Contains(p.ID)).ToList
+            For i As Int16 = 0 To lst.Count - 1
+                Context.HU_FILE.DeleteObject(lst(i))
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function InsertEmployeeHuFile(ByVal objEmployeeHuF As EmployeeFileDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Try
+
+            Dim objEmployeeHuFile As New HU_FILE
+            objEmployeeHuFile.ID = Utilities.GetNextSequence(Context, Context.HU_FILE.EntitySet.Name)
+            objEmployeeHuFile.EMPLOYEE_ID = objEmployeeHuF.EMPLOYEE_ID
+            objEmployeeHuFile.CREATED_DATE = DateTime.Now
+            objEmployeeHuFile.CREATED_BY = log.Username
+            objEmployeeHuFile.CREATED_LOG = log.ComputerName
+            objEmployeeHuFile.MODIFIED_DATE = DateTime.Now
+            objEmployeeHuFile.MODIFIED_BY = log.Username
+            objEmployeeHuFile.MODIFIED_LOG = log.ComputerName
+            Context.HU_FILE.AddObject(objEmployeeHuFile)
+            Context.SaveChanges(log)
+            gID = objEmployeeHuFile.ID
+            Return True
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 End Class

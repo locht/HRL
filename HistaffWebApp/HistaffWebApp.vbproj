@@ -454,6 +454,7 @@
     <Content Include="Modules\Profile\Business\ctrlHU_ContractAppendix.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ContractTemplete.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlCompetency.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlFile.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlViewKPI.ascx" />
     <Content Include="Modules\Payroll\List\ctrlPA_TaxationList.ascx" />
     <Content Include="Modules\Payroll\Report\ctrlPA_ReportList.ascx" />
@@ -489,6 +490,7 @@
     <Content Include="Modules\Profile\Business\ctrlHU_BlackList.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ChangeInfoMng.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ChangeInfoNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_EmployeeFile.ascx" />
     <Content Include="Modules\Profile\ctrlInformation.ascx" />
     <Content Include="Modules\Profile\Dashboard\ctrlDashboard.ascx" />
     <Content Include="Modules\Profile\Dashboard\ctrlDashboardProfile.ascx" />

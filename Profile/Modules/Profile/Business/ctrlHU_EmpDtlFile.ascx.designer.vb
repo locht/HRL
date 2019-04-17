@@ -32,13 +32,13 @@ Partial Public Class ctrlHU_EmpDtlFile
     Protected WithEvents txtFileNameSys As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''txtDownloadFile control.
+    '''txtFileNameDL control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDownloadFile As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents txtFileNameDL As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''ctrlMessageBox control.
@@ -149,13 +149,22 @@ Partial Public Class ctrlHU_EmpDtlFile
     Protected WithEvents _radAsynceUpload1 As Global.Telerik.Web.UI.RadAsyncUpload
 
     '''<summary>
-    '''txtFileName control.
+    '''txtFileNameVN control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFileName As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents txtFileNameVN As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtSign control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSign As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtAdress control.

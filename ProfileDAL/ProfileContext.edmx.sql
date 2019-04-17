@@ -1,14 +1,19 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 16/04/2019 2:34:25 PM
--- Generated from EDMX file: E:\HistaffHCM\ProfileDAL\ProfileContext.edmx
+<<<<<<< HEAD
+-- Date Created: 4/12/2019 4:38:28 PM
+=======
+-- Date Created: 4/10/2019 9:39:49 AM
+>>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
+-- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+<<<<<<< HEAD
 -- ALTER TABLE "dbo"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
 
 -- ALTER TABLE "dbo"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
@@ -63,10 +68,13 @@
 
 -- ALTER TABLE "dbo"."HU_ORGANIZATION1" DROP CONSTRAINT "FK_HU_ORG_HU_ORG1" CASCADE;
 
+=======
+>>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+<<<<<<< HEAD
 -- DROP TABLE "dbo"."HU_PROVINCE";
 
 -- DROP TABLE "dbo"."HU_DISTRICT";
@@ -319,7 +327,12 @@
 
 -- DROP TABLE "dbo"."HU_ATTACHFILES";
 
+-- DROP TABLE "dbo"."HU_FILE";
+
 -- DROP TABLE "dbo"."SE_USER_REPORT";
+=======
+-- DROP TABLE "HISTAFFHCM"."HU_ATTACHFILES";
+>>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -2554,9 +2567,7 @@ CREATE TABLE "dbo"."HU_WORKING" (
    "TAX_TABLE_ID" NUMBER(38,0) NULL,
    "ATTACH_FILE" NCLOB NULL,
    "FILENAME" NVARCHAR2(500) NULL,
-   "SALE_COMMISION_ID" NUMBER(38,0) NULL,
-   "OBJECT_ATTENDANCE" NUMBER(38,0) NULL,
-   "FILING_DATE" DATE NULL
+   "SALE_COMMISION_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_TYPE'
@@ -3014,6 +3025,29 @@ CREATE TABLE "dbo"."HU_ATTACHFILES" (
    "FK_ID" NUMBER(38,0) NULL,
    "CONTROL_NAME" NVARCHAR2(100) NULL,
    "FILE_TYPE" NVARCHAR2(20) NULL
+);
+
+-- Creating table 'HU_FILE'
+CREATE TABLE "dbo"."HU_FILE" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "NAME" NVARCHAR2(255) NULL,
+   "NUMBER_CODE" NVARCHAR2(255) NULL,
+   "ADDRESS" NVARCHAR2(255) NULL,
+   "FROM_DATE" DATE NULL,
+   "TO_DATE" DATE NULL,
+   "FILENAME" NVARCHAR2(255) NULL,
+   "FILENAME_SYS" NVARCHAR2(255) NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NOT NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "SIGN_PERSON" NVARCHAR2(255) NULL,
+   "CQBH" NVARCHAR2(500) NULL,
+   "REMARK" NVARCHAR2(2000) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'
@@ -4030,6 +4064,14 @@ ADD CONSTRAINT "PK_HU_ALLOWANCE"
 -- Creating primary key on "ID"in table 'HU_ATTACHFILES'
 ALTER TABLE "dbo"."HU_ATTACHFILES"
 ADD CONSTRAINT "PK_HU_ATTACHFILES"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'HU_FILE'
+ALTER TABLE "dbo"."HU_FILE"
+ADD CONSTRAINT "PK_HU_FILE"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

@@ -38,13 +38,6 @@ Namespace CommonBusiness.ServiceContracts
 #End Region
 
 #Region "Organization"
-        ''' <summary>
-        ''' Lấy danh sách chỉ gồm id va name cua phong ban
-        ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        <OperationContract()>
-        Function GetOrganizationList() As List(Of OrganizationDTO)
         <OperationContract()>
         Function GetOrganizationAll() As List(Of OrganizationDTO)
         ''' <summary>
@@ -848,8 +841,6 @@ Namespace CommonBusiness.ServiceContracts
 #End Region
 
 #Region "Setup Approve - Thiết lập phê duyệt"
-        <OperationContract()>
-        Function GetTitleList() As List(Of OtherListDTO)
         <OperationContract()>
         Function GetApproveSetupByEmployee(ByVal employeeId As Decimal,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ApproveSetupDTO)
