@@ -2594,8 +2594,6 @@
             <Property Name="ATTACH_FILE" Type="nclob" Nullable="true" />
             <Property Name="FILENAME" Type="nvarchar2" Nullable="true" MaxLength="500" />
             <Property Name="SALE_COMMISION_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="OBJECT_ATTENDANCE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="FILING_DATE" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
             <Key>
@@ -6445,8 +6443,6 @@
           <Property Type="String" Name="ATTACH_FILE" />
           <Property Type="String" Name="FILENAME" MaxLength="500" />
           <Property Type="Decimal" Name="SALE_COMMISION_ID" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="OBJECT_ATTENDANCE" Nullable="true" />
-          <Property Type="DateTime" Name="FILING_DATE" Nullable="true" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
           <Key>
@@ -9429,8 +9425,6 @@
                     <ScalarProperty Name="ATTACH_FILE" ColumnName="ATTACH_FILE" />
                     <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
                     <ScalarProperty Name="SALE_COMMISION_ID" ColumnName="SALE_COMMISION_ID" />
-                    <ScalarProperty Name="OBJECT_ATTENDANCE" ColumnName="OBJECT_ATTENDANCE" />
-                    <ScalarProperty Name="FILING_DATE" ColumnName="FILING_DATE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10215,7 +10209,7 @@
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="27.375" PointY="18.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE_LIST" Width="1.5" PointX="27.375" PointY="21.75" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_COURSE" Width="2.375" PointX="27.375" PointY="26.75" Height="3.134095052083353" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="9.6723437500000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="9.2877408854166674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE_CONCURRENT" Width="2.25" PointX="29.375" PointY="0.75" Height="3.710999348958353" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORG_TITLE" Width="1.5" PointX="4.375" PointY="0.75" Height="3.134095052083353" />

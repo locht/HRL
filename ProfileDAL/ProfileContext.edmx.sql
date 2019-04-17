@@ -1,7 +1,11 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
+<<<<<<< HEAD
 -- Date Created: 4/12/2019 4:38:28 PM
+=======
+-- Date Created: 4/10/2019 9:39:49 AM
+>>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
 -- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -9,6 +13,7 @@
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+<<<<<<< HEAD
 -- ALTER TABLE "dbo"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
 
 -- ALTER TABLE "dbo"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
@@ -63,10 +68,13 @@
 
 -- ALTER TABLE "dbo"."HU_ORGANIZATION1" DROP CONSTRAINT "FK_HU_ORG_HU_ORG1" CASCADE;
 
+=======
+>>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+<<<<<<< HEAD
 -- DROP TABLE "dbo"."HU_PROVINCE";
 
 -- DROP TABLE "dbo"."HU_DISTRICT";
@@ -322,6 +330,9 @@
 -- DROP TABLE "dbo"."HU_FILE";
 
 -- DROP TABLE "dbo"."SE_USER_REPORT";
+=======
+-- DROP TABLE "HISTAFFHCM"."HU_ATTACHFILES";
+>>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -2556,9 +2567,7 @@ CREATE TABLE "dbo"."HU_WORKING" (
    "TAX_TABLE_ID" NUMBER(38,0) NULL,
    "ATTACH_FILE" NCLOB NULL,
    "FILENAME" NVARCHAR2(500) NULL,
-   "SALE_COMMISION_ID" NUMBER(38,0) NULL,
-   "OBJECT_ATTENDANCE" NUMBER(38,0) NULL,
-   "FILING_DATE" DATE NULL
+   "SALE_COMMISION_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_TYPE'
