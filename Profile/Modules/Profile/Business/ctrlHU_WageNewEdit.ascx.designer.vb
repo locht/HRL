@@ -113,6 +113,15 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbEmployeeCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmployeeCode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtEmployeeCode control.
     '''</summary>
     '''<remarks>
@@ -140,6 +149,15 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents reqEmployeeCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lbEmployeeName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmployeeName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtEmployeeName control.
     '''</summary>
     '''<remarks>
@@ -147,6 +165,15 @@ Partial Public Class ctrlHU_WageNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmployeeName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbTitleName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTitleName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtTitleName control.
@@ -158,6 +185,15 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents txtTitleName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbOrgName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOrgName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtOrgName control.
     '''</summary>
     '''<remarks>
@@ -167,6 +203,15 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents txtOrgName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbDecisionNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDecisionNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtDecisionNo control.
     '''</summary>
     '''<remarks>
@@ -174,6 +219,15 @@ Partial Public Class ctrlHU_WageNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtDecisionNo As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEffectDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdEffectDate control.
@@ -194,6 +248,15 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents reqEffectDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lbExpireDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbExpireDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdExpireDate control.
     '''</summary>
     '''<remarks>
@@ -210,6 +273,15 @@ Partial Public Class ctrlHU_WageNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''lbSalTYPE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSalTYPE As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboSalTYPE control.
