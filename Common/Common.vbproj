@@ -354,6 +354,8 @@
     <Compile Include="BusinessObjects\REQUEST_DTO.vb" />
     <Compile Include="BusinessObjects\WorkingCommonDTO.vb" />
     <Compile Include="CMConstant.vb" />
+    <Compile Include="Contant_Common.vb" />
+    <Compile Include="Contant_OtherList_Code_Attendance.vb" />
     <Compile Include="Modules\Common\ApproveProcess\ctrlApproveProcess.ascx.designer.vb">
       <DependentUpon>ctrlApproveProcess.ascx</DependentUpon>
     </Compile>

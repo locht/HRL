@@ -405,6 +405,10 @@
     <Compile Include="AttendanceRepository.vb" />
     <Compile Include="AttendanceRepositoryBase.vb" />
     <Compile Include="AttendanceRepositoryStatic.vb" />
+    <Compile Include="AttendanceStoreProcedure.At_aldata.vb" />
+    <Compile Include="AttendanceStoreProcedure.List.vb" />
+    <Compile Include="AttendanceStoreProcedure.Portal.vb" />
+    <Compile Include="AttendanceStoreProcedure.Setting.vb" />
     <Compile Include="BusinessObjects\MessageDTO.vb" />
     <Compile Include="AttendanceRepository.Business.vb" />
     <Compile Include="AttendanceRepository.Common.vb" />
@@ -958,6 +962,10 @@
     <ProjectReference Include="..\Framework\Framework.UI.vbproj">
       <Project>{514CC57F-03AA-4D18-9BF2-3F7B66F6AD9B}</Project>
       <Name>Framework.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HistaffFrameworkPublic\HistaffFrameworkPublic.vbproj">
+      <Project>{5D0CFFD8-3EF0-4584-818F-3F165BD8DE0C}</Project>
+      <Name>HistaffFrameworkPublic</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebAppLog\WebAppLog.vbproj">
       <Project>{780365C3-C031-4841-9B4C-B39840797596}</Project>
