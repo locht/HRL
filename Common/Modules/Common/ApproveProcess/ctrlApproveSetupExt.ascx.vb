@@ -288,6 +288,15 @@ Public Class ctrlApproveSetupExt
                     Dim db As New CommonRepository
                     If Not IDDetailSelecting.HasValue Then
                         'Thêm mới
+                        If chkReplaceAll.Checked = False Then
+                            If rdFromDate.SelectedDate Is Nothing Then
+                                ShowMessage(Translate("Nhập thay thế từ ngày"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                            If rdToDate.SelectedDate Is Nothing Then
+                                ShowMessage(Translate("Nhập đến ngày"), NotifyType.Warning)
+                            End If
+                        End If
                         Dim itemAdd As New ApproveSetupExtDTO
                         With itemAdd
                             .EMPLOYEE_ID = EmployeeID
@@ -295,6 +304,7 @@ Public Class ctrlApproveSetupExt
                             .SUB_EMPLOYEE_ID = Decimal.Parse(hidEmployeeID.Value)
                             .FROM_DATE = rdFromDate.SelectedDate
                             .TO_DATE = rdToDate.SelectedDate
+                            .REPALCEALL = chkReplaceAll.Checked
                         End With
                         If (From p In ApproveSetupExts
                             Where ((itemAdd.FROM_DATE >= p.FROM_DATE And itemAdd.TO_DATE <= p.TO_DATE) _
@@ -312,7 +322,15 @@ Public Class ctrlApproveSetupExt
                         End If
                     Else
                         ' Sửa đổi
-
+                        If chkReplaceAll.Checked = False Then
+                            If rdFromDate.SelectedDate Is Nothing Then
+                                ShowMessage(Translate("Nhập thay thế từ ngày"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                            If rdToDate.SelectedDate Is Nothing Then
+                                ShowMessage(Translate("Nhập đến ngày"), NotifyType.Warning)
+                            End If
+                        End If
                         Dim idEdit As Decimal = IDDetailSelecting.Value
 
                         Dim itemEdit As ApproveSetupExtDTO = db.GetApproveSetupExt(idEdit)
@@ -321,6 +339,7 @@ Public Class ctrlApproveSetupExt
                             .SUB_EMPLOYEE_ID = Decimal.Parse(hidEmployeeID.Value)
                             .FROM_DATE = rdFromDate.SelectedDate
                             .TO_DATE = rdToDate.SelectedDate
+                            .REPALCEALL = chkReplaceAll.Checked
                         End With
                         Dim lstID As New List(Of Decimal)
                         lstID.Add(idEdit)

@@ -60,7 +60,7 @@
                             <td class="lb">
                                 <%# Translate("Nhân viên: ")%>
                             </td>
-                            <td colspan="3" style="white-space: nowrap">
+                            <td colspan="2" style="white-space: nowrap">
                                 <tlk:RadTextBox runat="server" ID="txtEmployeeCode" EmptyMessage="Mã NV" Width="60px"
                                     ReadOnly="true">
                                 </tlk:RadTextBox>
@@ -74,6 +74,9 @@
                                 </tlk:RadButton>
                                 <asp:HiddenField runat="server" ID="hidEmployeeID" />
                             </td>
+                              <td >
+                                <asp:CheckBox ID="chkReplaceAll" runat="server" Text="<%$ Translate: Thay thế vĩnh viễn %>" />
+                            </td>
                         </tr>
                         <tr>
                             <td class="lb">
@@ -83,8 +86,7 @@
                             <td>
                                 <tlk:RadDatePicker runat="server" ID="rdFromDate">
                                 </tlk:RadDatePicker>
-                                <asp:RequiredFieldValidator runat="server" ID="reqFromDate" ControlToValidate="rdFromDate"
-                                    ErrorMessage='<%$ Translate: Chưa nhập Từ ngày %>'></asp:RequiredFieldValidator>
+                               
                             </td>
                             <td class="lb">
                                 <%# Translate("Đến ngày")%>
@@ -93,8 +95,7 @@
                             <td>
                                 <tlk:RadDatePicker runat="server" ID="rdToDate">
                                 </tlk:RadDatePicker>
-                                <asp:RequiredFieldValidator runat="server" ID="reqToDate" ControlToValidate="rdToDate"
-                                    ErrorMessage='<%$ Translate: Chưa nhập Đến ngày %>'></asp:RequiredFieldValidator>
+                               
                                 <asp:CustomValidator runat="server" ID="cvalFromDateToDate" ErrorMessage='<%$ Translate: Từ ngày lớn hơn đến ngày. %>'></asp:CustomValidator>
                                 <asp:CustomValidator runat="server" ID="cvalCheckDateExist" ErrorMessage='<%$ Translate: Đã có thiết lập áp dụng vào khoảng thời gian bạn chọn. %>'></asp:CustomValidator>
                             </td>

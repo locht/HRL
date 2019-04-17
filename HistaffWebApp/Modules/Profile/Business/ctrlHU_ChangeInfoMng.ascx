@@ -56,7 +56,7 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE,OBJECT_ATTENDANCE,FILING_DATE,OBJECT_ATTENDANCE_NAME" ClientDataKeyNames="ID,EMPLOYEE_ID">
+                    <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -82,14 +82,6 @@
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
                                 SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" HeaderStyle-Width="80px" />
-
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME"
-                                SortExpression="OBJECT_ATTENDANCE_NAME" UniqueName="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="80px" />
-
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nộp đơn %>" DataField="FILING_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="FILING_DATE" UniqueName="FILING_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" />
-
                             <tlk:GridBoundColumn HeaderText="" DataField="DECISION_TYPE_NAME"
                                 SortExpression="DECISION_TYPE_NAME" UniqueName="DECISION_TYPE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
@@ -112,8 +104,7 @@
 <%--            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 
             </tlk:RadPane>--%>
-
-            <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+            <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px" Visible="false">
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td class="lb" Visible="false">
@@ -136,6 +127,29 @@
                     </tr>
                 </table>
             </tlk:RadPane>
+           <%-- <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+                <table class="table-form" onkeydown="return (event.keyCode!=13)">
+                    <tr>
+                        <td class="lb">
+                            <%# Translate("Biễu mẫu hỗ trợ")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" Width="400px" ID="cboPrintSupport">
+                            </tlk:RadComboBox>
+                            <asp:CustomValidator ID="cvalPrintSupport" ControlToValidate="cboPrintSupport" runat="server"
+                                ErrorMessage="<%$ Translate: Biểu mẫu hỗ trợ không tồn tại hoặc đã ngừng áp dụng. %>"
+                                ToolTip="<%$ Translate: Biểu mẫu hỗ trợ không tồn tại hoặc đã ngừng áp dụng. %>">
+                            </asp:CustomValidator>      
+                        </td>
+                        <td>
+                            <tlk:RadButton ID="btnPrintSupport" runat="server" Text="<%$ Translate: Hỗ trợ in %>"
+                                OnClientClicking="btnPrintSupportClick" AutoPostBack="true" CausesValidation="true"
+                                OnClientClicked="btnResize" >
+                            </tlk:RadButton>
+                        </td>
+                    </tr>
+                </table>
+            </tlk:RadPane>--%>
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -183,7 +197,7 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
             }
-            if (bCheck == 1) {
+            if (bCheck  ==  1) {
                 empID = $find('<%= rgWorking.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
                 if (empID)
                     extented = '&empid=' + empID;

@@ -117,36 +117,6 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID ="lbOBJECT_ATTENDANCE_OLD" Text ="Đối tượng chấm công" runat ="server" ></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID ="cbOBJECT_ATTENDANCE_OLD" runat ="server" Enabled ="false" ReadOnly= "true" ></tlk:RadComboBox>
-                </td>
-                <td class="lb">
-                    <asp:Label ID="lbFILING_DATE_OLD" runat ="server" Text ="Ngày nộp đơn" ></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID ="rdFILING_DATE_OLD" runat ="server" Enabled ="false" ReadOnly="true"></tlk:RadDatePicker>
-                </td>
-
-                <td class="lb">
-                    <asp:Label ID ="lbOBJECT_ATTENDANCE" Text ="Đối tượng chấm công" runat ="server" ></asp:Label><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID ="cbOBJECT_ATTENDANCE" runat ="server"  ReadOnly= "true" ></tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reOBJECT_ATTENDANCE" runat="server" ControlToValidate="cbOBJECT_ATTENDANCE"
-                        ErrorMessage="<%$ Translate: Bạn phải chọn đối tượng chấm công. %>" ToolTip="<%$ Translate: Bạn phải chọn đối tượng chấm công. %>"></asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
-                    <asp:Label ID="lbFILING_DATE" runat ="server" Text ="Ngày nộp đơn" ></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID ="rdFILING_DATE" runat ="server" ReadOnly="true"></tlk:RadDatePicker>
-                </td>
-
-            </tr>
-            <tr>
-                <td class="lb">
                     <%# UI.StaffRank %>
                 </td>
                 <td>

@@ -82,16 +82,6 @@
                         ToolTip="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
-                <td></td>
-                <td>
-                   <tlk:radtextbox id="txtUpload" readonly="true" runat="server">
-                    </tlk:radtextbox>
-                    <tlk:radbutton runat="server" id="btnUploadFile" skinid="ButtonView" causesvalidation="false"
-                        tabindex="3" />
-                    <tlk:radbutton id="btnDownload" runat="server" text="<%$ Translate: Tải xuống%>"
-                        causesvalidation="false" onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
-                    </tlk:radbutton>
-                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -129,7 +119,7 @@
                         ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn ngày bắt đầu %>"></asp:CompareValidator>
                 </td>
             </tr>
-           <%-- <tr>
+            <tr>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -144,7 +134,7 @@
                         CausesValidation="false" OnClientClicked="rbtClicked" Text="<%$ Translate: CM_CTRLPROGRAMS_SQLLOADER_DOWNLOAD %>">
                     </tlk:RadButton>
                 </td>
-            </tr>--%>
+            </tr>
             <tr>
                 <td class="lb">
                     <%# Translate("Trạng thái")%><span class="lbReq">*</span>

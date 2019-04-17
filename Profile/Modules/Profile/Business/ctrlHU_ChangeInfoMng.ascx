@@ -56,7 +56,7 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE,OBJECT_ATTENDANCE,FILING_DATE,OBJECT_ATTENDANCE_NAME" ClientDataKeyNames="ID,EMPLOYEE_ID">
+                    <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -82,14 +82,6 @@
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
                                 SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" HeaderStyle-Width="80px" />
-
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME"
-                                SortExpression="OBJECT_ATTENDANCE_NAME" UniqueName="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="80px" />
-
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nộp đơn %>" DataField="FILING_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="FILING_DATE" UniqueName="FILING_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" />
-
                             <tlk:GridBoundColumn HeaderText="" DataField="DECISION_TYPE_NAME"
                                 SortExpression="DECISION_TYPE_NAME" UniqueName="DECISION_TYPE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"

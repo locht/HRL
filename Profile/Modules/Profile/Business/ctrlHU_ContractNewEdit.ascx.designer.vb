@@ -203,33 +203,6 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents cusvalContractType As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''txtUpload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtUpload As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''btnUploadFile control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnUploadFile As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
-    '''btnDownload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
-
-    '''<summary>
     '''txtContractNo control.
     '''</summary>
     '''<remarks>
@@ -282,6 +255,33 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''rtAttachFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtAttachFile As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''rbtSQLLoaderDownload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rbtSQLLoaderDownload As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''cboStatus control.
