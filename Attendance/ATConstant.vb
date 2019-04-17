@@ -29,6 +29,7 @@
     Public Const SIGNMODECODE_REGISTER As String = "RGT"
     Public Const SIGNMODECODE_SUMMARY As String = "SUM"
 
+    Public Const SIGINCODE_OT As String = "OVERTIME"
 
 
 End Class

@@ -1122,7 +1122,7 @@ Partial Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
-    Public Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32
+    Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Int32
         Try
             _isAvailable = False
             Using rep As New AttendanceBusinessClient
@@ -1486,7 +1486,7 @@ Partial Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
-    Public Function ApprovePortalRegister(ByVal regID As Guid, ByVal approveId As Decimal,
+    Public Function ApprovePortalRegister(ByVal regID As Decimal, ByVal approveId As Decimal,
                                           ByVal status As Integer, ByVal note As String,
                                           ByVal currentUrl As String, ByVal process As String,
                                           Optional ByVal isLog As Boolean = True) As Boolean

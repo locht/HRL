@@ -18,7 +18,7 @@ Public Class ProcessApprove
 
                 Dim db As New AttendanceRepository
 
-                If db.ApprovePortalRegister(Guid.Parse(reggroup), aproveid, status, "",
+                If db.ApprovePortalRegister(Decimal.Parse(reggroup), aproveid, status, "",
                                             Request.Url.Scheme & Uri.SchemeDelimiter & Request.Url.DnsSafeHost,
                                             process, False) Then
                     lbMess.Text = "Phê duyệt thành công"
