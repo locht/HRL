@@ -294,11 +294,10 @@ Partial Class ProfileRepository
     Public Function GetEmployeeHuFile(ByVal _filter As HuFileDTO) As List(Of HuFileDTO)
         Try
             Dim listFile As New List(Of HuFileDTO)
-            Dim sEmpCode As String = String.Empty
-            sEmpCode = (From p In Context.HU_EMPLOYEE Where p.ID = _filter.EMPLOYEE_ID Select p.EMPLOYEE_CODE).FirstOrDefault
+            'Dim sEmpCode As String = String.Empty
+            'sEmpCode = (From p In Context.HU_EMPLOYEE Where p.ID = _filter.EMPLOYEE_ID Select p.EMPLOYEE_CODE).FirstOrDefault
             Dim fList = From a In Context.HU_FILE
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = a.EMPLOYEE_ID).DefaultIfEmpty
-                    Where e.EMPLOYEE_CODE = sEmpCode
                         Order By a.CREATED_DATE Descending
                         Select New HuFileDTO With {
                             .ID = a.ID,
