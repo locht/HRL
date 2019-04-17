@@ -21,12 +21,6 @@
         Public Shared Promotion = "QDTT"
         Public Shared AffectSalary = "QDAHL"
     End Class
-
-    Public Class OBJECT_ATTENDANCE
-        Public Shared Name As String = "OBJECT_ATTENDANCE"
-        Public Shared TYPE_ID As Decimal = 2254
-    End Class
-
     Public Class OT_CONTRACT_STATUS
         Public Shared Name As String = "CONTRACT_STATUS"
         Public Shared APPROVE_ID As Decimal = 471
