@@ -11,6 +11,9 @@
     Public Property SIGNNAME As String
     Public Property GSIGNCODE As String
 
+    Public Property FROMHOUR As DateTime
+    Public Property TOHOUR As DateTime
+    Public Property JOINDATE As DateTime
     Public Property WORKINGDAY As DateTime
     Public Property NVALUE As Nullable(Of Decimal)
     Public Property NVALUE_ID As Decimal?

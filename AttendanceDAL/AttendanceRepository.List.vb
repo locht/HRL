@@ -5758,4 +5758,137 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+#Region "Dang ky OT tren iportal"
+    'Lay danh sach dang ky tren portal
+    Public Function GET_REG_PORTAL(ByVal EMPLOYEEID As Decimal?, ByVal START_DATE As Date?, ByVal END_DATE As Date?, ByVal LSTSTATUS As String, ByVal TYPE As String) As List(Of APPOINTMENT_DTO)
+
+        Dim lst As New List(Of APPOINTMENT_DTO)
+        Using cls As New DataAccess.QueryData
+            Dim dt As DataTable = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.GET_REG_PORTAL", _
+                                                   New With {.P_EMLOYEEID = EMPLOYEEID, _
+                                                             .P_FROMDATE = START_DATE, _
+                                                             .P_TODATE = END_DATE, _
+                                                             .P_LSTSTATUS = LSTSTATUS, _
+                                                             .P_TYPE = TYPE, _
+                                                             .P_CUR = cls.OUT_CURSOR})
+
+            If dt.Rows.Count > 0 Then
+                For Each dr As DataRow In dt.Rows
+                    Dim itm As New APPOINTMENT_DTO
+                    itm.ID = dr("ID")
+                    itm.EMPLOYEEID = dr("EMPLOYEE_ID")
+                    itm.SIGNID = dr("SIGN_ID").ToString
+                    itm.SIGNCODE = dr("SIGN_CODE").ToString
+                    itm.SIGNNAME = dr("SIGN_NAME").ToString
+                    itm.GSIGNCODE = dr("GSIGN_CODE").ToString
+                    itm.SUBJECT = dr("SUBJECT").ToString
+                    If dr("FROM_HOUR").ToString <> "" Then
+                        itm.FROMHOUR = dr("FROM_HOUR").ToString
+                    End If
+                    If dr("TO_HOUR").ToString <> "" Then
+                        itm.TOHOUR = dr("TO_HOUR").ToString
+                    End If
+                    If dr("WORKING_DAY").ToString <> "" Then
+                        itm.WORKINGDAY = dr("WORKING_DAY").ToString
+                    End If
+                    itm.NVALUE = dr("NVALUE").ToString
+                    itm.NVALUE_NAME = dr("NVALUE_NAME").ToString
+                    itm.STATUS = dr("STATUS").ToString
+                    itm.NOTE = dr("NOTE").ToString
+                    If dr("JOIN_DATE").ToString <> "" Then
+                        itm.JOINDATE = Convert.ToDateTime(dr("JOIN_DATE"))
+                    End If
+
+                    lst.Add(itm)
+                Next
+            End If
+            Return lst
+        End Using
+    End Function
+    ' Lấy tổng số giờ OT phê duyệt và số giờ OT đăng ký chưa phê duyệt
+    Public Function GET_TOTAL_OT_APPROVE(ByVal EMPID As Decimal?, ByVal ENDDATE As Date) As Decimal
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_EMPLOYEEID = EMPID, _
+                                .P_ENDDATE = ENDDATE, _
+                                .P_RESULT = cls.OUT_NUMBER}
+            Dim objects = cls.ExecuteStore("PKG_AT.GET_TOTAL_OT_APPROVE", obj)
+            Return Decimal.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    Public Function AT_CHECK_ORG_PERIOD_STATUS_OT(ByVal LISTORG As String, ByVal PERIOD As Decimal) As Int32
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_LISTORG = LISTORG, .P_PERIOD = PERIOD, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT.AT_CHECK_ORG_PERIOD_STATUS_OT", obj)
+            Return Int32.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    Public Function GET_LIST_HOURS() As DataTable
+        Using cls As New DataAccess.QueryData
+            Dim dt As DataTable = cls.ExecuteStore("PKG_AT.GET_LIST_HOURS", New With {.P_CUR = cls.OUT_CURSOR})
+            Return dt
+        End Using
+    End Function
+
+    Public Function GET_LIST_MINUTE() As DataTable
+        Using cls As New DataAccess.QueryData
+            Dim dt As DataTable = cls.ExecuteStore("PKG_AT.GET_LIST_MINUTE", New With {.P_CUR = cls.OUT_CURSOR})
+            Return dt
+        End Using
+    End Function
+
+    Public Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_EMPLOYEE_ID = employee_id, .P_PERIOD_ID = period_id, .P_PROCESS_TYPE = process_type, .P_TOTAL_HOURS = totalHours, .P_TOTAL_DAY = totalDay, .P_SIGN_ID = sign_id, .P_ID_REGGROUP = id_reggroup, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS_APP", obj)
+            Return Int32.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    ' lấy seq đăng ký portal
+    Public Function GET_SEQ_PORTAL_RGT() As Decimal
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.GET_SEQ_PORTAL_RGT", obj)
+            Return Decimal.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    Public Function GET_ORGID(ByVal EMPID As Integer) As Int32
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_EMPID = EMPID, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.GET_ORGID", obj)
+            Return Int32.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    Public Function GET_PERIOD(ByVal DATE_CURRENT As Date) As Int32
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_DATE_CURRENT = DATE_CURRENT, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT.GET_PERIOD", obj)
+            Return Int32.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    ' Kiểm tra môt số điều kiện khi nhân viên đăng ký nghỉ, đăng ký đi trễ về sớm, đăng ký làm thêm
+    Public Function AT_CHECK_EMPLOYEE(ByVal EMPID As Decimal, ByVal ENDDATE As Date) As Int32
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_EMPID = EMPID, .P_ENDDATE = ENDDATE, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT.AT_CHECK_EMPLOYEE", obj)
+            Return Int32.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    ' Lấy tổng số giờ OT phê duyệt và số giờ OT đăng ký chưa phê duyệt
+    Public Function GET_TOTAL_OT_APPROVE3(ByVal EMPID As Decimal?, ByVal ENDDATE As Date) As Decimal
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_EMPID = EMPID, .P_ENDDATE = ENDDATE, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT.GET_TOTAL_OT_APPROVE3", obj)
+            Return Decimal.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    ' Kiêm tra một số ràng buộc khi đăng ký OT
+    Public Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date, _
+                                 ByVal FROM_HOUR As String, ByVal TO_HOUR As String, ByVal HOUR_RGT As Decimal) As Int32
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {EMPID, STARTDATE, ENDDATE, FROM_HOUR, TO_HOUR, HOUR_RGT, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT.CHECK_RGT_OT", obj)
+            Return Int32.Parse(obj.P_RESULT)
+        End Using
+    End Function
+#End Region
 End Class

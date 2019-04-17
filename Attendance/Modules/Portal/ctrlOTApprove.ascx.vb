@@ -8,7 +8,8 @@ Imports Attendance.AttendanceBusiness
 
 Public Class ctrlOTApprove
     Inherits Common.CommonView
-
+    Dim log As New UserLog
+    Dim psp As New AttendanceStoreProcedure
     Public Property EmployeeID As Decimal
     Public Property EmployeeCode As String
     Public Overrides Property MustAuthorize As Boolean = False
@@ -136,27 +137,34 @@ Public Class ctrlOTApprove
     End Sub
 
     Private Sub btnApprove_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnApprove.Click
-        Dim sAction As String = ""
+        Dim sAction As String = "OVERTIME"
+        log = LogHelper.GetUserLog
         Try
+
             If grvWaiting.MasterTableView.GetSelectedItems().Length = 0 Then
-                ShowMessage(Translate("Bạn chưa chọn bản đăng ký cần phê duyệt."), NotifyType.Information)
+                ShowMessage("Bạn chưa chọn bản đăng ký cần phê duyệt", NotifyType.Error)
                 Exit Sub
             End If
-            For Each item As GridDataItem In grvWaiting.SelectedItems
+            Dim sUser As String = LogHelper.CurrentUser.EMPLOYEE_CODE
+            Dim result As DataTable
+            Dim period_id As Decimal?
+            Dim outNumber As Decimal?
+            For idx = 0 To grvWaiting.SelectedItems.Count - 1
+                Dim item As GridDataItem = grvWaiting.SelectedItems(idx)
+                Dim ID = Decimal.Parse(item.GetDataKeyValue("ID"))
+                Dim NOTE As String = txtNote.Text
+                result = psp.GET_APPROVE_STATUS(ID, "OVERTIME")
+                If result.Rows.Count > 0 Then
 
-                Dim id = item.GetDataKeyValue("ID_REGGROUP")
+                    Dim employee_id As Integer = Int32.Parse(result(0)("EMPLOYEE_ID").ToString)
+                    Dim employee_app As Integer = Int32.Parse(result(0)("EMPLOYEE_APPROVED").ToString)
+                    period_id = result(0)("PE_PERIOD_ID").ToString
 
-                Dim db As New AttendanceRepository
-
-                If db.ApprovePortalRegister(id, EmployeeID, 2, txtNote.Text,
-                                           Request.Url.Scheme & Uri.SchemeDelimiter & Request.Url.DnsSafeHost,
-                                           ProcessApprove) Then
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    outNumber = psp.APPROVE_REG(employee_id, employee_app, period_id, 1, sAction, NOTE, ID)
                 End If
             Next
             Refresh()
+            grvWaiting.Dispose()
 
         Catch ex As Exception
             ShowMessage(Translate(ex.Message), NotifyType.Error)
@@ -164,29 +172,34 @@ Public Class ctrlOTApprove
     End Sub
 
     Private Sub btnDeny_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDeny.Click
+        Dim sAction = "OVERTIME"
+        log = LogHelper.GetUserLog
+        Dim sUser As String = LogHelper.CurrentUser.EMPLOYEE_CODE
         Try
 
             If grvWaiting.MasterTableView.GetSelectedItems().Length = 0 Then
-                ShowMessage(Translate("Bạn chưa chọn bản đăng ký cần phê duyệt."), NotifyType.Warning)
+                ShowMessage("Bạn chưa chọn dòng dữ liệu để từ chối phê duyệt ", NotifyType.Error)
                 Exit Sub
             End If
+            Dim result As DataTable
+            Dim period_id As Decimal?
+            Dim outNumber As Decimal?
+            For idx = 0 To grvWaiting.SelectedItems.Count - 1
+                Dim item As GridDataItem = grvWaiting.SelectedItems(idx)
+                Dim ID = Decimal.Parse(item.GetDataKeyValue("ID"))
+                Dim NOTE As String = txtNote.Text
+                result = psp.GET_APPROVE_STATUS(ID, "OVERTIME")
+                If result.Rows.Count > 0 Then
 
-            For Each item As GridDataItem In grvWaiting.SelectedItems
+                    Dim employee_id As Integer = Int32.Parse(result(0)("EMPLOYEE_ID").ToString)
+                    Dim employee_app As Integer = Int32.Parse(result(0)("EMPLOYEE_APPROVED").ToString)
+                    period_id = result(0)("PE_PERIOD_ID").ToString
 
-                Dim id = item.GetDataKeyValue("ID_REGGROUP")
-
-                Dim db As New AttendanceRepository
-
-                If db.ApprovePortalRegister(id, EmployeeID, 3, txtNote.Text,
-                                           Request.Url.Scheme & Uri.SchemeDelimiter & Request.Url.DnsSafeHost,
-                                           ProcessApprove) Then
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    outNumber = psp.APPROVE_REG(employee_id, employee_app, period_id, 2, sAction, NOTE, ID)
                 End If
             Next
             Refresh()
-
+            grvWaiting.Dispose()
         Catch ex As Exception
             ShowMessage(Translate(ex.Message), NotifyType.Error)
         End Try

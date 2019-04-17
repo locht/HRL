@@ -50,13 +50,76 @@ Partial Public Class ctrlOTRegister
     Protected WithEvents pnlRegistInfo As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''cboleaveType control.
+    '''rntxtOT_USED control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboleaveType As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rntxtOT_USED As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rdFromDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''rdToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''cboHoursFrom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboHoursFrom As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboMinuteFrom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboMinuteFrom As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboHoursTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboHoursTo As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboMinuteTo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboMinuteTo As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''chkNB control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkNB As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''txtReason control.
@@ -68,40 +131,13 @@ Partial Public Class ctrlOTRegister
     Protected WithEvents txtReason As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''tpkFrom control.
+    '''btnRegister control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tpkFrom As Global.Telerik.Web.UI.RadTimePicker
-
-    '''<summary>
-    '''tpkTo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tpkTo As Global.Telerik.Web.UI.RadTimePicker
-
-    '''<summary>
-    '''checkNB control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents checkNB As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''txtCancel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtCancel As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents btnRegister As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''RadPane1 control.

@@ -205,7 +205,7 @@ Public Class ctrlLeaveApprove
 
             For Each item As GridDataItem In rgWaiting.SelectedItems
 
-                Dim id As Guid = item.GetDataKeyValue("ID_REGGROUP")
+                Dim id As Decimal = item.GetDataKeyValue("ID_REGGROUP")
                 Dim AppemployeeId As Decimal = item.GetDataKeyValue("ID_EMPLOYEE")
 
                 Dim itemReg = (From p In GridData Where p.ID_REGGROUP = id).FirstOrDefault
@@ -283,7 +283,7 @@ Public Class ctrlLeaveApprove
             End If
             For Each item As GridDataItem In rgWaiting.SelectedItems
                 ' Dim id = Decimal.Parse(rgWaiting.MasterTableView.GetSelectedItems()(0).GetDataKeyValue("ID_REGGROUP").ToString)
-                Dim id As Guid = item.GetDataKeyValue("ID_REGGROUP")
+                Dim id As Decimal? = item.GetDataKeyValue("ID_REGGROUP")
                 Dim db As New AttendanceRepository
 
                 If db.ApprovePortalRegister(id, EmployeeID, 3, txtNote.Text,

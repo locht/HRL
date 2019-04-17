@@ -925,6 +925,131 @@ Namespace AttendanceBusiness.ServiceImplementations
         End Function
 #End Region
 
+#Region "Dang ky OT tren iPortal"
+        Public Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date, _
+                                        ByVal strId As String, ByVal type As String) As List(Of APPOINTMENT_DTO) _
+                                        Implements IAttendanceBusiness.GET_REG_PORTAL
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_REG_PORTAL(empid, startdate, enddate, strId, type)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_TOTAL_OT_APPROVE(ByVal empid As Decimal, ByVal enddate As Date) As Decimal _
+                                        Implements IAttendanceBusiness.GET_TOTAL_OT_APPROVE
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_TOTAL_OT_APPROVE(empid, enddate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function AT_CHECK_ORG_PERIOD_STATUS_OT(ByVal LISTORG As String, ByVal PERIOD As Decimal) As Int32 _
+                                        Implements IAttendanceBusiness.AT_CHECK_ORG_PERIOD_STATUS_OT
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.AT_CHECK_ORG_PERIOD_STATUS_OT(LISTORG, PERIOD)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_LIST_HOURS() As DataTable _
+                                        Implements IAttendanceBusiness.GET_LIST_HOURS
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_LIST_HOURS()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_LIST_MINUTE() As DataTable _
+                                        Implements IAttendanceBusiness.GET_LIST_MINUTE
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_LIST_MINUTE()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32 _
+                                        Implements IAttendanceBusiness.PRI_PROCESS_APP
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_SEQ_PORTAL_RGT() As Decimal _
+                                        Implements IAttendanceBusiness.GET_SEQ_PORTAL_RGT
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_SEQ_PORTAL_RGT()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_ORGID(ByVal EMPID As Integer) As Int32 _
+                                        Implements IAttendanceBusiness.GET_ORGID
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_ORGID(EMPID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_PERIOD(ByVal DATE_CURRENT As Date) As Int32 _
+                                        Implements IAttendanceBusiness.GET_PERIOD
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_PERIOD(DATE_CURRENT)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function AT_CHECK_EMPLOYEE(ByVal EMPID As Decimal, ByVal ENDDATE As Date) As Int32 _
+                                        Implements IAttendanceBusiness.AT_CHECK_EMPLOYEE
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.AT_CHECK_EMPLOYEE(EMPID, ENDDATE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GET_TOTAL_OT_APPROVE3(ByVal EMPID As Decimal?, ByVal ENDDATE As Date) As Decimal _
+                                        Implements IAttendanceBusiness.GET_TOTAL_OT_APPROVE3
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_TOTAL_OT_APPROVE3(EMPID, ENDDATE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date, _
+                                 ByVal FROM_HOUR As String, ByVal TO_HOUR As String, ByVal HOUR_RGT As Decimal) As Int32 _
+                                        Implements IAttendanceBusiness.CHECK_RGT_OT
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.CHECK_RGT_OT(EMPID, STARTDATE, ENDDATE, FROM_HOUR, TO_HOUR, HOUR_RGT)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
 #Region "đăng ký nghỉ trên iportal"
         Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal,
                                                   ByVal startdate As DateTime,
@@ -1079,7 +1204,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Function ApprovePortalRegister(ByVal regID As Guid,
+        Function ApprovePortalRegister(ByVal regID As Decimal?,
                                        ByVal approveId As Decimal,
                                        ByVal status As Integer,
                                        ByVal note As String,

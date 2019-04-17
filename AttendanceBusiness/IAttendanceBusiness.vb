@@ -708,6 +708,35 @@ Namespace AttendanceBusiness.ServiceContracts
         Function DeleteAT_SIGNDEFAULT(ByVal lstID As List(Of Decimal)) As Boolean
 #End Region
 
+#Region "Đăng ký OT trên portal"
+        <OperationContract()>
+        Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date,
+                                ByVal strId As String, ByVal type As String) As List(Of APPOINTMENT_DTO)
+        <OperationContract()>
+        Function GET_TOTAL_OT_APPROVE(ByVal empid As Decimal, ByVal enddate As Date) As Decimal
+        <OperationContract()>
+        Function AT_CHECK_ORG_PERIOD_STATUS_OT(ByVal LISTORG As String, ByVal PERIOD As Decimal) As Int32
+        <OperationContract()>
+        Function GET_LIST_HOURS() As DataTable
+        <OperationContract()>
+        Function GET_LIST_MINUTE() As DataTable
+        <OperationContract()>
+        Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32
+        <OperationContract()>
+        Function GET_SEQ_PORTAL_RGT() As Decimal
+        <OperationContract()>
+        Function GET_ORGID(ByVal EMPID As Integer) As Int32
+        <OperationContract()>
+        Function GET_PERIOD(ByVal DATE_CURRENT As Date) As Int32
+        <OperationContract()>
+        Function AT_CHECK_EMPLOYEE(ByVal EMPID As Decimal, ByVal ENDDATE As Date) As Int32
+        <OperationContract()>
+        Function GET_TOTAL_OT_APPROVE3(ByVal EMPID As Decimal?, ByVal ENDDATE As Date) As Decimal
+        <OperationContract()>
+        Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date, _
+                                 ByVal FROM_HOUR As String, ByVal TO_HOUR As String, ByVal HOUR_RGT As Decimal) As Int32
+#End Region
+
 #Region "Đăng ký nghỉ trên portal"
         <OperationContract()>
         Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal, ByVal startdate As DateTime, ByVal enddate As DateTime, _
@@ -744,7 +773,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GetListWaitingForApproveOT(ByVal approveId As Decimal, ByVal process As String, ByVal filter As ATRegSearchDTO) As List(Of AT_PORTAL_REG_DTO)
         <OperationContract()>
-        Function ApprovePortalRegister(ByVal regID As Guid, ByVal approveId As Decimal,
+        Function ApprovePortalRegister(ByVal regID As Decimal?, ByVal approveId As Decimal,
                                        ByVal status As Integer, ByVal note As String,
                                        ByVal currentUrl As String, ByVal process As String,
                                              ByVal log As UserLog) As Boolean

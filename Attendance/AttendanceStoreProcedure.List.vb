@@ -1,6 +1,7 @@
 ﻿Imports Framework.UI.Utilities
 Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
+Imports Attendance.AttendanceBusiness
 
 Partial Class AttendanceStoreProcedure
     Private rep As New HistaffFrameworkRepository
@@ -23,17 +24,17 @@ Partial Class AttendanceStoreProcedure
             For Each dr As DataRow In dt.Rows
                 Dim itm As New APPOINTMENT_DTO
                 itm.ID = dr("ID")
-                itm.EMPLOYEE_ID = dr("EMPLOYEE_ID")
-                itm.SIGN_ID = dr("SIGN_ID").ToString
-                itm.SIGN_CODE = dr("SIGN_CODE").ToString
-                itm.SIGN_NAME = dr("SIGN_NAME").ToString
-                itm.GSIGN_CODE = dr("GSIGN_CODE").ToString
+                itm.EMPLOYEEID = dr("EMPLOYEE_ID")
+                itm.SIGNID = dr("SIGN_ID").ToString
+                itm.SIGNCODE = dr("SIGN_CODE").ToString
+                itm.SIGNNAME = dr("SIGN_NAME").ToString
+                itm.GSIGNCODE = dr("GSIGN_CODE").ToString
                 itm.SUBJECT = dr("SUBJECT").ToString
                 If dr("FROM_HOUR").ToString <> "" Then
-                    itm.FROM_HOUR = dr("FROM_HOUR").ToString
+                    itm.FROMHOUR = dr("FROM_HOUR").ToString
                 End If
                 If dr("TO_HOUR").ToString <> "" Then
-                    itm.TO_HOUR = dr("TO_HOUR").ToString
+                    itm.TOHOUR = dr("TO_HOUR").ToString
                 End If
                 If dr("WORKING_DAY").ToString <> "" Then
                     itm.WORKINGDAY = dr("WORKING_DAY").ToString
@@ -43,7 +44,7 @@ Partial Class AttendanceStoreProcedure
                 itm.STATUS = dr("STATUS").ToString
                 itm.NOTE = dr("NOTE").ToString
                 If dr("JOIN_DATE").ToString <> "" Then
-                    itm.JOIN_DATE = Convert.ToDateTime(dr("JOIN_DATE"))
+                    itm.JOINDATE = Convert.ToDateTime(dr("JOIN_DATE"))
                 End If
 
                 lst.Add(itm)

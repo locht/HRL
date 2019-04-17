@@ -1035,6 +1035,215 @@ Partial Class AttendanceRepository
     End Function
 #End Region
 
+#Region "Dang ky lam them tren iportal"
+    Public Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date,
+                                                                ByVal strId As String, ByVal type As String) As List(Of APPOINTMENT_DTO)
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_REG_PORTAL(empid, startdate, enddate, strId, type)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GET_TOTAL_OT_APPROVE(ByVal empid As Decimal, ByVal enddate As Date) As Decimal
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_TOTAL_OT_APPROVE(empid, enddate)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function AT_CHECK_ORG_PERIOD_STATUS_OT(ByVal LISTORG As String, ByVal PERIOD As Decimal) As Int32
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.AT_CHECK_ORG_PERIOD_STATUS_OT(LISTORG, PERIOD)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GET_LIST_HOURS() As DataTable
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_LIST_HOURS()
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GET_LIST_MINUTE() As DataTable
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_LIST_MINUTE()
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.PRI_PROCESS_APP(employee_id, period_id, process_type, totalHours, totalDay, sign_id, id_reggroup)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GET_SEQ_PORTAL_RGT() As Decimal
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_SEQ_PORTAL_RGT()
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GET_ORGID(ByVal EMPID As Integer) As Int32
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_ORGID(EMPID)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GET_PERIOD(ByVal DATE_CURRENT As Date) As Int32
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_PERIOD(DATE_CURRENT)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function AT_CHECK_EMPLOYEE(ByVal EMPID As Decimal, ByVal ENDDATE As Date) As Int32
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.AT_CHECK_EMPLOYEE(EMPID, ENDDATE)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GET_TOTAL_OT_APPROVE3(ByVal EMPID As Decimal?, ByVal ENDDATE As Date) As Decimal
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GET_TOTAL_OT_APPROVE3(EMPID, ENDDATE)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function CHECK_RGT_OT(ByVal EMPID As Decimal, ByVal STARTDATE As Date, ByVal ENDDATE As Date, _
+                                 ByVal FROM_HOUR As String, ByVal TO_HOUR As String, ByVal HOUR_RGT As Decimal) As Int32
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.CHECK_RGT_OT(EMPID, STARTDATE, ENDDATE, FROM_HOUR, TO_HOUR, HOUR_RGT)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+#End Region
+
 #Region "Đăng ký nghỉ trên iportal"
     Public Function GetRegisterAppointmentInPortalByEmployee(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date,
                                                                 ByVal listSign As List(Of AT_TIME_MANUALDTO), ByVal status As List(Of Short)) As List(Of AT_TIMESHEET_REGISTERDTO)
@@ -1277,7 +1486,7 @@ Partial Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
-    Public Function ApprovePortalRegister(ByVal regID As Decimal?, ByVal approveId As Decimal,
+    Public Function ApprovePortalRegister(ByVal regID As Guid, ByVal approveId As Decimal,
                                           ByVal status As Integer, ByVal note As String,
                                           ByVal currentUrl As String, ByVal process As String,
                                           Optional ByVal isLog As Boolean = True) As Boolean
