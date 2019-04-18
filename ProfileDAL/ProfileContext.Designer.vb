@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f521c4df-b4a9-463c-984a-b1a5c38b4407")>
+<Assembly: EdmSchemaAttribute("29cd39c6-b97c-44b1-a0ff-9edd60ed144d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -34772,6 +34772,131 @@ Public Partial Class HU_ORGANIZATION
     End Sub
 
     Private Partial Sub OnUNIT_LEVELChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LOCATION_WORK() As Global.System.String
+        Get
+            Return _LOCATION_WORK
+        End Get
+        Set
+            OnLOCATION_WORKChanging(value)
+            ReportPropertyChanging("LOCATION_WORK")
+            _LOCATION_WORK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("LOCATION_WORK")
+            OnLOCATION_WORKChanged()
+        End Set
+    End Property
+
+    Private _LOCATION_WORK As Global.System.String
+    Private Partial Sub OnLOCATION_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnLOCATION_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NUMBER_DECISION() As Global.System.String
+        Get
+            Return _NUMBER_DECISION
+        End Get
+        Set
+            OnNUMBER_DECISIONChanging(value)
+            ReportPropertyChanging("NUMBER_DECISION")
+            _NUMBER_DECISION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("NUMBER_DECISION")
+            OnNUMBER_DECISIONChanged()
+        End Set
+    End Property
+
+    Private _NUMBER_DECISION As Global.System.String
+    Private Partial Sub OnNUMBER_DECISIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnNUMBER_DECISIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TYPE_DECISION() As Global.System.String
+        Get
+            Return _TYPE_DECISION
+        End Get
+        Set
+            OnTYPE_DECISIONChanging(value)
+            ReportPropertyChanging("TYPE_DECISION")
+            _TYPE_DECISION = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TYPE_DECISION")
+            OnTYPE_DECISIONChanged()
+        End Set
+    End Property
+
+    Private _TYPE_DECISION As Global.System.String
+    Private Partial Sub OnTYPE_DECISIONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTYPE_DECISIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CHK_ORGCHART() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _CHK_ORGCHART
+        End Get
+        Set
+            OnCHK_ORGCHARTChanging(value)
+            ReportPropertyChanging("CHK_ORGCHART")
+            _CHK_ORGCHART = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CHK_ORGCHART")
+            OnCHK_ORGCHARTChanged()
+        End Set
+    End Property
+
+    Private _CHK_ORGCHART As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCHK_ORGCHARTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnCHK_ORGCHARTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILES() As Global.System.String
+        Get
+            Return _FILES
+        End Get
+        Set
+            OnFILESChanging(value)
+            ReportPropertyChanging("FILES")
+            _FILES = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILES")
+            OnFILESChanged()
+        End Set
+    End Property
+
+    Private _FILES As Global.System.String
+    Private Partial Sub OnFILESChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILESChanged()
     End Sub
 
     #End Region
