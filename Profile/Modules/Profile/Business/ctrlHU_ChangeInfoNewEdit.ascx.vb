@@ -159,13 +159,17 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList(ProfileCommon.DECISION_TYPE.Name)
             End Using
-
             FillRadCombobox(cboDecisionType, dtData, "NAME", "ID")
-
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
             End If
-
+            Using rep As New ProfileRepository
+                dtData = rep.GetOtherList(ProfileCommon.OBJECT_ATTENDANCE.Code)
+            End Using
+            FillRadCombobox(cbOBJECT_ATTENDANCE, dtData, "NAME", "ID")
+            If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                cbOBJECT_ATTENDANCE.SelectedValue = dtData.Rows(0)("ID")
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
