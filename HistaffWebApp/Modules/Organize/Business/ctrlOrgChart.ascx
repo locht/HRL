@@ -51,14 +51,14 @@
                                     <%# Eval("MOBILE_PHONE")%>
                                 </td>
                             </tr>
-                            <tr>
+                          <%--  <tr>
                                 <td align="right" style="color: Gray">
                                     Email:
                                 </td>
                                 <td align="left">
                                     <%# Eval("WORK_EMAIL")%>
                                 </td>
-                            </tr>
+                            </tr>--%>
                         </table>
                     </tlk:RadToolTip>
                 </ItemTemplate>
