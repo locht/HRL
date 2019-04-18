@@ -177,7 +177,6 @@
     <Content Include="Modules\Profile\Business\ctrlHU_CommendCollectDetail.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_DisciplineSalaryNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_DisciplineSalary.ascx" />
-    <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlFile.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ImportCommend.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_Terminate3BNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_Terminate3B.ascx" />
@@ -694,13 +693,6 @@
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_DisciplineSalary.ascx.vb">
       <DependentUpon>ctrlHU_DisciplineSalary.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlFile.ascx.designer.vb">
-      <DependentUpon>ctrlHU_EmpDtlFile.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlFile.ascx.vb">
-      <DependentUpon>ctrlHU_EmpDtlFile.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_ImportCommend.ascx.designer.vb">

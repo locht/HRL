@@ -1010,7 +1010,12 @@ Partial Class ProfileRepository
                                                           .IMAGE = v.IMAGE,
                                                            .U_INSURANCE = p.U_INSURANCE,
                                                           .ORG_LEVEL = p.ORG_LEVEL,
-                                                          .REGION_ID = p.REGION_ID
+                                                          .REGION_ID = p.REGION_ID,
+                                                          .TYPE_DECISION = p.TYPE_DECISION,
+                                                          .NUMBER_DECISION = p.NUMBER_DECISION,
+                                                          .CHK_ORGCHART = p.CHK_ORGCHART,
+                                                          .LOCATION_WORK = p.LOCATION_WORK,
+                                                          .FILES = p.FILES
                                                          })
                 '.AutoGenTimeSheet = p.AUTOGENTIMESHEET
             Else
@@ -1040,7 +1045,12 @@ Partial Class ProfileRepository
                                                           .REPRESENTATIVE_NAME = e.FULLNAME_VN,
                                                           .U_INSURANCE = p.U_INSURANCE,
                                                           .ORG_LEVEL = p.ORG_LEVEL,
-                                                          .REGION_ID = p.REGION_ID
+                                                          .REGION_ID = p.REGION_ID,
+                                                            .TYPE_DECISION = p.TYPE_DECISION,
+                                                          .NUMBER_DECISION = p.NUMBER_DECISION,
+                                                          .CHK_ORGCHART = p.CHK_ORGCHART,
+                                                          .LOCATION_WORK = p.LOCATION_WORK,
+                                                          .FILES = p.FILES
                                                          })
             End If
 
@@ -1077,6 +1087,12 @@ Partial Class ProfileRepository
             objOrganizationData.NUMBER_BUSINESS = objOrganization.NUMBER_BUSINESS
             objOrganizationData.DATE_BUSINESS = objOrganization.DATE_BUSINESS
             objOrganizationData.PIT_NO = objOrganization.PIT_NO
+            objOrganizationData.DISSOLVE_DATE = objOrganization.DISSOLVE_DATE
+            objOrganizationData.NUMBER_DECISION = objOrganization.NUMBER_DECISION
+            objOrganizationData.TYPE_DECISION = objOrganization.TYPE_DECISION
+            objOrganizationData.LOCATION_WORK = objOrganization.LOCATION_WORK
+            objOrganizationData.CHK_ORGCHART = objOrganization.CHK_ORGCHART
+            objOrganizationData.FILES = objOrganization.FILES
             Context.HU_ORGANIZATION.AddObject(objOrganizationData)
             'EDIT BY: CHIENNV
             'EDIT DATE:11/10/2017
@@ -1195,6 +1211,12 @@ Partial Class ProfileRepository
             objOrganizationData.NUMBER_BUSINESS = objOrganization.NUMBER_BUSINESS
             objOrganizationData.DATE_BUSINESS = objOrganization.DATE_BUSINESS
             objOrganizationData.PIT_NO = objOrganization.PIT_NO
+            objOrganizationData.DISSOLVE_DATE = objOrganization.DISSOLVE_DATE
+            objOrganizationData.NUMBER_DECISION = objOrganization.NUMBER_DECISION
+            objOrganizationData.TYPE_DECISION = objOrganization.TYPE_DECISION
+            objOrganizationData.LOCATION_WORK = objOrganization.LOCATION_WORK
+            objOrganizationData.CHK_ORGCHART = objOrganization.CHK_ORGCHART
+            objOrganizationData.FILES = objOrganization.FILES
             objOrganizationData.ORD_NO = objOrganization.ORD_NO
             'EDIT BY: CHIENNV
             'EDIT DATE:11/10/2017
