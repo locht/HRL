@@ -5,6 +5,7 @@ Imports Framework.UI.Utilities
 Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 Imports WebAppLog
+Imports Ionic.Zip
 
 Public Class ctrlHU_Organization
     Inherits Common.CommonView
@@ -13,6 +14,7 @@ Public Class ctrlHU_Organization
     Dim dtOrgLevel As DataTable = Nothing
     Dim dtRegion As DataTable = Nothing
     Dim dtIsunace As DataTable = Nothing
+    Public isPhysical As Decimal = Decimal.Parse(ConfigurationManager.AppSettings("PHYSICAL_PATH"))
 
 #Region "Property"
 
@@ -62,6 +64,14 @@ Public Class ctrlHU_Organization
             ViewState(Me.ID & "_isLoadPopup") = value
         End Set
     End Property
+    Property check As String
+        Get
+            Return ViewState(Me.ID & "_check")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_check") = value
+        End Set
+    End Property
 
     Property ImageFile As Telerik.Web.UI.UploadedFile
         Get
@@ -97,7 +107,7 @@ Public Class ctrlHU_Organization
         Try
             Refresh()
             UpdateControlState()
-            FillDataByTree()
+            'FillDataByTree()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -107,6 +117,9 @@ Public Class ctrlHU_Organization
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         InitControl()
+        If Not IsPostBack Then
+            ViewConfig(MainPane)
+        End If
     End Sub
 
     Public Overrides Sub BindData()
@@ -158,6 +171,7 @@ Public Class ctrlHU_Organization
                         SelectOrgFunction = org_id
                     End If
                 Else
+
                     Select Case Message
                         Case "UpdateView"
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -321,17 +335,26 @@ Public Class ctrlHU_Organization
                         Common.Common.OrganizationLocationDataSession = Nothing
                     Case CommonMessage.TOOLBARITEM_CANCEL
                         CurrentState = CommonMessage.STATE_NORMAL
-                        FillDataByTree()
+                        'FillDataByTree()
                     Case CommonMessage.TOOLBARITEM_SAVE
+                        Dim strFiles As String = String.Empty
                         If Not Page.IsValid Then
                             Exit Sub
                         End If
+                        Try
+                            strFiles = lstFile.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & "# " & y)
+                        Catch ex As Exception
+                            strFiles = ""
+                        End Try
                         objOrgFunction.CODE = txtCode.Text
-                        
+                        objOrgFunction.NUMBER_DECISION = rtxtNumberDecision.Text
+                        objOrgFunction.TYPE_DECISION = rtxtTypeDecision.Text
+                        objOrgFunction.LOCATION_WORK = rtxtLocationWork.Text
                         objOrgFunction.NAME_EN = txtNameVN.Text
-                        objOrgFunction.NAME_VN = txtNameVN.Text
+                        objOrgFunction.NAME_VN = txtNameEN.Text
                         objOrgFunction.REMARK = rtREMARK.Text
                         objOrgFunction.ADDRESS = rtADDRESS.Text
+                        objOrgFunction.FILES = strFiles
                         objOrgFunction.NUMBER_BUSINESS = rtNUMBER_BUSINESS.Text
                         objOrgFunction.DATE_BUSINESS = rdDATE_BUSINESS.SelectedDate
                         Dim ISURANCE As Decimal = 0.0
@@ -345,6 +368,14 @@ Public Class ctrlHU_Organization
                         End If
                         If IsDate(rdFOUNDATION_DATE.SelectedDate) Then
                             objOrgFunction.FOUNDATION_DATE = rdFOUNDATION_DATE.SelectedDate
+                        End If
+                        If IsDate(rdDicision_Date.SelectedDate) Then
+                            objOrgFunction.DISSOLVE_DATE = rdDicision_Date.SelectedDate
+                        End If
+                        If chkOrgChart.Checked = True Then
+                            objOrgFunction.CHK_ORGCHART = True
+                        Else
+                            objOrgFunction.CHK_ORGCHART = False
                         End If
                         If Decimal.TryParse(cboU_insurance.SelectedValue.ToString, ISURANCE) Then
                             objOrgFunction.U_INSURANCE = cboU_insurance.SelectedValue
@@ -561,6 +592,8 @@ Public Class ctrlHU_Organization
                 rep.Dispose()
                 UpdateToolbarState(CurrentState)
                 UpdateControlState()
+                FillDataByTree()
+                check = ""
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             Catch ex As Exception
                 DisplayException(Me.ViewName, Me.ID, ex)
@@ -733,7 +766,6 @@ Public Class ctrlHU_Organization
             End Select
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-
                 Case CommonMessage.STATE_NORMAL
                     UpdateToolbarState(CurrentState)
                 Case CommonMessage.STATE_EDIT
@@ -771,12 +803,19 @@ Public Class ctrlHU_Organization
             Select Case sState
                 Case CommonMessage.STATE_NORMAL
 
+                    lstFile.Items.Clear()
                     txtNameVN.ReadOnly = True
                     txtNameVN.CausesValidation = False
                     txtCode.CausesValidation = False
                     txtCode.ReadOnly = True
                     rtREMARK.ReadOnly = True
                     rtADDRESS.ReadOnly = True
+                    rtxtLocationWork.ReadOnly = True
+                    rtxtNumberDecision.ReadOnly = True
+                    rtxtTypeDecision.ReadOnly = True
+                    chkOrgChart.Enabled = False
+                    btnDownloadFile.Enabled = False
+                    btnUploadFile.Enabled = False
                     'txtFax.ReadOnly = True
                     'txtMobile.ReadOnly = True
                     'txtProvinceName.ReadOnly = True
@@ -795,6 +834,7 @@ Public Class ctrlHU_Organization
                     '_radAsynceUpload1.Enabled = False
 
                 Case CommonMessage.STATE_NEW
+                    lstFile.Items.Clear()
                     UpdateToolbarState(CommonMessage.STATE_EDIT)
                     txtCode.Enabled = True
                     txtCode.Text = ""
@@ -802,6 +842,11 @@ Public Class ctrlHU_Organization
                     'txtNameVN.Text = ""
                     rtREMARK.Text = ""
                     rtADDRESS.Text = ""
+                    rtxtLocationWork.Text = ""
+                    rtxtNumberDecision.Text = ""
+                    rtxtTypeDecision.Text = ""
+                    check = "EDITFILE"
+                    chkOrgChart.Checked = False
                     'txtFax.Text = ""
                     'txtMobile.Text = ""
                     'txtProvinceName.Text = ""
@@ -813,20 +858,27 @@ Public Class ctrlHU_Organization
                     cboU_insurance.Text = ""
                     cboOrg_level.Text = ""
                     cboRegion.Text = ""
+
                     'lblChucDanh.Text = ""
                     'rdDate_Business.SelectedDate = Nothing
                     'rntxtOrdNo.Value = Nothing
-                    'rdDissolveDate.SelectedDate = Nothing
-                    'rdFoundationDate.SelectedDate = Nothing
+                    rdDicision_Date.SelectedDate = Nothing
+                    rdFOUNDATION_DATE.SelectedDate = Nothing
                     'AutoGenTimeSheet.Enabled = True
                 Case (CommonMessage.STATE_EDIT)
-
                     cbDissolve.Enabled = False
                     treeOrgFunction.Enabled = False
                     txtCode.ReadOnly = False
                     txtNameVN.ReadOnly = False
                     rtREMARK.ReadOnly = False
                     rtADDRESS.ReadOnly = False
+                    rtxtLocationWork.ReadOnly = False
+                    rtxtNumberDecision.ReadOnly = False
+                    rtxtTypeDecision.ReadOnly = False
+                    chkOrgChart.Checked = True
+                    chkOrgChart.Enabled = True
+                    btnDownloadFile.Enabled = True
+                    btnUploadFile.Enabled = True
                     'txtFax.ReadOnly = False
                     'txtMobile.ReadOnly = False
                     'txtProvinceName.ReadOnly = False
@@ -840,8 +892,8 @@ Public Class ctrlHU_Organization
                     cbUNIT_LEVEL.Enabled = True
                     'EnableRadDatePicker(rdDate_Business, True)
                     'AutoGenTimeSheet.Enabled = False
-                    'EnableRadDatePicker(rdDissolveDate, True)
-                    'EnableRadDatePicker(rdFoundationDate, True)
+                    EnableRadDatePicker(rdDicision_Date, True)
+                    EnableRadDatePicker(rdFOUNDATION_DATE, True)
                     '_radAsynceUpload.Enabled = True
                     '_radAsynceUpload1.Enabled = True
                 Case "Nothing"
@@ -857,6 +909,10 @@ Public Class ctrlHU_Organization
                     txtParent_Name.Text = ""
                     rtADDRESS.Text = ""
                     rtREMARK.Text = ""
+
+                    rtxtLocationWork.Text = ""
+                    rtxtNumberDecision.Text = ""
+                    rtxtTypeDecision.Text = ""
                     'txtFax.Text = ""
                     'txtMobile.Text = ""
                     'txtProvinceName.Text = ""
@@ -1054,8 +1110,23 @@ Public Class ctrlHU_Organization
                 hidParentID.Value = orgItem.PARENT_ID.ToString
                 txtParent_Name.Text = orgItem.PARENT_NAME
                 txtCode.Text = orgItem.CODE
+                rtxtLocationWork.Text = orgItem.LOCATION_WORK
+                rtxtNumberDecision.Text = orgItem.NUMBER_DECISION
+                rtxtTypeDecision.Text = orgItem.TYPE_DECISION
+
                 txtNameVN.Text = orgItem.NAME_VN
-                RadTextBox1.Text = orgItem.NAME_EN
+                txtNameEN.Text = orgItem.NAME_EN
+                Dim strFiles As String = orgItem.FILES
+                If check = "EDITFILE" Then
+                    strFiles = ""
+                End If
+                If strFiles <> "" Then
+                    For Each items As String In strFiles.Split("#")
+                        Dim i As New RadListBoxItem(items, items)
+                        i.Checked = True
+                        lstFile.Items.Add(i)
+                    Next
+                End If
                 cboU_insurance.SelectedValue = orgItem.U_INSURANCE
                 cboOrg_level.SelectedValue = orgItem.ORG_LEVEL
                 cboRegion.SelectedValue = orgItem.REGION_ID
@@ -1066,6 +1137,14 @@ Public Class ctrlHU_Organization
                 End If
                 If IsDate(orgItem.FOUNDATION_DATE) Then
                     rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE
+                End If
+                If IsDate(orgItem.DISSOLVE_DATE) Then
+                    rdDicision_Date.SelectedDate = orgItem.DISSOLVE_DATE
+                End If
+                If orgItem.CHK_ORGCHART = True Then
+                    chkOrgChart.Checked = True
+                Else
+                    chkOrgChart.Checked = False
                 End If
                 rtADDRESS.Text = orgItem.ADDRESS
                 rtREMARK.Text = orgItem.REMARK
@@ -1200,6 +1279,82 @@ Public Class ctrlHU_Organization
         End Try
 
     End Function
+    Private Sub btnUploadFile_Click(sender As Object, e As System.EventArgs) Handles btnUploadFile.Click
+        ctrlUpload.MaxFileInput = 10
+        ctrlUpload.isMultiple = False
+        ctrlUpload.AllowedExtensions = "pdf,png,doc,docx,xls,xlsx,jpg,jpeg,rar"
+        ctrlUpload.Show()
+    End Sub
+    Private Sub ctrlUpload_OkClicked(sender As Object, e As System.EventArgs) Handles ctrlUpload.OkClicked
+        Try
+            If ctrlUpload.UploadedFiles.Count > 0 Then
+                For i As Integer = 0 To ctrlUpload.UploadedFiles.Count - 1
+                    Dim fileName As String = String.Empty
+                    Dim file As UploadedFile = ctrlUpload.UploadedFiles(i)
+                    fileName = Server.MapPath("~/ReportTemplates/Training/Upload")
+                    If Not Directory.Exists(fileName) Then
+                        Directory.CreateDirectory(fileName)
+                    End If
+                    'New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
+                    If isPhysical = 1 Then
+                        fileName = System.IO.Path.Combine(fileName, file.FileName)
+                        'fileName = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), file.FileName)
+                    Else
+                        fileName = System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), file.FileName)
+                    End If
+
+                    file.SaveAs(fileName, True)
+                    Dim item As New RadListBoxItem(file.FileName, file.FileName)
+                    item.Checked = True
+                    lstFile.Items.Add(item)
+                Next
+            End If
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
+        End Try
+    End Sub
+    Private Sub btnDownloadFile_Click(sender As Object, e As System.EventArgs) Handles btnDownloadFile.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim mid As String = "Training" 'module dao tao
+            Dim strFiles As String = String.Empty
+            strFiles = lstFile.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & "#" & y)
+            strFiles = strFiles.Replace(" ", "")
+            If strFiles.Split("#").Count > 0 Then
+                Using zip As New ZipFile
+                    zip.AlternateEncodingUsage = ZipOption.AsNecessary
+                    zip.AddDirectoryByName("Files")
+                    For i As Integer = 0 To strFiles.Split("#").Count - 1
+                        Dim file As System.IO.FileInfo
+                        If isPhysical = 1 Then
+                            'file = New System.IO.FileInfo(System.IO.Path.Combine(PathTemplateInFolder & mid, strFiles.Split("#")(i)))
+                            file = New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
+                        Else
+                            file = New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
+                        End If
+                        If file.Exists Then
+                            zip.AddFile(file.FullName, "Files")
+                        Else
+                            ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_IS_NOT_EXSIST_TEMPLATE_FILE), NotifyType.Warning)
+                        End If
+                    Next
+                    Response.Clear()
+                    Dim zipName As String = [String].Format("AttachFile{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
+                    Response.ContentType = "application/zip"
+                    Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
+                    zip.Save(Response.OutputStream)
+                    Response.Flush()
+                    Response.SuppressContent = True
+                    HttpContext.Current.ApplicationInstance.CompleteRequest()
+                End Using
+            Else
+                ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_IS_NOT_SELECTED_MODULE), NotifyType.Warning)
+                Exit Sub
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.ToString, NotifyType.Error)
+        End Try
+    End Sub
 
 #End Region
 
