@@ -54,7 +54,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-             <asp:Label ID="lblParent_Name" runat="server" Text="<%$ Translate :Đơn vị cha %>"></asp:Label>
+             <asp:Label ID="lbParent_Name" runat="server" Text="<%$ Translate :Đơn vị cha %>"></asp:Label>
              <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
@@ -252,14 +252,14 @@
                 </td>
                 <td>
                 <asp:CheckBox runat="server" ID="chkOrgChart" />
-                <asp:Label ID="lblOrgChart" runat="server" Text="<%$ Translate: Hiển thị org chart %>"></asp:Label>
+                <asp:Label ID="lbOrgChart" runat="server" Text="<%$ Translate: Hiển thị org chart %>"></asp:Label>
                   <span class="lbReq"></span>
                  <%--   <tlk:RadButton CausesValidation="false" Text="Hiển thị org chart" ToggleType="CheckBox"
                         runat="server" ID="chkOrgChart" ButtonType="ToggleButton">
                     </tlk:RadButton>--%>
                 </td>
                 <td>
-                  <asp:Label ID="lblFile" runat="server" Text="<%$ Translate: Tập tin đính kèm %>"></asp:Label>
+                  <asp:Label ID="lbFile" runat="server" Text="<%$ Translate: Tập tin đính kèm %>"></asp:Label>
                 <span class="lbReq"></span>
                 </td>
                  <td colspan="2">
