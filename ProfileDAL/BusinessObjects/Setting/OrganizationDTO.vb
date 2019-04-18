@@ -36,4 +36,10 @@
     Public Property REGION_ID As Nullable(Of Global.System.Decimal)
     Public Property ORG_LEVEL As Nullable(Of Global.System.Decimal)
     Public Property AutoGenTimeSheet As Boolean
+
+    Public Property NUMBER_DECISION As String
+    Public Property TYPE_DECISION As String
+    Public Property LOCATION_WORK As String
+    Public Property CHK_ORGCHART As Decimal?
+    Public Property FILES As String
 End Class
