@@ -104,6 +104,12 @@
         Public Shared Code As String = "CONTRACT_SUPPORT"
         Public Shared TYPE_ID As Decimal = 2036
     End Class
+
+    Public Class OBJECT_ATTENDANCE
+        Public Shared Code As String = "OBJECT_ATTENDANCE"
+        Public Shared TYPE_ID As Decimal = 2254
+    End Class
+
     Public Class OT_ASSET_GROUP
         Public Shared Code As String = "ASSET_GROUP"
         Public Shared TYPE_ID As Decimal = 5

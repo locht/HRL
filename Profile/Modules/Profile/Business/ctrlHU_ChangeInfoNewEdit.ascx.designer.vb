@@ -203,6 +203,78 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     Protected WithEvents cusTitle As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbOBJECT_ATTENDANCE_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOBJECT_ATTENDANCE_OLD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rtOBJECT_ATTENDANCE_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtOBJECT_ATTENDANCE_OLD As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbFILING_DATE_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFILING_DATE_OLD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdFILING_DATE_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdFILING_DATE_OLD As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbOBJECT_ATTENDANCE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOBJECT_ATTENDANCE As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbOBJECT_ATTENDANCE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbOBJECT_ATTENDANCE As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbFILING_DATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFILING_DATE As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdFILING_DATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdFILING_DATE As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
     '''txtStaffRankOld control.
     '''</summary>
     '''<remarks>

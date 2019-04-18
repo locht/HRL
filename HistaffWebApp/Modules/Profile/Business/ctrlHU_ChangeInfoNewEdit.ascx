@@ -117,6 +117,32 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <asp:Label  runat ="server" ID="lbOBJECT_ATTENDANCE_OLD" Text ="<%$ Translate: Đối tượng chấm công %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox  runat ="server" ID="rtOBJECT_ATTENDANCE_OLD" SkinID="Readonly" ReadOnly="true"></tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label  runat ="server" ID="lbFILING_DATE_OLD" Text ="<%$ Translate: Ngày nộp đơn %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker runat ="server" ID ="rdFILING_DATE_OLD" SkinID="Readonly" ReadOnly="true"></tlk:RadDatePicker>
+                </td>
+                <td class="lb">
+                    <asp:Label  runat ="server" ID="lbOBJECT_ATTENDANCE" Text ="<%$ Translate: Đối tượng chấm công %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox  runat ="server" ID="cbOBJECT_ATTENDANCE"></tlk:RadComboBox>
+                </td>
+                <td class="lb">
+                    <asp:Label  runat ="server" ID="lbFILING_DATE" Text ="<%$ Translate: Ngày nộp đơn %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker runat ="server" ID ="rdFILING_DATE" ></tlk:RadDatePicker>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
                     <%# UI.StaffRank %>
                 </td>
                 <td>
@@ -520,7 +546,7 @@
             var id = sender.get_id();
             var cbo;
             var value;
-            
+
             if (!value) {
                 value = null;
             }
