@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/18/2019 9:54:33 AM
--- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\ProfileDAL\ProfileContext.edmx
+-- Date Created: 18/04/2019 12:57:36 PM
+-- Generated from EDMX file: E:\histaffhcm-newest\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -673,7 +673,10 @@ CREATE TABLE "dbo"."HU_FAMILY" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
    "REMARK" NVARCHAR2(1023) NULL,
    "DEDUCT_REG" DATE NULL,
-   "TAXTATION" NCLOB NULL
+   "TAXTATION" NCLOB NULL,
+   "PROVINCE_ID" NUMBER(38,0) NULL,
+   "TITLE_NAME" NCLOB NULL,
+   "CAREER" NCLOB NULL
 );
 
 -- Creating table 'HU_DISCIPLINE'
