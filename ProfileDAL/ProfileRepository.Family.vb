@@ -18,6 +18,9 @@ Partial Class ProfileRepository
             objFamilyData.EMPLOYEE_ID = objFamily.EMPLOYEE_ID
             objFamilyData.FULLNAME = objFamily.FULLNAME
             objFamilyData.RELATION_ID = objFamily.RELATION_ID
+            objFamilyData.PROVINCE_ID = objFamily.PROVINCE_ID
+            objFamilyData.CAREER = objFamily.CAREER
+            objFamilyData.TITLE_NAME = objFamily.TITLE_NAME
             objFamilyData.BIRTH_DATE = objFamily.BIRTH_DATE
             objFamilyData.DEDUCT_REG = objFamily.DEDUCT_REG
             objFamilyData.ID_NO = objFamily.ID_NO
@@ -46,6 +49,9 @@ Partial Class ProfileRepository
             objFamilyData.EMPLOYEE_ID = objFamily.EMPLOYEE_ID
             objFamilyData.FULLNAME = objFamily.FULLNAME
             objFamilyData.RELATION_ID = objFamily.RELATION_ID
+            objFamilyData.PROVINCE_ID = objFamily.PROVINCE_ID
+            objFamilyData.CAREER = objFamily.CAREER
+            objFamilyData.TITLE_NAME = objFamily.TITLE_NAME
             objFamilyData.BIRTH_DATE = objFamily.BIRTH_DATE
             objFamilyData.DEDUCT_REG = objFamily.DEDUCT_REG
             objFamilyData.ID_NO = objFamily.ID_NO
@@ -71,6 +77,8 @@ Partial Class ProfileRepository
             query = (From p In Context.HU_FAMILY
                      Group Join m In Context.OT_OTHER_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
                      From p_g In gGroup.DefaultIfEmpty
+                     Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
+                     From n_g In nGroup.DefaultIfEmpty
                    Select New FamilyDTO With {
                     .ID = p.ID,
                     .ADDRESS = p.ADDRESS,
@@ -78,6 +86,10 @@ Partial Class ProfileRepository
                     .FULLNAME = p.FULLNAME,
                     .RELATION_ID = p.RELATION_ID,
                     .RELATION_NAME = p_g.NAME_VN,
+                    .PROVINCE_ID = p.PROVINCE_ID,
+                    .PROVINCE_NAME = n_g.NAME_VN,
+                    .CAREER = p.CAREER,
+                    .TITLE_NAME = p.TITLE_NAME,
                     .BIRTH_DATE = p.BIRTH_DATE,
                     .TAXTATION = p.TAXTATION,
                     .DEDUCT_REG = p.DEDUCT_REG,
@@ -94,6 +106,9 @@ Partial Class ProfileRepository
             End If
             If _filter.RELATION_NAME <> "" Then
                 query = query.Where(Function(p) p.RELATION_NAME.ToLower().Contains(_filter.RELATION_NAME.ToLower))
+            End If
+            If _filter.PROVINCE_NAME <> "" Then
+                query = query.Where(Function(p) p.PROVINCE_NAME.ToLower().Contains(_filter.PROVINCE_NAME.ToLower))
             End If
             If _filter.FULLNAME <> "" Then
                 query = query.Where(Function(p) p.FULLNAME.ToLower().Contains(_filter.FULLNAME.ToLower))

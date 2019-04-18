@@ -91,6 +91,10 @@ Public Class ctrlHU_EmpDtlFamily
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         rgFamily.SetFilter()
         InitControl()
+        If Not IsPostBack Then
+            ViewConfig(RightPane)
+            GirdConfig(rgFamily)
+        End If
     End Sub
 
     Protected Sub InitControl()
@@ -123,12 +127,16 @@ Public Class ctrlHU_EmpDtlFamily
             Using rep As New ProfileRepository
                 If ComboBoxDataDTO Is Nothing Then
                     ComboBoxDataDTO = New ComboBoxDataDTO
+                    ComboBoxDataDTO.GET_RELATION = True
+                    ComboBoxDataDTO.GET_PROVINCE = True
+                    rep.GetComboList(ComboBoxDataDTO)
                 End If
-                ComboBoxDataDTO.GET_RELATION = True
-                rep.GetComboList(ComboBoxDataDTO)
+                
                 If ComboBoxDataDTO IsNot Nothing Then
                     FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
+                    FillDropDownList(cboNguyenQuan, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNguyenQuan.SelectedValue)
                 End If
+
             End Using
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -191,8 +199,8 @@ Public Class ctrlHU_EmpDtlFamily
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
-                                    ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
-                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax)
+                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
+                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle)
                                     rgFamily.Rebind()
                                     ExcuteScript("Clear", "clRadDatePicker()")
                                 Else
@@ -202,8 +210,8 @@ Public Class ctrlHU_EmpDtlFamily
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
-                                    ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
-                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax)
+                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
+                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle)
                                     rgFamily.Rebind()
                                     ExcuteScript("Clear", "clRadDatePicker()")
                                 Else
@@ -315,6 +323,9 @@ Public Class ctrlHU_EmpDtlFamily
             rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
             rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
             cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
+            cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+            txtCareer.Text = item.GetDataKeyValue("CAREER")
+            txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -353,8 +364,8 @@ Public Class ctrlHU_EmpDtlFamily
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
                     ExcuteScript("Clear", "clRadDatePicker()")
-                    ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
-                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax)
+                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
+                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle)
                 Else
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                 End If
@@ -390,8 +401,13 @@ Public Class ctrlHU_EmpDtlFamily
             objFamily.ID_NO = txtIDNO.Text.Trim()
             objFamily.IS_DEDUCT = chkIsDeduct.Checked
             objFamily.REMARK = txtRemark.Text.Trim()
+            objFamily.CAREER = txtCareer.Text.Trim()
+            objFamily.TITLE_NAME = txtTitle.Text.Trim()
             If cboRelationship.SelectedValue <> "" Then
                 objFamily.RELATION_ID = Decimal.Parse(cboRelationship.SelectedValue)
+            End If
+            If cboNguyenQuan.SelectedValue <> "" Then
+                objFamily.PROVINCE_ID = Decimal.Parse(cboNguyenQuan.SelectedValue)
             End If
             Dim gID As Decimal
             If hidFamilyID.Value = "" Then
@@ -460,7 +476,10 @@ Public Class ctrlHU_EmpDtlFamily
         txtIDNO.ReadOnly = Not sTrangThai
         txtFullName.ReadOnly = Not sTrangThai
         chkIsDeduct.Enabled = sTrangThai
+        txtCareer.ReadOnly = Not sTrangThai
+        txtTitle.ReadOnly = Not sTrangThai
         Utilities.ReadOnlyRadComBo(cboRelationship, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cboNguyenQuan, Not sTrangThai)
         Utilities.EnableRadDatePicker(rdBirthDate, sTrangThai)
         Utilities.EnableRadDatePicker(rdDeductReg, sTrangThai)
         If chkIsDeduct.Checked AndAlso chkIsDeduct.Enabled Then
@@ -474,8 +493,8 @@ Public Class ctrlHU_EmpDtlFamily
     End Sub
 
     Private Sub ResetControlValue()
-        ClearControlValue(txtFullName, txtAdress, txtAdress, txtIDNO, txtRemark, txtTax,
-                          hidFamilyID, chkIsDeduct, cboRelationship,
+        ClearControlValue(txtFullName, txtAdress, txtAdress, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle,
+                          hidFamilyID, chkIsDeduct, cboNguyenQuan, cboRelationship,
                           rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo)
         rgFamily.SelectedIndexes.Clear()
     End Sub
@@ -490,8 +509,6 @@ Public Class ctrlHU_EmpDtlFamily
             Throw ex
         End Try
     End Function
-
-
 #End Region
 
 End Class
