@@ -1,19 +1,14 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
-<<<<<<< HEAD
--- Date Created: 4/12/2019 4:38:28 PM
-=======
--- Date Created: 4/10/2019 9:39:49 AM
->>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
--- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\ProfileDAL\ProfileContext.edmx
+-- Date Created: 18/04/2019 9:07:26 AM
+-- Generated from EDMX file: E:\histaffhcm-newest\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-<<<<<<< HEAD
 -- ALTER TABLE "dbo"."HU_PROVINCE" DROP CONSTRAINT "FK_HU_NAT_HU_PRO" CASCADE;
 
 -- ALTER TABLE "dbo"."HU_DISTRICT" DROP CONSTRAINT "FK_HU_PRO_HU_DIS" CASCADE;
@@ -68,13 +63,10 @@
 
 -- ALTER TABLE "dbo"."HU_ORGANIZATION1" DROP CONSTRAINT "FK_HU_ORG_HU_ORG1" CASCADE;
 
-=======
->>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-<<<<<<< HEAD
 -- DROP TABLE "dbo"."HU_PROVINCE";
 
 -- DROP TABLE "dbo"."HU_DISTRICT";
@@ -330,9 +322,6 @@
 -- DROP TABLE "dbo"."HU_FILE";
 
 -- DROP TABLE "dbo"."SE_USER_REPORT";
-=======
--- DROP TABLE "HISTAFFHCM"."HU_ATTACHFILES";
->>>>>>> ef3868ee3ad8f3e03b747bf280161421bc4ec144
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1421,7 +1410,9 @@ CREATE TABLE "dbo"."HU_PRO_TRAIN_OUT_COMPANY" (
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "UPLOAD_FILE" NCLOB NULL,
-   "FILE_NAME" NCLOB NULL
+   "FILE_NAME" NCLOB NULL,
+   "TYPE_TRAIN_ID" NUMBER(38,0) NULL,
+   "RECEIVE_DEGREE_DATE" DATE NULL
 );
 
 -- Creating table 'HU_DISCIPLINE_EMP'
