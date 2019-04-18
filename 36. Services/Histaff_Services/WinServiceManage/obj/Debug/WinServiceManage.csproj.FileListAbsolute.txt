@@ -1,7 +1,0 @@
-C:\Users\Administrator\Desktop\New folder\tinh luong scb\Histaff_Services\WinServiceManage\bin\Debug\WinServiceManage.exe.config
-C:\Users\Administrator\Desktop\New folder\tinh luong scb\Histaff_Services\WinServiceManage\bin\Debug\WinServiceManage.exe
-C:\Users\Administrator\Desktop\New folder\tinh luong scb\Histaff_Services\WinServiceManage\bin\Debug\WinServiceManage.pdb
-C:\Users\Administrator\Desktop\New folder\tinh luong scb\Histaff_Services\WinServiceManage\obj\Debug\WinServiceManage.frmWinServicesMan.resources
-C:\Users\Administrator\Desktop\New folder\tinh luong scb\Histaff_Services\WinServiceManage\obj\Debug\WinServiceManage.csproj.GenerateResource.Cache
-C:\Users\Administrator\Desktop\New folder\tinh luong scb\Histaff_Services\WinServiceManage\obj\Debug\WinServiceManage.exe
-C:\Users\Administrator\Desktop\New folder\tinh luong scb\Histaff_Services\WinServiceManage\obj\Debug\WinServiceManage.pdb
