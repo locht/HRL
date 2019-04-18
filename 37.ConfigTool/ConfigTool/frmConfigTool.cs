@@ -60,21 +60,21 @@ namespace ConfigTool
                 System.Data.DataRow row = control.NewRow();
                 row["Ctl_ID"] = ID;
                 var validator = NodeValidator?.Where(val => val.Attributes["controltovalidate"].Value.Contains(ID))?.ToList();
-                if (validator != null && validator.Count > 0)
-                {
-                    row["ErrorMessage"] = validator.Count > 0 ? validator[0]?.Attributes["errormessage"]?.Value : "";
-                    row["ErrorToolTip"] = validator.Count > 0 ? validator[0]?.Attributes["tooltip"]?.Value : "";
-                    row["Validator_ID"] = validator.Count > 0 ? validator[0]?.Attributes["ID"]?.Value : "";
-                }
+               
+                    row["ErrorMessage"] = validator?.Count > 0 ? validator[0]?.Attributes["errormessage"]?.Value : "";
+                    row["ErrorToolTip"] = validator?.Count > 0 ? validator[0]?.Attributes["tooltip"]?.Value : "";
+                    row["Validator_ID"] = validator?.Count > 0 ? validator[0]?.Attributes["ID"]?.Value : "";
+               
+              
                 row["Is_Visible"] = "true";
                 row["Is_Validator"] = "true";
                 var lable = NodeLable?.Where(val => val.Attributes["ID"].Value.Contains(ID.Substring(3)))?.ToList();
-                if (lable.Count == 0)
+                if (lable != null && lable?.Count == 0)
                 {
                     lable = NodeLable?.Where(val => val.Attributes["ID"].Value.Contains(ID.Substring(2)))?.ToList();
                 }
-                row["Label_ID"] = lable.Count > 0 ? lable[0]?.Attributes["id"]?.Value : "";
-                row["Label_text"] = lable.Count > 0 ? lable[0]?.Attributes["text"]?.Value : "";
+                row["Label_ID"] = lable?.Count > 0 ? lable[0]?.Attributes["id"]?.Value : "";
+                row["Label_text"] = lable?.Count > 0 ? lable[0]?.Attributes["text"]?.Value : "";
                 control.Rows.Add(row);
             }
             catch (Exception) { }

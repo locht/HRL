@@ -101,7 +101,7 @@ Public Class ctrlControlsNewEdit
                 Dim dtGrid As DataTable = vcf.Tables("girdColumm")
 
                 'Controls
-                If dtCtrl.Rows.Count > 0 AndAlso dtCtrl IsNot Nothing Then
+                If dtCtrl IsNot Nothing AndAlso dtCtrl.Rows.Count > 0 Then
                     rgListControls.DataSource = dtCtrl
                     rgListControls.DataBind()
                     For Each item As GridDataItem In rgListControls.MasterTableView.Items
@@ -111,7 +111,7 @@ Public Class ctrlControlsNewEdit
                 End If
 
                 'Grids
-                If dtGrid.Rows.Count > 0 AndAlso dtGrid IsNot Nothing Then
+                If dtGrid IsNot Nothing AndAlso dtGrid.Rows.Count > 0 Then
                     rgListGrid.DataSource = dtGrid
                     rgListGrid.DataBind()
                     For Each item As GridDataItem In rgListGrid.MasterTableView.Items

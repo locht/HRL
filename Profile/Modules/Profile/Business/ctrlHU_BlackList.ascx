@@ -19,14 +19,14 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày nộp đơn từ")%>
+                      <asp:Label ID="lbFromSend" runat="server" Text="<%$ Translate: Ngày nộp đơn từ %>"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromSend" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến")%>
+                                <asp:Label ID="lbToSend" runat="server" Text="<%$ Translate: Đến %>"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToSend" runat="server">
@@ -35,14 +35,14 @@
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày làm việc cuối cùng từ")%>
+                     <asp:Label ID="lbFromLast" runat="server" Text="<%$ Translate: Ngày làm việc cuối cùng từ %>"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromLast" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến")%>
+                            <asp:Label ID="lbToLast" runat="server" Text="<%$ Translate: Đến %>"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToLast" runat="server">
@@ -62,7 +62,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_CODE,IS_NOHIRE">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -91,15 +91,18 @@
                                 <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
                                 </tlk:RadToolTip>
                             </ItemTemplate>
-                            </tlk:GridTemplateColumn>
+                            </tlk:GridTemplateColumn>--%>
                             <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị/Phòng ban %>" DataField="ORG_NAME"
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                             </tlk:GridBoundColumn>--%>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày nộp đơn %>" DataField="SEND_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="SEND_DATE" UniqueName="SEND_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}" />
+                                   <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày thôi việc %>" DataField="EFFECT_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày làm việc cuối %>" DataField="LAST_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="LAST_DATE" UniqueName="LAST_DATE"
@@ -109,7 +112,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK">
                                 <HeaderStyle Width="200px" />
-                            </tlk:GridBoundColumn>
+                            </tlk:GridBoundColumn>--%>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>
