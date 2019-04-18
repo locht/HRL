@@ -2019,6 +2019,7 @@ Partial Class ProfileRepository
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                         From staffRank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                         From deci_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DECISION_TYPE_ID).DefaultIfEmpty
+                        From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         Where p.IS_MISSION = True And
                         p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                         Order By p.EFFECT_DATE Descending
@@ -2026,6 +2027,9 @@ Partial Class ProfileRepository
                                                     .DECISION_NO = p.DECISION_NO,
                                                     .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                                                     .DECISION_TYPE_NAME = deci_type.NAME_VN,
+                                                    .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                                    .OBJECT_ATTENDANCE_NAME = obj_att.NAME_VN,
+                                                    .FILING_DATE = p.FILING_DATE,
                                                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                                     .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                     .EMPLOYEE_NAME = e.FULLNAME_VN,
