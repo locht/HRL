@@ -84,7 +84,7 @@ Partial Class ProfileRepository
             Next
             Context.SaveChanges()
             Dim dateNow = Date.Now.Date
-            Dim query = (From org In Context.HU_ORGANIZATION
+            Dim query = (From org In Context.HU_ORGANIZATION.Where(Function(f) f.CHK_ORGCHART = -1)
                          From p In Context.HU_EMPLOYEE.Where(Function(f) f.ID = org.REPRESENTATIVE_ID).DefaultIfEmpty
                          From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
                          From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
@@ -111,7 +111,7 @@ Partial Class ProfileRepository
             Dim lstEmp = query.ToList
 
             For Each emp In lstEmp
-                emp.ORG_NAME = emp.ORG_NAME & " (" & emp.EMP_COUNT & ")"
+                emp.ORG_NAME = emp.ORG_NAME & " (" + "Tổng số nhân viên:" & emp.EMP_COUNT & ")"
                 emp.IMAGE_BINARY = GetEmployeeImage(emp.ID, "", False, emp.IMAGE)
             Next
             Return lstEmp
