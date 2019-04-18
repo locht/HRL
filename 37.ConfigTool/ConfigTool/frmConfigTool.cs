@@ -19,23 +19,25 @@ namespace ConfigTool
         public frmConfigTool()
         {
             InitializeComponent();
-           // BOConnectString = txtConnectString.Text;
+            // BOConnectString = txtConnectString.Text;
         }
         private String BOConnectString;
         private System.Data.DataTable control;
-        private System.Data.DataTable girdColumm ;
+        private System.Data.DataTable girdColumm;
         private System.Data.DataSet viewconfig = new System.Data.DataSet("viewconfig");
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             folderBrowserDialog.ShowDialog();
-            if ( folderBrowserDialog?.SelectedPath != String.Empty ) {
+            if (folderBrowserDialog?.SelectedPath != String.Empty)
+            {
                 txtPath.Text = folderBrowserDialog?.SelectedPath;
             }
         }
-        private void AddRowToTableGrid(int Stt ,HtmlNode node)
+        private void AddRowToTableGrid(int Stt, HtmlNode node)
         {
-            try {
+            try
+            {
                 System.Data.DataRow row = girdColumm.NewRow();
                 row["ID"] = node?.Attributes["datafield"]?.Value;
                 row["Name"] = node?.Attributes["HeaderText"]?.Value;
@@ -54,6 +56,7 @@ namespace ConfigTool
             try
             {
                 HtmlNodeCollection NodeValidator = tableform?.SelectNodes(@"//td//requiredfieldvalidator");
+                HtmlNodeCollection NodeLable = tableform?.SelectNodes(@"//td//label");
                 System.Data.DataRow row = control.NewRow();
                 row["Ctl_ID"] = ID;
                 var validator = NodeValidator?.Where(val => val.Attributes["controltovalidate"].Value.Contains(ID))?.ToList();
@@ -65,17 +68,22 @@ namespace ConfigTool
                 }
                 row["Is_Visible"] = "true";
                 row["Is_Validator"] = "true";
-                row["Label_ID"] = "";
-                row["Label_text"] = "";
+                var lable = NodeLable?.Where(val => val.Attributes["ID"].Value.Contains(ID.Substring(3)))?.ToList();
+                if (lable.Count == 0)
+                {
+                    lable = NodeLable?.Where(val => val.Attributes["ID"].Value.Contains(ID.Substring(2)))?.ToList();
+                }
+                row["Label_ID"] = lable.Count > 0 ? lable[0]?.Attributes["id"]?.Value : "";
+                row["Label_text"] = lable.Count > 0 ? lable[0]?.Attributes["text"]?.Value : "";
                 control.Rows.Add(row);
             }
-            catch (Exception ) { }
+            catch (Exception) { }
         }
 
-        private void GetColumnConfigGrid(String ColTypeGrid,int Stt, HtmlAgilityPack.HtmlDocument htmlDoc)
+        private void GetColumnConfigGrid(String ColTypeGrid, int Stt, HtmlAgilityPack.HtmlDocument htmlDoc)
         {
-            var gridConfig = htmlDoc?.DocumentNode?.SelectNodes("//"+ ColTypeGrid);
-            if (gridConfig ==null ) { return; }
+            var gridConfig = htmlDoc?.DocumentNode?.SelectNodes("//" + ColTypeGrid);
+            if (gridConfig == null) { return; }
             foreach (var element in gridConfig)
             {
                 try
@@ -90,9 +98,10 @@ namespace ConfigTool
             }
 
         }
-        private void  SaveDB(String FileName)
+        private void SaveDB(String FileName)
         {
-            try {
+            try
+            {
                 if (control.Rows.Count > 0 || girdColumm.Rows.Count > 0)
                 {
                     viewconfig.Tables.Add(control);
@@ -115,14 +124,14 @@ namespace ConfigTool
             }
         }
 
-        private void ReadFilesInFolder(String path,Boolean isFile =false)
+        private void ReadFilesInFolder(String path, Boolean isFile = false)
         {
             DirectoryInfo Directory;
             FileInfo[] Files;
             if (isFile)
             {
                 List<FileInfo> lstFile = new List<FileInfo>();
-                lstFile.Add( new FileInfo(path ));
+                lstFile.Add(new FileInfo(path));
                 Files = lstFile.ToArray();
             }
             else
@@ -198,7 +207,8 @@ namespace ConfigTool
                     //step += 1;
                     //processBar.PerformStep();
                 }
-                catch (Exception ex){
+                catch (Exception ex)
+                {
                     //thu kiem tra saveDB
                     SaveDB(item.Name);
                     continue;
@@ -209,7 +219,7 @@ namespace ConfigTool
         {
             viewconfig = new DataSet("viewconfig");
             control = new System.Data.DataTable("control");
-            control.Columns.Add("Ctl_ID", typeof(System.String ));
+            control.Columns.Add("Ctl_ID", typeof(System.String));
             control.Columns.Add("Label_ID", typeof(System.String));
             control.Columns.Add("Label_text", typeof(System.String));
             control.Columns.Add("Is_Visible", typeof(System.String));
@@ -229,9 +239,9 @@ namespace ConfigTool
         {
             String FolderPath = String.Empty;
             Boolean isFile = false;
-            FolderPath = txtPath.Text.Equals("") ? txtFilePath.Text : txtPath .Text;
-            isFile= txtPath.Text.Equals("") ? true      : false    ;
-            ReadFilesInFolder(FolderPath,isFile  );
+            FolderPath = txtPath.Text.Equals("") ? txtFilePath.Text : txtPath.Text;
+            isFile = txtPath.Text.Equals("") ? true : false;
+            ReadFilesInFolder(FolderPath, isFile);
             btnStop.Enabled = true;
             MessageBox.Show("Thao ket thuc");
         }
@@ -262,12 +272,12 @@ namespace ConfigTool
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
                 openFileDialog.ShowDialog();
-                if (openFileDialog?.FileName  != String.Empty)
+                if (openFileDialog?.FileName != String.Empty)
                 {
-                    txtFilePath .Text = openFileDialog?.FileName;
+                    txtFilePath.Text = openFileDialog?.FileName;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
