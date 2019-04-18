@@ -182,19 +182,12 @@ Public Class ctrlHU_ContractNewEdit
                             hidWorkingID.Value = Contract.WORKING_ID
                         End If
                         ListAttachFile = Contract.ListAttachFiles
-
-                        rtAttachFile.Text = String.Join(",", (From p In Contract.ListAttachFiles.AsEnumerable Select p.ATTACHFILE_NAME).ToArray)
-                        'txtDesionNo.Text = Contract.DECISION_NO
-                        'txtSalGroup.Text = Contract.SAL_GROUP_NAME
-                        'txtSalLevel.Text = Contract.SAL_LEVEL_NAME
-                        'txtSalRank.Text = Contract.SAL_RANK_NAME
-                        '  rntxtPercentSalary.Value = Contract.PERCENT_SALARY
+                        txtUpload.Text = String.Join(",", (From p In Contract.ListAttachFiles.AsEnumerable Select p.ATTACHFILE_NAME).ToArray)
                         txtContractNo.Text = Contract.CONTRACT_NO
                         txtEmployeeCode.Text = Contract.EMPLOYEE_CODE
                         txtEmployeeName.Text = Contract.EMPLOYEE_NAME
                         txtTITLE.Text = Contract.TITLE_NAME
                         txtOrg_Name.Text = Contract.ORG_NAME
-                        ' txtSTAFF_RANK.Text = Contract.STAFF_RANK_NAME
                         txtRemark.Text = Contract.REMARK
                         txtSigner.Text = Contract.SIGNER_NAME
                         hidSign.Value = Contract.SIGN_ID.ToString
@@ -206,10 +199,6 @@ Public Class ctrlHU_ContractNewEdit
                         rdStartDate.SelectedDate = Contract.START_DATE
                         rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
                         rdSignDate.SelectedDate = Contract.SIGN_DATE
-                        'rdMorning_Start.SelectedDate = Contract.MORNING_START
-                        'rdMorning_Stop.SelectedDate = Contract.MORNING_STOP
-                        'rdAfternoon_Start.SelectedDate = Contract.AFTERNOON_START
-                        'rdAfternoon_Stop.SelectedDate = Contract.AFTERNOON_STOP
                         If Contract.Working IsNot Nothing Then
                             SetValueComboBox(cboSalTYPE, Contract.Working.SAL_TYPE_ID, Contract.Working.SAL_TYPE_NAME)
                             SetValueComboBox(cboTaxTable, Contract.Working.TAX_TABLE_ID, Contract.Working.TAX_TABLE_Name)
@@ -221,9 +210,6 @@ Public Class ctrlHU_ContractNewEdit
                             rgAllow.DataBind()
                             Working_ID.Text = Contract.WORKING_ID
                         End If
-
-
-
                         If Contract.STATUS_ID IsNot Nothing Then
                             cboStatus.SelectedValue = Contract.STATUS_ID
                         End If
@@ -268,8 +254,6 @@ Public Class ctrlHU_ContractNewEdit
         'Dim stt As OtherListDTO
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
-
         Try
             Dim strUrl As String = Request.Url.ToString()
             Dim isPopup As Boolean = False
@@ -284,33 +268,15 @@ Public Class ctrlHU_ContractNewEdit
                             ShowMessage(Translate("Bạn phải chọn Tờ trình/QĐ"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        'If cboStatus.SelectedValue = 471 Then
-                        '    If txtContractNo.Text.Contains(".") Then
-                        '        ShowMessage(Translate("Bạn phải nhập số hợp đồng"), NotifyType.Warning)
-                        '        Exit Sub
-                        '    End If
-                        'End If
-                        'Dim _filter As New ContractDTO
-                        '_filter.CONTRACT_NO = txtContractNo.Text
-                        'If CurrentState = Common.CommonMessage.STATE_EDIT Then
-                        '    _filter.ID = hidID.Value
-                        'End If
-                        'If Not rep.CheckContractNo(_filter) Then
-                        '    ShowMessage(Translate("Số hợp đồng đã tồn tại. Thao tác thực không thành công"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
                         objContract.CONTRACTTYPE_ID = Decimal.Parse(cboContractType.SelectedValue)
                         objContract.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
                         objContract.EMPLOYEE_ID = Decimal.Parse(hidEmployeeID.Value)
                         objContract.EXPIRE_DATE = rdExpireDate.SelectedDate
-
                         objContract.CONTRACT_NO = txtContractNo.Text
                         objContract.REMARK = txtRemark.Text
-
                         If hidSign.Value <> "" Then
                             objContract.SIGN_ID = Decimal.Parse(hidSign.Value)
                         End If
-
                         objContract.SIGNER_NAME = txtSigner.Text
                         objContract.SIGNER_TITLE = txtSignTitle.Text
                         objContract.SIGN_DATE = rdSignDate.SelectedDate
@@ -318,8 +284,9 @@ Public Class ctrlHU_ContractNewEdit
                         objContract.WORKING_ID = hidWorkingID.Value
                         objContract.ORG_ID = employee.ORG_ID
                         objContract.TITLE_ID = employee.TITLE_ID
-                        objContract.ListAttachFiles = ListAttachFile
-
+                        If ListAttachFile IsNot Nothing Then
+                            objContract.ListAttachFiles = ListAttachFile
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertContract(objContract, gID) Then
@@ -734,7 +701,6 @@ Public Class ctrlHU_ContractNewEdit
         End Try
     End Sub
    
-
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -782,107 +748,92 @@ Public Class ctrlHU_ContractNewEdit
     End Sub
 
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-        ListAttachFile = New List(Of AttachFilesDTO)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
         Try
-            Dim fileName As String = String.Empty
-            For Each item In ctrlUpload1.UploadedFiles
-                Dim Attach As New AttachFilesDTO
-                If isPhysical = 1 Then 'Nếu là 1 : lấy đường dẫn theo cấu hình ||    0: lấy đường dẫn theo web server
-                    If ctrlUpload1.UploadedFiles.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_NOT_CHOOSE_FILE), NotifyType.Warning)
-                        Exit Sub
-                    Else
-                        Dim file As UploadedFile = item
-                        Attach.ATTACHFILE_NAME = file.FileName
-                        Attach.FILE_PATH = System.IO.Path.Combine(Server.MapPath("~/UploadFile/AttachFileControls/" & "Profile"), file.FileName)
-                        Attach.FILE_TYPE = file.FileName.Split(".")(1)
-                        Attach.CONTROL_NAME = "CTRLHU_CONTRACTNEWEDIT"
-                        ListAttachFile.Add(Attach)
-                        fileName = System.IO.Path.Combine(PathControlAttachFolder & "Profile", file.FileName)
-                        file.SaveAs(fileName, True)
-                        If (rtAttachFile.Text = "") Then
-                            rtAttachFile.Text = file.FileName
-                        Else
-                            rtAttachFile.Text += If(file.FileName <> "", "," + file.FileName, "" + file.FileName)
-                        End If
-                    End If
-                Else '0: lấy đường dẫn theo web server
-                    If ctrlUpload1.UploadedFiles.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_NOT_CHOOSE_FILE), NotifyType.Warning)
-                        Exit Sub
-                    Else
-                        Dim file As UploadedFile = item
-                        Attach.ATTACHFILE_NAME = file.FileName
-                        Attach.FILE_PATH = System.IO.Path.Combine(Server.MapPath("~/UploadFile/AttachFileControls/" & "Profile"), file.FileName)
-                        Attach.FILE_TYPE = file.FileName.Split(".")(1)
-                        Attach.CONTROL_NAME = "CTRLHU_CONTRACTNEWEDIT"
-                        ListAttachFile.Add(Attach)
-                        file.SaveAs(Attach.FILE_PATH, True)
-                        If (rtAttachFile.Text = "") Then
-                            rtAttachFile.Text = Attach.ATTACHFILE_NAME
-                        Else
-                            rtAttachFile.Text += If(Attach.ATTACHFILE_NAME <> "", "," + Attach.ATTACHFILE_NAME, "" + Attach.ATTACHFILE_NAME)
-                        End If
-                    End If
+            txtUploadFile.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".pdf")
+            listExtension.Add(".jpg")
+            listExtension.Add(".png")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/ContractAttachFile/")
+            If ctrlUpload1.UploadedFiles.Count >= 1 Then
+                Dim finfo As New AttachFilesDTO
+                ListAttachFile = New List(Of AttachFilesDTO)
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(ctrlUpload1.UploadedFiles.Count - 1)
+                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                    System.IO.Directory.CreateDirectory(strPath)
+                    strPath = strPath
+                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+                    file.SaveAs(fileName, True)
+                    txtUpload.Text = file.FileName
+                    finfo.FILE_PATH = strPath + file.FileName
+                    finfo.ATTACHFILE_NAME = file.FileName
+                    finfo.CONTROL_NAME = "ctrlHU_ContractNewEdit"
+                    finfo.FILE_TYPE = file.GetExtension
+                    ListAttachFile.Add(finfo)
+                Else
+                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                    Exit Sub
                 End If
-            Next
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
-    Private Sub rbtSQLLoaderDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles rbtSQLLoaderDownload.Click
-        Dim startTime As DateTime = DateTime.UtcNow
+    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim mid As String = "Profile"
-            Dim strFiles As String = String.Empty
-            strFiles = String.Join("#", (From p In ListAttachFile.AsEnumerable Select p.FILE_PATH).ToArray)
-            If strFiles.Split("#").Count > 0 Then
-                Using zip As New ZipFile
-                    zip.AlternateEncodingUsage = ZipOption.AsNecessary
-                    zip.AddDirectoryByName("Files")
-                    For i As Integer = 0 To strFiles.Split("#").Count - 1
-                        Dim file As System.IO.FileInfo
-                        If isPhysical = 1 Then
-                            'file = New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
-                            file = New System.IO.FileInfo(strFiles.Split("#")(i))
-                            'file = System.IO.Path.Combine(Server.MapPath("~/UploadFile/AttachFileControls/" & "Profile"), file.FileName)
-                        Else
-                            'file = New System.IO.FileInfo(System.IO.Path.Combine(Server.MapPath("~/ReportTemplates/Training/Upload/"), strFiles.Split("#")(i)))
-                            file = New System.IO.FileInfo(strFiles.Split("#")(i))
-                        End If
-                        If file.Exists Then
-                            zip.AddFile(file.FullName, "Files")
-                        Else
-                            ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_IS_NOT_EXSIST_TEMPLATE_FILE), NotifyType.Warning)
-                        End If
-                    Next
-                    Response.Clear()
-                    Dim zipName As String = [String].Format("AttachFile{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"))
-                    Response.ContentType = "application/zip"
-                    Response.AddHeader("content-disposition", "attachment; filename=" + zipName)
-                    zip.Save(Response.OutputStream)
-                    Response.Flush()
-                    Response.SuppressContent = True
-                    HttpContext.Current.ApplicationInstance.CompleteRequest()
-                End Using
-            Else
-                ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_IS_NOT_SELECTED_MODULE), NotifyType.Warning)
-                Exit Sub
+            If txtUploadFile.Text <> "" Then
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/ContractAttachFile/" + txtUploadFile.Text)
+                ZipFiles(strPath_Down, 2)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            DisplayException(ViewName, ID, ex)
         End Try
     End Sub
 #End Region
 
 #Region "Custom"
+
+
+    Private Sub ZipFiles(ByVal path As String, ByVal _ID As Decimal)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim fileNameZip As String
+            If _ID = 1 Then
+                fileNameZip = txtUploadFile.Text.Trim
+            Else
+                fileNameZip = txtUploadFile.Text.Trim
+            End If
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            'Response.ContentType = "application/octet-stream"
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -891,6 +842,7 @@ Public Class ctrlHU_ContractNewEdit
     ''' Xử lý đăng ký popup ứng với giá trị isLoadPopup
     ''' </summary>
     ''' <remarks></remarks>
+
     Public Overrides Sub UpdateControlState()
         'Dim rep As New ProfileBusinessRepository
 
@@ -942,8 +894,6 @@ Public Class ctrlHU_ContractNewEdit
         cboStatus.DataTextField = "Text"
         cboStatus.DataValueField = "Value"
     End Sub
-
-
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>

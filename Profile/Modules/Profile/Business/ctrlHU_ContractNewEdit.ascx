@@ -61,13 +61,6 @@
                     <tlk:RadTextBox ID="txtOrg_Name" runat="server" ReadOnly="True" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
-                <%--<td class="lb">
-                    <%# Translate("Cấp nhân sự")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtSTAFF_RANK" runat="server" ReadOnly="True" SkinID="ReadOnly">
-                    </tlk:RadTextBox>
-                </td>--%>
                 <td class="lb">
                     <%# Translate("Loại hợp đồng")%>
                     <span class="lbReq">*</span>
@@ -90,11 +83,6 @@
                 <td>
                     <tlk:RadTextBox ID="txtContractNo" runat="server" Enabled="false">
                     </tlk:RadTextBox>
-<%--                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtContractNo"
-                        runat="server" ErrorMessage="<%$ Translate: Số HĐ chưa được tạo %>" ToolTip="<%$ Translate: Số HĐ chưa được tạo %>"> </asp:RequiredFieldValidator>--%>
-                      <%-- <asp:CustomValidator ID="cusContractNo" runat="server" ErrorMessage="<%$ Translate: Số hợp đồng đã tồn tại %>"
-                        ToolTip="<%$ Translate: Số hợp đồng đã tồn tại %>">
-                    </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
                     <%# Translate("Ngày bắt đầu")%><span class="lbReq">*</span>
@@ -128,7 +116,7 @@
                     </tlk:radtextbox>
                     <tlk:radtextbox id="txtUploadFile" runat="server" visible="false">
                     </tlk:radtextbox>
-                    <tlk:radbutton runat="server" id="btnc" skinid="ButtonView" causesvalidation="false"
+                    <tlk:radbutton runat="server" id="btnUpload" skinid="ButtonView" causesvalidation="false"
                         tabindex="3" />
                     <tlk:radbutton id="btnDownload" runat="server" text="<%$ Translate: Tải xuống%>"
                         causesvalidation="false" onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
@@ -151,7 +139,6 @@
                 </td>
                
             </tr>
-          
             <tr>
                 <td class="lb">
                     <%# Translate("Người ký")%>

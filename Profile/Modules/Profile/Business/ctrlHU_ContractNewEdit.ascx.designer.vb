@@ -257,13 +257,31 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
-    '''rtAttachFile control.
+    '''lbUploadFile control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtAttachFile As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents lbUploadFile As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUpload As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtUploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''btnUpload control.
@@ -275,13 +293,13 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents btnUpload As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''rbtSQLLoaderDownload control.
+    '''btnDownload control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rbtSQLLoaderDownload As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''cboStatus control.
