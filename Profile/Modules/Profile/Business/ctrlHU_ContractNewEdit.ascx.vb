@@ -205,7 +205,7 @@ Public Class ctrlHU_ContractNewEdit
                             SalaryInsurance.Value = Contract.Working.SAL_INS
                             Allowance_Total.Value = Contract.Working.ALLOWANCE_TOTAL
                             Salary_Total.Value = Contract.Working.SAL_TOTAL
-                            rntxtBasicSal.Value = Contract.Working.SAL_BASIC
+                            rnBasicSal.Value = Contract.Working.SAL_BASIC
                             rgAllow.DataSource = Contract.Working.lstAllowance
                             rgAllow.DataBind()
                             Working_ID.Text = Contract.WORKING_ID
@@ -514,12 +514,12 @@ Public Class ctrlHU_ContractNewEdit
         If working IsNot Nothing Then
             cboSalTYPE.Text = working.SAL_TYPE_NAME
             cboTaxTable.Text = working.TAX_TABLE_Name
-            rntxtBasicSal.Value = working.SAL_BASIC
+            rnBasicSal.Value = working.SAL_BASIC
             SalaryInsurance.Value = working.SAL_INS
             Allowance_Total.Value = working.ALLOWANCE_TOTAL
             Salary_Total.Value = working.SAL_TOTAL
         Else
-            ClearControlValue(cboSalTYPE, cboTaxTable, rntxtBasicSal, SalaryInsurance, Allowance_Total, Salary_Total)
+            ClearControlValue(cboSalTYPE, cboTaxTable, rnBasicSal, SalaryInsurance, Allowance_Total, Salary_Total)
         End If
     End Sub
     ''' <lastupdate>
@@ -543,7 +543,7 @@ Public Class ctrlHU_ContractNewEdit
                 hidWorkingID.Value = item.ID
                 Dim working = rep.GetWorkingByID(New WorkingDTO() With {.ID = item.ID})
                 Working_ID.Text = working.ID
-                rntxtBasicSal.Value = working.SAL_BASIC
+                rnBasicSal.Value = working.SAL_BASIC
                 Salary_Total.Value = working.SAL_TOTAL
                 SalaryInsurance.Value = working.SAL_INS
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
@@ -1036,7 +1036,7 @@ Public Class ctrlHU_ContractNewEdit
                 hidWorkingID.Value = working.ID
                 SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
                 SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
-                rntxtBasicSal.Value = working.SAL_BASIC
+                rnBasicSal.Value = working.SAL_BASIC
                 SalaryInsurance.Value = working.SAL_INS
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
                 Salary_Total.Value = working.SAL_TOTAL
@@ -1047,7 +1047,7 @@ Public Class ctrlHU_ContractNewEdit
                 rgAllow.DataSource = working.lstAllowance
                 rgAllow.Rebind()
             Else
-                ClearControlValue(cboSalTYPE, cboTaxTable, rntxtBasicSal, SalaryInsurance, Allowance_Total, Salary_Total, rdSignDate)
+                ClearControlValue(cboSalTYPE, cboTaxTable, rnBasicSal, SalaryInsurance, Allowance_Total, Salary_Total, rdSignDate)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
