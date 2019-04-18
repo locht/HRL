@@ -120,19 +120,19 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <tlk:RadTextBox ID="rtAttachFile" runat="server" Width="300px" MaxLength="200" Height="22" />
+                <td class="lb">
+                    <asp:Label runat ="server" ID="lbUploadFile" Text ="<%$ Translate: Tập tin đính kèm %>" ></asp:Label>
                 </td>
-                <td class="lb" style="text-align:left">
-                    <tlk:RadButton EnableEmbeddedSkins="false" ID="btnUpload" runat="server" CausesValidation="false" Text="<%$ Translate: CM_CTRLPROGRAMS_BROWSER %>">
-                    </tlk:RadButton>
-                    <tlk:RadButton EnableEmbeddedSkins="false" ID="rbtSQLLoaderDownload" runat="server"
-                        CausesValidation="false" OnClientClicked="rbtClicked" Text="<%$ Translate: CM_CTRLPROGRAMS_SQLLOADER_DOWNLOAD %>">
-                    </tlk:RadButton>
+                <td>
+                   <tlk:radtextbox id="txtUpload" readonly="true" runat="server">
+                    </tlk:radtextbox>
+                    <tlk:radtextbox id="txtUploadFile" runat="server" visible="false">
+                    </tlk:radtextbox>
+                    <tlk:radbutton runat="server" id="btnc" skinid="ButtonView" causesvalidation="false"
+                        tabindex="3" />
+                    <tlk:radbutton id="btnDownload" runat="server" text="<%$ Translate: Tải xuống%>"
+                        causesvalidation="false" onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
+                    </tlk:radbutton>
                 </td>
             </tr>
             <tr>
@@ -149,57 +149,9 @@
                         ToolTip="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
-                <%--<td class="lb">
-                    <%# Translate("Buổi sáng bắt đầu")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTimePicker runat="server" ID="rdMorning_Start">
-                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt">
-                        </DateInput>
-                    </tlk:RadTimePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdMorning_Start"
-                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập buổi sáng bắt đầu. %>"></asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
-                    <%# Translate("Buổi sáng kết thúc")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTimePicker runat="server" ID="rdMorning_Stop">
-                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt">
-                        </DateInput>
-                    </tlk:RadTimePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdMorning_Stop"
-                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập buổi sáng kết thúc. %>"></asp:RequiredFieldValidator>
-                </td>--%>
+               
             </tr>
-          <%--  <tr>
-                <td class="lb">
-                </td>
-                <td>
-                </td>
-                <td class="lb">
-                    <%# Translate("Buổi chiều bắt đầu")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTimePicker runat="server" ID="rdAfternoon_Start">
-                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt">
-                        </DateInput>
-                    </tlk:RadTimePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdAfternoon_Start"
-                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập buổi chiều bắt đầu. %>"></asp:RequiredFieldValidator>
-                </td>
-                <td class="lb">
-                    <%# Translate("Buổi chiều kết thúc")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTimePicker runat="server" ID="rdAfternoon_Stop">
-                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt">
-                        </DateInput>
-                    </tlk:RadTimePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="rdAfternoon_Stop"
-                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập buổi chiều kết thúc. %>"></asp:RequiredFieldValidator>
-                </td>
-            </tr>--%>
+          
             <tr>
                 <td class="lb">
                     <%# Translate("Người ký")%>

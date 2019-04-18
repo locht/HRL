@@ -678,15 +678,12 @@ Public Class ctrlHU_ContractNewEdit
                 End If
                 Exit Sub
             End If
-
             If rdStartDate.SelectedDate IsNot Nothing Then
-
                 Dim dExpire As Date = rdStartDate.SelectedDate
                 item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
                 If item IsNot Nothing Then
                     hidPeriod.Value = item.PERIOD
                 End If
-
                 If CType(hidPeriod.Value, Double) = 0 Then
                     rdExpireDate.SelectedDate = Nothing
                 Else
@@ -736,39 +733,7 @@ Public Class ctrlHU_ContractNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <lastupdate>
-    ''' 06/07/2017 17:53
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien ServerValidate cua control cusContractNo
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    'Private Sub cusContractNo_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusContractNo.ServerValidate
-    '    Dim _validate As New ContractDTO
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        Using rep As New ProfileBusinessRepository
-
-    '            If CurrentState = CommonMessage.STATE_EDIT Then
-    '                _validate.ID = hidID.Value
-    '            End If
-    '            _validate.CONTRACT_NO = txtContractNo.Text.Trim
-    '            args.IsValid = rep.ValidateContract("EXIST_CONTRACT_NO", _validate)
-
-    '            'If Not args.IsValid Then
-    '            '    CreateDynamicContractNo()
-    '            'End If
-
-    '        End Using
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+   
 
     ''' <lastupdate>
     ''' 06/07/2017 17:53
@@ -803,41 +768,6 @@ Public Class ctrlHU_ContractNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-    End Sub
-
-    ''' <lastupdate>
-    ''' 06/07/2017 17:53
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien ServerValidate cua control cusvalStatus
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Private Sub cusvalStatus_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusvalStatus.ServerValidate
-        'Dim rep As New ProfileRepository
-        'Dim validate As New OtherListDTO
-        'Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        'Try
-        '    Dim startTime As DateTime = DateTime.UtcNow
-        '    If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-        '        validate.ID = cboStatus.SelectedValue
-        '        validate.ACTFLG = "A"
-        '        validate.CODE = ProfileCommon.OT_CONTRACT_STATUS.Name
-        '        args.IsValid = rep.ValidateOtherList(validate)
-        '    End If
-        '    If Not args.IsValid Then
-        '        ListComboData = New ComboBoxDataDTO
-        '        ListComboData.GET_CONTRACT_STATUS = True
-        '        rep.GetComboList(ListComboData)
-        '        FillDropDownList(cboStatus, ListComboData.LIST_CONTRACT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
-        '    End If
-        '    _mylog.WriteLog(_mylog._info, _classPath, method,
-        '                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        'Catch ex As Exception
-        '    _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        '    'DisplayException(Me.ViewName, Me.ID, ex)
-        'End Try
     End Sub
 
     Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
@@ -1175,43 +1105,6 @@ Public Class ctrlHU_ContractNewEdit
         End Try
     End Sub
 
-    'Private Sub cvalMorning_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalMorning.ServerValidate
-    '    Try
-    '        If rdMorning_Start.SelectedDate > rdMorning_Stop.SelectedDate Then
-    '            args.IsValid = False
-    '        Else
-    '            args.IsValid = True
-    '        End If
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
-
-    'Private Sub cvalAfternoon_Stop_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalAfternoon_Stop.ServerValidate
-    '    Try
-    '        If rdAfternoon_Start.SelectedDate > rdAfternoon_Stop.SelectedDate Then
-    '            args.IsValid = False
-    '        Else
-    '            args.IsValid = True
-    '        End If
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
-
-    'Private Sub cvalAfternoon_Start_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalAfternoon_Start.ServerValidate
-    '    Try
-    '        If rdMorning_Stop.SelectedDate > rdAfternoon_Start.SelectedDate Then
-    '            args.IsValid = False
-    '        Else
-    '            args.IsValid = True
-    '        End If
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
-
-#End Region
     Private Sub LoadPopup(ByVal popupType As Int32)
         Select Case popupType
             Case 1
@@ -1244,5 +1137,7 @@ Public Class ctrlHU_ContractNewEdit
                 End If
         End Select
     End Sub
+#End Region
+    
 
 End Class
