@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ab4328d4-1d82-4262-8768-000ef382ccf5")>
+<Assembly: EdmSchemaAttribute("13d59f71-7f1d-4534-9863-02c3ae22b36b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -18434,6 +18434,56 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnEMP_STATUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BOOK_NO() As Global.System.String
+        Get
+            Return _BOOK_NO
+        End Get
+        Set
+            OnBOOK_NOChanging(value)
+            ReportPropertyChanging("BOOK_NO")
+            _BOOK_NO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("BOOK_NO")
+            OnBOOK_NOChanged()
+        End Set
+    End Property
+
+    Private _BOOK_NO As Global.System.String
+    Private Partial Sub OnBOOK_NOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnBOOK_NOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_NAME_OTHER() As Global.System.String
+        Get
+            Return _EMPLOYEE_NAME_OTHER
+        End Get
+        Set
+            OnEMPLOYEE_NAME_OTHERChanging(value)
+            ReportPropertyChanging("EMPLOYEE_NAME_OTHER")
+            _EMPLOYEE_NAME_OTHER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("EMPLOYEE_NAME_OTHER")
+            OnEMPLOYEE_NAME_OTHERChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_NAME_OTHER As Global.System.String
+    Private Partial Sub OnEMPLOYEE_NAME_OTHERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_NAME_OTHERChanged()
     End Sub
 
     #End Region
