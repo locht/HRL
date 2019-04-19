@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/19/2019 9:48:25 AM
+-- Date Created: 4/19/2019 3:33:55 PM
 -- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -577,7 +577,10 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "WORKPLACE_ID" NUMBER(38,0) NULL,
    "IS_PERMISSION" NUMBER(5,0) NULL,
    "INS_REGION_ID" NUMBER(38,0) NULL,
-   "IS_PAY_BANK" NUMBER(5,0) NULL
+   "IS_PAY_BANK" NUMBER(5,0) NULL,
+   "PROVINCEEMP_ID" NUMBER(38,0) NULL,
+   "DISTRICTEMP_ID" NUMBER(38,0) NULL,
+   "WARDEMP_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_HEALTH'

@@ -82,5 +82,10 @@
     Public Property IS_PAY_BANK As Boolean?
 
     Public Property MODIFY_TYPE As String '0: not modify, 1: modify image, 2: modify info
-
+    Public Property PROVINCEEMP_ID As Decimal?
+    Public Property PROVINCEEMP_NAME As String
+    Public Property DISTRICTEMP_ID As Decimal?
+    Public Property DISTRICTEMP_NAME As String
+    Public Property WARDEMP_ID As Decimal?
+    Public Property WARDEMP_NAME As String
 End Class

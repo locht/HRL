@@ -506,6 +506,9 @@
             <Property Name="IS_PERMISSION" Type="number" Nullable="true" Precision="5" />
             <Property Name="INS_REGION_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_PAY_BANK" Type="number" Nullable="true" Precision="5" />
+            <Property Name="PROVINCEEMP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DISTRICTEMP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WARDEMP_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4096,6 +4099,9 @@
           <Property Type="Int16" Name="IS_PERMISSION" Nullable="true" />
           <Property Type="Decimal" Name="INS_REGION_ID" Nullable="true" />
           <Property Type="Int16" Name="IS_PAY_BANK" Nullable="true" />
+          <Property Type="Decimal" Name="PROVINCEEMP_ID" />
+          <Property Type="Decimal" Name="DISTRICTEMP_ID" />
+          <Property Type="Decimal" Name="WARDEMP_ID" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -7284,6 +7290,9 @@
                     <ScalarProperty Name="IS_PERMISSION" ColumnName="IS_PERMISSION" />
                     <ScalarProperty Name="INS_REGION_ID" ColumnName="INS_REGION_ID" />
                     <ScalarProperty Name="IS_PAY_BANK" ColumnName="IS_PAY_BANK" />
+                    <ScalarProperty Name="PROVINCEEMP_ID" ColumnName="PROVINCEEMP_ID" />
+                    <ScalarProperty Name="DISTRICTEMP_ID" ColumnName="DISTRICTEMP_ID" />
+                    <ScalarProperty Name="WARDEMP_ID" ColumnName="WARDEMP_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10071,12 +10080,14 @@
           <ConnectorPoint PointX="4.5" PointY="10.024999999999999" />
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="12.941468098958332" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="13.518372395833332" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="14.375" PointY="2.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="13.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
-          <ConnectorPoint PointX="13.625" PointY="4.40625" />
-          <ConnectorPoint PointX="14.375" PointY="4.40625" />
+          <ConnectorPoint PointX="13.625" PointY="7.4500000000000028" />
+          <ConnectorPoint PointX="13.916666666666666" PointY="7.450000000000002" />
+          <ConnectorPoint PointX="14.083333333333334" PointY="7.4500000000000028" />
+          <ConnectorPoint PointX="14.375" PointY="7.4500000000000028" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_FE_HEH">
           <ConnectorPoint PointX="12.4531225" PointY="2.75" />
@@ -10104,8 +10115,8 @@
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE" Width="3.5" PointX="8.125" PointY="7" Height="6.787822265625" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE" Width="1.875" PointX="11.875" PointY="5.5" Height="0.40000000000000568" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HWB">
-          <ConnectorPoint PointX="13.625" PointY="7.4900211588541685" />
-          <ConnectorPoint PointX="14" PointY="7.4900211588541685" />
+          <ConnectorPoint PointX="13.625" PointY="7.7038875200320511" />
+          <ConnectorPoint PointX="14" PointY="7.7038875200320511" />
           <ConnectorPoint PointX="14" PointY="5.7000000000000028" />
           <ConnectorPoint PointX="13.75" PointY="5.7000000000000028" />
         </AssociationConnector>

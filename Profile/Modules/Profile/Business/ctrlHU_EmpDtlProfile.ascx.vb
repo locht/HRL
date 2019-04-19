@@ -120,6 +120,9 @@ Public Class ctrlHU_EmpDtlProfile
                             Next
                         End If
                         lstbPaperFiled.ClearChecked()
+                        rtEmpCode_OLD.Text = EmployeeInfo.EMPLOYEE_CODE_OLD
+                        rtBookNo.Text = EmployeeInfo.BOOKNO
+                        rtOtherName.Text = EmployeeInfo.EMPLOYEE_NAME_OTHER
                         If EmployeeInfo.lstPaperFiled IsNot Nothing Then
                             For Each item As RadListBoxItem In lstbPaperFiled.Items
                                 If EmployeeInfo.lstPaperFiled.Contains(item.Value) Then
@@ -206,9 +209,9 @@ Public Class ctrlHU_EmpDtlProfile
                             If empCV.IS_PAY_BANK IsNot Nothing Then
                                 chkIs_pay_bank.Checked = empCV.IS_PAY_BANK
                             End If
-                            If empCV.BIRTH_PLACE IsNot Nothing Then
-                                cboBIRTH_PLACE.SelectedValue = empCV.BIRTH_PLACE
-                            End If
+                            'If empCV.BIRTH_PLACE IsNot Nothing Then
+                            '    cboBIRTH_PLACE.SelectedValue = empCV.BIRTH_PLACE
+                            'End If
                             If empCV.WORKPLACE_ID IsNot Nothing Then
                                 cboWorkplace.SelectedValue = empCV.WORKPLACE_ID
                                 cboWorkplace.Text = empCV.WORKPLACE_NAME
@@ -416,7 +419,7 @@ Public Class ctrlHU_EmpDtlProfile
                 FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
                 FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
-                FillRadCombobox(cboBIRTH_PLACE, dtPlace, "NAME", "ID")
+                'FillRadCombobox(cboBIRTH_PLACE, dtPlace, "NAME", "ID")
             End Using
             FillCheckBoxList(lstbPaper, dtData, "NAME", "ID")
             FillCheckBoxList(lstbPaperFiled, dtData, "NAME", "ID")
@@ -493,7 +496,7 @@ Public Class ctrlHU_EmpDtlProfile
                     chkIs_pay_bank.Checked = True
                     chkSaveHistory.Visible = False
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
-                    EnableControlAll(True, lstbPaper, lstbPaperFiled, cboBIRTH_PLACE,
+                    EnableControlAll(True, lstbPaper, lstbPaperFiled,
                                         txtBankNo,
                                        txtDaHoaLieu, txtTimeID,
                                        txtFirstNameVN, txtGhiChuSK,
@@ -530,7 +533,7 @@ Public Class ctrlHU_EmpDtlProfile
                     chkSaveHistory.Visible = True
                     chkSaveHistory.Checked = True
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
-                    EnableControlAll(True, lstbPaper, lstbPaperFiled, cboBIRTH_PLACE,
+                    EnableControlAll(True, lstbPaper, lstbPaperFiled,
                                         txtBankNo,
                                        txtDaHoaLieu,
                                        txtFirstNameVN, txtGhiChuSK,
@@ -567,7 +570,7 @@ Public Class ctrlHU_EmpDtlProfile
                     End If
                 Case Else
                     EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
-                                       txtBankNo, cboBIRTH_PLACE,
+                                       txtBankNo,
                                        txtDaHoaLieu,
                                        txtFirstNameVN, txtGhiChuSK,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
@@ -842,7 +845,7 @@ Public Class ctrlHU_EmpDtlProfile
         cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
          cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
-        cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested,
+        cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
         cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -874,12 +877,12 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetNationList(True)
                     Case cboNative.ID
                         dtData = rep.GetOtherList("NATIVE", True)
-                    Case cboNav_Province.ID, cboPer_Province.ID, cboWorkplace.ID, cboIDPlace.ID
+                    Case cboNav_Province.ID, cboPer_Province.ID, cboWorkplace.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID
                         dtData = rep.GetProvinceList(True)
-                    Case cboNav_District.ID, cboPer_District.ID
+                    Case cboNav_District.ID, cboPer_District.ID, cbDISTRICTEMP_ID.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetDistrictList(dValue, True)
-                    Case cboNav_Ward.ID, cboPer_Ward.ID
+                    Case cboNav_Ward.ID, cboPer_Ward.ID, cbWARDEMP_ID.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetWardList(dValue, True)
                     Case cboReligion.ID
@@ -1220,6 +1223,9 @@ Public Class ctrlHU_EmpDtlProfile
             If hidLevelManager.Value <> "" Then
                 EmployeeInfo.LEVEL_MANAGER = hidLevelManager.Value
             End If
+            EmployeeInfo.EMPLOYEE_NAME_OTHER = rtOtherName.Text
+            EmployeeInfo.EMPLOYEE_CODE_OLD = rtEmpCode_OLD.Text
+            EmployeeInfo.BOOKNO = rtBookNo.Text
             EmployeeInfo.EMPLOYEE_CODE = txtEmpCODE.Text.Trim
             EmployeeInfo.FIRST_NAME_VN = txtFirstNameVN.Text.Trim
             EmployeeInfo.FULLNAME_VN = txtFirstNameVN.Text.Trim & " " & txtLastNameVN.Text.Trim
@@ -1267,9 +1273,9 @@ Public Class ctrlHU_EmpDtlProfile
             If cboReligion.SelectedValue <> "" Then
                 EmpCV.RELIGION = Decimal.Parse(cboReligion.SelectedValue)
             End If
-            If cboBIRTH_PLACE.SelectedValue <> "" Then
-                EmpCV.BIRTH_PLACE = Decimal.Parse(cboBIRTH_PLACE.SelectedValue)
-            End If
+            'If cboBIRTH_PLACE.SelectedValue <> "" Then
+            '    EmpCV.BIRTH_PLACE = Decimal.Parse(cboBIRTH_PLACE.SelectedValue)
+            'End If
             If cboNative.SelectedValue <> "" Then
                 EmpCV.NATIVE = Decimal.Parse(cboNative.SelectedValue)
             End If
