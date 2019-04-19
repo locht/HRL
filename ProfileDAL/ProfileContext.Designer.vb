@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("023a464a-3147-4689-b924-b732bfce594e")>
+<Assembly: EdmSchemaAttribute("ab4328d4-1d82-4262-8768-000ef382ccf5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -29428,6 +29428,56 @@ Public Partial Class HU_FILECONTRACT
     End Sub
 
     Private Partial Sub OnWORKING_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILENAME() As Global.System.String
+        Get
+            Return _FILENAME
+        End Get
+        Set
+            OnFILENAMEChanging(value)
+            ReportPropertyChanging("FILENAME")
+            _FILENAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILENAME")
+            OnFILENAMEChanged()
+        End Set
+    End Property
+
+    Private _FILENAME As Global.System.String
+    Private Partial Sub OnFILENAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILENAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property UPLOADFILE() As Global.System.String
+        Get
+            Return _UPLOADFILE
+        End Get
+        Set
+            OnUPLOADFILEChanging(value)
+            ReportPropertyChanging("UPLOADFILE")
+            _UPLOADFILE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("UPLOADFILE")
+            OnUPLOADFILEChanged()
+        End Set
+    End Property
+
+    Private _UPLOADFILE As Global.System.String
+    Private Partial Sub OnUPLOADFILEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnUPLOADFILEChanged()
     End Sub
 
     #End Region
