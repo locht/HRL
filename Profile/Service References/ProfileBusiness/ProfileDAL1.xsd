@@ -123,6 +123,7 @@
       <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FILENAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILEUPLOAD" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILE_SIZE" nillable="true" type="xs:int" />
@@ -173,6 +174,7 @@
       <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TITLE_NAME_LEVEL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WORKING_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="WORK_TIME" nillable="true" type="xs:string" />
@@ -399,6 +401,7 @@
       <xs:element minOccurs="0" name="TITLE_MOVE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WORKING_OLD" nillable="true" type="tns:WorkingDTO" />
       <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="WORK_STATUS_NAME" nillable="true" type="xs:string" />
@@ -2914,6 +2917,7 @@
       <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AutoGenTimeSheet" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CHK_ORGCHART" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="COST_CENTER_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
@@ -2923,10 +2927,12 @@
       <xs:element minOccurs="0" name="DESCRIPTION_PATH" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DISSOLVE_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FAX" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FILES" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FOUNDATION_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="HIERARCHICAL_PATH" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="IMAGE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LOCATION_WORK" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MOBILE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
@@ -2934,6 +2940,7 @@
       <xs:element minOccurs="0" name="NAME_EN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NAME_VN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NUMBER_BUSINESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUMBER_DECISION" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORD_NO" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ORG_LEVEL" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="PARENT_ID" nillable="true" type="xs:decimal" />
@@ -2946,6 +2953,7 @@
       <xs:element minOccurs="0" name="REPRESENTATIVE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="REPRESENTATIVE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TYPE_DECISION" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UNIT_LEVEL" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="U_INSURANCE" nillable="true" type="xs:decimal" />
     </xs:sequence>
