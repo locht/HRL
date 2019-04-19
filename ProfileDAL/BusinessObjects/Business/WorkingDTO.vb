@@ -102,4 +102,5 @@
     Public Property HousingAllowances As Decimal?
     Public Property CarRentalAllowances As Decimal?
     Public Property Ids As List(Of Decimal)
+    Public Property UPLOADFILE As String
 End Class

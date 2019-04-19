@@ -1247,6 +1247,9 @@ Namespace ProfileBusiness
         Private EXPIRE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILEUPLOADField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1395,6 +1398,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAME_LEVELField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UPLOADFILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_IDField As System.Nullable(Of Decimal)
@@ -1791,6 +1797,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME() As String
+            Get
+                Return Me.FILENAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
+                    Me.FILENAMEField = value
+                    Me.RaisePropertyChanged("FILENAME")
                 End If
             End Set
         End Property
@@ -2441,6 +2460,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAME_LEVELField, value) <> true) Then
                     Me.TITLE_NAME_LEVELField = value
                     Me.RaisePropertyChanged("TITLE_NAME_LEVEL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UPLOADFILE() As String
+            Get
+                Return Me.UPLOADFILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UPLOADFILEField, value) <> true) Then
+                    Me.UPLOADFILEField = value
+                    Me.RaisePropertyChanged("UPLOADFILE")
                 End If
             End Set
         End Property
@@ -4161,6 +4193,9 @@ Namespace ProfileBusiness
         Private TO_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UPLOADFILEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_OLDField As ProfileBusiness.WorkingDTO
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5208,6 +5243,19 @@ Namespace ProfileBusiness
                 If (Me.TO_DATEField.Equals(value) <> true) Then
                     Me.TO_DATEField = value
                     Me.RaisePropertyChanged("TO_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UPLOADFILE() As String
+            Get
+                Return Me.UPLOADFILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UPLOADFILEField, value) <> true) Then
+                    Me.UPLOADFILEField = value
+                    Me.RaisePropertyChanged("UPLOADFILE")
                 End If
             End Set
         End Property
