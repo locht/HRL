@@ -1360,7 +1360,7 @@ Public Class ProfileRepository
 #End Region
 #Region "Validate Combobox"
     Public Function ValidateSelectedComboList(ByRef _combolistDTO As ComboBoxDataDTO, ByVal _validate As Object) As Boolean
-        
+
     End Function
 #End Region
 #Region "Service Send Mail Reminder"
@@ -2305,7 +2305,9 @@ Public Class ProfileRepository
             .AUTHOR_CHAIRMAN = FileInfo.AUTHOR_CHAIRMAIN,
             .SIGNER_NAME = FileInfo.SIGNER_NAME,
             .SIGNER_TITLE = FileInfo.SIGNER_TITLE,
-                .WORKING_ID = FileInfo.WORKING_ID,
+             .FILENAME = FileInfo.FILE_NAME,
+            .UPLOADFILE = FileInfo.UPLOADFILE,
+             .WORKING_ID = FileInfo.WORKING_ID,
             .STT = MaxSTT + 1
             }
             Context.HU_FILECONTRACT.AddObject(attFile)
@@ -2355,6 +2357,8 @@ Public Class ProfileRepository
                 .SIGNER_NAME = FileInfo.SIGNER_NAME
                 .SIGNER_TITLE = FileInfo.SIGNER_TITLE
                 .WORKING_ID = FileInfo.WORKING_ID
+                .FILENAME = FileInfo.FILE_NAME
+                .UPLOADFILE = FileInfo.UPLOADFILE
             End With
             If Context.SaveChanges(log) Then
                 gID = FileInfo.ID
