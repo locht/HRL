@@ -3987,6 +3987,12 @@ Namespace ProfileBusiness
         Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILING_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILING_DATE_OLDField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4033,6 +4039,18 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCE_NAME_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCE_OLDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_DESCField As String
@@ -4459,6 +4477,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILING_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.FILING_DATEField
+            End Get
+            Set
+                If (Me.FILING_DATEField.Equals(value) <> true) Then
+                    Me.FILING_DATEField = value
+                    Me.RaisePropertyChanged("FILING_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILING_DATE_OLD() As System.Nullable(Of Date)
+            Get
+                Return Me.FILING_DATE_OLDField
+            End Get
+            Set
+                If (Me.FILING_DATE_OLDField.Equals(value) <> true) Then
+                    Me.FILING_DATE_OLDField = value
+                    Me.RaisePropertyChanged("FILING_DATE_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property FROM_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.FROM_DATEField
@@ -4662,6 +4706,58 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
                     Me.MODIFIED_LOGField = value
                     Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECT_ATTENDANCEField
+            End Get
+            Set
+                If (Me.OBJECT_ATTENDANCEField.Equals(value) <> true) Then
+                    Me.OBJECT_ATTENDANCEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE_NAME() As String
+            Get
+                Return Me.OBJECT_ATTENDANCE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_ATTENDANCE_NAMEField, value) <> true) Then
+                    Me.OBJECT_ATTENDANCE_NAMEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE_NAME_OLD() As String
+            Get
+                Return Me.OBJECT_ATTENDANCE_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_ATTENDANCE_NAME_OLDField, value) <> true) Then
+                    Me.OBJECT_ATTENDANCE_NAME_OLDField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE_NAME_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE_OLD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECT_ATTENDANCE_OLDField
+            End Get
+            Set
+                If (Me.OBJECT_ATTENDANCE_OLDField.Equals(value) <> true) Then
+                    Me.OBJECT_ATTENDANCE_OLDField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE_OLD")
                 End If
             End Set
         End Property
@@ -25240,6 +25336,9 @@ Namespace ProfileBusiness
         Private BIRTH_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CAREERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -25285,6 +25384,12 @@ Namespace ProfileBusiness
         Private MODIFIED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PROVINCE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PROVINCE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RELATION_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -25295,6 +25400,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TAXTATIONField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAMEField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -25328,6 +25436,19 @@ Namespace ProfileBusiness
                 If (Me.BIRTH_DATEField.Equals(value) <> true) Then
                     Me.BIRTH_DATEField = value
                     Me.RaisePropertyChanged("BIRTH_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CAREER() As String
+            Get
+                Return Me.CAREERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CAREERField, value) <> true) Then
+                    Me.CAREERField = value
+                    Me.RaisePropertyChanged("CAREER")
                 End If
             End Set
         End Property
@@ -25528,6 +25649,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PROVINCE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PROVINCE_IDField
+            End Get
+            Set
+                If (Me.PROVINCE_IDField.Equals(value) <> true) Then
+                    Me.PROVINCE_IDField = value
+                    Me.RaisePropertyChanged("PROVINCE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PROVINCE_NAME() As String
+            Get
+                Return Me.PROVINCE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PROVINCE_NAMEField, value) <> true) Then
+                    Me.PROVINCE_NAMEField = value
+                    Me.RaisePropertyChanged("PROVINCE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RELATION_ID() As Decimal
             Get
                 Return Me.RELATION_IDField
@@ -25575,6 +25722,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TAXTATIONField, value) <> true) Then
                     Me.TAXTATIONField = value
                     Me.RaisePropertyChanged("TAXTATION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME() As String
+            Get
+                Return Me.TITLE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
+                    Me.TITLE_NAMEField = value
+                    Me.RaisePropertyChanged("TITLE_NAME")
                 End If
             End Set
         End Property

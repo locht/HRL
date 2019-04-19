@@ -1,10 +1,11 @@
 ﻿Public Class WorkingDTO
     Public Property ID As Decimal
     Public Property OBJECT_ATTENDANCE As Decimal?
+    Public Property OBJECT_ATTENDANCE_NAME As String
     Public Property FILING_DATE As Date?
 
     Public Property OBJECT_ATTENDANCE_OLD As Decimal?
-    Public Property OBJECT_ATTENDANCE_NAME_OLD As Decimal?
+    Public Property OBJECT_ATTENDANCE_NAME_OLD As String
     Public Property FILING_DATE_OLD As Date?
 
     Public Property EMPLOYEE_3B_ID As Decimal?

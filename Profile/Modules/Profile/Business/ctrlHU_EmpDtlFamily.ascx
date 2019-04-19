@@ -18,47 +18,47 @@
     <tlk:RadPane ID="RadPane2" runat="server" Height="40px" Scrolling="None">
         <Profile:ctrlEmpBasicInfo runat="server" ID="ctrlEmpBasicInfo" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane3" runat="server" Height="200px">
+    <tlk:RadPane ID="RightPane" runat="server" Height="200px">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Họ tên")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbFullName" runat="server" Text="Họ tên"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtFullName">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqFullname" ControlToValidate="txtFullName" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập họ tên %>" ToolTip="<%$ Translate: Bạn phải nhập họ tên  %>">
+                        ErrorMessage="Bạn phải nhập họ tên" ToolTip="Bạn phải nhập họ tên">
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 150px">
-                    <%# Translate("Mối quan hệ")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbRelationship" runat="server" Text="Mối quan hệ"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboRelationship" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboRelationship"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>" ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ  %>">
+                        runat="server" ErrorMessage="Bạn phải chọn Mối quan hệ" ToolTip="Bạn phải chọn Mối quan hệ">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalRelationship" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Mối quan hệ %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ %>">
+                    <asp:CustomValidator ID="cvalRelationship" runat="server" ErrorMessage="Bạn phải chọn Mối quan hệ"
+                        ToolTip="Bạn phải chọn Mối quan hệ">
                     </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ngày sinh")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbBirthDate" runat="server" Text="Ngày sinh"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdBirthDate">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdBirthDate"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Ngày sinh %>" ToolTip="<%$ Translate: Bạn phải nhập Ngày sinh %>">
+                        runat="server" ErrorMessage="Bạn phải nhập Ngày sinh" ToolTip="Bạn phải nhập Ngày sinh">
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Số CMND")%>
+                    <asp:Label ID="lbIDNO" runat="server" Text="Số CMND"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtIDNO" SkinID="Textbox15">
@@ -67,13 +67,38 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Địa chỉ thường trú")%>
+                    <asp:Label ID="lbAdress" runat="server" Text="Địa chỉ thường trú"></asp:Label>
+                </td>
+                <td colspan="3">
+                    <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
+                </td>                
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbNguyenQuan" runat="server" Text="Nguyên quán"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
+                    <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
+                    </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Mã số thuế")%>
+                    <asp:Label ID="lbCareer" runat="server" Text="Nghề nghiệp"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtCareer" SkinID="Textbox15">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox15">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbTax" runat="server" Text="Mã số thuế"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
@@ -81,13 +106,13 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
+                <td class="lb">                    
                 </td>
                 <td>
-                    <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="<%$ Translate : Đối tượng giảm trừ  %>" />
+                    <asp:CheckBox runat="server" ID="chkIsDeduct" AutoPostBack="true" Text="Đối tượng giảm trừ" />
                 </td>
                 <td class="lb">
-                    <%# Translate("Ngày đăng ký giảm trừ")%>
+                    <asp:Label ID="lbDeductReg" runat="server" Text="Ngày đăng ký giảm trừ"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdDeductReg">
@@ -96,20 +121,20 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ngày giảm trừ")%>
+                    <asp:Label ID="lbDeductFrom" runat="server" Text="Ngày giảm trừ"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdDeductFrom">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                    <%# Translate("Ngày kết thúc")%>
+                    <asp:Label ID="lbDeductTo" runat="server" Text="Ngày kết thúc"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdDeductTo">
                     </tlk:RadDatePicker>
-                    <asp:CompareValidator ID="compareDeductTo_DeductFrom" runat="server" ErrorMessage="<%$ Translate: Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu %>"
-                        ToolTip="<%$ Translate: Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu %>"
+                    <asp:CompareValidator ID="compareDeductTo_DeductFrom" runat="server" ErrorMessage="Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu"
+                        ToolTip="Ngày kết thúc giảm trừ phải lớn hơn ngày bắt đầu"
                         ControlToValidate="rdDeductTo" ControlToCompare="rdDeductFrom" Operator="GreaterThanEqual"
                         Type="Date">
                     </asp:CompareValidator>
@@ -117,7 +142,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ghi chú")%>
+                    <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtRemark" SkinID="Textbox1023" Width="100%" Height="35px" />
@@ -128,13 +153,13 @@
     <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgFamily" runat="server" AllowMultiRowSelection="true"
             Height="100%">
-            <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,TAXTATION"
-                ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,TAXTATION">
+            <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,TAXTATION,PROVINCE_ID,CAREER,TITLE_NAME"
+                ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,TAXTATION,PROVINCE_ID,CAREER,TITLE_NAME">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
                 <Columns>
-                    <tlk:GridClientSelectColumn HeaderStyle-Width="40px">
+                    <%--<tlk:GridClientSelectColumn HeaderStyle-Width="40px">
                         <ItemStyle HorizontalAlign="Center" />
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="RELATION_NAME" HeaderText="<%$ Translate: Quan hệ %>"
@@ -171,7 +196,7 @@
                     <tlk:GridDateTimeColumn DataField="DEDUCT_TO" HeaderText="<%$ Translate: Ngày kết thúc %>"
                         UniqueName="DEDUCT_TO" Visible="true" DataFormatString="{0:dd/MM/yyyy}">
                         <HeaderStyle HorizontalAlign="Center" Width="65px" />
-                    </tlk:GridDateTimeColumn>
+                    </tlk:GridDateTimeColumn>--%>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>

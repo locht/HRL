@@ -695,10 +695,14 @@ Partial Class ProfileRepository
                         From staffrank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                         From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
+                        From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         Where p.ID = _filter.ID
                         Select New WorkingDTO With {
                              .ID = p.ID,
                              .COST_SUPPORT = p.COST_SUPPORT,
+                             .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                             .OBJECT_ATTENDANCE_NAME = obj_att.NAME_VN,
+                             .FILING_DATE = p.FILING_DATE,
                              .DECISION_NO = p.DECISION_NO,
                              .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                              .DECISION_TYPE_NAME = deci_type.NAME_VN,
@@ -747,7 +751,7 @@ Partial Class ProfileRepository
                             .TAX_TABLE_Name = taxTable.NAME_VN,
                             .SAL_TOTAL = p.SAL_TOTAL,
                              .FILENAME = p.FILENAME,
-                             .ATTACH_FILE = p.ATTACH_FILE
+            .ATTACH_FILE = p.ATTACH_FILE
                          }
 
             Dim working = query.FirstOrDefault
@@ -785,11 +789,15 @@ Partial Class ProfileRepository
                                    From sal_group In Context.PA_SALARY_GROUP.Where(Function(f) p.SAL_GROUP_ID = f.ID).DefaultIfEmpty
                                    From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) p.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
                                    From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
-                                      From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
-                                   Where p.ID = query_old.ID
+                                   From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
+                From OBJ_ATT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
+                Where (p.ID = query_old.ID)
                                    Select New WorkingDTO With {
                                        .ID = p.ID,
                                        .DECISION_NO = p.DECISION_NO,
+                                       .FILING_DATE = p.FILING_DATE,
+                                       .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                       .OBJECT_ATTENDANCE_NAME = OBJ_ATT.NAME_VN,
                                        .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                                        .DECISION_TYPE_NAME = deci_type.NAME_VN,
                                        .EFFECT_DATE = p.EFFECT_DATE,
@@ -949,6 +957,8 @@ Partial Class ProfileRepository
             objWorkingData.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name)
             objWorking.ID = objWorkingData.ID
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            objWorkingData.FILING_DATE = objWorking.FILING_DATE
             objWorkingData.TITLE_ID = objWorking.TITLE_ID
             objWorkingData.ORG_ID = objWorking.ORG_ID
             objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
@@ -1085,6 +1095,8 @@ Partial Class ProfileRepository
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
             objWorkingData.TITLE_ID = objWorking.TITLE_ID
             objWorkingData.ORG_ID = objWorking.ORG_ID
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            objWorkingData.FILING_DATE = objWorking.FILING_DATE
             objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
             objWorkingData.STATUS_ID = objWorking.STATUS_ID
             objWorkingData.EFFECT_DATE = objWorking.EFFECT_DATE
