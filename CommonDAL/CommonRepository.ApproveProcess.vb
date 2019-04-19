@@ -766,7 +766,8 @@ Partial Public Class CommonRepository
                                 .PROCESS_ID = item.PROCESS_ID,
                                 .PROCESS_NAME = proc.NAME,
                                 .FROM_DATE = item.FROM_DATE,
-                                .TO_DATE = item.TO_DATE
+                                .TO_DATE = item.TO_DATE,
+                                .REPALCEALL = item.REPLACEALL
                               }).FirstOrDefault
 
             Return itemReturn
