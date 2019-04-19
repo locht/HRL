@@ -77,4 +77,7 @@
     Public Property EMP_STATUS As Decimal?
     Public Property EMP_STATUS_NAME As String
     Public Property AUTOGENTIMESHEET As Decimal?
+    Public Property EMPLOYEE_CODE_OLD As String
+    Public Property BOOKNO As String
+    Public Property EMPLOYEE_NAME_OTHER As String
 End Class

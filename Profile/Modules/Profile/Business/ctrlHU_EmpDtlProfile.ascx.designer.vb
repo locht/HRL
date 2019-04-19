@@ -293,6 +293,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents txtEmpCODE As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbEmoCode_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmoCode_OLD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rtEmpCode_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtEmpCode_OLD As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtFirstNameVN control.
     '''</summary>
     '''<remarks>
