@@ -4019,6 +4019,9 @@ Namespace ProfileBusiness
         Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAME1Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILING_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4507,6 +4510,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
                     Me.FILENAMEField = value
                     Me.RaisePropertyChanged("FILENAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME1() As String
+            Get
+                Return Me.FILENAME1Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAME1Field, value) <> true) Then
+                    Me.FILENAME1Field = value
+                    Me.RaisePropertyChanged("FILENAME1")
                 End If
             End Set
         End Property
@@ -6734,10 +6750,10 @@ Namespace ProfileBusiness
         Private UPLOADFILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private YEAR_PERIODField As System.Nullable(Of Decimal)
+        Private YEARField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private YearField As System.Nullable(Of Decimal)
+        Private YEAR_PERIODField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private paramField As ProfileBusiness.ParamDTO
@@ -7715,6 +7731,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Me.YEARField.Equals(value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property YEAR_PERIOD() As System.Nullable(Of Decimal)
             Get
                 Return Me.YEAR_PERIODField
@@ -7723,19 +7752,6 @@ Namespace ProfileBusiness
                 If (Me.YEAR_PERIODField.Equals(value) <> true) Then
                     Me.YEAR_PERIODField = value
                     Me.RaisePropertyChanged("YEAR_PERIOD")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Year() As System.Nullable(Of Decimal)
-            Get
-                Return Me.YearField
-            End Get
-            Set
-                If (Me.YearField.Equals(value) <> true) Then
-                    Me.YearField = value
-                    Me.RaisePropertyChanged("Year")
                 End If
             End Set
         End Property
@@ -11287,6 +11303,9 @@ Namespace ProfileBusiness
         Private AUTOGENTIMESHEETField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BOOKNOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTRACT_EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -11336,6 +11355,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_NAME_OTHERField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMP_STATUSField As System.Nullable(Of Decimal)
@@ -11506,6 +11528,19 @@ Namespace ProfileBusiness
                 If (Me.AUTOGENTIMESHEETField.Equals(value) <> true) Then
                     Me.AUTOGENTIMESHEETField = value
                     Me.RaisePropertyChanged("AUTOGENTIMESHEET")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BOOKNO() As String
+            Get
+                Return Me.BOOKNOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.BOOKNOField, value) <> true) Then
+                    Me.BOOKNOField = value
+                    Me.RaisePropertyChanged("BOOKNO")
                 End If
             End Set
         End Property
@@ -11727,6 +11762,19 @@ Namespace ProfileBusiness
                 If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
                     Me.EMPLOYEE_IDField = value
                     Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_NAME_OTHER() As String
+            Get
+                Return Me.EMPLOYEE_NAME_OTHERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_NAME_OTHERField, value) <> true) Then
+                    Me.EMPLOYEE_NAME_OTHERField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_NAME_OTHER")
                 End If
             End Set
         End Property
@@ -25408,7 +25456,7 @@ Namespace ProfileBusiness
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EMPLOYEE_IDField As Decimal
+        Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FULLNAMEField As String
@@ -25438,7 +25486,7 @@ Namespace ProfileBusiness
         Private PROVINCE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private RELATION_IDField As Decimal
+        Private RELATION_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RELATION_NAMEField As String
@@ -25593,7 +25641,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property EMPLOYEE_ID() As Decimal
+        Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.EMPLOYEE_IDField
             End Get
@@ -25723,7 +25771,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property RELATION_ID() As Decimal
+        Public Property RELATION_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.RELATION_IDField
             End Get

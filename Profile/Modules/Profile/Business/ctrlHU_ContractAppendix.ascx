@@ -14,75 +14,33 @@
                     <table class="table-form">
                         <tr>
                             <td class="lb">
-                                <%# Translate("Mã/Tên NV")%>
+                                <asp:Label ID="lbEmployee" runat="server" Text="<%$ Translate: Mã/Tên NV %>"></asp:Label>
                             </td>
                             <td>
                                 <tlk:RadTextBox ID="txtEmployee" runat="server" CausesValidation="false">
                                 </tlk:RadTextBox>
                             </td>
                             <td class="lb">
-                                <%# Translate("Trạng thái")%>
+                             <asp:Label ID="lbStatus" runat="server" Text="<%$ Translate: Trạng thái %>"></asp:Label>
                             </td>
                             <td>
                                 <tlk:RadComboBox ID="cbStatus" runat="server" CssClass="RadComboBox_Hay" AutoPostBack="false"
                                     CausesValidation="false">
                                 </tlk:RadComboBox>
                             </td>
-                            <%--  <td class="lb" style="width: 10%">
-                                <%# Translate("Phòng ban")%>
-                            </td>
-                            <td style="width: 23%">
-                                <tlk:RadTextBox ID="txtOrg" runat="server">
-                                </tlk:RadTextBox>
-                            </td>
-                            <td class="lb">
-                                <%# Translate("Chức danh")%>
-                            </td>
-                            <td>
-                                <tlk:RadTextBox ID="txtTitle" runat="server">
-                                </tlk:RadTextBox>
-                            </td>--%>
+                            
                         </tr>
-                        <%-- <tr>
-                            <td class="lb">
-                                <%# Translate("Hợp đồng")%>
-                            </td>
-                            <td>
-                                <tlk:RadTextBox ID="txtContract" runat="server" ReadOnly="true">
-                                </tlk:RadTextBox>
-                            </td>
-                            <td class="lb">
-                                <%# Translate("Loại HĐLĐ")%>
-                            </td>
-                            <td>
-                                <tlk:RadComboBox ID="cboContractType" runat="server">
-                                </tlk:RadComboBox>
-                            </td>
-                            <td class="lb">
-                                <%# Translate("Số phụ lục HĐLĐ")%>
-                            </td>
-                            <td>
-                                <tlk:RadTextBox ID="txtContract_NumAppen" runat="server" ReadOnly="true">
-                                </tlk:RadTextBox>
-                            </td>
-                            <td class="lb">
-                                <%# Translate("Loại phụ lục")%>
-                            </td>
-                            <td>
-                                <tlk:RadComboBox ID="cboAppend_TypeID" runat="server" CausesValidation="false">
-                                </tlk:RadComboBox>                               
-                            </td>
-                        </tr>--%>
+                        
                         <tr>
                             <td class="lb">
-                                <%# Translate("Ngày bắt đầu")%>
+                              <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>
                             </td>
                             <td>
                                 <tlk:RadDatePicker ID="rdStartDate" runat="server">
                                 </tlk:RadDatePicker>
                             </td>
                             <td class="lb">
-                                <%# Translate("Ngày kết thúc")%>
+                              <asp:Label ID="lbExpireDate" runat="server" Text="<%$ Translate: Ngày kết thúc %>"></asp:Label>
                             </td>
                             <td>
                                 <tlk:RadDatePicker ID="rdExpireDate" runat="server">
@@ -91,7 +49,7 @@
                         </tr>
                         <tr style="display:none">
                             <td class="lb">
-                                <%# Translate("Tập tin đính kèm")%>
+                             <asp:Label ID="Label1" runat="server" Text="<%$ Translate: Tập tin đính kèm %>"></asp:Label>
                             </td>
                             <td>
                                 <tlk:RadComboBox ID="cboUpload" runat="server" CheckBoxes="true" SkinID="number"
