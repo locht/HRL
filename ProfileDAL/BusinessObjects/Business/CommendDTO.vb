@@ -80,5 +80,5 @@
     Public Property FORM_ID As Decimal?
     Public Property FORM_NAME As String
     Public Property ORDER As Decimal? 'ThanhNT added 22/09/2016 - Sort theo thứ tự của danh mục khen thưởng
-    Public Property Year As Decimal?
+    Public Property YEAR As Decimal?
 End Class
