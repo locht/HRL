@@ -343,6 +343,7 @@
       <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FILENAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FILENAME1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILING_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FILING_DATE_OLD" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FROM_DATE" nillable="true" type="xs:dateTime" />

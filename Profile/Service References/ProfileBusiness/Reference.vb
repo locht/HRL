@@ -4019,6 +4019,9 @@ Namespace ProfileBusiness
         Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAME1Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILING_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4507,6 +4510,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
                     Me.FILENAMEField = value
                     Me.RaisePropertyChanged("FILENAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME1() As String
+            Get
+                Return Me.FILENAME1Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAME1Field, value) <> true) Then
+                    Me.FILENAME1Field = value
+                    Me.RaisePropertyChanged("FILENAME1")
                 End If
             End Set
         End Property

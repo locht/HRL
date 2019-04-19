@@ -864,6 +864,7 @@ Partial Class ProfileRepository
                             From status In Context.OT_OTHER_LIST.Where(Function(f) p.STATUS_ID = f.ID).DefaultIfEmpty
                             From staffrank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                             From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
+                            From filecontract In Context.HU_FILECONTRACT.Where(Function(f) f.EMP_ID = e.ID).DefaultIfEmpty
                             Where e.ID = _filter.EMPLOYEE_ID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.IS_MISSION = True
                             Order By p.EFFECT_DATE Descending
                             Select New WorkingDTO With {
@@ -905,6 +906,8 @@ Partial Class ProfileRepository
                                 .ALLOWANCE_TOTAL = p.ALLOWANCE_TOTAL,
                                  .FILENAME = p.FILENAME,
                                  .ATTACH_FILE = p.ATTACH_FILE,
+                                 .FILENAME1 = filecontract.FILENAME,
+                                 .UPLOADFILE = filecontract.UPLOADFILE,
                                 .TAX_TABLE_Name = taxTable.NAME_VN}
 
                 Dim working = query.First()

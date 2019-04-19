@@ -110,4 +110,5 @@
     Public Property CarRentalAllowances As Decimal?
     Public Property Ids As List(Of Decimal)
     Public Property UPLOADFILE As String
+    Public Property FILENAME1 As String
 End Class

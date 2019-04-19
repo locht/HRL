@@ -1912,6 +1912,8 @@ Public Class ProfileRepository
                                                              .FORM_NAME = f.NAME_VN,
                                                              .SIGN_DATE = p.SIGN_DATE,
                                                              .AUTHORITY = p.AUTHOR,
+                                                             .FILENAME = p.FILENAME,
+                                                             .UPLOADFILE = p.UPLOADFILE,
                                                              .AUTHOR_CHAIRMAIN = p.AUTHOR_CHAIRMAN,
                                                              .AUTHORITY_NUMBER = p.AUTHOR_NUMBER,
                                                              .WORKING_ID = p.WORKING_ID,
@@ -2305,7 +2307,7 @@ Public Class ProfileRepository
             .AUTHOR_CHAIRMAN = FileInfo.AUTHOR_CHAIRMAIN,
             .SIGNER_NAME = FileInfo.SIGNER_NAME,
             .SIGNER_TITLE = FileInfo.SIGNER_TITLE,
-             .FILENAME = FileInfo.FILE_NAME,
+             .FILENAME = FileInfo.FILENAME,
             .UPLOADFILE = FileInfo.UPLOADFILE,
              .WORKING_ID = FileInfo.WORKING_ID,
             .STT = MaxSTT + 1
@@ -2357,7 +2359,7 @@ Public Class ProfileRepository
                 .SIGNER_NAME = FileInfo.SIGNER_NAME
                 .SIGNER_TITLE = FileInfo.SIGNER_TITLE
                 .WORKING_ID = FileInfo.WORKING_ID
-                .FILENAME = FileInfo.FILE_NAME
+                .FILENAME = FileInfo.FILENAME
                 .UPLOADFILE = FileInfo.UPLOADFILE
             End With
             If Context.SaveChanges(log) Then
