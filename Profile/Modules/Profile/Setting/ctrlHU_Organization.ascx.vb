@@ -594,6 +594,7 @@ Public Class ctrlHU_Organization
                 UpdateControlState()
                 FillDataByTree()
                 check = ""
+                chkOrgChart.Checked = True
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             Catch ex As Exception
                 DisplayException(Me.ViewName, Me.ID, ex)
@@ -846,7 +847,7 @@ Public Class ctrlHU_Organization
                     rtxtNumberDecision.Text = ""
                     rtxtTypeDecision.Text = ""
                     check = "EDITFILE"
-                    chkOrgChart.Checked = False
+                    chkOrgChart.Checked = True
                     'txtFax.Text = ""
                     'txtMobile.Text = ""
                     'txtProvinceName.Text = ""
@@ -1318,6 +1319,9 @@ Public Class ctrlHU_Organization
         Try
             Dim mid As String = "Training" 'module dao tao
             Dim strFiles As String = String.Empty
+            If lstFile.CheckedItems.Count = 0 Then
+                Exit Sub
+            End If
             strFiles = lstFile.CheckedItems.Select(Function(x) x.Text).Aggregate(Function(x, y) x & "#" & y)
             strFiles = strFiles.Replace(" ", "")
             If strFiles.Split("#").Count > 0 Then
