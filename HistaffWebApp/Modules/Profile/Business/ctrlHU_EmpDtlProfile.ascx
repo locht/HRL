@@ -124,11 +124,23 @@
                             </tlk:RadTextBox>
                         </td>
                         <td class="lbInfo">
+                            <asp:Label runat="server" ID ="lbEmoCode_OLD" Text ="<%$ Translate: Mã cũ %>"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox runat ="server" ID="rtEmpCode_OLD" Width="100px"></tlk:RadTextBox>
+                        </td>
+                        <td class="lbInfo">
+                            <asp:Label runat="server" ID ="lbBookNo" Text ="<%$ Translate: Số sổ BHXH %>"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox runat ="server" ID="rtBookNo" Width="100px"></tlk:RadTextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lbInfo">
                             <%# Translate("Họ và tên lót")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <%--<tlk:RadTextBox ID="txtDangHong" runat="server" Width="120px">
-                            </tlk:RadTextBox>--%>
                             <tlk:RadTextBox ID="txtFirstNameVN" runat="server" Width="120px" ClientEvents-OnValueChanged="txtFirstNameVNOnValueChanged">
                             </tlk:RadTextBox>
                             <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqFirstNameVN" ControlToValidate="txtFirstNameVN"
@@ -142,6 +154,15 @@
                             <tlk:RadTextBox ID="txtLastNameVN" runat="server" Width="100px" ClientEvents-OnValueChanged="txtLastNameVNOnValueChanged">
                             </tlk:RadTextBox>
                         </td>
+
+                        <td class="lbInfo">
+                            <asp:Label runat ="server" ID ="lbOtherName" Text ="<%$ Translate:Tên gọi khác %>"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="rtOtherName" runat="server" Width="200px">
+                            </tlk:RadTextBox>
+                        </td>
+
                         <td>
                             <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqLastNameVN" ControlToValidate="txtLastNameVN"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên %>" ToolTip="<%$ Translate: Bạn phải nhập tên %>">
@@ -477,10 +498,6 @@
                                         <td colspan="5">
                                             <tlk:RadTextBox ID="txtNavAddress" runat="server" Width="100%">
                                             </tlk:RadTextBox>
-                                            <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="RequiredFieldValidator2"
-                                                ControlToValidate="txtNavAddress" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập đại chỉ tạm trú  %>"
-                                                ToolTip="<%$ Translate:  Bạn phải nhập đại chỉ tạm trú %>">
-                                            </asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -1079,7 +1096,7 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
-        
+            
         </table>
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -1257,6 +1274,7 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 10000);
                 return;
             }
+
             oWindow = radopen('/Dialog.aspx?mid=Profile&fid=ctrlHU_WageNewEdit&group=Business&empID=' + empID, "_self"); /*
             oWindow.setSize(1020, $(window).height());
             oWindow.center(); */
@@ -1310,6 +1328,7 @@
                 return;
             }
             oWindow = radopen('/Dialog.aspx?mid=Profile&fid=ctrlHU_ChangeInfoNewEdit&group=Business&empID=' + empID, "_self"); /*
+            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoNewEdit&group=Business&empID=' + empID, "_self"); /*
             var iWidtd = 1300;
             if ($(window).width() < 1300) {
                 iWidtd = $(window).width();
@@ -1343,6 +1362,7 @@
                 return;
             }
             oWindow = radopen('/Dialog.aspx?mid=Profile&fid=ctrlHU_TransferTripartiteNewEdit&group=Business&empID=' + empID + '&parentID=Emp', "_self"); /*
+            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_TransferTripartiteNewEdit&group=Business&empID=' + empID + '&parentID=Emp', "_self"); /*
             oWindow.setSize(1020, $(window).height());
             oWindow.center(); */
             oWindow.add_close(OnClientClose);

@@ -124,11 +124,23 @@
                             </tlk:RadTextBox>
                         </td>
                         <td class="lbInfo">
+                            <asp:Label runat="server" ID ="lbEmoCode_OLD" Text ="<%$ Translate: Mã cũ %>"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox runat ="server" ID="rtEmpCode_OLD" Width="100px"></tlk:RadTextBox>
+                        </td>
+                        <td class="lbInfo">
+                            <asp:Label runat="server" ID ="lbBookNo" Text ="<%$ Translate: Số sổ BHXH %>"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox runat ="server" ID="rtBookNo" Width="100px"></tlk:RadTextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lbInfo">
                             <%# Translate("Họ và tên lót")%><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <%--<tlk:RadTextBox ID="txtDangHong" runat="server" Width="120px">
-                            </tlk:RadTextBox>--%>
                             <tlk:RadTextBox ID="txtFirstNameVN" runat="server" Width="120px" ClientEvents-OnValueChanged="txtFirstNameVNOnValueChanged">
                             </tlk:RadTextBox>
                             <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqFirstNameVN" ControlToValidate="txtFirstNameVN"
@@ -142,6 +154,15 @@
                             <tlk:RadTextBox ID="txtLastNameVN" runat="server" Width="100px" ClientEvents-OnValueChanged="txtLastNameVNOnValueChanged">
                             </tlk:RadTextBox>
                         </td>
+
+                        <td class="lbInfo">
+                            <asp:Label runat ="server" ID ="lbOtherName" Text ="<%$ Translate:Tên gọi khác %>"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="rtOtherName" runat="server" Width="200px">
+                            </tlk:RadTextBox>
+                        </td>
+
                         <td>
                             <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqLastNameVN" ControlToValidate="txtLastNameVN"
                                 runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên %>" ToolTip="<%$ Translate: Bạn phải nhập tên %>">
@@ -1253,8 +1274,8 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 10000);
                 return;
             }
-            
-            oWindow=radopen('/Dialog.aspx?mid=Profile&fid=ctrlHU_WageNewEdit&group=Business&empID=' + empID, "_self"); /*
+
+            oWindow = radopen('/Dialog.aspx?mid=Profile&fid=ctrlHU_WageNewEdit&group=Business&empID=' + empID, "_self"); /*
             oWindow.setSize(1020, $(window).height());
             oWindow.center(); */
             oWindow.add_close(OnClientClose);
