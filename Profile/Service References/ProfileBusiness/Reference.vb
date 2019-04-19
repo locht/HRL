@@ -6593,6 +6593,9 @@ Namespace ProfileBusiness
         Private YEAR_PERIODField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YearField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private paramField As ProfileBusiness.ParamDTO
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -7576,6 +7579,19 @@ Namespace ProfileBusiness
                 If (Me.YEAR_PERIODField.Equals(value) <> true) Then
                     Me.YEAR_PERIODField = value
                     Me.RaisePropertyChanged("YEAR_PERIOD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Year() As System.Nullable(Of Decimal)
+            Get
+                Return Me.YearField
+            End Get
+            Set
+                If (Me.YearField.Equals(value) <> true) Then
+                    Me.YearField = value
+                    Me.RaisePropertyChanged("Year")
                 End If
             End Set
         End Property
