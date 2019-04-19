@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/18/2019 9:54:33 AM
--- Generated from EDMX file: C:\workpasces\TRUNGNAM\histaffhcm\ProfileDAL\ProfileContext.edmx
+-- Date Created: 19/04/2019 8:58:11 AM
+-- Generated from EDMX file: E:\histaffhcm-18-04-2019\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -673,7 +673,10 @@ CREATE TABLE "dbo"."HU_FAMILY" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
    "REMARK" NVARCHAR2(1023) NULL,
    "DEDUCT_REG" DATE NULL,
-   "TAXTATION" NCLOB NULL
+   "TAXTATION" NCLOB NULL,
+   "PROVINCE_ID" NUMBER(38,0) NULL,
+   "TITLE_NAME" NCLOB NULL,
+   "CAREER" NCLOB NULL
 );
 
 -- Creating table 'HU_DISCIPLINE'
@@ -2277,7 +2280,8 @@ CREATE TABLE "dbo"."HU_COMMEND" (
    "FORM_ID" NUMBER(38,0) NULL,
    "OT_CM_OBJ" NUMBER(38,0) NULL,
    "OT_CM_LEVEL" NUMBER(38,0) NULL,
-   "FILENAME" NCLOB NULL
+   "FILENAME" NCLOB NULL,
+   "YEAR" NUMBER(38,0) NULL
 );
 
 -- Creating table 'TR_CERTIFICATE'
@@ -2558,7 +2562,9 @@ CREATE TABLE "dbo"."HU_WORKING" (
    "TAX_TABLE_ID" NUMBER(38,0) NULL,
    "ATTACH_FILE" NCLOB NULL,
    "FILENAME" NVARCHAR2(500) NULL,
-   "SALE_COMMISION_ID" NUMBER(38,0) NULL
+   "SALE_COMMISION_ID" NUMBER(38,0) NULL,
+   "OBJECT_ATTENDANCE" NUMBER(38,0) NULL,
+   "FILING_DATE" DATE NULL
 );
 
 -- Creating table 'PA_SALARY_TYPE'

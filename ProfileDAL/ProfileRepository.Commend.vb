@@ -458,7 +458,7 @@ Partial Class ProfileRepository
             objCommendData.POWER_PAY_ID = objCommend.POWER_PAY_ID
             objCommendData.UPLOADFILE = objCommend.UPLOADFILE
             objCommendData.NOTE = objCommend.NOTE
-
+            objCommendData.Year = objCommend.Year
             objCommendData.IS_TAX = objCommend.IS_TAX
             objCommendData.PERIOD_TAX = objCommend.PERIOD_TAX
 

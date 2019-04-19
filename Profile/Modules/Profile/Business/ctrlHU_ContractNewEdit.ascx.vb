@@ -105,6 +105,10 @@ Public Class ctrlHU_ContractNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(LeftPane)
+                GirdConfig(rgAllow)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

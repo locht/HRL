@@ -159,13 +159,17 @@ Public Class ctrlHU_ChangeInfoNewEdit
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList(ProfileCommon.DECISION_TYPE.Name)
             End Using
-
             FillRadCombobox(cboDecisionType, dtData, "NAME", "ID")
-
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
             End If
-
+            Using rep As New ProfileRepository
+                dtData = rep.GetOtherList(ProfileCommon.OBJECT_ATTENDANCE.Code)
+            End Using
+            FillRadCombobox(cbOBJECT_ATTENDANCE, dtData, "NAME", "ID")
+            If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                cbOBJECT_ATTENDANCE.SelectedValue = dtData.Rows(0)("ID")
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -227,6 +231,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             txtTitleNameOld.Text = .TITLE_NAME
                             ' txtTitleGroupOld.Text = .TITLE_GROUP_NAME
                             'txtDecisionNoOld.Text = .DECISION_NO
+                            rtOBJECT_ATTENDANCE_OLD.Text = If(.OBJECT_ATTENDANCE_NAME Is Nothing, Working.OBJECT_ATTENDANCE_NAME, .OBJECT_ATTENDANCE_NAME)
+                            If IsDate(.FILING_DATE) Then
+                                rdFILING_DATE_OLD.SelectedDate = .FILING_DATE
+                            Else
+                                rdFILING_DATE_OLD.SelectedDate = If(IsDate(Working.FILING_DATE), Working.FILING_DATE, Nothing)
+                            End If
                             txtDecisionTypeOld.Text = .DECISION_TYPE_NAME
                             rdEffectDateOld.SelectedDate = .EFFECT_DATE
                             rdExpireDateOld.SelectedDate = .EXPIRE_DATE
@@ -269,7 +279,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                     txtEmployeeCode.Text = Working.EMPLOYEE_CODE
                     txtEmployeeName.Text = Working.EMPLOYEE_NAME
-
+                    If IsNumeric(Working.OBJECT_ATTENDANCE) Then
+                        cbOBJECT_ATTENDANCE.SelectedValue = Working.OBJECT_ATTENDANCE
+                    End If
+                    If IsDate(Working.FILING_DATE) Then
+                        rdFILING_DATE.SelectedDate = Working.FILING_DATE
+                    End If
                     SetValueComboBox(cboTitle, Working.TITLE_ID, Working.TITLE_NAME)
 
                     'txtTitleGroup.Text = Working.TITLE_GROUP_NAME
@@ -530,6 +545,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             .SAL_INS = .SAL_BASIC
                             .ALLOWANCE_TOTAL = 0
 
+                            If IsDate(rdFILING_DATE.SelectedDate) Then
+                                .FILING_DATE = rdFILING_DATE.SelectedDate
+                            End If
+                            If IsNumeric(cbOBJECT_ATTENDANCE.SelectedValue) Then
+                                .OBJECT_ATTENDANCE = cbOBJECT_ATTENDANCE.SelectedValue
+                            End If
                         End With
 
                         Select Case CurrentState

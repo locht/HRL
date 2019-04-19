@@ -180,6 +180,17 @@
                         ToolTip="<%$ Translate: Danh hiệu khen thưởng không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>  
                 </td>
+                <td class="lb">
+                <%# Translate("Năm")%>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                <tlk:RadTextBox ID="txtYear" runat="server" TabIndex="3">
+                <ClientEvents OnKeyPress="keyPress" />
+                    </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtYear"
+                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập năm khen thưởng %>" ToolTip="<%$ Translate: Bạn phải nhập năm khen thưởng %>"> </asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -426,7 +437,11 @@
 <asp:PlaceHolder ID="FindOrgImport" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-
+        function keyPress(sender, args) {
+            var text = sender.get_value() + args.get_keyCharacter();
+            if (!text.match('^[0-9]+$'))
+                args.set_cancel(true);
+        }
         $(document).ready(function () {
             registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_CommendNewEdit_RadPane2');
         });

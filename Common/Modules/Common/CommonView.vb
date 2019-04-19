@@ -334,7 +334,7 @@ Public Class CommonView
                             Dim labelCtr As Label = rp.FindControl(row.Field(Of String)("Label_ID").Trim())
                             If labelCtr IsNot Nothing Then
                                 labelCtr.Visible = ctrs.Visible
-                                labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, row("Label_text"))
+                                labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
                             End If
                             If validator IsNot Nothing Then
                                 validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))

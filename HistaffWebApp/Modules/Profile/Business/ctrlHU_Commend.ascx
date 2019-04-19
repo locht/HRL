@@ -104,7 +104,7 @@
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh nhân viên %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>"  />
                             <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp khen thưởng %>" DataField="Commend_LEVEL_NAME"
                                 SortExpression="Commend_LEVEL_NAME" UniqueName="Commend_LEVEL_NAME" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Danh hiệu khen thưởng %>" DataField="COMMEND_TITLE_NAME"
