@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/18/2019 5:18:51 PM
--- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\ProfileDAL\ProfileContext.edmx
+-- Date Created: 04/19/2019 9:23:55 AM
+-- Generated from EDMX file: D:\MyProject\core1\histaffhcm-newnewnew\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2280,7 +2280,8 @@ CREATE TABLE "dbo"."HU_COMMEND" (
    "FORM_ID" NUMBER(38,0) NULL,
    "OT_CM_OBJ" NUMBER(38,0) NULL,
    "OT_CM_LEVEL" NUMBER(38,0) NULL,
-   "FILENAME" NCLOB NULL
+   "FILENAME" NCLOB NULL,
+   "YEAR" NUMBER(38,0) NULL
 );
 
 -- Creating table 'TR_CERTIFICATE'
@@ -2891,7 +2892,9 @@ CREATE TABLE "dbo"."HU_FILECONTRACT" (
    "FORM_ID" NUMBER(38,0) NULL,
    "SIGNER_NAME" NVARCHAR2(255) NULL,
    "SIGNER_TITLE" NVARCHAR2(255) NULL,
-   "WORKING_ID" NUMBER(38,0) NULL
+   "WORKING_ID" NUMBER(38,0) NULL,
+   "FILENAME" NCLOB NULL,
+   "UPLOADFILE" NCLOB NULL
 );
 
 -- Creating table 'HU_FILECONTRACT_DELETED'

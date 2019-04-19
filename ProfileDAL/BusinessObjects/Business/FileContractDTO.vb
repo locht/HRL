@@ -88,4 +88,6 @@
     Public Property lstAllowance As List(Of WorkingAllowanceDTO)
 
     Public Property IS_TER As Boolean
+    Public Property FILENAME As String
+    Public Property UPLOADFILE As String
 End Class

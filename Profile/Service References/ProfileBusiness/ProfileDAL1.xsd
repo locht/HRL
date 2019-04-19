@@ -123,6 +123,7 @@
       <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FILENAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILEUPLOAD" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILE_SIZE" nillable="true" type="xs:int" />
@@ -173,6 +174,7 @@
       <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TITLE_NAME_LEVEL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WORKING_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="WORK_TIME" nillable="true" type="xs:string" />
@@ -405,6 +407,7 @@
       <xs:element minOccurs="0" name="TITLE_MOVE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WORKING_OLD" nillable="true" type="tns:WorkingDTO" />
       <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="WORK_STATUS_NAME" nillable="true" type="xs:string" />
@@ -567,6 +570,7 @@
       <xs:element minOccurs="0" name="TYPE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="YEAR_PERIOD" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Year" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="param" nillable="true" type="tns:ParamDTO" />
     </xs:sequence>
   </xs:complexType>
