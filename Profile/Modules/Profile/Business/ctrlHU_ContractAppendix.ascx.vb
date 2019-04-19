@@ -130,6 +130,10 @@ Public Class ctrlHU_ContractAppendix
             rgContract.AllowCustomPaging = True
             rgContract.PageSize = Common.Common.DefaultPageSize
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgContract)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

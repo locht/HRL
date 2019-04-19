@@ -28,7 +28,7 @@
             <table onkeydown="return (event.keyCode!=13)" class="table-form">
                 <tr>
                     <td class="lb" style="width: 10%">
-                        <%# Translate("MSNV")%>
+                      <asp:Label ID="lbEmployeeCode" runat="server" Text="MSNV"></asp:Label>
                         <span class="lbReq">*</span>
                     </td>
                     <td style="width: 23%">
@@ -41,14 +41,15 @@
                             runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn nhân viên. %>" ToolTip="<%$ Translate: Bạn phải chọn nhân viên. %>"> </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb" style="width: 10%">
-                        <%# Translate("Họ và tên nhân viên")%>
+                       <asp:Label ID="lbEmployeeName" runat="server" Text="Họ và tên nhân viên"></asp:Label>
                     </td>
                     <td style="width: 23%">
                         <tlk:RadTextBox ID="txtEmployeeName" runat="server">
                         </tlk:RadTextBox>
                     </td>
                     <td class="lb" style="width: 10%">
-                        <%# Translate("Phòng ban")%>
+                      <asp:Label ID="lbOrg" runat="server" Text="Phòng ban"></asp:Label>
+                       
                     </td>
                     <td style="width: 23%">
                         <tlk:RadTextBox ID="txtOrg" runat="server">
@@ -57,7 +58,8 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Hợp đồng")%><span class="lbReq">*</span>
+                      <asp:Label ID="lbContract" runat="server" Text="Hợp đồng"></asp:Label>
+                      <span class="lbReq">*</span>
                     </td>
                     <td>
                         <tlk:RadComboBox ID="cboContract" runat="server" CausesValidation="false" AutoPostBack="true">
@@ -67,7 +69,8 @@
                         </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb">
-                        <%# Translate("Loại phụ lục")%><span class="lbReq">*</span>
+                     <asp:Label ID="lbAppend_TypeID" runat="server" Text="Loại phụ lục"></asp:Label>
+                        <span class="lbReq">*</span>
                     </td>
                     <td>
                         <tlk:RadComboBox ID="cboAppend_TypeID" runat="server" CausesValidation="false" AutoPostBack="true">
@@ -77,7 +80,7 @@
                         </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb">
-                        <%# Translate("Chức danh")%>
+                      <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtTitle" runat="server">
@@ -86,14 +89,15 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Số phụ lục HĐLĐ")%>
+                      <asp:Label ID="lbContract_NumAppen" runat="server" Text="Số phụ lục HĐLĐ"></asp:Label>
+                      
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtContract_NumAppen" runat="server">
                         </tlk:RadTextBox>
                     </td>
                     <td class="lb">
-                        <%# Translate("Ngày bắt đầu")%>
+                      <asp:Label ID="lbStartDate" runat="server" Text="Ngày bắt đầu"></asp:Label>
                         <span class="lbReq">*</span>
                     </td>
                     <td>
@@ -105,7 +109,7 @@
                             ToolTip="<%$ Translate: Ngày hiệu lực phải lớn hơn thời gian hiệu lực của hợp đồng. %>"></asp:CustomValidator>
                     </td>
                     <td class="lb">
-                        <%# Translate("Ngày kết thúc")%><%--<span class="lbReq">*</span>--%>
+                    <asp:Label ID="lbExpireDate" runat="server" Text="Ngày kết thúc"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadDatePicker ID="rdExpireDate" runat="server">
@@ -119,7 +123,7 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Ngày ký")%>
+                    <asp:Label ID="lbSignDate" runat="server" Text="Ngày ký"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadDatePicker ID="rdSignDate" runat="server" DateInput-DisplayDateFormat="dd/MM/yyyy">
@@ -129,7 +133,7 @@
                         ngày ký. %>"> </asp:RequiredFieldValidator>--%>
                     </td>
                     <td class="lb">
-                        <%# Translate("Người ký")%>
+                      <asp:Label ID="lbSign" runat="server" Text="Người ký"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtSign" SkinID="Textbox15" runat="server" Width="130px" ReadOnly="true">
@@ -142,7 +146,7 @@
                         </asp:RequiredFieldValidator>--%>
                     </td>
                     <td class="lb">
-                        <%# Translate("Chức vụ người ký")%>
+                     <asp:Label ID="lbSign_Title" runat="server" Text="Chức vụ người ký"></asp:Label>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="txtSign_Title" runat="server" ReadOnly="true">
@@ -151,7 +155,7 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Nội dung thay đổi")%><%--<span class="lbReq">*</span>--%>
+                    <asp:Label ID="lbAppend_Content" runat="server" Text="Nội dung thay đổi"></asp:Label>
                     </td>
                     <td colspan="5">
                         <tlk:RadTextBox ID="txtAppend_Content" runat="server" Width="95%">
@@ -162,7 +166,7 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Ghi chú")%>
+                    <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
                     </td>
                     <td colspan="5">
                         <tlk:RadTextBox ID="txtRemark" runat="server" Width="95%">
@@ -171,7 +175,8 @@
                 </tr>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Trạng Thái")%><span class="lbReq">*</span>
+                       <asp:Label ID="lbStatus_ID" runat="server" Text="Trạng Thái"></asp:Label>
+                      <span class="lbReq">*</span>
                     </td>
                     <td>
                         <tlk:RadComboBox ID="cboStatus_ID" runat="server">
@@ -181,7 +186,7 @@
                         </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb">
-                    <%# Translate("Tập tin đính kèm")%>
+                       <asp:Label ID="lbUpload" runat="server" Text="Tập tin đính kèm"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server">
@@ -199,7 +204,8 @@
                 <tr>
                     <td colspan="6">
                         <b>
-                            <%# Translate("Thông tin lương")%></b>
+                          <asp:Label ID="lbluong" runat="server" Text="Thông tin lương"></asp:Label>
+                           </b>
                         <hr />
                     </td>
                 </tr>
@@ -279,7 +285,8 @@
                 </tr>--%>
                 <tr>
                     <td class="lb">
-                        <%# Translate("Chọn Hồ Sơ Lương")%><span class="lbReq">*</span>
+                     <asp:Label ID="lbSalary" runat="server" Text="Chọn Hồ Sơ Lương"></asp:Label>
+                       <span class="lbReq">*</span>
                     </td>
                     <td>
                         <tlk:RadTextBox ID="Working_ID" runat="server" ReadOnly="true" Width="130px">
@@ -288,7 +295,8 @@
                         </tlk:RadButton>
                     </td>
                     <td class="lb">
-                        <%# UI.Wage_WageGRoup %><span class="lbReq">*</span>
+                 
+                        <%# UI.Wage_WageGRoup%><span class="lbReq">*</span>
                     </td>
                     <td>
                         <tlk:RadComboBox ID="cboSalTYPE" runat="server" SkinID="LoadDemand" Enabled="False">
@@ -346,19 +354,19 @@
                                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                     </tlk:GridClientSelectColumn>
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên phụ cấp %>" DataField="ALLOWANCE_LIST_NAME"
+                                    <tlk:GridBoundColumn HeaderText="Tên phụ cấp" DataField="ALLOWANCE_LIST_NAME"
                                         SortExpression="ALLOWANCE_LIST_NAME" UniqueName="ALLOWANCE_LIST_NAME" />
-                                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="AMOUNT"
+                                    <tlk:GridNumericColumn HeaderText="Số tiền" DataField="AMOUNT"
                                         SortExpression="AMOUNT" UniqueName="AMOUNT" DataFormatString="{0:n0}">
                                         <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                     </tlk:GridNumericColumn>
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
+                                    <tlk:GridBoundColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                                         ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                         DataFormatString="{0:dd/MM/yyyy}" />
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EXPIRE_DATE"
+                                    <tlk:GridBoundColumn HeaderText="Ngày hết hiệu lực" DataField="EXPIRE_DATE"
                                         ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
                                         DataFormatString="{0:dd/MM/yyyy}" Display="false" />
-                                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURRANCE"
+                                    <tlk:GridCheckBoxColumn HeaderText="Đóng bảo hiểm" DataField="IS_INSURRANCE"
                                         SortExpression="IS_INSURRANCE" UniqueName="IS_INSURRANCE" HeaderStyle-Width="100px"
                                         Display="False">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -390,15 +398,15 @@
                 <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,APPEND_NUMBER,START_DATE,EXPIRE_DATE">
                     <Columns>
                         <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Số PLHĐ  %>" DataField="APPEND_NUMBER"
+                        <tlk:GridBoundColumn HeaderText="Số PLHĐ" DataField="APPEND_NUMBER"
                             SortExpression="APPEND_NUMBER" UniqueName="APPEND_NUMBER">
                             <HeaderStyle Width="250px" />
                             <ItemStyle Width="250px" />
                         </tlk:GridBoundColumn>
-                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày bắt đầu %>" DataField="START_DATE"
+                        <tlk:GridBoundColumn HeaderText="Ngày bắt đầu" DataField="START_DATE"
                             ItemStyle-HorizontalAlign="Center" SortExpression="START_DATE" UniqueName="START_DATE"
                             DataFormatString="{0:dd/MM/yyyy}" />
-                        <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày kết thúc %>" DataField="EXPIRE_DATE"
+                        <tlk:GridBoundColumn HeaderText="Ngày kết thúc" DataField="EXPIRE_DATE"
                             ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
                             DataFormatString="{0:dd/MM/yyyy}" />
                     </Columns>

@@ -155,7 +155,9 @@ Public Class ctrlHU_ContractTemplete
         Try
 
             InitControl()
-
+            If Not IsPostBack Then
+                ViewConfig(NORMAL)
+            End If
             'Me.MainToolBar.OnClientButtonClicking = "clientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             ' CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
