@@ -2217,7 +2217,9 @@ Partial Class ProfileRepository
                      From lv In Context.HU_COMMEND_LEVEL.Where(Function(f) f.ID = p.COMMEND_LEVEL).DefaultIfEmpty
                      From t In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.COMMEND_TYPE).DefaultIfEmpty
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
-                     Where ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID
+                     From dhkt In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                     From httt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_PAY And f.TYPE_CODE = "COMMEND_PAY" And f.ACTFLG = "A").DefaultIfEmpty
+            Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID)
                      Order By p.EFFECT_DATE
                      Select New CommendDTO With {
                      .DECISION_NO = p.NO,
@@ -2228,7 +2230,11 @@ Partial Class ProfileRepository
                      .ORG_NAME = o.NAME_VN,
                      .COMMEND_TYPE_NAME = t.NAME,
                      .REMARK = p.REMARK,
-                     .MONEY = ce.MONEY}).ToList()
+                     .MONEY = ce.MONEY,
+                     .COMMEND_TITLE_NAME = dhkt.NAME,
+                     .YEAR = p.YEAR,
+                     .COMMEND_PAY_NAME = httt.NAME_VN,
+                     .SIGNER_NAME = p.SIGNER_NAME}).ToList()
 
             Return query.ToList
         Catch ex As Exception
