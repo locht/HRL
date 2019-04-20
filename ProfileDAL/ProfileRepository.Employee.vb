@@ -2261,6 +2261,7 @@ Partial Class ProfileRepository
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = de.HU_EMPLOYEE_ID)
                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = emp.ORG_ID)
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
+                     From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DISCIPLINE_REASON And f.ACTFLG = "A").DefaultIfEmpty
                      Where de.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.OT_DISCIPLINE_STATUS.APPROVE_ID Order By p.EFFECT_DATE
                      Select New DisciplineDTO With {
                      .DECISION_NO = p.NO,
@@ -2271,7 +2272,9 @@ Partial Class ProfileRepository
                      .TITLE_NAME = title.NAME_VN,
                      .ORG_NAME = o.NAME_VN,
                      .DISCIPLINE_TYPE_NAME = t.NAME_VN,
-                     .MONEY = de.MONEY}).ToList()
+                     .MONEY = de.MONEY,
+                     .SIGN_DATE = p.SIGN_DATE,
+                     .DISCIPLINE_REASON_NAME = reason.NAME_VN}).ToList()
             Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
