@@ -229,6 +229,10 @@
     Public Property GET_TRAINING_FORM As Boolean
     Public Property LIST_TRAINING_FORM As List(Of OtherListDTO)
 
+    'OtherList - TRAINING_TYPE = Loai hinh dao tao
+    Public Property GET_TRAINING_TYPE As Boolean
+    Public Property LIST_TRAINING_TYPE As List(Of OtherListDTO)
+
     'OtherList - LEARNING_LEVEL = Trình độ học vấn
     Public Property GET_LEARNING_LEVEL As Boolean
     Public Property LIST_LEARNING_LEVEL As List(Of OtherListDTO)

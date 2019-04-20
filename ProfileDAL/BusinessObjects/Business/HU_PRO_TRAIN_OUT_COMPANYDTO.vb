@@ -9,8 +9,8 @@
     Public Property TO_MONTH_YEAR As String
     Public Property YEAR_GRA As Decimal?
     Public Property NAME_SHOOLS As String
-    Public Property FORM_TRAIN_ID As Decimal?
-    Public Property FORM_TRAIN_NAME As String
+    Public Property TYPE_TRAIN_ID As Decimal?
+    Public Property TYPE_TRAIN_NAME As String
     Public Property SPECIALIZED_TRAIN As String
     Public Property RESULT_TRAIN As String
     Public Property CERTIFICATE As String
@@ -24,4 +24,7 @@
     Public Property MODIFIED_LOG As String
     Public Property UPLOAD_FILE As String
     Public Property FILE_NAME As String
+    Public Property FORM_TRAIN_ID As Decimal?
+    Public Property FORM_TRAIN_NAME As String
+    Public Property RECEIVE_DEGREE_DATE As Date?
 End Class

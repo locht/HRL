@@ -94,6 +94,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             rgEmployeeTrain.AllowCustomPaging = True
             rgEmployeeTrain.ClientSettings.EnablePostBackOnRowClick = True
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgEmployeeTrain)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -200,7 +204,9 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     txtKetQua.Text = ""
                     rdFrom.SelectedDate = Nothing
                     rdTo.SelectedDate = Nothing
-                    EnableControlAll(True, rdToiThang, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo)
+                    cboTrainingType.SelectedValue = ""
+                    rdReceiveDegree.SelectedDate = Nothing
+                    EnableControlAll(True, rdToiThang, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
 
 
                 Case CommonMessage.STATE_NORMAL
@@ -215,13 +221,14 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     txtKetQua.Text = ""
                     rdFrom.SelectedDate = Nothing
                     rdTo.SelectedDate = Nothing
-
+                    cboTrainingType.SelectedValue = ""
+                    rdReceiveDegree.SelectedDate = Nothing
                     EnabledGridNotPostback(rgEmployeeTrain, True)
-                    EnableControlAll(False, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo)
+                    EnableControlAll(False, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo)
+                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
                 Case CommonMessage.STATE_DELETE
                     Dim rep As New ProfileBusinessRepository
                     Dim lstDeletes As New List(Of Decimal)
@@ -260,6 +267,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         dic.Add("EFFECTIVE_DATE_TO", rdTo)
         dic.Add("UPLOAD_FILE", txtUploadFile)
         dic.Add("FILE_NAME", txtRemark)
+        dic.Add("TYPE_TRAIN_ID", cboTrainingType)
+        dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
 
         Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
 
@@ -273,9 +282,11 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             comboBoxDataDTO.GET_LEARNING_LEVEL = True
             comboBoxDataDTO.GET_MAJOR = True
             comboBoxDataDTO.GET_MARK_EDU = True
+            comboBoxDataDTO.GET_TRAINING_TYPE = True
             rep.GetComboList(comboBoxDataDTO)
             If comboBoxDataDTO IsNot Nothing Then
                 FillDropDownList(cboTrainingForm, comboBoxDataDTO.LIST_TRAINING_FORM, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
+                FillDropDownList(cboTrainingType, comboBoxDataDTO.LIST_TRAINING_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingType.SelectedValue)
             End If
             rep.Dispose()
         Catch ex As Exception
@@ -360,6 +371,12 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         Else
                             objTrain.FORM_TRAIN_ID = cboTrainingForm.SelectedValue
                         End If
+                        If cboTrainingType.SelectedValue = "" Then
+                            objTrain.TYPE_TRAIN_ID = Nothing
+                        Else
+                            objTrain.TYPE_TRAIN_ID = cboTrainingType.SelectedValue
+                        End If
+                        objTrain.RECEIVE_DEGREE_DATE = rdReceiveDegree.SelectedDate
                         objTrain.YEAR_GRA = rntGraduateYear.Value
                         objTrain.SPECIALIZED_TRAIN = txtChuyenNganh.Text.Trim
                         objTrain.RESULT_TRAIN = txtKetQua.Text.Trim
@@ -721,8 +738,20 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     Protected Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgEmployeeTrain.SelectedIndexChanged
         Dim dataItem = TryCast(rgEmployeeTrain.SelectedItems(0), GridDataItem)
         If dataItem IsNot Nothing Then
-            txtRemindLink.Text = dataItem("UPLOAD_FILE").Text
-            txtRemark.Text = dataItem("FILE_NAME").Text
+            rdTuThang.SelectedDate = dataItem.GetDataKeyValue("FROM_DATE")
+            rdToiThang.SelectedDate = dataItem.GetDataKeyValue("TO_DATE")
+            rntGraduateYear.Value = Double.Parse(dataItem.GetDataKeyValue("YEAR_GRA"))
+            txtTrainingSchool.Text = dataItem.GetDataKeyValue("NAME_SHOOLS")
+            cboTrainingForm.SelectedValue = dataItem.GetDataKeyValue("FORM_TRAIN_ID")
+            txtChuyenNganh.Text = dataItem.GetDataKeyValue("SPECIALIZED_TRAIN")
+            cboTrainingType.SelectedValue = dataItem.GetDataKeyValue("TYPE_TRAIN_ID")
+            txtKetQua.Text = dataItem.GetDataKeyValue("RESULT_TRAIN")
+            txtBangCap.Text = dataItem.GetDataKeyValue("CERTIFICATE")
+            rdReceiveDegree.SelectedDate = dataItem.GetDataKeyValue("RECEIVE_DEGREE_DATE")
+            rdFrom.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_FROM")
+            rdTo.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_TO")
+            txtRemindLink.Text = dataItem.GetDataKeyValue("UPLOAD_FILE")
+            txtRemark.Text = dataItem.GetDataKeyValue("FILE_NAME")
         End If
     End Sub
 End Class

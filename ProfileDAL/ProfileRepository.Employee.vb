@@ -2466,7 +2466,7 @@ Partial Class ProfileRepository
 
             Dim query = From p In Context.HU_PRO_TRAIN_OUT_COMPANY
                         From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID And F.TYPE_ID = 142).DefaultIfEmpty
-
+                        From ott In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID And F.TYPE_ID = 143).DefaultIfEmpty
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_ID) Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
@@ -2494,6 +2494,9 @@ Partial Class ProfileRepository
                                        .CERTIFICATE = p.p.CERTIFICATE,
                                        .EFFECTIVE_DATE_FROM = p.p.EFFECTIVE_DATE_FROM,
                                        .EFFECTIVE_DATE_TO = p.p.EFFECTIVE_DATE_TO,
+                                       .TYPE_TRAIN_ID = p.p.TYPE_TRAIN_ID,
+                                       .TYPE_TRAIN_NAME = p.ott.NAME_VN,
+                                       .RECEIVE_DEGREE_DATE = p.p.RECEIVE_DEGREE_DATE,
                                        .CREATED_BY = p.p.CREATED_BY,
                                        .CREATED_DATE = p.p.CREATED_DATE,
                                        .CREATED_LOG = p.p.CREATED_LOG,
@@ -2530,6 +2533,8 @@ Partial Class ProfileRepository
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
+            objTitleData.TYPE_TRAIN_ID = objTitle.TYPE_TRAIN_ID
+            objTitleData.RECEIVE_DEGREE_DATE = objTitle.RECEIVE_DEGREE_DATE
             Context.HU_PRO_TRAIN_OUT_COMPANY.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -2560,6 +2565,8 @@ Partial Class ProfileRepository
             objTitleData.EFFECTIVE_DATE_FROM = objTitle.EFFECTIVE_DATE_FROM
             objTitleData.EFFECTIVE_DATE_TO = objTitle.EFFECTIVE_DATE_TO
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
+            objTitleData.TYPE_TRAIN_ID = objTitle.TYPE_TRAIN_ID
+            objTitleData.RECEIVE_DEGREE_DATE = objTitle.RECEIVE_DEGREE_DATE
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

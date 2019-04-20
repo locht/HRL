@@ -1000,6 +1000,18 @@ Public Class ProfileRepository
                          .NAME_EN = p.NAME_EN}).ToList
             _combolistDTO.LIST_TRAINING_FORM = query
         End If
+        'Danh mục loại hình đào tạo :  
+        If _combolistDTO.GET_TRAINING_TYPE Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "TRAINING_TYPE" _
+                     And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                         .ID = p.ID,
+                         .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_TRAINING_TYPE = query
+        End If
         'Danh mục trình độ học vấn :  
         If _combolistDTO.GET_LEARNING_LEVEL Then
             query = (From p In Context.OT_OTHER_LIST
