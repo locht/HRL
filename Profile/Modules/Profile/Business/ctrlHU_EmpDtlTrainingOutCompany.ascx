@@ -14,24 +14,24 @@
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Từ tháng")%><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbTuThang" Text="Từ tháng"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadMonthYearPicker ID="rdTuThang" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
                         DateInput-DateFormat="dd/MM/yyyy">
                     </tlk:RadMonthYearPicker>
                     <asp:RequiredFieldValidator ID="rqTuThang" ControlToValidate="rdTuThang" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập từ tháng. %>" ToolTip="<%$ Translate: Bạn phải nhập từ tháng. %>"> </asp:RequiredFieldValidator>
+                        ErrorMessage="Bạn phải nhập từ tháng." ToolTip="Bạn phải nhập từ tháng."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 200px">
-                    <%# Translate("Đến tháng")%>
+                    <asp:Label runat="server" ID="lbToiThang" Text="Đến tháng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadMonthYearPicker ID="rdToiThang" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
                         DateInput-DateFormat="dd/MM/yyyy" >
                     </tlk:RadMonthYearPicker>
-                    <asp:CustomValidator ID="cvalToiThang" runat="server" ErrorMessage="<%$ Translate: Từ tháng không đươc lớn hơn tới tháng. %>"
-                        ToolTip="<%$ Translate: Từ tháng không đươc lớn hơn tới tháng. %>">
+                    <asp:CustomValidator ID="cvalToiThang" runat="server" ErrorMessage="Từ tháng không đươc lớn hơn tới tháng."
+                        ToolTip="Từ tháng không đươc lớn hơn tới tháng.">
                     </asp:CustomValidator>
                     <%--<asp:RequiredFieldValidator ID="rqToiThang" ControlToValidate="rdToiThang" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập tới tháng. %>" ToolTip="<%$ Translate: Bạn phải nhập tới tháng. %>"> </asp:RequiredFieldValidator>--%>
@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Năm tốt nghiệp")%>
+                    <asp:Label runat="server" ID="lbGraduateYear" Text="Năm tốt nghiệp"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
@@ -55,72 +55,88 @@
 
 
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntGraduateYear"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập năm tốt nghiệp. %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập năm tốt nghiệp. %>"> </asp:RequiredFieldValidator>
+                        runat="server" ErrorMessage="Bạn phải nhập năm tốt nghiệp."
+                        ToolTip="Bạn phải nhập năm tốt nghiệp."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Tên trường")%>
+                    <asp:Label runat="server" ID="lbTrainingSchool" Text="Tên trường"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtTrainingSchool" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtTrainingSchool"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên trường. %>" ToolTip="<%$ Translate: Bạn phải nhập tên trường. %>"> </asp:RequiredFieldValidator>
+                        runat="server" ErrorMessage="Bạn phải nhập tên trường." ToolTip="Bạn phải nhập tên trường."> </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Hình thức đào tạo")%>
+                    <asp:Label runat="server" ID="lbTrainingForm" Text="Hình thức đào tạo"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboTrainingForm" runat="server">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Chuyên ngành")%>
+                    <asp:Label runat="server" ID="lbChuyenNganh" Text="Chuyên ngành"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtChuyenNganh" SkinID="Textbox250" runat="server">
                     </tlk:RadTextBox>
                 </td>
             </tr>
-            <tr>
+            <tr>                
                 <td class="lb">
-                    <%# Translate("Kết quả đào tạo")%>
+                    <asp:Label runat="server" ID="lbTrainingType" Text="Loại hình đào tạo"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtKetQua" SkinID="Textbox250" runat="server">
-                    </tlk:RadTextBox>
+                    <tlk:RadCombobox ID="cboTrainingType" runat="server">
+                    </tlk:RadCombobox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Bằng cấp/Chứng chỉ")%>
+                    <asp:Label runat="server" ID="lbBangCap" Text="Bằng cấp/Chứng chỉ"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtBangCap" SkinID="Textbox250" runat="server">
                     </tlk:RadTextBox>
                 </td>
             </tr>
+            <tr>                
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbKetQua" Text="Kết quả đào tạo"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtKetQua" SkinID="Textbox250" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbReceiveDegree" Text="Ngày nhận bằng"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdReceiveDegree" runat="server">
+                    </tlk:RadDatePicker>
+                </td>
+            </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ngày hiệu lực chứng chỉ")%>
+                    <asp:Label runat="server" ID="lbFrom" Text="Ngày hiệu lực chứng chỉ"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdFrom" runat="server">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                    <%# Translate("Ngày hết hiệu lực chứng chỉ")%>
+                    <asp:Label runat="server" ID="lbTo" Text="Ngày hết hiệu lực chứng chỉ"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdTo" runat="server">
                     </tlk:RadDatePicker>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="<%$ Translate: Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ %>"
-                        ErrorMessage="<%$ Translate: Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ %>"
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
+                        ErrorMessage="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
                         Type="Date" Operator="GreaterThan" ControlToCompare="rdFrom" ControlToValidate="rdTo"></asp:CompareValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Mô tả công việc")%>
+                    <asp:Label runat="server" ID="lbRemark" Text="Mô tả công việc"></asp:Label>
                 </td>
                 <td>
                     <%-- <tlk:RadComboBox ID="cboRemark" runat="server" SkinID="number" Width="160px" >
@@ -135,7 +151,7 @@
                     </tlk:RadTextBox>
                 </td>
                 <td>
-                    <tlk:RadButton runat="server" ID="btnDownload" Text="<%$ Translate: Tải xuống%>"
+                    <tlk:RadButton runat="server" ID="btnDownload" Text="Tải xuống"
                         CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
                     </tlk:RadButton>
                 </td>
@@ -151,7 +167,7 @@
     <tlk:RadPane runat="server" ID="RadPane4" Scrolling="None">
         <tlk:RadGrid PageSize=50 ID="rgEmployeeTrain" runat="server" AllowMultiRowSelection="true" Height="100%"
             AllowFilteringByColumn="true">
-            <MasterTableView DataKeyNames="ID,UPLOAD_FILE,FILE_NAME" ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, RESULT_TRAIN, CERTIFICATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME">
+            <MasterTableView DataKeyNames="ID,UPLOAD_FILE,FILE_NAME" ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
@@ -159,55 +175,63 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false"></tlk:GridBoundColumn>
-                    <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="<%$ Translate: Từ tháng%>"
+                    <%--<tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false"></tlk:GridBoundColumn>
+                    <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ tháng"
                         UniqueName="FROM_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
                         Visible="true" DataFormatString="{0:MM/yyyy}">
                         <HeaderStyle Width="120px" />
                         <ItemStyle Width="120px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="<%$ Translate: Tới tháng%>"
+                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="Tới tháng"
                         UniqueName="TO_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" DataFormatString="{0:MM/yyyy}"
                         CurrentFilterFunction="EqualTo" Visible="true">
                         <HeaderStyle Width="120px" />
                         <ItemStyle Width="120px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridNumericColumn DataField="YEAR_GRA" HeaderText="<%$ Translate: Năm tốt nghiệp%>"
+                    <tlk:GridNumericColumn DataField="YEAR_GRA" HeaderText="Năm tốt nghiệp"
                         UniqueName="YEAR_GRA" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
                         Visible="true">
                     </tlk:GridNumericColumn>
-                    <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="<%$ Translate: Tên trường%>"
+                    <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Translate: Tên trường"
                         UniqueName="NAME_SHOOLS" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                         Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="<%$ Translate: Hình thức đào tạo%>"
+                    <tlk:GridBoundColumn DataField="FORM_TRAIN_NAME" HeaderText="Hình thức đào tạo"
                         UniqueName="FORM_TRAIN_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                         CurrentFilterFunction="Contains" Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN" HeaderText="<%$ Translate: Chuyên ngành%>"
+                    <tlk:GridBoundColumn DataField="SPECIALIZED_TRAIN" HeaderText="Chuyên ngành"
                         UniqueName="SPECIALIZED_TRAIN" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                         CurrentFilterFunction="Contains" Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="RESULT_TRAIN" HeaderText="<%$ Translate: Kết quả%>"
+                    <tlk:GridBoundColumn DataField="TYPE_TRAIN_NAME" HeaderText="Loại hình đào tạo"
+                        UniqueName="TYPE_TRAIN_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                        CurrentFilterFunction="Contains" Visible="true">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="RESULT_TRAIN" HeaderText="Kết quả"
                         UniqueName="RESULT_TRAIN" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                         CurrentFilterFunction="Contains" Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="<%$ Translate: Bằng cấp%>"
+                    <tlk:GridBoundColumn DataField="CERTIFICATE" HeaderText="Bằng cấp"
                         UniqueName="CERTIFICATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                         Visible="true">
                     </tlk:GridBoundColumn>
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECTIVE_DATE_FROM"
+                    <tlk:GridBoundColumn DataField="RECEIVE_DEGREE_DATE" HeaderText="Ngày nhận bằng"
+                        ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
+                        UniqueName="RECEIVE_DEGREE_DATE">
+                    </tlk:GridBoundColumn>
+                    <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECTIVE_DATE_FROM"
                         ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_FROM"
                         UniqueName="EFFECTIVE_DATE_FROM">
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EFFECTIVE_DATE_TO"
+                    <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EFFECTIVE_DATE_TO"
                         ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECTIVE_DATE_TO"
                         UniqueName="EFFECTIVE_DATE_TO">
                     </tlk:GridDateTimeColumn>
-                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="UPLOAD_FILE"
-                        UniqueName="UPLOAD_FILE" SortExpression="UPLOAD_FILE" Visible="false"/>
-                         <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="FILE_NAME"
-                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" Visible="false"/>
+                      <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="UPLOAD_FILE"
+                        UniqueName="UPLOAD_FILE" SortExpression="UPLOAD_FILE" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"/>
+                         <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="FILE_NAME"
+                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"/>--%>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
@@ -232,14 +256,13 @@
             }
         }
 
-        function rbtClicked(sender, eventArgs) {
-            enableAjax = false;
-        }
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
+        }
         // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
         function ResizeSplitter() {
             setTimeout(function () {

@@ -10514,6 +10514,9 @@ Namespace ProfileBusiness
         Private NAME_SHOOLSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RECEIVE_DEGREE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RESULT_TRAINField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -10524,6 +10527,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_MONTH_YEARField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TYPE_TRAIN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TYPE_TRAIN_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private UPLOAD_FILEField As String
@@ -10789,6 +10798,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RECEIVE_DEGREE_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.RECEIVE_DEGREE_DATEField
+            End Get
+            Set
+                If (Me.RECEIVE_DEGREE_DATEField.Equals(value) <> true) Then
+                    Me.RECEIVE_DEGREE_DATEField = value
+                    Me.RaisePropertyChanged("RECEIVE_DEGREE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RESULT_TRAIN() As String
             Get
                 Return Me.RESULT_TRAINField
@@ -10836,6 +10858,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TO_MONTH_YEARField, value) <> true) Then
                     Me.TO_MONTH_YEARField = value
                     Me.RaisePropertyChanged("TO_MONTH_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TYPE_TRAIN_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TYPE_TRAIN_IDField
+            End Get
+            Set
+                If (Me.TYPE_TRAIN_IDField.Equals(value) <> true) Then
+                    Me.TYPE_TRAIN_IDField = value
+                    Me.RaisePropertyChanged("TYPE_TRAIN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TYPE_TRAIN_NAME() As String
+            Get
+                Return Me.TYPE_TRAIN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TYPE_TRAIN_NAMEField, value) <> true) Then
+                    Me.TYPE_TRAIN_NAMEField = value
+                    Me.RaisePropertyChanged("TYPE_TRAIN_NAME")
                 End If
             End Set
         End Property
@@ -21311,6 +21359,9 @@ Namespace ProfileBusiness
         Private GET_TRAINING_FORMField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_TRAINING_TYPEField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_TRANSFER_REASONField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -21492,6 +21543,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TRAINING_FORMField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_TRAINING_TYPEField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TRANSFER_REASONField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
@@ -22172,6 +22226,19 @@ Namespace ProfileBusiness
                 If (Me.GET_TRAINING_FORMField.Equals(value) <> true) Then
                     Me.GET_TRAINING_FORMField = value
                     Me.RaisePropertyChanged("GET_TRAINING_FORM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_TRAINING_TYPE() As Boolean
+            Get
+                Return Me.GET_TRAINING_TYPEField
+            End Get
+            Set
+                If (Me.GET_TRAINING_TYPEField.Equals(value) <> true) Then
+                    Me.GET_TRAINING_TYPEField = value
+                    Me.RaisePropertyChanged("GET_TRAINING_TYPE")
                 End If
             End Set
         End Property
@@ -22965,6 +23032,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_TRAINING_FORMField, value) <> true) Then
                     Me.LIST_TRAINING_FORMField = value
                     Me.RaisePropertyChanged("LIST_TRAINING_FORM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_TRAINING_TYPE() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_TRAINING_TYPEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_TRAINING_TYPEField, value) <> true) Then
+                    Me.LIST_TRAINING_TYPEField = value
+                    Me.RaisePropertyChanged("LIST_TRAINING_TYPE")
                 End If
             End Set
         End Property
