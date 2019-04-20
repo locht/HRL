@@ -450,6 +450,7 @@
     <Content Include="Modules\Planning\Report\ctrlPA_SalaryTracker.ascx" />
     <Content Include="Modules\Planning\Setting\ctrlPA_TitleCost.ascx" />
     <Content Include="Modules\Planning\Business\ctrlRC_Manning.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TranningForeign.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_Allowance.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ContractAppendix.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ContractTemplete.ascx" />

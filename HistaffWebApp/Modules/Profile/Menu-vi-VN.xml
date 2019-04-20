@@ -26,6 +26,7 @@
             <Item Value="ctrlHU_ApproveEmployee_Edit" Text="Phê duyệt hồ sơ nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ApproveEmployee_Edit&amp;group=Business" CheckPermission="true"/>
           </Group>
         </Item>
+        <Item Value="ctrlHU_TranningForeign" Text="Quản lý đi công tác" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TranningForeign&amp;group=Business" CheckPermission="true" CausesValidation="False" />
       </Group>
     </Item>
 

@@ -133,6 +133,7 @@
             <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.Store.HU_ALLOWANCE" store:Type="Tables"  />
             <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.Store.HU_ATTACHFILES" store:Type="Tables"  />
             <EntitySet Name="HU_FILE" EntityType="ProfileModel.Store.HU_FILE" store:Type="Tables"  />
+            <EntitySet Name="HU_TRAININGFOREIGN" EntityType="ProfileModel.Store.HU_TRAININGFOREIGN" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3122,6 +3123,29 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HU_TRAININGFOREIGN">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="START_DATE" Type="date" Nullable="true" />
+            <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
+            <Property Name="DECISION_NO" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SIGN_DATE" Type="date" Nullable="true" />
+            <Property Name="TRAINNING_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TRAINNING_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CONTENT" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="LOCATION" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -3740,6 +3764,7 @@
           <EntitySet Name="HU_ALLOWANCE" EntityType="ProfileModel.HU_ALLOWANCE" />
           <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.HU_ATTACHFILES" />
           <EntitySet Name="HU_FILE" EntityType="ProfileModel.HU_FILE" />
+          <EntitySet Name="HU_TRAININGFOREIGN" EntityType="ProfileModel.HU_TRAININGFOREIGN" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -7012,6 +7037,29 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_TRAININGFOREIGN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="START_DATE" />
+          <Property Type="DateTime" Name="EXPIRE_DATE" />
+          <Property Type="String" Name="DECISION_NO" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="SIGN_DATE" />
+          <Property Type="Decimal" Name="TRAINNING_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="TRAINNING_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTENT" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LOCATION" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10003,6 +10051,30 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_TRAININGFOREIGN">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TRAININGFOREIGN)">
+                <MappingFragment StoreEntitySet="HU_TRAININGFOREIGN">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                    <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+                    <ScalarProperty Name="DECISION_NO" ColumnName="DECISION_NO" />
+                    <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+                    <ScalarProperty Name="TRAINNING_ID" ColumnName="TRAINNING_ID" />
+                    <ScalarProperty Name="TRAINNING_NAME" ColumnName="TRAINNING_NAME" />
+                    <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                    <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -10042,7 +10114,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="97" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="63" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -10298,6 +10370,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE" Width="2.125" PointX="11.125" PointY="32.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ATTACHFILES" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="ProfileModel.HU_FILE" Width="1.5" PointX="32.375" PointY="14.75" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGFOREIGN" Width="1.5" PointX="32.375" PointY="20.75" Height="4.4802050781249818" />
         </Diagram>
     </Diagrams>
   </Designer>
