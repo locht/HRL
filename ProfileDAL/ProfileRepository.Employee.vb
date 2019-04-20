@@ -794,7 +794,9 @@ Partial Class ProfileRepository
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
                 objEmpCVData.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
                 objEmpCVData.ID_NO = objEmpCV.ID_NO
-
+                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
+                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
+                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
                 objEmpCVData.PASS_NO = objEmpCV.PASS_NO
