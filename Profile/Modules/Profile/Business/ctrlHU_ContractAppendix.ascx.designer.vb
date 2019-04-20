@@ -95,6 +95,15 @@ Partial Public Class ctrlHU_ContractAppendix
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''lbEmployee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmployee As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtEmployee control.
     '''</summary>
     '''<remarks>
@@ -102,6 +111,15 @@ Partial Public Class ctrlHU_ContractAppendix
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmployee As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbStatus As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cbStatus control.
@@ -113,6 +131,15 @@ Partial Public Class ctrlHU_ContractAppendix
     Protected WithEvents cbStatus As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''lbStartDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbStartDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdStartDate control.
     '''</summary>
     '''<remarks>
@@ -122,6 +149,15 @@ Partial Public Class ctrlHU_ContractAppendix
     Protected WithEvents rdStartDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''lbExpireDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbExpireDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdExpireDate control.
     '''</summary>
     '''<remarks>
@@ -129,6 +165,15 @@ Partial Public Class ctrlHU_ContractAppendix
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdExpireDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbUpload As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboUpload control.

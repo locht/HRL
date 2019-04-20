@@ -1247,6 +1247,9 @@ Namespace ProfileBusiness
         Private EXPIRE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILEUPLOADField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1395,6 +1398,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAME_LEVELField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UPLOADFILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_IDField As System.Nullable(Of Decimal)
@@ -1791,6 +1797,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME() As String
+            Get
+                Return Me.FILENAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
+                    Me.FILENAMEField = value
+                    Me.RaisePropertyChanged("FILENAME")
                 End If
             End Set
         End Property
@@ -2441,6 +2460,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAME_LEVELField, value) <> true) Then
                     Me.TITLE_NAME_LEVELField = value
                     Me.RaisePropertyChanged("TITLE_NAME_LEVEL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UPLOADFILE() As String
+            Get
+                Return Me.UPLOADFILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UPLOADFILEField, value) <> true) Then
+                    Me.UPLOADFILEField = value
+                    Me.RaisePropertyChanged("UPLOADFILE")
                 End If
             End Set
         End Property
@@ -3987,6 +4019,9 @@ Namespace ProfileBusiness
         Private FILENAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAME1Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILING_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4177,6 +4212,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UPLOADFILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_OLDField As ProfileBusiness.WorkingDTO
@@ -4472,6 +4510,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
                     Me.FILENAMEField = value
                     Me.RaisePropertyChanged("FILENAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME1() As String
+            Get
+                Return Me.FILENAME1Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAME1Field, value) <> true) Then
+                    Me.FILENAME1Field = value
+                    Me.RaisePropertyChanged("FILENAME1")
                 End If
             End Set
         End Property
@@ -5304,6 +5355,19 @@ Namespace ProfileBusiness
                 If (Me.TO_DATEField.Equals(value) <> true) Then
                     Me.TO_DATEField = value
                     Me.RaisePropertyChanged("TO_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UPLOADFILE() As String
+            Get
+                Return Me.UPLOADFILEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UPLOADFILEField, value) <> true) Then
+                    Me.UPLOADFILEField = value
+                    Me.RaisePropertyChanged("UPLOADFILE")
                 End If
             End Set
         End Property
@@ -11287,6 +11351,9 @@ Namespace ProfileBusiness
         Private AUTOGENTIMESHEETField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BOOKNOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTRACT_EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -11336,6 +11403,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_NAME_OTHERField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMP_STATUSField As System.Nullable(Of Decimal)
@@ -11506,6 +11576,19 @@ Namespace ProfileBusiness
                 If (Me.AUTOGENTIMESHEETField.Equals(value) <> true) Then
                     Me.AUTOGENTIMESHEETField = value
                     Me.RaisePropertyChanged("AUTOGENTIMESHEET")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BOOKNO() As String
+            Get
+                Return Me.BOOKNOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.BOOKNOField, value) <> true) Then
+                    Me.BOOKNOField = value
+                    Me.RaisePropertyChanged("BOOKNO")
                 End If
             End Set
         End Property
@@ -11727,6 +11810,19 @@ Namespace ProfileBusiness
                 If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
                     Me.EMPLOYEE_IDField = value
                     Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_NAME_OTHER() As String
+            Get
+                Return Me.EMPLOYEE_NAME_OTHERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_NAME_OTHERField, value) <> true) Then
+                    Me.EMPLOYEE_NAME_OTHERField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_NAME_OTHER")
                 End If
             End Set
         End Property
@@ -26192,6 +26288,12 @@ Namespace ProfileBusiness
         Private DANG_PHIField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DISTRICTEMP_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DISTRICTEMP_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DOAN_PHIField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -26342,6 +26444,12 @@ Namespace ProfileBusiness
         Private PLACE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PROVINCEEMP_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PROVINCEEMP_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RELIGIONField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -26358,6 +26466,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VISA_PLACEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WARDEMP_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WARDEMP_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKPLACE_IDField As System.Nullable(Of Decimal)
@@ -26594,6 +26708,32 @@ Namespace ProfileBusiness
                 If (Me.DANG_PHIField.Equals(value) <> true) Then
                     Me.DANG_PHIField = value
                     Me.RaisePropertyChanged("DANG_PHI")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DISTRICTEMP_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DISTRICTEMP_IDField
+            End Get
+            Set
+                If (Me.DISTRICTEMP_IDField.Equals(value) <> true) Then
+                    Me.DISTRICTEMP_IDField = value
+                    Me.RaisePropertyChanged("DISTRICTEMP_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DISTRICTEMP_NAME() As String
+            Get
+                Return Me.DISTRICTEMP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DISTRICTEMP_NAMEField, value) <> true) Then
+                    Me.DISTRICTEMP_NAMEField = value
+                    Me.RaisePropertyChanged("DISTRICTEMP_NAME")
                 End If
             End Set
         End Property
@@ -27249,6 +27389,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PROVINCEEMP_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PROVINCEEMP_IDField
+            End Get
+            Set
+                If (Me.PROVINCEEMP_IDField.Equals(value) <> true) Then
+                    Me.PROVINCEEMP_IDField = value
+                    Me.RaisePropertyChanged("PROVINCEEMP_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PROVINCEEMP_NAME() As String
+            Get
+                Return Me.PROVINCEEMP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.PROVINCEEMP_NAMEField, value) <> true) Then
+                    Me.PROVINCEEMP_NAMEField = value
+                    Me.RaisePropertyChanged("PROVINCEEMP_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RELIGION() As System.Nullable(Of Decimal)
             Get
                 Return Me.RELIGIONField
@@ -27322,6 +27488,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.VISA_PLACEField, value) <> true) Then
                     Me.VISA_PLACEField = value
                     Me.RaisePropertyChanged("VISA_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WARDEMP_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WARDEMP_IDField
+            End Get
+            Set
+                If (Me.WARDEMP_IDField.Equals(value) <> true) Then
+                    Me.WARDEMP_IDField = value
+                    Me.RaisePropertyChanged("WARDEMP_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WARDEMP_NAME() As String
+            Get
+                Return Me.WARDEMP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.WARDEMP_NAMEField, value) <> true) Then
+                    Me.WARDEMP_NAMEField = value
+                    Me.RaisePropertyChanged("WARDEMP_NAME")
                 End If
             End Set
         End Property

@@ -568,6 +568,9 @@ Partial Class ProfileRepository
                          .FULLNAME_EN = e.FULLNAME_EN,
                          .FULLNAME_VN = e.FULLNAME_VN,
                          .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                         .EMPLOYEE_CODE_OLD = e.EMPLOYEE_CODE_OLD,
+                         .BOOKNO = e.BOOK_NO,
+                         .EMPLOYEE_NAME_OTHER = e.EMPLOYEE_NAME_OTHER,
                          .IMAGE = e.HU_EMPLOYEE_CV.IMAGE,
                          .TITLE_ID = e.TITLE_ID,
                          .LAST_WORKING_ID = e.LAST_WORKING_ID,
@@ -726,7 +729,9 @@ Partial Class ProfileRepository
 
             objEmpData.EMPLOYEE_CODE = EMPCODE
             _strEmpCode = EMPCODE
-
+            objEmpData.EMPLOYEE_NAME_OTHER = objEmp.EMPLOYEE_NAME_OTHER
+            objEmpData.EMPLOYEE_CODE_OLD = objEmp.EMPLOYEE_CODE_OLD
+            objEmpData.BOOK_NO = objEmp.BOOKNO
             objEmpData.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
             objEmpData.LAST_NAME_VN = objEmp.LAST_NAME_VN
             objEmpData.FIRST_NAME_EN = objEmp.FIRST_NAME_EN

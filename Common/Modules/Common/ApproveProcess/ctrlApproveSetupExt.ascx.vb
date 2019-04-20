@@ -658,6 +658,7 @@ Public Class ctrlApproveSetupExt
                     EnabledGrid(rgEmp, True)
                     pnlDetail.Enabled = True
                     ctrlOrg.Enabled = False
+
             End Select
             ShowPopupEmployee()
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -730,6 +731,7 @@ Public Class ctrlApproveSetupExt
             txtEmployeeCode.Text = ""
             txtEmployeeName.Text = ""
             hidEmployeeID.Value = ""
+            chkReplaceAll.Checked = False
             rdFromDate.SelectedDate = Nothing
             rdToDate.SelectedDate = Nothing
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -788,6 +790,7 @@ Public Class ctrlApproveSetupExt
                     txtEmployeeName.Text = itemSelected.SUB_EMPLOYEE_NAME
                     rdFromDate.SelectedDate = itemSelected.FROM_DATE
                     rdToDate.SelectedDate = itemSelected.TO_DATE
+                    chkReplaceAll.Checked = itemSelected.REPALCEALL
                 Else
                     ShowMessage(Translate("Đã có lỗi khi truy xuất thông tin đang chọn."), NotifyType.Error)
                 End If

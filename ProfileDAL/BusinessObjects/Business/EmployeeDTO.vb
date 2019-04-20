@@ -46,7 +46,6 @@
     Public Property LEVEL_MANAGER_NAME As String
 
     Public Property EMPLOYEE_3B_ID As String
-    Public Property EMPLOYEE_CODE_OLD As String
     Public Property CREATED_DATE As Date
     Public Property CREATED_BY As String
     Public Property CREATED_LOG As String
@@ -77,4 +76,7 @@
     Public Property EMP_STATUS As Decimal?
     Public Property EMP_STATUS_NAME As String
     Public Property AUTOGENTIMESHEET As Decimal?
+    Public Property EMPLOYEE_CODE_OLD As String
+    Public Property BOOKNO As String
+    Public Property EMPLOYEE_NAME_OTHER As String
 End Class
