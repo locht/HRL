@@ -53,6 +53,10 @@ Public Class ctrlHU_EmpDtlCommend
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgGrid)
+            End If
             rgGrid.SetFilter()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
