@@ -88,4 +88,6 @@
     Public Property DISTRICTEMP_NAME As String
     Public Property WARDEMP_ID As Decimal?
     Public Property WARDEMP_NAME As String
+    Public Property PROVINCENQ_ID As Decimal?
+    Public Property PROVINCENQ_NAME As String
 End Class
