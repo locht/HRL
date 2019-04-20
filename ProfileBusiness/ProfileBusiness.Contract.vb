@@ -7,6 +7,52 @@ Imports System.Configuration
 
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
+#Region "traningforeign"
+        Public Function GetTrainingForeign(ByVal _filter As TrainningForeignDTO, ByVal PageIndex As Integer,
+                               ByVal PageSize As Integer,
+                               ByRef Total As Integer, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc",
+                               Optional ByVal log As UserLog = Nothing) As List(Of TrainningForeignDTO) _
+                                   Implements ServiceContracts.IProfileBusiness.GetTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingForeign(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertTrainingForeign(ByVal objContract As TrainningForeignDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.InsertTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertTrainingForeign(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyTrainingForeign(ByVal objContract As TrainningForeignDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.ModifyTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyTrainingForeign(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetTrainingForeignByID(ByVal _filter As TrainningForeignDTO) As TrainningForeignDTO _
+                                  Implements ServiceContracts.IProfileBusiness.GetTrainingForeignByID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingForeignById(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 
         Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,

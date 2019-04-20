@@ -2,7 +2,70 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
+#Region "trainingforeign"
+    Public Function GetTrainingForeign(ByVal _filter As TrainningForeignDTO, ByVal PageIndex As Integer,
+                               ByVal PageSize As Integer,
+                               ByRef Total As Integer, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningForeignDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTrainingForeign(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+        Return Nothing
+    End Function
+    Public Function GetTrainingForeign(ByVal _filter As TrainningForeignDTO, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningForeignDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTrainingForeign(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function InsertTrainingForeign(ByVal objContract As TrainningForeignDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertTrainingForeign(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifyTrainingForeign(ByVal objContract As TrainningForeignDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyTrainingForeign(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function GetTrainingForeignByID(ByVal _filter As TrainningForeignDTO) As TrainningForeignDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTrainingForeignByID(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+#End Region
     Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
                                 ByRef Total As Integer, ByVal _param As ParamDTO,
