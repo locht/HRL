@@ -794,7 +794,9 @@ Partial Class ProfileRepository
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
                 objEmpCVData.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
                 objEmpCVData.ID_NO = objEmpCV.ID_NO
-
+                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
+                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
+                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
                 objEmpCVData.PASS_NO = objEmpCV.PASS_NO
@@ -2217,7 +2219,9 @@ Partial Class ProfileRepository
                      From lv In Context.HU_COMMEND_LEVEL.Where(Function(f) f.ID = p.COMMEND_LEVEL).DefaultIfEmpty
                      From t In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.COMMEND_TYPE).DefaultIfEmpty
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
-                     Where ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID
+                     From dhkt In Context.HU_COMMEND_LIST.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                     From httt In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.COMMEND_PAY And f.TYPE_CODE = "COMMEND_PAY" And f.ACTFLG = "A").DefaultIfEmpty
+            Where (ce.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID)
                      Order By p.EFFECT_DATE
                      Select New CommendDTO With {
                      .DECISION_NO = p.NO,
@@ -2228,7 +2232,11 @@ Partial Class ProfileRepository
                      .ORG_NAME = o.NAME_VN,
                      .COMMEND_TYPE_NAME = t.NAME,
                      .REMARK = p.REMARK,
-                     .MONEY = ce.MONEY}).ToList()
+                     .MONEY = ce.MONEY,
+                     .COMMEND_TITLE_NAME = dhkt.NAME,
+                     .YEAR = p.YEAR,
+                     .COMMEND_PAY_NAME = httt.NAME_VN,
+                     .SIGNER_NAME = p.SIGNER_NAME}).ToList()
 
             Return query.ToList
         Catch ex As Exception
@@ -2253,6 +2261,7 @@ Partial Class ProfileRepository
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = de.HU_EMPLOYEE_ID)
                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = emp.ORG_ID)
                      From title In Context.HU_TITLE.Where(Function(f) f.ID = emp.TITLE_ID).DefaultIfEmpty
+                     From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DISCIPLINE_REASON And f.ACTFLG = "A").DefaultIfEmpty
                      Where de.HU_EMPLOYEE_ID = _empId And p.STATUS_ID = ProfileCommon.OT_DISCIPLINE_STATUS.APPROVE_ID Order By p.EFFECT_DATE
                      Select New DisciplineDTO With {
                      .DECISION_NO = p.NO,
@@ -2263,7 +2272,9 @@ Partial Class ProfileRepository
                      .TITLE_NAME = title.NAME_VN,
                      .ORG_NAME = o.NAME_VN,
                      .DISCIPLINE_TYPE_NAME = t.NAME_VN,
-                     .MONEY = de.MONEY}).ToList()
+                     .MONEY = de.MONEY,
+                     .SIGN_DATE = p.SIGN_DATE,
+                     .DISCIPLINE_REASON_NAME = reason.NAME_VN}).ToList()
             Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")

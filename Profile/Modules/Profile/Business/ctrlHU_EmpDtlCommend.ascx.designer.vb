@@ -57,4 +57,13 @@ Partial Public Class ctrlHU_EmpDtlCommend
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgGrid As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''scriptBlock control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents scriptBlock As Global.Telerik.Web.UI.RadScriptBlock
 End Class
