@@ -150,7 +150,8 @@ Partial Class ProfileRepository
                                                        .COMMEND_LEVEL_NAME = p.ckt.NAME,
                                                        .COMMEND_LEVEL = p.p.COMMEND_LEVEL,
                                                        .FORM_ID = p.p.ID,
-                                                       .FORM_NAME = p.form.NAME_VN})
+                                                       .FORM_NAME = p.form.NAME_VN,
+                                                       .YEAR = p.p.YEAR})
 
             lstEmp = lstEmp.OrderBy(Sorts)
             Total = lstEmp.Count
@@ -404,11 +405,12 @@ Partial Class ProfileRepository
                                                        .COMMEND_TYPE_NAME = p.htkt.NAME,
                                                        .COMMEND_LEVEL_NAME = p.ckt.NAME,
                                                        .COMMEND_LEVEL = p.p.COMMEND_LEVEL,
-                                                        .HU_COMMEND_ORG_ID = p.org.ID,
-                                                               .OBJ_ORG_ID = p.org.ORG_ID,
-                                                               .OBJ_ORG_NAME = p.org_name.NAME_VN,
-                                                               .FORM_ID = p.p.FORM_ID,
-                                                               .FORM_NAME = p.form.NAME_VN})
+                                                       .HU_COMMEND_ORG_ID = p.org.ID,
+                                                       .OBJ_ORG_ID = p.org.ORG_ID,
+                                                       .OBJ_ORG_NAME = p.org_name.NAME_VN,
+                                                       .FORM_ID = p.p.FORM_ID,
+                                                       .FORM_NAME = p.form.NAME_VN,
+                                                       .YEAR = p.p.YEAR})
 
 
             Return obj.FirstOrDefault
@@ -458,7 +460,7 @@ Partial Class ProfileRepository
             objCommendData.POWER_PAY_ID = objCommend.POWER_PAY_ID
             objCommendData.UPLOADFILE = objCommend.UPLOADFILE
             objCommendData.NOTE = objCommend.NOTE
-            objCommendData.Year = objCommend.Year
+            objCommendData.YEAR = objCommend.YEAR
             objCommendData.IS_TAX = objCommend.IS_TAX
             objCommendData.PERIOD_TAX = objCommend.PERIOD_TAX
 
@@ -529,7 +531,7 @@ Partial Class ProfileRepository
             objCommendData.POWER_PAY_ID = objCommend.POWER_PAY_ID
             objCommendData.UPLOADFILE = objCommend.UPLOADFILE
             objCommendData.NOTE = objCommend.NOTE
-
+            objCommendData.YEAR = objCommend.YEAR
             objCommendData.IS_TAX = objCommend.IS_TAX
             objCommendData.PERIOD_TAX = objCommend.PERIOD_TAX
 

@@ -223,7 +223,10 @@ Public Class ctrlHU_CommendNewEdit
             End If
 
             InitControl()
-
+            If Not IsPostBack Then
+                ViewConfig(RightPane)
+                GirdConfig(rgEmployee)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -354,14 +357,14 @@ Public Class ctrlHU_CommendNewEdit
                     If Commend.FORM_ID IsNot Nothing Then
                         cboForm.SelectedValue = Commend.FORM_ID
                     End If
-
+                    txtYear.Text = Commend.YEAR.ToString()
                     txtUploadFile.Text = Commend.FILENAME
                     txtRemindLink.Text = If(Commend.UPLOADFILE Is Nothing, "", Commend.UPLOADFILE)
                     loadDatasource(txtUploadFile.Text)
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
 
                     If Commend.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                        RadPane2.Enabled = False
+                        RightPane.Enabled = False
                         CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     End If
 
@@ -576,7 +579,7 @@ Public Class ctrlHU_CommendNewEdit
 
                             objCommend.LIST_COMMEND_ORG = lstOrg
                         End If
-                        objCommend.Year = Decimal.Parse(txtYear.Text)
+                        objCommend.YEAR = Decimal.Parse(txtYear.Text)
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertCommend(objCommend, gID) Then
@@ -1932,7 +1935,7 @@ Public Class ctrlHU_CommendNewEdit
                                          btnFindSinger, txtSignerTitle, cboCommendObj, cboCommend_Title,
                                          cboCommendType, cboCommendPay, rntxtMoney, cboCommendList,
                                          cboPeriod, chkTAX, cboPeriodTax, txtCommend_Detail, txtRemark, txtUpload,
-                                         btnUploadFile, btnDownload, cboForm)
+                                         btnUploadFile, btnDownload, cboForm, txtYear)
                         Utilities.EnabledGrid(rgEmployee, False, False)
                         Utilities.EnabledGrid(rgOrg, False, False)
                     End If
