@@ -1973,6 +1973,16 @@ Partial Public Class CommonRepository
 
 #Region "Organization"
 
+    Public Function GetOrganizationList() As List(Of OrganizationDTO)
+        Dim lstOrgs As New List(Of OrganizationDTO)
+        lstOrgs = (From o In Context.HU_ORGANIZATION
+                   Order By o.NAME_VN
+                   Select New OrganizationDTO With {
+                      .ID = o.ID,
+                      .DESCRIPTION_PATH = o.DESCRIPTION_PATH}).ToList
+        Return lstOrgs
+    End Function
+
     Public Function GetOrganizationAll() As List(Of OrganizationDTO)
         Dim lstOrgs As New List(Of OrganizationDTO)
         lstOrgs = (From p In Context.HU_ORGANIZATION

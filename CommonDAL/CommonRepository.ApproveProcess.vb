@@ -15,6 +15,18 @@ Imports System.Configuration
 Partial Public Class CommonRepository
 
 #Region "Process Setup"
+    Public Function GetTitleList() As List(Of OtherListDTO)
+        Try
+            Dim listTitle = (From t In Context.OT_OTHER_LIST
+                             Where t.TYPE_CODE = "TITLE_LEVEL"
+                             Select New OtherListDTO With {
+                                .CODE = t.CODE, .NAME_VN = t.NAME_VN
+                             }).ToList()
+            Return listTitle
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetApproveProcess() As List(Of ApproveProcessDTO)
 
         Try
@@ -199,14 +211,22 @@ Partial Public Class CommonRepository
                 .TEMPLATE_ID = item.TEMPLATE_ID,
                 .EMPLOYEE_ID = item.EMPLOYEE_ID,
                 .ORG_ID = item.ORG_ID,
+                .TITLE_ID = item.TITLE_ID,
+                .SIGN_ID = item.SIGN_ID,
+                .FROM_HOUR = item.FROM_HOUR,
+                .TO_HOUR = item.TO_HOUR,
+                .FROM_DAY = item.FROM_DAY,
+                .TO_DAY = item.TO_DAY,
                 .FROM_DATE = item.FROM_DATE,
                 .TO_DATE = item.TO_DATE,
+                .MAIL_ACCEPTED = item.MAIL_ACCEPTED,
+                .MAIL_ACCEPTING = item.MAIL_ACCEPTING,
                 .CREATED_BY = log.Username,
                 .CREATED_LOG = log.ComputerName,
                 .CREATED_DATE = Date.Now,
                 .MODIFIED_BY = log.Username,
                 .MODIFIED_DATE = Date.Now,
-                .MODIFIED_LOG = log.ComputerName
+            .MODIFIED_LOG = log.ComputerName
             }
 
             Context.SE_APP_SETUP.AddObject(itemInsert)
@@ -228,8 +248,17 @@ Partial Public Class CommonRepository
                 With itemUpdate
                     .PROCESS_ID = item.PROCESS_ID
                     .TEMPLATE_ID = item.TEMPLATE_ID
+                    .TITLE_ID = item.TITLE_ID
+                    .SIGN_ID = item.SIGN_ID
+                    .FROM_HOUR = item.FROM_HOUR
+                    .TO_HOUR = item.TO_HOUR
+                    .FROM_DAY = item.FROM_DAY
+                    .TO_DAY = item.TO_DAY
                     .FROM_DATE = item.FROM_DATE
                     .TO_DATE = item.TO_DATE
+
+                    .MAIL_ACCEPTED = item.MAIL_ACCEPTED
+                    .MAIL_ACCEPTING = item.MAIL_ACCEPTING
 
                     .MODIFIED_BY = log.Username
                     .MODIFIED_DATE = Date.Now

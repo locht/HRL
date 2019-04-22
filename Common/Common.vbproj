@@ -211,6 +211,9 @@
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.ApproveUserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\CommonBusiness\Common.CommonBusiness.AuditLogDtl.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.ComboBoxDataDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

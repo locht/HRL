@@ -9,6 +9,19 @@ Partial Public Class CommonRepository
 
 
 #Region "Process Setup"
+    Public Function GetTitleList() As List(Of OtherListDTO)
+        Try
+            Using rep As New CommonBusinessClient
+                Try
+                    Return rep.GetTitleList
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetApproveProcessList() As List(Of ApproveProcessDTO)
         Try
             Using rep As New CommonBusinessClient
