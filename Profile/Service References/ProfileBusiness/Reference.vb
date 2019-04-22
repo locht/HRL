@@ -26434,6 +26434,36 @@ Namespace ProfileBusiness
         Private NOI_VAO_DOANField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION1Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION10Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION2Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION3Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION4Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION5Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION6Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION7Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION8Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OPPTION9Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PASS_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27240,6 +27270,136 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.NOI_VAO_DOANField, value) <> true) Then
                     Me.NOI_VAO_DOANField = value
                     Me.RaisePropertyChanged("NOI_VAO_DOAN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION1() As String
+            Get
+                Return Me.OPPTION1Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OPPTION1Field, value) <> true) Then
+                    Me.OPPTION1Field = value
+                    Me.RaisePropertyChanged("OPPTION1")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION10() As System.Nullable(Of Date)
+            Get
+                Return Me.OPPTION10Field
+            End Get
+            Set
+                If (Me.OPPTION10Field.Equals(value) <> true) Then
+                    Me.OPPTION10Field = value
+                    Me.RaisePropertyChanged("OPPTION10")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION2() As String
+            Get
+                Return Me.OPPTION2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OPPTION2Field, value) <> true) Then
+                    Me.OPPTION2Field = value
+                    Me.RaisePropertyChanged("OPPTION2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION3() As String
+            Get
+                Return Me.OPPTION3Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OPPTION3Field, value) <> true) Then
+                    Me.OPPTION3Field = value
+                    Me.RaisePropertyChanged("OPPTION3")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION4() As String
+            Get
+                Return Me.OPPTION4Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OPPTION4Field, value) <> true) Then
+                    Me.OPPTION4Field = value
+                    Me.RaisePropertyChanged("OPPTION4")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION5() As String
+            Get
+                Return Me.OPPTION5Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OPPTION5Field, value) <> true) Then
+                    Me.OPPTION5Field = value
+                    Me.RaisePropertyChanged("OPPTION5")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION6() As System.Nullable(Of Date)
+            Get
+                Return Me.OPPTION6Field
+            End Get
+            Set
+                If (Me.OPPTION6Field.Equals(value) <> true) Then
+                    Me.OPPTION6Field = value
+                    Me.RaisePropertyChanged("OPPTION6")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION7() As System.Nullable(Of Date)
+            Get
+                Return Me.OPPTION7Field
+            End Get
+            Set
+                If (Me.OPPTION7Field.Equals(value) <> true) Then
+                    Me.OPPTION7Field = value
+                    Me.RaisePropertyChanged("OPPTION7")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION8() As System.Nullable(Of Date)
+            Get
+                Return Me.OPPTION8Field
+            End Get
+            Set
+                If (Me.OPPTION8Field.Equals(value) <> true) Then
+                    Me.OPPTION8Field = value
+                    Me.RaisePropertyChanged("OPPTION8")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OPPTION9() As System.Nullable(Of Date)
+            Get
+                Return Me.OPPTION9Field
+            End Get
+            Set
+                If (Me.OPPTION9Field.Equals(value) <> true) Then
+                    Me.OPPTION9Field = value
+                    Me.RaisePropertyChanged("OPPTION9")
                 End If
             End Set
         End Property

@@ -2207,6 +2207,16 @@
       <xs:element minOccurs="0" name="NGAY_VAO_DOAN" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NOI_VAO_DANG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NOI_VAO_DOAN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION10" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION6" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION7" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION8" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION9" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PASS_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PASS_EXPIRE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PASS_NO" nillable="true" type="xs:string" />

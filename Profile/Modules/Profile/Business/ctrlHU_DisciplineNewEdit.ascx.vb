@@ -184,6 +184,10 @@ Public Class ctrlHU_DisciplineNewEdit
                         Me.ViewDescription = Translate("Sửa kỷ luật")
                 End Select
             End If
+            If Not IsPostBack Then
+                ViewConfig(RadPane2)
+                GirdConfig(rgEmployee)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
