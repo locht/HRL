@@ -151,11 +151,6 @@ Public Class ctrlHU_EmpDtlProfile
                         txtOrgName.ToolTip = Utilities.DrawTreeByString(EmployeeInfo.ORG_DESC)
 
                         FillDataInControls(EmployeeInfo.ORG_ID)
-
-                        'If EmployeeInfo.ORG_DESC.Split(";").Count > 1 Then
-                        '    Dim orgName2 = EmployeeInfo.ORG_DESC.ToString.Split(";")(1)
-                        '    txtOrgName2.Text = orgName2.Substring(orgName2.IndexOf(" - ") + 3)
-                        'End If
                         cboTitle.SelectedValue = EmployeeInfo.TITLE_ID
                         cboTitle.Text = EmployeeInfo.TITLE_NAME_VN
                         txtTitleGroup.Text = EmployeeInfo.TITLE_GROUP_NAME
@@ -175,10 +170,6 @@ Public Class ctrlHU_EmpDtlProfile
                             txtDirectManager.Text = EmployeeInfo.DIRECT_MANAGER_NAME
                             hidDirectManager.Value = EmployeeInfo.DIRECT_MANAGER
                         End If
-                        'If EmployeeInfo.LEVEL_MANAGER IsNot Nothing Then
-                        '    txtLevelManager.Text = EmployeeInfo.LEVEL_MANAGER_NAME
-                        '    hidLevelManager.Value = EmployeeInfo.LEVEL_MANAGER
-                        'End If
                         txtTimeID.Text = EmployeeInfo.ITIME_ID
 
                         If EmployeeInfo.WORK_STATUS IsNot Nothing Then
@@ -239,6 +230,54 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsNumeric(empCV.WARDEMP_ID) Then
                                 cbWARDEMP_ID.SelectedValue = empCV.WARDEMP_ID
                                 cbWARDEMP_ID.Text = empCV.WARDEMP_NAME
+                            End If
+                            '=========================================================
+                            rtSkill.Text = empCV.SKILL
+                            If IsNumeric(empCV.DANG) Then
+                                ckDANG.Checked = CType(empCV.DANG, Boolean)
+                            End If
+                            If IsNumeric(empCV.CA) Then
+                                ckCA.Checked = CType(empCV.CA, Boolean)
+                            End If
+                            If IsNumeric(empCV.CONG_DOAN) Then
+                                ckCONG_DOAN.Checked = CType(empCV.CONG_DOAN, Boolean)
+                            End If
+                            rtCV_BANTT.Text = empCV.CV_BANTT
+                            If IsDate(empCV.NGAY_TG_BANTT) Then
+                                rdNgay_TG_BanTT.SelectedDate = empCV.NGAY_TG_BANTT
+                            End If
+                            If IsNumeric(empCV.NU_CONG) Then
+                                ckNU_CONG.Checked = CType(empCV.NU_CONG, Boolean)
+                            End If
+                            rtCV_Ban_Nu_Cong.Text = empCV.CV_BAN_NU_CONG
+                            If IsDate(empCV.NGAY_TG_BAN_NU_CONG) Then
+                                rdNgay_TG_Ban_Nu_Cong.SelectedDate = empCV.NGAY_TG_BAN_NU_CONG
+                            End If
+                            If IsDate(empCV.NGAY_NHAP_NGU_CA) Then
+                                rdNgay_Nhap_Ngu_CA.SelectedDate = empCV.NGAY_NHAP_NGU_CA
+                            End If
+                            If IsDate(empCV.NGAY_XUAT_NGU_CA) Then
+                                rdNgay_Xuat_Ngu_CA.SelectedDate = empCV.NGAY_XUAT_NGU_CA
+                            End If
+                            rtDV_Xuat_Ngu_CA.Text = empCV.DV_XUAT_NGU_CA
+                            If IsNumeric(empCV.QD) Then
+                                ckQD.Checked = CType(empCV.QD, Boolean)
+                            End If
+                            If IsDate(empCV.NGAY_NHAP_NGU_QD) Then
+                                rdNgay_Nhap_Ngu_QD.SelectedDate = empCV.NGAY_NHAP_NGU_QD
+                            End If
+                            If IsDate(empCV.NGAY_XUAT_NGU_QD) Then
+                                rdNgay_Xuat_Ngu_QD.SelectedDate = empCV.NGAY_XUAT_NGU_QD
+                            End If
+                            rtDV_Xuat_Ngu_QD.Text = empCV.DV_XUAT_NGU_QD
+                            If IsNumeric(empCV.THUONG_BINH) Then
+                                ckThuong_Binh.Checked = CType(empCV.THUONG_BINH, Boolean)
+                            End If
+                            If IsNumeric(empCV.HANG_THUONG_BINH) Then
+                                cbHang_Thuong_Binh.SelectedValue = empCV.HANG_THUONG_BINH
+                            End If
+                            If IsNumeric(empCV.GD_CHINH_SACH) Then
+                                cbGD_Chinh_Sach.SelectedValue = empCV.GD_CHINH_SACH
                             End If
                             '===============================================
 
@@ -546,7 +585,9 @@ Public Class ctrlHU_EmpDtlProfile
                                        chkDoanPhi, btnFindDirect, btnFindOrg,
                                        rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
-                                       rtEmpCode_OLD, rtBookNo, rtOtherName)
+                                       rtEmpCode_OLD, rtBookNo, rtOtherName, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
+                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill)
                     If Not Me.AllowCreate Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -588,7 +629,10 @@ Public Class ctrlHU_EmpDtlProfile
                                        btnFindDirect, btnFindOrg,
                                        rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
-                                       rtEmpCode_OLD, rtBookNo, rtOtherName)
+                                       rtEmpCode_OLD, rtBookNo, rtOtherName,
+                                       cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
+                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill)
                     If Not Me.AllowModify Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -627,7 +671,10 @@ Public Class ctrlHU_EmpDtlProfile
                                        btnFindDirect, btnFindOrg,
                                        rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
-                                       rtEmpCode_OLD, rtBookNo, rtOtherName)
+                                       rtEmpCode_OLD, rtBookNo, rtOtherName,
+                                       cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
+                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill)
 
             End Select
             rep.Dispose()
@@ -1315,9 +1362,6 @@ Public Class ctrlHU_EmpDtlProfile
             If IsNumeric(cbWARDEMP_ID.SelectedValue) Then
                 EmpCV.WARDEMP_ID = cbWARDEMP_ID.SelectedValue
             End If
-            'If cboBIRTH_PLACE.SelectedValue <> "" Then
-            '    EmpCV.BIRTH_PLACE = Decimal.Parse(cboBIRTH_PLACE.SelectedValue)
-            'End If
             If cboNative.SelectedValue <> "" Then
                 EmpCV.NATIVE = Decimal.Parse(cboNative.SelectedValue)
             End If
@@ -1414,7 +1458,55 @@ Public Class ctrlHU_EmpDtlProfile
             If IsDate(rdOpption10.SelectedDate) Then
                 EmpCV.OPPTION10 = rdOpption10.SelectedDate
             End If
-
+            '=============================================
+            EmpCV.SKILL = rtSkill.Text
+            If IsNumeric(ckDANG.Checked) Then
+                EmpCV.DANG = CType(ckDANG.Checked, Decimal)
+            End If
+            If IsNumeric(ckCA.Checked) Then
+                EmpCV.CA = CType(ckCA.Checked, Decimal)
+            End If
+            If IsNumeric(ckCONG_DOAN.Checked) Then
+                EmpCV.CONG_DOAN = CType(ckCONG_DOAN.Checked, Decimal)
+            End If
+            EmpCV.CV_BANTT = rtCV_BANTT.Text
+            If IsDate(rdNgay_TG_BanTT.SelectedDate) Then
+                EmpCV.NGAY_TG_BANTT = rdNgay_TG_BanTT.SelectedDate
+            End If
+            If IsNumeric(ckNU_CONG.Checked) Then
+                EmpCV.NU_CONG = CType(ckNU_CONG.Checked, Decimal)
+            End If
+            EmpCV.CV_BAN_NU_CONG = rtCV_Ban_Nu_Cong.Text
+            If IsDate(rdNgay_TG_Ban_Nu_Cong.SelectedDate) Then
+                EmpCV.NGAY_TG_BAN_NU_CONG = rdNgay_TG_Ban_Nu_Cong.SelectedDate
+            End If
+            If IsDate(rdNgay_Nhap_Ngu_CA.SelectedDate) Then
+                EmpCV.NGAY_NHAP_NGU_CA = rdNgay_Nhap_Ngu_CA.SelectedDate
+            End If
+            If IsDate(rdNgay_Xuat_Ngu_CA.SelectedDate) Then
+                EmpCV.NGAY_XUAT_NGU_CA = rdNgay_Xuat_Ngu_CA.SelectedDate
+            End If
+            EmpCV.DV_XUAT_NGU_CA = rtDV_Xuat_Ngu_CA.Text
+            If IsNumeric(ckQD.Checked) Then
+                EmpCV.QD = CType(ckQD.Checked, Decimal)
+            End If
+            If IsDate(rdNgay_Nhap_Ngu_QD.SelectedDate) Then
+                EmpCV.NGAY_NHAP_NGU_QD = rdNgay_Nhap_Ngu_QD.SelectedDate
+            End If
+            If IsDate(rdNgay_Xuat_Ngu_QD.SelectedDate) Then
+                EmpCV.NGAY_XUAT_NGU_QD = rdNgay_Xuat_Ngu_QD.SelectedDate
+            End If
+            EmpCV.DV_XUAT_NGU_QD = rtDV_Xuat_Ngu_QD.Text
+            If IsNumeric(ckThuong_Binh.Checked) Then
+                EmpCV.THUONG_BINH = CType(ckThuong_Binh.Checked, Decimal)
+            End If
+            If IsNumeric(cbHang_Thuong_Binh.SelectedValue) Then
+                EmpCV.HANG_THUONG_BINH = cbHang_Thuong_Binh.SelectedValue
+            End If
+            If IsNumeric(cbGD_Chinh_Sach.SelectedValue) Then
+                EmpCV.GD_CHINH_SACH = cbGD_Chinh_Sach.SelectedValue
+            End If
+            '=============================================
             EmpHealth = New EmployeeHealthDTO
             EmpHealth.CAN_NANG = txtCanNang.Text
             EmpHealth.CHIEU_CAO = txtChieuCao.Text

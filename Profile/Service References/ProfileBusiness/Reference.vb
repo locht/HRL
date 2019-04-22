@@ -27044,6 +27044,9 @@ Namespace ProfileBusiness
         Private BIRTH_PLACEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CAField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CAREERField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27051,6 +27054,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CHUC_VU_DOANField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONG_DOANField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTACT_PERField As String
@@ -27068,6 +27074,15 @@ Namespace ProfileBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CV_BANTTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CV_BAN_NU_CONGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DANGField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DANG_PHIField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27080,16 +27095,28 @@ Namespace ProfileBusiness
         Private DOAN_PHIField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DV_XUAT_NGU_CAField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DV_XUAT_NGU_QDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FULL_NAME_VNField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GD_CHINH_SACHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GENDERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GENDER_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HANG_THUONG_BINHField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HOME_PHONEField As String
@@ -27173,16 +27200,37 @@ Namespace ProfileBusiness
         Private NAV_WARD_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_NHAP_NGU_CAField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_NHAP_NGU_QDField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_TG_BANTTField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_TG_BAN_NU_CONGField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NGAY_VAO_DANGField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NGAY_VAO_DOANField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_XUAT_NGU_CAField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_XUAT_NGU_QDField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOI_VAO_DANGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOI_VAO_DOANField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NU_CONGField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OPPTION1Field As String
@@ -27269,10 +27317,19 @@ Namespace ProfileBusiness
         Private PROVINCENQ_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private QDField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RELIGIONField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RELIGION_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SKILLField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private THUONG_BINHField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VISAField As String
@@ -27415,6 +27472,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CA() As System.Nullable(Of Boolean)
+            Get
+                Return Me.CAField
+            End Get
+            Set
+                If (Me.CAField.Equals(value) <> true) Then
+                    Me.CAField = value
+                    Me.RaisePropertyChanged("CA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CAREER() As String
             Get
                 Return Me.CAREERField
@@ -27449,6 +27519,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CHUC_VU_DOANField, value) <> true) Then
                     Me.CHUC_VU_DOANField = value
                     Me.RaisePropertyChanged("CHUC_VU_DOAN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONG_DOAN() As System.Nullable(Of Boolean)
+            Get
+                Return Me.CONG_DOANField
+            End Get
+            Set
+                If (Me.CONG_DOANField.Equals(value) <> true) Then
+                    Me.CONG_DOANField = value
+                    Me.RaisePropertyChanged("CONG_DOAN")
                 End If
             End Set
         End Property
@@ -27519,6 +27602,45 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CV_BANTT() As String
+            Get
+                Return Me.CV_BANTTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CV_BANTTField, value) <> true) Then
+                    Me.CV_BANTTField = value
+                    Me.RaisePropertyChanged("CV_BANTT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CV_BAN_NU_CONG() As String
+            Get
+                Return Me.CV_BAN_NU_CONGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CV_BAN_NU_CONGField, value) <> true) Then
+                    Me.CV_BAN_NU_CONGField = value
+                    Me.RaisePropertyChanged("CV_BAN_NU_CONG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DANG() As System.Nullable(Of Boolean)
+            Get
+                Return Me.DANGField
+            End Get
+            Set
+                If (Me.DANGField.Equals(value) <> true) Then
+                    Me.DANGField = value
+                    Me.RaisePropertyChanged("DANG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property DANG_PHI() As System.Nullable(Of Boolean)
             Get
                 Return Me.DANG_PHIField
@@ -27571,6 +27693,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DV_XUAT_NGU_CA() As String
+            Get
+                Return Me.DV_XUAT_NGU_CAField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DV_XUAT_NGU_CAField, value) <> true) Then
+                    Me.DV_XUAT_NGU_CAField = value
+                    Me.RaisePropertyChanged("DV_XUAT_NGU_CA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DV_XUAT_NGU_QD() As String
+            Get
+                Return Me.DV_XUAT_NGU_QDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DV_XUAT_NGU_QDField, value) <> true) Then
+                    Me.DV_XUAT_NGU_QDField = value
+                    Me.RaisePropertyChanged("DV_XUAT_NGU_QD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EMPLOYEE_ID() As Decimal
             Get
                 Return Me.EMPLOYEE_IDField
@@ -27597,6 +27745,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GD_CHINH_SACH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GD_CHINH_SACHField
+            End Get
+            Set
+                If (Me.GD_CHINH_SACHField.Equals(value) <> true) Then
+                    Me.GD_CHINH_SACHField = value
+                    Me.RaisePropertyChanged("GD_CHINH_SACH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property GENDER() As System.Nullable(Of Decimal)
             Get
                 Return Me.GENDERField
@@ -27618,6 +27779,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.GENDER_NAMEField, value) <> true) Then
                     Me.GENDER_NAMEField = value
                     Me.RaisePropertyChanged("GENDER_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HANG_THUONG_BINH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.HANG_THUONG_BINHField
+            End Get
+            Set
+                If (Me.HANG_THUONG_BINHField.Equals(value) <> true) Then
+                    Me.HANG_THUONG_BINHField = value
+                    Me.RaisePropertyChanged("HANG_THUONG_BINH")
                 End If
             End Set
         End Property
@@ -27974,6 +28148,58 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_NHAP_NGU_CA() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_NHAP_NGU_CAField
+            End Get
+            Set
+                If (Me.NGAY_NHAP_NGU_CAField.Equals(value) <> true) Then
+                    Me.NGAY_NHAP_NGU_CAField = value
+                    Me.RaisePropertyChanged("NGAY_NHAP_NGU_CA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_NHAP_NGU_QD() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_NHAP_NGU_QDField
+            End Get
+            Set
+                If (Me.NGAY_NHAP_NGU_QDField.Equals(value) <> true) Then
+                    Me.NGAY_NHAP_NGU_QDField = value
+                    Me.RaisePropertyChanged("NGAY_NHAP_NGU_QD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_TG_BANTT() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_TG_BANTTField
+            End Get
+            Set
+                If (Me.NGAY_TG_BANTTField.Equals(value) <> true) Then
+                    Me.NGAY_TG_BANTTField = value
+                    Me.RaisePropertyChanged("NGAY_TG_BANTT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_TG_BAN_NU_CONG() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_TG_BAN_NU_CONGField
+            End Get
+            Set
+                If (Me.NGAY_TG_BAN_NU_CONGField.Equals(value) <> true) Then
+                    Me.NGAY_TG_BAN_NU_CONGField = value
+                    Me.RaisePropertyChanged("NGAY_TG_BAN_NU_CONG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property NGAY_VAO_DANG() As System.Nullable(Of Date)
             Get
                 Return Me.NGAY_VAO_DANGField
@@ -28000,6 +28226,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_XUAT_NGU_CA() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_XUAT_NGU_CAField
+            End Get
+            Set
+                If (Me.NGAY_XUAT_NGU_CAField.Equals(value) <> true) Then
+                    Me.NGAY_XUAT_NGU_CAField = value
+                    Me.RaisePropertyChanged("NGAY_XUAT_NGU_CA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_XUAT_NGU_QD() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_XUAT_NGU_QDField
+            End Get
+            Set
+                If (Me.NGAY_XUAT_NGU_QDField.Equals(value) <> true) Then
+                    Me.NGAY_XUAT_NGU_QDField = value
+                    Me.RaisePropertyChanged("NGAY_XUAT_NGU_QD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property NOI_VAO_DANG() As String
             Get
                 Return Me.NOI_VAO_DANGField
@@ -28021,6 +28273,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.NOI_VAO_DOANField, value) <> true) Then
                     Me.NOI_VAO_DOANField = value
                     Me.RaisePropertyChanged("NOI_VAO_DOAN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NU_CONG() As System.Nullable(Of Boolean)
+            Get
+                Return Me.NU_CONGField
+            End Get
+            Set
+                If (Me.NU_CONGField.Equals(value) <> true) Then
+                    Me.NU_CONGField = value
+                    Me.RaisePropertyChanged("NU_CONG")
                 End If
             End Set
         End Property
@@ -28390,6 +28655,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property QD() As System.Nullable(Of Boolean)
+            Get
+                Return Me.QDField
+            End Get
+            Set
+                If (Me.QDField.Equals(value) <> true) Then
+                    Me.QDField = value
+                    Me.RaisePropertyChanged("QD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RELIGION() As System.Nullable(Of Decimal)
             Get
                 Return Me.RELIGIONField
@@ -28411,6 +28689,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.RELIGION_NAMEField, value) <> true) Then
                     Me.RELIGION_NAMEField = value
                     Me.RaisePropertyChanged("RELIGION_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SKILL() As String
+            Get
+                Return Me.SKILLField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SKILLField, value) <> true) Then
+                    Me.SKILLField = value
+                    Me.RaisePropertyChanged("SKILL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property THUONG_BINH() As System.Nullable(Of Boolean)
+            Get
+                Return Me.THUONG_BINHField
+            End Get
+            Set
+                If (Me.THUONG_BINHField.Equals(value) <> true) Then
+                    Me.THUONG_BINHField = value
+                    Me.RaisePropertyChanged("THUONG_BINH")
                 End If
             End Set
         End Property

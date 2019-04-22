@@ -1,5 +1,5 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_TranningForeign.ascx.vb"
-    Inherits="Profile.ctrlHU_TranningForeign" %>
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_TraniningManagement.ascx.vb"
+    Inherits="Profile.ctrlHU_TraniningManagement" %>
 <%@ Import Namespace="Common" %>
 <%@ Import Namespace="Framework.UI.Utilities" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
@@ -18,14 +18,14 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                        <asp:Label ID="lbFromDate" runat="server" Text="Ngày đi"></asp:Label>
+                            <asp:Label ID="lbFromDate" runat="server" Text="Thời gian bắt đầu"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                        <asp:Label ID="Label2" runat="server" Text="Ngày về"></asp:Label>
+                            <asp:Label ID="lbToDate" runat="server" Text="Thời gian kết thúc"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
@@ -51,44 +51,41 @@
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE"
-                        ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID">
+                    <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE" ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID">
                         <Columns>
-                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="EMPLOYEE_ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="STATUS_CODE" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME"
-                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE"
+                                UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME"
+                                UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
                             <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                             </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="Ngày đi" DataField="START_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="START_DATE" UniqueName="START_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}">
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" SortExpression="TITLE_NAME"
+                                UniqueName="TITLE_NAME" />
+                            <tlk:GridDateTimeColumn HeaderText="Ngày cấp văn bằng chứng chỉ" DataField="DEGREE_DATE" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="DEGREE_DATE" UniqueName="DEGREE_DATE" DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="Ngày về" DataField="EXPIRE_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}">
+                            <tlk:GridBoundColumn HeaderText="Chương trình đào tạo" DataField="PROGRAM_TRAINING" SortExpression="PROGRAM_TRAINING"
+                                UniqueName="PROGRAM_TRAINING" />
+                            <tlk:GridBoundColumn HeaderText="Hình thức đào tạo" DataField="TRAINNING_NAME" SortExpression="TRAINNING_NAME"
+                                UniqueName="TRAINNING_NAME" />
+                            <tlk:GridBoundColumn HeaderText="Đơn vị đào tạo" DataField="UNIT" SortExpression="UNIT" UniqueName="UNIT" />
+                            <tlk:GridBoundColumn HeaderText="Bằng cấp/chứng chỉ" DataField="CERTIFICATE" SortExpression="CERTIFICATE"
+                                UniqueName="CERTIFICATE" />
+                            <tlk:GridBoundColumn HeaderText="Địa điểm" DataField="LOCATION" SortExpression="LOCATION" UniqueName="LOCATION" />
+                            <tlk:GridBoundColumn HeaderText="Chi phí" DataField="COST" SortExpression="COST" UniqueName="COST" />
+                            <tlk:GridBoundColumn HeaderText="Kết quả đào tạo" DataField="RESULT_TRAIN" SortExpression="RESULT_TRAIN"
+                                UniqueName="RESULT_TRAIN" />
+                            <tlk:GridDateTimeColumn HeaderText="Thời hạn văn bằng chứng chỉ" DataField="DEGREE_EXPIRE_DATE" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="DEGREE_EXPIRE_DATE" UniqueName="DEGREE_EXPIRE_DATE" DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
-                                SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
-                            <tlk:GridDateTimeColumn HeaderText="Ngày ký" DataField="SIGN_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="SIGN_DATE" UniqueName="SIGN_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}">
-                            </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Loại công tác" DataField="TRAINNING_NAME"
-                                SortExpression="TRAINNING_NAME" UniqueName="TRAINNING_NAME" />
-                                <tlk:GridBoundColumn HeaderText="Nội dung" DataField="CONTENT"
-                                SortExpression="CONTENT" UniqueName="CONTENT" />
-                            <tlk:GridBoundColumn HeaderText="Địa điểm" DataField="LOCATION"
-                                SortExpression="LOCATION" UniqueName="LOCATION" />--%>
+                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK" UniqueName="REMARK" />
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle Width="120px" />
@@ -139,7 +136,7 @@
                 args.set_cancel(true);
                 return;
             }
-            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_TrainingForeignNewEdit&group=Business' + extented, "_self");
+            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_TrainingManageNewEdit&group=Business' + extented, "_self");
         }
 
         function OpenEditContract() {
@@ -153,7 +150,7 @@
             var emp_id = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
 
 
-            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_TrainingForeignNewEdit&group=Business&IDSelect=' + id + '&empid=' + emp_id, "_self"); /*
+            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_TrainingManageNewEdit&group=Business&IDSelect=' + id + '&empid=' + emp_id, "_self"); /*
 
             oWindow.setSize(1020, $(window).height());
             oWindow.center(); */
@@ -237,13 +234,13 @@
                 args.set_cancel(true);
                 return;
             }
-//            if (bCheck > 1) {
-//                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-//                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-//                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-//                args.set_cancel(true);
-//                return;
-//            }
+            //            if (bCheck > 1) {
+            //                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+            //                var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+            //                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+            //                args.set_cancel(true);
+            //                return;
+            //            }
             enableAjax = false;
         }
     </script>

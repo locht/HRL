@@ -83,8 +83,8 @@
                                 ItemStyle-HorizontalAlign="Center" SortExpression="SIGN_DATE" UniqueName="SIGN_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Loại công tác" DataField=""
-                                SortExpression="" UniqueName="" />
+                            <tlk:GridBoundColumn HeaderText="Loại công tác" DataField="TRAINNING_NAME"
+                                SortExpression="TRAINNING_NAME" UniqueName="TRAINNING_NAME" />
                                 <tlk:GridBoundColumn HeaderText="Nội dung" DataField="CONTENT"
                                 SortExpression="CONTENT" UniqueName="CONTENT" />
                             <tlk:GridBoundColumn HeaderText="Địa điểm" DataField="LOCATION"

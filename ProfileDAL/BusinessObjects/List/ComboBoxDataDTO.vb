@@ -7,6 +7,8 @@
     Public Property GET_REASON As Boolean
     Public Property LIST_REASON As List(Of OtherListDTO)
 
+    
+
     'Loại công tác.
     Public Property GET_TYPE_WORK As Boolean
     Public Property LIST_TYPE_WORK As List(Of OtherListDTO)
