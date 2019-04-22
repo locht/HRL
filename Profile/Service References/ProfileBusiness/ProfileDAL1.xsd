@@ -2160,11 +2160,11 @@
       <xs:element minOccurs="0" name="BANK_NO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="BIRTH_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="BIRTH_PLACE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CA" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CA" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="CAREER" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CHUC_VU_DANG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CHUC_VU_DOAN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CONG_DOAN" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CONG_DOAN" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="CONTACT_PER" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CONTACT_PER_PHONE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
@@ -2172,13 +2172,13 @@
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CV_BANTT" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CV_BAN_NU_CONG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DANG" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DANG" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="DANG_PHI" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="DISTRICTEMP_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="DISTRICTEMP_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DOAN_PHI" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="DV_XUAT_NGU_CA" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DV_XUAT_NGU_QD" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DV_XUAT_NGU_QD" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EMPLOYEE_ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="FULL_NAME_VN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GD_CHINH_SACH" nillable="true" type="xs:decimal" />
@@ -2222,7 +2222,7 @@
       <xs:element minOccurs="0" name="NGAY_XUAT_NGU_QD" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NOI_VAO_DANG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NOI_VAO_DOAN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="NU_CONG" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NU_CONG" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="OPPTION1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OPPTION10" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="OPPTION2" nillable="true" type="xs:string" />
@@ -2251,11 +2251,11 @@
       <xs:element minOccurs="0" name="PROVINCEEMP_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PROVINCENQ_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="PROVINCENQ_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="QD" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="QD" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="RELIGION" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="RELIGION_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SKILL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="THUONG_BINH" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="THUONG_BINH" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="VISA" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VISA_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VISA_EXPIRE" nillable="true" type="xs:dateTime" />

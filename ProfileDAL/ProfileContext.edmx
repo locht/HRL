@@ -523,9 +523,9 @@
             <Property Name="OPPTION9" Type="date" Nullable="true" />
             <Property Name="OPPTION10" Type="date" Nullable="true" />
             <Property Name="SKILL" Type="nclob" Nullable="true" />
-            <Property Name="DANG" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CA" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CONG_DOAN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DANG" Type="number" Nullable="true" Precision="5" />
+            <Property Name="CA" Type="number" Nullable="true" Precision="5" />
+            <Property Name="CONG_DOAN" Type="number" Nullable="true" Precision="5" />
             <Property Name="CV_BANTT" Type="nclob" Nullable="true" />
             <Property Name="NGAY_TG_BANTT" Type="date" Nullable="true" />
             <Property Name="NU_CONG" Type="number" Nullable="true" Precision="38" />
@@ -534,11 +534,11 @@
             <Property Name="NGAY_NHAP_NGU_CA" Type="date" Nullable="true" />
             <Property Name="NGAY_XUAT_NGU_CA" Type="date" Nullable="true" />
             <Property Name="DV_XUAT_NGU_CA" Type="nclob" Nullable="true" />
-            <Property Name="QD" Type="number" Nullable="true" Precision="38" />
+            <Property Name="QD" Type="number" Nullable="true" Precision="5" />
             <Property Name="NGAY_NHAP_NGU_QD" Type="date" Nullable="true" />
             <Property Name="NGAY_XUAT_NGU_QD" Type="date" Nullable="true" />
             <Property Name="DV_XUAT_NGU_QD" Type="nclob" Nullable="true" />
-            <Property Name="THUONG_BINH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="THUONG_BINH" Type="number" Nullable="true" Precision="5" />
             <Property Name="HANG_THUONG_BINH" Type="number" Nullable="true" Precision="38" />
             <Property Name="GD_CHINH_SACH" Type="number" Nullable="true" Precision="38" />
         </EntityType>
@@ -4198,9 +4198,9 @@
           <Property Type="DateTime" Name="OPPTION9" />
           <Property Type="DateTime" Name="OPPTION10" />
           <Property Type="String" Name="SKILL" />
-          <Property Type="Decimal" Name="DANG" />
-          <Property Type="Decimal" Name="CA" />
-          <Property Type="Decimal" Name="CONG_DOAN" />
+          <Property Type="Int16" Name="DANG" />
+          <Property Type="Int16" Name="CA" />
+          <Property Type="Int16" Name="CONG_DOAN" />
           <Property Type="String" Name="CV_BANTT" />
           <Property Type="DateTime" Name="NGAY_TG_BANTT" />
           <Property Type="Decimal" Name="NU_CONG" />
@@ -4209,11 +4209,11 @@
           <Property Type="DateTime" Name="NGAY_NHAP_NGU_CA" />
           <Property Type="DateTime" Name="NGAY_XUAT_NGU_CA" />
           <Property Type="String" Name="DV_XUAT_NGU_CA" />
-          <Property Type="Decimal" Name="QD" />
+          <Property Type="Int16" Name="QD" />
           <Property Type="DateTime" Name="NGAY_NHAP_NGU_QD" Nullable="true" />
           <Property Type="DateTime" Name="NGAY_XUAT_NGU_QD" />
           <Property Type="String" Name="DV_XUAT_NGU_QD" />
-          <Property Type="Decimal" Name="THUONG_BINH" />
+          <Property Type="Int16" Name="THUONG_BINH" />
           <Property Type="Decimal" Name="HANG_THUONG_BINH" />
           <Property Type="Decimal" Name="GD_CHINH_SACH" />
         </EntityType>

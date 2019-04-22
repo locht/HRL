@@ -672,7 +672,7 @@
                                    </tr>
                                    <tr>
                                     <td class="control3">
-                                        <asp:CheckBox ID="ckBan_Nu_Cong" Text ="Ban nữ công" runat ="server" />
+                                        <asp:CheckBox ID="ckNU_CONG" Text ="Ban nữ công" runat ="server" />
                                     </td>
                                     <td class="lb3">
                                         <asp:Label runat="server" ID ="lbCV_Ban_Nu_Cong" Text ="Chức vụ"></asp:Label>
@@ -689,7 +689,7 @@
                                    </tr>
                                    <tr>
                                     <td class="control3">
-                                        <asp:CheckBox ID="ckCOng_An" Text ="Công an" runat ="server" />
+                                        <asp:CheckBox ID="ckCA" Text ="Công an" runat ="server" />
                                     </td>
                                     <td class="lb3">
                                         <asp:Label runat="server" ID ="lbNgay_Nhap_Ngu_CA" Text ="Ngày nhập ngũ"></asp:Label>

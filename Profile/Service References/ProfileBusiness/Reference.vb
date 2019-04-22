@@ -26293,7 +26293,7 @@ Namespace ProfileBusiness
         Private BIRTH_PLACEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CAField As System.Nullable(Of Decimal)
+        Private CAField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CAREERField As String
@@ -26305,7 +26305,7 @@ Namespace ProfileBusiness
         Private CHUC_VU_DOANField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CONG_DOANField As System.Nullable(Of Decimal)
+        Private CONG_DOANField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CONTACT_PERField As String
@@ -26329,7 +26329,7 @@ Namespace ProfileBusiness
         Private CV_BAN_NU_CONGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private DANGField As System.Nullable(Of Decimal)
+        Private DANGField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DANG_PHIField As System.Nullable(Of Boolean)
@@ -26347,7 +26347,7 @@ Namespace ProfileBusiness
         Private DV_XUAT_NGU_CAField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private DV_XUAT_NGU_QDField As System.Nullable(Of Decimal)
+        Private DV_XUAT_NGU_QDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_IDField As Decimal
@@ -26479,7 +26479,7 @@ Namespace ProfileBusiness
         Private NOI_VAO_DOANField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private NU_CONGField As System.Nullable(Of Decimal)
+        Private NU_CONGField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OPPTION1Field As String
@@ -26566,7 +26566,7 @@ Namespace ProfileBusiness
         Private PROVINCENQ_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private QDField As System.Nullable(Of Decimal)
+        Private QDField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RELIGIONField As System.Nullable(Of Decimal)
@@ -26578,7 +26578,7 @@ Namespace ProfileBusiness
         Private SKILLField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private THUONG_BINHField As System.Nullable(Of Decimal)
+        Private THUONG_BINHField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VISAField As String
@@ -26721,7 +26721,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CA() As System.Nullable(Of Decimal)
+        Public Property CA() As System.Nullable(Of Boolean)
             Get
                 Return Me.CAField
             End Get
@@ -26773,7 +26773,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CONG_DOAN() As System.Nullable(Of Decimal)
+        Public Property CONG_DOAN() As System.Nullable(Of Boolean)
             Get
                 Return Me.CONG_DOANField
             End Get
@@ -26877,7 +26877,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property DANG() As System.Nullable(Of Decimal)
+        Public Property DANG() As System.Nullable(Of Boolean)
             Get
                 Return Me.DANGField
             End Get
@@ -26955,12 +26955,12 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property DV_XUAT_NGU_QD() As System.Nullable(Of Decimal)
+        Public Property DV_XUAT_NGU_QD() As String
             Get
                 Return Me.DV_XUAT_NGU_QDField
             End Get
             Set
-                If (Me.DV_XUAT_NGU_QDField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.DV_XUAT_NGU_QDField, value) <> true) Then
                     Me.DV_XUAT_NGU_QDField = value
                     Me.RaisePropertyChanged("DV_XUAT_NGU_QD")
                 End If
@@ -27527,7 +27527,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property NU_CONG() As System.Nullable(Of Decimal)
+        Public Property NU_CONG() As System.Nullable(Of Boolean)
             Get
                 Return Me.NU_CONGField
             End Get
@@ -27904,7 +27904,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property QD() As System.Nullable(Of Decimal)
+        Public Property QD() As System.Nullable(Of Boolean)
             Get
                 Return Me.QDField
             End Get
@@ -27956,7 +27956,7 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property THUONG_BINH() As System.Nullable(Of Decimal)
+        Public Property THUONG_BINH() As System.Nullable(Of Boolean)
             Get
                 Return Me.THUONG_BINHField
             End Get

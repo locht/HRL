@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 4/22/2019 2:49:10 PM
+-- Date Created: 4/22/2019 4:15:49 PM
 -- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -597,9 +597,9 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "OPPTION9" DATE NULL,
    "OPPTION10" DATE NULL,
    "SKILL" NCLOB NULL,
-   "DANG" NUMBER(38,0) NULL,
-   "CA" NUMBER(38,0) NULL,
-   "CONG_DOAN" NUMBER(38,0) NULL,
+   "DANG" NUMBER(5,0) NULL,
+   "CA" NUMBER(5,0) NULL,
+   "CONG_DOAN" NUMBER(5,0) NULL,
    "CV_BANTT" NCLOB NULL,
    "NGAY_TG_BANTT" DATE NULL,
    "NU_CONG" NUMBER(38,0) NULL,
@@ -608,11 +608,11 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "NGAY_NHAP_NGU_CA" DATE NULL,
    "NGAY_XUAT_NGU_CA" DATE NULL,
    "DV_XUAT_NGU_CA" NCLOB NULL,
-   "QD" NUMBER(38,0) NULL,
+   "QD" NUMBER(5,0) NULL,
    "NGAY_NHAP_NGU_QD" DATE NULL,
    "NGAY_XUAT_NGU_QD" DATE NULL,
    "DV_XUAT_NGU_QD" NCLOB NULL,
-   "THUONG_BINH" NUMBER(38,0) NULL,
+   "THUONG_BINH" NUMBER(5,0) NULL,
    "HANG_THUONG_BINH" NUMBER(38,0) NULL,
    "GD_CHINH_SACH" NUMBER(38,0) NULL
 );

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("93037575-ee4f-4ab7-bd26-041ca2cb3d8a")>
+<Assembly: EdmSchemaAttribute("b38824f0-6bba-405a-b9d9-adda10ebfbf1")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -20707,7 +20707,7 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property DANG() As Nullable(Of Global.System.Decimal)
+    Public Property DANG() As Nullable(Of Global.System.Int16)
         Get
             Return _DANG
         End Get
@@ -20720,8 +20720,8 @@ Public Partial Class HU_EMPLOYEE_CV
         End Set
     End Property
 
-    Private _DANG As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnDANGChanging(value As Nullable(Of Global.System.Decimal))
+    Private _DANG As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnDANGChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnDANGChanged()
@@ -20732,7 +20732,7 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CA() As Nullable(Of Global.System.Decimal)
+    Public Property CA() As Nullable(Of Global.System.Int16)
         Get
             Return _CA
         End Get
@@ -20745,8 +20745,8 @@ Public Partial Class HU_EMPLOYEE_CV
         End Set
     End Property
 
-    Private _CA As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnCAChanging(value As Nullable(Of Global.System.Decimal))
+    Private _CA As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnCAChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnCAChanged()
@@ -20757,7 +20757,7 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CONG_DOAN() As Nullable(Of Global.System.Decimal)
+    Public Property CONG_DOAN() As Nullable(Of Global.System.Int16)
         Get
             Return _CONG_DOAN
         End Get
@@ -20770,8 +20770,8 @@ Public Partial Class HU_EMPLOYEE_CV
         End Set
     End Property
 
-    Private _CONG_DOAN As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnCONG_DOANChanging(value As Nullable(Of Global.System.Decimal))
+    Private _CONG_DOAN As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnCONG_DOANChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnCONG_DOANChanged()
@@ -20982,7 +20982,7 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property QD() As Nullable(Of Global.System.Decimal)
+    Public Property QD() As Nullable(Of Global.System.Int16)
         Get
             Return _QD
         End Get
@@ -20995,8 +20995,8 @@ Public Partial Class HU_EMPLOYEE_CV
         End Set
     End Property
 
-    Private _QD As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnQDChanging(value As Nullable(Of Global.System.Decimal))
+    Private _QD As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnQDChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnQDChanged()
@@ -21082,7 +21082,7 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property THUONG_BINH() As Nullable(Of Global.System.Decimal)
+    Public Property THUONG_BINH() As Nullable(Of Global.System.Int16)
         Get
             Return _THUONG_BINH
         End Get
@@ -21095,8 +21095,8 @@ Public Partial Class HU_EMPLOYEE_CV
         End Set
     End Property
 
-    Private _THUONG_BINH As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnTHUONG_BINHChanging(value As Nullable(Of Global.System.Decimal))
+    Private _THUONG_BINH As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnTHUONG_BINHChanging(value As Nullable(Of Global.System.Int16))
     End Sub
 
     Private Partial Sub OnTHUONG_BINHChanged()

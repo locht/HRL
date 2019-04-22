@@ -1544,13 +1544,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents rdNgay_TG_BanTT As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''ckBan_Nu_Cong control.
+    '''ckNU_CONG control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ckBan_Nu_Cong As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents ckNU_CONG As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''lbCV_Ban_Nu_Cong control.
@@ -1589,13 +1589,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents rdNgay_TG_Ban_Nu_Cong As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''ckCOng_An control.
+    '''ckCA control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ckCOng_An As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents ckCA As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''lbNgay_Nhap_Ngu_CA control.
