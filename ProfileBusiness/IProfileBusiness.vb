@@ -1398,6 +1398,8 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetTrainingForeignByID(ByVal _filter As TrainningForeignDTO) As TrainningForeignDTO
         <OperationContract()>
         Function ModifyTrainingForeign(ByVal objContract As TrainningForeignDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function DeleteTrainingForeign(ByVal objAssetMng As TrainningForeignDTO) As Boolean
 
 #End Region
 #Region "Contract"

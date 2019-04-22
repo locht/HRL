@@ -52,6 +52,16 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function DeleteTrainingForeign(ByVal objContract As TrainningForeignDTO) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.DeleteTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteTrainingForeign(objContract)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
         Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,

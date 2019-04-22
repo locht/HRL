@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td class="lb"  style="width: 200px">
-                    <asp:Label ID="lbEmployeeCode" runat="server" Text="<%$ Translate: Mã nhân viên %>"></asp:Label>
+                    <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
@@ -37,17 +37,17 @@
                         Width="40px">
                     </tlk:RadButton>
                     <asp:RequiredFieldValidator ID="reqEmployeeCode" ControlToValidate="txtEmployeeCode"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập nhân viên. %>" ToolTip="<%$ Translate: Bạn phải nhập nhân viên. %>"> </asp:RequiredFieldValidator>
+                        runat="server" ErrorMessage="Bạn phải nhập nhân viên." ToolTip="Bạn phải nhập nhân viên."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 200px">
-                    <asp:Label ID="lbEmployeeName" runat="server" Text="<%$ Translate: Họ tên nhân viên %>"></asp:Label>
+                    <asp:Label ID="lbEmployeeName" runat="server" Text="Họ tên nhân viên"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeName" runat="server" ReadOnly="True" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb" style="width: 200px">
-                    <asp:Label ID="lbTITLE" runat="server" Text="<%$ Translate: Chức danh %>"></asp:Label>
+                    <asp:Label ID="lbTITLE" runat="server" Text="Chức danh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtTITLE" runat="server" ReadOnly="True" SkinID="ReadOnly">
@@ -56,7 +56,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbOrg_Name" runat="server" Text="<%$ Translate: Đơn vị %>"></asp:Label>
+                    <asp:Label ID="lbOrg_Name" runat="server" Text="Đơn vị"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtOrg_Name" runat="server" ReadOnly="True" SkinID="ReadOnly">
@@ -64,40 +64,40 @@
                 </td>
          
                 <td class="lb">
-                    <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày đi công tác %>"></asp:Label>
+                    <asp:Label ID="lbStartDate" runat="server" Text="Ngày đi công tác"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày bắt đầu. %>"> </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>"
-                        ToolTip="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>">
+                        ErrorMessage="Bạn phải nhập ngày bắt đầu." ToolTip="Bạn phải nhập ngày bắt đầu."> </asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất"
+                        ToolTip="Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbExpireDate" runat="server" Text="<%$ Translate: Ngày về %>"></asp:Label>
+                    <asp:Label ID="lbExpireDate" runat="server" Text="Ngày về"></asp:Label>
                      <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdExpireDate" runat="server">
                     </tlk:RadDatePicker>
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdExpireDate"
-                        Type="Date" ControlToCompare="rdStartDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc phải lớn hơn ngày bắt đầu %>"
-                        ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn ngày bắt đầu %>"></asp:CompareValidator>
+                        Type="Date" ControlToCompare="rdStartDate" Operator="GreaterThanEqual" ErrorMessage="Ngày kết thúc phải lớn hơn ngày bắt đầu"
+                        ToolTip="Ngày kết thúc phải lớn hơn ngày bắt đầu "></asp:CompareValidator>
                 </td>
               </tr>
             <tr>
               <td class="lb">
-                    <asp:Label ID="lbDecisionNo" runat="server" Text="<%$ Translate:Số quyết định %>"></asp:Label>
+                    <asp:Label ID="lbDecisionNo" runat="server" Text="Số quyết định"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtDecisionNo" runat="server" >
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbContractType" runat="server" Text="<%$ Translate: Loại công tác %>"></asp:Label>
+                    <asp:Label ID="lbContractType" runat="server" Text="Loại công tác"></asp:Label>
                    
                 </td>
                 <td>
@@ -105,7 +105,7 @@
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbSignDate" runat="server" Text="<%$ Translate: Ngày ký %>"></asp:Label>
+                    <asp:Label ID="lbSignDate" runat="server" Text="Ngày ký"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdSignDate" runat="server">
@@ -114,7 +114,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbContent" runat="server" Text="<%$ Translate: Nội dung %>"></asp:Label>
+                    <asp:Label ID="lbContent" runat="server" Text="Nội dung"></asp:Label>
                 </td>
                 <td colspan="5">
                     <tlk:RadTextBox ID="txtContent" SkinID="Textbox1023" runat="server" Width="100%">
@@ -123,7 +123,7 @@
                 </tr>
                 <tr>
                  <td class="lb">
-                    <asp:Label ID="lbtxtLocation" runat="server" Text="<%$ Translate: Địa điểm %>"></asp:Label>
+                    <asp:Label ID="lbtxtLocation" runat="server" Text="Địa điểm"></asp:Label>
                 </td>
                 <td colspan="5">
                     <tlk:RadTextBox ID="txtLocation" SkinID="Textbox1023" runat="server" Width="100%">
