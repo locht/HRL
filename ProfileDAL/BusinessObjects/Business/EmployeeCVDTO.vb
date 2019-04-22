@@ -90,4 +90,14 @@
     Public Property WARDEMP_NAME As String
     Public Property PROVINCENQ_ID As Decimal?
     Public Property PROVINCENQ_NAME As String
+    Public Property OPPTION1 As String
+    Public Property OPPTION2 As String
+    Public Property OPPTION3 As String
+    Public Property OPPTION4 As String
+    Public Property OPPTION5 As String
+    Public Property OPPTION6 As Date?
+    Public Property OPPTION7 As Date?
+    Public Property OPPTION8 As Date?
+    Public Property OPPTION9 As Date?
+    Public Property OPPTION10 As Date?
 End Class

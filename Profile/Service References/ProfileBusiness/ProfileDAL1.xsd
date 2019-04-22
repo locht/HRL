@@ -818,10 +818,13 @@
       <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NAME_SHOOLS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RECEIVE_DEGREE_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="RESULT_TRAIN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SPECIALIZED_TRAIN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="TO_MONTH_YEAR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TYPE_TRAIN_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TYPE_TRAIN_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UPLOAD_FILE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="YEAR_GRA" nillable="true" type="xs:decimal" />
     </xs:sequence>
@@ -1774,6 +1777,7 @@
       <xs:element minOccurs="0" name="GET_TITLE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_TITLE_LEVEL" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_TRAINING_FORM" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GET_TRAINING_TYPE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_TRANSFER_REASON" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_TRANSFER_STATUS_APPROVE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_TRANSFER_TYPE_NEW_HIRE" type="xs:boolean" />
@@ -1835,6 +1839,7 @@
       <xs:element minOccurs="0" name="LIST_TITLE" nillable="true" type="tns:ArrayOfTitleDTO" />
       <xs:element minOccurs="0" name="LIST_TITLE_LEVEL" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_TRAINING_FORM" nillable="true" type="tns:ArrayOfOtherListDTO" />
+      <xs:element minOccurs="0" name="LIST_TRAINING_TYPE" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_TRANSFER_REASON" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_TRANSFER_STATUS_APPROVE" nillable="true" type="tns:OtherListDTO" />
       <xs:element minOccurs="0" name="LIST_TRANSFER_TYPE_NEW_HIRE" nillable="true" type="tns:OtherListDTO" />
@@ -2200,6 +2205,16 @@
       <xs:element minOccurs="0" name="NGAY_VAO_DOAN" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NOI_VAO_DANG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NOI_VAO_DOAN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION10" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPPTION6" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION7" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION8" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OPPTION9" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PASS_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PASS_EXPIRE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PASS_NO" nillable="true" type="xs:string" />
@@ -2216,6 +2231,8 @@
       <xs:element minOccurs="0" name="PLACE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PROVINCEEMP_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="PROVINCEEMP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROVINCENQ_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PROVINCENQ_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RELIGION" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="RELIGION_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VISA" nillable="true" type="xs:string" />

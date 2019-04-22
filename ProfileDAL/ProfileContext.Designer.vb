@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("955c35b4-08ec-4a52-9d9e-6ccbf65dbb66")>
+<Assembly: EdmSchemaAttribute("d1f9f7d7-c74c-41e3-a72e-b9cdd0cce965")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -20379,6 +20379,281 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnWARDEMP_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PROVINCENQ_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PROVINCENQ_ID
+        End Get
+        Set
+            OnPROVINCENQ_IDChanging(value)
+            ReportPropertyChanging("PROVINCENQ_ID")
+            _PROVINCENQ_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PROVINCENQ_ID")
+            OnPROVINCENQ_IDChanged()
+        End Set
+    End Property
+
+    Private _PROVINCENQ_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPROVINCENQ_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPROVINCENQ_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION1() As Global.System.String
+        Get
+            Return _OPPTION1
+        End Get
+        Set
+            OnOPPTION1Changing(value)
+            ReportPropertyChanging("OPPTION1")
+            _OPPTION1 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("OPPTION1")
+            OnOPPTION1Changed()
+        End Set
+    End Property
+
+    Private _OPPTION1 As Global.System.String
+    Private Partial Sub OnOPPTION1Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOPPTION1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION2() As Global.System.String
+        Get
+            Return _OPPTION2
+        End Get
+        Set
+            OnOPPTION2Changing(value)
+            ReportPropertyChanging("OPPTION2")
+            _OPPTION2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("OPPTION2")
+            OnOPPTION2Changed()
+        End Set
+    End Property
+
+    Private _OPPTION2 As Global.System.String
+    Private Partial Sub OnOPPTION2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOPPTION2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION3() As Global.System.String
+        Get
+            Return _OPPTION3
+        End Get
+        Set
+            OnOPPTION3Changing(value)
+            ReportPropertyChanging("OPPTION3")
+            _OPPTION3 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("OPPTION3")
+            OnOPPTION3Changed()
+        End Set
+    End Property
+
+    Private _OPPTION3 As Global.System.String
+    Private Partial Sub OnOPPTION3Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOPPTION3Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION4() As Global.System.String
+        Get
+            Return _OPPTION4
+        End Get
+        Set
+            OnOPPTION4Changing(value)
+            ReportPropertyChanging("OPPTION4")
+            _OPPTION4 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("OPPTION4")
+            OnOPPTION4Changed()
+        End Set
+    End Property
+
+    Private _OPPTION4 As Global.System.String
+    Private Partial Sub OnOPPTION4Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOPPTION4Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION5() As Global.System.String
+        Get
+            Return _OPPTION5
+        End Get
+        Set
+            OnOPPTION5Changing(value)
+            ReportPropertyChanging("OPPTION5")
+            _OPPTION5 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("OPPTION5")
+            OnOPPTION5Changed()
+        End Set
+    End Property
+
+    Private _OPPTION5 As Global.System.String
+    Private Partial Sub OnOPPTION5Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOPPTION5Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION6() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _OPPTION6
+        End Get
+        Set
+            OnOPPTION6Changing(value)
+            ReportPropertyChanging("OPPTION6")
+            _OPPTION6 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OPPTION6")
+            OnOPPTION6Changed()
+        End Set
+    End Property
+
+    Private _OPPTION6 As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnOPPTION6Changing(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnOPPTION6Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION7() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _OPPTION7
+        End Get
+        Set
+            OnOPPTION7Changing(value)
+            ReportPropertyChanging("OPPTION7")
+            _OPPTION7 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OPPTION7")
+            OnOPPTION7Changed()
+        End Set
+    End Property
+
+    Private _OPPTION7 As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnOPPTION7Changing(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnOPPTION7Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION8() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _OPPTION8
+        End Get
+        Set
+            OnOPPTION8Changing(value)
+            ReportPropertyChanging("OPPTION8")
+            _OPPTION8 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OPPTION8")
+            OnOPPTION8Changed()
+        End Set
+    End Property
+
+    Private _OPPTION8 As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnOPPTION8Changing(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnOPPTION8Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION9() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _OPPTION9
+        End Get
+        Set
+            OnOPPTION9Changing(value)
+            ReportPropertyChanging("OPPTION9")
+            _OPPTION9 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OPPTION9")
+            OnOPPTION9Changed()
+        End Set
+    End Property
+
+    Private _OPPTION9 As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnOPPTION9Changing(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnOPPTION9Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OPPTION10() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _OPPTION10
+        End Get
+        Set
+            OnOPPTION10Changing(value)
+            ReportPropertyChanging("OPPTION10")
+            _OPPTION10 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OPPTION10")
+            OnOPPTION10Changed()
+        End Set
+    End Property
+
+    Private _OPPTION10 As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnOPPTION10Changing(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnOPPTION10Changed()
     End Sub
 
     #End Region
