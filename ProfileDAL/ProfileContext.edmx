@@ -134,6 +134,7 @@
             <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.Store.HU_ATTACHFILES" store:Type="Tables"  />
             <EntitySet Name="HU_FILE" EntityType="ProfileModel.Store.HU_FILE" store:Type="Tables"  />
             <EntitySet Name="HU_TRAININGFOREIGN" EntityType="ProfileModel.Store.HU_TRAININGFOREIGN" store:Type="Tables"  />
+            <EntitySet Name="HU_TRAININGMANAGE" EntityType="ProfileModel.Store.HU_TRAININGMANAGE" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3157,6 +3158,33 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HU_TRAININGMANAGE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="START_DATE" Type="date" Nullable="true" />
+            <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
+            <Property Name="DEGREE_DATE" Type="date" Nullable="true" />
+            <Property Name="PROGRAM_TRAINING" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="TRAINING_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CERTIFICATE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="UNIT" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="LOCATION" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="COST" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RESULT_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="DEGREE_EXPIRE_DATE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -3776,6 +3804,7 @@
           <EntitySet Name="HU_ATTACHFILES" EntityType="ProfileModel.HU_ATTACHFILES" />
           <EntitySet Name="HU_FILE" EntityType="ProfileModel.HU_FILE" />
           <EntitySet Name="HU_TRAININGFOREIGN" EntityType="ProfileModel.HU_TRAININGFOREIGN" />
+          <EntitySet Name="HU_TRAININGMANAGE" EntityType="ProfileModel.HU_TRAININGMANAGE" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -7082,6 +7111,33 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_TRAININGMANAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="START_DATE" />
+          <Property Type="DateTime" Name="EXPIRE_DATE" />
+          <Property Type="DateTime" Name="DEGREE_DATE" />
+          <Property Type="String" Name="PROGRAM_TRAINING" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="TRAINING_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CERTIFICATE" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UNIT" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LOCATION" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="COST" Precision="38" Scale="0" />
+          <Property Type="String" Name="RESULT_TRAIN" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DEGREE_EXPIRE_DATE" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10108,6 +10164,34 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_TRAININGMANAGE">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TRAININGMANAGE)">
+                <MappingFragment StoreEntitySet="HU_TRAININGMANAGE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                    <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+                    <ScalarProperty Name="DEGREE_DATE" ColumnName="DEGREE_DATE" />
+                    <ScalarProperty Name="PROGRAM_TRAINING" ColumnName="PROGRAM_TRAINING" />
+                    <ScalarProperty Name="TRAINING_ID" ColumnName="TRAINING_ID" />
+                    <ScalarProperty Name="CERTIFICATE" ColumnName="CERTIFICATE" />
+                    <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+                    <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                    <ScalarProperty Name="COST" ColumnName="COST" />
+                    <ScalarProperty Name="RESULT_TRAIN" ColumnName="RESULT_TRAIN" />
+                    <ScalarProperty Name="DEGREE_EXPIRE_DATE" ColumnName="DEGREE_EXPIRE_DATE" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -10404,6 +10488,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ATTACHFILES" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="ProfileModel.HU_FILE" Width="1.5" PointX="32.375" PointY="14.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGFOREIGN" Width="1.5" PointX="32.375" PointY="20.75" Height="4.4802050781249818" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="1.5" PointX="33.375" PointY="5.75" Height="5.2494108072916674" />
         </Diagram>
     </Diagrams>
   </Designer>

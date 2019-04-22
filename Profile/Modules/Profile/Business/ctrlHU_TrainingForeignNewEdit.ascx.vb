@@ -187,6 +187,9 @@ Public Class ctrlHU_TrainingForeignNewEdit
                         rdStartDate.SelectedDate = Contract.START_DATE
                         rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
                         rdSignDate.SelectedDate = Contract.SIGN_DATE
+                        If Contract.TRAINNING_ID IsNot Nothing Then
+                            cboContractType.Text = Contract.TRAINNING_NAME
+                        End If
                     End If
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -446,7 +449,6 @@ Public Class ctrlHU_TrainingForeignNewEdit
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
-
     End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53
@@ -457,36 +459,36 @@ Public Class ctrlHU_TrainingForeignNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Protected Sub cboContractType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
-        Dim item As New ContractTypeDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If rdStartDate.SelectedDate IsNot Nothing Then
+    'Protected Sub cboContractType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
+    '    Dim item As New ContractTypeDTO
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        If rdStartDate.SelectedDate IsNot Nothing Then
 
-                Dim dExpire As Date = rdStartDate.SelectedDate
-                item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                If item IsNot Nothing Then
-                    hidPeriod.Value = item.PERIOD
-                End If
+    '            Dim dExpire As Date = rdStartDate.SelectedDate
+    '            item = (From p In ListComboData.LIST_CONTRACTTYPE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
+    '            If item IsNot Nothing Then
+    '                hidPeriod.Value = item.PERIOD
+    '            End If
 
-                If CType(hidPeriod.Value, Double) = 0 Then
-                    rdExpireDate.SelectedDate = Nothing
-                Else
-                    dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
-                    rdExpireDate.SelectedDate = dExpire
-                End If
-            End If
+    '            If CType(hidPeriod.Value, Double) = 0 Then
+    '                rdExpireDate.SelectedDate = Nothing
+    '            Else
+    '                dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
+    '                rdExpireDate.SelectedDate = dExpire
+    '            End If
+    '        End If
 
-            Dim employeeId As Double = 0
-            Double.TryParse(hidEmployeeID.Value, employeeId)
-            'txtContractNo.Text = CreateDynamicContractNo(employeeId)
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        Dim employeeId As Double = 0
+    '        Double.TryParse(hidEmployeeID.Value, employeeId)
+    '        'txtContractNo.Text = CreateDynamicContractNo(employeeId)
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -595,9 +597,9 @@ Public Class ctrlHU_TrainingForeignNewEdit
     Private Sub GetDataCombo()
         Dim rep As New ProfileRepository
         ListComboData = New ComboBoxDataDTO
-        ListComboData.GET_CONTRACTTYPE = True
+        ListComboData.GET_TYPE_WORK = True
         rep.GetComboList(ListComboData)
-        FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, False)
+        FillDropDownList(cboContractType, ListComboData.LIST_TYPE_WORK, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
         rep.Dispose()
     End Sub
     ''' <lastupdate>
