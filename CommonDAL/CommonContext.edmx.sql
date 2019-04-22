@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 22/04/2019 9:23:16 AM
+-- Date Created: 22/04/2019 12:06:43 PM
 -- Generated from EDMX file: E:\histaffhcm-18-04-2019\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 

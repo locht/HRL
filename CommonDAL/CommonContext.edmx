@@ -1548,11 +1548,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="TEMPLATE_ID" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="APP_LEVEL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TEMPLATE_ID" Precision="38" Scale="0" Nullable="true" />
+          <Property Type="Decimal" Name="APP_LEVEL" Precision="38" Scale="0" Nullable="true" />
           <Property Type="Decimal" Name="APP_TYPE" Precision="38" Scale="0" Nullable="true" />
-          <Property Type="Decimal" Name="APP_ID" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="INFORM_DATE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="APP_ID" Precision="38" Scale="0" Nullable="true" />
+          <Property Type="Decimal" Name="INFORM_DATE" Precision="38" Scale="0" Nullable="true" />
           <Property Type="String" Name="INFORM_EMAIL" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />

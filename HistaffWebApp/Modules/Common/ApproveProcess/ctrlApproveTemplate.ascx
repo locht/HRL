@@ -131,14 +131,13 @@
                         <Columns>
                             <tlk:GridBoundColumn HeaderText='<%$ Translate: Cấp phê duyệt %>' DataField="APP_LEVEL"
                                 UniqueName="APP_LEVEL">
-                                <ItemStyle HorizontalAlign="Right" />
+                                <ItemStyle HorizontalAlign="Right" /> 
                             </tlk:GridBoundColumn>
-                            <tlk:GridTemplateColumn HeaderText='<%$ Translate: Người phê duyệt %>' DataField="APP_TYPE_NAME"
-                                UniqueName="APP_TYPE_NAME">
+                            <tlk:GridTemplateColumn HeaderText='<%$ Translate: Người phê duyệt %>'>
                                 <ItemTemplate>
-                                    <%--<%# If(Eval("APP_TYPE") = Decimal.Parse("0"), Translate("Quản lý trực tiếp"), Translate(""))%>
+                                    <%# If(Eval("APP_TYPE") = Decimal.Parse("0"), Translate("Quản lý trực tiếp"), Translate(""))%>
                                     <%# If(Eval("APP_TYPE") = Decimal.Parse("1"), Translate("Nhân viên"), Translate(""))%>
-                                    <%# If(Eval("APP_TYPE") = Decimal.Parse("2"), Translate("Chức danh"), Translate(""))%>--%>
+                                    <%# If(Eval("APP_TYPE") = Decimal.Parse("2"), Translate("Chức danh"), Translate(""))%>
                                 </ItemTemplate>
                             </tlk:GridTemplateColumn>
                             <tlk:GridBoundColumn HeaderText='<%$ Translate: Mã NV %>' DataField="EMPLOYEE_CODE"

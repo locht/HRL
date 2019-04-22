@@ -1004,10 +1004,10 @@ Public Class ctrlApproveTemplate
                 ShowMessage(Translate(message), NotifyType.Error)
                 Return
             End If
-            'Thứ 2 test lại chức năng này
+
             If ds.Tables(0).Rows.Count > 2 Then
                 'Bo qa title, header va 2 dong example data
-                For i As Integer = 3 To ds.Tables(0).Rows.Count - 1
+                For i As Integer = 2 To ds.Tables(0).Rows.Count - 1
                     Dim dr As DataRow = ds.Tables(0).Rows(i)
                     Dim template_type = dr(3).ToString().Trim()
                     If Not IsDBNull(dr(1)) AndAlso Not IsDBNull(dr(2)) AndAlso Not IsDBNull(template_type) Then
@@ -1074,7 +1074,7 @@ Public Class ctrlApproveTemplate
 
         'XOA DONG TIEU DE VA HEADER
         dtTemp.Rows(0).Delete()
-        'Neu template empty thi xoa row do, 
+        'Neu template empty thi xoa row do,
         For i As Integer = dtTemp.Rows.Count - 1 To 1 Step -1 'dtTemp.Rows.Count - 1 To 1 => vi da xoa rows(0) o tren
             If IsDBNull(dtTemp.Rows(i)(1)) AndAlso IsDBNull(dtTemp.Rows(i)(2)) AndAlso IsDBNull(dtTemp.Rows(i)(3)) AndAlso IsDBNull(dtTemp.Rows(i)(4)) Then
                 dtTemp.Rows(i).Delete()
