@@ -213,7 +213,7 @@
                     <tlk:RadComboBox ID="cboCommendPay" runat="server" CausesValidation="False" TabIndex="3">
                     </tlk:RadComboBox>             
                     <%-- <asp:RequiredFieldValidator ID="reqcboCommendPay" ControlToValidate="cboCommendPay"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn hình thức trả thưởng %>" ToolTip="<%$ Translate: Bạn phải chọn hình thức trả thưởng %>"> </asp:RequiredFieldValidator>--%>
+                        runat="server" ErrorMessage="Bạn phải chọn hình thức trả thưởng" ToolTip="Bạn phải chọn hình thức trả thưởng"> </asp:RequiredFieldValidator>--%>
                     <asp:CustomValidator ID="cusCommendPay" ControlToValidate="cboCommendPay" runat="server" 
                         ErrorMessage="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng."
                         ToolTip="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng.">
@@ -229,7 +229,7 @@
                     <asp:CustomValidator ID="cvalMoney" runat="server" ErrorMessage="Bạn phải nhập số tiền phải >= 0."
                         ToolTip="Bạn phải nhập số tiền phải >= 0.">
                     </asp:CustomValidator>
-                   <%-- <asp:CustomValidator ID="cvalTotal" runat="server" ErrorMessage="<%$ Translate: Tổng số tiền của nhân viên phải bằng số tiền thưởng %>">
+                   <%-- <asp:CustomValidator ID="cvalTotal" runat="server" ErrorMessage="Tổng số tiền của nhân viên phải bằng số tiền thưởng">
                     </asp:CustomValidator>--%>
                 </td>
             </tr>
@@ -253,10 +253,10 @@
                     <tlk:RadComboBox ID="cboCommendLevel" runat="server" CausesValidation="False" TabIndex="3">
                     </tlk:RadComboBox>   
                      <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="cboCommendLevel"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Cấp khen thưởng %>" ToolTip="<%$ Translate: Bạn phải chọn Cấp khen thưởng %>"> </asp:RequiredFieldValidator>        
+                        runat="server" ErrorMessage="Bạn phải chọn Cấp khen thưởng" ToolTip="Bạn phải chọn Cấp khen thưởng"> </asp:RequiredFieldValidator>        
                     <asp:CustomValidator ID="cusCommendLevel" ControlToValidate="cboCommendLevel" runat="server" 
-                        ErrorMessage="<%$ Translate: Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng. %>">
+                        ErrorMessage="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>--%>
             </tr>
@@ -416,10 +416,10 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                     <%--<tlk:GridBoundColumn DataField="ID" Visible="false" />
+                    <%-- <tlk:GridBoundColumn DataField="ID" Visible="false" />
                      <tlk:GridBoundColumn DataField="ORG_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
-                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" /> --%>  
+                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />--%>   
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />

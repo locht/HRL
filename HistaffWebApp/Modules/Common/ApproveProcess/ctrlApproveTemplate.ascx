@@ -68,6 +68,7 @@
                                     <Items>
                                         <tlk:RadComboBoxItem runat="server" Text='<%$ Translate: Quản lý trực tiếp %>' Value="0" />
                                         <tlk:RadComboBoxItem runat="server" Text='<%$ Translate: Chọn nhân viên %>' Value="1" />
+                                        <tlk:RadComboBoxItem runat="server" Text='<%$ Translate: Cấp chức danh %>' Value="2" />
                                     </Items>
                                 </tlk:RadComboBox>
                             </td>
@@ -132,9 +133,12 @@
                                 UniqueName="APP_LEVEL">
                                 <ItemStyle HorizontalAlign="Right" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridTemplateColumn HeaderText='<%$ Translate: Người phê duyệt %>'>
+                            <tlk:GridTemplateColumn HeaderText='<%$ Translate: Người phê duyệt %>' DataField="APP_TYPE_NAME"
+                                UniqueName="APP_TYPE_NAME">
                                 <ItemTemplate>
-                                    <%# If(Eval("APP_TYPE") = "0", Translate("Quản lý trực tiếp"), "")%>
+                                    <%--<%# If(Eval("APP_TYPE") = Decimal.Parse("0"), Translate("Quản lý trực tiếp"), Translate(""))%>
+                                    <%# If(Eval("APP_TYPE") = Decimal.Parse("1"), Translate("Nhân viên"), Translate(""))%>
+                                    <%# If(Eval("APP_TYPE") = Decimal.Parse("2"), Translate("Chức danh"), Translate(""))%>--%>
                                 </ItemTemplate>
                             </tlk:GridTemplateColumn>
                             <tlk:GridBoundColumn HeaderText='<%$ Translate: Mã NV %>' DataField="EMPLOYEE_CODE"
@@ -159,6 +163,8 @@
 </tlk:RadSplitter>
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<asp:PlaceHolder ID="phImportLogs" runat="server"></asp:PlaceHolder>
 <tlk:RadWindowManager ID="rwmPopup" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="450px"
@@ -177,6 +183,10 @@
         var oldSize = $('#' + pane1ID).height();
         var enableAjax = true;
 
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
         function ValidateFilter(sender, eventArgs) {
             var params = eventArgs.get_commandArgument() + '';
             if (params.indexOf("|") > 0) {
@@ -195,6 +205,9 @@
         }
 
         function tbarTemplateDetail_ClientButtonClicking(s, e) {
+            if (e.get_item().get_commandName() == "EXPORT" || e.get_item().get_commandName() == "NEXT") {
+                enableAjax = false;
+            }
             if (e.get_item().get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
                 if (!Page_ClientValidate(""))

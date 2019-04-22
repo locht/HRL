@@ -615,6 +615,7 @@ Partial Public Class CommonRepository
                                 .TEMPLATE_ID = item.TEMPLATE_ID,
                                 .APP_LEVEL = item.APP_LEVEL,
                                 .APP_TYPE = item.APP_TYPE,
+                                .APP_TYPE_NAME = ParseAppTypeName(item.APP_TYPE),
                                 .APP_ID = item.APP_ID,
                                 .INFORM_DATE = item.INFORM_DATE,
                                 .INFORM_EMAIL = item.INFORM_EMAIL,
@@ -627,6 +628,22 @@ Partial Public Class CommonRepository
         Catch ex As Exception
             Throw ex
         End Try
+    End Function
+
+    Private Function ParseAppTypeName(ByVal appType As Decimal?) As String
+        If appType <> "" Then
+            If appType = 0 Then
+                Return "Quản lý trực tiếp"
+            End If
+            If appType = 1 Then
+                Return "Nhân viên"
+            End If
+            If appType = 2 Then
+                Return "Cấp chức danh"
+            End If
+        Else
+            Return ""
+        End If
     End Function
 
     ''' <summary>
