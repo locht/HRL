@@ -522,6 +522,25 @@
             <Property Name="OPPTION8" Type="date" Nullable="true" />
             <Property Name="OPPTION9" Type="date" Nullable="true" />
             <Property Name="OPPTION10" Type="date" Nullable="true" />
+            <Property Name="SKILL" Type="nclob" Nullable="true" />
+            <Property Name="DANG" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CA" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONG_DOAN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CV_BANTT" Type="nclob" Nullable="true" />
+            <Property Name="NGAY_TG_BANTT" Type="date" Nullable="true" />
+            <Property Name="NU_CONG" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CV_BAN_NU_CONG" Type="nclob" Nullable="true" />
+            <Property Name="NGAY_TG_BAN_NU_CONG" Type="date" Nullable="true" />
+            <Property Name="NGAY_NHAP_NGU_CA" Type="date" Nullable="true" />
+            <Property Name="NGAY_XUAT_NGU_CA" Type="date" Nullable="true" />
+            <Property Name="DV_XUAT_NGU_CA" Type="nclob" Nullable="true" />
+            <Property Name="QD" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NGAY_NHAP_NGU_QD" Type="date" Nullable="true" />
+            <Property Name="NGAY_XUAT_NGU_QD" Type="date" Nullable="true" />
+            <Property Name="DV_XUAT_NGU_QD" Type="nclob" Nullable="true" />
+            <Property Name="THUONG_BINH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="HANG_THUONG_BINH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GD_CHINH_SACH" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4178,6 +4197,25 @@
           <Property Type="DateTime" Name="OPPTION8" />
           <Property Type="DateTime" Name="OPPTION9" />
           <Property Type="DateTime" Name="OPPTION10" />
+          <Property Type="String" Name="SKILL" />
+          <Property Type="Decimal" Name="DANG" />
+          <Property Type="Decimal" Name="CA" />
+          <Property Type="Decimal" Name="CONG_DOAN" />
+          <Property Type="String" Name="CV_BANTT" />
+          <Property Type="DateTime" Name="NGAY_TG_BANTT" />
+          <Property Type="Decimal" Name="NU_CONG" />
+          <Property Type="String" Name="CV_BAN_NU_CONG" />
+          <Property Type="DateTime" Name="NGAY_TG_BAN_NU_CONG" />
+          <Property Type="DateTime" Name="NGAY_NHAP_NGU_CA" />
+          <Property Type="DateTime" Name="NGAY_XUAT_NGU_CA" />
+          <Property Type="String" Name="DV_XUAT_NGU_CA" />
+          <Property Type="Decimal" Name="QD" />
+          <Property Type="DateTime" Name="NGAY_NHAP_NGU_QD" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_XUAT_NGU_QD" />
+          <Property Type="String" Name="DV_XUAT_NGU_QD" />
+          <Property Type="Decimal" Name="THUONG_BINH" />
+          <Property Type="Decimal" Name="HANG_THUONG_BINH" />
+          <Property Type="Decimal" Name="GD_CHINH_SACH" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -7430,6 +7468,25 @@
                     <ScalarProperty Name="OPPTION8" ColumnName="OPPTION8" />
                     <ScalarProperty Name="OPPTION9" ColumnName="OPPTION9" />
                     <ScalarProperty Name="OPPTION10" ColumnName="OPPTION10" />
+                    <ScalarProperty Name="SKILL" ColumnName="SKILL" />
+                    <ScalarProperty Name="DANG" ColumnName="DANG" />
+                    <ScalarProperty Name="CA" ColumnName="CA" />
+                    <ScalarProperty Name="CONG_DOAN" ColumnName="CONG_DOAN" />
+                    <ScalarProperty Name="CV_BANTT" ColumnName="CV_BANTT" />
+                    <ScalarProperty Name="NGAY_TG_BANTT" ColumnName="NGAY_TG_BANTT" />
+                    <ScalarProperty Name="NU_CONG" ColumnName="NU_CONG" />
+                    <ScalarProperty Name="CV_BAN_NU_CONG" ColumnName="CV_BAN_NU_CONG" />
+                    <ScalarProperty Name="NGAY_TG_BAN_NU_CONG" ColumnName="NGAY_TG_BAN_NU_CONG" />
+                    <ScalarProperty Name="NGAY_NHAP_NGU_CA" ColumnName="NGAY_NHAP_NGU_CA" />
+                    <ScalarProperty Name="NGAY_XUAT_NGU_CA" ColumnName="NGAY_XUAT_NGU_CA" />
+                    <ScalarProperty Name="DV_XUAT_NGU_CA" ColumnName="DV_XUAT_NGU_CA" />
+                    <ScalarProperty Name="QD" ColumnName="QD" />
+                    <ScalarProperty Name="NGAY_NHAP_NGU_QD" ColumnName="NGAY_NHAP_NGU_QD" />
+                    <ScalarProperty Name="NGAY_XUAT_NGU_QD" ColumnName="NGAY_XUAT_NGU_QD" />
+                    <ScalarProperty Name="DV_XUAT_NGU_QD" ColumnName="DV_XUAT_NGU_QD" />
+                    <ScalarProperty Name="THUONG_BINH" ColumnName="THUONG_BINH" />
+                    <ScalarProperty Name="HANG_THUONG_BINH" ColumnName="HANG_THUONG_BINH" />
+                    <ScalarProperty Name="GD_CHINH_SACH" ColumnName="GD_CHINH_SACH" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10269,7 +10326,7 @@
           <ConnectorPoint PointX="4.5" PointY="10.024999999999999" />
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="15.633688151041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="19.287415364583332" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="14.375" PointY="2.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="13.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">
@@ -10403,7 +10460,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE_SALARY" Width="1.5" PointX="19.75" PointY="8.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST" Width="1.5" PointX="19.75" PointY="9.75" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST_GW" Width="1.5" PointX="12.75" PointY="19.875" Height="0.39999999999999147" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="14.75" PointY="19.875" Height="5.4417122395833353" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="14.75" PointY="22.375" Height="5.4417122395833353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="5.4417122395833353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="1.5" PointX="18.75" PointY="19.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="0.39999999999999147" IsExpanded="false" />
@@ -10425,7 +10482,7 @@
           <ConnectorPoint PointX="2.25" PointY="7.2000000000000028" />
           <ConnectorPoint PointX="3" PointY="7.2000000000000028" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_LABOURPROTECTION_MNG" Width="1.5" PointX="14.75" PointY="21.875" Height="0.40000000000000568" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_LABOURPROTECTION_MNG" Width="1.5" PointX="14.75" PointY="22.75" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_GROUP" Width="1.5" PointX="19.375" PointY="21.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY" Width="1.5" PointX="21.375" PointY="21.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_BUILD" Width="1.5" PointX="11.875" PointY="22.75" Height="1.9802864583333353" />
