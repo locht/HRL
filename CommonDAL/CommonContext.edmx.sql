@@ -1,115 +1,115 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 04/12/2019 12:00:46 PM
--- Generated from EDMX file: D:\MyProject\histaffHCM\histaffhcm\CommonDAL\CommonContext.edmx
+-- Date Created: 22/04/2019 12:06:43 PM
+-- Generated from EDMX file: E:\histaffhcm-18-04-2019\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR" DROP CONSTRAINT "FK_SE_GRP_SE_USR_SE_GROUP" CASCADE;
+-- ALTER TABLE "dbo"."SE_GRP_SE_USR" DROP CONSTRAINT "FK_SE_GRP_SE_USR_SE_GROUP" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR" DROP CONSTRAINT "FK_SE_GRP_SE_USR_SE_USER" CASCADE;
+-- ALTER TABLE "dbo"."SE_GRP_SE_USR" DROP CONSTRAINT "FK_SE_GRP_SE_USR_SE_USER" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_FUNCTION" DROP CONSTRAINT "FK_SM_SF" CASCADE;
+-- ALTER TABLE "dbo"."SE_FUNCTION" DROP CONSTRAINT "FK_SM_SF" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_PERMISSION" DROP CONSTRAINT "FK_SF_SGP" CASCADE;
+-- ALTER TABLE "dbo"."SE_GROUP_PERMISSION" DROP CONSTRAINT "FK_SF_SGP" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_PERMISSION" DROP CONSTRAINT "FK_SG_SGP" CASCADE;
+-- ALTER TABLE "dbo"."SE_GROUP_PERMISSION" DROP CONSTRAINT "FK_SG_SGP" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
+-- ALTER TABLE "dbo"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
+-- ALTER TABLE "dbo"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_REPORT" DROP CONSTRAINT "FK_SM_SR" CASCADE;
+-- ALTER TABLE "dbo"."SE_REPORT" DROP CONSTRAINT "FK_SM_SR" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_REPORT" DROP CONSTRAINT "FK_SE_GROUP_REPORT_SE_GROUP" CASCADE;
+-- ALTER TABLE "dbo"."SE_GROUP_REPORT" DROP CONSTRAINT "FK_SE_GROUP_REPORT_SE_GROUP" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_GROUP_REPORT" DROP CONSTRAINT "FK_SE_GROUP_REPORT_SE_REPORT" CASCADE;
+-- ALTER TABLE "dbo"."SE_GROUP_REPORT" DROP CONSTRAINT "FK_SE_GROUP_REPORT_SE_REPORT" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
+-- ALTER TABLE "dbo"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_FUNCTION" DROP CONSTRAINT "FK_SFG_SF" CASCADE;
+-- ALTER TABLE "dbo"."SE_FUNCTION" DROP CONSTRAINT "FK_SFG_SF" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_ORG_HU_EMP" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_TITLEHU_EMPLOYEE" CASCADE;
+-- ALTER TABLE "dbo"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HU_TITLEHU_EMPLOYEE" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
+-- ALTER TABLE "dbo"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
 
--- ALTER TABLE "CommonModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
+-- ALTER TABLE "dbo"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP";
+-- DROP TABLE "dbo"."SE_GROUP";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_FUNCTION";
+-- DROP TABLE "dbo"."SE_FUNCTION";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_USER";
+-- DROP TABLE "dbo"."SE_USER";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_MODULE";
+-- DROP TABLE "dbo"."SE_MODULE";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_PERMISSION";
+-- DROP TABLE "dbo"."SE_GROUP_PERMISSION";
 
--- DROP TABLE "CommonModelStoreContainer"."OT_OTHER_LIST";
+-- DROP TABLE "dbo"."OT_OTHER_LIST";
 
--- DROP TABLE "CommonModelStoreContainer"."OT_OTHER_LIST_GROUP";
+-- DROP TABLE "dbo"."OT_OTHER_LIST_GROUP";
 
--- DROP TABLE "CommonModelStoreContainer"."OT_OTHER_LIST_TYPE";
+-- DROP TABLE "dbo"."OT_OTHER_LIST_TYPE";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_REPORT";
+-- DROP TABLE "dbo"."SE_REPORT";
 
--- DROP TABLE "CommonModelStoreContainer"."HU_ORGANIZATION";
+-- DROP TABLE "dbo"."HU_ORGANIZATION";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_FUNCTION_GROUP";
+-- DROP TABLE "dbo"."SE_FUNCTION_GROUP";
 
--- DROP TABLE "CommonModelStoreContainer"."HU_EMPLOYEE";
+-- DROP TABLE "dbo"."HU_EMPLOYEE";
 
--- DROP TABLE "CommonModelStoreContainer"."HU_TERMINATE";
+-- DROP TABLE "dbo"."HU_TERMINATE";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_MAIL";
+-- DROP TABLE "dbo"."SE_MAIL";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_REMINDER";
+-- DROP TABLE "dbo"."SE_REMINDER";
 
--- DROP TABLE "CommonModelStoreContainer"."HU_TITLE";
+-- DROP TABLE "dbo"."HU_TITLE";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_PROCESS";
+-- DROP TABLE "dbo"."SE_APP_PROCESS";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_SETUP";
+-- DROP TABLE "dbo"."SE_APP_SETUP";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_SETUPEXT";
+-- DROP TABLE "dbo"."SE_APP_SETUPEXT";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_TEMPLATE";
+-- DROP TABLE "dbo"."SE_APP_TEMPLATE";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_APP_TEMPLATE_DTL";
+-- DROP TABLE "dbo"."SE_APP_TEMPLATE_DTL";
 
--- DROP TABLE "CommonModelStoreContainer"."HU_WORKING";
+-- DROP TABLE "dbo"."HU_WORKING";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_CHOSEN_ORG";
+-- DROP TABLE "dbo"."SE_CHOSEN_ORG";
 
--- DROP TABLE "CommonModelStoreContainer"."HU_EMPLOYEE_CV";
+-- DROP TABLE "dbo"."HU_EMPLOYEE_CV";
 
--- DROP TABLE "CommonModelStoreContainer"."HU_STAFF_RANK";
+-- DROP TABLE "dbo"."HU_STAFF_RANK";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_LDAP";
+-- DROP TABLE "dbo"."SE_LDAP";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_USER_ORG_ACCESS";
+-- DROP TABLE "dbo"."SE_USER_ORG_ACCESS";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_USER_PERMISSION";
+-- DROP TABLE "dbo"."SE_USER_PERMISSION";
 
--- DROP TABLE "CommonModelStoreContainer"."HUV_SE_GRP_SE_USR";
+-- DROP TABLE "dbo"."HUV_SE_GRP_SE_USR";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_VIEW_CONFIG";
+-- DROP TABLE "dbo"."SE_VIEW_CONFIG";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR";
+-- DROP TABLE "dbo"."SE_GRP_SE_USR";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_GROUP_REPORT";
+-- DROP TABLE "dbo"."SE_GROUP_REPORT";
 
--- DROP TABLE "CommonModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "dbo"."SE_USER_REPORT";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -473,7 +473,8 @@ CREATE TABLE "dbo"."SE_APP_TEMPLATE" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "TEMPLATE_CODE" NCLOB NULL
 );
 
 -- Creating table 'SE_APP_TEMPLATE_DTL'

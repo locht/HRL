@@ -1156,13 +1156,16 @@ Namespace CommonBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TEMPLATE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TEMPLATE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TEMPLATE_ORDERField As Decimal
+        Private TEMPLATE_ORDERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TEMPLATE_TYPEField As Decimal
+        Private TEMPLATE_TYPEField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -1201,6 +1204,19 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TEMPLATE_CODE() As String
+            Get
+                Return Me.TEMPLATE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TEMPLATE_CODEField, value) <> true) Then
+                    Me.TEMPLATE_CODEField = value
+                    Me.RaisePropertyChanged("TEMPLATE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TEMPLATE_NAME() As String
             Get
                 Return Me.TEMPLATE_NAMEField
@@ -1214,7 +1230,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TEMPLATE_ORDER() As Decimal
+        Public Property TEMPLATE_ORDER() As System.Nullable(Of Decimal)
             Get
                 Return Me.TEMPLATE_ORDERField
             End Get
@@ -1227,7 +1243,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TEMPLATE_TYPE() As Decimal
+        Public Property TEMPLATE_TYPE() As System.Nullable(Of Decimal)
             Get
                 Return Me.TEMPLATE_TYPEField
             End Get
@@ -1264,10 +1280,10 @@ Namespace CommonBusiness
         Private APP_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private APP_LEVELField As Decimal
+        Private APP_LEVELField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private APP_TYPEField As Decimal
+        Private APP_TYPEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
@@ -1279,13 +1295,13 @@ Namespace CommonBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private INFORM_DATEField As Decimal
+        Private INFORM_DATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private INFORM_EMAILField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TEMPLATE_IDField As Decimal
+        Private TEMPLATE_IDField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -1311,7 +1327,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property APP_LEVEL() As Decimal
+        Public Property APP_LEVEL() As System.Nullable(Of Decimal)
             Get
                 Return Me.APP_LEVELField
             End Get
@@ -1324,7 +1340,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property APP_TYPE() As Decimal
+        Public Property APP_TYPE() As System.Nullable(Of Decimal)
             Get
                 Return Me.APP_TYPEField
             End Get
@@ -1376,7 +1392,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property INFORM_DATE() As Decimal
+        Public Property INFORM_DATE() As System.Nullable(Of Decimal)
             Get
                 Return Me.INFORM_DATEField
             End Get
@@ -1402,7 +1418,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TEMPLATE_ID() As Decimal
+        Public Property TEMPLATE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.TEMPLATE_IDField
             End Get

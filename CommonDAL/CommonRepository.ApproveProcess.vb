@@ -399,7 +399,7 @@ Partial Public Class CommonRepository
             Dim itemReturn = (From s In Context.SE_APP_TEMPLATE
                               Where s.ID = id
                               Select New ApproveTemplateDTO With {
-                                  .ID = s.ID,
+                                      .ID = s.ID,
                                   .TEMPLATE_NAME = s.TEMPLATE_NAME,
                                   .TEMPLATE_TYPE = s.TEMPLATE_TYPE,
                                   .TEMPLATE_ORDER = s.TEMPLATE_ORDER,
@@ -428,6 +428,7 @@ Partial Public Class CommonRepository
                                   .TEMPLATE_NAME = s.TEMPLATE_NAME,
                                   .TEMPLATE_TYPE = s.TEMPLATE_TYPE,
                                   .TEMPLATE_ORDER = s.TEMPLATE_ORDER,
+                                  .TEMPLATE_CODE = s.TEMPLATE_CODE,
                                   .ACTFLG = s.ACTFLG
                               }).ToList
 
