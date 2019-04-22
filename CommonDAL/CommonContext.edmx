@@ -1530,10 +1530,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="TEMPLATE_NAME" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="TEMPLATE_TYPE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="TEMPLATE_ORDER" Precision="38" Scale="0" />
-          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TEMPLATE_NAME" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Type="Decimal" Name="TEMPLATE_TYPE" Precision="38" Scale="0" Nullable="true" />
+          <Property Type="Decimal" Name="TEMPLATE_ORDER" Precision="38" Scale="0" Nullable="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="false" Nullable="true" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -2471,8 +2471,8 @@
 		<EntityTypeShape EntityType="CommonModel.HU_TERMINATE" Width="6.125" PointX="8.75" PointY="12.875" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_HU_ORG_HU_EMP">
           <ConnectorPoint PointX="6.09375" PointY="10.375" />
-          <ConnectorPoint PointX="6.09375" PointY="6.0156264999999962" />
-          <ConnectorPoint PointX="10" PointY="6.0156264999999962" />
+          <ConnectorPoint PointX="6.09375" PointY="5.9499999999999993" />
+          <ConnectorPoint PointX="10" PointY="5.9499999999999993" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_MAIL" PointX="0.75" PointY="6.125" Width="1.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_REMINDER" Width="1.5" PointX="4.75" PointY="1.125" Height="0.39999999999999991" IsExpanded="false" />
@@ -2491,7 +2491,7 @@
         <EntityTypeShape EntityType="CommonModel.SE_APP_PROCESS" Width="1.5" PointX="6.75" PointY="8.125" Height="0.40000000000000213" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_SETUP" Width="2.25" PointX="8.75" PointY="8.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_SETUPEXT" Width="1.875" PointX="9.75" PointY="1.125" Height="3.5186979166666656" IsExpanded="true" />
-        <EntityTypeShape EntityType="CommonModel.SE_APP_TEMPLATE" Width="1.5" PointX="6.75" PointY="10.125" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.SE_APP_TEMPLATE" Width="1.5" PointX="6.75" PointY="10.125" Height="3.1340950520833335" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_TEMPLATE_DTL" Width="1.5" PointX="8.75" PointY="10.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.HU_WORKING" Width="1.875" PointX="10.75" PointY="7.125" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_CHOSEN_ORG" Width="1.5" PointX="10.75" PointY="9.125" Height="0.39999999999999858" IsExpanded="false" />
@@ -2503,7 +2503,7 @@
           <ConnectorPoint PointX="5.4375" PointY="8.875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="2.875" PointY="12.125" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="CommonModel.SE_USER_PERMISSION" Width="2.5" PointX="7.125" PointY="11.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.SE_USER_PERMISSION" Width="2.5" PointX="9.75" PointY="12" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.HUV_SE_GRP_SE_USR" Width="1.5" PointX="0.75" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_VIEW_CONFIG" Width="1.75" PointX="5" PointY="12.125" Height="0.4" IsExpanded="false" />
         </Diagram>

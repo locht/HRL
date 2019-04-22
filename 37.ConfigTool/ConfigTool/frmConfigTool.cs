@@ -144,6 +144,7 @@ namespace ConfigTool
             {
                 try
                 {
+                    //EditAscxFile(item);
                     CreateStructTable();
                     fileName = item.FullName;
                     HtmlAgilityPack.HtmlWeb htmlWeb = new HtmlAgilityPack.HtmlWeb();
@@ -202,6 +203,8 @@ namespace ConfigTool
                     GetColumnConfigGrid("gridnumericcolumn", stt, htmlDoc);
                     GetColumnConfigGrid("griddatetimecolumn", stt, htmlDoc);
                     GetColumnConfigGrid("gridcheckboxcolumn", stt, htmlDoc);
+                    //delete translate
+                    DeleteTranslate();
                     // data ---> XML
                     SaveDB(item.Name);
                     //step += 1;
@@ -215,6 +218,61 @@ namespace ConfigTool
                 }
             }
         }
+        private void DeleteTranslate()
+        {
+            foreach (DataRow row in control.Rows)
+            {
+                var s = row["ErrorMessage"].ToString().Replace("<%$ Translate: ", "").Replace(" %>","");
+                row["ErrorMessage"] = s;
+                s = row["ErrorToolTip"].ToString().Replace("<%$ Translate: ","").Replace("%>", "");
+                row["ErrorToolTip"] = s;
+            }
+            foreach (DataRow row in girdColumm.Rows)
+            {
+                var s = row["Name"].ToString().Replace("<%$ Translate: ", "").Replace(" %>", "");
+                row["Name"] = s;
+            }
+        }
+        private void EditAscxFile(FileInfo file)
+        {
+            var htmlWeb = new HtmlAgilityPack.HtmlWeb();
+            htmlWeb.OverrideEncoding = Encoding.UTF8;
+            var htmlDoc = htmlWeb.Load(file.FullName);
+            var tableform = htmlDoc?.DocumentNode?.SelectSingleNode(@"//table[@class='table-form']");
+            var elements = tableform.Descendants("td").ToList();
+            List<HtmlNode> lslb = new List<HtmlNode>();
+            List<string> lsid = new List<string>();
+            for (int i = 0; i < elements.Count() - 1; i++)
+            {
+                foreach (var item1 in elements[i].DescendantNodes())
+                {
+                    if (item1.Attributes["runat"]?.Value != "server")
+                    {
+                        var s = item1.InnerHtml.ToString();
+                        if (s.Contains("<%# Translate(\"") && s.Contains("\")%>"))
+                        {
+                            foreach (var item2 in elements[i + 1].DescendantNodes())
+                            {
+                                var t = item2.OuterHtml;
+                                if (t.Contains("tlk:"))
+                                {
+                                    lsid.Add(item2.Attributes["ID"]?.Value);
+                                    break;
+                                }
+                            }
+                            lslb.Add(item1);
+                            break;
+                        }
+                    }
+                }
+            }
+            foreach (var item in lslb)
+            {
+                tableform.InnerText.Replace(item.InnerText, "");
+            }
+            htmlDoc.Save(@"d:\t.ascx");
+        }
+
         private void CreateStructTable()
         {
             viewconfig = new DataSet("viewconfig");

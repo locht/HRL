@@ -186,6 +186,7 @@ Public Class ctrlControlsNewEdit
                     dtCtrl.Columns.Add("Is_Validator", GetType(Boolean))
                     dtCtrl.Columns.Add("ErrorMessage", GetType(String))
                     dtCtrl.Columns.Add("ErrorToolTip", GetType(String))
+                    dtCtrl.Columns.Add("Validator_ID", GetType(String))
                     For Each item_Ctrl As GridDataItem In rgListControls.EditItems
                         Dim rw_new As DataRow = dtCtrl.NewRow
                         Dim edit = CType(item_Ctrl, GridEditableItem)
@@ -196,6 +197,7 @@ Public Class ctrlControlsNewEdit
                         rw_new("Is_Validator") = If(CType(edit("Is_Validator").Controls(0), CheckBox).Checked, True, False)
                         rw_new("ErrorMessage") = CType(edit("ErrorMessage").Controls(0), TextBox).Text
                         rw_new("ErrorToolTip") = CType(edit("ErrorTooltip").Controls(0), TextBox).Text
+                        rw_new("Validator_ID") = CType(edit("Validator_ID").Controls(0), TextBox).Text
                         dtCtrl.Rows.Add(rw_new)
                     Next
 

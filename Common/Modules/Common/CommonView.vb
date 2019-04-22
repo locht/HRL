@@ -330,7 +330,7 @@ Public Class CommonView
                     If row IsNot Nothing Then
                         ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
                         Try
-                            Dim validator As BaseValidator = rp.FindControl(row.Field(Of String)("Validator_ID").Trim())
+                            Dim validator As BaseValidator = rp.FindControl(row.Field(Of String)("Validator_ID"))
                             Dim labelCtr As Label = rp.FindControl(row.Field(Of String)("Label_ID").Trim())
                             If labelCtr IsNot Nothing Then
                                 labelCtr.Visible = ctrs.Visible
