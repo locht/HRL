@@ -731,13 +731,13 @@ Public Class ctrlHU_TranningForeign
             ctrlOrg.Enabled = True
             Select Case CurrentState
                 Case CommonMessage.STATE_DELETE
-                    'If rep.DeleteContract(DeleteContract) Then
-                    '    DeleteContract = Nothing
-                    '    IDSelect = Nothing
-                    '    Refresh("UpdateView")
-                    'Else
-                    '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                    'End If
+                    If rep.DeleteTrainingForeign(DeleteContract) Then
+                        DeleteContract = Nothing
+                        IDSelect = Nothing
+                        Refresh("UpdateView")
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -101,12 +101,6 @@ Public Class ctrlHU_EmpDtlProfile
             If EmployeeInfo IsNot Nothing Then
                 EmployeeID = EmployeeInfo.ID
                 ctrlHU_TitleConcurrent.SetProperty("EmployeeID", EmployeeID)
-                'Else
-                '    procedure = New ProfileStoreProcedure()
-                '    Dim tblEmpCode As DataTable = procedure.CREATE_NEW_EMPCODE()
-                '    If tblEmpCode IsNot Nothing AndAlso tblEmpCode.Rows.Count > 0 Then
-                '        txtEmpCODE.Text = tblEmpCode(0)(0).ToString
-                '    End If
             End If
             If Not isLoad Then
                 Using rep As New ProfileBusinessRepository
@@ -209,9 +203,45 @@ Public Class ctrlHU_EmpDtlProfile
                             If empCV.IS_PAY_BANK IsNot Nothing Then
                                 chkIs_pay_bank.Checked = empCV.IS_PAY_BANK
                             End If
-                            'If empCV.BIRTH_PLACE IsNot Nothing Then
-                            '    cboBIRTH_PLACE.SelectedValue = empCV.BIRTH_PLACE
-                            'End If
+                            '=======================================================
+                            If IsNumeric(empCV.PROVINCENQ_ID) Then
+                                cbPROVINCENQ_ID.SelectedValue = empCV.PROVINCENQ_ID
+                            End If
+                            rtOpption1.Text = empCV.OPPTION1
+                            rtOpption2.Text = empCV.OPPTION2
+                            rtOpption3.Text = empCV.OPPTION3
+                            rtOpption4.Text = empCV.OPPTION4
+                            rtOpption5.Text = empCV.OPPTION5
+                            If IsDate(empCV.OPPTION6) Then
+                                rdOpption6.SelectedDate = empCV.OPPTION6
+                            End If
+                            If IsDate(empCV.OPPTION6) Then
+                                rdOpption6.SelectedDate = empCV.OPPTION6
+                            End If
+                            If IsDate(empCV.OPPTION7) Then
+                                rdOpption7.SelectedDate = empCV.OPPTION7
+                            End If
+                            If IsDate(empCV.OPPTION9) Then
+                                rdOpption9.SelectedDate = empCV.OPPTION9
+                            End If
+                            If IsDate(empCV.OPPTION10) Then
+                                rdOpption10.SelectedDate = empCV.OPPTION10
+                            End If
+                          
+                            If IsNumeric(empCV.PROVINCEEMP_ID) Then
+                                cbPROVINCEEMP_ID.SelectedValue = empCV.PROVINCEEMP_ID
+                                cbPROVINCEEMP_ID.Text = empCV.PROVINCEEMP_NAME
+                            End If
+                            If IsNumeric(empCV.DISTRICTEMP_ID) Then
+                                cbDISTRICTEMP_ID.SelectedValue = empCV.DISTRICTEMP_ID
+                                cbDISTRICTEMP_ID.Text = empCV.DISTRICTEMP_NAME
+                            End If
+                            If IsNumeric(empCV.WARDEMP_ID) Then
+                                cbWARDEMP_ID.SelectedValue = empCV.WARDEMP_ID
+                                cbWARDEMP_ID.Text = empCV.WARDEMP_NAME
+                            End If
+                            '===============================================
+
                             If empCV.WORKPLACE_ID IsNot Nothing Then
                                 cboWorkplace.SelectedValue = empCV.WORKPLACE_ID
                                 cboWorkplace.Text = empCV.WORKPLACE_NAME
@@ -333,10 +363,6 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboAcademy.SelectedValue = empEdu.ACADEMY
                                 cboAcademy.Text = empEdu.ACADEMY_NAME
                             End If
-                            'If empEdu.TRAINING_FORM IsNot Nothing Then
-                            '    cboTrainingForm.SelectedValue = empEdu.TRAINING_FORM
-                            '    cboTrainingForm.Text = empEdu.TRAINING_FORM_NAME
-                            'End If
                             If empEdu.LEARNING_LEVEL IsNot Nothing Then
                                 cboLearningLevel.SelectedValue = empEdu.LEARNING_LEVEL
                                 cboLearningLevel.Text = empEdu.LEARNING_LEVEL_NAME
@@ -353,12 +379,6 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboMajor.SelectedValue = empEdu.MAJOR
                                 cboMajor.Text = empEdu.MAJOR_NAME
                             End If
-                            'txtNamTN.Value =empEdu.
-                            ' txtMajorRemark.Text = empEdu.MAJOR_REMARK
-                            'If empEdu.GRADUATE_SCHOOL_ID IsNot Nothing Then
-                            '    cboGraduateSchool.SelectedValue = empEdu.GRADUATE_SCHOOL_ID
-                            '    cboGraduateSchool.Text = empEdu.GRADUATE_SCHOOL_NAME
-                            'End If
                         End If
 
                         If empHealth IsNot Nothing Then
@@ -411,12 +431,15 @@ Public Class ctrlHU_EmpDtlProfile
             Dim dtPlace
             Dim dtLanguageleve As DataTable
             Dim dtLanguage As DataTable
+            'Dim dtDistrict As DataTable
+            'Dim dtWard As DataTable
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList("HU_PAPER")
                 dtPlace = rep.GetProvinceList(True)
                 dtLanguageleve = rep.GetOtherList("LANGUAGE_LEVEL", True)
                 dtLanguage = rep.GetOtherList("RC_LANGUAGE_LEVEL", True)
                 FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
+                FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
                 FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
                 'FillRadCombobox(cboBIRTH_PLACE, dtPlace, "NAME", "ID")
@@ -518,9 +541,12 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboGender, cboLangLevel, cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
-                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
+                                       cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                       chkDoanPhi, btnFindDirect, btnFindOrg)
+                                       chkDoanPhi, btnFindDirect, btnFindOrg,
+                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
+                                       rtEmpCode_OLD, rtBookNo, rtOtherName)
                     If Not Me.AllowCreate Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -558,8 +584,11 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                        chkDoanPhi,
-                                       btnFindDirect, btnFindOrg)
+                                        chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
+                                       btnFindDirect, btnFindOrg,
+                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
+                                       rtEmpCode_OLD, rtBookNo, rtOtherName)
                     If Not Me.AllowModify Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -594,8 +623,11 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                                        hidID, hidOrgID, hidDirectManager, hidLevelManager,
-                                       chkDoanPhi,
-                                       btnFindDirect, btnFindOrg)
+                                       chkDoanPhi, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
+                                       btnFindDirect, btnFindOrg,
+                                       rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
+                                       rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
+                                       rtEmpCode_OLD, rtBookNo, rtOtherName)
 
             End Select
             rep.Dispose()
@@ -846,7 +878,7 @@ Public Class ctrlHU_EmpDtlProfile
          cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
-        cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested
+        cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -877,7 +909,7 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetNationList(True)
                     Case cboNative.ID
                         dtData = rep.GetOtherList("NATIVE", True)
-                    Case cboNav_Province.ID, cboPer_Province.ID, cboWorkplace.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID
+                    Case cboNav_Province.ID, cboPer_Province.ID, cboWorkplace.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID
                         dtData = rep.GetProvinceList(True)
                     Case cboNav_District.ID, cboPer_District.ID, cbDISTRICTEMP_ID.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
@@ -1273,6 +1305,16 @@ Public Class ctrlHU_EmpDtlProfile
             If cboReligion.SelectedValue <> "" Then
                 EmpCV.RELIGION = Decimal.Parse(cboReligion.SelectedValue)
             End If
+
+            If IsNumeric(cbPROVINCEEMP_ID.SelectedValue) Then
+                EmpCV.PROVINCEEMP_ID = cbPROVINCEEMP_ID.SelectedValue
+            End If
+            If IsNumeric(cbDISTRICTEMP_ID.SelectedValue) Then
+                EmpCV.DISTRICTEMP_ID = cbDISTRICTEMP_ID.SelectedValue
+            End If
+            If IsNumeric(cbWARDEMP_ID.SelectedValue) Then
+                EmpCV.WARDEMP_ID = cbWARDEMP_ID.SelectedValue
+            End If
             'If cboBIRTH_PLACE.SelectedValue <> "" Then
             '    EmpCV.BIRTH_PLACE = Decimal.Parse(cboBIRTH_PLACE.SelectedValue)
             'End If
@@ -1349,6 +1391,29 @@ Public Class ctrlHU_EmpDtlProfile
             ' EmpCV.NOI_VAO_DANG = txtNoiVaoDang.Text.Trim()
             EmpCV.NOI_VAO_DOAN = txtNoiVaoDoan.Text.Trim()
             EmpCV.BANK_NO = txtBankNo.Text.Trim()
+            If IsNumeric(cbPROVINCENQ_ID.SelectedValue) Then
+                EmpCV.PROVINCENQ_ID = cbPROVINCENQ_ID.SelectedValue
+            End If
+            EmpCV.OPPTION1 = rtOpption1.Text
+            EmpCV.OPPTION2 = rtOpption2.Text
+            EmpCV.OPPTION3 = rtOpption3.Text
+            EmpCV.OPPTION4 = rtOpption4.Text
+            EmpCV.OPPTION5 = rtOpption5.Text
+            If IsDate(rdOpption6.SelectedDate) Then
+                EmpCV.OPPTION6 = rdOpption6.SelectedDate
+            End If
+            If IsDate(rdOpption7.SelectedDate) Then
+                EmpCV.OPPTION7 = rdOpption7.SelectedDate
+            End If
+            If IsDate(rdOpption8.SelectedDate) Then
+                EmpCV.OPPTION8 = rdOpption8.SelectedDate
+            End If
+            If IsDate(rdOpption9.SelectedDate) Then
+                EmpCV.OPPTION9 = rdOpption9.SelectedDate
+            End If
+            If IsDate(rdOpption10.SelectedDate) Then
+                EmpCV.OPPTION10 = rdOpption10.SelectedDate
+            End If
 
             EmpHealth = New EmployeeHealthDTO
             EmpHealth.CAN_NANG = txtCanNang.Text
@@ -1377,9 +1442,6 @@ Public Class ctrlHU_EmpDtlProfile
             If cboLearningLevel.SelectedValue <> "" Then
                 EmpEdu.LEARNING_LEVEL = cboLearningLevel.SelectedValue
             End If
-            'If cboTrainingForm.SelectedValue <> "" Then
-            '    EmpEdu.TRAINING_FORM = cboTrainingForm.SelectedValue
-            'End If
             If cboLangLevel.SelectedValue <> "" Then
                 EmpEdu.LANGUAGE_LEVEL = cboLangLevel.SelectedValue
 
@@ -1393,13 +1455,6 @@ Public Class ctrlHU_EmpDtlProfile
                 EmpEdu.MAJOR = cboMajor.SelectedValue
 
             End If
-            'EmpEdu.MAJOR_REMARK = txtMajorRemark.Text
-            'If cboGraduateSchool.SelectedValue <> "" Then
-            '    EmpEdu.GRADUATE_SCHOOL_ID = cboGraduateSchool.SelectedValue
-
-            'End If
-
-
             If ImageFile IsNot Nothing Then
                 Dim bytes(ImageFile.ContentLength - 1) As Byte
                 ImageFile.InputStream.Read(bytes, 0, ImageFile.ContentLength)

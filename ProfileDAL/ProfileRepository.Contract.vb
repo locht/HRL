@@ -168,6 +168,7 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                       From ot In Context.OT_OTHER_LIST.Where(Function(f) p.TRAINNING_ID = f.ID)
             Where (p.ID = _filter.ID)
                         Select New TrainningForeignDTO With {.ID = p.ID,
                                                      .START_DATE = p.START_DATE,
@@ -180,9 +181,11 @@ Partial Class ProfileRepository
                                                      .ORG_DESC = o.DESCRIPTION_PATH,
                                                      .TITLE_NAME = t.NAME_VN,
                                                      .SIGN_DATE = p.SIGN_DATE,
-                                                     .LOCATION=p.LOCATION,
-                                                      .CONTENT=p.CONTENT,
-                                                      .DECISION_NO=p.DECISION_NO
+                                                     .LOCATION = p.LOCATION,
+                                                      .CONTENT = p.CONTENT,
+                                                      .DECISION_NO = p.DECISION_NO,
+                                                      .TRAINNING_ID=p.TRAINNING_ID,
+                                                      .TRAINNING_NAME=ot.NAME_VN
                             }
             Dim result = query.FirstOrDefault
             Return result
@@ -191,6 +194,23 @@ Partial Class ProfileRepository
             Throw ex
         End Try
 
+
+    End Function
+    Public Function DeleteTrainingForeign(ByVal objContract As TrainningForeignDTO) As Boolean
+        Dim objContractData As HU_TRAININGFOREIGN
+        Try
+            ' Xóa  hợp đồng
+            objContractData = (From p In Context.HU_TRAININGFOREIGN Where objContract.ID = p.ID).SingleOrDefault
+            If Not objContractData Is Nothing Then
+                Context.HU_TRAININGFOREIGN.DeleteObject(objContractData)
+                Context.SaveChanges()
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
 
     End Function
 #End Region
@@ -691,6 +711,7 @@ Partial Class ProfileRepository
         End Try
 
     End Function
+   
 
     Public Function CreateContractNo(ByVal objContract As ContractDTO) As String
         Try

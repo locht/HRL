@@ -209,11 +209,13 @@ Public Class ctrlControlsNewEdit
                     dtGrid.Columns.Add("Is_Visible", GetType(Boolean))
                     dtGrid.Columns.Add("Width", GetType(Integer))
                     dtGrid.Columns.Add("Orderby", GetType(Integer))
+                    dtGrid.Columns.Add("DataType", GetType(String))
                     For Each item_Grid As GridDataItem In rgListGrid.EditItems
                         Dim rw_new As DataRow = dtGrid.NewRow
                         Dim edit = CType(item_Grid, GridEditableItem)
                         rw_new("ID") = CType(edit("ID").Controls(0), TextBox).Text
                         rw_new("Name") = CType(edit("Name").Controls(0), TextBox).Text
+                        rw_new("DataType") = CType(edit("DataType").Controls(0), TextBox).Text
                         rw_new("Is_Visible") = If(CType(edit("Is_Visible").Controls(0), CheckBox).Checked, True, False)
                         rw_new("Width") = CType(edit("Width").Controls(0), TextBox).Text
                         If IsNumeric(rw_new("Width")) = False Then

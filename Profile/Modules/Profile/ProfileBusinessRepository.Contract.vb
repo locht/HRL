@@ -65,6 +65,17 @@ Partial Public Class ProfileBusinessRepository
 
         Return Nothing
     End Function
+    Public Function DeleteTrainingForeign(ByVal objContract As TrainningForeignDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteTrainingForeign(objContract)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 #End Region
     Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,

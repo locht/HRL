@@ -705,13 +705,6 @@ Partial Class ProfileRepository
             'Thông tin insert vào bảng HU_EMPLOYEE.
             Dim objEmpData As New HU_EMPLOYEE
             Dim EMPCODE As String = String.Empty
-            'Using cls As New DataAccess.QueryData
-            '    Dim tblEmpCode As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.CREATE_NEW_EMPCODE", New With {.P_CUR = cls.OUT_CURSOR})
-            '    If tblEmpCode IsNot Nothing AndAlso tblEmpCode.Rows.Count > 0 Then
-            '        EMPCODE = tblEmpCode(0)(0).ToString
-            '    End If
-            'End Using
-            'Exxx' 
             If EMPCODE.Length = 4 Then
                 objEmpData.ITIME_ID = EMPCODE.Substring(1)
             End If
@@ -794,9 +787,7 @@ Partial Class ProfileRepository
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
                 objEmpCVData.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
                 objEmpCVData.ID_NO = objEmpCV.ID_NO
-                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
-                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
-                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+                
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
                 objEmpCVData.PASS_NO = objEmpCV.PASS_NO
@@ -821,7 +812,6 @@ Partial Class ProfileRepository
                 objEmpCVData.CONTACT_PER = objEmpCV.CONTACT_PER
                 objEmpCVData.CONTACT_PER_PHONE = objEmpCV.CONTACT_PER_PHONE
                 objEmpCVData.CAREER = objEmpCV.CAREER
-
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.NOI_VAO_DOAN = objEmpCV.NOI_VAO_DOAN
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
@@ -835,6 +825,23 @@ Partial Class ProfileRepository
                 objEmpCVData.BANK_NO = objEmpCV.BANK_NO
                 objEmpCVData.IS_PERMISSION = objEmpCV.IS_PERMISSION
                 objEmpCVData.IS_PAY_BANK = objEmpCV.IS_PAY_BANK
+                '-----------------------------------------------
+                objEmpCVData.PROVINCENQ_ID = objEmpCV.PROVINCENQ_ID
+                objEmpCVData.OPPTION1 = objEmpCV.OPPTION1
+                objEmpCVData.OPPTION2 = objEmpCV.OPPTION2
+                objEmpCVData.OPPTION3 = objEmpCV.OPPTION3
+                objEmpCVData.OPPTION4 = objEmpCV.OPPTION4
+                objEmpCVData.OPPTION5 = objEmpCV.OPPTION5
+                objEmpCVData.OPPTION6 = objEmpCV.OPPTION6
+                objEmpCVData.OPPTION7 = objEmpCV.OPPTION7
+                objEmpCVData.OPPTION8 = objEmpCV.OPPTION8
+                objEmpCVData.OPPTION9 = objEmpCV.OPPTION9
+                objEmpCVData.OPPTION10 = objEmpCV.OPPTION10
+                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
+                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
+                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+                '-----------------------------------------------
+
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
 
             End If
@@ -1054,7 +1061,13 @@ Partial Class ProfileRepository
         Try
             Dim objEmpData As New HU_EMPLOYEE With {.ID = objEmp.ID}
             '----Start modify HU_EMPLOYEE---
+
             objEmpData = (From p In Context.HU_EMPLOYEE Where p.ID = objEmp.ID).FirstOrDefault
+            '----------------------------------------------
+            objEmpData.EMPLOYEE_NAME_OTHER = objEmp.EMPLOYEE_NAME_OTHER
+            objEmpData.EMPLOYEE_CODE_OLD = objEmp.EMPLOYEE_CODE_OLD
+            objEmpData.BOOK_NO = objEmp.BOOKNO
+            '==============================================
             objEmpData.EMPLOYEE_CODE = objEmp.EMPLOYEE_CODE
             objEmpData.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
             objEmpData.LAST_NAME_VN = objEmp.LAST_NAME_VN
@@ -1167,6 +1180,22 @@ Partial Class ProfileRepository
                 objEmpCVData.BANK_NO = objEmpCV.BANK_NO
                 objEmpCVData.IS_PERMISSION = objEmpCV.IS_PERMISSION
                 objEmpCVData.IS_PAY_BANK = objEmpCV.IS_PAY_BANK
+                objEmpCVData.PROVINCENQ_ID = objEmpCV.PROVINCENQ_ID
+                '-------------------------------------------------
+                objEmpCVData.OPPTION1 = objEmpCV.OPPTION1
+                objEmpCVData.OPPTION2 = objEmpCV.OPPTION2
+                objEmpCVData.OPPTION3 = objEmpCV.OPPTION3
+                objEmpCVData.OPPTION4 = objEmpCV.OPPTION4
+                objEmpCVData.OPPTION5 = objEmpCV.OPPTION5
+                objEmpCVData.OPPTION6 = objEmpCV.OPPTION6
+                objEmpCVData.OPPTION7 = objEmpCV.OPPTION7
+                objEmpCVData.OPPTION8 = objEmpCV.OPPTION8
+                objEmpCVData.OPPTION9 = objEmpCV.OPPTION9
+                objEmpCVData.OPPTION10 = objEmpCV.OPPTION10
+                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
+                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
+                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+                '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
                 End If
@@ -1409,6 +1438,9 @@ Partial Class ProfileRepository
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = cv.EMPLOYEE_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = emp.ORG_ID).DefaultIfEmpty
                     From region In Context.OT_OTHER_LIST.Where(Function(f) f.ID = org.REGION_ID).DefaultIfEmpty
+                    From emp_pro In Context.HU_PROVINCE.Where(Function(f) cv.PER_PROVINCE = f.ID).DefaultIfEmpty
+                     From emp_dis In Context.HU_DISTRICT.Where(Function(f) cv.PER_DISTRICT = f.ID).DefaultIfEmpty
+                     From emp_ward In Context.HU_WARD.Where(Function(f) cv.PER_WARD = f.ID).DefaultIfEmpty
             Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
@@ -1478,6 +1510,23 @@ Partial Class ProfileRepository
                          .BANK_ID = cv.BANK_ID,
                          .BANK_NAME = bank.NAME,
                          .IS_PERMISSION = cv.IS_PERMISSION,
+                         .OPPTION1 = cv.OPPTION1,
+                         .OPPTION2 = cv.OPPTION2,
+                         .OPPTION3 = cv.OPPTION3,
+                         .OPPTION4 = cv.OPPTION4,
+                         .OPPTION5 = cv.OPPTION5,
+                         .OPPTION6 = cv.OPPTION6,
+                         .OPPTION7 = cv.OPPTION7,
+                         .OPPTION8 = cv.OPPTION8,
+                         .OPPTION9 = cv.OPPTION9,
+                         .OPPTION10 = cv.OPPTION10,
+                         .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
+                         .PROVINCEEMP_NAME = emp_pro.NAME_VN,
+                         .DISTRICTEMP_NAME = emp_dis.NAME_VN,
+                         .WARDEMP_NAME = emp_ward.NAME_VN,
+                         .DISTRICTEMP_ID = cv.DISTRICTEMP_ID,
+                         .WARDEMP_ID = cv.WARDEMP_ID,
+                         .PROVINCENQ_ID = cv.PROVINCENQ_ID,
                          .BANK_NO = cv.BANK_NO,
                          .IS_PAY_BANK = cv.IS_PAY_BANK}).FirstOrDefault
 

@@ -510,6 +510,17 @@
             <Property Name="PROVINCEEMP_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="DISTRICTEMP_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="WARDEMP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PROVINCENQ_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OPPTION1" Type="nclob" Nullable="true" />
+            <Property Name="OPPTION2" Type="nclob" Nullable="true" />
+            <Property Name="OPPTION3" Type="nclob" Nullable="true" />
+            <Property Name="OPPTION4" Type="nclob" Nullable="true" />
+            <Property Name="OPPTION5" Type="nclob" Nullable="true" />
+            <Property Name="OPPTION6" Type="date" Nullable="true" />
+            <Property Name="OPPTION7" Type="date" Nullable="true" />
+            <Property Name="OPPTION8" Type="date" Nullable="true" />
+            <Property Name="OPPTION9" Type="date" Nullable="true" />
+            <Property Name="OPPTION10" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4127,6 +4138,17 @@
           <Property Type="Decimal" Name="PROVINCEEMP_ID" />
           <Property Type="Decimal" Name="DISTRICTEMP_ID" />
           <Property Type="Decimal" Name="WARDEMP_ID" />
+          <Property Type="Decimal" Name="PROVINCENQ_ID" />
+          <Property Type="String" Name="OPPTION1" />
+          <Property Type="String" Name="OPPTION2" />
+          <Property Type="String" Name="OPPTION3" />
+          <Property Type="String" Name="OPPTION4" />
+          <Property Type="String" Name="OPPTION5" />
+          <Property Type="DateTime" Name="OPPTION6" />
+          <Property Type="DateTime" Name="OPPTION7" />
+          <Property Type="DateTime" Name="OPPTION8" />
+          <Property Type="DateTime" Name="OPPTION9" />
+          <Property Type="DateTime" Name="OPPTION10" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -7341,6 +7363,17 @@
                     <ScalarProperty Name="PROVINCEEMP_ID" ColumnName="PROVINCEEMP_ID" />
                     <ScalarProperty Name="DISTRICTEMP_ID" ColumnName="DISTRICTEMP_ID" />
                     <ScalarProperty Name="WARDEMP_ID" ColumnName="WARDEMP_ID" />
+                    <ScalarProperty Name="PROVINCENQ_ID" ColumnName="PROVINCENQ_ID" />
+                    <ScalarProperty Name="OPPTION1" ColumnName="OPPTION1" />
+                    <ScalarProperty Name="OPPTION2" ColumnName="OPPTION2" />
+                    <ScalarProperty Name="OPPTION3" ColumnName="OPPTION3" />
+                    <ScalarProperty Name="OPPTION4" ColumnName="OPPTION4" />
+                    <ScalarProperty Name="OPPTION5" ColumnName="OPPTION5" />
+                    <ScalarProperty Name="OPPTION6" ColumnName="OPPTION6" />
+                    <ScalarProperty Name="OPPTION7" ColumnName="OPPTION7" />
+                    <ScalarProperty Name="OPPTION8" ColumnName="OPPTION8" />
+                    <ScalarProperty Name="OPPTION9" ColumnName="OPPTION9" />
+                    <ScalarProperty Name="OPPTION10" ColumnName="OPPTION10" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10152,7 +10185,7 @@
           <ConnectorPoint PointX="4.5" PointY="10.024999999999999" />
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="13.518372395833332" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="15.633688151041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="14.375" PointY="2.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="13.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">

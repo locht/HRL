@@ -601,8 +601,16 @@ Public Class ProfileRepository
                         .NAME_EN = p.NAME_EN}).ToList
             _combolistDTO.LIST_REASON = query
         End If
-
-
+        If _combolistDTO.GET_TYPE_WORK Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.ID = 2255)
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_TYPE_WORK = query
+        End If
 
         'Loại NGHĨ
         'list ALLOWANCE
