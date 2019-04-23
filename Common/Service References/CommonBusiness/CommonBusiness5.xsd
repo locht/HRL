@@ -102,23 +102,15 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="FROM_DATE" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FROM_DAY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="FROM_HOUR" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="MAIL_ACCEPTED" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MAIL_ACCEPTING" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NUM_REQUEST" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="PROCESS_ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="PROCESS_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="REQUEST_EMAIL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SIGN_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TEMPLATE_ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="TEMPLATE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TO_DAY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TO_HOUR" nillable="true" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ApproveSetupDTO" nillable="true" type="tns:ApproveSetupDTO" />

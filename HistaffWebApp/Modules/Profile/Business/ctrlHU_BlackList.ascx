@@ -62,7 +62,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_CODE,IS_NOHIRE">
                         <Columns>
-                          <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                       <%--    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -96,7 +96,7 @@
                                 SortExpression="ORG_NAME" UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                             </tlk:GridBoundColumn>--%>
-                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                           <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày nộp đơn %>" DataField="SEND_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="SEND_DATE" UniqueName="SEND_DATE"

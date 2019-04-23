@@ -15,18 +15,12 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
-      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
       <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CommonDAL" />
       <xsd:import schemaLocation="http://localhost:9999/CommonBusiness.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ICommonBusiness_GetConfig_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfig" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetConfig_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetConfigResponse" />
-  </wsdl:message>
   <wsdl:message name="ICommonBusiness_UpdateConfig_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateConfig" />
   </wsdl:message>
@@ -206,12 +200,6 @@
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_UpdateApproveProcessStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateApproveProcessStatusResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetTitleList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTitleList" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetTitleList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTitleListResponse" />
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetApproveSetupByEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:GetApproveSetupByEmployee" />
@@ -512,12 +500,6 @@
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_UpdateUserStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserStatusResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetOrganizationList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetOrganizationList" />
-  </wsdl:message>
-  <wsdl:message name="ICommonBusiness_GetOrganizationList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetOrganizationListResponse" />
   </wsdl:message>
   <wsdl:message name="ICommonBusiness_GetOrganizationAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrganizationAll" />
@@ -969,11 +951,13 @@
   <wsdl:message name="ICommonBusiness_GetHU_CompetencyList_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHU_CompetencyListResponse" />
   </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfig" />
+  </wsdl:message>
+  <wsdl:message name="ICommonBusiness_GetConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICommonBusiness">
-    <wsdl:operation name="GetConfig">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfig" message="tns:ICommonBusiness_GetConfig_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigResponse" message="tns:ICommonBusiness_GetConfig_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateConfig">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateConfig" message="tns:ICommonBusiness_UpdateConfig_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateConfigResponse" message="tns:ICommonBusiness_UpdateConfig_OutputMessage" />
@@ -1093,10 +1077,6 @@
     <wsdl:operation name="UpdateApproveProcessStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatus" message="tns:ICommonBusiness_UpdateApproveProcessStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatusResponse" message="tns:ICommonBusiness_UpdateApproveProcessStatus_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTitleList">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetTitleList" message="tns:ICommonBusiness_GetTitleList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetTitleListResponse" message="tns:ICommonBusiness_GetTitleList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetApproveSetupByEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetApproveSetupByEmployee" message="tns:ICommonBusiness_GetApproveSetupByEmployee_InputMessage" />
@@ -1297,10 +1277,6 @@
     <wsdl:operation name="UpdateUserStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateUserStatus" message="tns:ICommonBusiness_UpdateUserStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/UpdateUserStatusResponse" message="tns:ICommonBusiness_UpdateUserStatus_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetOrganizationList">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetOrganizationList" message="tns:ICommonBusiness_GetOrganizationList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetOrganizationListResponse" message="tns:ICommonBusiness_GetOrganizationList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetOrganizationAll">
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetOrganizationAll" message="tns:ICommonBusiness_GetOrganizationAll_InputMessage" />
@@ -1602,19 +1578,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList" message="tns:ICommonBusiness_GetHU_CompetencyList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse" message="tns:ICommonBusiness_GetHU_CompetencyList_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfig" message="tns:ICommonBusiness_GetConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonBusiness/GetConfigResponse" message="tns:ICommonBusiness_GetConfig_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_ICommonBusiness" type="tns:ICommonBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_ICommonBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetConfig">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfig" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateConfig">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateConfig" style="document" />
       <wsdl:input>
@@ -1878,15 +1849,6 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateApproveProcessStatus">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatus" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetTitleList">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetTitleList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2337,15 +2299,6 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUserStatus">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/UpdateUserStatus" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetOrganizationList">
-      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetOrganizationList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3021,6 +2974,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetHU_CompetencyList">
       <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfig">
+      <soap12:operation soapAction="http://tempuri.org/ICommonBusiness/GetConfig" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

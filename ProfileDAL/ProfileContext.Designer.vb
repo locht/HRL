@@ -18,40 +18,6 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<<<<<<< HEAD
-<Assembly: EdmSchemaAttribute("0c2d44d7-0c6f-4aff-977d-cdd85d09f02e")>
-=======
-<Assembly: EdmSchemaAttribute("c901fbf9-f04a-4487-879c-85ed62bb5e14")>
->>>>>>> 71b025c6cd45bb2a76836f739b542713540058dd
-#Region "EDM Relationship Metadata"
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "BANKBANK_BRANCH", "BANK", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_BANK), "BANK_BRANCH", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_BANK_BRANCH), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OOL_HA", "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(OT_OTHER_LIST), "HU_ASSET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_ASSET), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HP_HH", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_PROVINCE), "HOSPITAL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_HOSPITAL), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HE_HEE", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_EDUCATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_EDUCATION), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HC_HE", "HU_CONTRACT", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_CONTRACT), "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HE_HC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_CONTRACT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_CONTRACT), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HE_HWB", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_WORKING_BEFORE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_WORKING_BEFORE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OTDCO_HUDC", "OT_DCO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(OT_OTHER_LIST), "HU_DC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISCIPLINE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OTDCT_HUDC", "OT_DCT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(OT_OTHER_LIST), "HU_DC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISCIPLINE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OTDCL_HUDC", "OT_DCL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(OT_OTHER_LIST), "HU_DC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISCIPLINE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HUEMD_HUEM", "HU_EMD", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE), "HU_EM", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OTST_HUCT", "OT_ST", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST), "HU_CT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_CONTRACT), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HE_HF", "HU_FAMILY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_FAMILY), "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_PSG_PSL", "PA_SALARY_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_GROUP), "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_LEVEL), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_PSL_PSR", "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_LEVEL), "PA_SALARY_RANK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_RANK), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_OTW_HUE", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_EMPLOYEE), "OT_WORK_STATUS", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_DR_DRD", "HU_DYNAMIC_REPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_DYNAMIC_REPORT), "HU_DYNAMIC_REPORT_DTL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DYNAMIC_REPORT_DTL), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "SE_USER_REPORT", "SE_REPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_REPORT), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_ORG_HU_ORG", "HU_ORGANIZATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_ORGANIZATION), "HU_ORGANIZATION1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_ORGANIZATION), True)>
-<Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_ORG_HU_ORG1", "HU_ORGANIZATION1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_ORGANIZATION1), "HU_ORGANIZATION11", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_ORGANIZATION1))>
-
-#End Region
 
 #Region "Contexts"
 
