@@ -53,7 +53,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE" ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -85,7 +85,7 @@
                             <tlk:GridDateTimeColumn HeaderText="Thời hạn văn bằng chứng chỉ" DataField="DEGREE_EXPIRE_DATE" ItemStyle-HorizontalAlign="Center"
                                 SortExpression="DEGREE_EXPIRE_DATE" UniqueName="DEGREE_EXPIRE_DATE" DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK" UniqueName="REMARK" />
+                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK" UniqueName="REMARK" />--%>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle Width="120px" />

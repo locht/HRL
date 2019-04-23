@@ -25,7 +25,7 @@
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                        <asp:Label ID="Label2" runat="server" Text="Ngày về"></asp:Label>
+                        <asp:Label ID="lbToDate" runat="server" Text="Ngày về"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
@@ -54,7 +54,7 @@
                     <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE"
                         ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID">
                         <Columns>
-                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                          <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />

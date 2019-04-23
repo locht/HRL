@@ -153,10 +153,10 @@ Public Class ctrlHU_TraniningManagement
             rgContract.AllowCustomPaging = True
             rgContract.SetFilter()
             InitControl()
-            'If Not IsPostBack Then
-            '    ViewConfig(RadPane1)
-            '    GirdConfig(rgContract)
-            'End If
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgContract)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
