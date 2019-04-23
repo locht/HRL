@@ -12,6 +12,10 @@ Public Class ctrlOrganization
     Public Event SelectedNodeChanged As trvOrganization_SelectedNodeChangedDelegate
     Dim trvOrganization As New RadTreeView
     Public Overrides Property MustAuthorize As Boolean = False
+    'ChienNV added when checked value in organization then autopostback -> return list(of decimal)
+    Public Delegate Sub trvOrganization_CheckedNodeChangedDelegate(ByVal sender As Object, ByVal e As EventArgs)
+    Public Event CheckedNodeChanged As trvOrganization_CheckedNodeChangedDelegate
+
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile/Module/Profile/Setting/" + Me.GetType().Name.ToString()
@@ -51,6 +55,19 @@ Public Class ctrlOrganization
             ViewState(Me.ID & "_PeriodID") = value
         End Set
     End Property
+
+    Public Property strOrgs As String
+        Get
+            If ViewState(Me.ID & "_strOrgs") Is Nothing Then
+                ViewState(Me.ID & "_strOrgs") = False
+            End If
+            Return ViewState(Me.ID & "_strOrgs")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_strOrgs") = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' ColorType
     ''' </summary>
@@ -699,6 +716,19 @@ Public Class ctrlOrganization
         End Try
 
     End Sub
+
+    Protected Sub trvOrgPostback_CheckedNodeChanged(ByVal sender As Object, ByVal e As EventArgs) Handles trvOrgPostback.NodeCheck
+        Try
+            If trvOrganization.CheckedNodes IsNot Nothing Then
+                strOrgs = String.Join(",", From p In trvOrgPostback.CheckedNodes.AsEnumerable Select p.Value)
+            End If
+            RaiseEvent CheckedNodeChanged(sender, e)
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
+
     '''<lastupdate>
     ''' 24/07/2017 10:48
     ''' </lastupdate>
