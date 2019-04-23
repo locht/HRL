@@ -120,8 +120,5 @@
     Public Property DANG As Boolean?
     Public Property SKILL As String
     Public Property NGAY_VAO_DANG_DB As Date?
-    Public Property TDTH As Decimal?
-    Public Property DIEM_XL_TH As String
-    Public Property QLNN As Decimal?
-    Public Property LLCT As Decimal?
+   
 End Class

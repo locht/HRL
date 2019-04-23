@@ -25,4 +25,8 @@
     Public Property MODIFIED_LOG As String
 
     Public Property GRADUATION_YEAR As Int16?
+    Public Property QLNN As Decimal?
+    Public Property LLCT As Decimal?
+    Public Property TDTH As Decimal?
+    Public Property DIEM_XLTH As String
 End Class

@@ -1257,6 +1257,13 @@
                                             <tlk:RadTextBox ID="txtLoaiSucKhoe" runat="server">
                                             </tlk:RadTextBox>
                                         </td>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbTTSucKhoe" Text ="Tình trạng sức khỏe"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox ID="rtTTSucKhoe" runat="server">
+                                            </tlk:RadTextBox>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="lb3">
@@ -1316,6 +1323,7 @@
             
         </table>
     </tlk:RadPane>
+ 
 </tlk:RadSplitter>
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
