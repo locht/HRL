@@ -626,7 +626,15 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
 
     End Sub
-
+    ' ''' <lastupdate>
+    ' ''' 11/07/2017 13:40
+    ' ''' </lastupdate>
+    ' ''' <summary>
+    ' ''' Xu ly su kien click khi click vao btnFindSigner
+    ' ''' </summary>
+    ' ''' <param name="sender"></param>
+    ' ''' <param name="e"></param>
+    ' ''' <remarks></remarks>
     'Protected Sub btnFindSinger_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindSinger.Click
     '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
     '    Try
@@ -641,7 +649,6 @@ Public Class ctrlHU_DisciplineNewEdit
     '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
     '    End Try
     'End Sub
-    ''' <lastupdate>
     ''' 11/07/2017 13:40
     ''' </lastupdate>
     ''' <summary>
