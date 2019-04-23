@@ -172,7 +172,8 @@
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx" />
-    <Content Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx" />    <Content Include="Modules\Profile\Business\ctrlHU_Allowance.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_Allowance.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ContractAppendix.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ContractTemplete.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlCompetency.ascx" />
@@ -672,7 +673,8 @@
     <Compile Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx.vb">
       <DependentUpon>ctrlHU_TraniningManagement.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>    <Compile Include="Modules\Profile\Business\ctrlHU_Allowance.ascx.designer.vb">
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_Allowance.ascx.designer.vb">
       <DependentUpon>ctrlHU_Allowance.ascx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_Allowance.ascx.vb">
