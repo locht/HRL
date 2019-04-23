@@ -7,51 +7,64 @@
     <tlk:RadPane runat="server" ID="pnlRegistInfo" Height="100px" Visible="true">
         <div style="vertical-align: middle; height: 65px; padding-top: 5px">
             <table class="table-form">
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Hệ số làm thêm")%>
-                    </td>
-                    <td>
-                        <tlk:RadComboBox runat="server" ID="cboleaveType" DataTextField="NAME" DataValueField="ID">
-                        </tlk:RadComboBox>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Lý do") %>
-                    </td>
-                    <td>
-                        <tlk:RadTextBox runat="server" ID="txtReason">
-                        </tlk:RadTextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lb">
-                        <%# Translate("Từ giờ")%>
-                    </td>
-                    <td>
-                        <tlk:RadTimePicker ID="tpkFrom" runat="server">
-                        </tlk:RadTimePicker>
-                    </td>
-                    <td class="lb">
-                        <%# Translate("Đến giờ")%>
-                    </td>
-                    <td>
-                        <tlk:RadTimePicker ID="tpkTo" runat="server">
-                        </tlk:RadTimePicker>
-                    </td>
-                    <td>
-                        <asp:CheckBox runat ="server" ID="checkNB" Text="Tính nghỉ bù" />
-                    </td>
-                </tr>
-                 <tr>
-                <td class="lb">
-                    <%# Translate("Lý do hủy") %>
-                </td>
-                <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="txtCancel" Width="400px">
+            <tr> 
+     			<td colspan="12">
+                    <tlk:RadTextBox  ID="rntxtOT_USED" runat="server" BorderWidth="0" Width="100%">
                     </tlk:RadTextBox>
                 </td>
+            </tr>		
+            <tr>
+                <td style="text-align: left" class="lb">
+                    <%# Translate("Từ ngày ")%>
+                </td>
+                <td>
+                    <tlk:RadDatePicker runat="server" ID="rdFromDate">
+                    </tlk:RadDatePicker>
+                </td>
+                <td style="text-align: left" class="lb">
+                    <%# Translate("đến ngày")%>
+                </td>
+                <td>
+                    <tlk:RadDatePicker runat="server" ID="rdToDate">
+                    </tlk:RadDatePicker>
+                </td>
+
             </tr>
-            </table>
+			<tr>
+			     <td style="text-align: left" class="lb">
+                    <%# Translate("Từ giờ")%>
+                </td>
+                <td>
+                   <%-- <tlk:RadTimePicker ID="rtpFROM" runat="server">
+                    </tlk:RadTimePicker>--%>
+                    <tlk:RadComboBox runat="server" ID="cboHoursFrom"></tlk:RadComboBox>
+                    <tlk:RadComboBox runat="server" ID="cboMinuteFrom"></tlk:RadComboBox>
+                </td>
+                <td style="text-align: left" class="lb">
+                    <%# Translate("đến giờ")%>
+                </td>
+                <td>
+                    <%--<tlk:RadTimePicker ID="rtpTO" runat="server">
+                    </tlk:RadTimePicker>--%>
+                    <tlk:RadComboBox runat="server" ID="cboHoursTo"></tlk:RadComboBox>
+                    <tlk:RadComboBox runat="server" ID="cboMinuteTo"></tlk:RadComboBox>
+                </td>
+                <td> <asp:CheckBox runat="server" ID="chkNB" Text=<%# Translate("Quy đổi nghỉ bù")%> /></td>
+			</tr>
+            <tr>
+                <td style="text-align: left" class="lb">
+                    <%# Translate("Lý do")%>
+                </td>
+                <td colspan="8">
+                    <tlk:RadTextBox runat="server" ID="txtReason" Width="100%">
+                    </tlk:RadTextBox>
+                </td>
+                <td>
+                    <tlk:RadButton ID="btnRegister" runat="server" Text="<%$ Translate: Đăng ký %>">
+                    </tlk:RadButton>
+                </td>
+            </tr>
+        </table>
         </div>
     </tlk:RadPane>
     <tlk:RadPane runat="server" ID="RadPane1" Height="30px" Visible="true" Scrolling="None">
