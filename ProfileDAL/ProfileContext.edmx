@@ -3196,7 +3196,7 @@
             <Property Name="LOCATION" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="COST" Type="number" Nullable="true" Precision="38" />
             <Property Name="RESULT_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="1023" />
-            <Property Name="DEGREE_EXPIRE_DATE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="DEGREE_EXPIRE_DATE" Type="date" Nullable="true" />
             <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
             <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
@@ -7169,7 +7169,7 @@
           <Property Type="String" Name="LOCATION" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="COST" Precision="38" Scale="0" />
           <Property Type="String" Name="RESULT_TRAIN" MaxLength="1023" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DEGREE_EXPIRE_DATE" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DEGREE_EXPIRE_DATE" />
           <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -10291,7 +10291,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="63" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="82" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -10548,7 +10548,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ATTACHFILES" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="ProfileModel.HU_FILE" Width="1.5" PointX="32.375" PointY="14.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGFOREIGN" Width="1.5" PointX="32.375" PointY="20.75" Height="4.4802050781249818" />
-        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="1.5" PointX="33.375" PointY="5.75" Height="5.2494108072916674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="3.125" PointX="33.375" PointY="5.75" Height="5.2494108072916674" />
         </Diagram>
     </Diagrams>
   </Designer>

@@ -1,8 +1,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
+<<<<<<< HEAD
 -- Date Created: 4/23/2019 8:42:53 AM
 -- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\ProfileDAL\ProfileContext.edmx
+=======
+-- Date Created: 04/22/2019 5:06:08 PM
+-- Generated from EDMX file: D:\MyProject\core1\histaffhcm-newnewnew\ProfileDAL\ProfileContext.edmx
+>>>>>>> 71b025c6cd45bb2a76836f739b542713540058dd
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3132,7 +3137,7 @@ CREATE TABLE "dbo"."HU_TRAININGMANAGE" (
    "LOCATION" NVARCHAR2(1023) NULL,
    "COST" NUMBER(38,0) NULL,
    "RESULT_TRAIN" NVARCHAR2(1023) NULL,
-   "DEGREE_EXPIRE_DATE" NVARCHAR2(1023) NULL,
+   "DEGREE_EXPIRE_DATE" DATE NULL,
    "REMARK" NVARCHAR2(1023) NULL,
    "CREATED_DATE" DATE NULL,
    "CREATED_BY" NVARCHAR2(255) NULL,

@@ -18,7 +18,11 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
+<<<<<<< HEAD
 <Assembly: EdmSchemaAttribute("0c2d44d7-0c6f-4aff-977d-cdd85d09f02e")>
+=======
+<Assembly: EdmSchemaAttribute("c901fbf9-f04a-4487-879c-85ed62bb5e14")>
+>>>>>>> 71b025c6cd45bb2a76836f739b542713540058dd
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -44307,21 +44311,21 @@ Public Partial Class HU_TRAININGMANAGE
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property DEGREE_EXPIRE_DATE() As Global.System.String
+    Public Property DEGREE_EXPIRE_DATE() As Nullable(Of Global.System.DateTime)
         Get
             Return _DEGREE_EXPIRE_DATE
         End Get
         Set
             OnDEGREE_EXPIRE_DATEChanging(value)
             ReportPropertyChanging("DEGREE_EXPIRE_DATE")
-            _DEGREE_EXPIRE_DATE = StructuralObject.SetValidValue(value, true)
+            _DEGREE_EXPIRE_DATE = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("DEGREE_EXPIRE_DATE")
             OnDEGREE_EXPIRE_DATEChanged()
         End Set
     End Property
 
-    Private _DEGREE_EXPIRE_DATE As Global.System.String
-    Private Partial Sub OnDEGREE_EXPIRE_DATEChanging(value As Global.System.String)
+    Private _DEGREE_EXPIRE_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnDEGREE_EXPIRE_DATEChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnDEGREE_EXPIRE_DATEChanged()
