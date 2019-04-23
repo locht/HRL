@@ -611,7 +611,7 @@ Public Class ProfileRepository
                         .NAME_EN = p.NAME_EN}).ToList
             _combolistDTO.LIST_TYPE_WORK = query
         End If
-
+       
         'Loại NGHĨ
         'list ALLOWANCE
         If _combolistDTO.GET_WORKING_ALLOWANCE_LIST Then

@@ -3,6 +3,235 @@ Imports Framework.Data.System.Linq.Dynamic
 Imports System.Reflection
 
 Partial Class ProfileRepository
+#Region "TRANINGMANAGE"
+    Public Function GetTrainingManage(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
+                               ByVal PageSize As Integer,
+                               ByRef Total As Integer, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc",
+                               Optional ByVal log As UserLog = Nothing) As List(Of TrainningManageDTO)
+
+        Try
+
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+            'Dim query = From p In Context.HU_CONTRACT Order By p.HU_EMPLOYEE.EMPLOYEE_CODE
+            '            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+            '            From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+            '            From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE_ID = f.ID)
+            '            From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+            '            From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
+            '            From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
+            '                                                           f.USERNAME = log.Username.ToUpper)
+
+            Dim query = From p In Context.HU_TRAININGMANAGE
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                       From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINING_ID)
+            ' lọc điều kiện
+            Dim dateNow = Date.Now.Date
+            Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            If Not _filter.IS_TER Then
+                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or
+                                        (p.e.WORK_STATUS.HasValue And
+                                         ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
+
+            End If
+            ' select thuộc tính
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.EMPLOYEE_NAME <> "" Then
+                query = query.Where(Function(p) p.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
+            End If
+            If _filter.FROM_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE >= _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE <= _filter.TO_DATE)
+            End If
+            If _filter.START_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE = _filter.START_DATE)
+            End If
+            If _filter.EXPIRE_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.EXPIRE_DATE = _filter.EXPIRE_DATE)
+            End If
+            If _filter.DEGREE_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.DEGREE_DATE = _filter.DEGREE_DATE)
+            End If
+            If _filter.TITLE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.t.NAME_VN = _filter.TITLE_NAME)
+            End If
+            If _filter.ORG_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.o.NAME_VN = _filter.ORG_NAME)
+            End If
+            If _filter.LOCATION IsNot Nothing Then
+                query = query.Where(Function(p) p.p.LOCATION = _filter.LOCATION)
+            End If
+            If _filter.DEGREE_EXPIRE_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.DEGREE_EXPIRE_DATE = _filter.DEGREE_EXPIRE_DATE)
+            End If
+
+            Dim trainingforeign = query.Select(Function(p) New TrainningManageDTO With {
+                                            .ID = p.p.ID,
+                                            .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                            .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                            .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                            .ORG_ID = p.p.ID,
+                                            .ORG_NAME = p.o.NAME_VN,
+                                            .ORG_DESC = p.o.DESCRIPTION_PATH,
+                                            .TITLE_ID = p.p.TITLE_ID,
+                                            .TITLE_NAME = p.t.NAME_VN,
+                                            .START_DATE = p.p.START_DATE,
+                                            .EXPIRE_DATE = p.p.EXPIRE_DATE,
+                                            .DEGREE_DATE = p.p.DEGREE_DATE,
+                                            .PROGRAM_TRAINING = p.p.PROGRAM_TRAINING,
+                                            .TRAINNING_ID = p.p.TRAINING_ID,
+                                            .TRAINNING_NAME = p.ot.NAME_VN,
+                                            .CERTIFICATE = p.p.CERTIFICATE,
+                                            .UNIT = p.p.UNIT,
+                                            .COST = p.p.COST,
+                                            .RESULT_TRAIN = p.p.RESULT_TRAIN,
+                                            .DEGREE_EXPIRE_DATE = p.p.DEGREE_EXPIRE_DATE,
+                                            .REMARK = p.p.REMARK,
+                                            .LOCATION = p.p.LOCATION,
+                                            .CREATED_DATE = p.p.CREATED_DATE
+                                            })
+
+            trainingforeign = trainingforeign.OrderBy(Sorts)
+            Total = trainingforeign.Count
+            trainingforeign = trainingforeign.Skip(PageIndex * PageSize).Take(PageSize)
+            Return trainingforeign.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function InsertTrainingManage(ByVal objContract As TrainningManageDTO,
+                                 ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objContractData As New HU_TRAININGMANAGE
+        Try
+            objContractData.ID = Utilities.GetNextSequence(Context, Context.HU_TRAININGMANAGE.EntitySet.Name)
+            objContract.ID = objContractData.ID
+            objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+            objContractData.TITLE_ID = objContract.TITLE_ID
+            objContractData.ORG_ID = objContract.ORG_ID
+            objContractData.START_DATE = objContract.START_DATE
+            objContractData.EXPIRE_DATE = objContract.EXPIRE_DATE
+            objContractData.DEGREE_DATE = objContract.DEGREE_DATE
+            objContractData.PROGRAM_TRAINING = objContract.PROGRAM_TRAINING
+            objContractData.TRAINING_ID = objContract.TRAINNING_ID
+            objContractData.CERTIFICATE = objContract.CERTIFICATE
+            objContractData.UNIT = objContract.UNIT
+            objContractData.RESULT_TRAIN = objContract.RESULT_TRAIN
+            objContractData.REMARK = objContract.REMARK
+            objContractData.DEGREE_EXPIRE_DATE = objContract.DEGREE_EXPIRE_DATE
+            objContractData.COST = objContract.COST
+            objContractData.LOCATION = objContract.LOCATION
+
+            Context.HU_TRAININGMANAGE.AddObject(objContractData)
+            ' Phê duyệt
+            Context.SaveChanges(log)
+            gID = objContractData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+
+    End Function
+    Public Function ModifyTrainingManage(ByVal objContract As TrainningManageDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objContractData As New HU_TRAININGMANAGE With {.ID = objContract.ID}
+        Try
+            objContractData = (From p In Context.HU_TRAININGMANAGE Where p.ID = objContract.ID).FirstOrDefault
+            objContract.ID = objContractData.ID
+            objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+            objContractData.TITLE_ID = objContract.TITLE_ID
+            objContractData.ORG_ID = objContract.ORG_ID
+            objContractData.START_DATE = objContract.START_DATE
+            objContractData.EXPIRE_DATE = objContract.EXPIRE_DATE
+            objContractData.DEGREE_DATE = objContract.DEGREE_DATE
+            objContractData.PROGRAM_TRAINING = objContract.PROGRAM_TRAINING
+            objContractData.TRAINING_ID = objContract.TRAINNING_ID
+            objContractData.CERTIFICATE = objContract.CERTIFICATE
+            objContractData.UNIT = objContract.UNIT
+            objContractData.RESULT_TRAIN = objContract.RESULT_TRAIN
+            objContractData.REMARK = objContract.REMARK
+            objContractData.DEGREE_EXPIRE_DATE = objContract.DEGREE_EXPIRE_DATE
+            objContractData.COST = objContract.COST
+            objContractData.LOCATION = objContract.LOCATION
+            Context.SaveChanges(log)
+            gID = objContractData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+
+    End Function
+    Public Function GetTrainingManageById(ByVal _filter As TrainningManageDTO) As TrainningManageDTO
+        Try
+            Dim query = From p In Context.HU_TRAININGMANAGE
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                       From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINING_ID).DefaultIfEmpty
+            Where (p.ID = _filter.ID)
+                        Select New TrainningManageDTO With {.ID = p.ID,
+                                                     .START_DATE = p.START_DATE,
+                                                     .EXPIRE_DATE = p.EXPIRE_DATE,
+                                                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                     .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                     .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                     .ORG_ID = e.ID,
+                                                     .ORG_NAME = o.NAME_VN,
+                                                     .ORG_DESC = o.DESCRIPTION_PATH,
+                                                     .TITLE_NAME = t.NAME_VN,
+                                                     .LOCATION = p.LOCATION,
+                                                     .TRAINNING_ID = p.TRAINING_ID,
+                                                     .TRAINNING_NAME = ot.NAME_VN,
+                                                      .DEGREE_DATE = p.DEGREE_DATE,
+                                                      .PROGRAM_TRAINING = p.PROGRAM_TRAINING,
+                                                    .CERTIFICATE = p.CERTIFICATE,
+                                                    .UNIT = p.UNIT,
+                                                    .COST = p.COST,
+                                                    .RESULT_TRAIN = p.RESULT_TRAIN,
+                                                    .DEGREE_EXPIRE_DATE = p.DEGREE_EXPIRE_DATE,
+                                                    .REMARK = p.REMARK
+                            }
+            Dim result = query.FirstOrDefault
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+
+    End Function
+    Public Function DeleteTrainingManage(ByVal objContract As TrainningManageDTO) As Boolean
+        Dim objContractData As HU_TRAININGMANAGE
+        Try
+            ' Xóa  hợp đồng
+            objContractData = (From p In Context.HU_TRAININGMANAGE Where objContract.ID = p.ID).SingleOrDefault
+            If Not objContractData Is Nothing Then
+                Context.HU_TRAININGMANAGE.DeleteObject(objContractData)
+                Context.SaveChanges()
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+#End Region
 #Region "TrainingForeign"
     Public Function GetTrainingForeign(ByVal _filter As TrainningForeignDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
@@ -18,8 +247,6 @@ Partial Class ProfileRepository
                                            .P_ORGID = _param.ORG_ID,
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
-
-
             'Dim query = From p In Context.HU_CONTRACT Order By p.HU_EMPLOYEE.EMPLOYEE_CODE
             '            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
             '            From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
@@ -33,6 +260,7 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINNING_ID).DefaultIfEmpty
             ' lọc điều kiện
             Dim dateNow = Date.Now.Date
             Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
@@ -87,13 +315,14 @@ Partial Class ProfileRepository
                                             .ORG_DESC = p.o.DESCRIPTION_PATH,
                                             .TITLE_ID = p.p.TITLE_ID,
                                             .TITLE_NAME = p.t.NAME_VN,
+                                            .TRAINNING_NAME = p.ot.NAME_VN,
                                             .START_DATE = p.p.START_DATE,
                                             .EXPIRE_DATE = p.p.EXPIRE_DATE,
                                             .SIGN_DATE = p.p.SIGN_DATE,
                                             .DECISION_NO = p.p.DECISION_NO,
                                             .LOCATION = p.p.LOCATION,
                                             .CONTENT = p.p.CONTENT,
-                                            .CREATED_DATE = p.p.CREATED_DATE
+            .CREATED_DATE = p.p.CREATED_DATE
                                             })
 
             trainingforeign = trainingforeign.OrderBy(Sorts)
@@ -141,7 +370,7 @@ Partial Class ProfileRepository
         Try
             objContractData = (From p In Context.HU_TRAININGFOREIGN Where p.ID = objContract.ID).FirstOrDefault
 
-             objContract.ID = objContractData.ID
+            objContract.ID = objContractData.ID
             objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
             objContractData.TITLE_ID = objContract.TITLE_ID
             objContractData.ORG_ID = objContract.ORG_ID
@@ -184,8 +413,8 @@ Partial Class ProfileRepository
                                                      .LOCATION = p.LOCATION,
                                                       .CONTENT = p.CONTENT,
                                                       .DECISION_NO = p.DECISION_NO,
-                                                      .TRAINNING_ID=p.TRAINNING_ID,
-                                                      .TRAINNING_NAME=ot.NAME_VN
+                                                      .TRAINNING_ID = p.TRAINNING_ID,
+                                                      .TRAINNING_NAME = ot.NAME_VN
                             }
             Dim result = query.FirstOrDefault
             Return result
@@ -711,7 +940,7 @@ Partial Class ProfileRepository
         End Try
 
     End Function
-   
+
 
     Public Function CreateContractNo(ByVal objContract As ContractDTO) As String
         Try

@@ -523,9 +523,9 @@
             <Property Name="OPPTION9" Type="date" Nullable="true" />
             <Property Name="OPPTION10" Type="date" Nullable="true" />
             <Property Name="SKILL" Type="nclob" Nullable="true" />
-            <Property Name="DANG" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CA" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CONG_DOAN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DANG" Type="number" Nullable="true" Precision="5" />
+            <Property Name="CA" Type="number" Nullable="true" Precision="5" />
+            <Property Name="CONG_DOAN" Type="number" Nullable="true" Precision="5" />
             <Property Name="CV_BANTT" Type="nclob" Nullable="true" />
             <Property Name="NGAY_TG_BANTT" Type="date" Nullable="true" />
             <Property Name="NU_CONG" Type="number" Nullable="true" Precision="38" />
@@ -534,11 +534,11 @@
             <Property Name="NGAY_NHAP_NGU_CA" Type="date" Nullable="true" />
             <Property Name="NGAY_XUAT_NGU_CA" Type="date" Nullable="true" />
             <Property Name="DV_XUAT_NGU_CA" Type="nclob" Nullable="true" />
-            <Property Name="QD" Type="number" Nullable="true" Precision="38" />
+            <Property Name="QD" Type="number" Nullable="true" Precision="5" />
             <Property Name="NGAY_NHAP_NGU_QD" Type="date" Nullable="true" />
             <Property Name="NGAY_XUAT_NGU_QD" Type="date" Nullable="true" />
             <Property Name="DV_XUAT_NGU_QD" Type="nclob" Nullable="true" />
-            <Property Name="THUONG_BINH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="THUONG_BINH" Type="number" Nullable="true" Precision="5" />
             <Property Name="HANG_THUONG_BINH" Type="number" Nullable="true" Precision="38" />
             <Property Name="GD_CHINH_SACH" Type="number" Nullable="true" Precision="38" />
         </EntityType>
@@ -3195,7 +3195,7 @@
             <Property Name="LOCATION" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="COST" Type="number" Nullable="true" Precision="38" />
             <Property Name="RESULT_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="1023" />
-            <Property Name="DEGREE_EXPIRE_DATE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="DEGREE_EXPIRE_DATE" Type="date" Nullable="true" />
             <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
             <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
@@ -4198,9 +4198,9 @@
           <Property Type="DateTime" Name="OPPTION9" />
           <Property Type="DateTime" Name="OPPTION10" />
           <Property Type="String" Name="SKILL" />
-          <Property Type="Decimal" Name="DANG" />
-          <Property Type="Decimal" Name="CA" />
-          <Property Type="Decimal" Name="CONG_DOAN" />
+          <Property Type="Int16" Name="DANG" />
+          <Property Type="Int16" Name="CA" />
+          <Property Type="Int16" Name="CONG_DOAN" />
           <Property Type="String" Name="CV_BANTT" />
           <Property Type="DateTime" Name="NGAY_TG_BANTT" />
           <Property Type="Decimal" Name="NU_CONG" />
@@ -4209,11 +4209,11 @@
           <Property Type="DateTime" Name="NGAY_NHAP_NGU_CA" />
           <Property Type="DateTime" Name="NGAY_XUAT_NGU_CA" />
           <Property Type="String" Name="DV_XUAT_NGU_CA" />
-          <Property Type="Decimal" Name="QD" />
+          <Property Type="Int16" Name="QD" />
           <Property Type="DateTime" Name="NGAY_NHAP_NGU_QD" Nullable="true" />
           <Property Type="DateTime" Name="NGAY_XUAT_NGU_QD" />
           <Property Type="String" Name="DV_XUAT_NGU_QD" />
-          <Property Type="Decimal" Name="THUONG_BINH" />
+          <Property Type="Int16" Name="THUONG_BINH" />
           <Property Type="Decimal" Name="HANG_THUONG_BINH" />
           <Property Type="Decimal" Name="GD_CHINH_SACH" />
         </EntityType>
@@ -7167,7 +7167,7 @@
           <Property Type="String" Name="LOCATION" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="COST" Precision="38" Scale="0" />
           <Property Type="String" Name="RESULT_TRAIN" MaxLength="1023" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DEGREE_EXPIRE_DATE" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DEGREE_EXPIRE_DATE" />
           <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -10288,7 +10288,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="63" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="82" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -10545,7 +10545,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_ATTACHFILES" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="ProfileModel.HU_FILE" Width="1.5" PointX="32.375" PointY="14.75" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGFOREIGN" Width="1.5" PointX="32.375" PointY="20.75" Height="4.4802050781249818" />
-        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="1.5" PointX="33.375" PointY="5.75" Height="5.2494108072916674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="3.125" PointX="33.375" PointY="5.75" Height="5.2494108072916674" />
         </Diagram>
     </Diagrams>
   </Designer>

@@ -738,8 +738,7 @@ Partial Class ProfileRepository
             objEmpData.LEVEL_MANAGER = objEmp.LEVEL_MANAGER
             objEmpData.STAFF_RANK_ID = objEmp.STAFF_RANK_ID
             objEmpData.ITIME_ID = objEmp.ITIME_ID
-            objEmpData.PA_OBJECT_SALARY_ID = 1 'objEmp.PA_OBJECT_SALARY_ID
-            'objEmpData.AUTOGENTIMESHEET = Context.HU_ORGANIZATION.First(Function(f) f.ID = objEmpData.ORG_ID).AUTOGENTIMESHEET
+            objEmpData.PA_OBJECT_SALARY_ID = 1 
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 
@@ -840,6 +839,26 @@ Partial Class ProfileRepository
                 objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
                 objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
                 objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+
+                objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
+                objEmpCVData.HANG_THUONG_BINH = objEmpCV.HANG_THUONG_BINH
+                objEmpCVData.THUONG_BINH = objEmpCV.THUONG_BINH
+                objEmpCVData.DV_XUAT_NGU_QD = objEmpCV.DV_XUAT_NGU_QD
+                objEmpCVData.NGAY_XUAT_NGU_QD = objEmpCV.NGAY_XUAT_NGU_QD
+                objEmpCVData.NGAY_NHAP_NGU_QD = objEmpCV.NGAY_NHAP_NGU_QD
+                objEmpCVData.QD = objEmpCV.QD
+                objEmpCVData.DV_XUAT_NGU_CA = objEmpCV.DV_XUAT_NGU_CA
+                objEmpCVData.NGAY_XUAT_NGU_CA = objEmpCV.NGAY_XUAT_NGU_CA
+                objEmpCVData.NGAY_NHAP_NGU_CA = objEmpCV.NGAY_NHAP_NGU_CA
+                objEmpCVData.NGAY_TG_BAN_NU_CONG = objEmpCV.NGAY_TG_BAN_NU_CONG
+                objEmpCVData.CV_BAN_NU_CONG = objEmpCV.CV_BAN_NU_CONG
+                objEmpCVData.NU_CONG = objEmpCV.NU_CONG
+                objEmpCVData.NGAY_TG_BANTT = objEmpCV.NGAY_TG_BANTT
+                objEmpCVData.CV_BANTT = objEmpCV.CV_BANTT
+                objEmpCVData.CONG_DOAN = objEmpCV.CONG_DOAN
+                objEmpCVData.CA = objEmpCV.CA
+                objEmpCVData.DANG = objEmpCV.DANG
+                objEmpCVData.SKILL = objEmpCV.SKILL
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1195,6 +1214,25 @@ Partial Class ProfileRepository
                 objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
                 objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
                 objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+
+                objEmpCVData.HANG_THUONG_BINH = objEmpCV.HANG_THUONG_BINH
+                objEmpCVData.THUONG_BINH = objEmpCV.THUONG_BINH
+                objEmpCVData.DV_XUAT_NGU_QD = objEmpCV.DV_XUAT_NGU_QD
+                objEmpCVData.NGAY_XUAT_NGU_QD = objEmpCV.NGAY_XUAT_NGU_QD
+                objEmpCVData.NGAY_NHAP_NGU_QD = objEmpCV.NGAY_NHAP_NGU_QD
+                objEmpCVData.QD = objEmpCV.QD
+                objEmpCVData.DV_XUAT_NGU_CA = objEmpCV.DV_XUAT_NGU_CA
+                objEmpCVData.NGAY_XUAT_NGU_CA = objEmpCV.NGAY_XUAT_NGU_CA
+                objEmpCVData.NGAY_NHAP_NGU_CA = objEmpCV.NGAY_NHAP_NGU_CA
+                objEmpCVData.NGAY_TG_BAN_NU_CONG = objEmpCV.NGAY_TG_BAN_NU_CONG
+                objEmpCVData.CV_BAN_NU_CONG = objEmpCV.CV_BAN_NU_CONG
+                objEmpCVData.NU_CONG = objEmpCV.NU_CONG
+                objEmpCVData.NGAY_TG_BANTT = objEmpCV.NGAY_TG_BANTT
+                objEmpCVData.CV_BANTT = objEmpCV.CV_BANTT
+                objEmpCVData.CONG_DOAN = objEmpCV.CONG_DOAN
+                objEmpCVData.CA = objEmpCV.CA
+                objEmpCVData.DANG = objEmpCV.DANG
+                objEmpCVData.SKILL = objEmpCV.SKILL
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1520,6 +1558,25 @@ Partial Class ProfileRepository
                          .OPPTION8 = cv.OPPTION8,
                          .OPPTION9 = cv.OPPTION9,
                          .OPPTION10 = cv.OPPTION10,
+                         .GD_CHINH_SACH = cv.GD_CHINH_SACH,
+                         .THUONG_BINH = CType(cv.THUONG_BINH, Boolean),
+                         .DV_XUAT_NGU_QD = cv.DV_XUAT_NGU_QD,
+                         .NGAY_XUAT_NGU_QD = cv.NGAY_XUAT_NGU_QD,
+                         .NGAY_NHAP_NGU_QD = cv.NGAY_NHAP_NGU_QD,
+                         .QD = CType(cv.QD, Boolean),
+                         .DV_XUAT_NGU_CA = cv.DV_XUAT_NGU_CA,
+                         .NGAY_XUAT_NGU_CA = cv.NGAY_XUAT_NGU_CA,
+                         .NGAY_NHAP_NGU_CA = cv.NGAY_NHAP_NGU_CA,
+                         .NGAY_TG_BAN_NU_CONG = cv.NGAY_TG_BAN_NU_CONG,
+                         .CV_BAN_NU_CONG = cv.CV_BAN_NU_CONG,
+                         .NU_CONG = CType(cv.NU_CONG, Boolean),
+                         .NGAY_TG_BANTT = cv.NGAY_TG_BANTT,
+                         .CV_BANTT = cv.CV_BANTT,
+                         .CONG_DOAN = CType(cv.CONG_DOAN, Boolean),
+                         .CA = cv.CA,
+                         .DANG = cv.DANG,
+                         .SKILL = cv.SKILL,
+                         .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
                          .PROVINCEEMP_NAME = emp_pro.NAME_VN,
                          .DISTRICTEMP_NAME = emp_dis.NAME_VN,
