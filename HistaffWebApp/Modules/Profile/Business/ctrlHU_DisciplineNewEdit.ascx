@@ -97,7 +97,7 @@
                     <%--<span class="lbReq">*</span>--%>
                 </td>
                 <td>
-                   <tlk:RadTextBox ID = "txtIDEmp" runat = "server" Visible="false"></tlk:RadTextBox>
+                   <%--<tlk:RadTextBox ID = "txtIDEmp" runat = "server" Visible="false"></tlk:RadTextBox>--%>
                     <tlk:RadTextBox ID="txtSignerName" Width="130px"  runat="server" ReadOnly="true" SkinID="ReadOnly" TabIndex="7">
                     </tlk:RadTextBox>
                     <%--<tlk:RadButton ID="btnFindSinger" runat="server" SkinID="ButtonView" CausesValidation="false" TabIndex="8">
@@ -280,7 +280,7 @@
             runat="server" Height="100%" ShowFooter="True">
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView EditMode="InPlace" AllowPaging="false" AllowCustomPaging="false"
-                DataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,MONEY" ClientDataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY"
+                DataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY,INDEMNIFY_MONEY" ClientDataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY,INDEMNIFY_MONEY"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="28px" />
                 <CommandItemTemplate>
@@ -304,10 +304,10 @@
                     </div>
                 </CommandItemTemplate>
                 <Columns>
-                    <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
+                    <%--<tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" Aggregate="Count"
                         FooterText="Tổng: ">
                         <HeaderStyle Width="100px" />
@@ -317,7 +317,8 @@
                         <HeaderStyle Width="120px" />
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
-                        ReadOnly="true" UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" />
+                        ReadOnly="true" UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
+                    </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         ReadOnly="true" SortExpression="ORG_NAME">
                         <HeaderStyle Width="200px" />
