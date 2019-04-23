@@ -2390,6 +2390,42 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents cboLearningLevel As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''lbQLNN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbQLNN As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbQLNN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbQLNN As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbLLCT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbLLCT As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbLLCT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbLLCT As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''lbLanguage control.
     '''</summary>
     '''<remarks>
@@ -2442,6 +2478,42 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLangMark As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbTDTH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTDTH As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbTDTH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbTDTH As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbDiem_XL_TH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDiem_XL_TH As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rtDiem_XL_TH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtDiem_XL_TH As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbBankNo control.

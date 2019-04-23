@@ -865,6 +865,10 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
+                objEmpCVData.QLNN = objEmpCV.QLNN
+                objEmpCVData.LLCT = objEmpCV.LLCT
+                objEmpCVData.TDTH = objEmpCV.TDTH
+                objEmpCVData.DIEM_XL_TH = objEmpCV.DIEM_XL_TH
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1246,6 +1250,10 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
+                objEmpCVData.QLNN = objEmpCV.QLNN
+                objEmpCVData.LLCT = objEmpCV.LLCT
+                objEmpCVData.TDTH = objEmpCV.TDTH
+                objEmpCVData.DIEM_XL_TH = objEmpCV.DIEM_XL_TH
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1589,6 +1597,10 @@ Partial Class ProfileRepository
                          .CA = cv.CA,
                          .DANG = cv.DANG,
                          .SKILL = cv.SKILL,
+                         .QLNN = cv.QLNN,
+                         .LLCT = cv.LLCT,
+                         .TDTH = cv.TDTH,
+                         .DIEM_XL_TH = cv.DIEM_XL_TH,
                          .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,

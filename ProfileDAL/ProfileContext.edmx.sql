@@ -1,13 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
-<<<<<<< HEAD
--- Date Created: 4/23/2019 8:42:53 AM
+-- Date Created: 4/23/2019 2:22:22 PM
 -- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\ProfileDAL\ProfileContext.edmx
-=======
--- Date Created: 04/22/2019 5:06:08 PM
--- Generated from EDMX file: D:\MyProject\core1\histaffhcm-newnewnew\ProfileDAL\ProfileContext.edmx
->>>>>>> 71b025c6cd45bb2a76836f739b542713540058dd
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -620,7 +615,11 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "THUONG_BINH" NUMBER(5,0) NULL,
    "HANG_THUONG_BINH" NUMBER(38,0) NULL,
    "GD_CHINH_SACH" NUMBER(38,0) NULL,
-   "NGAY_VAO_DANG_DB" DATE NULL
+   "NGAY_VAO_DANG_DB" DATE NULL,
+   "TDTH" NUMBER(38,0) NULL,
+   "DIEM_XL_TH" NCLOB NULL,
+   "QLNN" NUMBER(38,0) NULL,
+   "LLCT" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_HEALTH'
