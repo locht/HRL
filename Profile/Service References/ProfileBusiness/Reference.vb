@@ -27086,6 +27086,9 @@ Namespace ProfileBusiness
         Private DANG_PHIField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DIEM_XL_THField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DISTRICTEMP_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27144,6 +27147,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_PERMISSIONField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LLCTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MARITAL_STATUSField As System.Nullable(Of Decimal)
@@ -27323,6 +27329,9 @@ Namespace ProfileBusiness
         Private QDField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private QLNNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RELIGIONField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27330,6 +27339,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SKILLField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TDTHField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private THUONG_BINHField As System.Nullable(Of Boolean)
@@ -27657,6 +27669,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DIEM_XL_TH() As String
+            Get
+                Return Me.DIEM_XL_THField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DIEM_XL_THField, value) <> true) Then
+                    Me.DIEM_XL_THField = value
+                    Me.RaisePropertyChanged("DIEM_XL_TH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property DISTRICTEMP_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.DISTRICTEMP_IDField
@@ -27912,6 +27937,19 @@ Namespace ProfileBusiness
                 If (Me.IS_PERMISSIONField.Equals(value) <> true) Then
                     Me.IS_PERMISSIONField = value
                     Me.RaisePropertyChanged("IS_PERMISSION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LLCT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LLCTField
+            End Get
+            Set
+                If (Me.LLCTField.Equals(value) <> true) Then
+                    Me.LLCTField = value
+                    Me.RaisePropertyChanged("LLCT")
                 End If
             End Set
         End Property
@@ -28684,6 +28722,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property QLNN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.QLNNField
+            End Get
+            Set
+                If (Me.QLNNField.Equals(value) <> true) Then
+                    Me.QLNNField = value
+                    Me.RaisePropertyChanged("QLNN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property RELIGION() As System.Nullable(Of Decimal)
             Get
                 Return Me.RELIGIONField
@@ -28718,6 +28769,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SKILLField, value) <> true) Then
                     Me.SKILLField = value
                     Me.RaisePropertyChanged("SKILL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TDTH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TDTHField
+            End Get
+            Set
+                If (Me.TDTHField.Equals(value) <> true) Then
+                    Me.TDTHField = value
+                    Me.RaisePropertyChanged("TDTH")
                 End If
             End Set
         End Property
