@@ -190,10 +190,18 @@ Partial Public Class CommonRepository
                                   .ID = s.ID,
                                   .PROCESS_ID = s.PROCESS_ID,
                                   .TEMPLATE_ID = s.TEMPLATE_ID,
+                                  .TITLE_ID = s.TITLE_ID,
+                                  .SIGN_ID = s.SIGN_ID,
+                                  .FROM_HOUR = s.FROM_HOUR,
+                                  .TO_HOUR = s.TO_HOUR,
+                                  .FROM_DAY = s.FROM_DAY,
+                                  .TO_DAY = s.TO_DAY,
                                   .EMPLOYEE_ID = s.EMPLOYEE_ID,
                                   .ORG_ID = s.ORG_ID,
                                   .FROM_DATE = s.FROM_DATE,
-                                  .TO_DATE = s.TO_DATE
+                                  .TO_DATE = s.TO_DATE,
+                                  .MAIL_ACCEPTED = s.MAIL_ACCEPTED,
+                                  .MAIL_ACCEPTING = s.MAIL_ACCEPTING
                               }).FirstOrDefault
 
             Return itemReturn
