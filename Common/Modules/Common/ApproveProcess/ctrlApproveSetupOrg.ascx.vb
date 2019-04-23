@@ -258,7 +258,7 @@ Public Class ctrlApproveSetupOrg
                             .ORG_ID = OrgID
                             .PROCESS_ID = Decimal.Parse(cboApproveProcess.SelectedValue)
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
-                            .TITLE_ID = If(cboPosition.SelectedValue IsNot Nothing, Decimal.Parse(cboPosition.SelectedValue), Nothing)
+                            .TITLE_ID = If(cboPosition.SelectedValue <> "", Decimal.Parse(cboPosition.SelectedValue), Nothing)
                             .SIGN_ID = If(cboKieuCong.SelectedValue <> "", Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
                             .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
                             .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
@@ -293,7 +293,7 @@ Public Class ctrlApproveSetupOrg
                         With itemEdit
                             .PROCESS_ID = Decimal.Parse(cboApproveProcess.SelectedValue)
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
-                            .TITLE_ID = If(cboPosition.SelectedValue IsNot Nothing, Decimal.Parse(cboPosition.SelectedValue), Nothing)
+                            .TITLE_ID = If(cboPosition.SelectedValue <> "", Decimal.Parse(cboPosition.SelectedValue), Nothing)
                             .SIGN_ID = If(cboKieuCong.SelectedValue <> "", Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
                             .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
                             .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
