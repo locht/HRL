@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("85cf9fec-89b6-4257-bb52-45acd60257fd")>
+<Assembly: EdmSchemaAttribute("1f6ac5d5-7f43-4a14-a16e-ca09c97cc647")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -21198,106 +21198,6 @@ Public Partial Class HU_EMPLOYEE_CV
     Private Partial Sub OnNGAY_VAO_DANG_DBChanged()
     End Sub
 
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property TDTH() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _TDTH
-        End Get
-        Set
-            OnTDTHChanging(value)
-            ReportPropertyChanging("TDTH")
-            _TDTH = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("TDTH")
-            OnTDTHChanged()
-        End Set
-    End Property
-
-    Private _TDTH As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnTDTHChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnTDTHChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property DIEM_XL_TH() As Global.System.String
-        Get
-            Return _DIEM_XL_TH
-        End Get
-        Set
-            OnDIEM_XL_THChanging(value)
-            ReportPropertyChanging("DIEM_XL_TH")
-            _DIEM_XL_TH = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("DIEM_XL_TH")
-            OnDIEM_XL_THChanged()
-        End Set
-    End Property
-
-    Private _DIEM_XL_TH As Global.System.String
-    Private Partial Sub OnDIEM_XL_THChanging(value As Global.System.String)
-    End Sub
-
-    Private Partial Sub OnDIEM_XL_THChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property QLNN() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _QLNN
-        End Get
-        Set
-            OnQLNNChanging(value)
-            ReportPropertyChanging("QLNN")
-            _QLNN = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("QLNN")
-            OnQLNNChanged()
-        End Set
-    End Property
-
-    Private _QLNN As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnQLNNChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnQLNNChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property LLCT() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _LLCT
-        End Get
-        Set
-            OnLLCTChanging(value)
-            ReportPropertyChanging("LLCT")
-            _LLCT = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("LLCT")
-            OnLLCTChanged()
-        End Set
-    End Property
-
-    Private _LLCT As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnLLCTChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnLLCTChanged()
-    End Sub
-
     #End Region
 
     #Region "Navigation Properties"
@@ -24160,6 +24060,106 @@ Public Partial Class HU_EMPLOYEE_EDUCATION
     Private Partial Sub OnGRADUATION_YEARChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property QLNN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _QLNN
+        End Get
+        Set
+            OnQLNNChanging(value)
+            ReportPropertyChanging("QLNN")
+            _QLNN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("QLNN")
+            OnQLNNChanged()
+        End Set
+    End Property
+
+    Private _QLNN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnQLNNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnQLNNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LLCT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LLCT
+        End Get
+        Set
+            OnLLCTChanging(value)
+            ReportPropertyChanging("LLCT")
+            _LLCT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LLCT")
+            OnLLCTChanged()
+        End Set
+    End Property
+
+    Private _LLCT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLLCTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLLCTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TDTH() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TDTH
+        End Get
+        Set
+            OnTDTHChanging(value)
+            ReportPropertyChanging("TDTH")
+            _TDTH = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TDTH")
+            OnTDTHChanged()
+        End Set
+    End Property
+
+    Private _TDTH As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTDTHChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTDTHChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DIEM_XLTH() As Global.System.String
+        Get
+            Return _DIEM_XLTH
+        End Get
+        Set
+            OnDIEM_XLTHChanging(value)
+            ReportPropertyChanging("DIEM_XLTH")
+            _DIEM_XLTH = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DIEM_XLTH")
+            OnDIEM_XLTHChanged()
+        End Set
+    End Property
+
+    Private _DIEM_XLTH As Global.System.String
+    Private Partial Sub OnDIEM_XLTHChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDIEM_XLTHChanged()
+    End Sub
+
     #End Region
 
     #Region "Navigation Properties"
@@ -26802,6 +26802,31 @@ Public Partial Class HU_EMPLOYEE_HEALTH
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TTSUCKHOE() As Global.System.String
+        Get
+            Return _TTSUCKHOE
+        End Get
+        Set
+            OnTTSUCKHOEChanging(value)
+            ReportPropertyChanging("TTSUCKHOE")
+            _TTSUCKHOE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TTSUCKHOE")
+            OnTTSUCKHOEChanged()
+        End Set
+    End Property
+
+    Private _TTSUCKHOE As Global.System.String
+    Private Partial Sub OnTTSUCKHOEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTTSUCKHOEChanged()
     End Sub
 
     #End Region

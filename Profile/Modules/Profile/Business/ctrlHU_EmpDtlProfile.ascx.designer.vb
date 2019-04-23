@@ -2831,6 +2831,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents txtLoaiSucKhoe As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbTTSucKhoe control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTTSucKhoe As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rtTTSucKhoe control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtTTSucKhoe As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbGhiChuSK control.
     '''</summary>
     '''<remarks>
