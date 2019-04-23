@@ -120,11 +120,11 @@
                 </asp:Panel>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize=50 runat="server" ID="rgDetail" Height="100%" SkinID="GridSingleSelect">
+                <tlk:RadGrid PageSize="50" runat="server" ID="rgDetail" Height="100%" SkinID="GridSingleSelect">
                     <ClientSettings>
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" />
                         <Selecting AllowRowSelect="true" UseClientSelectColumnOnly="false" />
-                        <ClientEvents OnGridCreated="GridCreated" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
@@ -199,9 +199,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut(splitterID);
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut(splitterID);
+//        }
 
         function tbarTemplateDetail_ClientButtonClicking(s, e) {
             if (e.get_item().get_commandName() == "EXPORT" || e.get_item().get_commandName() == "NEXT") {
@@ -210,12 +210,12 @@
             if (e.get_item().get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
                 if (!Page_ClientValidate(""))
-                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDetail');
+                    ResizeSplitter();
                 else
-                    ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                    ResizeSplitterDefault();
             } else {
                 // Nếu nhấn các nút khác thì resize default
-                ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                ResizeSplitterDefault();
             }
             switch (e.get_item().get_commandName()) {
                 case 'EDIT':
@@ -273,6 +273,32 @@
         function popupclose(s, e) {
             if (e.get_argument() == '1') {
                 $get('<%= btnReloadGrid.ClientID %>').click();
+            }
+        }
+
+        // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
+        function ResizeSplitter() {
+            setTimeout(function () {
+                var splitter = $find("<%= RadSplitter3.ClientID%>");
+                var pane = splitter.getPaneById('<%= RadPane5.ClientID %>');
+                var height = pane.getContentElement().scrollHeight;
+                splitter.set_height(splitter.get_height() + pane.get_height() - height);
+                pane.set_height(height);
+            }, 200);
+        }
+
+        // Hàm khôi phục lại Size ban đầu cho Splitter
+        function ResizeSplitterDefault() {
+            var splitter = $find("<%= RadSplitter3.ClientID%>");
+            var pane = splitter.getPaneById('<%= RadPane5.ClientID %>');
+            if (oldSize == 0) {
+                oldSize = pane.getContentElement().scrollHeight;
+
+            } else {
+                var pane2 = splitter.getPaneById('<%= RadPane4.ClientID %>');
+                splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
+                pane.set_height(oldSize);
+                pane2.set_height(splitter.get_height() - oldSize - 1);
             }
         }
     </script>

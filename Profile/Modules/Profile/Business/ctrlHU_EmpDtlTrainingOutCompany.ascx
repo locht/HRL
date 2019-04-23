@@ -175,7 +175,7 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <%--<tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false"></tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false"></tlk:GridBoundColumn>
                     <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ tháng"
                         UniqueName="FROM_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
                         Visible="true" DataFormatString="{0:MM/yyyy}">
@@ -231,7 +231,7 @@
                       <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="UPLOAD_FILE"
                         UniqueName="UPLOAD_FILE" SortExpression="UPLOAD_FILE" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"/>
                          <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="FILE_NAME"
-                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"/>--%>
+                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"/>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
