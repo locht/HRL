@@ -54,7 +54,7 @@
                     <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE"
                         ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                          <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -69,7 +69,7 @@
                             </tlk:GridTemplateColumn>
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                                <tlk:GridBoundColumn HeaderText="Chức danh" DataField="YEAR"
+                                <tlk:GridBoundColumn HeaderText="Năm" DataField="YEAR"
                                 SortExpression="YEAR" UniqueName="YEAR" />
                                  <tlk:GridBoundColumn HeaderText="Kì đánh giá" DataField="EVALUATE_NAME"
                                 SortExpression="EVALUATE_NAME" UniqueName="EVALUATE_NAME" />
@@ -86,7 +86,7 @@
                               <tlk:GridBoundColumn HeaderText="Nhận xét" DataField="CONTENT"
                                 SortExpression="CONTENT" UniqueName="CONTENT" />
                             <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK"
-                                SortExpression="REMARK" UniqueName="REMARK" />
+                                SortExpression="REMARK" UniqueName="REMARK" />--%>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle Width="120px" />

@@ -248,40 +248,40 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     Protected WithEvents cboContractType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''Label1 control.
+    '''lbRank control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbRank As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''RadComboBox1 control.
+    '''cboRank control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadComboBox1 As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboRank As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''Label2 control.
+    '''lbCapacity control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbCapacity As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''RadComboBox2 control.
+    '''cboCapacity control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadComboBox2 As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboCapacity As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''lbDecisionNo control.

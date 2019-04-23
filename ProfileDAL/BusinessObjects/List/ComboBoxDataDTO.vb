@@ -263,5 +263,13 @@
     ''' <remarks></remarks>
     Public Property GET_TITLE_LEVEL As Boolean
     Public Property LIST_TITLE_LEVEL As List(Of OtherListDTO)
-
+    'Danh sách ki danh giá
+    Public Property GET_EVALUATE As Boolean
+    Public Property LIST_EVALUATE As List(Of OtherListDTO)
+    'Danh sách XEP LOAI
+    Public Property GET_RANK As Boolean
+    Public Property LIST_RANK As List(Of OtherListDTO)
+    'Danh sách NANG LUC
+    Public Property GET_CAPACITY As Boolean
+    Public Property LIST_CAPACITY As List(Of OtherListDTO)
 End Class

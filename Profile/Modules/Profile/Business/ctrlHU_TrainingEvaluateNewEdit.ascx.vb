@@ -35,11 +35,11 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
         End Set
     End Property
 
-    Property Contract As TrainningForeignDTO
+    Property Contract As TrainningEvaluateDTO
         Get
             Return ViewState(Me.ID & "_Contract")
         End Get
-        Set(ByVal value As TrainningForeignDTO)
+        Set(ByVal value As TrainningEvaluateDTO)
             ViewState(Me.ID & "_Contract") = value
         End Set
     End Property
@@ -105,9 +105,9 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
-            'If Not IsPostBack Then
-            '    ViewConfig(LeftPane)
-            'End If
+            If Not IsPostBack Then
+                ViewConfig(LeftPane)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -172,7 +172,7 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
             Select Case Message
                 Case "UpdateView"
                     CurrentState = CommonMessage.STATE_EDIT
-                    Contract = rep.GetTrainingForeignByID(New TrainningForeignDTO With {.ID = hidID.Value})
+                    Contract = rep.GetTrainingEvaluateByID(New TrainningEvaluateDTO With {.ID = hidID.Value})
                     If Contract IsNot Nothing Then
                         hidID.Value = Contract.ID
                         hidEmployeeID.Value = Contract.EMPLOYEE_ID.ToString
@@ -182,11 +182,19 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
                         txtTITLE.Text = Contract.TITLE_NAME
                         txtOrg_Name.Text = Contract.ORG_NAME
                         txtContent.Text = Contract.CONTENT
-                        txtLocation.Text = Contract.LOCATION
                         txtDecisionNo.Text = Contract.DECISION_NO
                         rdSignDate.SelectedDate = Contract.SIGN_DATE
-                        If Contract.TRAINNING_ID IsNot Nothing Then
-                            cboContractType.Text = Contract.TRAINNING_NAME
+                        rdEffectDate.SelectedDate = Contract.EFFECT_DATE
+                        txtLocation.Text = Contract.REMARK
+                        txtYear.Text = Contract.YEAR
+                        If Contract.EVALUATE_ID IsNot Nothing Then
+                            cboContractType.Text = Contract.EVALUATE_NAME
+                        End If
+                        If Contract.RANK_ID IsNot Nothing Then
+                            cboRank.Text = Contract.RANK_NAME
+                        End If
+                        If Contract.CAPACITY_ID IsNot Nothing Then
+                            cboCapacity.Text = Contract.CAPACITY_NAME
                         End If
                     End If
                 Case "NormalView"
@@ -214,7 +222,7 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
-        Dim objContract As New TrainningForeignDTO
+        Dim objContract As New TrainningEvaluateDTO
         Dim rep As New ProfileBusinessRepository
         Dim gID As Decimal
         'Dim stt As OtherListDTO
@@ -235,20 +243,28 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
                         objContract.ORG_ID = employee.ORG_ID
                         objContract.TITLE_ID = employee.TITLE_ID
                         objContract.CONTENT = txtContent.Text
-                        objContract.LOCATION = txtLocation.Text
+                        objContract.EFFECT_DATE = rdEffectDate.SelectedDate
+                        objContract.YEAR = txtYear.Text
                         objContract.DECISION_NO = txtDecisionNo.Text
+                        objContract.REMARK = txtLocation.Text
                         If cboContractType.SelectedValue <> "" Then
-                            objContract.TRAINNING_ID = cboContractType.SelectedValue
+                            objContract.EVALUATE_ID = cboContractType.SelectedValue
+                        End If
+                        If cboRank.SelectedValue <> "" Then
+                            objContract.RANK_ID = cboRank.SelectedValue
+                        End If
+                        If cboCapacity.SelectedValue <> "" Then
+                            objContract.CAPACITY_ID = cboCapacity.SelectedValue
                         End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                If rep.InsertTrainingForeign(objContract, gID) Then
+                                If rep.InsertTrainingEvaluate(objContract, gID) Then
                                     If (isPopup) Then
                                         Dim str As String = "getRadWindow().close('1');"
                                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                                     Else
                                         Session("Result") = 1
-                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningForeign&group=Business")
+                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningEvaluate&group=Business")
                                     End If
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
@@ -257,13 +273,13 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
                                 objContract.ID = Decimal.Parse(hidID.Value)
                                 Dim lstID As New List(Of Decimal)
                                 lstID.Add(hidID.Value)
-                                If rep.ModifyTrainingForeign(objContract, gID) Then
+                                If rep.ModifyTrainingEvaluate(objContract, gID) Then
                                     If (isPopup) Then
                                         Dim str As String = "getRadWindow().close('1');"
                                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                                     Else
                                         Session("Result") = 1
-                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningForeign&group=Business")
+                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningEvaluate&group=Business")
                                     End If
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
@@ -280,7 +296,7 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
                         Dim str As String = "getRadWindow().close('1');"
                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                     Else
-                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningForeign&group=Business")
+                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningEvaluate&group=Business")
                     End If
             End Select
             rep.Dispose()
@@ -573,9 +589,15 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
     Private Sub GetDataCombo()
         Dim rep As New ProfileRepository
         ListComboData = New ComboBoxDataDTO
-        ListComboData.GET_TYPE_WORK = True
+        ListComboData.GET_EVALUATE = True
         rep.GetComboList(ListComboData)
-        FillDropDownList(cboContractType, ListComboData.LIST_TYPE_WORK, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+        FillDropDownList(cboContractType, ListComboData.LIST_EVALUATE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+        ListComboData.GET_RANK = True
+        rep.GetComboList(ListComboData)
+        FillDropDownList(cboRank, ListComboData.LIST_RANK, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+        ListComboData.GET_CAPACITY = True
+        rep.GetComboList(ListComboData)
+        FillDropDownList(cboCapacity, ListComboData.LIST_CAPACITY, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
         rep.Dispose()
     End Sub
     ''' <lastupdate>
