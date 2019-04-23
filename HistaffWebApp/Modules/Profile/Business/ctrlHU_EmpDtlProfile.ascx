@@ -37,6 +37,7 @@
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking"
             ValidationGroup="EmpProfile" />
     </tlk:RadPane>
+   
     <tlk:RadPane ID="RadPane1" runat="server" Height="13%" Scrolling="X">
         <asp:Panel runat="server" ID="Panel1">
             <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
@@ -1323,6 +1324,7 @@
             
         </table>
     </tlk:RadPane>
+ 
 </tlk:RadSplitter>
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
