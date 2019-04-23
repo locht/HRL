@@ -169,6 +169,8 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDashboardPortalSixCell.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBEmployeeReg.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_Allowance.ascx" />
@@ -642,6 +644,20 @@
     </Compile>
     <Compile Include="Modules\Competency\Business\ctrlHU_CompetencyAss.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyAss.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TrainingEvaluateNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx.vb">
+      <DependentUpon>ctrlHU_TrainingEvaluateNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TranningEvaluate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx.vb">
+      <DependentUpon>ctrlHU_TranningEvaluate.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx.designer.vb">

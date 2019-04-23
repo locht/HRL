@@ -28,6 +28,7 @@
         </Item>
         <Item Value="ctrlHU_TranningForeign" Text="Quản lý đi công tác" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TranningForeign&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_TraniningManagement" Text="Quản lý đi đào tạo" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TraniningManagement&amp;group=Business" CheckPermission="true" CausesValidation="False" />
+        <Item Value="ctrlHU_TranningEvaluate" Text="Quản lý đánh giá" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TranningEvaluate&amp;group=Business" CheckPermission="true" CausesValidation="False" />
       </Group>
     </Item>
 
