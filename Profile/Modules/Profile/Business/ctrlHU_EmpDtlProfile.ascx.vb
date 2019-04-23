@@ -279,6 +279,15 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsNumeric(empCV.GD_CHINH_SACH) Then
                                 cbGD_Chinh_Sach.SelectedValue = empCV.GD_CHINH_SACH
                             End If
+
+                            If IsDate(empCV.NGAY_VAO_DANG_DB) Then
+                                rdNGAY_VAO_DANG_DB.SelectedDate = empCV.NGAY_VAO_DANG_DB
+                            End If
+                            rtCHUC_VU_DANG.Text = empCV.CHUC_VU_DANG
+                            If IsDate(empCV.NGAY_VAO_DANG) Then
+                                rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
+                            End If
+
                             '===============================================
 
                             If empCV.WORKPLACE_ID IsNot Nothing Then
@@ -470,8 +479,6 @@ Public Class ctrlHU_EmpDtlProfile
             Dim dtPlace
             Dim dtLanguageleve As DataTable
             Dim dtLanguage As DataTable
-            'Dim dtDistrict As DataTable
-            'Dim dtWard As DataTable
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList("HU_PAPER")
                 dtPlace = rep.GetProvinceList(True)
@@ -481,11 +488,13 @@ Public Class ctrlHU_EmpDtlProfile
                 FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
                 FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
-                'FillRadCombobox(cboBIRTH_PLACE, dtPlace, "NAME", "ID")
+                FillCheckBoxList(lstbPaper, dtData, "NAME", "ID")
+                FillCheckBoxList(lstbPaperFiled, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("HANG_TB")
+                FillRadCombobox(cbHang_Thuong_Binh, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("HCGD")
+                FillRadCombobox(cbGD_Chinh_Sach, dtData, "NAME", "ID")
             End Using
-            FillCheckBoxList(lstbPaper, dtData, "NAME", "ID")
-            FillCheckBoxList(lstbPaperFiled, dtData, "NAME", "ID")
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1506,6 +1515,17 @@ Public Class ctrlHU_EmpDtlProfile
             If IsNumeric(cbGD_Chinh_Sach.SelectedValue) Then
                 EmpCV.GD_CHINH_SACH = cbGD_Chinh_Sach.SelectedValue
             End If
+            If IsDate(rdNGAY_VAO_DANG.SelectedDate) Then
+                EmpCV.NGAY_VAO_DANG = rdNGAY_VAO_DANG.SelectedDate
+            End If
+            If IsDate(rdNGAY_VAO_DANG_DB.SelectedDate) Then
+                EmpCV.NGAY_VAO_DANG_DB = rdNGAY_VAO_DANG.SelectedDate
+            End If
+            EmpCV.CHUC_VU_DANG = rtCHUC_VU_DANG.Text
+           
+            EmpCV.CHUC_VU_DOAN = rtCHUC_VU_DOAN.Text
+            EmpCV.DOAN_PHI = ckDOAN_PHI.Checked
+           
             '=============================================
             EmpHealth = New EmployeeHealthDTO
             EmpHealth.CAN_NANG = txtCanNang.Text

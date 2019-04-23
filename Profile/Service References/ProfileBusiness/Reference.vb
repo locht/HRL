@@ -27215,6 +27215,9 @@ Namespace ProfileBusiness
         Private NGAY_VAO_DANGField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NGAY_VAO_DANG_DBField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NGAY_VAO_DOANField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -28208,6 +28211,19 @@ Namespace ProfileBusiness
                 If (Me.NGAY_VAO_DANGField.Equals(value) <> true) Then
                     Me.NGAY_VAO_DANGField = value
                     Me.RaisePropertyChanged("NGAY_VAO_DANG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NGAY_VAO_DANG_DB() As System.Nullable(Of Date)
+            Get
+                Return Me.NGAY_VAO_DANG_DBField
+            End Get
+            Set
+                If (Me.NGAY_VAO_DANG_DBField.Equals(value) <> true) Then
+                    Me.NGAY_VAO_DANG_DBField = value
+                    Me.RaisePropertyChanged("NGAY_VAO_DANG_DB")
                 End If
             End Set
         End Property

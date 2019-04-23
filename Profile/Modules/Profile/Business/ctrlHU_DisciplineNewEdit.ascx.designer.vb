@@ -257,6 +257,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents txtSignerName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''btnFindSinger control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnFindSinger As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''reqSignerName control.
     '''</summary>
     '''<remarks>

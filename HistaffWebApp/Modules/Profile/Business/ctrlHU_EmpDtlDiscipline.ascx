@@ -45,8 +45,8 @@
                         <HeaderStyle Width="10%" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Lý do kỷ luật" DataField="DISCIPLINE_REASON_NAME" UniqueName="DISCIPLINE_REASON_NAME"
-                        SortExpression="DISCIPLINE_REASON_NAME" DataFormatString="{0:###,###,###,##0}" ShowFilterIcon="false"
+                    <tlk:GridBoundColumn HeaderText="Lý do kỷ luật" DataField="DISCIPLINE_REASON" UniqueName="DISCIPLINE_REASON"
+                        SortExpression="DISCIPLINE_REASON" DataFormatString="{0:###,###,###,##0}" ShowFilterIcon="false"
                         AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo" FilterControlWidth="100%">
                         <HeaderStyle Width="10%" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Right" />

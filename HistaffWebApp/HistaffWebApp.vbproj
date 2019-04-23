@@ -450,8 +450,13 @@
     <Content Include="Modules\Planning\Report\ctrlPA_SalaryTracker.ascx" />
     <Content Include="Modules\Planning\Setting\ctrlPA_TitleCost.ascx" />
     <Content Include="Modules\Planning\Business\ctrlRC_Manning.ascx" />
+<<<<<<< HEAD
+    <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx" />
+=======
+>>>>>>> 21cfcacfd3ce17fe882391986234d25ba5252589
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingForeignNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TranningForeign.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_Allowance.ascx" />

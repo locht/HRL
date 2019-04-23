@@ -1418,13 +1418,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents lbNGAY_DB_DANG As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rdNGAY_DB_DANG control.
+    '''rdNGAY_VAO_DANG_DB control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdNGAY_DB_DANG As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents rdNGAY_VAO_DANG_DB As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''lbNGAY_VAO_DANG control.

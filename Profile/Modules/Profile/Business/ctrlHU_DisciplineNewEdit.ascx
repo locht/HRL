@@ -94,14 +94,14 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>
-                    <%--<span class="lbReq">*</span>--%>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                    <%--<tlk:RadTextBox ID = "txtIDEmp" runat = "server" Visible="false"></tlk:RadTextBox>--%>
                     <tlk:RadTextBox ID="txtSignerName" Width="130px"  runat="server" ReadOnly="true" SkinID="ReadOnly" TabIndex="7">
                     </tlk:RadTextBox>
-                    <%--<tlk:RadButton ID="btnFindSinger" runat="server" SkinID="ButtonView" CausesValidation="false" TabIndex="8">
-                    </tlk:RadButton>--%>
+                    <tlk:RadButton ID="btnFindSinger" runat="server" SkinID="ButtonView" CausesValidation="false" TabIndex="8">
+                    </tlk:RadButton>
                     <asp:RequiredFieldValidator ID="reqSignerName" ControlToValidate="txtSignerName"
                         runat="server" ErrorMessage="Bạn phải nhập người ký." ToolTip="Bạn phải nhập người ký."> 
                     </asp:RequiredFieldValidator>
@@ -112,7 +112,7 @@
                 <td>
                     <tlk:RadTextBox ID="txtSignerTitle" runat="server" TabIndex="9" ReadOnly="true" SkinID="ReadOnly">
                     </tlk:RadTextBox>
-                </td>
+                </td>                
                 <td class="lb">
                     <asp:Label runat="server" ID="lbUpload" Text="Tập tin đính kèm"></asp:Label>
                 </td>
@@ -149,7 +149,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineObj" Text="Đối tượng"></asp:Label>
-                    <%--<span class="lbReq">*</span>--%>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDisciplineObj" runat="server" AutoPostBack="True" TabIndex="11"
@@ -164,7 +164,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineLevel" Text="Cấp kỷ luật"></asp:Label>
-                    <%--<span class="lbReq">*</span>--%>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDisciplineLevel" runat="server" TabIndex="12" CausesValidation="False">
@@ -280,7 +280,7 @@
             runat="server" Height="100%" ShowFooter="True">
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView EditMode="InPlace" AllowPaging="false" AllowCustomPaging="false"
-                DataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY,INDEMNIFY_MONEY" ClientDataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY,INDEMNIFY_MONEY"
+                DataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,MONEY" ClientDataKeyNames="HU_DISCIPLINE_ID,HU_EMPLOYEE_ID,EMPLOYEE_CODE,FULLNAME,TITLE_NAME,ORG_NAME,MONEY"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="28px" />
                 <CommandItemTemplate>
@@ -289,12 +289,12 @@
                             <tlk:RadButton Width="100px" ID="btnEmployee" runat="server" Text="Chọn nhân viên"
                                 CausesValidation="false" CommandName="FindEmployee">
                             </tlk:RadButton>
-                            <%--<tlk:RadButton Width="100px" ID="btnShare" runat="server" Text="Chia đều"
+                            <tlk:RadButton Width="100px" ID="btnShare" runat="server" Text="Chia đều"
                                 CausesValidation="false" CommandName="ShareEmployee">
                             </tlk:RadButton>
                             <tlk:RadButton Width="100px" ID="btnCalc" runat="server" Text="Tính toán"
                                 CausesValidation="false" CommandName="CalcEmployee">
-                            </tlk:RadButton>--%>
+                            </tlk:RadButton>
                         </div>
                         <div style="float: right;">
                             <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="Xóa"
@@ -304,10 +304,10 @@
                     </div>
                 </CommandItemTemplate>
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                    <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <%--<tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
+                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" Aggregate="Count"
                         FooterText="Tổng: ">
                         <HeaderStyle Width="100px" />
@@ -317,8 +317,7 @@
                         <HeaderStyle Width="120px" />
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
-                        ReadOnly="true" UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
-                    </tlk:GridBoundColumn>
+                        ReadOnly="true" UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" />
                     <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         ReadOnly="true" SortExpression="ORG_NAME">
                         <HeaderStyle Width="200px" />
