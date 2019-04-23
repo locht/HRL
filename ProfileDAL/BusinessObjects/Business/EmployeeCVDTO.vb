@@ -119,5 +119,5 @@
     Public Property CA As Boolean?
     Public Property DANG As Boolean?
     Public Property SKILL As String
-
+    Public Property NGAY_VAO_DANG_DB As Date?
 End Class
