@@ -541,6 +541,7 @@
             <Property Name="THUONG_BINH" Type="number" Nullable="true" Precision="5" />
             <Property Name="HANG_THUONG_BINH" Type="number" Nullable="true" Precision="38" />
             <Property Name="GD_CHINH_SACH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NGAY_VAO_DANG_DB" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
             <Key>
@@ -4216,6 +4217,7 @@
           <Property Type="Int16" Name="THUONG_BINH" />
           <Property Type="Decimal" Name="HANG_THUONG_BINH" />
           <Property Type="Decimal" Name="GD_CHINH_SACH" />
+          <Property Type="DateTime" Name="NGAY_VAO_DANG_DB" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_HEALTH">
           <Key>
@@ -7487,6 +7489,7 @@
                     <ScalarProperty Name="THUONG_BINH" ColumnName="THUONG_BINH" />
                     <ScalarProperty Name="HANG_THUONG_BINH" ColumnName="HANG_THUONG_BINH" />
                     <ScalarProperty Name="GD_CHINH_SACH" ColumnName="GD_CHINH_SACH" />
+                    <ScalarProperty Name="NGAY_VAO_DANG_DB" ColumnName="NGAY_VAO_DANG_DB" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10326,7 +10329,7 @@
           <ConnectorPoint PointX="4.5" PointY="10.024999999999999" />
           <ConnectorPoint PointX="5.25" PointY="10.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="19.287415364583332" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV" Width="1.875" PointX="14.375" PointY="3.375" Height="19.479716796875003" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_HEALTH" Width="1.875" PointX="14.375" PointY="2.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION" Width="4" PointX="13.125" PointY="0.5" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_HE_HEC">

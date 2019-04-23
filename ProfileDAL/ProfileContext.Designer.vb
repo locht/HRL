@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("b38824f0-6bba-405a-b9d9-adda10ebfbf1")>
+<Assembly: EdmSchemaAttribute("0c2d44d7-0c6f-4aff-977d-cdd85d09f02e")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -21150,6 +21150,31 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnGD_CHINH_SACHChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NGAY_VAO_DANG_DB() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _NGAY_VAO_DANG_DB
+        End Get
+        Set
+            OnNGAY_VAO_DANG_DBChanging(value)
+            ReportPropertyChanging("NGAY_VAO_DANG_DB")
+            _NGAY_VAO_DANG_DB = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NGAY_VAO_DANG_DB")
+            OnNGAY_VAO_DANG_DBChanged()
+        End Set
+    End Property
+
+    Private _NGAY_VAO_DANG_DB As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnNGAY_VAO_DANG_DBChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnNGAY_VAO_DANG_DBChanged()
     End Sub
 
     #End Region

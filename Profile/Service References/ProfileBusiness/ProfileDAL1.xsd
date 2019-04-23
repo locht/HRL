@@ -2217,6 +2217,7 @@
       <xs:element minOccurs="0" name="NGAY_TG_BANTT" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NGAY_TG_BAN_NU_CONG" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NGAY_VAO_DANG" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NGAY_VAO_DANG_DB" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NGAY_VAO_DOAN" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NGAY_XUAT_NGU_CA" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="NGAY_XUAT_NGU_QD" nillable="true" type="xs:dateTime" />

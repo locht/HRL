@@ -619,7 +619,7 @@
                                         <asp:Label runat="server" ID ="lbNGAY_DB_DANG" Text ="Ngày dự bị"></asp:Label>
                                     </td>
                                     <td class="control3">
-                                        <tlk:RadDatePicker  runat ="server" ID="rdNGAY_DB_DANG"></tlk:RadDatePicker>
+                                        <tlk:RadDatePicker  runat ="server" ID="rdNGAY_VAO_DANG_DB"></tlk:RadDatePicker>
                                     </td>
                                     <td class="lb3">
                                         <asp:Label runat="server" ID ="lbNGAY_VAO_DANG" Text ="Ngày chính thức"></asp:Label>
