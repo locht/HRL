@@ -865,10 +865,7 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
-                objEmpCVData.QLNN = objEmpCV.QLNN
-                objEmpCVData.LLCT = objEmpCV.LLCT
-                objEmpCVData.TDTH = objEmpCV.TDTH
-                objEmpCVData.DIEM_XL_TH = objEmpCV.DIEM_XL_TH
+                
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -891,6 +888,10 @@ Partial Class ProfileRepository
                 objEmpEduData.TRAINING_FORM = objEmpEdu.TRAINING_FORM
                 objEmpEduData.LEARNING_LEVEL = objEmpEdu.LEARNING_LEVEL
                 objEmpEduData.GRADUATION_YEAR = objEmpEdu.GRADUATION_YEAR
+                objEmpEduData.QLNN = objEmpEdu.QLNN
+                objEmpEduData.LLCT = objEmpEdu.LLCT
+                objEmpEduData.TDTH = objEmpEdu.TDTH
+                objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
 
@@ -915,6 +916,7 @@ Partial Class ProfileRepository
                 objEmpHealthData.VIEM_GAN_B = objEmpHealth.VIEM_GAN_B
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
+                objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
                 Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
             End If
 
@@ -1250,10 +1252,7 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
-                objEmpCVData.QLNN = objEmpCV.QLNN
-                objEmpCVData.LLCT = objEmpCV.LLCT
-                objEmpCVData.TDTH = objEmpCV.TDTH
-                objEmpCVData.DIEM_XL_TH = objEmpCV.DIEM_XL_TH
+                
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1283,6 +1282,10 @@ Partial Class ProfileRepository
                 objEmpEduData.TRAINING_FORM = objEmpEdu.TRAINING_FORM
                 objEmpEduData.LEARNING_LEVEL = objEmpEdu.LEARNING_LEVEL
                 objEmpEduData.GRADUATION_YEAR = objEmpEdu.GRADUATION_YEAR
+                objEmpEduData.QLNN = objEmpEdu.QLNN
+                objEmpEduData.LLCT = objEmpEdu.LLCT
+                objEmpEduData.TDTH = objEmpEdu.TDTH
+                objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
                 If bUpdateEdu = False Then
                     Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
                 End If
@@ -1314,6 +1317,7 @@ Partial Class ProfileRepository
                 objEmpHealthData.VIEM_GAN_B = objEmpHealth.VIEM_GAN_B
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
+                objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
                 If bUpdateHealth = False Then
                     Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
                 End If
@@ -1597,10 +1601,6 @@ Partial Class ProfileRepository
                          .CA = cv.CA,
                          .DANG = cv.DANG,
                          .SKILL = cv.SKILL,
-                         .QLNN = cv.QLNN,
-                         .LLCT = cv.LLCT,
-                         .TDTH = cv.TDTH,
-                         .DIEM_XL_TH = cv.DIEM_XL_TH,
                          .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
@@ -1638,6 +1638,10 @@ Partial Class ProfileRepository
                          .LANGUAGE_MARK = edu.LANGUAGE_MARK,
                          .GRADUATE_SCHOOL_ID = edu.GRADUATE_SCHOOL_ID,
                          .GRADUATE_SCHOOL_NAME = school.NAME_VN,
+                         .QLNN = edu.QLNN,
+                         .LLCT = edu.LLCT,
+                         .TDTH = edu.TDTH,
+                         .DIEM_XLTH = edu.DIEM_XLTH,
                          .GRADUATION_YEAR = edu.GRADUATION_YEAR}).FirstOrDefault
 
             empHealth = (From e In Context.HU_EMPLOYEE_HEALTH
@@ -1657,6 +1661,7 @@ Partial Class ProfileRepository
                              .PHOI_NGUC = e.PHOI_NGUC,
                              .VIEM_GAN_B = e.VIEM_GAN_B,
                              .DA_HOA_LIEU = e.DA_HOA_LIEU,
+                             .TTSUCKHOE = e.TTSUCKHOE,
                              .GHI_CHU_SUC_KHOE = e.GHI_CHU_SUC_KHOE}).FirstOrDefault
 
             Return True

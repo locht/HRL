@@ -499,7 +499,7 @@ Public Class ctrlApproveTemplate
                                 .APP_TYPE = cboAppType.SelectedIndex
                                 .APP_LEVEL = nntxtAppLevel.Value.ToString.Trim
 
-                                .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value.ToString.Trim)
+                                .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value)
                                 .INFORM_EMAIL = txtInformEmail.Text.ToString.Trim
                                 If .APP_TYPE = 1 Then
                                     .APP_ID = Decimal.Parse(hidEmployeeID.Value)

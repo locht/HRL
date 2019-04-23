@@ -287,7 +287,7 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsDate(empCV.NGAY_VAO_DANG) Then
                                 rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
                             End If
-
+                           
                             '===============================================
 
                             If empCV.WORKPLACE_ID IsNot Nothing Then
@@ -427,6 +427,16 @@ Public Class ctrlHU_EmpDtlProfile
                                 cboMajor.SelectedValue = empEdu.MAJOR
                                 cboMajor.Text = empEdu.MAJOR_NAME
                             End If
+                            If IsNumeric(empEdu.QLNN) Then
+                                cbQLNN.SelectedValue = empEdu.QLNN
+                            End If
+                            If IsNumeric(empEdu.LLCT) Then
+                                cbLLCT.SelectedValue = empEdu.LLCT
+                            End If
+                            If IsNumeric(empEdu.TDTH) Then
+                                cbTDTH.SelectedValue = empEdu.TDTH
+                            End If
+                            rtDiem_XL_TH.Text = empEdu.DIEM_XLTH
                         End If
 
                         If empHealth IsNot Nothing Then
@@ -444,6 +454,7 @@ Public Class ctrlHU_EmpDtlProfile
                             txtTim.Text = empHealth.TIM
                             txtVienGanB.Text = empHealth.VIEM_GAN_B
                             txtLoaiSucKhoe.Text = empHealth.LOAI_SUC_KHOE
+                            rtTTSucKhoe.Text = empHealth.TTSUCKHOE
                         End If
 
                     End If
@@ -464,6 +475,9 @@ Public Class ctrlHU_EmpDtlProfile
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(DetailPane)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -494,6 +508,12 @@ Public Class ctrlHU_EmpDtlProfile
                 FillRadCombobox(cbHang_Thuong_Binh, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("HCGD")
                 FillRadCombobox(cbGD_Chinh_Sach, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("RC_COMPUTER_LEVEL")
+                FillRadCombobox(cbTDTH, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("QLNN")
+                FillRadCombobox(cbQLNN, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("LLCT")
+                FillRadCombobox(cbLLCT, dtData, "NAME", "ID")
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -596,7 +616,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                        rtEmpCode_OLD, rtBookNo, rtOtherName, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
                                        rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
-                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill)
+                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                       cbQLNN, cbLLCT, cbTDTH, rtTTSucKhoe)
                     If Not Me.AllowCreate Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -641,7 +662,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        rtEmpCode_OLD, rtBookNo, rtOtherName,
                                        cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
                                        rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
-                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill)
+                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                       cbQLNN, cbLLCT, cbTDTH, rtTTSucKhoe)
                     If Not Me.AllowModify Then
                         txtFirstNameVN.ReadOnly = True
                         txtLastNameVN.ReadOnly = True
@@ -683,7 +705,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        rtEmpCode_OLD, rtBookNo, rtOtherName,
                                        cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
                                        rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
-                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill)
+                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                       cbQLNN, cbLLCT, cbTDTH, rtTTSucKhoe)
 
             End Select
             rep.Dispose()
@@ -1542,7 +1565,7 @@ Public Class ctrlHU_EmpDtlProfile
             EmpHealth.TIM = txtTim.Text.Trim()
             EmpHealth.VIEM_GAN_B = txtVienGanB.Text.Trim()
             EmpHealth.LOAI_SUC_KHOE = txtLoaiSucKhoe.Text
-
+            EmpHealth.TTSUCKHOE = rtTTSucKhoe.Text.Trim
             EmpEdu = New EmployeeEduDTO
             If txtNamTN.Text <> "" Then
                 EmpEdu.GRADUATION_YEAR = txtNamTN.Value
@@ -1575,6 +1598,19 @@ Public Class ctrlHU_EmpDtlProfile
             Else
                 EmpCV.IMAGE = ""
             End If
+
+            '=========================================
+            If IsNumeric(cbQLNN.SelectedValue) Then
+                EmpEdu.QLNN = cbQLNN.SelectedValue
+            End If
+            If IsNumeric(cbTDTH.SelectedValue) Then
+                EmpEdu.TDTH = cbTDTH.SelectedValue
+            End If
+            If IsNumeric(cbLLCT.SelectedValue) Then
+                EmpEdu.LLCT = cbLLCT.SelectedValue
+            End If
+            EmpEdu.DIEM_XLTH = rtDiem_XL_TH.Text
+            '=========================================
             EmployeeInfo.lstPaper = lstbPaper.CheckedItems.Select(Function(f) Decimal.Parse(f.Value)).ToList
             EmployeeInfo.lstPaperFiled = lstbPaperFiled.CheckedItems.Select(Function(f) Decimal.Parse(f.Value)).ToList
             If hidID.Value <> "" Then

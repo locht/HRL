@@ -37,6 +37,7 @@
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking"
             ValidationGroup="EmpProfile" />
     </tlk:RadPane>
+   
     <tlk:RadPane ID="RadPane1" runat="server" Height="13%" Scrolling="X">
         <asp:Panel runat="server" ID="Panel1">
             <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
@@ -1056,6 +1057,20 @@
                                     </tr>
                                     <tr>
                                         <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbQLNN" Text ="Quản lý nhà nước"></asp:Label>
+                                        </td>
+                                        <td class="control3">
+                                            <tlk:RadComboBox  runat ="server" ID="cbQLNN" ></tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbLLCT" Text ="Lý luận chính trị"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox  runat ="server" ID="cbLLCT" ></tlk:RadComboBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lb3">
                                             <asp:Label runat ="server" ID ="lbLanguage" Text ="Ngoại ngữ"></asp:Label>
                                         </td>
                                         <td>
@@ -1075,6 +1090,22 @@
                                         </td>
                                         <td>
                                             <tlk:RadTextBox ID="txtLangMark" runat="server">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID="lbTDTH" Text ="Trình độ tin học" ></asp:Label>
+                                        </td>
+                                        <td class="control3">
+                                            <tlk:RadComboBox ID="cbTDTH" runat="server">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbDiem_XL_TH" Text ="Điểm số/Xếp loại"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox ID="rtDiem_XL_TH" runat="server">
                                             </tlk:RadTextBox>
                                         </td>
                                     </tr>
@@ -1227,6 +1258,13 @@
                                             <tlk:RadTextBox ID="txtLoaiSucKhoe" runat="server">
                                             </tlk:RadTextBox>
                                         </td>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbTTSucKhoe" Text ="Tình trạng sức khỏe"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox ID="rtTTSucKhoe" runat="server">
+                                            </tlk:RadTextBox>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="lb3">
@@ -1286,6 +1324,7 @@
             
         </table>
     </tlk:RadPane>
+ 
 </tlk:RadSplitter>
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
