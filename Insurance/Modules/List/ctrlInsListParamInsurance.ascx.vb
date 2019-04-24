@@ -86,6 +86,8 @@ Public Class ctrlInsListParamInsurance
             dic.Add("HI_EMP", radnmHI_EMP)
             dic.Add("UI_COM", radnmUI_COM)
             dic.Add("UI_EMP", radnmUI_EMP)
+            dic.Add("BHTNLD_BNN_COM", radnmTNLD_BNN_COM)
+            dic.Add("BHTNLD_BNN_EMP", radnmTNLD_BNN_EMP)
             dic.Add("SICK", radnmSICK)
             dic.Add("MATERNITY", radnmMATERNITY)
             dic.Add("OFF_IN_HOUSE", radnmOFF_IN_HOUSE)
@@ -218,6 +220,8 @@ Public Class ctrlInsListParamInsurance
                         objData.HI_EMP = radnmHI_EMP.Value
                         objData.UI_COM = radnmUI_COM.Value
                         objData.UI_EMP = radnmUI_EMP.Value
+                        objData.BHTNLD_BNN_COM = radnmTNLD_BNN_COM.Value
+                        objData.BHTNLD_BNN_EMP = radnmTNLD_BNN_EMP.Value
                         objData.SICK = radnmSICK.Value
                         objData.MATERNITY = radnmMATERNITY.Value
                         objData.OFF_IN_HOUSE = radnmOFF_IN_HOUSE.Value
@@ -310,17 +314,17 @@ Public Class ctrlInsListParamInsurance
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     Utilities.EnabledGridNotPostback(rgGridDataRate, True)
-                    EnableControlAll(False, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
+                    EnableControlAll(False, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmTNLD_BNN_COM, radnmTNLD_BNN_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
                 Case CommonMessage.STATE_NEW
                     Utilities.EnabledGridNotPostback(rgGridDataRate, False)
-                    EnableControlAll(True, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
-                    ClearControlValue(rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
+                    EnableControlAll(True, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmTNLD_BNN_COM, radnmTNLD_BNN_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
+                    ClearControlValue(rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmTNLD_BNN_COM, radnmTNLD_BNN_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
                 Case CommonMessage.STATE_EDIT
                     Utilities.EnabledGridNotPostback(rgGridDataRate, False)
-                    EnableControlAll(True, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
+                    EnableControlAll(True, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmTNLD_BNN_COM, radnmTNLD_BNN_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
                 Case "Nothing"
                     Utilities.EnabledGridNotPostback(rgGridDataRate, True)
-                    EnableControlAll(False, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
+                    EnableControlAll(False, rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmTNLD_BNN_COM, radnmTNLD_BNN_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
             End Select
             ChangeToolbarState()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -349,7 +353,7 @@ Public Class ctrlInsListParamInsurance
                         IDSelect = gID
                         Refresh("InsertView")
                         UpdateControlState()
-                        ClearControlValue(rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
+                        ClearControlValue(rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmTNLD_BNN_COM, radnmTNLD_BNN_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
                         rgGridDataRate.SelectedIndexes.Clear()
                         rgGridDataRate.MasterTableView.ClearSelectedItems()
                     Else
@@ -371,7 +375,7 @@ Public Class ctrlInsListParamInsurance
                         IDSelect = gID
                         Refresh("InsertView")
                         UpdateControlState()
-                        ClearControlValue(rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
+                        ClearControlValue(rdEffectiveDate, radnmSI, radnmHI, radnmUI, radnmSI_COM, radnmSI_EMP, radnmHI_COM, radnmHI_EMP, radnmUI_COM, radnmUI_EMP, radnmTNLD_BNN_COM, radnmTNLD_BNN_EMP, radnmSICK, radnmMATERNITY, radnmOFF_IN_HOUSE, radnmOFF_TOGETHER, radnmRETIRE_MALE, radnmRETIRE_FEMALE, txtSI_DATE, txtHI_DATE)
                         rgGridDataRate.SelectedIndexes.Clear()
                         rgGridDataRate.MasterTableView.ClearSelectedItems()
                         'rgGridDataRate.SelectedItems.
