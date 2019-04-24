@@ -76,7 +76,7 @@
                 <td>
                     <tlk:RadDatePicker ID="rdExpireDate" runat="server">
                     </tlk:RadDatePicker>
-                    <asp:CustomValidator ID="cval_EffectDate_ExpireDate" runat="server" ErrorMessage="<%$ Translate: Ngày kết thúc phải lớn hơn ngày hiệu lực. %>"
+                    <asp:CustomValidator ID="cval_EffectDate_ExpireDate" runat="server" ErrorMessage="Ngày kết thúc phải lớn hơn ngày hiệu lực."
                         ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn ngày hiệu lực. %>">
                     </asp:CustomValidator>
                 </td>--%>
@@ -113,7 +113,7 @@
                     <tlk:RadDatePicker ID="rdSignDate" runat="server" TabIndex="3">
                     </tlk:RadDatePicker>
                   <%--   <asp:RequiredFieldValidator ID="reqsigndate" ControlToValidate="rdSignDate" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày ký. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày ký. %>"> 
+                        ErrorMessage="Bạn phải nhập ngày ký." ToolTip="Bạn phải nhập ngày ký."> 
                     </asp:RequiredFieldValidator>--%>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdEffectDate"
                                 Type="Date" ControlToCompare="rdSignDate" Operator="GreaterThanEqual" ErrorMessage="Ngày hiệu lực phải lớn hơn Ngày ký"
@@ -129,7 +129,7 @@
                     <tlk:RadButton ID="btnFindSinger" runat="server" SkinID="ButtonView" CausesValidation="false" TabIndex="3">
                     </tlk:RadButton>
                   <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtSignerName"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập người ký. %>" ToolTip="<%$ Translate: Bạn phải nhập người ký. %>"> 
+                        runat="server" ErrorMessage="Bạn phải nhập người ký." ToolTip="Bạn phải nhập người ký."> 
                     </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb">
@@ -442,9 +442,9 @@
             if (!text.match('^[0-9]+$'))
                 args.set_cancel(true);
         }
-        $(document).ready(function () {
-            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_CommendNewEdit_RadPane2');
-        });
+//        $(document).ready(function () {
+//            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_CommendNewEdit_RadPane2');
+//        });
 
         //mandatory for the RadWindow dialogs functionality
         function getRadWindow() {

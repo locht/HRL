@@ -1,5 +1,8 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlFindEmployeePopupDialog.ascx.vb"
     Inherits="Common.ctrlFindEmployeePopupDialog" %>
+    <%@ Import Namespace="Framework.UI.Utilities" %>
+    
+<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <%@ Register Src="ctrlOrganization.ascx" TagName="ctrlOrganization" TagPrefix="Common" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="280" Width="280px" Scrolling="None">
@@ -15,7 +18,8 @@
                             </tlk:RadTextBox>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm kiếm %>" CausesValidation="false">
+                            <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm %>" CausesValidation="false"
+                                SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -24,7 +28,7 @@
                         </td>
                         <td colspan="2">
                             <tlk:RadButton ID="cbTerminate" runat="server" ButtonType="ToggleButton" ToggleType="CheckBox"
-                                Text="<%$ Translate: Hiển thị nhân viên nghỉ việc %>">
+                                Text="<%$ Translate: Hiển thị nhân viên nghỉ việc%>">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -38,7 +42,7 @@
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize=50 ID="rgEmployeeInfo" runat="server" Height="100%">
+                <tlk:RadGrid PageSize="50" ID="rgEmployeeInfo" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID,ORG_DESC">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -50,14 +54,30 @@
                                 UniqueName="FULLNAME_VN" SortExpression="FULLNAME_VN" HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" HeaderStyle-Width="130px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                                SortExpression="ORG_NAME" HeaderStyle-Width="130px" />
+                            <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
+                                SortExpression="ORG_NAME" HeaderStyle-Width="130px" />--%>
+                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME"  ReadOnly="true"
+                                UniqueName="ORG_NAME" SortExpression="ORG_NAME">
+                                <HeaderStyle Width="130px" />
+                                <ItemTemplate>
+                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
+                                </asp:Label>
+                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
+                                                    RelativeTo="Element" Position="BottomCenter">
+                                            <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
+                                </tlk:RadToolTip>
+                            </ItemTemplate>
+                            </tlk:GridTemplateColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER"
                                 UniqueName="GENDER" SortExpression="GENDER" HeaderStyle-Width="60px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái nhân viên %>" DataField="WORK_STATUS"
                                 UniqueName="WORK_STATUS" SortExpression="WORK_STATUS" HeaderStyle-Width="130px" />
                         </Columns>
                     </MasterTableView>
+                    <ClientSettings EnableRowHoverStyle="true">
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
+                        <ClientEvents OnCommand="ValidateFilter" />
+                    </ClientSettings>
                 </tlk:RadGrid>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" MinHeight="50" Height="50px" Scrolling="None">
@@ -76,6 +96,24 @@
 </tlk:RadSplitter>
 <tlk:RadScriptBlock ID="RadScriptBlock1" runat="server">
     <script type="text/javascript">
+
+        function ValidateFilter(sender, eventArgs) {
+            var params = eventArgs.get_commandArgument() + '';
+            if (params.indexOf("|") > 0) {
+                var s = eventArgs.get_commandArgument().split("|");
+                if (s.length > 1) {
+                    var val = s[1];
+                    if (validateHTMLText(val) || validateSQLText(val)) {
+                        eventArgs.set_cancel(true);
+                    }
+                }
+            }
+        }
+
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_RadPaneMain');
+        //        }
+
         function GetRadWindow() {
             var oWindow = null;
             if (window.radWindow) oWindow = window.radWindow;

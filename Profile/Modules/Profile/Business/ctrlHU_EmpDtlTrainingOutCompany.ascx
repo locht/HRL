@@ -165,9 +165,9 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane runat="server" ID="RadPane4" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgEmployeeTrain" runat="server" AllowMultiRowSelection="true" Height="100%"
+        <tlk:RadGrid PageSize="50" ID="rgEmployeeTrain" runat="server" AllowMultiRowSelection="true" Height="100%"
             AllowFilteringByColumn="true">
-            <MasterTableView DataKeyNames="ID,UPLOAD_FILE,FILE_NAME" ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME">
+            <MasterTableView DataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME" ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
@@ -175,7 +175,7 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false"></tlk:GridBoundColumn>
+                    <%--<tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Display="false"></tlk:GridBoundColumn>
                     <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Từ tháng"
                         UniqueName="FROM_DATE" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
                         Visible="true" DataFormatString="{0:MM/yyyy}">
@@ -192,7 +192,7 @@
                         UniqueName="YEAR_GRA" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo"
                         Visible="true">
                     </tlk:GridNumericColumn>
-                    <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Translate: Tên trường"
+                    <tlk:GridBoundColumn DataField="NAME_SHOOLS" HeaderText="Tên trường"
                         UniqueName="NAME_SHOOLS" ShowFilterIcon="false" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains"
                         Visible="true">
                     </tlk:GridBoundColumn>
@@ -229,9 +229,9 @@
                         UniqueName="EFFECTIVE_DATE_TO">
                     </tlk:GridDateTimeColumn>
                       <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="UPLOAD_FILE"
-                        UniqueName="UPLOAD_FILE" SortExpression="UPLOAD_FILE" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"/>
+                        UniqueName="UPLOAD_FILE" SortExpression="UPLOAD_FILE" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"></tlk:GridBoundColumn>
                          <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="FILE_NAME"
-                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"/>
+                        UniqueName="FILE_NAME" SortExpression="FILE_NAME" AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" Visible="false"></tlk:GridBoundColumn>--%>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>

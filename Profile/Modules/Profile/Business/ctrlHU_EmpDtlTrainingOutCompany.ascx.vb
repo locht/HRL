@@ -210,8 +210,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 
 
                 Case CommonMessage.STATE_NORMAL
-                    rdToiThang.SelectedDate = Nothing
-                    rdTuThang.SelectedDate = Nothing
+                    'rdToiThang.SelectedDate = Nothing
+                    'rdTuThang.SelectedDate = Nothing
                     rntGraduateYear.Text = ""
                     txtRemark.Text = ""
                     txtTrainingSchool.Text = ""

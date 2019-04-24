@@ -61,7 +61,7 @@
             </MasterTableView>
             <ClientSettings>
                 <Selecting AllowRowSelect="True" />
-                <ClientEvents OnGridCreated="GridCreated" />
+                <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
         </tlk:RadGrid>
@@ -83,9 +83,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlDiscipline_RadSplitter2');
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlDiscipline_RadSplitter2');
+//        }
 
     </script>
 </tlk:RadScriptBlock>
