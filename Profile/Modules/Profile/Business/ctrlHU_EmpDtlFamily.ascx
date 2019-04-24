@@ -45,6 +45,13 @@
                         ToolTip="Bạn phải chọn Mối quan hệ">
                     </asp:CustomValidator>
                 </td>
+                <td class="lb">
+                    <asp:Label ID="lbNguyenQuan" runat="server" Text="Nguyên quán"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
+                    </tlk:RadComboBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -64,23 +71,6 @@
                     <tlk:RadTextBox runat="server" ID="txtIDNO" SkinID="Textbox15">
                     </tlk:RadTextBox>
                 </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label ID="lbAdress" runat="server" Text="Địa chỉ thường trú"></asp:Label>
-                </td>
-                <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
-                </td>                
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label ID="lbNguyenQuan" runat="server" Text="Nguyên quán"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
-                    </tlk:RadComboBox>
-                </td>
                 <td class="lb">
                     <asp:Label ID="lbCareer" runat="server" Text="Nghề nghiệp"></asp:Label>
                 </td>
@@ -91,17 +81,16 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <asp:Label ID="lbAdress" runat="server" Text="Địa chỉ thường trú"></asp:Label>
+                </td>
+                <td colspan="3">
+                    <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
+                </td>
+                <td class="lb">
                     <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox15">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label ID="lbTax" runat="server" Text="Mã số thuế"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -117,6 +106,13 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdDeductReg">
                     </tlk:RadDatePicker>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbTax" runat="server" Text="Mã số thuế"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>
@@ -202,7 +198,7 @@
             </MasterTableView>
             <ClientSettings>
                 <Selecting AllowRowSelect="True" />
-                <ClientEvents OnGridCreated="GridCreated" />
+                <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
         </tlk:RadGrid>
@@ -233,9 +229,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut(splitterID);
-        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut(splitterID);
+        //        }
 
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
