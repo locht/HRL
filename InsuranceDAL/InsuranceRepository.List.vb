@@ -216,6 +216,8 @@ Partial Public Class InsuranceRepository
                                           .HI_EMP = s.p.HI_EMP,
                                           .UI_COM = s.p.UI_COM,
                                           .UI_EMP = s.p.UI_EMP,
+                                          .BHTNLD_BNN_COM = s.p.BHTNLD_BNN_COM,
+                                          .BHTNLD_BNN_EMP = s.p.BHTNLD_BNN_EMP,
                                           .SICK = s.p.SICK,
                                           .SALARY_MIN = s.p.SALARY_MIN,
                                           .MATERNITY = s.p.MATERNITY,
@@ -260,6 +262,12 @@ Partial Public Class InsuranceRepository
             End If
             If _filter.UI_COM.HasValue Then
                 lst = lst.Where(Function(f) f.UI_COM.Value = _filter.UI_COM)
+            End If
+            If _filter.BHTNLD_BNN_EMP.HasValue Then
+                lst = lst.Where(Function(f) f.BHTNLD_BNN_EMP.Value = _filter.BHTNLD_BNN_EMP)
+            End If
+            If _filter.BHTNLD_BNN_COM.HasValue Then
+                lst = lst.Where(Function(f) f.BHTNLD_BNN_COM.Value = _filter.BHTNLD_BNN_COM)
             End If
             If _filter.SICK.HasValue Then
                 lst = lst.Where(Function(f) f.SICK.Value = _filter.SICK)
@@ -308,6 +316,8 @@ Partial Public Class InsuranceRepository
             objTitleData.HI_EMP = objTitle.HI_EMP
             objTitleData.UI_COM = objTitle.UI_COM
             objTitleData.UI_EMP = objTitle.UI_EMP
+            objTitleData.BHTNLD_BNN_COM = objTitle.BHTNLD_BNN_COM
+            objTitleData.BHTNLD_BNN_EMP = objTitle.BHTNLD_BNN_EMP
             objTitleData.SICK = objTitle.SICK
             objTitleData.SALARY_MIN = objTitle.SALARY_MIN
             objTitleData.MATERNITY = objTitle.MATERNITY
@@ -344,6 +354,8 @@ Partial Public Class InsuranceRepository
             objTitleData.HI_EMP = objTitle.HI_EMP
             objTitleData.UI_COM = objTitle.UI_COM
             objTitleData.UI_EMP = objTitle.UI_EMP
+            objTitleData.BHTNLD_BNN_COM = objTitle.BHTNLD_BNN_COM
+            objTitleData.BHTNLD_BNN_EMP = objTitle.BHTNLD_BNN_EMP
             objTitleData.SICK = objTitle.SICK
             objTitleData.SALARY_MIN = objTitle.SALARY_MIN
             objTitleData.MATERNITY = objTitle.MATERNITY

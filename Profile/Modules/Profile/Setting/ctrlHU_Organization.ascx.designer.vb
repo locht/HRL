@@ -293,13 +293,13 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents CustomValidator1 As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''lbinsurance control.
+    '''lbU_insurance control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbinsurance As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbU_insurance As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboU_insurance control.
@@ -383,13 +383,13 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents lbLocationWork As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rtxtLocationWork control.
+    '''txtLocationWork control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtxtLocationWork As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtLocationWork As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbTypeDecision control.
@@ -401,13 +401,13 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents lbTypeDecision As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rtxtTypeDecision control.
+    '''txtTypeDecision control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtxtTypeDecision As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtTypeDecision As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbNumberDecision control.
@@ -419,13 +419,13 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents lbNumberDecision As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rtxtNumberDecision control.
+    '''txtNumberDecision control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtxtNumberDecision As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtNumberDecision As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbFOUNDATION_DATE control.
@@ -473,13 +473,13 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents lbREMARK As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rtREMARK control.
+    '''txtREMARK control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtREMARK As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtREMARK As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''chkOrgChart control.

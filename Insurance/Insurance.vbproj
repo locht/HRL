@@ -66,6 +66,7 @@
     <Reference Include="Aspose.Words, Version=10.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\ref\Aspose.Words.dll</HintPath>
     </Reference>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\ref\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -537,6 +538,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.INS_REMIGE_MANAGER_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\InsuranceBusiness\Insurance.InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO1.datasource">

@@ -601,7 +601,8 @@ Namespace InsuranceBusiness.ServiceContracts
                                     , ByVal a_ui As Double? _
                                     , ByVal si As Double? _
                                     , ByVal hi As Double? _
-                                    , ByVal ui As Double?) As Double
+                                    , ByVal ui As Double? _
+                                    , ByVal tnld_bnn As Double?) As Double
         <OperationContract()>
         Function DeleteInsArisingManual(ByVal username As String, ByVal lstid As String) As Double
 
