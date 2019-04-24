@@ -9,7 +9,21 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "Danh muc"
-
+        Function GetEmpInfomations(ByVal orgIDs As List(Of Decimal),
+                                     ByVal _filter As EmployeeDTO,
+                                     ByVal PageIndex As Integer,
+                                     ByVal PageSize As Integer,
+                                     ByRef Total As Integer,
+                                     Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                     Optional ByVal log As UserLog = Nothing) As List(Of EmployeeDTO) Implements ServiceContracts.IProfileBusiness.GetEmpInfomations
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetEmpInfomations(orgIDs, _filter, PageIndex, PageSize, Total, Sorts)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "Hoadm"

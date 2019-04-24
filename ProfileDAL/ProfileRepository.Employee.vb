@@ -9,6 +9,62 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "Employee"
+    Public Function GetEmpInfomations(ByVal orgIDs As List(Of Decimal),
+                                      ByVal _filter As EmployeeDTO,
+                                      ByVal PageIndex As Integer,
+                                      ByVal PageSize As Integer,
+                                      ByRef Total As Integer,
+                                      Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                      Optional ByVal log As UserLog = Nothing) As List(Of EmployeeDTO)
+        Try
+            Dim Employees = (From e In Context.HU_EMPLOYEE
+                             From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                             From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                             Where orgIDs.Contains(e.ORG_ID) Order By e.EMPLOYEE_CODE
+                            Select New EmployeeDTO With {
+                                .ID = e.ID,
+                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                .FULLNAME_VN = e.FULLNAME_VN,
+                                .TITLE_ID = e.TITLE_ID,
+                                .TITLE_NAME_VN = t.NAME_VN,
+                                .BIRTH_DATE = cv.BIRTH_DATE,
+                                .MOBILE_PHONE = cv.MOBILE_PHONE,
+                                .IMAGE = cv.IMAGE,
+                                .WORK_STATUS = e.WORK_STATUS
+                                })
+            If _filter.IS_TER = True Then
+                'Return Employees.ToList()
+            Else
+                Employees = Employees.Where(Function(f) f.WORK_STATUS <> 257)
+            End If
+            If _filter.TITLE_NAME_VN <> "" Then
+                Employees = Employees.Where(Function(f) f.TITLE_NAME_VN.ToUpper().IndexOf(_filter.TITLE_NAME_VN.ToUpper) >= 0)
+            End If
+            If _filter.FULLNAME_VN <> "" Then
+                Employees = Employees.Where(Function(f) f.FULLNAME_VN.ToUpper().IndexOf(_filter.FULLNAME_VN.ToUpper) >= 0)
+            End If
+            If IsDate(_filter.BIRTH_DATE) Then
+                Employees = Employees.Where(Function(f) f.BIRTH_DATE = _filter.BIRTH_DATE)
+            End If
+            If _filter.MOBILE_PHONE <> "" Then
+                Employees = Employees.Where(Function(f) f.MOBILE_PHONE.ToUpper().IndexOf(_filter.MOBILE_PHONE.ToUpper) >= 0)
+            End If
+            Employees = Employees.OrderBy(Sorts)
+            Total = Employees.Count
+            Employees = Employees.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Dim lstEmp = Employees.ToList
+
+            For Each emp In lstEmp
+                emp.IMAGE_BINARY = GetEmployeeImage(emp.ID, "", False, emp.IMAGE)
+            Next
+            Return lstEmp
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 
     ''' <summary>
     ''' Lấy danh sách nhân viên ko phân trang
