@@ -375,12 +375,12 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <%--<tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE"
+                    <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
                     <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="FULLNAME" UniqueName="FULLNAME"
                         ReadOnly="true" SortExpression="FULLNAME" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                        ReadOnly="true" SortExpression="ORG_NAME" />--%>
+                        ReadOnly="true" SortExpression="ORG_NAME" />
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />
@@ -416,10 +416,10 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <%-- <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
                      <tlk:GridBoundColumn DataField="ORG_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
-                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />--%>   
+                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />  
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />

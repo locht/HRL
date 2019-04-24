@@ -261,7 +261,7 @@
                 <ClientEvents OnCommand="ValidateFilter" />
                 <KeyboardNavigationSettings AllowSubmitOnEnter="true" EnableKeyboardShortcuts="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EFFECTIVE_DATE,SI,SI_EMP,SI_COM,HI,HI_EMP,HI_COM,UI,UI_EMP,UI_COM,SICK,MATERNITY,OFF_IN_HOUSE,OFF_TOGETHER,RETIRE_MALE,RETIRE_FEMALE,SI_DATE,HI_DATE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EFFECTIVE_DATE,SI,SI_EMP,SI_COM,HI,HI_EMP,HI_COM,UI,UI_EMP,UI_COM,BHTNLD_BNN_EMP,BHTNLD_BNN_COM,SICK,MATERNITY,OFF_IN_HOUSE,OFF_TOGETHER,RETIRE_MALE,RETIRE_FEMALE,SI_DATE,HI_DATE">
                 <Columns>
                     <tlk:GridBoundColumn DataField="ID" UniqueName="ID" Visible="false" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataFormatString="{0:dd/MM/yyyy}"
