@@ -2,6 +2,82 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
+#Region "evaluate"
+    Public Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal PageIndex As Integer,
+                              ByVal PageSize As Integer,
+                              ByRef Total As Integer, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningEvaluateDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTrainingEvaluate(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningEvaluateDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTrainingEvaluate(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function InsertTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertTrainingEvaluate(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifyTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyTrainingEvaluate(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function GetTrainingEvaluateByID(ByVal _filter As TrainningEvaluateDTO) As TrainningEvaluateDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTrainingEvaluateByID(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function DeleteTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteTrainingEvaluate(objContract)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+#End Region
 #Region "traning manage"
     Public Function GetTrainingManage(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
                            ByVal PageSize As Integer,

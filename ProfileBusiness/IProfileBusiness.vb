@@ -1385,6 +1385,23 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function DeleteAssetMng(ByVal objAssetMng() As AssetMngDTO, ByVal log As UserLog) As Boolean
 #End Region
+#Region "evaluate"
+        <OperationContract()>
+        Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal PageIndex As Integer,
+                                ByVal PageSize As Integer,
+                                ByRef Total As Integer, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                Optional ByVal log As UserLog = Nothing) As List(Of TrainningEvaluateDTO)
+        <OperationContract()>
+        Function InsertTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function GetTrainingEvaluateByID(ByVal _filter As TrainningEvaluateDTO) As TrainningEvaluateDTO
+        <OperationContract()>
+        Function ModifyTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function DeleteTrainingEvaluate(ByVal objAssetMng As TrainningEvaluateDTO) As Boolean
+
+#End Region
 #Region "training manage"
         <OperationContract()>
         Function GetTrainingManage(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
@@ -1395,7 +1412,7 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function InsertTrainingManage(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-       
+
         <OperationContract()>
         Function DeleteTrainingManage(ByVal objAssetMng As TrainningManageDTO) As Boolean
         <OperationContract()>

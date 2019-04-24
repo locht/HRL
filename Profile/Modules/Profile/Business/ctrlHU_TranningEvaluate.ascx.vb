@@ -38,17 +38,25 @@ Public Class ctrlHU_TranningEvaluate
             ViewState(Me.ID & "_Contract") = value
         End Set
     End Property
+    Property ListComboData As ComboBoxDataDTO
+        Get
+            Return ViewState(Me.ID & "_ListComboData")
+        End Get
+        Set(ByVal value As ComboBoxDataDTO)
+            ViewState(Me.ID & "_ListComboData") = value
+        End Set
+    End Property
     ''' <summary>
     ''' List obj Contracts
     ''' </summary>
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property Contracts As List(Of TrainningForeignDTO)
+    Property Contracts As List(Of TrainningEvaluateDTO)
         Get
             Return ViewState(Me.ID & "_Contracts")
         End Get
-        Set(ByVal value As List(Of TrainningForeignDTO))
+        Set(ByVal value As List(Of TrainningEvaluateDTO))
             ViewState(Me.ID & "_Contracts") = value
         End Set
     End Property
@@ -58,11 +66,11 @@ Public Class ctrlHU_TranningEvaluate
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property InsertContracts As TrainningForeignDTO
+    Property InsertContracts As TrainningEvaluateDTO
         Get
             Return ViewState(Me.ID & "_InsertContracts")
         End Get
-        Set(ByVal value As TrainningForeignDTO)
+        Set(ByVal value As TrainningEvaluateDTO)
             ViewState(Me.ID & "_InsertContracts") = value
         End Set
     End Property
@@ -72,11 +80,11 @@ Public Class ctrlHU_TranningEvaluate
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property DeleteContract As TrainningForeignDTO
+    Property DeleteContract As TrainningEvaluateDTO
         Get
             Return ViewState(Me.ID & "_DeleteContract")
         End Get
-        Set(ByVal value As TrainningForeignDTO)
+        Set(ByVal value As TrainningEvaluateDTO)
             ViewState(Me.ID & "_DeleteContract") = value
         End Set
     End Property
@@ -153,10 +161,10 @@ Public Class ctrlHU_TranningEvaluate
             rgContract.AllowCustomPaging = True
             rgContract.SetFilter()
             InitControl()
-            'If Not IsPostBack Then
-            '    ViewConfig(RadPane1)
-            '    GirdConfig(rgContract)
-            'End If
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgContract)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -410,7 +418,7 @@ Public Class ctrlHU_TranningEvaluate
                         Exit Sub
                     End If
 
-                    DeleteContract = New TrainningForeignDTO With {.ID = Decimal.Parse(item("ID").Text),
+                    DeleteContract = New TrainningEvaluateDTO With {.ID = Decimal.Parse(item("ID").Text),
                                                            .EMPLOYEE_ID = Decimal.Parse(item("EMPLOYEE_ID").Text)}
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
@@ -731,7 +739,7 @@ Public Class ctrlHU_TranningEvaluate
             ctrlOrg.Enabled = True
             Select Case CurrentState
                 Case CommonMessage.STATE_DELETE
-                    If rep.DeleteTrainingForeign(DeleteContract) Then
+                    If rep.DeleteTrainingEvaluate(DeleteContract) Then
                         DeleteContract = Nothing
                         IDSelect = Nothing
                         Refresh("UpdateView")
@@ -758,10 +766,11 @@ Public Class ctrlHU_TranningEvaluate
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            'Using rep As New ProfileRepository
-            '    dtData = rep.GetOtherList("CONTRACT_SUPPORT")
-            '    FillRadCombobox(cboPrintSupport, dtData, "NAME", "ID")
-            'End Using
+            Dim rep As New ProfileRepository
+            ListComboData = New ComboBoxDataDTO
+            ListComboData.GET_EVALUATE = True
+            rep.GetComboList(ListComboData)
+            FillDropDownList(cbEvaluate, ListComboData.LIST_EVALUATE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -779,12 +788,12 @@ Public Class ctrlHU_TranningEvaluate
     ''' <remarks></remarks>
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New ProfileBusinessRepository
-        Dim _filter As New TrainningForeignDTO
+        Dim _filter As New TrainningEvaluateDTO
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If ctrlOrg.CurrentValue Is Nothing Then
-                rgContract.DataSource = New List(Of TrainningForeignDTO)
+                rgContract.DataSource = New List(Of TrainningEvaluateDTO)
                 Exit Function
             End If
             Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
@@ -793,8 +802,8 @@ Public Class ctrlHU_TranningEvaluate
             If txtYear.Text <> "" Then
                 _filter.FROM_DATE = txtYear.Text
             End If
-            If cbEvaluate.SelectedValue IsNot Nothing Then
-
+            If cbEvaluate.SelectedValue <> "" Then
+                _filter.EVALUATE_ID = cbEvaluate.SelectedValue
             End If
             _filter.IS_TER = chkTerminate.Checked
             SetValueObjectByRadGrid(rgContract, _filter)
@@ -802,15 +811,15 @@ Public Class ctrlHU_TranningEvaluate
             Dim Sorts As String = rgContract.MasterTableView.SortExpressions.GetSortString()
             If isFull Then
                 If Sorts IsNot Nothing Then
-                    Return rep.GetTrainingForeign(_filter, _param, Sorts).ToTable()
+                    Return rep.GetTrainingEvaluate(_filter, _param, Sorts).ToTable()
                 Else
-                    Return rep.GetTrainingForeign(_filter, _param).ToTable()
+                    Return rep.GetTrainingEvaluate(_filter, _param).ToTable()
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    Me.Contracts = rep.GetTrainingForeign(_filter, rgContract.CurrentPageIndex, rgContract.PageSize, MaximumRows, _param, Sorts)
+                    Me.Contracts = rep.GetTrainingEvaluate(_filter, rgContract.CurrentPageIndex, rgContract.PageSize, MaximumRows, _param, Sorts)
                 Else
-                    Me.Contracts = rep.GetTrainingForeign(_filter, rgContract.CurrentPageIndex, rgContract.PageSize, MaximumRows, _param)
+                    Me.Contracts = rep.GetTrainingEvaluate(_filter, rgContract.CurrentPageIndex, rgContract.PageSize, MaximumRows, _param)
                 End If
 
                 rgContract.VirtualItemCount = MaximumRows
