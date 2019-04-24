@@ -243,7 +243,7 @@
                    <span class="lbReq"></span>
                 </td>
                 <td colspan="4">
-                    <tlk:RadTextBox ID="rtREMARK" runat="server" SkinID="Textbox9999" Width="100%">
+                    <tlk:RadTextBox ID="txtREMARK" runat="server" SkinID="Textbox9999" Width="100%">
                     </tlk:RadTextBox>
                 </td>
             </tr>

@@ -473,13 +473,13 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents lbREMARK As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rtREMARK control.
+    '''txtREMARK control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtREMARK As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtREMARK As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''chkOrgChart control.
