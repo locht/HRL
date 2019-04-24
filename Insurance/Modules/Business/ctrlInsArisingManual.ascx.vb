@@ -166,7 +166,7 @@ Public Class ctrlInsArisingManual
                     chkSI.Enabled = False
                     chkHI.Enabled = False
                     chkUI.Enabled = False
-
+                    chkTNLD_BNN.Enabled = False
                     txtDateIssue.Enabled = False
                     txtDoB.Enabled = False
 
@@ -206,6 +206,7 @@ Public Class ctrlInsArisingManual
                     chkSI.Enabled = True
                     chkHI.Enabled = True
                     chkUI.Enabled = True
+                    chkTNLD_BNN.Enabled = True
                     txtHEALTH_RETURN_DATE.Enabled = True
 
                     txtDateIssue.Enabled = False
@@ -367,7 +368,8 @@ Public Class ctrlInsArisingManual
                                                     , InsCommon.getNumber(txtA_UI.Text) _
                                                     , InsCommon.getNumber(IIf(chkSI.Checked, -1, 0)) _
                                                     , InsCommon.getNumber(IIf(chkHI.Checked, -1, 0)) _
-                                                    , InsCommon.getNumber(IIf(chkUI.Checked, -1, 0))
+                                                    , InsCommon.getNumber(IIf(chkUI.Checked, -1, 0)) _
+                                                    , InsCommon.getNumber(IIf(chkTNLD_BNN.Checked, -1, 0))
                                                     ) Then
 
                         Refresh("InsertView")
@@ -431,7 +433,8 @@ Public Class ctrlInsArisingManual
                                                                     , InsCommon.getNumber(txtA_UI.Text) _
                                                                     , InsCommon.getNumber(IIf(chkSI.Checked, -1, 0)) _
                                                                     , InsCommon.getNumber(IIf(chkHI.Checked, -1, 0)) _
-                                                                    , InsCommon.getNumber(IIf(chkUI.Checked, -1, 0))
+                                                                    , InsCommon.getNumber(IIf(chkUI.Checked, -1, 0)) _
+                                                                    , InsCommon.getNumber(IIf(chkTNLD_BNN.Checked, -1, 0))
                                                                     ) Then
                         Refresh("UpdateView")
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
@@ -521,6 +524,14 @@ Public Class ctrlInsArisingManual
     End Sub
 
     Private Sub chkUI_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkUI.CheckedChanged
+        Try
+            Call LoadArisingManual()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub chkTNLD_BNN_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkTNLD_BNN.CheckedChanged
         Try
             Call LoadArisingManual()
         Catch ex As Exception
@@ -642,6 +653,7 @@ Public Class ctrlInsArisingManual
                 InsCommon.SetNumber(chkSI, lstSource.Rows(0)("SI"))
                 InsCommon.SetNumber(chkHI, lstSource.Rows(0)("HI"))
                 InsCommon.SetNumber(chkUI, lstSource.Rows(0)("UI"))
+                InsCommon.SetNumber(chkTNLD_BNN, lstSource.Rows(0)("BHTNLD_BNN"))
 
                 InsCommon.SetNumber(ddlINS_ORG_ID, lstSource.Rows(0)("INS_ORG_ID"))
                 InsCommon.SetNumber(ddlINS_ARISING_TYPE_ID, lstSource.Rows(0)("INS_ARISING_TYPE_ID"))
@@ -894,6 +906,7 @@ Public Class ctrlInsArisingManual
                     chkSI.Checked = True
                     chkHI.Checked = True
                     chkUI.Checked = True
+                    chkTNLD_BNN.Checked = True
                 End If
 
                 'hidEmployeeID.Value = item.ID.ToString
@@ -964,6 +977,7 @@ Public Class ctrlInsArisingManual
             chkSI.Checked = True
             chkHI.Checked = True
             chkUI.Checked = True
+            chkTNLD_BNN.Checked = True
         End If
     End Sub
 #End Region

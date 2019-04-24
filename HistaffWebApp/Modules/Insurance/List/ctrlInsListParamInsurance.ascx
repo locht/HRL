@@ -149,6 +149,38 @@
                 </td>
             </tr>
             <tr>
+                <td class="lb">
+                    <%--<%# Translate("BH TNLD, BNN")%>--%>
+                    &nbsp;
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="RadNumericTextBox1" runat="server" SkinID="Money" Visible ="false">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <%# Translate("BH TNLD, BNN")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="radnmTNLD_BNN_COM" MinValue="0" MaxValue="100" runat="server"
+                        SkinID="Decimal">
+                    </tlk:RadNumericTextBox>
+                    (%)
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="radnmUI_COM"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tỷ lệ công ty đóng BH TNLD, BNN. %>"></asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("BH TNLD, BNN")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="radnmTNLD_BNN_EMP" MinValue="0" MaxValue="100" runat="server"
+                        SkinID="Decimal">
+                    </tlk:RadNumericTextBox>
+                    (%)
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="radnmTNLD_BNN_EMP"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tỷ lệ nhân viên đóng BH TNLD, BNN. %>"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
                 <td class="item-head" colspan="2">
                         <%# Translate("Hệ số hưởng ốm đau thai sản")%>
                     <hr />
@@ -225,7 +257,7 @@
             Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true" AllowKeyboardNavigation="true">
                 <Selecting AllowRowSelect="true" />
-                <ClientEvents OnGridCreated="GridCreated" />
+                <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                 <ClientEvents OnCommand="ValidateFilter" />
                 <KeyboardNavigationSettings AllowSubmitOnEnter="true" EnableKeyboardShortcuts="true" />
             </ClientSettings>
@@ -256,6 +288,10 @@
                         UniqueName="UI_EMP" SortExpression="UI_EMP" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % Công ty BHTN %>" DataField="UI_COM"
                         UniqueName="UI_COM" SortExpression="UI_COM" />
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: % Nhân viên BH TNLD, BNN %>" DataField="BHTNLD_BNN_EMP"
+                        UniqueName="BHTNLD_BNN_EMP" SortExpression="BHTNLD_BNN_EMP" />
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: % Công ty BH TNLD, BNN %>" DataField="BHTNLD_BNN_COM"
+                        UniqueName="BHTNLD_BNN_COM" SortExpression="BHTNLD_BNN_COM" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % hường chế độ ốm đau %>" DataFormatString="{0:N0}"
                         DataField="SICK" UniqueName="SICK" SortExpression="SICK" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % hưởng chế độ thai sản %>" DataFormatString="{0:N0}"
@@ -298,9 +334,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut(splitterID);
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut(splitterID);
+//        }
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
             if (args.get_item().get_commandName() == 'EXPORT') {
@@ -320,15 +356,39 @@
                 if (!Page_ClientValidate(""))
                 { } //ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgGridDataRate');
                 else
-                    ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                    ResizeSplitterDefault();
             } else {
                 // Nếu nhấn các nút khác thì resize default
-                ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                ResizeSplitterDefault();
             }
         }
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
+        }
+        // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
+        function ResizeSplitter() {
+            setTimeout(function () {
+                var splitter = $find("<%= RadSplitter4.ClientID%>");
+                var pane = splitter.getPaneById('<%= RadPaneField.ClientID %>');
+                var height = pane.getContentElement().scrollHeight;
+                splitter.set_height(splitter.get_height() + pane.get_height() - height);
+                pane.set_height(height);
+            }, 200);
+        }
+
+        // Hàm khôi phục lại Size ban đầu cho Splitter
+        function ResizeSplitterDefault() {
+            var splitter = $find("<%= RadSplitter4.ClientID%>");
+            var pane = splitter.getPaneById('<%= RadPaneField.ClientID %>');
+            if (oldSize == 0) {
+                oldSize = pane.getContentElement().scrollHeight;
+            } else {
+                var pane2 = splitter.getPaneById('<%= RadPaneGrid.ClientID %>');
+                splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
+                pane.set_height(oldSize);
+                pane2.set_height(splitter.get_height() - oldSize - 1);
+            }
         }
     </script>
 </tlk:RadCodeBlock>

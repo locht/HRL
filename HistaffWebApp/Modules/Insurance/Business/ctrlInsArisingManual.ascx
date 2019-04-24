@@ -129,6 +129,9 @@
                             <tlk:RadButton ID="chkUI" AutoPostBack="true" Text='<%# Translate("BHTN")%>' ToggleType="CheckBox"
                                 ButtonType="ToggleButton" runat="server" TabIndex="6">
                             </tlk:RadButton>
+                            <tlk:RadButton ID="chkTNLD_BNN" AutoPostBack="true" Text='<%# Translate("BH TNLD, BNN")%>' ToggleType="CheckBox"
+                                ButtonType="ToggleButton" runat="server" TabIndex="6">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                     <tr>
@@ -218,7 +221,7 @@
                 </table>
             </fieldset>
         </div>
-        <div style="margin-left:30px; margin-top: 5px; width: 1270px;">
+        <div style="margin-left:30px; margin-top: 5px; width: 1270px; display: none;">
             <fieldset style="width: auto; height: auto">
                 <legend>
                     <b><%# Translate("Thông tin truy thu/ thoái thu")%></b>
