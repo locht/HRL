@@ -116,6 +116,10 @@ Public Class ctrlInsArisingManual
 
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                'GirdConfig(rgGrid)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
