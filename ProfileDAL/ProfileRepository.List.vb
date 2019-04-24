@@ -1003,6 +1003,7 @@ Partial Class ProfileRepository
                                                           .NUMBER_BUSINESS = p.NUMBER_BUSINESS,
                                                           .DATE_BUSINESS = p.DATE_BUSINESS,
                                                           .PIT_NO = p.PIT_NO,
+                                                          .UNIT_LEVEL = p.UNIT_LEVEL,
                                                           .REPRESENTATIVE_ID = p.REPRESENTATIVE_ID,
                                                           .REPRESENTATIVE_CODE = e.EMPLOYEE_CODE,
                                                           .REPRESENTATIVE_NAME = e.FULLNAME_VN,

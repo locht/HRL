@@ -347,12 +347,12 @@ Public Class ctrlHU_Organization
                             strFiles = ""
                         End Try
                         objOrgFunction.CODE = txtCode.Text
-                        objOrgFunction.NUMBER_DECISION = rtxtNumberDecision.Text
-                        objOrgFunction.TYPE_DECISION = rtxtTypeDecision.Text
-                        objOrgFunction.LOCATION_WORK = rtxtLocationWork.Text
-                        objOrgFunction.NAME_EN = txtNameVN.Text
-                        objOrgFunction.NAME_VN = txtNameEN.Text
-                        objOrgFunction.REMARK = rtREMARK.Text
+                        objOrgFunction.NUMBER_DECISION = txtNumberDecision.Text
+                        objOrgFunction.TYPE_DECISION = txtTypeDecision.Text
+                        objOrgFunction.LOCATION_WORK = txtLocationWork.Text
+                        objOrgFunction.NAME_EN = txtNameEN.Text
+                        objOrgFunction.NAME_VN = txtNameVN.Text
+                        objOrgFunction.REMARK = txtREMARK.Text
                         objOrgFunction.ADDRESS = rtADDRESS.Text
                         objOrgFunction.FILES = strFiles
                         objOrgFunction.NUMBER_BUSINESS = rtNUMBER_BUSINESS.Text
@@ -594,7 +594,23 @@ Public Class ctrlHU_Organization
                 UpdateControlState()
                 FillDataByTree()
                 check = ""
-                chkOrgChart.Checked = True
+                If CurrentState.ToUpper() = "NEW" Then
+                    chkOrgChart.Checked = True
+                    txtNameVN.Text = ""
+                    txtNameEN.Text = ""
+                    txtRepresentativeName.Text = ""
+                    txtCode.Text = ""
+                    rtNUMBER_BUSINESS.Text = ""
+                    rtADDRESS.Text = ""
+                    txtLocationWork.Text = ""
+                    txtTypeDecision.Text = ""
+                    txtNumberDecision.Text = ""
+                    rdFOUNDATION_DATE.SelectedDate = Nothing
+                    rdDATE_BUSINESS.SelectedDate = Nothing
+                    rdDicision_Date.SelectedDate = Nothing
+                    txtREMARK.Text = ""
+                    GetDataCombo()
+                End If
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             Catch ex As Exception
                 DisplayException(Me.ViewName, Me.ID, ex)
@@ -809,11 +825,11 @@ Public Class ctrlHU_Organization
                     txtNameVN.CausesValidation = False
                     txtCode.CausesValidation = False
                     txtCode.ReadOnly = True
-                    rtREMARK.ReadOnly = True
+                    txtREMARK.ReadOnly = True
                     rtADDRESS.ReadOnly = True
-                    rtxtLocationWork.ReadOnly = True
-                    rtxtNumberDecision.ReadOnly = True
-                    rtxtTypeDecision.ReadOnly = True
+                    txtLocationWork.ReadOnly = True
+                    txtNumberDecision.ReadOnly = True
+                    txtTypeDecision.ReadOnly = True
                     chkOrgChart.Enabled = False
                     btnDownloadFile.Enabled = False
                     btnUploadFile.Enabled = False
@@ -841,11 +857,11 @@ Public Class ctrlHU_Organization
                     txtCode.Text = ""
                     'AutoGenTimeSheet.Checked = False
                     'txtNameVN.Text = ""
-                    rtREMARK.Text = ""
+                    txtREMARK.Text = ""
                     rtADDRESS.Text = ""
-                    rtxtLocationWork.Text = ""
-                    rtxtNumberDecision.Text = ""
-                    rtxtTypeDecision.Text = ""
+                    txtLocationWork.Text = ""
+                    txtNumberDecision.Text = ""
+                    txtTypeDecision.Text = ""
                     check = "EDITFILE"
                     chkOrgChart.Checked = True
                     'txtFax.Text = ""
@@ -854,7 +870,7 @@ Public Class ctrlHU_Organization
                     'cboCostCenterCode.Text = ""
                     txtRepresentativeName.Text = ""
                     rtADDRESS.Text = ""
-                    rtREMARK.Text = ""
+                    txtREMARK.Text = ""
                     'txtNumber_business.Text = ""
                     cboU_insurance.Text = ""
                     cboOrg_level.Text = ""
@@ -871,12 +887,11 @@ Public Class ctrlHU_Organization
                     treeOrgFunction.Enabled = False
                     txtCode.ReadOnly = False
                     txtNameVN.ReadOnly = False
-                    rtREMARK.ReadOnly = False
+                    txtREMARK.ReadOnly = False
                     rtADDRESS.ReadOnly = False
-                    rtxtLocationWork.ReadOnly = False
-                    rtxtNumberDecision.ReadOnly = False
-                    rtxtTypeDecision.ReadOnly = False
-                    chkOrgChart.Checked = True
+                    txtLocationWork.ReadOnly = False
+                    txtNumberDecision.ReadOnly = False
+                    txtTypeDecision.ReadOnly = False
                     chkOrgChart.Enabled = True
                     btnDownloadFile.Enabled = True
                     btnUploadFile.Enabled = True
@@ -909,11 +924,10 @@ Public Class ctrlHU_Organization
                     hidRepresentative.Value = ""
                     txtParent_Name.Text = ""
                     rtADDRESS.Text = ""
-                    rtREMARK.Text = ""
-
-                    rtxtLocationWork.Text = ""
-                    rtxtNumberDecision.Text = ""
-                    rtxtTypeDecision.Text = ""
+                    txtREMARK.Text = ""
+                    txtLocationWork.Text = ""
+                    txtNumberDecision.Text = ""
+                    txtTypeDecision.Text = ""
                     'txtFax.Text = ""
                     'txtMobile.Text = ""
                     'txtProvinceName.Text = ""
@@ -1111,9 +1125,9 @@ Public Class ctrlHU_Organization
                 hidParentID.Value = orgItem.PARENT_ID.ToString
                 txtParent_Name.Text = orgItem.PARENT_NAME
                 txtCode.Text = orgItem.CODE
-                rtxtLocationWork.Text = orgItem.LOCATION_WORK
-                rtxtNumberDecision.Text = orgItem.NUMBER_DECISION
-                rtxtTypeDecision.Text = orgItem.TYPE_DECISION
+                txtLocationWork.Text = orgItem.LOCATION_WORK
+                txtNumberDecision.Text = orgItem.NUMBER_DECISION
+                txtTypeDecision.Text = orgItem.TYPE_DECISION
 
                 txtNameVN.Text = orgItem.NAME_VN
                 txtNameEN.Text = orgItem.NAME_EN
@@ -1148,7 +1162,7 @@ Public Class ctrlHU_Organization
                     chkOrgChart.Checked = False
                 End If
                 rtADDRESS.Text = orgItem.ADDRESS
-                rtREMARK.Text = orgItem.REMARK
+                txtREMARK.Text = orgItem.REMARK
                 If orgItem.REPRESENTATIVE_ID IsNot Nothing Then
                     hidRepresentative.Value = orgItem.REPRESENTATIVE_ID
                 End If
