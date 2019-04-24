@@ -86,24 +86,6 @@ Partial Public Class ctrlHU_EmpInfomations
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''rdFrom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdFrom As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''rdTo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdTo As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
     '''chkChecknghiViec control.
     '''</summary>
     '''<remarks>

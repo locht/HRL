@@ -33,29 +33,33 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" EditMode="InPlace" ClientDataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID" EditMode="InPlace" ClientDataKeyNames="ID,IMAGE,MOBILE_PHONE,BIRTH_DATE,FULLNAME_VN,TITLE_NAME_VN">
                         <Columns>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình ảnh %>" DataField="image" AllowFiltering ="false" 
-                                 UniqueName="image" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
-                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME">
+                            <tlk:GridBinaryImageColumn HeaderText ="Hình ảnh" DataField ="IMAGE_BINARY" UniqueName ="IMAGE_BINARY"
+                            ImageHeight="80px" ImageWidth="80px" ResizeMode="Fit" DataAlternateTextField="IMAGE_BINARY"
+                            DataAlternateTextFormatString="Image of {0}">
+                                 <HeaderStyle Width="100px" />
+                                
+                            </tlk:GridBinaryImageColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="FULLNAME_VN"
+                                SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN">
                                 <HeaderStyle Width="150px" />
                                 <ItemStyle Width="150px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME">
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME_VN"
+                                SortExpression="TITLE_NAME_VN" UniqueName="TITLE_NAME_VN">
                                 <HeaderStyle Width="150px" />
                                 <ItemStyle Width="150px" />
                             </tlk:GridBoundColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="ISSUE_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="ISSUE_DATE" UniqueName="ISSUE_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày sinh %>" DataField="BIRTH_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="BIRTH_DATE" UniqueName="BIRTH_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số điện thoại %>" DataField="RETURN_DATE"
-                                SortExpression="RETURN_DATE" UniqueName="RETURN_DATE">
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số điện thoại %>" DataField="MOBILE_PHONE"
+                                SortExpression="MOBILE_PHONE" UniqueName="MOBILE_PHONE">
                                 <HeaderStyle Width="150px" />
                                 <ItemStyle Width="150px" />
                             </tlk:GridBoundColumn>

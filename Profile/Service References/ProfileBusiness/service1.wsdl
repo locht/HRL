@@ -15,14 +15,50 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ProfileDAL" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
       <xsd:import />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IProfileBusiness_InsertCommendFormula_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCommendFormula" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertCommendFormula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCommendFormulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyCommendFormula_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyCommendFormula" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyCommendFormula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyCommendFormulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ActiveCommendFormula_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveCommendFormula" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ActiveCommendFormula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveCommendFormulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteCommendFormula_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCommendFormula" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteCommendFormula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCommendFormulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetStatisticTop5Competency_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticTop5Competency" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetStatisticTop5Competency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticTop5CompetencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetStatisticTop5CopAvg_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticTop5CopAvg" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetStatisticTop5CopAvg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticTop5CopAvgResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetEmployeeReg_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeReg" />
   </wsdl:message>
@@ -208,6 +244,42 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetListContract_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetListContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_UpdateStatusProcessTrainingEdit_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusProcessTrainingEdit" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_UpdateStatusProcessTrainingEdit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusProcessTrainingEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetApproveProcessTrainingEdit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApproveProcessTrainingEdit" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetApproveProcessTrainingEdit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApproveProcessTrainingEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetWorkingBeforeEdit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkingBeforeEdit" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetWorkingBeforeEdit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkingBeforeEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertWorkingBeforeEdit_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertWorkingBeforeEdit" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertWorkingBeforeEdit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertWorkingBeforeEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyWorkingBeforeEdit_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyWorkingBeforeEdit" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyWorkingBeforeEdit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyWorkingBeforeEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteWorkingBeforeEdit_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkingBeforeEdit" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteWorkingBeforeEdit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkingBeforeEditResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_CheckExistWorkingBeforeEdit_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckExistWorkingBeforeEdit" />
@@ -683,41 +755,41 @@
   <wsdl:message name="IProfileBusiness_GetCommendFormulaID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCommendFormulaIDResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertCommendFormula_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertCommendFormula" />
+  <wsdl:message name="IProfileBusiness_GetWorkingAllowance_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkingAllowance" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertCommendFormula_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertCommendFormulaResponse" />
+  <wsdl:message name="IProfileBusiness_GetWorkingAllowance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkingAllowanceResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyCommendFormula_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyCommendFormula" />
+  <wsdl:message name="IProfileBusiness_GetWorkingAllowance1_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkingAllowance1" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyCommendFormula_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyCommendFormulaResponse" />
+  <wsdl:message name="IProfileBusiness_GetWorkingAllowance1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkingAllowance1Response" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ActiveCommendFormula_InputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveCommendFormula" />
+  <wsdl:message name="IProfileBusiness_InsertWorkingAllowance_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertWorkingAllowance" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ActiveCommendFormula_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveCommendFormulaResponse" />
+  <wsdl:message name="IProfileBusiness_InsertWorkingAllowance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertWorkingAllowanceResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteCommendFormula_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteCommendFormula" />
+  <wsdl:message name="IProfileBusiness_DeleteWorkingAllowance_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkingAllowance" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteCommendFormula_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteCommendFormulaResponse" />
+  <wsdl:message name="IProfileBusiness_DeleteWorkingAllowance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkingAllowanceResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetStatisticTop5Competency_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetStatisticTop5Competency" />
+  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowanceNew_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowanceNew" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetStatisticTop5Competency_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetStatisticTop5CompetencyResponse" />
+  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowanceNew_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowanceNewResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetStatisticTop5CopAvg_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetStatisticTop5CopAvg" />
+  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowance_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowance" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetStatisticTop5CopAvg_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetStatisticTop5CopAvgResponse" />
+  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowanceResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetWorkingByID_InputMessage">
     <wsdl:part name="parameters" element="tns:GetWorkingByID" />
@@ -1193,41 +1265,11 @@
   <wsdl:message name="IProfileBusiness_SendProcessTrainingEdit_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendProcessTrainingEditResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_UpdateStatusProcessTrainingEdit_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateStatusProcessTrainingEdit" />
+  <wsdl:message name="IProfileBusiness_UpdateCompetencyAssDtl_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCompetencyAssDtl" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_UpdateStatusProcessTrainingEdit_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateStatusProcessTrainingEditResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetApproveProcessTrainingEdit_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetApproveProcessTrainingEdit" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetApproveProcessTrainingEdit_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetApproveProcessTrainingEditResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWorkingBeforeEdit_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkingBeforeEdit" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWorkingBeforeEdit_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkingBeforeEditResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertWorkingBeforeEdit_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertWorkingBeforeEdit" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertWorkingBeforeEdit_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertWorkingBeforeEditResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyWorkingBeforeEdit_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyWorkingBeforeEdit" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyWorkingBeforeEdit_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyWorkingBeforeEditResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteWorkingBeforeEdit_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteWorkingBeforeEdit" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteWorkingBeforeEdit_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteWorkingBeforeEditResponse" />
+  <wsdl:message name="IProfileBusiness_UpdateCompetencyAssDtl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCompetencyAssDtlResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_DeleteCompetencyAss_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteCompetencyAss" />
@@ -1529,6 +1571,36 @@
   <wsdl:message name="IProfileBusiness_DeleteAssetMng_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteAssetMngResponse" />
   </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetTrainingEvaluate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingEvaluate" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetTrainingEvaluate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingEvaluateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertTrainingEvaluate_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertTrainingEvaluate" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_InsertTrainingEvaluate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertTrainingEvaluateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetTrainingEvaluateByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingEvaluateByID" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetTrainingEvaluateByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainingEvaluateByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyTrainingEvaluate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyTrainingEvaluate" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyTrainingEvaluate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyTrainingEvaluateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteTrainingEvaluate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTrainingEvaluate" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteTrainingEvaluate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTrainingEvaluateResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetTrainingManage_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTrainingManage" />
   </wsdl:message>
@@ -1703,41 +1775,11 @@
   <wsdl:message name="IProfileBusiness_GetWorking_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetWorkingResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWorkingAllowance_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkingAllowance" />
+  <wsdl:message name="IProfileBusiness_GetNation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNation" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWorkingAllowance_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkingAllowanceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWorkingAllowance1_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkingAllowance1" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetWorkingAllowance1_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkingAllowance1Response" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertWorkingAllowance_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertWorkingAllowance" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_InsertWorkingAllowance_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertWorkingAllowanceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteWorkingAllowance_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteWorkingAllowance" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeleteWorkingAllowance_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteWorkingAllowanceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowanceNew_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowanceNew" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowanceNew_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowanceNewResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowance_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowance" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyWorkingAllowance_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyWorkingAllowanceResponse" />
+  <wsdl:message name="IProfileBusiness_GetNation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNationResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_InsertNation_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertNation" />
@@ -2243,12 +2285,6 @@
   <wsdl:message name="IProfileBusiness_GetCompetencyAssDtl_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCompetencyAssDtlResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_UpdateCompetencyAssDtl_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateCompetencyAssDtl" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_UpdateCompetencyAssDtl_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateCompetencyAssDtlResponse" />
-  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetOrgsTree_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrgsTree" />
   </wsdl:message>
@@ -2482,6 +2518,12 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_CheckExistID_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckExistIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetEmpInfomations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmpInfomations" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetEmpInfomations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmpInfomationsResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetTitle_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTitle" />
@@ -2753,13 +2795,31 @@
   <wsdl:message name="IProfileBusiness_ValidateOtherList_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidateOtherListResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetNation_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetNation" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetNation_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetNationResponse" />
-  </wsdl:message>
   <wsdl:portType name="IProfileBusiness">
+    <wsdl:operation name="InsertCommendFormula">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertCommendFormula" message="tns:IProfileBusiness_InsertCommendFormula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertCommendFormulaResponse" message="tns:IProfileBusiness_InsertCommendFormula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyCommendFormula">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCommendFormula" message="tns:IProfileBusiness_ModifyCommendFormula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCommendFormulaResponse" message="tns:IProfileBusiness_ModifyCommendFormula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveCommendFormula">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ActiveCommendFormula" message="tns:IProfileBusiness_ActiveCommendFormula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ActiveCommendFormulaResponse" message="tns:IProfileBusiness_ActiveCommendFormula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCommendFormula">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCommendFormula" message="tns:IProfileBusiness_DeleteCommendFormula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCommendFormulaResponse" message="tns:IProfileBusiness_DeleteCommendFormula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatisticTop5Competency">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5Competency" message="tns:IProfileBusiness_GetStatisticTop5Competency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5CompetencyResponse" message="tns:IProfileBusiness_GetStatisticTop5Competency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatisticTop5CopAvg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvg" message="tns:IProfileBusiness_GetStatisticTop5CopAvg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvgResponse" message="tns:IProfileBusiness_GetStatisticTop5CopAvg_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetEmployeeReg">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeReg" message="tns:IProfileBusiness_GetEmployeeReg_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeRegResponse" message="tns:IProfileBusiness_GetEmployeeReg_OutputMessage" />
@@ -2883,6 +2943,30 @@
     <wsdl:operation name="GetListContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetListContract" message="tns:IProfileBusiness_GetListContract_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetListContractResponse" message="tns:IProfileBusiness_GetListContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusProcessTrainingEdit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEdit" message="tns:IProfileBusiness_UpdateStatusProcessTrainingEdit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEditResponse" message="tns:IProfileBusiness_UpdateStatusProcessTrainingEdit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApproveProcessTrainingEdit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEdit" message="tns:IProfileBusiness_GetApproveProcessTrainingEdit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEditResponse" message="tns:IProfileBusiness_GetApproveProcessTrainingEdit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkingBeforeEdit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit" message="tns:IProfileBusiness_GetWorkingBeforeEdit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEditResponse" message="tns:IProfileBusiness_GetWorkingBeforeEdit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertWorkingBeforeEdit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit" message="tns:IProfileBusiness_InsertWorkingBeforeEdit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse" message="tns:IProfileBusiness_InsertWorkingBeforeEdit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyWorkingBeforeEdit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit" message="tns:IProfileBusiness_ModifyWorkingBeforeEdit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse" message="tns:IProfileBusiness_ModifyWorkingBeforeEdit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkingBeforeEdit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEdit" message="tns:IProfileBusiness_DeleteWorkingBeforeEdit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEditResponse" message="tns:IProfileBusiness_DeleteWorkingBeforeEdit_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CheckExistWorkingBeforeEdit">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/CheckExistWorkingBeforeEdit" message="tns:IProfileBusiness_CheckExistWorkingBeforeEdit_InputMessage" />
@@ -3200,29 +3284,29 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetCommendFormulaID" message="tns:IProfileBusiness_GetCommendFormulaID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetCommendFormulaIDResponse" message="tns:IProfileBusiness_GetCommendFormulaID_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertCommendFormula">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertCommendFormula" message="tns:IProfileBusiness_InsertCommendFormula_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertCommendFormulaResponse" message="tns:IProfileBusiness_InsertCommendFormula_OutputMessage" />
+    <wsdl:operation name="GetWorkingAllowance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowance" message="tns:IProfileBusiness_GetWorkingAllowance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowanceResponse" message="tns:IProfileBusiness_GetWorkingAllowance_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ModifyCommendFormula">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCommendFormula" message="tns:IProfileBusiness_ModifyCommendFormula_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCommendFormulaResponse" message="tns:IProfileBusiness_ModifyCommendFormula_OutputMessage" />
+    <wsdl:operation name="GetWorkingAllowance1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1" message="tns:IProfileBusiness_GetWorkingAllowance1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1Response" message="tns:IProfileBusiness_GetWorkingAllowance1_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ActiveCommendFormula">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ActiveCommendFormula" message="tns:IProfileBusiness_ActiveCommendFormula_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ActiveCommendFormulaResponse" message="tns:IProfileBusiness_ActiveCommendFormula_OutputMessage" />
+    <wsdl:operation name="InsertWorkingAllowance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingAllowance" message="tns:IProfileBusiness_InsertWorkingAllowance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingAllowanceResponse" message="tns:IProfileBusiness_InsertWorkingAllowance_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteCommendFormula">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCommendFormula" message="tns:IProfileBusiness_DeleteCommendFormula_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCommendFormulaResponse" message="tns:IProfileBusiness_DeleteCommendFormula_OutputMessage" />
+    <wsdl:operation name="DeleteWorkingAllowance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowance" message="tns:IProfileBusiness_DeleteWorkingAllowance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowanceResponse" message="tns:IProfileBusiness_DeleteWorkingAllowance_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetStatisticTop5Competency">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5Competency" message="tns:IProfileBusiness_GetStatisticTop5Competency_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5CompetencyResponse" message="tns:IProfileBusiness_GetStatisticTop5Competency_OutputMessage" />
+    <wsdl:operation name="ModifyWorkingAllowanceNew">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNew" message="tns:IProfileBusiness_ModifyWorkingAllowanceNew_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNewResponse" message="tns:IProfileBusiness_ModifyWorkingAllowanceNew_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetStatisticTop5CopAvg">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvg" message="tns:IProfileBusiness_GetStatisticTop5CopAvg_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvgResponse" message="tns:IProfileBusiness_GetStatisticTop5CopAvg_OutputMessage" />
+    <wsdl:operation name="ModifyWorkingAllowance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowance" message="tns:IProfileBusiness_ModifyWorkingAllowance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceResponse" message="tns:IProfileBusiness_ModifyWorkingAllowance_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetWorkingByID">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingByID" message="tns:IProfileBusiness_GetWorkingByID_InputMessage" />
@@ -3540,29 +3624,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/SendProcessTrainingEdit" message="tns:IProfileBusiness_SendProcessTrainingEdit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/SendProcessTrainingEditResponse" message="tns:IProfileBusiness_SendProcessTrainingEdit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateStatusProcessTrainingEdit">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEdit" message="tns:IProfileBusiness_UpdateStatusProcessTrainingEdit_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEditResponse" message="tns:IProfileBusiness_UpdateStatusProcessTrainingEdit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetApproveProcessTrainingEdit">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEdit" message="tns:IProfileBusiness_GetApproveProcessTrainingEdit_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEditResponse" message="tns:IProfileBusiness_GetApproveProcessTrainingEdit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkingBeforeEdit">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit" message="tns:IProfileBusiness_GetWorkingBeforeEdit_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEditResponse" message="tns:IProfileBusiness_GetWorkingBeforeEdit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertWorkingBeforeEdit">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit" message="tns:IProfileBusiness_InsertWorkingBeforeEdit_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEditResponse" message="tns:IProfileBusiness_InsertWorkingBeforeEdit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModifyWorkingBeforeEdit">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit" message="tns:IProfileBusiness_ModifyWorkingBeforeEdit_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEditResponse" message="tns:IProfileBusiness_ModifyWorkingBeforeEdit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteWorkingBeforeEdit">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEdit" message="tns:IProfileBusiness_DeleteWorkingBeforeEdit_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEditResponse" message="tns:IProfileBusiness_DeleteWorkingBeforeEdit_OutputMessage" />
+    <wsdl:operation name="UpdateCompetencyAssDtl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtl" message="tns:IProfileBusiness_UpdateCompetencyAssDtl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtlResponse" message="tns:IProfileBusiness_UpdateCompetencyAssDtl_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteCompetencyAss">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteCompetencyAss" message="tns:IProfileBusiness_DeleteCompetencyAss_InputMessage" />
@@ -3764,6 +3828,26 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteAssetMng" message="tns:IProfileBusiness_DeleteAssetMng_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteAssetMngResponse" message="tns:IProfileBusiness_DeleteAssetMng_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetTrainingEvaluate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTrainingEvaluate" message="tns:IProfileBusiness_GetTrainingEvaluate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateResponse" message="tns:IProfileBusiness_GetTrainingEvaluate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertTrainingEvaluate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertTrainingEvaluate" message="tns:IProfileBusiness_InsertTrainingEvaluate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertTrainingEvaluateResponse" message="tns:IProfileBusiness_InsertTrainingEvaluate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingEvaluateByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateByID" message="tns:IProfileBusiness_GetTrainingEvaluateByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateByIDResponse" message="tns:IProfileBusiness_GetTrainingEvaluateByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyTrainingEvaluate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyTrainingEvaluate" message="tns:IProfileBusiness_ModifyTrainingEvaluate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyTrainingEvaluateResponse" message="tns:IProfileBusiness_ModifyTrainingEvaluate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrainingEvaluate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluate" message="tns:IProfileBusiness_DeleteTrainingEvaluate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluateResponse" message="tns:IProfileBusiness_DeleteTrainingEvaluate_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetTrainingManage">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTrainingManage" message="tns:IProfileBusiness_GetTrainingManage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTrainingManageResponse" message="tns:IProfileBusiness_GetTrainingManage_OutputMessage" />
@@ -3880,29 +3964,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorking" message="tns:IProfileBusiness_GetWorking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingResponse" message="tns:IProfileBusiness_GetWorking_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetWorkingAllowance">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowance" message="tns:IProfileBusiness_GetWorkingAllowance_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowanceResponse" message="tns:IProfileBusiness_GetWorkingAllowance_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkingAllowance1">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1" message="tns:IProfileBusiness_GetWorkingAllowance1_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1Response" message="tns:IProfileBusiness_GetWorkingAllowance1_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertWorkingAllowance">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingAllowance" message="tns:IProfileBusiness_InsertWorkingAllowance_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertWorkingAllowanceResponse" message="tns:IProfileBusiness_InsertWorkingAllowance_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteWorkingAllowance">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowance" message="tns:IProfileBusiness_DeleteWorkingAllowance_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowanceResponse" message="tns:IProfileBusiness_DeleteWorkingAllowance_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModifyWorkingAllowanceNew">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNew" message="tns:IProfileBusiness_ModifyWorkingAllowanceNew_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNewResponse" message="tns:IProfileBusiness_ModifyWorkingAllowanceNew_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModifyWorkingAllowance">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowance" message="tns:IProfileBusiness_ModifyWorkingAllowance_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceResponse" message="tns:IProfileBusiness_ModifyWorkingAllowance_OutputMessage" />
+    <wsdl:operation name="GetNation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetNation" message="tns:IProfileBusiness_GetNation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetNationResponse" message="tns:IProfileBusiness_GetNation_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertNation">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertNation" message="tns:IProfileBusiness_InsertNation_InputMessage" />
@@ -4240,10 +4304,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetCompetencyAssDtl" message="tns:IProfileBusiness_GetCompetencyAssDtl_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetCompetencyAssDtlResponse" message="tns:IProfileBusiness_GetCompetencyAssDtl_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateCompetencyAssDtl">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtl" message="tns:IProfileBusiness_UpdateCompetencyAssDtl_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtlResponse" message="tns:IProfileBusiness_UpdateCompetencyAssDtl_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetOrgsTree">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetOrgsTree" message="tns:IProfileBusiness_GetOrgsTree_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetOrgsTreeResponse" message="tns:IProfileBusiness_GetOrgsTree_OutputMessage" />
@@ -4399,6 +4459,10 @@
     <wsdl:operation name="CheckExistID">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/CheckExistID" message="tns:IProfileBusiness_CheckExistID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/CheckExistIDResponse" message="tns:IProfileBusiness_CheckExistID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpInfomations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmpInfomations" message="tns:IProfileBusiness_GetEmpInfomations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmpInfomationsResponse" message="tns:IProfileBusiness_GetEmpInfomations_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTitle">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTitle" message="tns:IProfileBusiness_GetTitle_InputMessage" />
@@ -4580,14 +4644,64 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateOtherList" message="tns:IProfileBusiness_ValidateOtherList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateOtherListResponse" message="tns:IProfileBusiness_ValidateOtherList_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetNation">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetNation" message="tns:IProfileBusiness_GetNation_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetNationResponse" message="tns:IProfileBusiness_GetNation_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IProfileBusiness" type="tns:IProfileBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IProfileBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertCommendFormula">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertCommendFormula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyCommendFormula">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyCommendFormula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveCommendFormula">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ActiveCommendFormula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCommendFormula">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteCommendFormula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatisticTop5Competency">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetStatisticTop5Competency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatisticTop5CopAvg">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetEmployeeReg">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetEmployeeReg" style="document" />
       <wsdl:input>
@@ -4860,6 +4974,60 @@
     </wsdl:operation>
     <wsdl:operation name="GetListContract">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetListContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusProcessTrainingEdit">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApproveProcessTrainingEdit">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkingBeforeEdit">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertWorkingBeforeEdit">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyWorkingBeforeEdit">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkingBeforeEdit">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEdit" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5578,8 +5746,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertCommendFormula">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertCommendFormula" style="document" />
+    <wsdl:operation name="GetWorkingAllowance">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWorkingAllowance" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5587,8 +5755,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModifyCommendFormula">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyCommendFormula" style="document" />
+    <wsdl:operation name="GetWorkingAllowance1">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5596,8 +5764,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ActiveCommendFormula">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ActiveCommendFormula" style="document" />
+    <wsdl:operation name="InsertWorkingAllowance">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertWorkingAllowance" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5605,8 +5773,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteCommendFormula">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteCommendFormula" style="document" />
+    <wsdl:operation name="DeleteWorkingAllowance">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowance" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5614,8 +5782,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetStatisticTop5Competency">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetStatisticTop5Competency" style="document" />
+    <wsdl:operation name="ModifyWorkingAllowanceNew">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNew" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5623,8 +5791,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetStatisticTop5CopAvg">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetStatisticTop5CopAvg" style="document" />
+    <wsdl:operation name="ModifyWorkingAllowance">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowance" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6343,53 +6511,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateStatusProcessTrainingEdit">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/UpdateStatusProcessTrainingEdit" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetApproveProcessTrainingEdit">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetApproveProcessTrainingEdit" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkingBeforeEdit">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWorkingBeforeEdit" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertWorkingBeforeEdit">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertWorkingBeforeEdit" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModifyWorkingBeforeEdit">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyWorkingBeforeEdit" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteWorkingBeforeEdit">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteWorkingBeforeEdit" style="document" />
+    <wsdl:operation name="UpdateCompetencyAssDtl">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtl" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6847,6 +6970,51 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTrainingEvaluate">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTrainingEvaluate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTrainingEvaluate">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertTrainingEvaluate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingEvaluateByID">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTrainingEvaluateByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyTrainingEvaluate">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyTrainingEvaluate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrainingEvaluate">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetTrainingManage">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTrainingManage" style="document" />
       <wsdl:input>
@@ -7108,53 +7276,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetWorkingAllowance">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWorkingAllowance" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetWorkingAllowance1">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetWorkingAllowance1" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertWorkingAllowance">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/InsertWorkingAllowance" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteWorkingAllowance">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteWorkingAllowance" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModifyWorkingAllowanceNew">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowanceNew" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModifyWorkingAllowance">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyWorkingAllowance" style="document" />
+    <wsdl:operation name="GetNation">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetNation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -7918,15 +8041,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateCompetencyAssDtl">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/UpdateCompetencyAssDtl" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetOrgsTree">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetOrgsTree" style="document" />
       <wsdl:input>
@@ -8271,6 +8385,15 @@
     </wsdl:operation>
     <wsdl:operation name="CheckExistID">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/CheckExistID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpInfomations">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetEmpInfomations" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8676,15 +8799,6 @@
     </wsdl:operation>
     <wsdl:operation name="ValidateOtherList">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ValidateOtherList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetNation">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetNation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

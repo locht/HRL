@@ -40,13 +40,13 @@ Public Class ctrlHU_EmpInfomations
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property AssetMngs As List(Of AssetMngDTO)
+    Property Employees As List(Of EmployeeDTO)
         Get
-            Return ViewState(Me.ID & "_AssetMngs")
+            Return ViewState(Me.ID & "_Employees")
         End Get
 
-        Set(ByVal value As List(Of AssetMngDTO))
-            ViewState(Me.ID & "_AssetMngs") = value
+        Set(ByVal value As List(Of EmployeeDTO))
+            ViewState(Me.ID & "_Employees") = value
         End Set
     End Property
 
@@ -152,21 +152,8 @@ Public Class ctrlHU_EmpInfomations
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgAssetMng.Rebind()
                         CurrentState = CommonMessage.STATE_NORMAL
-
-                    Case "InsertView"
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        rgAssetMng.CurrentPageIndex = 0
-                        rgAssetMng.MasterTableView.SortExpressions.Clear()
-                        rgAssetMng.Rebind()
-
                     Case "Cancel"
                         rgAssetMng.MasterTableView.ClearSelectedItems()
-
-                    Case "DeleteView"
-                        CurrentState = CommonMessage.STATE_NORMAL
-                        rgAssetMng.CurrentPageIndex = 0
-                        rgAssetMng.MasterTableView.SortExpressions.Clear()
-                        rgAssetMng.Rebind()
                 End Select
             End If
             UpdateControlState()
@@ -181,111 +168,14 @@ Public Class ctrlHU_EmpInfomations
 
 #Region "Event"
 
-    ''' <lastupdate>10/07/2017</lastupdate>
-    ''' <summary> 
-    ''' Event click item tren menu toolbar
-    ''' Set trang thai control sau khi process xong 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
-        Dim objOrgFunction As New OrganizationDTO
-        Dim sError As String = ""
-        'Dim rep As New ProfileBusinessRepository
+    Private Sub ctrlOrg_CheckedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.CheckedNodeChanged
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            Select Case CType(e.Item, RadToolBarButton).CommandName
-                Case CommonMessage.TOOLBARITEM_CREATE
-                    CurrentState = CommonMessage.STATE_NEW
-
-                Case CommonMessage.TOOLBARITEM_EDIT
-                    For Each item As GridDataItem In rgAssetMng.SelectedItems
-                        If item.GetDataKeyValue("STATUS_ID") <> ProfileCommon.HU_ASSET_MNG_STATUS.ASSET_WAIT Then
-                            ShowMessage(Translate("Không thể thực hiện thao tác sửa với bản ghi này."), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    Next
-                    CurrentState = CommonMessage.STATE_EDIT
-
-                Case CommonMessage.TOOLBARITEM_DELETE
-                    If rgAssetMng.SelectedItems.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-
-                    If rgAssetMng.SelectedItems.Count = 1 Then
-                        For Each item As GridDataItem In rgAssetMng.SelectedItems
-                            If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.HU_ASSET_MNG_STATUS.ASSET_TRANSFER Then
-                                ShowMessage(Translate("Tài sản đã bàn giao không được phép xóa. Vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.HU_ASSET_MNG_STATUS.ASSET_NEW Then
-                                ShowMessage(Translate("Tài sản đã cấp không được phép xóa. Vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        Next
-                    End If
-
-                    Dim intCountWait As Integer = 0
-                    Dim intCountTranfer As Integer = 0
-                    Dim intCountNew As Integer = 0
-                    For Each item As GridDataItem In rgAssetMng.SelectedItems
-                        If item.GetDataKeyValue("WORK_STATUS") = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
-                            ShowMessage(Translate("Nhân viên nghỉ việc. Không được xóa thông tin."), Utilities.NotifyType.Warning)
-                            Exit Sub
-                        End If
-
-                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.HU_ASSET_MNG_STATUS.ASSET_WAIT Then
-                            intCountWait = intCountWait + 1
-                        End If
-
-                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.HU_ASSET_MNG_STATUS.ASSET_TRANSFER Then
-                            intCountTranfer = intCountTranfer + 1
-                        End If
-
-                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.HU_ASSET_MNG_STATUS.ASSET_NEW Then
-                            intCountNew = intCountNew + 1
-                        End If
-                    Next
-
-                    If intCountWait = 0 Then
-                        If intCountNew = 0 Then
-                            If intCountTranfer <> 0 Then
-                                ShowMessage(Translate("Tài sản đã bàn giao không được phép xóa. Vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        Else
-                            If intCountTranfer = 0 Then
-                                ShowMessage(Translate("Tài sản đã cấp không được phép xóa. Vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
-
-                        ShowMessage(Translate("Tài sản đã cấp, đã bàn giao không được phép xóa. Vui lòng kiểm tra lại."), Utilities.NotifyType.Warning)
-                        Exit Sub
-                    End If
-
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
-
-                Case CommonMessage.TOOLBARITEM_EXPORT
-                    Using xls As New ExcelCommon
-                        Dim dtDatas As DataTable
-                        dtDatas = CreateDataFilter(True)
-
-                        If dtDatas.Rows.Count > 0 Then
-                            rgAssetMng.ExportExcel(Server, Response, dtDatas, "AssetMng")
-                        Else
-                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
-                        End If
-                    End Using
-            End Select
+            rgAssetMng.CurrentPageIndex = 0
+            rgAssetMng.MasterTableView.SortExpressions.Clear()
+            rgAssetMng.Rebind()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -293,6 +183,7 @@ Public Class ctrlHU_EmpInfomations
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
 
     ''' <lastupdate>10/07/2017</lastupdate>
     ''' <summary>Load datasource cho grid</summary>
@@ -330,55 +221,12 @@ Public Class ctrlHU_EmpInfomations
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            'DisplayException(Me.ViewName, Me.ID, ex)
+            DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
-    ''' <lastupdate>10/07/2017</lastupdate>
-    ''' <summary> 
-    ''' Event Yes/No messagebox hoi Xoa du lieu
-    ''' Update lai trang thai control sau khi process Xoa
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                Dim rep As New ProfileBusinessRepository
-                Dim objD As New List(Of OccupationalSafetyDTO)
-                Dim objAssetMngD As New List(Of AssetMngDTO)
-                Dim lst As New List(Of Decimal)
-
-                For Each item As GridDataItem In rgAssetMng.SelectedItems
-                    Dim obj As New OccupationalSafetyDTO
-                    Dim objAssetMng As New AssetMngDTO
-                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.HU_ASSET_MNG_STATUS.ASSET_WAIT Then
-                        obj.ID = Utilities.ObjToDecima(item.GetDataKeyValue("ID"))
-                        objAssetMng.ID = Utilities.ObjToDecima(item.GetDataKeyValue("ID"))
-
-                        objD.Add(obj)
-                        objAssetMngD.Add(objAssetMng)
-                    End If
-                Next
-
-                If rep.DeleteOccupationalSafety(objD) And rep.DeleteAssetMng(objAssetMngD) Then
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                    Refresh("DeleteView")
-                End If
-                rep.Dispose()
-                UpdateControlState()
-            End If
-
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
 
     ''' <lastupdate>10/07/2017</lastupdate>
     ''' <summary>Load datasource cho grid</summary>
@@ -388,10 +236,8 @@ Public Class ctrlHU_EmpInfomations
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgAssetMng.NeedDataSource
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
         Try
             CreateDataFilter()
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -410,47 +256,30 @@ Public Class ctrlHU_EmpInfomations
     ''' <remarks></remarks>
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New ProfileBusinessRepository
-        Dim _filter As New AssetMngDTO
+        Dim _filter As New EmployeeDTO
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
         Try
-            Dim _param = New ParamDTO With {.ORG_ID = ctrlOrg.CurrentValue, _
-                                           .IS_DISSOLVE = ctrlOrg.IsDissolve, _
-                                           .IS_FULL = True}
-
             SetValueObjectByRadGrid(rgAssetMng, _filter)
-
-            If rdFrom.SelectedDate.HasValue Then
-                _filter.FROM_DATE_SEARCH = rdFrom.SelectedDate
-            End If
-
-            If rdTo.SelectedDate.HasValue Then
-                _filter.TO_DATE_SEARCH = rdTo.SelectedDate
-            End If
-
-            _filter.IS_TERMINATE = chkChecknghiViec.Checked
-
+            _filter.IS_TER = chkChecknghiViec.Checked
             Dim MaximumRows As Integer
             Dim Sorts As String = rgAssetMng.MasterTableView.SortExpressions.GetSortString()
-
             If Not isFull Then
                 If Sorts IsNot Nothing Then
-                    Me.AssetMngs = rep.GetAssetMng(_filter, _param, rgAssetMng.CurrentPageIndex, rgAssetMng.PageSize, MaximumRows, Sorts)
+                    Me.Employees = rep.GetEmpInfomations(ctrlOrg.CheckedValueKeys, _filter, rgAssetMng.CurrentPageIndex, rgAssetMng.PageSize, MaximumRows, Sorts)
                 Else
-                    Me.AssetMngs = rep.GetAssetMng(_filter, _param, rgAssetMng.CurrentPageIndex, rgAssetMng.PageSize, MaximumRows)
+                    Me.Employees = rep.GetEmpInfomations(ctrlOrg.CheckedValueKeys, _filter, rgAssetMng.CurrentPageIndex, rgAssetMng.PageSize, MaximumRows)
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    Return rep.GetAssetMng(_filter, _param, 0, Integer.MaxValue, 0, Sorts).ToTable
+                    Return rep.GetEmpInfomations(ctrlOrg.CheckedValueKeys, _filter, 0, Integer.MaxValue, 0, Sorts).ToTable
                 Else
-                    Return rep.GetAssetMng(_filter, _param, 0, Integer.MaxValue, 0).ToTable
+                    Return rep.GetEmpInfomations(ctrlOrg.CheckedValueKeys, _filter, 0, Integer.MaxValue, 0).ToTable
                 End If
             End If
             rep.Dispose()
             rgAssetMng.VirtualItemCount = MaximumRows
-            rgAssetMng.DataSource = Me.AssetMngs
-
+            rgAssetMng.DataSource = Me.Employees
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

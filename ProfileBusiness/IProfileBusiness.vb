@@ -151,7 +151,14 @@ Namespace ProfileBusiness.ServiceContracts
         Function CheckExistID(ByVal lstID As List(Of Decimal), ByVal table As String, ByVal column As String) As Boolean
 #End Region
 #Region "List"
-
+        <OperationContract()>
+        Function GetEmpInfomations(ByVal orgIDs As List(Of Decimal),
+                                      ByVal _filter As EmployeeDTO,
+                                      ByVal PageIndex As Integer,
+                                      ByVal PageSize As Integer,
+                                      ByRef Total As Integer,
+                                      Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                      Optional ByVal log As UserLog = Nothing) As List(Of EmployeeDTO)
 #Region "Title"
 
         <OperationContract()>

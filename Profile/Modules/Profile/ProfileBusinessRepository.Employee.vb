@@ -5,6 +5,24 @@ Partial Public Class ProfileBusinessRepository
 
 #Region "EmployeeBusiness"
 
+    Function GetEmpInfomations(ByVal orgIDs As List(Of Decimal),
+                                    ByVal _filter As EmployeeDTO,
+                                    ByVal PageIndex As Integer,
+                                    ByVal PageSize As Integer,
+                                    ByRef Total As Integer,
+                                    Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of EmployeeDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetEmpInfomations(orgIDs, _filter, PageIndex, PageSize, Total, Sorts, Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+
     Public Function GetEmployeeByEmployeeID(ByVal empID As Decimal) As EmployeeDTO
         Dim lstEmployee As New EmployeeDTO
 
