@@ -347,9 +347,9 @@ Public Class ctrlHU_Organization
                             strFiles = ""
                         End Try
                         objOrgFunction.CODE = txtCode.Text
-                        objOrgFunction.NUMBER_DECISION = rtxtNumberDecision.Text
-                        objOrgFunction.TYPE_DECISION = rtxtTypeDecision.Text
-                        objOrgFunction.LOCATION_WORK = rtxtLocationWork.Text
+                        objOrgFunction.NUMBER_DECISION = txtNumberDecision.Text
+                        objOrgFunction.TYPE_DECISION = txtTypeDecision.Text
+                        objOrgFunction.LOCATION_WORK = txtLocationWork.Text
                         objOrgFunction.NAME_EN = txtNameEN.Text
                         objOrgFunction.NAME_VN = txtNameVN.Text
                         objOrgFunction.REMARK = txtREMARK.Text
@@ -602,9 +602,9 @@ Public Class ctrlHU_Organization
                     txtCode.Text = ""
                     rtNUMBER_BUSINESS.Text = ""
                     rtADDRESS.Text = ""
-                    rtxtLocationWork.Text = ""
-                    rtxtTypeDecision.Text = ""
-                    rtxtNumberDecision.Text = ""
+                    txtLocationWork.Text = ""
+                    txtTypeDecision.Text = ""
+                    txtNumberDecision.Text = ""
                     rdFOUNDATION_DATE.SelectedDate = Nothing
                     rdDATE_BUSINESS.SelectedDate = Nothing
                     rdDicision_Date.SelectedDate = Nothing
@@ -827,9 +827,9 @@ Public Class ctrlHU_Organization
                     txtCode.ReadOnly = True
                     txtREMARK.ReadOnly = True
                     rtADDRESS.ReadOnly = True
-                    rtxtLocationWork.ReadOnly = True
-                    rtxtNumberDecision.ReadOnly = True
-                    rtxtTypeDecision.ReadOnly = True
+                    txtLocationWork.ReadOnly = True
+                    txtNumberDecision.ReadOnly = True
+                    txtTypeDecision.ReadOnly = True
                     chkOrgChart.Enabled = False
                     btnDownloadFile.Enabled = False
                     btnUploadFile.Enabled = False
@@ -859,9 +859,9 @@ Public Class ctrlHU_Organization
                     'txtNameVN.Text = ""
                     txtREMARK.Text = ""
                     rtADDRESS.Text = ""
-                    rtxtLocationWork.Text = ""
-                    rtxtNumberDecision.Text = ""
-                    rtxtTypeDecision.Text = ""
+                    txtLocationWork.Text = ""
+                    txtNumberDecision.Text = ""
+                    txtTypeDecision.Text = ""
                     check = "EDITFILE"
                     chkOrgChart.Checked = True
                     'txtFax.Text = ""
@@ -889,9 +889,9 @@ Public Class ctrlHU_Organization
                     txtNameVN.ReadOnly = False
                     txtREMARK.ReadOnly = False
                     rtADDRESS.ReadOnly = False
-                    rtxtLocationWork.ReadOnly = False
-                    rtxtNumberDecision.ReadOnly = False
-                    rtxtTypeDecision.ReadOnly = False
+                    txtLocationWork.ReadOnly = False
+                    txtNumberDecision.ReadOnly = False
+                    txtTypeDecision.ReadOnly = False
                     chkOrgChart.Enabled = True
                     btnDownloadFile.Enabled = True
                     btnUploadFile.Enabled = True
@@ -925,9 +925,9 @@ Public Class ctrlHU_Organization
                     txtParent_Name.Text = ""
                     rtADDRESS.Text = ""
                     txtREMARK.Text = ""
-                    rtxtLocationWork.Text = ""
-                    rtxtNumberDecision.Text = ""
-                    rtxtTypeDecision.Text = ""
+                    txtLocationWork.Text = ""
+                    txtNumberDecision.Text = ""
+                    txtTypeDecision.Text = ""
                     'txtFax.Text = ""
                     'txtMobile.Text = ""
                     'txtProvinceName.Text = ""
@@ -1125,9 +1125,9 @@ Public Class ctrlHU_Organization
                 hidParentID.Value = orgItem.PARENT_ID.ToString
                 txtParent_Name.Text = orgItem.PARENT_NAME
                 txtCode.Text = orgItem.CODE
-                rtxtLocationWork.Text = orgItem.LOCATION_WORK
-                rtxtNumberDecision.Text = orgItem.NUMBER_DECISION
-                rtxtTypeDecision.Text = orgItem.TYPE_DECISION
+                txtLocationWork.Text = orgItem.LOCATION_WORK
+                txtNumberDecision.Text = orgItem.NUMBER_DECISION
+                txtTypeDecision.Text = orgItem.TYPE_DECISION
 
                 txtNameVN.Text = orgItem.NAME_VN
                 txtNameEN.Text = orgItem.NAME_EN
