@@ -948,16 +948,18 @@ Partial Class ProfileRepository
                     InsertDecision(objContract)
                 End If
             End If
-            For Each File As AttachFilesDTO In objContract.ListAttachFiles
-                Dim objFile As New HU_ATTACHFILES
-                objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
-                objFile.FK_ID = objContractData.ID
-                objFile.FILE_PATH = File.FILE_PATH
-                objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
-                objFile.CONTROL_NAME = File.CONTROL_NAME
-                objFile.FILE_TYPE = File.FILE_TYPE
-                Context.HU_ATTACHFILES.AddObject(objFile)
-            Next
+            If objContract.ListAttachFiles IsNot Nothing Then
+                For Each File As AttachFilesDTO In objContract.ListAttachFiles
+                    Dim objFile As New HU_ATTACHFILES
+                    objFile.ID = Utilities.GetNextSequence(Context, Context.HU_ATTACHFILES.EntitySet.Name)
+                    objFile.FK_ID = objContractData.ID
+                    objFile.FILE_PATH = File.FILE_PATH
+                    objFile.ATTACHFILE_NAME = File.ATTACHFILE_NAME
+                    objFile.CONTROL_NAME = File.CONTROL_NAME
+                    objFile.FILE_TYPE = File.FILE_TYPE
+                    Context.HU_ATTACHFILES.AddObject(objFile)
+                Next
+            End If
             Context.SaveChanges(log)
             gID = objContractData.ID
             Return True
