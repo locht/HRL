@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Mã nhân viên")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" runat="server" SkinID="Readonly" ReadOnly="true"
@@ -54,7 +54,7 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Họ tên")%>
+                    <asp:Label ID="lbEmployeeName" runat="server" Text="Họ tên"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeName" runat="server" SkinID="Readonly" ReadOnly="true">
@@ -81,21 +81,21 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Đơn vị")%>
+                     <asp:Label ID="lbOrgNameOld" runat="server" Text="Đơn vị"></asp:Label>
                 </td>
                 <td class="">
                     <tlk:RadTextBox ID="txtOrgNameOld" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Chức danh")%>
+                    <asp:Label ID="lbTitleNameOld" runat="server" Text="Chức danh"></asp:Label>
                 </td>
                 <td class="borderRight">
                     <tlk:RadTextBox ID="txtTitleNameOld" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Đơn vị")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbOrgName" runat="server" Text="Đơn vị"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtOrgName" Width="130px" SkinID="Readonly" ReadOnly="true" />
@@ -104,7 +104,7 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn đơn vị %>" ToolTip="<%$ Translate: Bạn phải chọn đơn vị %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Chức danh")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboTitle" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"

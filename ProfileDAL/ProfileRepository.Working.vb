@@ -843,13 +843,10 @@ Partial Class ProfileRepository
 
     Public Function GetEmployeCurrentByID(ByVal _filter As WorkingDTO) As WorkingDTO
         Try
-            Dim isExist As Boolean = False
-            isExist = (From p In Context.HU_WORKING
-                       Where p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And
-                           p.IS_MISSION = True And
-                       p.EMPLOYEE_ID = _filter.EMPLOYEE_ID).Count > 0
-
-            If isExist Then
+            Dim workingOLD = (From w In Context.HU_WORKING
+                           Where w.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And w.IS_WAGE = 0 And w.EMPLOYEE_ID = _filter.EMPLOYEE_ID And w.EFFECT_DATE <= Date.Now Order By w.EFFECT_DATE Descending
+                        ).FirstOrDefault
+            If workingOLD IsNot Nothing Then
                 Dim query = From e In Context.HU_EMPLOYEE
                             From p In Context.HU_WORKING.Where(Function(f) f.EMPLOYEE_ID = e.ID)
                             From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID).DefaultIfEmpty
@@ -865,7 +862,8 @@ Partial Class ProfileRepository
                             From staffrank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                             From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
                             From filecontract In Context.HU_FILECONTRACT.Where(Function(f) f.EMP_ID = e.ID).DefaultIfEmpty
-                            Where e.ID = _filter.EMPLOYEE_ID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.IS_MISSION = True
+                            From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
+                            Where e.ID = _filter.EMPLOYEE_ID And p.ID = workingOLD.ID
                             Order By p.EFFECT_DATE Descending
                             Select New WorkingDTO With {
                                  .ID = p.ID,
@@ -908,6 +906,9 @@ Partial Class ProfileRepository
                                  .ATTACH_FILE = p.ATTACH_FILE,
                                  .FILENAME1 = filecontract.FILENAME,
                                  .UPLOADFILE = filecontract.UPLOADFILE,
+                                 .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                 .OBJECT_ATTENDANCE_NAME = obj_att.NAME_VN,
+                                 .FILING_DATE = p.FILING_DATE,
                                 .TAX_TABLE_Name = taxTable.NAME_VN}
 
                 Dim working = query.First()
