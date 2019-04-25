@@ -166,7 +166,7 @@ Public Class ctrlPortalEmpProfile_Edit
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
                                      cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                                     cboIDPlace, txtNavAddress, txtPerAddress, hidFamilyID, hidID)
+                                     cboIDPlace, txtNavAddress, txtPerAddress, hidFamilyID)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
@@ -203,7 +203,7 @@ Public Class ctrlPortalEmpProfile_Edit
                         obj.ID_PLACE = cboIDPlace.SelectedValue
                         Using rep As New ProfileBusinessRepository
 
-                            If hidID.Value <> 0 Then
+                            If String.Compare(hidID.Value, "0") <> 0 Then
                                 isInsert = False
                             End If
 
