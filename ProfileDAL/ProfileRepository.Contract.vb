@@ -31,7 +31,7 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.EVALUATE_ID).DefaultIfEmpty
+                       From ot In Context.PE_PERIOD.Where(Function(f) f.ID = p.EVALUATE_ID).DefaultIfEmpty
                         From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RANK_ID).DefaultIfEmpty
                           From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.CAPACITY_ID).DefaultIfEmpty
             ' lọc điều kiện
@@ -83,7 +83,7 @@ Partial Class ProfileRepository
                                             .DECISION_NO = p.p.DECISION_NO,
                                             .EFFECT_DATE = p.p.EFFECT_DATE,
                                             .EVALUATE_ID = p.p.EVALUATE_ID,
-                                            .EVALUATE_NAME = p.ot.NAME_VN,
+                                            .EVALUATE_NAME = p.ot.NAME,
                                             .RANK_ID = p.p.RANK_ID,
                                             .YEAR = p.p.YEAR,
                                             .REMARK = p.p.REMARK,
@@ -168,7 +168,7 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                       From ot In Context.OT_OTHER_LIST.Where(Function(f) p.EVALUATE_ID = f.ID)
+                       From ot In Context.PE_PERIOD.Where(Function(f) p.EVALUATE_ID = f.ID)
                       From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RANK_ID).DefaultIfEmpty
                      From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.CAPACITY_ID).DefaultIfEmpty
             Where (p.ID = _filter.ID)
@@ -184,7 +184,7 @@ Partial Class ProfileRepository
                                                      .CONTENT = p.CONTENT,
                                                      .DECISION_NO = p.DECISION_NO,
                                                     .EVALUATE_ID = p.EVALUATE_ID,
-                                                    .EVALUATE_NAME = ot.NAME_VN,
+                                                    .EVALUATE_NAME = ot.NAME,
                                                     .RANK_ID = p.RANK_ID,
                                                     .RANK_NAME = ot1.NAME_VN,
                                                     .CAPACITY_ID = p.CAPACITY_ID,
