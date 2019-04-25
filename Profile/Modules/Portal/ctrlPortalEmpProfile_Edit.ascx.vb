@@ -96,7 +96,6 @@ Public Class ctrlPortalEmpProfile_Edit
                     txtReason.Text = empCV.REASON_UNAPROVE
                 End If
             End If
-
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -203,16 +202,16 @@ Public Class ctrlPortalEmpProfile_Edit
                         obj.ID_PLACE = cboIDPlace.SelectedValue
                         Using rep As New ProfileBusinessRepository
 
-                            If String.Compare(hidID.Value, "0") <> 0 Then
+                            If hidID.Value.ToString <> "0" Then
                                 isInsert = False
                             End If
 
                             If isInsert Then
-                                rep.InsertEmployeeEdit(obj, 0)
+                                rep.InsertEmployeeEdit(obj, hidID.Value)
                                 hidStatus.Value = 0
                             Else
                                 obj.ID = hidID.Value
-                                rep.ModifyEmployeeEdit(obj, 0)
+                                rep.ModifyEmployeeEdit(obj, hidID.Value)
                                 hidStatus.Value = 0
                             End If
 
@@ -322,6 +321,7 @@ Public Class ctrlPortalEmpProfile_Edit
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
             If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                
                 Using rep As New ProfileBusinessRepository
                     Dim lstID As New List(Of Decimal)
                     lstID.Add(hidID.Value)
