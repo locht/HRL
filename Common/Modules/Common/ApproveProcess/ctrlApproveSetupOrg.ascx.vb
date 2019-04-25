@@ -515,7 +515,8 @@ Public Class ctrlApproveSetupOrg
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
 
-        Try            
+        Try
+            ClearControlValue(cboApproveProcess, cboApproveTemplate, rdFromDate, rdToDate)
             rgDetail.Rebind()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -618,6 +619,7 @@ Public Class ctrlApproveSetupOrg
                 txtCCMailAccepted.Text = itemSelected.MAIL_ACCEPTED
                 txtCCMailAccepting.Text = itemSelected.MAIL_ACCEPTING
             Else
+                ClearControlForInsertOrDelete()
                 ShowMessage(Translate("Đã có lỗi khi truy xuất thông tin đang chọn."), NotifyType.Error)
             End If
 

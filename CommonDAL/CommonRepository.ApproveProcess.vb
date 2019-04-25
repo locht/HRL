@@ -18,7 +18,7 @@ Partial Public Class CommonRepository
     Public Function GetTitleList() As List(Of OtherListDTO)
         Try
             Dim listTitle = (From t In Context.OT_OTHER_LIST
-                             Where t.TYPE_CODE = "TITLE_LEVEL"
+                             Where t.TYPE_ID = 2000
                              Select New OtherListDTO With {
                                 .CODE = t.CODE, .NAME_VN = t.NAME_VN
                              }).ToList()
