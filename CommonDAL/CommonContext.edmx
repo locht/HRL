@@ -36,6 +36,7 @@
             <EntitySet Name="SE_USER_PERMISSION" EntityType="CommonModel.Store.SE_USER_PERMISSION" store:Type="Tables" />
             <EntitySet Name="HUV_SE_GRP_SE_USR" EntityType="CommonModel.Store.HUV_SE_GRP_SE_USR" store:Type="Tables" />
             <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.Store.SE_VIEW_CONFIG" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_MANUAL" EntityType="CommonModel.Store.AT_TIME_MANUAL" store:Type="Tables" />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables" />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables" />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables" />
@@ -687,6 +688,27 @@
             <Property Name="CODE_NAME" Type="nclob" Nullable="false" />
             <Property Name="CONFIG_DATA" Type="nclob" Nullable="true" />
         </EntityType>
+        <EntityType Name="AT_TIME_MANUAL">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MORNING_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AFTERNOON_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="IS_PAID_RICE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LIMIT_DAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LIMIT_YEAR" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
                 <PropertyRef Name="SE_GROUPS_ID" />
@@ -1010,6 +1032,7 @@
           <EntitySet Name="SE_USER_PERMISSION" EntityType="CommonModel.SE_USER_PERMISSION" />
           <EntitySet Name="HUV_SE_GRP_SE_USR" EntityType="CommonModel.HUV_SE_GRP_SE_USR" />
           <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.SE_VIEW_CONFIG" />
+          <EntitySet Name="AT_TIME_MANUAL" EntityType="CommonModel.AT_TIME_MANUAL" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -1756,6 +1779,27 @@
           <Property Type="String" Name="CODE_NAME" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="CONFIG_DATA" />
         </EntityType>
+        <EntityType Name="AT_TIME_MANUAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MORNING_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="AFTERNOON_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="NOTE" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="IS_PAID_RICE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LIMIT_DAY" />
+          <Property Type="Decimal" Name="LIMIT_YEAR" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2373,6 +2417,28 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_TIME_MANUAL">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.AT_TIME_MANUAL)">
+                <MappingFragment StoreEntitySet="AT_TIME_MANUAL">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="MORNING_ID" ColumnName="MORNING_ID" />
+                    <ScalarProperty Name="AFTERNOON_ID" ColumnName="AFTERNOON_ID" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="IS_PAID_RICE" ColumnName="IS_PAID_RICE" />
+                    <ScalarProperty Name="LIMIT_DAY" ColumnName="LIMIT_DAY" />
+                    <ScalarProperty Name="LIMIT_YEAR" ColumnName="LIMIT_YEAR" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -2533,6 +2599,7 @@
         <EntityTypeShape EntityType="CommonModel.SE_USER_PERMISSION" Width="2.5" PointX="9.75" PointY="12" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.HUV_SE_GRP_SE_USR" Width="1.5" PointX="0.75" PointY="7.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_VIEW_CONFIG" Width="1.75" PointX="5" PointY="12.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.AT_TIME_MANUAL" Width="1.5" PointX="2.1209831322175372" PointY="27.635870275849417" />
         </Diagram>
     </Diagrams>
   </Designer>

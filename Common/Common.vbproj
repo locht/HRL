@@ -211,6 +211,12 @@
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.ApproveUserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\CommonBusiness\Common.CommonBusiness.ATTimeManualDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CommonBusiness\Common.CommonBusiness.AT_TIME_MANUAL.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.AuditLogDtl.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

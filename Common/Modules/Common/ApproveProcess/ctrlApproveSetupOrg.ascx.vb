@@ -238,6 +238,7 @@ Public Class ctrlApproveSetupOrg
                     IDDetailSelecting = Nothing
                     UpdateControlState()
                     ClearControlForInsertOrDelete()
+                    ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
 
                 Case CommonMessage.TOOLBARITEM_EDIT
                     Me.CurrentState = CommonMessage.STATE_EDIT
@@ -279,7 +280,7 @@ Public Class ctrlApproveSetupOrg
                         End If
 
                         If db.InsertApproveSetup(itemAdd) Then
-                            ClearControlValue(cboApproveProcess, cboApproveTemplate, rdFromDate, rdToDate)
+                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -314,7 +315,7 @@ Public Class ctrlApproveSetupOrg
                         End If
 
                         If db.UpdateApproveSetup(itemEdit) Then
-                            ClearControlValue(cboApproveProcess, cboApproveTemplate, rdFromDate, rdToDate)
+                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -351,11 +352,13 @@ Public Class ctrlApproveSetupOrg
                                        Select New With {l.TEMPLATE_NAME, l.ID}).ToList()
                         Dim title = (From l In db.GetTitleList()
                                        Select New With {l.NAME_VN, l.CODE}).ToList()
+                        Dim sign = (From l In db.GetSignList()
+                                        Select New With {l.NAME, l.ID}).ToList()
                         ds.Tables.Add(org.ToTable())
                         ds.Tables.Add(process.ToTable())
                         ds.Tables.Add(template.ToTable())
                         ds.Tables.Add(title.ToTable())
-                        ds.Tables.Add(rep.GetSignLeaveList().Copy())
+                        ds.Tables.Add(sign.ToTable())
                         xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve/Import_Phe_Duyet_PhongBan.xls"), "Template phê duyệt phòng ban", ds, Response, 1)
                     End Using
                 Case CommonMessage.TOOLBARITEM_IMPORT
@@ -397,7 +400,7 @@ Public Class ctrlApproveSetupOrg
                 Dim db As New CommonRepository
 
                 If db.DeleteApproveSetup(ListToDelete) Then
-                    ClearControlValue(cboApproveProcess, cboApproveTemplate, rdFromDate, rdToDate)
+                    ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     Refresh()
                 Else
@@ -412,35 +415,35 @@ Public Class ctrlApproveSetupOrg
         End Try
     End Sub
 
-    ''' <lastupdate>25/07/2017</lastupdate>
-    ''' <summary>Sự kiện khi click button của popup warning</summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Private Sub cvalCheckDateExist_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalCheckDateExist.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
+    ' ''' <lastupdate>25/07/2017</lastupdate>
+    ' ''' <summary>Sự kiện khi click button của popup warning</summary>
+    ' ''' <param name="source"></param>
+    ' ''' <param name="args"></param>
+    ' ''' <remarks></remarks>
+    'Private Sub cvalCheckDateExist_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalCheckDateExist.ServerValidate
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim startTime As DateTime = DateTime.UtcNow
 
-        Try
-            Dim db As New CommonRepository
-            Dim idExclude As Decimal? = IDDetailSelecting
-            Dim itemCheck As New ApproveSetupDTO _
-            With {
-                .ORG_ID = OrgID,
-                .PROCESS_ID = Decimal.Parse(cboApproveProcess.SelectedValue),
-                .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue),
-                .FROM_DATE = rdFromDate.SelectedDate,
-                .TO_DATE = rdToDate.SelectedDate
-            }
+    '    Try
+    '        Dim db As New CommonRepository
+    '        Dim idExclude As Decimal? = IDDetailSelecting
+    '        Dim itemCheck As New ApproveSetupDTO _
+    '        With {
+    '            .ORG_ID = OrgID,
+    '            .PROCESS_ID = Decimal.Parse(cboApproveProcess.SelectedValue),
+    '            .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue),
+    '            .FROM_DATE = rdFromDate.SelectedDate,
+    '            .TO_DATE = rdToDate.SelectedDate
+    '        }
 
-            args.IsValid = db.IsExistApproveSetupByDate(itemCheck, idExclude)
+    '        args.IsValid = db.IsExistApproveSetupByDate(itemCheck, idExclude)
 
-            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            'DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
 #End Region
 
@@ -516,7 +519,7 @@ Public Class ctrlApproveSetupOrg
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            ClearControlValue(cboApproveProcess, cboApproveTemplate, rdFromDate, rdToDate)
+            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
             rgDetail.Rebind()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -578,10 +581,10 @@ Public Class ctrlApproveSetupOrg
             cboPosition.DataValueField = "CODE"
             cboPosition.DataBind()
 
-            Dim dtSignLeaveList = rep.GetSignLeaveList()
-            cboKieuCong.DataSource = dtSignLeaveList
-            cboKieuCong.DataTextField = dtSignLeaveList.Columns("AT_SIGN_NAME").ToString()
-            cboKieuCong.DataValueField = dtSignLeaveList.Columns("ID").ToString()
+            Dim dtSignList = db.GetSignList()
+            cboKieuCong.DataSource = dtSignList
+            cboKieuCong.DataTextField = "NAME"
+            cboKieuCong.DataValueField = "ID"
             cboKieuCong.DataBind()
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

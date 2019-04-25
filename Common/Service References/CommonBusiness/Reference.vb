@@ -41,1088 +41,6 @@ Namespace CommonBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="UserLog", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class UserLog
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ActionNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ComputerNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EmailField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FullnameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IpField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MobileField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private UsernameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewDescriptionField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewGroupField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewNameField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ActionName() As String
-            Get
-                Return Me.ActionNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ActionNameField, value) <> true) Then
-                    Me.ActionNameField = value
-                    Me.RaisePropertyChanged("ActionName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ComputerName() As String
-            Get
-                Return Me.ComputerNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
-                    Me.ComputerNameField = value
-                    Me.RaisePropertyChanged("ComputerName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Email() As String
-            Get
-                Return Me.EmailField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.EmailField, value) <> true) Then
-                    Me.EmailField = value
-                    Me.RaisePropertyChanged("Email")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Fullname() As String
-            Get
-                Return Me.FullnameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FullnameField, value) <> true) Then
-                    Me.FullnameField = value
-                    Me.RaisePropertyChanged("Fullname")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Ip() As String
-            Get
-                Return Me.IpField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.IpField, value) <> true) Then
-                    Me.IpField = value
-                    Me.RaisePropertyChanged("Ip")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Mobile() As String
-            Get
-                Return Me.MobileField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.MobileField, value) <> true) Then
-                    Me.MobileField = value
-                    Me.RaisePropertyChanged("Mobile")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Username() As String
-            Get
-                Return Me.UsernameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
-                    Me.UsernameField = value
-                    Me.RaisePropertyChanged("Username")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewDescription() As String
-            Get
-                Return Me.ViewDescriptionField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewDescriptionField, value) <> true) Then
-                    Me.ViewDescriptionField = value
-                    Me.RaisePropertyChanged("ViewDescription")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewGroup() As String
-            Get
-                Return Me.ViewGroupField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewGroupField, value) <> true) Then
-                    Me.ViewGroupField = value
-                    Me.RaisePropertyChanged("ViewGroup")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewName() As String
-            Get
-                Return Me.ViewNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewNameField, value) <> true) Then
-                    Me.ViewNameField = value
-                    Me.RaisePropertyChanged("ViewName")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="AccessLogFilter", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class AccessLogFilter
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ComputerNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FromDateField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IPField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private StatusField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ToDateField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private UsernameField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ComputerName() As String
-            Get
-                Return Me.ComputerNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
-                    Me.ComputerNameField = value
-                    Me.RaisePropertyChanged("ComputerName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FromDate() As System.Nullable(Of Date)
-            Get
-                Return Me.FromDateField
-            End Get
-            Set
-                If (Me.FromDateField.Equals(value) <> true) Then
-                    Me.FromDateField = value
-                    Me.RaisePropertyChanged("FromDate")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IP() As String
-            Get
-                Return Me.IPField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
-                    Me.IPField = value
-                    Me.RaisePropertyChanged("IP")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Status() As String
-            Get
-                Return Me.StatusField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.StatusField, value) <> true) Then
-                    Me.StatusField = value
-                    Me.RaisePropertyChanged("Status")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ToDate() As System.Nullable(Of Date)
-            Get
-                Return Me.ToDateField
-            End Get
-            Set
-                If (Me.ToDateField.Equals(value) <> true) Then
-                    Me.ToDateField = value
-                    Me.RaisePropertyChanged("ToDate")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Username() As String
-            Get
-                Return Me.UsernameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
-                    Me.UsernameField = value
-                    Me.RaisePropertyChanged("Username")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="AccessLog", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class AccessLog
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private AccessFunctionsField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ComputerNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EMPLOYEE_CODEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EmailField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FullnameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private GroupNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IPField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IdField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LoginDateField As Date
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LogoutDateField As Date
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LogoutStatusField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MobileField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private UsernameField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property AccessFunctions() As String
-            Get
-                Return Me.AccessFunctionsField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.AccessFunctionsField, value) <> true) Then
-                    Me.AccessFunctionsField = value
-                    Me.RaisePropertyChanged("AccessFunctions")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ComputerName() As String
-            Get
-                Return Me.ComputerNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
-                    Me.ComputerNameField = value
-                    Me.RaisePropertyChanged("ComputerName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property EMPLOYEE_CODE() As String
-            Get
-                Return Me.EMPLOYEE_CODEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
-                    Me.EMPLOYEE_CODEField = value
-                    Me.RaisePropertyChanged("EMPLOYEE_CODE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Email() As String
-            Get
-                Return Me.EmailField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.EmailField, value) <> true) Then
-                    Me.EmailField = value
-                    Me.RaisePropertyChanged("Email")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Fullname() As String
-            Get
-                Return Me.FullnameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FullnameField, value) <> true) Then
-                    Me.FullnameField = value
-                    Me.RaisePropertyChanged("Fullname")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property GroupName() As String
-            Get
-                Return Me.GroupNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.GroupNameField, value) <> true) Then
-                    Me.GroupNameField = value
-                    Me.RaisePropertyChanged("GroupName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IP() As String
-            Get
-                Return Me.IPField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
-                    Me.IPField = value
-                    Me.RaisePropertyChanged("IP")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Id() As Decimal
-            Get
-                Return Me.IdField
-            End Get
-            Set
-                If (Me.IdField.Equals(value) <> true) Then
-                    Me.IdField = value
-                    Me.RaisePropertyChanged("Id")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LoginDate() As Date
-            Get
-                Return Me.LoginDateField
-            End Get
-            Set
-                If (Me.LoginDateField.Equals(value) <> true) Then
-                    Me.LoginDateField = value
-                    Me.RaisePropertyChanged("LoginDate")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LogoutDate() As Date
-            Get
-                Return Me.LogoutDateField
-            End Get
-            Set
-                If (Me.LogoutDateField.Equals(value) <> true) Then
-                    Me.LogoutDateField = value
-                    Me.RaisePropertyChanged("LogoutDate")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LogoutStatus() As String
-            Get
-                Return Me.LogoutStatusField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.LogoutStatusField, value) <> true) Then
-                    Me.LogoutStatusField = value
-                    Me.RaisePropertyChanged("LogoutStatus")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Mobile() As String
-            Get
-                Return Me.MobileField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.MobileField, value) <> true) Then
-                    Me.MobileField = value
-                    Me.RaisePropertyChanged("Mobile")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Username() As String
-            Get
-                Return Me.UsernameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
-                    Me.UsernameField = value
-                    Me.RaisePropertyChanged("Username")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="ActionLogFilter", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class ActionLogFilter
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ActionNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ComputerNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FromDateField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IPField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ToDateField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private UserGroupField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private UserNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewGroupField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewNameField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ActionName() As String
-            Get
-                Return Me.ActionNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ActionNameField, value) <> true) Then
-                    Me.ActionNameField = value
-                    Me.RaisePropertyChanged("ActionName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ComputerName() As String
-            Get
-                Return Me.ComputerNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
-                    Me.ComputerNameField = value
-                    Me.RaisePropertyChanged("ComputerName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FromDate() As System.Nullable(Of Date)
-            Get
-                Return Me.FromDateField
-            End Get
-            Set
-                If (Me.FromDateField.Equals(value) <> true) Then
-                    Me.FromDateField = value
-                    Me.RaisePropertyChanged("FromDate")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IP() As String
-            Get
-                Return Me.IPField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
-                    Me.IPField = value
-                    Me.RaisePropertyChanged("IP")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ToDate() As System.Nullable(Of Date)
-            Get
-                Return Me.ToDateField
-            End Get
-            Set
-                If (Me.ToDateField.Equals(value) <> true) Then
-                    Me.ToDateField = value
-                    Me.RaisePropertyChanged("ToDate")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property UserGroup() As String
-            Get
-                Return Me.UserGroupField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.UserGroupField, value) <> true) Then
-                    Me.UserGroupField = value
-                    Me.RaisePropertyChanged("UserGroup")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property UserName() As String
-            Get
-                Return Me.UserNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.UserNameField, value) <> true) Then
-                    Me.UserNameField = value
-                    Me.RaisePropertyChanged("UserName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewGroup() As String
-            Get
-                Return Me.ViewGroupField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewGroupField, value) <> true) Then
-                    Me.ViewGroupField = value
-                    Me.RaisePropertyChanged("ViewGroup")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewName() As String
-            Get
-                Return Me.ViewNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewNameField, value) <> true) Then
-                    Me.ViewNameField = value
-                    Me.RaisePropertyChanged("ViewName")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="ActionLog", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class ActionLog
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ActionDateField As Date
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ActionNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ComputerNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EmailField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FullnameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IPField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IdField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LocationField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MobileField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ObjectIdField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ObjectNameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private UsernameField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewDescriptionField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewGroupField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ViewNameField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ActionDate() As Date
-            Get
-                Return Me.ActionDateField
-            End Get
-            Set
-                If (Me.ActionDateField.Equals(value) <> true) Then
-                    Me.ActionDateField = value
-                    Me.RaisePropertyChanged("ActionDate")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ActionName() As String
-            Get
-                Return Me.ActionNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ActionNameField, value) <> true) Then
-                    Me.ActionNameField = value
-                    Me.RaisePropertyChanged("ActionName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ComputerName() As String
-            Get
-                Return Me.ComputerNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
-                    Me.ComputerNameField = value
-                    Me.RaisePropertyChanged("ComputerName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Email() As String
-            Get
-                Return Me.EmailField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.EmailField, value) <> true) Then
-                    Me.EmailField = value
-                    Me.RaisePropertyChanged("Email")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Fullname() As String
-            Get
-                Return Me.FullnameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FullnameField, value) <> true) Then
-                    Me.FullnameField = value
-                    Me.RaisePropertyChanged("Fullname")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IP() As String
-            Get
-                Return Me.IPField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
-                    Me.IPField = value
-                    Me.RaisePropertyChanged("IP")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Id() As Decimal
-            Get
-                Return Me.IdField
-            End Get
-            Set
-                If (Me.IdField.Equals(value) <> true) Then
-                    Me.IdField = value
-                    Me.RaisePropertyChanged("Id")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Location() As String
-            Get
-                Return Me.LocationField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.LocationField, value) <> true) Then
-                    Me.LocationField = value
-                    Me.RaisePropertyChanged("Location")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Mobile() As String
-            Get
-                Return Me.MobileField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.MobileField, value) <> true) Then
-                    Me.MobileField = value
-                    Me.RaisePropertyChanged("Mobile")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ObjectId() As System.Nullable(Of Decimal)
-            Get
-                Return Me.ObjectIdField
-            End Get
-            Set
-                If (Me.ObjectIdField.Equals(value) <> true) Then
-                    Me.ObjectIdField = value
-                    Me.RaisePropertyChanged("ObjectId")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ObjectName() As String
-            Get
-                Return Me.ObjectNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ObjectNameField, value) <> true) Then
-                    Me.ObjectNameField = value
-                    Me.RaisePropertyChanged("ObjectName")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property Username() As String
-            Get
-                Return Me.UsernameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
-                    Me.UsernameField = value
-                    Me.RaisePropertyChanged("Username")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewDescription() As String
-            Get
-                Return Me.ViewDescriptionField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewDescriptionField, value) <> true) Then
-                    Me.ViewDescriptionField = value
-                    Me.RaisePropertyChanged("ViewDescription")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewGroup() As String
-            Get
-                Return Me.ViewGroupField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewGroupField, value) <> true) Then
-                    Me.ViewGroupField = value
-                    Me.RaisePropertyChanged("ViewGroup")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ViewName() As String
-            Get
-                Return Me.ViewNameField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ViewNameField, value) <> true) Then
-                    Me.ViewNameField = value
-                    Me.RaisePropertyChanged("ViewName")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="AuditLogDtl", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class AuditLogDtl
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private COL_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private NEW_VALUEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private OLD_VALUEField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property COL_NAME() As String
-            Get
-                Return Me.COL_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.COL_NAMEField, value) <> true) Then
-                    Me.COL_NAMEField = value
-                    Me.RaisePropertyChanged("COL_NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property NEW_VALUE() As String
-            Get
-                Return Me.NEW_VALUEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.NEW_VALUEField, value) <> true) Then
-                    Me.NEW_VALUEField = value
-                    Me.RaisePropertyChanged("NEW_VALUE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property OLD_VALUE() As String
-            Get
-                Return Me.OLD_VALUEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.OLD_VALUEField, value) <> true) Then
-                    Me.OLD_VALUEField = value
-                    Me.RaisePropertyChanged("OLD_VALUE")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="OtherListDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/CommonDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class OtherListDTO
@@ -2064,6 +982,9 @@ Namespace CommonBusiness
         Private SIGN_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TEMPLATE_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -2071,6 +992,9 @@ Namespace CommonBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_DATEField As System.Nullable(Of Date)
@@ -2261,6 +1185,19 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_NAME() As String
+            Get
+                Return Me.SIGN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGN_NAMEField, value) <> true) Then
+                    Me.SIGN_NAMEField = value
+                    Me.RaisePropertyChanged("SIGN_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TEMPLATE_ID() As Decimal
             Get
                 Return Me.TEMPLATE_IDField
@@ -2295,6 +1232,19 @@ Namespace CommonBusiness
                 If (Me.TITLE_IDField.Equals(value) <> true) Then
                     Me.TITLE_IDField = value
                     Me.RaisePropertyChanged("TITLE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME() As String
+            Get
+                Return Me.TITLE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
+                    Me.TITLE_NAMEField = value
+                    Me.RaisePropertyChanged("TITLE_NAME")
                 End If
             End Set
         End Property
@@ -4038,6 +2988,69 @@ Namespace CommonBusiness
                 If (Me.WidthField.Equals(value) <> true) Then
                     Me.WidthField = value
                     Me.RaisePropertyChanged("Width")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ATTimeManualDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/CommonDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ATTimeManualDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAMEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAME() As String
+            Get
+                Return Me.NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
+                    Me.NAMEField = value
+                    Me.RaisePropertyChanged("NAME")
                 End If
             End Set
         End Property
@@ -8018,9 +7031,1094 @@ Namespace CommonBusiness
         End Sub
     End Class
     
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="UserLog", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class UserLog
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ActionNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ComputerNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EmailField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FullnameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IpField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MobileField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UsernameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewDescriptionField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewGroupField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewNameField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ActionName() As String
+            Get
+                Return Me.ActionNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ActionNameField, value) <> true) Then
+                    Me.ActionNameField = value
+                    Me.RaisePropertyChanged("ActionName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ComputerName() As String
+            Get
+                Return Me.ComputerNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
+                    Me.ComputerNameField = value
+                    Me.RaisePropertyChanged("ComputerName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Email() As String
+            Get
+                Return Me.EmailField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EmailField, value) <> true) Then
+                    Me.EmailField = value
+                    Me.RaisePropertyChanged("Email")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Fullname() As String
+            Get
+                Return Me.FullnameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FullnameField, value) <> true) Then
+                    Me.FullnameField = value
+                    Me.RaisePropertyChanged("Fullname")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Ip() As String
+            Get
+                Return Me.IpField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IpField, value) <> true) Then
+                    Me.IpField = value
+                    Me.RaisePropertyChanged("Ip")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Mobile() As String
+            Get
+                Return Me.MobileField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MobileField, value) <> true) Then
+                    Me.MobileField = value
+                    Me.RaisePropertyChanged("Mobile")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Username() As String
+            Get
+                Return Me.UsernameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
+                    Me.UsernameField = value
+                    Me.RaisePropertyChanged("Username")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewDescription() As String
+            Get
+                Return Me.ViewDescriptionField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewDescriptionField, value) <> true) Then
+                    Me.ViewDescriptionField = value
+                    Me.RaisePropertyChanged("ViewDescription")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewGroup() As String
+            Get
+                Return Me.ViewGroupField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewGroupField, value) <> true) Then
+                    Me.ViewGroupField = value
+                    Me.RaisePropertyChanged("ViewGroup")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewName() As String
+            Get
+                Return Me.ViewNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewNameField, value) <> true) Then
+                    Me.ViewNameField = value
+                    Me.RaisePropertyChanged("ViewName")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AccessLogFilter", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AccessLogFilter
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ComputerNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FromDateField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private StatusField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ToDateField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UsernameField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ComputerName() As String
+            Get
+                Return Me.ComputerNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
+                    Me.ComputerNameField = value
+                    Me.RaisePropertyChanged("ComputerName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FromDate() As System.Nullable(Of Date)
+            Get
+                Return Me.FromDateField
+            End Get
+            Set
+                If (Me.FromDateField.Equals(value) <> true) Then
+                    Me.FromDateField = value
+                    Me.RaisePropertyChanged("FromDate")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IP() As String
+            Get
+                Return Me.IPField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
+                    Me.IPField = value
+                    Me.RaisePropertyChanged("IP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Status() As String
+            Get
+                Return Me.StatusField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.StatusField, value) <> true) Then
+                    Me.StatusField = value
+                    Me.RaisePropertyChanged("Status")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ToDate() As System.Nullable(Of Date)
+            Get
+                Return Me.ToDateField
+            End Get
+            Set
+                If (Me.ToDateField.Equals(value) <> true) Then
+                    Me.ToDateField = value
+                    Me.RaisePropertyChanged("ToDate")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Username() As String
+            Get
+                Return Me.UsernameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
+                    Me.UsernameField = value
+                    Me.RaisePropertyChanged("Username")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AccessLog", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AccessLog
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AccessFunctionsField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ComputerNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EmailField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FullnameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GroupNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IdField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LoginDateField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LogoutDateField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LogoutStatusField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MobileField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UsernameField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AccessFunctions() As String
+            Get
+                Return Me.AccessFunctionsField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.AccessFunctionsField, value) <> true) Then
+                    Me.AccessFunctionsField = value
+                    Me.RaisePropertyChanged("AccessFunctions")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ComputerName() As String
+            Get
+                Return Me.ComputerNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
+                    Me.ComputerNameField = value
+                    Me.RaisePropertyChanged("ComputerName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_CODE() As String
+            Get
+                Return Me.EMPLOYEE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
+                    Me.EMPLOYEE_CODEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Email() As String
+            Get
+                Return Me.EmailField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EmailField, value) <> true) Then
+                    Me.EmailField = value
+                    Me.RaisePropertyChanged("Email")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Fullname() As String
+            Get
+                Return Me.FullnameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FullnameField, value) <> true) Then
+                    Me.FullnameField = value
+                    Me.RaisePropertyChanged("Fullname")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GroupName() As String
+            Get
+                Return Me.GroupNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GroupNameField, value) <> true) Then
+                    Me.GroupNameField = value
+                    Me.RaisePropertyChanged("GroupName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IP() As String
+            Get
+                Return Me.IPField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
+                    Me.IPField = value
+                    Me.RaisePropertyChanged("IP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Id() As Decimal
+            Get
+                Return Me.IdField
+            End Get
+            Set
+                If (Me.IdField.Equals(value) <> true) Then
+                    Me.IdField = value
+                    Me.RaisePropertyChanged("Id")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LoginDate() As Date
+            Get
+                Return Me.LoginDateField
+            End Get
+            Set
+                If (Me.LoginDateField.Equals(value) <> true) Then
+                    Me.LoginDateField = value
+                    Me.RaisePropertyChanged("LoginDate")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LogoutDate() As Date
+            Get
+                Return Me.LogoutDateField
+            End Get
+            Set
+                If (Me.LogoutDateField.Equals(value) <> true) Then
+                    Me.LogoutDateField = value
+                    Me.RaisePropertyChanged("LogoutDate")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LogoutStatus() As String
+            Get
+                Return Me.LogoutStatusField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LogoutStatusField, value) <> true) Then
+                    Me.LogoutStatusField = value
+                    Me.RaisePropertyChanged("LogoutStatus")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Mobile() As String
+            Get
+                Return Me.MobileField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MobileField, value) <> true) Then
+                    Me.MobileField = value
+                    Me.RaisePropertyChanged("Mobile")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Username() As String
+            Get
+                Return Me.UsernameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
+                    Me.UsernameField = value
+                    Me.RaisePropertyChanged("Username")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ActionLogFilter", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ActionLogFilter
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ActionNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ComputerNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FromDateField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ToDateField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UserGroupField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UserNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewGroupField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewNameField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ActionName() As String
+            Get
+                Return Me.ActionNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ActionNameField, value) <> true) Then
+                    Me.ActionNameField = value
+                    Me.RaisePropertyChanged("ActionName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ComputerName() As String
+            Get
+                Return Me.ComputerNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
+                    Me.ComputerNameField = value
+                    Me.RaisePropertyChanged("ComputerName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FromDate() As System.Nullable(Of Date)
+            Get
+                Return Me.FromDateField
+            End Get
+            Set
+                If (Me.FromDateField.Equals(value) <> true) Then
+                    Me.FromDateField = value
+                    Me.RaisePropertyChanged("FromDate")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IP() As String
+            Get
+                Return Me.IPField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
+                    Me.IPField = value
+                    Me.RaisePropertyChanged("IP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ToDate() As System.Nullable(Of Date)
+            Get
+                Return Me.ToDateField
+            End Get
+            Set
+                If (Me.ToDateField.Equals(value) <> true) Then
+                    Me.ToDateField = value
+                    Me.RaisePropertyChanged("ToDate")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UserGroup() As String
+            Get
+                Return Me.UserGroupField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UserGroupField, value) <> true) Then
+                    Me.UserGroupField = value
+                    Me.RaisePropertyChanged("UserGroup")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property UserName() As String
+            Get
+                Return Me.UserNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UserNameField, value) <> true) Then
+                    Me.UserNameField = value
+                    Me.RaisePropertyChanged("UserName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewGroup() As String
+            Get
+                Return Me.ViewGroupField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewGroupField, value) <> true) Then
+                    Me.ViewGroupField = value
+                    Me.RaisePropertyChanged("ViewGroup")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewName() As String
+            Get
+                Return Me.ViewNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewNameField, value) <> true) Then
+                    Me.ViewNameField = value
+                    Me.RaisePropertyChanged("ViewName")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ActionLog", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ActionLog
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ActionDateField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ActionNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ComputerNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EmailField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FullnameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IdField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LocationField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MobileField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ObjectIdField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ObjectNameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private UsernameField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewDescriptionField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewGroupField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ViewNameField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ActionDate() As Date
+            Get
+                Return Me.ActionDateField
+            End Get
+            Set
+                If (Me.ActionDateField.Equals(value) <> true) Then
+                    Me.ActionDateField = value
+                    Me.RaisePropertyChanged("ActionDate")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ActionName() As String
+            Get
+                Return Me.ActionNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ActionNameField, value) <> true) Then
+                    Me.ActionNameField = value
+                    Me.RaisePropertyChanged("ActionName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ComputerName() As String
+            Get
+                Return Me.ComputerNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ComputerNameField, value) <> true) Then
+                    Me.ComputerNameField = value
+                    Me.RaisePropertyChanged("ComputerName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Email() As String
+            Get
+                Return Me.EmailField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EmailField, value) <> true) Then
+                    Me.EmailField = value
+                    Me.RaisePropertyChanged("Email")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Fullname() As String
+            Get
+                Return Me.FullnameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FullnameField, value) <> true) Then
+                    Me.FullnameField = value
+                    Me.RaisePropertyChanged("Fullname")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IP() As String
+            Get
+                Return Me.IPField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IPField, value) <> true) Then
+                    Me.IPField = value
+                    Me.RaisePropertyChanged("IP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Id() As Decimal
+            Get
+                Return Me.IdField
+            End Get
+            Set
+                If (Me.IdField.Equals(value) <> true) Then
+                    Me.IdField = value
+                    Me.RaisePropertyChanged("Id")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Location() As String
+            Get
+                Return Me.LocationField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LocationField, value) <> true) Then
+                    Me.LocationField = value
+                    Me.RaisePropertyChanged("Location")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Mobile() As String
+            Get
+                Return Me.MobileField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MobileField, value) <> true) Then
+                    Me.MobileField = value
+                    Me.RaisePropertyChanged("Mobile")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ObjectId() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ObjectIdField
+            End Get
+            Set
+                If (Me.ObjectIdField.Equals(value) <> true) Then
+                    Me.ObjectIdField = value
+                    Me.RaisePropertyChanged("ObjectId")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ObjectName() As String
+            Get
+                Return Me.ObjectNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ObjectNameField, value) <> true) Then
+                    Me.ObjectNameField = value
+                    Me.RaisePropertyChanged("ObjectName")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Username() As String
+            Get
+                Return Me.UsernameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.UsernameField, value) <> true) Then
+                    Me.UsernameField = value
+                    Me.RaisePropertyChanged("Username")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewDescription() As String
+            Get
+                Return Me.ViewDescriptionField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewDescriptionField, value) <> true) Then
+                    Me.ViewDescriptionField = value
+                    Me.RaisePropertyChanged("ViewDescription")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewGroup() As String
+            Get
+                Return Me.ViewGroupField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewGroupField, value) <> true) Then
+                    Me.ViewGroupField = value
+                    Me.RaisePropertyChanged("ViewGroup")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ViewName() As String
+            Get
+                Return Me.ViewNameField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ViewNameField, value) <> true) Then
+                    Me.ViewNameField = value
+                    Me.RaisePropertyChanged("ViewName")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="AuditLogDtl", [Namespace]:="http://schemas.datacontract.org/2004/07/Framework.Data"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class AuditLogDtl
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COL_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NEW_VALUEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OLD_VALUEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COL_NAME() As String
+            Get
+                Return Me.COL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.COL_NAMEField, value) <> true) Then
+                    Me.COL_NAMEField = value
+                    Me.RaisePropertyChanged("COL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NEW_VALUE() As String
+            Get
+                Return Me.NEW_VALUEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NEW_VALUEField, value) <> true) Then
+                    Me.NEW_VALUEField = value
+                    Me.RaisePropertyChanged("NEW_VALUE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OLD_VALUE() As String
+            Get
+                Return Me.OLD_VALUEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OLD_VALUEField, value) <> true) Then
+                    Me.OLD_VALUEField = value
+                    Me.RaisePropertyChanged("OLD_VALUE")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="CommonBusiness.ICommonBusiness")>  _
     Public Interface ICommonBusiness
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse")>  _
+        Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetConfig", ReplyAction:="http://tempuri.org/ICommonBusiness/GetConfigResponse")>  _
         Function GetConfig(ByVal eModule As CommonBusiness.SystemConfigModuleID) As System.Collections.Generic.Dictionary(Of String, String)
@@ -8032,16 +8130,6 @@ Namespace CommonBusiness
         Function SendMail() As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/InsertMail", ReplyAction:="http://tempuri.org/ICommonBusiness/InsertMailResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AccessLog))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListGroupDTO))),  _
@@ -8066,6 +8154,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ATTimeManualDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.PermissionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.PermissionDTO)),  _
@@ -8103,7 +8193,17 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AccessLog))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl))>  _
         Function InsertMail(ByVal _from As String, ByVal _to As String, ByVal _subject As String, ByVal _content As String, ByVal _cc As String, ByVal _bcc As String, ByVal _viewName As String) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetOtherListByTypeToCombo", ReplyAction:="http://tempuri.org/ICommonBusiness/GetOtherListByTypeToComboResponse")>  _
@@ -8311,16 +8411,6 @@ Namespace CommonBusiness
         Function GetConfigView(ByVal KeyView As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillData", ReplyAction:="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillDataResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AccessLog))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListGroupDTO))),  _
@@ -8345,6 +8435,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ATTimeManualDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.PermissionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.PermissionDTO)),  _
@@ -8382,7 +8474,17 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AccessLog))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl))>  _
         Function GetConfigViewAndFillData(ByVal keyView As String, ByRef viewcontrol As CommonBusiness.se_view_config_control_DTO, ByRef girdcollum As CommonBusiness.se_view_config_girdColumm_DTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/CheckOtherListExistInDatabase", ReplyAction:="http://tempuri.org/ICommonBusiness/CheckOtherListExistInDatabaseResponse")>  _
@@ -8390,6 +8492,9 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetATOrgPeriod", ReplyAction:="http://tempuri.org/ICommonBusiness/GetATOrgPeriodResponse")>  _
         Function GetATOrgPeriod(ByVal periodID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetSignList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetSignListResponse")>  _
+        Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/IsUsernameExist", ReplyAction:="http://tempuri.org/ICommonBusiness/IsUsernameExistResponse")>  _
         Function IsUsernameExist(ByVal Username As String) As Boolean
@@ -8569,16 +8674,6 @@ Namespace CommonBusiness
         Function GetUserOrganization(ByVal UserID As Decimal) As System.Collections.Generic.List(Of Decimal)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteUserOrganization", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteUserOrganizationResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AccessLog))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListGroupDTO))),  _
@@ -8603,6 +8698,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ATTimeManualDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.PermissionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.PermissionDTO)),  _
@@ -8640,7 +8737,17 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AccessLog))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLogFilter)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ActionLog))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ActionLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.AuditLogDtl))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AuditLogDtl))>  _
         Function DeleteUserOrganization(ByVal _UserId As Decimal) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/UpdateUserOrganization", ReplyAction:="http://tempuri.org/ICommonBusiness/UpdateUserOrganizationResponse")>  _
@@ -8708,9 +8815,6 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLearningLevel", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse")>  _
         Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse")>  _
-        Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -8743,6 +8847,10 @@ Namespace CommonBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetHU_CompetencyList
+            Return MyBase.Channel.GetHU_CompetencyList(isBlank)
+        End Function
         
         Public Function GetConfig(ByVal eModule As CommonBusiness.SystemConfigModuleID) As System.Collections.Generic.Dictionary(Of String, String) Implements CommonBusiness.ICommonBusiness.GetConfig
             Return MyBase.Channel.GetConfig(eModule)
@@ -9042,6 +9150,10 @@ Namespace CommonBusiness
         
         Public Function GetATOrgPeriod(ByVal periodID As Decimal) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetATOrgPeriod
             Return MyBase.Channel.GetATOrgPeriod(periodID)
+        End Function
+        
+        Public Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO) Implements CommonBusiness.ICommonBusiness.GetSignList
+            Return MyBase.Channel.GetSignList
         End Function
         
         Public Function IsUsernameExist(ByVal Username As String) As Boolean Implements CommonBusiness.ICommonBusiness.IsUsernameExist
@@ -9370,10 +9482,6 @@ Namespace CommonBusiness
         
         Public Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetLearningLevel
             Return MyBase.Channel.GetLearningLevel(sLang, isBlank)
-        End Function
-        
-        Public Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetHU_CompetencyList
-            Return MyBase.Channel.GetHU_CompetencyList(isBlank)
         End Function
     End Class
 End Namespace

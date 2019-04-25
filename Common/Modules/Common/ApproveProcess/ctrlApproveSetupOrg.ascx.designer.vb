@@ -221,15 +221,6 @@ Partial Public Class ctrlApproveSetupOrg
     Protected WithEvents reqFromDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''cvalCheckDateExist control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cvalCheckDateExist As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''rdToDate control.
     '''</summary>
     '''<remarks>

@@ -15,10 +15,22 @@ Imports System.Configuration
 Partial Public Class CommonRepository
 
 #Region "Process Setup"
+    Public Function GetSignList() As List(Of ATTimeManualDTO)
+        Try
+            Dim listSign = (From t In Context.AT_TIME_MANUAL
+                            Where t.ACTFLG = "A"
+                            Select New ATTimeManualDTO With {
+                                .ID = t.ID, .NAME = t.NAME
+                            }).ToList()
+            Return listSign
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetTitleList() As List(Of OtherListDTO)
         Try
             Dim listTitle = (From t In Context.OT_OTHER_LIST
-                             Where t.TYPE_ID = 2000
+                             Where t.TYPE_ID = 2000 And t.ACTFLG = "A"
                              Select New OtherListDTO With {
                                 .CODE = t.CODE, .NAME_VN = t.NAME_VN
                              }).ToList()
@@ -159,8 +171,8 @@ Partial Public Class CommonRepository
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of ApproveSetupDTO)
         Try
             Dim itemReturn = From s In Context.SE_APP_SETUP
-                             From proc In Context.SE_APP_PROCESS.Where(Function(f) f.ID = s.PROCESS_ID)
-                             From temp In Context.SE_APP_TEMPLATE.Where(Function(f) f.ID = s.TEMPLATE_ID)
+                             From proc In Context.SE_APP_PROCESS.Where(Function(f) f.ID = s.PROCESS_ID And f.ACTFLG = "A")
+                             From temp In Context.SE_APP_TEMPLATE.Where(Function(f) f.ID = s.TEMPLATE_ID And f.ACTFLG = "A")
                               Where s.ORG_ID = orgId
                               Select New ApproveSetupDTO With {
                                   .ID = s.ID,
@@ -172,7 +184,9 @@ Partial Public Class CommonRepository
                                   .PROCESS_NAME = proc.NAME,
                                   .TEMPLATE_NAME = temp.TEMPLATE_NAME,
                                   .NUM_REQUEST = proc.NUMREQUEST,
-                                  .REQUEST_EMAIL = proc.EMAIL
+                                  .REQUEST_EMAIL = proc.EMAIL,
+                                  .SIGN_ID = s.SIGN_ID,
+                                  .TITLE_ID = s.TITLE_ID
                               }
 
             Return itemReturn.OrderBy(Function(p) Sorts).ThenByDescending(Function(p) p.FROM_DATE).ToList 'itemReturn.OrderBy(Function(p) p.PROCESS_NAME).ThenByDescending(Function(p) p.FROM_DATE).ToList
