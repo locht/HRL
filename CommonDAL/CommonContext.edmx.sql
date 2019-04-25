@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 04/12/2019 12:00:46 PM
--- Generated from EDMX file: D:\MyProject\histaffHCM\histaffhcm\CommonDAL\CommonContext.edmx
+-- Date Created: 25/04/2019 12:49:44 PM
+-- Generated from EDMX file: E:\histaffhcm\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -441,7 +441,15 @@ CREATE TABLE "dbo"."SE_APP_SETUP" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "FROM_HOUR" NUMBER(38,0) NULL,
+   "TO_HOUR" NUMBER(38,0) NULL,
+   "FROM_DAY" NUMBER(38,0) NULL,
+   "TO_DAY" NUMBER(38,0) NULL,
+   "MAIL_ACCEPTED" NCLOB NULL,
+   "MAIL_ACCEPTING" NCLOB NULL,
+   "TITLE_ID" NUMBER(38,0) NULL,
+   "SIGN_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_APP_SETUPEXT'
@@ -473,7 +481,8 @@ CREATE TABLE "dbo"."SE_APP_TEMPLATE" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "TEMPLATE_CODE" NCLOB NULL
 );
 
 -- Creating table 'SE_APP_TEMPLATE_DTL'
@@ -655,6 +664,26 @@ CREATE TABLE "dbo"."HUV_SE_GRP_SE_USR" (
 CREATE TABLE "dbo"."SE_VIEW_CONFIG" (
    "CODE_NAME" NCLOB NOT NULL,
    "CONFIG_DATA" NCLOB NULL
+);
+
+-- Creating table 'AT_TIME_MANUAL'
+CREATE TABLE "dbo"."AT_TIME_MANUAL" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "CODE" NVARCHAR2(50) NULL,
+   "NAME" NVARCHAR2(255) NULL,
+   "MORNING_ID" NUMBER(38,0) NULL,
+   "AFTERNOON_ID" NUMBER(38,0) NULL,
+   "NOTE" NVARCHAR2(1023) NULL,
+   "ACTFLG" NVARCHAR2(1) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "IS_PAID_RICE" NUMBER(38,0) NULL,
+   "LIMIT_DAY" NUMBER(38,0) NULL,
+   "LIMIT_YEAR" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_GRP_SE_USR'
@@ -916,6 +945,14 @@ ADD CONSTRAINT "PK_HUV_SE_GRP_SE_USR"
 ALTER TABLE "dbo"."SE_VIEW_CONFIG"
 ADD CONSTRAINT "PK_SE_VIEW_CONFIG"
    PRIMARY KEY ("CODE_NAME" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'AT_TIME_MANUAL'
+ALTER TABLE "dbo"."AT_TIME_MANUAL"
+ADD CONSTRAINT "PK_AT_TIME_MANUAL"
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 

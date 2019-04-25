@@ -949,7 +949,19 @@ Namespace CommonBusiness
         Private FROM_DATEField As Date
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROM_DAYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROM_HOURField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MAIL_ACCEPTEDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MAIL_ACCEPTINGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NUM_REQUESTField As System.Nullable(Of Decimal)
@@ -967,13 +979,31 @@ Namespace CommonBusiness
         Private REQUEST_EMAILField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TEMPLATE_IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TEMPLATE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TO_DAYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TO_HOURField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -1012,6 +1042,32 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROM_DAY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.FROM_DAYField
+            End Get
+            Set
+                If (Me.FROM_DAYField.Equals(value) <> true) Then
+                    Me.FROM_DAYField = value
+                    Me.RaisePropertyChanged("FROM_DAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROM_HOUR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.FROM_HOURField
+            End Get
+            Set
+                If (Me.FROM_HOURField.Equals(value) <> true) Then
+                    Me.FROM_HOURField = value
+                    Me.RaisePropertyChanged("FROM_HOUR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ID() As Decimal
             Get
                 Return Me.IDField
@@ -1020,6 +1076,32 @@ Namespace CommonBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MAIL_ACCEPTED() As String
+            Get
+                Return Me.MAIL_ACCEPTEDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MAIL_ACCEPTEDField, value) <> true) Then
+                    Me.MAIL_ACCEPTEDField = value
+                    Me.RaisePropertyChanged("MAIL_ACCEPTED")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MAIL_ACCEPTING() As String
+            Get
+                Return Me.MAIL_ACCEPTINGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MAIL_ACCEPTINGField, value) <> true) Then
+                    Me.MAIL_ACCEPTINGField = value
+                    Me.RaisePropertyChanged("MAIL_ACCEPTING")
                 End If
             End Set
         End Property
@@ -1090,6 +1172,32 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SIGN_IDField
+            End Get
+            Set
+                If (Me.SIGN_IDField.Equals(value) <> true) Then
+                    Me.SIGN_IDField = value
+                    Me.RaisePropertyChanged("SIGN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_NAME() As String
+            Get
+                Return Me.SIGN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGN_NAMEField, value) <> true) Then
+                    Me.SIGN_NAMEField = value
+                    Me.RaisePropertyChanged("SIGN_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TEMPLATE_ID() As Decimal
             Get
                 Return Me.TEMPLATE_IDField
@@ -1116,6 +1224,32 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TITLE_IDField
+            End Get
+            Set
+                If (Me.TITLE_IDField.Equals(value) <> true) Then
+                    Me.TITLE_IDField = value
+                    Me.RaisePropertyChanged("TITLE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME() As String
+            Get
+                Return Me.TITLE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
+                    Me.TITLE_NAMEField = value
+                    Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TO_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.TO_DATEField
@@ -1124,6 +1258,32 @@ Namespace CommonBusiness
                 If (Me.TO_DATEField.Equals(value) <> true) Then
                     Me.TO_DATEField = value
                     Me.RaisePropertyChanged("TO_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TO_DAY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TO_DAYField
+            End Get
+            Set
+                If (Me.TO_DAYField.Equals(value) <> true) Then
+                    Me.TO_DAYField = value
+                    Me.RaisePropertyChanged("TO_DAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TO_HOUR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TO_HOURField
+            End Get
+            Set
+                If (Me.TO_HOURField.Equals(value) <> true) Then
+                    Me.TO_HOURField = value
+                    Me.RaisePropertyChanged("TO_HOUR")
                 End If
             End Set
         End Property
@@ -1156,13 +1316,16 @@ Namespace CommonBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TEMPLATE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TEMPLATE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TEMPLATE_ORDERField As Decimal
+        Private TEMPLATE_ORDERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TEMPLATE_TYPEField As Decimal
+        Private TEMPLATE_TYPEField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -1201,6 +1364,19 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TEMPLATE_CODE() As String
+            Get
+                Return Me.TEMPLATE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TEMPLATE_CODEField, value) <> true) Then
+                    Me.TEMPLATE_CODEField = value
+                    Me.RaisePropertyChanged("TEMPLATE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TEMPLATE_NAME() As String
             Get
                 Return Me.TEMPLATE_NAMEField
@@ -1214,7 +1390,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TEMPLATE_ORDER() As Decimal
+        Public Property TEMPLATE_ORDER() As System.Nullable(Of Decimal)
             Get
                 Return Me.TEMPLATE_ORDERField
             End Get
@@ -1227,7 +1403,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TEMPLATE_TYPE() As Decimal
+        Public Property TEMPLATE_TYPE() As System.Nullable(Of Decimal)
             Get
                 Return Me.TEMPLATE_TYPEField
             End Get
@@ -1264,10 +1440,10 @@ Namespace CommonBusiness
         Private APP_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private APP_LEVELField As Decimal
+        Private APP_LEVELField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private APP_TYPEField As Decimal
+        Private APP_TYPEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
@@ -1279,13 +1455,13 @@ Namespace CommonBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private INFORM_DATEField As Decimal
+        Private INFORM_DATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private INFORM_EMAILField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TEMPLATE_IDField As Decimal
+        Private TEMPLATE_IDField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -1311,7 +1487,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property APP_LEVEL() As Decimal
+        Public Property APP_LEVEL() As System.Nullable(Of Decimal)
             Get
                 Return Me.APP_LEVELField
             End Get
@@ -1324,7 +1500,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property APP_TYPE() As Decimal
+        Public Property APP_TYPE() As System.Nullable(Of Decimal)
             Get
                 Return Me.APP_TYPEField
             End Get
@@ -1376,7 +1552,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property INFORM_DATE() As Decimal
+        Public Property INFORM_DATE() As System.Nullable(Of Decimal)
             Get
                 Return Me.INFORM_DATEField
             End Get
@@ -1402,7 +1578,7 @@ Namespace CommonBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TEMPLATE_ID() As Decimal
+        Public Property TEMPLATE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.TEMPLATE_IDField
             End Get
@@ -2812,6 +2988,69 @@ Namespace CommonBusiness
                 If (Me.WidthField.Equals(value) <> true) Then
                     Me.WidthField = value
                     Me.RaisePropertyChanged("Width")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ATTimeManualDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/CommonDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ATTimeManualDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NAMEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NAME() As String
+            Get
+                Return Me.NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NAMEField, value) <> true) Then
+                    Me.NAMEField = value
+                    Me.RaisePropertyChanged("NAME")
                 End If
             End Set
         End Property
@@ -7878,6 +8117,12 @@ Namespace CommonBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="CommonBusiness.ICommonBusiness")>  _
     Public Interface ICommonBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse")>  _
+        Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetConfig", ReplyAction:="http://tempuri.org/ICommonBusiness/GetConfigResponse")>  _
+        Function GetConfig(ByVal eModule As CommonBusiness.SystemConfigModuleID) As System.Collections.Generic.Dictionary(Of String, String)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/UpdateConfig", ReplyAction:="http://tempuri.org/ICommonBusiness/UpdateConfigResponse")>  _
         Function UpdateConfig(ByVal _lstConfig As System.Collections.Generic.Dictionary(Of String, String), ByVal eModule As CommonBusiness.SystemConfigModuleID) As Boolean
         
@@ -7885,10 +8130,6 @@ Namespace CommonBusiness
         Function SendMail() As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/InsertMail", ReplyAction:="http://tempuri.org/ICommonBusiness/InsertMailResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListGroupDTO))),  _
@@ -7913,6 +8154,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ATTimeManualDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.PermissionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.PermissionDTO)),  _
@@ -7947,6 +8190,10 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ComboBoxDataDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FunctionGroupDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.FunctionGroupDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
@@ -8039,6 +8286,9 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatus", ReplyAction:="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatusResponse")>  _
         Function UpdateApproveProcessStatus(ByVal itemUpdates As System.Collections.Generic.List(Of Decimal), ByVal status As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetTitleList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetTitleListResponse")>  _
+        Function GetTitleList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetApproveSetupByEmployee", ReplyAction:="http://tempuri.org/ICommonBusiness/GetApproveSetupByEmployeeResponse")>  _
         Function GetApproveSetupByEmployee(ByVal employeeId As Decimal, ByVal Sorts As String) As System.Collections.Generic.List(Of CommonBusiness.ApproveSetupDTO)
@@ -8161,10 +8411,6 @@ Namespace CommonBusiness
         Function GetConfigView(ByVal KeyView As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillData", ReplyAction:="http://tempuri.org/ICommonBusiness/GetConfigViewAndFillDataResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListGroupDTO))),  _
@@ -8189,6 +8435,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ATTimeManualDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.PermissionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.PermissionDTO)),  _
@@ -8223,6 +8471,10 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ComboBoxDataDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FunctionGroupDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.FunctionGroupDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
@@ -8240,6 +8492,9 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetATOrgPeriod", ReplyAction:="http://tempuri.org/ICommonBusiness/GetATOrgPeriodResponse")>  _
         Function GetATOrgPeriod(ByVal periodID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetSignList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetSignListResponse")>  _
+        Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/IsUsernameExist", ReplyAction:="http://tempuri.org/ICommonBusiness/IsUsernameExistResponse")>  _
         Function IsUsernameExist(ByVal Username As String) As Boolean
@@ -8261,6 +8516,9 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/UpdateUserStatus", ReplyAction:="http://tempuri.org/ICommonBusiness/UpdateUserStatusResponse")>  _
         Function UpdateUserStatus(ByVal Username As String, ByVal _ACTFLG As String, ByVal log As CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetOrganizationList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetOrganizationListResponse")>  _
+        Function GetOrganizationList() As System.Collections.Generic.List(Of CommonBusiness.OrganizationDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetOrganizationAll", ReplyAction:="http://tempuri.org/ICommonBusiness/GetOrganizationAllResponse")>  _
         Function GetOrganizationAll() As System.Collections.Generic.List(Of CommonBusiness.OrganizationDTO)
@@ -8416,10 +8674,6 @@ Namespace CommonBusiness
         Function GetUserOrganization(ByVal UserID As Decimal) As System.Collections.Generic.List(Of Decimal)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/DeleteUserOrganization", ReplyAction:="http://tempuri.org/ICommonBusiness/DeleteUserOrganizationResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.OtherListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.OtherListGroupDTO))),  _
@@ -8444,6 +8698,8 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.LdapDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_control_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.se_view_config_girdColumm_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ATTimeManualDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.PermissionDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.PermissionDTO)),  _
@@ -8478,6 +8734,10 @@ Namespace CommonBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.ComboBoxDataDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of CommonBusiness.FunctionGroupDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.FunctionGroupDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of String, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Integer, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.SystemConfigModuleID)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(CommonBusiness.AccessLogFilter)),  _
@@ -8555,12 +8815,6 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLearningLevel", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse")>  _
         Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse")>  _
-        Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetConfig", ReplyAction:="http://tempuri.org/ICommonBusiness/GetConfigResponse")>  _
-        Function GetConfig(ByVal eModule As CommonBusiness.SystemConfigModuleID) As System.Collections.Generic.Dictionary(Of String, String)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -8593,6 +8847,14 @@ Namespace CommonBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetHU_CompetencyList
+            Return MyBase.Channel.GetHU_CompetencyList(isBlank)
+        End Function
+        
+        Public Function GetConfig(ByVal eModule As CommonBusiness.SystemConfigModuleID) As System.Collections.Generic.Dictionary(Of String, String) Implements CommonBusiness.ICommonBusiness.GetConfig
+            Return MyBase.Channel.GetConfig(eModule)
+        End Function
         
         Public Function UpdateConfig(ByVal _lstConfig As System.Collections.Generic.Dictionary(Of String, String), ByVal eModule As CommonBusiness.SystemConfigModuleID) As Boolean Implements CommonBusiness.ICommonBusiness.UpdateConfig
             Return MyBase.Channel.UpdateConfig(_lstConfig, eModule)
@@ -8712,6 +8974,10 @@ Namespace CommonBusiness
         
         Public Function UpdateApproveProcessStatus(ByVal itemUpdates As System.Collections.Generic.List(Of Decimal), ByVal status As String) As Boolean Implements CommonBusiness.ICommonBusiness.UpdateApproveProcessStatus
             Return MyBase.Channel.UpdateApproveProcessStatus(itemUpdates, status)
+        End Function
+        
+        Public Function GetTitleList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO) Implements CommonBusiness.ICommonBusiness.GetTitleList
+            Return MyBase.Channel.GetTitleList
         End Function
         
         Public Function GetApproveSetupByEmployee(ByVal employeeId As Decimal, ByVal Sorts As String) As System.Collections.Generic.List(Of CommonBusiness.ApproveSetupDTO) Implements CommonBusiness.ICommonBusiness.GetApproveSetupByEmployee
@@ -8886,6 +9152,10 @@ Namespace CommonBusiness
             Return MyBase.Channel.GetATOrgPeriod(periodID)
         End Function
         
+        Public Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO) Implements CommonBusiness.ICommonBusiness.GetSignList
+            Return MyBase.Channel.GetSignList
+        End Function
+        
         Public Function IsUsernameExist(ByVal Username As String) As Boolean Implements CommonBusiness.ICommonBusiness.IsUsernameExist
             Return MyBase.Channel.IsUsernameExist(Username)
         End Function
@@ -8912,6 +9182,10 @@ Namespace CommonBusiness
         
         Public Function UpdateUserStatus(ByVal Username As String, ByVal _ACTFLG As String, ByVal log As CommonBusiness.UserLog) As Boolean Implements CommonBusiness.ICommonBusiness.UpdateUserStatus
             Return MyBase.Channel.UpdateUserStatus(Username, _ACTFLG, log)
+        End Function
+        
+        Public Function GetOrganizationList() As System.Collections.Generic.List(Of CommonBusiness.OrganizationDTO) Implements CommonBusiness.ICommonBusiness.GetOrganizationList
+            Return MyBase.Channel.GetOrganizationList
         End Function
         
         Public Function GetOrganizationAll() As System.Collections.Generic.List(Of CommonBusiness.OrganizationDTO) Implements CommonBusiness.ICommonBusiness.GetOrganizationAll
@@ -9208,14 +9482,6 @@ Namespace CommonBusiness
         
         Public Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetLearningLevel
             Return MyBase.Channel.GetLearningLevel(sLang, isBlank)
-        End Function
-        
-        Public Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetHU_CompetencyList
-            Return MyBase.Channel.GetHU_CompetencyList(isBlank)
-        End Function
-        
-        Public Function GetConfig(ByVal eModule As CommonBusiness.SystemConfigModuleID) As System.Collections.Generic.Dictionary(Of String, String) Implements CommonBusiness.ICommonBusiness.GetConfig
-            Return MyBase.Channel.GetConfig(eModule)
         End Function
     End Class
 End Namespace

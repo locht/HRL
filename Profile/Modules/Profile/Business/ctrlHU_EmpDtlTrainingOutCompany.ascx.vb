@@ -175,7 +175,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 
             Dim rep As New ProfileBusinessRepository
             Dim objEmployeeTrain As New HU_PRO_TRAIN_OUT_COMPANYDTO
-            objEmployeeTrain.EMPLOYEE_ID = EmployeeInfo.ID
+            objEmployeeTrain.EMPLOYEE_ID = If(EmployeeInfo Is Nothing, Nothing, EmployeeInfo.ID)
 
             Me.EmployeeTrain = rep.GetProcessTraining(objEmployeeTrain)
             rep.Dispose()
@@ -210,8 +210,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 
 
                 Case CommonMessage.STATE_NORMAL
-                    rdToiThang.SelectedDate = Nothing
-                    rdTuThang.SelectedDate = Nothing
+                    'rdToiThang.SelectedDate = Nothing
+                    'rdTuThang.SelectedDate = Nothing
                     rntGraduateYear.Text = ""
                     txtRemark.Text = ""
                     txtTrainingSchool.Text = ""

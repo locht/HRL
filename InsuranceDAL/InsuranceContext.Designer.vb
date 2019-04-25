@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3c732ef3-9a45-4569-a895-f9be224230cf")>
+<Assembly: EdmSchemaAttribute("32b18dbc-578e-490f-8445-bfa5b232e402")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HEE", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_EDUCATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_EDUCATION), True)>
@@ -20270,6 +20270,56 @@ Public Partial Class INS_SPECIFIED_OBJECTS
     End Sub
 
     Private Partial Sub OnHI_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BHTNLD_BNN_COM() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _BHTNLD_BNN_COM
+        End Get
+        Set
+            OnBHTNLD_BNN_COMChanging(value)
+            ReportPropertyChanging("BHTNLD_BNN_COM")
+            _BHTNLD_BNN_COM = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("BHTNLD_BNN_COM")
+            OnBHTNLD_BNN_COMChanged()
+        End Set
+    End Property
+
+    Private _BHTNLD_BNN_COM As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnBHTNLD_BNN_COMChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnBHTNLD_BNN_COMChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BHTNLD_BNN_EMP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _BHTNLD_BNN_EMP
+        End Get
+        Set
+            OnBHTNLD_BNN_EMPChanging(value)
+            ReportPropertyChanging("BHTNLD_BNN_EMP")
+            _BHTNLD_BNN_EMP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("BHTNLD_BNN_EMP")
+            OnBHTNLD_BNN_EMPChanged()
+        End Set
+    End Property
+
+    Private _BHTNLD_BNN_EMP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnBHTNLD_BNN_EMPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnBHTNLD_BNN_EMPChanged()
     End Sub
 
     #End Region

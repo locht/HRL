@@ -84,6 +84,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\Business\CommandResult.vb" />
+    <Compile Include="BusinessObjects\Business\TrainningEvaluateDTO.vb" />
+    <Compile Include="BusinessObjects\Business\TrainningManageDTO.vb" />
     <Compile Include="BusinessObjects\Business\EmployeeCriteriaRecordDTO.vb" />
     <Compile Include="BusinessObjects\Business\EmployeeCompetencyDTO.vb" />
     <Compile Include="BusinessObjects\Business\EmployeeAssessmentDTO.vb" />
@@ -103,6 +105,7 @@
     <Compile Include="BusinessObjects\Business\TerminateReasonDTO.vb" />
     <Compile Include="BusinessObjects\Business\MergeFieldDTO.vb" />
     <Compile Include="BusinessObjects\Business\Terminate3BDTO.vb" />
+    <Compile Include="BusinessObjects\Business\TrainningForeignDTO.vb" />
     <Compile Include="BusinessObjects\Business\WorkingBeforeDTOEdit.vb" />
     <Compile Include="BusinessObjects\Business\HU_PRO_TRAIN_OUT_COMPANYDTOEDIT.vb" />
     <Compile Include="BusinessObjects\Business\EmployeeEditDTO.vb" />

@@ -7,6 +7,7 @@
     Public Property FULLNAME_VN As String
     Public Property FIRST_NAME_EN As String
     Public Property LAST_NAME_EN As String
+    Public Property BIRTH_DATE As Date?
     Public Property FULLNAME_EN As String
     Public Property ORG_ID As Decimal
     Public Property ORG_NAME As String

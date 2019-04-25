@@ -601,9 +601,46 @@ Public Class ProfileRepository
                         .NAME_EN = p.NAME_EN}).ToList
             _combolistDTO.LIST_REASON = query
         End If
+        If _combolistDTO.GET_TYPE_WORK Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.ID = 2255)
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_TYPE_WORK = query
+        End If
+        If _combolistDTO.GET_RANK Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.ID = 2258)
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_RANK = query
+        End If
+        If _combolistDTO.GET_CAPACITY Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.ID = 2259)
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_CAPACITY = query
+        End If
 
-
-
+        If _combolistDTO.GET_EVALUATE Then
+            query = (From p In Context.PE_PERIOD
+                     From t In Context.OT_OTHER_LIST.Where(Function(t) t.ID = p.TYPE_ASS)
+                     Order By p.NAME
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME}).ToList
+            _combolistDTO.LIST_EVALUATE = query
+        End If
         'Loại NGHĨ
         'list ALLOWANCE
         If _combolistDTO.GET_WORKING_ALLOWANCE_LIST Then

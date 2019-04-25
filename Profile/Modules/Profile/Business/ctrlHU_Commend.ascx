@@ -135,7 +135,7 @@
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">
-                        <ClientEvents OnGridCreated="GridCreated" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <HeaderStyle Width="120px" />
@@ -169,9 +169,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_Commend_RadSplitter3');
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_Commend_RadSplitter3');
+//        }
 
         function OpenNew() {
             window.open('/Default.aspx?mid=Profile&fid=ctrlHU_CommendNewEdit&group=Business&FormType=0', "_self"); /*

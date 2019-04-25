@@ -756,7 +756,7 @@ Public Class ctrlHU_ContractNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            txtUploadFile.Text = ""
+            txtUpload.Text = ""
             Dim listExtension = New List(Of String)
             listExtension.Add(".xls")
             listExtension.Add(".xlsx")
@@ -795,11 +795,11 @@ Public Class ctrlHU_ContractNewEdit
     End Sub
 
     Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
-         Dim startTime As DateTime = DateTime.UtcNow
+        Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            If txtUploadFile.Text <> "" Then
-                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/ContractAttachFile/" + txtUploadFile.Text)
+            If txtUpload.Text <> "" Then
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/ContractAttachFile/" + txtUpload.Text)
                 ZipFiles(strPath_Down, 2)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -818,9 +818,9 @@ Public Class ctrlHU_ContractNewEdit
         Try
             Dim fileNameZip As String
             If _ID = 1 Then
-                fileNameZip = txtUploadFile.Text.Trim
+                fileNameZip = txtUpload.Text.Trim
             Else
-                fileNameZip = txtUploadFile.Text.Trim
+                fileNameZip = txtUpload.Text.Trim
             End If
             Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
             Response.Clear()

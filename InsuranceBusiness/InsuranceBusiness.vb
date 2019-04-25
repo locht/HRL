@@ -481,6 +481,7 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , ByVal si As Double? _
                                             , ByVal hi As Double? _
                                             , ByVal ui As Double? _
+                                            , ByVal tnld_bnn As Double? _
                                             ) As Double _
                  Implements ServiceContracts.IInsuranceBusiness.UpdateInsArisingManual
             Try
@@ -527,7 +528,8 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , .P_A_UI = IIf(a_ui Is Nothing, System.DBNull.Value, a_ui) _
                                             , .P_SI = IIf(si Is Nothing, System.DBNull.Value, si) _
                                             , .P_HI = IIf(hi Is Nothing, System.DBNull.Value, hi) _
-                                            , .P_UI = IIf(ui Is Nothing, System.DBNull.Value, ui)
+                                            , .P_UI = IIf(ui Is Nothing, System.DBNull.Value, ui) _
+                                            , .P_TNLD_BNN = IIf(tnld_bnn Is Nothing, System.DBNull.Value, tnld_bnn)
                                             })
 
                 Return 1

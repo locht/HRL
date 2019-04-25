@@ -45,6 +45,13 @@
                         ToolTip="Bạn phải chọn Mối quan hệ">
                     </asp:CustomValidator>
                 </td>
+                <td class="lb">
+                    <asp:Label ID="lbNguyenQuan" runat="server" Text="Nguyên quán"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
+                    </tlk:RadComboBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -64,23 +71,6 @@
                     <tlk:RadTextBox runat="server" ID="txtIDNO" SkinID="Textbox15">
                     </tlk:RadTextBox>
                 </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label ID="lbAdress" runat="server" Text="Địa chỉ thường trú"></asp:Label>
-                </td>
-                <td colspan="3">
-                    <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
-                </td>                
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label ID="lbNguyenQuan" runat="server" Text="Nguyên quán"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
-                    </tlk:RadComboBox>
-                </td>
                 <td class="lb">
                     <asp:Label ID="lbCareer" runat="server" Text="Nghề nghiệp"></asp:Label>
                 </td>
@@ -91,17 +81,16 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <asp:Label ID="lbAdress" runat="server" Text="Địa chỉ thường trú"></asp:Label>
+                </td>
+                <td colspan="3">
+                    <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
+                </td>
+                <td class="lb">
                     <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox15">
-                    </tlk:RadTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label ID="lbTax" runat="server" Text="Mã số thuế"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -117,6 +106,13 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdDeductReg">
                     </tlk:RadDatePicker>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbTax" runat="server" Text="Mã số thuế"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>
@@ -202,7 +198,7 @@
             </MasterTableView>
             <ClientSettings>
                 <Selecting AllowRowSelect="True" />
-                <ClientEvents OnGridCreated="GridCreated" />
+                <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
         </tlk:RadGrid>
@@ -233,9 +229,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut(splitterID);
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut(splitterID);
+//        }
 
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
@@ -244,18 +240,18 @@
             } else if (item.get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
                 if (!Page_ClientValidate(""))
-                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgFamily', pane3ID, pane4ID);
+                    ResizeSplitter();
                 else
-                    ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                    ResizeSplitterDefault();
             } else {
                 // Nếu nhấn các nút khác thì resize default
-                ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
+                ResizeSplitterDefault();
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_RadSplitter2');
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_RadSplitter2');
+//        }
 
         function clRadDatePicker() {
             $('#ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_rdBirthDate_dateInput').val('');
@@ -263,6 +259,29 @@
             $('#ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_rdDeductFrom_dateInput').val('');
             $('#ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_rdDeductTo_dateInput').val('');
         }
+        // Hàm Resize lại Splitter khi nhấn nút SAVE có validate
+        function ResizeSplitter() {
+            setTimeout(function () {
+                var splitter = $find("<%= RadSplitter2.ClientID%>");
+                var pane = splitter.getPaneById('<%= RightPane.ClientID %>');
+                var height = pane.getContentElement().scrollHeight;
+                splitter.set_height(splitter.get_height() + pane.get_height() - height);
+                pane.set_height(height);
+            }, 200);
+        }
 
+        // Hàm khôi phục lại Size ban đầu cho Splitter
+        function ResizeSplitterDefault() {
+            var splitter = $find("<%= RadSplitter2.ClientID%>");
+            var pane = splitter.getPaneById('<%= RightPane.ClientID %>');
+            if (oldSize == 0) {
+                oldSize = pane.getContentElement().scrollHeight;
+            } else {
+                var pane2 = splitter.getPaneById('<%= RadPane4.ClientID %>');
+                splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
+                pane.set_height(oldSize);
+                pane2.set_height(splitter.get_height() - oldSize - 1);
+            }
+        }
     </script>
 </tlk:RadScriptBlock>

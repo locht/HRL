@@ -291,6 +291,64 @@ Public Class ExcelCommon
         End Try
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="filePath"></param>
+    ''' <param name="fileName"></param>
+    ''' <param name="dsData"></param>
+    ''' <param name="sheetNumber"></param>
+    ''' <param name="Response"></param>
+    ''' <param name="_error">
+    ''' 1 - Temp không tồn tại
+    ''' 2 - Data không tồn tại
+    ''' </param>
+    ''' <param name="type">
+    ''' 0 - Excel
+    ''' 1 - Pdf</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function ExportExcelTemplate(ByVal filePath As String, ByVal fileName As String,
+                                        ByVal dsData As DataSet,
+                                        ByVal Response As System.Web.HttpResponse,
+                                        ByVal sheetNumber As Integer,
+                                        Optional ByRef _error As String = "",
+                                        Optional ByVal type As ExportType = ExportType.Excel) As Boolean
+        Dim designer As WorkbookDesigner
+        Try
+            If Not File.Exists(filePath) Then
+                _error = 1
+                Return False
+            End If
+            If dsData Is Nothing OrElse (dsData IsNot Nothing AndAlso dsData.Tables.Count = 0) Then
+                _error = 2
+                Return False
+            End If
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            Dim sheet As Worksheet = designer.Workbook.Worksheets(sheetNumber)
+            sheet.Cells.ImportDataTable(dsData.Tables(0), False, 1, 0)
+            sheet.Cells.ImportDataTable(dsData.Tables(1), False, 1, 2, False)
+            sheet.Cells.ImportDataTable(dsData.Tables(2), False, 1, 4, False)
+            sheet.Cells.ImportDataTable(dsData.Tables(3), False, 1, 6, False)
+            sheet.Cells.ImportDataTable(dsData.Tables(4), False, 1, 8, False)
+            designer.SetDataSource(dsData)
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            With designer.Workbook
+                .CalculateFormula()
+                Select Case type
+                    Case ExportType.Excel
+                        .Save(Response, fileName & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+                    Case ExportType.PDF
+                        .Save(Response, fileName & ".pdf", ContentDisposition.Attachment, New OoxmlSaveOptions(FileFormatType.Pdf))
+                End Select
+            End With
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     ''' <summary>
     ''' 

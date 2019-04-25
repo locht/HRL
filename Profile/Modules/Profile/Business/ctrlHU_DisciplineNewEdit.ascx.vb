@@ -184,6 +184,10 @@ Public Class ctrlHU_DisciplineNewEdit
                         Me.ViewDescription = Translate("Sửa kỷ luật")
                 End Select
             End If
+            If Not IsPostBack Then
+                ViewConfig(RadPane2)
+                GirdConfig(rgEmployee)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -622,30 +626,29 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
 
     End Sub
-    ''' <lastupdate>
-    ''' 11/07/2017 13:40
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien click khi click vao btnFindSigner
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Protected Sub btnFindSinger_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindSinger.Click
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            isLoadPopup = 3
-            UpdateControlState()
-            ctrlFindSigner.MustHaveContract = False
-            ctrlFindSigner.Show()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-    ''' <lastupdate>
+    ' ''' <lastupdate>
+    ' ''' 11/07/2017 13:40
+    ' ''' </lastupdate>
+    ' ''' <summary>
+    ' ''' Xu ly su kien click khi click vao btnFindSigner
+    ' ''' </summary>
+    ' ''' <param name="sender"></param>
+    ' ''' <param name="e"></param>
+    ' ''' <remarks></remarks>
+    'Protected Sub btnFindSinger_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindSinger.Click
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        isLoadPopup = 3
+    '        UpdateControlState()
+    '        ctrlFindSigner.MustHaveContract = False
+    '        ctrlFindSigner.Show()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     ''' 11/07/2017 13:40
     ''' </lastupdate>
     ''' <summary>

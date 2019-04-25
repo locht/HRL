@@ -1314,7 +1314,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 txtEmployeeName.Text = obj.EMPLOYEE_NAME
                 txtTitleNameOld.Text = obj.TITLE_NAME
                 txtDecisionold.Text = obj.DECISION_NO
-                txtDecision.Text = obj.DECISION_NO
+                'txtDecision.Text = obj.DECISION_NO
                 txtDecisionTypeOld.Text = obj.DECISION_TYPE_NAME
                 txtOrgNameOld.Text = obj.ORG_NAME
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
@@ -1343,7 +1343,14 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
                     cboDecisionType.Text = obj.DECISION_TYPE_NAME
                 End If
-
+                If IsNumeric(obj.OBJECT_ATTENDANCE) Then
+                    cbOBJECT_ATTENDANCE.SelectedValue = obj.OBJECT_ATTENDANCE
+                End If
+                If IsDate(obj.FILING_DATE) Then
+                    rdFILING_DATE.SelectedDate = obj.FILING_DATE
+                    rdFILING_DATE_OLD.SelectedDate = obj.FILING_DATE
+                End If
+                rtOBJECT_ATTENDANCE_OLD.Text = obj.OBJECT_ATTENDANCE_NAME
             End Using
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

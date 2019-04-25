@@ -90,4 +90,35 @@
     Public Property WARDEMP_NAME As String
     Public Property PROVINCENQ_ID As Decimal?
     Public Property PROVINCENQ_NAME As String
+    Public Property OPPTION1 As String
+    Public Property OPPTION2 As String
+    Public Property OPPTION3 As String
+    Public Property OPPTION4 As String
+    Public Property OPPTION5 As String
+    Public Property OPPTION6 As Date?
+    Public Property OPPTION7 As Date?
+    Public Property OPPTION8 As Date?
+    Public Property OPPTION9 As Date?
+    Public Property OPPTION10 As Date?
+    Public Property GD_CHINH_SACH As Decimal?
+    Public Property HANG_THUONG_BINH As Decimal?
+    Public Property THUONG_BINH As Boolean?
+    Public Property DV_XUAT_NGU_QD As String
+    Public Property NGAY_XUAT_NGU_QD As Date?
+    Public Property NGAY_NHAP_NGU_QD As Date?
+    Public Property QD As Boolean?
+    Public Property DV_XUAT_NGU_CA As String
+    Public Property NGAY_XUAT_NGU_CA As Date?
+    Public Property NGAY_NHAP_NGU_CA As Date?
+    Public Property NGAY_TG_BAN_NU_CONG As Date?
+    Public Property CV_BAN_NU_CONG As String
+    Public Property NU_CONG As Boolean?
+    Public Property NGAY_TG_BANTT As Date?
+    Public Property CV_BANTT As String
+    Public Property CONG_DOAN As Boolean?
+    Public Property CA As Boolean?
+    Public Property DANG As Boolean?
+    Public Property SKILL As String
+    Public Property NGAY_VAO_DANG_DB As Date?
+   
 End Class

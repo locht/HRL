@@ -3,6 +3,8 @@ Imports Framework.UI.Utilities
 Imports Telerik.Web.UI
 Imports Common.CommonBusiness
 Imports WebAppLog
+Imports HistaffFrameworkPublic
+Imports System.IO
 
 Public Class ctrlApproveTemplate
     Inherits CommonView
@@ -10,6 +12,8 @@ Public Class ctrlApproveTemplate
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Common/Modules/Common/ApproveProcess/" + Me.GetType().Name.ToString()
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
+    Private rep As New CommonProcedureNew
+    Dim user As UserLog
 
 #Region "Propety"
     ''' <lastupdate>
@@ -440,6 +444,16 @@ Public Class ctrlApproveTemplate
                     Me.CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
                     'Lưu thông tin
+                Case CommonMessage.TOOLBARITEM_EXPORT
+                    Using xls As New ExcelCommon
+                        Dim dt As DataTable = rep.GET_ALL_APPROVE()
+                        If dt.Rows.Count > 0 Then
+                            xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve.xls"), "DanhSachPheDuyet", dt, Response)
+                        Else
+                            ShowMessage(Translate("Không có dữ liệu để xuất danh sách"), Utilities.NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    End Using
                 Case CommonMessage.TOOLBARITEM_SAVE
 
                     If Not Page.IsValid Then
@@ -455,7 +469,7 @@ Public Class ctrlApproveTemplate
                             .APP_TYPE = cboAppType.SelectedIndex
                             .APP_LEVEL = nntxtAppLevel.Value.ToString.Trim
                             .TEMPLATE_ID = Decimal.Parse(CType(rgTemplate.SelectedItems(0), GridDataItem).GetDataKeyValue("ID").ToString)
-                            .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value.ToString.Trim)
+                            .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value)
                             .INFORM_EMAIL = txtInformEmail.Text.ToString.Trim
 
                             If .APP_TYPE = 1 Then
@@ -485,7 +499,7 @@ Public Class ctrlApproveTemplate
                                 .APP_TYPE = cboAppType.SelectedIndex
                                 .APP_LEVEL = nntxtAppLevel.Value.ToString.Trim
 
-                                .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value.ToString.Trim)
+                                .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value)
                                 .INFORM_EMAIL = txtInformEmail.Text.ToString.Trim
                                 If .APP_TYPE = 1 Then
                                     .APP_ID = Decimal.Parse(hidEmployeeID.Value)
@@ -521,6 +535,15 @@ Public Class ctrlApproveTemplate
                     UpdateControlState()
                     ShowTemplateDetail()
                     'Xóa
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    Using xls As New ExcelCommon
+                        Dim dt As DataTable = New DataTable
+                        Dim ds As DataSet = New DataSet
+                        xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve/Import_Template_Phe_Duyet.xls"), "Template phê duyệt", ds, dt, Response)
+                    End Using
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload1.isMultiple = False
+                    ctrlUpload1.Show()
                 Case CommonMessage.TOOLBARITEM_DELETE
                     Dim idDelete = CType(rgDetail.SelectedItems(0), GridDataItem).GetDataKeyValue("ID")
 
@@ -813,11 +836,19 @@ Public Class ctrlApproveTemplate
                                         ToolbarItem.Edit, ToolbarItem.Seperator,
                                         ToolbarItem.Save,
                                         ToolbarItem.Cancel, ToolbarItem.Seperator,
+                                        ToolbarItem.Export,
+                                        ToolbarItem.Next,
+                                        ToolbarItem.Import, ToolbarItem.Seperator,
                                         ToolbarItem.Delete)
 
             CType(tbarTemplateDetail.Items(3), RadToolBarButton).CausesValidation = True
 
             SetStatusToolbar(tbarTemplateDetail, CommonMessage.STATE_NORMAL)
+            'Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.MainToolBar.Items(7), RadToolBarButton).Text = Translate("Xuất file mẫu")
+            CType(Me.MainToolBar.Items(7), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(6), RadToolBarButton).ImageUrl
+            CType(Me.MainToolBar.Items(8), RadToolBarButton).Text = Translate("Nhập file mẫu")
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -877,6 +908,10 @@ Public Class ctrlApproveTemplate
             If stateToAll.HasValue Then
                 For Each item As RadToolBarItem In _tbar.Items
                     item.Enabled = stateToAll.Value
+                    Select Case CType(item, RadToolBarButton).CommandName
+                        Case CommonMessage.TOOLBARITEM_EXPORT, CommonMessage.TOOLBARITEM_NEXT, CommonMessage.TOOLBARITEM_IMPORT
+                            item.Enabled = True
+                    End Select
                 Next
                 Exit Sub
             End If
@@ -936,6 +971,125 @@ Public Class ctrlApproveTemplate
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Try
+            Import_Data()
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub Import_Data()
+        Try
+            user = LogHelper.GetUserLog
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                ds = ExcelPackage.ReadExcelToDataSet(fileName, False)
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+
+            Dim message As String = TableMapping(ds.Tables(0))
+            If message <> "" Then
+                ShowMessage(Translate(message), NotifyType.Error)
+                Return
+            End If
+
+            If ds.Tables(0).Rows.Count > 2 Then
+                'Bo qa title, header va 2 dong example data
+                For i As Integer = 2 To ds.Tables(0).Rows.Count - 1
+                    Dim dr As DataRow = ds.Tables(0).Rows(i)
+                    Dim template_type = dr(3).ToString().Trim()
+                    If Not IsDBNull(dr(1)) AndAlso Not IsDBNull(dr(2)) AndAlso Not IsDBNull(template_type) Then
+                        Dim temp_template_type As Integer = Integer.Parse(template_type)
+                        If dr(4).ToString().Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 1, dr(4), user)
+                        End If
+                        If dr(5).ToString().Trim() <> "" AndAlso dr(4).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 2, dr(5), user)
+                        End If
+                        If dr(6).ToString().Trim() <> "" AndAlso dr(5).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 3, dr(6), user)
+                        End If
+                        If dr(7).ToString().Trim() <> "" AndAlso dr(6).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 4, dr(7), user)
+                        End If
+                        If dr(8).ToString().Trim() <> "" AndAlso dr(7).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 5, dr(8), user)
+                        End If
+                        If dr(9).ToString().Trim() <> "" AndAlso dr(8).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 6, dr(9), user)
+                        End If
+                        If dr(10).ToString().Trim() <> "" AndAlso dr(9).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 7, dr(10), user)
+                        End If
+                        If dr(11).ToString().Trim() <> "" AndAlso dr(10).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 8, dr(11), user)
+                        End If
+                        If dr(12).ToString().Trim() <> "" AndAlso dr(11).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 9, dr(12), user)
+                        End If
+                        If dr(13).ToString().Trim() <> "" AndAlso dr(12).ToString.Trim() <> "" Then
+                            rep.IMPORT_APPROVE(dr(1), dr(2), temp_template_type, 10, dr(13), user)
+                        End If
+                    End If
+
+                Next
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                rgTemplate.Rebind()
+                rgDetail.Rebind()
+            End If
+        Catch ex As Exception
+            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Function TableMapping(ByVal dtTemp As System.Data.DataTable) As String
+        Dim message As String = ""
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "STT"
+        dtTemp.Columns(1).ColumnName = "TEMPLATE_ID"
+        dtTemp.Columns(2).ColumnName = "TEMPLATE_NAME"
+        dtTemp.Columns(3).ColumnName = "TEMPLATE_TYPE"
+        dtTemp.Columns(4).ColumnName = "APP_LEVEL_1"
+        dtTemp.Columns(5).ColumnName = "APP_LEVEL_2"
+        dtTemp.Columns(6).ColumnName = "APP_LEVEL_3"
+        dtTemp.Columns(7).ColumnName = "APP_LEVEL_4"
+        dtTemp.Columns(8).ColumnName = "APP_LEVEL_5"
+        dtTemp.Columns(9).ColumnName = "APP_LEVEL_6"
+        dtTemp.Columns(10).ColumnName = "APP_LEVEL_7"
+        dtTemp.Columns(11).ColumnName = "APP_LEVEL_8"
+        dtTemp.Columns(12).ColumnName = "APP_LEVEL_9"
+        dtTemp.Columns(13).ColumnName = "APP_LEVEL_10"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        'Neu template empty thi xoa row do,
+        For i As Integer = dtTemp.Rows.Count - 1 To 1 Step -1 'dtTemp.Rows.Count - 1 To 1 => vi da xoa rows(0) o tren
+            If IsDBNull(dtTemp.Rows(i)(1)) AndAlso IsDBNull(dtTemp.Rows(i)(2)) AndAlso IsDBNull(dtTemp.Rows(i)(3)) AndAlso IsDBNull(dtTemp.Rows(i)(4)) Then
+                dtTemp.Rows(i).Delete()
+            Else
+                If IsDBNull(dtTemp.Rows(i)(1)) OrElse IsDBNull(dtTemp.Rows(i)(2)) OrElse IsDBNull(dtTemp.Rows(i)(3)) OrElse IsDBNull(dtTemp.Rows(i)(4)) Then
+                    message = "Vui lòng nhập đầy đủ các cột màu đỏ."
+                    Exit For
+                End If
+            End If
+        Next
+
+        dtTemp.AcceptChanges()
+        Return message
+    End Function
+
 #End Region
 
 End Class

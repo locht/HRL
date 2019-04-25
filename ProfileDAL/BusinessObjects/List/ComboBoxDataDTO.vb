@@ -7,6 +7,11 @@
     Public Property GET_REASON As Boolean
     Public Property LIST_REASON As List(Of OtherListDTO)
 
+    
+
+    'Loại công tác.
+    Public Property GET_TYPE_WORK As Boolean
+    Public Property LIST_TYPE_WORK As List(Of OtherListDTO)
 
     'list phụ câp.
     Public Property GET_WORKING_ALLOWANCE_LIST As Boolean
@@ -258,5 +263,13 @@
     ''' <remarks></remarks>
     Public Property GET_TITLE_LEVEL As Boolean
     Public Property LIST_TITLE_LEVEL As List(Of OtherListDTO)
-
+    'Danh sách ki danh giá
+    Public Property GET_EVALUATE As Boolean
+    Public Property LIST_EVALUATE As List(Of OtherListDTO)
+    'Danh sách XEP LOAI
+    Public Property GET_RANK As Boolean
+    Public Property LIST_RANK As List(Of OtherListDTO)
+    'Danh sách NANG LUC
+    Public Property GET_CAPACITY As Boolean
+    Public Property LIST_CAPACITY As List(Of OtherListDTO)
 End Class

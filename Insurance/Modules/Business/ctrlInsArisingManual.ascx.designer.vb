@@ -212,6 +212,15 @@ Partial Public Class ctrlInsArisingManual
     Protected WithEvents chkUI As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''chkTNLD_BNN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkTNLD_BNN As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''txtSALARY_PRE_PERIOD control.
     '''</summary>
     '''<remarks>

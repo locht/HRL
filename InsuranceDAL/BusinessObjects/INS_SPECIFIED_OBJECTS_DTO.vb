@@ -12,6 +12,8 @@
     Public Property HI_EMP As Decimal?
     Public Property UI_COM As Decimal?
     Public Property UI_EMP As Decimal?
+    Public Property BHTNLD_BNN_COM As Decimal?
+    Public Property BHTNLD_BNN_EMP As Decimal?
     Public Property SICK As Decimal?
     Public Property MATERNITY As Decimal?
     Public Property OFF_IN_HOUSE As Decimal?

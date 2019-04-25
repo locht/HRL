@@ -9,6 +9,7 @@
         <Item Value="ctrlHU_ContractAppendix" Text="Quản lý phụ lục hợp đồng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ContractAppendix&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_ChangeInfoMng"  Text="Quản lý quyết định" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ChangeInfoMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Discipline" Text="Quản lý kỷ luật" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Discipline&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlHU_EmpInfomations" Text="Xem thông tin nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_EmpInfomations&amp;group=Business" CheckPermission="true"/>
         <Item Text="Phúc lợi"  PostBack="False">
           <Group>
             <Item Value="ctrlHU_WelfareMng" Text="Quản lý phúc lợi cá nhân" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_WelfareMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
@@ -27,6 +28,8 @@
           </Group>
         </Item>
         <Item Value="ctrlHU_TranningForeign" Text="Quản lý đi công tác" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TranningForeign&amp;group=Business" CheckPermission="true" CausesValidation="False" />
+        <Item Value="ctrlHU_TraniningManagement" Text="Quản lý đi đào tạo" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TraniningManagement&amp;group=Business" CheckPermission="true" CausesValidation="False" />
+        <Item Value="ctrlHU_TranningEvaluate" Text="Quản lý đánh giá" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_TranningEvaluate&amp;group=Business" CheckPermission="true" CausesValidation="False" />
       </Group>
     </Item>
 

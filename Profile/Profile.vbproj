@@ -169,6 +169,11 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDashboardPortalSixCell.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBEmployeeReg.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_Allowance.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ContractAppendix.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ContractTemplete.ascx" />
@@ -186,6 +191,8 @@
     <Content Include="Modules\Profile\Business\ctrlHU_ApproveEmployee_Edit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ApproveFamily_Edit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_AssetMngNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TrainingForeignNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_TranningForeign.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_WelfareMngAuto.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_AssetMng.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlHistory.ascx" />
@@ -640,6 +647,41 @@
       <DependentUpon>ctrlHU_CompetencyAss.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx.designer.vb">
+      <DependentUpon>ctrlHU_EmpInfomations.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx.vb">
+      <DependentUpon>ctrlHU_EmpInfomations.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TrainingEvaluateNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx.vb">
+      <DependentUpon>ctrlHU_TrainingEvaluateNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TranningEvaluate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx.vb">
+      <DependentUpon>ctrlHU_TranningEvaluate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TrainingManageNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingManageNewEdit.ascx.vb">
+      <DependentUpon>ctrlHU_TrainingManageNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TraniningManagement.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TraniningManagement.ascx.vb">
+      <DependentUpon>ctrlHU_TraniningManagement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_Allowance.ascx.designer.vb">
       <DependentUpon>ctrlHU_Allowance.ascx</DependentUpon>
     </Compile>
@@ -757,6 +799,20 @@
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_AssetMngNewEdit.ascx.vb">
       <DependentUpon>ctrlHU_AssetMngNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingForeignNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TrainingForeignNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TrainingForeignNewEdit.ascx.vb">
+      <DependentUpon>ctrlHU_TrainingForeignNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TranningForeign.ascx.designer.vb">
+      <DependentUpon>ctrlHU_TranningForeign.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_TranningForeign.ascx.vb">
+      <DependentUpon>ctrlHU_TranningForeign.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_WelfareMngAuto.ascx.designer.vb">

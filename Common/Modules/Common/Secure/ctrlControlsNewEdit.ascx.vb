@@ -186,6 +186,7 @@ Public Class ctrlControlsNewEdit
                     dtCtrl.Columns.Add("Is_Validator", GetType(Boolean))
                     dtCtrl.Columns.Add("ErrorMessage", GetType(String))
                     dtCtrl.Columns.Add("ErrorToolTip", GetType(String))
+                    dtCtrl.Columns.Add("Validator_ID", GetType(String))
                     For Each item_Ctrl As GridDataItem In rgListControls.EditItems
                         Dim rw_new As DataRow = dtCtrl.NewRow
                         Dim edit = CType(item_Ctrl, GridEditableItem)
@@ -196,6 +197,7 @@ Public Class ctrlControlsNewEdit
                         rw_new("Is_Validator") = If(CType(edit("Is_Validator").Controls(0), CheckBox).Checked, True, False)
                         rw_new("ErrorMessage") = CType(edit("ErrorMessage").Controls(0), TextBox).Text
                         rw_new("ErrorToolTip") = CType(edit("ErrorTooltip").Controls(0), TextBox).Text
+                        rw_new("Validator_ID") = CType(edit("Validator_ID").Controls(0), TextBox).Text
                         dtCtrl.Rows.Add(rw_new)
                     Next
 
@@ -207,11 +209,13 @@ Public Class ctrlControlsNewEdit
                     dtGrid.Columns.Add("Is_Visible", GetType(Boolean))
                     dtGrid.Columns.Add("Width", GetType(Integer))
                     dtGrid.Columns.Add("Orderby", GetType(Integer))
+                    dtGrid.Columns.Add("DataType", GetType(String))
                     For Each item_Grid As GridDataItem In rgListGrid.EditItems
                         Dim rw_new As DataRow = dtGrid.NewRow
                         Dim edit = CType(item_Grid, GridEditableItem)
                         rw_new("ID") = CType(edit("ID").Controls(0), TextBox).Text
                         rw_new("Name") = CType(edit("Name").Controls(0), TextBox).Text
+                        rw_new("DataType") = CType(edit("DataType").Controls(0), TextBox).Text
                         rw_new("Is_Visible") = If(CType(edit("Is_Visible").Controls(0), CheckBox).Checked, True, False)
                         rw_new("Width") = CType(edit("Width").Controls(0), TextBox).Text
                         If IsNumeric(rw_new("Width")) = False Then

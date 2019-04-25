@@ -930,6 +930,8 @@
             <Property Name="SALARY_MIN" Type="number" Nullable="true" Precision="38" />
             <Property Name="SI_DATE" Type="number" Nullable="true" Precision="38" />
             <Property Name="HI_DATE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BHTNLD_BNN_COM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BHTNLD_BNN_EMP" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_WORKING_ALLOW1">
             <Key>
@@ -2628,6 +2630,8 @@
           <Property Type="Decimal" Name="SALARY_MIN" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="SI_DATE" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="HI_DATE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BHTNLD_BNN_COM" Nullable="true" />
+          <Property Type="Decimal" Name="BHTNLD_BNN_EMP" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_WORKING_ALLOW1">
           <Key>
@@ -3677,6 +3681,8 @@
                     <ScalarProperty Name="SALARY_MIN" ColumnName="SALARY_MIN" />
                     <ScalarProperty Name="SI_DATE" ColumnName="SI_DATE" />
                     <ScalarProperty Name="HI_DATE" ColumnName="HI_DATE" />
+                    <ScalarProperty Name="BHTNLD_BNN_COM" ColumnName="BHTNLD_BNN_COM" />
+                    <ScalarProperty Name="BHTNLD_BNN_EMP" ColumnName="BHTNLD_BNN_EMP" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4066,7 +4072,7 @@
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_CV" Width="2" PointX="12.75" PointY="8.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_ALLOW" Width="1.75" PointX="12.75" PointY="10.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_MAX" Width="2" PointX="10.75" PointY="12.875" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.INS_SPECIFIED_OBJECTS" Width="1.5" PointX="13.75" PointY="2.875" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_SPECIFIED_OBJECTS" Width="1.5" PointX="13.75" PointY="1.625" Height="6.787822265625" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_ALLOW1" Width="1.5" PointX="13.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_INFOOLD" Width="1.5" PointX="10.75" PointY="10.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_INFORMATION" Width="1.875" PointX="7.75" PointY="12.75" Height="0.4" IsExpanded="false" />

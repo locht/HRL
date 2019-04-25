@@ -7,6 +7,175 @@ Imports System.Configuration
 
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
+#Region "TRANINGEVALUATE"
+        Public Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal PageIndex As Integer,
+                         ByVal PageSize As Integer,
+                         ByRef Total As Integer, ByVal _param As ParamDTO,
+                         Optional ByVal Sorts As String = "CREATED_DATE desc",
+                         Optional ByVal log As UserLog = Nothing) As List(Of TrainningEvaluateDTO) _
+                             Implements ServiceContracts.IProfileBusiness.GetTrainingEvaluate
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingEvaluate(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.InsertTrainingEvaluate
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertTrainingEvaluate(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.ModifyTrainingEvaluate
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyTrainingEvaluate(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetTrainingEvaluateByID(ByVal _filter As TrainningEvaluateDTO) As TrainningEvaluateDTO _
+                                  Implements ServiceContracts.IProfileBusiness.GetTrainingEvaluateByID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingEvaluateById(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeleteTrainingEvaluate(ByVal objContract As TrainningEvaluateDTO) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.DeleteTrainingEvaluate
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteTrainingEvaluate(objContract)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+#Region "training manage"
+        Public Function GetTrainingManage(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
+                               ByVal PageSize As Integer,
+                               ByRef Total As Integer, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc",
+                               Optional ByVal log As UserLog = Nothing) As List(Of TrainningManageDTO) _
+                                   Implements ServiceContracts.IProfileBusiness.GetTrainingManage
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingManage(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertTrainingManage(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.InsertTrainingManage
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertTrainingManage(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyTrainingManage(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.ModifyTrainingManage
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyTrainingManage(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetTrainingManageByID(ByVal _filter As TrainningManageDTO) As TrainningManageDTO _
+                                  Implements ServiceContracts.IProfileBusiness.GetTrainingManageByID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingManageById(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteTrainingManage(ByVal objContract As TrainningManageDTO) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.DeleteTrainingManage
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteTrainingManage(objContract)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+#Region "traningforeign"
+        Public Function GetTrainingForeign(ByVal _filter As TrainningForeignDTO, ByVal PageIndex As Integer,
+                               ByVal PageSize As Integer,
+                               ByRef Total As Integer, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc",
+                               Optional ByVal log As UserLog = Nothing) As List(Of TrainningForeignDTO) _
+                                   Implements ServiceContracts.IProfileBusiness.GetTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingForeign(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertTrainingForeign(ByVal objContract As TrainningForeignDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.InsertTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertTrainingForeign(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyTrainingForeign(ByVal objContract As TrainningForeignDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.ModifyTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyTrainingForeign(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetTrainingForeignByID(ByVal _filter As TrainningForeignDTO) As TrainningForeignDTO _
+                                  Implements ServiceContracts.IProfileBusiness.GetTrainingForeignByID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingForeignById(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeleteTrainingForeign(ByVal objContract As TrainningForeignDTO) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.DeleteTrainingForeign
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteTrainingForeign(objContract)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 
         Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,

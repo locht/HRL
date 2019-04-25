@@ -38388,4 +38388,12 @@ Xin cám ơn!
       <string>Thông tin phụ lục hợp đồng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_EMPINFOMATIONS</string>
+    </Key>
+    <Value>
+      <string>Xem thông tin nhân viên</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

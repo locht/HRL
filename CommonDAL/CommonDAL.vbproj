@@ -85,6 +85,7 @@
     <Compile Include="BusinessObjects\ApproveProcess\ApproveTemplateDTO.vb" />
     <Compile Include="BusinessObjects\ApproveProcess\ApproveUserDTO.vb" />
     <Compile Include="BusinessObjects\ApproveProcess\ATRegSearchDTO.vb" />
+    <Compile Include="BusinessObjects\ApproveProcess\ATTimeManualDTO.vb" />
     <Compile Include="BusinessObjects\ApproveProcess\EmployeeDTO.vb" />
     <Compile Include="BusinessObjects\List\ComboBoxDataDTO.vb" />
     <Compile Include="BusinessObjects\List\CurrencyDTO.vb" />

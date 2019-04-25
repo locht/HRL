@@ -284,6 +284,24 @@ Partial Public Class ctrlApproveTemplate
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
 
     '''<summary>
+    '''ctrlUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
+
+    '''<summary>
+    '''phImportLogs control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents phImportLogs As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
     '''rwmPopup control.
     '''</summary>
     '''<remarks>

@@ -9,6 +9,62 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "Employee"
+    Public Function GetEmpInfomations(ByVal orgIDs As List(Of Decimal),
+                                      ByVal _filter As EmployeeDTO,
+                                      ByVal PageIndex As Integer,
+                                      ByVal PageSize As Integer,
+                                      ByRef Total As Integer,
+                                      Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                      Optional ByVal log As UserLog = Nothing) As List(Of EmployeeDTO)
+        Try
+            Dim Employees = (From e In Context.HU_EMPLOYEE
+                             From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                             From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                             Where orgIDs.Contains(e.ORG_ID) Order By e.EMPLOYEE_CODE
+                            Select New EmployeeDTO With {
+                                .ID = e.ID,
+                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                .FULLNAME_VN = e.FULLNAME_VN,
+                                .TITLE_ID = e.TITLE_ID,
+                                .TITLE_NAME_VN = t.NAME_VN,
+                                .BIRTH_DATE = cv.BIRTH_DATE,
+                                .MOBILE_PHONE = cv.MOBILE_PHONE,
+                                .IMAGE = cv.IMAGE,
+                                .WORK_STATUS = e.WORK_STATUS
+                                })
+            If _filter.IS_TER = True Then
+                'Return Employees.ToList()
+            Else
+                Employees = Employees.Where(Function(f) f.WORK_STATUS <> 257)
+            End If
+            If _filter.TITLE_NAME_VN <> "" Then
+                Employees = Employees.Where(Function(f) f.TITLE_NAME_VN.ToUpper().IndexOf(_filter.TITLE_NAME_VN.ToUpper) >= 0)
+            End If
+            If _filter.FULLNAME_VN <> "" Then
+                Employees = Employees.Where(Function(f) f.FULLNAME_VN.ToUpper().IndexOf(_filter.FULLNAME_VN.ToUpper) >= 0)
+            End If
+            If IsDate(_filter.BIRTH_DATE) Then
+                Employees = Employees.Where(Function(f) f.BIRTH_DATE = _filter.BIRTH_DATE)
+            End If
+            If _filter.MOBILE_PHONE <> "" Then
+                Employees = Employees.Where(Function(f) f.MOBILE_PHONE.ToUpper().IndexOf(_filter.MOBILE_PHONE.ToUpper) >= 0)
+            End If
+            Employees = Employees.OrderBy(Sorts)
+            Total = Employees.Count
+            Employees = Employees.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Dim lstEmp = Employees.ToList
+
+            For Each emp In lstEmp
+                emp.IMAGE_BINARY = GetEmployeeImage(emp.ID, "", False, emp.IMAGE)
+            Next
+            Return lstEmp
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
 
     ''' <summary>
     ''' Lấy danh sách nhân viên ko phân trang
@@ -705,13 +761,6 @@ Partial Class ProfileRepository
             'Thông tin insert vào bảng HU_EMPLOYEE.
             Dim objEmpData As New HU_EMPLOYEE
             Dim EMPCODE As String = String.Empty
-            'Using cls As New DataAccess.QueryData
-            '    Dim tblEmpCode As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.CREATE_NEW_EMPCODE", New With {.P_CUR = cls.OUT_CURSOR})
-            '    If tblEmpCode IsNot Nothing AndAlso tblEmpCode.Rows.Count > 0 Then
-            '        EMPCODE = tblEmpCode(0)(0).ToString
-            '    End If
-            'End Using
-            'Exxx' 
             If EMPCODE.Length = 4 Then
                 objEmpData.ITIME_ID = EMPCODE.Substring(1)
             End If
@@ -745,8 +794,7 @@ Partial Class ProfileRepository
             objEmpData.LEVEL_MANAGER = objEmp.LEVEL_MANAGER
             objEmpData.STAFF_RANK_ID = objEmp.STAFF_RANK_ID
             objEmpData.ITIME_ID = objEmp.ITIME_ID
-            objEmpData.PA_OBJECT_SALARY_ID = 1 'objEmp.PA_OBJECT_SALARY_ID
-            'objEmpData.AUTOGENTIMESHEET = Context.HU_ORGANIZATION.First(Function(f) f.ID = objEmpData.ORG_ID).AUTOGENTIMESHEET
+            objEmpData.PA_OBJECT_SALARY_ID = 1 
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 
@@ -794,9 +842,7 @@ Partial Class ProfileRepository
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
                 objEmpCVData.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
                 objEmpCVData.ID_NO = objEmpCV.ID_NO
-                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
-                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
-                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+                
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
                 objEmpCVData.PASS_NO = objEmpCV.PASS_NO
@@ -821,7 +867,6 @@ Partial Class ProfileRepository
                 objEmpCVData.CONTACT_PER = objEmpCV.CONTACT_PER
                 objEmpCVData.CONTACT_PER_PHONE = objEmpCV.CONTACT_PER_PHONE
                 objEmpCVData.CAREER = objEmpCV.CAREER
-
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.NOI_VAO_DOAN = objEmpCV.NOI_VAO_DOAN
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
@@ -835,6 +880,50 @@ Partial Class ProfileRepository
                 objEmpCVData.BANK_NO = objEmpCV.BANK_NO
                 objEmpCVData.IS_PERMISSION = objEmpCV.IS_PERMISSION
                 objEmpCVData.IS_PAY_BANK = objEmpCV.IS_PAY_BANK
+                '-----------------------------------------------
+                objEmpCVData.PROVINCENQ_ID = objEmpCV.PROVINCENQ_ID
+                objEmpCVData.OPPTION1 = objEmpCV.OPPTION1
+                objEmpCVData.OPPTION2 = objEmpCV.OPPTION2
+                objEmpCVData.OPPTION3 = objEmpCV.OPPTION3
+                objEmpCVData.OPPTION4 = objEmpCV.OPPTION4
+                objEmpCVData.OPPTION5 = objEmpCV.OPPTION5
+                objEmpCVData.OPPTION6 = objEmpCV.OPPTION6
+                objEmpCVData.OPPTION7 = objEmpCV.OPPTION7
+                objEmpCVData.OPPTION8 = objEmpCV.OPPTION8
+                objEmpCVData.OPPTION9 = objEmpCV.OPPTION9
+                objEmpCVData.OPPTION10 = objEmpCV.OPPTION10
+                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
+                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
+                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+
+                objEmpCVData.HANG_THUONG_BINH = objEmpCV.HANG_THUONG_BINH
+                objEmpCVData.THUONG_BINH = objEmpCV.THUONG_BINH
+                objEmpCVData.DV_XUAT_NGU_QD = objEmpCV.DV_XUAT_NGU_QD
+                objEmpCVData.NGAY_XUAT_NGU_QD = objEmpCV.NGAY_XUAT_NGU_QD
+                objEmpCVData.NGAY_NHAP_NGU_QD = objEmpCV.NGAY_NHAP_NGU_QD
+                objEmpCVData.QD = objEmpCV.QD
+                objEmpCVData.DV_XUAT_NGU_CA = objEmpCV.DV_XUAT_NGU_CA
+                objEmpCVData.NGAY_XUAT_NGU_CA = objEmpCV.NGAY_XUAT_NGU_CA
+                objEmpCVData.NGAY_NHAP_NGU_CA = objEmpCV.NGAY_NHAP_NGU_CA
+                objEmpCVData.NGAY_TG_BAN_NU_CONG = objEmpCV.NGAY_TG_BAN_NU_CONG
+                objEmpCVData.CV_BAN_NU_CONG = objEmpCV.CV_BAN_NU_CONG
+                objEmpCVData.NU_CONG = objEmpCV.NU_CONG
+                objEmpCVData.NGAY_TG_BANTT = objEmpCV.NGAY_TG_BANTT
+                objEmpCVData.CV_BANTT = objEmpCV.CV_BANTT
+                objEmpCVData.CONG_DOAN = objEmpCV.CONG_DOAN
+                objEmpCVData.CA = objEmpCV.CA
+                objEmpCVData.DANG = objEmpCV.DANG
+                objEmpCVData.SKILL = objEmpCV.SKILL
+                objEmpCVData.NGAY_VAO_DANG_DB = objEmpCV.NGAY_VAO_DANG_DB
+                objEmpCVData.NGAY_VAO_DANG = objEmpCV.NGAY_VAO_DANG
+                objEmpCVData.CHUC_VU_DANG = objEmpCV.CHUC_VU_DANG
+                objEmpCVData.DOAN_PHI = objEmpCV.DOAN_PHI
+                objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
+                objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
+                objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
+                
+                '-----------------------------------------------
+
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
 
             End If
@@ -855,6 +944,10 @@ Partial Class ProfileRepository
                 objEmpEduData.TRAINING_FORM = objEmpEdu.TRAINING_FORM
                 objEmpEduData.LEARNING_LEVEL = objEmpEdu.LEARNING_LEVEL
                 objEmpEduData.GRADUATION_YEAR = objEmpEdu.GRADUATION_YEAR
+                objEmpEduData.QLNN = objEmpEdu.QLNN
+                objEmpEduData.LLCT = objEmpEdu.LLCT
+                objEmpEduData.TDTH = objEmpEdu.TDTH
+                objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
 
@@ -879,6 +972,7 @@ Partial Class ProfileRepository
                 objEmpHealthData.VIEM_GAN_B = objEmpHealth.VIEM_GAN_B
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
+                objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
                 Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
             End If
 
@@ -1054,7 +1148,13 @@ Partial Class ProfileRepository
         Try
             Dim objEmpData As New HU_EMPLOYEE With {.ID = objEmp.ID}
             '----Start modify HU_EMPLOYEE---
+
             objEmpData = (From p In Context.HU_EMPLOYEE Where p.ID = objEmp.ID).FirstOrDefault
+            '----------------------------------------------
+            objEmpData.EMPLOYEE_NAME_OTHER = objEmp.EMPLOYEE_NAME_OTHER
+            objEmpData.EMPLOYEE_CODE_OLD = objEmp.EMPLOYEE_CODE_OLD
+            objEmpData.BOOK_NO = objEmp.BOOKNO
+            '==============================================
             objEmpData.EMPLOYEE_CODE = objEmp.EMPLOYEE_CODE
             objEmpData.FIRST_NAME_VN = objEmp.FIRST_NAME_VN
             objEmpData.LAST_NAME_VN = objEmp.LAST_NAME_VN
@@ -1167,6 +1267,49 @@ Partial Class ProfileRepository
                 objEmpCVData.BANK_NO = objEmpCV.BANK_NO
                 objEmpCVData.IS_PERMISSION = objEmpCV.IS_PERMISSION
                 objEmpCVData.IS_PAY_BANK = objEmpCV.IS_PAY_BANK
+                objEmpCVData.PROVINCENQ_ID = objEmpCV.PROVINCENQ_ID
+                '-------------------------------------------------
+                objEmpCVData.OPPTION1 = objEmpCV.OPPTION1
+                objEmpCVData.OPPTION2 = objEmpCV.OPPTION2
+                objEmpCVData.OPPTION3 = objEmpCV.OPPTION3
+                objEmpCVData.OPPTION4 = objEmpCV.OPPTION4
+                objEmpCVData.OPPTION5 = objEmpCV.OPPTION5
+                objEmpCVData.OPPTION6 = objEmpCV.OPPTION6
+                objEmpCVData.OPPTION7 = objEmpCV.OPPTION7
+                objEmpCVData.OPPTION8 = objEmpCV.OPPTION8
+                objEmpCVData.OPPTION9 = objEmpCV.OPPTION9
+                objEmpCVData.OPPTION10 = objEmpCV.OPPTION10
+                objEmpCVData.PROVINCEEMP_ID = objEmpCV.PROVINCEEMP_ID
+                objEmpCVData.DISTRICTEMP_ID = objEmpCV.DISTRICTEMP_ID
+                objEmpCVData.WARDEMP_ID = objEmpCV.WARDEMP_ID
+
+                objEmpCVData.HANG_THUONG_BINH = objEmpCV.HANG_THUONG_BINH
+                objEmpCVData.THUONG_BINH = objEmpCV.THUONG_BINH
+                objEmpCVData.DV_XUAT_NGU_QD = objEmpCV.DV_XUAT_NGU_QD
+                objEmpCVData.NGAY_XUAT_NGU_QD = objEmpCV.NGAY_XUAT_NGU_QD
+                objEmpCVData.NGAY_NHAP_NGU_QD = objEmpCV.NGAY_NHAP_NGU_QD
+                objEmpCVData.QD = objEmpCV.QD
+                objEmpCVData.DV_XUAT_NGU_CA = objEmpCV.DV_XUAT_NGU_CA
+                objEmpCVData.NGAY_XUAT_NGU_CA = objEmpCV.NGAY_XUAT_NGU_CA
+                objEmpCVData.NGAY_NHAP_NGU_CA = objEmpCV.NGAY_NHAP_NGU_CA
+                objEmpCVData.NGAY_TG_BAN_NU_CONG = objEmpCV.NGAY_TG_BAN_NU_CONG
+                objEmpCVData.CV_BAN_NU_CONG = objEmpCV.CV_BAN_NU_CONG
+                objEmpCVData.NU_CONG = objEmpCV.NU_CONG
+                objEmpCVData.NGAY_TG_BANTT = objEmpCV.NGAY_TG_BANTT
+                objEmpCVData.CV_BANTT = objEmpCV.CV_BANTT
+                objEmpCVData.CONG_DOAN = objEmpCV.CONG_DOAN
+                objEmpCVData.CA = objEmpCV.CA
+                objEmpCVData.DANG = objEmpCV.DANG
+                objEmpCVData.SKILL = objEmpCV.SKILL
+                objEmpCVData.NGAY_VAO_DANG_DB = objEmpCV.NGAY_VAO_DANG_DB
+                objEmpCVData.NGAY_VAO_DANG = objEmpCV.NGAY_VAO_DANG
+                objEmpCVData.CHUC_VU_DANG = objEmpCV.CHUC_VU_DANG
+                objEmpCVData.DOAN_PHI = objEmpCV.DOAN_PHI
+                objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
+                objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
+                objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
+                
+                '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
                 End If
@@ -1195,6 +1338,10 @@ Partial Class ProfileRepository
                 objEmpEduData.TRAINING_FORM = objEmpEdu.TRAINING_FORM
                 objEmpEduData.LEARNING_LEVEL = objEmpEdu.LEARNING_LEVEL
                 objEmpEduData.GRADUATION_YEAR = objEmpEdu.GRADUATION_YEAR
+                objEmpEduData.QLNN = objEmpEdu.QLNN
+                objEmpEduData.LLCT = objEmpEdu.LLCT
+                objEmpEduData.TDTH = objEmpEdu.TDTH
+                objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
                 If bUpdateEdu = False Then
                     Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
                 End If
@@ -1226,6 +1373,7 @@ Partial Class ProfileRepository
                 objEmpHealthData.VIEM_GAN_B = objEmpHealth.VIEM_GAN_B
                 objEmpHealthData.DA_HOA_LIEU = objEmpHealth.DA_HOA_LIEU
                 objEmpHealthData.GHI_CHU_SUC_KHOE = objEmpHealth.GHI_CHU_SUC_KHOE
+                objEmpHealthData.TTSUCKHOE = objEmpHealth.TTSUCKHOE
                 If bUpdateHealth = False Then
                     Context.HU_EMPLOYEE_HEALTH.AddObject(objEmpHealthData)
                 End If
@@ -1409,6 +1557,9 @@ Partial Class ProfileRepository
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = cv.EMPLOYEE_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = emp.ORG_ID).DefaultIfEmpty
                     From region In Context.OT_OTHER_LIST.Where(Function(f) f.ID = org.REGION_ID).DefaultIfEmpty
+                    From emp_pro In Context.HU_PROVINCE.Where(Function(f) cv.PER_PROVINCE = f.ID).DefaultIfEmpty
+                     From emp_dis In Context.HU_DISTRICT.Where(Function(f) cv.PER_DISTRICT = f.ID).DefaultIfEmpty
+                     From emp_ward In Context.HU_WARD.Where(Function(f) cv.PER_WARD = f.ID).DefaultIfEmpty
             Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
@@ -1478,6 +1629,43 @@ Partial Class ProfileRepository
                          .BANK_ID = cv.BANK_ID,
                          .BANK_NAME = bank.NAME,
                          .IS_PERMISSION = cv.IS_PERMISSION,
+                         .OPPTION1 = cv.OPPTION1,
+                         .OPPTION2 = cv.OPPTION2,
+                         .OPPTION3 = cv.OPPTION3,
+                         .OPPTION4 = cv.OPPTION4,
+                         .OPPTION5 = cv.OPPTION5,
+                         .OPPTION6 = cv.OPPTION6,
+                         .OPPTION7 = cv.OPPTION7,
+                         .OPPTION8 = cv.OPPTION8,
+                         .OPPTION9 = cv.OPPTION9,
+                         .OPPTION10 = cv.OPPTION10,
+                         .GD_CHINH_SACH = cv.GD_CHINH_SACH,
+                         .THUONG_BINH = CType(cv.THUONG_BINH, Boolean),
+                         .DV_XUAT_NGU_QD = cv.DV_XUAT_NGU_QD,
+                         .NGAY_XUAT_NGU_QD = cv.NGAY_XUAT_NGU_QD,
+                         .NGAY_NHAP_NGU_QD = cv.NGAY_NHAP_NGU_QD,
+                         .QD = CType(cv.QD, Boolean),
+                         .DV_XUAT_NGU_CA = cv.DV_XUAT_NGU_CA,
+                         .NGAY_XUAT_NGU_CA = cv.NGAY_XUAT_NGU_CA,
+                         .NGAY_NHAP_NGU_CA = cv.NGAY_NHAP_NGU_CA,
+                         .NGAY_TG_BAN_NU_CONG = cv.NGAY_TG_BAN_NU_CONG,
+                         .CV_BAN_NU_CONG = cv.CV_BAN_NU_CONG,
+                         .NU_CONG = CType(cv.NU_CONG, Boolean),
+                         .NGAY_TG_BANTT = cv.NGAY_TG_BANTT,
+                         .CV_BANTT = cv.CV_BANTT,
+                         .CONG_DOAN = CType(cv.CONG_DOAN, Boolean),
+                         .CA = cv.CA,
+                         .DANG = cv.DANG,
+                         .SKILL = cv.SKILL,
+                         .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
+                         .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
+                         .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
+                         .PROVINCEEMP_NAME = emp_pro.NAME_VN,
+                         .DISTRICTEMP_NAME = emp_dis.NAME_VN,
+                         .WARDEMP_NAME = emp_ward.NAME_VN,
+                         .DISTRICTEMP_ID = cv.DISTRICTEMP_ID,
+                         .WARDEMP_ID = cv.WARDEMP_ID,
+                         .PROVINCENQ_ID = cv.PROVINCENQ_ID,
                          .BANK_NO = cv.BANK_NO,
                          .IS_PAY_BANK = cv.IS_PAY_BANK}).FirstOrDefault
 
@@ -1506,6 +1694,10 @@ Partial Class ProfileRepository
                          .LANGUAGE_MARK = edu.LANGUAGE_MARK,
                          .GRADUATE_SCHOOL_ID = edu.GRADUATE_SCHOOL_ID,
                          .GRADUATE_SCHOOL_NAME = school.NAME_VN,
+                         .QLNN = edu.QLNN,
+                         .LLCT = edu.LLCT,
+                         .TDTH = edu.TDTH,
+                         .DIEM_XLTH = edu.DIEM_XLTH,
                          .GRADUATION_YEAR = edu.GRADUATION_YEAR}).FirstOrDefault
 
             empHealth = (From e In Context.HU_EMPLOYEE_HEALTH
@@ -1525,6 +1717,7 @@ Partial Class ProfileRepository
                              .PHOI_NGUC = e.PHOI_NGUC,
                              .VIEM_GAN_B = e.VIEM_GAN_B,
                              .DA_HOA_LIEU = e.DA_HOA_LIEU,
+                             .TTSUCKHOE = e.TTSUCKHOE,
                              .GHI_CHU_SUC_KHOE = e.GHI_CHU_SUC_KHOE}).FirstOrDefault
 
             Return True

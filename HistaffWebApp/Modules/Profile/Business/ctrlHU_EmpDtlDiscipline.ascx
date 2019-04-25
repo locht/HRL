@@ -45,8 +45,8 @@
                         <HeaderStyle Width="10%" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Lý do kỷ luật" DataField="DISCIPLINE_REASON" UniqueName="DISCIPLINE_REASON"
-                        SortExpression="DISCIPLINE_REASON" DataFormatString="{0:###,###,###,##0}" ShowFilterIcon="false"
+                    <tlk:GridBoundColumn HeaderText="Lý do kỷ luật" DataField="DISCIPLINE_REASON_NAME" UniqueName="DISCIPLINE_REASON_NAME"
+                        SortExpression="DISCIPLINE_REASON_NAME" DataFormatString="{0:###,###,###,##0}" ShowFilterIcon="false"
                         AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo" FilterControlWidth="100%">
                         <HeaderStyle Width="10%" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Right" />
@@ -61,7 +61,7 @@
             </MasterTableView>
             <ClientSettings>
                 <Selecting AllowRowSelect="True" />
-                <ClientEvents OnGridCreated="GridCreated" />
+                <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
         </tlk:RadGrid>
@@ -83,9 +83,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlDiscipline_RadSplitter2');
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlDiscipline_RadSplitter2');
+//        }
 
     </script>
 </tlk:RadScriptBlock>

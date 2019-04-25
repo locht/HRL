@@ -106,7 +106,7 @@
                     <ClientSettings>
                         <Selecting AllowRowSelect="True" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
-                        <ClientEvents OnGridCreated="GridCreated" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                 </tlk:RadGrid>
@@ -156,9 +156,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmployeeMng_RadSplitter3');
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmployeeMng_RadSplitter3');
+//        }
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {

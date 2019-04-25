@@ -75,7 +75,7 @@
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">
-                        <ClientEvents OnGridCreated="GridCreated" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                 </tlk:RadGrid>
@@ -110,9 +110,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_RadPaneMain');
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_RadPaneMain');
+//        }
 
         function GetRadWindow() {
             var oWindow = null;
