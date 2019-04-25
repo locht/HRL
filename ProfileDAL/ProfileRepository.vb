@@ -633,13 +633,12 @@ Public Class ProfileRepository
         End If
 
         If _combolistDTO.GET_EVALUATE Then
-            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
-                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "TYPE_ASS")
-                     Order By p.NAME_VN
+            query = (From p In Context.PE_PERIOD
+                     From t In Context.OT_OTHER_LIST.Where(Function(t) t.ID = p.TYPE_ASS)
+                     Order By p.NAME
                      Select New OtherListDTO With {
                         .ID = p.ID,
-                        .NAME_VN = p.NAME_VN,
-                        .NAME_EN = p.NAME_EN}).ToList
+                        .NAME_VN = p.NAME}).ToList
             _combolistDTO.LIST_EVALUATE = query
         End If
         'Loại NGHĨ
