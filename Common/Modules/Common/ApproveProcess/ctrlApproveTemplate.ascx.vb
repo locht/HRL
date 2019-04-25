@@ -469,7 +469,7 @@ Public Class ctrlApproveTemplate
                             .APP_TYPE = cboAppType.SelectedIndex
                             .APP_LEVEL = nntxtAppLevel.Value.ToString.Trim
                             .TEMPLATE_ID = Decimal.Parse(CType(rgTemplate.SelectedItems(0), GridDataItem).GetDataKeyValue("ID").ToString)
-                            .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value.ToString.Trim)
+                            .INFORM_DATE = If(rntxtInformDate.Value Is Nothing, 0, rntxtInformDate.Value)
                             .INFORM_EMAIL = txtInformEmail.Text.ToString.Trim
 
                             If .APP_TYPE = 1 Then
