@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td class="lb" style="width: 130px">
-                    <asp:Label ID="lbEmployeeName" runat="server" Text="Mã nhân viên"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" runat="server" SkinID="Readonly" ReadOnly="true"

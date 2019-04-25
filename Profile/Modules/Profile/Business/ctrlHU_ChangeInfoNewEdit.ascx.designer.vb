@@ -104,13 +104,13 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
-    '''lbEmployeeName control.
+    '''lbEmployeeCode control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbEmployeeName As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbEmployeeCode As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtEmployeeCode control.
