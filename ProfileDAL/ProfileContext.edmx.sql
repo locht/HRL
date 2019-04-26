@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26/04/2019 9:26:51 AM
+-- Date Created: 26/04/2019 2:14:43 PM
 -- Generated from EDMX file: E:\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -328,6 +328,10 @@
 -- DROP TABLE "ProfileModelStoreContainer"."HU_TRAININGEVALUATE";
 
 -- DROP TABLE "ProfileModelStoreContainer"."PE_PERIOD";
+
+-- DROP TABLE "ProfileModelStoreContainer"."HU_RELATIONSHIP_LIST";
+
+-- DROP TABLE "ProfileModelStoreContainer"."HU_RELATIONSHIP_GROUP";
 
 -- DROP TABLE "ProfileModelStoreContainer"."SE_USER_REPORT";
 
@@ -707,7 +711,7 @@ CREATE TABLE "dbo"."HU_FAMILY" (
    "ID" NUMBER(38,0) NOT NULL,
    "EMPLOYEE_ID" NUMBER(38,0) NOT NULL,
    "ID_NO" VARCHAR2(50) NULL,
-   "FULLNAME" NVARCHAR2(255) NOT NULL,
+   "FULLNAME" NVARCHAR2(255) NULL,
    "RELATION_ID" NUMBER(38,0) NOT NULL,
    "BIRTH_DATE" DATE NULL,
    "IS_DEDUCT" NUMBER(5,0) NULL,

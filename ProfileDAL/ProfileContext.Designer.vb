@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("dd5b09ac-b6d2-4e16-a88b-fef4d445c160")>
+<Assembly: EdmSchemaAttribute("f2497f90-851d-4707-b922-300ef16a13a8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -27950,7 +27950,6 @@ Public Partial Class HU_FAMILY
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
     ''' <param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
-    ''' <param name="fULLNAME">Initial value of the FULLNAME property.</param>
     ''' <param name="rELATION_ID">Initial value of the RELATION_ID property.</param>
     ''' <param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
     ''' <param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
@@ -27958,11 +27957,10 @@ Public Partial Class HU_FAMILY
     ''' <param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
     ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
     ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
-    Public Shared Function CreateHU_FAMILY(id As Global.System.Decimal, eMPLOYEE_ID As Global.System.Decimal, fULLNAME As Global.System.String, rELATION_ID As Global.System.Decimal, mODIFIED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, cREATED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String) As HU_FAMILY
+    Public Shared Function CreateHU_FAMILY(id As Global.System.Decimal, eMPLOYEE_ID As Global.System.Decimal, rELATION_ID As Global.System.Decimal, mODIFIED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, cREATED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String) As HU_FAMILY
         Dim hU_FAMILY as HU_FAMILY = New HU_FAMILY
         hU_FAMILY.ID = id
         hU_FAMILY.EMPLOYEE_ID = eMPLOYEE_ID
-        hU_FAMILY.FULLNAME = fULLNAME
         hU_FAMILY.RELATION_ID = rELATION_ID
         hU_FAMILY.MODIFIED_DATE = mODIFIED_DATE
         hU_FAMILY.CREATED_BY = cREATED_BY
@@ -28057,7 +28055,7 @@ Public Partial Class HU_FAMILY
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property FULLNAME() As Global.System.String
         Get
@@ -28066,7 +28064,7 @@ Public Partial Class HU_FAMILY
         Set
             OnFULLNAMEChanging(value)
             ReportPropertyChanging("FULLNAME")
-            _FULLNAME = StructuralObject.SetValidValue(value, false)
+            _FULLNAME = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("FULLNAME")
             OnFULLNAMEChanged()
         End Set

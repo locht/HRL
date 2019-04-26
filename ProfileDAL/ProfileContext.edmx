@@ -637,7 +637,7 @@
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="ID_NO" Type="varchar2" Nullable="true" MaxLength="50" />
-            <Property Name="FULLNAME" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="FULLNAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="RELATION_ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="BIRTH_DATE" Type="date" Nullable="true" />
             <Property Name="IS_DEDUCT" Type="number" Nullable="true" DefaultValue="0" Precision="5" />
@@ -4455,7 +4455,7 @@
           <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" />
           <Property Type="String" Name="ID_NO" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FULLNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FULLNAME" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="RELATION_ID" Nullable="false" />
           <Property Type="DateTime" Name="BIRTH_DATE" Nullable="true" />
           <Property Type="Int16" Name="IS_DEDUCT" Nullable="true" DefaultValue="0" />
