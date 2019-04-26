@@ -58,6 +58,12 @@
                                 <HeaderStyle Width="120px" />
                                 <ItemStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày tham gia hội sở %>" DataField="JOIN_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="JOIN_DATE" UniqueName="JOIN_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}">
+                                <HeaderStyle Width="120px" />
+                                <ItemStyle Width="120px" />
+                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số điện thoại %>" DataField="MOBILE_PHONE"
                                 SortExpression="MOBILE_PHONE" UniqueName="MOBILE_PHONE">
                                 <HeaderStyle Width="150px" />

@@ -127,7 +127,7 @@ Public Class ctrlHU_EmpDtl
                         If EmployeeInfo Is Nothing Then
                             EmployeeInfo = rep.GetEmployeeByEmployeeID(EmployeeID) 'Lưu vào viewStates để truyền vào các view con.
                         End If
-
+                        'ShowMessage(EmployeeID.Count.ToString, Utilities.NotifyType.Information)
                         CurrentView.SetProperty("EmployeeInfo", EmployeeInfo)
 
                         If EmployeeInfo IsNot Nothing And State = CommonMessage.STATE_EDIT Then
