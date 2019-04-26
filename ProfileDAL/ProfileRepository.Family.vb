@@ -75,7 +75,7 @@ Partial Class ProfileRepository
         Dim query As ObjectQuery(Of FamilyDTO)
         Try
             query = (From p In Context.HU_FAMILY
-                     Group Join m In Context.OT_OTHER_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
+                     Group Join m In Context.HU_RELATIONSHIP_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
                      From p_g In gGroup.DefaultIfEmpty
                      Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
                      From n_g In nGroup.DefaultIfEmpty
@@ -85,7 +85,7 @@ Partial Class ProfileRepository
                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
                     .FULLNAME = p.FULLNAME,
                     .RELATION_ID = p.RELATION_ID,
-                    .RELATION_NAME = p_g.NAME_VN,
+                    .RELATION_NAME = p_g.NAME,
                     .PROVINCE_ID = p.PROVINCE_ID,
                     .PROVINCE_NAME = n_g.NAME_VN,
                     .CAREER = p.CAREER,
