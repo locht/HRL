@@ -91,6 +91,10 @@ Public Class ctrlHU_RelationshipList
             rgMain.AllowCustomPaging = True
             'rgMain.ClientSettings.EnablePostBackOnRowClick = True
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgMain)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

@@ -38396,4 +38396,76 @@ Xin cám ơn!
       <string>Xem thông tin nhân viên</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN SẮP HẾT HẠN HĐ THỬ VIỆC</string>
+    </Key>
+    <Value>
+      <string>Nhân viên sắp hết hạn HĐ thử việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_RELATIONSHIPLIST</string>
+    </Key>
+    <Value>
+      <string>Danh mục mối quan hệ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÓM MỐI QUAN HỆ</string>
+    </Key>
+    <Value>
+      <string>Nhóm mối quan hệ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ QUAN HỆ</string>
+    </Key>
+    <Value>
+      <string>Mã quan hệ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN MỐI QUAN HỆ</string>
+    </Key>
+    <Value>
+      <string>Tên mối quan hệ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRẠNG THÁI ÁP DỤNG</string>
+    </Key>
+    <Value>
+      <string>Trạng thái áp dụng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLCONTROLSMANAGE</string>
+    </Key>
+    <Value>
+      <string>Quản lý config</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CODE</string>
+    </Key>
+    <Value>
+      <string>CODE</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN TÍNH NĂNG</string>
+    </Key>
+    <Value>
+      <string>Tên tính năng</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
