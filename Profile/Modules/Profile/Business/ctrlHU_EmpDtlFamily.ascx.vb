@@ -133,7 +133,7 @@ Public Class ctrlHU_EmpDtlFamily
                 End If
                 
                 If ComboBoxDataDTO IsNot Nothing Then
-                    FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
+                    FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
                     FillDropDownList(cboNguyenQuan, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNguyenQuan.SelectedValue)
                 End If
 
