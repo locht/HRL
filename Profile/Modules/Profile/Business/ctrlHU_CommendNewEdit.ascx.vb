@@ -558,10 +558,10 @@ Public Class ctrlHU_CommendNewEdit
                                 lstCommendEmp.Add(o)
                             Next
 
-                            If lstCommendEmp.Count = 0 Then
-                                ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
-                                Exit Sub
-                            End If
+                            'If lstCommendEmp.Count = 0 Then
+                            '    ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
+                            '    Exit Sub
+                            'End If
 
                             objCommend.COMMEND_EMP = lstCommendEmp
                         Else
@@ -572,10 +572,10 @@ Public Class ctrlHU_CommendNewEdit
                                 lstOrg.Add(o)
                             Next
 
-                            If lstOrg.Count = 0 Then
-                                ShowMessage(Translate("Vui lòng chọn phòng ban trước khi lưu"), NotifyType.Warning)
-                                Exit Sub
-                            End If
+                            'If lstOrg.Count = 0 Then
+                            '    ShowMessage(Translate("Vui lòng chọn phòng ban trước khi lưu"), NotifyType.Warning)
+                            '    Exit Sub
+                            'End If
 
                             objCommend.LIST_COMMEND_ORG = lstOrg
                         End If

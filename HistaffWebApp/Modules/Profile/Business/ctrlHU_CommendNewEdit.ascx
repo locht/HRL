@@ -70,16 +70,16 @@
                         ErrorMessage="Bạn phải nhập ngày hiệu lực." ToolTip="Bạn phải nhập ngày hiệu lực."> 
                     </asp:RequiredFieldValidator>
                 </td>
-                <%--<td class="lb">
-                    <%# Translate("Ngày kết thúc")%>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbExpireDate" Text="Ngày kết thúc"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdExpireDate" runat="server">
                     </tlk:RadDatePicker>
                     <asp:CustomValidator ID="cval_EffectDate_ExpireDate" runat="server" ErrorMessage="Ngày kết thúc phải lớn hơn ngày hiệu lực."
-                        ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn ngày hiệu lực. %>">
+                        ToolTip="Ngày kết thúc phải lớn hơn ngày hiệu lực.">
                     </asp:CustomValidator>
-                </td>--%>
+                </td>
                   <td class="lb">
                     <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>
                 </td>
@@ -159,13 +159,13 @@
                     <asp:CustomValidator ID="cvalCommendObj" runat="server" ErrorMessage="Bạn phải nhập đối tượng."
                         ToolTip="Bạn phải nhập đối tượng."> </asp:CustomValidator>      
                 </td>             
-               <%-- <td class="lb">
-                    <%# Translate("Nguồn chi")%>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbPowerPay" Text="Nguồn chi"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboPowerPay" runat="server" CausesValidation="False" TabIndex="3">
                     </tlk:RadComboBox>                   
-                </td>--%>
+                </td>
                   <td class="lb">
                     <asp:Label runat="server" ID="lbCommend_Title" Text="Danh hiệu khen thưởng"></asp:Label>
                     <span class="lbReq">*</span>
@@ -211,9 +211,7 @@
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboCommendPay" runat="server" CausesValidation="False" TabIndex="3">
-                    </tlk:RadComboBox>             
-                    <%-- <asp:RequiredFieldValidator ID="reqcboCommendPay" ControlToValidate="cboCommendPay"
-                        runat="server" ErrorMessage="Bạn phải chọn hình thức trả thưởng" ToolTip="Bạn phải chọn hình thức trả thưởng"> </asp:RequiredFieldValidator>--%>
+                    </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusCommendPay" ControlToValidate="cboCommendPay" runat="server" 
                         ErrorMessage="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng."
                         ToolTip="Hình thức trả thưởng không tồn tại hoặc đã ngừng áp dụng.">
@@ -245,8 +243,8 @@
                         ToolTip="Loại khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>             
                 </td>                
-                 <%-- <td class="lb">
-                    <%# Translate("Cấp khen thưởng")%>
+                  <td class="lb">
+                    <asp:Label runat="server" ID="lbCommendLevel" Text="Cấp khen thưởng"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
@@ -258,7 +256,7 @@
                         ErrorMessage="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng."
                         ToolTip="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
-                </td>--%>
+                </td>
             </tr>
             <tr>
                  <td class="lb">
@@ -325,7 +323,7 @@
                     <tlk:RadComboBox ID="cboForm" runat="server" TabIndex="3">
                     </tlk:RadComboBox>
                     <div style="width:50px; display:inline-block"></div>
-                    <asp:CustomValidator ID="cusForm" ControlToValidate="cboForm" runat="server" 
+                    <asp:CustomValidator ID="cusForm" ControlToValidate="cboForm" runat="server"
                         ErrorMessage="Biểu mẫu không tồn tại hoặc đã ngừng áp dụng."
                         ToolTip="Biểu mẫu không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
@@ -442,9 +440,9 @@
             if (!text.match('^[0-9]+$'))
                 args.set_cancel(true);
         }
-//        $(document).ready(function () {
-//            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_CommendNewEdit_RadPane2');
-//        });
+        //        $(document).ready(function () {
+        //            registerOnfocusOut('RAD_SPLITTER_PANE_CONTENT_ctl00_MainContent_ctrlHU_CommendNewEdit_RadPane2');
+        //        });
 
         //mandatory for the RadWindow dialogs functionality
         function getRadWindow() {
