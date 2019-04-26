@@ -30,7 +30,8 @@ Partial Class ProfileRepository
                                 .BIRTH_DATE = cv.BIRTH_DATE,
                                 .MOBILE_PHONE = cv.MOBILE_PHONE,
                                 .IMAGE = cv.IMAGE,
-                                .WORK_STATUS = e.WORK_STATUS
+                                .WORK_STATUS = e.WORK_STATUS,
+                                .JOIN_DATE = e.JOIN_DATE
                                 })
             If _filter.IS_TER = True Then
                 'Return Employees.ToList()
