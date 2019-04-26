@@ -63,7 +63,7 @@ Public Class ctrlPortalFamily_Edit
                 ComboBoxDataDTO.GET_RELATION = True
                 rep.GetComboList(ComboBoxDataDTO)
                 If ComboBoxDataDTO IsNot Nothing Then
-                    FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
+                    FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
                 End If
 
             End Using

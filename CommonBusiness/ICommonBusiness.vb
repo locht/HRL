@@ -13,6 +13,11 @@ Namespace CommonBusiness.ServiceContracts
         <OperationContract()>
         Function GetATOrgPeriod(ByVal periodID As Decimal) As DataTable
 
+#Region "Sign"
+        <OperationContract()>
+        Function GetSignList() As List(Of ATTimeManualDTO)
+#End Region
+
 #Region "Check User Login"
 
         <OperationContract()>

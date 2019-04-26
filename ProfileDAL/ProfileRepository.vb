@@ -1294,15 +1294,12 @@ Public Class ProfileRepository
         End If
         'Danh mục mối quan hệ
         If _combolistDTO.GET_RELATION Then
-            query = (From p In Context.OT_OTHER_LIST
-                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "RELATION" _
-                     And p.ACTFLG = "A"
-                     Order By p.NAME_VN
-                    Select New OtherListDTO With {
+            query = (From p In Context.HU_RELATIONSHIP_LIST
+                     Where p.ACTFLG = "A"
+                     Order By p.NAME
+                    Select New RelationshipListDTO With {
                         .ID = p.ID,
-                        .NAME_VN = p.NAME_VN,
-                         .NAME_EN = p.NAME_EN,
-                        .ATTRIBUTE1 = p.ATTRIBUTE1}).ToList
+                        .NAME = p.NAME}).ToList
             _combolistDTO.LIST_RELATION = query
         End If
         'TransferType = New_Hire -- Dùng khi thêm mới quyết định khi thêm nhân viên trong hồ sơ.

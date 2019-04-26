@@ -9,6 +9,16 @@ Namespace CommonBusiness.ServiceImplementations
         Implements ICommonBusiness
 
 #Region "Process Setup"
+        Public Function GetSignList() As List(Of ATTimeManualDTO) _
+            Implements ICommonBusiness.GetSignList
+            Using rep As New CommonRepository
+                Try
+                    Return rep.GetSignList
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetTitleList() As List(Of OtherListDTO) _
             Implements ICommonBusiness.GetTitleList
             Using rep As New CommonRepository

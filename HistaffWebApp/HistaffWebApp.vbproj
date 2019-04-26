@@ -544,6 +544,7 @@
     <Content Include="Modules\Competency\List\ctrlHU_CompetencyGroup.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyEmp.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyStandard.ascx" />
+    <Content Include="Modules\Profile\List\ctrlHU_RelationshipList.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_CommendFormula.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_CommendLevel.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Commend_List.ascx" />

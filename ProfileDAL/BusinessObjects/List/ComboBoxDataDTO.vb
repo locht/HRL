@@ -212,7 +212,7 @@
 
     'Danh sách OtherList - RELATION
     Public Property GET_RELATION As Boolean
-    Public Property LIST_RELATION As List(Of OtherListDTO)
+    Public Property LIST_RELATION As List(Of RelationshipListDTO)
 
     'OtherList - TRANSFERTYPE = NEW_HIRE
     Public Property GET_TRANSFER_TYPE_NEW_HIRE As Boolean

@@ -33,7 +33,7 @@ Public Class CommonProcedureNew
 
     Public Function GetSignLeaveList() As DataTable
         Dim dt As New DataTable
-        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_LIST.GET_SIGN_LEAVE_LIST",
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_LIST.GET_SIGN",
                                                  New List(Of Object)(New Object() {}))
         If ds IsNot Nothing Then
             If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then

@@ -291,6 +291,34 @@ Namespace ProfileBusiness.ServiceContracts
 
 #End Region
 
+#Region "RelationShipList"
+        <OperationContract()>
+        Function GetRelationshipGroupList() As DataTable
+
+        <OperationContract()>
+        Function GetRelationshipList(ByVal _filter As RelationshipListDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of RelationshipListDTO)
+
+        <OperationContract()>
+        Function InsertRelationshipList(ByVal objRelationshipList As RelationshipListDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ValidateRelationshipList(ByVal objRelationshipList As RelationshipListDTO) As Boolean
+
+        <OperationContract()>
+        Function ModifyRelationshipList(ByVal objRelationshipList As RelationshipListDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ActiveRelationshipList(ByVal lstID As List(Of Decimal), ByVal sActive As String, ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function DeleteRelationshipList(ByVal lstRelationshipList() As RelationshipListDTO, ByVal log As UserLog) As Boolean
+
+#End Region
+
 #Region "Organization"
 
         <OperationContract()>

@@ -10,6 +10,8 @@ Public Class ApproveSetupDTO
 
     Public Property PROCESS_NAME As String
     Public Property TEMPLATE_NAME As String
+    Public Property TITLE_NAME As String
+    Public Property SIGN_NAME As String
 
     Public Property NUM_REQUEST As Decimal?
     Public Property REQUEST_EMAIL As String

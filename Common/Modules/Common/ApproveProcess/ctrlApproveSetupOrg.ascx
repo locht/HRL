@@ -115,7 +115,7 @@
                                 </tlk:RadDatePicker>
                                 <asp:RequiredFieldValidator runat="server" ID="reqFromDate" ControlToValidate="rdFromDate"
                                     ErrorMessage='<%$ Translate: Chưa nhập Áp dụng từ ngày %>'></asp:RequiredFieldValidator>
-                                <asp:CustomValidator runat="server" ID="cvalCheckDateExist" ErrorMessage='<%$ Translate: Đã có thiết lập áp dụng vào khoảng thời gian bạn chọn. %>'></asp:CustomValidator>
+                                <%--<asp:CustomValidator runat="server" ID="cvalCheckDateExist" ErrorMessage='<%$ Translate: Đã có thiết lập áp dụng vào khoảng thời gian bạn chọn. %>'></asp:CustomValidator>--%>
                             </td>
                             <td class="lb">
                                 <%# Translate("Đến ngày")%>

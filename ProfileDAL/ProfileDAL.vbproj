@@ -125,6 +125,7 @@
     <Compile Include="BusinessObjects\List\CompetencyPeriodDTO.vb" />
     <Compile Include="BusinessObjects\List\CompetencyAssDtlDTO.vb" />
     <Compile Include="BusinessObjects\List\CompetencyAssDTO.vb" />
+    <Compile Include="BusinessObjects\List\RelationshipListDTO.vb" />
     <Compile Include="BusinessObjects\List\PA_SALARY_TYPEDTO.vb" />
     <Compile Include="BusinessObjects\Setting\CompetencyCourseDTO.vb" />
     <Compile Include="BusinessObjects\Setting\AttachFilesDTO.vb" />
