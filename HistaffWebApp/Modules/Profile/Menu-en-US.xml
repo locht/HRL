@@ -73,6 +73,7 @@
         <Item Value="ctrlHU_Commend_List" Text="Bonus" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Commend_List&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlHU_CommendFormula" Text="Formula Bonus" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_CommendFormula&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlOtherList" Text="System Parameters" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlOtherList&amp;group=list" CheckPermission="true" CausesValidation="False"/>
+        <Item Value="ctrlHU_RelationshipList" Text="Relationship" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_RelationshipList&amp;group=list" CheckPermission="true" CausesValidation="False"/>
       </Group>
     </Item>
     

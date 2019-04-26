@@ -235,6 +235,7 @@
     <Content Include="Modules\Profile\Dashboard\ctrlDashboardProfile.ascx" />
     <Content Include="Modules\Profile\Dashboard\ctrlDashboardSixCell.ascx" />
     <Content Include="Modules\Profile\Dashboard\ctrlDBInfoProfile.ascx" />
+    <Content Include="Modules\Profile\List\ctrlHU_RelationshipList.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_CommendFormula.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_CommendLevel.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Commend_List.ascx" />
@@ -1101,6 +1102,13 @@
     </Compile>
     <Compile Include="Modules\Profile\Dashboard\ctrlDBInfoProfile.ascx.vb">
       <DependentUpon>ctrlDBInfoProfile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\List\ctrlHU_RelationshipList.ascx.designer.vb">
+      <DependentUpon>ctrlHU_RelationshipList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\List\ctrlHU_RelationshipList.ascx.vb">
+      <DependentUpon>ctrlHU_RelationshipList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\List\ctrlHU_CommendFormula.ascx.designer.vb">

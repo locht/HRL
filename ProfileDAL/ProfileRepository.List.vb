@@ -938,6 +938,175 @@ Partial Class ProfileRepository
 
 #End Region
 
+#Region "RelationshipList"
+
+    Public Function GetRelationshipGroupList() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_REL_GROUP_LIST",
+                                           New With {.P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetRelationshipList(ByVal _filter As RelationshipListDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of RelationshipListDTO)
+
+        Try
+            Dim query = From p In Context.HU_RELATIONSHIP_LIST
+                        From g In Context.HU_RELATIONSHIP_GROUP.Where(Function(f) f.ID = p.REL_GROUP_ID).DefaultIfEmpty
+                        Select New RelationshipListDTO With {
+                                       .ID = p.ID,
+                                       .REL_GROUP_ID = p.REL_GROUP_ID,
+                                       .REL_GROUP_NAME = g.NAME,
+                                       .CODE = p.CODE,
+                                       .NAME = p.NAME,
+                                       .REMARK = p.REMARK,
+                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
+                                       .CREATED_DATE = p.CREATED_DATE}
+
+            Dim lst = query
+            If _filter.ID > 0 Then
+                lst = lst.Where(Function(p) p.ID = _filter.ID)
+            End If
+            If _filter.CODE <> "" Then
+                lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
+            End If
+            If _filter.NAME <> "" Then
+                lst = lst.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
+            End If
+            If _filter.ACTFLG <> "" Then
+                lst = lst.Where(Function(p) p.ACTFLG.ToUpper.Contains(_filter.ACTFLG.ToUpper))
+            End If
+            If _filter.REL_GROUP_NAME <> "" Then
+                lst = lst.Where(Function(p) p.REL_GROUP_NAME.ToUpper.Contains(_filter.REL_GROUP_NAME.ToUpper))
+            End If
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+
+    End Function
+
+    Public Function InsertRelationshipList(ByVal objRelationshipList As RelationshipListDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim iCount As Integer = 0
+        Dim objRelationshipListData As New HU_RELATIONSHIP_LIST
+        Try
+            objRelationshipListData.ID = Utilities.GetNextSequence(Context, Context.HU_RELATIONSHIP_LIST.EntitySet.Name)
+            objRelationshipListData.REL_GROUP_ID = objRelationshipList.REL_GROUP_ID
+            objRelationshipListData.CODE = objRelationshipList.CODE.Trim
+            objRelationshipListData.NAME = objRelationshipList.NAME.Trim
+            objRelationshipListData.ACTFLG = objRelationshipList.ACTFLG
+            objRelationshipListData.REMARK = objRelationshipList.REMARK
+            Context.HU_RELATIONSHIP_LIST.AddObject(objRelationshipListData)
+            Context.SaveChanges(log)
+            gID = objRelationshipListData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ValidateRelationshipList(ByVal _validate As RelationshipListDTO)
+        Dim query
+        Try
+            If _validate.CODE <> Nothing Then
+                If _validate.ID <> 0 Then
+                    query = (From p In Context.HU_RELATIONSHIP_LIST
+                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                             And p.ID <> _validate.ID).FirstOrDefault
+                Else
+                    query = (From p In Context.HU_RELATIONSHIP_LIST
+                             Where p.CODE.ToUpper = _validate.CODE.ToUpper).FirstOrDefault
+                End If
+
+            Else
+                If _validate.ACTFLG <> "" And _validate.ID <> 0 Then
+                    query = (From p In Context.HU_RELATIONSHIP_LIST
+                             Where p.ACTFLG.ToUpper = _validate.ACTFLG.ToUpper _
+                             And p.ID = _validate.ID).FirstOrDefault
+                    Return (Not query Is Nothing)
+                End If
+                If _validate.ID <> 0 And _validate.ACTFLG = "" Then
+                    query = (From p In Context.HU_RELATIONSHIP_LIST
+                             Where p.ID = _validate.ID).FirstOrDefault
+                    Return (query Is Nothing)
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ModifyRelationshipList(ByVal objRelationshipList As RelationshipListDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objRelationshipListData As New HU_RELATIONSHIP_LIST With {.ID = objRelationshipList.ID}
+        Try
+            objRelationshipListData = (From p In Context.HU_RELATIONSHIP_LIST Where p.ID = objRelationshipList.ID).FirstOrDefault
+            objRelationshipListData.ID = objRelationshipList.ID
+            objRelationshipListData.REL_GROUP_ID = objRelationshipList.REL_GROUP_ID
+            objRelationshipListData.CODE = objRelationshipList.CODE
+            objRelationshipListData.NAME = objRelationshipList.NAME
+            objRelationshipListData.REMARK = objRelationshipList.REMARK
+            Context.SaveChanges(log)
+            gID = objRelationshipListData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function ActiveRelationshipList(ByVal lstID As List(Of Decimal), ByVal sActive As String,
+                                   ByVal log As UserLog) As Boolean
+        Dim lstRelationshipListData As List(Of HU_RELATIONSHIP_LIST)
+        lstRelationshipListData = (From p In Context.HU_RELATIONSHIP_LIST Where lstID.Contains(p.ID)).ToList
+        For index = 0 To lstRelationshipListData.Count - 1
+            lstRelationshipListData(index).ACTFLG = sActive
+        Next
+        Context.SaveChanges(log)
+        Return True
+    End Function
+
+    Public Function DeleteRelationshipList(ByVal lstRelationshipList() As RelationshipListDTO, ByVal log As UserLog) As Boolean
+        Dim lstRelationshipListData As List(Of HU_RELATIONSHIP_LIST)
+        Dim lstIDRelationshipList As List(Of Decimal) = (From p In lstRelationshipList.ToList Select p.ID).ToList
+        Try
+            lstRelationshipListData = (From p In Context.HU_RELATIONSHIP_LIST Where lstIDRelationshipList.Contains(p.ID)).ToList
+            For index = 0 To lstRelationshipListData.Count - 1
+                Context.HU_RELATIONSHIP_LIST.DeleteObject(lstRelationshipListData(index))
+            Next
+            Context.SaveChanges(log)
+            Return True
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+#End Region
+
 #Region "Organization"
 
     Public Function GetOrganizationByID(ByVal ID As Decimal) As OrganizationDTO

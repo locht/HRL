@@ -5,6 +5,129 @@ Partial Public Class ProfileRepository
 
 #Region "List"
 
+#Region "RelationshipList"
+    Function GetRelationshipGroupList() As DataTable
+        Dim dtData As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtData = rep.GetRelationshipGroupList()
+                Return dtData
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetRelationshipList(ByVal _filter As RelationshipListDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of RelationshipListDTO)
+        Dim lstRelationshipList As List(Of RelationshipListDTO)
+
+        Using rep As New ProfileBusinessClient
+            Try
+                lstRelationshipList = rep.GetRelationshipList(_filter, PageIndex, PageSize, Total, Sorts)
+                Return lstRelationshipList
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetRelationshipList(ByVal _filter As RelationshipListDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of RelationshipListDTO)
+        Dim lstRelationshipList As List(Of RelationshipListDTO)
+
+        Using rep As New ProfileBusinessClient
+            Try
+                lstRelationshipList = rep.GetRelationshipList(_filter, 0, Integer.MaxValue, 0, Sorts)
+                Return lstRelationshipList
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function InsertRelationshipList(ByVal objRelationshipList As RelationshipListDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(True, "Blank", "NoBlank"))
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(False, "Blank", "NoBlank"))
+                Return rep.InsertRelationshipList(objRelationshipList, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ValidateRelationshipList(ByVal objRelationshipList As RelationshipListDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ValidateRelationshipList(objRelationshipList)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyRelationshipList(ByVal objRelationshipList As RelationshipListDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(True, "Blank", "NoBlank"))
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(False, "Blank", "NoBlank"))
+                Return rep.ModifyRelationshipList(objRelationshipList, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ActiveRelationshipList(ByVal lstID As List(Of Decimal), ByVal sActive As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(True, "Blank", "NoBlank"))
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(False, "Blank", "NoBlank"))
+                Return rep.ActiveRelationshipList(lstID, sActive, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function DeleteRelationshipList(ByVal lstRelationshipList As List(Of RelationshipListDTO)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(True, "Blank", "NoBlank"))
+                CacheManager.ClearValue("OT_HU_Relationship_LIST_" & IIf(False, "Blank", "NoBlank"))
+                Return rep.DeleteRelationshipList(lstRelationshipList, Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+#End Region
 
 #Region "Title"
 

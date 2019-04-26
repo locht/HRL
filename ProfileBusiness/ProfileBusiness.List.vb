@@ -444,6 +444,99 @@ Namespace ProfileBusiness.ServiceImplementations
 
 #End Region
 
+#Region "RelationshipList"
+        Public Function GetRelationshipGroupList() As DataTable Implements ServiceContracts.IProfileBusiness.GetRelationshipGroupList
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim lst = rep.GetRelationshipGroupList()
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetRelationshipList(ByVal _filter As RelationshipListDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of RelationshipListDTO) Implements ServiceContracts.IProfileBusiness.GetRelationshipList
+            Using rep As New ProfileRepository
+                Try
+
+                    Dim lst = rep.GetRelationshipList(_filter, PageIndex, PageSize, Total, Sorts)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function InsertRelationshipList(ByVal objRelationshipList As RelationshipListDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.InsertRelationshipList
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.InsertRelationshipList(objRelationshipList, log, gID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ValidateRelationshipList(ByVal objRelationshipList As RelationshipListDTO) As Boolean Implements ServiceContracts.IProfileBusiness.ValidateRelationshipList
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.ValidateRelationshipList(objRelationshipList)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ModifyRelationshipList(ByVal objRelationshipList As RelationshipListDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyRelationshipList
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.ModifyRelationshipList(objRelationshipList, log, gID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ActiveRelationshipList(ByVal lstID As List(Of Decimal), ByVal sActive As String, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ActiveRelationshipList
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.ActiveRelationshipList(lstID, sActive, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteRelationshipList(ByVal objRelationshipList() As RelationshipListDTO, ByVal log As UserLog) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.DeleteRelationshipList
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.DeleteRelationshipList(objRelationshipList, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+#End Region
+
 #Region "Organization"
 
         Public Function GetOrganization(ByVal sACT As String) As List(Of OrganizationDTO) Implements ServiceContracts.IProfileBusiness.GetOrganization

@@ -133,6 +133,7 @@
         HU_CONTRACT_TYPE = 6
         HU_WELFARE_LIST = 7
         HU_ALLOWANCE_LIST = 8
+        HU_RELATIONSHIP_LIST = 9
         HU_NATION = 10
         HU_PROVINCE = 11
         HU_DISTRICT = 12
