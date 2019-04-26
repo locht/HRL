@@ -1440,6 +1440,7 @@
     </None>
     <Content Include="ReportTemplates\Common\Approve\Import_Phe_Duyet_PhongBan.xls" />
     <Content Include="ReportTemplates\Common\Approve\Import_Template_Phe_Duyet.xls" />
+    <Content Include="ReportTemplates\Common\Approve.xls" />
     <None Include="TemplateDynamic\ContractSupport\5116.doc" />
     <None Include="TemplateDynamic\ContractSupport\5982.doc" />
     <None Include="TemplateDynamic\ContractSupport\6314.doc" />
