@@ -358,9 +358,9 @@
                             <tlk:RadButton Width="150px" ID="btnEmployee" runat="server" Text="Chọn tất cả nhân viên"
                                 CausesValidation="false" CommandName="FindEmployee" TabIndex="3">
                             </tlk:RadButton> 
-                            <tlk:RadButton Width="150px" ID="RadButton1" runat="server" Text="Chọn nhân viên từ import"
+                            <%--<tlk:RadButton Width="150px" ID="RadButton1" runat="server" Text="Chọn nhân viên từ import"
                                 CausesValidation="false" CommandName="FindEmployeeImport" TabIndex="3">
-                            </tlk:RadButton>                                                     
+                            </tlk:RadButton>--%>                                                     
                         </div>
                         <div style="float: right">
                             <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="Xóa"
@@ -399,9 +399,9 @@
                             <tlk:RadButton Width="150px" ID="btnOrg" runat="server" Text="Chọn phòng ban"
                                 CausesValidation="false" CommandName="FindOrg">
                             </tlk:RadButton>     
-                            <tlk:RadButton Width="150px" ID="btnOrgImport" runat="server" Text="Chọn phòng ban từ import"
+                            <%--<tlk:RadButton Width="150px" ID="btnOrgImport" runat="server" Text="Chọn phòng ban từ import"
                                 CausesValidation="false" CommandName="FindOrgImport">
-                            </tlk:RadButton>                                                                                    
+                            </tlk:RadButton>--%>                                                                                    
                         </div>
                         <div style="float: right">
                             <tlk:RadButton Width="100px" ID="btnDeleteOrg" runat="server" Text="Xóa"
