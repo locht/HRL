@@ -64,12 +64,12 @@
                 <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,REMARK,REL_GROUP_ID,REL_GROUP_NAME,ACTFLG">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,REMARK,REL_GROUP_ID,REL_GROUP_NAME,ACTFLG">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                    <%--<tlk:GridBoundColumn DataField="ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="Mã quan hệ" DataField="CODE" SortExpression="CODE"
                         UniqueName="CODE" />
                     <tlk:GridBoundColumn HeaderText="Tên mối quan hệ" DataField="NAME"
@@ -79,7 +79,7 @@
                     <tlk:GridBoundColumn HeaderText="Nhóm mối quan hệ" DataField="REL_GROUP_NAME" SortExpression="REL_GROUP_NAME"
                         UniqueName="REL_GROUP_NAME" />
                     <tlk:GridBoundColumn HeaderText="Trạng thái áp dụng" DataField="ACTFLG"
-                        SortExpression="ACTFLG" UniqueName="ACTFLG" />
+                        SortExpression="ACTFLG" UniqueName="ACTFLG" />--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
