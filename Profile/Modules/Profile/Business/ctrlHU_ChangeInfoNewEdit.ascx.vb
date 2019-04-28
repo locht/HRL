@@ -1083,16 +1083,20 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
         Try
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
-
+            Dim dtData As DataTable = Nothing
             If orgItem IsNot Nothing Then
                 hidOrg.Value = e.CurrentValue
                 txtOrgName.Text = orgItem.NAME_VN
                 'txtOrgName.ToolTip = Utilities.DrawTreeByString(orgItem.DESCRIPTION_PATH)
+                Using rep As New ProfileRepository
+                    If IsNumeric(e.CurrentValue) Then
+                        dtData = rep.GetTitleByOrgID(Decimal.Parse(e.CurrentValue), True)
+                        cboTitle.ClearValue()
+                        FillRadCombobox(cboTitle, dtData, "NAME", "ID")
+                    End If
+                End Using
             End If
-
-            cboTitle.ClearValue()
             isLoadPopup = 0
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -1329,9 +1333,15 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     lbFileAttach.Text = obj.FILENAME
                     txtFileAttach_Link.Text = obj.ATTACH_FILE
                 End If
+                Dim dtdata As DataTable = Nothing
                 If obj.ORG_ID IsNot Nothing Then
                     txtOrgName.Text = obj.ORG_NAME
                     hidOrg.Value = obj.ORG_ID
+                    If IsNumeric(hidOrg.Value) Then
+                        dtdata = (New ProfileRepository).GetTitleByOrgID(Decimal.Parse(hidOrg.Value), True)
+                        cboTitle.ClearValue()
+                        FillRadCombobox(cboTitle, dtdata, "NAME", "ID")
+                    End If
                 End If
 
                 If obj.TITLE_ID IsNot Nothing Then
