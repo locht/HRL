@@ -40,6 +40,8 @@ namespace ConfigTool
             {
                 System.Data.DataRow row = girdColumm.NewRow();
                 row["ID"] = node?.Attributes["datafield"]?.Value;
+                if (row["ID"]is System.DBNull  )
+                    row["ID"]= node?.Attributes["uniquename"]?.Value;
                 row["Name"] = node?.Attributes["HeaderText"]?.Value;
                 row["Is_Visible"] = "true";
                 row["Width"] = 200;
@@ -199,6 +201,7 @@ namespace ConfigTool
                 GRID:
                     int stt = 1;
                     GetColumnConfigGrid("gridboundcolumn", stt, htmlDoc);
+                    GetColumnConfigGrid("gridclientselectcolumn", stt, htmlDoc);
                     GetColumnConfigGrid("gridtemplatecolumn", stt, htmlDoc);
                     GetColumnConfigGrid("gridnumericcolumn", stt, htmlDoc);
                     GetColumnConfigGrid("griddatetimecolumn", stt, htmlDoc);
@@ -313,7 +316,8 @@ namespace ConfigTool
         {
             // BOConnectString=
             BOConnectString = ConfigurationManager.AppSettings["BOConnectString"];
-            txtConnectString.Text = BOConnectString;
+            txtConnectString.Text = ConfigurationManager.AppSettings["BOConnectString"]; //BOConnectString;
+            BOConnectString = txtConnectString.Text;
             btnStop.Enabled = false;
         }
 

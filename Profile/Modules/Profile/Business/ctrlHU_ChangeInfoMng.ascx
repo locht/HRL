@@ -24,14 +24,14 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Từ ngày")%>
+                            <asp:Label ID="lbEffectDate" runat="server" Text="Từ ngày"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdEffectDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến ngày")%>
+                            <asp:Label ID="lbExpireDate" runat="server" Text="Đến ngày"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdExpireDate" runat="server">
@@ -58,15 +58,15 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE,DECISION_TYPE_NAME,CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="EMPLOYEE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                                 <ItemTemplate>
@@ -78,19 +78,19 @@
                                 </tlk:RadToolTip>
                             </ItemTemplate>
                             </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
+                            <tlk:GridBoundColumn HeaderText="Cấp nhân sự" DataField="STAFF_RANK_NAME"
                                 SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" HeaderStyle-Width="80px" />
                             <tlk:GridBoundColumn HeaderText="" DataField="DECISION_TYPE_NAME"
                                 SortExpression="DECISION_TYPE_NAME" UniqueName="DECISION_TYPE_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
-                                SortExpression="ORG_DESC" Visible="false" />
+                                SortExpression="ORG_DESC" Visible="false" />--%>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>
@@ -109,7 +109,7 @@
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td class="lb" Visible="false">
-                            <%# Translate("Biễu mẫu hỗ trợ")%>
+                            <asp:Label ID="lbPrintSupport" runat="server" Text="Biễu mẫu hỗ trợ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox runat="server" Width="400px" ID="cboPrintSupport" Visible="false">
