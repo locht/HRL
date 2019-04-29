@@ -16,7 +16,7 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Lý do không phê duyệt")%>
+                            <asp:Label ID="lbRemark" runat="server" Text="Lý do không phê duyệt"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtRemark" SkinID="Textbox1023" runat="server" Width="100%" MaxLength="250" Rows="1" Height="38px">
@@ -39,7 +39,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,STATUS" ClientDataKeyNames="ID,STATUS">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
@@ -60,6 +60,10 @@
                                 ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="BIRTH_DATE">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                                UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
                                 Visible="True" EmptyDataText="">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -90,7 +94,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
                                 SortExpression="REMARK">
                                 <HeaderStyle HorizontalAlign="Center" />
-                            </tlk:GridBoundColumn>
+                            </tlk:GridBoundColumn>--%>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>
@@ -104,14 +108,12 @@
     <script type="text/javascript">
 
         var enableAjax = true;
-        function onRequestStart(sender, eventArgs)
-        {
+        function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
 
-        function clientButtonClicking(sender, args)
-        {
+        function clientButtonClicking(sender, args) {
 
         }
 

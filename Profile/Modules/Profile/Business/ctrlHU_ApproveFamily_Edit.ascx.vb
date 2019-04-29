@@ -54,6 +54,10 @@ Public Class ctrlHU_ApproveFamily_Edit
         Try
             rgData.SetFilter()
             rgData.AllowCustomPaging = True
+            If Not IsPostBack Then
+                ViewConfig(LeftPane)
+                GirdConfig(rgData)
+            End If
             InitControl()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

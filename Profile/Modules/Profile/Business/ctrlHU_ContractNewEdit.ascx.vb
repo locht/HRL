@@ -897,6 +897,7 @@ Public Class ctrlHU_ContractNewEdit
         cboStatus.DataSource = Status()
         cboStatus.DataTextField = "Text"
         cboStatus.DataValueField = "Value"
+        cboStatus.SelectedIndex = 0
     End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53

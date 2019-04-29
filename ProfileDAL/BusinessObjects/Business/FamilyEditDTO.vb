@@ -19,7 +19,8 @@
     Public Property DEDUCT_TO As Date?
     Public Property ADDRESS As String
     Public Property REMARK As String
-
+    Public Property TITLE_ID As Decimal? 'CHUC DANH
+    Public Property TITLE_NAME As String
     Public Property CREATED_DATE As Date?
     Public Property CREATED_BY As String
     Public Property CREATED_LOG As String

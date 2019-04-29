@@ -312,6 +312,7 @@ Partial Class ProfileRepository
             Dim query = (From p In Context.HU_FAMILY_EDIT
                          From p_g In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_ID = f.ID).DefaultIfEmpty
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                         From T In Context.HU_TITLE.Where(Function(F) F.ID = e.TITLE_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
                         Where p.STATUS = 1
                         Select New FamilyEditDTO With {
@@ -330,6 +331,8 @@ Partial Class ProfileRepository
                             .DEDUCT_FROM = p.DEDUCT_FROM,
                             .DEDUCT_TO = p.DEDUCT_TO,
                             .REMARK = p.REMARK,
+                            .TITLE_ID = e.TITLE_ID,
+                            .TITLE_NAME = T.NAME_VN,
                             .FK_PKEY = p.FK_PKEY,
                             .STATUS = p.STATUS,
                             .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
