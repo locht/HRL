@@ -111,7 +111,7 @@
                             <asp:Label runat="server" ID="lbINS_ARISING_TYPE_ID" Text="Loại biến động"></asp:Label><span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="ddlINS_ARISING_TYPE_ID" AutoPostBack="true" runat="server" TabIndex="3">
+                            <tlk:RadComboBox ID="ddlINS_ARISING_TYPE_ID" AutoPostBack="true" CausesValidation="false" runat="server" TabIndex="3">
                             </tlk:RadComboBox>
                             <asp:RequiredFieldValidator ID="reqddlINS_ARISING_TYPE_ID" ControlToValidate="ddlINS_ARISING_TYPE_ID"
                                 runat="server" Text="*" ErrorMessage="Bạn phải nhập Loại biến động."
@@ -120,16 +120,16 @@
                         <td>
                         </td>
                         <td class="lb" colspan="3" style="text-align:left;">
-                            <tlk:RadButton ID="chkSI" AutoPostBack="true" Text="BHXH" ToggleType="CheckBox"
+                            <tlk:RadButton ID="chkSI" AutoPostBack="true" Text="BHXH" CausesValidation="false" ToggleType="CheckBox"
                                 ButtonType="ToggleButton" runat="server" TabIndex="4">
                             </tlk:RadButton>
-                            <tlk:RadButton ID="chkHI" AutoPostBack="true" Text="BHYT" ToggleType="CheckBox"
+                            <tlk:RadButton ID="chkHI" AutoPostBack="true" Text="BHYT" CausesValidation="false" ToggleType="CheckBox"
                                 ButtonType="ToggleButton" runat="server" TabIndex="5">
                             </tlk:RadButton>
-                            <tlk:RadButton ID="chkUI" AutoPostBack="true" Text="BHTN" ToggleType="CheckBox"
+                            <tlk:RadButton ID="chkUI" AutoPostBack="true" Text="BHTN" CausesValidation="false" ToggleType="CheckBox"
                                 ButtonType="ToggleButton" runat="server" TabIndex="6">
                             </tlk:RadButton>
-                            <tlk:RadButton ID="chkTNLD_BNN" AutoPostBack="true" Text="BH TNLD, BNN" ToggleType="CheckBox"
+                            <tlk:RadButton ID="chkTNLD_BNN" AutoPostBack="true" Text="BH TNLD, BNN" CausesValidation="false" ToggleType="CheckBox"
                                 ButtonType="ToggleButton" runat="server" TabIndex="6">
                             </tlk:RadButton>
                         </td>
