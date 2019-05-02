@@ -1137,6 +1137,7 @@ Public Class ctrlHU_ContractTemplete
             End If
             '  FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboStatus_ID, ListComboData.LIST_DECISION_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+            cboStatus_ID.SelectedIndex = 0
             FillDropDownList(cboAppend_TypeID, appendData, "NAME", "ID", Common.Common.SystemLanguage, False)
             If appendData.Count > 1 Then
                 cboAppend_TypeID.SelectedValue = appendData(1).ID
