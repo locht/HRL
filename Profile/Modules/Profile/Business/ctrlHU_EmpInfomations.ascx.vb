@@ -104,6 +104,10 @@ Public Class ctrlHU_EmpInfomations
         Try
             rgAssetMng.AllowCustomPaging = True
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(LeftPane)
+                GirdConfig(rgAssetMng)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
