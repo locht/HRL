@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_ApproveFamily_Edit.ascx.vb"
     Inherits="Profile.ctrlHU_ApproveFamily_Edit" %>
 <%@ Import Namespace="Common" %>
-<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
@@ -17,7 +16,7 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Lý do không phê duyệt")%>
+                            <asp:Label ID="lbRemark" runat="server" Text="Lý do không phê duyệt"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtRemark" SkinID="Textbox1023" runat="server" Width="100%" MaxLength="250" Rows="1" Height="38px">
@@ -37,12 +36,10 @@
                 <tlk:RadGrid PageSize=50 ID="rgData" runat="server" Height="100%">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
-                        <ClientEvents OnGridCreated="GridCreated" />
-                        <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,STATUS" ClientDataKeyNames="ID,STATUS">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                          <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
@@ -63,6 +60,10 @@
                                 ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="BIRTH_DATE">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                                UniqueName="TITLE_NAME" SortExpression="TITLE_NAME">
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
                                 Visible="True" EmptyDataText="">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -93,7 +94,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
                                 SortExpression="REMARK">
                                 <HeaderStyle HorizontalAlign="Center" />
-                            </tlk:GridBoundColumn>
+                            </tlk:GridBoundColumn>--%>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>
@@ -106,32 +107,13 @@
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
-        function ValidateFilter(sender, eventArgs) {
-            var params = eventArgs.get_commandArgument() + '';
-            if (params.indexOf("|") > 0) {
-                var s = eventArgs.get_commandArgument().split("|");
-                if (s.length > 1) {
-                    var val = s[1];
-                    if (validateHTMLText(val) || validateSQLText(val)) {
-                        eventArgs.set_cancel(true);
-                    }
-                }
-            }
-        }
-
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ApproveFamily_Edit_RadSplitter3');
-        }
-          
         var enableAjax = true;
-        function onRequestStart(sender, eventArgs)
-        {
+        function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
 
-        function clientButtonClicking(sender, args)
-        {
+        function clientButtonClicking(sender, args) {
 
         }
 

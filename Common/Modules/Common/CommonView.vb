@@ -386,31 +386,42 @@ Public Class CommonView
         dtGrid = view.ToTable()
 
         Dim rCol As GridBoundColumn
+        Dim rColClientSelect As GridClientSelectColumn
         rg.MasterTableView.Columns.Clear()
         For Each row As DataRow In dtGrid.Rows
             Try
-                rCol = New GridBoundColumn()
-                rg.MasterTableView.Columns.Add(rCol)
-                rCol.DataField = row.Field(Of String)("ID").Trim()
-                rCol.HeaderText = Translate(row.Field(Of String)("Name").Trim())
-                If IsNumeric(row("Width").ToString()) Then
-                    rCol.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
-                    rCol.FilterControlWidth = Integer.Parse(row("Width").ToString())
+                If row.Field(Of String)("ID").Trim() = "cbStatus" Then
+                    rColClientSelect = New GridClientSelectColumn()
+                    rg.MasterTableView.Columns.Add(rColClientSelect)
+                    rColClientSelect.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                    rColClientSelect.HeaderStyle.Width = 30
+                    rColClientSelect.HeaderTooltip = (row.Field(Of String)("Name").Trim())
+                    rColClientSelect.ItemStyle.HorizontalAlign = HorizontalAlign.Center
+                Else
+                    rCol = New GridBoundColumn()
+                    rg.MasterTableView.Columns.Add(rCol)
+                    rCol.DataField = row.Field(Of String)("ID").Trim()
+                    rCol.HeaderText = Translate(row.Field(Of String)("Name").Trim())
+                    If IsNumeric(row("Width").ToString()) Then
+                        rCol.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
+                        rCol.FilterControlWidth = Integer.Parse(row("Width").ToString())
+                    End If
+                    rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                    rCol.AllowFiltering = True
+                    rCol.AllowSorting = True
+                    rCol.AutoPostBackOnFilter = True
+                    rCol.CurrentFilterFunction = GridKnownFunction.Contains
+                    rCol.ShowFilterIcon = False
+                    rCol.HeaderTooltip = (row.Field(Of String)("Name").Trim())
+                    rCol.FilterControlToolTip = (row.Field(Of String)("Name").Trim())
+                    rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
+                    If row.Field(Of String)("DataType").Trim() = "DateTime" Then
+                        rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
+                    ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
+                        rCol.DataFormatString = "{0:#,##0.##}"
+                    End If
                 End If
-                rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
-                rCol.AllowFiltering = True
-                rCol.AllowSorting = True
-                rCol.AutoPostBackOnFilter = True
-                rCol.CurrentFilterFunction = GridKnownFunction.Contains
-                rCol.ShowFilterIcon = False
-                rCol.HeaderTooltip = (row.Field(Of String)("Name").Trim())
-                rCol.FilterControlToolTip = (row.Field(Of String)("Name").Trim())
-                rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
-                If row.Field(Of String)("DataType").Trim() = "DateTime" Then
-                    rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
-                ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
-                    rCol.DataFormatString = "{0:#,##0.##}"
-                End If
+               
             Catch ex As Exception
                 Continue For
             End Try

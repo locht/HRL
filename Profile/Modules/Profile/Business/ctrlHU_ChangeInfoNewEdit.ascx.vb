@@ -163,6 +163,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
             End If
+            
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList(ProfileCommon.OBJECT_ATTENDANCE.Code)
             End Using
@@ -570,11 +571,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                     cboStaffRank.Text = String.Empty
                                     cboTitle.Text = String.Empty
                                     cboDecisionType.Text = String.Empty
-
-                                    cboStatus.Text = String.Empty
-
                                     chkIsProcess.Checked = False
-                                    
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -1083,16 +1080,20 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
         Try
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
-
+            Dim dtData As DataTable = Nothing
             If orgItem IsNot Nothing Then
                 hidOrg.Value = e.CurrentValue
                 txtOrgName.Text = orgItem.NAME_VN
                 'txtOrgName.ToolTip = Utilities.DrawTreeByString(orgItem.DESCRIPTION_PATH)
+                Using rep As New ProfileRepository
+                    If IsNumeric(e.CurrentValue) Then
+                        dtData = rep.GetTitleByOrgID(Decimal.Parse(e.CurrentValue), True)
+                        cboTitle.ClearValue()
+                        FillRadCombobox(cboTitle, dtData, "NAME", "ID")
+                    End If
+                End Using
             End If
-
-            cboTitle.ClearValue()
             isLoadPopup = 0
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -1223,7 +1224,13 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-
+                    Dim dtdata As DataTable = Nothing
+                    dtData = (New ProfileRepository).GetOtherList("DECISION_STATUS", True)
+                    If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                        FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
+                        cboStatus.ClearSelection()
+                        cboStatus.SelectedIndex = 1
+                    End If
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(False, btnFindEmployee)
             End Select
@@ -1298,7 +1305,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
     Private Sub FillData(ByVal empid As Decimal)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             Using rep As New ProfileBusinessRepository
                 Dim obj = rep.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empid})
@@ -1307,7 +1313,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
-
                 hidID.Value = obj.ID.ToString
                 hidEmp.Value = obj.EMPLOYEE_ID
                 txtEmployeeCode.Text = obj.EMPLOYEE_CODE
@@ -1320,7 +1325,6 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
                 rdExpireDateOld.SelectedDate = obj.EXPIRE_DATE
                 txtStaffRankOld.Text = obj.STAFF_RANK_NAME
-
                 If obj.STAFF_RANK_ID IsNot Nothing Then
                     cboStaffRank.SelectedValue = obj.STAFF_RANK_ID
                     cboStaffRank.Text = obj.STAFF_RANK_NAME
@@ -1329,16 +1333,20 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     lbFileAttach.Text = obj.FILENAME
                     txtFileAttach_Link.Text = obj.ATTACH_FILE
                 End If
+                Dim dtdata As DataTable = Nothing
                 If obj.ORG_ID IsNot Nothing Then
                     txtOrgName.Text = obj.ORG_NAME
                     hidOrg.Value = obj.ORG_ID
+                    If IsNumeric(hidOrg.Value) Then
+                        dtdata = (New ProfileRepository).GetTitleByOrgID(Decimal.Parse(hidOrg.Value), True)
+                        cboTitle.ClearValue()
+                        FillRadCombobox(cboTitle, dtdata, "NAME", "ID")
+                    End If
                 End If
-
                 If obj.TITLE_ID IsNot Nothing Then
                     cboTitle.SelectedValue = obj.TITLE_ID
                     cboTitle.Text = obj.TITLE_NAME
                 End If
-
                 If obj.DECISION_TYPE_ID IsNot Nothing Then
                     cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
                     cboDecisionType.Text = obj.DECISION_TYPE_NAME

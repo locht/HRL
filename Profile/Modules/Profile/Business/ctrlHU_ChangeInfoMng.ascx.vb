@@ -104,7 +104,10 @@ Public Class ctrlHU_ChangeInfoMng
 
             ctrlUpload1.isMultiple = AsyncUpload.MultipleFileSelection.Disabled
             ctrlUpload1.MaxFileInput = 1
-
+            If Not IsPostBack Then
+                ViewConfig(LeftPane)
+                GirdConfig(rgWorking)
+            End If
             InitControl()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -95,6 +95,15 @@ Partial Public Class ctrlHU_ChangeInfoMng
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEffectDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdEffectDate control.
     '''</summary>
     '''<remarks>
@@ -102,6 +111,15 @@ Partial Public Class ctrlHU_ChangeInfoMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdEffectDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbExpireDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbExpireDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdExpireDate control.
@@ -165,6 +183,15 @@ Partial Public Class ctrlHU_ChangeInfoMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''lbPrintSupport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPrintSupport As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboPrintSupport control.
