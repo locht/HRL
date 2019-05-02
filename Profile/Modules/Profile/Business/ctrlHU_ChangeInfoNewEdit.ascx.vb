@@ -136,7 +136,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
         Try
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-
+            If Not IsPostBack Then
+                ViewConfig(LeftPane)
+            End If
             InitControl()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
