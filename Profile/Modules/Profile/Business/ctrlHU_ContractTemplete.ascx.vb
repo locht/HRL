@@ -419,6 +419,7 @@ Public Class ctrlHU_ContractTemplete
                     UpdateControlState()
                     txtRemindLink.Text = ""
                     FileOldName = ""
+                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ContractAppendix&group=Business")
                     'ScriptManager.RegisterStartupScript(Page, Page.GetType, "Close", "CloseWindow();", True)
                 Case CommonMessage.TOOLBARITEM_PRINT
 

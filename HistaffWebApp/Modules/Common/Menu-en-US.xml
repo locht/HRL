@@ -14,6 +14,7 @@
         <Item Value="ctrlSE_LdapConfiguration" Text="Ldap configuration management" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlSE_LdapConfiguration&amp;group=Secure" CheckPermission="true"/>
         <Item Value="ctrlSE_Configuration" Text="Common configuration management" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlSE_Configuration&amp;group=Secure" CheckPermission="true"/>
         <Item Value="ctrlLanguageManagement" Text="Manage language" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlLanguageManagement" CheckPermission="true"/>
+        <Item Value="ctrlControlsManage" Text="Configuration management" PostBack="True" NavigateUrl="Default.aspx?mid=Common&amp;fid=ctrlControlsManage&amp;group=Secure" CheckPermission="true"/>
       </Group>
     </Item>
     <Item Text="Define" PostBack="True">

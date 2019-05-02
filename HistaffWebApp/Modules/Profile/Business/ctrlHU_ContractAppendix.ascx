@@ -157,14 +157,14 @@
         function OpenTemplete() {
             var bCheck = $find('<%# rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {
-                var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&add=1', "rwPopup");
+                window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&add=1', "_self");
                 var pos = $("html").offset();
                 oWindow.maximize(true);
             }
             else if (bCheck == 1) {
                 var emp_id = $find('<%# rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
                 console.log(emp_id);
-                var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&add=1&EmpID=' + emp_id, "rwPopup");
+                window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&add=1&EmpID=' + emp_id, "_self");
                 var pos = $("html").offset();
                 oWindow.maximize(true);
             }
@@ -344,7 +344,7 @@
             var emp_id = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
 
 
-            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&IDSelect=' + id + '&empid=' + emp_id, "rwPopup");
+            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ContractTemplete&group=Business&noscroll=1&IDSelect=' + id + '&empid=' + emp_id, "_self");
 
             oWindow.maximize(true);
             return 0;
