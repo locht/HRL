@@ -30,6 +30,6 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
 
-    Public Property TITLE_NAME As String
+    'Public Property TITLE_NAME As String
     Public Property CAREER As String
 End Class

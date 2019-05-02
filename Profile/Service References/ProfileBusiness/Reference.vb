@@ -32316,6 +32316,9 @@ Namespace ProfileBusiness
         Private TAXTATIONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -32701,6 +32704,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TAXTATIONField, value) <> true) Then
                     Me.TAXTATIONField = value
                     Me.RaisePropertyChanged("TAXTATION")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TITLE_IDField
+            End Get
+            Set
+                If (Me.TITLE_IDField.Equals(value) <> true) Then
+                    Me.TITLE_IDField = value
+                    Me.RaisePropertyChanged("TITLE_ID")
                 End If
             End Set
         End Property
