@@ -145,7 +145,7 @@
                 <td class="lb">
                     <%# UI.StaffRank %>
                 </td>
-                <td>
+                <td >
                     <tlk:RadTextBox ID="txtStaffRankOld" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
@@ -200,24 +200,7 @@
                     </tlk:RadTextBox>
                 </td>--%>
             </tr>
-            <tr>
-                <td colspan="2">
-                </td>
-                <%--<td class="lb">
-                    <%# UI.DecisionNo %>
-                </td>
-                <td class="borderRight">
-                    <tlk:RadTextBox ID="txtDecisionNoOld" runat="server" SkinID="Readonly" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>--%>
-                <%--<td class="lb">
-                    <%# UI.DecisionNo %>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtDecisionNo" runat="server">
-                    </tlk:RadTextBox>
-                </td>--%>
-            </tr>
+           
             <tr>
                 <td class="lb">
                     <%# Translate("Ngày hiệu lực")%>
@@ -280,7 +263,7 @@
                         causesvalidation="false" onclientclicked="rbtOldClicked" tabindex="3" enableviewstate="false">
                     </tlk:radbutton>
                 </td>
-
+               
                  <td class="lb">
                     <%# Translate("Số quyết định")%>
                 </td>
