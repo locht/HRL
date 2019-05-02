@@ -117,6 +117,11 @@ Public Class ctrlInsArisingManualMng
             'ctrlOrg.CheckChildNodes = True
             'ctrlOrg.CheckBoxes = TreeNodeTypes.All
 
+            'If Not IsPostBack Then
+            '    ViewConfig(LeftPane)
+            '    GirdConfig(rgGridData)
+            'End If
+
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
