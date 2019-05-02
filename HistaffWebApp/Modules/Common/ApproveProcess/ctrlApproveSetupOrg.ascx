@@ -6,14 +6,14 @@
      #ctl00_MainContent_ctrlApproveSetupOrg_rgDetail_ctl00{
         width:100% !important;
     }        
-</style>   
+</style>
 <tlk:RadSplitter runat="server" ID="splitFull" Width="100%" Height="100%">
     <tlk:RadPane runat="server" ID="paneLeftFull" Width="250" MaxWidth="300">
         <Common:ctrlOrganization runat="server" ID="ctrlOrg" />
     </tlk:RadPane>
     <tlk:RadPane runat="server" ID="paneRightFull" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-            <tlk:RadPane ID="RadPane1" runat="server" Height="140px" Scrolling="Both">
+            <tlk:RadPane ID="RadPane1" runat="server" Height="190px" Scrolling="None">
                 <tlk:RadToolBar runat="server" ID="tbarDetail" Width="100%" OnClientButtonClicking="OnClientButtonClicking" />
                 <asp:ValidationSummary runat="server" ID="valSummaryVal" />
                 <asp:Panel runat="server" ID="pnlDetail" Enabled="false">
@@ -132,7 +132,7 @@
                     </table>
                 </asp:Panel>
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
+            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="Y">
                 <tlk:RadGrid PageSize="50" runat="server" ID="rgDetail" Height="100%" SkinID="GridSingleSelect">
                     <ClientSettings>
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" />

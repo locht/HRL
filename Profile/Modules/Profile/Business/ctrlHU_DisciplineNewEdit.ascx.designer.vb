@@ -662,6 +662,24 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents cvalPeriod As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbPerformDiscipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPerformDiscipline As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdPerformDiscipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdPerformDiscipline As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
     '''PanelEmployee control.
     '''</summary>
     '''<remarks>

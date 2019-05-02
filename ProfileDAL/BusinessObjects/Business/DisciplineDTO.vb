@@ -39,6 +39,7 @@
     Public Property PERIOD_ID As Decimal?
     Public Property YEAR_PERIOD As Decimal?
     Public Property INDEMNIFY_MONEY As Decimal?
+    Public Property PERFORM_DATE As Date?
     Public Property DISCIPLINE_EMP As List(Of DisciplineEmpDTO)
 
     Public Property NO As String

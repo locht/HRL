@@ -95,7 +95,7 @@
                         <HeaderStyle Width="120px" />
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">
-                        <ClientEvents OnGridCreated="GridCreated" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                 </tlk:RadGrid>
@@ -104,8 +104,7 @@
 <%--            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 
             </tlk:RadPane>--%>
-
-            <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+            <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px" Visible="false">
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td class="lb" Visible="false">
@@ -128,6 +127,29 @@
                     </tr>
                 </table>
             </tlk:RadPane>
+           <%-- <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
+                <table class="table-form" onkeydown="return (event.keyCode!=13)">
+                    <tr>
+                        <td class="lb">
+                            <%# Translate("Biễu mẫu hỗ trợ")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox runat="server" Width="400px" ID="cboPrintSupport">
+                            </tlk:RadComboBox>
+                            <asp:CustomValidator ID="cvalPrintSupport" ControlToValidate="cboPrintSupport" runat="server"
+                                ErrorMessage="<%$ Translate: Biểu mẫu hỗ trợ không tồn tại hoặc đã ngừng áp dụng. %>"
+                                ToolTip="<%$ Translate: Biểu mẫu hỗ trợ không tồn tại hoặc đã ngừng áp dụng. %>">
+                            </asp:CustomValidator>      
+                        </td>
+                        <td>
+                            <tlk:RadButton ID="btnPrintSupport" runat="server" Text="<%$ Translate: Hỗ trợ in %>"
+                                OnClientClicking="btnPrintSupportClick" AutoPostBack="true" CausesValidation="true"
+                                OnClientClicked="btnResize" >
+                            </tlk:RadButton>
+                        </td>
+                    </tr>
+                </table>
+            </tlk:RadPane>--%>
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -158,9 +180,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ChangeInfoMng_RadSplitter3');
-        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ChangeInfoMng_RadSplitter3');
+        //        }
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {

@@ -54,6 +54,31 @@
         </tr>
         <tr>
             <td class="lb">
+                <%# Translate("Nghề nghiệp")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtCareer" SkinID="Textbox15">
+                </tlk:RadTextBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Chức danh")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox15">
+                </tlk:RadTextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb">
+                <%# Translate("Nguyên quán")%>
+            </td>
+            <td colspan="3">
+                <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
+                </tlk:RadComboBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb">
                 <%# Translate("Địa chỉ thường chú")%>
             </td>
             <td>
@@ -112,8 +137,8 @@
         </tr>
     </table>
     <tlk:RadGrid PageSize="50" ID="rgFamilyEdit" runat="server" Height="250px" Width="99%">
-        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION"
+        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -140,6 +165,18 @@
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
                 <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
+                    Visible="True" EmptyDataText="">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>" UniqueName="CAREER"
+                    Visible="True" EmptyDataText="">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="TITLE_NAME" HeaderText="<%$ Translate: Chức danh %>" UniqueName="TITLE_NAME"
+                    Visible="True" EmptyDataText="">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="PROVINCE_NAME" HeaderText="<%$ Translate: Nguyên quán %>" UniqueName="PROVINCE_NAME"
                     Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
@@ -183,8 +220,8 @@
     </tlk:RadGrid>
     <br />
     <tlk:RadGrid PageSize="50" ID="rgFamily" runat="server" Height="250px" Width="99%">
-        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG"
+        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME"
             Caption="<%$ Translate: Thông tin hiện tại %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
@@ -208,6 +245,18 @@
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
                 <tlk:GridBoundColumn DataField="ID_NO" HeaderText="<%$ Translate: CMND %>" UniqueName="ID_NO"
+                    Visible="True" EmptyDataText="">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="CAREER" HeaderText="<%$ Translate: Nghề nghiệp %>" UniqueName="CAREER"
+                    Visible="True" EmptyDataText="">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="TITLE_NAME" HeaderText="<%$ Translate: Chức danh %>" UniqueName="TITLE_NAME"
+                    Visible="True" EmptyDataText="">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn DataField="PROVINCE_NAME" HeaderText="<%$ Translate: Nguyên quán %>" UniqueName="PROVINCE_NAME"
                     Visible="True" EmptyDataText="">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>

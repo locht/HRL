@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalDiscipline.ascx.vb"
     Inherits="Profile.ctrlPortalDiscipline" %>
-<tlk:RadGrid PageSize=50 ID="rgDiscipline" runat="server" Height="350px" AllowFilteringByColumn="true">
+<tlk:RadGrid PageSize="50" ID="rgDiscipline" runat="server" Height="350px" AllowFilteringByColumn="true" Scrolling="Both">
     <MasterTableView DataKeyNames="ID">
         <Columns>
             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
@@ -35,6 +35,12 @@
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
+            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian thi hành kỷ luật %>" DataField="PERFORM_DATE"
+                UniqueName="PERFORM_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="PERFORM_DATE"
+                ShowFilterIcon="true">
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+            </tlk:GridDateTimeColumn>
         </Columns>
     </MasterTableView>
 </tlk:RadGrid>

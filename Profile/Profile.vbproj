@@ -151,6 +151,8 @@
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReport.ascx" />
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReportGaps.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx" />
+    <Content Include="Modules\Portal\ctrlPortalTrainingOutCompany.ascx" />
+    <Content Include="Modules\Portal\ctrlPortalWorkingBefore.ascx" />
     <Content Include="Modules\Portal\ctrlPortalCompetencyCourse.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpDtlCompetency.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpDtlViewKPI.ascx" />
@@ -519,6 +521,20 @@
     </Compile>
     <Compile Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyCourse.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalTrainingOutCompany.ascx.designer.vb">
+      <DependentUpon>ctrlPortalTrainingOutCompany.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalTrainingOutCompany.ascx.vb">
+      <DependentUpon>ctrlPortalTrainingOutCompany.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalWorkingBefore.ascx.designer.vb">
+      <DependentUpon>ctrlPortalWorkingBefore.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlPortalWorkingBefore.ascx.vb">
+      <DependentUpon>ctrlPortalWorkingBefore.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlPortalCompetencyCourse.ascx.designer.vb">

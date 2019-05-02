@@ -56,6 +56,12 @@
                         AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo" FilterControlWidth="100%">
                         <HeaderStyle Width="10%" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Right" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Thời gian thi hành kỷ luật" DataField="PERFORM_DATE" UniqueName="PERFORM_DATE"
+                        SortExpression="PERFORM_DATE" DataFormatString="{0:###,###,###,##0}" ShowFilterIcon="false"
+                        AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo" FilterControlWidth="100%">
+                        <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridBoundColumn>--%>
                 </Columns>
             </MasterTableView>
@@ -83,9 +89,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlDiscipline_RadSplitter2');
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlDiscipline_RadSplitter2');
+        //        }
 
     </script>
 </tlk:RadScriptBlock>

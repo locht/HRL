@@ -281,6 +281,7 @@ Public Class ctrlHU_DisciplineNewEdit
                     rdExpireDate.SelectedDate = Discipline.EXPIRE_DATE
                     'rdIssueDate.SelectedDate = Discipline.ISSUE_DATE
                     rdSignDate.SelectedDate = Discipline.SIGN_DATE
+                    rdPerformDiscipline.SelectedDate = Discipline.PERFORM_DATE
                     cboStatus.SelectedValue = Discipline.STATUS_ID.ToString
                     cboDisciplineLevel.SelectedValue = Discipline.DISCIPLINE_LEVEL.ToString
                     cboDisciplineObj.SelectedValue = Discipline.DISCIPLINE_OBJ.ToString
@@ -445,7 +446,7 @@ Public Class ctrlHU_DisciplineNewEdit
                         objDiscipline.SIGN_DATE = rdSignDate.SelectedDate
                         objDiscipline.NAME = txtDecisionName.Text.Trim
                         objDiscipline.NO = txtDecisionNo.Text.Trim
-
+                        objDiscipline.PERFORM_DATE = rdPerformDiscipline.SelectedDate
                         objDiscipline.SIGNER_TITLE = txtSignerTitle.Text
                         For Each i As GridDataItem In rgEmployee.Items
                             Dim o As New DisciplineEmpDTO

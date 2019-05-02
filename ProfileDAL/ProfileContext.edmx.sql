@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26/04/2019 2:14:43 PM
+-- Date Created: 30/04/2019 10:15:32 AM
 -- Generated from EDMX file: E:\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -760,7 +760,8 @@ CREATE TABLE "dbo"."HU_DISCIPLINE" (
    "SIGNER_NAME" NVARCHAR2(255) NULL,
    "DISCIPLINE_REASON" NUMBER(38,0) NULL,
    "UPLOADFILE" NCLOB NULL,
-   "FILENAME" NCLOB NULL
+   "FILENAME" NCLOB NULL,
+   "PERFORM_DATE" DATE NULL
 );
 
 -- Creating table 'HU_WORKING_BEFORE'
@@ -1599,7 +1600,10 @@ CREATE TABLE "dbo"."HU_FAMILY_EDIT" (
    "REASON_UNAPROVE" NVARCHAR2(250) NULL,
    "FK_PKEY" NUMBER(38,0) NULL,
    "SEND_DATE" DATE NULL,
-   "TAXTATION" NCLOB NULL
+   "TAXTATION" NCLOB NULL,
+   "PROVINCE_ID" NUMBER(38,0) NULL,
+   "TITLE_NAME" NCLOB NULL,
+   "CAREER" NCLOB NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_EDIT'

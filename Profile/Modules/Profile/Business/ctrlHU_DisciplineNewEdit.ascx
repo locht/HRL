@@ -272,11 +272,18 @@
                         ToolTip="Bạn chưa chọn kỳ lương thanh toán.">
                     </asp:CustomValidator>
                 </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbPerformDiscipline" Text="Thời gian thi hành kỷ luật"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdPerformDiscipline" runat="server" TabIndex="20">
+                    </tlk:RadDatePicker>
+                </td>
             </tr>
         </table>
     </tlk:RadPane>
     <tlk:RadPane runat="server" Scrolling="none" ID="PanelEmployee" Height="100%">
-        <tlk:RadGrid PageSize=50 ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true"
+        <tlk:RadGrid PageSize="50" ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true"
             runat="server" Height="100%" ShowFooter="True">
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView EditMode="InPlace" AllowPaging="false" AllowCustomPaging="false"

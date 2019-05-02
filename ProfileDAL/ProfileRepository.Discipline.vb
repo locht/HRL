@@ -114,7 +114,8 @@ Partial Class ProfileRepository
                                                                        .CREATED_DATE = d.d.CREATED_DATE,
                                                                        .STATUS_NAME = d.ot.NAME_VN,
                                                                        .STATUS_CODE = d.ot.CODE,
-                                                                       .STATUS_ID = d.d.STATUS_ID})
+                                                                       .STATUS_ID = d.d.STATUS_ID,
+                                                                       .PERFORM_DATE = d.d.PERFORM_DATE})
 
 
             lst = lst.OrderBy(Sorts)
@@ -190,7 +191,8 @@ Partial Class ProfileRepository
                                                                        .NO = p.p.NO,
                                                                        .SIGN_DATE = p.p.SIGN_DATE,
                                                                        .SIGNER_NAME = p.p.SIGNER_NAME,
-                                                                       .SIGNER_TITLE = p.p.SIGNER_TITLE
+                                                                       .SIGNER_TITLE = p.p.SIGNER_TITLE,
+                                                                       .PERFORM_DATE = p.p.PERFORM_DATE
                                                                       })
             ''Logger.LogInfo(obj)
             Return obj.SingleOrDefault
@@ -231,6 +233,7 @@ Partial Class ProfileRepository
             objDisciplineData.SIGN_DATE = objDiscipline.SIGN_DATE
             objDisciplineData.SIGNER_NAME = objDiscipline.SIGNER_NAME
             objDisciplineData.SIGNER_TITLE = objDiscipline.SIGNER_TITLE
+            objDisciplineData.PERFORM_DATE = objDiscipline.PERFORM_DATE
             Context.HU_DISCIPLINE.AddObject(objDisciplineData)
 
             'thêm danh sách nhân viên kỷ luật.
@@ -421,6 +424,7 @@ Partial Class ProfileRepository
             objDisciplineData.SIGN_DATE = objDiscipline.SIGN_DATE
             objDisciplineData.SIGNER_NAME = objDiscipline.SIGNER_NAME
             objDisciplineData.SIGNER_TITLE = objDiscipline.SIGNER_TITLE
+            objDisciplineData.PERFORM_DATE = objDiscipline.PERFORM_DATE
             'objDisciplineData.PAY_DATE = objDiscipline.PAY_DAT            
 
             'Xóa danh sách nhân viên kỷ luật cũ

@@ -18,9 +18,18 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\List" + Me.GetType().Name.ToString()
+    Dim checkCRUD As Integer = 0 '0-chua thao tac 1-Insert 2-Edit 3-Save 4-Delete
 
 
 #Region "Property"
+    Property checkClickUpload As Integer
+        Get
+            Return ViewState(Me.ID & "_checkClickUpload")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_checkClickUpload") = value
+        End Set
+    End Property
 
     Property EmployeeInfo As EmployeeDTO
         Get
@@ -124,6 +133,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     End Sub
     ''' <remarks></remarks>
     Private Sub btnUPLOAD_FILE_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+        checkClickUpload = 1
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
@@ -156,6 +166,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         rgEmployeeTrain.Rebind()
                         'SelectedItemDataGridByKey(rgEmployeeTrain, IDSelect, )
                     Case "Cancel"
+                        rdToiThang.SelectedDate = Nothing
+                        rdTuThang.SelectedDate = Nothing
                         txtRemindLink.Text = ""
                         FileOldName = ""
                         rgEmployeeTrain.MasterTableView.ClearSelectedItems()
@@ -192,26 +204,42 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 Case CommonMessage.STATE_NEW
 
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    'rdToiThang.SelectedDate = Nothing
-                    'rdTuThang.SelectedDate = Nothing
+                    If checkClickUpload <> 1 Then
+                        rdToiThang.SelectedDate = Nothing
+                        rdTuThang.SelectedDate = Nothing
+                        cboTrainingForm.SelectedValue = ""
+                        cboTrainingType.SelectedValue = ""
+                    End If
                     rntGraduateYear.Text = ""
                     txtRemark.Text = ""
                     txtTrainingSchool.Text = ""
                     txtRemark.Text = ""
-                    cboTrainingForm.SelectedValue = ""
                     txtBangCap.Text = ""
                     txtChuyenNganh.Text = ""
                     txtKetQua.Text = ""
                     rdFrom.SelectedDate = Nothing
                     rdTo.SelectedDate = Nothing
-                    cboTrainingType.SelectedValue = ""
                     rdReceiveDegree.SelectedDate = Nothing
                     EnableControlAll(True, rdToiThang, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
 
 
                 Case CommonMessage.STATE_NORMAL
-                    'rdToiThang.SelectedDate = Nothing
-                    'rdTuThang.SelectedDate = Nothing
+                    Select Case checkCRUD
+                        'Insert
+                        Case 1
+                            rdToiThang.SelectedDate = Nothing
+                            rdTuThang.SelectedDate = Nothing
+                            'Edit
+                        Case 2
+                            'Save
+                        Case 3
+                            rdToiThang.SelectedDate = Nothing
+                            rdTuThang.SelectedDate = Nothing
+                            'Delete
+                        Case 4
+                            rdToiThang.SelectedDate = Nothing
+                            rdTuThang.SelectedDate = Nothing
+                    End Select
                     rntGraduateYear.Text = ""
                     txtRemark.Text = ""
                     txtTrainingSchool.Text = ""
@@ -305,6 +333,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
+                    checkCRUD = 1
                     If EmployeeInfo.WORK_STATUS Is Nothing Or
                         (EmployeeInfo.WORK_STATUS IsNot Nothing AndAlso
                          (EmployeeInfo.WORK_STATUS <> ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Or
@@ -318,6 +347,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         Exit Sub
                     End If
                 Case CommonMessage.TOOLBARITEM_EDIT
+                    checkCRUD = 2
                     If rgEmployeeTrain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
@@ -340,6 +370,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         Exit Sub
                     End If
                 Case CommonMessage.TOOLBARITEM_DELETE
+                    checkCRUD = 4
                     If rgEmployeeTrain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
@@ -360,6 +391,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Utilities.GridExportExcel(rgEmployeeTrain, "EmployeeTrain")
                 Case CommonMessage.TOOLBARITEM_SAVE
+                    checkCRUD = 3
                     If Page.IsValid Then
                         Dim rep As New ProfileBusinessRepository
                         objTrain.EMPLOYEE_ID = EmployeeInfo.ID
@@ -395,6 +427,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = gID
                                     Refresh("InsertView")
+                                    checkClickUpload = 1
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -403,7 +436,11 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                                 Dim repCheck As New ProfileRepository
                                 Dim lst As New List(Of Decimal)
                                 For Each dr As GridDataItem In rgEmployeeTrain.SelectedItems
-                                    lst.Add(Decimal.Parse(dr("ID").Text))
+                                    Dim id As Integer
+                                    If Integer.TryParse(dr("ID").Text, id) Then
+                                        lst.Add(Decimal.Parse(id))
+                                    End If
+
                                 Next
 
                                 If repCheck.CheckExistID(lst, "HU_PRO_TRAIN_OUT_COMPANY", "ID") Then
