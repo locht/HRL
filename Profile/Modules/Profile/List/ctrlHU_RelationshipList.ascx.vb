@@ -326,7 +326,7 @@ Public Class ctrlHU_RelationshipList
                 'load nhom moi quan he
                 Dim relGroup As New DataTable
                 relGroup = rep.GetRelationshipGroupList
-                FillRadCombobox(cboRelGroup, relGroup, "NAME", "ID", False)
+                FillRadCombobox(cboRelGroup, relGroup, "NAME_VN", "ID", False)
             End Using
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)

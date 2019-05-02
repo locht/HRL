@@ -960,11 +960,11 @@ Partial Class ProfileRepository
 
         Try
             Dim query = From p In Context.HU_RELATIONSHIP_LIST
-                        From g In Context.HU_RELATIONSHIP_GROUP.Where(Function(f) f.ID = p.REL_GROUP_ID).DefaultIfEmpty
+                        From g In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.REL_GROUP_ID).DefaultIfEmpty
                         Select New RelationshipListDTO With {
                                        .ID = p.ID,
                                        .REL_GROUP_ID = p.REL_GROUP_ID,
-                                       .REL_GROUP_NAME = g.NAME,
+                                       .REL_GROUP_NAME = g.NAME_VN,
                                        .CODE = p.CODE,
                                        .NAME = p.NAME,
                                        .REMARK = p.REMARK,
