@@ -61,9 +61,11 @@ Public Class ctrlPortalFamily_Edit
             Dim ComboBoxDataDTO As New ComboBoxDataDTO
             Using rep As New ProfileRepository
                 ComboBoxDataDTO.GET_RELATION = True
+                ComboBoxDataDTO.GET_PROVINCE = True
                 rep.GetComboList(ComboBoxDataDTO)
                 If ComboBoxDataDTO IsNot Nothing Then
                     FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
+                    FillDropDownList(cboNguyenQuan, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNguyenQuan.SelectedValue)
                 End If
 
             End Using
@@ -81,6 +83,9 @@ Public Class ctrlPortalFamily_Edit
             dic.Add("DEDUCT_TO", rdDeductTo)
             dic.Add("RELATION_ID", cboRelationship)
             dic.Add("ID", hidFamilyID)
+            dic.Add("CAREER", txtCareer)
+            dic.Add("TITLE_NAME", txtTitle)
+            dic.Add("PROVINCE_ID", cboNguyenQuan)
             Utilities.OnClientRowSelectedChanged(rgFamily, dic)
 
             Dim dic1 As New Dictionary(Of String, Control)
@@ -97,6 +102,9 @@ Public Class ctrlPortalFamily_Edit
             dic1.Add("RELATION_ID", cboRelationship)
             dic1.Add("ID", hidID)
             dic1.Add("FK_PKEY", hidFamilyID)
+            dic1.Add("CAREER", txtCareer)
+            dic1.Add("TITLE_NAME", txtTitle)
+            dic1.Add("PROVINCE_ID", cboNguyenQuan)
             Utilities.OnClientRowSelectedChanged(rgFamilyEdit, dic1)
 
         Catch ex As Exception
@@ -110,7 +118,7 @@ Public Class ctrlPortalFamily_Edit
                 Case CommonMessage.STATE_NORMAL
                     EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -121,7 +129,7 @@ Public Class ctrlPortalFamily_Edit
                 Case CommonMessage.STATE_NEW
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -132,7 +140,7 @@ Public Class ctrlPortalFamily_Edit
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -161,7 +169,7 @@ Public Class ctrlPortalFamily_Edit
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship)
+                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
@@ -182,7 +190,11 @@ Public Class ctrlPortalFamily_Edit
                         If cboRelationship.SelectedValue <> "" Then
                             obj.RELATION_ID = Decimal.Parse(cboRelationship.SelectedValue)
                         End If
-
+                        obj.CAREER = txtCareer.Text.Trim()
+                        obj.TITLE_NAME = txtTitle.Text.Trim()
+                        If cboNguyenQuan.SelectedValue <> "" Then
+                            obj.PROVINCE_ID = Decimal.Parse(cboNguyenQuan.SelectedValue)
+                        End If
                         Using rep As New ProfileBusinessRepository
                             If hidFamilyID.Value <> "" Then
                                 obj.FK_PKEY = hidFamilyID.Value
@@ -235,6 +247,9 @@ Public Class ctrlPortalFamily_Edit
                         rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
                         rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
                         cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
+                        txtCareer.Text = item.GetDataKeyValue("CAREER")
+                        txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
+                        cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
                         If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                             hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
                         End If
@@ -243,10 +258,10 @@ Public Class ctrlPortalFamily_Edit
                     Else
                         ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship)
+                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan)
                     End If
 
-                   
+
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
 
@@ -338,6 +353,9 @@ Public Class ctrlPortalFamily_Edit
                 rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
                 rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
                 cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
+                txtCareer.Text = item.GetDataKeyValue("CAREER")
+                txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
+                cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
                 If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                     hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
                 End If
@@ -367,6 +385,9 @@ Public Class ctrlPortalFamily_Edit
                 rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
                 rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
                 cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
+                txtCareer.Text = item.GetDataKeyValue("CAREER")
+                txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
+                cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
                 hidID.Value = ""
                 chkIsDeduct_CheckedChanged(Nothing, Nothing)

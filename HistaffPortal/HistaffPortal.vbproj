@@ -115,6 +115,8 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
     <Content Include="Modules\Performance\ctrlPE_AssessHistory.ascx" />
+    <Content Include="Modules\Profile\ctrlPortalTrainingOutCompany.ascx" />
+    <Content Include="Modules\Profile\ctrlPortalWorkingBefore.ascx" />
     <Content Include="Modules\Recruitment\ctrlRC_RequestPortalNewEdit.ascx" />
     <Content Include="Modules\Training\ctrlTR_RequestPortalNewEdit.ascx" />
     <Content Include="ProcessApprove.aspx" />

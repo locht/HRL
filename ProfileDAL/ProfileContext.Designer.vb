@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f2497f90-851d-4707-b922-300ef16a13a8")>
+<Assembly: EdmSchemaAttribute("208a2714-4a63-4e9e-b643-ff5333f3e633")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -16034,6 +16034,31 @@ Public Partial Class HU_DISCIPLINE
     Private Partial Sub OnFILENAMEChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PERFORM_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _PERFORM_DATE
+        End Get
+        Set
+            OnPERFORM_DATEChanging(value)
+            ReportPropertyChanging("PERFORM_DATE")
+            _PERFORM_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PERFORM_DATE")
+            OnPERFORM_DATEChanged()
+        End Set
+    End Property
+
+    Private _PERFORM_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnPERFORM_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnPERFORM_DATEChanged()
+    End Sub
+
     #End Region
 
     #Region "Navigation Properties"
@@ -29165,6 +29190,81 @@ Public Partial Class HU_FAMILY_EDIT
     End Sub
 
     Private Partial Sub OnTAXTATIONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PROVINCE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PROVINCE_ID
+        End Get
+        Set
+            OnPROVINCE_IDChanging(value)
+            ReportPropertyChanging("PROVINCE_ID")
+            _PROVINCE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PROVINCE_ID")
+            OnPROVINCE_IDChanged()
+        End Set
+    End Property
+
+    Private _PROVINCE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPROVINCE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPROVINCE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TITLE_NAME() As Global.System.String
+        Get
+            Return _TITLE_NAME
+        End Get
+        Set
+            OnTITLE_NAMEChanging(value)
+            ReportPropertyChanging("TITLE_NAME")
+            _TITLE_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("TITLE_NAME")
+            OnTITLE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _TITLE_NAME As Global.System.String
+    Private Partial Sub OnTITLE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnTITLE_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CAREER() As Global.System.String
+        Get
+            Return _CAREER
+        End Get
+        Set
+            OnCAREERChanging(value)
+            ReportPropertyChanging("CAREER")
+            _CAREER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CAREER")
+            OnCAREERChanged()
+        End Set
+    End Property
+
+    Private _CAREER As Global.System.String
+    Private Partial Sub OnCAREERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCAREERChanged()
     End Sub
 
     #End Region

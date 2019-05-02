@@ -2221,7 +2221,7 @@ Partial Class ProfileRepository
                         From staffRank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                         From deci_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DECISION_TYPE_ID).DefaultIfEmpty
                         From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
-                        Where p.IS_MISSION = True And
+                        Where p.IS_MISSION = True And p.IS_PROCESS <> 0 And
                         p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                         Order By p.EFFECT_DATE Descending
                         Select New WorkingDTO With {.ID = p.ID,
@@ -2468,7 +2468,8 @@ Partial Class ProfileRepository
                      .DISCIPLINE_TYPE_NAME = t.NAME_VN,
                      .MONEY = de.MONEY,
                      .SIGN_DATE = p.SIGN_DATE,
-                     .DISCIPLINE_REASON_NAME = reason.NAME_VN}).ToList()
+                     .DISCIPLINE_REASON_NAME = reason.NAME_VN,
+                     .PERFORM_DATE = p.PERFORM_DATE}).ToList()
             Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")

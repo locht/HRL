@@ -113,6 +113,33 @@ Partial Public Class ctrlPortalFamily_Edit
     Protected WithEvents cvalIDNO As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''txtCareer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCareer As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTitle As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cboNguyenQuan control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboNguyenQuan As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''txtAdress control.
     '''</summary>
     '''<remarks>

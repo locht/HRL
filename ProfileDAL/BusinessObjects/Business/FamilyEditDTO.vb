@@ -11,6 +11,8 @@
     Public Property FULLNAME As String
     Public Property RELATION_ID As Decimal
     Public Property RELATION_NAME As String
+    Public Property PROVINCE_ID As Decimal?
+    Public Property PROVINCE_NAME As String
     Public Property BIRTH_DATE As Date?
     Public Property ID_NO As String
     Public Property IS_DEDUCT As Boolean?
@@ -27,4 +29,7 @@
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+
+    'Public Property TITLE_NAME As String
+    Public Property CAREER As String
 End Class

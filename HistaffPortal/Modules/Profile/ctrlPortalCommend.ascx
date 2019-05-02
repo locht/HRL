@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalCommend.ascx.vb"
     Inherits="Profile.ctrlPortalCommend" %>
 <tlk:RadGrid PageSize=50 ID="rgCommend" runat="server" Height="350px" AllowFilteringByColumn="true">
-    <MasterTableView DataKeyNames="ID">
+    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="DECISION_NO,EFFECT_DATE,COMMEND_LEVEL_NAME,COMMEND_TYPE_NAME,REMARK,MONEY,YEAR,COMMEND_PAY_NAME,SIGNER_NAME">
         <Columns>
             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
                 UniqueName="DECISION_NO" SortExpression="DECISION_NO" ShowFilterIcon="false"
@@ -29,16 +29,31 @@
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung khen thưởng %>" DataField="REMARK"
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do khen thưởng %>" DataField="REMARK"
                 UniqueName="REMARK" SortExpression="REMARK" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="MONEY" UniqueName="MONEY"
+            <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức thưởng %>" DataField="MONEY" UniqueName="MONEY"
                 SortExpression="MONEY" DataFormatString="{0:###,###,###,##0}" ShowFilterIcon="true">
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR"
+                UniqueName="YEAR" SortExpression="YEAR" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức trả thưởng %>" DataField="COMMEND_PAY_NAME"
+                UniqueName="COMMEND_PAY_NAME" SortExpression="COMMEND_PAY_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người ký %>" DataField="SIGNER_NAME"
+                UniqueName="SIGNER_NAME" SortExpression="SIGNER_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
         </Columns>
     </MasterTableView>
 </tlk:RadGrid>

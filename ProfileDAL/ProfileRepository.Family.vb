@@ -207,6 +207,9 @@ Partial Class ProfileRepository
             objFamilyEditData.STATUS = 0
             objFamilyEditData.REASON_UNAPROVE = objFamilyEdit.REASON_UNAPROVE
             objFamilyEditData.FK_PKEY = objFamilyEdit.FK_PKEY
+            objFamilyEditData.CAREER = objFamilyEdit.CAREER
+            objFamilyEditData.TITLE_NAME = objFamilyEdit.TITLE_NAME
+            objFamilyEditData.PROVINCE_ID = objFamilyEdit.PROVINCE_ID
             Context.HU_FAMILY_EDIT.AddObject(objFamilyEditData)
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
@@ -237,6 +240,9 @@ Partial Class ProfileRepository
             objFamilyEditData.ADDRESS = objFamilyEdit.ADDRESS
             objFamilyEditData.REASON_UNAPROVE = objFamilyEdit.REASON_UNAPROVE
             objFamilyEditData.FK_PKEY = objFamilyEdit.FK_PKEY
+            objFamilyEditData.CAREER = objFamilyEdit.CAREER
+            objFamilyEditData.TITLE_NAME = objFamilyEdit.TITLE_NAME
+            objFamilyEditData.PROVINCE_ID = objFamilyEdit.PROVINCE_ID
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
             Return True
@@ -251,14 +257,19 @@ Partial Class ProfileRepository
         Dim query As ObjectQuery(Of FamilyEditDTO)
         Try
             query = (From p In Context.HU_FAMILY_EDIT
-                     From p_g In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_ID = f.ID).DefaultIfEmpty
+                     Group Join m In Context.HU_RELATIONSHIP_LIST On p.RELATION_ID Equals m.ID Into gGroup = Group
+                     From p_g In gGroup.DefaultIfEmpty
+                     Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
+                     From n_g In nGroup.DefaultIfEmpty
                      Select New FamilyEditDTO With {
                          .ID = p.ID,
                          .ADDRESS = p.ADDRESS,
                          .EMPLOYEE_ID = p.EMPLOYEE_ID,
                          .FULLNAME = p.FULLNAME,
                          .RELATION_ID = p.RELATION_ID,
-                         .RELATION_NAME = p_g.NAME_VN,
+                         .RELATION_NAME = p_g.NAME,
+                         .PROVINCE_ID = p.PROVINCE_ID,
+                         .PROVINCE_NAME = n_g.NAME_VN,
                          .BIRTH_DATE = p.BIRTH_DATE,
                          .TAXTATION = p.TAXTATION,
                          .DEDUCT_REG = p.DEDUCT_REG,
@@ -269,6 +280,8 @@ Partial Class ProfileRepository
                          .REMARK = p.REMARK,
                          .REASON_UNAPROVE = p.REASON_UNAPROVE,
                          .FK_PKEY = p.FK_PKEY,
+                         .TITLE_NAME = p.TITLE_NAME,
+                         .CAREER = p.CAREER,
                          .STATUS = p.STATUS,
                          .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
                                            If(p.STATUS = 1, "Chờ phê duyệt",

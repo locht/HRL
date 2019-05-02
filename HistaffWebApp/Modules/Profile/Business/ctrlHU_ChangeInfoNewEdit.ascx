@@ -309,7 +309,7 @@
                 <td>
                 </td>
                 <td colspan="3">
-                    <asp:CheckBox ID="chkIsProcess" runat="server" Checked="true" Enabled="false" Text="<%$ Translate: Có lưu dữ liệu sang Quá trình công tác %>" />
+                    <asp:CheckBox ID="chkIsProcess" runat="server" Checked="true" Text="<%$ Translate: Có lưu dữ liệu sang Quá trình công tác %>" />
                 </td>
             </tr>
             <tr>
@@ -383,9 +383,9 @@
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
-        $(document).ready(function () {
-            registerOnfocusOut('RAD_SPLITTER_PANE_TR_ctl00_MainContent_ctrlHU_ChangeInfoNewEdit_LeftPane');
-        });
+//        $(document).ready(function () {
+//            registerOnfocusOut('RAD_SPLITTER_PANE_TR_ctl00_MainContent_ctrlHU_ChangeInfoNewEdit_LeftPane');
+//        });
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
