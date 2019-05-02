@@ -125,7 +125,7 @@
                 <td class="lb">
                     <asp:Label  runat ="server" ID="lbFILING_DATE_OLD" Text ="<%$ Translate: Ngày nộp đơn %>"></asp:Label>
                 </td>
-                <td>
+                <td class="borderRight">
                     <tlk:RadDatePicker runat ="server" ID ="rdFILING_DATE_OLD" SkinID="Readonly" ReadOnly="true"></tlk:RadDatePicker>
                 </td>
                 <td class="lb">
