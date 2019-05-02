@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_DisciplineNewEdit.ascx.vb"
     Inherits="Profile.ctrlHU_DisciplineNewEdit" %>
-<asp:HiddenField ID="hidID" runat="server" />
-<asp:HiddenField ID="hidDecisionID" runat="server" />
+<asp:HiddenField ID="hidID" runat="server" /> 
+<asp:HiddenField ID="hidDecisionID" runat="server" /> 
 <asp:HiddenField ID="hidOrgID" runat="server" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
@@ -368,12 +368,12 @@
         }
 
         function clientButtonClicking(sender, args) {
-            if (args.get_item().get_commandName() == 'CANCEL') {
-                getRadWindow().close(null);
-                //var radWindow = $find('rwPopup');
-                //radWindow.close();
-                args.set_cancel(true);
-            }
+//            if (args.get_item().get_commandName() == 'CANCEL') {
+//                getRadWindow().close(null);
+//                //var radWindow = $find('rwPopup');
+//                //radWindow.close();
+//                args.set_cancel(true);
+//            } 
         }
 
         var enableAjax = true;

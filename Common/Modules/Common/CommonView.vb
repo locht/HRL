@@ -378,6 +378,10 @@ Public Class CommonView
         'Next
     End Sub
     Public Sub GirdConfig(ByVal rg As RadGrid)
+        vcf = New DataSet
+        Using rep = New CommonRepository
+            vcf.ReadXml(New IO.StringReader(rep.GetConfigView(Me.ID).Rows(0)("config_data").ToString()))
+        End Using
         'If LogHelper.CurrentUser.USERNAME.ToUpper = "ADMIN" Then Return
         Dim dtGrid As DataTable = vcf.Tables("girdColumm")
         If dtGrid.Rows.Count = 0 AndAlso dtGrid Is Nothing Then Exit Sub
@@ -421,7 +425,7 @@ Public Class CommonView
                         rCol.DataFormatString = "{0:#,##0.##}"
                     End If
                 End If
-               
+
             Catch ex As Exception
                 Continue For
             End Try

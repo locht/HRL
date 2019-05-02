@@ -368,12 +368,12 @@
         }
 
         function clientButtonClicking(sender, args) {
-            if (args.get_item().get_commandName() == 'CANCEL') {
-                getRadWindow().close(null);               
-                //var radWindow = $find('rwPopup');
-                //radWindow.close();
-                args.set_cancel(true);
-            }
+//            if (args.get_item().get_commandName() == 'CANCEL') {
+//                getRadWindow().close(null);               
+//                //var radWindow = $find('rwPopup');
+//                //radWindow.close();
+//                args.set_cancel(true);
+//            }
         }
 
         var enableAjax = true;
