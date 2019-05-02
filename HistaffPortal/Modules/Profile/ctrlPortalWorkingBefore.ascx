@@ -3,7 +3,7 @@
 <tlk:RadGrid PageSize="50" ID="rgWorkingBefore" runat="server" Height="350px" AllowFilteringByColumn="true">
     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,COMPANY_NAME,COMPANY_ADDRESS,JOIN_DATE,END_DATE,TITLE_NAME,LEVEL_NAME">
         <Columns>
-            <tlk:GridBoundColumn HeaderText="Tên công ty" DataField="COMPANY_NAME"
+            <%--<tlk:GridBoundColumn HeaderText="Tên công ty" DataField="COMPANY_NAME"
                 UniqueName="COMPANY_NAME" SortExpression="COMPANY_NAME" ShowFilterIcon="false"
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
@@ -36,7 +36,7 @@
                 FilterControlWidth="100%">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
-            </tlk:GridBoundColumn>
+            </tlk:GridBoundColumn>--%>
         </Columns>
     </MasterTableView>
 </tlk:RadGrid>

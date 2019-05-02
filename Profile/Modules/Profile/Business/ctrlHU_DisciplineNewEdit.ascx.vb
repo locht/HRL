@@ -451,8 +451,12 @@ Public Class ctrlHU_DisciplineNewEdit
                         For Each i As GridDataItem In rgEmployee.Items
                             Dim o As New DisciplineEmpDTO
                             o.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")
-                            o.MONEY = CType(i("MONEY").Controls(0), RadNumericTextBox).Value
-                            o.INDEMNIFY_MONEY = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
+                            'o.MONEY = CType(i("MONEY").Controls(0), RadNumericTextBox).Value
+                            'o.INDEMNIFY_MONEY = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
+                            Dim money As String = CType(i("MONEY").Controls(0), TextBox).Text.Trim
+                            o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
+                            Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), TextBox).Text.Trim
+                            o.INDEMNIFY_MONEY = If(iden_money <> "", Decimal.Parse(iden_money), Nothing)
                             lstDisciplineEmp.Add(o)
                         Next
                         objDiscipline.DISCIPLINE_EMP = lstDisciplineEmp
@@ -760,11 +764,11 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Dim rep As New ProfileRepository
             Dim validate As New OtherListDTO
-                If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-                    validate.ID = cboDisciplineObj.SelectedValue
-                    validate.ACTFLG = "A"
-                    args.IsValid = rep.ValidateOtherList(validate)
-                End If
+            If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
+                validate.ID = cboDisciplineObj.SelectedValue
+                validate.ACTFLG = "A"
+                args.IsValid = rep.ValidateOtherList(validate)
+            End If
             If Not args.IsValid Then
                 Dim dtData = rep.GetOtherList(validate.ID)
                 FillRadCombobox(cboDisciplineObj, dtData, "NAME", "ID")
