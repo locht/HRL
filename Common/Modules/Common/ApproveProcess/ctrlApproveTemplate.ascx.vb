@@ -632,7 +632,7 @@ Public Class ctrlApproveTemplate
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             pnlSelectEmp.Enabled = (cboAppType.SelectedIndex = 1)
-            If cboAppType.SelectedIndex = 0 Then
+            If cboAppType.SelectedIndex = 0 OrElse cboAppType.SelectedIndex = 2 Then
                 reqEmployee.ControlToValidate = "cboAppType"
                 hidEmployeeID.Value = Nothing
                 txtEmplloyeeCode.Text = Nothing
