@@ -949,6 +949,11 @@ Partial Class ProfileRepository
                 objEmpEduData.LLCT = objEmpEdu.LLCT
                 objEmpEduData.TDTH = objEmpEdu.TDTH
                 objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
+
+                objEmpEduData.LANGUAGE2 = objEmpEdu.LANGUAGE2
+                objEmpEduData.LANGUAGE_LEVEL2 = objEmpEdu.LANGUAGE_LEVEL2
+                objEmpEduData.LANGUAGE_MARK2 = objEmpEdu.LANGUAGE_MARK2
+
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
 
@@ -1343,6 +1348,10 @@ Partial Class ProfileRepository
                 objEmpEduData.LLCT = objEmpEdu.LLCT
                 objEmpEduData.TDTH = objEmpEdu.TDTH
                 objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
+
+                objEmpEduData.LANGUAGE2 = objEmpEdu.LANGUAGE2
+                objEmpEduData.LANGUAGE_LEVEL2 = objEmpEdu.LANGUAGE_LEVEL2
+                objEmpEduData.LANGUAGE_MARK2 = objEmpEdu.LANGUAGE_MARK2
                 If bUpdateEdu = False Then
                     Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
                 End If
@@ -1674,6 +1683,7 @@ Partial Class ProfileRepository
                      From train In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.TRAINING_FORM).DefaultIfEmpty
                      From learn In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LEARNING_LEVEL).DefaultIfEmpty
                      From ll1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL).DefaultIfEmpty
+                     From ll2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL2).DefaultIfEmpty
                      From school In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.GRADUATE_SCHOOL_ID).DefaultIfEmpty
                      Where edu.EMPLOYEE_ID = sEmployeeID
                      Select New EmployeeEduDTO With {
@@ -1688,9 +1698,13 @@ Partial Class ProfileRepository
                          .LEARNING_LEVEL = edu.LEARNING_LEVEL,
                          .LEARNING_LEVEL_NAME = learn.NAME_VN,
                          .LANGUAGE = edu.LANGUAGE,
+                         .LANGUAGE2 = edu.LANGUAGE2,
                          .LANGUAGE_LEVEL = edu.LANGUAGE_LEVEL,
+                         .LANGUAGE_LEVEL2 = edu.LANGUAGE_LEVEL2,
+                         .LANGUAGE_LEVEL_NAME2 = ll2.NAME_VN,
                          .LANGUAGE_LEVEL_NAME = ll1.NAME_VN,
                          .LANGUAGE_MARK = edu.LANGUAGE_MARK,
+                         .LANGUAGE_MARK2 = edu.LANGUAGE_MARK2,
                          .GRADUATE_SCHOOL_ID = edu.GRADUATE_SCHOOL_ID,
                          .GRADUATE_SCHOOL_NAME = school.NAME_VN,
                          .QLNN = edu.QLNN,

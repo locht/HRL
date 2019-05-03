@@ -32,6 +32,7 @@
 
     Public Property LANGUAGE2 As Decimal?
     Public Property LANGUAGE_LEVEL2 As Decimal?
+    Public Property LANGUAGE_LEVEL_NAME2 As String
     Public Property LANGUAGE_MARK2 As String
 
 End Class

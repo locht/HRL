@@ -37,7 +37,6 @@
         <tlk:RadToolBar ID="tbarMainToolBar" runat="server" OnClientButtonClicking="clientButtonClicking"
             ValidationGroup="EmpProfile" />
     </tlk:RadPane>
-   
     <tlk:RadPane ID="RadPane1" runat="server" Height="13%" Scrolling="X">
         <asp:Panel runat="server" ID="Panel1">
             <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
@@ -1092,6 +1091,32 @@
                                             </tlk:RadTextBox>
                                         </td>
                                     </tr>
+                                    
+                                     <tr>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbLanguage2" Text ="Ngoại ngữ"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox ID="cboLanguage2" runat="server">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbLangLevel2" Text ="Trình độ ngoại ngữ "></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadComboBox ID="cboLangLevel2" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                                OnClientItemsRequesting="OnClientItemsRequesting">
+                                            </tlk:RadComboBox>
+                                        </td>
+                                        <td class="lb3">
+                                            <asp:Label runat ="server" ID ="lbLangMark2" Text ="Điểm số/Xếp loại"></asp:Label>
+                                        </td>
+                                        <td>
+                                            <tlk:RadTextBox ID="txtLangMark2" runat="server">
+                                            </tlk:RadTextBox>
+                                        </td>
+                                    </tr>
+                                    
                                     <tr>
                                         <td class="lb3">
                                             <asp:Label runat ="server" ID="lbTDTH" Text ="Trình độ tin học" ></asp:Label>
@@ -1343,7 +1368,7 @@
             var cbo = $find("<%# cboPer_Province.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
-       
+
         function cusInsRegion(oSrc, args) {
             var cbo = $find("<%# cboInsRegion.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);

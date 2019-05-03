@@ -421,6 +421,17 @@ Public Class ctrlHU_EmpDtlProfile
                             If empEdu.LANGUAGE IsNot Nothing Then
                                 cboLanguage.SelectedValue = empEdu.LANGUAGE
                             End If
+                            '============================================================
+                            If empEdu.LANGUAGE_LEVEL2 IsNot Nothing Then
+                                cboLangLevel2.SelectedValue = empEdu.LANGUAGE_LEVEL2
+                                cboLangLevel2.Text = empEdu.LANGUAGE_LEVEL_NAME2
+                            End If
+                            txtLangMark2.Text = empEdu.LANGUAGE_MARK2
+                            If empEdu.LANGUAGE2 IsNot Nothing Then
+                                cboLanguage2.SelectedValue = empEdu.LANGUAGE2
+                            End If
+                            '============================================================
+
                             If empEdu.MAJOR IsNot Nothing Then
                                 cboMajor.SelectedValue = empEdu.MAJOR
                                 cboMajor.Text = empEdu.MAJOR_NAME
@@ -498,7 +509,9 @@ Public Class ctrlHU_EmpDtlProfile
                 FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
                 FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
                 FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
+                FillRadCombobox(cboLangLevel2, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
+                FillRadCombobox(cboLanguage2, dtLanguage, "NAME", "ID")
                 FillCheckBoxList(lstbPaper, dtData, "NAME", "ID")
                 FillCheckBoxList(lstbPaperFiled, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("HANG_TB")
@@ -589,7 +602,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtDaHoaLieu, txtTimeID,
                                        txtFirstNameVN, txtGhiChuSK,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
-                                       cboIDPlace, txtLangMark,
+                                       cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
                                         txtPassNo, txtPassPlace,
@@ -603,7 +616,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboBank, cboBankBranch, cboFamilyStatus, rtWorkplace, cboInsRegion,
-                                       cboGender, cboLangLevel, cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
+                                       cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
@@ -632,7 +645,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtDaHoaLieu,
                                        txtFirstNameVN, txtGhiChuSK,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
-                                       cboIDPlace, txtLangMark, txtTimeID,
+                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
                                         txtPassNo, txtPassPlace,
@@ -646,8 +659,8 @@ Public Class ctrlHU_EmpDtlProfile
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, rtWorkplace, cboInsRegion,
-                                       cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
+                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
@@ -675,7 +688,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtDaHoaLieu,
                                        txtFirstNameVN, txtGhiChuSK,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
-                                       cboIDPlace, txtLangMark, txtTimeID,
+                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
                                         txtPassNo, txtPassPlace,
@@ -689,8 +702,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, rtWorkplace, cboInsRegion,
-                                       cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
+                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
@@ -950,7 +963,7 @@ Public Class ctrlHU_EmpDtlProfile
 
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
     Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested,
-        cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
+        cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLangLevel2.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
          cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
@@ -1007,6 +1020,8 @@ Public Class ctrlHU_EmpDtlProfile
                     Case cboWorkStatus.ID
                         dtData = rep.GetOtherList("EMP_STATUS", True)
                     Case cboLangLevel.ID
+                        dtData = rep.GetOtherList("LEARNING_LEVEL", True)
+                    Case cboLangLevel2.ID
                         dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                     Case cboInsRegion.ID
                         dtData = rep.GetInsRegionList(True)
@@ -1250,7 +1265,7 @@ Public Class ctrlHU_EmpDtlProfile
                           txtDaHoaLieu, txtDirectManager, txtManager,
                           txtFirstNameVN, txtGhiChuSK,
                           txtHomePhone, txtHuyetAp, txtID_NO,
-                          cboIDPlace, txtLangMark, txtTimeID,
+                          cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                           txtLastNameVN, txtMatPhai, txtMatTrai,
                           txtMobilePhone, txtNavAddress, txtNhomMau, txtOrgName,
                           txtOrgName2, txtBan, txtTo, txtPassNo, txtPassPlace, txtTimeID,
@@ -1264,8 +1279,8 @@ Public Class ctrlHU_EmpDtlProfile
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                           txtCanNang, txtChieuCao,
                           cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                          cboGender, cboLangLevel, cboInsRegion, rtWorkplace,
-                          cboLanguage, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                          cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace,
+                          cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                           hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi)
@@ -1562,11 +1577,18 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             If cboLangLevel.SelectedValue <> "" Then
                 EmpEdu.LANGUAGE_LEVEL = cboLangLevel.SelectedValue
-
+            End If
+            If cboLangLevel2.SelectedValue <> "" Then
+                EmpEdu.LANGUAGE_LEVEL2 = cboLangLevel2.SelectedValue
             End If
             EmpEdu.LANGUAGE_MARK = txtLangMark.Text
+            EmpEdu.LANGUAGE_MARK2 = txtLangMark2.Text
             If cboLanguage.SelectedValue <> "" Then
                 EmpEdu.LANGUAGE = cboLanguage.SelectedValue
+            End If
+
+            If cboLanguage2.SelectedValue <> "" Then
+                EmpEdu.LANGUAGE2 = cboLanguage2.SelectedValue
             End If
 
             If cboMajor.SelectedValue <> "" Then

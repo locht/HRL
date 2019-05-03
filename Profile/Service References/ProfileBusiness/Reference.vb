@@ -30646,6 +30646,9 @@ Namespace ProfileBusiness
         Private LANGUAGE_LEVEL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LANGUAGE_LEVEL_NAME2Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LANGUAGE_MARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -30894,6 +30897,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LANGUAGE_LEVEL_NAMEField, value) <> true) Then
                     Me.LANGUAGE_LEVEL_NAMEField = value
                     Me.RaisePropertyChanged("LANGUAGE_LEVEL_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LANGUAGE_LEVEL_NAME2() As String
+            Get
+                Return Me.LANGUAGE_LEVEL_NAME2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LANGUAGE_LEVEL_NAME2Field, value) <> true) Then
+                    Me.LANGUAGE_LEVEL_NAME2Field = value
+                    Me.RaisePropertyChanged("LANGUAGE_LEVEL_NAME2")
                 End If
             End Set
         End Property
