@@ -2920,4 +2920,12 @@
       <string>Working before</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>ctrlPortalTrainingOutCompany</string>
+    </Key>
+    <Value>
+      <string>Training Out Company</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

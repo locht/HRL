@@ -4408,4 +4408,132 @@
       <string>Thời gian dự kiến phải lớn hơn ngày gửi</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>TỪ THÁNG KHÔNG ĐƯƠC LỚN HƠN TỚI THÁNG.</string>
+    </Key>
+    <Value>
+      <string>Từ tháng không đươc lớn hơn tới tháng.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC CHỨNG CHỈ PHẢI NHỎ HƠN NGÀY HẾT HIỆU LỰC CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỪ THÁNG</string>
+    </Key>
+    <Value>
+      <string>Từ tháng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỚI THÁNG</string>
+    </Key>
+    <Value>
+      <string>Tới tháng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRẠNG THÁI PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Trạng thái phê duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÝ DO KHÔNG PHÊ DUYỆT</string>
+    </Key>
+    <Value>
+      <string>Lý do không phê duyệt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐẾN THÁNG</string>
+    </Key>
+    <Value>
+      <string>Đến tháng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HẾT HIỆU LỰC CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Ngày hết hiệu lực chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XEM</string>
+    </Key>
+    <Value>
+      <string>Xem</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HƯỚNG DẪN SỬ DỤNG</string>
+    </Key>
+    <Value>
+      <string>Hướng dẫn sử dụng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALTRAININGOUTCOMPANY</string>
+    </Key>
+    <Value>
+      <string>Quá trình đào tạo ngoài công ty</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỪ THÁNG/NĂM</string>
+    </Key>
+    <Value>
+      <string>Từ tháng/năm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỚI THÁNG/NĂM</string>
+    </Key>
+    <Value>
+      <string>Tới tháng/năm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY NHẬN BẰNG</string>
+    </Key>
+    <Value>
+      <string>Ngày nhận bằng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI HÌNH ĐÀO TẠO</string>
+    </Key>
+    <Value>
+      <string>Loại hình đào tạo</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
