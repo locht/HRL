@@ -228,7 +228,7 @@
                     <asp:Label ID="lbDecisionold" runat="server" Text="Số quyết định"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtDecisionold" runat="server">
+                    <tlk:RadTextBox ID="txtDecisionold" readonly="true" runat="server">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
@@ -236,9 +236,9 @@
                 </td>
                 <td class="borderRight">
                     <asp:Label ID="lbFileAttach" runat="server" />
-                    <tlk:radtextbox id="txtFileAttach_Link" runat="server" visible="false">
+                    <tlk:radtextbox id="txtFileAttach_Link" runat="server" readonly="true" visible="false">
                     </tlk:radtextbox>
-                    <tlk:radbutton id="btnDownloadOld" runat="server" width="160px" text="<%$ Translate: Tải xuống%>"
+                    <tlk:radbutton id="btnDownloadOld"  runat="server" width="160px" text="<%$ Translate: Tải xuống%>"
                         causesvalidation="false" onclientclicked="rbtOldClicked" tabindex="3" enableviewstate="false">
                     </tlk:radbutton>
                 </td>
