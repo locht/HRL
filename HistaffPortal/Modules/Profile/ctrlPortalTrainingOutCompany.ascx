@@ -3,7 +3,7 @@
 <tlk:RadGrid PageSize="50" ID="rgTrainingOutCompany" runat="server" Height="350px" AllowFilteringByColumn="true" Scrolling="both">
     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,FROM_DATE,TO_DATE,YEAR_GRA,NAME_SHOOLS,FORM_TRAIN_ID,FORM_TRAIN_NAME,TYPE_TRAIN_ID,TYPE_TRAIN_NAME,SPECIALIZED_TRAIN,RESULT_TRAIN,CERTIFICATE,RECEIVE_DEGREE_DATE,RECEIVE_DEGREE_DATE,EFFECTIVE_DATE_TO">
         <Columns>
-            <tlk:GridDateTimeColumn HeaderText="Từ tháng/năm" DataField="FROM_DATE"
+            <%--<tlk:GridDateTimeColumn HeaderText="Từ tháng/năm" DataField="FROM_DATE"
                 UniqueName="FROM_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="FROM_DATE"
                 ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
@@ -71,7 +71,7 @@
                 ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
-            </tlk:GridDateTimeColumn>
+            </tlk:GridDateTimeColumn>--%>
         </Columns>
     </MasterTableView>
 </tlk:RadGrid>
