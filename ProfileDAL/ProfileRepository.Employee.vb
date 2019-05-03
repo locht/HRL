@@ -1658,6 +1658,7 @@ Partial Class ProfileRepository
                          .CA = cv.CA,
                          .DANG = cv.DANG,
                          .SKILL = cv.SKILL,
+                         .BANTT = cv.BANTT,
                          .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,

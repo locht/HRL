@@ -239,6 +239,9 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsNumeric(empCV.CA) Then
                                 ckCA.Checked = CType(empCV.CA, Boolean)
                             End If
+                            If IsNumeric(empCV.BANTT) Then
+                                ckBanTT_ND.Checked = CType(empCV.BANTT, Boolean)
+                            End If
                             If IsNumeric(empCV.CONG_DOAN) Then
                                 ckCONG_DOAN.Checked = CType(empCV.CONG_DOAN, Boolean)
                             End If
@@ -1498,6 +1501,7 @@ Public Class ctrlHU_EmpDtlProfile
             If IsNumeric(ckCA.Checked) Then
                 EmpCV.CA = CType(ckCA.Checked, Decimal)
             End If
+            EmpCV.BANTT = ckBanTT_ND.Checked
             If IsNumeric(ckCONG_DOAN.Checked) Then
                 EmpCV.CONG_DOAN = CType(ckCONG_DOAN.Checked, Decimal)
             End If
@@ -1660,7 +1664,6 @@ Public Class ctrlHU_EmpDtlProfile
         End Using
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-
             Dim dtBranch As DataTable = procedure.GET_ALL_BRANCH_ORGLEVEL(orgid)
             If dtBranch IsNot Nothing AndAlso dtBranch.Rows.Count > 0 Then
                 'Bo phan
@@ -1679,8 +1682,6 @@ Public Class ctrlHU_EmpDtlProfile
                 txtManager.ToolTip = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("REPRESENTATIVE_ID").ToString, "")
                 txtManager.Text = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("REPRESENTATIVE_NAME").ToString, "")
             End If
-
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
