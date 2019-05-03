@@ -249,6 +249,9 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
                         objContract.REMARK = txtLocation.Text
                         If cboContractType.SelectedValue <> "" Then
                             objContract.EVALUATE_ID = cboContractType.SelectedValue
+                        Else
+                            ShowMessage(Translate("Nhập kỳ đánh giá."), Utilities.NotifyType.Warning)
+                            Exit Sub
                         End If
                         If cboRank.SelectedValue <> "" Then
                             objContract.RANK_ID = cboRank.SelectedValue

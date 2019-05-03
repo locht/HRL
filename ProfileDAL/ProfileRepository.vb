@@ -633,7 +633,7 @@ Public Class ProfileRepository
         End If
 
         If _combolistDTO.GET_EVALUATE Then
-            query = (From p In Context.PE_PERIOD
+            query = (From p In Context.PE_PERIOD Where p.ACTFLG = "A"
                      From t In Context.OT_OTHER_LIST.Where(Function(t) t.ID = p.TYPE_ASS)
                      Order By p.NAME
                      Select New OtherListDTO With {
