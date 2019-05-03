@@ -69,7 +69,7 @@ namespace ConfigTool
                
               
                 row["Is_Visible"] = "true";
-                row["Is_Validator"] = "true";
+                row["Is_Validator"] = "false";
                 var lable = NodeLable?.Where(val => val.Attributes["ID"].Value.Contains(ID.Substring(3)))?.ToList();
                 if (lable != null && lable?.Count == 0)
                 {
