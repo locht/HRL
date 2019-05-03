@@ -106,8 +106,10 @@ namespace ConfigTool
             {
                 if (control.Rows.Count > 0 || girdColumm.Rows.Count > 0)
                 {
-                    viewconfig.Tables.Add(control);
-                    viewconfig.Tables.Add(girdColumm);
+                    if (!viewconfig.Tables.Contains(control.TableName))
+                        viewconfig.Tables.Add(control);
+                    if (!viewconfig.Tables.Contains(girdColumm.TableName))
+                        viewconfig.Tables.Add(girdColumm);
                     StringWriter sw = new StringWriter();
                     String DocXml = String.Empty;
                     viewconfig.WriteXml(sw);
@@ -122,7 +124,7 @@ namespace ConfigTool
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
