@@ -66,7 +66,7 @@
                     <asp:Label ID="lbYear" runat="server" Text="Năm"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtYear" runat="server">
+                 <tlk:RadNumericTextBox ID="txtYear" AutoPostBack="true" SkinID="Number" TabIndex="18" runat="server" MaxLength="4" MinValue="1900">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
