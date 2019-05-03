@@ -28697,6 +28697,9 @@ Namespace ProfileBusiness
         Private BANK_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BANTTField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BIRTH_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -29103,6 +29106,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.BANK_NOField, value) <> true) Then
                     Me.BANK_NOField = value
                     Me.RaisePropertyChanged("BANK_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BANTT() As System.Nullable(Of Boolean)
+            Get
+                Return Me.BANTTField
+            End Get
+            Set
+                If (Me.BANTTField.Equals(value) <> true) Then
+                    Me.BANTTField = value
+                    Me.RaisePropertyChanged("BANTT")
                 End If
             End Set
         End Property

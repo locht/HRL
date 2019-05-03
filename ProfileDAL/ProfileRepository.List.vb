@@ -1108,6 +1108,10 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "Organization"
+    Public Function GetTreeOrgByID(ByVal ID As Decimal) As OrganizationVerticalDTO
+
+
+    End Function
 
     Public Function GetOrganizationByID(ByVal ID As Decimal) As OrganizationDTO
         Dim query As OrganizationDTO

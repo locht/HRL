@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("208a2714-4a63-4e9e-b643-ff5333f3e633")>
+<Assembly: EdmSchemaAttribute("69356b4d-edda-4c31-8732-49d6f3ae24e1")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -21284,6 +21284,31 @@ Public Partial Class HU_EMPLOYEE_CV
     End Sub
 
     Private Partial Sub OnNGAY_VAO_DANG_DBChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BANTT() As Nullable(Of Global.System.Int16)
+        Get
+            Return _BANTT
+        End Get
+        Set
+            OnBANTTChanging(value)
+            ReportPropertyChanging("BANTT")
+            _BANTT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("BANTT")
+            OnBANTTChanged()
+        End Set
+    End Property
+
+    Private _BANTT As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnBANTTChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnBANTTChanged()
     End Sub
 
     #End Region
