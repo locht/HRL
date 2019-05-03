@@ -74,6 +74,15 @@ Public Class ctrlHU_EmpDtlProfile
         End Set
     End Property
 
+    Property vcf As DataSet
+        Get
+            Return PageViewState(Me.ID & "_vcf")
+        End Get
+        Set(ByVal value As DataSet)
+            PageViewState(Me.ID & "_vcf") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -484,7 +493,124 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
             InitControl()
             If Not IsPostBack Then
-                ViewConfig(DetailPane)
+                'ViewConfig(DetailPane)
+                vcf = New DataSet
+                Using rep = New CommonRepository
+                    vcf.ReadXml(New IO.StringReader(rep.GetConfigView(Me.ID).Rows(0)("config_data").ToString()))
+                End Using
+                If vcf IsNot Nothing AndAlso vcf.Tables("control") IsNot Nothing Then
+                    Dim dtCtrl As DataTable = vcf.Tables("control")
+                    For Each ctrs As Control In rtabProfileInfo.Controls
+                        Dim row As DataRow
+                        Try
+                            row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                        Catch ex As Exception
+                            Continue For
+                        End Try
+                        If row IsNot Nothing Then
+                            ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                            Try
+                                Dim validator As BaseValidator = rtabProfileInfo.FindControl(row.Field(Of String)("Validator_ID"))
+                                Dim labelCtr As Label = rtabProfileInfo.FindControl(row.Field(Of String)("Label_ID").Trim())
+                                If labelCtr IsNot Nothing Then
+                                    labelCtr.Visible = ctrs.Visible
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                End If
+                                If validator IsNot Nothing Then
+                                    validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                    validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                    validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                End If
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                        End If
+                    Next
+
+                    '========================================================================================================
+                    For Each ctrs As Control In rpvEmpInfo.Controls
+                        Dim row As DataRow
+                        Try
+                            row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                        Catch ex As Exception
+                            Continue For
+                        End Try
+                        If row IsNot Nothing Then
+                            ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                            Try
+                                Dim validator As BaseValidator = rpvEmpInfo.FindControl(row.Field(Of String)("Validator_ID"))
+                                Dim labelCtr As Label = rpvEmpInfo.FindControl(row.Field(Of String)("Label_ID").Trim())
+                                If labelCtr IsNot Nothing Then
+                                    labelCtr.Visible = ctrs.Visible
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                End If
+                                If validator IsNot Nothing Then
+                                    validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                    validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                    validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                End If
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                        End If
+                    Next
+                    '========================================================================================================
+                    For Each ctrs As Control In rpvEmpPaper.Controls
+                        Dim row As DataRow
+                        Try
+                            row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                        Catch ex As Exception
+                            Continue For
+                        End Try
+                        If row IsNot Nothing Then
+                            ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                            Try
+                                Dim validator As BaseValidator = rpvEmpPaper.FindControl(row.Field(Of String)("Validator_ID"))
+                                Dim labelCtr As Label = rpvEmpPaper.FindControl(row.Field(Of String)("Label_ID").Trim())
+                                If labelCtr IsNot Nothing Then
+                                    labelCtr.Visible = ctrs.Visible
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                End If
+                                If validator IsNot Nothing Then
+                                    validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                    validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                    validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                End If
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                        End If
+                    Next
+                    '========================================================================================================
+                    For i As Integer = 0 To RadPanelBar1.Items.Count - 1
+                        For Each ctrs In RadPanelBar1.Items(i).Controls
+                            Dim row As DataRow
+                            Try
+                                row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                            If row IsNot Nothing Then
+                                ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                                Try
+                                    Dim validator As BaseValidator = RadPanelBar1.Items(i).FindControl(row.Field(Of String)("Validator_ID"))
+                                    Dim labelCtr As Label = RadPanelBar1.Items(i).FindControl(row.Field(Of String)("Label_ID").Trim())
+                                    If labelCtr IsNot Nothing Then
+                                        labelCtr.Visible = ctrs.Visible
+                                        labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                    End If
+                                    If validator IsNot Nothing Then
+                                        validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                        validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                        validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                    End If
+                                Catch ex As Exception
+                                    Continue For
+                                End Try
+                            End If
+                        Next
+                    Next
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
