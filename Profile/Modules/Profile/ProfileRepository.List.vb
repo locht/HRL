@@ -5,6 +5,18 @@ Partial Public Class ProfileRepository
 
 #Region "List"
 
+    Public Function GetTreeOrgByID(ByVal ID As Decimal) As OrganizationTreeDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTreeOrgByID(ID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
 #Region "RelationshipList"
     Function GetRelationshipGroupList() As DataTable
         Dim dtData As DataTable

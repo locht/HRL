@@ -538,7 +538,16 @@ Namespace ProfileBusiness.ServiceImplementations
 #End Region
 
 #Region "Organization"
-
+        Public Function GetTreeOrgByID(ByVal ID As Decimal) As OrganizationTreeDTO Implements ServiceContracts.IProfileBusiness.GetTreeOrgByID
+            Using rep As New ProfileRepository
+                Try
+                    Dim obj = rep.GetTreeOrgByID(ID)
+                    Return obj
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetOrganization(ByVal sACT As String) As List(Of OrganizationDTO) Implements ServiceContracts.IProfileBusiness.GetOrganization
             Using rep As New ProfileRepository
                 Try

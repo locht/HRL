@@ -320,7 +320,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "Organization"
-
+        <OperationContract()>
+        Function GetTreeOrgByID(ByVal ID As Decimal) As OrganizationTreeDTO
         <OperationContract()>
         Function GetOrganization(ByVal sACT As String) As List(Of OrganizationDTO)
 

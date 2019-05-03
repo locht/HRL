@@ -1653,34 +1653,41 @@ Public Class ctrlHU_EmpDtlProfile
     ''' <remarks></remarks>
     Private Sub FillDataInControls(ByVal orgid As Decimal)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        If procedure Is Nothing Then
-            procedure = New ProfileStoreProcedure()
-        End If
+        Dim startTime As DateTime = DateTime.UtcNow
+        'If procedure Is Nothing Then
+        '    procedure = New ProfileStoreProcedure()
+        'End If
+        Dim orgTree As OrganizationTreeDTO
         Using rep As New ProfileRepository
             Dim org = rep.GetOrganizationByID(orgid)
             If org IsNot Nothing Then
                 SetValueComboBox(cboInsRegion, org.REGION_ID, Nothing)
             End If
+            orgTree = rep.GetTreeOrgByID(orgid)
         End Using
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim dtBranch As DataTable = procedure.GET_ALL_BRANCH_ORGLEVEL(orgid)
-            If dtBranch IsNot Nothing AndAlso dtBranch.Rows.Count > 0 Then
-                'Bo phan
-                txtOrgName2.ToolTip = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("ID").ToString, "")
-                txtOrgName2.Text = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("NAME").ToString, "")
-                'PHONG
-                txtOrgName.ToolTip = If(dtBranch.Select("CODE='" & "PHONG" & "'").Length > 0, dtBranch.Select("CODE='" & "PHONG" & "'")(0)("ID").ToString, "")
-                txtOrgName.Text = If(dtBranch.Select("CODE='" & "PHONG" & "'").Length > 0, dtBranch.Select("CODE='" & "PHONG" & "'")(0)("NAME").ToString, "")
-                'BAN
-                txtBan.Text = If(dtBranch.Select("CODE='" & "BAN" & "'").Length > 0, dtBranch.Select("CODE='" & "BAN" & "'")(0)("NAME").ToString, "")
-                txtBan.ToolTip = If(dtBranch.Select("CODE='" & "BAN" & "'").Length > 0, dtBranch.Select("CODE='" & "BAN" & "'")(0)("ID").ToString, "")
-                'TO
-                txtTo.Text = If(dtBranch.Select("CODE='" & "TO" & "'").Length > 0, dtBranch.Select("CODE='" & "TO" & "'")(0)("NAME").ToString, "")
-                txtTo.ToolTip = If(dtBranch.Select("CODE='" & "TO" & "'").Length > 0, dtBranch.Select("CODE='" & "TO" & "'")(0)("ID").ToString, "")
-                'Manager
-                txtManager.ToolTip = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("REPRESENTATIVE_ID").ToString, "")
-                txtManager.Text = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("REPRESENTATIVE_NAME").ToString, "")
+            If orgTree IsNot Nothing Then
+                If IsNumeric(orgTree.ORG_ID2) Then
+                    txtOrgName2.Text = orgTree.ORG_NAME2
+                    txtOrgName2.ToolTip = orgTree.ORG_ID2
+                End If
+                If IsNumeric(orgTree.ORG_ID3) Then
+                    txtOrgName.Text = orgTree.ORG_NAME3
+                    txtOrgName.ToolTip = orgTree.ORG_ID3
+                End If
+                If IsNumeric(orgTree.ORG_ID4) Then
+                    txtBan.Text = orgTree.ORG_NAME4
+                    txtBan.ToolTip = orgTree.ORG_ID4
+                End If
+                If IsNumeric(orgTree.ORG_ID5) Then
+                    txtTo.Text = orgTree.ORG_NAME5
+                    txtTo.ToolTip = orgTree.ORG_ID5
+                End If
+                If IsNumeric(orgTree.REPRESENTATIVE_ID) Then
+                    txtManager.Text = orgTree.REPRESENTATIVE_NAME
+                    txtManager.ToolTip = orgTree.REPRESENTATIVE_ID
+                End If
+               
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
