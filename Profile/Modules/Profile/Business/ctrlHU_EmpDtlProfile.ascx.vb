@@ -290,13 +290,8 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsDate(empCV.NGAY_VAO_DANG) Then
                                 rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
                             End If
-                           
                             '===============================================
-
-                            If empCV.WORKPLACE_ID IsNot Nothing Then
-                                cboWorkplace.SelectedValue = empCV.WORKPLACE_ID
-                                cboWorkplace.Text = empCV.WORKPLACE_NAME
-                            End If
+                            rtWorkplace.Text = empCV.WORKPLACE_NAME
                             If empCV.INS_REGION_ID IsNot Nothing Then
                                 cboInsRegion.SelectedValue = empCV.INS_REGION_ID
                                 cboInsRegion.Text = empCV.INS_REGION_NAME
@@ -459,7 +454,6 @@ Public Class ctrlHU_EmpDtlProfile
                             txtLoaiSucKhoe.Text = empHealth.LOAI_SUC_KHOE
                             rtTTSucKhoe.Text = empHealth.TTSUCKHOE
                         End If
-
                     End If
                 End Using
                 isLoad = True
@@ -608,7 +602,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
-                                       cboAcademy, cboBank, cboBankBranch, cboFamilyStatus, cboWorkplace, cboInsRegion,
+                                       cboAcademy, cboBank, cboBankBranch, cboFamilyStatus, rtWorkplace, cboInsRegion,
                                        cboGender, cboLangLevel, cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
@@ -652,7 +646,7 @@ Public Class ctrlHU_EmpDtlProfile
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, cboWorkplace, cboInsRegion,
+                                       cboGender, cboLangLevel, rtWorkplace, cboInsRegion,
                                        cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
@@ -695,7 +689,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, cboWorkplace, cboInsRegion,
+                                       cboGender, cboLangLevel, rtWorkplace, cboInsRegion,
                                        cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
@@ -955,7 +949,7 @@ Public Class ctrlHU_EmpDtlProfile
     End Sub
 
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
-    Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested, cboWorkplace.ItemsRequested,
+    Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested,
         cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
          cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
@@ -991,7 +985,7 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetNationList(True)
                     Case cboNative.ID
                         dtData = rep.GetOtherList("NATIVE", True)
-                    Case cboNav_Province.ID, cboPer_Province.ID, cboWorkplace.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID
+                    Case cboNav_Province.ID, cboPer_Province.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID
                         dtData = rep.GetProvinceList(True)
                     Case cboNav_District.ID, cboPer_District.ID, cbDISTRICTEMP_ID.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
@@ -1098,7 +1092,6 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
 
-
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         'Dim list As List(Of EmployeeDTO)
@@ -1171,16 +1164,7 @@ Public Class ctrlHU_EmpDtlProfile
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
             If orgItem IsNot Nothing Then
                 hidOrgID.Value = e.CurrentValue
-                'txtOrgName.Text = orgItem.NAME_VN
-                'Fill data in controls
-                'Edit by: ChienNV
                 FillDataInControls(e.CurrentValue)
-                'End edit;
-                'If orgItem.DESCRIPTION_PATH.ToString.Split(";").Count > 1 Then
-                '    Dim orgName2 = orgItem.DESCRIPTION_PATH.ToString.Split(";")(1)
-                '    txtOrgName2.Text = orgName2.Substring(orgName2.IndexOf(" - ") + 3)
-                'End If
-                'txtOrgName2.ToolTip = Utilities.DrawTreeByString(orgItem.DESCRIPTION_PATH)
             End If
             cboTitle.ClearValue()
             isLoadPopup = 0
@@ -1258,7 +1242,6 @@ Public Class ctrlHU_EmpDtlProfile
 #End Region
 
 #Region "Custom"
-
     Public Sub ResetControlValue()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -1281,7 +1264,7 @@ Public Class ctrlHU_EmpDtlProfile
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                           txtCanNang, txtChieuCao,
                           cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                          cboGender, cboLangLevel, cboWorkplace, cboInsRegion,
+                          cboGender, cboLangLevel, cboInsRegion, rtWorkplace,
                           cboLanguage, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
@@ -1290,11 +1273,8 @@ Public Class ctrlHU_EmpDtlProfile
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-
         End Try
-
     End Sub
-
     Private Function Save(ByRef strEmpID As Decimal, Optional ByRef _err As String = "") As Boolean
         Dim result As Boolean
         Dim gID As Decimal
@@ -1369,9 +1349,8 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.EMP_STATUS = cboEmpStatus.SelectedValue
             End If
             EmpCV = New EmployeeCVDTO
-            If cboWorkplace.SelectedValue <> "" Then
-                EmpCV.WORKPLACE_ID = Decimal.Parse(cboWorkplace.SelectedValue)
-            End If
+
+            EmpCV.WORKPLACE_NAME = rtWorkplace.Text
             If cboInsRegion.SelectedValue <> "" Then
                 EmpCV.INS_REGION_ID = Decimal.Parse(cboInsRegion.SelectedValue)
             End If
@@ -1549,10 +1528,10 @@ Public Class ctrlHU_EmpDtlProfile
                 EmpCV.NGAY_VAO_DANG_DB = rdNGAY_VAO_DANG.SelectedDate
             End If
             EmpCV.CHUC_VU_DANG = rtCHUC_VU_DANG.Text
-           
+
             EmpCV.CHUC_VU_DOAN = rtCHUC_VU_DOAN.Text
             EmpCV.DOAN_PHI = ckDOAN_PHI.Checked
-           
+
             '=============================================
             EmpHealth = New EmployeeHealthDTO
             EmpHealth.CAN_NANG = txtCanNang.Text
@@ -1654,9 +1633,6 @@ Public Class ctrlHU_EmpDtlProfile
     Private Sub FillDataInControls(ByVal orgid As Decimal)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-        'If procedure Is Nothing Then
-        '    procedure = New ProfileStoreProcedure()
-        'End If
         Dim orgTree As OrganizationTreeDTO
         Using rep As New ProfileRepository
             Dim org = rep.GetOrganizationByID(orgid)
@@ -1687,13 +1663,11 @@ Public Class ctrlHU_EmpDtlProfile
                     txtManager.Text = orgTree.REPRESENTATIVE_NAME
                     txtManager.ToolTip = orgTree.REPRESENTATIVE_ID
                 End If
-               
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         Finally
-            procedure = Nothing
         End Try
     End Sub
 #End Region

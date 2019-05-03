@@ -797,13 +797,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents lbWorkplace As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cboWorkplace control.
+    '''rtWorkplace control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboWorkplace As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rtWorkplace As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbID_NO control.

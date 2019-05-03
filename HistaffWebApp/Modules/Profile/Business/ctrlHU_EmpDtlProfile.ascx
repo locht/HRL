@@ -330,10 +330,9 @@
                                         <td class="lb3">
                                             <asp:Label runat ="server" ID ="lbWorkplace" Text ="Nơi làm việc"></asp:Label>
                                         </td>
-                                        <td>
-                                            <tlk:RadComboBox runat="server" ID="cboWorkplace" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                                                OnClientItemsRequesting="OnClientItemsRequesting">
-                                            </tlk:RadComboBox>
+                                        <td colspan="5">
+                                            <tlk:RadTextBox  runat="server" ID="rtWorkplace" Width ="100%">
+                                            </tlk:RadTextBox>
                                         </td>
                                         
                                         </tr>
@@ -1344,10 +1343,7 @@
             var cbo = $find("<%# cboPer_Province.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
-        function cusWorkplace(oSrc, args) {
-            var cbo = $find("<%# cboWorkplace.ClientID %>");
-            args.IsValid = (cbo.get_value().length != 0);
-        }
+       
         function cusInsRegion(oSrc, args) {
             var cbo = $find("<%# cboInsRegion.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);

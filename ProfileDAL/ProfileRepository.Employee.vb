@@ -837,7 +837,7 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_ADDRESS = objEmpCV.PER_ADDRESS
                 objEmpCVData.PER_PROVINCE = objEmpCV.PER_PROVINCE
                 objEmpCVData.PER_DISTRICT = objEmpCV.PER_DISTRICT
-                objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
+                'objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
                 objEmpCVData.INS_REGION_ID = objEmpCV.INS_REGION_ID
                 objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
@@ -922,7 +922,7 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
-                
+                objEmpCVData.WORKPLACE_NAME = objEmpCV.WORKPLACE_NAME
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1223,7 +1223,7 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_ADDRESS = objEmpCV.PER_ADDRESS
                 objEmpCVData.PER_PROVINCE = objEmpCV.PER_PROVINCE
                 objEmpCVData.PER_DISTRICT = objEmpCV.PER_DISTRICT
-                objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
+                'objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
                 objEmpCVData.INS_REGION_ID = objEmpCV.INS_REGION_ID
                 objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
@@ -1309,7 +1309,7 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
-                
+                objEmpCVData.WORKPLACE_NAME = objEmpCV.WORKPLACE_NAME
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1554,7 +1554,6 @@ Partial Class ProfileRepository
                      From nav_pro In Context.HU_PROVINCE.Where(Function(f) cv.NAV_PROVINCE = f.ID).DefaultIfEmpty
                      From nav_dis In Context.HU_DISTRICT.Where(Function(f) cv.NAV_DISTRICT = f.ID).DefaultIfEmpty
                      From nav_ward In Context.HU_WARD.Where(Function(f) cv.NAV_WARD = f.ID).DefaultIfEmpty
-                     From workplace In Context.HU_PROVINCE.Where(Function(f) cv.WORKPLACE_ID = f.ID).DefaultIfEmpty
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = cv.EMPLOYEE_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = emp.ORG_ID).DefaultIfEmpty
                     From region In Context.OT_OTHER_LIST.Where(Function(f) f.ID = org.REGION_ID).DefaultIfEmpty
@@ -1583,8 +1582,6 @@ Partial Class ProfileRepository
                          .PER_DISTRICT_NAME = per_dis.NAME_VN,
                          .PER_WARD = cv.PER_WARD,
                          .PER_WARD_NAME = per_ward.NAME_VN,
-                         .WORKPLACE_ID = cv.WORKPLACE_ID,
-                         .WORKPLACE_NAME = workplace.NAME_VN,
                          .INS_REGION_ID = cv.INS_REGION_ID,
                          .INS_REGION_NAME = region.NAME_VN,
                          .HOME_PHONE = cv.HOME_PHONE,
@@ -1659,6 +1656,7 @@ Partial Class ProfileRepository
                          .DANG = cv.DANG,
                          .SKILL = cv.SKILL,
                          .BANTT = cv.BANTT,
+                         .WORKPLACE_NAME = cv.WORKPLACE_NAME,
                          .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
@@ -1670,7 +1668,6 @@ Partial Class ProfileRepository
                          .PROVINCENQ_ID = cv.PROVINCENQ_ID,
                          .BANK_NO = cv.BANK_NO,
                          .IS_PAY_BANK = cv.IS_PAY_BANK}).FirstOrDefault
-
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
                      From a In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.ACADEMY).DefaultIfEmpty
                      From m In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.MAJOR).DefaultIfEmpty

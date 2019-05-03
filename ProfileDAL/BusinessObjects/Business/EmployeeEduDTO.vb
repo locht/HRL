@@ -29,4 +29,9 @@
     Public Property LLCT As Decimal?
     Public Property TDTH As Decimal?
     Public Property DIEM_XLTH As String
+
+    Public Property LANGUAGE2 As Decimal?
+    Public Property LANGUAGE_LEVEL2 As Decimal?
+    Public Property LANGUAGE_MARK2 As String
+
 End Class

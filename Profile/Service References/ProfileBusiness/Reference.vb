@@ -30634,13 +30634,22 @@ Namespace ProfileBusiness
         Private LANGUAGEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LANGUAGE2Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LANGUAGE_LEVELField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LANGUAGE_LEVEL2Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LANGUAGE_LEVEL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LANGUAGE_MARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LANGUAGE_MARK2Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LANGUAGE_NAMEField As String
@@ -30838,6 +30847,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LANGUAGE2() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LANGUAGE2Field
+            End Get
+            Set
+                If (Me.LANGUAGE2Field.Equals(value) <> true) Then
+                    Me.LANGUAGE2Field = value
+                    Me.RaisePropertyChanged("LANGUAGE2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property LANGUAGE_LEVEL() As System.Nullable(Of Decimal)
             Get
                 Return Me.LANGUAGE_LEVELField
@@ -30846,6 +30868,19 @@ Namespace ProfileBusiness
                 If (Me.LANGUAGE_LEVELField.Equals(value) <> true) Then
                     Me.LANGUAGE_LEVELField = value
                     Me.RaisePropertyChanged("LANGUAGE_LEVEL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LANGUAGE_LEVEL2() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LANGUAGE_LEVEL2Field
+            End Get
+            Set
+                If (Me.LANGUAGE_LEVEL2Field.Equals(value) <> true) Then
+                    Me.LANGUAGE_LEVEL2Field = value
+                    Me.RaisePropertyChanged("LANGUAGE_LEVEL2")
                 End If
             End Set
         End Property
@@ -30872,6 +30907,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LANGUAGE_MARKField, value) <> true) Then
                     Me.LANGUAGE_MARKField = value
                     Me.RaisePropertyChanged("LANGUAGE_MARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LANGUAGE_MARK2() As String
+            Get
+                Return Me.LANGUAGE_MARK2Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LANGUAGE_MARK2Field, value) <> true) Then
+                    Me.LANGUAGE_MARK2Field = value
+                    Me.RaisePropertyChanged("LANGUAGE_MARK2")
                 End If
             End Set
         End Property

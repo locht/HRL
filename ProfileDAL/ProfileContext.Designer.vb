@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("69356b4d-edda-4c31-8732-49d6f3ae24e1")>
+<Assembly: EdmSchemaAttribute("2105ed21-6840-4133-b5ec-d860975f06c3")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -21311,6 +21311,31 @@ Public Partial Class HU_EMPLOYEE_CV
     Private Partial Sub OnBANTTChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORKPLACE_NAME() As Global.System.String
+        Get
+            Return _WORKPLACE_NAME
+        End Get
+        Set
+            OnWORKPLACE_NAMEChanging(value)
+            ReportPropertyChanging("WORKPLACE_NAME")
+            _WORKPLACE_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("WORKPLACE_NAME")
+            OnWORKPLACE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _WORKPLACE_NAME As Global.System.String
+    Private Partial Sub OnWORKPLACE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnWORKPLACE_NAMEChanged()
+    End Sub
+
     #End Region
 
     #Region "Navigation Properties"
@@ -24271,6 +24296,81 @@ Public Partial Class HU_EMPLOYEE_EDUCATION
     End Sub
 
     Private Partial Sub OnDIEM_XLTHChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LANGUAGE2() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LANGUAGE2
+        End Get
+        Set
+            OnLANGUAGE2Changing(value)
+            ReportPropertyChanging("LANGUAGE2")
+            _LANGUAGE2 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LANGUAGE2")
+            OnLANGUAGE2Changed()
+        End Set
+    End Property
+
+    Private _LANGUAGE2 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLANGUAGE2Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLANGUAGE2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LANGUAGE_LEVEL2() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LANGUAGE_LEVEL2
+        End Get
+        Set
+            OnLANGUAGE_LEVEL2Changing(value)
+            ReportPropertyChanging("LANGUAGE_LEVEL2")
+            _LANGUAGE_LEVEL2 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LANGUAGE_LEVEL2")
+            OnLANGUAGE_LEVEL2Changed()
+        End Set
+    End Property
+
+    Private _LANGUAGE_LEVEL2 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLANGUAGE_LEVEL2Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLANGUAGE_LEVEL2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LANGUAGE_MARK2() As Global.System.String
+        Get
+            Return _LANGUAGE_MARK2
+        End Get
+        Set
+            OnLANGUAGE_MARK2Changing(value)
+            ReportPropertyChanging("LANGUAGE_MARK2")
+            _LANGUAGE_MARK2 = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("LANGUAGE_MARK2")
+            OnLANGUAGE_MARK2Changed()
+        End Set
+    End Property
+
+    Private _LANGUAGE_MARK2 As Global.System.String
+    Private Partial Sub OnLANGUAGE_MARK2Changing(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnLANGUAGE_MARK2Changed()
     End Sub
 
     #End Region
