@@ -24783,6 +24783,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertPortalRegList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertPortalRegListResponse")>  _
         Function InsertPortalRegList(ByVal obj As AttendanceBusiness.AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef itemExist As AttendanceBusiness.AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyPortalRegList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyPortalRegListResponse")>  _
+        Function ModifyPortalRegList(ByVal obj As AttendanceBusiness.AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO), ByVal log As Common.CommonBusiness.UserLog, ByRef itemExist As AttendanceBusiness.AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
         
@@ -26031,6 +26034,10 @@ Namespace AttendanceBusiness
         
         Public Function InsertPortalRegList(ByVal obj As AttendanceBusiness.AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal, ByRef itemExist As AttendanceBusiness.AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertPortalRegList
             Return MyBase.Channel.InsertPortalRegList(obj, lstObjDetail, log, gID, itemExist, isOverAnnualLeave)
+        End Function
+        
+        Public Function ModifyPortalRegList(ByVal obj As AttendanceBusiness.AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO), ByVal log As Common.CommonBusiness.UserLog, ByRef itemExist As AttendanceBusiness.AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ModifyPortalRegList
+            Return MyBase.Channel.ModifyPortalRegList(obj, lstObjDetail, log, itemExist, isOverAnnualLeave)
         End Function
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS

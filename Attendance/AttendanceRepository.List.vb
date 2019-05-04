@@ -2183,6 +2183,16 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.ModifyPortalRegList(obj, lstObjDetail, Me.Log, itemExist, isOverAnnualLeave)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 
 End Class
