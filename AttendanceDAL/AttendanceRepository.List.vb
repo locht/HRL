@@ -50,7 +50,6 @@ Partial Public Class AttendanceRepository
                            .MODIFIED_LOG = p.MODIFIED_LOG
                            }
                        )
-           
             If Not String.IsNullOrEmpty(_filter.CODE_ATT) Then
                 query = query.Where(Function(f) f.CODE_ATT.ToLower().Contains(_filter.CODE_ATT.ToLower()))
             End If

@@ -10,6 +10,12 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetDataFromOrg(ByVal obj As ParamDTO, ByVal log As UserLog) As DataSet
+        <OperationContract()>
+        Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SetUpCodeAttDTO)
 #Region "Get Data Combobox"
 
         <OperationContract()>
