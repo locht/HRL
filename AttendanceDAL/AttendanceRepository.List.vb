@@ -88,6 +88,35 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function InsertSetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
+                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objData As New SetUpCodeAttDTO
+        Dim iCount As Integer = 0
+        Try
+            objData.ID = Utilities.GetNextSequence(Context, Context.AT_SETUP_ATT_EMP.EntitySet.Name)
+            Context.SaveChanges(log)
+            gID = objData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ModifySetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Try
+            Dim objData = (From p In Context.AT_SETUP_ATT_EMP Where p.ID = objValue.ID).SingleOrDefault
+            Context.SaveChanges(log)
+            gID = objData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+
+    End Function
+
 #Region "List Holiday"
     Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,
                                  Optional ByVal PageIndex As Integer = 0,

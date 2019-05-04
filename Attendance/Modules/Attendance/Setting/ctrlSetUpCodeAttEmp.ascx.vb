@@ -12,12 +12,12 @@ Public Class ctrlSetUpCodeAttEmp
 #Region "Property"
 
     Public IDSelect As Integer
-    Public Property At_Time_Manual As List(Of AT_TIME_MANUALDTO)
+    Public Property SetUpCodeAtt As List(Of SetUpCodeAttDTO)
         Get
-            Return ViewState(Me.ID & "_ATTimeManual")
+            Return ViewState(Me.ID & "_SetUpCodeAtt")
         End Get
-        Set(ByVal value As List(Of AT_TIME_MANUALDTO))
-            ViewState(Me.ID & "_ATTimeManual") = value
+        Set(ByVal value As List(Of SetUpCodeAttDTO))
+            ViewState(Me.ID & "_SetUpCodeAtt") = value
         End Set
     End Property
     Property ListComboData As ComboBoxDataDTO
@@ -139,21 +139,21 @@ Public Class ctrlSetUpCodeAttEmp
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New AttendanceRepository
-        Dim obj As New AT_TIME_MANUALDTO
+        Dim obj As New SetUpCodeAttDTO
         Try
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgDanhMuc, obj)
             Dim Sorts As String = rgDanhMuc.MasterTableView.SortExpressions.GetSortString()
             If Not isFull Then
                 If Sorts IsNot Nothing Then
-                    Me.At_Time_Manual = rep.GetAT_TIME_MANUAL(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, "CREATED_DATE desc")
+                    Me.SetUpCodeAtt = rep.getSetUpAttEmp(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, "CREATED_DATE desc")
                 Else
-                    Me.At_Time_Manual = rep.GetAT_TIME_MANUAL(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows)
+                    Me.SetUpCodeAtt = rep.getSetUpAttEmp(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows)
                 End If
                 rgDanhMuc.VirtualItemCount = MaximumRows
-                rgDanhMuc.DataSource = Me.At_Time_Manual
+                rgDanhMuc.DataSource = Me.SetUpCodeAtt
             Else
-                Return rep.GetAT_TIME_MANUAL(obj).ToTable
+                Return rep.getSetUpAttEmp(obj).ToTable
             End If
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
