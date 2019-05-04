@@ -3,6 +3,23 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+    Public Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                       Optional ByRef Total As Integer = 0,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SetUpCodeAttDTO)
+        Dim lstSetUpAttEmp As List(Of SetUpCodeAttDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                lstSetUpAttEmp = rep.getSetUpAttEmp(_filter, PageIndex, PageSize, Total, Sorts)
+                Return lstSetUpAttEmp
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+        Return lstSetUpAttEmp
+    End Function
 #Region "Holiday"
 
     Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,
@@ -2179,6 +2196,16 @@ Partial Class AttendanceRepository
                 Return rep.InsertPortalRegList(obj, lstObjDetail, Me.Log, gID, itemExist, isOverAnnualLeave)
             Catch ex As Exception
 
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.ModifyPortalRegList(obj, lstObjDetail, Me.Log, itemExist, isOverAnnualLeave)
+            Catch ex As Exception
                 Throw ex
             End Try
         End Using

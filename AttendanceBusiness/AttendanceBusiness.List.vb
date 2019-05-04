@@ -7,6 +7,19 @@ Imports LinqKit
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
+        Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SetUpCodeAttDTO) Implements ServiceContracts.IAttendanceBusiness.getSetUpAttEmp
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.getSetUpAttEmp(_filter, PageIndex, PageSize, Total, Sorts)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #Region "HOLIDAY"
 
         Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,
@@ -977,7 +990,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32 _
+        Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Int32 _
                                         Implements IAttendanceBusiness.PRI_PROCESS_APP
             Using rep As New AttendanceRepository
                 Try
@@ -1801,6 +1814,16 @@ Namespace AttendanceBusiness.ServiceImplementations
             Using rep As New AttendanceRepository
                 Try
                     Return rep.InsertPortalRegList(obj, lstObjDetail, log, gID, itemExist, isOverAnnualLeave)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean _
+            Implements ServiceContracts.IAttendanceBusiness.ModifyPortalRegList
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ModifyPortalRegList(obj, lstObjDetail, log, itemExist, isOverAnnualLeave)
                 Catch ex As Exception
                     Throw ex
                 End Try

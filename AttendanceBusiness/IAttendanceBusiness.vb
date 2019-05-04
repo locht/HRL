@@ -10,6 +10,12 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetDataFromOrg(ByVal obj As ParamDTO, ByVal log As UserLog) As DataSet
+        <OperationContract()>
+        Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SetUpCodeAttDTO)
 #Region "Get Data Combobox"
 
         <OperationContract()>
@@ -1041,6 +1047,8 @@ Namespace AttendanceBusiness.ServiceContracts
         Function GetLeaveRegistrationDetailById(ByVal listId As Decimal) As List(Of AT_PORTAL_REG_DTO)
         <OperationContract()>
         Function InsertPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef gID As Decimal, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+        <OperationContract()>
+        Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
 #End Region
 
         <OperationContract()>

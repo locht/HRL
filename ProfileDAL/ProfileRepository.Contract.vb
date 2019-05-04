@@ -358,6 +358,8 @@ Partial Class ProfileRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINING_ID)
+                       From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
+                                                                  f.USERNAME = log.Username.ToUpper)
             ' lọc điều kiện
             Dim dateNow = Date.Now.Date
             Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
@@ -407,7 +409,7 @@ Partial Class ProfileRepository
                                             .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
                                             .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                             .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
-                                            .ORG_ID = p.p.ID,
+                                            .ORG_ID = p.e.ID,
                                             .ORG_NAME = p.o.NAME_VN,
                                             .ORG_DESC = p.o.DESCRIPTION_PATH,
                                             .TITLE_ID = p.p.TITLE_ID,
