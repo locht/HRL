@@ -349,33 +349,6 @@ Public Class CommonView
             End If
         Catch ex As Exception
         End Try
-
-        'For Each row As DataRow In dtCtrl.Rows
-        '    Dim myCtrl As Control = rp.FindControl(row.Field(Of String)("Ctl_ID").Trim())
-        '    If myCtrl IsNot Nothing Then
-        '        Dim myValidator As BaseValidator = rp.FindControl(row.Field(Of String)("Validator_ID").Trim())
-        '        Dim myLabel As Label = rp.FindControl(row.Field(Of String)("Label_ID").Trim())
-        '        If Boolean.Parse(row("Is_Visible").ToString()) = True Then '--==True: hide
-        '            myCtrl.Visible = False
-        '            myLabel.Visible = False
-        '            If myValidator IsNot Nothing Then
-        '                myValidator.Enabled = False '--==False: Inactive validator
-        '            End If
-        '        Else
-        '            If myValidator IsNot Nothing Then
-        '                If Boolean.Parse(row("Is_Validator").ToString()) = True Then '--True: require
-        '                    myValidator.Enabled = True '--==True: Active validator
-        '                    myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim()) + "<span class='lbReq'>*</span>"
-        '                    myValidator.ErrorMessage = Translate(row.Field(Of String)("ErrorMessage").Trim())
-        '                    myValidator.ToolTip = Translate(row.Field(Of String)("ErrorToolTip").Trim())
-        '                Else
-        '                    myValidator.Enabled = False '--==False: Inactive validator
-        '                    myLabel.Text = Translate(row.Field(Of String)("Label_text").Trim())
-        '                End If
-        '            End If
-        '        End If
-        '    End If
-        'Next
     End Sub
     Public Sub GirdConfig(ByVal rg As RadGrid)
         vcf = New DataSet

@@ -74,6 +74,15 @@ Public Class ctrlHU_EmpDtlProfile
         End Set
     End Property
 
+    Property vcf As DataSet
+        Get
+            Return PageViewState(Me.ID & "_vcf")
+        End Get
+        Set(ByVal value As DataSet)
+            PageViewState(Me.ID & "_vcf") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -290,13 +299,8 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsDate(empCV.NGAY_VAO_DANG) Then
                                 rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
                             End If
-                           
                             '===============================================
-
-                            If empCV.WORKPLACE_ID IsNot Nothing Then
-                                cboWorkplace.SelectedValue = empCV.WORKPLACE_ID
-                                cboWorkplace.Text = empCV.WORKPLACE_NAME
-                            End If
+                            rtWorkplace.Text = empCV.WORKPLACE_NAME
                             If empCV.INS_REGION_ID IsNot Nothing Then
                                 cboInsRegion.SelectedValue = empCV.INS_REGION_ID
                                 cboInsRegion.Text = empCV.INS_REGION_NAME
@@ -426,6 +430,17 @@ Public Class ctrlHU_EmpDtlProfile
                             If empEdu.LANGUAGE IsNot Nothing Then
                                 cboLanguage.SelectedValue = empEdu.LANGUAGE
                             End If
+                            '============================================================
+                            If empEdu.LANGUAGE_LEVEL2 IsNot Nothing Then
+                                cboLangLevel2.SelectedValue = empEdu.LANGUAGE_LEVEL2
+                                cboLangLevel2.Text = empEdu.LANGUAGE_LEVEL_NAME2
+                            End If
+                            txtLangMark2.Text = empEdu.LANGUAGE_MARK2
+                            If empEdu.LANGUAGE2 IsNot Nothing Then
+                                cboLanguage2.SelectedValue = empEdu.LANGUAGE2
+                            End If
+                            '============================================================
+
                             If empEdu.MAJOR IsNot Nothing Then
                                 cboMajor.SelectedValue = empEdu.MAJOR
                                 cboMajor.Text = empEdu.MAJOR_NAME
@@ -459,7 +474,6 @@ Public Class ctrlHU_EmpDtlProfile
                             txtLoaiSucKhoe.Text = empHealth.LOAI_SUC_KHOE
                             rtTTSucKhoe.Text = empHealth.TTSUCKHOE
                         End If
-
                     End If
                 End Using
                 isLoad = True
@@ -479,7 +493,124 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
             InitControl()
             If Not IsPostBack Then
-                ViewConfig(DetailPane)
+                'ViewConfig(DetailPane)
+                vcf = New DataSet
+                Using rep = New CommonRepository
+                    vcf.ReadXml(New IO.StringReader(rep.GetConfigView(Me.ID).Rows(0)("config_data").ToString()))
+                End Using
+                If vcf IsNot Nothing AndAlso vcf.Tables("control") IsNot Nothing Then
+                    Dim dtCtrl As DataTable = vcf.Tables("control")
+                    For Each ctrs As Control In rtabProfileInfo.Controls
+                        Dim row As DataRow
+                        Try
+                            row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                        Catch ex As Exception
+                            Continue For
+                        End Try
+                        If row IsNot Nothing Then
+                            ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                            Try
+                                Dim validator As BaseValidator = rtabProfileInfo.FindControl(row.Field(Of String)("Validator_ID"))
+                                Dim labelCtr As Label = rtabProfileInfo.FindControl(row.Field(Of String)("Label_ID").Trim())
+                                If labelCtr IsNot Nothing Then
+                                    labelCtr.Visible = ctrs.Visible
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                End If
+                                If validator IsNot Nothing Then
+                                    validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                    validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                    validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                End If
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                        End If
+                    Next
+
+                    '========================================================================================================
+                    For Each ctrs As Control In rpvEmpInfo.Controls
+                        Dim row As DataRow
+                        Try
+                            row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                        Catch ex As Exception
+                            Continue For
+                        End Try
+                        If row IsNot Nothing Then
+                            ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                            Try
+                                Dim validator As BaseValidator = rpvEmpInfo.FindControl(row.Field(Of String)("Validator_ID"))
+                                Dim labelCtr As Label = rpvEmpInfo.FindControl(row.Field(Of String)("Label_ID").Trim())
+                                If labelCtr IsNot Nothing Then
+                                    labelCtr.Visible = ctrs.Visible
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                End If
+                                If validator IsNot Nothing Then
+                                    validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                    validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                    validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                End If
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                        End If
+                    Next
+                    '========================================================================================================
+                    For Each ctrs As Control In rpvEmpPaper.Controls
+                        Dim row As DataRow
+                        Try
+                            row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                        Catch ex As Exception
+                            Continue For
+                        End Try
+                        If row IsNot Nothing Then
+                            ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                            Try
+                                Dim validator As BaseValidator = rpvEmpPaper.FindControl(row.Field(Of String)("Validator_ID"))
+                                Dim labelCtr As Label = rpvEmpPaper.FindControl(row.Field(Of String)("Label_ID").Trim())
+                                If labelCtr IsNot Nothing Then
+                                    labelCtr.Visible = ctrs.Visible
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                End If
+                                If validator IsNot Nothing Then
+                                    validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                    validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                    validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                End If
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                        End If
+                    Next
+                    '========================================================================================================
+                    For i As Integer = 0 To RadPanelBar1.Items.Count - 1
+                        For Each ctrs In RadPanelBar1.Items(i).Controls
+                            Dim row As DataRow
+                            Try
+                                row = dtCtrl.Select("Ctl_ID ='" + ctrs.ID + "'")(0)
+                            Catch ex As Exception
+                                Continue For
+                            End Try
+                            If row IsNot Nothing Then
+                                ctrs.Visible = If(IsDBNull(row("Is_Visible")), False, CBool(row("Is_Visible")))
+                                Try
+                                    Dim validator As BaseValidator = RadPanelBar1.Items(i).FindControl(row.Field(Of String)("Validator_ID"))
+                                    Dim labelCtr As Label = RadPanelBar1.Items(i).FindControl(row.Field(Of String)("Label_ID").Trim())
+                                    If labelCtr IsNot Nothing Then
+                                        labelCtr.Visible = ctrs.Visible
+                                        labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                    End If
+                                    If validator IsNot Nothing Then
+                                        validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
+                                        validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
+                                        validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                    End If
+                                Catch ex As Exception
+                                    Continue For
+                                End Try
+                            End If
+                        Next
+                    Next
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -504,7 +635,9 @@ Public Class ctrlHU_EmpDtlProfile
                 FillRadCombobox(cboIDPlace, dtPlace, "NAME", "ID")
                 FillRadCombobox(cbPROVINCENQ_ID, dtPlace, "NAME", "ID")
                 FillRadCombobox(cboLangLevel, dtLanguageleve, "NAME", "ID")
+                FillRadCombobox(cboLangLevel2, dtLanguageleve, "NAME", "ID")
                 FillRadCombobox(cboLanguage, dtLanguage, "NAME", "ID")
+                FillRadCombobox(cboLanguage2, dtLanguage, "NAME", "ID")
                 FillCheckBoxList(lstbPaper, dtData, "NAME", "ID")
                 FillCheckBoxList(lstbPaperFiled, dtData, "NAME", "ID")
                 dtData = rep.GetOtherList("HANG_TB")
@@ -595,7 +728,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtDaHoaLieu, txtTimeID,
                                        txtFirstNameVN, txtGhiChuSK,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
-                                       cboIDPlace, txtLangMark,
+                                       cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
                                         txtPassNo, txtPassPlace,
@@ -608,8 +741,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        rdNgayVaoDoan, rdPassDate, rdPassExpireDate,
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
-                                       cboAcademy, cboBank, cboBankBranch, cboFamilyStatus, cboWorkplace, cboInsRegion,
-                                       cboGender, cboLangLevel, cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
+                                       cboAcademy, cboBank, cboBankBranch, cboFamilyStatus, rtWorkplace, cboInsRegion,
+                                       cboGender, cboLangLevel, cboLangLevel2, cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward, cbPROVINCEEMP_ID, cbDISTRICTEMP_ID, cbWARDEMP_ID, cbPROVINCENQ_ID,
@@ -638,7 +771,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtDaHoaLieu,
                                        txtFirstNameVN, txtGhiChuSK,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
-                                       cboIDPlace, txtLangMark, txtTimeID,
+                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
                                         txtPassNo, txtPassPlace,
@@ -652,8 +785,8 @@ Public Class ctrlHU_EmpDtlProfile
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, cboWorkplace, cboInsRegion,
-                                       cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
+                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
@@ -681,7 +814,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        txtDaHoaLieu,
                                        txtFirstNameVN, txtGhiChuSK,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
-                                       cboIDPlace, txtLangMark, txtTimeID,
+                                       cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
                                         txtPassNo, txtPassPlace,
@@ -695,8 +828,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                                        txtCanNang, txtChieuCao,
                                        cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                                       cboGender, cboLangLevel, cboWorkplace, cboInsRegion,
-                                       cboLanguage, cboLearningLevel, txtLoaiSucKhoe,
+                                       cboGender, cboLangLevel, cboLangLevel2, rtWorkplace, cboInsRegion,
+                                       cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe,
                                        cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                                        cboReligion, cboStaffRank, cboTitle,
                                        cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
@@ -955,8 +1088,8 @@ Public Class ctrlHU_EmpDtlProfile
     End Sub
 
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
-    Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested, cboWorkplace.ItemsRequested,
-        cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
+    Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested,
+        cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLangLevel2.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
          cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
@@ -991,7 +1124,7 @@ Public Class ctrlHU_EmpDtlProfile
                         dtData = rep.GetNationList(True)
                     Case cboNative.ID
                         dtData = rep.GetOtherList("NATIVE", True)
-                    Case cboNav_Province.ID, cboPer_Province.ID, cboWorkplace.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID
+                    Case cboNav_Province.ID, cboPer_Province.ID, cboIDPlace.ID, cbPROVINCEEMP_ID.ID, cbPROVINCENQ_ID.ID
                         dtData = rep.GetProvinceList(True)
                     Case cboNav_District.ID, cboPer_District.ID, cbDISTRICTEMP_ID.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
@@ -1013,6 +1146,8 @@ Public Class ctrlHU_EmpDtlProfile
                     Case cboWorkStatus.ID
                         dtData = rep.GetOtherList("EMP_STATUS", True)
                     Case cboLangLevel.ID
+                        dtData = rep.GetOtherList("LEARNING_LEVEL", True)
+                    Case cboLangLevel2.ID
                         dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                     Case cboInsRegion.ID
                         dtData = rep.GetInsRegionList(True)
@@ -1098,7 +1233,6 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
 
-
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         'Dim list As List(Of EmployeeDTO)
@@ -1171,16 +1305,7 @@ Public Class ctrlHU_EmpDtlProfile
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
             If orgItem IsNot Nothing Then
                 hidOrgID.Value = e.CurrentValue
-                'txtOrgName.Text = orgItem.NAME_VN
-                'Fill data in controls
-                'Edit by: ChienNV
                 FillDataInControls(e.CurrentValue)
-                'End edit;
-                'If orgItem.DESCRIPTION_PATH.ToString.Split(";").Count > 1 Then
-                '    Dim orgName2 = orgItem.DESCRIPTION_PATH.ToString.Split(";")(1)
-                '    txtOrgName2.Text = orgName2.Substring(orgName2.IndexOf(" - ") + 3)
-                'End If
-                'txtOrgName2.ToolTip = Utilities.DrawTreeByString(orgItem.DESCRIPTION_PATH)
             End If
             cboTitle.ClearValue()
             isLoadPopup = 0
@@ -1258,7 +1383,6 @@ Public Class ctrlHU_EmpDtlProfile
 #End Region
 
 #Region "Custom"
-
     Public Sub ResetControlValue()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -1267,7 +1391,7 @@ Public Class ctrlHU_EmpDtlProfile
                           txtDaHoaLieu, txtDirectManager, txtManager,
                           txtFirstNameVN, txtGhiChuSK,
                           txtHomePhone, txtHuyetAp, txtID_NO,
-                          cboIDPlace, txtLangMark, txtTimeID,
+                          cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                           txtLastNameVN, txtMatPhai, txtMatTrai,
                           txtMobilePhone, txtNavAddress, txtNhomMau, txtOrgName,
                           txtOrgName2, txtBan, txtTo, txtPassNo, txtPassPlace, txtTimeID,
@@ -1281,8 +1405,8 @@ Public Class ctrlHU_EmpDtlProfile
                           rdVisaDate, rdVisaExpireDate, rdWorkPermitDate, rdWorPermitExpireDate,
                           txtCanNang, txtChieuCao,
                           cboAcademy, cboBank, cboBankBranch, cboFamilyStatus,
-                          cboGender, cboLangLevel, cboWorkplace, cboInsRegion,
-                          cboLanguage, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
+                          cboGender, cboLangLevel, cboLangLevel2, cboInsRegion, rtWorkplace,
+                          cboLanguage, cboLanguage2, cboLearningLevel, txtLoaiSucKhoe, cboMajor, cboNationlity, cboNative, cboNav_Province, cboPer_Province,
                           cboReligion, cboStaffRank, cboTitle, cboWorkStatus, cboEmpStatus,
                           cboPer_District, cboPer_Ward, cboNav_District, cboNav_Ward,
                           hidID, hidOrgID, hidDirectManager, hidLevelManager, chkDoanPhi)
@@ -1290,11 +1414,8 @@ Public Class ctrlHU_EmpDtlProfile
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-
         End Try
-
     End Sub
-
     Private Function Save(ByRef strEmpID As Decimal, Optional ByRef _err As String = "") As Boolean
         Dim result As Boolean
         Dim gID As Decimal
@@ -1369,9 +1490,8 @@ Public Class ctrlHU_EmpDtlProfile
                 EmployeeInfo.EMP_STATUS = cboEmpStatus.SelectedValue
             End If
             EmpCV = New EmployeeCVDTO
-            If cboWorkplace.SelectedValue <> "" Then
-                EmpCV.WORKPLACE_ID = Decimal.Parse(cboWorkplace.SelectedValue)
-            End If
+
+            EmpCV.WORKPLACE_NAME = rtWorkplace.Text
             If cboInsRegion.SelectedValue <> "" Then
                 EmpCV.INS_REGION_ID = Decimal.Parse(cboInsRegion.SelectedValue)
             End If
@@ -1549,10 +1669,10 @@ Public Class ctrlHU_EmpDtlProfile
                 EmpCV.NGAY_VAO_DANG_DB = rdNGAY_VAO_DANG.SelectedDate
             End If
             EmpCV.CHUC_VU_DANG = rtCHUC_VU_DANG.Text
-           
+
             EmpCV.CHUC_VU_DOAN = rtCHUC_VU_DOAN.Text
             EmpCV.DOAN_PHI = ckDOAN_PHI.Checked
-           
+
             '=============================================
             EmpHealth = New EmployeeHealthDTO
             EmpHealth.CAN_NANG = txtCanNang.Text
@@ -1583,11 +1703,18 @@ Public Class ctrlHU_EmpDtlProfile
             End If
             If cboLangLevel.SelectedValue <> "" Then
                 EmpEdu.LANGUAGE_LEVEL = cboLangLevel.SelectedValue
-
+            End If
+            If cboLangLevel2.SelectedValue <> "" Then
+                EmpEdu.LANGUAGE_LEVEL2 = cboLangLevel2.SelectedValue
             End If
             EmpEdu.LANGUAGE_MARK = txtLangMark.Text
+            EmpEdu.LANGUAGE_MARK2 = txtLangMark2.Text
             If cboLanguage.SelectedValue <> "" Then
                 EmpEdu.LANGUAGE = cboLanguage.SelectedValue
+            End If
+
+            If cboLanguage2.SelectedValue <> "" Then
+                EmpEdu.LANGUAGE2 = cboLanguage2.SelectedValue
             End If
 
             If cboMajor.SelectedValue <> "" Then
@@ -1653,40 +1780,42 @@ Public Class ctrlHU_EmpDtlProfile
     ''' <remarks></remarks>
     Private Sub FillDataInControls(ByVal orgid As Decimal)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        If procedure Is Nothing Then
-            procedure = New ProfileStoreProcedure()
-        End If
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim orgTree As OrganizationTreeDTO
         Using rep As New ProfileRepository
             Dim org = rep.GetOrganizationByID(orgid)
             If org IsNot Nothing Then
                 SetValueComboBox(cboInsRegion, org.REGION_ID, Nothing)
             End If
+            orgTree = rep.GetTreeOrgByID(orgid)
         End Using
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim dtBranch As DataTable = procedure.GET_ALL_BRANCH_ORGLEVEL(orgid)
-            If dtBranch IsNot Nothing AndAlso dtBranch.Rows.Count > 0 Then
-                'Bo phan
-                txtOrgName2.ToolTip = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("ID").ToString, "")
-                txtOrgName2.Text = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("NAME").ToString, "")
-                'PHONG
-                txtOrgName.ToolTip = If(dtBranch.Select("CODE='" & "PHONG" & "'").Length > 0, dtBranch.Select("CODE='" & "PHONG" & "'")(0)("ID").ToString, "")
-                txtOrgName.Text = If(dtBranch.Select("CODE='" & "PHONG" & "'").Length > 0, dtBranch.Select("CODE='" & "PHONG" & "'")(0)("NAME").ToString, "")
-                'BAN
-                txtBan.Text = If(dtBranch.Select("CODE='" & "BAN" & "'").Length > 0, dtBranch.Select("CODE='" & "BAN" & "'")(0)("NAME").ToString, "")
-                txtBan.ToolTip = If(dtBranch.Select("CODE='" & "BAN" & "'").Length > 0, dtBranch.Select("CODE='" & "BAN" & "'")(0)("ID").ToString, "")
-                'TO
-                txtTo.Text = If(dtBranch.Select("CODE='" & "TO" & "'").Length > 0, dtBranch.Select("CODE='" & "TO" & "'")(0)("NAME").ToString, "")
-                txtTo.ToolTip = If(dtBranch.Select("CODE='" & "TO" & "'").Length > 0, dtBranch.Select("CODE='" & "TO" & "'")(0)("ID").ToString, "")
-                'Manager
-                txtManager.ToolTip = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("REPRESENTATIVE_ID").ToString, "")
-                txtManager.Text = If(dtBranch.Select("CODE='" & "BP" & "'").Length > 0, dtBranch.Select("CODE='" & "BP" & "'")(0)("REPRESENTATIVE_NAME").ToString, "")
+            If orgTree IsNot Nothing Then
+                If IsNumeric(orgTree.ORG_ID2) Then
+                    txtOrgName2.Text = orgTree.ORG_NAME2
+                    txtOrgName2.ToolTip = orgTree.ORG_ID2
+                End If
+                If IsNumeric(orgTree.ORG_ID3) Then
+                    txtOrgName.Text = orgTree.ORG_NAME3
+                    txtOrgName.ToolTip = orgTree.ORG_ID3
+                End If
+                If IsNumeric(orgTree.ORG_ID4) Then
+                    txtBan.Text = orgTree.ORG_NAME4
+                    txtBan.ToolTip = orgTree.ORG_ID4
+                End If
+                If IsNumeric(orgTree.ORG_ID5) Then
+                    txtTo.Text = orgTree.ORG_NAME5
+                    txtTo.ToolTip = orgTree.ORG_ID5
+                End If
+                If IsNumeric(orgTree.REPRESENTATIVE_ID) Then
+                    txtManager.Text = orgTree.REPRESENTATIVE_NAME
+                    txtManager.ToolTip = orgTree.REPRESENTATIVE_ID
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         Finally
-            procedure = Nothing
         End Try
     End Sub
 #End Region

@@ -837,7 +837,7 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_ADDRESS = objEmpCV.PER_ADDRESS
                 objEmpCVData.PER_PROVINCE = objEmpCV.PER_PROVINCE
                 objEmpCVData.PER_DISTRICT = objEmpCV.PER_DISTRICT
-                objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
+                'objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
                 objEmpCVData.INS_REGION_ID = objEmpCV.INS_REGION_ID
                 objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
@@ -922,7 +922,7 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
-                
+                objEmpCVData.WORKPLACE_NAME = objEmpCV.WORKPLACE_NAME
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -949,6 +949,11 @@ Partial Class ProfileRepository
                 objEmpEduData.LLCT = objEmpEdu.LLCT
                 objEmpEduData.TDTH = objEmpEdu.TDTH
                 objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
+
+                objEmpEduData.LANGUAGE2 = objEmpEdu.LANGUAGE2
+                objEmpEduData.LANGUAGE_LEVEL2 = objEmpEdu.LANGUAGE_LEVEL2
+                objEmpEduData.LANGUAGE_MARK2 = objEmpEdu.LANGUAGE_MARK2
+
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
 
@@ -1223,7 +1228,7 @@ Partial Class ProfileRepository
                 objEmpCVData.PER_ADDRESS = objEmpCV.PER_ADDRESS
                 objEmpCVData.PER_PROVINCE = objEmpCV.PER_PROVINCE
                 objEmpCVData.PER_DISTRICT = objEmpCV.PER_DISTRICT
-                objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
+                'objEmpCVData.WORKPLACE_ID = objEmpCV.WORKPLACE_ID
                 objEmpCVData.INS_REGION_ID = objEmpCV.INS_REGION_ID
                 objEmpCVData.PER_WARD = objEmpCV.PER_WARD
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
@@ -1309,7 +1314,7 @@ Partial Class ProfileRepository
                 objEmpCVData.CHUC_VU_DOAN = objEmpCV.CHUC_VU_DOAN
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
-                
+                objEmpCVData.WORKPLACE_NAME = objEmpCV.WORKPLACE_NAME
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1343,6 +1348,10 @@ Partial Class ProfileRepository
                 objEmpEduData.LLCT = objEmpEdu.LLCT
                 objEmpEduData.TDTH = objEmpEdu.TDTH
                 objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
+
+                objEmpEduData.LANGUAGE2 = objEmpEdu.LANGUAGE2
+                objEmpEduData.LANGUAGE_LEVEL2 = objEmpEdu.LANGUAGE_LEVEL2
+                objEmpEduData.LANGUAGE_MARK2 = objEmpEdu.LANGUAGE_MARK2
                 If bUpdateEdu = False Then
                     Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
                 End If
@@ -1554,7 +1563,6 @@ Partial Class ProfileRepository
                      From nav_pro In Context.HU_PROVINCE.Where(Function(f) cv.NAV_PROVINCE = f.ID).DefaultIfEmpty
                      From nav_dis In Context.HU_DISTRICT.Where(Function(f) cv.NAV_DISTRICT = f.ID).DefaultIfEmpty
                      From nav_ward In Context.HU_WARD.Where(Function(f) cv.NAV_WARD = f.ID).DefaultIfEmpty
-                     From workplace In Context.HU_PROVINCE.Where(Function(f) cv.WORKPLACE_ID = f.ID).DefaultIfEmpty
                      From emp In Context.HU_EMPLOYEE.Where(Function(f) f.ID = cv.EMPLOYEE_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = emp.ORG_ID).DefaultIfEmpty
                     From region In Context.OT_OTHER_LIST.Where(Function(f) f.ID = org.REGION_ID).DefaultIfEmpty
@@ -1583,8 +1591,6 @@ Partial Class ProfileRepository
                          .PER_DISTRICT_NAME = per_dis.NAME_VN,
                          .PER_WARD = cv.PER_WARD,
                          .PER_WARD_NAME = per_ward.NAME_VN,
-                         .WORKPLACE_ID = cv.WORKPLACE_ID,
-                         .WORKPLACE_NAME = workplace.NAME_VN,
                          .INS_REGION_ID = cv.INS_REGION_ID,
                          .INS_REGION_NAME = region.NAME_VN,
                          .HOME_PHONE = cv.HOME_PHONE,
@@ -1659,6 +1665,7 @@ Partial Class ProfileRepository
                          .DANG = cv.DANG,
                          .SKILL = cv.SKILL,
                          .BANTT = cv.BANTT,
+                         .WORKPLACE_NAME = cv.WORKPLACE_NAME,
                          .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
@@ -1670,13 +1677,13 @@ Partial Class ProfileRepository
                          .PROVINCENQ_ID = cv.PROVINCENQ_ID,
                          .BANK_NO = cv.BANK_NO,
                          .IS_PAY_BANK = cv.IS_PAY_BANK}).FirstOrDefault
-
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
                      From a In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.ACADEMY).DefaultIfEmpty
                      From m In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.MAJOR).DefaultIfEmpty
                      From train In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.TRAINING_FORM).DefaultIfEmpty
                      From learn In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LEARNING_LEVEL).DefaultIfEmpty
                      From ll1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL).DefaultIfEmpty
+                     From ll2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.LANGUAGE_LEVEL2).DefaultIfEmpty
                      From school In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.GRADUATE_SCHOOL_ID).DefaultIfEmpty
                      Where edu.EMPLOYEE_ID = sEmployeeID
                      Select New EmployeeEduDTO With {
@@ -1691,9 +1698,13 @@ Partial Class ProfileRepository
                          .LEARNING_LEVEL = edu.LEARNING_LEVEL,
                          .LEARNING_LEVEL_NAME = learn.NAME_VN,
                          .LANGUAGE = edu.LANGUAGE,
+                         .LANGUAGE2 = edu.LANGUAGE2,
                          .LANGUAGE_LEVEL = edu.LANGUAGE_LEVEL,
+                         .LANGUAGE_LEVEL2 = edu.LANGUAGE_LEVEL2,
+                         .LANGUAGE_LEVEL_NAME2 = ll2.NAME_VN,
                          .LANGUAGE_LEVEL_NAME = ll1.NAME_VN,
                          .LANGUAGE_MARK = edu.LANGUAGE_MARK,
+                         .LANGUAGE_MARK2 = edu.LANGUAGE_MARK2,
                          .GRADUATE_SCHOOL_ID = edu.GRADUATE_SCHOOL_ID,
                          .GRADUATE_SCHOOL_NAME = school.NAME_VN,
                          .QLNN = edu.QLNN,

@@ -1108,9 +1108,54 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "Organization"
-    Public Function GetTreeOrgByID(ByVal ID As Decimal) As OrganizationVerticalDTO
-
-
+    Public Function GetTreeOrgByID(ByVal ID As Decimal) As OrganizationTreeDTO
+        Dim orgTree As OrganizationTreeDTO
+        Try
+            orgTree = (From p In Context.HUV_ORGANIZATION
+                       From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID4).DefaultIfEmpty
+                       From E In Context.HU_EMPLOYEE.Where(Function(F) F.ID = o.REPRESENTATIVE_ID).DefaultIfEmpty
+                       Where p.ID = ID
+                        Select New OrganizationTreeDTO With {.ID = p.ID,
+                                                             .NAME_VN = p.NAME_VN,
+                                                             .CODE = p.CODE,
+                                                             .ORG_CODE1 = p.ORG_CODE1,
+                                                             .ORG_CODE2 = p.ORG_CODE2,
+                                                             .ORG_CODE3 = p.ORG_CODE3,
+                                                             .ORG_CODE4 = p.ORG_CODE4,
+                                                             .ORG_CODE5 = p.ORG_CODE5,
+                                                             .ORG_CODE6 = p.ORG_CODE6,
+                                                             .ORG_CODE7 = p.ORG_CODE7,
+                                                             .ORG_CODE8 = p.ORG_CODE8,
+                                                             .ORG_CODE9 = p.ORG_CODE9,
+                                                             .ORG_ID1 = p.ORG_ID1,
+                                                             .ORG_ID2 = p.ORG_ID2,
+                                                             .ORG_ID3 = p.ORG_ID3,
+                                                             .ORG_ID4 = p.ORG_ID4,
+                                                             .ORG_ID5 = p.ORG_ID5,
+                                                             .ORG_ID6 = p.ORG_ID6,
+                                                             .ORG_ID7 = p.ORG_ID7,
+                                                             .ORG_ID8 = p.ORG_ID8,
+                                                             .ORG_ID9 = p.ORG_ID9,
+                                                             .ORG_NAME = p.ORG_NAME,
+                                                             .ORG_NAME1 = p.ORG_NAME1,
+                                                             .ORG_NAME2 = p.ORG_NAME2,
+                                                             .ORG_NAME3 = p.ORG_NAME3,
+                                                             .ORG_NAME4 = p.ORG_NAME4,
+                                                             .ORG_NAME5 = p.ORG_NAME5,
+                                                             .ORG_NAME6 = p.ORG_NAME6,
+                                                             .ORG_NAME7 = p.ORG_NAME7,
+                                                             .ORG_NAME8 = p.ORG_NAME8,
+                                                             .ORG_NAME9 = p.ORG_NAME9,
+                                                             .ORG_PATH = p.ORG_PATH,
+                                                             .PARENT_ID = p.PARENT_ID,
+                                                             .REPRESENTATIVE_ID = o.REPRESENTATIVE_ID,
+                                                             .REPRESENTATIVE_NAME = E.FULLNAME_VN
+                            }).SingleOrDefault
+            Return orgTree
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
     End Function
 
     Public Function GetOrganizationByID(ByVal ID As Decimal) As OrganizationDTO

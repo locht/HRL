@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalCommend.ascx.vb"
     Inherits="Profile.ctrlPortalCommend" %>
-<tlk:RadGrid PageSize=50 ID="rgCommend" runat="server" Height="350px" AllowFilteringByColumn="true">
+<tlk:RadGrid PageSize="50" ID="rgCommend" runat="server" Height="350px" AllowFilteringByColumn="true">
     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="DECISION_NO,EFFECT_DATE,COMMEND_LEVEL_NAME,COMMEND_TYPE_NAME,REMARK,MONEY,YEAR,COMMEND_PAY_NAME,SIGNER_NAME">
         <Columns>
-            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
+            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
                 UniqueName="DECISION_NO" SortExpression="DECISION_NO" ShowFilterIcon="false"
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
@@ -14,11 +14,11 @@
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </tlk:GridDateTimeColumn>
-           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                 UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
-            </tlk:GridBoundColumn>--%>
+            </tlk:GridBoundColumn>
             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp khen thưởng %>" DataField="COMMEND_LEVEL_NAME"
                 UniqueName="COMMEND_LEVEL_NAME" SortExpression="COMMEND_LEVEL_NAME" ShowFilterIcon="false"
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
@@ -53,7 +53,7 @@
                 UniqueName="SIGNER_NAME" SortExpression="SIGNER_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
-            </tlk:GridBoundColumn>
+            </tlk:GridBoundColumn>--%>
         </Columns>
     </MasterTableView>
 </tlk:RadGrid>

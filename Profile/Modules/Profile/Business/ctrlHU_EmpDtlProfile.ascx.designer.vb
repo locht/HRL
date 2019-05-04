@@ -797,13 +797,13 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents lbWorkplace As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cboWorkplace control.
+    '''rtWorkplace control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboWorkplace As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rtWorkplace As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbID_NO control.
@@ -2478,6 +2478,60 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLangMark As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbLanguage2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbLanguage2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboLanguage2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboLanguage2 As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbLangLevel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbLangLevel2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboLangLevel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboLangLevel2 As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbLangMark2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbLangMark2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtLangMark2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtLangMark2 As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbTDTH control.
