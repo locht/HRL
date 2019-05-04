@@ -1719,5 +1719,94 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+#Region "cham cong"
+        Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_LIST_DTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_LIST_DTO) _
+                                     Implements ServiceContracts.IAttendanceBusiness.GetLeaveRegistrationList
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.GetLeaveRegistrationList(_filter, Total, PageIndex, PageSize, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeletePortalReg(ByVal lstId As List(Of Decimal)) As Boolean _
+            Implements ServiceContracts.IAttendanceBusiness.DeletePortalReg
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.DeletePortalReg(lstId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ApprovePortalRegList(ByVal obj As List(Of AT_PORTAL_REG_LIST_DTO), ByVal log As UserLog) As Boolean _
+           Implements ServiceContracts.IAttendanceBusiness.ApprovePortalRegList
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ApprovePortalRegList(obj, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+#Region "cham cong newedit"
+        Public Function GetEmployeeInfor(ByVal P_EmpId As Decimal?, ByVal P_Org_ID As Decimal?, Optional ByVal fromDate As Date? = Nothing) As DataTable _
+          Implements ServiceContracts.IAttendanceBusiness.GetEmployeeInfor
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetEmployeeInfor(P_EmpId, P_Org_ID, fromDate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_LIST_DTO) As AT_PORTAL_REG_LIST_DTO Implements ServiceContracts.IAttendanceBusiness.GetLeaveRegistrationById
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetLeaveRegistrationById(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO) _
+            Implements ServiceContracts.IAttendanceBusiness.GetLeaveEmpDetail
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetLeaveEmpDetail(employee_Id, fromDate, toDate, isUpdate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetLeaveRegistrationDetailById(ByVal listId As Decimal) As List(Of AT_PORTAL_REG_DTO) Implements ServiceContracts.IAttendanceBusiness.GetLeaveRegistrationDetailById
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetLeaveRegistrationDetailById(listId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef gID As Decimal, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean _
+           Implements ServiceContracts.IAttendanceBusiness.InsertPortalRegList
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.InsertPortalRegList(obj, lstObjDetail, log, gID, itemExist, isOverAnnualLeave)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
     End Class
 End Namespace

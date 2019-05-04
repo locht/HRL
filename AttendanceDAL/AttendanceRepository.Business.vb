@@ -13,6 +13,9 @@ Imports System.Reflection
 Imports Framework.Data.DataAccess
 Imports Oracle.DataAccess.Client
 Imports System.Globalization
+Imports HistaffFrameworkPublic.HistaffFrameworkEnum
+
+
 
 Partial Public Class AttendanceRepository
     Dim ls_AT_SWIPE_DATADTO As New List(Of AT_SWIPE_DATADTO)
@@ -5649,4 +5652,44 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+#Region "cham cong"
+    Public Function CheckTimeSheetApproveVerify(ByVal obj As List(Of AT_PROCESS_DTO), ByVal type As String, ByRef itemError As AT_PROCESS_DTO) As Boolean
+        Try
+            Dim checkData = Nothing
+            'For Each it In obj
+            '    If type = "OT" Then
+            '        checkData = (From p In Context.AT_TIMESHEET
+            '                     Where p.EMPLOYEE_ID = it.EMPLOYEE_ID And p.YEAR_ID = it.FROM_DATE.Value.Year And p.MONTH_ID = it.FROM_DATE.Value.Month _
+            '                           And (p.STATUS = PortalStatus.ApprovedByLM Or p.STATUS = PortalStatus.VerifiedByHR Or p.STATUS = PortalStatus.WaitingForApproval)).FirstOrDefault()
+            '        If checkData IsNot Nothing Then
+            '            itemError = it
+            '            Return False
+            '        End If
+            '    ElseIf type = "LEAVE" Then
+            '        checkData = (From p In Context.AT_TIMESHEET
+            '                     Where p.EMPLOYEE_ID = it.EMPLOYEE_ID And ((p.YEAR_ID = it.FROM_DATE.Value.Year And p.MONTH_ID = it.FROM_DATE.Value.Month)) _
+            '                           And (p.STATUS = PortalStatus.ApprovedByLM Or p.STATUS = PortalStatus.VerifiedByHR Or p.STATUS = PortalStatus.WaitingForApproval)).FirstOrDefault()
+            '        If checkData IsNot Nothing Then
+            '            itemError = it
+            '            itemError.TO_DATE = Nothing
+            '            Return False
+            '        End If
+
+            '        checkData = (From p In Context.AT_TIMESHEET
+            '                     Where p.EMPLOYEE_ID = it.EMPLOYEE_ID And (p.YEAR_ID = it.TO_DATE.Value.Year And p.MONTH_ID = it.TO_DATE.Value.Month) _
+            '                           And (p.STATUS = PortalStatus.ApprovedByLM Or p.STATUS = PortalStatus.VerifiedByHR Or p.STATUS = PortalStatus.WaitingForApproval)).FirstOrDefault()
+            '        If checkData IsNot Nothing Then
+            '            itemError = it
+            '            itemError.FROM_DATE = Nothing
+            '            Return False
+            '        End If
+            '    End If
+            'Next
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class

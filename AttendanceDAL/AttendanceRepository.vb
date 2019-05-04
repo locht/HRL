@@ -115,6 +115,14 @@ Partial Public Class AttendanceRepository
                             .NAME_VN = p.NAME_VN,
                             .TYPE_ID = p.TYPE_ID}).ToList
             End If
+            'If cbxData.GET_LIST_SIGN_LEAVE Then
+            '    cbxData.LIST_LIST_SIGN_LEAVE = (From p In Context.AT_TIME_MANUAL Where p.ACTFLG = "A" Order By p.NAME
+            '                                    Select New AT_TIME_MANUALDTO With {
+            '                                       .ID = p.ID,
+            '                                       .CODE = p.CODE,
+            '                                       .NAME_EN = p.NAME,
+            '                                       .NAME_VN = p.NAME}).ToList
+            'End If
             If cbxData.GET_LIST_APPLY_LAW Then
                 cbxData.LIST_LIST_APPLY_LAW = (From p In Context.AT_GSIGN Where p.ACTFLG = "A" Order By p.NAME_VN Descending
                                                Select New AT_GSIGNDTO With {
