@@ -41326,6 +41326,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelResponse")>  _
+        Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevelID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelIDResponse")>  _
         Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO
         
@@ -41334,6 +41337,7 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
@@ -41437,7 +41441,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
@@ -41639,6 +41642,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractResponse")>  _
         Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_ManagerResponse")>  _
+        Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As ProfileBusiness.HuFileDTO) As Byte()
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFile", ReplyAction:="http://tempuri.org/IProfileBusiness/GetEmployeeHuFileResponse")>  _
         Function GetEmployeeHuFile(ByVal _filter As ProfileBusiness.HuFileDTO) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO)
@@ -41885,6 +41891,7 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendListResponse"),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendFormulaDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.StatisticDTO))),  _
@@ -41988,7 +41995,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
@@ -42071,8 +42077,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetImportCommendResponse")>  _
         Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelResponse")>  _
-        Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeIDResponse")>  _
+        Function GetCheckContractTypeID(ByVal listID As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareListAuto", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareListAutoResponse")>  _
         Function GetWelfareListAuto(ByVal _filter As ProfileBusiness.WelfareMngDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
@@ -42326,9 +42332,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFiles_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFiles_ManagerResponse")>  _
         Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_ManagerResponse")>  _
-        Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As ProfileBusiness.HuFileDTO) As Byte()
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyEmpResponse")>  _
         Function GetCompetencyEmp(ByVal _filter As ProfileBusiness.CompetencyEmpDTO) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO)
         
@@ -42521,6 +42524,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluate", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteTrainingEvaluateResponse")>  _
         Function DeleteTrainingEvaluate(ByVal objAssetMng As ProfileBusiness.TrainningEvaluateDTO) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListTrainingManageByEmpID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListTrainingManageByEmpIDResponse")>  _
+        Function GetListTrainingManageByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTrainingManage", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTrainingManageResponse")>  _
         Function GetTrainingManage(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO)
         
@@ -42580,9 +42586,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveContractResponse")>  _
         Function UnApproveContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeIDResponse")>  _
-        Function GetCheckContractTypeID(ByVal listID As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPath", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPathResponse")>  _
         Function ModifyOrganizationPath(ByVal lstPath As System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO)) As Boolean
@@ -43126,6 +43129,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO) Implements ProfileBusiness.IProfileBusiness.GetCommendLevel
+            Return MyBase.Channel.GetCommendLevel(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+        
         Public Function GetCommendLevelID(ByVal ID As Decimal) As ProfileBusiness.CommendLevelDTO Implements ProfileBusiness.IProfileBusiness.GetCommendLevelID
             Return MyBase.Channel.GetCommendLevelID(ID)
         End Function
@@ -43304,6 +43311,10 @@ Namespace ProfileBusiness
         
         Public Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetListContract
             Return MyBase.Channel.GetListContract(ID)
+        End Function
+        
+        Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As ProfileBusiness.HuFileDTO) As Byte() Implements ProfileBusiness.IProfileBusiness.DownloadAttachFile_Manager
+            Return MyBase.Channel.DownloadAttachFile_Manager(fileID, ext, fileInfo)
         End Function
         
         Public Function GetEmployeeHuFile(ByVal _filter As ProfileBusiness.HuFileDTO) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO) Implements ProfileBusiness.IProfileBusiness.GetEmployeeHuFile
@@ -43642,8 +43653,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetImportCommend(_filter)
         End Function
         
-        Public Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO) Implements ProfileBusiness.IProfileBusiness.GetCommendLevel
-            Return MyBase.Channel.GetCommendLevel(_filter, PageIndex, PageSize, Total, Sorts)
+        Public Function GetCheckContractTypeID(ByVal listID As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCheckContractTypeID
+            Return MyBase.Channel.GetCheckContractTypeID(listID)
         End Function
         
         Public Function GetWelfareListAuto(ByVal _filter As ProfileBusiness.WelfareMngDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetWelfareListAuto
@@ -43982,10 +43993,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetAttachFiles_Manager(fileType, page, pageSize, totalPage, Employee_id)
         End Function
         
-        Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As ProfileBusiness.HuFileDTO) As Byte() Implements ProfileBusiness.IProfileBusiness.DownloadAttachFile_Manager
-            Return MyBase.Channel.DownloadAttachFile_Manager(fileID, ext, fileInfo)
-        End Function
-        
         Public Function GetCompetencyEmp(ByVal _filter As ProfileBusiness.CompetencyEmpDTO) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO) Implements ProfileBusiness.IProfileBusiness.GetCompetencyEmp
             Return MyBase.Channel.GetCompetencyEmp(_filter)
         End Function
@@ -44242,6 +44249,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.DeleteTrainingEvaluate(objAssetMng)
         End Function
         
+        Public Function GetListTrainingManageByEmpID(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO) Implements ProfileBusiness.IProfileBusiness.GetListTrainingManageByEmpID
+            Return MyBase.Channel.GetListTrainingManageByEmpID(_filter, _param, Sorts)
+        End Function
+        
         Public Function GetTrainingManage(ByVal _filter As ProfileBusiness.TrainningManageDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO) Implements ProfileBusiness.IProfileBusiness.GetTrainingManage
             Return MyBase.Channel.GetTrainingManage(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
         End Function
@@ -44320,10 +44331,6 @@ Namespace ProfileBusiness
         
         Public Function UnApproveContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.UnApproveContract
             Return MyBase.Channel.UnApproveContract(objContract, log, gID)
-        End Function
-        
-        Public Function GetCheckContractTypeID(ByVal listID As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCheckContractTypeID
-            Return MyBase.Channel.GetCheckContractTypeID(listID)
         End Function
         
         Public Function ModifyOrganizationPath(ByVal lstPath As System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO)) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyOrganizationPath

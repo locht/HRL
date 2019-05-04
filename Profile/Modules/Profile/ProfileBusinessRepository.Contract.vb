@@ -79,6 +79,20 @@ Partial Public Class ProfileBusinessRepository
 
 #End Region
 #Region "traning manage"
+    Public Function GetListTrainingManageByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetListTrainingManageByEmpID(_filter, _param, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function GetTrainingManage(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
                            ByVal PageSize As Integer,
                            ByRef Total As Integer, ByVal _param As ParamDTO,
