@@ -15,6 +15,80 @@ Imports System.Reflection
 Partial Public Class AttendanceRepository
     Dim nvalue_id As Decimal?
 
+    Public Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SetUpCodeAttDTO)
+        Try
+            Dim query = (From p In Context.AT_SETUP_ATT_EMP
+                       From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                       From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                       From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                       From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                       From machine In Context.AT_TERMINALS.Where(Function(f) f.ID = p.MACHINE_ID).DefaultIfEmpty
+                       Select New SetUpCodeAttDTO With {
+                           .ID = p.ID,
+                           .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                           .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                           .EMPLOYEE_NAME = e.FULLNAME_VN,
+                           .MACHINE_ID = p.MACHINE_ID,
+                           .MACHINE_NAME = machine.TERMINAL_NAME,
+                           .MACHINE_CODE = machine.TERMINAL_CODE,
+                           .CODE_ATT = p.CODE_ATT,
+                           .APPROVE_DATE = p.APPROVE_DATE,
+                           .ORG_ID = e.ORG_ID,
+                           .ORG_NAME = org.NAME_VN,
+                           .TITLE_ID = e.TITLE_ID,
+                           .TITLE_NAME = title.NAME_VN,
+                           .NOTE = p.NOTE,
+                           .CREATED_BY = p.CREATED_BY,
+                           .CREATED_DATE = p.CREATED_DATE,
+                           .CREATED_LOG = p.CREATED_LOG,
+                           .MODIFIED_BY = p.MODIFIED_BY,
+                           .MODIFIED_DATE = p.MODIFIED_DATE,
+                           .MODIFIED_LOG = p.MODIFIED_LOG
+                           }
+                       )
+           
+            If Not String.IsNullOrEmpty(_filter.CODE_ATT) Then
+                query = query.Where(Function(f) f.CODE_ATT.ToLower().Contains(_filter.CODE_ATT.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
+                query = query.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.EMPLOYEE_NAME) Then
+                query = query.Where(Function(f) f.EMPLOYEE_NAME.ToLower().Contains(_filter.EMPLOYEE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME) Then
+                query = query.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
+                query = query.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.MACHINE_NAME) Then
+                query = query.Where(Function(f) f.MACHINE_NAME.ToLower().Contains(_filter.MACHINE_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.MACHINE_CODE) Then
+                query = query.Where(Function(f) f.MACHINE_CODE.ToLower().Contains(_filter.MACHINE_CODE.ToLower()))
+            End If
+            If _filter.APPROVE_DATE.HasValue Then
+                query = query.Where(Function(f) f.APPROVE_DATE = _filter.APPROVE_DATE)
+            End If
+            If Not String.IsNullOrEmpty(_filter.NOTE) Then
+                query = query.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
+            End If
+            query = query.OrderBy(Sorts)
+            Total = query.Count
+            query = query.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
 #Region "List Holiday"
     Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,
                                  Optional ByVal PageIndex As Integer = 0,
@@ -3140,10 +3214,10 @@ Partial Public Class AttendanceRepository
                     idSendMail.Value, If(approveExt Is Nothing, Nothing, approveExt.SUB_EMPLOYEE_ID),
                     process, objLstRegister(0).ID_REGGROUP, currentUrl, emailInform, "")
             End If
-           
+
         End If
 
-            Return String.Empty
+        Return String.Empty
     End Function
 #End Region
 
@@ -5836,7 +5910,7 @@ Partial Public Class AttendanceRepository
         End Using
     End Function
 
-    Public Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32
+    Public Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Int32
         Using cls As New DataAccess.QueryData
             Dim obj = New With {.P_EMPLOYEE_ID = employee_id, .P_PERIOD_ID = period_id, .P_PROCESS_TYPE = process_type, .P_TOTAL_HOURS = totalHours, .P_TOTAL_DAY = totalDay, .P_SIGN_ID = sign_id, .P_ID_REGGROUP = id_reggroup, .P_RESULT = cls.OUT_NUMBER}
             Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS_APP", obj)
@@ -5945,7 +6019,7 @@ Partial Public Class AttendanceRepository
                 query = query.Where(Function(f) f.STATUS = _filter.STATUS)
             End If
 
-           
+
             If _filter.FROM_DATE.HasValue And _filter.TO_DATE.HasValue Then
                 query = query.Where(Function(f) f.FROM_DATE >= _filter.FROM_DATE And f.TO_DATE <= _filter.TO_DATE)
             ElseIf _filter.FROM_DATE.HasValue Then
