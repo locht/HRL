@@ -5899,18 +5899,19 @@ Partial Public Class AttendanceRepository
                                    Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_LIST_DTO)
         Try
             Dim query = From p In Context.AT_PORTAL_REG_LIST
-                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                        From fl In Context.AT_FML.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
+                        From fl In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
                         From sh In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
+                        Where s.IS_APP = 0 And s.IS_PORTAL = -1
                         Select New AT_PORTAL_REG_LIST_DTO With {
                                                                .ID = p.ID,
                                                                .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
-                                                               .EMPLOYEE_NAME = e.FULLNAME_EN,
+                                                               .EMPLOYEE_NAME = e.FULLNAME_VN,
                                                                .DEPARTMENT = o.NAME_EN,
                                                                .JOBTITLE = t.NAME_EN,
                                                                .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
@@ -5919,7 +5920,7 @@ Partial Public Class AttendanceRepository
                                                                .TOTAL_LEAVE = p.TOTAL_LEAVE,
                                                                .ID_SIGN = p.ID_SIGN,
                                                                .SIGN_CODE = fl.CODE,
-                                                               .SIGN_NAME = fl.NAME_VN,
+                                                               .SIGN_NAME = fl.NAME,
                                                                .STATUS = p.STATUS,
                                                                .STATUS_NAME = ot.NAME_EN,
                                                                .NOTE = p.NOTE,
@@ -6018,18 +6019,75 @@ Partial Public Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
+    Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+        Dim objData As New AT_PORTAL_REG_LIST With {.ID = obj.ID}
+        Try
+            'Kiểm tra thêm điều kiện nếu số ngày nghỉ vượt quá phép năm hiện có của nhân viên đó trong năm thì báo
+            Dim checkSignIsAnnualLeave = (From p In Context.AT_FML
+                                          Where p.ID = obj.ID_SIGN _
+                                          And p.CODE = "AL").Any()
+            If checkSignIsAnnualLeave Then
+                Dim checkDataOverAnnualLeave = (From p In Context.AT_ENTITLEMENT
+                                                Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID _
+                                                    And p.CUR_HAVE < obj.TOTAL_LEAVE _
+                                                    And obj.FROM_DATE.Value.Year = p.YEAR).Any()
+                If checkDataOverAnnualLeave Then
+                    isOverAnnualLeave = True
+                    Return False
+                End If
+            End If
+
+            'Kiểm tra điều kiện trùng ngày đăng ký nghỉ
+            For Each item In lstObjDetail
+                Dim checkData = (From p In Context.AT_PORTAL_REG
+                                 Where p.REGDATE = item.REGDATE _
+                                     And p.ID_EMPLOYEE = item.ID_EMPLOYEE _
+                                     And p.AT_PORTAL_REG_LIST_ID <> obj.ID).Any()
+                If checkData Then
+                    itemExist = item
+                    Return False
+                Else
+                    itemExist = Nothing
+                End If
+            Next
+            Context.AT_PORTAL_REG_LIST.Attach(objData)
+            objData.EMPLOYEE_ID = obj.EMPLOYEE_ID
+            objData.FROM_DATE = obj.FROM_DATE
+            objData.TO_DATE = obj.TO_DATE
+            objData.ID_SIGN = obj.ID_SIGN
+            objData.TOTAL_LEAVE = obj.TOTAL_LEAVE
+            objData.NOTE = obj.NOTE
+            objData.STATUS = obj.STATUS
+            If lstObjDetail.Count > 0 Then
+                'delete detail and insert new
+                Dim deletedPortalReg = (From record In Context.AT_PORTAL_REG Where record.AT_PORTAL_REG_LIST_ID = obj.ID)
+                For Each item In deletedPortalReg
+                    Context.AT_PORTAL_REG.DeleteObject(item)
+                Next
+                Context.SaveChanges(log)
+                'Cap nhat detail
+                InsertPortalReg(obj.ID, lstObjDetail, log)
+            Else
+                itemExist = Nothing
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
     Public Function DeletePortalReg(ByVal lstId As List(Of Decimal)) As Boolean
         Try
-            'Dim deleted = (From record In Context.AT_PORTAL_REG_LIST Where lstId.Contains(record.ID))
-            'For Each item In deleted
-            '    Dim deletedDetail = (From r In Context.AT_PORTAL_REG Where r.AT_PORTAL_REG_LIST_ID = item.ID)
-            '    For Each itemDetail In deletedDetail
-            '        Context.AT_PORTAL_REG.DeleteObject(itemDetail)
-            '    Next
-            '    Context.AT_PORTAL_REG_LIST.DeleteObject(item)
-            'Next
-            'Context.SaveChanges()
-            'Return True
+            Dim deleted = (From record In Context.AT_PORTAL_REG_LIST Where lstId.Contains(record.ID))
+            For Each item In deleted
+                Dim deletedDetail = (From r In Context.AT_PORTAL_REG Where r.AT_PORTAL_REG_LIST_ID = item.ID)
+                For Each itemDetail In deletedDetail
+                    Context.AT_PORTAL_REG.DeleteObject(itemDetail)
+                Next
+                Context.AT_PORTAL_REG_LIST.DeleteObject(item)
+            Next
+            Context.SaveChanges()
+            Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
@@ -6251,7 +6309,7 @@ Partial Public Class AttendanceRepository
 
 
             'Next
-            'Return True
+            Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex

@@ -201,7 +201,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 '19 Khong duyet qltt
                 '20 Khong xac nhan nhan su
                 '22 Khong duyet GM
-                Case 0 _
+                Case 0, PortalStatus.unsent
                     ', PortalStatus.Saved, PortalStatus.UnApprovedByLM, PortalStatus.UnVerifiedByHr
                     If userType = "User" Then
                         tbarMainToolBar.Items(0).Enabled = True
@@ -247,8 +247,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                         obj.TO_DATE = rdToDate.SelectedDate
                         obj.TOTAL_LEAVE = rntxDayRegist.Value 'txtDayRegist.Text
                         obj.NOTE = txtNote.Text
-                        obj.STATUS = 16
-                        hidStatus.Value = 16
+                        obj.STATUS = 6860
+                        hidStatus.Value = 6860
                         'lay thong tin detail
                         Dim details As New List(Of AT_PORTAL_REG_DTO)
                         For Each item As GridDataItem In rgData.Items
@@ -286,7 +286,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 obj.ID = hidID.Value
                             Else
                                 obj.ID = hidID.Value
-                                'rep.ModifyPortalRegList(obj, details, itemExist, isOverAnnualLeave)
+                                rep.ModifyPortalRegList(obj, details, itemExist, isOverAnnualLeave)
                             End If
 
                             If isOverAnnualLeave Then
