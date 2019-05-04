@@ -37,4 +37,7 @@
 
     Public Property ID_NB As Decimal?
     Public Property NGHI_BU As String
+
+    Public Property TOTAL_LEAVE As Decimal?
+
 End Class

@@ -51,4 +51,7 @@
     Public Property GET_LIST_TIME_SHIFT As Boolean
     Public Property LIST_LIST_TIME_SHIFT As List(Of OT_OTHERLIST_DTO)
 
+    Public Property GET_LIST_SIGN_LEAVE As Boolean
+    Public Property LIST_LIST_SIGN_LEAVE As List(Of AT_FMLDTO)
+
 End Class
