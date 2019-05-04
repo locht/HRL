@@ -64,6 +64,17 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 #End Region
 #Region "training manage"
+        Public Function GetListTrainingManageByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO) _
+                                   Implements ServiceContracts.IProfileBusiness.GetListTrainingManageByEmpID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetListTrainingManageByEmpID(_filter, _param)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetTrainingManage(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
                                ByVal PageSize As Integer,
                                ByRef Total As Integer, ByVal _param As ParamDTO,

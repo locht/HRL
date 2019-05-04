@@ -174,9 +174,9 @@
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript" language="javascript">
 
-        $(document).ready(function () {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ContractNewEdit_RadSplitter1');
-        });
+//        $(document).ready(function () {
+//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ContractNewEdit_RadSplitter1');
+//        });
 
         function cusContractType(oSrc, args) {
             var cbo = $find("<%# cboContractType.ClientID%>");
