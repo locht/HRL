@@ -25,4 +25,12 @@
         ImportOther = 1
         ImportDeduct = 2
     End Enum
+    Public Enum PortalStatus
+        unsent = 6860
+        waitsend = 6861
+        aprrove = 6862
+        unaprrove = 6863
+        unCBNS = 6864
+
+    End Enum
 End Module

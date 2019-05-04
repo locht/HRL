@@ -1440,6 +1440,10 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 #Region "training manage"
         <OperationContract()>
+        Function GetListTrainingManageByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
+
+        <OperationContract()>
         Function GetTrainingManage(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
                                 ByRef Total As Integer, ByVal _param As ParamDTO,

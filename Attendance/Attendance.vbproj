@@ -228,6 +228,9 @@
     <Content Include="Modules\Common\ctrlOrganizationPopup.ascx" />
     <Content Include="Modules\Common\ctrlToolBar.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.APPOINTMENT_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_ACTION_LOGDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -274,6 +277,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PORTAL_REG_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PORTAL_REG_LIST_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PROCESS_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PROJECTDTO.datasource">
@@ -339,6 +348,9 @@
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.HistoryLeaveDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.LEAVE_DETAIL_EMP_DTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.Se_ReportDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -367,6 +379,8 @@
     <Content Include="Modules\Portal\ctrlDMVSRegister.ascx" />
     <Content Include="Modules\Portal\ctrlLeaveApprove.ascx" />
     <Content Include="Modules\Portal\ctrlLeaveDisplay.ascx" />
+    <Content Include="Modules\Portal\ctrlLeaveRegistration.ascx" />
+    <Content Include="Modules\Portal\ctrlLeaveRegistrationNewEdit.ascx" />
     <Content Include="Modules\Portal\ctrlOTApprove.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegister.ascx" />
     <Content Include="Modules\Portal\ctrlPortalTimeTimesheetDetails.ascx" />
@@ -879,6 +893,20 @@
     </Compile>
     <Compile Include="Modules\Portal\ctrlLeaveDisplay.ascx.vb">
       <DependentUpon>ctrlLeaveDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveRegistration.ascx.designer.vb">
+      <DependentUpon>ctrlLeaveRegistration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveRegistration.ascx.vb">
+      <DependentUpon>ctrlLeaveRegistration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveRegistrationNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlLeaveRegistrationNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlLeaveRegistrationNewEdit.ascx.vb">
+      <DependentUpon>ctrlLeaveRegistrationNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlOTApprove.ascx.designer.vb">

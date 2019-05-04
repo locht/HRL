@@ -1397,5 +1397,17 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "cham cong"
+        Public Function CheckTimeSheetApproveVerify(ByVal obj As List(Of AT_PROCESS_DTO), ByVal type As String, ByRef itemError As AT_PROCESS_DTO) As Boolean _
+           Implements IAttendanceBusiness.CheckTimeSheetApproveVerify
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.CheckTimeSheetApproveVerify(obj, type, itemError)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
     End Class
 End Namespace

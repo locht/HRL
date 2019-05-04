@@ -5891,4 +5891,576 @@ Partial Public Class AttendanceRepository
         End Using
     End Function
 #End Region
+#Region "cham cong"
+    Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_LIST_DTO,
+                                   Optional ByRef Total As Integer = 0,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_LIST_DTO)
+        Try
+            Dim query = From p In Context.AT_PORTAL_REG_LIST
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From fl In Context.AT_FML.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
+                        From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
+                        From sh In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
+                        Select New AT_PORTAL_REG_LIST_DTO With {
+                                                               .ID = p.ID,
+                                                               .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                               .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                               .EMPLOYEE_NAME = e.FULLNAME_EN,
+                                                               .DEPARTMENT = o.NAME_EN,
+                                                               .JOBTITLE = t.NAME_EN,
+                                                               .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
+                                                               .FROM_DATE = p.FROM_DATE,
+                                                               .TO_DATE = p.TO_DATE,
+                                                               .TOTAL_LEAVE = p.TOTAL_LEAVE,
+                                                               .ID_SIGN = p.ID_SIGN,
+                                                               .SIGN_CODE = fl.CODE,
+                                                               .SIGN_NAME = fl.NAME_VN,
+                                                               .STATUS = p.STATUS,
+                                                               .STATUS_NAME = ot.NAME_EN,
+                                                               .NOTE = p.NOTE,
+                                                               .REASON = p.REASON,
+                                                               .CREATED_BY = p.CREATED_BY,
+                                                               .CREATED_DATE = p.CREATED_DATE,
+                                                               .CREATED_LOG = p.CREATED_LOG,
+                                                               .MODIFIED_BY = sh.FULLNAME_EN,
+                                                               .MODIFIED_DATE = p.MODIFIED_DATE,
+                                                               .MODIFIED_LOG = p.MODIFIED_LOG
+                                                            }
+
+            If _filter.EMPLOYEE_ID > 0 Then
+                query = query.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            End If
+            If _filter.ID > 0 Then
+                query = query.Where(Function(f) f.ID = _filter.ID)
+            End If
+            If _filter.YEAR > 0 Then
+                query = query.Where(Function(f) f.YEAR = _filter.YEAR)
+            End If
+            If _filter.STATUS.HasValue Then
+                query = query.Where(Function(f) f.STATUS = _filter.STATUS)
+            End If
+
+           
+            If _filter.FROM_DATE.HasValue And _filter.TO_DATE.HasValue Then
+                query = query.Where(Function(f) f.FROM_DATE >= _filter.FROM_DATE And f.TO_DATE <= _filter.TO_DATE)
+            ElseIf _filter.FROM_DATE.HasValue Then
+                query = query.Where(Function(f) f.FROM_DATE = _filter.FROM_DATE)
+            ElseIf _filter.TO_DATE.HasValue Then
+                query = query.Where(Function(f) f.TO_DATE = _filter.TO_DATE)
+            End If
+
+            If _filter.TOTAL_LEAVE.HasValue Then
+                query = query.Where(Function(f) f.TOTAL_LEAVE = _filter.TOTAL_LEAVE)
+            End If
+
+            If _filter.MODIFIED_DATE.HasValue Then
+                query = query.Where(Function(f) f.MODIFIED_DATE = _filter.MODIFIED_DATE)
+            End If
+
+
+            If _filter.EMPLOYEE_CODE IsNot Nothing Then
+                query = query.Where(Function(p) p.EMPLOYEE_CODE.ToLower.Contains(_filter.EMPLOYEE_CODE.ToLower()))
+            End If
+
+            If _filter.EMPLOYEE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.EMPLOYEE_NAME.ToLower.Contains(_filter.EMPLOYEE_NAME.ToLower()))
+            End If
+
+            If _filter.DEPARTMENT IsNot Nothing Then
+                query = query.Where(Function(p) p.DEPARTMENT.ToLower.Contains(_filter.DEPARTMENT.ToLower()))
+            End If
+
+
+            If _filter.JOBTITLE IsNot Nothing Then
+                query = query.Where(Function(p) p.JOBTITLE.ToLower.Contains(_filter.JOBTITLE.ToLower()))
+            End If
+
+            If _filter.NOTE IsNot Nothing Then
+                query = query.Where(Function(p) p.NOTE.ToLower.Contains(_filter.NOTE.ToLower()))
+            End If
+
+            If _filter.REASON IsNot Nothing Then
+                query = query.Where(Function(p) p.REASON.ToLower.Contains(_filter.REASON.ToLower()))
+            End If
+
+            If _filter.STATUS_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.STATUS_NAME.ToLower.Contains(_filter.STATUS_NAME.ToLower()))
+            End If
+
+            If _filter.MODIFIED_BY IsNot Nothing Then
+                query = query.Where(Function(p) p.MODIFIED_BY.ToLower.Contains(_filter.MODIFIED_BY.ToLower()))
+            End If
+
+            If _filter.CREATED_DATE.HasValue Then
+                query = query.Where(Function(f) f.CREATED_DATE = _filter.CREATED_DATE)
+            End If
+
+            If _filter.CREATED_BY IsNot Nothing Then
+                query = query.Where(Function(p) p.CREATED_BY.ToLower.Contains(_filter.CREATED_BY.ToLower()))
+            End If
+
+            If _filter.SIGN_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.SIGN_NAME.ToLower.Contains(_filter.SIGN_NAME.ToLower()))
+            End If
+
+            query = query.OrderBy(Sorts)
+            Total = query.Count
+            query = query.Skip(PageIndex * PageSize).Take(PageSize)
+            Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function DeletePortalReg(ByVal lstId As List(Of Decimal)) As Boolean
+        Try
+            'Dim deleted = (From record In Context.AT_PORTAL_REG_LIST Where lstId.Contains(record.ID))
+            'For Each item In deleted
+            '    Dim deletedDetail = (From r In Context.AT_PORTAL_REG Where r.AT_PORTAL_REG_LIST_ID = item.ID)
+            '    For Each itemDetail In deletedDetail
+            '        Context.AT_PORTAL_REG.DeleteObject(itemDetail)
+            '    Next
+            '    Context.AT_PORTAL_REG_LIST.DeleteObject(item)
+            'Next
+            'Context.SaveChanges()
+            'Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function ApprovePortalRegList(ByVal obj As List(Of AT_PORTAL_REG_LIST_DTO), ByVal log As UserLog) As Boolean
+        Try
+            'For Each item In obj
+            '    Dim objData As New AT_PORTAL_REG_LIST With {.ID = item.ID}
+            '    Context.AT_PORTAL_REG_LIST.Attach(objData)
+            '    objData.STATUS = item.STATUS
+            '    objData.REASON = item.REASON
+            '    Context.SaveChanges(log)
+            '    Dim content As String = ""
+            '    Dim emailTo As String = ""
+            '    Dim qlttName As String = ""
+            '    'Dim objEmail As New Common.CommonBusiness.EmailCommonConfig
+
+            '    Dim leaveInfor = (From p In Context.AT_PORTAL_REG_LIST
+            '                      From s In Context.AT_FML.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
+            '                      Where p.ID = item.ID
+            '                      Select New AT_PORTAL_REG_LIST_DTO With {
+            '                      .ID = p.ID,
+            '                      .SIGN_NAME = s.NAME_VN
+            '                    }).FirstOrDefault()
+            '    If leaveInfor IsNot Nothing Then
+            '        'Kiếm tra trạng thái để gửi email
+            '        If item.STATUS = PortalStatus.WaitingForApproval Or item.STATUS = PortalStatus.UnApprovedByLM Or item.STATUS = PortalStatus.UnVerifiedByHr Then
+            '            If item.STATUS = PortalStatus.WaitingForApproval Then
+            '                Dim emailInfor = (From rl In Context.AT_PORTAL_REG_LIST
+            '                                  From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = rl.EMPLOYEE_ID And rl.ID = item.ID)
+            '                                  From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+            '                                  From em In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER).DefaultIfEmpty
+            '                                  From em2 In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER_2).DefaultIfEmpty
+            '                                  From em3 In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER_3).DefaultIfEmpty
+            '                                  From cvm In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.DIRECT_MANAGER).DefaultIfEmpty
+            '                                  From cvm2 In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.DIRECT_MANAGER_2).DefaultIfEmpty
+            '                                  From cvm3 In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.DIRECT_MANAGER_3).DefaultIfEmpty
+            '                                  Select New Common.CommonBusiness.EmailCommonConfig With {
+            '                              .EmailCC = cv.WORK_EMAIL,
+            '                              .EmailTo = cvm.WORK_EMAIL,
+            '                              .ExtendField1 = e.FULLNAME_EN,
+            '                              .ExtendField2 = em.FULLNAME_EN,
+            '                              .ExtendField3 = em2.FULLNAME_EN,
+            '                              .ExtendField4 = em3.FULLNAME_EN,
+            '                              .ExtendField5 = cvm2.WORK_EMAIL,
+            '                              .ExtendField6 = cvm3.WORK_EMAIL
+            '                          }).FirstOrDefault()
+            '                'Dear {Họ tên QLTT},
+
+            '                'My Request of {Loại nghỉ} has been completed.
+            '                'Please review and approve. Thank you
+
+            '                'Regards,
+            '                '{Họ tên nhân viên}
+            '                If emailInfor IsNot Nothing Then
+            '                    If emailInfor.EmailTo IsNot Nothing OrElse emailInfor.EmailTo <> "" Then
+            '                        emailTo = emailInfor.EmailTo
+            '                    End If
+            '                    If emailInfor.ExtendField5 IsNot Nothing Then
+            '                        emailTo &= ";" & emailInfor.ExtendField5
+            '                    End If
+            '                    If emailInfor.ExtendField6 IsNot Nothing Then
+            '                        emailTo &= ";" & emailInfor.ExtendField6
+            '                    End If
+
+
+            '                    'Lấy tên các QLTT
+            '                    If emailInfor.ExtendField2 IsNot Nothing OrElse emailInfor.ExtendField2 <> "" Then
+            '                        qlttName = emailInfor.ExtendField2
+            '                    End If
+            '                    If emailInfor.ExtendField3 IsNot Nothing Then
+            '                        qlttName &= "/" & emailInfor.ExtendField3
+            '                    End If
+            '                    If emailInfor.ExtendField4 IsNot Nothing Then
+            '                        qlttName &= "/" & emailInfor.ExtendField4
+            '                    End If
+            '                    objEmail.EmailFrom = emailInfor.EmailCC 'From cho người tạo
+            '                    If emailTo IsNot Nothing Then
+            '                        objEmail.EmailTo = emailTo 'Gửi cho các QLTT
+            '                    End If
+            '                End If
+
+
+            '                content = String.Format("Dear {0}, <br/><br/>" &
+            '                                    "My Request of {1} has been completed.<br/>" &
+            '                                    "Please review and approve. Thank you<br/><br/>" &
+            '                                    "Regards,<br/>" &
+            '                                    "{2}", qlttName, leaveInfor.SIGN_NAME, emailInfor.ExtendField1)
+            '                objEmail.EmailSubject = "Leave Request"
+            '                objEmail.EmailContent = content
+            '                objEmail.ViewName = "iTime_SendMail"
+
+            '            End If
+
+            '            If item.STATUS = PortalStatus.UnApprovedByLM Then
+            '                Dim emailInfor = (From p In Context.AT_PORTAL_REG_LIST
+            '                                  From se In Context.SE_USER.Where(Function(f) f.USERNAME = p.CREATED_BY)
+            '                                  From e In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = se.EMPLOYEE_CODE)
+            '                                  From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+            '                                  From em In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER Or f.ID = e.DIRECT_MANAGER_2 Or f.ID = e.DIRECT_MANAGER_3)
+            '                                  From cvm In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = em.ID)
+            '                                  Where p.ID = item.ID And em.ID = item.EMPLOYEE_ID
+            '                                  Select New Common.CommonBusiness.EmailCommonConfig With {
+            '                                     .EmailCC = cv.WORK_EMAIL,
+            '                                     .EmailTo = cvm.WORK_EMAIL,
+            '                                     .ExtendField1 = e.FULLNAME_EN,
+            '                                     .ExtendField2 = em.FULLNAME_EN
+            '                                }).FirstOrDefault()
+            '                'Dear {Họ tên nhân viên},
+
+            '                'Your Request of {Loại nghỉ} has been unapproved.
+            '                'Reason: {Lý do không phê duyệt của QLTT}
+
+            '                'Regards,
+            '                '{Họ tên QLTT}
+            '                content = String.Format("Dear {0}, <br/><br/>" &
+            '                                      "Your Request of {1} has been unapproved.<br/>" &
+            '                                      "Reason: {2}<br/><br/>" &
+            '                                      "Regards,<br/>" &
+            '                                      "{3}", emailInfor.ExtendField1, leaveInfor.SIGN_NAME, item.REASON, emailInfor.ExtendField2)
+            '                objEmail.EmailFrom = emailInfor.EmailTo 'from cho QLTT
+            '                objEmail.EmailTo = emailInfor.EmailCC 'Gửi cho người tạo 
+            '                objEmail.EmailSubject = "Leave Request"
+            '                objEmail.EmailContent = content
+            '                objEmail.ViewName = "iTime_SendMail"
+            '            End If
+
+            '            If item.STATUS = PortalStatus.UnVerifiedByHr Then
+            '                'Get email and full name of HR
+            '                Dim hrInfor = (From e In Context.HU_EMPLOYEE
+            '                               From c In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+            '                               Where e.ID = item.EMPLOYEE_ID
+            '                               Select New Common.CommonBusiness.EmailCommonConfig With {
+            '                                               .ExtendField1 = e.FULLNAME_EN,
+            '                                               .ExtendField2 = c.WORK_EMAIL
+            '                                           }).FirstOrDefault()
+
+            '                Dim emailInfor = (From p In Context.AT_PORTAL_REG_LIST
+            '                                  From se In Context.SE_USER.Where(Function(f) f.USERNAME = p.CREATED_BY)
+            '                                  From e In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = se.EMPLOYEE_CODE)
+            '                                  From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID)
+            '                                  From em In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER).DefaultIfEmpty
+            '                                  From em2 In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER_2).DefaultIfEmpty
+            '                                  From em3 In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER_3).DefaultIfEmpty
+            '                                  From cvm In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.DIRECT_MANAGER).DefaultIfEmpty
+            '                                  From cvm2 In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.DIRECT_MANAGER_2).DefaultIfEmpty
+            '                                  From cvm3 In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.DIRECT_MANAGER_3).DefaultIfEmpty
+            '                                  Where p.ID = item.ID
+            '                                  Select New Common.CommonBusiness.EmailCommonConfig With {
+            '                                     .EmailTo = cv.WORK_EMAIL,
+            '                                     .ExtendField1 = e.FULLNAME_EN,
+            '                                      .ExtendField2 = cvm.WORK_EMAIL,
+            '                                      .ExtendField3 = cvm2.WORK_EMAIL,
+            '                                      .ExtendField4 = cvm3.WORK_EMAIL
+            '                                 }).FirstOrDefault()
+            '                'Dear {Họ tên nhân viên},
+
+            '                'Your Leave Request has been unverified by HR.
+            '                'Reason: {Lý do không phê duyệt của CBNS}
+
+            '                'Regards,
+            '                '{Họ tên CBNS}
+            '                content = String.Format("Dear {0}, <br/><br/>" &
+            '                                      "Your Request of {1} has been unverified by HR.<br/>" &
+            '                                      "Reason: {2}<br/><br/>" &
+            '                                      "Regards,<br/>" &
+            '                                      "{3}", emailInfor.ExtendField1, leaveInfor.SIGN_NAME, item.REASON, hrInfor.ExtendField1)
+            '                objEmail.EmailFrom = hrInfor.ExtendField2 'From nhân sự
+            '                objEmail.EmailTo = emailInfor.EmailTo 'Gửi cho người tạo 
+            '                'Check email của các quản lý
+            '                Dim emailCc = String.Empty
+            '                If (emailInfor.ExtendField2 IsNot Nothing) Then
+            '                    emailCc = emailInfor.ExtendField2
+            '                End If
+            '                If (emailInfor.ExtendField3 IsNot Nothing) Then
+            '                    emailCc = emailCc & ";" & emailInfor.ExtendField3
+            '                End If
+            '                If (emailInfor.ExtendField4 IsNot Nothing) Then
+            '                    emailCc = emailCc & ";" & emailInfor.ExtendField4
+            '                End If
+            '                objEmail.EmailCC = emailCc
+            '                objEmail.EmailSubject = "Leave Request"
+            '                objEmail.EmailContent = content
+            '                objEmail.ViewName = "iTime_SendMail"
+            '            End If
+
+            '            If objEmail.EmailFrom IsNot Nothing AndAlso objEmail.EmailTo IsNot Nothing Then
+            '                'INSERT EMAIL
+            '                InsertMailToSystem(objEmail)
+            '                Context.SaveChanges(log)
+            '            End If
+            '        End If
+
+            '    End If
+
+            '    'Nếu Status = ApproveByLM -> tính lại phép năm cho nhân viên đó
+            '    If item.STATUS = PortalStatus.ApprovedByLM OrElse item.STATUS = PortalStatus.UnVerifiedByHr Then
+            '        'Get data of employee
+            '        Dim employee = (From e In Context.HU_EMPLOYEE
+            '                        From p In Context.AT_PORTAL_REG_LIST.Where(Function(f) f.EMPLOYEE_ID = e.ID And f.ID = item.ID)
+            '                        Select New EmployeeDTO With {
+            '                            .ID = e.ID,
+            '                            .ORG_ID = e.ORG_ID,
+            '                            .EMPLOYEE_CODE = p.CREATED_BY
+            '                        }).FirstOrDefault()
+
+            '        If employee IsNot Nothing Then
+            '            Using cls As New DataAccess.NonQueryData
+            '                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CALL_ENTITLEMENT_BY_YEAR",
+            '                                               New With {.P_USERNAME = employee.EMPLOYEE_CODE,
+            '                                                         .P_USER_ID_CAL = employee.ID,
+            '                                                         .P_ORG_ID = employee.ORG_ID,
+            '                                                         .P_YEAR = item.YEAR,
+            '                                                         .P_ISDISSOLVE = False})
+            '            End Using
+            '        End If
+            '    End If
+
+
+            'Next
+            'Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
+#Region "cham cong newedit"
+    Public Function GetEmployeeInfor(ByVal P_EmpId As Decimal?, ByVal P_Org_ID As Decimal?, Optional ByVal fromDate As Date? = Nothing) As DataTable
+        Try
+            Dim year = If(fromDate.ToString() <> "", fromDate.Value.Year, Date.Now.Date.Year)
+            Dim query = From e In Context.HU_EMPLOYEE
+                        From at In Context.AT_ENTITLEMENT.Where(Function(f) f.EMPLOYEE_ID = e.ID And year = f.YEAR).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = e.DIRECT_MANAGER).DefaultIfEmpty
+                        Select New EmployeeDTO With {
+                        .ID = e.ID,
+                            .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                            .FULLNAME_EN = e.FULLNAME_EN,
+                            .FULLNAME_VN = e.FULLNAME_VN,
+                            .ORG_ID = e.ORG_ID,
+                            .ORG_NAME = o.NAME_EN,
+                            .ORG_DESC = o.DESCRIPTION_PATH,
+                            .TITLE_ID = e.TITLE_ID,
+                            .TITLE_NAME_EN = t.NAME_EN,
+                            .TITLE_NAME_VN = t.NAME_VN,
+                            .DIRECT_MANAGER = direct.DIRECT_MANAGER
+            }
+            If P_EmpId.HasValue Then
+                query = query.Where(Function(f) f.ID = P_EmpId.Value)
+            End If
+            If P_Org_ID.HasValue Then
+                query = query.Where(Function(f) f.ORG_ID = P_Org_ID.Value)
+            End If
+
+            Return query.ToList.ToTable
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_LIST_DTO) As AT_PORTAL_REG_LIST_DTO
+        Try
+            Dim query = From e In Context.HU_EMPLOYEE
+                        From p In Context.AT_PORTAL_REG_LIST.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From fl In Context.AT_FML.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
+                        Select New AT_PORTAL_REG_LIST_DTO With {
+                                                                           .ID = p.ID,
+                                                                           .EMPLOYEE_ID = e.ID,
+                                                                           .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                                           .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                                           .DEPARTMENT = o.NAME_VN,
+                                                                           .JOBTITLE = t.NAME_VN,
+                                                                           .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
+                                                                           .FROM_DATE = p.FROM_DATE,
+                                                                           .TO_DATE = p.TO_DATE,
+                                                                           .TOTAL_LEAVE = p.TOTAL_LEAVE,
+                                                                           .ID_SIGN = p.ID_SIGN,
+                                                                           .SIGN_CODE = fl.CODE,
+                                                                           .SIGN_NAME = fl.NAME_VN,
+                                                                           .STATUS = p.STATUS,
+                                                                           .STATUS_NAME = ot.NAME_VN,
+                                                                           .NOTE = p.NOTE,
+                                                                           .CREATED_BY = p.CREATED_BY,
+                                                                           .CREATED_DATE = p.CREATED_DATE,
+                                                                           .CREATED_LOG = p.CREATED_LOG,
+                                                                           .MODIFIED_BY = p.MODIFIED_BY,
+                                                                           .MODIFIED_DATE = p.MODIFIED_DATE,
+                                                                           .MODIFIED_LOG = p.MODIFIED_LOG
+                                                                        }
+            If _filter.EMPLOYEE_ID > 0 Then
+                query = query.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            End If
+            If _filter.ID.HasValue AndAlso _filter.ID.Value > 0 Then
+                query = query.Where(Function(f) f.ID = _filter.ID)
+            End If
+
+            Return query.FirstOrDefault
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
+        Try
+            Return New List(Of LEAVE_DETAIL_EMP_DTO)
+            'Dim query = From d In Context.AT_SHIFTCYCLE_EMP_DETAIL
+            '            From e In Context.AT_SHIFTCYCLE_EMP.Where(Function(f) f.ID = d.AT_SHIFTCYCLE_EMP_ID)
+            '            From c In Context.AT_SHIFTCYCLE.Where(Function(f) f.SHIFT_ID = e.SHIFT_ID)
+            '            From cd In Context.AT_SHIFTCYCLE_DETAIL.Where(Function(f) f.SHIFTDATE = d.EFFECTIVEDATE And c.ID = f.SHIFTCYCLE_ID)
+            '            From fm In Context.AT_FML.Where(Function(f) f.ID = d.FML_ID)
+            '            Where e.EMPLOYEE_ID = employee_Id And d.EFFECTIVEDATE >= fromDate And d.EFFECTIVEDATE <= toDate
+            '            Select New LEAVE_DETAIL_EMP_DTO With {
+            '                                                   .EMPLOYEE_ID = e.EMPLOYEE_ID,
+            '                                                   .EFFECTIVEDATE = d.EFFECTIVEDATE,
+            '                                                   .ID_SIGN = cd.FML_ID,
+            '                                                   .SHIFT_ID = e.SHIFT_ID,
+            '                                                   .IS_LEAVE = fm.IS_LEAVE,
+            '                                                   .LEAVE_VALUE = If(d.FML_ID = 4, 0, If(isUpdate, 0, 1)),
+            '                                                   .IS_UPDATE = If(isUpdate, 1, 0),
+            '                                                   .IS_OFF = If(d.FML_ID = 4, 1, 0)
+            '                                                }
+
+            'Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GetLeaveRegistrationDetailById(ByVal listId As Decimal) As List(Of AT_PORTAL_REG_DTO)
+        Try
+            'Dim query = From p In Context.AT_PORTAL_REG
+            '            Where p.AT_PORTAL_REG_LIST_ID = listId
+            '            Select New AT_PORTAL_REG_DTO With {
+            '                                                   .ID = p.ID,
+            '                                                   .REGDATE = p.REGDATE,
+            '                                                   .ID_SIGN = p.ID_SIGN,
+            '                                                   .NVALUE = p.NVALUE,
+            '                                                   .SVALUE = p.SVALUE,
+            '                                                   .AT_PORTAL_REG_LIST_ID = p.AT_PORTAL_REG_LIST_ID
+            '                                                }
+
+            'Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+
+    Public Function InsertPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog _
+                                      , ByRef gID As Decimal, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+        Dim objData As New AT_PORTAL_REG_LIST
+        Try
+            'Kiểm tra thêm điều kiện nếu số ngày nghỉ vượt quá phép năm hiện có của nhân viên đó trong năm thì báo
+            Dim checkSignIsAnnualLeave = (From p In Context.AT_FML
+                                          Where p.ID = obj.ID_SIGN _
+                                          And p.CODE = "AL").Any()
+            If checkSignIsAnnualLeave Then
+                Dim checkDataOverAnnualLeave = (From p In Context.AT_ENTITLEMENT
+                                                Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID _
+                                                    And p.CUR_HAVE < obj.TOTAL_LEAVE _
+                                                    And obj.FROM_DATE.Value.Year = p.YEAR).Any()
+                If checkDataOverAnnualLeave Then
+                    isOverAnnualLeave = True
+                    Return False
+                End If
+            End If
+
+
+            'Kiểm tra điều kiện trùng ngày đăng ký nghỉ
+            For Each item In lstObjDetail
+                Dim checkData = (From p In Context.AT_PORTAL_REG
+                                 Where p.REGDATE = item.REGDATE _
+                                     And p.ID_EMPLOYEE = item.ID_EMPLOYEE).Any()
+                If checkData Then
+                    itemExist = item
+                    Return False
+                Else
+                    itemExist = Nothing
+                End If
+            Next
+
+            objData.ID = Utilities.GetNextSequence(Context, Context.AT_PORTAL_REG_LIST.EntitySet.Name)
+            objData.EMPLOYEE_ID = obj.EMPLOYEE_ID
+            objData.FROM_DATE = obj.FROM_DATE
+            objData.TO_DATE = obj.TO_DATE
+            objData.ID_SIGN = obj.ID_SIGN
+            objData.TOTAL_LEAVE = obj.TOTAL_LEAVE
+            objData.STATUS = obj.STATUS
+            objData.NOTE = obj.NOTE
+            Context.AT_PORTAL_REG_LIST.AddObject(objData)
+            Context.SaveChanges(log)
+            gID = objData.ID
+
+            'Cap nhat detail
+            InsertPortalReg(gID, lstObjDetail, log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function InsertPortalReg(ByVal listID As Decimal, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog) As Boolean
+        Dim objData As New AT_PORTAL_REG
+        Try
+            For Each obj In lstObjDetail
+                objData = New AT_PORTAL_REG
+                objData.ID = Utilities.GetNextSequence(Context, Context.AT_PORTAL_REG.EntitySet.Name)
+                objData.ID_EMPLOYEE = obj.ID_EMPLOYEE
+                objData.REGDATE = obj.REGDATE
+                objData.ID_SIGN = obj.ID_SIGN
+                objData.NVALUE = obj.NVALUE
+                objData.SVALUE = obj.SVALUE
+                objData.AT_PORTAL_REG_LIST_ID = listID
+                objData.NOTE = obj.NOTE
+                Context.AT_PORTAL_REG.AddObject(objData)
+            Next
+            Context.SaveChanges(log)
+
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class

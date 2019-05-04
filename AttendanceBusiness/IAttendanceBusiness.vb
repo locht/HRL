@@ -1018,6 +1018,30 @@ Namespace AttendanceBusiness.ServiceContracts
                                      Optional ByVal Sorts As String = "REGDATE DESC", Optional ByVal log As UserLog = Nothing) As List(Of HistoryLeaveDTO)
 
 #End Region
+#Region "AT_PORTAL_REG_LIST"
+        <OperationContract()>
+        Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_LIST_DTO,
+                                   Optional ByRef Total As Integer = 0,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_LIST_DTO)
+        <OperationContract()>
+        Function CheckTimeSheetApproveVerify(ByVal obj As List(Of AT_PROCESS_DTO), ByVal type As String, ByRef itemError As AT_PROCESS_DTO) As Boolean
+        <OperationContract()>
+        Function DeletePortalReg(ByVal lstId As List(Of Decimal)) As Boolean
+        <OperationContract()>
+        Function ApprovePortalRegList(ByVal obj As List(Of AT_PORTAL_REG_LIST_DTO), ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function GetEmployeeInfor(ByVal P_EmpId As Decimal?, ByVal P_Org_ID As Decimal?, Optional ByVal fromDate As Date? = Nothing) As DataTable
+        <OperationContract()>
+        Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_LIST_DTO) As AT_PORTAL_REG_LIST_DTO
+        <OperationContract()>
+        Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
+        <OperationContract()>
+        Function GetLeaveRegistrationDetailById(ByVal listId As Decimal) As List(Of AT_PORTAL_REG_DTO)
+        <OperationContract()>
+        Function InsertPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef gID As Decimal, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+#End Region
 
         <OperationContract()>
         Function GET_PE_ASSESS_MESS(ByVal EMP As Decimal?) As DataTable

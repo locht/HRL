@@ -1383,4 +1383,16 @@ Partial Class AttendanceRepository
         End Using
     End Function
 #End Region
+#Region "cham cong"
+    Public Function CheckTimeSheetApproveVerify(ByVal obj As List(Of AT_PROCESS_DTO), ByVal type As String, ByRef itemError As AT_PROCESS_DTO) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CheckTimeSheetApproveVerify(obj, type, itemError)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 End Class

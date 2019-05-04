@@ -146,6 +146,9 @@
     <Compile Include="BusinessObjects\AT_PROJECT_WORKDTO.vb" />
     <Compile Include="BusinessObjects\AT_PROJECT_EMPDTO.vb" />
     <Compile Include="BusinessObjects\AT_PROJECT_ASSIGNDTO.vb" />
+    <Compile Include="BusinessObjects\AT_PORTAL_REG_LIST_DTO.vb" />
+    <Compile Include="BusinessObjects\AT_PROCESS_DTO.vb" />
+    <Compile Include="BusinessObjects\LEAVE_DETAIL_EMP_DTO.vb" />
     <Compile Include="BusinessObjects\HistoryLeaveDTO.vb" />
     <Compile Include="BusinessObjects\SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\SIGNDEFAULTDTO.vb" />
@@ -216,6 +219,10 @@
     <ProjectReference Include="..\Framework.Data\Framework.Data.vbproj">
       <Project>{5AB0D232-7B7A-44B8-9D14-115C065027DB}</Project>
       <Name>Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HistaffFrameworkPublic\HistaffFrameworkPublic.vbproj">
+      <Project>{5D0CFFD8-3EF0-4584-818F-3F165BD8DE0C}</Project>
+      <Name>HistaffFrameworkPublic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
