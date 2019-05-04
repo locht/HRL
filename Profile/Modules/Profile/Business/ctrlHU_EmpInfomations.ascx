@@ -35,7 +35,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" EditMode="InPlace" ClientDataKeyNames="ID,IMAGE,MOBILE_PHONE,BIRTH_DATE,FULLNAME_VN,TITLE_NAME_VN">
                         <Columns>
-                            <%--<tlk:GridBoundColumn DataField="ID" Visible="false" />
+                           <%-- <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBinaryImageColumn HeaderText ="Hình ảnh" DataField ="IMAGE_BINARY" UniqueName ="IMAGE_BINARY"
                             ImageHeight="80px" ImageWidth="80px" ResizeMode="Fit" DataAlternateTextField="IMAGE_BINARY"
                             DataAlternateTextFormatString="Image of {0}">

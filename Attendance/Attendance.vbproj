@@ -192,6 +192,7 @@
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx" />
     <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpTimeEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlATTimeManual.ascx" />
@@ -626,6 +627,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx.vb">
       <DependentUpon>ctrlAT_ReportList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx.designer.vb">
+      <DependentUpon>ctrlSetUpCodeAttEmp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx.vb">
+      <DependentUpon>ctrlSetUpCodeAttEmp.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx.designer.vb">

@@ -392,8 +392,10 @@ Public Class CommonView
                     rCol.HeaderTooltip = (row.Field(Of String)("Name").Trim())
                     rCol.FilterControlToolTip = (row.Field(Of String)("Name").Trim())
                     rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
-                    If row.Field(Of String)("DataType").Trim() = "DateTime" Then
+                    If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
                         rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
+                    ElseIf row.Field(Of String)("image").Trim().ToUpper = "image".ToUpper Then
+                        'rCol.DataAlternateTextField=
                     ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
                         rCol.DataFormatString = "{0:#,##0.##}"
                     End If
