@@ -146,7 +146,7 @@ Partial Public Class ctrlSetUpCodeAttEmp
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents "lbMACHINE_CODE As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbMACHINE_CODE As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cbMACHINE_CODE control.
