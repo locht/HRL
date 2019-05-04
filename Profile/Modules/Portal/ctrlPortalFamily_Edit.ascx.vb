@@ -30,6 +30,11 @@ Public Class ctrlPortalFamily_Edit
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         InitControl()
+        'If Not IsPostBack Then
+        '    ViewConfig(RadPane2)
+        '    GirdConfig(rgFamily)
+        '    GirdConfig(rgFamilyEdit)
+        'End If
     End Sub
 
     Protected Sub InitControl()
@@ -118,7 +123,7 @@ Public Class ctrlPortalFamily_Edit
                 Case CommonMessage.STATE_NORMAL
                     EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship, cboNguyenQuan)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -129,7 +134,7 @@ Public Class ctrlPortalFamily_Edit
                 Case CommonMessage.STATE_NEW
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship, cboNguyenQuan)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -140,7 +145,7 @@ Public Class ctrlPortalFamily_Edit
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship, cboNguyenQuan)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)

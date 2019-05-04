@@ -72,7 +72,7 @@
             <td class="lb">
                 <%# Translate("Nguyên quán")%>
             </td>
-            <td colspan="3">
+            <td colspan="2">
                 <tlk:RadComboBox runat="server" ID="cboNguyenQuan">
                 </tlk:RadComboBox>
             </td>
