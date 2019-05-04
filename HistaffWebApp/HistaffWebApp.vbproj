@@ -182,6 +182,7 @@
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx" />
     <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
+    <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlATTimeManual.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlAT_PROJECT_EMP.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlGetSignDefault.ascx" />

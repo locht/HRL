@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnChoseFile = new System.Windows.Forms.Button();
+            this.txtFilePath = new System.Windows.Forms.TextBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,9 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtConnectString = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.txtFilePath = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnChoseFile = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -74,6 +74,25 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Chức năng";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnChoseFile
+            // 
+            this.btnChoseFile.Location = new System.Drawing.Point(435, 46);
+            this.btnChoseFile.Name = "btnChoseFile";
+            this.btnChoseFile.Size = new System.Drawing.Size(101, 23);
+            this.btnChoseFile.TabIndex = 5;
+            this.btnChoseFile.Text = "Chọn file (.ascx)";
+            this.btnChoseFile.UseVisualStyleBackColor = true;
+            this.btnChoseFile.Click += new System.EventHandler(this.btnChoseFile_Click);
+            // 
+            // txtFilePath
+            // 
+            this.txtFilePath.Enabled = false;
+            this.txtFilePath.Location = new System.Drawing.Point(8, 45);
+            this.txtFilePath.Name = "txtFilePath";
+            this.txtFilePath.ReadOnly = true;
+            this.txtFilePath.Size = new System.Drawing.Size(421, 20);
+            this.txtFilePath.TabIndex = 4;
             // 
             // btnStop
             // 
@@ -121,7 +140,7 @@
             this.tabConfig.Location = new System.Drawing.Point(4, 22);
             this.tabConfig.Name = "tabConfig";
             this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfig.Size = new System.Drawing.Size(555, 93);
+            this.tabConfig.Size = new System.Drawing.Size(555, 106);
             this.tabConfig.TabIndex = 1;
             this.tabConfig.Text = "Cấu hình";
             this.tabConfig.UseVisualStyleBackColor = true;
@@ -145,30 +164,12 @@
             this.txtConnectString.Text = "BOConnectString\" value=\"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=113" +
     ".161.37.105)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=orcl)));User ID=tmf_dev;Pass" +
     "word=hrm;";
-            // 
-            // txtFilePath
-            // 
-            this.txtFilePath.Enabled = false;
-            this.txtFilePath.Location = new System.Drawing.Point(8, 45);
-            this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.ReadOnly = true;
-            this.txtFilePath.Size = new System.Drawing.Size(421, 20);
-            this.txtFilePath.TabIndex = 4;
+            this.txtConnectString.TextChanged += new System.EventHandler(this.txtConnectString_TextChanged);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // btnChoseFile
-            // 
-            this.btnChoseFile.Location = new System.Drawing.Point(435, 46);
-            this.btnChoseFile.Name = "btnChoseFile";
-            this.btnChoseFile.Size = new System.Drawing.Size(101, 23);
-            this.btnChoseFile.TabIndex = 5;
-            this.btnChoseFile.Text = "Chọn file (.ascx)";
-            this.btnChoseFile.UseVisualStyleBackColor = true;
-            this.btnChoseFile.Click += new System.EventHandler(this.btnChoseFile_Click);
             // 
             // openFileDialog
             // 

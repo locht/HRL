@@ -208,7 +208,9 @@ namespace ConfigTool
                     GetColumnConfigGrid("gridnumericcolumn", stt, htmlDoc);
                     GetColumnConfigGrid("griddatetimecolumn", stt, htmlDoc);
                     GetColumnConfigGrid("gridcheckboxcolumn", stt, htmlDoc);
+                    GetColumnConfigGrid("gridbinaryimagecolumn", stt, htmlDoc);
                     //delete translate
+                    //GridBinaryImageColumn
                     DeleteTranslate();
                     // data ---> XML
                     SaveDB(item.Name);
@@ -345,6 +347,11 @@ namespace ConfigTool
             {
 
             }
+        }
+
+        private void txtConnectString_TextChanged(object sender, EventArgs e)
+        {
+            BOConnectString = txtConnectString.Text;
         }
     }
 }
