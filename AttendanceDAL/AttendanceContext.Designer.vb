@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("e0e50c5f-1198-4088-855e-fcd00f22600d")>
+<Assembly: EdmSchemaAttribute("09141a75-f875-4563-9c97-028e44e297a7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -5428,6 +5428,31 @@ Public Partial Class AT_DECLARE_ENTITLEMENT
     End Sub
 
     Private Partial Sub OnENT_PAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property JOIN_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _JOIN_DATE
+        End Get
+        Set
+            OnJOIN_DATEChanging(value)
+            ReportPropertyChanging("JOIN_DATE")
+            _JOIN_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("JOIN_DATE")
+            OnJOIN_DATEChanged()
+        End Set
+    End Property
+
+    Private _JOIN_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnJOIN_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnJOIN_DATEChanged()
     End Sub
 
     #End Region
