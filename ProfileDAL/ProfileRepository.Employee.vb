@@ -2481,7 +2481,7 @@ Partial Class ProfileRepository
                      .MONEY = de.MONEY,
                      .SIGN_DATE = p.SIGN_DATE,
                      .DISCIPLINE_REASON_NAME = reason.NAME_VN,
-                     .PERFORM_DATE = p.PERFORM_DATE}).ToList()
+                     .PERFORM_TIME = p.PERFORM_TIME}).ToList()
             Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")

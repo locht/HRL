@@ -96,9 +96,8 @@
                                 DataFormatString="{0:dd/MM/yyyy}" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="MONEY" ItemStyle-HorizontalAlign="Right"
                                 DataFormatString="{0:N0}" SortExpression="MONEY" UniqueName="MONEY" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian thi hành kỷ luật %>" DataField="PERFORM_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="PERFORM_DATE" UniqueName="PERFORM_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian thi hành kỷ luật %>" DataField="PERFORM_TIME"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="PERFORM_TIME" UniqueName="PERFORM_TIME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
                                 SortExpression="ORG_DESC" Visible="false" />
                         </Columns>

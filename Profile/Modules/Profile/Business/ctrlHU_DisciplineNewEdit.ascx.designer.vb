@@ -671,13 +671,13 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents lbPerformDiscipline As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rdPerformDiscipline control.
+    '''txtPerformDiscipline control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdPerformDiscipline As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents txtPerformDiscipline As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''PanelEmployee control.
