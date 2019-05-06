@@ -4,6 +4,11 @@
 <link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="215px" Scrolling="None">
+        <asp:HiddenField ID="hiEMPLOYEE_ID" runat="server" />
+        <asp:HiddenField ID="hiORG_ID" runat="server" />
+        <asp:HiddenField ID="hiTITLE_ID" runat="server" />
+        <asp:HiddenField ID="hiMACHINE_ID" runat="server" />
+        <asp:HiddenField ID="hidID" runat="server" />
         <tlk:RadToolBar ID="tbarCostCenters" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form">
@@ -18,9 +23,6 @@
                     </tlk:RadButton>
                     <asp:RequiredFieldValidator ID="reqEMPLOYEE_CODE" ControlToValidate="rtEMPLOYEE_CODE"
                         runat="server" Text="*" ErrorMessage="Bạn phải chọn nhân viên"></asp:RequiredFieldValidator>
-                    <%--<asp:CustomValidator ID="cvalStaff" ControlToValidate="txtEmpCode" runat="server"
-                        ErrorMessage="<%$ Translate: Nhân viên này đã được thiết lập. %>" ToolTip="<%$ Translate: Nhân viên này đã được thiết lập. %>">
-                    </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbEMPLOYEE_NAME" runat ="server"  Text ="Họ tên"></asp:Label>
@@ -50,7 +52,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbMACHINE_CODE runat ="server"  Text ="Máy chấm công"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbMACHINE_CODE" runat ="server"  Text ="Máy chấm công"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:RadComboBox ID ="cbMACHINE_CODE" runat ="server"  Width="100%" ></tlk:RadComboBox>
@@ -63,8 +65,8 @@
                     <asp:Label ID="lbCODE_ATT" runat ="server"  Text ="Mã chấm công"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
-                    <tlk:RadComboBox ID ="cbCODE_ATT" runat ="server"  Width="100%" ></tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqCODE_ATT" ControlToValidate="cbCODE_ATT"
+                    <tlk:RadTextBox ID="rtCODE_ATT" runat ="server" Width="100%" ></tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="reqCODE_ATT" ControlToValidate="rtCODE_ATT"
                         runat="server" Text="*" ErrorMessage="Bạn phải chọn mã chấm công"></asp:RequiredFieldValidator>
                 </td>
                  <td class="lb">
@@ -81,12 +83,14 @@
                     <asp:Label ID="lbNOTE" runat ="server" Text ="Mô tả"></asp:Label>
                 </td>
                 <td colspan="5">
-                    <tlk:RadTextBox ID="rtNOTE" runat ="server"  Width ="100%" ></tlk:RadTextBox>
+                    <tlk:RadTextBox ID="rtNOTE" runat ="server"  Width ="100%" 
+                        TextMode="MultiLine" ></tlk:RadTextBox>
                 </td>
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
+    <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" 
+        style="margin-top: 11px">
         <tlk:RadGrid PageSize=50 ID="rgDanhMuc" runat="server" AutoGenerateColumns="False" AllowPaging="True"
             Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">

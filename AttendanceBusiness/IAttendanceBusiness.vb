@@ -16,6 +16,14 @@ Namespace AttendanceBusiness.ServiceContracts
                                  Optional ByVal PageSize As Integer = Integer.MaxValue,
                                  Optional ByRef Total As Integer = 0,
                                  Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of SetUpCodeAttDTO)
+        <OperationContract()>
+        Function InsertSetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
+                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ModifySetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function DeleteSetUpAttEmp(ByVal lstID As List(Of Decimal)) As Boolean
 #Region "Get Data Combobox"
 
         <OperationContract()>

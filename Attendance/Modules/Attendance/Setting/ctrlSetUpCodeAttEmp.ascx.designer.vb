@@ -32,6 +32,51 @@ Partial Public Class ctrlSetUpCodeAttEmp
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''hiEMPLOYEE_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hiEMPLOYEE_ID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hiORG_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hiORG_ID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hiTITLE_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hiTITLE_ID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hiMACHINE_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hiMACHINE_ID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hidID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''tbarCostCenters control.
     '''</summary>
     '''<remarks>
@@ -140,7 +185,7 @@ Partial Public Class ctrlSetUpCodeAttEmp
     Protected WithEvents rtTITLE_ID As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''"lbMACHINE_CODE control.
+    '''lbMACHINE_CODE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
@@ -176,13 +221,13 @@ Partial Public Class ctrlSetUpCodeAttEmp
     Protected WithEvents lbCODE_ATT As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cbCODE_ATT control.
+    '''rtCODE_ATT control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbCODE_ATT As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rtCODE_ATT As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''reqCODE_ATT control.

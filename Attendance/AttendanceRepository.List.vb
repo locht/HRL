@@ -20,6 +20,38 @@ Partial Class AttendanceRepository
         End Using
         Return lstSetUpAttEmp
     End Function
+
+    Public Function InsertSetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
+                                     ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.InsertSetUpAttEmp(objValue, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function ModifySetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ModifySetUpAttEmp(objValue, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function DeleteSetUpAttEmp(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.DeleteSetUpAttEmp(lstID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #Region "Holiday"
 
     Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,
