@@ -131,6 +131,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
