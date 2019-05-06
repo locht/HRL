@@ -131,6 +131,9 @@ Public Class ctrlDeclareEntitlementNB
             rgDeclareEntitlementNB.ClientSettings.EnablePostBackOnRowClick = False
             ctrlUpload1.isMultiple = False
             InitControl()
+            If Not IsPostBack Then
+                GirdConfig(rgDeclareEntitlementNB)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

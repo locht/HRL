@@ -911,6 +911,7 @@ Partial Class ProfileRepository
                 objEmpCVData.NU_CONG = objEmpCV.NU_CONG
                 objEmpCVData.NGAY_TG_BANTT = objEmpCV.NGAY_TG_BANTT
                 objEmpCVData.CV_BANTT = objEmpCV.CV_BANTT
+                objEmpCVData.BANTT = objEmpCV.BANTT
                 objEmpCVData.CONG_DOAN = objEmpCV.CONG_DOAN
                 objEmpCVData.CA = objEmpCV.CA
                 objEmpCVData.DANG = objEmpCV.DANG
@@ -1301,6 +1302,7 @@ Partial Class ProfileRepository
                 objEmpCVData.NGAY_TG_BAN_NU_CONG = objEmpCV.NGAY_TG_BAN_NU_CONG
                 objEmpCVData.CV_BAN_NU_CONG = objEmpCV.CV_BAN_NU_CONG
                 objEmpCVData.NU_CONG = objEmpCV.NU_CONG
+                objEmpCVData.BANTT = objEmpCV.BANTT
                 objEmpCVData.NGAY_TG_BANTT = objEmpCV.NGAY_TG_BANTT
                 objEmpCVData.CV_BANTT = objEmpCV.CV_BANTT
                 objEmpCVData.CONG_DOAN = objEmpCV.CONG_DOAN

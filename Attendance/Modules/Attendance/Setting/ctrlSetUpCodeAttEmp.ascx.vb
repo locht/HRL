@@ -29,22 +29,7 @@ Public Class ctrlSetUpCodeAttEmp
             ViewState(Me.ID & "_SetUpCodeAtt") = value
         End Set
     End Property
-    Property ListComboData As ComboBoxDataDTO
-        Get
-            Return ViewState(Me.ID & "_ListComboData")
-        End Get
-        Set(ByVal value As ComboBoxDataDTO)
-            ViewState(Me.ID & "_ListComboData") = value
-        End Set
-    End Property
-    Property ListComboDataAff As ComboBoxDataDTO
-        Get
-            Return ViewState(Me.ID & "_ListComboData")
-        End Get
-        Set(ByVal value As ComboBoxDataDTO)
-            ViewState(Me.ID & "_ListComboData") = value
-        End Set
-    End Property
+   
 #End Region
 
 #Region "Page"
@@ -90,7 +75,6 @@ Public Class ctrlSetUpCodeAttEmp
                                        ToolbarItem.Edit,
                                        ToolbarItem.Save, ToolbarItem.Cancel,
                                        ToolbarItem.Delete,
-                                       ToolbarItem.Active, ToolbarItem.Deactive,
                                         ToolbarItem.Export)
             CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
@@ -192,51 +176,22 @@ Public Class ctrlSetUpCodeAttEmp
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgDanhMuc, True)
                     EnableControlAll(True, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE, btnFindEmployee)
-                    ClearControlValue(rtEMPLOYEE_CODE, rtEMPLOYEE_NAME, rtORG_ID, rtTITLE_ID, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE)
+                    ClearControlValue(rtEMPLOYEE_CODE, rtEMPLOYEE_NAME, rtORG_ID, rtTITLE_ID, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE)
                 Case CommonMessage.STATE_NORMAL
-                    ClearControlValue(rtEMPLOYEE_CODE, rtEMPLOYEE_NAME, rtORG_ID, rtTITLE_ID, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE)
+                    ClearControlValue(rtEMPLOYEE_CODE, rtEMPLOYEE_NAME, rtORG_ID, rtTITLE_ID, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE)
                     EnabledGridNotPostback(rgDanhMuc, True)
                     EnableControlAll(False, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE, btnFindEmployee)
                 Case CommonMessage.STATE_EDIT
                     rtEMPLOYEE_CODE.Enabled = True
                     EnableControlAll(True, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE, btnFindEmployee)
                     EnabledGridNotPostback(rgDanhMuc, False)
-                Case CommonMessage.STATE_DEACTIVE
-                    Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
-                        lstDeletes.Add(item.GetDataKeyValue("ID"))
-                    Next
-                    If rep.ActiveAT_TIME_MANUAL(lstDeletes, "I") Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        CurrentState = CommonMessage.STATE_NORMAL
-                        rgDanhMuc.Rebind()
-                        ClearControlValue(rtEMPLOYEE_CODE)
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
-                    End If
-                Case CommonMessage.STATE_ACTIVE
-                    Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
-                        lstDeletes.Add(item.GetDataKeyValue("ID"))
-                    Next
-                    If rep.ActiveAT_TIME_MANUAL(lstDeletes, "A") Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        CurrentState = CommonMessage.STATE_NORMAL
-                        rgDanhMuc.Rebind()
-                        ClearControlValue(rtEMPLOYEE_CODE)
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
-                    End If
-
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-                    If rep.DeleteAT_TIME_MANUAL(lstDeletes) Then
+                    If rep.DeleteSetUpAttEmp(lstDeletes) Then
                         Refresh("UpdateView")
                         UpdateControlState()
                     Else
@@ -267,11 +222,16 @@ Public Class ctrlSetUpCodeAttEmp
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("EMPLOYEE_CODE", rtEMPLOYEE_CODE)
             dic.Add("EMPLOYEE_NAME", rtEMPLOYEE_NAME)
+            dic.Add("EMPLOYEE_ID", hiEMPLOYEE_ID)
             dic.Add("ORG_NAME", rtORG_ID)
+            dic.Add("ORG_ID", hiORG_ID)
             dic.Add("TITLE_NAME", rtTITLE_ID)
+            dic.Add("TITLE_ID", hiTITLE_ID)
             dic.Add("CODE_ATT", rtCODE_ATT)
             dic.Add("APPROVE_DATE", rdAPPROVE_DATE)
+            dic.Add("MACHINE_ID", cbMACHINE_CODE)
             dic.Add("NOTE", rtNOTE)
+            dic.Add("ID", hidID)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                          CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -371,29 +331,6 @@ Public Class ctrlSetUpCodeAttEmp
                     End If
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
-
-                Case CommonMessage.TOOLBARITEM_ACTIVE
-                    If rgDanhMuc.SelectedItems.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_ACTIVE)
-                    ctrlMessageBox.ActionName = CommonMessage.ACTION_ACTIVE
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
-
-                Case CommonMessage.TOOLBARITEM_DEACTIVE
-                    If rgDanhMuc.SelectedItems.Count = 0 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DEACTIVE)
-                    ctrlMessageBox.ActionName = CommonMessage.ACTION_DEACTIVE
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
-
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgDanhMuc.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -404,11 +341,6 @@ Public Class ctrlSetUpCodeAttEmp
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstID.Add(Decimal.Parse(item("ID").Text))
                     Next
-
-                    If Not rep.CheckExistInDatabase(lstID, AttendanceCommonTABLE_NAME.AT_TIME_MANUAL) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_IS_USING), NotifyType.Warning)
-                        Return
-                    End If
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -416,23 +348,23 @@ Public Class ctrlSetUpCodeAttEmp
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-
+                        '================================================
+                        'FILLDATA IN OBJECT 
+                        If IsNumeric(hiEMPLOYEE_ID.Value) Then
+                            objSetUpCodeAtt.EMPLOYEE_ID = Decimal.Parse(hiEMPLOYEE_ID.Value)
+                        End If
+                        If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                            objSetUpCodeAtt.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                        End If
+                        objSetUpCodeAtt.CODE_ATT = rtCODE_ATT.Text
+                        If IsDate(rdAPPROVE_DATE.SelectedDate) Then
+                            objSetUpCodeAtt.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
+                        End If
+                        objSetUpCodeAtt.NOTE = rtNOTE.Text
+                        '================================================
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                '================================================
-                                'FILLDATA IN OBJECT 
-                                If IsNumeric(hiEMPLOYEE_ID.Value) Then
-                                    objSetUpCodeAtt.EMPLOYEE_ID = Decimal.Parse(hiEMPLOYEE_ID.Value)
-                                End If
-                                If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
-                                    objSetUpCodeAtt.MACHINE_ID = cbMACHINE_CODE.SelectedValue
-                                End If
-                                objSetUpCodeAtt.CODE_ATT = rtCODE_ATT.Text
-                                If IsDate(rdAPPROVE_DATE.SelectedDate) Then
-                                    objSetUpCodeAtt.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
-                                End If
-                                objSetUpCodeAtt.NOTE = rtNOTE.Text
-                                '================================================
+                                
                                 If rep.InsertSetUpAttEmp(objSetUpCodeAtt, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = gID
@@ -443,18 +375,10 @@ Public Class ctrlSetUpCodeAttEmp
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                             Case CommonMessage.STATE_EDIT
-                                Dim validate As New AT_TIME_MANUALDTO
-                                objSetUpCodeAtt.ID = rgDanhMuc.SelectedValue
-                                validate.ID = objSetUpCodeAtt.ID
-                                If rep.ValidateAT_TIME_MANUAL(validate) Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(rtEMPLOYEE_CODE)
-                                    rgDanhMuc.Rebind()
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    UpdateControlState()
-                                    Exit Sub
+                                If IsNumeric(hidID.Value) Then
+                                    objSetUpCodeAtt.ID = hidID.Value
                                 End If
-                                If rep.ModifySetUpAttEmp(objSetUpCodeAtt, rgDanhMuc.SelectedValue) Then
+                                If rep.ModifySetUpAttEmp(objSetUpCodeAtt, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = objSetUpCodeAtt.ID
                                     Refresh("UpdateView")
@@ -472,7 +396,7 @@ Public Class ctrlSetUpCodeAttEmp
                         Dim dtDatas As DataTable
                         dtDatas = CreateDataFilter(True)
                         If dtDatas.Rows.Count > 0 Then
-                            rgDanhMuc.ExportExcel(Server, Response, dtDatas, "KieuCong")
+                            rgDanhMuc.ExportExcel(Server, Response, dtDatas, "MACC")
                         End If
                     End Using
                 Case CommonMessage.TOOLBARITEM_CANCEL
@@ -498,14 +422,6 @@ Public Class ctrlSetUpCodeAttEmp
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            If e.ActionName = CommonMessage.TOOLBARITEM_ACTIVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                CurrentState = CommonMessage.STATE_ACTIVE
-                UpdateControlState()
-            End If
-            If e.ActionName = CommonMessage.TOOLBARITEM_DEACTIVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                CurrentState = CommonMessage.STATE_DEACTIVE
-                UpdateControlState()
-            End If
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
@@ -555,8 +471,74 @@ Public Class ctrlSetUpCodeAttEmp
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-
     End Sub
+
+    Private Sub cvaCODE_ATT_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvaCODE_ATT.ServerValidate
+        Dim rep As New AttendanceRepository
+        Dim _validate As New SetUpCodeAttDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If CurrentState = CommonMessage.STATE_EDIT Then
+                If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                    _validate.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                End If
+                If IsNumeric(hidID.Value) Then
+                    _validate.ID = hidID.Value
+                End If
+                _validate.CODE_ATT = rtCODE_ATT.Text
+            Else
+                If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                    _validate.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                End If
+                _validate.CODE_ATT = rtCODE_ATT.Text
+            End If
+            'GỌI HAM CHECK
+            args.IsValid = rep.CheckValidateMACC(_validate)
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+
+    Private Sub cvaAPPROVE_DATE_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvaAPPROVE_DATE.ServerValidate
+        Dim rep As New AttendanceRepository
+        Dim _validate As New SetUpCodeAttDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If CurrentState = CommonMessage.STATE_EDIT Then
+                If IsDate(rdAPPROVE_DATE.SelectedDate) Then
+                    _validate.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
+                End If
+                If IsNumeric(hiEMPLOYEE_ID.Value) Then
+                    _validate.EMPLOYEE_ID = hiEMPLOYEE_ID.Value
+                End If
+                If IsNumeric(hidID.Value) Then
+                    _validate.ID = hidID.Value
+                End If
+                _validate.CODE_ATT = rtCODE_ATT.Text
+            Else
+                If IsDate(rdAPPROVE_DATE.SelectedDate) Then
+                    _validate.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
+                End If
+                If IsNumeric(hiEMPLOYEE_ID.Value) Then
+                    _validate.EMPLOYEE_ID = hiEMPLOYEE_ID.Value
+                End If
+                _validate.CODE_ATT = rtCODE_ATT.Text
+            End If
+            args.IsValid = (rep.CheckValidateAPPROVE_DATE(_validate))
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Update trạng thái menu toolbar
     ''' </summary>

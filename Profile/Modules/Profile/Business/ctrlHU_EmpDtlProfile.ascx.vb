@@ -164,7 +164,6 @@ Public Class ctrlHU_EmpDtlProfile
                         cboTitle.Text = EmployeeInfo.TITLE_NAME_VN
                         txtTitleGroup.Text = EmployeeInfo.TITLE_GROUP_NAME
                         rdJoinDate.SelectedDate = EmployeeInfo.JOIN_DATE
-                        'rdJoinDateState.SelectedDate = EmployeeInfo.JOIN_DATE_STATE
                         rdter_effect_date.SelectedDate = EmployeeInfo.TER_EFFECT_DATE
                         '--------------------------------------------------------------
                         txtContractNo.Text = EmployeeInfo.CONTRACT_NO
@@ -299,6 +298,7 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsDate(empCV.NGAY_VAO_DANG) Then
                                 rdNGAY_VAO_DANG.SelectedDate = empCV.NGAY_VAO_DANG
                             End If
+                            rtCHUC_VU_DOAN.Text = empCV.CHUC_VU_DOAN
                             '===============================================
                             rtWorkplace.Text = empCV.WORKPLACE_NAME
                             If empCV.INS_REGION_ID IsNot Nothing Then
@@ -352,6 +352,10 @@ Public Class ctrlHU_EmpDtlProfile
                             If empCV.PER_WARD IsNot Nothing Then
                                 cboPer_Ward.SelectedValue = empCV.PER_WARD
                                 cboPer_Ward.Text = empCV.PER_WARD_NAME
+                            End If
+                            ckDOAN_PHI.Checked = empCV.DOAN_PHI
+                            If IsDate(empCV.NGAY_VAO_DOAN) Then
+                                rdNGAY_VAO_DOAN.SelectedDate = empCV.NGAY_VAO_DOAN
                             End If
                             ' SĐT
                             txtHomePhone.Text = empCV.HOME_PHONE
