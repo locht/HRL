@@ -300,6 +300,7 @@
     <Content Include="Styles\Scheduler.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
+    <None Include="ReportTemplates\Common\Common.xls" />
     <None Include="Styles\fontawesome-webfont.woff" />
     <None Include="Styles\fontawesome-webfont.woff2" />
     <None Include="Web.config">

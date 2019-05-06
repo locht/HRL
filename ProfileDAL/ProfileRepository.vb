@@ -638,7 +638,8 @@ Public Class ProfileRepository
                      Order By p.NAME
                      Select New OtherListDTO With {
                         .ID = p.ID,
-                        .NAME_VN = p.NAME}).ToList
+                        .NAME_VN = p.NAME,
+                        .YEAR = p.YEAR}).ToList
             _combolistDTO.LIST_EVALUATE = query
         End If
         'Loại NGHĨ
