@@ -5595,10 +5595,16 @@ Namespace ProfileBusiness
         Private DECISION_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECISION_NO_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_TYPE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECISION_TYPE_NAME_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DIRECT_MANAGERField As System.Nullable(Of Decimal)
@@ -5623,6 +5629,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPIRE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPIRE_DATE_OLDField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILENAMEField As String
@@ -5718,10 +5727,16 @@ Namespace ProfileBusiness
         Private ORG_NAME3Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAME_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PERCENT_SALARYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARK_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ResponsibilityAllowancesField As System.Nullable(Of Decimal)
@@ -5772,13 +5787,22 @@ Namespace ProfileBusiness
         Private SIGN_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_DATE_OLDField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_NAME_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_TITLEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_TITLE_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_IDField As System.Nullable(Of Decimal)
@@ -5818,6 +5842,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAME_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_DATEField As System.Nullable(Of Date)
@@ -5981,6 +6008,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECISION_NO_OLD() As String
+            Get
+                Return Me.DECISION_NO_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DECISION_NO_OLDField, value) <> true) Then
+                    Me.DECISION_NO_OLDField = value
+                    Me.RaisePropertyChanged("DECISION_NO_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property DECISION_TYPE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.DECISION_TYPE_IDField
@@ -6002,6 +6042,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DECISION_TYPE_NAMEField, value) <> true) Then
                     Me.DECISION_TYPE_NAMEField = value
                     Me.RaisePropertyChanged("DECISION_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECISION_TYPE_NAME_OLD() As String
+            Get
+                Return Me.DECISION_TYPE_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DECISION_TYPE_NAME_OLDField, value) <> true) Then
+                    Me.DECISION_TYPE_NAME_OLDField = value
+                    Me.RaisePropertyChanged("DECISION_TYPE_NAME_OLD")
                 End If
             End Set
         End Property
@@ -6106,6 +6159,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPIRE_DATE_OLD() As System.Nullable(Of Date)
+            Get
+                Return Me.EXPIRE_DATE_OLDField
+            End Get
+            Set
+                If (Me.EXPIRE_DATE_OLDField.Equals(value) <> true) Then
+                    Me.EXPIRE_DATE_OLDField = value
+                    Me.RaisePropertyChanged("EXPIRE_DATE_OLD")
                 End If
             End Set
         End Property
@@ -6514,6 +6580,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME_OLD() As String
+            Get
+                Return Me.ORG_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAME_OLDField, value) <> true) Then
+                    Me.ORG_NAME_OLDField = value
+                    Me.RaisePropertyChanged("ORG_NAME_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property PERCENT_SALARY() As System.Nullable(Of Decimal)
             Get
                 Return Me.PERCENT_SALARYField
@@ -6535,6 +6614,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK_OLD() As String
+            Get
+                Return Me.REMARK_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARK_OLDField, value) <> true) Then
+                    Me.REMARK_OLDField = value
+                    Me.RaisePropertyChanged("REMARK_OLD")
                 End If
             End Set
         End Property
@@ -6748,6 +6840,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_DATE_OLD() As System.Nullable(Of Date)
+            Get
+                Return Me.SIGN_DATE_OLDField
+            End Get
+            Set
+                If (Me.SIGN_DATE_OLDField.Equals(value) <> true) Then
+                    Me.SIGN_DATE_OLDField = value
+                    Me.RaisePropertyChanged("SIGN_DATE_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SIGN_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.SIGN_IDField
@@ -6774,6 +6879,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_NAME_OLD() As String
+            Get
+                Return Me.SIGN_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGN_NAME_OLDField, value) <> true) Then
+                    Me.SIGN_NAME_OLDField = value
+                    Me.RaisePropertyChanged("SIGN_NAME_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SIGN_TITLE() As String
             Get
                 Return Me.SIGN_TITLEField
@@ -6782,6 +6900,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SIGN_TITLEField, value) <> true) Then
                     Me.SIGN_TITLEField = value
                     Me.RaisePropertyChanged("SIGN_TITLE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_TITLE_OLD() As String
+            Get
+                Return Me.SIGN_TITLE_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGN_TITLE_OLDField, value) <> true) Then
+                    Me.SIGN_TITLE_OLDField = value
+                    Me.RaisePropertyChanged("SIGN_TITLE_OLD")
                 End If
             End Set
         End Property
@@ -6951,6 +7082,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME_OLD() As String
+            Get
+                Return Me.TITLE_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAME_OLDField, value) <> true) Then
+                    Me.TITLE_NAME_OLDField = value
+                    Me.RaisePropertyChanged("TITLE_NAME_OLD")
                 End If
             End Set
         End Property

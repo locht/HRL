@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("f26651eb-99c5-45f3-9eb8-f9fe1fae11ba")>
+<Assembly: EdmSchemaAttribute("d0ec2415-10ed-4906-99d9-517feafcee88")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -49964,11 +49964,15 @@ Public Partial Class HU_WORKING_OLD
     ''' <param name="d">Initial value of the d property.</param>
     ''' <param name="eMPLOYEE_CODE">Initial value of the EMPLOYEE_CODE property.</param>
     ''' <param name="sALARY_CB">Initial value of the SALARY_CB property.</param>
-    Public Shared Function CreateHU_WORKING_OLD(d As Global.System.Decimal, eMPLOYEE_CODE As Global.System.String, sALARY_CB As Global.System.Decimal) As HU_WORKING_OLD
+    ''' <param name="oBJECT_ATTENDANCE_NAME">Initial value of the OBJECT_ATTENDANCE_NAME property.</param>
+    ''' <param name="dECISION_TYPE_NAME">Initial value of the DECISION_TYPE_NAME property.</param>
+    Public Shared Function CreateHU_WORKING_OLD(d As Global.System.Decimal, eMPLOYEE_CODE As Global.System.String, sALARY_CB As Global.System.Decimal, oBJECT_ATTENDANCE_NAME As Global.System.String, dECISION_TYPE_NAME As Global.System.String) As HU_WORKING_OLD
         Dim hU_WORKING_OLD as HU_WORKING_OLD = New HU_WORKING_OLD
         hU_WORKING_OLD.d = d
         hU_WORKING_OLD.EMPLOYEE_CODE = eMPLOYEE_CODE
         hU_WORKING_OLD.SALARY_CB = sALARY_CB
+        hU_WORKING_OLD.OBJECT_ATTENDANCE_NAME = oBJECT_ATTENDANCE_NAME
+        hU_WORKING_OLD.DECISION_TYPE_NAME = dECISION_TYPE_NAME
         Return hU_WORKING_OLD
     End Function
 
@@ -50576,6 +50580,81 @@ Public Partial Class HU_WORKING_OLD
     End Sub
 
     Private Partial Sub OnSIGN_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_ATTENDANCE_NAME() As Global.System.String
+        Get
+            Return _OBJECT_ATTENDANCE_NAME
+        End Get
+        Set
+            OnOBJECT_ATTENDANCE_NAMEChanging(value)
+            ReportPropertyChanging("OBJECT_ATTENDANCE_NAME")
+            _OBJECT_ATTENDANCE_NAME = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("OBJECT_ATTENDANCE_NAME")
+            OnOBJECT_ATTENDANCE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_ATTENDANCE_NAME As Global.System.String
+    Private Partial Sub OnOBJECT_ATTENDANCE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOBJECT_ATTENDANCE_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILING_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _FILING_DATE
+        End Get
+        Set
+            OnFILING_DATEChanging(value)
+            ReportPropertyChanging("FILING_DATE")
+            _FILING_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FILING_DATE")
+            OnFILING_DATEChanged()
+        End Set
+    End Property
+
+    Private _FILING_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnFILING_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnFILING_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property DECISION_TYPE_NAME() As Global.System.String
+        Get
+            Return _DECISION_TYPE_NAME
+        End Get
+        Set
+            OnDECISION_TYPE_NAMEChanging(value)
+            ReportPropertyChanging("DECISION_TYPE_NAME")
+            _DECISION_TYPE_NAME = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("DECISION_TYPE_NAME")
+            OnDECISION_TYPE_NAMEChanged()
+        End Set
+    End Property
+
+    Private _DECISION_TYPE_NAME As Global.System.String
+    Private Partial Sub OnDECISION_TYPE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDECISION_TYPE_NAMEChanged()
     End Sub
 
     #End Region
