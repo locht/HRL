@@ -574,6 +574,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                     cboTitle.Text = String.Empty
                                     cboDecisionType.Text = String.Empty
                                     chkIsProcess.Checked = False
+                                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If

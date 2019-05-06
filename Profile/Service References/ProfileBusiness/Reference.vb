@@ -2487,6 +2487,9 @@ Namespace ProfileBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TYPE_NAMEField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private YEARField As String
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -2727,6 +2730,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TYPE_NAMEField, value) <> true) Then
                     Me.TYPE_NAMEField = value
                     Me.RaisePropertyChanged("TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property YEAR() As String
+            Get
+                Return Me.YEARField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.YEARField, value) <> true) Then
+                    Me.YEARField = value
+                    Me.RaisePropertyChanged("YEAR")
                 End If
             End Set
         End Property
@@ -17547,7 +17563,7 @@ Namespace ProfileBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private PERFORM_DATEField As System.Nullable(Of Date)
+        Private PERFORM_TIMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PERIOD_IDField As System.Nullable(Of Decimal)
@@ -18128,14 +18144,14 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property PERFORM_DATE() As System.Nullable(Of Date)
+        Public Property PERFORM_TIME() As String
             Get
-                Return Me.PERFORM_DATEField
+                Return Me.PERFORM_TIMEField
             End Get
             Set
-                If (Me.PERFORM_DATEField.Equals(value) <> true) Then
-                    Me.PERFORM_DATEField = value
-                    Me.RaisePropertyChanged("PERFORM_DATE")
+                If (Object.ReferenceEquals(Me.PERFORM_TIMEField, value) <> true) Then
+                    Me.PERFORM_TIMEField = value
+                    Me.RaisePropertyChanged("PERFORM_TIME")
                 End If
             End Set
         End Property

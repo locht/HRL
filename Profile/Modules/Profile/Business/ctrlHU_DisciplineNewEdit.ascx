@@ -276,8 +276,8 @@
                     <asp:Label runat="server" ID="lbPerformDiscipline" Text="Thời gian thi hành kỷ luật"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdPerformDiscipline" runat="server" TabIndex="20">
-                    </tlk:RadDatePicker>
+                    <tlk:RadTextBox ID="txtPerformDiscipline" runat="server" TabIndex="20">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
         </table>

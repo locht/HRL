@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_DisciplineNewEdit.ascx.vb"
     Inherits="Profile.ctrlHU_DisciplineNewEdit" %>
-<asp:HiddenField ID="hidID" runat="server" />
-<asp:HiddenField ID="hidDecisionID" runat="server" />
+<asp:HiddenField ID="hidID" runat="server" /> 
+<asp:HiddenField ID="hidDecisionID" runat="server" /> 
 <asp:HiddenField ID="hidOrgID" runat="server" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
@@ -276,8 +276,8 @@
                     <asp:Label runat="server" ID="lbPerformDiscipline" Text="Thời gian thi hành kỷ luật"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdPerformDiscipline" runat="server" TabIndex="20">
-                    </tlk:RadDatePicker>
+                    <tlk:RadTextBox ID="txtPerformDiscipline" runat="server" TabIndex="20">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
         </table>
@@ -368,12 +368,12 @@
         }
 
         function clientButtonClicking(sender, args) {
-//            if (args.get_item().get_commandName() == 'CANCEL') {
-//                getRadWindow().close(null);               
-//                //var radWindow = $find('rwPopup');
-//                //radWindow.close();
-//                args.set_cancel(true);
-//            }
+            //            if (args.get_item().get_commandName() == 'CANCEL') {
+            //                getRadWindow().close(null);
+            //                //var radWindow = $find('rwPopup');
+            //                //radWindow.close();
+            //                args.set_cancel(true);
+            //            } 
         }
 
         var enableAjax = true;
