@@ -95,6 +95,9 @@ Public Class ctrlDeclareEntitlementNBNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane2)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -108,7 +111,7 @@ Public Class ctrlDeclareEntitlementNBNewEdit
     ''' <remarks></remarks>
     Public Overrides Sub BindData()
         Try
-            rntxtYear.Value = Date.Now.Year
+            txtYear.Value = Date.Now.Year
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -156,30 +159,16 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         txtChucDanh.Text = obj.TITLE_NAME
                         Employee_id = obj.EMPLOYEE_ID
                         txtDonVi.Text = obj.ORG_NAME
-                        rntxtADJUST_MONTH_TN2.Value = obj.ADJUST_MONTH_TN
+                        txtADJUST_MONTH_TN2.Value = obj.ADJUST_MONTH_TN
                         txtREMARK_TN.Text = obj.REMARK_TN
-                        rntxtADJUST_ENTITLEMENT2.Value = obj.ADJUST_ENTITLEMENT
-                        If obj.ADJUST_MONTH_ENTITLEMENT IsNot Nothing Then
-                            cboMonth.SelectedValue = obj.ADJUST_MONTH_ENTITLEMENT
-                        End If
                         If obj.START_MONTH_TN IsNot Nothing Then
                             cboStartMonth.SelectedValue = obj.START_MONTH_TN
                         End If
-                        If obj.START_MONTH_EXTEND IsNot Nothing Then
-                            cboStartCur.SelectedValue = obj.START_MONTH_EXTEND
+                    
+                        txtYear.Value = obj.YEAR
+                        If obj.JOIN_DATE IsNot Nothing Then
+                            rdStartDate.SelectedDate = obj.JOIN_DATE
                         End If
-                        rntxtYear.Value = obj.YEAR
-                        txtREMARK_EN.Text = obj.REMARK_ENTITLEMENT
-                        If obj.START_MONTH_NB IsNot Nothing Then
-                            cboSTART_MONTH_NB.SelectedValue = obj.START_MONTH_NB
-                        End If
-                        nmADJUST_NB.Value = obj.ADJUST_NB
-                        txtREMARK_NB.Text = obj.REMARK_NB
-                        If obj.MONTH_EXTENSION_NB IsNot Nothing Then
-                            cboMonth_Extension_NB.SelectedValue = obj.MONTH_EXTENSION_NB
-                        End If
-                        nmCOM_PAY.Value = obj.COM_PAY
-                        nmENT_PAY.Value = obj.ENT_PAY
                         _Value = obj.ID
                     Else
                         isEdit = False
@@ -258,44 +247,27 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         Dim checkMonthNP As Boolean = False
                         obj = New AT_DECLARE_ENTITLEMENTDTO
                         obj.EMPLOYEE_ID = Employee_id
-                        obj.ADJUST_MONTH_TN = rntxtADJUST_MONTH_TN2.Value
-                        obj.ADJUST_ENTITLEMENT = rntxtADJUST_ENTITLEMENT2.Value
-                        If cboMonth.SelectedValue <> "" Then
-                            obj.ADJUST_MONTH_ENTITLEMENT = cboMonth.SelectedValue
-                        End If
+                        obj.ADJUST_MONTH_TN = txtADJUST_MONTH_TN2.Value
+                      
                         If cboStartMonth.SelectedValue <> "" Then
                             obj.START_MONTH_TN = cboStartMonth.SelectedValue
                         End If
-                        If cboStartCur.SelectedValue <> "" Then
-                            obj.START_MONTH_EXTEND = cboStartCur.SelectedValue
-                        End If
-                        obj.YEAR = rntxtYear.Value
-                        obj.YEAR_ENTITLEMENT = rntxtYear.Value
-                        obj.YEAR_NB = rntxtYear.Value
-                        If cboSTART_MONTH_NB.SelectedValue <> "" Then
-                            obj.START_MONTH_NB = cboSTART_MONTH_NB.SelectedValue
-                        End If
-                        obj.ADJUST_NB = nmADJUST_NB.Value
+                        obj.YEAR = txtYear.Value
+                        obj.YEAR_ENTITLEMENT = txtYear.Value
+                        obj.YEAR_NB = txtYear.Value
+                        obj.JOIN_DATE = rdStartDate.SelectedDate
                         obj.REMARK_TN = txtREMARK_TN.Text
-                        obj.REMARK_NB = txtREMARK_NB.Text
-                        obj.REMARK_ENTITLEMENT = txtREMARK_EN.Text
-                        If cboMonth_Extension_NB.SelectedValue <> "" Then
-                            obj.MONTH_EXTENSION_NB = cboMonth_Extension_NB.SelectedValue
-                        End If
+                     
                         If _Value.HasValue Then
                             obj.ID = _Value
                         End If
-                        obj.COM_PAY = nmCOM_PAY.Value
-                        obj.ENT_PAY = nmENT_PAY.Value
 
                         rep.InsertDelareEntitlementNB(obj, gstatus, checkMonthNB, checkMonthNP)
                         If checkMonthNB Then
                             ShowMessage(Translate("Nhân viên này đã được gia hạn nghỉ bù"), NotifyType.Error)
-                            cboMonth_Extension_NB.Focus()
                             Exit Sub
                         ElseIf checkMonthNP Then
                             ShowMessage(Translate("Nhân viên này đã được gia hạn nghỉ phép"), NotifyType.Error)
-                            cboStartCur.Focus()
                             Exit Sub
                         End If
                         'Dim str As String = "getRadWindow().close('1');"

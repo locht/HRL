@@ -808,6 +808,9 @@
             <Property Name="SIGNER_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="SIGNER_TITLE" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="SIGN_DATE" Type="date" Nullable="true" />
+            <Property Name="OBJECT_ATTENDANCE_NAME" Type="nclob" Nullable="false" />
+            <Property Name="FILING_DATE" Type="date" Nullable="true" />
+            <Property Name="DECISION_TYPE_NAME" Type="nclob" Nullable="false" />
         </EntityType>
         <EntityType Name="SE_MAIL">
             <Key>
@@ -4764,6 +4767,9 @@
           <Property Type="String" Name="SIGNER_NAME" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SIGNER_TITLE" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="SIGN_DATE" Nullable="true" />
+          <Property Type="String" Name="OBJECT_ATTENDANCE_NAME" Nullable="false" />
+          <Property Type="DateTime" Name="FILING_DATE" Nullable="true" />
+          <Property Type="String" Name="DECISION_TYPE_NAME" Nullable="false" />
         </EntityType>
         <EntityType Name="SE_MAIL">
           <Key>
@@ -7950,6 +7956,9 @@
                     <ScalarProperty Name="SIGNER_NAME" ColumnName="SIGNER_NAME" />
                     <ScalarProperty Name="SIGNER_TITLE" ColumnName="SIGNER_TITLE" />
                     <ScalarProperty Name="SIGN_DATE" ColumnName="SIGN_DATE" />
+                    <ScalarProperty Name="OBJECT_ATTENDANCE_NAME" ColumnName="OBJECT_ATTENDANCE_NAME" />
+                    <ScalarProperty Name="FILING_DATE" ColumnName="FILING_DATE" />
+                    <ScalarProperty Name="DECISION_TYPE_NAME" ColumnName="DECISION_TYPE_NAME" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10687,7 +10696,7 @@
           <ConnectorPoint PointX="6.75" PointY="4.75" />
           <ConnectorPoint PointX="6.75" PointY="3.525" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING_OLD" Width="2" PointX="12.75" PointY="10.875" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING_OLD" Width="2" PointX="12.75" PointY="10.875" Height="6.2109179687500031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.SE_MAIL" Width="1.5" PointX="11.75" PointY="0.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_REMINDER_LOG" Width="1.5" PointX="0.75" PointY="13.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.OT_OTHER_LIST_GROUP" Width="2" PointX="0.75" PointY="4.75" Height="0.40000000000000568" IsExpanded="false" />

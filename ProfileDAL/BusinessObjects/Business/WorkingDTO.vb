@@ -17,6 +17,7 @@
     Public Property TITLE_ID As Decimal?
     Public Property TITLE_NAME As String
     Public Property TITLE_MOVE_NAME As String
+    Public Property TITLE_NAME_OLD As String
 
     Public Property TITLE_GROUP_ID As Decimal?
     Public Property TITLE_GROUP_NAME As String
@@ -35,6 +36,7 @@
     Public Property ORG_DESC As String
     Public Property ORG_MOVE_NAME As String
     Public Property ORG_MOVE_DESC As String
+    Public Property ORG_NAME_OLD As String
 
     Public Property FROM_DATE As Date?
     Public Property TO_DATE As Date?
@@ -42,10 +44,14 @@
     Public Property EFFECT_DATE As Date?
     Public Property EXPIRE_DATE As Date?
 
+    Public Property EXPIRE_DATE_OLD As Date?
+
     Public Property DECISION_TYPE_ID As Decimal?
     Public Property DECISION_TYPE_NAME As String
+    Public Property DECISION_TYPE_NAME_OLD As String
 
     Public Property DECISION_NO As String
+    Public Property DECISION_NO_OLD As String
 
     Public Property STATUS_ID As Decimal?
     Public Property STATUS_NAME As String
@@ -69,7 +75,12 @@
     Public Property SIGN_NAME As String
     Public Property SIGN_TITLE As String
 
+    Public Property SIGN_DATE_OLD As Date?
+    Public Property SIGN_NAME_OLD As String
+    Public Property SIGN_TITLE_OLD As String
+
     Public Property REMARK As String
+    Public Property REMARK_OLD As String
     Public Property PERCENT_SALARY As Decimal?
     Public Property ATTACH_FILE As String
     Public Property FILENAME As String
