@@ -348,23 +348,23 @@ Public Class ctrlSetUpCodeAttEmp
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-
+                        '================================================
+                        'FILLDATA IN OBJECT 
+                        If IsNumeric(hiEMPLOYEE_ID.Value) Then
+                            objSetUpCodeAtt.EMPLOYEE_ID = Decimal.Parse(hiEMPLOYEE_ID.Value)
+                        End If
+                        If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                            objSetUpCodeAtt.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                        End If
+                        objSetUpCodeAtt.CODE_ATT = rtCODE_ATT.Text
+                        If IsDate(rdAPPROVE_DATE.SelectedDate) Then
+                            objSetUpCodeAtt.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
+                        End If
+                        objSetUpCodeAtt.NOTE = rtNOTE.Text
+                        '================================================
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                '================================================
-                                'FILLDATA IN OBJECT 
-                                If IsNumeric(hiEMPLOYEE_ID.Value) Then
-                                    objSetUpCodeAtt.EMPLOYEE_ID = Decimal.Parse(hiEMPLOYEE_ID.Value)
-                                End If
-                                If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
-                                    objSetUpCodeAtt.MACHINE_ID = cbMACHINE_CODE.SelectedValue
-                                End If
-                                objSetUpCodeAtt.CODE_ATT = rtCODE_ATT.Text
-                                If IsDate(rdAPPROVE_DATE.SelectedDate) Then
-                                    objSetUpCodeAtt.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
-                                End If
-                                objSetUpCodeAtt.NOTE = rtNOTE.Text
-                                '================================================
+                                
                                 If rep.InsertSetUpAttEmp(objSetUpCodeAtt, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = gID
@@ -375,18 +375,10 @@ Public Class ctrlSetUpCodeAttEmp
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                             Case CommonMessage.STATE_EDIT
-                                Dim validate As New AT_TIME_MANUALDTO
-                                objSetUpCodeAtt.ID = rgDanhMuc.SelectedValue
-                                validate.ID = objSetUpCodeAtt.ID
-                                If rep.ValidateAT_TIME_MANUAL(validate) Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(rtEMPLOYEE_CODE)
-                                    rgDanhMuc.Rebind()
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    UpdateControlState()
-                                    Exit Sub
+                                If IsNumeric(hidID.Value) Then
+                                    objSetUpCodeAtt.ID = hidID.Value
                                 End If
-                                If rep.ModifySetUpAttEmp(objSetUpCodeAtt, rgDanhMuc.SelectedValue) Then
+                                If rep.ModifySetUpAttEmp(objSetUpCodeAtt, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = objSetUpCodeAtt.ID
                                     Refresh("UpdateView")
@@ -488,15 +480,21 @@ Public Class ctrlSetUpCodeAttEmp
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If CurrentState = CommonMessage.STATE_EDIT Then
-                _validate.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                    _validate.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                End If
+                If IsNumeric(hidID.Value) Then
+                    _validate.ID = hidID.Value
+                End If
                 _validate.CODE_ATT = rtCODE_ATT.Text
-                _validate.ID = hidID.Value
             Else
-                _validate.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                    _validate.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                End If
                 _validate.CODE_ATT = rtCODE_ATT.Text
             End If
             'GỌI HAM CHECK
-
+            args.IsValid = rep.CheckValidateMACC(_validate)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                              CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -513,11 +511,26 @@ Public Class ctrlSetUpCodeAttEmp
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If CurrentState = CommonMessage.STATE_EDIT Then
-
+                If IsDate(rdAPPROVE_DATE.SelectedDate) Then
+                    _validate.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
+                End If
+                If IsNumeric(hiEMPLOYEE_ID.Value) Then
+                    _validate.EMPLOYEE_ID = hiEMPLOYEE_ID.Value
+                End If
+                If IsNumeric(hidID.Value) Then
+                    _validate.ID = hidID.Value
+                End If
+                _validate.CODE_ATT = rtCODE_ATT.Text
             Else
-
+                If IsDate(rdAPPROVE_DATE.SelectedDate) Then
+                    _validate.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
+                End If
+                If IsNumeric(hiEMPLOYEE_ID.Value) Then
+                    _validate.EMPLOYEE_ID = hiEMPLOYEE_ID.Value
+                End If
+                _validate.CODE_ATT = rtCODE_ATT.Text
             End If
-
+            args.IsValid = (rep.CheckValidateAPPROVE_DATE(_validate))
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                              CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

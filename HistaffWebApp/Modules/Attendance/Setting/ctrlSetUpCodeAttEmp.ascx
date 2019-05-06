@@ -3,7 +3,7 @@
 <%@ Import Namespace="Common" %>
 <link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="215px" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="250px" Scrolling="Y" >
         <asp:HiddenField ID="hiEMPLOYEE_ID" runat="server" />
         <asp:HiddenField ID="hiORG_ID" runat="server" />
         <asp:HiddenField ID="hiTITLE_ID" runat="server" />
