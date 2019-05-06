@@ -17,6 +17,12 @@
                             <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                             </tlk:GridTemplateColumn>
+                            <tlk:GridDateTimeColumn HeaderText="Thời gian bắt đầu" DataField="START_DATE" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="START_DATE" UniqueName="START_DATE" DataFormatString="{0:dd/MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridDateTimeColumn HeaderText="Thời gian kết thúc" DataField="EXPIRE_DATE" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE" DataFormatString="{0:dd/MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" SortExpression="TITLE_NAME"
                                 UniqueName="TITLE_NAME" />
                             <tlk:GridDateTimeColumn HeaderText="Ngày cấp văn bằng chứng chỉ" DataField="DEGREE_DATE" ItemStyle-HorizontalAlign="Center"
