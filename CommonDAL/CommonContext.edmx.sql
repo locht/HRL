@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 25/04/2019 12:49:44 PM
--- Generated from EDMX file: E:\histaffhcm\CommonDAL\CommonContext.edmx
+-- Date Created: 06/05/2019 4:42:53 PM
+-- Generated from EDMX file: E:\histaffhcm-1\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -104,6 +104,8 @@
 -- DROP TABLE "CommonModelStoreContainer"."HUV_SE_GRP_SE_USR";
 
 -- DROP TABLE "CommonModelStoreContainer"."SE_VIEW_CONFIG";
+
+-- DROP TABLE "CommonModelStoreContainer"."AT_TIME_MANUAL";
 
 -- DROP TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR";
 
@@ -686,6 +688,14 @@ CREATE TABLE "dbo"."AT_TIME_MANUAL" (
    "LIMIT_YEAR" NUMBER(38,0) NULL
 );
 
+-- Creating table 'SE_CASE_CONFIG'
+CREATE TABLE "dbo"."SE_CASE_CONFIG" (
+   "CODE_NAME" NCLOB NOT NULL,
+   "CODE_CASE" NCLOB NOT NULL,
+   "DESCRIPTIONS" NCLOB NULL,
+   "STATUS" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_GRP_SE_USR'
 CREATE TABLE "dbo"."SE_GRP_SE_USR" (
    "SE_GROUPS_ID" NUMBER(38,0) NOT NULL,
@@ -953,6 +963,14 @@ ADD CONSTRAINT "PK_SE_VIEW_CONFIG"
 ALTER TABLE "dbo"."AT_TIME_MANUAL"
 ADD CONSTRAINT "PK_AT_TIME_MANUAL"
    PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "CODE_NAME"in table 'SE_CASE_CONFIG'
+ALTER TABLE "dbo"."SE_CASE_CONFIG"
+ADD CONSTRAINT "PK_SE_CASE_CONFIG"
+   PRIMARY KEY ("CODE_NAME" )
    ENABLE
    VALIDATE;
 
