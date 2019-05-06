@@ -20,6 +20,35 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function InsertSetUpAttEmp(ByVal objValue As SetUpCodeAttDTO, ByVal log As UserLog,
+                                         ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.InsertSetUpAttEmp
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.InsertSetUpAttEmp(objValue, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifySetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.ModifySetUpAttEmp
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ModifySetUpAttEmp(objValue, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeleteSetUpAttEmp(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IAttendanceBusiness.DeleteSetUpAttEmp
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.DeleteSetUpAttEmp(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #Region "HOLIDAY"
 
         Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,

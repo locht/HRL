@@ -9,6 +9,7 @@ Public Class ctrlSetUpCodeAttEmp
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Setting/" + Me.GetType().Name.ToString()
+    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
 #Region "Property"
 
     Public IDSelect As Integer
@@ -110,14 +111,12 @@ Public Class ctrlSetUpCodeAttEmp
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgDanhMuc.Rebind()
-                        'SelectedItemDataGridByKey(rgDanhMuc, IDSelect, , rgDanhMuc.CurrentPageIndex)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgDanhMuc.CurrentPageIndex = 0
                         rgDanhMuc.MasterTableView.SortExpressions.Clear()
                         rgDanhMuc.Rebind()
-                        'SelectedItemDataGridByKey(rgDanhMuc, IDSelect, )
                     Case "Cancel"
                         rgDanhMuc.MasterTableView.ClearSelectedItems()
                 End Select
@@ -174,20 +173,17 @@ Public Class ctrlSetUpCodeAttEmp
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    rtEmployee_Code.Text = ""
-                    
-                    EnabledGridNotPostback(rgDanhMuc, False)
-
-                Case CommonMessage.STATE_NORMAL
-                    rtEmployee_Code.Text = ""
-                   
                     EnabledGridNotPostback(rgDanhMuc, True)
-
+                    EnableControlAll(True, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE, btnFindEmployee)
+                    ClearControlValue(rtEMPLOYEE_CODE, rtEMPLOYEE_NAME, rtORG_ID, rtTITLE_ID, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE)
+                Case CommonMessage.STATE_NORMAL
+                    ClearControlValue(rtEMPLOYEE_CODE, rtEMPLOYEE_NAME, rtORG_ID, rtTITLE_ID, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE)
+                    EnabledGridNotPostback(rgDanhMuc, True)
+                    EnableControlAll(False, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE, btnFindEmployee)
                 Case CommonMessage.STATE_EDIT
-                    rtEmployee_Code.Enabled = True
-                    
+                    rtEMPLOYEE_CODE.Enabled = True
+                    EnableControlAll(True, rtCODE_ATT, cbMACHINE_CODE, rdAPPROVE_DATE, rtNOTE, btnFindEmployee)
                     EnabledGridNotPostback(rgDanhMuc, False)
-
                 Case CommonMessage.STATE_DEACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
@@ -198,7 +194,7 @@ Public Class ctrlSetUpCodeAttEmp
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(rtEmployee_Code)
+                        ClearControlValue(rtEMPLOYEE_CODE)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -212,7 +208,7 @@ Public Class ctrlSetUpCodeAttEmp
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(rtEmployee_Code)
+                        ClearControlValue(rtEMPLOYEE_CODE)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -232,7 +228,7 @@ Public Class ctrlSetUpCodeAttEmp
                         UpdateControlState()
                     End If
             End Select
-            rtEmployee_Code.Focus()
+            rtEMPLOYEE_CODE.Focus()
             UpdateToolbarState()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -252,8 +248,13 @@ Public Class ctrlSetUpCodeAttEmp
         Try
             GetDataCombo()
             Dim dic As New Dictionary(Of String, Control)
-            dic.Add("CODE", rtEmployee_Code)
-            
+            dic.Add("EMPLOYEE_CODE", rtEMPLOYEE_CODE)
+            dic.Add("EMPLOYEE_NAME", rtEMPLOYEE_NAME)
+            dic.Add("ORG_NAME", rtORG_ID)
+            dic.Add("TITLE_NAME", rtTITLE_ID)
+            dic.Add("CODE_ATT", rtCODE_ATT)
+            dic.Add("APPROVE_DATE", rdAPPROVE_DATE)
+            dic.Add("NOTE", rtNOTE)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                          CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -267,6 +268,53 @@ Public Class ctrlSetUpCodeAttEmp
 #End Region
 
 #Region "Event"
+
+    Protected Sub btnEmployee_Click(ByVal sender As Object,
+                                  ByVal e As EventArgs) Handles btnFindEmployee.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Select Case sender.ID
+                Case btnFindEmployee.ID
+
+            End Select
+
+            UpdateControlState()
+            Select Case sender.ID
+                Case btnFindEmployee.ID
+                    ctrlFindEmployeePopup.Show()
+            End Select
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
+
+    ''' <summary>
+    ''' Chon row in grid
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Dim rep As New AttendanceRepository
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                             CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Event click item menu toolbar
     ''' </summary>
@@ -276,7 +324,7 @@ Public Class ctrlSetUpCodeAttEmp
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-        Dim objHoliday_Gen As New AT_TIME_MANUALDTO
+        Dim objSetUpCodeAtt As New SetUpCodeAttDTO
         Dim rep As New AttendanceRepository
         Dim gID As Decimal
         Try
@@ -284,7 +332,7 @@ Public Class ctrlSetUpCodeAttEmp
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
                     UpdateControlState()
-                    
+
                     rgDanhMuc.SelectedIndexes.Clear()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgDanhMuc.SelectedItems.Count = 0 Then
@@ -342,11 +390,14 @@ Public Class ctrlSetUpCodeAttEmp
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        
+
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                objHoliday_Gen.ACTFLG = "A"
-                                If rep.InsertAT_TIME_MANUAL(objHoliday_Gen, gID) Then
+                                '================================================
+                                'FILLDATA IN OBJECT 
+
+                                '================================================
+                                If rep.InsertSetUpAttEmp(objSetUpCodeAtt, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = gID
                                     Refresh("InsertView")
@@ -357,19 +408,19 @@ Public Class ctrlSetUpCodeAttEmp
                                 End If
                             Case CommonMessage.STATE_EDIT
                                 Dim validate As New AT_TIME_MANUALDTO
-                                objHoliday_Gen.ID = rgDanhMuc.SelectedValue
-                                validate.ID = objHoliday_Gen.ID
+                                objSetUpCodeAtt.ID = rgDanhMuc.SelectedValue
+                                validate.ID = objSetUpCodeAtt.ID
                                 If rep.ValidateAT_TIME_MANUAL(validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(rtEmployee_Code)
+                                    ClearControlValue(rtEMPLOYEE_CODE)
                                     rgDanhMuc.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
                                     Exit Sub
                                 End If
-                                If rep.ModifyAT_TIME_MANUAL(objHoliday_Gen, rgDanhMuc.SelectedValue) Then
+                                If rep.ModifySetUpAttEmp(objSetUpCodeAtt, rgDanhMuc.SelectedValue) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
-                                    IDSelect = objHoliday_Gen.ID
+                                    IDSelect = objSetUpCodeAtt.ID
                                     Refresh("UpdateView")
                                     UpdateControlState()
                                     rgDanhMuc.Rebind()
@@ -455,19 +506,13 @@ Public Class ctrlSetUpCodeAttEmp
     Private Sub GetDataCombo()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim dtdata As DataTable = New DataTable()
         Dim rep As New AttendanceRepository
         Try
-            If ListComboData Is Nothing Then
-                ListComboData = New ComboBoxDataDTO
-                ListComboData.GET_LIST_SIGN = True
-                rep.GetComboboxData(ListComboData)
+            dtdata = rep.GetTerminalAuto()
+            If dtdata IsNot Nothing AndAlso dtdata.Rows.Count > 0 Then
+                FillRadCombobox(cbMACHINE_CODE, dtdata, "TERMINAL_CODE", "ID")
             End If
-            If ListComboDataAff Is Nothing Then
-                ListComboDataAff = New ComboBoxDataDTO
-                ListComboDataAff.GET_LIST_SIGN = True
-                rep.GetComboboxData(ListComboDataAff)
-            End If
-            
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -487,6 +532,5 @@ Public Class ctrlSetUpCodeAttEmp
             Throw ex
         End Try
     End Sub
-    
 #End Region
 End Class
