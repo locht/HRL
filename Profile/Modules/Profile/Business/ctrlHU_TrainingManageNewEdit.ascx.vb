@@ -294,7 +294,7 @@ Public Class ctrlHU_TrainingManageNewEdit
                         Dim str As String = "getRadWindow().close('1');"
                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                     Else
-                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningManage&group=Business")
+                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TraniningManagement&group=Business")
                     End If
             End Select
             rep.Dispose()
