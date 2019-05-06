@@ -90,10 +90,16 @@ Partial Public Class AttendanceRepository
 
     Public Function InsertSetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
                                     ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objData As New SetUpCodeAttDTO
+        Dim objData As New AT_SETUP_ATT_EMP
         Dim iCount As Integer = 0
         Try
             objData.ID = Utilities.GetNextSequence(Context, Context.AT_SETUP_ATT_EMP.EntitySet.Name)
+            objData.APPROVE_DATE = objValue.APPROVE_DATE
+            objData.EMPLOYEE_ID = objValue.EMPLOYEE_ID
+            objData.MACHINE_ID = objValue.MACHINE_ID
+            objData.CODE_ATT = objValue.CODE_ATT
+            objData.NOTE = objValue.NOTE
+            Context.AT_SETUP_ATT_EMP.AddObject(objData)
             Context.SaveChanges(log)
             gID = objData.ID
             Return True
@@ -107,6 +113,11 @@ Partial Public Class AttendanceRepository
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Try
             Dim objData = (From p In Context.AT_SETUP_ATT_EMP Where p.ID = objValue.ID).SingleOrDefault
+            objData.APPROVE_DATE = objValue.APPROVE_DATE
+            objData.EMPLOYEE_ID = objValue.EMPLOYEE_ID
+            objData.MACHINE_ID = objValue.MACHINE_ID
+            objData.CODE_ATT = objValue.CODE_ATT
+            objData.NOTE = objValue.NOTE
             Context.SaveChanges(log)
             gID = objData.ID
             Return True

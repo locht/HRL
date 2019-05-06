@@ -13,6 +13,14 @@ Public Class ctrlSetUpCodeAttEmp
 #Region "Property"
 
     Public IDSelect As Integer
+    Property isLoadPopupSP As Integer
+        Get
+            Return ViewState(Me.ID & "_isLoadPopupSP")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_isLoadPopupSP") = value
+        End Set
+    End Property
     Public Property SetUpCodeAtt As List(Of SetUpCodeAttDTO)
         Get
             Return ViewState(Me.ID & "_SetUpCodeAtt")
@@ -171,6 +179,15 @@ Public Class ctrlSetUpCodeAttEmp
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New AttendanceRepository
         Try
+            Select Case isLoadPopupSP
+                Case 1
+                    If Not phFindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
+                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        phFindEmployee.Controls.Add(ctrlFindEmployeePopup)
+                        ctrlFindEmployeePopup.MultiSelect = False
+                    End If
+            End Select
+
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgDanhMuc, True)
@@ -276,7 +293,7 @@ Public Class ctrlSetUpCodeAttEmp
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case sender.ID
                 Case btnFindEmployee.ID
-
+                    isLoadPopupSP = 1
             End Select
 
             UpdateControlState()
@@ -306,7 +323,16 @@ Public Class ctrlSetUpCodeAttEmp
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            
+            'xu ly lay thong tin nhan vien dua vào controls 
+            If lstCommonEmployee IsNot Nothing AndAlso lstCommonEmployee.Count = 1 Then
+                rtEMPLOYEE_CODE.Text = lstCommonEmployee(0).EMPLOYEE_CODE
+                hiEMPLOYEE_ID.Value = lstCommonEmployee(0).EMPLOYEE_ID
+                rtEMPLOYEE_NAME.Text = lstCommonEmployee(0).FULLNAME_VN
+                rtORG_ID.Text = lstCommonEmployee(0).ORG_NAME
+                hiORG_ID.Value = lstCommonEmployee(0).ORG_ID
+                rtTITLE_ID.Text = lstCommonEmployee(0).TITLE_NAME
+                hiTITLE_ID.Value = lstCommonEmployee(0).TITLE_ID
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                              CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -395,7 +421,17 @@ Public Class ctrlSetUpCodeAttEmp
                             Case CommonMessage.STATE_NEW
                                 '================================================
                                 'FILLDATA IN OBJECT 
-
+                                If IsNumeric(hiEMPLOYEE_ID.Value) Then
+                                    objSetUpCodeAtt.EMPLOYEE_ID = Decimal.Parse(hiEMPLOYEE_ID.Value)
+                                End If
+                                If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                                    objSetUpCodeAtt.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+                                End If
+                                objSetUpCodeAtt.CODE_ATT = rtCODE_ATT.Text
+                                If IsDate(rdAPPROVE_DATE.SelectedDate) Then
+                                    objSetUpCodeAtt.APPROVE_DATE = rdAPPROVE_DATE.SelectedDate
+                                End If
+                                objSetUpCodeAtt.NOTE = rtNOTE.Text
                                 '================================================
                                 If rep.InsertSetUpAttEmp(objSetUpCodeAtt, gID) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
