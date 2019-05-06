@@ -244,7 +244,9 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
                         objContract.TITLE_ID = employee.TITLE_ID
                         objContract.CONTENT = txtContent.Text
                         objContract.EFFECT_DATE = rdEffectDate.SelectedDate
-                        objContract.YEAR = txtYear.Text
+                        If txtYear.Text <> "" Then
+                            objContract.YEAR = txtYear.Text
+                        End If
                         objContract.DECISION_NO = txtDecisionNo.Text
                         objContract.REMARK = txtLocation.Text
                         If cboContractType.SelectedValue <> "" Then
