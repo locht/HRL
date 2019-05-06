@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("2105ed21-6840-4133-b5ec-d860975f06c3")>
+<Assembly: EdmSchemaAttribute("f26651eb-99c5-45f3-9eb8-f9fe1fae11ba")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -16039,24 +16039,24 @@ Public Partial Class HU_DISCIPLINE
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property PERFORM_DATE() As Nullable(Of Global.System.DateTime)
+    Public Property PERFORM_TIME() As Global.System.String
         Get
-            Return _PERFORM_DATE
+            Return _PERFORM_TIME
         End Get
         Set
-            OnPERFORM_DATEChanging(value)
-            ReportPropertyChanging("PERFORM_DATE")
-            _PERFORM_DATE = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("PERFORM_DATE")
-            OnPERFORM_DATEChanged()
+            OnPERFORM_TIMEChanging(value)
+            ReportPropertyChanging("PERFORM_TIME")
+            _PERFORM_TIME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("PERFORM_TIME")
+            OnPERFORM_TIMEChanged()
         End Set
     End Property
 
-    Private _PERFORM_DATE As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnPERFORM_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    Private _PERFORM_TIME As Global.System.String
+    Private Partial Sub OnPERFORM_TIMEChanging(value As Global.System.String)
     End Sub
 
-    Private Partial Sub OnPERFORM_DATEChanged()
+    Private Partial Sub OnPERFORM_TIMEChanged()
     End Sub
 
     #End Region
