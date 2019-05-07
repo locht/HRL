@@ -221,8 +221,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     rdTo.SelectedDate = Nothing
                     rdReceiveDegree.SelectedDate = Nothing
                     EnableControlAll(True, rdToiThang, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
-
-
+                    EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
                     Select Case checkCRUD
                         'Insert
@@ -253,10 +252,11 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     rdReceiveDegree.SelectedDate = Nothing
                     EnabledGridNotPostback(rgEmployeeTrain, True)
                     EnableControlAll(False, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
-                    EnabledGrid(rgEmployeeTrain, False)
+                    EnabledGrid(rgEmployeeTrain, True)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgEmployeeTrain, False)
                     EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
+                    EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_DELETE
                     Dim rep As New ProfileBusinessRepository
                     Dim lstDeletes As New List(Of Decimal)
