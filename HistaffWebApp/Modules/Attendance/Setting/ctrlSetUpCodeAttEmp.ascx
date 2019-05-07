@@ -3,7 +3,7 @@
 <%@ Import Namespace="Common" %>
 <link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="215px" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="250px" Scrolling="Y" >
         <asp:HiddenField ID="hiEMPLOYEE_ID" runat="server" />
         <asp:HiddenField ID="hiORG_ID" runat="server" />
         <asp:HiddenField ID="hiTITLE_ID" runat="server" />
@@ -67,7 +67,11 @@
                 <td colspan="3">
                     <tlk:RadTextBox ID="rtCODE_ATT" runat ="server" Width="100%" ></tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCODE_ATT" ControlToValidate="rtCODE_ATT"
-                        runat="server" Text="*" ErrorMessage="Bạn phải chọn mã chấm công"></asp:RequiredFieldValidator>
+                        runat="server" Text="*" ErrorMessage="Bạn phải chọn mã chấm công">
+                    </asp:RequiredFieldValidator>
+                     <asp:CustomValidator ID="cvaCODE_ATT" ControlToValidate="rtCODE_ATT" runat="server"
+                        ErrorMessage="Mã chấm công đã tồn tại, vui lòng kiểm tra lại!" ToolTip="Mã chấm công đã tồn tại, vui lòng kiểm tra lại!">
+                    </asp:CustomValidator>
                 </td>
                  <td class="lb">
                     <asp:Label ID="lbAPPROVE_DATE" runat ="server"  Text ="Ngày áp dụng"></asp:Label><span class="lbReq">*</span>
@@ -75,7 +79,11 @@
                 <td colspan="3">
                     <tlk:RadDatePicker ID="rdAPPROVE_DATE" runat ="server"  Width="100%" ></tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqAPPROVE_DATE" ControlToValidate="rdAPPROVE_DATE"
-                        runat="server" Text="*" ErrorMessage="Bạn phải chọn ngày áp dụng"></asp:RequiredFieldValidator>
+                        runat="server" Text="*" ErrorMessage="Bạn phải chọn ngày áp dụng">
+                     </asp:RequiredFieldValidator>
+                     <asp:CustomValidator ID="cvaAPPROVE_DATE" ControlToValidate="rdAPPROVE_DATE" runat="server"
+                        ErrorMessage="Không được nhập trùng ngày hiệu lực trong cùng một hệ thống, vui lòng kiểm tra lại!" ToolTip="Không được nhập trùng ngày hiệu lực trong cùng một hệ thống, vui lòng kiểm tra lại!">
+                    </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
@@ -98,7 +106,8 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,ORG_ID,ORG_NAME,TITLE_ID,TITLE_NAME
+            ,CODE_ATT,MACHINE_NAME,MACHINE_ID,APPROVE_DATE,NOTE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

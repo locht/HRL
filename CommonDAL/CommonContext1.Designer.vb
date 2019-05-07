@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0d82bbdf-0aeb-416b-9c0a-0e17183eff8d")>
+<Assembly: EdmSchemaAttribute("6622a141-1b36-4b2d-837d-15f8974ed71c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -518,6 +518,20 @@ Public Partial Class CommonContext
 
     Private _AT_TIME_MANUAL As ObjectSet(Of AT_TIME_MANUAL)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property SE_CASE_CONFIG() As ObjectSet(Of SE_CASE_CONFIG)
+        Get
+            If (_SE_CASE_CONFIG Is Nothing) Then
+                _SE_CASE_CONFIG = MyBase.CreateObjectSet(Of SE_CASE_CONFIG)("SE_CASE_CONFIG")
+            End If
+            Return _SE_CASE_CONFIG
+        End Get
+    End Property
+
+    Private _SE_CASE_CONFIG As ObjectSet(Of SE_CASE_CONFIG)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -737,6 +751,13 @@ Public Partial Class CommonContext
     ''' </summary>
     Public Sub AddToAT_TIME_MANUAL(ByVal aT_TIME_MANUAL As AT_TIME_MANUAL)
         MyBase.AddObject("AT_TIME_MANUAL", aT_TIME_MANUAL)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the SE_CASE_CONFIG EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToSE_CASE_CONFIG(ByVal sE_CASE_CONFIG As SE_CASE_CONFIG)
+        MyBase.AddObject("SE_CASE_CONFIG", sE_CASE_CONFIG)
     End Sub
 
     #End Region
@@ -9680,6 +9701,138 @@ Public Partial Class SE_APP_TEMPLATE_DTL
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="CommonModel", Name:="SE_CASE_CONFIG")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class SE_CASE_CONFIG
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new SE_CASE_CONFIG object.
+    ''' </summary>
+    ''' <param name="cODE_NAME">Initial value of the CODE_NAME property.</param>
+    ''' <param name="cODE_CASE">Initial value of the CODE_CASE property.</param>
+    Public Shared Function CreateSE_CASE_CONFIG(cODE_NAME As Global.System.String, cODE_CASE As Global.System.String) As SE_CASE_CONFIG
+        Dim sE_CASE_CONFIG as SE_CASE_CONFIG = New SE_CASE_CONFIG
+        sE_CASE_CONFIG.CODE_NAME = cODE_NAME
+        sE_CASE_CONFIG.CODE_CASE = cODE_CASE
+        Return sE_CASE_CONFIG
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property CODE_NAME() As Global.System.String
+        Get
+            Return _CODE_NAME
+        End Get
+        Set
+            If (_CODE_NAME <> Value) Then
+                OnCODE_NAMEChanging(value)
+                ReportPropertyChanging("CODE_NAME")
+                _CODE_NAME = StructuralObject.SetValidValue(value, false)
+                ReportPropertyChanged("CODE_NAME")
+                OnCODE_NAMEChanged()
+            End If
+        End Set
+    End Property
+
+    Private _CODE_NAME As Global.System.String
+    Private Partial Sub OnCODE_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property CODE_CASE() As Global.System.String
+        Get
+            Return _CODE_CASE
+        End Get
+        Set
+            OnCODE_CASEChanging(value)
+            ReportPropertyChanging("CODE_CASE")
+            _CODE_CASE = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("CODE_CASE")
+            OnCODE_CASEChanged()
+        End Set
+    End Property
+
+    Private _CODE_CASE As Global.System.String
+    Private Partial Sub OnCODE_CASEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCODE_CASEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DESCRIPTIONS() As Global.System.String
+        Get
+            Return _DESCRIPTIONS
+        End Get
+        Set
+            OnDESCRIPTIONSChanging(value)
+            ReportPropertyChanging("DESCRIPTIONS")
+            _DESCRIPTIONS = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DESCRIPTIONS")
+            OnDESCRIPTIONSChanged()
+        End Set
+    End Property
+
+    Private _DESCRIPTIONS As Global.System.String
+    Private Partial Sub OnDESCRIPTIONSChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDESCRIPTIONSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STATUS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _STATUS
+        End Get
+        Set
+            OnSTATUSChanging(value)
+            ReportPropertyChanging("STATUS")
+            _STATUS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("STATUS")
+            OnSTATUSChanged()
+        End Set
+    End Property
+
+    Private _STATUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSTATUSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSTATUSChanged()
     End Sub
 
     #End Region

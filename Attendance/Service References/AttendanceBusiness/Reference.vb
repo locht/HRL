@@ -25039,6 +25039,12 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckPeriodClose", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckPeriodCloseResponse")>  _
+        Function CheckPeriodClose(ByVal lstEmp As System.Collections.Generic.List(Of Decimal), ByVal startdate As Date, ByVal enddate As Date, ByRef sAction As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/AutoGenCode", ReplyAction:="http://tempuri.org/IAttendanceBusiness/AutoGenCodeResponse")>  _
+        Function AutoGenCode(ByVal firstChar As String, ByVal tableName As String, ByVal colName As String) As String
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckExistInDatabase", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckExistInDatabaseResponse")>  _
         Function CheckExistInDatabase(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal table As AttendanceBusiness.AttendanceCommonTABLE_NAME) As Boolean
         
@@ -25168,6 +25174,12 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_SETUP_SPECIAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_SETUP_SPECIALResponse")>  _
+        Function GetAT_SETUP_SPECIAL(ByVal _filter As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertAT_SETUP_SPECIAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertAT_SETUP_SPECIALResponse")>  _
+        Function InsertAT_SETUP_SPECIAL(ByVal objData As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateAT_SETUP_SPECIAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateAT_SETUP_SPECIALResponse")>  _
         Function ValidateAT_SETUP_SPECIAL(ByVal objData As AttendanceBusiness.AT_SETUP_SPECIALDTO) As Boolean
@@ -25419,11 +25431,11 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_AT011", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_AT011Response")>  _
         Function GET_AT011(ByVal obj As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckPeriodClose", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckPeriodCloseResponse")>  _
-        Function CheckPeriodClose(ByVal lstEmp As System.Collections.Generic.List(Of Decimal), ByVal startdate As Date, ByVal enddate As Date, ByRef sAction As String) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTotalPHEPBU", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTotalPHEPBUResponse")>  _
+        Function GetTotalPHEPBU(ByVal P_EMPLOYEE_ID As Integer, ByVal P_YEAR As Integer, ByVal P_TYPE_LEAVE_ID As Integer) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/AutoGenCode", ReplyAction:="http://tempuri.org/IAttendanceBusiness/AutoGenCodeResponse")>  _
-        Function AutoGenCode(ByVal firstChar As String, ByVal tableName As String, ByVal colName As String) As String
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetPHEPBUCONLAI", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetPHEPBUCONLAIResponse")>  _
+        Function GetPHEPBUCONLAI(ByVal lstEmpID As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO), ByVal _year As System.Nullable(Of Decimal)) As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetLeaveById", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetLeaveByIdResponse")>  _
         Function GetLeaveById(ByVal _id As System.Nullable(Of Decimal)) As AttendanceBusiness.AT_LEAVESHEETDTO
@@ -25511,6 +25523,7 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PORTAL_REG_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SETUP_SPECIALDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SETUP_TIME_EMPDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_TIME_EMPDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TERMINALSDTO)),  _
@@ -25530,10 +25543,10 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.Se_ReportDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ParamDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LEAVESHEETDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_ENTITLEMENTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_COMPENSATORYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LATE_COMBACKOUTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LATE_COMBACKOUTDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_COMPENSATORYDTO))),  _
@@ -25561,7 +25574,6 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.HU_STAFF_RANKDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_HOLIDAY_OBJECTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_HOLIDAY_OBJECTDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.SetUpCodeAttDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.SetUpCodeAttDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PERIODDTO)),  _
@@ -25634,6 +25646,7 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PORTAL_REG_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SETUP_SPECIALDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SETUP_TIME_EMPDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_TIME_EMPDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TERMINALSDTO)),  _
@@ -25653,10 +25666,10 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.Se_ReportDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ParamDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LEAVESHEETDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_ENTITLEMENTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_COMPENSATORYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LATE_COMBACKOUTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LATE_COMBACKOUTDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_COMPENSATORYDTO))),  _
@@ -25684,7 +25697,6 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.HU_STAFF_RANKDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_HOLIDAY_OBJECTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_HOLIDAY_OBJECTDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.SetUpCodeAttDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.SetUpCodeAttDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PERIODDTO)),  _
@@ -25878,12 +25890,6 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteAT_Holiday_Object", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteAT_Holiday_ObjectResponse")>  _
         Function DeleteAT_Holiday_Object(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_SETUP_SPECIAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_SETUP_SPECIALResponse")>  _
-        Function GetAT_SETUP_SPECIAL(ByVal _filter As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertAT_SETUP_SPECIAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertAT_SETUP_SPECIALResponse")>  _
-        Function InsertAT_SETUP_SPECIAL(ByVal objData As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetDataFromOrg", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetDataFromOrgResponse")>  _
         Function GetDataFromOrg(ByVal obj As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
@@ -25898,6 +25904,12 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteSetUpAttEmp", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteSetUpAttEmpResponse")>  _
         Function DeleteSetUpAttEmp(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckValidateMACC", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckValidateMACCResponse")>  _
+        Function CheckValidateMACC(ByVal obj As AttendanceBusiness.SetUpCodeAttDTO) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CheckValidateAPPROVE_DATE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CheckValidateAPPROVE_DATEResponse")>  _
+        Function CheckValidateAPPROVE_DATE(ByVal obj As AttendanceBusiness.SetUpCodeAttDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetOtherListResponse")>  _
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
@@ -26063,6 +26075,7 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PORTAL_REG_DTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SETUP_SPECIALDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SETUP_TIME_EMPDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_TIME_EMPDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TERMINALSDTO)),  _
@@ -26082,10 +26095,10 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.Se_ReportDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ParamDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LEAVESHEETDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_ENTITLEMENTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_COMPENSATORYDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LATE_COMBACKOUTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LATE_COMBACKOUTDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_COMPENSATORYDTO))),  _
@@ -26113,7 +26126,6 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.HU_STAFF_RANKDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_HOLIDAY_OBJECTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_HOLIDAY_OBJECTDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.SetUpCodeAttDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.SetUpCodeAttDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_PERIODDTO)),  _
@@ -26234,12 +26246,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTotalPHEPNAM", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTotalPHEPNAMResponse")>  _
         Function GetTotalPHEPNAM(ByVal P_EMPLOYEE_ID As Integer, ByVal P_YEAR As Integer, ByVal P_TYPE_LEAVE_ID As Integer) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTotalPHEPBU", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTotalPHEPBUResponse")>  _
-        Function GetTotalPHEPBU(ByVal P_EMPLOYEE_ID As Integer, ByVal P_YEAR As Integer, ByVal P_TYPE_LEAVE_ID As Integer) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetPHEPBUCONLAI", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetPHEPBUCONLAIResponse")>  _
-        Function GetPHEPBUCONLAI(ByVal lstEmpID As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO), ByVal _year As System.Nullable(Of Decimal)) As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -26272,6 +26278,14 @@ Namespace AttendanceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function CheckPeriodClose(ByVal lstEmp As System.Collections.Generic.List(Of Decimal), ByVal startdate As Date, ByVal enddate As Date, ByRef sAction As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CheckPeriodClose
+            Return MyBase.Channel.CheckPeriodClose(lstEmp, startdate, enddate, sAction)
+        End Function
+        
+        Public Function AutoGenCode(ByVal firstChar As String, ByVal tableName As String, ByVal colName As String) As String Implements AttendanceBusiness.IAttendanceBusiness.AutoGenCode
+            Return MyBase.Channel.AutoGenCode(firstChar, tableName, colName)
+        End Function
         
         Public Function CheckExistInDatabase(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal table As AttendanceBusiness.AttendanceCommonTABLE_NAME) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CheckExistInDatabase
             Return MyBase.Channel.CheckExistInDatabase(lstID, table)
@@ -26443,6 +26457,14 @@ Namespace AttendanceBusiness
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS
             Return MyBase.Channel.GET_PE_ASSESS_MESS(EMP)
+        End Function
+        
+        Public Function GetAT_SETUP_SPECIAL(ByVal _filter As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetAT_SETUP_SPECIAL
+            Return MyBase.Channel.GetAT_SETUP_SPECIAL(_filter, PageIndex, PageSize, Total, Sorts)
+        End Function
+        
+        Public Function InsertAT_SETUP_SPECIAL(ByVal objData As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertAT_SETUP_SPECIAL
+            Return MyBase.Channel.InsertAT_SETUP_SPECIAL(objData, log, gID)
         End Function
         
         Public Function ValidateAT_SETUP_SPECIAL(ByVal objData As AttendanceBusiness.AT_SETUP_SPECIALDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ValidateAT_SETUP_SPECIAL
@@ -26777,12 +26799,12 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GET_AT011(obj, log)
         End Function
         
-        Public Function CheckPeriodClose(ByVal lstEmp As System.Collections.Generic.List(Of Decimal), ByVal startdate As Date, ByVal enddate As Date, ByRef sAction As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CheckPeriodClose
-            Return MyBase.Channel.CheckPeriodClose(lstEmp, startdate, enddate, sAction)
+        Public Function GetTotalPHEPBU(ByVal P_EMPLOYEE_ID As Integer, ByVal P_YEAR As Integer, ByVal P_TYPE_LEAVE_ID As Integer) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTotalPHEPBU
+            Return MyBase.Channel.GetTotalPHEPBU(P_EMPLOYEE_ID, P_YEAR, P_TYPE_LEAVE_ID)
         End Function
         
-        Public Function AutoGenCode(ByVal firstChar As String, ByVal tableName As String, ByVal colName As String) As String Implements AttendanceBusiness.IAttendanceBusiness.AutoGenCode
-            Return MyBase.Channel.AutoGenCode(firstChar, tableName, colName)
+        Public Function GetPHEPBUCONLAI(ByVal lstEmpID As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO), ByVal _year As System.Nullable(Of Decimal)) As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetPHEPBUCONLAI
+            Return MyBase.Channel.GetPHEPBUCONLAI(lstEmpID, _year)
         End Function
         
         Public Function GetLeaveById(ByVal _id As System.Nullable(Of Decimal)) As AttendanceBusiness.AT_LEAVESHEETDTO Implements AttendanceBusiness.IAttendanceBusiness.GetLeaveById
@@ -27117,14 +27139,6 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.DeleteAT_Holiday_Object(lstID)
         End Function
         
-        Public Function GetAT_SETUP_SPECIAL(ByVal _filter As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SETUP_SPECIALDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetAT_SETUP_SPECIAL
-            Return MyBase.Channel.GetAT_SETUP_SPECIAL(_filter, PageIndex, PageSize, Total, Sorts)
-        End Function
-        
-        Public Function InsertAT_SETUP_SPECIAL(ByVal objData As AttendanceBusiness.AT_SETUP_SPECIALDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertAT_SETUP_SPECIAL
-            Return MyBase.Channel.InsertAT_SETUP_SPECIAL(objData, log, gID)
-        End Function
-        
         Public Function GetDataFromOrg(ByVal obj As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GetDataFromOrg
             Return MyBase.Channel.GetDataFromOrg(obj, log)
         End Function
@@ -27143,6 +27157,14 @@ Namespace AttendanceBusiness
         
         Public Function DeleteSetUpAttEmp(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteSetUpAttEmp
             Return MyBase.Channel.DeleteSetUpAttEmp(lstID)
+        End Function
+        
+        Public Function CheckValidateMACC(ByVal obj As AttendanceBusiness.SetUpCodeAttDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CheckValidateMACC
+            Return MyBase.Channel.CheckValidateMACC(obj)
+        End Function
+        
+        Public Function CheckValidateAPPROVE_DATE(ByVal obj As AttendanceBusiness.SetUpCodeAttDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CheckValidateAPPROVE_DATE
+            Return MyBase.Channel.CheckValidateAPPROVE_DATE(obj)
         End Function
         
         Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetOtherList
@@ -27455,14 +27477,6 @@ Namespace AttendanceBusiness
         
         Public Function GetTotalPHEPNAM(ByVal P_EMPLOYEE_ID As Integer, ByVal P_YEAR As Integer, ByVal P_TYPE_LEAVE_ID As Integer) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTotalPHEPNAM
             Return MyBase.Channel.GetTotalPHEPNAM(P_EMPLOYEE_ID, P_YEAR, P_TYPE_LEAVE_ID)
-        End Function
-        
-        Public Function GetTotalPHEPBU(ByVal P_EMPLOYEE_ID As Integer, ByVal P_YEAR As Integer, ByVal P_TYPE_LEAVE_ID As Integer) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTotalPHEPBU
-            Return MyBase.Channel.GetTotalPHEPBU(P_EMPLOYEE_ID, P_YEAR, P_TYPE_LEAVE_ID)
-        End Function
-        
-        Public Function GetPHEPBUCONLAI(ByVal lstEmpID As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO), ByVal _year As System.Nullable(Of Decimal)) As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetPHEPBUCONLAI
-            Return MyBase.Channel.GetPHEPBUCONLAI(lstEmpID, _year)
         End Function
     End Class
 End Namespace

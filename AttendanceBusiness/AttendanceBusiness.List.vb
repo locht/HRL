@@ -49,6 +49,25 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CheckValidateMACC(ByVal obj As SetUpCodeAttDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.CheckValidateMACC
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.CheckValidateMACC(obj)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function CheckValidateAPPROVE_DATE(ByVal obj As SetUpCodeAttDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.CheckValidateAPPROVE_DATE
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.CheckValidateAPPROVE_DATE(obj)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #Region "HOLIDAY"
 
         Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,

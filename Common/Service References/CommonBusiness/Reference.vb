@@ -3014,6 +3014,9 @@ Namespace CommonBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3026,6 +3029,19 @@ Namespace CommonBusiness
             End Get
             Set
                 Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CODE() As String
+            Get
+                Return Me.CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CODEField, value) <> true) Then
+                    Me.CODEField = value
+                    Me.RaisePropertyChanged("CODE")
+                End If
             End Set
         End Property
         
@@ -8117,6 +8133,9 @@ Namespace CommonBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="CommonBusiness.ICommonBusiness")>  _
     Public Interface ICommonBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLearningLevel", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse")>  _
+        Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetHU_CompetencyListResponse")>  _
         Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable
         
@@ -8493,6 +8512,9 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetATOrgPeriod", ReplyAction:="http://tempuri.org/ICommonBusiness/GetATOrgPeriodResponse")>  _
         Function GetATOrgPeriod(ByVal periodID As Decimal) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetCaseConfigByID", ReplyAction:="http://tempuri.org/ICommonBusiness/GetCaseConfigByIDResponse")>  _
+        Function GetCaseConfigByID(ByVal codename As String) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetSignList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetSignListResponse")>  _
         Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO)
         
@@ -8812,9 +8834,6 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetClassification", ReplyAction:="http://tempuri.org/ICommonBusiness/GetClassificationResponse")>  _
         Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLearningLevel", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse")>  _
-        Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -8847,6 +8866,10 @@ Namespace CommonBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetLearningLevel
+            Return MyBase.Channel.GetLearningLevel(sLang, isBlank)
+        End Function
         
         Public Function GetHU_CompetencyList(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetHU_CompetencyList
             Return MyBase.Channel.GetHU_CompetencyList(isBlank)
@@ -9150,6 +9173,10 @@ Namespace CommonBusiness
         
         Public Function GetATOrgPeriod(ByVal periodID As Decimal) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetATOrgPeriod
             Return MyBase.Channel.GetATOrgPeriod(periodID)
+        End Function
+        
+        Public Function GetCaseConfigByID(ByVal codename As String) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetCaseConfigByID
+            Return MyBase.Channel.GetCaseConfigByID(codename)
         End Function
         
         Public Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO) Implements CommonBusiness.ICommonBusiness.GetSignList
@@ -9478,10 +9505,6 @@ Namespace CommonBusiness
         
         Public Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetClassification
             Return MyBase.Channel.GetClassification(isBlank)
-        End Function
-        
-        Public Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetLearningLevel
-            Return MyBase.Channel.GetLearningLevel(sLang, isBlank)
         End Function
     End Class
 End Namespace

@@ -38468,4 +38468,12 @@ Xin cám ơn!
       <string>Tên tính năng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLSETUPCODEATTEMP</string>
+    </Key>
+    <Value>
+      <string>Thiết lập mã chấm công</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

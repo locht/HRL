@@ -1164,7 +1164,7 @@ Partial Class ProfileRepository
         Dim orgTree As OrganizationTreeDTO
         Try
             orgTree = (From p In Context.HUV_ORGANIZATION
-                       From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID4).DefaultIfEmpty
+                       From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID5).DefaultIfEmpty
                        From E In Context.HU_EMPLOYEE.Where(Function(F) F.ID = o.REPRESENTATIVE_ID).DefaultIfEmpty
                        Where p.ID = ID
                         Select New OrganizationTreeDTO With {.ID = p.ID,

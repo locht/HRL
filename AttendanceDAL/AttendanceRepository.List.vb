@@ -142,6 +142,35 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+
+    Public Function CheckValidateMACC(ByVal obj As SetUpCodeAttDTO) As Boolean
+        Try
+            Dim query = (From p In Context.AT_SETUP_ATT_EMP Where p.MACHINE_ID = obj.MACHINE_ID And p.CODE_ATT = obj.CODE_ATT And (p.ID <> obj.ID OrElse obj.ID Is Nothing)).ToList()
+            If query.Count = 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CheckValidateAPPROVE_DATE(ByVal obj As SetUpCodeAttDTO) As Boolean
+        Try
+            Dim query = (From p In Context.AT_SETUP_ATT_EMP Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID And p.CODE_ATT = obj.CODE_ATT And p.APPROVE_DATE <> obj.APPROVE_DATE And (p.ID = obj.ID OrElse obj.ID Is Nothing)).ToList()
+            If query.Count = 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
 #Region "List Holiday"
     Public Function GetHoliday(ByVal _filter As AT_HOLIDAYDTO,
                                  Optional ByVal PageIndex As Integer = 0,
