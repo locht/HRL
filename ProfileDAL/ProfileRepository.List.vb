@@ -239,13 +239,63 @@ Partial Class ProfileRepository
 #End Region
 
 #Region "TitleConcurrent"
+    Public Function GetTitleConcurrent1(ByVal _filter As TitleConcurrentDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of TitleConcurrentDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+           
+            Dim query = From p In Context.HU_TITLE_CONCURRENT
+                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = p.ORG_ID And
+                                                                       f.USERNAME = log.Username.ToUpper)
+                        Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID
+                        Select New TitleConcurrentDTO With {
+                                   .ID = p.ID,
+                                   .ORG_ID = p.ORG_ID,
+                                   .ORG_NAME = org.NAME_VN,
+                                   .TITLE_ID = p.TITLE_ID,
+                                   .NAME = p.NAME,
+                                   .DECISION_NO = p.DECISION_NO,
+                                   .EFFECT_DATE = p.EFFECT_DATE,
+                                   .EXPIRE_DATE = p.EXPIRE_DATE,
+                                   .NOTE = p.NOTE,
+                                   .CREATED_DATE = p.CREATED_DATE}
+            Dim lst = query
+            If _filter.NAME <> "" Then
+                lst = lst.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
+            End If
+            If _filter.EFFECT_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.EFFECT_DATE = _filter.EFFECT_DATE)
+            End If
+            If _filter.EXPIRE_DATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.EXPIRE_DATE = _filter.EXPIRE_DATE)
+            End If
 
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
     Public Function GetTitleConcurrent(ByVal _filter As TitleConcurrentDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TitleConcurrentDTO)
 
         Try
+
             Dim query = From p In Context.HU_TITLE_CONCURRENT
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         Where p.EMPLOYEE_ID = _filter.EMPLOYEE_ID
@@ -296,6 +346,7 @@ Partial Class ProfileRepository
             objTitleConcurrentData.EXPIRE_DATE = objTitleConcurrent.EXPIRE_DATE
             objTitleConcurrentData.EMPLOYEE_ID = objTitleConcurrent.EMPLOYEE_ID
             objTitleConcurrentData.NOTE = objTitleConcurrent.NOTE
+            objTitleConcurrentData.DECISION_NO = objTitleConcurrent.DECISION_NO
             Context.HU_TITLE_CONCURRENT.AddObject(objTitleConcurrentData)
             Context.SaveChanges(log)
             gID = objTitleConcurrentData.ID
@@ -319,6 +370,7 @@ Partial Class ProfileRepository
             objTitleConcurrentData.EXPIRE_DATE = objTitleConcurrent.EXPIRE_DATE
             objTitleConcurrentData.EMPLOYEE_ID = objTitleConcurrent.EMPLOYEE_ID
             objTitleConcurrentData.NOTE = objTitleConcurrent.NOTE
+            objTitleConcurrentData.DECISION_NO = objTitleConcurrent.DECISION_NO
             Context.SaveChanges(log)
             gID = objTitleConcurrentData.ID
             Return True
