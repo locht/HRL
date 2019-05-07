@@ -107,7 +107,7 @@
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="TERMINAL_CODE,TERMINAL_NAME,ADDRESS_PLACE,TERMINAL_IP,PASS,PORT,NOTE">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="TERMINAL_CODE,TERMINAL_NAME,ADDRESS_PLACE,TERMINAL_IP,PASS,PORT,NOTE,TERMINAL_TYPE,TERMINAL_TYPE_NAME">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
