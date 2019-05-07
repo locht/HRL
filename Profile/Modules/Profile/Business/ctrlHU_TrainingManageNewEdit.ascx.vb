@@ -247,7 +247,9 @@ Public Class ctrlHU_TrainingManageNewEdit
                         objContract.PROGRAM_TRAINING = txtProgramTraining.Text
                         objContract.CERTIFICATE = txtCertificate.Text
                         objContract.UNIT = txtUnit.Text
-                        objContract.COST = txtCost.Text
+                        If txtCost.Text<>"" Then
+                            objContract.COST = txtCost.Text
+                        End If
                         objContract.RESULT_TRAIN = txtResultTraining.Text
                         objContract.REMARK = txtRemark.Text
                         objContract.DEGREE_EXPIRE_DATE = rdDegreeExpire.SelectedDate

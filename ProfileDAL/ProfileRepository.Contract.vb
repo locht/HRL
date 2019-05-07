@@ -356,9 +356,9 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_TRAININGMANAGE
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
-                       From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
-                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINING_ID)
-                       From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
+                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TRAINING_ID).DefaultIfEmpty
+                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
                                                                   f.USERNAME = log.Username.ToUpper)
             ' lọc điều kiện
             Dim dateNow = Date.Now.Date
