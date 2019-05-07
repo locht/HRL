@@ -402,7 +402,11 @@ Public Class CommonView
                     rColCheck = New GridCheckBoxColumn()
                     rg.MasterTableView.Columns.Add(rColCheck)
                     rColCheck.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
-                    rColCheck.HeaderStyle.Width = 30
+                    rColCheck.DataField = row.Field(Of String)("ID").Trim()
+                    If IsNumeric(row("Width")) Then
+                        rColCheck.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
+                        'rColCheck.FilterControlWidth = Integer.Parse(row("Width").ToString())
+                    End If
                     rColCheck.HeaderText = Translate(row.Field(Of String)("Name").Trim())
                     rColCheck.HeaderTooltip = (row.Field(Of String)("Name").Trim())
                     rColCheck.ItemStyle.HorizontalAlign = HorizontalAlign.Center
