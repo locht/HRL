@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d0ec2415-10ed-4906-99d9-517feafcee88")>
+<Assembly: EdmSchemaAttribute("aed35a86-1f31-42df-bbd6-043fc88e3ed7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -43977,6 +43977,31 @@ Public Partial Class HU_TITLE_CONCURRENT
     End Sub
 
     Private Partial Sub OnTITLE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DECISION_NO() As Global.System.String
+        Get
+            Return _DECISION_NO
+        End Get
+        Set
+            OnDECISION_NOChanging(value)
+            ReportPropertyChanging("DECISION_NO")
+            _DECISION_NO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("DECISION_NO")
+            OnDECISION_NOChanged()
+        End Set
+    End Property
+
+    Private _DECISION_NO As Global.System.String
+    Private Partial Sub OnDECISION_NOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnDECISION_NOChanged()
     End Sub
 
     #End Region
