@@ -57,8 +57,8 @@
                         <HeaderStyle Width="10%" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="Thời gian thi hành kỷ luật" DataField="PERFORM_DATE" UniqueName="PERFORM_DATE"
-                        SortExpression="PERFORM_DATE" DataFormatString="{0:###,###,###,##0}" ShowFilterIcon="false"
+                    <tlk:GridBoundColumn HeaderText="Thời gian thi hành kỷ luật" DataField="PERFORM_TIME" UniqueName="PERFORM_TIME"
+                        SortExpression="PERFORM_TIME" ShowFilterIcon="false"
                         AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo" FilterControlWidth="100%">
                         <HeaderStyle Width="10%" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Right" />
