@@ -2046,6 +2046,8 @@ Namespace ProfileBusiness.ServiceContracts
         ''' <returns></returns>
         ''' <remarks></remarks>
         <OperationContract()>
+        Function GetConcurrentlyProccess(ByVal _empId As Decimal) As List(Of TitleConcurrentDTO)
+        <OperationContract()>
         Function GetDisciplineProccess(ByVal _empId As Decimal) As List(Of DisciplineDTO)
         ''' <summary>
         ''' Lấy quá trình bảo hiểm

@@ -171,6 +171,7 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDashboardPortalSixCell.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBEmployeeReg.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TranningEvaluate.ascx" />
@@ -662,6 +663,13 @@
     </Compile>
     <Compile Include="Modules\Competency\Business\ctrlHU_CompetencyAss.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyAss.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx.designer.vb">
+      <DependentUpon>ctrlHU_EmpDtlConcurrently.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx.vb">
+      <DependentUpon>ctrlHU_EmpDtlConcurrently.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx.designer.vb">

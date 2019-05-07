@@ -368,7 +368,16 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-
+        Public Function GetConcurrentlyProccess(ByVal _empId As System.Decimal) As List(Of ProfileDAL.TitleConcurrentDTO) _
+            Implements ServiceContracts.IProfileBusiness.GetConcurrentlyProccess
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetConcurrentlyProccess(_empId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetDisciplineProccess(ByVal _empId As System.Decimal) As List(Of ProfileDAL.DisciplineDTO) _
             Implements ServiceContracts.IProfileBusiness.GetDisciplineProccess
             Using rep As New ProfileRepository

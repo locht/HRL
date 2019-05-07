@@ -795,7 +795,7 @@ Partial Class ProfileRepository
             objEmpData.LEVEL_MANAGER = objEmp.LEVEL_MANAGER
             objEmpData.STAFF_RANK_ID = objEmp.STAFF_RANK_ID
             objEmpData.ITIME_ID = objEmp.ITIME_ID
-            objEmpData.PA_OBJECT_SALARY_ID = 1 
+            objEmpData.PA_OBJECT_SALARY_ID = 1
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 
@@ -843,7 +843,7 @@ Partial Class ProfileRepository
                 objEmpCVData.HOME_PHONE = objEmpCV.HOME_PHONE
                 objEmpCVData.MOBILE_PHONE = objEmpCV.MOBILE_PHONE
                 objEmpCVData.ID_NO = objEmpCV.ID_NO
-                
+
                 objEmpCVData.ID_DATE = objEmpCV.ID_DATE
                 objEmpCVData.ID_PLACE = objEmpCV.ID_PLACE
                 objEmpCVData.PASS_NO = objEmpCV.PASS_NO
@@ -2484,6 +2484,29 @@ Partial Class ProfileRepository
                      .SIGN_DATE = p.SIGN_DATE,
                      .DISCIPLINE_REASON_NAME = reason.NAME_VN,
                      .PERFORM_TIME = p.PERFORM_TIME}).ToList()
+            Return query
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetConcurrentlyProccess(ByVal _empId As Decimal) As List(Of TitleConcurrentDTO)
+        Try
+            Dim query As List(Of TitleConcurrentDTO)
+            query = (From p In Context.HU_TITLE_CONCURRENT
+                   From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                     Where p.EMPLOYEE_ID = _empId Order By p.EFFECT_DATE
+                     Select New TitleConcurrentDTO With {
+                      .ID = p.ID,
+                                   .ORG_ID = p.ORG_ID,
+                                   .ORG_NAME = org.NAME_VN,
+                                   .TITLE_ID = p.TITLE_ID,
+                                   .NAME = p.NAME,
+                                   .DECISION_NO = p.DECISION_NO,
+                                   .EFFECT_DATE = p.EFFECT_DATE,
+                                   .EXPIRE_DATE = p.EXPIRE_DATE,
+                                   .NOTE = p.NOTE,
+                                   .CREATED_DATE = p.CREATED_DATE}).ToList()
             Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")

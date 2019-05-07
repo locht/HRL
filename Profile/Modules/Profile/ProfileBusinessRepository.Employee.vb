@@ -364,6 +364,19 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+#Region "quá trình kiêm nhiệm"
+    Public Function GetConcurrentlyProccess(ByVal _empId As Decimal) As List(Of TitleConcurrentDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetConcurrentlyProccess(_empId)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
+
+
     ''' <summary>
     ''' Lấy quá trình kỷ luật
     ''' </summary>
