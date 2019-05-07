@@ -253,8 +253,8 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     rdReceiveDegree.SelectedDate = Nothing
                     EnabledGridNotPostback(rgEmployeeTrain, True)
                     EnableControlAll(False, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
+                    EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_EDIT
-
                     EnabledGridNotPostback(rgEmployeeTrain, False)
                     EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
                 Case CommonMessage.STATE_DELETE
@@ -274,6 +274,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     End If
                     rep.Dispose()
             End Select
+            Me.Send(CurrentState)
             ChangeToolbarState()
         Catch ex As Exception
             Throw ex
