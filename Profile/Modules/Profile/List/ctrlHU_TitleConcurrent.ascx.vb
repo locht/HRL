@@ -70,6 +70,10 @@ Public Class ctrlHU_TitleConcurrent
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgMain)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -137,6 +141,13 @@ Public Class ctrlHU_TitleConcurrent
         Dim _filter As New TitleConcurrentDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            If ctrlOrg.CurrentValue Is Nothing Then
+                rgMain.DataSource = New List(Of TrainningManageDTO)
+                Exit Function
+            End If
+            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
+                                            .IS_DISSOLVE = ctrlOrg.IsDissolve}
+
             Dim startTime As DateTime = DateTime.UtcNow
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgMain, _filter)
@@ -144,16 +155,16 @@ Public Class ctrlHU_TitleConcurrent
             _filter.EMPLOYEE_ID = EmployeeID
             If isFull Then
                 If Sorts IsNot Nothing Then
-                    Return rep.GetTitleConcurrent(_filter, Sorts).ToTable()
+                    Return rep.GetTitleConcurrent1(_filter, _param, Sorts).ToTable()
                 Else
-                    Return rep.GetTitleConcurrent(_filter).ToTable()
+                    Return rep.GetTitleConcurrent1(_filter, _param).ToTable()
                 End If
             Else
                 Dim TitleConcurrents As List(Of TitleConcurrentDTO)
                 If Sorts IsNot Nothing Then
-                    TitleConcurrents = rep.GetTitleConcurrent(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows, Sorts)
+                    TitleConcurrents = rep.GetTitleConcurrent1(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows, _param, Sorts)
                 Else
-                    TitleConcurrents = rep.GetTitleConcurrent(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows)
+                    TitleConcurrents = rep.GetTitleConcurrent1(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows, _param)
                 End If
 
                 rgMain.VirtualItemCount = MaximumRows
@@ -181,15 +192,15 @@ Public Class ctrlHU_TitleConcurrent
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote)
+                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo)
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote)
+                    EnableControlAll(False, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo)
 
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote)
+                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo)
 
 
                 Case CommonMessage.STATE_DELETE
@@ -236,6 +247,7 @@ Public Class ctrlHU_TitleConcurrent
             dic.Add("EFFECT_DATE", rdEffectDate)
             dic.Add("EXPIRE_DATE", rdExpireDate)
             dic.Add("NOTE", txtNote)
+            dic.Add("DECISION_NO", txtDecisionNo)
             Utilities.OnClientRowSelectedChanged(rgMain, dic)
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -247,6 +259,19 @@ Public Class ctrlHU_TitleConcurrent
 #End Region
 
 #Region "Event"
+    Private Sub ctrlOrg_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            rgMain.CurrentPageIndex = 0
+            rgMain.MasterTableView.SortExpressions.Clear()
+            rgMain.Rebind()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim objTitleConcurrent As New TitleConcurrentDTO
@@ -258,7 +283,7 @@ Public Class ctrlHU_TitleConcurrent
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(rdExpireDate, rdEffectDate, txtOrgName2, cboTitle, txtNote, hidOrgID)
+                    ClearControlValue(rdExpireDate, rdEffectDate, txtOrgName2, cboTitle, txtNote, hidOrgID, txtDecisionNo)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgMain.SelectedItems.Count = 0 Then
@@ -304,6 +329,7 @@ Public Class ctrlHU_TitleConcurrent
                         objTitleConcurrent.EXPIRE_DATE = rdExpireDate.SelectedDate
                         objTitleConcurrent.EMPLOYEE_ID = EmployeeID
                         objTitleConcurrent.NOTE = txtNote.Text
+                        objTitleConcurrent.DECISION_NO = txtDecisionNo.Text
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTitleConcurrent(objTitleConcurrent, gID) Then
@@ -330,7 +356,7 @@ Public Class ctrlHU_TitleConcurrent
                     End If
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    ClearControlValue(rdExpireDate, rdEffectDate, txtOrgName2, cboTitle, txtNote)
+                    ClearControlValue(rdExpireDate, rdEffectDate, txtOrgName2, cboTitle, txtNote, txtDecisionNo)
                     CurrentState = CommonMessage.STATE_NORMAL
                     Refresh("Cancel")
                     UpdateControlState()
@@ -355,7 +381,7 @@ Public Class ctrlHU_TitleConcurrent
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
-        
+
     End Sub
 
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgMain.NeedDataSource
@@ -370,7 +396,7 @@ Public Class ctrlHU_TitleConcurrent
         End Try
 
     End Sub
-   
+
 
 #End Region
 

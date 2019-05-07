@@ -24,6 +24,10 @@ Namespace AttendanceBusiness.ServiceContracts
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
         Function DeleteSetUpAttEmp(ByVal lstID As List(Of Decimal)) As Boolean
+        <OperationContract()>
+        Function CheckValidateMACC(ByVal obj As SetUpCodeAttDTO) As Boolean
+        <OperationContract()>
+        Function CheckValidateAPPROVE_DATE(ByVal obj As SetUpCodeAttDTO) As Boolean
 #Region "Get Data Combobox"
 
         <OperationContract()>

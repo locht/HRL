@@ -90,10 +90,16 @@ Partial Public Class AttendanceRepository
 
     Public Function InsertSetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,
                                     ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objData As New SetUpCodeAttDTO
+        Dim objData As New AT_SETUP_ATT_EMP
         Dim iCount As Integer = 0
         Try
             objData.ID = Utilities.GetNextSequence(Context, Context.AT_SETUP_ATT_EMP.EntitySet.Name)
+            objData.APPROVE_DATE = objValue.APPROVE_DATE
+            objData.EMPLOYEE_ID = objValue.EMPLOYEE_ID
+            objData.MACHINE_ID = objValue.MACHINE_ID
+            objData.CODE_ATT = objValue.CODE_ATT
+            objData.NOTE = objValue.NOTE
+            Context.AT_SETUP_ATT_EMP.AddObject(objData)
             Context.SaveChanges(log)
             gID = objData.ID
             Return True
@@ -107,6 +113,11 @@ Partial Public Class AttendanceRepository
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Try
             Dim objData = (From p In Context.AT_SETUP_ATT_EMP Where p.ID = objValue.ID).SingleOrDefault
+            objData.APPROVE_DATE = objValue.APPROVE_DATE
+            objData.EMPLOYEE_ID = objValue.EMPLOYEE_ID
+            objData.MACHINE_ID = objValue.MACHINE_ID
+            objData.CODE_ATT = objValue.CODE_ATT
+            objData.NOTE = objValue.NOTE
             Context.SaveChanges(log)
             gID = objData.ID
             Return True
@@ -125,6 +136,35 @@ Partial Public Class AttendanceRepository
             Next
             Context.SaveChanges()
             Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+
+    Public Function CheckValidateMACC(ByVal obj As SetUpCodeAttDTO) As Boolean
+        Try
+            Dim query = (From p In Context.AT_SETUP_ATT_EMP Where p.MACHINE_ID = obj.MACHINE_ID And p.CODE_ATT = obj.CODE_ATT And (p.ID <> obj.ID OrElse obj.ID Is Nothing)).ToList()
+            If query.Count = 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CheckValidateAPPROVE_DATE(ByVal obj As SetUpCodeAttDTO) As Boolean
+        Try
+            Dim query = (From p In Context.AT_SETUP_ATT_EMP Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID And p.CODE_ATT = obj.CODE_ATT And p.APPROVE_DATE <> obj.APPROVE_DATE And (p.ID = obj.ID OrElse obj.ID Is Nothing)).ToList()
+            If query.Count = 0 Then
+                Return True
+            Else
+                Return False
+            End If
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex

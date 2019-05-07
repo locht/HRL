@@ -239,6 +239,15 @@ Partial Public Class ctrlSetUpCodeAttEmp
     Protected WithEvents reqCODE_ATT As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''cvaCODE_ATT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvaCODE_ATT As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''lbAPPROVE_DATE control.
     '''</summary>
     '''<remarks>
@@ -264,6 +273,15 @@ Partial Public Class ctrlSetUpCodeAttEmp
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqAPPROVE_DATE As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''cvaAPPROVE_DATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvaAPPROVE_DATE As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lbNOTE control.
@@ -309,6 +327,15 @@ Partial Public Class ctrlSetUpCodeAttEmp
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
+
+    '''<summary>
+    '''phFindEmployee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents phFindEmployee As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''RadCodeBlock1 control.

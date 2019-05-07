@@ -2070,6 +2070,7 @@ Partial Public Class AttendanceRepository
                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
                                        .ORG_ID = p.e.ORG_ID,
                                        .YEAR = p.p.YEAR,
+                                       .JOIN_DATE = p.p.JOIN_DATE,
                                        .YEAR_NB = p.p.YEAR_NB,
                                        .YEAR_ENTITLEMENT = p.p.YEAR_ENTITLEMENT,
                                        .STAFF_RANK_NAME = p.c.NAME,
@@ -2208,6 +2209,7 @@ Partial Public Class AttendanceRepository
                                        .STAFF_RANK_NAME = p.c.NAME,
                                        .ADJUST_MONTH_TN = p.p.ADJUST_MONTH_TN,
                                        .REMARK_TN = p.p.REMARK_TN,
+                                       .JOIN_DATE = p.p.JOIN_DATE,
                                        .ADJUST_ENTITLEMENT = p.p.ADJUST_ENTITLEMENT,
                                        .ADJUST_MONTH_ENTITLEMENT = p.p.ADJUST_MONTH_ENTITLEMENT,
                                        .REMARK_ENTITLEMENT = p.p.REMARK_ENTITLEMENT,
@@ -2270,6 +2272,7 @@ Partial Public Class AttendanceRepository
                     obj.MONTH_EXTENSION_NB = objDelareEntitlementNB.MONTH_EXTENSION_NB
                     obj.COM_PAY = objDelareEntitlementNB.COM_PAY
                     obj.ENT_PAY = objDelareEntitlementNB.ENT_PAY
+                    obj.JOIN_DATE = objDelareEntitlementNB.JOIN_DATE
                 Else
                     Dim objDelareEntitlementNBData As New AT_DECLARE_ENTITLEMENT
                     objDelareEntitlementNBData.ID = Utilities.GetNextSequence(Context, Context.AT_DECLARE_ENTITLEMENT.EntitySet.Name)
@@ -2290,6 +2293,7 @@ Partial Public Class AttendanceRepository
                     objDelareEntitlementNBData.MONTH_EXTENSION_NB = objDelareEntitlementNB.MONTH_EXTENSION_NB
                     objDelareEntitlementNBData.COM_PAY = objDelareEntitlementNB.COM_PAY
                     objDelareEntitlementNBData.ENT_PAY = objDelareEntitlementNB.ENT_PAY
+                    objDelareEntitlementNBData.JOIN_DATE = objDelareEntitlementNB.JOIN_DATE
                     Context.AT_DECLARE_ENTITLEMENT.AddObject(objDelareEntitlementNBData)
                 End If
                 Context.SaveChanges(log)
@@ -2444,6 +2448,7 @@ Partial Public Class AttendanceRepository
                 obj.MONTH_EXTENSION_NB = objDelareEntitlementNB.MONTH_EXTENSION_NB
                 obj.COM_PAY = objDelareEntitlementNB.COM_PAY
                 obj.ENT_PAY = objDelareEntitlementNB.ENT_PAY
+                obj.JOIN_DATE = objDelareEntitlementNB.JOIN_DATE
             Else
                 Return False
             End If

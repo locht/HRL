@@ -117,6 +117,7 @@ Public Class ctrlInsArisingManual
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             If Not IsPostBack Then
+                getSE_CASE_CONFIG()
                 ViewConfig(RadPane1)
                 'GirdConfig(rgGrid)
             End If
@@ -878,7 +879,15 @@ Public Class ctrlInsArisingManual
 
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of Common.CommonBusiness.EmployeePopupFindDTO)
-        'Dim rep As New AttendanceRepository
+        'LAY THONG TIN CONFIG CASE :
+        getSE_CASE_CONFIG()
+        Dim Status As Boolean = True
+        If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
+            Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlInsArisingManual_case1" + "'")
+            If ROWS IsNot Nothing AndAlso ROWS.Count > 0 Then
+                Status = CBool(ROWS(0)("STATUS"))
+            End If
+        End If
         Try
             Dim a As Object = ctrlFindEmployeePopup.SelectedEmployee
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of Common.CommonBusiness.EmployeePopupFindDTO))
@@ -886,11 +895,14 @@ Public Class ctrlInsArisingManual
                 Dim item = lstCommonEmployee(0)
                 Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetEmpInfo(item.EMPLOYEE_ID, 0)
                 If (Not (lstSource Is Nothing) AndAlso lstSource.Rows.Count > 0) Then
-                    If lstSource.Rows(0)("CHECK_EMP_INFOR").ToString() = "" Then 'nhân viên đó không tham gia bảo hiểm
-                        btnSearchEmp.Focus()
-                        ShowMessage("Nhân viên đã chọn không có thông tin bảo hiểm. Vui lòng chọn khác", NotifyType.Warning, 10)
-                        Exit Sub
+                    If Status <> True Then
+                        If lstSource.Rows(0)("CHECK_EMP_INFOR").ToString() = "" Then 'nhân viên đó không tham gia bảo hiểm
+                            btnSearchEmp.Focus()
+                            ShowMessage("Nhân viên đã chọn không có thông tin bảo hiểm. Vui lòng chọn khác", NotifyType.Warning, 10)
+                            Exit Sub
+                        End If
                     End If
+                    
                     txtEMPLOYEE_ID.Text = lstSource.Rows(0)("EMPLOYEE_ID")
                     InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("VN_FULLNAME"))
                     InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))

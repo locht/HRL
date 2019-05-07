@@ -1662,6 +1662,7 @@
             <Property Name="MONTH_EXTENSION_NB" Type="number" Nullable="true" Precision="38" />
             <Property Name="COM_PAY" Type="number" Nullable="true" Precision="38" />
             <Property Name="ENT_PAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="JOIN_DATE" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_PROJECT">
             <Key>
@@ -3958,6 +3959,7 @@
           <Property Type="Decimal" Name="MONTH_EXTENSION_NB" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="COM_PAY" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="ENT_PAY" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="JOIN_DATE" />
         </EntityType>
         <EntityType Name="AT_PROJECT">
           <Key>
@@ -5867,6 +5869,7 @@
                     <ScalarProperty Name="MONTH_EXTENSION_NB" ColumnName="MONTH_EXTENSION_NB" />
                     <ScalarProperty Name="COM_PAY" ColumnName="COM_PAY" />
                     <ScalarProperty Name="ENT_PAY" ColumnName="ENT_PAY" />
+                    <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -6336,7 +6339,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.AT_COMPENSATORY" Width="1.5" PointX="4.625" PointY="16.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ACTION_LOG" Width="1.5" PointX="6.625" PointY="16.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_DECLARE_ENTITLEMENT" Width="1.5" PointX="8.625" PointY="16.5" Height="0.40000000000000568" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_DECLARE_ENTITLEMENT" Width="2.125" PointX="7.75" PointY="15.625" Height="5.8263151041666674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT" Width="1.5" PointX="13.25" PointY="16.5" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_TITLE" Width="1.5" PointX="19.125" PointY="15.625" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_EMP" Width="1.5" PointX="18.875" PointY="14.375" Height="3.5186979166666674" />

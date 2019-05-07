@@ -18,6 +18,389 @@ Namespace ProfileBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ImportCommendDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class ImportCommendDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CALCULATE_DATAField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMMEND_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private COMMEND_OBJField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FIELD_DATA_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FIELD_DATE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FULLNAME_VNField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_NOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IMPORT_VALUEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As Date
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOTEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAMEField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CALCULATE_DATA() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CALCULATE_DATAField
+            End Get
+            Set
+                If (Me.CALCULATE_DATAField.Equals(value) <> true) Then
+                    Me.CALCULATE_DATAField = value
+                    Me.RaisePropertyChanged("CALCULATE_DATA")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMMEND_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.COMMEND_DATEField
+            End Get
+            Set
+                If (Me.COMMEND_DATEField.Equals(value) <> true) Then
+                    Me.COMMEND_DATEField = value
+                    Me.RaisePropertyChanged("COMMEND_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property COMMEND_OBJ() As System.Nullable(Of Decimal)
+            Get
+                Return Me.COMMEND_OBJField
+            End Get
+            Set
+                If (Me.COMMEND_OBJField.Equals(value) <> true) Then
+                    Me.COMMEND_OBJField = value
+                    Me.RaisePropertyChanged("COMMEND_OBJ")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As Date
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_CODE() As String
+            Get
+                Return Me.EMPLOYEE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
+                    Me.EMPLOYEE_CODEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMPLOYEE_IDField
+            End Get
+            Set
+                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_IDField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FIELD_DATA_CODE() As String
+            Get
+                Return Me.FIELD_DATA_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FIELD_DATA_CODEField, value) <> true) Then
+                    Me.FIELD_DATA_CODEField = value
+                    Me.RaisePropertyChanged("FIELD_DATA_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FIELD_DATE_NAME() As String
+            Get
+                Return Me.FIELD_DATE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FIELD_DATE_NAMEField, value) <> true) Then
+                    Me.FIELD_DATE_NAMEField = value
+                    Me.RaisePropertyChanged("FIELD_DATE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FULLNAME_VN() As String
+            Get
+                Return Me.FULLNAME_VNField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FULLNAME_VNField, value) <> true) Then
+                    Me.FULLNAME_VNField = value
+                    Me.RaisePropertyChanged("FULLNAME_VN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As Decimal
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_NO() As String
+            Get
+                Return Me.ID_NOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ID_NOField, value) <> true) Then
+                    Me.ID_NOField = value
+                    Me.RaisePropertyChanged("ID_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IMPORT_VALUE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IMPORT_VALUEField
+            End Get
+            Set
+                If (Me.IMPORT_VALUEField.Equals(value) <> true) Then
+                    Me.IMPORT_VALUEField = value
+                    Me.RaisePropertyChanged("IMPORT_VALUE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As Date
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOTE() As String
+            Get
+                Return Me.NOTEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NOTEField, value) <> true) Then
+                    Me.NOTEField = value
+                    Me.RaisePropertyChanged("NOTE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME() As String
+            Get
+                Return Me.ORG_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
+                    Me.ORG_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TITLE_IDField
+            End Get
+            Set
+                If (Me.TITLE_IDField.Equals(value) <> true) Then
+                    Me.TITLE_IDField = value
+                    Me.RaisePropertyChanged("TITLE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME() As String
+            Get
+                Return Me.TITLE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
+                    Me.TITLE_NAMEField = value
+                    Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="CommendLevelDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class CommendLevelDTO
@@ -5595,10 +5978,16 @@ Namespace ProfileBusiness
         Private DECISION_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECISION_NO_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_TYPE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECISION_TYPE_NAME_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DIRECT_MANAGERField As System.Nullable(Of Decimal)
@@ -5623,6 +6012,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPIRE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPIRE_DATE_OLDField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILENAMEField As String
@@ -5718,10 +6110,16 @@ Namespace ProfileBusiness
         Private ORG_NAME3Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_NAME_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PERCENT_SALARYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARK_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ResponsibilityAllowancesField As System.Nullable(Of Decimal)
@@ -5772,13 +6170,22 @@ Namespace ProfileBusiness
         Private SIGN_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_DATE_OLDField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_NAME_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_TITLEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_TITLE_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_IDField As System.Nullable(Of Decimal)
@@ -5818,6 +6225,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_NAME_OLDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_DATEField As System.Nullable(Of Date)
@@ -5981,6 +6391,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECISION_NO_OLD() As String
+            Get
+                Return Me.DECISION_NO_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DECISION_NO_OLDField, value) <> true) Then
+                    Me.DECISION_NO_OLDField = value
+                    Me.RaisePropertyChanged("DECISION_NO_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property DECISION_TYPE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.DECISION_TYPE_IDField
@@ -6002,6 +6425,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DECISION_TYPE_NAMEField, value) <> true) Then
                     Me.DECISION_TYPE_NAMEField = value
                     Me.RaisePropertyChanged("DECISION_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECISION_TYPE_NAME_OLD() As String
+            Get
+                Return Me.DECISION_TYPE_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DECISION_TYPE_NAME_OLDField, value) <> true) Then
+                    Me.DECISION_TYPE_NAME_OLDField = value
+                    Me.RaisePropertyChanged("DECISION_TYPE_NAME_OLD")
                 End If
             End Set
         End Property
@@ -6106,6 +6542,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPIRE_DATE_OLD() As System.Nullable(Of Date)
+            Get
+                Return Me.EXPIRE_DATE_OLDField
+            End Get
+            Set
+                If (Me.EXPIRE_DATE_OLDField.Equals(value) <> true) Then
+                    Me.EXPIRE_DATE_OLDField = value
+                    Me.RaisePropertyChanged("EXPIRE_DATE_OLD")
                 End If
             End Set
         End Property
@@ -6514,6 +6963,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_NAME_OLD() As String
+            Get
+                Return Me.ORG_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_NAME_OLDField, value) <> true) Then
+                    Me.ORG_NAME_OLDField = value
+                    Me.RaisePropertyChanged("ORG_NAME_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property PERCENT_SALARY() As System.Nullable(Of Decimal)
             Get
                 Return Me.PERCENT_SALARYField
@@ -6535,6 +6997,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK_OLD() As String
+            Get
+                Return Me.REMARK_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARK_OLDField, value) <> true) Then
+                    Me.REMARK_OLDField = value
+                    Me.RaisePropertyChanged("REMARK_OLD")
                 End If
             End Set
         End Property
@@ -6748,6 +7223,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_DATE_OLD() As System.Nullable(Of Date)
+            Get
+                Return Me.SIGN_DATE_OLDField
+            End Get
+            Set
+                If (Me.SIGN_DATE_OLDField.Equals(value) <> true) Then
+                    Me.SIGN_DATE_OLDField = value
+                    Me.RaisePropertyChanged("SIGN_DATE_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SIGN_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.SIGN_IDField
@@ -6774,6 +7262,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_NAME_OLD() As String
+            Get
+                Return Me.SIGN_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGN_NAME_OLDField, value) <> true) Then
+                    Me.SIGN_NAME_OLDField = value
+                    Me.RaisePropertyChanged("SIGN_NAME_OLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SIGN_TITLE() As String
             Get
                 Return Me.SIGN_TITLEField
@@ -6782,6 +7283,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SIGN_TITLEField, value) <> true) Then
                     Me.SIGN_TITLEField = value
                     Me.RaisePropertyChanged("SIGN_TITLE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_TITLE_OLD() As String
+            Get
+                Return Me.SIGN_TITLE_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGN_TITLE_OLDField, value) <> true) Then
+                    Me.SIGN_TITLE_OLDField = value
+                    Me.RaisePropertyChanged("SIGN_TITLE_OLD")
                 End If
             End Set
         End Property
@@ -6951,6 +7465,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_NAME_OLD() As String
+            Get
+                Return Me.TITLE_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_NAME_OLDField, value) <> true) Then
+                    Me.TITLE_NAME_OLDField = value
+                    Me.RaisePropertyChanged("TITLE_NAME_OLD")
                 End If
             End Set
         End Property
@@ -22780,389 +23307,6 @@ Namespace ProfileBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="ImportCommendDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class ImportCommendDTO
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CALCULATE_DATAField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private COMMEND_DATEField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private COMMEND_OBJField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CREATED_BYField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CREATED_DATEField As Date
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private CREATED_LOGField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EMPLOYEE_CODEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FIELD_DATA_CODEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FIELD_DATE_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private FULLNAME_VNField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IDField As Decimal
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ID_NOField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IMPORT_VALUEField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MODIFIED_BYField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MODIFIED_DATEField As Date
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MODIFIED_LOGField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private NOTEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ORG_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TITLE_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private TITLE_NAMEField As String
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CALCULATE_DATA() As System.Nullable(Of Decimal)
-            Get
-                Return Me.CALCULATE_DATAField
-            End Get
-            Set
-                If (Me.CALCULATE_DATAField.Equals(value) <> true) Then
-                    Me.CALCULATE_DATAField = value
-                    Me.RaisePropertyChanged("CALCULATE_DATA")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property COMMEND_DATE() As System.Nullable(Of Date)
-            Get
-                Return Me.COMMEND_DATEField
-            End Get
-            Set
-                If (Me.COMMEND_DATEField.Equals(value) <> true) Then
-                    Me.COMMEND_DATEField = value
-                    Me.RaisePropertyChanged("COMMEND_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property COMMEND_OBJ() As System.Nullable(Of Decimal)
-            Get
-                Return Me.COMMEND_OBJField
-            End Get
-            Set
-                If (Me.COMMEND_OBJField.Equals(value) <> true) Then
-                    Me.COMMEND_OBJField = value
-                    Me.RaisePropertyChanged("COMMEND_OBJ")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CREATED_BY() As String
-            Get
-                Return Me.CREATED_BYField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
-                    Me.CREATED_BYField = value
-                    Me.RaisePropertyChanged("CREATED_BY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CREATED_DATE() As Date
-            Get
-                Return Me.CREATED_DATEField
-            End Get
-            Set
-                If (Me.CREATED_DATEField.Equals(value) <> true) Then
-                    Me.CREATED_DATEField = value
-                    Me.RaisePropertyChanged("CREATED_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property CREATED_LOG() As String
-            Get
-                Return Me.CREATED_LOGField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
-                    Me.CREATED_LOGField = value
-                    Me.RaisePropertyChanged("CREATED_LOG")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property EMPLOYEE_CODE() As String
-            Get
-                Return Me.EMPLOYEE_CODEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
-                    Me.EMPLOYEE_CODEField = value
-                    Me.RaisePropertyChanged("EMPLOYEE_CODE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
-            Get
-                Return Me.EMPLOYEE_IDField
-            End Get
-            Set
-                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
-                    Me.EMPLOYEE_IDField = value
-                    Me.RaisePropertyChanged("EMPLOYEE_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FIELD_DATA_CODE() As String
-            Get
-                Return Me.FIELD_DATA_CODEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FIELD_DATA_CODEField, value) <> true) Then
-                    Me.FIELD_DATA_CODEField = value
-                    Me.RaisePropertyChanged("FIELD_DATA_CODE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FIELD_DATE_NAME() As String
-            Get
-                Return Me.FIELD_DATE_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FIELD_DATE_NAMEField, value) <> true) Then
-                    Me.FIELD_DATE_NAMEField = value
-                    Me.RaisePropertyChanged("FIELD_DATE_NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property FULLNAME_VN() As String
-            Get
-                Return Me.FULLNAME_VNField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.FULLNAME_VNField, value) <> true) Then
-                    Me.FULLNAME_VNField = value
-                    Me.RaisePropertyChanged("FULLNAME_VN")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ID() As Decimal
-            Get
-                Return Me.IDField
-            End Get
-            Set
-                If (Me.IDField.Equals(value) <> true) Then
-                    Me.IDField = value
-                    Me.RaisePropertyChanged("ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ID_NO() As String
-            Get
-                Return Me.ID_NOField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ID_NOField, value) <> true) Then
-                    Me.ID_NOField = value
-                    Me.RaisePropertyChanged("ID_NO")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IMPORT_VALUE() As System.Nullable(Of Decimal)
-            Get
-                Return Me.IMPORT_VALUEField
-            End Get
-            Set
-                If (Me.IMPORT_VALUEField.Equals(value) <> true) Then
-                    Me.IMPORT_VALUEField = value
-                    Me.RaisePropertyChanged("IMPORT_VALUE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MODIFIED_BY() As String
-            Get
-                Return Me.MODIFIED_BYField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
-                    Me.MODIFIED_BYField = value
-                    Me.RaisePropertyChanged("MODIFIED_BY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MODIFIED_DATE() As Date
-            Get
-                Return Me.MODIFIED_DATEField
-            End Get
-            Set
-                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
-                    Me.MODIFIED_DATEField = value
-                    Me.RaisePropertyChanged("MODIFIED_DATE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MODIFIED_LOG() As String
-            Get
-                Return Me.MODIFIED_LOGField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
-                    Me.MODIFIED_LOGField = value
-                    Me.RaisePropertyChanged("MODIFIED_LOG")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property NOTE() As String
-            Get
-                Return Me.NOTEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.NOTEField, value) <> true) Then
-                    Me.NOTEField = value
-                    Me.RaisePropertyChanged("NOTE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_ID() As System.Nullable(Of Decimal)
-            Get
-                Return Me.ORG_IDField
-            End Get
-            Set
-                If (Me.ORG_IDField.Equals(value) <> true) Then
-                    Me.ORG_IDField = value
-                    Me.RaisePropertyChanged("ORG_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ORG_NAME() As String
-            Get
-                Return Me.ORG_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
-                    Me.ORG_NAMEField = value
-                    Me.RaisePropertyChanged("ORG_NAME")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TITLE_ID() As System.Nullable(Of Decimal)
-            Get
-                Return Me.TITLE_IDField
-            End Get
-            Set
-                If (Me.TITLE_IDField.Equals(value) <> true) Then
-                    Me.TITLE_IDField = value
-                    Me.RaisePropertyChanged("TITLE_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property TITLE_NAME() As String
-            Get
-                Return Me.TITLE_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
-                    Me.TITLE_NAMEField = value
-                    Me.RaisePropertyChanged("TITLE_NAME")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="HUAllowanceDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class HUAllowanceDTO
@@ -37045,85 +37189,6 @@ Namespace ProfileBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
-     System.Runtime.Serialization.DataContractAttribute(Name:="OrganizationPathDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
-     System.SerializableAttribute()>  _
-    Partial Public Class OrganizationPathDTO
-        Inherits Object
-        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
-        
-        <System.NonSerializedAttribute()>  _
-        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private DESCRIPTION_PATHField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private HIERARCHICAL_PATHField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IDField As System.Nullable(Of Decimal)
-        
-        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
-        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
-            Get
-                Return Me.extensionDataField
-            End Get
-            Set
-                Me.extensionDataField = value
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property DESCRIPTION_PATH() As String
-            Get
-                Return Me.DESCRIPTION_PATHField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.DESCRIPTION_PATHField, value) <> true) Then
-                    Me.DESCRIPTION_PATHField = value
-                    Me.RaisePropertyChanged("DESCRIPTION_PATH")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property HIERARCHICAL_PATH() As String
-            Get
-                Return Me.HIERARCHICAL_PATHField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.HIERARCHICAL_PATHField, value) <> true) Then
-                    Me.HIERARCHICAL_PATHField = value
-                    Me.RaisePropertyChanged("HIERARCHICAL_PATH")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ID() As System.Nullable(Of Decimal)
-            Get
-                Return Me.IDField
-            End Get
-            Set
-                If (Me.IDField.Equals(value) <> true) Then
-                    Me.IDField = value
-                    Me.RaisePropertyChanged("ID")
-                End If
-            End Set
-        End Property
-        
-        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-        
-        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
-            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
-            If (Not (propertyChanged) Is Nothing) Then
-                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
-            End If
-        End Sub
-    End Class
-    
-    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="OrganizationDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class OrganizationDTO
@@ -37811,6 +37876,85 @@ Namespace ProfileBusiness
                 If (Me.U_INSURANCEField.Equals(value) <> true) Then
                     Me.U_INSURANCEField = value
                     Me.RaisePropertyChanged("U_INSURANCE")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="OrganizationPathDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class OrganizationPathDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DESCRIPTION_PATHField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HIERARCHICAL_PATHField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As System.Nullable(Of Decimal)
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DESCRIPTION_PATH() As String
+            Get
+                Return Me.DESCRIPTION_PATHField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DESCRIPTION_PATHField, value) <> true) Then
+                    Me.DESCRIPTION_PATHField = value
+                    Me.RaisePropertyChanged("DESCRIPTION_PATH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HIERARCHICAL_PATH() As String
+            Get
+                Return Me.HIERARCHICAL_PATHField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.HIERARCHICAL_PATHField, value) <> true) Then
+                    Me.HIERARCHICAL_PATHField = value
+                    Me.RaisePropertyChanged("HIERARCHICAL_PATH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
                 End If
             End Set
         End Property
@@ -40321,6 +40465,9 @@ Namespace ProfileBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECISION_NOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -40404,6 +40551,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECISION_NO() As String
+            Get
+                Return Me.DECISION_NOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DECISION_NOField, value) <> true) Then
+                    Me.DECISION_NOField = value
+                    Me.RaisePropertyChanged("DECISION_NO")
                 End If
             End Set
         End Property
@@ -41342,6 +41502,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetImportCommendResponse")>  _
+        Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendLevelResponse")>  _
         Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO)
         
@@ -41352,6 +41515,8 @@ Namespace ProfileBusiness
         Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
@@ -41382,8 +41547,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
@@ -41455,8 +41620,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
@@ -41497,10 +41660,10 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
@@ -41658,6 +41821,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractResponse")>  _
         Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFiles_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFiles_ManagerResponse")>  _
+        Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/DownloadAttachFile_ManagerResponse")>  _
         Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As ProfileBusiness.HuFileDTO) As Byte()
@@ -41906,6 +42072,8 @@ Namespace ProfileBusiness
         Function DeleteCommendList(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendListResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendLevelDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendFormulaDTO)),  _
@@ -41936,8 +42104,8 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AttachFilesDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.WorkingDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TitleDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HuFileDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.EmployeeFileDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HU_PRO_TRAIN_OUT_COMPANYDTOEDIT))),  _
@@ -42009,8 +42177,6 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ATPeriodDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.HUAllowanceDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.HUAllowanceDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
@@ -42051,10 +42217,10 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningManageDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TrainningForeignDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.TrainningForeignDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationPathDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrgTitleDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OrgTitleDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.Ward_DTO)),  _
@@ -42090,8 +42256,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertImportCommendResponse")>  _
         Function InsertImportCommend(ByVal lstImport As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetImportCommend", ReplyAction:="http://tempuri.org/IProfileBusiness/GetImportCommendResponse")>  _
-        Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveContractResponse")>  _
+        Function UnApproveContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCheckContractTypeIDResponse")>  _
         Function GetCheckContractTypeID(ByVal listID As String) As System.Data.DataTable
@@ -42345,8 +42511,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFile_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFile_ManagerResponse")>  _
         Function GetAttachFile_Manager(ByVal fileId As Decimal) As ProfileBusiness.HuFileDTO
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetAttachFiles_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/GetAttachFiles_ManagerResponse")>  _
-        Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendixResponse")>  _
+        Function DeleteCompetencyAppendix(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyEmp", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyEmpResponse")>  _
         Function GetCompetencyEmp(ByVal _filter As ProfileBusiness.CompetencyEmpDTO) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO)
@@ -42600,8 +42766,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetContractEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetContractEmployeeByIDResponse")>  _
         Function GetContractEmployeeByID(ByVal gEmployeeID As Decimal) As ProfileBusiness.EmployeeDTO
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UnApproveContract", ReplyAction:="http://tempuri.org/IProfileBusiness/UnApproveContractResponse")>  _
-        Function UnApproveContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationResponse")>  _
+        Function ModifyOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPath", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationPathResponse")>  _
         Function ModifyOrganizationPath(ByVal lstPath As System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO)) As Boolean
@@ -42855,9 +43021,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyAppendixResponse")>  _
         Function ModifyCompetencyAppendix(ByVal objCompetencyAppendix As ProfileBusiness.CompetencyAppendixDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyAppendixResponse")>  _
-        Function DeleteCompetencyAppendix(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgsTree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgsTreeResponse")>  _
         Function GetOrgsTree() As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO)
         
@@ -43002,6 +43165,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleIDResponse")>  _
         Function GetTitleID(ByVal ID As Decimal) As ProfileBusiness.TitleDTO
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent1", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent1Response")>  _
+        Function GetTitleConcurrent1(ByVal _filter As ProfileBusiness.TitleConcurrentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTitleConcurrent", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTitleConcurrentResponse")>  _
         Function GetTitleConcurrent(ByVal _filter As ProfileBusiness.TitleConcurrentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO)
         
@@ -43109,9 +43275,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckEmployeeInOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckEmployeeInOrganizationResponse")>  _
         Function CheckEmployeeInOrganization(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyOrganizationResponse")>  _
-        Function ModifyOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -43144,6 +43307,10 @@ Namespace ProfileBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO) Implements ProfileBusiness.IProfileBusiness.GetImportCommend
+            Return MyBase.Channel.GetImportCommend(_filter)
+        End Function
         
         Public Function GetCommendLevel(ByVal _filter As ProfileBusiness.CommendLevelDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CommendLevelDTO) Implements ProfileBusiness.IProfileBusiness.GetCommendLevel
             Return MyBase.Channel.GetCommendLevel(_filter, PageIndex, PageSize, Total, Sorts)
@@ -43327,6 +43494,10 @@ Namespace ProfileBusiness
         
         Public Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetListContract
             Return MyBase.Channel.GetListContract(ID)
+        End Function
+        
+        Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO) Implements ProfileBusiness.IProfileBusiness.GetAttachFiles_Manager
+            Return MyBase.Channel.GetAttachFiles_Manager(fileType, page, pageSize, totalPage, Employee_id)
         End Function
         
         Public Function DownloadAttachFile_Manager(ByVal fileID As Decimal, ByVal ext As String, ByRef fileInfo As ProfileBusiness.HuFileDTO) As Byte() Implements ProfileBusiness.IProfileBusiness.DownloadAttachFile_Manager
@@ -43665,8 +43836,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.InsertImportCommend(lstImport, log)
         End Function
         
-        Public Function GetImportCommend(ByVal _filter As ProfileBusiness.ImportCommendDTO) As System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO) Implements ProfileBusiness.IProfileBusiness.GetImportCommend
-            Return MyBase.Channel.GetImportCommend(_filter)
+        Public Function UnApproveContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.UnApproveContract
+            Return MyBase.Channel.UnApproveContract(objContract, log, gID)
         End Function
         
         Public Function GetCheckContractTypeID(ByVal listID As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetCheckContractTypeID
@@ -44005,8 +44176,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetAttachFile_Manager(fileId)
         End Function
         
-        Public Function GetAttachFiles_Manager(ByVal fileType As Decimal, ByVal page As Integer, ByVal pageSize As Integer, ByRef totalPage As Integer, ByVal Employee_id As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.HuFileDTO) Implements ProfileBusiness.IProfileBusiness.GetAttachFiles_Manager
-            Return MyBase.Channel.GetAttachFiles_Manager(fileType, page, pageSize, totalPage, Employee_id)
+        Public Function DeleteCompetencyAppendix(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCompetencyAppendix
+            Return MyBase.Channel.DeleteCompetencyAppendix(lstID, log)
         End Function
         
         Public Function GetCompetencyEmp(ByVal _filter As ProfileBusiness.CompetencyEmpDTO) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyEmpDTO) Implements ProfileBusiness.IProfileBusiness.GetCompetencyEmp
@@ -44345,8 +44516,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetContractEmployeeByID(gEmployeeID)
         End Function
         
-        Public Function UnApproveContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.UnApproveContract
-            Return MyBase.Channel.UnApproveContract(objContract, log, gID)
+        Public Function ModifyOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyOrganization
+            Return MyBase.Channel.ModifyOrganization(objOrganization, log, gID)
         End Function
         
         Public Function ModifyOrganizationPath(ByVal lstPath As System.Collections.Generic.List(Of ProfileBusiness.OrganizationPathDTO)) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyOrganizationPath
@@ -44685,10 +44856,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ModifyCompetencyAppendix(objCompetencyAppendix, log, gID)
         End Function
         
-        Public Function DeleteCompetencyAppendix(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCompetencyAppendix
-            Return MyBase.Channel.DeleteCompetencyAppendix(lstID, log)
-        End Function
-        
         Public Function GetOrgsTree() As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO) Implements ProfileBusiness.IProfileBusiness.GetOrgsTree
             Return MyBase.Channel.GetOrgsTree
         End Function
@@ -44881,6 +45048,10 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetTitleID(ID)
         End Function
         
+        Public Function GetTitleConcurrent1(ByVal _filter As ProfileBusiness.TitleConcurrentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO) Implements ProfileBusiness.IProfileBusiness.GetTitleConcurrent1
+            Return MyBase.Channel.GetTitleConcurrent1(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+        End Function
+        
         Public Function GetTitleConcurrent(ByVal _filter As ProfileBusiness.TitleConcurrentDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.TitleConcurrentDTO) Implements ProfileBusiness.IProfileBusiness.GetTitleConcurrent
             Return MyBase.Channel.GetTitleConcurrent(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
@@ -45023,10 +45194,6 @@ Namespace ProfileBusiness
         
         Public Function CheckEmployeeInOrganization(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckEmployeeInOrganization
             Return MyBase.Channel.CheckEmployeeInOrganization(lstID)
-        End Function
-        
-        Public Function ModifyOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyOrganization
-            Return MyBase.Channel.ModifyOrganization(objOrganization, log, gID)
         End Function
     End Class
 End Namespace

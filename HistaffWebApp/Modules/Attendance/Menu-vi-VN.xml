@@ -16,6 +16,7 @@
         <Item Value="ctrlSignWork" Text="Xếp ca làm việc" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSignWork&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlRegisterCO" Text="Đăng ký nghỉ" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRegisterCO&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlRegisterDSVM" Text="Quản lý đi muộn về sớm" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRegisterDSVM&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlDeclareEntitlementNB" Text="Khai báo điều chỉnh thâm niên" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDeclareEntitlementNB&amp;group=Business" CheckPermission="true"/>
       </Group>
     </Item>
     
@@ -24,6 +25,7 @@
         <Item Value="ctrlSwipeMachine" Text="Đăng ký máy chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSwipeMachine&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlSwipeMachineStatus" Text="Tình trạng máy chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSwipeMachineStatus&amp;group=Setting" CheckPermission="true" />
         <Item Value="ctrlATTimeManual" Text="Kiểu công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlATTimeManual&amp;group=Setting" CheckPermission="true" />
+        <Item Value="ctrlSetUpCodeAttEmp" Text="Thiết lập mã chấm công" PostBack="True" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlSetUpCodeAttEmp&amp;group=Setting" CheckPermission="true" />
       </Group>
     </Item>
     

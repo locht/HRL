@@ -273,7 +273,41 @@ Partial Public Class ProfileRepository
 #End Region
 
 #Region "TitleConcurrent"
+    Public Function GetTitleConcurrent1(ByVal _filter As TitleConcurrentDTO,
+                            ByVal PageIndex As Integer,
+                                       ByVal PageSize As Integer,
+                                       ByRef Total As Integer, ByVal _param As ParamDTO,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TitleConcurrentDTO)
+        Dim lstTitleConcurrent As List(Of TitleConcurrentDTO)
 
+        Using rep As New ProfileBusinessClient
+            Try
+                lstTitleConcurrent = rep.GetTitleConcurrent1(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+                Return lstTitleConcurrent
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function GetTitleConcurrent1(ByVal _filter As TitleConcurrentDTO, ByVal _param As ParamDTO,
+                                       Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TitleConcurrentDTO)
+        Dim lstTitleConcurrent As List(Of TitleConcurrentDTO)
+
+        Using rep As New ProfileBusinessClient
+            Try
+                lstTitleConcurrent = rep.GetTitleConcurrent1(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Me.Log)
+                Return lstTitleConcurrent
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
     Public Function GetTitleConcurrent(ByVal _filter As TitleConcurrentDTO,
                              ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,

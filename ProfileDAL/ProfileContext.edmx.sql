@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 06/05/2019 9:11:18 AM
--- Generated from EDMX file: E:\histaffhcm-1\ProfileDAL\ProfileContext.edmx
+-- Date Created: 05/07/2019 8:57:36 AM
+-- Generated from EDMX file: D:\MyProject\core1\histaffhcm-danhgia\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -877,7 +877,10 @@ CREATE TABLE "dbo"."HU_WORKING_OLD" (
    "DECISION_NO" NVARCHAR2(255) NULL,
    "SIGNER_NAME" NVARCHAR2(255) NULL,
    "SIGNER_TITLE" NVARCHAR2(255) NULL,
-   "SIGN_DATE" DATE NULL
+   "SIGN_DATE" DATE NULL,
+   "OBJECT_ATTENDANCE_NAME" NCLOB NOT NULL,
+   "FILING_DATE" DATE NULL,
+   "DECISION_TYPE_NAME" NCLOB NOT NULL
 );
 
 -- Creating table 'SE_MAIL'
@@ -2661,7 +2664,8 @@ CREATE TABLE "dbo"."HU_TITLE_CONCURRENT" (
    "NAME" NVARCHAR2(255) NULL,
    "NOTE" NVARCHAR2(1023) NULL,
    "ORG_ID" NUMBER(38,0) NULL,
-   "TITLE_ID" NUMBER(38,0) NULL
+   "TITLE_ID" NUMBER(38,0) NULL,
+   "DECISION_NO" NCLOB NULL
 );
 
 -- Creating table 'HU_ORG_TITLE'

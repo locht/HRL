@@ -26,18 +26,14 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="VN_FULLNAME"
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="VN_FULLNAME"
                                 SortExpression="VN_FULLNAME" UniqueName="VN_FULLNAME" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" HeaderStyle-Width="150px" UniqueName="TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
-                                SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                                 <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                                 <ItemTemplate>
@@ -49,56 +45,30 @@
                                 </tlk:RadToolTip>
                             </ItemTemplate>
                          </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Năm %>" DataField="YEAR" ItemStyle-HorizontalAlign="Center"
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
+                                SortExpression="TITLE_NAME" HeaderStyle-Width="150px" UniqueName="TITLE_NAME" />
+                           
+                            <tlk:GridDateTimeColumn HeaderText="Ngày vào công ty" DataField="JOIN_DATE"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="JOIN_DATE" UniqueName="JOIN_DATE"
+                                DataFormatString="{0:dd/MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="Năm" DataField="YEAR" ItemStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="100px" SortExpression="YEAR" UniqueName="YEAR" ItemStyle-VerticalAlign="Middle">
                             </tlk:GridBoundColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng điều chỉnh thâm niên %>" DataField="START_MONTH_TN"
+                            <tlk:GridNumericColumn HeaderText="Tháng điều chỉnh thâm niên" DataField="START_MONTH_TN"
                                 ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" DataFormatString="{0:n0}"
                                 SortExpression="START_MONTH_TN" UniqueName="START_MONTH_TN">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số tháng điều chỉnh thâm niên %>"
+                            <tlk:GridNumericColumn HeaderText="Số tháng điều chỉnh thâm niên"
                                 DataField="ADJUST_MONTH_TN" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}"
                                 SortExpression="ADJUST_MONTH_TN" UniqueName="ADJUST_MONTH_TN">
                             </tlk:GridNumericColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate:Lý do điều chỉnh thâm niên%>" DataField="REMARK_TN"
+                            <tlk:GridBoundColumn HeaderText="Lý do điều chỉnh" DataField="REMARK_TN"
                                 ItemStyle-HorizontalAlign="Left" SortExpression="REMARK_TN" HeaderStyle-Width="150px"
-                                UniqueName="REMARK_TN" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phép điều chỉnh%>" DataField="ADJUST_ENTITLEMENT"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="ADJUST_ENTITLEMENT"
-                                UniqueName="ADJUST_ENTITLEMENT">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số phép được thanh toán %>" DataField="ENT_PAY"
-                                ItemStyle-HorizontalAlign="Left" SortExpression="ENT_PAY" UniqueName="ENT_PAY" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng điều chỉnh phép %>" DataField="ADJUST_MONTH_ENTITLEMENT"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}" SortExpression="ADJUST_MONTH_ENTITLEMENT"
-                                UniqueName="ADJUST_MONTH_ENTITLEMENT">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Gia hạn phép đến tháng %>" DataField="START_MONTH_EXTEND"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}" SortExpression="START_MONTH_EXTEND"
-                                UniqueName="START_MONTH_EXTEND">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do điều chỉnh phép %>" DataField="REMARK_ENTITLEMENT"
-                                ItemStyle-HorizontalAlign="Left" SortExpression="REMARK_ENTITLEMENT" HeaderStyle-Width="150px"
-                                UniqueName="REMARK_ENTITLEMENT">
+                                UniqueName="REMARK_TN">
                                 <HeaderStyle Width="300px" />
-                            </tlk:GridBoundColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Gia hạn nghỉ bù đến tháng %>" DataField="MONTH_EXTENSION_NB"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}" SortExpression="MONTH_EXTENSION_NB"
-                                UniqueName="MONTH_EXTENSION_NB">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tháng điều chỉnh nghỉ bù %>" DataField="START_MONTH_NB"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}" SortExpression="START_MONTH_NB"
-                                UniqueName="START_MONTH_NB">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số bù điều chỉnh %>" DataField="ADJUST_NB"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="ADJUST_NB"
-                                UniqueName="ADJUST_NB">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số bù được thanh toán %>" DataField="COM_PAY"
-                                ItemStyle-HorizontalAlign="Left" SortExpression="COM_PAY" UniqueName="COM_PAY" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do điều chỉnh nghỉ bù %>" DataField="REMARK_NB"
-                                ItemStyle-HorizontalAlign="Left" SortExpression="REMARK_NB" HeaderStyle-Width="150px"
-                                UniqueName="REMARK_NB" />
+                            </tlk:GridBoundColumn>--%>
+                          
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>
