@@ -6,11 +6,18 @@ Namespace ProfileBusiness.ServiceContracts
 
     <ServiceContract()>
     Public Interface IProfileBusiness
-        
+
         <OperationContract()>
         Function GetOrgsTree() As List(Of OrganizationDTO)
 
-
+#Region "ngach, bac, thang luong"
+        <OperationContract()>
+        Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable
+        <OperationContract()>
+        Function GetSalaryRankCombo(ByVal SalaryLevel As Decimal, ByVal isBlank As Boolean) As DataTable
+        <OperationContract()>
+        Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As DataTable
+#End Region
 #Region "Hoadm - Common"
 
 #Region "OtherList"
@@ -389,7 +396,7 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function ValidateOtherList(ByVal objOtherList As OtherListDTO) As Boolean
 #End Region
-       
+
 #Region "Nation - Danh mục quốc gia"
         ''' <summary>
         ''' Lay danh sach Quoc gia
@@ -2434,7 +2441,7 @@ Namespace ProfileBusiness.ServiceContracts
                                 Optional ByVal log As UserLog = Nothing) As List(Of TalentPoolDTO)
 
         <OperationContract()>
-        Function InsertTalentPool(ByVal lstTalentPool As List(Of TalentPoolDTO), ByVal log As UserLog) As Boolean            
+        Function InsertTalentPool(ByVal lstTalentPool As List(Of TalentPoolDTO), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function ActiveTalentPool(ByVal objTalentPool As List(Of Decimal), ByVal sActive As String, ByVal log As UserLog) As Boolean
         <OperationContract()>

@@ -2661,6 +2661,13 @@
             <Property Name="SALE_COMMISION_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="OBJECT_ATTENDANCE" Type="number" Nullable="true" Precision="38" />
             <Property Name="FILING_DATE" Type="date" Nullable="true" />
+            <Property Name="PERCENTSALARY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FACTORSALARY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHERSALARY1" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHERSALARY2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHERSALARY3" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHERSALARY4" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OTHERSALARY5" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
             <Key>
@@ -6712,6 +6719,13 @@
           <Property Type="Decimal" Name="SALE_COMMISION_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="OBJECT_ATTENDANCE" />
           <Property Type="DateTime" Name="FILING_DATE" />
+          <Property Type="Decimal" Name="PERCENTSALARY" />
+          <Property Type="Decimal" Name="FACTORSALARY" />
+          <Property Type="Decimal" Name="OTHERSALARY1" />
+          <Property Type="Decimal" Name="OTHERSALARY2" />
+          <Property Type="Decimal" Name="OTHERSALARY3" />
+          <Property Type="Decimal" Name="OTHERSALARY4" />
+          <Property Type="Decimal" Name="OTHERSALARY5" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
           <Key>
@@ -9890,6 +9904,13 @@
                     <ScalarProperty Name="SALE_COMMISION_ID" ColumnName="SALE_COMMISION_ID" />
                     <ScalarProperty Name="OBJECT_ATTENDANCE" ColumnName="OBJECT_ATTENDANCE" />
                     <ScalarProperty Name="FILING_DATE" ColumnName="FILING_DATE" />
+                    <ScalarProperty Name="PERCENTSALARY" ColumnName="PERCENTSALARY" />
+                    <ScalarProperty Name="FACTORSALARY" ColumnName="FACTORSALARY" />
+                    <ScalarProperty Name="OTHERSALARY1" ColumnName="OTHERSALARY1" />
+                    <ScalarProperty Name="OTHERSALARY2" ColumnName="OTHERSALARY2" />
+                    <ScalarProperty Name="OTHERSALARY3" ColumnName="OTHERSALARY3" />
+                    <ScalarProperty Name="OTHERSALARY4" ColumnName="OTHERSALARY4" />
+                    <ScalarProperty Name="OTHERSALARY5" ColumnName="OTHERSALARY5" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10678,8 +10699,8 @@
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCT_HUDC">
           <ConnectorPoint PointX="7.4218775" PointY="5.1500000000000057" />
-          <ConnectorPoint PointX="7.4218775" PointY="12.012500000000001" />
-          <ConnectorPoint PointX="8.125" PointY="12.012500000000001" />
+          <ConnectorPoint PointX="7.4218775" PointY="12.012500000000003" />
+          <ConnectorPoint PointX="8.125" PointY="12.012500000000003" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCL_HUDC">
           <ConnectorPoint PointX="7.45313" PointY="5.1500000000000057" />
@@ -10830,7 +10851,7 @@
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="27.375" PointY="18.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE_LIST" Width="1.5" PointX="27.375" PointY="21.75" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_COURSE" Width="2.375" PointX="27.375" PointY="26.75" Height="3.134095052083353" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="9.6723437500000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="11.018453776041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE_CONCURRENT" Width="2.25" PointX="29.375" PointY="0.75" Height="3.9033007812499996" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORG_TITLE" Width="1.5" PointX="4.375" PointY="0.75" Height="3.134095052083353" />

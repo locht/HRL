@@ -12,6 +12,64 @@ Imports System.Reflection
 
 Partial Class ProfileRepository
 
+#Region "salary group"
+
+    ''' <summary>
+    ''' Lay data vao combo cho bang luong
+    ''' </summary>
+    ''' <param name="dateValue">Ma bang luong</param>
+    ''' <param name="isBlank">0: Khong lay dong empty; 1: Co lay dong empty</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_PA_SAL_GROUP",
+                                           New With {.P_ISBLANK = isBlank,
+                                                     .P_DATE = dateValue,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetSalaryRankCombo(ByVal SalaryLevel As Decimal, ByVal isBlank As Boolean) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_PA_SAL_RANK",
+                                           New With {.P_ISBLANK = isBlank,
+                                                     .P_SAL_GROUP = SalaryLevel,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_PA_SAL_LEVEL",
+                                           New With {.P_ISBLANK = isBlank,
+                                                     .P_SAL_RANK = SalaryGroup,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+#End Region
 #Region "Title"
 
     Public Function GetTitle(ByVal _filter As TitleDTO,
@@ -251,7 +309,7 @@ Partial Class ProfileRepository
                                            .P_ORGID = _param.ORG_ID,
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
-           
+
             Dim query = From p In Context.HU_TITLE_CONCURRENT
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = p.ORG_ID And

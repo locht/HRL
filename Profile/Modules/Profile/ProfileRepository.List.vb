@@ -2,7 +2,41 @@
 Imports Framework.UI
 
 Partial Public Class ProfileRepository
+#Region "ngach, bac, thang luong"
 
+    Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetSalaryGroupCombo(dateValue, isBlank)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Function GetSalaryRankCombo(ByVal SalaryLevel As Decimal, ByVal isBlank As Boolean) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetSalaryRankCombo(SalaryLevel, isBlank)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetSalaryLevelCombo(SalaryGroup, isBlank)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 #Region "List"
 
     Public Function GetTreeOrgByID(ByVal ID As Decimal) As OrganizationTreeDTO

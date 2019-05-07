@@ -8,6 +8,39 @@ Imports System.Configuration
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
+#Region "ngach, bac, thang luong"
+
+        Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetSalaryGroupCombo
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetSalaryGroupCombo(dateValue, isBlank)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Function GetSalaryRankCombo(ByVal SalaryLevel As Decimal, ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetSalaryRankCombo
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetSalaryRankCombo(SalaryLevel, isBlank)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetSalaryLevelCombo
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetSalaryLevelCombo(SalaryGroup, isBlank)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
 #Region "Danh muc"
         Function GetEmpInfomations(ByVal orgIDs As List(Of Decimal),
                                      ByVal _filter As EmployeeDTO,

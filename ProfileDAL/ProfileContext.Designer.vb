@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("aed35a86-1f31-42df-bbd6-043fc88e3ed7")>
+<Assembly: EdmSchemaAttribute("457489d4-f17d-4ce2-951e-de0b27346b78")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -48701,6 +48701,181 @@ Public Partial Class HU_WORKING
     End Sub
 
     Private Partial Sub OnFILING_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PERCENTSALARY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PERCENTSALARY
+        End Get
+        Set
+            OnPERCENTSALARYChanging(value)
+            ReportPropertyChanging("PERCENTSALARY")
+            _PERCENTSALARY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PERCENTSALARY")
+            OnPERCENTSALARYChanged()
+        End Set
+    End Property
+
+    Private _PERCENTSALARY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPERCENTSALARYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPERCENTSALARYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FACTORSALARY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _FACTORSALARY
+        End Get
+        Set
+            OnFACTORSALARYChanging(value)
+            ReportPropertyChanging("FACTORSALARY")
+            _FACTORSALARY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FACTORSALARY")
+            OnFACTORSALARYChanged()
+        End Set
+    End Property
+
+    Private _FACTORSALARY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnFACTORSALARYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnFACTORSALARYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OTHERSALARY1() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OTHERSALARY1
+        End Get
+        Set
+            OnOTHERSALARY1Changing(value)
+            ReportPropertyChanging("OTHERSALARY1")
+            _OTHERSALARY1 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OTHERSALARY1")
+            OnOTHERSALARY1Changed()
+        End Set
+    End Property
+
+    Private _OTHERSALARY1 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOTHERSALARY1Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOTHERSALARY1Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OTHERSALARY2() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OTHERSALARY2
+        End Get
+        Set
+            OnOTHERSALARY2Changing(value)
+            ReportPropertyChanging("OTHERSALARY2")
+            _OTHERSALARY2 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OTHERSALARY2")
+            OnOTHERSALARY2Changed()
+        End Set
+    End Property
+
+    Private _OTHERSALARY2 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOTHERSALARY2Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOTHERSALARY2Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OTHERSALARY3() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OTHERSALARY3
+        End Get
+        Set
+            OnOTHERSALARY3Changing(value)
+            ReportPropertyChanging("OTHERSALARY3")
+            _OTHERSALARY3 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OTHERSALARY3")
+            OnOTHERSALARY3Changed()
+        End Set
+    End Property
+
+    Private _OTHERSALARY3 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOTHERSALARY3Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOTHERSALARY3Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OTHERSALARY4() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OTHERSALARY4
+        End Get
+        Set
+            OnOTHERSALARY4Changing(value)
+            ReportPropertyChanging("OTHERSALARY4")
+            _OTHERSALARY4 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OTHERSALARY4")
+            OnOTHERSALARY4Changed()
+        End Set
+    End Property
+
+    Private _OTHERSALARY4 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOTHERSALARY4Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOTHERSALARY4Changed()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OTHERSALARY5() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OTHERSALARY5
+        End Get
+        Set
+            OnOTHERSALARY5Changing(value)
+            ReportPropertyChanging("OTHERSALARY5")
+            _OTHERSALARY5 = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OTHERSALARY5")
+            OnOTHERSALARY5Changed()
+        End Set
+    End Property
+
+    Private _OTHERSALARY5 As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOTHERSALARY5Changing(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOTHERSALARY5Changed()
     End Sub
 
     #End Region

@@ -122,4 +122,11 @@
     Public Property Ids As List(Of Decimal)
     Public Property UPLOADFILE As String
     Public Property FILENAME1 As String
+    Public Property PERCENTSALARY As Decimal?
+    Public Property FACTORSALARY As Decimal?
+    Public Property OTHERSALARY1 As Decimal?
+    Public Property OTHERSALARY2 As Decimal?
+    Public Property OTHERSALARY3 As Decimal?
+    Public Property OTHERSALARY4 As Decimal?
+    Public Property OTHERSALARY5 As Decimal?
 End Class

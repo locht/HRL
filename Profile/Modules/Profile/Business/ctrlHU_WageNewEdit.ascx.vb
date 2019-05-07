@@ -1,6 +1,7 @@
 ﻿Imports Framework.UI
 Imports Framework.UI.Utilities
 Imports Profile.ProfileBusiness
+Imports PayrollDAL
 Imports Common
 Imports Telerik.Web.UI
 Imports System.IO
@@ -93,22 +94,21 @@ Public Class ctrlHU_WageNewEdit
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub BindData()
-        'Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        'Try
-        '    Dim startTime As DateTime = DateTime.UtcNow
-        '    Dim dtData
-        '    Using rep As New ProfileRepository
-        '        dtData = rep.GetOT_WageTypeList()
-        '    End Using
-        '    FillRadCombobox(cboDecisionType, dtData, "NAME", "ID")
-        '    If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
-        '        cboDecisionType.SelectedValue = dtData.Rows(0)("ID")
-        '    End If
-        '    _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        'Catch ex As Exception
-        '    DisplayException(Me.ViewName, Me.ID, ex)
-        '    _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        'End Try
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim dtData As DataTable = New DataTable()
+            Using rep As New ProfileRepository
+                dtData = rep.GetSalaryGroupCombo(Date.Now, True)
+                If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                    FillRadCombobox(cbSalaryGroup, dtData, "NAME", "ID", True)
+                End If
+            End Using
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
     End Sub
     ''' <summary>
     ''' khoi tao menu toolbar
@@ -269,6 +269,38 @@ Public Class ctrlHU_WageNewEdit
 #End Region
 
 #Region "Event"
+    Private Sub cbSalaryGroup_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbSalaryGroup.SelectedIndexChanged
+        Try
+            Dim dtData As DataTable = New DataTable()
+            Using rep As New ProfileRepository
+                If IsNumeric(cbSalaryGroup.SelectedValue) Then
+                    dtData = rep.GetSalaryLevelCombo(cbSalaryGroup.SelectedValue, True)
+                End If
+                If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                    FillRadCombobox(cbSalaryLevel, dtData, "NAME", "ID", True)
+                End If
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cbSalaryLevel_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbSalaryLevel.SelectedIndexChanged
+        Try
+            Dim dtData As DataTable = New DataTable()
+            Using rep As New ProfileRepository
+                If IsNumeric(cbSalaryLevel.SelectedValue) Then
+                    dtData = rep.GetSalaryRankCombo(cbSalaryLevel.SelectedValue, True)
+                End If
+                If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                    FillRadCombobox(cbSalaryRank, dtData, "NAME", "ID", True)
+                End If
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Event click item cua menu toolbar
     ''' Check validate page khi an luu
@@ -1105,19 +1137,7 @@ Public Class ctrlHU_WageNewEdit
     Public Function GetYouMustChoseMsg(ByVal input) As String
         Return String.Format("{0} {1}", Errors.YouMustChose, input)
     End Function
-    'Public Sub RebindValue()
-    '    Allowance_Total.Value = 0
-    '    Dim basicValue = ConvertNumber(basicSalary.Value)
-    '    SalaryInsurance.Value = basicValue
-    '    For Each item As GridDataItem In rgAllow.Items
-    '        Dim value = item.GetDataKeyValue("AMOUNT")
-    '        Allowance_Total.Value += value
-    '        If item.GetDataKeyValue("IS_INSURRANCE") = True Then
-    '            SalaryInsurance.Value += value
-    '        End If
-    '    Next
-    '    Salary_Total.Value = Allowance_Total.Value + basicSalary.Value
-    'End Sub
+    
     Private Function ConvertNumber(ByVal value As Decimal?) As Decimal
         If value.HasValue Then
             Return value.Value
@@ -1140,20 +1160,7 @@ Public Class ctrlHU_WageNewEdit
         Using rep As New ProfileRepository
             taxTables = rep.GetOtherList(OtherTypes.TaxTable).ToList(Of OtherListDTO)
         End Using
-        'Using rep As New ProfileBusinessClient
-        '    Dim query = New PA_SALARY_TYPEQuery With
-        '        {.ID = cboSalTYPE.SelectedValue}
-        '    salaryType = rep.GetSalaryTypes(query).Result.FirstOrDefault
-        'End Using
-        'If salaryType IsNot Nothing Then
-        '    Select Case salaryType.CODE
-        '        Case ProfileCommon.SalaryType.ChinhThuc 'luong chinh thuc
-        '            SetTaxTableByCode(taxTables, ProfileCommon.TaxTable.ThueLuyTien)
-        '        Case ProfileCommon.SalaryType.ThuViec 'luong thu viec
-        '            SetTaxTableByCode(taxTables, ProfileCommon.TaxTable.Thue10)
-        '    End Select
-
-        'End If
+        
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
         Dim taxTable = taxTables.FirstOrDefault(Function(f) f.CODE = code)
