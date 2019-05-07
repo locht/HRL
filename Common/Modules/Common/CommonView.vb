@@ -387,6 +387,7 @@ Public Class CommonView
 
         Dim rCol As GridBoundColumn
         Dim rColClientSelect As GridClientSelectColumn
+        Dim rColCheck As GridCheckBoxColumn
         rg.MasterTableView.Columns.Clear()
         For Each row As DataRow In dtGrid.Rows
             Try
@@ -397,6 +398,18 @@ Public Class CommonView
                     rColClientSelect.HeaderStyle.Width = 30
                     rColClientSelect.HeaderTooltip = (row.Field(Of String)("Name").Trim())
                     rColClientSelect.ItemStyle.HorizontalAlign = HorizontalAlign.Center
+                ElseIf row.Field(Of String)("DataType").Trim().ToUpper = "Boolean".ToUpper Then
+                    rColCheck = New GridCheckBoxColumn()
+                    rg.MasterTableView.Columns.Add(rColCheck)
+                    rColCheck.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                    rColCheck.DataField = row.Field(Of String)("ID").Trim()
+                    If IsNumeric(row("Width")) Then
+                        rColCheck.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
+                        'rColCheck.FilterControlWidth = Integer.Parse(row("Width").ToString())
+                    End If
+                    rColCheck.HeaderText = Translate(row.Field(Of String)("Name").Trim())
+                    rColCheck.HeaderTooltip = (row.Field(Of String)("Name").Trim())
+                    rColCheck.ItemStyle.HorizontalAlign = HorizontalAlign.Center
                 Else
                     rCol = New GridBoundColumn()
                     rg.MasterTableView.Columns.Add(rCol)
