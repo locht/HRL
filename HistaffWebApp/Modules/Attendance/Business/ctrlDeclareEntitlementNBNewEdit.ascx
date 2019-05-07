@@ -67,7 +67,7 @@
                     <asp:Label ID="lbStartDate" runat="server" Text="Ngày vào công ty"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
+                    <tlk:RadDatePicker ID="rdStartDate" SkinID="ReadOnly" runat="server" AutoPostBack="True">
                     </tlk:RadDatePicker>
                 </td>
             </tr>

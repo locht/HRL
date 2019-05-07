@@ -348,6 +348,7 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                     txtName.Text = item.VN_FULLNAME
                     txtChucDanh.Text = item.TITLE_NAME
                     txtDonVi.Text = item.ORG_NAME
+                    rdStartDate.SelectedDate = lstCommonEmployee(idx).JOIN_DATE
                 Next
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
