@@ -463,7 +463,7 @@ Public Class ctrlSetUpCodeAttEmp
         Try
             dtdata = rep.GetTerminalAuto()
             If dtdata IsNot Nothing AndAlso dtdata.Rows.Count > 0 Then
-                FillRadCombobox(cbMACHINE_CODE, dtdata, "TERMINAL_CODE", "ID")
+                FillRadCombobox(cbMACHINE_CODE, dtdata, "TERMINAL_NAME", "ID")
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
