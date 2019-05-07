@@ -67,7 +67,9 @@
                 </td>
                 <td>
                  
-                    <tlk:RadNumericTextBox ID="txtYear" AutoPostBack="true" SkinID="Number" TabIndex="18" runat="server"   MaxLength="4" MinValue="1900">
+                    <tlk:RadNumericTextBox ID="txtYear" AutoPostBack="true" SkinID="Number" TabIndex="18" runat="server"  
+                     MaxLength="4" MinValue="1900" ShowSpinButtons="true" >
+                        <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">

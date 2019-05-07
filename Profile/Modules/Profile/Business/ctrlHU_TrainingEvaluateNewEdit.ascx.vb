@@ -199,6 +199,7 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
                     End If
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
+                    txtYear.Text = Year(DateTime.Now)
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -476,28 +477,28 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Protected Sub cboContractType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
-        Dim item As New OtherListDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If cboContractType.SelectedValue <> "" Then
-                'item = (From p In ListComboData.LIST_EVALUATE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                item = (From p In ListComboData.LIST_EVALUATE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
-                If item IsNot Nothing Then
-                    txtYear.Text = item.YEAR
-                End If
-            End If
+    'Protected Sub cboContractType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboContractType.SelectedIndexChanged
+    '    Dim item As New OtherListDTO
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        If cboContractType.SelectedValue <> "" Then
+    '            'item = (From p In ListComboData.LIST_EVALUATE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
+    '            item = (From p In ListComboData.LIST_EVALUATE Where p.ID = Decimal.Parse(cboContractType.SelectedValue)).SingleOrDefault
+    '            If item IsNot Nothing Then
+    '                txtYear.Text = item.YEAR
+    '            End If
+    '        End If
 
-            Dim employeeId As Double = 0
-            Double.TryParse(hidEmployeeID.Value, employeeId)
-            'txtContractNo.Text = CreateDynamicContractNo(employeeId)
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        Dim employeeId As Double = 0
+    '        Double.TryParse(hidEmployeeID.Value, employeeId)
+    '        'txtContractNo.Text = CreateDynamicContractNo(employeeId)
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -516,7 +517,7 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-   
+
 
     ''' <lastupdate>
     ''' 06/07/2017 17:53
@@ -527,6 +528,7 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
+    ''' 
 
 #Region "Custom"
 
@@ -680,7 +682,7 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
     ''' Phương thức xử lý việc tạo số hợp đồng một cách tự động
     ''' </summary>
     ''' <remarks></remarks>
-   
+
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -723,5 +725,13 @@ Public Class ctrlHU_TrainingEvaluateNewEdit
     End Sub
 #End Region
 
+    Private Sub txtYear_TextChanged(sender As Object, e As System.EventArgs) Handles txtYear.TextChanged
+        Try
+            Dim item As New List(Of OtherListDTO)
+            item = (From p In ListComboData.LIST_EVALUATE Where p.YEAR = txtYear.Text).ToList
+            FillDropDownList(cboContractType, item, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+        Catch ex As Exception
 
+        End Try
+    End Sub
 End Class
