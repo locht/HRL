@@ -17,6 +17,22 @@ Imports System.Reflection
 
 Partial Public Class CommonRepository
 
+#Region "Case config"
+    Public Function GetCaseConfigByID(ByVal codename As String) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_SE_CASE_CONFIG",
+                                           New With {.P_CODE_NAME = codename,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
+
 #Region "Controls Manage"
 
     ''' <summary>

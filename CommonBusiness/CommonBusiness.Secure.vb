@@ -8,6 +8,18 @@ Namespace CommonBusiness.ServiceImplementations
     Partial Public Class CommonBusiness
         Implements ICommonBusiness
 
+#Region "Case config"
+        Public Function GetCaseConfigByID(ByVal codename As String) As DataTable Implements ServiceContracts.ICommonBusiness.GetCaseConfigByID
+            Using rep As New CommonRepository
+                Try
+                    Return rep.GetCaseConfigByID(codename)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
 #Region "Controls Manage"
         Public Function Get_FunctionWithControl_List(ByVal _filter As FunctionDTO,
                             ByVal PageIndex As Integer,

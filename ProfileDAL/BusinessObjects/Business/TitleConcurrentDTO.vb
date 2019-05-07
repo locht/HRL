@@ -15,4 +15,5 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property NOTE As String
+    Public Property DECISION_NO As String
 End Class

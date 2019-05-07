@@ -196,7 +196,13 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "TitleConcurrent"
-
+        <OperationContract()>
+        Function GetTitleConcurrent1(ByVal _filter As TitleConcurrentDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of TitleConcurrentDTO)
         <OperationContract()>
         Function GetTitleConcurrent(ByVal _filter As TitleConcurrentDTO,
                                         ByVal PageIndex As Integer,

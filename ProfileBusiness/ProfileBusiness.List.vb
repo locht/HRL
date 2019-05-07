@@ -139,7 +139,24 @@ Namespace ProfileBusiness.ServiceImplementations
 #End Region
 
 #Region "TitleConcurrent"
+        Public Function GetTitleConcurrent1(ByVal _filter As TitleConcurrentDTO,
+                                      ByVal PageIndex As Integer,
+                                      ByVal PageSize As Integer,
+                                      ByRef Total As Integer, ByVal _param As ParamDTO,
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                      Optional ByVal log As UserLog = Nothing) As List(Of TitleConcurrentDTO) _
+                                  Implements ServiceContracts.IProfileBusiness.GetTitleConcurrent1
+            Using rep As New ProfileRepository
+                Try
 
+                    Dim lst = rep.GetTitleConcurrent1(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                    Return lst
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetTitleConcurrent(ByVal _filter As TitleConcurrentDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,

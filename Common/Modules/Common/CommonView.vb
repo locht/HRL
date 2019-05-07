@@ -30,6 +30,29 @@ Public Class CommonView
             _toolbar = value
         End Set
     End Property
+    Public _SE_CASE_CONFIG As DataTable
+    Public Property SE_CASE_CONFIG As DataTable
+        Get
+            Return _SE_CASE_CONFIG
+        End Get
+        Set(ByVal value As DataTable)
+            _SE_CASE_CONFIG = value
+        End Set
+    End Property
+
+    Public Sub getSE_CASE_CONFIG()
+        Try
+            Dim rep As New CommonRepository
+            Dim dtConfigCase As New DataTable ' get thong config case theo Me.ID
+            dtConfigCase = rep.GetCaseConfigByID(Me.ID)
+            SE_CASE_CONFIG = New DataTable()
+            SE_CASE_CONFIG = dtConfigCase
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
     ''' <lastupdate>
     ''' 13/07/2017 11:14
     ''' </lastupdate>
@@ -403,7 +426,7 @@ Public Class CommonView
                     rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
                     If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
                         rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
-                    ElseIf row.Field(Of String)("image").Trim().ToUpper = "image".ToUpper Then
+                        'ElseIf row.Field(Of String)("image").Trim().ToUpper = "image".ToUpper Then
                         'rCol.DataAlternateTextField=
                     ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
                         rCol.DataFormatString = "{0:#,##0.##}"

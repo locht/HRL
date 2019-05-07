@@ -247,7 +247,9 @@ Public Class ctrlHU_TrainingManageNewEdit
                         objContract.PROGRAM_TRAINING = txtProgramTraining.Text
                         objContract.CERTIFICATE = txtCertificate.Text
                         objContract.UNIT = txtUnit.Text
-                        objContract.COST = txtCost.Text
+                        If txtCost.Text<>"" Then
+                            objContract.COST = txtCost.Text
+                        End If
                         objContract.RESULT_TRAIN = txtResultTraining.Text
                         objContract.REMARK = txtRemark.Text
                         objContract.DEGREE_EXPIRE_DATE = rdDegreeExpire.SelectedDate
@@ -294,7 +296,7 @@ Public Class ctrlHU_TrainingManageNewEdit
                         Dim str As String = "getRadWindow().close('1');"
                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                     Else
-                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TranningManage&group=Business")
+                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_TraniningManagement&group=Business")
                     End If
             End Select
             rep.Dispose()

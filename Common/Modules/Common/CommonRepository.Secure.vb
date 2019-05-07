@@ -5,6 +5,19 @@ Imports Framework.UI
 Partial Public Class CommonRepository
     Inherits CommonRepositoryBase
 
+#Region "Case Config"
+    Public Function GetCaseConfigByID(ByVal codename As String) As DataTable
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetCaseConfigByID(codename)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
+
 #Region "Controls Manage"
     ''' <summary>
     ''' Hiển thị d/sach Tên page điều chỉnh control
