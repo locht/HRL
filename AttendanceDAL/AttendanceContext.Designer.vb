@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("09141a75-f875-4563-9c97-028e44e297a7")>
+<Assembly: EdmSchemaAttribute("7aae7993-51d8-441a-9cc6-243741ad1441")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -19871,6 +19871,31 @@ Public Partial Class AT_TERMINALS
     End Sub
 
     Private Partial Sub OnTERMINAL_ROWChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TERMINAL_TYPE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TERMINAL_TYPE
+        End Get
+        Set
+            OnTERMINAL_TYPEChanging(value)
+            ReportPropertyChanging("TERMINAL_TYPE")
+            _TERMINAL_TYPE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TERMINAL_TYPE")
+            OnTERMINAL_TYPEChanged()
+        End Set
+    End Property
+
+    Private _TERMINAL_TYPE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTERMINAL_TYPEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTERMINAL_TYPEChanged()
     End Sub
 
     #End Region

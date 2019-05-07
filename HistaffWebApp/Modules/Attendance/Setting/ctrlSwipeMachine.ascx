@@ -12,7 +12,7 @@
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane1" runat="server" Height="172px" Scrolling="None">
                 <tlk:RadToolBar ID="rtbMain" runat="server" />
-                <asp:Label ID="lblViewTitle" runat="server"></asp:Label></legend>
+                <asp:Label ID="lblViewTitle" runat="server"></asp:Label>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList"
                     CssClass="validationsummary" />
                 <table class="table-form">
@@ -37,6 +37,15 @@
                             </tlk:RadTextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtName"
                                 runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn nhập tên máy chấm công. %>"></asp:RequiredFieldValidator>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Loại máy")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboTerminalType" runat="server" ToolTip="" TabIndex="3">
+                            </tlk:RadComboBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="cboTerminalType"
+                                runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn hãy chọn loại máy. %>"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -122,6 +131,8 @@
                                 SortExpression="PASS" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Port %>" DataField="PORT" UniqueName="PORT"
                                 SortExpression="PORT" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại máy %>" DataField="TERMINAL_TYPE_NAME" UniqueName="TERMINAL_TYPE_NAME"
+                                SortExpression="TERMINAL_TYPE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"
                                 SortExpression="NOTE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"

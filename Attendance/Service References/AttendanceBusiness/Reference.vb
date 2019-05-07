@@ -4304,6 +4304,12 @@ Namespace AttendanceBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TERMINAL_STATUSField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TERMINAL_TYPEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TERMINAL_TYPE_NAMEField As String
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -4609,6 +4615,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.TERMINAL_STATUSField, value) <> true) Then
                     Me.TERMINAL_STATUSField = value
                     Me.RaisePropertyChanged("TERMINAL_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TERMINAL_TYPE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TERMINAL_TYPEField
+            End Get
+            Set
+                If (Me.TERMINAL_TYPEField.Equals(value) <> true) Then
+                    Me.TERMINAL_TYPEField = value
+                    Me.RaisePropertyChanged("TERMINAL_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TERMINAL_TYPE_NAME() As String
+            Get
+                Return Me.TERMINAL_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TERMINAL_TYPE_NAMEField, value) <> true) Then
+                    Me.TERMINAL_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("TERMINAL_TYPE_NAME")
                 End If
             End Set
         End Property
@@ -14529,6 +14561,9 @@ Namespace AttendanceBusiness
         Private GET_LIST_STAFF_RANKField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_LIST_TERMINAL_TYPEField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_LIST_TIME_SHIFTField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14593,6 +14628,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_TYPESHIFTField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_LIST_TYPETERMINALField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_TYPE_DMVSField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
@@ -14732,6 +14770,19 @@ Namespace AttendanceBusiness
                 If (Me.GET_LIST_STAFF_RANKField.Equals(value) <> true) Then
                     Me.GET_LIST_STAFF_RANKField = value
                     Me.RaisePropertyChanged("GET_LIST_STAFF_RANK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_LIST_TERMINAL_TYPE() As Boolean
+            Get
+                Return Me.GET_LIST_TERMINAL_TYPEField
+            End Get
+            Set
+                If (Me.GET_LIST_TERMINAL_TYPEField.Equals(value) <> true) Then
+                    Me.GET_LIST_TERMINAL_TYPEField = value
+                    Me.RaisePropertyChanged("GET_LIST_TERMINAL_TYPE")
                 End If
             End Set
         End Property
@@ -15018,6 +15069,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.LIST_LIST_TYPESHIFTField, value) <> true) Then
                     Me.LIST_LIST_TYPESHIFTField = value
                     Me.RaisePropertyChanged("LIST_LIST_TYPESHIFT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_LIST_TYPETERMINAL() As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
+            Get
+                Return Me.LIST_LIST_TYPETERMINALField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_LIST_TYPETERMINALField, value) <> true) Then
+                    Me.LIST_LIST_TYPETERMINALField = value
+                    Me.RaisePropertyChanged("LIST_LIST_TYPETERMINAL")
                 End If
             End Set
         End Property

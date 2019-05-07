@@ -2194,6 +2194,7 @@ Partial Public Class AttendanceRepository
             Dim query = From p In Context.AT_TERMINALS
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TERMINAL_TYPE And f.ACTFLG = "A").DefaultIfEmpty
                         Select New AT_TERMINALSDTO With {
                                        .ID = p.ID,
                                        .TERMINAL_CODE = p.TERMINAL_CODE,
@@ -2206,6 +2207,8 @@ Partial Public Class AttendanceRepository
                                        .NOTE = p.NOTE,
                                        .PASS = p.PASS,
                                        .PORT = p.PORT,
+                                       .TERMINAL_TYPE = p.TERMINAL_TYPE,
+                                       .TERMINAL_TYPE_NAME = ot.NAME_VN,
                                        .CREATED_DATE = p.CREATED_DATE,
                                        .CREATED_BY = p.CREATED_BY,
                                        .CREATED_LOG = p.CREATED_LOG,
@@ -2242,7 +2245,9 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.PORT) Then
                 lst = lst.Where(Function(f) f.PORT.ToLower().Contains(_filter.PORT.ToLower()))
             End If
-
+            If Not String.IsNullOrEmpty(_filter.TERMINAL_TYPE_NAME) Then
+                lst = lst.Where(Function(f) f.TERMINAL_TYPE_NAME.ToLower().Contains(_filter.TERMINAL_TYPE_NAME.ToLower()))
+            End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -2364,6 +2369,7 @@ Partial Public Class AttendanceRepository
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.PASS = objTitle.PASS
             objTitleData.PORT = objTitle.PORT
+            objTitleData.TERMINAL_TYPE = objTitle.TERMINAL_TYPE
             Context.AT_TERMINALS.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -2432,6 +2438,7 @@ Partial Public Class AttendanceRepository
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.PASS = objTitle.PASS
             objTitleData.PORT = objTitle.PORT
+            objTitleData.TERMINAL_TYPE = objTitle.TERMINAL_TYPE
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

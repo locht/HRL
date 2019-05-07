@@ -33,6 +33,14 @@ Public Class ctrlSwipeMachine
             ViewState(Me.ID & "_Termidal") = value
         End Set
     End Property
+    Property ListComboData As ComboBoxDataDTO
+        Get
+            Return ViewState(Me.ID & "_ListComboData")
+        End Get
+        Set(ByVal value As ComboBoxDataDTO)
+            ViewState(Me.ID & "_ListComboData") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -112,6 +120,7 @@ Public Class ctrlSwipeMachine
             Else
                 Select Case Message
                     Case "UpdateView"
+
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rglSwipeMachine.Rebind()
                         'SelectedItemDataGridByKey(rglSwipeMachine, IDSelect, , rglSwipeMachine.CurrentPageIndex)
@@ -190,17 +199,17 @@ Public Class ctrlSwipeMachine
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    ClearControlValue(txtName, txtAddress, txtCode, txtGhichu, txtIP, txtpasswords, txtPort)
+                    ClearControlValue(txtName, txtAddress, txtCode, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
                     txtCode.Text = rep.AutoGenCode("MCC", "AT_TERMINALS", "TERMINAL_CODE")
-                    EnableControlAll(True, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort)
+                    EnableControlAll(True, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
                     EnabledGridNotPostback(rglSwipeMachine, False)
 
                 Case CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtName, txtAddress, txtCode, txtGhichu, txtIP, txtpasswords, txtPort)
-                    EnableControlAll(False, txtName, txtAddress, txtCode, txtGhichu, txtIP, txtpasswords, txtPort)
+                    ClearControlValue(txtName, txtAddress, txtCode, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
+                    EnableControlAll(False, txtName, txtAddress, txtCode, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
                     EnabledGridNotPostback(rglSwipeMachine, True)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(True, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort)
+                    EnableControlAll(True, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
                     EnabledGridNotPostback(rglSwipeMachine, False)
 
                 Case CommonMessage.STATE_DEACTIVE
@@ -216,7 +225,7 @@ Public Class ctrlSwipeMachine
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-                    ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort)
+                    ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rglSwipeMachine.SelectedItems.Count - 1
@@ -230,7 +239,7 @@ Public Class ctrlSwipeMachine
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-                    ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort)
+                    ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rglSwipeMachine.SelectedItems.Count - 1
@@ -274,6 +283,8 @@ Public Class ctrlSwipeMachine
             dic.Add("NOTE", txtGhichu)
             dic.Add("PASS", txtpasswords)
             dic.Add("PORT", txtPort)
+            dic.Add("TERMINAL_TYPE", cboTerminalType)
+            GetDataCombo()
             Utilities.OnClientRowSelectedChanged(rglSwipeMachine, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -361,7 +372,9 @@ Public Class ctrlSwipeMachine
                         objTerminal.NOTE = txtGhichu.Text.Trim
                         objTerminal.PASS = txtpasswords.Text.Trim
                         objTerminal.PORT = txtPort.Text.Trim
-
+                        If cboTerminalType.SelectedValue <> "" Then
+                            objTerminal.TERMINAL_TYPE = cboTerminalType.SelectedValue
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objTerminal.ORG_ID = ctrlOrganization.CurrentValue
@@ -381,7 +394,7 @@ Public Class ctrlSwipeMachine
                                 _validate.ID = rglSwipeMachine.SelectedValue
                                 If rep.ValidateAT_TERMINAL(_validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort)
+                                    ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
                                     rglSwipeMachine.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
@@ -483,7 +496,7 @@ Public Class ctrlSwipeMachine
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rglSwipeMachine.SelectedItems.Count = 0 Or rglSwipeMachine.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort)
+                ClearControlValue(txtCode, txtName, txtAddress, txtGhichu, txtIP, txtpasswords, txtPort, cboTerminalType)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -564,6 +577,26 @@ Public Class ctrlSwipeMachine
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub GetDataCombo()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New AttendanceRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            If ListComboData Is Nothing Then
+                ListComboData = New ComboBoxDataDTO
+                ListComboData.GET_LIST_TERMINAL_TYPE = True
+
+                rep.GetComboboxData(ListComboData)
+            End If
+            FillDropDownList(cboTerminalType, ListComboData.LIST_LIST_TYPETERMINAL, "NAME_VN", "ID", Common.Common.SystemLanguage, False, cboTerminalType.SelectedValue)
+            'cboTerminalType.SelectedIndex = 0
+
+            rep.Dispose()
+        Catch ex As Exception
+
         End Try
     End Sub
 #End Region

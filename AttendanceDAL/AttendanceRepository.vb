@@ -94,6 +94,17 @@ Partial Public Class AttendanceRepository
 
     Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO) As Boolean
         Try
+            'Danh sach Loai may TERMINAL_TYPE
+            If cbxData.GET_LIST_TERMINAL_TYPE Then
+                cbxData.LIST_LIST_TYPETERMINAL = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
+                                             Where p.ACTFLG = "A" And t.CODE = "TERMINAL_TYPE" Order By p.CREATED_DATE Descending
+                         Select New OT_OTHERLIST_DTO With {
+                             .ID = p.ID,
+                             .CODE = p.CODE,
+                             .NAME_EN = p.NAME_EN,
+                             .NAME_VN = p.NAME_VN,
+                             .TYPE_ID = p.TYPE_ID}).ToList
+            End If
             'Danh sách các đối tượng cư trú
             If cbxData.GET_LIST_TYPEPUNISH Then
                 cbxData.LIST_LIST_TYPEPUNISH = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID

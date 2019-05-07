@@ -11,6 +11,8 @@
     Public Property ORG_NAME As String
     Public Property TERMINAL_NUMBER As Decimal?
     Public Property TERMINAL_ROW As Decimal?
+    Public Property TERMINAL_TYPE As Decimal?
+    Public Property TERMINAL_TYPE_NAME As String
     Public Property PASS As String
     Public Property PORT As String
     Public Property TERMINAL_STATUS As String

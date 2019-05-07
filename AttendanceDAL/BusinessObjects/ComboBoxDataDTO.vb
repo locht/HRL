@@ -1,5 +1,8 @@
 ﻿Public Class ComboBoxDataDTO
 
+    Public Property GET_LIST_TERMINAL_TYPE As Boolean
+    Public Property LIST_LIST_TYPETERMINAL As List(Of OT_OTHERLIST_DTO)
+
     Public Property GET_LIST_TYPEPUNISH As Boolean
     Public Property LIST_LIST_TYPEPUNISH As List(Of OT_OTHERLIST_DTO)
 
