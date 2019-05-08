@@ -4536,4 +4536,12 @@
       <string>Loại hình đào tạo</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALCONCURRENTLY</string>
+    </Key>
+    <Value>
+      <string>Quá trình kiêm nhiệm</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
