@@ -117,6 +117,7 @@
     <Content Include="Modules\Attendance\ctrlLeaveRegistrationNewEdit.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />
     <Content Include="Modules\Performance\ctrlPE_AssessHistory.ascx" />
+    <Content Include="Modules\Profile\ctrlPortalConcurrently.ascx" />
     <Content Include="Modules\Profile\ctrlPortalTrainingOutCompany.ascx" />
     <Content Include="Modules\Profile\ctrlPortalWorkingBefore.ascx" />
     <Content Include="Modules\Recruitment\ctrlRC_RequestPortalNewEdit.ascx" />
