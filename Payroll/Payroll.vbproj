@@ -321,6 +321,9 @@
     <None Include="Service References\PayrollBusiness\System.Data.Objects.DataClasses.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\PayrollBusiness\System.Data.Objects.DataClasses1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\PayrollBusiness\System.Data1.xsd">
       <SubType>Designer</SubType>
     </None>

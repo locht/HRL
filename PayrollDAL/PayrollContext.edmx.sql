@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26/12/2018 5:07:43 PM
--- Generated from EDMX file: D:\MyProject\TMF1\PayrollDAL\PayrollContext.edmx
+-- Date Created: 5/8/2019 3:17:24 PM
+-- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\HOSE\histaffhcm\PayrollDAL\PayrollContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -184,7 +184,8 @@ CREATE TABLE "dbo"."PA_SALARY_GROUP" (
    "IS_COEFFICIENT" NUMBER(38,0) NULL,
    "IS_INCENTIVE" NUMBER(38,0) NULL,
    "ACTFLG" NVARCHAR2(1) NULL,
-   "IS_DELETED" NUMBER(38,0) NULL
+   "IS_DELETED" NUMBER(38,0) NULL,
+   "ISHOSE" NUMBER(38,0) NULL
 );
 
 -- Creating table 'PA_SALARY_LEVEL'

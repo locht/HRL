@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c0017cc5-8216-436c-8694-bb75568f89d0")>
+<Assembly: EdmSchemaAttribute("43acff3f-5aac-4a89-a820-13639dd30152")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSG_PSL", "PA_SALARY_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_GROUP), "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_LEVEL), True)>
 <Assembly: EdmRelationshipAttribute("PayrollModel", "FK_PSL_PSR", "PA_SALARY_LEVEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(PA_SALARY_LEVEL), "PA_SALARY_RANK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PA_SALARY_RANK), True)>
@@ -18662,6 +18662,31 @@ Public Partial Class PA_SALARY_GROUP
     End Sub
 
     Private Partial Sub OnIS_DELETEDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ISHOSE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ISHOSE
+        End Get
+        Set
+            OnISHOSEChanging(value)
+            ReportPropertyChanging("ISHOSE")
+            _ISHOSE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ISHOSE")
+            OnISHOSEChanged()
+        End Set
+    End Property
+
+    Private _ISHOSE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnISHOSEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnISHOSEChanged()
     End Sub
 
     #End Region

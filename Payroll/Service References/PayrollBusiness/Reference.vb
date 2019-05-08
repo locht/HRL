@@ -3167,6 +3167,9 @@ Namespace PayrollBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ISHOSEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_COEFFICIENTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3255,6 +3258,19 @@ Namespace PayrollBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ISHOSE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ISHOSEField
+            End Get
+            Set
+                If (Me.ISHOSEField.Equals(value) <> true) Then
+                    Me.ISHOSEField = value
+                    Me.RaisePropertyChanged("ISHOSE")
                 End If
             End Set
         End Property

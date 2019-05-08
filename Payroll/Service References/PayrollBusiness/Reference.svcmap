@@ -31,7 +31,7 @@
     <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="7512b6f3-5a58-4757-84c2-adb7747799e2" SourceId="1" SourceUrl="http://localhost:9999/PayrollBusiness.svc/mex" />
     <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="cc6fadbb-68cf-44bb-b235-0777056bc2a3" SourceId="1" SourceUrl="http://localhost:9999/PayrollBusiness.svc/mex" />
     <MetadataFile FileName="service11.xsd" MetadataType="Schema" ID="ee944b4c-2a3f-4191-90e5-cd9a0aa5780c" SourceId="1" SourceUrl="http://localhost:9999/PayrollBusiness.svc/mex" />
-    <MetadataFile FileName="System.Data.Objects.DataClasses1.xsd" MetadataType="Schema" ID="6f0ffec5-ed9c-4c9a-a9b7-5b35b11eda5d" SourceId="1" SourceUrl="http://localhost:9999/PayrollBusiness.svc/mex" />
+    <MetadataFile FileName="System.Data.Objects.DataClasses1.xsd" MetadataType="Schema" ID="406dcc6a-d5e0-49ce-9658-b395749c584d" SourceId="1" SourceUrl="http://localhost:9999/PayrollBusiness.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
