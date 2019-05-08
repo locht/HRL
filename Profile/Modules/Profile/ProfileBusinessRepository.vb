@@ -2,6 +2,19 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
+    Public  Function Calculator_Salary(ByVal data_in As String) As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.Calculator_Salary(data_in)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
 
 #Region "File"
     Public Function InsertAttatch_Manager(ByVal fileInfo As HuFileDTO, ByVal fileBytes As Byte()) As Boolean
