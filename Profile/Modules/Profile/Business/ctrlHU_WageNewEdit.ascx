@@ -90,6 +90,20 @@
                         ToolTip="Ngày kết thúc phải lớn hơn ngày hiệu lực"></asp:CompareValidator>
                 </td>
                 <td class="lb">
+                    <asp:Label ID="lbUpload" runat="server" Text="Tập tin đính kèm"></asp:Label>
+                </td>
+                <td>
+                   <tlk:radtextbox id="txtUpload" readonly="true" runat="server">
+                    </tlk:radtextbox>
+                    <tlk:radtextbox id="txtUploadFile" runat="server" visible="false">
+                    </tlk:radtextbox>
+                    <tlk:radbutton runat="server" id="btnUploadFile" skinid="ButtonView" causesvalidation="false"
+                        tabindex="3" />
+                    <tlk:radbutton id="btnDownload" runat="server" text="<%$ Translate: Tải xuống%>"
+                        causesvalidation="false" onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
+                    </tlk:radbutton>
+                </td>
+                <td class="lb">
                 </td>
                 <td>
                 </td>
@@ -103,6 +117,37 @@
                     <%# Translate("Thông tin lương")%>
                     <hr />
                 </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                        <asp:Label ID="lbSalTYPE" runat="server" Text="Nhóm lương"></asp:Label>
+                        <span class="lbReq">*</span>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cboSalTYPE" runat="server" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" 
+                            OnSelectedIndexChanged="cboSalTYPE_SelectedIndexChanged" SkinID="LoadDemand">
+                        </tlk:RadComboBox>
+                        <asp:CustomValidator ID="cusSalType" runat="server" 
+                            ClientValidationFunction="cusSalType" 
+                            ErrorMessage="<%# GetYouMustChoseMsg(UI.Wage_WageGRoup) %>" 
+                            ToolTip="<%# GetYouMustChoseMsg(UI.Wage_WageGRoup) %>">
+                    </asp:CustomValidator>
+                    </td>
+                    <td class="lb">
+                        <asp:Label ID="lbTaxTable" runat="server" Text="Biểu thuế"></asp:Label>
+                        <span class="lbReq">*</span>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cboTaxTable" runat="server">
+                        </tlk:RadComboBox>
+                        <asp:CustomValidator ID="cusTaxTable" runat="server" 
+                            ClientValidationFunction="cusTaxTable" 
+                            ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>" 
+                            ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>">
+                    </asp:CustomValidator>
+                    </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -129,196 +174,185 @@
             </tr>
             <tr>
                  <td class="lb">
+                    <asp:Label runat ="server" ID="lbFactorSalary" Text ="Hệ số/mức tiền"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnFactorSalary" SkinID ="Money" ReadOnly ="true"  ></tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                        <asp:Label ID="lbSalaryInsurance" runat="server" Text="Mức lương đóng bảo hiểm"></asp:Label>
+                 </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="SalaryInsurance" runat="server" Enabled="False" 
+                        SkinID="Money">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                        <asp:Label ID="lbAllowance_Total" runat="server" Text="Tổng phụ cấp"></asp:Label>
+                 </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="Allowance_Total" runat="server" Enabled="False" 
+                        SkinID="Money">
+                    </tlk:RadNumericTextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbbasicSalary" runat="server" Text="Lương cơ bản"></asp:Label>
+                    <span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="basicSalary" runat="server" 
+                        ClientEvents-OnValueChanged="OnBasicSalaryChanged" SkinID="Money">
+                    </tlk:RadNumericTextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldBasicSalary" runat="server" 
+                        ControlToValidate="basicSalary" 
+                        ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary) %>" 
+                        ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary)%>"> 
+                </asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
                     <asp:Label runat ="server" ID="lbPercentSalary" Text ="% hưởng lương"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rdPercentSalary" SkinID ="Decimal" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnPercentSalary" SkinID ="Money" 
+                        MaxValue="100" MinValue="0" ></tlk:RadNumericTextBox>
                 </td>
-                 <td class="lb">
-                    <asp:Label runat ="server" ID="lbFactorSalary" Text ="Hệ số lương"></asp:Label>
-                </td>
+                <td class="lb">
+                        <asp:Label ID="lbSalary_Total" runat="server" Text="Tổng mức lương"></asp:Label>
+                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rdFactorSalary" SkinID ="Decimal" ReadOnly ="true"  ></tlk:RadNumericTextBox>
-                </td>
-                 <td class="lb">
-                    <asp:Label runat ="server" ID="lbOtherSalary1" Text ="Lương khác 1"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rdOtherSalary1" SkinID ="Decimal" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox ID="Salary_Total" runat="server" Enabled="False" 
+                        SkinID="Money">
+                    </tlk:RadNumericTextBox>
                 </td>
             </tr>
             <tr>
                  <td class="lb">
+                    <asp:Label runat ="server" ID="lbOtherSalary1" Text ="Lương khác 1"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary1" SkinID ="Money" ></tlk:RadNumericTextBox>
+                </td>
+                 <td class="lb">
                     <asp:Label runat ="server" ID="lbOtherSalary2" Text ="Lương khác 2"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rdOtherSalary2" SkinID ="Decimal" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary2" SkinID ="Money" ></tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID="lbOtherSalary3" Text ="Lương khác 3"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rdOtherSalary3" SkinID ="Decimal" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary3" SkinID ="Money" ></tlk:RadNumericTextBox>
                 </td>
-                 <td class="lb">
+            </tr>
+            <tr>
+                <td class="lb">
                     <asp:Label runat ="server" ID="lbOtherSalary4" Text ="Lương khác 4"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rdOtherSalary4" SkinID ="Decimal" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary4" SkinID ="Money" ></tlk:RadNumericTextBox>
                 </td>
-            </tr>
+                <td class="lb">
+                    <asp:Label ID="lbOtherSalary5" runat="server" Text="Lương khác 5"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="rnOtherSalary5" runat="server" SkinID="Money">
+                    </tlk:RadNumericTextBox>
+                </td>
                  <td class="lb">
-                    <asp:Label runat ="server" ID="lbOtherSalary5" Text ="Lương khác 5"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rdOtherSalary5" SkinID ="Decimal" ></tlk:RadNumericTextBox>
-                </td>
-            <tr>
+                        <asp:Label ID="lbSaleCommision" runat="server" Text="Đối tượng Sale Commision"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cboSaleCommision" runat="server" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" 
+                            OnSelectedIndexChanged="cboSalTYPE_SelectedIndexChanged" SkinID="LoadDemand">
+                        </tlk:RadComboBox>
+                    </td>
             </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbSalTYPE" Text="Nhóm lương"></asp:Label> <span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboSalTYPE" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                        AutoPostBack="true" OnClientItemsRequesting="OnClientItemsRequesting" OnSelectedIndexChanged="cboSalTYPE_SelectedIndexChanged"
-                        CausesValidation="false">
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusSalType" runat="server" ErrorMessage="<%# GetYouMustChoseMsg(UI.Wage_WageGRoup) %>"
-                        ToolTip="<%# GetYouMustChoseMsg(UI.Wage_WageGRoup) %>" ClientValidationFunction="cusSalType">
-                    </asp:CustomValidator>
-                </td>
-                <td class="lb">
-                     <asp:Label runat ="server" ID ="lbTaxTable" Text ="Biểu thuế"></asp:Label><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboTaxTable" runat="server">
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusTaxTable" runat="server" ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>"
-                        ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_TaxTable) %>" ClientValidationFunction="cusTaxTable">
-                    </asp:CustomValidator>
-                </td>
-                <td class="lb">
-                     <asp:Label runat ="server" ID ="lbbasicSalary" Text ="Lương cơ bản"></asp:Label><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="basicSalary" runat="server" SkinID="Money" ClientEvents-OnValueChanged="OnBasicSalaryChanged">
-                    </tlk:RadNumericTextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldBasicSalary" ControlToValidate="basicSalary"
-                        runat="server" ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary) %>"
-                        ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary)%>"> 
-                    </asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbSalaryInsurance" Text ="Mức lương đóng bảo hiểm"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="SalaryInsurance" runat="server" SkinID="Money" Enabled="False">
-                    </tlk:RadNumericTextBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbAllowance_Total" Text ="Tổng phụ cấp"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="Allowance_Total" runat="server" SkinID="Money" Enabled="False">
-                    </tlk:RadNumericTextBox>
-                </td>
-                <td class="lb">
-                     <asp:Label runat ="server" ID ="lbSalary_Total" Text ="Tổng mức lương"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="Salary_Total" runat="server" SkinID="Money" Enabled="False">
-                    </tlk:RadNumericTextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbSaleCommision" Text ="Đối tượng Sale Commision"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboSaleCommision" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                        AutoPostBack="true" OnClientItemsRequesting="OnClientItemsRequesting" OnSelectedIndexChanged="cboSalTYPE_SelectedIndexChanged"
-                        CausesValidation="false">
-                    </tlk:RadComboBox>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <hr />
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbAllowance" Text ="Phụ cấp"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboAllowance" runat="server" ValidationGroup="Allowance" SkinID="LoadDemand"
-                        AutoPostBack="true" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                        OnClientItemsRequesting="OnClientItemsRequesting">
-                    </tlk:RadComboBox>
-                </td>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbAmount" Text ="Số tiền"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadNumericTextBox ID="rntxtAmount" runat="server" SkinID="Money" ValidationGroup="Allowance">
-                    </tlk:RadNumericTextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbAllowEffectDate" Text ="Ngày hiệu lực"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdAllowEffectDate" runat="server">
-                    </tlk:RadDatePicker>
-                </td>
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbAllowExpireDate" Text ="Ngày hết hiệu lực"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdAllowExpireDate" runat="server">
-                    </tlk:RadDatePicker>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdAllowExpireDate"
-                        Type="Date" ControlToCompare="rdEffectDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc phải lớn hơn Ngày hiệu lực %>"
-                        ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn Ngày hiệu lực %>"></asp:CompareValidator>
-                </td>
-                <td>
-                </td>
-                <td>
-                    <tlk:RadButton runat="server" ID="chkIsInsurrance" ToggleType="CheckBox" ButtonType="ToggleButton"
-                        Enabled="false" CausesValidation="false" Text=" Đóng bảo hiểm "
-                        AutoPostBack="false">
-                    </tlk:RadButton>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <tlk:RadGrid PageSize="50" ID="rgAllow" runat="server" Height="200px" Width="100%"
-                        SkinID="GridNotPaging">
-                        <MasterTableView DataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE"
-                            ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE"
-                            CommandItemDisplay="Top">
-                            <CommandItemStyle Height="28px" />
-                            <CommandItemTemplate>
-                                <div style="padding: 2px 0 0 0">
-                                    <div style="float: left">
-                                        <tlk:RadButton ID="btnInsertAllowance" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/add.png"
-                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Thêm %>" CommandName="InsertAllow">
-                                        </tlk:RadButton>
+                <tr>
+                    <td colspan="6">
+                        <hr />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <asp:Label ID="lbAllowance" runat="server" Text="Phụ cấp"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cboAllowance" runat="server" AutoPostBack="true" 
+                            OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" SkinID="LoadDemand" 
+                            ValidationGroup="Allowance">
+                        </tlk:RadComboBox>
+                    </td>
+                    <td class="lb">
+                        <asp:Label ID="lbAmount" runat="server" Text="Số tiền"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadNumericTextBox ID="rntxtAmount" runat="server" SkinID="Money" 
+                            ValidationGroup="Allowance">
+                        </tlk:RadNumericTextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <asp:Label ID="lbAllowEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadDatePicker ID="rdAllowEffectDate" runat="server">
+                        </tlk:RadDatePicker>
+                    </td>
+                    <td class="lb">
+                        <asp:Label ID="lbAllowExpireDate" runat="server" Text="Ngày hết hiệu lực"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadDatePicker ID="rdAllowExpireDate" runat="server">
+                        </tlk:RadDatePicker>
+                        <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                            ControlToCompare="rdEffectDate" ControlToValidate="rdAllowExpireDate" 
+                            ErrorMessage="<%$ Translate: Ngày kết thúc phải lớn hơn Ngày hiệu lực %>" 
+                            Operator="GreaterThanEqual" 
+                            ToolTip="<%$ Translate: Ngày kết thúc phải lớn hơn Ngày hiệu lực %>" 
+                            Type="Date"></asp:CompareValidator>
+                    </td>
+                    <td>
+                        <tlk:RadButton ID="chkIsInsurrance" runat="server" AutoPostBack="false" 
+                            ButtonType="ToggleButton" CausesValidation="false" Enabled="false" 
+                            Text=" Đóng bảo hiểm " ToggleType="CheckBox">
+                        </tlk:RadButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <tlk:RadGrid ID="rgAllow" runat="server" Height="200px" PageSize="50" 
+                            SkinID="GridNotPaging" Width="100%">
+                            <MasterTableView ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE" 
+                                CommandItemDisplay="Top" 
+                                DataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE">
+                                <CommandItemStyle Height="28px" />
+                                <CommandItemTemplate>
+                                    <div style="padding: 2px 0 0 0">
+                                        <div style="float: left">
+                                            <tlk:RadButton ID="btnInsertAllowance" runat="server" CausesValidation="false" 
+                                                CommandName="InsertAllow" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/add.png" 
+                                                Text="<%$ Translate: Thêm %>" Width="70px">
+                                            </tlk:RadButton>
+                                        </div>
+                                        <div style="float: right">
+                                            <tlk:RadButton ID="btnDeleteAllowance" runat="server" CausesValidation="false" 
+                                                CommandName="DeleteAllow" 
+                                                Icon-PrimaryIconUrl="~/Static/Images/Toolbar/delete.png" 
+                                                OnClientClicking="btnDeleteAllowanceClick" Text="<%$ Translate: Xóa %>" 
+                                                Width="70px">
+                                            </tlk:RadButton>
+                                        </div>
                                     </div>
-                                    <div style="float: right">
-                                        <tlk:RadButton ID="btnDeleteAllowance" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/delete.png"
-                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Xóa %>" CommandName="DeleteAllow"
-                                            OnClientClicking="btnDeleteAllowanceClick">
-                                        </tlk:RadButton>
-                                    </div>
-                                </div>
-                            </CommandItemTemplate>
-                            <Columns>
-                               <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                                </CommandItemTemplate>
+                                <Columns>
+                                    <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên phụ cấp %>" DataField="ALLOWANCE_LIST_NAME"
@@ -337,68 +371,74 @@
                                     SortExpression="IS_INSURRANCE" UniqueName="IS_INSURRANCE" HeaderStyle-Width="100px">
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </tlk:GridCheckBoxColumn>--%>
-                            </Columns>
-                        </MasterTableView>
-                    </tlk:RadGrid>
-                </td>
-            </tr>
-            <tr>
-                <td class="item-head" colspan="6">
-                    <%# Translate("Thông tin phê duyệt")%>
-                    <hr />
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Trạng thái")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadComboBox ID="cboStatus" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
-                    </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusStatus" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Trạng thái %>"
-                        ToolTip="<%$ Translate: Bạn phải chọn Trạng thái  %>" ClientValidationFunction="cusStatus">
+                                </Columns>
+                            </MasterTableView>
+                        </tlk:RadGrid>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="item-head" colspan="6">
+                        <%# Translate("Thông tin phê duyệt")%>
+                        <hr />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("Trạng thái")%><span class="lbReq">*</span>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox ID="cboStatus" runat="server" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged" SkinID="LoadDemand">
+                        </tlk:RadComboBox>
+                        <asp:CustomValidator ID="cusStatus" runat="server" 
+                            ClientValidationFunction="cusStatus" 
+                            ErrorMessage="<%$ Translate: Bạn phải chọn Trạng thái %>" 
+                            ToolTip="<%$ Translate: Bạn phải chọn Trạng thái  %>">
                     </asp:CustomValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Ngày ký")%>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdSignDate" runat="server">
-                    </tlk:RadDatePicker>
-                </td>
-                <td class="lb">
-                    <%# Translate("Người ký")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtSignName" runat="server" SkinID="Readonly" ReadOnly="true"
-                        Width="130px">
-                    </tlk:RadTextBox>
-                    <tlk:RadButton ID="btnFindSign" runat="server" SkinID="ButtonView" CausesValidation="false">
-                    </tlk:RadButton>
-                </td>
-                <td class="lb">
-                    <%# Translate("Chức danh")%>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtSignTitle" runat="server" SkinID="Readonly" ReadOnly="true">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
-                    <%# Translate("Ghi chú")%>
-                </td>
-                <td colspan="5">
-                    <tlk:RadTextBox ID="txtRemark" SkinID="Textbox1023" Width="100%" runat="server">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("Ngày ký")%>
+                    </td>
+                    <td>
+                        <tlk:RadDatePicker ID="rdSignDate" runat="server">
+                        </tlk:RadDatePicker>
+                    </td>
+                    <td class="lb">
+                        <%# Translate("Người ký")%>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSignName" runat="server" ReadOnly="true" 
+                            SkinID="Readonly" Width="130px">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton ID="btnFindSign" runat="server" CausesValidation="false" 
+                            SkinID="ButtonView">
+                        </tlk:RadButton>
+                    </td>
+                    <td class="lb">
+                        <%# Translate("Chức danh")%>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtSignTitle" runat="server" ReadOnly="true" 
+                            SkinID="Readonly">
+                        </tlk:RadTextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("Ghi chú")%>
+                    </td>
+                    <td colspan="5">
+                        <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
+                        </tlk:RadTextBox>
+                    </td>
+                </tr>
         </table>
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <asp:PlaceHolder ID="phFindEmp" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
@@ -423,7 +463,7 @@
             args.IsValid = (cbo.get_value().length != 0);
         }
       <%--  function cusSalGroup(oSrc, args) {
-            var cbo = $find("<%# cboSalGroup.ClientID %>");
+            var cbo = $find("<%# cbSalaryGroup.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         } --%>
         function cusTaxTable(oSrc, args) {
@@ -431,12 +471,12 @@
             args.IsValid = (cbo.get_value().length != 0);
         }
       <%--   function cusSalLevel(oSrc, args) {
-            var cbo = $find("<%# cboSalLevel.ClientID %>");
+            var cbo = $find("<%# cbSalaryLevel.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         } --%>
 
        <%-- function cusSalRank(oSrc, args) {
-            var cbo = $find("<%# cboSalRank.ClientID %>");
+            var cbo = $find("<%# cbSalaryRank.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }--%>
 
@@ -460,12 +500,8 @@
 
         function clientButtonClicking(sender, args) {
             if (args.get_item().get_commandName() == 'SAVE') {
-                <%-- var objSalBasic = $find('<%= rntxtSalBasic.ClientID %>');
-                var objSalTotal = $find('<%= rntxtSalTotal.ClientID %>');
-                var objCostSupport = $find('<%= rntxtCostSupport.ClientID %>');
-                var objHSDieuChinh = $find('<%= rntxtHeSoDieuChinh.ClientID %>');
-                var objTGGiuBac = $find('<%= rntxtThoiGianBac.ClientID %>');
-                var objLuongDieuTiet = $find('<%= rntxtLuongDieuTiet.ClientID %>');--%>
+                <%-- var objSalBasic = $find('<%= basicSalary.ClientID %>');
+               --%>
                 var valueSalBasic = 0;
                 var valueSalTotal = 0;
                 var valueCostSupport = 0;
@@ -511,56 +547,30 @@
             var id = sender.get_id();
             var cbo;
             switch (id) {
-             <%--    case '<%= cboSalGroup.ClientID %>':
-                    cbo = $find('<%= cboSalLevel.ClientID %>');
-                    clearSelectRadcombo(cbo);
-                    cbo = $find('<%= cboSalRank.ClientID %>');
-                    clearSelectRadcombo(cbo);
-                    cbo = $find('<%= rntxtSalBasic.ClientID %>');
+             case '<%= cbSalaryGroup.ClientID %>':
+                cbo = $find('<%= cbSalaryLevel.ClientID %>');
+                clearSelectRadcombo(cbo);
+                cbo = $find('<%= cbSalaryRank.ClientID %>');
+                clearSelectRadcombo(cbo);
+                cbo = $find('<%= basicSalary.ClientID %>');
+                clearSelectRadnumeric(cbo);
+                
+            break;
+            case '<%= cbSalaryLevel.ClientID %>':
+                cbo = $find('<%= cbSalaryRank.ClientID %>');
+                clearSelectRadcombo(cbo);
+                cbo = $find('<%= basicSalary.ClientID %>');
+                clearSelectRadnumeric(cbo);
+                
+                break; 
+                case '<%= cbSalaryRank.ClientID %>':
+                    cbo = $find('<%= basicSalary.ClientID %>');
                     clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtHeSoDieuChinh.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtTongHeSo.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtThoiGianBac.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtLuongDieuTiet.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    break; --%>
-              <%--   case '<%= cboSalLevel.ClientID %>':
-                    cbo = $find('<%= cboSalRank.ClientID %>');
-                    clearSelectRadcombo(cbo);
-                    cbo = $find('<%= rntxtSalBasic.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtHeSoDieuChinh.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtTongHeSo.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtThoiGianBac.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    cbo = $find('<%= rntxtLuongDieuTiet.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    break; --%>
-                <%--case '<%= cboSalRank.ClientID %>':
-                    cbo = $find('<%= rntxtSalBasic.ClientID %>');
-                    cboHSDC = $find('<%= rntxtHeSoDieuChinh.ClientID %>');
-                    cboTongHS = $find('<%= rntxtTongHeSo.ClientID %>');
-                    cboTGGiuBac = $find('<%= rntxtThoiGianBac.ClientID %>');
-                    cboLuongDieuTiet = $find('<%= rntxtLuongDieuTiet.ClientID %>');
-                    clearSelectRadnumeric(cbo);
-                    clearSelectRadnumeric(cboHSDC);
-                    clearSelectRadnumeric(cboTongHS);
-                    clearSelectRadnumeric(cboTGGiuBac);
-                    clearSelectRadnumeric(cboLuongDieuTiet);
                     var item = eventArgs.get_item();
                     if (item) {
                         cbo.set_value(item.get_attributes().getAttribute("SALARY_BASIC"));
-                        cboHSDC.set_value(item.get_attributes().getAttribute("HS_DC"));
-                        cboTongHS.set_value(item.get_attributes().getAttribute("TONG_HS"));
-                        cboTGGiuBac.set_value(item.get_attributes().getAttribute("THOIGIAN_BAC"));
-                        cboLuongDieuTiet.set_value(item.get_attributes().getAttribute("LUONG_DT"));
                     }
-                    break;--%>
+                    break;
                 default:
                     break;
             }
@@ -585,7 +595,7 @@
                         value = day + "/" + month + "/" + year;
                     }
                     break;
-               <%-- case '<%= cboSalGroup.ClientID %>':
+               <%-- case '<%= cbSalaryGroup.ClientID %>':
                     cbo = $find('<%= rdEffectDate.ClientID %>');
                     var date = cbo.get_selectedDate();
                     if (date) {
@@ -596,14 +606,14 @@
                         value = day + "/" + month + "/" + year;
                     }
                     break; 
-                case '<%= cboSalLevel.ClientID %>':
-                    cbo = $find('<%= cboSalGroup.ClientID %>');
+                case '<%= cbSalaryLevel.ClientID %>':
+                    cbo = $find('<%= cbSalaryGroup.ClientID %>');
                     value = cbo.get_value();
                     break;--%>
-              <%--   case '<%= cboSalRank.ClientID %>':
-                    cbo = $find('<%= cboSalLevel.ClientID %>');
+              case '<%= cbSalaryRank.ClientID %>':
+                    cbo = $find('<%= cbSalaryLevel.ClientID %>');
                     value = cbo.get_value();
-                    break; --%>
+                    break; 
                 default:
                     break;
             }
@@ -623,7 +633,10 @@
                 cbo.set_text('');
             }
         }
-
+        
+         function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
+        }
         function clearSelectRadnumeric(cbo) {
             if (cbo) {
                 cbo.clear();
@@ -654,12 +667,7 @@
             var valueHSDieuChinh = 0;
             var valueTGGiuBac = 0;
             var valueLuongDieuTiet = 0;
-            <%--    var objSalBasic = $find('<%= rntxtSalBasic.ClientID %>');
-           var objSalTotal = $find('<%= rntxtSalTotal.ClientID %>');
-            var objHSDieuChinh = $find('<%= rntxtHeSoDieuChinh.ClientID %>');
-            var objTongHS = $find('<%= rntxtTongHeSo.ClientID %>');
-            var objTGGiuBac = $find('<%= rntxtThoiGianBac.ClientID %>');
-            var objLuongDieuTiet = $find('<%= rntxtLuongDieuTiet.ClientID %>');
+            <%--    var objSalBasic = $find('<%= basicSalary.ClientID %>');
             if (objSalBasic.get_value()) {
                 valueSalBasic = objSalBasic.get_value();
             }
@@ -670,44 +678,16 @@
                 valueHSDieuChinh = objHSDieuChinh.get_value();
             } --%>
             <%-- switch (id) {
-                case '<%= rntxtSalBasic.ClientID %>':
+                case '<%= basicSalary.ClientID %>':
                     valueSalBasic = 0;
                     if (args.get_newValue()) {
                         valueSalBasic = args.get_newValue();
-                    }
-                    break;
-                case '<%= rntxtSalTotal.ClientID %>':
-                    valueSalTotal = 0;
-                    if (args.get_newValue()) {
-                        valueSalTotal = args.get_newValue();
-                    }
-                    break;
-                case '<%= rntxtHeSoDieuChinh.ClientID %>':
-                    valueHSDieuChinh = 0;
-                    if (args.get_newValue()) {
-                        valueHSDieuChinh = args.get_newValue();
-                    }
-                    break;
-                case '<%= rntxtThoiGianBac.ClientID %>':
-                    valueTGGiuBac = 0;
-                    if (args.get_newValue()) {
-                        valueTGGiuBac = args.get_newValue();
-                    }
-                    break;
-                case '<%= rntxtLuongDieuTiet.ClientID %>':
-                    valueLuongDieuTiet = 0;
-                    if (args.get_newValue()) {
-                        valueLuongDieuTiet = args.get_newValue();
                     }
                     break;
                 default:
                     break;
            
             } 
-
-            objCostSupport = $find('<%= rntxtCostSupport.ClientID %>');
-            objCostSupport.set_value(0);
-            if (valueSalBasic < valueSalTotal) objCostSupport.set_value(valueSalTotal - valueSalBasic - valueHSDieuChinh);
         --%>
         }
 

@@ -6,6 +6,8 @@ Imports Common
 Imports Telerik.Web.UI
 Imports System.IO
 Imports WebAppLog
+Imports ICSharpCode.SharpZipLib.Zip
+Imports ICSharpCode.SharpZipLib.Checksums
 Imports HistaffWebAppResources.My.Resources
 Public Class ctrlHU_WageNewEdit
     Inherits CommonView
@@ -41,9 +43,15 @@ Public Class ctrlHU_WageNewEdit
             ViewState(Me.ID & "_isLoadPopup") = value
         End Set
     End Property
-
+    Property Down_File As String
+        Get
+            Return ViewState(Me.ID & "_Down_File")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_Down_File") = value
+        End Set
+    End Property
 #End Region
-
 #Region "Page"
     ''' <summary>
     ''' Khoi tao page, load control, menu toolbar, data grid
@@ -79,6 +87,7 @@ Public Class ctrlHU_WageNewEdit
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
             If Not IsPostBack Then
+                getSE_CASE_CONFIG()
                 ViewConfig(LeftPane)
                 GirdConfig(rgAllow)
             End If
@@ -175,62 +184,57 @@ Public Class ctrlHU_WageNewEdit
 
                     rdEffectDate.SelectedDate = Working.EFFECT_DATE
                     rdExpireDate.SelectedDate = Working.EXPIRE_DATE
-                    'If Working.DECISION_TYPE_ID IsNot Nothing Then
-                    '    cboDecisionType.SelectedValue = Working.DECISION_TYPE_ID
-                    '    cboDecisionType.Text = Working.DECISION_TYPE_NAME
-                    'End If
                     txtDecisionNo.Text = Working.DECISION_NO
-                    'If Working.SAL_GROUP_ID IsNot Nothing Then
-                    '    cboSalGroup.SelectedValue = Working.SAL_GROUP_ID
-                    '    cboSalGroup.Text = Working.SAL_GROUP_NAME
-                    'End If
-                    'If Working.SAL_LEVEL_ID IsNot Nothing Then
-                    '    cboSalLevel.SelectedValue = Working.SAL_LEVEL_ID
-                    '    cboSalLevel.Text = Working.SAL_LEVEL_NAME
-                    'End If
-                    'If Working.SAL_RANK_ID IsNot Nothing Then
-                    '    cboSalRank.SelectedValue = Working.SAL_RANK_ID
-                    '    cboSalRank.Text = Working.SAL_RANK_NAME
-                    'End If
-
+                    If Working.SAL_GROUP_ID IsNot Nothing Then
+                        cbSalaryGroup.SelectedValue = Working.SAL_GROUP_ID
+                        cbSalaryGroup.Text = Working.SAL_GROUP_NAME
+                    End If
+                    If Working.SAL_LEVEL_ID IsNot Nothing Then
+                        cbSalaryLevel.SelectedValue = Working.SAL_LEVEL_ID
+                        cbSalaryLevel.Text = Working.SAL_LEVEL_NAME
+                    End If
+                    If Working.SAL_RANK_ID IsNot Nothing Then
+                        cbSalaryRank.SelectedValue = Working.SAL_RANK_ID
+                        cbSalaryRank.Text = Working.SAL_RANK_NAME
+                    End If
+                    If IsNumeric(Working.PERCENTSALARY) Then
+                        rnPercentSalary.Value = Working.PERCENTSALARY
+                    End If
+                    If IsNumeric(Working.FACTORSALARY) Then
+                        rnFactorSalary.Value = Working.FACTORSALARY
+                    End If
+                    If IsNumeric(Working.OTHERSALARY1) Then
+                        rnOtherSalary1.Value = Working.OTHERSALARY1
+                    End If
+                    If IsNumeric(Working.OTHERSALARY2) Then
+                        rnOtherSalary2.Value = Working.OTHERSALARY2
+                    End If
+                    If IsNumeric(Working.OTHERSALARY3) Then
+                        rnOtherSalary3.Value = Working.OTHERSALARY3
+                    End If
+                    If IsNumeric(Working.OTHERSALARY4) Then
+                        rnOtherSalary4.Value = Working.OTHERSALARY4
+                    End If
+                    If IsNumeric(Working.OTHERSALARY5) Then
+                        rnOtherSalary5.Value = Working.OTHERSALARY5
+                    End If
+                    txtUploadFile.Text = Working.ATTACH_FILE
+                    txtUpload.Text = Working.ATTACH_FILE
                     If Working.STAFF_RANK_ID IsNot Nothing Then
                         hidStaffRank.Value = Working.STAFF_RANK_ID
-                        ' txtStaffRank.Text = Working.STAFF_RANK_NAME
                     End If
-                    'rntxtSalBasic.Value = Working.SAL_BASIC
-                    'rntxtCostSupport.Value = Working.COST_SUPPORT
-                    ' rntxtPercentSalary.Value = Working.PERCENT_SALARY
-                    '  rntxtSalTotal.Value = 0
-                    If Working.SAL_BASIC IsNot Nothing Then
-                        '     rntxtSalTotal.Value += Working.SAL_BASIC
+                    If IsDate(Working.SIGN_DATE) Then
+                        rdSignDate.SelectedDate = Working.SIGN_DATE
                     End If
-                    If Working.COST_SUPPORT IsNot Nothing Then
-                        '     rntxtSalTotal.Value += Working.COST_SUPPORT
-                    End If
-                    rdSignDate.SelectedDate = Working.SIGN_DATE
+
                     If Working.SIGN_ID IsNot Nothing Then
                         hidSign.Value = Working.SIGN_ID
                     End If
                     txtSignName.Text = Working.SIGN_NAME
                     txtSignTitle.Text = Working.SIGN_TITLE
                     txtRemark.Text = Working.REMARK
-                    ' rntxtPercentSalary.Value = Working.PERCENT_SALARY
                     lstAllow = Working.lstAllowance
                     rgAllow.Rebind()
-                    'Dim total As Decimal = 0
-                    'If rntxtCostSupport.Value IsNot Nothing Then
-                    '    total = total + rntxtCostSupport.Value
-                    'End If
-                    'If rntxtSalBasic.Value IsNot Nothing Then
-                    '    total = total + rntxtSalBasic.Value
-                    'End If
-                    'For Each item As GridDataItem In rgAllow.Items
-                    '    If item.GetDataKeyValue("AMOUNT") IsNot Nothing Then
-                    '        total = total + item.GetDataKeyValue("AMOUNT")
-                    '    End If
-                    'Next
-                    'rntxtTotal.Value = total
-
                     If Working.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
                         Working.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
                         LeftPane.Enabled = False
@@ -251,10 +255,6 @@ Public Class ctrlHU_WageNewEdit
                     If Working.SAL_TOTAL IsNot Nothing Then
                         Salary_Total.Text = Working.SAL_TOTAL
                     End If
-
-
-
-                    'RebindValue()
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
             End Select
@@ -265,10 +265,91 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
 #End Region
-
 #Region "Event"
+    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif,pdf"
+            ctrlUpload1.Show()
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            txtUploadFile.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".pdf")
+            listExtension.Add(".jpg")
+            listExtension.Add(".png")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/")
+            If ctrlUpload1.UploadedFiles.Count >= 1 Then
+                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
+                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
+                        strPath = strPath + str_Filename
+                        fileName = System.IO.Path.Combine(strPath, file.FileName)
+                        file.SaveAs(fileName, True)
+                        txtUploadFile.Text = file.FileName
+                        Down_File = str_Filename
+                    Else
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
+                loadDatasource(txtUploadFile.Text)
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub btnDownloadOld_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If txtUpload.Text <> "" Then
+                Dim strPath_Down As String = Server.MapPath("~/ReportTemplates/Profile/SalaryInfo/" + txtUpload.Text)
+                'bCheck = True
+                ZipFiles(strPath_Down, 2)
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub cbSalaryRank_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbSalaryRank.SelectedIndexChanged
+        Try
+            Using rep As New ProfileRepository
+                Dim dtdata As DataTable = New DataTable()
+                If IsNumeric(cbSalaryLevel.SelectedValue) Then
+                    dtdata = rep.GetSalaryRankList(cbSalaryLevel.SelectedValue, True)
+                    Dim row = dtdata.Select("ID='" + If(cbSalaryRank.SelectedValue = "", 0, cbSalaryRank.SelectedValue) + "'")(0)
+                    If row IsNot Nothing Then
+                        rnFactorSalary.Value = row("SALARY_BASIC").ToString
+                    End If
+                End If
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Private Sub cbSalaryGroup_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbSalaryGroup.SelectedIndexChanged
         Try
             Dim dtData As DataTable = New DataTable()
@@ -284,7 +365,6 @@ Public Class ctrlHU_WageNewEdit
             Throw ex
         End Try
     End Sub
-
     Private Sub cbSalaryLevel_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbSalaryLevel.SelectedIndexChanged
         Try
             Dim dtData As DataTable = New DataTable()
@@ -300,7 +380,6 @@ Public Class ctrlHU_WageNewEdit
             Throw ex
         End Try
     End Sub
-
     ''' <summary>
     ''' Event click item cua menu toolbar
     ''' Check validate page khi an luu
@@ -319,50 +398,15 @@ Public Class ctrlHU_WageNewEdit
                 Case CommonMessage.TOOLBARITEM_SAVE
 
                     If Page.IsValid Then
-                        'If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                        '    If txtDecisionNo.Text = "" Then
-                        '        ShowMessage(Translate("Bạn phải nhập số tờ trình"), NotifyType.Warning)
-                        '        Exit Sub
-                        '    End If
-                        'End If
                         If cboSalTYPE.SelectedValue = "" Then
                             ShowMessage(Translate("Bạn phải chọn đối tượng lương"), NotifyType.Warning)
                             Exit Sub
                         End If
-
-                        'If cboSalGroup.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn Thang lương"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
-                        'If cboSalLevel.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn Nhóm lương"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
-                        'If cboSalLevel.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn Bậc lương"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
-                        'If cboDecisionType.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn Loại tờ trình"), NotifyType.Warning)
-                        '    cboDecisionType.Focus()
-                        '    Exit Sub
-                        'End If
-                        'If cboStatus.SelectedValue = "" Then
-                        '    ShowMessage(Translate("Bạn phải chọn Trạng thái"), NotifyType.Warning)
-                        '    cboStatus.Focus()
-                        '    Exit Sub
-                        'End If
                         If rdEffectDate.SelectedDate Is Nothing Then
                             ShowMessage(Translate("Bạn phải chọn Ngày hiệu lực"), NotifyType.Warning)
                             rdEffectDate.Focus()
                             Exit Sub
                         End If
-                        'If rntxtPercentSalary Is Nothing Then
-                        '    ShowMessage(Translate("Bạn phải nhập % hưởng lương"), NotifyType.Warning)
-                        '    rntxtPercentSalary.Focus()
-                        '    Exit Sub
-                        'End If
-                        'RebindValue()
                         Dim gID As Decimal
                         With objWorking
                             .EMPLOYEE_ID = hidEmp.Value
@@ -373,9 +417,6 @@ Public Class ctrlHU_WageNewEdit
                             End If
                             .EFFECT_DATE = rdEffectDate.SelectedDate
                             .EXPIRE_DATE = rdExpireDate.SelectedDate
-                            'If cboDecisionType.SelectedValue <> "" Then
-                            '    .DECISION_TYPE_ID = cboDecisionType.SelectedValue
-                            'End If
                             .DECISION_NO = txtDecisionNo.Text
                             If cboSalTYPE.SelectedValue <> "" Then
                                 .SAL_TYPE_ID = cboSalTYPE.SelectedValue
@@ -385,23 +426,42 @@ Public Class ctrlHU_WageNewEdit
                                 .SALE_COMMISION_ID = cboSaleCommision.SelectedValue
                             End If
 
-                            'If cboSalGroup.SelectedValue <> "" Then
-                            '    .SAL_GROUP_ID = cboSalGroup.SelectedValue
-                            'End If
-                            'If cboSalLevel.SelectedValue <> "" Then
-                            '    .SAL_LEVEL_ID = cboSalLevel.SelectedValue
-                            'End If
-                            'If cboSalRank.SelectedValue <> "" Then
-                            '    .SAL_RANK_ID = cboSalRank.SelectedValue
-                            'End If
+                            If cbSalaryGroup.SelectedValue <> "" Then
+                                .SAL_GROUP_ID = cbSalaryGroup.SelectedValue
+                            End If
+                            If cbSalaryLevel.SelectedValue <> "" Then
+                                .SAL_LEVEL_ID = cbSalaryLevel.SelectedValue
+                            End If
+                            If cbSalaryRank.SelectedValue <> "" Then
+                                .SAL_RANK_ID = cbSalaryRank.SelectedValue
+                            End If
                             If hidStaffRank.Value <> "" Then
                                 .STAFF_RANK_ID = hidStaffRank.Value
                             End If
-
-
+                            If IsNumeric(rnPercentSalary.Value) Then
+                                .PERCENTSALARY = rnPercentSalary.Value
+                            End If
+                            If IsNumeric(rnFactorSalary.Value) Then
+                                .FACTORSALARY = rnFactorSalary.Value
+                            End If
+                            If IsNumeric(rnOtherSalary1.Value) Then
+                                .OTHERSALARY1 = rnOtherSalary1.Value
+                            End If
+                            If IsNumeric(rnOtherSalary2.Value) Then
+                                .OTHERSALARY2 = rnOtherSalary2.Value
+                            End If
+                            If IsNumeric(rnOtherSalary3.Value) Then
+                                .OTHERSALARY3 = rnOtherSalary3.Value
+                            End If
+                            If IsNumeric(rnOtherSalary4.Value) Then
+                                .OTHERSALARY4 = rnOtherSalary4.Value
+                            End If
+                            If IsNumeric(rnOtherSalary5.Value) Then
+                                .OTHERSALARY5 = rnOtherSalary5.Value
+                            End If
                             .SAL_BASIC = basicSalary.Value
-                            '.COST_SUPPORT = rntxtCostSupport.Value
                             .SIGN_DATE = rdSignDate.SelectedDate
+                            .ATTACH_FILE = txtUploadFile.Text
                             If hidSign.Value <> "" Then
                                 .SIGN_ID = hidSign.Value
                             End If
@@ -429,9 +489,6 @@ Public Class ctrlHU_WageNewEdit
                                 End If
                                 lstAllow.Add(allow)
                                 .ALLOWANCE_TOTAL = .ALLOWANCE_TOTAL + allow.AMOUNT
-                                'If allow.IS_INSURRANCE Then
-                                '    .SAL_INS += allow.AMOUNT
-                                'End If
                             Next
                             If isError Then
                                 ShowMessage("Ngày kết thúc phụ cấp phải lớn hơn Ngày hiệu lực tờ trình", NotifyType.Warning)
@@ -442,7 +499,6 @@ Public Class ctrlHU_WageNewEdit
                             .SAL_TOTAL = Salary_Total.Value
                             .TAX_TABLE_ID = Decimal.Parse(cboTaxTable.SelectedValue)
                             .SAL_INS = SalaryInsurance.Value
-
                         End With
 
                         Select Case CurrentState
@@ -473,8 +529,6 @@ Public Class ctrlHU_WageNewEdit
                                 End If
                         End Select
                     End If
-
-
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
                     Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WageMng&group=Business")
@@ -592,7 +646,7 @@ Public Class ctrlHU_WageNewEdit
             Using rep As New ProfileRepository
                 Dim dtData As DataTable
                 Dim sText As String = e.Text
-                'Dim dValue As Decimal
+                Dim dValue As Decimal
                 Dim dateValue As Date
                 Select Case sender.ID
                     Case cboAllowance.ID
@@ -603,25 +657,25 @@ Public Class ctrlHU_WageNewEdit
                                                 .IS_INSURANCE = CType(dtData.Rows(i)("IS_INSURANCE"), Boolean)})
                         Next
                     Case cboSalTYPE.ID
-                        'If e.Context("valueCustom") Is Nothing Then
-                        '    dateValue = Date.Now
-                        'Else
-                        '    dateValue = Date.Parse(e.Context("valueCustom"))
-                        'End If
+                        If e.Context("valueCustom") Is Nothing Then
+                            dateValue = Date.Now
+                        Else
+                            dateValue = Date.Parse(e.Context("valueCustom"))
+                        End If
                         dtData = rep.GetSalaryTypeList(dateValue, True)
-                        'Case cboSalGroup.ID
-                        '    If e.Context("valueCustom") Is Nothing Then
-                        '        dateValue = Date.Now
-                        '    Else
-                        '        dateValue = Date.Parse(e.Context("valueCustom"))
-                        '    End If
-                        '    dtData = rep.GetSalaryGroupList(dateValue, True)
-                        'Case cboSalLevel.ID
-                        '    dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
-                        '    dtData = rep.GetSalaryLevelList(dValue, True)
-                        'Case cboSalRank.ID
-                        '    dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
-                        '    dtData = rep.GetSalaryRankList(dValue, True)
+                    Case cbSalaryGroup.ID
+                        If e.Context("valueCustom") Is Nothing Then
+                            dateValue = Date.Now
+                        Else
+                            dateValue = Date.Parse(e.Context("valueCustom"))
+                        End If
+                        dtData = rep.GetSalaryGroupList(dateValue, True)
+                    Case cbSalaryLevel.ID
+                        dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                        dtData = rep.GetSalaryLevelList(dValue, True)
+                    Case cbSalaryRank.ID
+                        dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                        dtData = rep.GetSalaryRankList(dValue, True)
                     Case cboStatus.ID
                         dtData = rep.GetOtherList(OtherTypes.DecisionStatus)
                     Case cboTaxTable.ID
@@ -653,8 +707,8 @@ Public Class ctrlHU_WageNewEdit
                         For i As Integer = itemOffset To endOffset - 1
                             Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
                             Select Case sender.ID
-                                'Case cboSalRank.ID
-                                '    radItem.Attributes("SALARY_BASIC") = dtData.Rows(i)("SALARY_BASIC").ToString()
+                                Case cbSalaryRank.ID
+                                    radItem.Attributes("SALARY_BASIC") = dtData.Rows(i)("SALARY_BASIC").ToString()
                             End Select
                             sender.Items.Add(radItem)
                         Next
@@ -758,19 +812,6 @@ Public Class ctrlHU_WageNewEdit
                     lstAllow.Add(allow1)
                     ClearControlValue(cboAllowance, rntxtAmount, chkIsInsurrance, rdAllowExpireDate)
                     rgAllow.Rebind()
-                    'Dim total As Decimal = 0
-                    'If rntxtCostSupport.Value IsNot Nothing Then
-                    '    total = total + rntxtCostSupport.Value
-                    'End If
-                    'If rntxtSalBasic.Value IsNot Nothing Then
-                    '    total = total + rntxtSalBasic.Value
-                    'End If
-                    'For Each item As GridDataItem In rgAllow.Items
-                    '    If item.GetDataKeyValue("AMOUNT") IsNot Nothing Then
-                    '        total = total + item.GetDataKeyValue("AMOUNT")
-                    '    End If
-                    'Next
-                    'rntxtTotal.Value = total
                 Case "DeleteAllow"
                     For Each item As GridDataItem In rgAllow.Items
                         Dim isExist As Boolean = False
@@ -780,7 +821,6 @@ Public Class ctrlHU_WageNewEdit
                                 Exit For
                             End If
                         Next
-
                         If Not isExist Then
                             Dim allow As New WorkingAllowanceDTO
                             allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
@@ -793,21 +833,6 @@ Public Class ctrlHU_WageNewEdit
                         End If
                     Next
                     rgAllow.Rebind()
-                    'Dim total As Decimal = 0
-                    'If rntxtCostSupport.Value IsNot Nothing Then
-                    '    total = total + rntxtCostSupport.Value
-                    'End If
-                    'If rntxtSalBasic.Value IsNot Nothing Then
-                    '    total = total + rntxtSalBasic.Value
-                    'End If
-                    'For Each item As GridDataItem In rgAllow.Items
-                    '    If item.GetDataKeyValue("AMOUNT") IsNot Nothing Then
-                    '        total = total + item.GetDataKeyValue("AMOUNT")
-                    '    End If
-                    'Next
-                    'rntxtTotal.Value = total
-
-
             End Select
             'RebindValue()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -816,7 +841,6 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
     ''' <summary>
     ''' load data len grid phu cap
     ''' </summary>
@@ -835,47 +859,6 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <summary>
-    ''' Validate datetimepicker Ngay Hieu luc phai lon hon ngay hieu luc gan nhat
-    ''' rep.ValidateWorking => check ngay hieu luc gan nhat tren database
-    ''' Khong cho phep cung 1 quyet dinh trong cung 1 khoang thoi gian nhung lai co 2 gia tri(luong, phucap) khac nhau
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    'Private Sub cusExistEffectDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cusExistEffectDate.ServerValidate
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        If hidEmp.Value = "" Then
-    '            args.IsValid = True
-    '            Exit Sub
-    '        End If
-    '        Select Case CurrentState
-    '            Case CommonMessage.STATE_NEW
-    '                Using rep As New ProfileBusinessRepository
-    '                    args.IsValid = rep.ValidateWorking("EXIST_EFFECT_DATE",
-    '                                                        New WorkingDTO With {
-    '                                                            .EMPLOYEE_ID = hidEmp.Value,
-    '                                                            .EFFECT_DATE = rdEffectDate.SelectedDate})
-    '                End Using
-    '            Case CommonMessage.STATE_EDIT
-    '                Using rep As New ProfileBusinessRepository
-    '                    args.IsValid = rep.ValidateWorking("EXIST_EFFECT_DATE",
-    '                                                        New WorkingDTO With {
-    '                                                            .ID = hidID.Value,
-    '                                                            .EMPLOYEE_ID = hidEmp.Value,
-    '                                                            .EFFECT_DATE = rdEffectDate.SelectedDate})
-    '                End Using
-    '            Case Else
-    '                args.IsValid = True
-    '        End Select
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
     ''' <summary>
     ''' Chon ngay het hieu luc phai lon hon ngay hieu luc
     ''' </summary>
@@ -923,53 +906,7 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <summary>
-    ''' Check validate tong luong phai > luong co ban toi thieu vung
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    'Private Sub cusPercentSalary_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) _
-    '    Handles cusPercentSalary.ServerValidate
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        If hidEmp.Value = "" Then
-    '            args.IsValid = True
-    '            Exit Sub
-    '        End If
-    '        Dim sumSal As Decimal = 0
-    '        If rntxtSalBasic.Value IsNot Nothing Then
-    '            sumSal += rntxtSalBasic.Value
-    '        End If
-    '        If rntxtCostSupport.Value IsNot Nothing Then
-    '            sumSal += rntxtCostSupport.Value
-    '        End If
-    '        If rntxtPercentSalary.Value IsNot Nothing Then
-    '            sumSal = sumSal * rntxtPercentSalary.Value / 100
-    '        Else
-    '            sumSal = 0
-    '        End If
-    '        Select Case CurrentState
-    '            Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
-    '                Using rep As New ProfileBusinessRepository
-    '                    args.IsValid = rep.ValidateWorking("VALIDATE_INS_REGION",
-    '                                                        New WorkingDTO With {
-    '                                                            .EMPLOYEE_ID = hidEmp.Value,
-    '                                                            .SAL_BASIC = sumSal})
-    '                End Using
-    '            Case Else
-    '                args.IsValid = True
-    '        End Select
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
-
 #End Region
-
 #Region "Custom"
     ''' <summary>
     ''' Khoi tao control, Khoi tao popup list Danh sach nhan vien theo 2 loai man hinh
@@ -1067,24 +1004,24 @@ Public Class ctrlHU_WageNewEdit
                 ' txtTitleGroup.Text = obj.TITLE_GROUP_NAME
                 hidOrg.Value = obj.ORG_ID
                 txtOrgName.Text = obj.ORG_NAME
-                'If obj.SAL_GROUP_ID IsNot Nothing Then
-                '    cboSalGroup.SelectedValue = obj.SAL_GROUP_ID
-                '    cboSalGroup.Text = obj.SAL_GROUP_NAME
-                'Else
-                '    cboSalGroup.SelectedValue = ""
-                'End If
-                'If obj.SAL_LEVEL_ID IsNot Nothing Then
-                '    cboSalLevel.SelectedValue = obj.SAL_LEVEL_ID
-                '    cboSalLevel.Text = obj.SAL_LEVEL_NAME
-                'Else
-                '    cboSalLevel.SelectedValue = ""
-                'End If
-                'If obj.SAL_RANK_ID IsNot Nothing Then
-                '    cboSalRank.SelectedValue = obj.SAL_RANK_ID
-                '    cboSalRank.Text = obj.SAL_RANK_NAME
-                'Else
-                '    cboSalRank.SelectedValue = ""
-                'End If
+                If obj.SAL_GROUP_ID IsNot Nothing Then
+                    cbSalaryGroup.SelectedValue = obj.SAL_GROUP_ID
+                    cbSalaryGroup.Text = obj.SAL_GROUP_NAME
+                Else
+                    cbSalaryGroup.SelectedValue = ""
+                End If
+                If obj.SAL_LEVEL_ID IsNot Nothing Then
+                    cbSalaryLevel.SelectedValue = obj.SAL_LEVEL_ID
+                    cbSalaryLevel.Text = obj.SAL_LEVEL_NAME
+                Else
+                    cbSalaryLevel.SelectedValue = ""
+                End If
+                If obj.SAL_RANK_ID IsNot Nothing Then
+                    cbSalaryRank.SelectedValue = obj.SAL_RANK_ID
+                    cbSalaryRank.Text = obj.SAL_RANK_NAME
+                Else
+                    cbSalaryRank.SelectedValue = ""
+                End If
                 If obj.STAFF_RANK_ID IsNot Nothing Then
                     hidStaffRank.Value = obj.STAFF_RANK_ID
                     'txtStaffRank.Text = obj.STAFF_RANK_NAME
@@ -1093,17 +1030,6 @@ Public Class ctrlHU_WageNewEdit
                     '  txtStaffRank.Text = vbNullString
                 End If
                 SalaryInsurance.Text = obj.SAL_INS
-
-                'rntxtSalBasic.Value = obj.SAL_BASIC
-                'rntxtCostSupport.Value = obj.COST_SUPPORT
-                '    rntxtPercentSalary.Value = 100
-                ' rntxtSalTotal.Value = 0
-                'If rntxtSalBasic.Value IsNot Nothing Then
-                '    '   rntxtSalTotal.Value += rntxtSalBasic.Value
-                'End If
-                'If rntxtCostSupport.Value IsNot Nothing Then
-                '    '     rntxtSalTotal.Value += rntxtCostSupport.Value
-                'End If
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1130,14 +1056,63 @@ Public Class ctrlHU_WageNewEdit
         End Try
 
     End Sub
+    Private Sub loadDatasource(ByVal strUpload As String)
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If strUpload <> "" Then
+                txtUploadFile.Text = strUpload
+                txtUpload.Text = strUpload
+            Else
+                strUpload = String.Empty
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub ZipFiles(ByVal path As String, ByVal _ID As Decimal)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim crc As New Crc32()
+            Dim fileNameZip As String
+            fileNameZip = txtUploadFile.Text.Trim
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub CalculatorSalary()
+        'kiem tra check IS_HOSE
+        'LAY THONG TIN CONFIG CASE :
+        getSE_CASE_CONFIG()
+        Dim Status As Boolean = False
+        Try
+            If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
+                Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlHU_WageNewEdit_case1" + "'")
+                If ROWS IsNot Nothing AndAlso ROWS.Count > 0 Then
+                    Status = CBool(ROWS(0)("STATUS"))
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
-
-
 #Region "Utitily"""
     Public Function GetYouMustChoseMsg(ByVal input) As String
         Return String.Format("{0} {1}", Errors.YouMustChose, input)
     End Function
-    
+
     Private Function ConvertNumber(ByVal value As Decimal?) As Decimal
         If value.HasValue Then
             Return value.Value
@@ -1151,16 +1126,16 @@ Public Class ctrlHU_WageNewEdit
         End Using
     End Function
 
-    Protected Sub cboSalTYPE_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboSalTYPE.SelectedIndexChanged
+    Protected Sub cboSalTYPE_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboSalTYPE.SelectedIndexChanged
         ' Dim salaryType As New PA_SALARY_TYPEDTO
         Dim taxTables As New List(Of OtherListDTO)
         If String.IsNullOrWhiteSpace(cboSalTYPE.SelectedValue) Then
             Exit Sub
         End If
         Using rep As New ProfileRepository
-            taxTables = rep.GetOtherList(OtherTypes.TaxTable).ToList(Of OtherListDTO)
+            taxTables = rep.GetOtherList(OtherTypes.TaxTable).ToList(Of OtherListDTO)()
         End Using
-        
+
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
         Dim taxTable = taxTables.FirstOrDefault(Function(f) f.CODE = code)
@@ -1170,5 +1145,4 @@ Public Class ctrlHU_WageNewEdit
         End If
     End Sub
 #End Region
-
 End Class

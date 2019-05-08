@@ -190,7 +190,7 @@
                         </DateInput>
                     </tlk:RadDatePicker>
                 </td>
-                <td class="lb>
+                <td class="lb">
                     <asp:Label ID="lbExpireDateOld" runat="server" Text="Ngày hết hiệu lực"></asp:Label>
                 </td>
                 <td class="borderRight">

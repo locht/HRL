@@ -10,4 +10,5 @@
     Public Property IS_INCENTIVE As Decimal?
     Public Property ACTFLG As String
     Public Property IS_DELETED As Decimal?
+    Public Property ISHOSE As Decimal?
 End Class

@@ -131,6 +131,15 @@ Partial Public Class ctrlPA_SalaryGroup
     Protected WithEvents reqEffectDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lbIS_COEFFICIENT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbIS_COEFFICIENT As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cbIS_COEFFICIENT control.
     '''</summary>
     '''<remarks>
@@ -138,6 +147,33 @@ Partial Public Class ctrlPA_SalaryGroup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbIS_COEFFICIENT As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbISHOSE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbISHOSE As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbISHOSE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbISHOSE As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemark As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtRemark control.

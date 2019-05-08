@@ -801,24 +801,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
                     Dim str_Filename = Guid.NewGuid.ToString() + "\"
                     If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        'If Commend IsNot Nothing Then
-                        '    If Commend.UPLOADFILE IsNot Nothing Then
-                        '        strPath += Commend.UPLOADFILE
-                        '    Else
-                        '        System.IO.Directory.CreateDirectory(strPath + str_Filename)
-                        '        strPath = strPath + str_Filename
-                        '    End If
-                        '    fileName = System.IO.Path.Combine(strPath, file.FileName)
-                        '    file.SaveAs(fileName, True)
-                        '    Commend.UPLOADFILE = str_Filename
-                        '    txtUploadFile.Text = file.FileName
-                        'Else
                         System.IO.Directory.CreateDirectory(strPath + str_Filename)
                         strPath = strPath + str_Filename
                         fileName = System.IO.Path.Combine(strPath, file.FileName)
                         file.SaveAs(fileName, True)
                         txtUploadFile.Text = file.FileName
-                        'End If
                         Down_File = str_Filename
                     Else
                         ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
@@ -852,35 +839,13 @@ Public Class ctrlHU_ChangeInfoNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            'Dim data As New DataTable
-            'data.Columns.Add("FileName")
-            'Dim row As DataRow
-            'Dim str() As String
-
+            
             If strUpload <> "" Then
                 txtUploadFile.Text = strUpload
                 FileOldName = txtUpload.Text
                 txtUpload.Text = strUpload
-
-                'txtUploadFile.Text = strUpload
-                'str = strUpload.Split(";")
-
-                'For Each s As String In str
-                '    If s <> "" Then
-                '        row = data.NewRow
-                '        row("FileName") = s
-                '        data.Rows.Add(row)
-                '    End If
-                'Next
-                'cboUpload.DataSource = data
-                'cboUpload.DataTextField = "FileName"
-                'cboUpload.DataValueField = "FileName"
-                'cboUpload.DataBind()
             Else
-                '    cboUpload.DataSource = Nothing
-                '    cboUpload.ClearSelection()
-                '    cboUpload.ClearCheckedItems()
-                '    cboUpload.Items.Clear()
+                
                 strUpload = String.Empty
             End If
 

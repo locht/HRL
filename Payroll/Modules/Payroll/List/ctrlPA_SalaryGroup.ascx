@@ -47,8 +47,7 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <label id="Label1">
-                        <%# Translate("IS_COEFFICIENT")%></label>
+                    <asp:Label runat ="server" ID ="lbIS_COEFFICIENT"  Text ="Theo hệ số"></asp:Label>
                 </td>
                 <td>
                     <div style="margin: -4px; margin-top: 1px">
@@ -57,10 +56,20 @@
                         </tlk:RadButton>
                     </div>
                 </td>
+                <td class="lb">
+                    <asp:Label runat ="server"  ID="lbISHOSE" Text ="Thang lương quản lý (Hose)" ></asp:Label>
+                </td>
+                <td>
+                    <div style="margin: -4px; margin-top: 1px">
+                        <tlk:RadButton ID="cbISHOSE" ToggleType="CheckBox" ButtonType="ToggleButton"
+                            Text="" runat="server" AutoPostBack="false" CausesValidation="false">
+                        </tlk:RadButton>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ghi chú")%>
+                    <asp:Label runat ="server" ID ="lbRemark"  Text ="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%">
@@ -96,7 +105,7 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,EFFECT_DATE,REMARK,IS_COEFFICIENT,IS_INCENTIVE,ORDERS">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,EFFECT_DATE,REMARK,IS_COEFFICIENT,IS_INCENTIVE,ORDERS,ISHOSE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -111,13 +120,21 @@
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridTemplateColumn HeaderText="<%$ Translate: IS_COEFFICIENT %>" UniqueName="IS_COEFFICIENT" DataField="IS_COEFFICIENT">
+                    <tlk:GridTemplateColumn HeaderText="Theo hệ số" UniqueName="IS_COEFFICIENT" DataField="IS_COEFFICIENT">
                         <ItemTemplate>
-                            <%--<input id="chk_Display" type="checkbox" checked='<%# Eval("IS_INCENTIVE") %>' />--%>
-                            <%--<asp:CheckBox ID="chkIS_INCENTIVE" runat="server" Enabled="False" Checked='<%# if(Eval("IS_INCENTIVE").ToString() = "0", false , true) %>' />--%>
-                            <%--<input id="chkIS" type="checkbox" Checked='<%# if(DataBinder.Eval(Container.DataItem, "IS_INCENTIVE").ToString() = "0", false , true) %>' />--%>
                             <tlk:RadButton ID="chkIS_COEFFICIENT" ToggleType="CheckBox" ButtonType="ToggleButton"
                                 Checked='<%# if(Eval("IS_COEFFICIENT").ToString() = "0", false , true) %>' Text=""
+                                runat="server" AutoPostBack="false" CausesValidation="false" ReadOnly="True">
+                            </tlk:RadButton>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="10%"></ItemStyle>
+                        <HeaderStyle HorizontalAlign="Center" Width="10%"></HeaderStyle>
+                    </tlk:GridTemplateColumn>
+
+                    <tlk:GridTemplateColumn HeaderText="Thang lương quản lý (Hose)" UniqueName="ISHOSE" DataField="ISHOSE">
+                        <ItemTemplate>
+                            <tlk:RadButton ID="chkISHOSE" ToggleType="CheckBox" ButtonType="ToggleButton"
+                                Checked='<%# if(Eval("ISHOSE").ToString() = "0", false , true) %>' Text=""
                                 runat="server" AutoPostBack="false" CausesValidation="false" ReadOnly="True">
                             </tlk:RadButton>
                         </ItemTemplate>

@@ -769,7 +769,14 @@ Partial Class ProfileRepository
                             .TAX_TABLE_Name = taxTable.NAME_VN,
                             .SAL_TOTAL = p.SAL_TOTAL,
                              .FILENAME = p.FILENAME,
-            .ATTACH_FILE = p.ATTACH_FILE
+                            .ATTACH_FILE = p.ATTACH_FILE,
+                             .PERCENTSALARY = p.PERCENTSALARY,
+                             .FACTORSALARY = p.FACTORSALARY,
+                             .OTHERSALARY1 = p.OTHERSALARY1,
+                             .OTHERSALARY2 = p.OTHERSALARY2,
+                             .OTHERSALARY3 = p.OTHERSALARY3,
+                             .OTHERSALARY4 = p.OTHERSALARY4,
+                             .OTHERSALARY5 = p.OTHERSALARY5
                          }
 
             Dim working = query.FirstOrDefault
@@ -1014,7 +1021,14 @@ Partial Class ProfileRepository
             objWorkingData.SAL_INS = objWorking.SAL_INS
             objWorkingData.ALLOWANCE_TOTAL = objWorking.ALLOWANCE_TOTAL
             objWorkingData.SAL_INS = objWorking.SAL_INS
-
+            objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
+            objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
+            objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
+            objWorkingData.OTHERSALARY1 = objWorking.OTHERSALARY1
+            objWorkingData.OTHERSALARY2 = objWorking.OTHERSALARY2
+            objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
+            objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
+            objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
@@ -1145,6 +1159,14 @@ Partial Class ProfileRepository
             objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
             objWorkingData.SAL_INS = objWorking.SAL_INS
             objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
+            objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
+            objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
+            objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
+            objWorkingData.OTHERSALARY1 = objWorking.OTHERSALARY1
+            objWorkingData.OTHERSALARY2 = objWorking.OTHERSALARY2
+            objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
+            objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
+            objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking(objWorking)
             End If

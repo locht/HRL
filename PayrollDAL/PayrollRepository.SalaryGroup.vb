@@ -46,6 +46,7 @@ Partial Public Class PayrollRepository
                                        .IS_INCENTIVE = p.IS_INCENTIVE,
                                        .IS_COEFFICIENT = p.IS_COEFFICIENT,
                                        .ORDERS = p.ORDERS,
+                                       .ISHOSE = p.ISHOSE,
                                        .CREATED_DATE = p.CREATED_DATE,
                                        .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng")})
 
@@ -79,6 +80,7 @@ Partial Public Class PayrollRepository
                                        .IS_INCENTIVE = p.IS_INCENTIVE,
                                        .IS_COEFFICIENT = p.IS_COEFFICIENT,
                                        .ORDERS = p.ORDERS,
+                                       .ISHOSE = p.ISHOSE,
                                        .CREATED_DATE = p.CREATED_DATE}).FirstOrDefault
 
             Return EffectSalaryGroup
@@ -97,7 +99,7 @@ Partial Public Class PayrollRepository
     ''' <param name="isBlank">0: Khong lay dong empty; 1: Co lay dong empty</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function GetSalaryGroupCombo(dateValue As Date, ByVal isBlank As Boolean) As DataTable
+    Public Function GetSalaryGroupCombo(ByVal dateValue As Date, ByVal isBlank As Boolean) As DataTable
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_PA_SAL_GROUP",
@@ -135,6 +137,7 @@ Partial Public Class PayrollRepository
             objSalaryGroupData.ORDERS = objSalaryGroup.ORDERS
             objSalaryGroupData.ACTFLG = objSalaryGroup.ACTFLG
             objSalaryGroupData.IS_DELETED = objSalaryGroup.IS_DELETED
+            objSalaryGroupData.ISHOSE = objSalaryGroup.ISHOSE
             Context.PA_SALARY_GROUP.AddObject(objSalaryGroupData)
             Context.SaveChanges(log)
 
@@ -191,6 +194,7 @@ Partial Public Class PayrollRepository
             objSalaryGroupData.REMARK = objSalaryGroup.REMARK
             objSalaryGroupData.IS_INCENTIVE = objSalaryGroup.IS_INCENTIVE
             objSalaryGroupData.IS_COEFFICIENT = objSalaryGroup.IS_COEFFICIENT
+            objSalaryGroupData.ISHOSE = objSalaryGroup.ISHOSE
             objSalaryGroupData.ORDERS = objSalaryGroup.ORDERS
 
             Context.SaveChanges(log)
