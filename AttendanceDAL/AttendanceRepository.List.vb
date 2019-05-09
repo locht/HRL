@@ -159,7 +159,7 @@ Partial Public Class AttendanceRepository
 
     Public Function CheckValidateAPPROVE_DATE(ByVal obj As SetUpCodeAttDTO) As Boolean
         Try
-            Dim query = (From p In Context.AT_SETUP_ATT_EMP Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID And p.CODE_ATT = obj.CODE_ATT And p.APPROVE_DATE = obj.APPROVE_DATE And (p.ID <> obj.ID OrElse obj.ID Is Nothing)).ToList()
+            Dim query = (From p In Context.AT_SETUP_ATT_EMP Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID And p.MACHINE_ID = obj.MACHINE_ID And p.APPROVE_DATE = obj.APPROVE_DATE And (p.ID <> obj.ID OrElse obj.ID Is Nothing)).ToList()
             If query.Count = 0 Then
                 Return True
             Else

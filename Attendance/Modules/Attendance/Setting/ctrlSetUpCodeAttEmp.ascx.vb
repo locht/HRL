@@ -530,6 +530,9 @@ Public Class ctrlSetUpCodeAttEmp
                 End If
                 _validate.CODE_ATT = rtCODE_ATT.Text
             End If
+            If IsNumeric(cbMACHINE_CODE.SelectedValue) Then
+                _validate.MACHINE_ID = cbMACHINE_CODE.SelectedValue
+            End If
             args.IsValid = (rep.CheckValidateAPPROVE_DATE(_validate))
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                              CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
