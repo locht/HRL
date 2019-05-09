@@ -7,7 +7,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                    <%# Translate("Mã ký hiệu công")%><span class="lbReq">*</span>
+                    <asp:Label runat ="server" ID ="lbCode" Text ="Mã ký hiệu công" ></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" SkinID="Textbox50" runat="server" Width="250px">
@@ -21,15 +21,21 @@
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Công nghỉ")%>
+                    <asp:Label runat ="server" ID ="lbIsLeave" Text ="Công nghỉ" ></asp:Label>
                 </td>
                 <td>
                     <asp:CheckBox ID="chkIsLeave" runat="server" />
                 </td>
+                <td class="lb">
+                    <asp:Label runat ="server" ID ="lbIsCalHoliday" Text ="Tính ngày nghỉ, lễ/tết " ></asp:Label>
+                </td>
+                <td>
+                    <asp:CheckBox ID="ckIsCalHoliday" runat="server" />
+                </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Tên ký hiệu công")%><span class="lbReq">*</span>
+                    <asp:Label runat ="server" ID ="lbNameVN" Text ="Tên ký hiệu công" ></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtNameVN" runat="server"  SkinID="Textbox1023" Width="100%">
@@ -40,7 +46,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Mô tả")%>
+                    <asp:Label runat ="server" ID ="lbNote" Text ="Mô tả" ></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtNote" runat="server" SkinID="Textbox1023" Width="100%">
@@ -55,24 +61,26 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,EFFECT_DATE,IS_LEAVE,ACTFLG,NOTE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,EFFECT_DATE,IS_LEAVE,ACTFLG,NOTE,IS_CALHOLIDAY">
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                   <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã ký hiệu công %>" DataField="CODE"
+                    <tlk:GridBoundColumn HeaderText="Mã ký hiệu công " DataField="CODE"
                         UniqueName="CODE" SortExpression="CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ký hiệu công %>" DataField="NAME_VN"
+                    <tlk:GridBoundColumn HeaderText="Tên ký hiệu công" DataField="NAME_VN"
                         UniqueName="NAME_VN" SortExpression="NAME_VN" />
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Công nghỉ %>" AllowFiltering="false"
+                    <tlk:GridCheckBoxColumn HeaderText="Công nghỉ" AllowFiltering="false"
                         DataField="IS_LEAVE" SortExpression="IS_LEAVE" UniqueName="IS_LEAVE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả %>" DataField="NOTE" UniqueName="NOTE"
+                    <tlk:GridCheckBoxColumn HeaderText="Tính ngày nghỉ, lễ/tết" AllowFiltering="false"
+                        DataField="IS_CALHOLIDAY" SortExpression="IS_CALHOLIDAY" UniqueName="IS_CALHOLIDAY" />
+                    <tlk:GridBoundColumn HeaderText="Mô tả" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
+                    <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG">
                         <HeaderStyle Width="100px" />
-                    </tlk:GridBoundColumn>
+                    </tlk:GridBoundColumn>--%>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>

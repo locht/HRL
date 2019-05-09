@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("061b1a11-4e75-428e-be7f-6a84f34e5ae7")>
+<Assembly: EdmSchemaAttribute("5d099cec-6fe8-4c71-a6e0-bab23d227113")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -8787,6 +8787,31 @@ Public Partial Class AT_FML
     End Sub
 
     Private Partial Sub OnIS_LEAVEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_CALHOLIDAY() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_CALHOLIDAY
+        End Get
+        Set
+            OnIS_CALHOLIDAYChanging(value)
+            ReportPropertyChanging("IS_CALHOLIDAY")
+            _IS_CALHOLIDAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_CALHOLIDAY")
+            OnIS_CALHOLIDAYChanged()
+        End Set
+    End Property
+
+    Private _IS_CALHOLIDAY As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_CALHOLIDAYChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_CALHOLIDAYChanged()
     End Sub
 
     #End Region
