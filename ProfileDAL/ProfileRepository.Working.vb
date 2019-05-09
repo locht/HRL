@@ -392,7 +392,6 @@ Partial Class ProfileRepository
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
                                                            f.USERNAME = log.Username.ToUpper)
-                        From p_old In Context.HU_WORKING_OLD.Where(Function(f) f.EMPLOYEE_CODE = e.EMPLOYEE_CODE).DefaultIfEmpty
             Select New WorkingDTO With {.ID = p.ID,
                                         .DECISION_NO = p.DECISION_NO,
                                         .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
@@ -445,18 +444,7 @@ Partial Class ProfileRepository
                                         .SIGN_DATE = p.SIGN_DATE,
                                         .SIGN_NAME = p.SIGN_NAME,
                                         .SIGN_TITLE = p.SIGN_TITLE,
-                                        .REMARK = p.REMARK,
-                                        .ORG_NAME_OLD = p_old.ORG_NAME,
-                                        .TITLE_NAME_OLD = p_old.TITLE_NAME,
-                                        .OBJECT_ATTENDANCE_NAME_OLD = p_old.OBJECT_ATTENDANCE_NAME,
-                                        .FILING_DATE_OLD = p_old.FILING_DATE,
-                                        .DECISION_TYPE_NAME_OLD = p_old.DECISION_TYPE_NAME,
-                                        .EXPIRE_DATE_OLD = p_old.EXPIRE_DATE,
-                                        .DECISION_NO_OLD = p_old.DECISION_NO,
-                                        .SIGN_DATE_OLD = p_old.SIGN_DATE,
-                                        .SIGN_NAME_OLD = p_old.SIGNER_NAME,
-                                        .SIGN_TITLE_OLD = p_old.SIGNER_TITLE,
-                                        .REMARK_OLD = p_old.REMARK
+                                        .REMARK = p.REMARK
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
@@ -579,6 +567,62 @@ Partial Class ProfileRepository
                                      .ALLOWANCE_LIST_ID = p.ALLOWANCE_LIST_ID,
                                      .AMOUNT = p.AMOUNT}).ToList()
             result = GetAllowanceInfos(result, workingAllows)
+
+            For Each workOld As WorkingDTO In result
+                Dim effectDate = workOld.EFFECT_DATE
+                Dim empId = workOld.EMPLOYEE_ID
+                Dim rowQuery = (From p In Context.HU_WORKING
+                                Where p.EFFECT_DATE < effectDate _
+                                And p.EMPLOYEE_ID = empId _
+                                And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID _
+                                And p.IS_MISSION = -1 _
+                                Order By p.EFFECT_DATE Descending).FirstOrDefault
+
+                If rowQuery IsNot Nothing Then
+                    Dim working_old = (From p In Context.HU_WORKING
+                                   From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                                   From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+                                   From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID)
+                                    From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) p.SAL_TYPE_ID = f.ID).DefaultIfEmpty
+                                   From titlegroup In Context.OT_OTHER_LIST.Where(Function(f) t.TITLE_GROUP_ID = f.ID).DefaultIfEmpty
+                                   From deci_type In Context.OT_OTHER_LIST.Where(Function(f) p.DECISION_TYPE_ID = f.ID).DefaultIfEmpty
+                                   From staffrank In Context.HU_STAFF_RANK.Where(Function(f) p.STAFF_RANK_ID = f.ID).DefaultIfEmpty
+                                   From sal_group In Context.PA_SALARY_GROUP.Where(Function(f) p.SAL_GROUP_ID = f.ID).DefaultIfEmpty
+                                   From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) p.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
+                                   From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
+                                   From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
+                From OBJ_ATT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
+                Where (p.ID = rowQuery.ID)
+                    Select New WorkingDTO With {
+                                       .ID = p.ID,
+                                       .DECISION_NO = p.DECISION_NO,
+                                       .FILING_DATE = p.FILING_DATE,
+                                       .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
+                                       .OBJECT_ATTENDANCE_NAME = OBJ_ATT.NAME_VN,
+                                       .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
+                                       .DECISION_TYPE_NAME = deci_type.NAME_VN,
+                                       .EFFECT_DATE = p.EFFECT_DATE,
+                                       .EXPIRE_DATE = p.EXPIRE_DATE,
+                                       .ORG_ID = p.ORG_ID,
+                                       .ORG_NAME = o.NAME_VN,
+                                       .TITLE_ID = p.TITLE_ID,
+                                       .TITLE_NAME = t.NAME_VN,
+                                       .SIGN_DATE = p.SIGN_DATE,
+                                       .SIGN_NAME = p.SIGN_NAME,
+                                       .SIGN_TITLE = p.SIGN_TITLE}).FirstOrDefault
+                    workOld.ORG_NAME_OLD = working_old.ORG_NAME
+                    workOld.TITLE_NAME_OLD = working_old.TITLE_NAME
+                    workOld.OBJECT_ATTENDANCE_NAME_OLD = working_old.OBJECT_ATTENDANCE_NAME
+                    workOld.FILING_DATE_OLD = working_old.FILING_DATE
+                    workOld.DECISION_TYPE_NAME_OLD = working_old.DECISION_TYPE_NAME
+                    workOld.EXPIRE_DATE_OLD = working_old.EXPIRE_DATE
+                    workOld.DECISION_NO_OLD = working_old.DECISION_NO
+                    workOld.SIGN_DATE_OLD = working_old.SIGN_DATE
+                    workOld.SIGN_NAME_OLD = working_old.SIGN_NAME
+                    workOld.SIGN_TITLE_OLD = working_old.SIGN_TITLE
+                    workOld.REMARK_OLD = working_old.REMARK
+                End If
+            Next
 
             Return result
         Catch ex As Exception
