@@ -2038,7 +2038,137 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 #End Region
+#Region "quan ly cham cong bu tru"
+    Public Function GetOffSettingTimeKeeping(ByVal _filter As AT_OFFFSETTINGDTO,
+                                     ByVal _param As ParamDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_OFFFSETTINGDTO)
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username.ToUpper,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+            Dim query = From p In Context.AT_OFFSETTING_TIMEKEEPING
+                        From CE In Context.AT_OFFSETTING_TIMEKEEPING_EMP.Where(Function(F) F.GROUP_ID = p.ID).Take(1)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = CE.EMPLOYEE_ID)
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_BT).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
 
+            Dim lst = query.Select(Function(p) New AT_OFFFSETTINGDTO With {
+                                       .ID = p.p.ID,
+                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                       .FULLNAME_VN = p.e.FULLNAME_VN,
+                                       .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                       .TITLE_NAME = p.t.NAME_VN,
+                                       .ORG_NAME = p.o.NAME_VN,
+                                       .ORG_ID = p.e.ORG_ID,
+                                       .FROMDATE = p.p.FROMDATE,
+                                       .TODATE = p.p.TODATE,
+                                       .TYPE_BT = p.p.TYPE_BT,
+                                       .REMARK = p.p.REMARK,
+                                       .TYPE_NAME = p.ot.NAME_VN,
+                                       .MINUTES_BT = p.p.MINUTES_BT,
+                                        .WORK_STATUS = p.e.WORK_STATUS,
+                                        .TER_LAST_DATE = p.e.TER_LAST_DATE,
+                                       .CREATED_BY = p.p.CREATED_BY,
+                                       .CREATED_DATE = p.p.CREATED_DATE,
+                                       .CREATED_LOG = p.p.CREATED_LOG,
+                                       .MODIFIED_BY = p.p.MODIFIED_BY,
+                                       .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+
+            'If _filter.IS_TERMINATE Then
+            '    query = query.Where(Function(f) f.e.WORK_STATUS = 257 And f.e.TER_LAST_DATE <= Date.Now)
+            'End If
+            Dim dateNow = Date.Now.Date
+            If Not _filter.IS_TERMINATE Then
+                lst = lst.Where(Function(f) f.WORK_STATUS <> 257 Or (f.WORK_STATUS = 257 And f.TER_LAST_DATE >= dateNow) Or f.WORK_STATUS Is Nothing)
+            End If
+
+            If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
+                lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()) Or f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.FULLNAME_VN) Then
+                lst = lst.Where(Function(f) f.FULLNAME_VN.ToLower().Contains(_filter.FULLNAME_VN.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ORG_NAME) Then
+                lst = lst.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
+                lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
+            End If
+           
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetEmployeeTimeKeepingID(ByVal ComId As Decimal) As List(Of AT_OFFFSETTING_EMPDTO)
+        Try
+            Dim q = (From d In Context.AT_OFFSETTING_TIMEKEEPING_EMP Where d.GROUP_ID = ComId
+                    From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = d.EMPLOYEE_ID)
+                    From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID)
+                    From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID)
+                    Select New AT_OFFFSETTING_EMPDTO With {.EMPLOYEE_ID = d.EMPLOYEE_ID,
+                                                  .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                  .FULLNAME_VN = e.FULLNAME_VN,
+                                                  .ORG_NAME = o.NAME_VN,
+                                                  .TITLE_NAME = t.NAME_VN}).ToList
+            Return q
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetOffSettingTimeKeepingById(ByVal _id As Decimal?) As AT_OFFFSETTINGDTO
+        Try
+
+            Dim query = From p In Context.AT_OFFSETTING_TIMEKEEPING
+                        From ce In Context.AT_OFFSETTING_TIMEKEEPING_EMP.Where(Function(f) f.GROUP_ID = p.ID)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = ce.EMPLOYEE_ID)
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From c In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_BT).DefaultIfEmpty
+                        Where p.ID = _id
+
+            Dim lst = query.Select(Function(p) New AT_OFFFSETTINGDTO With {
+                                       .ID = p.p.ID,
+                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                       .FULLNAME_VN = p.e.FULLNAME_VN,
+                                       .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                       .TITLE_NAME = p.t.NAME_VN,
+                                       .ORG_NAME = p.o.NAME_VN,
+                                       .ORG_ID = p.e.ORG_ID,
+                                       .TYPE_BT = p.p.TYPE_BT,
+                                       .TYPE_NAME = p.ot.NAME_VN,
+                                       .MINUTES_BT = p.p.MINUTES_BT,
+                                       .REMARK = p.p.REMARK,
+                                       .FROMDATE = p.p.FROMDATE,
+                                       .TODATE = p.p.FROMDATE,
+                                       .CREATED_BY = p.p.CREATED_BY,
+                                       .CREATED_DATE = p.p.CREATED_DATE,
+                                       .CREATED_LOG = p.p.CREATED_LOG,
+                                       .MODIFIED_BY = p.p.MODIFIED_BY,
+                                       .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG}).FirstOrDefault
+            Return lst
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "Khai báo điều chỉnh thâm niên phép"
     Public Function GetDelareEntitlementNB(ByVal _filter As AT_DECLARE_ENTITLEMENTDTO,
                                      ByVal _param As ParamDTO,
@@ -2233,7 +2363,90 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+    Public Function InsertOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim iCount As Integer = 0
+        Dim objOffsettingData As New AT_OFFSETTING_TIMEKEEPING
 
+        Try
+            ' thêm kỷ luật
+            objOffsettingData.ID = Utilities.GetNextSequence(Context, Context.AT_OFFSETTING_TIMEKEEPING.EntitySet.Name)
+            objOffSetting.ID = objOffsettingData.ID
+            objOffsettingData.REMARK = objOffSetting.REMARK
+            objOffsettingData.MINUTES_BT = objOffSetting.MINUTES_BT
+            objOffsettingData.FROMDATE = objOffSetting.FROMDATE
+            objOffsettingData.TODATE = objOffSetting.TODATE
+            objOffsettingData.TYPE_BT = objOffSetting.TYPE_BT
+            objOffsettingData.CREATED_DATE = DateTime.Now
+            objOffsettingData.CREATED_BY = log.Username
+            objOffsettingData.CREATED_LOG = log.ComputerName
+            objOffsettingData.MODIFIED_DATE = DateTime.Now
+            objOffsettingData.MODIFIED_BY = log.Username
+            objOffsettingData.MODIFIED_LOG = log.ComputerName
+
+
+            Context.AT_OFFSETTING_TIMEKEEPING.AddObject(objOffsettingData)
+            InsertObjectType(objOffSetting)
+            Context.SaveChanges(log)
+            gID = objOffsettingData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+    Private Sub InsertObjectType(ByVal objOffSetting As AT_OFFFSETTINGDTO)
+        Dim objDataEmp As AT_OFFSETTING_TIMEKEEPING_EMP
+        Dim rep As New AttendanceRepository
+
+        If objOffSetting.OFFFSETTING_EMP IsNot Nothing Then
+            'xoa danh sach nhan viên cũ truoc khi insert lại
+            Dim objD = (From d In Context.AT_OFFSETTING_TIMEKEEPING_EMP Where d.ID = objOffSetting.ID).ToList
+            For Each obj As AT_OFFSETTING_TIMEKEEPING_EMP In objD
+                Context.AT_OFFSETTING_TIMEKEEPING_EMP.DeleteObject(obj)
+            Next
+
+            'insert nhan vien mới
+            For Each obj As AT_OFFFSETTING_EMPDTO In objOffSetting.OFFFSETTING_EMP
+                objDataEmp = New AT_OFFSETTING_TIMEKEEPING_EMP
+                objDataEmp.ID = Utilities.GetNextSequence(Context, Context.AT_OFFSETTING_TIMEKEEPING_EMP.EntitySet.Name)
+                objDataEmp.GROUP_ID = objOffSetting.ID
+                objDataEmp.EMPLOYEE_ID = obj.EMPLOYEE_ID
+                objDataEmp.TITILE_ID = obj.TITLE_ID
+                objDataEmp.ORG_ID = obj.ORG_ID
+                objDataEmp.TYPE_BT = objOffSetting.TYPE_BT
+                Context.AT_OFFSETTING_TIMEKEEPING_EMP.AddObject(objDataEmp)
+            Next
+        End If
+    End Sub
+    Public Function ModifyOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objOffSettingData As New AT_OFFSETTING_TIMEKEEPING With {.ID = objOffSetting.ID}
+
+        Try
+            Context.AT_OFFSETTING_TIMEKEEPING.Attach(objOffSettingData)
+            ' sửa kỷ luật
+            objOffSettingData.ID = objOffSetting.ID
+            objOffSettingData.REMARK = objOffSetting.REMARK
+            objOffSettingData.TYPE_BT = objOffSetting.TYPE_BT
+            objOffSettingData.MINUTES_BT = objOffSetting.MINUTES_BT
+            objOffSettingData.FROMDATE = objOffSetting.FROMDATE
+            objOffSettingData.TODATE = objOffSetting.TODATE
+            objOffSettingData.MODIFIED_DATE = DateTime.Now
+            objOffSettingData.MODIFIED_BY = log.Username
+            objOffSettingData.MODIFIED_LOG = log.ComputerName
+            ' thêm quyết định            
+            'InsertObjectType(objCommend)
+            Context.SaveChanges(log)
+            gID = objOffSettingData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
     Public Function InsertDelareEntitlementNB(ByVal objDelareEntitlementNB As AT_DECLARE_ENTITLEMENTDTO, ByVal log As UserLog, ByRef gID As Decimal, ByRef checkMonthNB As Boolean, ByRef checkMonthNP As Boolean) As Boolean
         Try
             ' check nghỉ bù chỉ được gia hạn 1 lần trong năm

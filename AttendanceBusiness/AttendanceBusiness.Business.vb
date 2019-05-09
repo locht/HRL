@@ -1055,7 +1055,46 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "quan ly cham cong bu tru"
+        Function GetOffSettingTimeKeeping(ByVal _filter As AT_OFFFSETTINGDTO,
+                                    ByVal _param As ParamDTO,
+                                    Optional ByRef Total As Integer = 0,
+                                    Optional ByVal PageIndex As Integer = 0,
+                                    Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                    Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_OFFFSETTINGDTO) Implements IAttendanceBusiness.GetOffSettingTimeKeeping
 
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.GetOffSettingTimeKeeping(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetOffSettingTimeKeepingById(ByVal _id As Decimal?) As AT_OFFFSETTINGDTO Implements ServiceContracts.IAttendanceBusiness.GetOffSettingTimeKeepingById
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.GetOffSettingTimeKeepingById(_id)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GetEmployeeTimeKeepingID(ByVal ComId As Decimal) As List(Of AT_OFFFSETTING_EMPDTO) _
+           Implements ServiceContracts.IAttendanceBusiness.GetEmployeeTimeKeepingID
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetEmployeeTimeKeepingID(ComId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 #Region "Khai bao điều chỉnh thâm niên phép"
         Function GetDelareEntitlementNB(ByVal _filter As AT_DECLARE_ENTITLEMENTDTO,
                                     ByVal _param As ParamDTO,
@@ -1403,6 +1442,28 @@ Namespace AttendanceBusiness.ServiceImplementations
             Using rep As New AttendanceRepository
                 Try
                     Return rep.CheckTimeSheetApproveVerify(obj, type, itemError)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+#Region "quan ly cham cong bu tru"
+        Public Function InsertOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+          Implements IAttendanceBusiness.InsertOffSettingTime
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.InsertOffSettingTime(objOffSetting, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements IAttendanceBusiness.ModifyOffSettingTime
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ModifyOffSettingTime(objOffSetting, log, gID)
                 Catch ex As Exception
                     Throw ex
                 End Try

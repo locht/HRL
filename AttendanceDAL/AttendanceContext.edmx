@@ -80,6 +80,8 @@
             <EntitySet Name="AT_SHIFTCYCLE_EMP_DETAIL" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_EMP_DETAIL" store:Type="Tables"  />
             <EntitySet Name="AT_SETUP_ATT_EMP" EntityType="AttendanceModel.Store.AT_SETUP_ATT_EMP" store:Type="Tables"  />
             <EntitySet Name="AT_OT_REGISTRATION" EntityType="AttendanceModel.Store.AT_OT_REGISTRATION" store:Type="Tables"  />
+            <EntitySet Name="AT_OFFSETTING_TIMEKEEPING" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING" store:Type="Tables"  />
+            <EntitySet Name="AT_OFFSETTING_TIMEKEEPING_EMP" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING_EMP" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2017,6 +2019,43 @@
             <Property Name="TO_PM_MN" Type="number" Nullable="true" Precision="38" />
             <Property Name="HR_REVIEW" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_OFFSETTING_TIMEKEEPING">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITILE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROMDATE" Type="date" Nullable="true" />
+            <Property Name="TODATE" Type="date" Nullable="true" />
+            <Property Name="TYPE_BT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1025" />
+            <Property Name="MINUTES_BT" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="AT_OFFSETTING_TIMEKEEPING_EMP">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITILE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TYPE_BT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2316,6 +2355,8 @@
           <EntitySet Name="AT_SHIFTCYCLE_EMP_DETAIL" EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP_DETAIL" />
           <EntitySet Name="AT_SETUP_ATT_EMP" EntityType="AttendanceModel.AT_SETUP_ATT_EMP" />
           <EntitySet Name="AT_OT_REGISTRATION" EntityType="AttendanceModel.AT_OT_REGISTRATION" />
+          <EntitySet Name="AT_OFFSETTING_TIMEKEEPING" EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING" />
+          <EntitySet Name="AT_OFFSETTING_TIMEKEEPING_EMP" EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -4354,6 +4395,43 @@
           <Property Type="Decimal" Name="TO_PM_MN" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="HR_REVIEW" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="AT_OFFSETTING_TIMEKEEPING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITILE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="FROMDATE" />
+          <Property Type="DateTime" Name="TODATE" />
+          <Property Type="Decimal" Name="TYPE_BT" Precision="38" Scale="0" />
+          <Property Type="String" Name="REMARK" MaxLength="1025" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MINUTES_BT" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="AT_OFFSETTING_TIMEKEEPING_EMP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITILE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="TYPE_BT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GROUP_ID" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6318,6 +6396,45 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_OFFSETTING_TIMEKEEPING">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_OFFSETTING_TIMEKEEPING">
+                <MappingFragment StoreEntitySet="AT_OFFSETTING_TIMEKEEPING">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITILE_ID" ColumnName="TITILE_ID" />
+                    <ScalarProperty Name="FROMDATE" ColumnName="FROMDATE" />
+                    <ScalarProperty Name="TODATE" ColumnName="TODATE" />
+                    <ScalarProperty Name="TYPE_BT" ColumnName="TYPE_BT" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="MINUTES_BT" ColumnName="MINUTES_BT" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="AT_OFFSETTING_TIMEKEEPING_EMP">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP">
+                <MappingFragment StoreEntitySet="AT_OFFSETTING_TIMEKEEPING_EMP">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITILE_ID" ColumnName="TITILE_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="TYPE_BT" ColumnName="TYPE_BT" />
+                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -6473,6 +6590,8 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP_DETAIL" Width="1.5" PointX="6.75" PointY="21.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_ATT_EMP" Width="1.5" PointX="11.375" PointY="21.75" Height="3.3263964843749818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_OT_REGISTRATION" Width="1.5" PointX="21.375" PointY="13.75" Height="7.3647265624999818" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING" Width="1.5" PointX="21.75" PointY="22.75" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" Width="3.25" PointX="23.75" PointY="13.75" Height="3.3263964843750031" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

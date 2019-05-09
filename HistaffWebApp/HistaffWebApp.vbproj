@@ -149,6 +149,8 @@
     <Content Include="Languages\vi-VN.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Modules\Attendance\Business\ctrlOffSettingTimeKeepingNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlOffSettingTimeKeeping.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlActionLog.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGNNewEdit.ascx" />

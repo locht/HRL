@@ -161,6 +161,8 @@
     <None Include="My Project\DataSources\Common.CommonBusiness.UserDTO.datasource" />
     <None Include="My Project\DataSources\System.Data.DataSet1.datasource" />
     <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
+    <Content Include="Modules\Attendance\Business\ctrlOffSettingTimeKeepingNewEdit.ascx" />
+    <Content Include="Modules\Attendance\Business\ctrlOffSettingTimeKeeping.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlApproveOT.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGNNewEdit.ascx" />
     <Content Include="Modules\Attendance\Business\ctrlAT_PROJECT_ASSIGN.ascx" />
@@ -271,6 +273,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_OFFFSETTINGDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_OFFFSETTING_EMPDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PERIODDTO.datasource">
@@ -432,6 +440,20 @@
     <Compile Include="AttendanceRepository.Common.vb" />
     <Compile Include="AttendanceRepository.Report.vb" />
     <Compile Include="AttendanceRepository.Dashboard.vb" />
+    <Compile Include="Modules\Attendance\Business\ctrlOffSettingTimeKeepingNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlOffSettingTimeKeepingNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlOffSettingTimeKeepingNewEdit.ascx.vb">
+      <DependentUpon>ctrlOffSettingTimeKeepingNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlOffSettingTimeKeeping.ascx.designer.vb">
+      <DependentUpon>ctrlOffSettingTimeKeeping.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\Business\ctrlOffSettingTimeKeeping.ascx.vb">
+      <DependentUpon>ctrlOffSettingTimeKeeping.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Attendance\Business\ctrlApproveOT.ascx.designer.vb">
       <DependentUpon>ctrlApproveOT.ascx</DependentUpon>
     </Compile>
