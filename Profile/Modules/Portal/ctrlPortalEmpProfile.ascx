@@ -1,5 +1,29 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalEmpProfile.ascx.vb"
     Inherits="Profile.ctrlPortalEmpProfile" %>
+    <style type="text/css">
+    div .rlbItem
+    {
+        float: left;
+        width: 250px;
+    }
+    
+    .lb3
+    {
+        text-align: right;
+        padding-right: 5px;
+        padding-left: 5px;
+        vertical-align: middle;
+        width: 14%;
+    }
+    .control3
+    {
+        width: 20%;
+    }
+    .RadListBox_Metro .rlbGroup, .RadListBox_Metro .rlbTemplateContainer
+    {
+        border: none !important;
+    }
+</style>
 <tlk:RadToolBar ID="tbarMainToolBar" runat="server" Width="100%" OnClientButtonClicking="clientButtonClicking" />
 <table class="table-form">
     <tr>
@@ -154,6 +178,13 @@
             <tlk:RadTextBox runat="server" ID="txtDepartment" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
+        <td class="lb">
+            <%# Translate("Trạng thái nhân viên")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtWorkStatus">
+            </tlk:RadTextBox>
+        </td>
     </tr>
     <tr>
         <td class="lb">
@@ -164,19 +195,26 @@
             </tlk:RadTextBox>
         </td>
         <td class="lb">
+            <%# Translate("Trưởng nhóm")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtTeamLead" ReadOnly="true" />
+            </tlk:RadTextBox>
+        </td>
+        <%--<td class="lb">
             <%# Translate("Quản lý trên một cấp")%>
         </td>
         <td>
             <tlk:RadTextBox runat="server" ID="txtLevelManager" ReadOnly="true" />
             </tlk:RadTextBox>
-        </td>
-        <td class="lb" style="width: 120px">
+        </td>--%>
+        <%--<td class="lb" style="width: 120px">
             <%# Translate("Cấp nhân sự")%>
         </td>
         <td>
             <tlk:RadTextBox runat="server" ID="txtStaffRank">
             </tlk:RadTextBox>
-        </td>
+        </td>--%>
     </tr>
     <tr>
         <td class="lb">
@@ -226,20 +264,11 @@
     </tr>
     <tr>
         <td class="lb">
-            <%# Translate("Nơi sinh")%>
-        </td>
-        <td colspan="5">
-            <tlk:RadComboBox runat="server" ID="cboBIRTH_PLACE" Width="100%">
-                                            </tlk:RadComboBox>
-        </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Ngày vào tập đoàn")%>
+            <%# Translate("Vùng bảo hiểm")%>
         </td>
         <td>
-            <tlk:RadDatePicker runat="server" ID="rdJoinDateState" Enabled="false" DateInput-Enabled="false">
-            </tlk:RadDatePicker>
+            <tlk:RadTextBox runat="server" ID="txtInsArea">
+            </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Ngày vào công ty")%>
@@ -249,13 +278,54 @@
             </tlk:RadDatePicker>
         </td>
         <td class="lb">
-            <%# Translate("Trạng thái nhân viên")%>
+            <%# Translate("Ngày vào chính thức")%>
         </td>
         <td>
-            <tlk:RadTextBox runat="server" ID="txtWorkStatus">
+            <tlk:RadDatePicker runat="server" ID="rdOfficialDate" Enabled="false" DateInput-Enabled="false">
+            </tlk:RadDatePicker>
+        </td>
+        <%--<td class="lb">
+            <%# Translate("Nơi sinh")%>
+        </td>
+        <td colspan="5">
+            <tlk:RadComboBox runat="server" ID="cboBIRTH_PLACE" Width="100%">
+                                            </tlk:RadComboBox>
+        </td>--%>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Ngày thử việc")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker runat="server" ID="rdProbationDate" Enabled="false" DateInput-Enabled="false">
+            </tlk:RadDatePicker>
+        </td>
+        <td class="lb">
+            <%# Translate("Ngày thôi việc")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker runat="server" ID="rdQuitDate" Enabled="false" DateInput-Enabled="false">
+            </tlk:RadDatePicker>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Nguyên quán")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtDomicile" runat="server">
             </tlk:RadTextBox>
         </td>
     </tr>
+    <%--<tr>
+        <td class="lb">
+            <%# Translate("Ngày vào tập đoàn")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker runat="server" ID="rdJoinDateState" Enabled="false" DateInput-Enabled="false">
+            </tlk:RadDatePicker>
+        </td>        
+    </tr>--%>
     <tr>
         <td class="lb">
             <%# Translate("Địa chỉ thường trú")%>
@@ -321,6 +391,15 @@
         </td>
     </tr>
     <tr>
+        <td class="lb">
+            <%# Translate("Nghề nghiệp khi tuyển dụng")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtCareerWhenRecruit">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
         <td colspan="6">
             <b>
                 <%# Translate("Thông tin hợp đồng lao động mới nhất")%></b>
@@ -348,6 +427,157 @@
         <td>
             <tlk:RadDatePicker ID="rdContractExpireDate" runat="server" Enabled="false" DateInput-Enabled="false">
             </tlk:RadDatePicker>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <b>
+                <%# Translate("Thông tin Đảng đoàn thể")%></b>
+            <hr />
+        </td>
+    </tr>
+    <tr>
+        <td class="control3">
+            <asp:CheckBox ID="ckDANG" Text ="Đảng" runat ="server" />
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbCHUC_VU_DANG" Text ="Chức vụ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadTextBox runat ="server" ID="rtCHUC_VU_DANG"></tlk:RadTextBox>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNGAY_DB_DANG" Text ="Ngày dự bị"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNGAY_VAO_DANG_DB"></tlk:RadDatePicker>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNGAY_VAO_DANG" Text ="Ngày chính thức"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNGAY_VAO_DANG"></tlk:RadDatePicker>
+        </td>
+    </tr>
+    <%--=================================================================================--%>
+    <tr>
+        <td class="control3">
+            <asp:CheckBox ID="ckCONG_DOAN" Text ="Công đoàn" runat ="server" />
+        </td>
+        <td class="lb3">
+                                        
+                                    </td>
+        <td class="control3">
+            <asp:CheckBox ID="ckDOAN_PHI" Text ="Công đoàn phí" runat ="server" />
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbCHUC_VU_DOAN" Text ="Chức vụ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadTextBox runat ="server" ID="rtCHUC_VU_DOAN"></tlk:RadTextBox>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNGAY_VAO_DOAN" Text ="Ngày tham gia"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNGAY_VAO_DOAN"></tlk:RadDatePicker>
+        </td>
+    </tr>
+    <tr>
+        <td class="control3">
+            <asp:CheckBox ID="ckBanTT_ND" Text ="Ban thanh tra nhân dân" runat ="server" />
+        </td>        
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbCV_BANTT" Text ="Chức vụ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadTextBox runat ="server" ID="rtCV_BANTT"></tlk:RadTextBox>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNgay_TG_BanTT" Text ="Ngày tham gia"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNgay_TG_BanTT"></tlk:RadDatePicker>
+        </td>
+    </tr>
+    <tr>
+        <td class="control3">
+            <asp:CheckBox ID="ckNU_CONG" Text ="Ban nữ công" runat ="server" />
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbCV_Ban_Nu_Cong" Text ="Chức vụ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadTextBox runat ="server" ID="rtCV_Ban_Nu_Cong"></tlk:RadTextBox>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNgay_TG_Ban_Nu_Cong" Text ="Ngày tham gia"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNgay_TG_Ban_Nu_Cong"></tlk:RadDatePicker>
+        </td>
+    </tr>
+    <tr>
+        <td class="control3">
+            <asp:CheckBox ID="ckCA" Text ="Công an" runat ="server" />
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNgay_Nhap_Ngu_CA" Text ="Ngày nhập ngũ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNgay_Nhap_Ngu_CA"></tlk:RadDatePicker>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNgay_Xuat_Ngu_CA" Text ="Ngày xuất ngũ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNgay_Xuat_Ngu_CA"></tlk:RadDatePicker>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbDV_Xuat_Ngu_CA" Text ="Đơn vị xuất ngũ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadTextBox runat ="server" ID="rtDV_Xuat_Ngu_CA"></tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="control3">
+            <asp:CheckBox ID="ckQD" Text ="Quân đội" runat ="server" />
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNgay_Nhap_Ngu_QD" Text ="Ngày nhập ngũ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNgay_Nhap_Ngu_QD"></tlk:RadDatePicker>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbNgay_Xuat_Ngu_QD" Text ="Ngày xuất ngũ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadDatePicker  runat ="server" ID="rdNgay_Xuat_Ngu_QD"></tlk:RadDatePicker>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbDV_Xuat_Ngu_QD" Text ="Đơn vị xuất ngũ"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadTextBox runat ="server" ID="rtDV_Xuat_Ngu_QD"></tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="control3">
+            <asp:CheckBox ID="ckThuong_Binh" Text ="Thương binh" runat ="server" />
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbHang_Thuong_Binh" Text ="Hạng"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadComboBox   runat ="server" ID="cbHang_Thuong_Binh"></tlk:RadComboBox>
+        </td>
+        <td class="lb3">
+            <asp:Label runat="server" ID ="lbGD_Chinh_Sach" Text ="Gia đình chính sách"></asp:Label>
+        </td>
+        <td class="control3">
+            <tlk:RadComboBox   runat ="server" ID="cbGD_Chinh_Sach"></tlk:RadComboBox>
         </td>
     </tr>
     <tr>
@@ -395,6 +625,79 @@
             <tlk:RadTextBox runat="server" ID="txtHomePhone">
             </tlk:RadTextBox>
         </td>
+    </tr>
+    <%--<tr>
+        <td>
+        </td>
+        <td colspan="3">
+            <asp:CheckBox ID="chkDoanPhi" runat="server" Text="<%$ Translate: Công đoàn phí %>" />
+        </td>
+    </tr>--%>
+    <tr>
+        <td class="lb">
+            <%# Translate("Số hộ chiếu")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtPassNo" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Ngày cấp")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker ID="rdPassDate" runat="server">
+            </tlk:RadDatePicker>
+        </td>
+        <td class="lb">
+            <%# Translate("Ngày hết hạn")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker ID="rdPassExpireDate" runat="server">
+            </tlk:RadDatePicker>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Nơi cấp")%>
+        </td>
+        <td colspan="5">
+            <tlk:RadTextBox ID="txtPassPlace" runat="server" Width="100%">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Giấy phép lao động")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtWorkPermit" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Từ ngày")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker ID="rdWorkPermitDate" runat="server">
+            </tlk:RadDatePicker>
+        </td>
+        <td class="lb">
+            <%# Translate("Đến ngày")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker ID="rdWorPermitExpireDate" runat="server">
+            </tlk:RadDatePicker>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Nơi cấp")%>
+        </td>
+        <td colspan="5">
+            <tlk:RadTextBox ID="txtWorkPermitPlace" runat="server" Width="100%">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
         <td class="lb">
             <%# Translate("Ngành nghề")%>
         </td>
@@ -402,15 +705,31 @@
             <tlk:RadTextBox runat="server" ID="txtCareer">
             </tlk:RadTextBox>
         </td>
-    </tr>
-    <tr>
+        <td class="lb">
+            <%# Translate("Sở trường công tác")%>
+        </td>
         <td>
-        </td>
-        <td colspan="3">
-            <asp:CheckBox ID="chkDoanPhi" runat="server" Text="<%$ Translate: Công đoàn phí %>" />
+            <tlk:RadTextBox runat="server" ID="txtForteBussiness">
+            </tlk:RadTextBox>
         </td>
     </tr>
     <tr>
+        <td class="lb">
+            <%# Translate("Người liên hệ")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtContactPerson" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Số điện thoại")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtContactPersonPhone" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <%--<tr>
         <td class="lb">
             <%# Translate("Ngày vào")%>
         </td>
@@ -462,40 +781,9 @@
             <tlk:RadTextBox ID="txtNoiVaoDang" runat="server">
             </tlk:RadTextBox>
         </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Số hộ chiếu")%>
-        </td>
-        <td>
-            <tlk:RadTextBox ID="txtPassNo" runat="server">
-            </tlk:RadTextBox>
-        </td>
-        <td class="lb">
-            <%# Translate("Ngày cấp")%>
-        </td>
-        <td>
-            <tlk:RadDatePicker ID="rdPassDate" runat="server">
-            </tlk:RadDatePicker>
-        </td>
-        <td class="lb">
-            <%# Translate("Ngày hết hạn")%>
-        </td>
-        <td>
-            <tlk:RadDatePicker ID="rdPassExpireDate" runat="server">
-            </tlk:RadDatePicker>
-        </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Nơi cấp")%>
-        </td>
-        <td colspan="5">
-            <tlk:RadTextBox ID="txtPassPlace" runat="server" Width="100%">
-            </tlk:RadTextBox>
-        </td>
-    </tr>
-    <tr>
+    </tr> --%>   
+    
+    <%--<tr>
         <td class="lb">
             <%# Translate("Visa")%>
         </td>
@@ -526,55 +814,7 @@
             <tlk:RadTextBox ID="txtVisaPlace" runat="server" Width="100%">
             </tlk:RadTextBox>
         </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Giấy phép lao động")%>
-        </td>
-        <td>
-            <tlk:RadTextBox ID="txtWorkPermit" runat="server">
-            </tlk:RadTextBox>
-        </td>
-        <td class="lb">
-            <%# Translate("Ngày cấp")%>
-        </td>
-        <td>
-            <tlk:RadDatePicker ID="rdWorkPermitDate" runat="server">
-            </tlk:RadDatePicker>
-        </td>
-        <td class="lb">
-            <%# Translate("Ngày hết hạn")%>
-        </td>
-        <td>
-            <tlk:RadDatePicker ID="rdWorPermitExpireDate" runat="server">
-            </tlk:RadDatePicker>
-        </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Nơi cấp")%>
-        </td>
-        <td colspan="5">
-            <tlk:RadTextBox ID="txtWorkPermitPlace" runat="server" Width="100%">
-            </tlk:RadTextBox>
-        </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Người liên hệ")%>
-        </td>
-        <td>
-            <tlk:RadTextBox ID="txtContactPerson" runat="server">
-            </tlk:RadTextBox>
-        </td>
-        <td class="lb">
-            <%# Translate("Số điện thoại")%>
-        </td>
-        <td>
-            <tlk:RadTextBox ID="txtContactPersonPhone" runat="server">
-            </tlk:RadTextBox>
-        </td>
-    </tr>
+    </tr>--%>    
     <tr>
         <td colspan="6">
             <b>
@@ -583,27 +823,25 @@
         </td>
     </tr>
     <tr>
-        <td class="lb">
+        <%--<td class="lb">
             <%# Translate("Tên trường")%>
         </td>
         <td colspan="5">
             <tlk:RadTextBox ID="txtGraduateSchool" runat="server" Width="100%">
             </tlk:RadTextBox>
-        </td>
-    </tr>
-    <tr>
+        </td>--%>
         <td class="lb">
-            <%# Translate("Trình độ chuyên môn")%>
+            <%# Translate("Chuyên ngành")%>
         </td>
         <td>
-            <tlk:RadTextBox ID="txtMajor" runat="server">
-            </tlk:RadTextBox>
+           <tlk:RadTextBox ID="txtSpecialized" runat="server">
+                                            </tlk:RadTextBox>
         </td>
         <td class="lb">
-            <%# Translate("Diễn giải")%>
+            <%# Translate("Năm tốt nghiệp")%>
         </td>
-        <td colspan="3">
-            <tlk:RadTextBox ID="txtMajorRemark" runat="server" Width="100%">
+        <td>
+            <tlk:RadTextBox ID="txtGraduateYear" runat="server">
             </tlk:RadTextBox>
         </td>
     </tr>
@@ -615,6 +853,102 @@
             <tlk:RadTextBox ID="txtAcademy" runat="server">
             </tlk:RadTextBox>
         </td>
+        <td class="lb">
+            <%# Translate("Trình độ chuyên môn cao nhất")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtMajor" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Quản lý nhà nước")%>
+        </td>
+        <td>
+            <tlk:RadComboBox ID="cboQLNN" runat="server">
+            </tlk:RadComboBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Lý luận chính trị")%>
+        </td>
+        <td>
+            <tlk:RadComboBox ID="cboLLCT" runat="server">
+            </tlk:RadComboBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Ngoại ngữ 1")%>
+        </td>
+        <td>
+            <tlk:RadComboBox ID="cboLanguage" runat="server">
+            </tlk:RadComboBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Trình độ ngoại ngữ")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtEngLevel1" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Điểm số/Xếp loại")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtMark1" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Ngoại ngữ 2")%>
+        </td>
+        <td>
+            <tlk:RadComboBox ID="cboLanguage2" runat="server">
+            </tlk:RadComboBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Trình độ ngoại ngữ")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtEngLevel2" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Điểm số/Xếp loại")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtMark2" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Trình độ tin học")%>
+        </td>
+        <td>
+            <tlk:RadCombobox ID="cboTDTH" runat="server">
+            </tlk:RadCombobox>
+        </td>
+        <td class="lb">
+            <%# Translate("Điểm số/Xếp loại")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtITMark" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <%--<tr>        
+        <td class="lb">
+            <%# Translate("Diễn giải")%>
+        </td>
+        <td colspan="3">
+            <tlk:RadTextBox ID="txtMajorRemark" runat="server" Width="100%">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>        
         <td class="lb">
             <%# Translate("Hình thức đào tạo")%>
         </td>
@@ -652,11 +986,11 @@
             <tlk:RadTextBox ID="txtLangMark" runat="server">
             </tlk:RadTextBox>
         </td>
-    </tr>
+    </tr>--%>
     <tr>
         <td colspan="6">
             <b>
-                <%# Translate("Thông tin tài khoản")%></b>
+                <%# Translate("Tài khoản ngân hàng")%></b>
             <hr />
         </td>
     </tr>
@@ -691,6 +1025,9 @@
             <tlk:RadTextBox ID="txtPitCode" runat="server">
             </tlk:RadTextBox>
         </td>
+        <td class="control3">
+            <asp:CheckBox ID="chkPayViaBank" Text ="Thanh toán qua ngân hàng" runat ="server" />
+        </td>
     </tr>
     <tr>
         <td colspan="6">
@@ -724,19 +1061,46 @@
     </tr>
     <tr>
         <td class="lb">
-            <%# Translate("Răng hàm mặt")%>
-        </td>
-        <td>
-            <tlk:RadTextBox ID="txtRangHamMat" runat="server">
-            </tlk:RadTextBox>
-        </td>
-        <td class="lb">
             <%# Translate("Nhóm máu")%>
         </td>
         <td>
             <tlk:RadTextBox ID="txtNhomMau" runat="server" SkinID="Textbox50">
             </tlk:RadTextBox>
         </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Loại sức khỏe")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtLoaiSucKhoe" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Tình trạng sức khỏe")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtTinhTrangSucKhoe" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Ghi chú")%>
+        </td>
+        <td colspan="5">
+            <tlk:RadTextBox runat="server" ID="txtGhiChuSK" Width="100%" SkinID="Textbox1023" />
+        </td>
+    </tr>
+    <%--<tr>
+        <td class="lb">
+            <%# Translate("Răng hàm mặt")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtRangHamMat" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        
         <td class="lb">
             <%# Translate("Tim")%>
         </td>
@@ -790,24 +1154,8 @@
             <tlk:RadTextBox ID="txtDaHoaLieu" runat="server">
             </tlk:RadTextBox>
         </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Loại sức khỏe")%>
-        </td>
-        <td>
-            <tlk:RadTextBox ID="txtLoaiSucKhoe" runat="server">
-            </tlk:RadTextBox>
-        </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Ghi chú")%>
-        </td>
-        <td colspan="5">
-            <tlk:RadTextBox runat="server" ID="txtGhiChuSK" Width="100%" SkinID="Textbox1023" />
-        </td>
-    </tr>
+    </tr>--%>
+    
     <%--<tr>
         <td colspan="6">
             <b>
