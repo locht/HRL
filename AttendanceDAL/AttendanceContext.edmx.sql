@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/09/2019 11:29:23 AM
--- Generated from EDMX file: D:\MyProject\core1\histaffhcm-danhgia\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 5/9/2019 2:44:34 PM
+-- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1221,7 +1221,8 @@ CREATE TABLE "dbo"."AT_FML" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "IS_LEAVE" NUMBER(38,0) NULL
+   "IS_LEAVE" NUMBER(38,0) NULL,
+   "IS_CALHOLIDAY" NUMBER(5,0) NULL
 );
 
 -- Creating table 'AT_TERMINALS'

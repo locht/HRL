@@ -13581,6 +13581,9 @@ Namespace AttendanceBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_CALHOLIDAYField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_LEAVEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13698,6 +13701,19 @@ Namespace AttendanceBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_CALHOLIDAY() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_CALHOLIDAYField
+            End Get
+            Set
+                If (Me.IS_CALHOLIDAYField.Equals(value) <> true) Then
+                    Me.IS_CALHOLIDAYField = value
+                    Me.RaisePropertyChanged("IS_CALHOLIDAY")
                 End If
             End Set
         End Property

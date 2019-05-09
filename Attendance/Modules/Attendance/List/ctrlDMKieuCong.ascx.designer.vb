@@ -50,6 +50,15 @@ Partial Public Class ctrlDMKieuCong
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtCode control.
     '''</summary>
     '''<remarks>
@@ -86,6 +95,15 @@ Partial Public Class ctrlDMKieuCong
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''lbIsLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbIsLeave As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''chkIsLeave control.
     '''</summary>
     '''<remarks>
@@ -93,6 +111,33 @@ Partial Public Class ctrlDMKieuCong
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkIsLeave As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lbIsCalHoliday control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbIsCalHoliday As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ckIsCalHoliday control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckIsCalHoliday As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lbNameVN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNameVN As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtNameVN control.
@@ -111,6 +156,15 @@ Partial Public Class ctrlDMKieuCong
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''lbNote control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNote As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtNote control.
