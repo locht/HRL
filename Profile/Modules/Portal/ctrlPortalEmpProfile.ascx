@@ -5,7 +5,7 @@
     <tr>
         <td colspan="6">
             <b>
-                <%# Translate("Sơ yếu lý lịch")%></b>
+                <%# Translate("Sơ yếu lý lịch")%></b> 
             <hr />
         </td>
     </tr>
@@ -34,11 +34,74 @@
     </tr>
     <tr>
         <td class="lb" style="width: 130px">
-            <%# Translate("Đơn vị")%>
+            <%# Translate("Mã cũ")%>
         </td>
         <td>
-            <tlk:RadTextBox runat="server" ID="txtOrgName" ReadOnly="true" />
+            <tlk:RadTextBox ID="txtEmpOldCODE" runat="server">
+            </tlk:RadTextBox>
         </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Số sổ BHXH")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtNoBHXH" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Tên gọi khác")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtDifferentName" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Ngày sinh")%>
+        </td>
+        <td>
+            <tlk:RadDatePicker runat="server" ID="rdBirthDate">
+            </tlk:RadDatePicker>
+        </td>
+        <td class="lb">
+            <%# Translate("Giới tính")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtGender">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Tình trạng nhân viên")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtEmpStatus" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Tỉnh/Thành phố nơi sinh")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtProvinceBorn" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Huyện nơi sinh")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtDistrictBorn" runat="server">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Xã nơi sinh")%>
+        </td>
+        <td>
+            <tlk:RadTextBox ID="txtWardBorn" runat="server">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>        
         <td class="lb" style="width: 130px">
             <%# Translate("Chức danh")%>
         </td>
@@ -51,6 +114,44 @@
         </td>
         <td>
             <tlk:RadTextBox runat="server" ID="txtTitleGroup" ReadOnly="true">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Cấp quản lý")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtMngLevel" ReadOnly="true">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Đơn vị")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtOrgName" ReadOnly="true" />
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Nơi làm việc")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtWorkPlace" ReadOnly="true">
+            </tlk:RadTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Hội đồng/Ban/Tổ/Nhóm")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtHoiDongBanToNhom" ReadOnly="true">
+            </tlk:RadTextBox>
+        </td>
+        <td class="lb" style="width: 130px">
+            <%# Translate("Bộ phận")%>
+        </td>
+        <td>
+            <tlk:RadTextBox runat="server" ID="txtDepartment" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
     </tr>
@@ -74,22 +175,6 @@
         </td>
         <td>
             <tlk:RadTextBox runat="server" ID="txtStaffRank">
-            </tlk:RadTextBox>
-        </td>
-    </tr>
-    <tr>
-        <td class="lb">
-            <%# Translate("Ngày sinh")%>
-        </td>
-        <td>
-            <tlk:RadDatePicker runat="server" ID="rdBirthDate">
-            </tlk:RadDatePicker>
-        </td>
-        <td class="lb">
-            <%# Translate("Giới tính")%>
-        </td>
-        <td>
-            <tlk:RadTextBox runat="server" ID="txtGender">
             </tlk:RadTextBox>
         </td>
     </tr>
