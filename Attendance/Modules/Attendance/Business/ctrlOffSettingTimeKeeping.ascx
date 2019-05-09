@@ -33,11 +33,11 @@
                             </tlk:RadDatePicker>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip="" SkinID="ButtonFind">
+                            <tlk:RadButton ID="btnSearch" Text="Tìm" runat="server" ToolTip="" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                         <td colspan="2">
-                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc %>" />
+                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="Nhân viên nghỉ việc" />
                         </td>
                     </tr>
                 </table>
@@ -51,7 +51,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                         <%--   <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="Mã nhân viên" HeaderStyle-Font-Bold="true"
@@ -78,7 +78,7 @@
                             </tlk:GridNumericColumn>
                               <tlk:GridNumericColumn HeaderText="Ghi chú" DataField="REMARK" ItemStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="200px" SortExpression="REMARK" UniqueName="REMARK">
-                            </tlk:GridNumericColumn>
+                            </tlk:GridNumericColumn>--%>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>

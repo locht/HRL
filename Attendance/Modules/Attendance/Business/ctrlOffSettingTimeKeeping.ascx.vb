@@ -131,9 +131,9 @@ Public Class ctrlOffSettingTimeKeeping
             rgDeclareEntitlementNB.ClientSettings.EnablePostBackOnRowClick = False
             ctrlUpload1.isMultiple = False
             InitControl()
-            'If Not IsPostBack Then
-            '    GirdConfig(rgDeclareEntitlementNB)
-            'End If
+            If Not IsPostBack Then
+                GirdConfig(rgDeclareEntitlementNB)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -182,7 +182,7 @@ Public Class ctrlOffSettingTimeKeeping
                         Dim item As GridDataItem = rgDeclareEntitlementNB.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-                    If rep.DeleteDelareEntitlementNB(lstDeletes) Then
+                    If rep.DeleteOffTimeKeeping(lstDeletes) Then
                         Refresh("UpdateView")
                         UpdateControlState()
                     Else
@@ -352,6 +352,14 @@ Public Class ctrlOffSettingTimeKeeping
             Dim _param = New ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
                                            .IS_DISSOLVE = ctrlOrganization.IsDissolve,
                                            .IS_FULL = True}
+            If rdtungay.SelectedDate IsNot Nothing Then
+                obj.FROMDATE = rdtungay.SelectedDate
+            End If
+
+            If rdDenngay.SelectedDate IsNot Nothing Then
+                obj.TODATE = rdDenngay.SelectedDate
+            End If
+            obj.IS_TERMINATE = chkChecknghiViec.Checked
             Dim Sorts As String = rgDeclareEntitlementNB.MasterTableView.SortExpressions.GetSortString()
             If Not isFull Then
                 If Sorts IsNot Nothing Then

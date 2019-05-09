@@ -20,6 +20,9 @@
                 <td>
                     <tlk:RadComboBox ID="cboTypeBT" runat="server">
                     </tlk:RadComboBox>
+
+                    <asp:RequiredFieldValidator ID="reqEmployeeCode" ControlToValidate="cboTypeBT" runat="server"
+                        ErrorMessage="Bạn phải nhập loại nghĩ." ToolTip="Bạn phải nhập loại nghĩ."> </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -30,6 +33,8 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdFromDate">
                     </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdFromDate"
+                        runat="server" ErrorMessage="Bạn phải nhập từ ngày." ToolTip="Bạn phải nhập từ ngày."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbToDate" runat="server" Text="Đến ngày"></asp:Label>
@@ -38,14 +43,18 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdToDate">
                     </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdToDate"
+                        runat="server" ErrorMessage="Bạn phải nhập đến ngày." ToolTip="Bạn phải nhập đến ngày."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbNumber" runat="server" Text="Số phút"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtNumber">
-                    </tlk:RadTextBox>
+                    <tlk:RadNumericTextBox runat="server" ID="txtNumber">
+                    </tlk:RadNumericTextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtNumber"
+                        runat="server" ErrorMessage="Bạn phải nhập số phút." ToolTip="Bạn phải nhập số phút."> </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -60,12 +69,12 @@
             </tr>
         </table>
     </tlk:RadPane>
-     <tlk:RadGrid ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true" runat="server"
-            Height="200px">
-            <GroupingSettings CaseSensitive="false" />
-            <MasterTableView EditMode="InPlace" AllowPaging="false" AllowCustomPaging="false"
-                DataKeyNames="ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID" ClientDataKeyNames="ID,EMPLOYEE_ID,FULLNAME_VN,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE"
-                CommandItemDisplay="Top">
+    <tlk:RadGrid ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true" runat="server"
+        Height="200px">
+        <groupingsettings casesensitive="false" />
+        <mastertableview editmode="InPlace" allowpaging="false" allowcustompaging="false"
+            datakeynames="ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID" clientdatakeynames="ID,EMPLOYEE_ID,FULLNAME_VN,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE"
+            commanditemdisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
                     <div style="padding: 2px 0 0 0">
@@ -85,22 +94,24 @@
                     </div>
                 </CommandItemTemplate>
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                   <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
-                    <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="VN_FULLNAME" UniqueName="VN_FULLNAME"
-                        ReadOnly="true" SortExpression="VN_FULLNAME" />
+                    <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="FULLNAME_VN" UniqueName="FULLNAME_VN"
+                        ReadOnly="true" SortExpression="FULLNAME_VN" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         ReadOnly="true" SortExpression="ORG_NAME" />
+                        <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
+                        ReadOnly="true" SortExpression="TITLE_NAME" />--%>
                 </Columns>
-            </MasterTableView>
-            <HeaderStyle HorizontalAlign="Center" />
-            <ClientSettings>
+            </mastertableview>
+        <headerstyle horizontalalign="Center" />
+        <clientsettings>
                 <Selecting AllowRowSelect="True" />
-            </ClientSettings>
-        </tlk:RadGrid>
+            </clientsettings>
+    </tlk:RadGrid>
 </tlk:RadSplitter>
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>

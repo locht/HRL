@@ -173,7 +173,7 @@ Partial Public Class ctrlOffSettingTimeKeepingNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNumber As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtNumber As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbREMARK control.
