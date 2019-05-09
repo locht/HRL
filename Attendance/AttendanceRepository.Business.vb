@@ -1037,7 +1037,45 @@ Partial Class AttendanceRepository
     End Function
 
 #End Region
+#Region "quan ly bu tru cham cong"
+    Function GetOffSettingTimeKeeping(ByVal _filter As AT_OFFFSETTINGDTO,
+                                      ByVal _param As ParamDTO,
+                                      Optional ByRef Total As Integer = 0,
+                                      Optional ByVal PageIndex As Integer = 0,
+                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_OFFFSETTINGDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Dim lst = rep.GetOffSettingTimeKeeping(_filter, _param, Total, PageIndex, PageSize, Sorts, Me.Log)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetOffSettingTimeKeepingById(ByVal _id As Decimal?) As AT_OFFFSETTINGDTO
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetOffSettingTimeKeepingById(_id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetEmployeeTimeKeepingID(ByVal ComId As Decimal) As List(Of AT_OFFFSETTING_EMPDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetEmployeeTimeKeepingID(ComId)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+        Return Nothing
+    End Function
+#End Region
 #Region "Khai bao điều chỉnh thâm niên phép"
     Function GetDelareEntitlementNB(ByVal _filter As AT_DECLARE_ENTITLEMENTDTO,
                                       ByVal _param As PARAMDTO,
@@ -1055,10 +1093,34 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
+
     Public Function InsertDelareEntitlementNB(ByVal objDelareEntitlementNB As AT_DECLARE_ENTITLEMENTDTO, ByRef gID As Decimal, ByRef checkMonthNB As Boolean, ByRef checkMonthNP As Boolean) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
                 Return rep.InsertDelareEntitlementNB(objDelareEntitlementNB, Me.Log, gID, checkMonthNB, checkMonthNP)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function InsertOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.InsertOffSettingTime(objOffSetting, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifyOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ModifyOffSettingTime(objOffSetting, Me.Log, gID)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -1090,7 +1152,7 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
-
+    
     Public Function GetDelareEntitlementNBById(ByVal _id As Decimal?) As AT_DECLARE_ENTITLEMENTDTO
         Using rep As New AttendanceBusinessClient
             Try

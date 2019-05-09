@@ -225,7 +225,20 @@ Namespace AttendanceBusiness.ServiceContracts
         Function DeleteDelareRice(ByVal lstID As List(Of Decimal)) As Boolean
 
 #End Region
+#Region "quan ly bu tru cham cong"
+        <OperationContract()>
+        Function GetOffSettingTimeKeeping(ByVal _filter As AT_OFFFSETTINGDTO,
+                                      ByVal _param As ParamDTO,
+                                      Optional ByRef Total As Integer = 0,
+                                      Optional ByVal PageIndex As Integer = 0,
+                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_OFFFSETTINGDTO)
 
+        <OperationContract()>
+        Function GetOffSettingTimeKeepingById(ByVal _id As Decimal?) As AT_OFFFSETTINGDTO
+        <OperationContract()>
+        Function GetEmployeeTimeKeepingID(ByVal _id As Decimal) As List(Of AT_OFFFSETTING_EMPDTO)
+#End Region
 #Region "Khai bao điều chỉnh thâm niên phép"
         <OperationContract()>
         Function GetDelareEntitlementNB(ByVal _filter As AT_DECLARE_ENTITLEMENTDTO,
@@ -1020,7 +1033,12 @@ Namespace AttendanceBusiness.ServiceContracts
 
 
 #End Region
-
+#Region "quan ly cham cong bu tru"
+        <OperationContract()>
+        Function InsertOffSettingTime(objOffSetting As AT_OFFFSETTINGDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ModifyOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+#End Region
 #Region "Portal quan ly nghi phep, nghi bu"
         <OperationContract()>
         Function GetTotalDayOff(ByVal _filter As TotalDayOffDTO, Optional ByVal log As UserLog = Nothing) As TotalDayOffDTO

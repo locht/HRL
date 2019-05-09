@@ -603,7 +603,7 @@ Public Class ProfileRepository
         End If
         If _combolistDTO.GET_TYPE_WORK Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
-                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.ID = 2255)
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "TYPE_WORK")
                      Order By p.NAME_VN
                      Select New OtherListDTO With {
                         .ID = p.ID,
@@ -613,7 +613,7 @@ Public Class ProfileRepository
         End If
         If _combolistDTO.GET_RANK Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
-                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.ID = 2258)
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "RANK")
                      Order By p.NAME_VN
                      Select New OtherListDTO With {
                         .ID = p.ID,
@@ -623,7 +623,7 @@ Public Class ProfileRepository
         End If
         If _combolistDTO.GET_CAPACITY Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
-                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.ID = 2259)
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "CAPACITY")
                      Order By p.NAME_VN
                      Select New OtherListDTO With {
                         .ID = p.ID,
