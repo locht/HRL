@@ -256,6 +256,8 @@ Public Class ctrlHU_WageNewEdit
                     If Working.SAL_TOTAL IsNot Nothing Then
                         Salary_Total.Text = Working.SAL_TOTAL
                     End If
+                    'GetDATA_IN()
+                    CalculatorSalary()
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
             End Select
@@ -362,6 +364,7 @@ Public Class ctrlHU_WageNewEdit
                     FillRadCombobox(cbSalaryLevel, dtData, "NAME", "ID", True)
                 End If
             End Using
+            CalculatorSalary()
         Catch ex As Exception
             Throw ex
         End Try
@@ -879,12 +882,21 @@ Public Class ctrlHU_WageNewEdit
                     End If
                 End If
             Next
+            CalculatorSalary()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
-
     End Sub
+
+    Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, SalaryInsurance.TextChanged, basicSalary.TextChanged, rnPercentSalary.TextChanged
+        Try
+            CalculatorSalary()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Event selected item combobox phu cap
     ''' </summary>
@@ -1092,65 +1104,99 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    Private Function GetDATA_IN() As String
+        Try
+            Dim obj As DATA_IN
+            If IsNumeric(hidEmp.Value) Then
+                obj.EMPLOYEE_ID = hidEmp.Value
+            End If
+            If IsDate(rdEffectDate.SelectedDate) Then
+                obj.EFFECT_DATE = rdEffectDate.SelectedDate
+            End If
+            If IsNumeric(SalaryInsurance.Value) Then
+                obj.SALARYINSURANCE = SalaryInsurance.Value
+            End If
+            If IsNumeric(rnFactorSalary.Value) Then
+                obj.FACTORSALARY = rnFactorSalary.Value
+            End If
+            obj.MUCLUONGCS = 0
+            If IsNumeric(Salary_Total.Value) Then
+                obj.TOTALSALARY = Salary_Total.Value
+            End If
+            If IsNumeric(basicSalary.Value) Then
+                obj.BASICSALARY = basicSalary.Value
+            End If
+            If IsNumeric(Allowance_Total.Value) Then
+                obj.ALLOWANCE_TOTAL = Allowance_Total.Value
+            End If
+            If IsNumeric(rnPercentSalary.Value) Then
+                obj.PERCENT_SALARY = rnPercentSalary.Value
+            End If
+            If IsNumeric(cbSalaryGroup.SelectedValue) Then
+                obj.GROUP_SALARY = cbSalaryGroup.SelectedValue
+            End If
+            If IsNumeric(cbSalaryRank.SelectedValue) Then
+                obj.RANK_SALARY = cbSalaryRank.SelectedValue
+            End If
+            If IsNumeric(cbSalaryLevel.SelectedValue) Then
+                obj.LEVEL_SALARY = cbSalaryLevel.SelectedValue
+            End If
+            If IsNumeric(rnOtherSalary1.Value) Then
+                obj.OTHERSALARY1 = rnOtherSalary1.Value
+            End If
+            If IsNumeric(rnOtherSalary2.Value) Then
+                obj.OTHERSALARY2 = rnOtherSalary2.Value
+            End If
+            If IsNumeric(rnOtherSalary3.Value) Then
+                obj.OTHERSALARY3 = rnOtherSalary3.Value
+            End If
+            If IsNumeric(rnOtherSalary4.Value) Then
+                obj.OTHERSALARY4 = rnOtherSalary4.Value
+            End If
+            If IsNumeric(rnOtherSalary5.Value) Then
+                obj.OTHERSALARY5 = rnOtherSalary5.Value
+            End If
+            Dim dataArray As New ArrayList()
+            dataArray.Add(obj)
+            Dim jsonSerialiser = New JavaScriptSerializer()
+            Dim strData_In = jsonSerialiser.Serialize(dataArray)
+            Return strData_In
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Private Sub CalculatorSalary()
         'kiem tra check IS_HOSE
         'LAY THONG TIN CONFIG CASE :
         getSE_CASE_CONFIG()
         Dim Status As Boolean = False
-        Dim obj As DATA_IN
-        If IsNumeric(hidEmp.Value) Then
-            obj.EMPLOYEE_ID = hidEmp.Value
-        End If
-        If IsDate(rdEffectDate.SelectedDate) Then
-            obj.EFFECT_DATE = rdEffectDate.SelectedDate
-        End If
-        If IsNumeric(SalaryInsurance.Value) Then
-            obj.SALARYINSURANCE = SalaryInsurance.Value
-        End If
-        If IsNumeric(rnFactorSalary.Value) Then
-            obj.FACTORSALARY = rnFactorSalary.Value
-        End If
-        obj.MUCLUONGCS = 0
-        If IsNumeric(Salary_Total.Value) Then
-            obj.TOTALSALARY = Salary_Total.Value
-        End If
-        If IsNumeric(basicSalary.Value) Then
-            obj.BASICSALARY = basicSalary.Value
-        End If
-        If IsNumeric(Allowance_Total.Value) Then
-            obj.ALLOWANCE_TOTAL = Allowance_Total.Value
-        End If
-        If IsNumeric(rnPercentSalary.Value) Then
-            obj.PERCENT_SALARY = rnPercentSalary.Value
-        End If
-        If IsNumeric(cbSalaryGroup.SelectedValue) Then
-            obj.GROUP_SALARY = cbSalaryGroup.SelectedValue
-        End If
-        If IsNumeric(rnOtherSalary1.Value) Then
-            obj.OTHERSALARY1 = rnOtherSalary1.Value
-        End If
-        If IsNumeric(rnOtherSalary2.Value) Then
-            obj.OTHERSALARY2 = rnOtherSalary2.Value
-        End If
-        If IsNumeric(rnOtherSalary3.Value) Then
-            obj.OTHERSALARY3 = rnOtherSalary3.Value
-        End If
-        If IsNumeric(rnOtherSalary4.Value) Then
-            obj.OTHERSALARY4 = rnOtherSalary4.Value
-        End If
-        If IsNumeric(rnOtherSalary5.Value) Then
-            obj.OTHERSALARY5 = rnOtherSalary5.Value
-        End If
-        Dim dataArray As New ArrayList()
-        dataArray.Add(obj)
-        Dim jsonSerialiser = New JavaScriptSerializer()
-        Dim DATA_IN = jsonSerialiser.Serialize(dataArray)
         Try
+            Dim DATA_OUT As DataTable
             If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
                 Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlHU_WageNewEdit_case1" + "'")
                 If ROWS IsNot Nothing AndAlso ROWS.Count > 0 Then
                     Status = CBool(ROWS(0)("STATUS"))
                 End If
+            End If
+            If Status = False Then Return
+            Using rep As New ProfileBusinessRepository
+                DATA_OUT = rep.Calculator_Salary(GetDATA_IN())
+            End Using
+            'BIDING DATA TO CONTROLS
+            If DATA_OUT IsNot Nothing AndAlso DATA_OUT.Rows.Count > 0 Then
+                BidingDataToControls(DATA_OUT)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub BidingDataToControls(ByVal dtdata As DataTable)
+        Try
+            If IsNumeric(dtdata(0)("SALARYINSURANCE")) Then
+                SalaryInsurance.Value = dtdata(0)("SALARYINSURANCE").ToString
+            End If
+            If IsNumeric(dtdata(0)("TOTALSALARY")) Then
+                Salary_Total.Value = dtdata(0)("TOTALSALARY").ToString
             End If
         Catch ex As Exception
             Throw ex
@@ -1197,7 +1243,7 @@ Public Class ctrlHU_WageNewEdit
 End Class
 Structure DATA_IN
     Public EMPLOYEE_ID As Decimal?
-    Public EFFECT_DATE As Date?
+    Public EFFECT_DATE As String
     Public SALARYINSURANCE As Decimal?
     Public FACTORSALARY As Decimal?
     Public MUCLUONGCS As Decimal?
@@ -1206,6 +1252,8 @@ Structure DATA_IN
     Public ALLOWANCE_TOTAL As Decimal?
     Public PERCENT_SALARY As Decimal?
     Public GROUP_SALARY As Decimal?
+    Public RANK_SALARY As Decimal?
+    Public LEVEL_SALARY As Decimal?
     Public OTHERSALARY1 As Decimal?
     Public OTHERSALARY2 As Decimal?
     Public OTHERSALARY3 As Decimal?
