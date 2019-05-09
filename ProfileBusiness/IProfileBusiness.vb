@@ -18,6 +18,8 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As DataTable
 #End Region
+        <OperationContract()>
+        Function Calculator_Salary(ByVal data_in As String) As DataTable
 #Region "Hoadm - Common"
 
 #Region "OtherList"

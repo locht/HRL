@@ -11,7 +11,20 @@ Imports System.Text.RegularExpressions
 Imports System.Reflection
 
 Partial Class ProfileRepository
-
+#Region "calculator salary "
+    Public Function Calculator_Salary(ByVal data_in As String) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_PA_BUSINESS.CALCULATOR_SALARY",
+                                                    New With {.P_DATA_IN = data_in,
+                                                                .CUR = cls.OUT_CURSOR})
+                Return dtData
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "EmployeeCriteriaRecord"
     Public Function EmployeeCriteriaRecord(ByVal _filter As EmployeeCriteriaRecordDTO,
                                               ByVal PageIndex As Integer,

@@ -6,6 +6,7 @@ Imports Common
 Imports Telerik.Web.UI
 Imports System.IO
 Imports WebAppLog
+Imports System.Web.Script.Serialization
 Imports ICSharpCode.SharpZipLib.Zip
 Imports ICSharpCode.SharpZipLib.Checksums
 Imports HistaffWebAppResources.My.Resources
@@ -1096,6 +1097,54 @@ Public Class ctrlHU_WageNewEdit
         'LAY THONG TIN CONFIG CASE :
         getSE_CASE_CONFIG()
         Dim Status As Boolean = False
+        Dim obj As DATA_IN
+        If IsNumeric(hidEmp.Value) Then
+            obj.EMPLOYEE_ID = hidEmp.Value
+        End If
+        If IsDate(rdEffectDate.SelectedDate) Then
+            obj.EFFECT_DATE = rdEffectDate.SelectedDate
+        End If
+        If IsNumeric(SalaryInsurance.Value) Then
+            obj.SALARYINSURANCE = SalaryInsurance.Value
+        End If
+        If IsNumeric(rnFactorSalary.Value) Then
+            obj.FACTORSALARY = rnFactorSalary.Value
+        End If
+        obj.MUCLUONGCS = 0
+        If IsNumeric(Salary_Total.Value) Then
+            obj.TOTALSALARY = Salary_Total.Value
+        End If
+        If IsNumeric(basicSalary.Value) Then
+            obj.BASICSALARY = basicSalary.Value
+        End If
+        If IsNumeric(Allowance_Total.Value) Then
+            obj.ALLOWANCE_TOTAL = Allowance_Total.Value
+        End If
+        If IsNumeric(rnPercentSalary.Value) Then
+            obj.PERCENT_SALARY = rnPercentSalary.Value
+        End If
+        If IsNumeric(cbSalaryGroup.SelectedValue) Then
+            obj.GROUP_SALARY = cbSalaryGroup.SelectedValue
+        End If
+        If IsNumeric(rnOtherSalary1.Value) Then
+            obj.OTHERSALARY1 = rnOtherSalary1.Value
+        End If
+        If IsNumeric(rnOtherSalary2.Value) Then
+            obj.OTHERSALARY2 = rnOtherSalary2.Value
+        End If
+        If IsNumeric(rnOtherSalary3.Value) Then
+            obj.OTHERSALARY3 = rnOtherSalary3.Value
+        End If
+        If IsNumeric(rnOtherSalary4.Value) Then
+            obj.OTHERSALARY4 = rnOtherSalary4.Value
+        End If
+        If IsNumeric(rnOtherSalary5.Value) Then
+            obj.OTHERSALARY5 = rnOtherSalary5.Value
+        End If
+        Dim dataArray As New ArrayList()
+        dataArray.Add(obj)
+        Dim jsonSerialiser = New JavaScriptSerializer()
+        Dim DATA_IN = jsonSerialiser.Serialize(dataArray)
         Try
             If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
                 Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlHU_WageNewEdit_case1" + "'")
@@ -1146,3 +1195,21 @@ Public Class ctrlHU_WageNewEdit
     End Sub
 #End Region
 End Class
+Structure DATA_IN
+    Public EMPLOYEE_ID As Decimal?
+    Public EFFECT_DATE As Date?
+    Public SALARYINSURANCE As Decimal?
+    Public FACTORSALARY As Decimal?
+    Public MUCLUONGCS As Decimal?
+    Public TOTALSALARY As Decimal?
+    Public BASICSALARY As Decimal?
+    Public ALLOWANCE_TOTAL As Decimal?
+    Public PERCENT_SALARY As Decimal?
+    Public GROUP_SALARY As Decimal?
+    Public OTHERSALARY1 As Decimal?
+    Public OTHERSALARY2 As Decimal?
+    Public OTHERSALARY3 As Decimal?
+    Public OTHERSALARY4 As Decimal?
+    Public OTHERSALARY5 As Decimal?
+    Public CODE_CASE As String
+End Structure

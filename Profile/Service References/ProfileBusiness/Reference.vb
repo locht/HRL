@@ -41614,6 +41614,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendListResponse")>  _
+        Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ActiveCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ActiveCommendListResponse")>  _
         Function ActiveCommendList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -41621,10 +41624,6 @@ Namespace ProfileBusiness
         Function DeleteCommendList(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendListResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
@@ -41798,6 +41797,10 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
         Function ValidateCommendList(ByVal _validate As ProfileBusiness.CommendListDTO) As Object
@@ -41818,10 +41821,6 @@ Namespace ProfileBusiness
         Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommendListDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ImportCommendDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.ImportCommendDTO)),  _
@@ -41995,6 +41994,10 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.MergeFieldDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.MergeFieldDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OrganizationTreeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.Dictionary(Of Decimal, String))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Exception))>  _
         Function ValidateCommendLevel(ByVal _validate As ProfileBusiness.CommendLevelDTO) As Object
@@ -42124,6 +42127,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/GetListContractResponse")>  _
         Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAttatch_ManagerResponse")>  _
+        Function InsertAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UpdateAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/UpdateAttatch_ManagerResponse")>  _
         Function UpdateAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean
@@ -42377,8 +42383,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertCommendListResponse")>  _
         Function InsertCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCommendListResponse")>  _
-        Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteContract", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteContractResponse")>  _
+        Function DeleteContract(ByVal objAssetMng As ProfileBusiness.ContractDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CreateContractNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CreateContractNoResponse")>  _
         Function CreateContractNo(ByVal objAssetMng As ProfileBusiness.ContractDTO) As String
@@ -42632,8 +42638,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckExistApproveTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckExistApproveTerminate3bResponse")>  _
         Function CheckExistApproveTerminate3b(ByVal gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertAttatch_Manager", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertAttatch_ManagerResponse")>  _
-        Function InsertAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandardResponse")>  _
+        Function DeleteCompetencyStandard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCompetencyAppendix", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCompetencyAppendixResponse")>  _
         Function GetCompetencyAppendix(ByVal _filter As ProfileBusiness.CompetencyAppendixDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO)
@@ -42887,8 +42893,8 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyContractResponse")>  _
         Function ModifyContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteContract", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteContractResponse")>  _
-        Function DeleteContract(ByVal objAssetMng As ProfileBusiness.ContractDTO) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOrganizationResponse")>  _
+        Function InsertOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateOrganizationResponse")>  _
         Function ValidateOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO) As Boolean
@@ -43142,9 +43148,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandardResponse")>  _
         Function ModifyCompetencyStandard(ByVal objCompetencyStandard As ProfileBusiness.CompetencyStandardDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteCompetencyStandardResponse")>  _
-        Function DeleteCompetencyStandard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrgsTree", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrgsTreeResponse")>  _
         Function GetOrgsTree() As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO)
         
@@ -43156,6 +43159,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryLevelCombo", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryLevelComboResponse")>  _
         Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/Calculator_Salary", ReplyAction:="http://tempuri.org/IProfileBusiness/Calculator_SalaryResponse")>  _
+        Function Calculator_Salary(ByVal data_in As String) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOtherListResponse")>  _
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
@@ -43396,9 +43402,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOrganizationByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOrganizationByIDResponse")>  _
         Function GetOrganizationByID(ByVal ID As Decimal) As ProfileBusiness.OrganizationDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOrganization", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOrganizationResponse")>  _
-        Function InsertOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -43431,6 +43434,10 @@ Namespace ProfileBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendList
+            Return MyBase.Channel.ModifyCommendList(objCommendList, log, gID)
+        End Function
         
         Public Function ActiveCommendList(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal sActive As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ActiveCommendList
             Return MyBase.Channel.ActiveCommendList(lstID, sActive, log)
@@ -43634,6 +43641,10 @@ Namespace ProfileBusiness
         
         Public Function GetListContract(ByVal ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetListContract
             Return MyBase.Channel.GetListContract(ID)
+        End Function
+        
+        Public Function InsertAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertAttatch_Manager
+            Return MyBase.Channel.InsertAttatch_Manager(fileInfo, fileBytes)
         End Function
         
         Public Function UpdateAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean Implements ProfileBusiness.IProfileBusiness.UpdateAttatch_Manager
@@ -43972,8 +43983,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.InsertCommendList(objCommendList, log, gID)
         End Function
         
-        Public Function ModifyCommendList(ByVal objCommendList As ProfileBusiness.CommendListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCommendList
-            Return MyBase.Channel.ModifyCommendList(objCommendList, log, gID)
+        Public Function DeleteContract(ByVal objAssetMng As ProfileBusiness.ContractDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteContract
+            Return MyBase.Channel.DeleteContract(objAssetMng)
         End Function
         
         Public Function CreateContractNo(ByVal objAssetMng As ProfileBusiness.ContractDTO) As String Implements ProfileBusiness.IProfileBusiness.CreateContractNo
@@ -44312,8 +44323,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.CheckExistApproveTerminate3b(gID)
         End Function
         
-        Public Function InsertAttatch_Manager(ByVal fileInfo As ProfileBusiness.HuFileDTO, ByVal fileBytes() As Byte) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertAttatch_Manager
-            Return MyBase.Channel.InsertAttatch_Manager(fileInfo, fileBytes)
+        Public Function DeleteCompetencyStandard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCompetencyStandard
+            Return MyBase.Channel.DeleteCompetencyStandard(lstID, log)
         End Function
         
         Public Function GetCompetencyAppendix(ByVal _filter As ProfileBusiness.CompetencyAppendixDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.CompetencyAppendixDTO) Implements ProfileBusiness.IProfileBusiness.GetCompetencyAppendix
@@ -44652,8 +44663,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ModifyContract(objContract, log, gID)
         End Function
         
-        Public Function DeleteContract(ByVal objAssetMng As ProfileBusiness.ContractDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteContract
-            Return MyBase.Channel.DeleteContract(objAssetMng)
+        Public Function InsertOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertOrganization
+            Return MyBase.Channel.InsertOrganization(objOrganization, log, gID)
         End Function
         
         Public Function ValidateOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidateOrganization
@@ -44992,10 +45003,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ModifyCompetencyStandard(objCompetencyStandard, log, gID)
         End Function
         
-        Public Function DeleteCompetencyStandard(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteCompetencyStandard
-            Return MyBase.Channel.DeleteCompetencyStandard(lstID, log)
-        End Function
-        
         Public Function GetOrgsTree() As System.Collections.Generic.List(Of ProfileBusiness.OrganizationDTO) Implements ProfileBusiness.IProfileBusiness.GetOrgsTree
             Return MyBase.Channel.GetOrgsTree
         End Function
@@ -45010,6 +45017,10 @@ Namespace ProfileBusiness
         
         Public Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetSalaryLevelCombo
             Return MyBase.Channel.GetSalaryLevelCombo(SalaryGroup, isBlank)
+        End Function
+        
+        Public Function Calculator_Salary(ByVal data_in As String) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.Calculator_Salary
+            Return MyBase.Channel.Calculator_Salary(data_in)
         End Function
         
         Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetOtherList
@@ -45330,10 +45341,6 @@ Namespace ProfileBusiness
         
         Public Function GetOrganizationByID(ByVal ID As Decimal) As ProfileBusiness.OrganizationDTO Implements ProfileBusiness.IProfileBusiness.GetOrganizationByID
             Return MyBase.Channel.GetOrganizationByID(ID)
-        End Function
-        
-        Public Function InsertOrganization(ByVal objOrganization As ProfileBusiness.OrganizationDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertOrganization
-            Return MyBase.Channel.InsertOrganization(objOrganization, log, gID)
         End Function
     End Class
 End Namespace

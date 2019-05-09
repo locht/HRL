@@ -7,7 +7,14 @@ Imports System.Configuration
 
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
-       
+        Function Calculator_Salary(ByVal data_in As String) As DataTable Implements ServiceContracts.IProfileBusiness.Calculator_Salary
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.Calculator_Salary(data_in)
+            Catch ex As Exception
+                Throw
+            End Try
+        End Function
 #Region "EmployeeCriteriaRecord"
         Public Function EmployeeCriteriaRecord(ByVal _filter As EmployeeCriteriaRecordDTO,
                                           ByVal PageIndex As Integer,
