@@ -2061,11 +2061,11 @@ Partial Public Class AttendanceRepository
 
             Dim lst = query.Select(Function(p) New AT_OFFFSETTINGDTO With {
                                        .ID = p.p.ID,
-                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
-                                       .FULLNAME_VN = p.e.FULLNAME_VN,
+                                       .EMPLOYEE_CODE = "Nhiều nhân viên",
+                                       .FULLNAME_VN = "Nhiều nhân viên",
                                        .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
-                                       .TITLE_NAME = p.t.NAME_VN,
-                                       .ORG_NAME = p.o.NAME_VN,
+                                       .TITLE_NAME = "Nhiều nhân viên",
+                                       .ORG_NAME = "Nhiều nhân viên",
                                        .ORG_ID = p.e.ORG_ID,
                                        .FROMDATE = p.p.FROMDATE,
                                        .TODATE = p.p.TODATE,
