@@ -560,9 +560,7 @@ Partial Public Class AttendanceRepository
                                  Optional ByRef Total As Integer = 0,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_FMLDTO)
         Try
-
             Dim query = From p In Context.AT_FML
-
             Dim lst = query.Select(Function(p) New AT_FMLDTO With {
                                        .ID = p.ID,
                                        .CODE = p.CODE,
@@ -571,6 +569,7 @@ Partial Public Class AttendanceRepository
                                        .EFFECT_DATE = p.EFFECT_DATE,
                                        .NOTE = p.NOTE,
                                        .IS_LEAVE = p.IS_LEAVE,
+                                       .IS_CALHOLIDAY = p.IS_CALHOLIDAY,
                                        .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
                                        .CREATED_DATE = p.CREATED_DATE})
 
@@ -608,6 +607,7 @@ Partial Public Class AttendanceRepository
             'objTitleData.NAME_EN = objTitle.NAME_EN.Trim
             objTitleData.NAME_VN = objTitle.NAME_VN.Trim
             'objTitleData.EFFECT_DATE = objTitle.EFFECT_DATE
+            objTitleData.IS_CALHOLIDAY = objTitle.IS_CALHOLIDAY
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.IS_LEAVE = objTitle.IS_LEAVE
             objTitleData.ACTFLG = objTitle.ACTFLG
@@ -663,6 +663,7 @@ Partial Public Class AttendanceRepository
             objTitleData.ID = objTitle.ID
             objTitleData.CODE = objTitle.CODE.Trim
             'objTitleData.NAME_EN = objTitle.NAME_EN.Trim
+            objTitleData.IS_CALHOLIDAY = objTitle.IS_CALHOLIDAY
             objTitleData.NAME_VN = objTitle.NAME_VN.Trim
             objTitleData.IS_LEAVE = objTitle.IS_LEAVE
             'objTitleData.EFFECT_DATE = objTitle.EFFECT_DATE

@@ -1190,6 +1190,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function DeleteOffTimeKeeping(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IAttendanceBusiness.DeleteOffTimeKeeping
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.DeleteOffTimeKeeping(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function ValidateMonthThamNien(ByVal objHOLIDAYGR As AT_DECLARE_ENTITLEMENTDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateMonthThamNien
             Using rep As New AttendanceRepository

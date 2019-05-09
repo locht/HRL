@@ -1208,6 +1208,7 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_LEAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_CALHOLIDAY" Type="number" Nullable="true" Precision="5" />
         </EntityType>
         <EntityType Name="AT_TERMINALS">
             <Key>
@@ -3578,6 +3579,7 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="IS_LEAVE" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="IS_CALHOLIDAY" />
         </EntityType>
         <EntityType Name="AT_TERMINALS">
           <Key>
@@ -5558,6 +5560,7 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="IS_LEAVE" ColumnName="IS_LEAVE" />
+                    <ScalarProperty Name="IS_CALHOLIDAY" ColumnName="IS_CALHOLIDAY" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -6558,8 +6561,8 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_DAILY" Width="2.375" PointX="14.625" PointY="2.5" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_MACHINET" Width="2.5" PointX="14.625" PointY="4.5" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DATA_INOUT" Width="1.5" PointX="4.625" PointY="14.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="10.375" PointY="15.5" Height="3.7109993489583353" IsExpanded="true" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_TERMINALS" Width="1.5" PointX="10.75" PointY="11.25" Height="5.2494108072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="10.375" PointY="15.5" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_TERMINALS" Width="1.5" PointX="10.75" PointY="11.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ACTION_ORG_LOG" Width="1.5" PointX="10.625" PointY="14.5" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_CV" Width="2.625" PointX="15.25" PointY="12.25" Height="11.979960937500003" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.SE_MAIL" Width="1.5" PointX="12.625" PointY="14.5" Height="0.39999999999999147" IsExpanded="false" />
@@ -6578,8 +6581,8 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_ACTION_LOG" Width="1.5" PointX="6.625" PointY="16.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DECLARE_ENTITLEMENT" Width="2.125" PointX="7.75" PointY="15.625" Height="5.8263151041666674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT" Width="1.5" PointX="13.25" PointY="16.5" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_TITLE" Width="1.5" PointX="19.125" PointY="15.625" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_EMP" Width="1.5" PointX="18.875" PointY="14.375" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_TITLE" Width="1.5" PointX="19.125" PointY="15.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_EMP" Width="1.5" PointX="18.875" PointY="14.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_WORK" Width="1.5" PointX="19" PointY="19.125" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_ASSIGN" Width="1.5" PointX="5.875" PointY="17.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_OT_DTL" Width="2.875" PointX="1.75" PointY="17.625" Height="0.4" IsExpanded="false" />

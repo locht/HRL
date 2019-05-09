@@ -1199,6 +1199,17 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
+    Public Function DeleteOffTimeKeeping(ByVal lstID As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.DeleteOffTimeKeeping(lstID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function ValidateMonthThamNien(ByVal objHoliday As AT_DECLARE_ENTITLEMENTDTO) As Boolean
         Using rep As New AttendanceBusinessClient

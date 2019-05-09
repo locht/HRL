@@ -66,7 +66,10 @@ Public Class ctrlDMKieuCong
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgDanhMuc)
+            End If
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -173,6 +176,7 @@ Public Class ctrlDMKieuCong
                     txtNameVN.Enabled = True
                     txtNote.Enabled = True
                     chkIsLeave.Enabled = True
+                    ckIsCalHoliday.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_NORMAL
@@ -184,12 +188,14 @@ Public Class ctrlDMKieuCong
                     txtNameVN.Enabled = False
                     txtNote.Enabled = False
                     chkIsLeave.Enabled = False
+                    ckIsCalHoliday.Enabled = False
                     EnabledGridNotPostback(rgDanhMuc, True)
                 Case CommonMessage.STATE_EDIT
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
                     txtNote.Enabled = True
                     chkIsLeave.Enabled = True
+                    ckIsCalHoliday.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_DEACTIVE
@@ -263,6 +269,7 @@ Public Class ctrlDMKieuCong
             dic.Add("NAME_VN", txtNameVN)
             dic.Add("NOTE", txtNote)
             dic.Add("IS_LEAVE", chkIsLeave)
+            dic.Add("IS_CALHOLIDAY", ckIsCalHoliday)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -349,6 +356,7 @@ Public Class ctrlDMKieuCong
                         objAT_FML.NAME_VN = txtNameVN.Text.Trim
                         objAT_FML.NOTE = txtNote.Text.Trim
                         objAT_FML.IS_LEAVE = chkIsLeave.Checked
+                        objAT_FML.IS_CALHOLIDAY = ckIsCalHoliday.Checked
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objAT_FML.ACTFLG = "A"
