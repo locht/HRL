@@ -131,6 +131,51 @@ Partial Public Class ctrlHU_TitleConcurrent
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbEmployeeCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmployeeCode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''hidEmployee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidEmployee As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''txtEmployeeCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtEmployeeCode As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnEmployee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEmployee As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''reqEmployeeCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqEmployeeCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbOrgName2 control.
     '''</summary>
     '''<remarks>
@@ -318,6 +363,15 @@ Partial Public Class ctrlHU_TitleConcurrent
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgMain As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''FindEmployee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FindEmployee As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''ctrlMessageBox control.

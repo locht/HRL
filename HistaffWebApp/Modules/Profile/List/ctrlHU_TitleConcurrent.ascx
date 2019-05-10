@@ -20,6 +20,21 @@
                 <asp:ValidationSummary ID="valSum" runat="server" ValidationGroup="TitleConcurrent" />
                 <table class="table-form">
                     <tr>
+                     <td class="lb" >
+                            <asp:Label ID="lbEmployeeCode" runat="server" Text="Tên nhân viên"></asp:Label>
+                            <span class="lbReq">*</span>
+                        </td>
+                        <td>
+                         <asp:HiddenField ID="hidEmployee" runat="server" />
+                            <tlk:RadTextBox ID="txtEmployeeCode" SkinID="ReadOnly" runat="server" Width="130px"
+                                ReadOnly="True">
+                            </tlk:RadTextBox>
+                            <tlk:RadButton ID="btnEmployee" SkinID="ButtonView" runat="server" CausesValidation="false"
+                                Width="40px">
+                            </tlk:RadButton>
+                            <asp:RequiredFieldValidator ID="reqEmployeeCode" ControlToValidate="txtEmployeeCode"
+                                runat="server" ErrorMessage="Bạn phải nhập nhân viên." ToolTip="Bạn phải nhập nhân viên."> </asp:RequiredFieldValidator>
+                        </td>
                         <td class="lb">
                            <asp:Label ID="lbOrgName2" runat="server" Text="Đơn vị"></asp:Label>
                            <span class="lbReq">*</span>
@@ -33,7 +48,10 @@
                                 ToolTip="Bạn phải chọn đơn vị">
                             </asp:RequiredFieldValidator>
                         </td>
-                        <td class="lb" style="width: 150px">
+                      
+                    </tr>
+                    <tr>
+                      <td class="lb" style="width: 150px">
                            <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
                            <span class="lbReq">*</span>
                         </td>
@@ -45,8 +63,6 @@
                                 ClientValidationFunction="cusTitle">
                             </asp:CustomValidator>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
                             <asp:Label ID="lbDecisionNo" runat="server" Text="Số quyết định"></asp:Label>
                         </td>
@@ -100,15 +116,17 @@
                     <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="True">
                         <Selecting AllowRowSelect="true" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,EXPIRE_DATE,NOTE,ORG_ID,ORG_NAME,TITLE_ID,DECISION_NO">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,EXPIRE_DATE,NOTE,ORG_ID,ORG_NAME,TITLE_ID,DECISION_NO,EMPLOYEE_ID,EMPLOYEE_NAME">
                         <Columns>
-                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                         <%--   <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="ORG_ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="ORG_NAME" Visible="false" />
                             <tlk:GridBoundColumn DataField="TITLE_ID" Visible="false" />
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
+                                SortExpression="EMPLOYEE_NAME" />
                             <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
                                 SortExpression="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="NAME" UniqueName="NAME"
@@ -128,6 +146,7 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">

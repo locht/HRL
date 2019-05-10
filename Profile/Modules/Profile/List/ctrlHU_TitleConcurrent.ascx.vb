@@ -9,7 +9,7 @@ Public Class ctrlHU_TitleConcurrent
     Inherits Common.CommonView
     Public Overrides Property MustAuthorize As Boolean = False
     Protected WithEvents ctrlFindOrgPopup As ctrlFindOrgPopup
-
+    Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\List" + Me.GetType().Name.ToString()
@@ -35,6 +35,21 @@ Public Class ctrlHU_TitleConcurrent
 #End Region
 
 #Region "Page"
+    Protected Sub btnEmployee_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEmployee.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            'isLoadPopup = 1
+            'LoadPopup(1)
+            UpdateControlState()
+            ctrlFindEmployeePopup.Show()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+
+    End Sub
     ''' <lastupdate>
     ''' 06/07/2017 14:05
     ''' </lastupdate>
@@ -189,18 +204,25 @@ Public Class ctrlHU_TitleConcurrent
             ctrlFindOrgPopup = Me.Register("ctrlFindOrgPopup", "Common", "ctrlFindOrgPopup")
             phPopupOrg.Controls.Add(ctrlFindOrgPopup)
 
+            If Not FindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
+                ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                FindEmployee.Controls.Add(ctrlFindEmployeePopup)
+                ctrlFindEmployeePopup.MultiSelect = False
+                ctrlFindEmployeePopup.MustHaveContract = False
+            End If
+
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo)
+                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode, btnEmployee, btnFindOrg)
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo)
+                    EnableControlAll(False, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode, btnEmployee, btnFindOrg)
 
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo)
+                    EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode, btnEmployee, btnFindOrg)
 
 
                 Case CommonMessage.STATE_DELETE
@@ -242,6 +264,8 @@ Public Class ctrlHU_TitleConcurrent
             'Dim dtData As DataTable
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("ORG_ID", hidOrgID)
+            dic.Add("EMPLOYEE_ID", hidEmployee)
+            dic.Add("EMPLOYEE_NAME", txtEmployeeCode)
             dic.Add("ORG_NAME", txtOrgName2)
             dic.Add("TITLE_ID", cboTitle)
             dic.Add("EFFECT_DATE", rdEffectDate)
@@ -283,7 +307,7 @@ Public Class ctrlHU_TitleConcurrent
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(rdExpireDate, rdEffectDate, txtOrgName2, cboTitle, txtNote, hidOrgID, txtDecisionNo)
+                    ClearControlValue(rdExpireDate, rdEffectDate, txtOrgName2, cboTitle, txtNote, hidOrgID, hidEmployee, txtDecisionNo)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgMain.SelectedItems.Count = 0 Then
@@ -330,6 +354,7 @@ Public Class ctrlHU_TitleConcurrent
                         objTitleConcurrent.EMPLOYEE_ID = EmployeeID
                         objTitleConcurrent.NOTE = txtNote.Text
                         objTitleConcurrent.DECISION_NO = txtDecisionNo.Text
+                        objTitleConcurrent.EMPLOYEE_ID = hidEmployee.Value
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTitleConcurrent(objTitleConcurrent, gID) Then
@@ -395,6 +420,25 @@ Public Class ctrlHU_TitleConcurrent
             'DisplayException(Me.ViewName, Me.ID, ex)
         End Try
 
+    End Sub
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                Dim item = lstCommonEmployee(0)
+                txtEmployeeCode.Text = item.FULLNAME_VN
+                hidEmployee.Value = item.ID
+            End If
+
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
     End Sub
 
 
