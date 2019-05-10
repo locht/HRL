@@ -50,6 +50,33 @@ Partial Public Class ctrlSwipeDataDownload
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbMachine_Type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbMachine_Type As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbMachine_Type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbMachine_Type As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbStartDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbStartDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdStartDate control.
     '''</summary>
     '''<remarks>
@@ -57,6 +84,15 @@ Partial Public Class ctrlSwipeDataDownload
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdStartDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbEndDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEndDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdEndDate control.
