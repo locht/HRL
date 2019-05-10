@@ -724,14 +724,12 @@ Public Class ctrlHU_EmpDtlProfile
                 Case CommonMessage.STATE_NEW
                     rtIdTitleConcurrent.Visible = False
                     RadPane4.Visible = False
-                    chkIs_pay_bank.Checked = True
-                    chkSaveHistory.Visible = False
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
-                                        txtBankNo,
-                                       txtDaHoaLieu, txtTimeID,
-                                       txtFirstNameVN, txtGhiChuSK,
-                                       txtHomePhone, txtHuyetAp, txtID_NO,
+                                        txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, ckBanTT_ND,
+                                       txtDaHoaLieu, txtTimeID, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, rtDiem_XL_TH,
+                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, txtNamTN,
+                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
@@ -767,13 +765,11 @@ Public Class ctrlHU_EmpDtlProfile
                 Case CommonMessage.STATE_EDIT
                     rtIdTitleConcurrent.Visible = True
                     RadPane4.Visible = True
-                    chkSaveHistory.Visible = True
-                    chkSaveHistory.Checked = True
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
-                    EnableControlAll(True, lstbPaper, lstbPaperFiled,
-                                        txtBankNo,
-                                       txtDaHoaLieu,
-                                       txtFirstNameVN, txtGhiChuSK,
+                    EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG,
+                                        txtBankNo, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, rtDiem_XL_TH,
+                                       txtDaHoaLieu, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, txtNamTN,
+                                       txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
@@ -814,10 +810,10 @@ Public Class ctrlHU_EmpDtlProfile
                     End If
                 Case Else
                     EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
-                                       txtBankNo,
-                                       txtDaHoaLieu,
-                                       txtFirstNameVN, txtGhiChuSK,
-                                       txtHomePhone, txtHuyetAp, txtID_NO,
+                                       txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, rdNGAY_VAO_DOAN,
+                                       txtDaHoaLieu, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, txtNamTN,
+                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rtDiem_XL_TH,
+                                       txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
