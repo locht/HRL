@@ -105,9 +105,10 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             InitControl()
-            'If Not IsPostBack Then
-            '    ViewConfig(RadPane2)
-            'End If
+            If Not IsPostBack Then
+                ViewConfig(RadPane2)
+                GirdConfig(rgEmployee)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -168,7 +169,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                         'txtCode.Text = obj.EMPLOYEE_CODE
                         'txtName.Text = obj.VN_FULLNAME
                         'txtChucDanh.Text = obj.TITLE_NAME
-                        'Employee_id = obj.EMPLOYEE_ID
+                        Employee_id = obj.EMPLOYEE_ID
                         txtNumber.Text = obj.MINUTES_BT
                         txtREMARK.Text = obj.REMARK
                         rdFromDate.SelectedDate = obj.FROMDATE
@@ -179,6 +180,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                         isEdit = False
                     End If
                     Employee_BT = rep.GetEmployeeTimeKeepingID(obj.ID)
+
                 Case Nothing
                     CurrentState = CommonMessage.STATE_NEW
                     If Not IsPostBack Then
@@ -264,26 +266,26 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
         Dim gCODE As String = ""
         Dim gID As Decimal
         Try
-            Select CType(e.Item, RadToolBarButton).CommandName
+            Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
-                   
+
                     If Page.IsValid Then
                         Dim startdate As New Date
                         obj = New AT_OFFFSETTINGDTO
+                        obj.EMPLOYEE_ID = Employee_id
                         obj.REMARK = txtREMARK.Text
                         obj.MINUTES_BT = txtNumber.Text
                         If cboTypeBT.SelectedValue <> "" Then
                             obj.TYPE_BT = cboTypeBT.SelectedValue
-                            End If
+                        End If
                         obj.FROMDATE = rdFromDate.SelectedDate
                         obj.TODATE = rdToDate.SelectedDate
                         If _Value.HasValue Then
                             obj.ID = _Value
                         End If
-                        
                         For Each i As GridDataItem In rgEmployee.SelectedItems
                             Dim o As New AT_OFFFSETTING_EMPDTO
-                            o.EMPLOYEE_ID = i.GetDataKeyValue("ID")
+                            o.EMPLOYEE_ID = i.GetDataKeyValue("EMPLOYEE_ID")
                             o.ORG_ID = i.GetDataKeyValue("ORG_ID")
                             o.TITLE_ID = i.GetDataKeyValue("TITLE_ID")
                             lstOffSettingEmp.Add(o)
@@ -293,7 +295,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                             Exit Sub
                         End If
                         obj.OFFFSETTING_EMP = lstOffSettingEmp
-                         Select CurrentState
+                        Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertOffSettingTime(obj, gID) Then
                                     Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOffSettingTimeKeeping&group=Business")
@@ -307,13 +309,13 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                         End Select
-                        End If
-                        Case CommonMessage.TOOLBARITEM_CANCEL
-                            ''POPUPTOLINK_CANCEL
-                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOffSettingTimeKeeping&group=Business")
-                    End Select
-                    _myLog.WriteLog(_myLog._info, _classPath, method,
-                                                        CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+                    End If
+                Case CommonMessage.TOOLBARITEM_CANCEL
+                    ''POPUPTOLINK_CANCEL
+                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOffSettingTimeKeeping&group=Business")
+            End Select
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -373,7 +375,9 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                 For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
                     Dim employee As New AT_OFFFSETTING_EMPDTO
                     employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
+                    employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
                     employee.ID = emp.ID
+                    Employee_id = emp.ID
                     employee.FULLNAME_VN = emp.FULLNAME_VN
                     employee.ORG_NAME = emp.ORG_NAME
                     employee.TITLE_NAME = emp.TITLE_NAME
@@ -419,6 +423,17 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
             End Select
         Catch ex As Exception
 
+        End Try
+    End Sub
+    Private Sub rgEmployee_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployee.ItemDataBound
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            e.Item.Edit = True
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
     Private Sub rgEmployee_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgEmployee.NeedDataSource

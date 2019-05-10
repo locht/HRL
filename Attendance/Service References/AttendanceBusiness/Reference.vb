@@ -25821,6 +25821,9 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_AT008", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_AT008Response")>  _
+        Function GET_AT008(ByVal obj As AttendanceBusiness.ParamDTO, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_AT009", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_AT009Response")>  _
         Function GET_AT009(ByVal obj As AttendanceBusiness.ParamDTO, ByVal P_FROMDATE As Date, ByVal P_TODATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
@@ -25971,6 +25974,9 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateAT_Holiday_Object", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateAT_Holiday_ObjectResponse")>  _
+        Function ValidateAT_Holiday_Object(ByVal objHoliO As AttendanceBusiness.AT_HOLIDAY_OBJECTDTO) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyAT_Holiday_Object", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyAT_Holiday_ObjectResponse")>  _
         Function ModifyAT_Holiday_Object(ByVal objHoliO As AttendanceBusiness.AT_HOLIDAY_OBJECTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -26225,8 +26231,8 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_AT007", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_AT007Response")>  _
         Function GET_AT007(ByVal obj As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_AT008", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_AT008Response")>  _
-        Function GET_AT008(ByVal obj As AttendanceBusiness.ParamDTO, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheet", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetResponse")>  _
+        Function ModifyLeaveSheet(ByVal objRegisterOT As AttendanceBusiness.AT_LEAVESHEETDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTotalDAY", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTotalDAYResponse")>  _
         Function GetTotalDAY(ByVal P_EMPLOYEE_ID As Integer, ByVal P_TYPE_MANUAL As Integer, ByVal P_FROM_DATE As Date, ByVal P_TO_DATE As Date) As System.Data.DataTable
@@ -26353,8 +26359,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LEAVESHEETDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_ENTITLEMENTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_COMPENSATORYDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LATE_COMBACKOUTDTO)),  _
@@ -26480,8 +26486,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LEAVESHEETDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_ENTITLEMENTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_COMPENSATORYDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LATE_COMBACKOUTDTO)),  _
@@ -26692,9 +26698,6 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertAT_Holiday_Object", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertAT_Holiday_ObjectResponse")>  _
         Function InsertAT_Holiday_Object(ByVal objHoliO As AttendanceBusiness.AT_HOLIDAY_OBJECTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateAT_Holiday_Object", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateAT_Holiday_ObjectResponse")>  _
-        Function ValidateAT_Holiday_Object(ByVal objHoliO As AttendanceBusiness.AT_HOLIDAY_OBJECTDTO) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetDataFromOrg", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetDataFromOrgResponse")>  _
         Function GetDataFromOrg(ByVal obj As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
@@ -26904,8 +26907,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.Se_ReportDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.Se_ReportDTO))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LEAVESHEETDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_ENTITLEMENTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_COMPENSATORYDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LATE_COMBACKOUTDTO)),  _
@@ -27014,6 +27017,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetDelareEntitlementNBById", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetDelareEntitlementNBByIdResponse")>  _
         Function GetDelareEntitlementNBById(ByVal _id As System.Nullable(Of Decimal)) As AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeeping", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeepingResponse")>  _
+        Function DeleteOffTimeKeeping(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNB", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNBResponse")>  _
         Function DeleteDelareEntitlementNB(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -27052,9 +27058,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetListResponse")>  _
         Function InsertLeaveSheetList(ByVal objRegisterList As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO), ByVal objRegisterOT As AttendanceBusiness.AT_LEAVESHEETDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheet", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetResponse")>  _
-        Function ModifyLeaveSheet(ByVal objRegisterOT As AttendanceBusiness.AT_LEAVESHEETDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -27087,6 +27090,10 @@ Namespace AttendanceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GET_AT008(ByVal obj As AttendanceBusiness.ParamDTO, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GET_AT008
+            Return MyBase.Channel.GET_AT008(obj, P_DATE, log)
+        End Function
         
         Public Function GET_AT009(ByVal obj As AttendanceBusiness.ParamDTO, ByVal P_FROMDATE As Date, ByVal P_TODATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GET_AT009
             Return MyBase.Channel.GET_AT009(obj, P_FROMDATE, P_TODATE, log)
@@ -27286,6 +27293,10 @@ Namespace AttendanceBusiness
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS
             Return MyBase.Channel.GET_PE_ASSESS_MESS(EMP)
+        End Function
+        
+        Public Function ValidateAT_Holiday_Object(ByVal objHoliO As AttendanceBusiness.AT_HOLIDAY_OBJECTDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ValidateAT_Holiday_Object
+            Return MyBase.Channel.ValidateAT_Holiday_Object(objHoliO)
         End Function
         
         Public Function ModifyAT_Holiday_Object(ByVal objHoliO As AttendanceBusiness.AT_HOLIDAY_OBJECTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ModifyAT_Holiday_Object
@@ -27624,8 +27635,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GET_AT007(obj, log)
         End Function
         
-        Public Function GET_AT008(ByVal obj As AttendanceBusiness.ParamDTO, ByVal P_DATE As Date, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GET_AT008
-            Return MyBase.Channel.GET_AT008(obj, P_DATE, log)
+        Public Function ModifyLeaveSheet(ByVal objRegisterOT As AttendanceBusiness.AT_LEAVESHEETDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ModifyLeaveSheet
+            Return MyBase.Channel.ModifyLeaveSheet(objRegisterOT, log, gID)
         End Function
         
         Public Function GetTotalDAY(ByVal P_EMPLOYEE_ID As Integer, ByVal P_TYPE_MANUAL As Integer, ByVal P_FROM_DATE As Date, ByVal P_TO_DATE As Date) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTotalDAY
@@ -27964,10 +27975,6 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.InsertAT_Holiday_Object(objHoliO, log, gID)
         End Function
         
-        Public Function ValidateAT_Holiday_Object(ByVal objHoliO As AttendanceBusiness.AT_HOLIDAY_OBJECTDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ValidateAT_Holiday_Object
-            Return MyBase.Channel.ValidateAT_Holiday_Object(objHoliO)
-        End Function
-        
         Public Function GetDataFromOrg(ByVal obj As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GetDataFromOrg
             Return MyBase.Channel.GetDataFromOrg(obj, log)
         End Function
@@ -28252,6 +28259,10 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetDelareEntitlementNBById(_id)
         End Function
         
+        Public Function DeleteOffTimeKeeping(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteOffTimeKeeping
+            Return MyBase.Channel.DeleteOffTimeKeeping(lstID)
+        End Function
+        
         Public Function DeleteDelareEntitlementNB(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteDelareEntitlementNB
             Return MyBase.Channel.DeleteDelareEntitlementNB(lstID)
         End Function
@@ -28302,10 +28313,6 @@ Namespace AttendanceBusiness
         
         Public Function InsertLeaveSheetList(ByVal objRegisterList As System.Collections.Generic.List(Of AttendanceBusiness.AT_LEAVESHEETDTO), ByVal objRegisterOT As AttendanceBusiness.AT_LEAVESHEETDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertLeaveSheetList
             Return MyBase.Channel.InsertLeaveSheetList(objRegisterList, objRegisterOT, log, gID)
-        End Function
-        
-        Public Function ModifyLeaveSheet(ByVal objRegisterOT As AttendanceBusiness.AT_LEAVESHEETDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ModifyLeaveSheet
-            Return MyBase.Channel.ModifyLeaveSheet(objRegisterOT, log, gID)
         End Function
     End Class
 End Namespace

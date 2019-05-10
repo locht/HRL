@@ -21,7 +21,11 @@
                 <td>
                     <tlk:RadComboBox ID="cboTypeBT" runat="server">
                     </tlk:RadComboBox>
+                    
+                   <asp:RequiredFieldValidator ID="reqEmployeeCode" ControlToValidate="cboTypeBT" runat="server"
+                        ErrorMessage="Bạn phải nhập loại nghĩ." ToolTip="Bạn phải nhập loại nghĩ."> </asp:RequiredFieldValidator>
                 </td>
+                
             </tr>
             <tr>
                 <td class="lb">
@@ -31,6 +35,8 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdFromDate">
                     </tlk:RadDatePicker>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdFromDate"
+                        runat="server" ErrorMessage="Bạn phải nhập từ ngày." ToolTip="Bạn phải nhập từ ngày."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbToDate" runat="server" Text="Đến ngày"></asp:Label>
@@ -39,14 +45,18 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdToDate">
                     </tlk:RadDatePicker>
+                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdToDate"
+                        runat="server" ErrorMessage="Bạn phải nhập đến ngày." ToolTip="Bạn phải nhập đến ngày."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbNumber" runat="server" Text="Số phút"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtNumber">
-                    </tlk:RadTextBox>
+                    <tlk:RadNumericTextBox runat="server" ID="txtNumber">
+                    </tlk:RadNumericTextBox>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtNumber"
+                        runat="server" ErrorMessage="Bạn phải nhập số phút." ToolTip="Bạn phải nhập số phút."> </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -86,15 +96,17 @@
                     </div>
                 </CommandItemTemplate>
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                  <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
-                    <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="VN_FULLNAME" UniqueName="VN_FULLNAME"
-                        ReadOnly="true" SortExpression="VN_FULLNAME" />
+                     <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="FULLNAME_VN" UniqueName="FULLNAME_VN"
+                        ReadOnly="true" SortExpression="FULLNAME_VN" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         ReadOnly="true" SortExpression="ORG_NAME" />
+                        <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
+                        ReadOnly="true" SortExpression="TITLE_NAME" />--%>
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />

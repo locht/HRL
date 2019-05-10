@@ -2053,8 +2053,7 @@ Partial Public Class AttendanceRepository
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
             Dim query = From p In Context.AT_OFFSETTING_TIMEKEEPING
-                        From CE In Context.AT_OFFSETTING_TIMEKEEPING_EMP.Where(Function(F) F.GROUP_ID = p.ID).Take(1)
-                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = CE.EMPLOYEE_ID)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_BT).DefaultIfEmpty
@@ -2062,11 +2061,11 @@ Partial Public Class AttendanceRepository
 
             Dim lst = query.Select(Function(p) New AT_OFFFSETTINGDTO With {
                                        .ID = p.p.ID,
-                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
-                                       .FULLNAME_VN = p.e.FULLNAME_VN,
+                                       .EMPLOYEE_CODE = "Nhiều nhân viên",
+                                       .FULLNAME_VN = "Nhiều nhân viên",
                                        .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
-                                       .TITLE_NAME = p.t.NAME_VN,
-                                       .ORG_NAME = p.o.NAME_VN,
+                                       .TITLE_NAME = "Nhiều nhân viên",
+                                       .ORG_NAME = "Nhiều nhân viên",
                                        .ORG_ID = p.e.ORG_ID,
                                        .FROMDATE = p.p.FROMDATE,
                                        .TODATE = p.p.TODATE,
@@ -2090,7 +2089,12 @@ Partial Public Class AttendanceRepository
             If Not _filter.IS_TERMINATE Then
                 lst = lst.Where(Function(f) f.WORK_STATUS <> 257 Or (f.WORK_STATUS = 257 And f.TER_LAST_DATE >= dateNow) Or f.WORK_STATUS Is Nothing)
             End If
-
+            If _filter.FROMDATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.FROMDATE >= _filter.FROMDATE)
+            End If
+            If _filter.TODATE IsNot Nothing Then
+                lst = lst.Where(Function(p) p.TODATE >= _filter.TODATE)
+            End If
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
                 lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()) Or f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
             End If
@@ -2103,7 +2107,7 @@ Partial Public Class AttendanceRepository
             If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
                 lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
             End If
-           
+
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -2123,6 +2127,8 @@ Partial Public Class AttendanceRepository
                                                   .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                   .FULLNAME_VN = e.FULLNAME_VN,
                                                   .ORG_NAME = o.NAME_VN,
+                                                  .TITLE_ID = e.TITLE_ID,
+                                                  .ORG_ID = e.ORG_ID,
                                                   .TITLE_NAME = t.NAME_VN}).ToList
             Return q
         Catch ex As Exception
@@ -2375,6 +2381,7 @@ Partial Public Class AttendanceRepository
             objOffsettingData.REMARK = objOffSetting.REMARK
             objOffsettingData.MINUTES_BT = objOffSetting.MINUTES_BT
             objOffsettingData.FROMDATE = objOffSetting.FROMDATE
+            objOffsettingData.EMPLOYEE_ID = objOffSetting.EMPLOYEE_ID
             objOffsettingData.TODATE = objOffSetting.TODATE
             objOffsettingData.TYPE_BT = objOffSetting.TYPE_BT
             objOffsettingData.CREATED_DATE = DateTime.Now
@@ -2402,7 +2409,7 @@ Partial Public Class AttendanceRepository
 
         If objOffSetting.OFFFSETTING_EMP IsNot Nothing Then
             'xoa danh sach nhan viên cũ truoc khi insert lại
-            Dim objD = (From d In Context.AT_OFFSETTING_TIMEKEEPING_EMP Where d.ID = objOffSetting.ID).ToList
+            Dim objD = (From d In Context.AT_OFFSETTING_TIMEKEEPING_EMP Where d.GROUP_ID = objOffSetting.ID).ToList
             For Each obj As AT_OFFSETTING_TIMEKEEPING_EMP In objD
                 Context.AT_OFFSETTING_TIMEKEEPING_EMP.DeleteObject(obj)
             Next
@@ -2432,12 +2439,13 @@ Partial Public Class AttendanceRepository
             objOffSettingData.TYPE_BT = objOffSetting.TYPE_BT
             objOffSettingData.MINUTES_BT = objOffSetting.MINUTES_BT
             objOffSettingData.FROMDATE = objOffSetting.FROMDATE
+            objOffSettingData.EMPLOYEE_ID = objOffSetting.EMPLOYEE_ID
             objOffSettingData.TODATE = objOffSetting.TODATE
             objOffSettingData.MODIFIED_DATE = DateTime.Now
             objOffSettingData.MODIFIED_BY = log.Username
             objOffSettingData.MODIFIED_LOG = log.ComputerName
             ' thêm quyết định            
-            'InsertObjectType(objCommend)
+            InsertObjectType(objOffSetting)
             Context.SaveChanges(log)
             gID = objOffSettingData.ID
             Return True
@@ -2679,6 +2687,26 @@ Partial Public Class AttendanceRepository
             lstl = (From p In Context.AT_DECLARE_ENTITLEMENT Where lstID.Contains(p.ID)).ToList
             For index = 0 To lstl.Count - 1
                 Context.AT_DECLARE_ENTITLEMENT.DeleteObject(lstl(index))
+            Next
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteCostCenter")
+            Throw ex
+        End Try
+    End Function
+    Public Function DeleteOffTimeKeeping(ByVal lstID As List(Of Decimal)) As Boolean
+        Dim lstl As List(Of AT_OFFSETTING_TIMEKEEPING)
+        Dim lsttt As List(Of AT_OFFSETTING_TIMEKEEPING_EMP)
+        Try
+            lstl = (From p In Context.AT_OFFSETTING_TIMEKEEPING Where lstID.Contains(p.ID)).ToList
+            lsttt = (From x In Context.AT_OFFSETTING_TIMEKEEPING_EMP Where lstID.Contains(x.GROUP_ID)).ToList
+            For index = 0 To lstl.Count - 1
+                Context.AT_OFFSETTING_TIMEKEEPING.DeleteObject(lstl(index))
+            Next
+            For index = 0 To lsttt.Count - 1
+                Context.AT_OFFSETTING_TIMEKEEPING_EMP.DeleteObject(lsttt(index))
             Next
             Context.SaveChanges()
             Return True
@@ -3359,8 +3387,8 @@ Partial Public Class AttendanceRepository
                                        e.TER_EFFECT_DATE >= objLeaveData.WORKINGDAY))
                                    Select e).FirstOrDefault
                         If emp IsNot Nothing Then
-                                objLeaveData.EMPLOYEE_ID = emp.id
-                                objLeaveData.LEAVE_FROM = fromdate
+                            objLeaveData.EMPLOYEE_ID = emp.ID
+                            objLeaveData.LEAVE_FROM = fromdate
                             objLeaveData.LEAVE_TO = objLeave.LEAVE_TO
                             objLeaveData.MANUAL_ID = objLeave.MANUAL_ID
                             objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID

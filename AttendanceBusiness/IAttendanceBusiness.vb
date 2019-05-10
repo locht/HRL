@@ -260,6 +260,8 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GetDelareEntitlementNBById(ByVal _id As Decimal?) As AT_DECLARE_ENTITLEMENTDTO
         <OperationContract()>
+        Function DeleteOffTimeKeeping(ByVal lstID As List(Of Decimal)) As Boolean
+        <OperationContract()>
         Function DeleteDelareEntitlementNB(ByVal lstID As List(Of Decimal)) As Boolean
         <OperationContract()>
         Function ValidateMonthThamNien(ByVal _validate As AT_DECLARE_ENTITLEMENTDTO) As Boolean
