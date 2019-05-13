@@ -1480,5 +1480,21 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "OT"
+        Public Function GetOtRegistration(ByVal _filter As AT_PORTAL_REG_DTO,
+                                   Optional ByRef Total As Integer = 0,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO) _
+                    Implements IAttendanceBusiness.GetOtRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetOtRegistration(_filter, Total, PageIndex, PageSize, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
     End Class
 End Namespace

@@ -113,6 +113,8 @@
     <Content Include="About.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Modules\Attendance\ctrlOTRegistration.ascx" />
+    <Content Include="Modules\Attendance\ctrlOTRegistrationNewEdit.ascx" />
     <Content Include="Modules\Attendance\ctrlLeaveRegistration.ascx" />
     <Content Include="Modules\Attendance\ctrlLeaveRegistrationNewEdit.ascx" />
     <Content Include="Modules\Common\ctrlUpload.ascx" />

@@ -287,9 +287,6 @@
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PORTAL_REG_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PORTAL_REG_LIST_DTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PROCESS_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -384,6 +381,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
+    <Content Include="Modules\Portal\ctrlOTRegistration.ascx" />
+    <Content Include="Modules\Portal\ctrlOTRegistrationNewEdit.ascx" />
     <Content Include="Modules\Portal\ctrlDBRegApp.ascx" />
     <Content Include="Modules\Portal\ctrlLeaveHistory.ascx" />
     <Content Include="Modules\Portal\ctrlDMVSApprove.ascx" />
@@ -876,6 +875,20 @@
     </Compile>
     <Compile Include="Modules\Attendance\List\ctrlRitual.ascx.vb">
       <DependentUpon>ctrlRitual.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistration.ascx.designer.vb">
+      <DependentUpon>ctrlOTRegistration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistration.ascx.vb">
+      <DependentUpon>ctrlOTRegistration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlOTRegistrationNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationNewEdit.ascx.vb">
+      <DependentUpon>ctrlOTRegistrationNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlDBRegApp.ascx.designer.vb">

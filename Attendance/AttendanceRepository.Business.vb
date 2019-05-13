@@ -1,12 +1,14 @@
 ﻿Imports Attendance.AttendanceBusiness
 Imports Framework.UI
+Imports Common.CommonBusiness
+
 Partial Class AttendanceRepository
 
 #Region "Truonghq - Business"
 
 #Region "quan ly vao ra"
     Function GetDataInout(ByVal _filter As AT_DATAINOUTDTO,
-                                      ByVal _param As PARAMDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -61,7 +63,7 @@ Partial Class AttendanceRepository
 
 #Region "Đăng ký đi muộn về sớm"
     Function GetLate_combackout(ByVal _filter As AT_LATE_COMBACKOUTDTO,
-                                      ByVal _param As ParamDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -151,7 +153,7 @@ Partial Class AttendanceRepository
 
 #Region "lam them"
     Function GetRegisterOT(ByVal _filter As AT_REGISTER_OTDTO,
-                                      ByVal _param As PARAMDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -270,7 +272,7 @@ Partial Class AttendanceRepository
 
 #Region "bảng công làm thêm"
 
-    Function Cal_TimeTImesheet_OT(ByVal _param As ParamDTO, ByVal p_period_id As Decimal?, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?)) As Boolean
+    Function Cal_TimeTImesheet_OT(ByVal _param As Attendance.AttendanceBusiness.ParamDTO, ByVal p_period_id As Decimal?, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?)) As Boolean
         Dim dt As Boolean
         Using rep As New AttendanceBusinessClient
             Try
@@ -296,7 +298,7 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Function Cal_TimeTImesheet_NB(ByVal _param As ParamDTO, ByVal p_period_id As Decimal?, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?)) As Boolean
+    Function Cal_TimeTImesheet_NB(ByVal _param As Attendance.AttendanceBusiness.ParamDTO, ByVal p_period_id As Decimal?, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?)) As Boolean
         Dim dt As Boolean
         Using rep As New AttendanceBusinessClient
             Try
@@ -358,7 +360,7 @@ Partial Class AttendanceRepository
 
 #Region "Đăng ký công"
     Function GetLeaveSheet(ByVal _filter As AT_LEAVESHEETDTO,
-                                      ByVal _param As PARAMDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -545,7 +547,7 @@ Partial Class AttendanceRepository
 
 #Region "bảng cham cong máy"
     Function GetMachines(ByVal _filter As AT_TIME_TIMESHEET_MACHINETDTO,
-                                     ByVal _param As PARAMDTO,
+                                     ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -560,7 +562,7 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Function Init_TimeTImesheetMachines(ByVal _param As ParamDTO, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?), ByVal p_delAll As Decimal) As Boolean
+    Function Init_TimeTImesheetMachines(ByVal _param As Attendance.AttendanceBusiness.ParamDTO, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?), ByVal p_delAll As Decimal) As Boolean
         Dim dt As Boolean
         Using rep As New AttendanceBusinessClient
             Try
@@ -636,7 +638,7 @@ Partial Class AttendanceRepository
 
 #Region "Tong hop cong"
     Function GetTimeSheet(ByVal _filter As AT_TIME_TIMESHEET_MONTHLYDTO,
-                                     ByVal _param As ParamDTO,
+                                     ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -651,7 +653,7 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As PARAMDTO, ByVal lstEmployee As List(Of Decimal?)) As Boolean
+    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As Attendance.AttendanceBusiness.ParamDTO, ByVal lstEmployee As List(Of Decimal?)) As Boolean
         Dim dt As Boolean
         Using rep As New AttendanceBusinessClient
             Try
@@ -679,7 +681,7 @@ Partial Class AttendanceRepository
 
 #Region "PHEP NAM"
     Function GetEntitlement(ByVal _filter As AT_ENTITLEMENTDTO,
-                                ByVal _param As PARAMDTO,
+                                ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                   Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -694,7 +696,7 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Public Function CALCULATE_ENTITLEMENT(ByVal param As PARAMDTO, ByVal listEmployeeId As List(Of Decimal?)) As Boolean
+    Public Function CALCULATE_ENTITLEMENT(ByVal param As Attendance.AttendanceBusiness.ParamDTO, ByVal listEmployeeId As List(Of Decimal?)) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
                 Return rep.CALCULATE_ENTITLEMENT(param, listEmployeeId, Me.Log)
@@ -707,7 +709,7 @@ Partial Class AttendanceRepository
 #End Region
 
 #Region "Nghỉ bu"
-    Public Function CALCULATE_ENTITLEMENT_NB(ByVal param As PARAMDTO, ByVal listEmployeeId As List(Of Decimal?)) As Boolean
+    Public Function CALCULATE_ENTITLEMENT_NB(ByVal param As Attendance.AttendanceBusiness.ParamDTO, ByVal listEmployeeId As List(Of Decimal?)) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
                 Return rep.CALCULATE_ENTITLEMENT_NB(param, listEmployeeId, Me.Log)
@@ -719,7 +721,7 @@ Partial Class AttendanceRepository
     End Function
 
     Function GetNB(ByVal _filter As AT_COMPENSATORYDTO,
-                                      ByVal _param As ParamDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -810,7 +812,7 @@ Partial Class AttendanceRepository
 
     End Function
 
-    Public Function GETSIGNDEFAULT(ByVal param As PARAMDTO) As System.Data.DataTable
+    Public Function GETSIGNDEFAULT(ByVal param As Attendance.AttendanceBusiness.ParamDTO) As System.Data.DataTable
         Dim dt As DataTable
         Using rep As New AttendanceBusinessClient
             Try
@@ -938,7 +940,7 @@ Partial Class AttendanceRepository
 
 #Region "Khai bao cong cơm"
     Function GetDelareRice(ByVal _filter As AT_TIME_RICEDTO,
-                                      ByVal _param As PARAMDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -1039,7 +1041,7 @@ Partial Class AttendanceRepository
 #End Region
 #Region "quan ly bu tru cham cong"
     Function GetOffSettingTimeKeeping(ByVal _filter As AT_OFFFSETTINGDTO,
-                                      ByVal _param As ParamDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -1078,7 +1080,7 @@ Partial Class AttendanceRepository
 #End Region
 #Region "Khai bao điều chỉnh thâm niên phép"
     Function GetDelareEntitlementNB(ByVal _filter As AT_DECLARE_ENTITLEMENTDTO,
-                                      ByVal _param As PARAMDTO,
+                                      ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -1152,7 +1154,7 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
-    
+
     Public Function GetDelareEntitlementNBById(ByVal _id As Decimal?) As AT_DECLARE_ENTITLEMENTDTO
         Using rep As New AttendanceBusinessClient
             Try
@@ -1250,7 +1252,7 @@ Partial Class AttendanceRepository
 #End Region
 
 #Region "bảng công cơm"
-    Function Cal_TimeTImesheet_Rice(ByVal _param As PARAMDTO, ByVal p_period_id As Decimal?, ByVal P_ORG_ID As Decimal?, ByVal lstEmployee As List(Of Decimal?)) As Boolean
+    Function Cal_TimeTImesheet_Rice(ByVal _param As Attendance.AttendanceBusiness.ParamDTO, ByVal p_period_id As Decimal?, ByVal P_ORG_ID As Decimal?, ByVal lstEmployee As List(Of Decimal?)) As Boolean
         Dim dt As Boolean
         Using rep As New AttendanceBusinessClient
             Try
@@ -1364,7 +1366,7 @@ Partial Class AttendanceRepository
     End Function
 
     Function GetTimeSheetPortal(ByVal _filter As AT_TIME_TIMESHEET_MONTHLYDTO,
-                                     ByVal _param As PARAMDTO,
+                                     ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -1477,5 +1479,22 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+#End Region
+#Region "OT"
+    Function GetOtRegistration(ByVal _filter As AT_PORTAL_REG_DTO,
+                                   Optional ByRef Total As Integer = 0,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Dim lst = rep.GetOtRegistration(_filter, Total, PageIndex, PageSize, Sorts, Me.Log)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+
 #End Region
 End Class

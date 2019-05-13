@@ -743,6 +743,12 @@ Namespace AttendanceBusiness.ServiceContracts
 
 #Region "Đăng ký OT trên portal"
         <OperationContract()>
+        Function GetOtRegistration(ByVal _filter As AT_PORTAL_REG_DTO,
+                                   Optional ByRef Total As Integer = 0,
+                                   Optional ByVal PageIndex As Integer = 0,
+                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
+        <OperationContract()>
         Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date,
                                 ByVal strId As String, ByVal type As String) As List(Of APPOINTMENT_DTO)
         <OperationContract()>
@@ -1058,11 +1064,11 @@ Namespace AttendanceBusiness.ServiceContracts
 #End Region
 #Region "AT_PORTAL_REG_LIST"
         <OperationContract()>
-        Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_LIST_DTO,
+        Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_DTO,
                                    Optional ByRef Total As Integer = 0,
                                    Optional ByVal PageIndex As Integer = 0,
                                    Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_LIST_DTO)
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
         <OperationContract()>
         Function CheckTimeSheetApproveVerify(ByVal obj As List(Of AT_PROCESS_DTO), ByVal type As String, ByRef itemError As AT_PROCESS_DTO) As Boolean
         <OperationContract()>
@@ -1072,7 +1078,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GetEmployeeInfor(ByVal P_EmpId As Decimal?, ByVal P_Org_ID As Decimal?, Optional ByVal fromDate As Date? = Nothing) As DataTable
         <OperationContract()>
-        Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_LIST_DTO) As AT_PORTAL_REG_LIST_DTO
+        Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_DTO) As AT_PORTAL_REG_DTO
         <OperationContract()>
         Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
         <OperationContract()>
@@ -1080,7 +1086,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function InsertPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef gID As Decimal, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
         <OperationContract()>
-        Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+        Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_DTO, ByVal itemRegister As AT_PORTAL_REG_DTO, ByVal log As UserLog) As Boolean
 #End Region
 
         <OperationContract()>

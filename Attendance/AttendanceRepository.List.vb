@@ -2256,12 +2256,11 @@ Partial Class AttendanceRepository
         Try
             _isAvailable = False
         Using rep As New AttendanceBusinessClient
-            Try
-
-                Return rep.ModifyPortalRegList(obj, itemRegister, Me.Log)
-            Catch ex As Exception
-                Throw ex
-            End Try
+                Try
+                    Return rep.ModifyPortalRegList(obj, itemRegister, Me.Log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
 
             End Using
         Catch ex As Exception

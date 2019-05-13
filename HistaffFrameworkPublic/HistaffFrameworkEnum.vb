@@ -32,5 +32,10 @@
         unaprrove = 6863
         unCBNS = 6864
 
+        chuaguiduyet = 0
+        daduyet = 1
+        chopheduyet = 2
+        tuchoi = 3
+        tuchoipheduyetvadaxoa = 4
     End Enum
 End Module

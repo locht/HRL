@@ -127,4 +127,13 @@ Public Class CommonProcedureNew
         End If
         Return dt
     End Function
+
+    Public Sub DELETE_REG_BY_IDGROUP(IdGroup As Decimal)
+        Try
+            rep.ExecuteStoreScalar("PKG_AT_ATTENDANCE_PORTAL.DELETE_REG_BY_IDGROUP", New List(Of Object)(New Object() {IdGroup}))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class
