@@ -2,15 +2,27 @@
 Imports Framework.UI.Utilities
 Imports Common
 Imports Common.Common
+Imports Common.CommonBusiness
 Imports Attendance.AttendanceBusiness
 Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
+Imports System.IO
 
 Public Class ctrlLeaveRegistrationNewEdit
     Inherits CommonView
     Public Overrides Property MustAuthorize As Boolean = False
 
 #Region "Property"
+    Public ReadOnly Property CurrentUser As UserDTO
+        Get
+            Return LogHelper.CurrentUser
+        End Get
+    End Property
+    Public ReadOnly Property ApproveProcess As String
+        Get
+            Return ATConstant.GSIGNCODE_LEAVE
+        End Get
+    End Property
 
     Public Property EmployeeID As Decimal
     Public Property EmployeeCode As String
@@ -38,11 +50,11 @@ Public Class ctrlLeaveRegistrationNewEdit
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
-    Property leaveMaster As AT_PORTAL_REG_LIST_DTO
+    Property leaveMaster As AT_PORTAL_REG_DTO
         Get
             Return ViewState(Me.ID & "_leaveMaster")
         End Get
-        Set(ByVal value As AT_PORTAL_REG_LIST_DTO)
+        Set(ByVal value As AT_PORTAL_REG_DTO)
             ViewState(Me.ID & "_leaveMaster") = value
         End Set
     End Property
@@ -128,17 +140,17 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Dim state = Request.QueryString("id")
                 userType = Request.QueryString("typeUser")
                 CurrentState = CommonMessage.STATE_NORMAL
-                Dim dto As New AT_PORTAL_REG_LIST_DTO
+                Dim dto As New AT_PORTAL_REG_DTO
                 dto.ID = hidID.Value
                 If hidID.Value = 0 Then
                     EmployeeID = LogHelper.CurrentUser.EMPLOYEE_ID
-                    dto.EMPLOYEE_ID = EmployeeID
+                    dto.ID_EMPLOYEE = EmployeeID
                 Else
                     EmployeeID = If(empId = 0, LogHelper.CurrentUser.EMPLOYEE_ID, empId)
-                    dto.EMPLOYEE_ID = If(empId = 0, LogHelper.CurrentUser.EMPLOYEE_ID, empId)
+                    dto.ID_EMPLOYEE = If(empId = 0, LogHelper.CurrentUser.EMPLOYEE_ID, empId)
                 End If
 
-                leaveMaster = New AT_PORTAL_REG_LIST_DTO
+                leaveMaster = New AT_PORTAL_REG_DTO
                 leaveDetails = New List(Of AT_PORTAL_REG_DTO)
                 EmployeeDto = New DataTable
 
@@ -239,63 +251,46 @@ Public Class ctrlLeaveRegistrationNewEdit
                         End If
 
                         Dim isInsert As Boolean = True
-                        Dim obj As New AT_PORTAL_REG_LIST_DTO
-                        obj.EMPLOYEE_ID = EmployeeID
-
-                        obj.ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue)
-                        obj.FROM_DATE = rdFromDate.SelectedDate
-                        obj.TO_DATE = rdToDate.SelectedDate
-                        obj.TOTAL_LEAVE = rntxDayRegist.Value 'txtDayRegist.Text
-                        obj.NOTE = txtNote.Text
-                        obj.STATUS = 6860
-                        hidStatus.Value = 6860
-                        'lay thong tin detail
-                        Dim details As New List(Of AT_PORTAL_REG_DTO)
-                        For Each item As GridDataItem In rgData.Items
-                            If item.Edit = True Then
-                                Dim edit = CType(item, GridEditableItem)
-                                Dim cbo As RadComboBox = CType(edit.FindControl("cboLeaveValue"), RadComboBox)
-                                Dim leave_value As Decimal = If(cbo.SelectedValue = "0", 0, If(cbo.SelectedValue = "0.5", 0.5, 1))
-                                If leave_value > 0 Then
-                                    Dim objDetail As New AT_PORTAL_REG_DTO
-                                    With objDetail
-                                        .ID_EMPLOYEE = EmployeeID
-                                        .ID_SIGN = obj.ID_SIGN
-                                        .REGDATE = item.GetDataKeyValue("EFFECTIVEDATE")
-                                        .NVALUE = leave_value
-                                        .SVALUE = "LEAVE"
-                                        .NOTE = txtNote.Text
-                                    End With
-                                    details.Add(objDetail)
-                                End If
-                            End If
-                        Next
-                        If Not details.Count > 0 And hidID.Value = 0 Then
-                            ShowMessage(Translate("Không tìm thấy chi tiết ngày nghỉ."), NotifyType.Warning)
-                            UpdateControlState()
-                            Return
-                        End If
+                        Dim obj As New AT_PORTAL_REG_DTO
+                        Dim itemExist = New AT_PORTAL_REG_DTO
+                        Dim isOverAnnualLeave As Boolean = False
                         Using rep As New AttendanceRepository
                             If hidID.Value <> 0 Then
                                 isInsert = False
                             End If
-                            Dim itemExist = New AT_PORTAL_REG_DTO
-                            Dim isOverAnnualLeave As Boolean = False
                             If isInsert Then
-                                rep.InsertPortalRegList(obj, details, hidID.Value, itemExist, isOverAnnualLeave)
+                                Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
+                           .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
+                           .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
+                           .FROM_DATE = rdFromDate.SelectedDate,
+                           .TO_DATE = rdToDate.SelectedDate,
+                           .NVALUE = 1,
+                           .SVALUE = ApproveProcess,
+                           .NOTE = txtNote.Text,
+                           .NOTE_AT = txtNote.Text,
+                                .PROCESS = ApproveProcess
+                       }
+                                AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
                                 obj.ID = hidID.Value
                             Else
+                                Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
+                           .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
+                           .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
+                           .FROM_DATE = rdFromDate.SelectedDate,
+                           .TO_DATE = rdToDate.SelectedDate,
+                           .NVALUE = 1,
+                           .SVALUE = ApproveProcess,
+                           .NOTE = txtNote.Text,
+                           .NOTE_AT = txtNote.Text,
+                                .PROCESS = ApproveProcess
+                       }
+
                                 obj.ID = hidID.Value
-                                rep.ModifyPortalRegList(obj, details, itemExist, isOverAnnualLeave)
+                                rep.ModifyPortalRegList(obj, itemInsert)
                             End If
 
                             If isOverAnnualLeave Then
                                 ShowMessage(Translate("Không được đăng ký nghỉ vượt quá số ngày phép con lại trong năm"), NotifyType.Warning)
-                                Return
-                            End If
-
-                            If itemExist IsNot Nothing Then
-                                ShowMessage(String.Format(Translate("Leave Request has been exist in {0}"), itemExist.REGDATE.Value.ToString("dd/MM/yyyy")), NotifyType.Warning)
                                 Return
                             End If
 
@@ -362,7 +357,7 @@ Public Class ctrlLeaveRegistrationNewEdit
     'End Sub
     Protected Sub rdFromDate_Select(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFromDate.SelectedDateChanged
         Try
-            leaveMaster = New AT_PORTAL_REG_LIST_DTO
+            leaveMaster = New AT_PORTAL_REG_DTO
             Using rep As New AttendanceRepository
                 EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing, rdFromDate.SelectedDate)
                 If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
@@ -412,42 +407,47 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Try
 
     End Sub
+
     Protected Sub rgData_ItemCreated(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgData.ItemCreated
         If TypeOf e.Item Is GridDataItem Then
             Dim control As GridDataItem = CType(e.Item, GridDataItem)
             Dim combo As RadComboBox = CType(control.FindControl("cboLeaveValue"), RadComboBox) ' CType(insertItem("cboLeaveValue").FindControl("radComboBoxOccCode"), RadComboBox)
+
             If combo IsNot Nothing Then
+
                 combo.AutoPostBack = True
                 AddHandler combo.SelectedIndexChanged, AddressOf combo_SelectedIndexChanged
+                combo.Enabled = False
             End If
         End If
         If Not String.IsNullOrEmpty(hidID.Value) AndAlso hidID.Value > 0 Then
             Dim cmdItem As GridItem = rgData.MasterTableView.GetItems(GridItemType.CommandItem)(0)
             Dim editDetail As RadButton = CType(cmdItem.FindControl("btnEditDetail"), RadButton)
-            editDetail.Visible = True
+            editDetail.Enabled = False
         End If
     End Sub
+
     Protected Sub combo_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
         Try
-            For Each item As GridDataItem In rgData.EditItems
-                Dim edit = CType(item, GridEditableItem)
-                Dim effect As Date = item.GetDataKeyValue("EFFECTIVEDATE")
-                Dim detail = leaveEmpDetails.First(Function(f) f.EFFECTIVEDATE = effect)
-                Dim index = leaveEmpDetails.IndexOf(detail)
-                Dim cbo As RadComboBox = CType(edit.FindControl("cboLeaveValue"), RadComboBox)
-                If cbo IsNot Nothing Then
-                    If cbo.SelectedValue = "0.5" Then
-                        detail.LEAVE_VALUE = 0.5
-                    ElseIf cbo.SelectedValue = "1" Then
-                        detail.LEAVE_VALUE = 1
-                    Else
-                        detail.LEAVE_VALUE = 0
-                    End If
-                    leaveEmpDetails(index) = detail
-                End If
-            Next
-            txtDayRegist.Text = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
-            rntxDayRegist.Value = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
+            'For Each item As GridDataItem In rgData.EditItems
+            '    Dim edit = CType(item, GridEditableItem)
+            '    Dim effect As Date = item.GetDataKeyValue("EFFECTIVEDATE")
+            '    Dim detail = leaveEmpDetails.First(Function(f) f.EFFECTIVEDATE = effect)
+            '    Dim index = leaveEmpDetails.IndexOf(detail)
+            '    Dim cbo As RadComboBox = CType(edit.FindControl("cboLeaveValue"), RadComboBox)
+            '    If cbo IsNot Nothing Then
+            '        If cbo.SelectedValue = "0.5" Then
+            '            detail.LEAVE_VALUE = 0.5
+            '        ElseIf cbo.SelectedValue = "1" Then
+            '            detail.LEAVE_VALUE = 1
+            '        Else
+            '            detail.LEAVE_VALUE = 0
+            '        End If
+            '        leaveEmpDetails(index) = detail
+            '    End If
+            'Next
+            'txtDayRegist.Text = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
+            'rntxDayRegist.Value = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
             ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", "showDetail('block');", True)
         Catch ex As Exception
 
@@ -458,20 +458,13 @@ Public Class ctrlLeaveRegistrationNewEdit
             Dim edit = CType(e.Item, GridEditableItem)
             Dim cbo As RadComboBox
             cbo = CType(edit.FindControl("cboLeaveValue"), RadComboBox)
+
             If cbo IsNot Nothing Then
-                Dim table As DataTable = LoadComboLeaveValue()
-                FillRadCombobox(cbo, table, "VALUE", "ID")
-                'cbo.SelectedValue = edit.GetDataKeyValue("LEAVE_VALUE").ToString
-                If edit.GetDataKeyValue("LEAVE_VALUE").ToString = "0" Then
-                    If edit.GetDataKeyValue("IS_OFF") = "1" Then
-                        EnableControlAll(False, cbo)
-                    End If
-                    cbo.SelectedValue = "0"
-                ElseIf edit.GetDataKeyValue("LEAVE_VALUE").ToString = "1" Then
-                    cbo.SelectedValue = "1"
-                Else
-                    cbo.SelectedValue = "0.5"
+                FillRadCombobox(cbo, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
+                If cboleaveType.SelectedValue <> "" Then
+                    cbo.SelectedValue = cboleaveType.SelectedValue
                 End If
+                cbo.Enabled = False
                 cbo.Width = Unit.Percentage(100)
             End If
         End If
@@ -507,6 +500,7 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Function
     Protected Function CreateDataFilter(Optional ByVal fromDate As Date? = Nothing, Optional ByVal toDate As Date? = Nothing, Optional ByVal isFull As Boolean = False) As DataTable
         Try
+            Dim calDay As Integer = 0
             Using rep As New AttendanceRepository
                 If fromDate IsNot Nothing Or toDate IsNot Nothing Then
                     leaveEmpDetails = rep.GetLeaveEmpDetail(EmployeeID, fromDate.Value, toDate.Value, If(IsNumeric(hidID.Value), hidID.Value, 0) <> 0)
@@ -521,11 +515,14 @@ Public Class ctrlLeaveRegistrationNewEdit
                         Dim selectedToDate = rdToDate.SelectedDate
                         While selectedFromDate.Value.Date <= selectedToDate.Value.Date
                             Dim leaveEmpDetail = New LEAVE_DETAIL_EMP_DTO
+
+
                             leaveEmpDetail.EFFECTIVEDATE = selectedFromDate
                             leaveEmpDetail.LEAVE_VALUE = 1
                             leaveEmpDetail.IS_UPDATE = 0
                             leaveEmpDetails.Add(leaveEmpDetail)
                             selectedFromDate = selectedFromDate.Value.AddDays(1)
+                            calDay += 1
                         End While
                     End If
                 Else
@@ -534,11 +531,13 @@ Public Class ctrlLeaveRegistrationNewEdit
                 If leaveDetails IsNot Nothing Then
                     For Each item In leaveDetails
                         If leaveEmpDetails IsNot Nothing AndAlso leaveEmpDetails.Count > 0 Then
-                            Dim detail = leaveEmpDetails.FirstOrDefault(Function(f) f.EFFECTIVEDATE = item.REGDATE)
+                            Dim detail = leaveEmpDetails.FirstOrDefault(Function(f) f.FROM_DATE = item.FROM_DATE)
                             If detail IsNot Nothing Then
                                 Dim index = leaveEmpDetails.IndexOf(detail)
-                                detail.LEAVE_VALUE = item.NVALUE
+                                detail.LEAVE_NAME = item.NVALUE_NAME
+                                detail.EFFECTIVEDATE = item.FROM_DATE
                                 leaveEmpDetails(index) = detail
+                                calDay += 1
                             End If
                         End If
                     Next
@@ -548,8 +547,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                 txtDayRegist.Text = 0
                 rntxDayRegist.Value = 0
                 If leaveEmpDetails IsNot Nothing Then
-                    txtDayRegist.Text = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
-                    rntxDayRegist.Value = leaveEmpDetails.Select(Function(f) f.LEAVE_VALUE).Sum
+                    txtDayRegist.Text = calDay.ToString
+                    rntxDayRegist.Value = Decimal.Parse(calDay)
                 End If
                 rgData.DataSource = leaveEmpDetails.OrderBy(Function(f) f.EFFECTIVEDATE)
             End If
@@ -584,4 +583,11 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Function
 #End Region
 
+    Private Sub cboleaveType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboleaveType.SelectedIndexChanged
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

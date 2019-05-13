@@ -127,6 +127,88 @@ Partial Public Class AttendanceRepository
         End Try
 
     End Function
+    Public Function InsertPortalRegister(ByVal itemRegister As AT_PORTAL_REG_DTO, ByVal log As UserLog) As Boolean
+        Try
+            _isAvailable = False
+            Dim itemInsert As AT_PORTAL_REG
+            Dim groupid As Decimal? = Nothing
+            Dim I As Integer = 0
+            If itemRegister.PROCESS = ATConstant.GSIGNCODE_LEAVE Or itemRegister.PROCESS = ATConstant.GSIGNCODE_WLEO Then
+                DeleteRegisterLeavePortal(itemRegister.ID_EMPLOYEE, itemRegister.FROM_DATE,
+                                          itemRegister.TO_DATE, New AT_TIME_MANUALDTO With {.ID = itemRegister.ID_SIGN}, itemRegister.PROCESS)
+            End If
+
+            While itemRegister.FROM_DATE <= itemRegister.TO_DATE
+                itemInsert = New AT_PORTAL_REG
+                itemInsert.ID = Utilities.GetNextSequence(Context, Context.AT_PORTAL_REG.EntitySet.Name)
+                I += 1
+                If I = 1 Then
+                    groupid = itemInsert.ID
+                End If
+                itemInsert.ID_EMPLOYEE = itemRegister.ID_EMPLOYEE
+                itemInsert.ID_SIGN = itemRegister.ID_SIGN
+                itemInsert.FROM_DATE = itemRegister.FROM_DATE
+                itemInsert.TO_DATE = itemRegister.FROM_DATE
+                If itemRegister.FROM_HOUR.HasValue Then
+                    itemInsert.FROM_HOUR = itemRegister.FROM_DATE.Value.Date.AddMinutes(itemRegister.FROM_HOUR.Value.TimeOfDay.TotalMinutes)
+                End If
+                If itemRegister.TO_HOUR.HasValue Then
+                    itemInsert.TO_HOUR = itemRegister.FROM_DATE.Value.Date.AddMinutes(itemRegister.TO_HOUR.Value.TimeOfDay.TotalMinutes)
+                    If itemInsert.TO_HOUR < itemInsert.FROM_HOUR Then
+                        itemInsert.TO_HOUR = itemInsert.TO_HOUR.Value.AddDays(1)
+                    End If
+                End If
+                If itemInsert.FROM_HOUR.HasValue AndAlso itemInsert.TO_HOUR.HasValue Then
+                    itemInsert.HOURCOUNT = (itemInsert.TO_HOUR.Value - itemInsert.FROM_HOUR.Value).TotalHours
+                End If
+                'itemInsert.TO_HOUR = itemRegister.TO_HOUR
+                itemInsert.NOTE = itemRegister.NOTE
+                itemInsert.NOTE_AT = itemRegister.NOTE_AT
+                itemInsert.REGDATE = Date.Now
+                itemInsert.STATUS = itemRegister.STATUS
+                itemInsert.CREATED_BY = log.Username.ToUpper
+                itemInsert.CREATED_DATE = Date.Now
+                itemInsert.CREATED_LOG = log.ComputerName
+                itemInsert.STATUS = RegisterStatus.Regist
+                itemInsert.NVALUE = itemRegister.NVALUE
+                itemInsert.SVALUE = itemRegister.PROCESS
+                itemInsert.NVALUE_ID = itemRegister.NVALUE_ID
+
+                itemInsert.ID_REGGROUP = groupid
+
+                itemInsert.IS_NB = itemRegister.ID_NB
+                Context.AT_PORTAL_REG.AddObject(itemInsert)
+
+                itemRegister.FROM_DATE = itemRegister.FROM_DATE.Value.AddDays(1)
+            End While
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "InsertPortalRegister")
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_DTO, ByVal itemRegister As AT_PORTAL_REG_DTO, ByVal log As UserLog) As Boolean
+        _isAvailable = False
+        Try
+            Dim lst = (From p In Context.AT_PORTAL_REG Where p.ID_REGGROUP = obj.ID).ToList()
+            For index = 0 To lst.Count - 1
+                Context.AT_PORTAL_REG.DeleteObject(lst(index))
+            Next
+            Context.SaveChanges()
+            InsertPortalRegister(itemRegister, log)
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "ModifyPortalRegList")
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+        Return True
+
+    End Function
 
     Public Function DeleteSetUpAttEmp(ByVal lstID As List(Of Decimal)) As Boolean
         Try
@@ -2987,63 +3069,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Public Function InsertPortalRegister(ByVal itemRegister As AT_PORTAL_REG_DTO, ByVal log As UserLog) As Boolean
-        Try
-            _isAvailable = False
-            Dim itemInsert As AT_PORTAL_REG
-            Dim groupid As Decimal? = Nothing
 
-            If itemRegister.PROCESS = ATConstant.GSIGNCODE_LEAVE Or itemRegister.PROCESS = ATConstant.GSIGNCODE_WLEO Then
-                DeleteRegisterLeavePortal(itemRegister.ID_EMPLOYEE, itemRegister.FROM_DATE,
-                                          itemRegister.TO_DATE, New AT_TIME_MANUALDTO With {.ID = itemRegister.ID_SIGN}, itemRegister.PROCESS)
-            End If
-
-            While itemRegister.FROM_DATE <= itemRegister.TO_DATE
-                itemInsert = New AT_PORTAL_REG
-                itemInsert.ID = Utilities.GetNextSequence(Context, Context.AT_PORTAL_REG.EntitySet.Name)
-                itemInsert.ID_EMPLOYEE = itemRegister.ID_EMPLOYEE
-                itemInsert.ID_SIGN = itemRegister.ID_SIGN
-                itemInsert.FROM_DATE = itemRegister.FROM_DATE
-                itemInsert.TO_DATE = itemRegister.FROM_DATE
-                If itemRegister.FROM_HOUR.HasValue Then
-                    itemInsert.FROM_HOUR = itemRegister.FROM_DATE.Value.Date.AddMinutes(itemRegister.FROM_HOUR.Value.TimeOfDay.TotalMinutes)
-                End If
-                If itemRegister.TO_HOUR.HasValue Then
-                    itemInsert.TO_HOUR = itemRegister.FROM_DATE.Value.Date.AddMinutes(itemRegister.TO_HOUR.Value.TimeOfDay.TotalMinutes)
-                    If itemInsert.TO_HOUR < itemInsert.FROM_HOUR Then
-                        itemInsert.TO_HOUR = itemInsert.TO_HOUR.Value.AddDays(1)
-                    End If
-                End If
-                If itemInsert.FROM_HOUR.HasValue AndAlso itemInsert.TO_HOUR.HasValue Then
-                    itemInsert.HOURCOUNT = (itemInsert.TO_HOUR.Value - itemInsert.FROM_HOUR.Value).TotalHours
-                End If
-                'itemInsert.TO_HOUR = itemRegister.TO_HOUR
-                itemInsert.NOTE = itemRegister.NOTE
-                itemInsert.NOTE_AT = itemRegister.NOTE_AT
-                itemInsert.REGDATE = Date.Now
-                itemInsert.STATUS = itemRegister.STATUS
-                itemInsert.CREATED_BY = log.Username.ToUpper
-                itemInsert.CREATED_DATE = Date.Now
-                itemInsert.CREATED_LOG = log.ComputerName
-                itemInsert.STATUS = RegisterStatus.Regist
-                itemInsert.NVALUE = itemRegister.NVALUE
-                itemInsert.SVALUE = itemRegister.PROCESS
-                itemInsert.NVALUE_ID = itemRegister.NVALUE_ID
-                itemInsert.ID_REGGROUP = groupid
-                itemInsert.IS_NB = itemRegister.ID_NB
-                Context.AT_PORTAL_REG.AddObject(itemInsert)
-
-                itemRegister.FROM_DATE = itemRegister.FROM_DATE.Value.AddDays(1)
-            End While
-            Context.SaveChanges()
-            Return True
-        Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "InsertPortalRegister")
-            Throw ex
-        Finally
-            _isAvailable = True
-        End Try
-    End Function
 
 
 
@@ -6056,49 +6082,43 @@ Partial Public Class AttendanceRepository
     End Function
 #End Region
 #Region "cham cong"
-    Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_LIST_DTO,
+    Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_DTO,
                                    Optional ByRef Total As Integer = 0,
                                    Optional ByVal PageIndex As Integer = 0,
                                    Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_LIST_DTO)
+                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
         Try
-            Dim query = From p In Context.AT_PORTAL_REG_LIST
-                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+            Dim query = From p In Context.AT_PORTAL_REG
+                        From ce In Context.HUV_AT_PORTAL.Where(Function(f) f.ID_REGGROUP = p.ID)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.ID_EMPLOYEE).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From fl In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
                         From sh In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
-                        Where s.IS_APP = 0 And s.IS_PORTAL = -1
-                        Select New AT_PORTAL_REG_LIST_DTO With {
+                        Select New AT_PORTAL_REG_DTO With {
                                                                .ID = p.ID,
-                                                               .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                               .ID_EMPLOYEE = p.ID_EMPLOYEE,
                                                                .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                                .EMPLOYEE_NAME = e.FULLNAME_VN,
-                                                               .DEPARTMENT = o.NAME_EN,
-                                                               .JOBTITLE = t.NAME_EN,
                                                                .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
-                                                               .FROM_DATE = p.FROM_DATE,
-                                                               .TO_DATE = p.TO_DATE,
-                                                               .TOTAL_LEAVE = p.TOTAL_LEAVE,
+                                                               .FROM_DATE = ce.FROM_DATE,
+                                                               .TO_DATE = ce.TO_DATE,
                                                                .ID_SIGN = p.ID_SIGN,
                                                                .SIGN_CODE = fl.CODE,
+                                                               .TOTAL_LEAVE = ce.NVALUE,
                                                                .SIGN_NAME = fl.NAME,
                                                                .STATUS = p.STATUS,
                                                                .STATUS_NAME = ot.NAME_EN,
                                                                .NOTE = p.NOTE,
-                                                               .REASON = p.REASON,
-                                                               .CREATED_BY = p.CREATED_BY,
-                                                               .CREATED_DATE = p.CREATED_DATE,
-                                                               .CREATED_LOG = p.CREATED_LOG,
-                                                               .MODIFIED_BY = sh.FULLNAME_EN,
-                                                               .MODIFIED_DATE = p.MODIFIED_DATE,
-                                                               .MODIFIED_LOG = p.MODIFIED_LOG
+                                                            .CREATED_DATE = p.CREATED_DATE,
+                                                               .DEPARTMENT = o.NAME_VN,
+            .JOBTITLE = t.NAME_VN
                                                             }
 
-            If _filter.EMPLOYEE_ID > 0 Then
-                query = query.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            If _filter.ID_EMPLOYEE > 0 Then
+                query = query.Where(Function(f) f.ID_EMPLOYEE = _filter.ID_EMPLOYEE)
             End If
             If _filter.ID > 0 Then
                 query = query.Where(Function(f) f.ID = _filter.ID)
@@ -6110,7 +6130,6 @@ Partial Public Class AttendanceRepository
                 query = query.Where(Function(f) f.STATUS = _filter.STATUS)
             End If
 
-
             If _filter.FROM_DATE.HasValue And _filter.TO_DATE.HasValue Then
                 query = query.Where(Function(f) f.FROM_DATE >= _filter.FROM_DATE And f.TO_DATE <= _filter.TO_DATE)
             ElseIf _filter.FROM_DATE.HasValue Then
@@ -6118,16 +6137,6 @@ Partial Public Class AttendanceRepository
             ElseIf _filter.TO_DATE.HasValue Then
                 query = query.Where(Function(f) f.TO_DATE = _filter.TO_DATE)
             End If
-
-            If _filter.TOTAL_LEAVE.HasValue Then
-                query = query.Where(Function(f) f.TOTAL_LEAVE = _filter.TOTAL_LEAVE)
-            End If
-
-            If _filter.MODIFIED_DATE.HasValue Then
-                query = query.Where(Function(f) f.MODIFIED_DATE = _filter.MODIFIED_DATE)
-            End If
-
-
             If _filter.EMPLOYEE_CODE IsNot Nothing Then
                 query = query.Where(Function(p) p.EMPLOYEE_CODE.ToLower.Contains(_filter.EMPLOYEE_CODE.ToLower()))
             End If
@@ -6135,44 +6144,15 @@ Partial Public Class AttendanceRepository
             If _filter.EMPLOYEE_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.EMPLOYEE_NAME.ToLower.Contains(_filter.EMPLOYEE_NAME.ToLower()))
             End If
-
-            If _filter.DEPARTMENT IsNot Nothing Then
-                query = query.Where(Function(p) p.DEPARTMENT.ToLower.Contains(_filter.DEPARTMENT.ToLower()))
-            End If
-
-
-            If _filter.JOBTITLE IsNot Nothing Then
-                query = query.Where(Function(p) p.JOBTITLE.ToLower.Contains(_filter.JOBTITLE.ToLower()))
-            End If
-
             If _filter.NOTE IsNot Nothing Then
                 query = query.Where(Function(p) p.NOTE.ToLower.Contains(_filter.NOTE.ToLower()))
             End If
-
-            If _filter.REASON IsNot Nothing Then
-                query = query.Where(Function(p) p.REASON.ToLower.Contains(_filter.REASON.ToLower()))
-            End If
-
             If _filter.STATUS_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.STATUS_NAME.ToLower.Contains(_filter.STATUS_NAME.ToLower()))
             End If
-
-            If _filter.MODIFIED_BY IsNot Nothing Then
-                query = query.Where(Function(p) p.MODIFIED_BY.ToLower.Contains(_filter.MODIFIED_BY.ToLower()))
-            End If
-
-            If _filter.CREATED_DATE.HasValue Then
-                query = query.Where(Function(f) f.CREATED_DATE = _filter.CREATED_DATE)
-            End If
-
-            If _filter.CREATED_BY IsNot Nothing Then
-                query = query.Where(Function(p) p.CREATED_BY.ToLower.Contains(_filter.CREATED_BY.ToLower()))
-            End If
-
             If _filter.SIGN_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.SIGN_NAME.ToLower.Contains(_filter.SIGN_NAME.ToLower()))
             End If
-
             query = query.OrderBy(Sorts)
             Total = query.Count
             query = query.Skip(PageIndex * PageSize).Take(PageSize)
@@ -6183,72 +6163,12 @@ Partial Public Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
-    Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
-        Dim objData As New AT_PORTAL_REG_LIST With {.ID = obj.ID}
-        Try
-            'Kiểm tra thêm điều kiện nếu số ngày nghỉ vượt quá phép năm hiện có của nhân viên đó trong năm thì báo
-            Dim checkSignIsAnnualLeave = (From p In Context.AT_FML
-                                          Where p.ID = obj.ID_SIGN _
-                                          And p.CODE = "AL").Any()
-            If checkSignIsAnnualLeave Then
-                Dim checkDataOverAnnualLeave = (From p In Context.AT_ENTITLEMENT
-                                                Where p.EMPLOYEE_ID = obj.EMPLOYEE_ID _
-                                                    And p.CUR_HAVE < obj.TOTAL_LEAVE _
-                                                    And obj.FROM_DATE.Value.Year = p.YEAR).Any()
-                If checkDataOverAnnualLeave Then
-                    isOverAnnualLeave = True
-                    Return False
-                End If
-            End If
 
-            'Kiểm tra điều kiện trùng ngày đăng ký nghỉ
-            For Each item In lstObjDetail
-                Dim checkData = (From p In Context.AT_PORTAL_REG
-                                 Where p.REGDATE = item.REGDATE _
-                                     And p.ID_EMPLOYEE = item.ID_EMPLOYEE _
-                                     And p.AT_PORTAL_REG_LIST_ID <> obj.ID).Any()
-                If checkData Then
-                    itemExist = item
-                    Return False
-                Else
-                    itemExist = Nothing
-                End If
-            Next
-            Context.AT_PORTAL_REG_LIST.Attach(objData)
-            objData.EMPLOYEE_ID = obj.EMPLOYEE_ID
-            objData.FROM_DATE = obj.FROM_DATE
-            objData.TO_DATE = obj.TO_DATE
-            objData.ID_SIGN = obj.ID_SIGN
-            objData.TOTAL_LEAVE = obj.TOTAL_LEAVE
-            objData.NOTE = obj.NOTE
-            objData.STATUS = obj.STATUS
-            If lstObjDetail.Count > 0 Then
-                'delete detail and insert new
-                Dim deletedPortalReg = (From record In Context.AT_PORTAL_REG Where record.AT_PORTAL_REG_LIST_ID = obj.ID)
-                For Each item In deletedPortalReg
-                    Context.AT_PORTAL_REG.DeleteObject(item)
-                Next
-                Context.SaveChanges(log)
-                'Cap nhat detail
-                InsertPortalReg(obj.ID, lstObjDetail, log)
-            Else
-                itemExist = Nothing
-            End If
-            Return True
-        Catch ex As Exception
-            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
-            Throw ex
-        End Try
-    End Function
     Public Function DeletePortalReg(ByVal lstId As List(Of Decimal)) As Boolean
         Try
-            Dim deleted = (From record In Context.AT_PORTAL_REG_LIST Where lstId.Contains(record.ID))
-            For Each item In deleted
-                Dim deletedDetail = (From r In Context.AT_PORTAL_REG Where r.AT_PORTAL_REG_LIST_ID = item.ID)
-                For Each itemDetail In deletedDetail
-                    Context.AT_PORTAL_REG.DeleteObject(itemDetail)
-                Next
-                Context.AT_PORTAL_REG_LIST.DeleteObject(item)
+            Dim lst = (From p In Context.AT_PORTAL_REG Where lstId.Contains(p.ID_REGGROUP)).ToList()
+            For index = 0 To lst.Count - 1
+                Context.AT_PORTAL_REG.DeleteObject(lst(index))
             Next
             Context.SaveChanges()
             Return True
@@ -6514,44 +6434,40 @@ Partial Public Class AttendanceRepository
 
         End Try
     End Function
-    Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_LIST_DTO) As AT_PORTAL_REG_LIST_DTO
+    Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_DTO) As AT_PORTAL_REG_DTO
         Try
             Dim query = From e In Context.HU_EMPLOYEE
-                        From p In Context.AT_PORTAL_REG_LIST.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
+                        From p In Context.AT_PORTAL_REG.Where(Function(f) f.ID_EMPLOYEE = e.ID).DefaultIfEmpty
+                        From ce In Context.HUV_AT_PORTAL.Where(Function(f) f.ID_REGGROUP = p.ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From fl In Context.AT_FML.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
-                        Select New AT_PORTAL_REG_LIST_DTO With {
+                        Select New AT_PORTAL_REG_DTO With {
                                                                            .ID = p.ID,
-                                                                           .EMPLOYEE_ID = e.ID,
+                                                                           .ID_EMPLOYEE = e.ID,
                                                                            .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                                            .EMPLOYEE_NAME = e.FULLNAME_VN,
                                                                            .DEPARTMENT = o.NAME_VN,
                                                                            .JOBTITLE = t.NAME_VN,
                                                                            .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
-                                                                           .FROM_DATE = p.FROM_DATE,
-                                                                           .TO_DATE = p.TO_DATE,
-                                                                           .TOTAL_LEAVE = p.TOTAL_LEAVE,
+                                                                           .FROM_DATE = ce.FROM_DATE,
+                                                                           .TO_DATE = ce.TO_DATE,
                                                                            .ID_SIGN = p.ID_SIGN,
                                                                            .SIGN_CODE = fl.CODE,
+                                                                           .TOTAL_LEAVE = ce.NVALUE,
                                                                            .SIGN_NAME = fl.NAME_VN,
                                                                            .STATUS = p.STATUS,
                                                                            .STATUS_NAME = ot.NAME_VN,
                                                                            .NOTE = p.NOTE,
-                                                                           .CREATED_BY = p.CREATED_BY,
-                                                                           .CREATED_DATE = p.CREATED_DATE,
-                                                                           .CREATED_LOG = p.CREATED_LOG,
-                                                                           .MODIFIED_BY = p.MODIFIED_BY,
-                                                                           .MODIFIED_DATE = p.MODIFIED_DATE,
-                                                                           .MODIFIED_LOG = p.MODIFIED_LOG
+            .CREATED_DATE = p.CREATED_DATE
                                                                         }
-            If _filter.EMPLOYEE_ID > 0 Then
-                query = query.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+            If _filter.ID_EMPLOYEE > 0 Then
+                query = query.Where(Function(f) f.ID_EMPLOYEE = _filter.ID_EMPLOYEE)
             End If
-            If _filter.ID.HasValue AndAlso _filter.ID.Value > 0 Then
-                query = query.Where(Function(f) f.ID = _filter.ID)
-            End If
+            'If _filter.ID.HasValue AndAlso _filter.ID.Value > 0 Then
+            '    query = query.Where(Function(f) f.ID = _filter.ID)
+            'End If
 
             Return query.FirstOrDefault
         Catch ex As Exception
@@ -6562,7 +6478,10 @@ Partial Public Class AttendanceRepository
     End Function
     Public Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
         Try
-            Return New List(Of LEAVE_DETAIL_EMP_DTO)
+            Dim query = From d In Context.AT_PORTAL_REG
+                        Select New LEAVE_DETAIL_EMP_DTO With {
+             .FROM_DATE = d.FROM_DATE
+                            }
             'Dim query = From d In Context.AT_SHIFTCYCLE_EMP_DETAIL
             '            From e In Context.AT_SHIFTCYCLE_EMP.Where(Function(f) f.ID = d.AT_SHIFTCYCLE_EMP_ID)
             '            From c In Context.AT_SHIFTCYCLE.Where(Function(f) f.SHIFT_ID = e.SHIFT_ID)
@@ -6580,7 +6499,7 @@ Partial Public Class AttendanceRepository
             '                                                   .IS_OFF = If(d.FML_ID = 4, 1, 0)
             '                                                }
 
-            'Return query.ToList
+            Return query.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
         Finally
@@ -6589,18 +6508,20 @@ Partial Public Class AttendanceRepository
     End Function
     Public Function GetLeaveRegistrationDetailById(ByVal listId As Decimal) As List(Of AT_PORTAL_REG_DTO)
         Try
-            'Dim query = From p In Context.AT_PORTAL_REG
-            '            Where p.AT_PORTAL_REG_LIST_ID = listId
-            '            Select New AT_PORTAL_REG_DTO With {
-            '                                                   .ID = p.ID,
-            '                                                   .REGDATE = p.REGDATE,
-            '                                                   .ID_SIGN = p.ID_SIGN,
-            '                                                   .NVALUE = p.NVALUE,
-            '                                                   .SVALUE = p.SVALUE,
-            '                                                   .AT_PORTAL_REG_LIST_ID = p.AT_PORTAL_REG_LIST_ID
-            '                                                }
+            Dim query = From p In Context.AT_PORTAL_REG
+                        From ce In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN)
+                        Select New AT_PORTAL_REG_DTO With {
+                                                               .ID = p.ID,
+                                                               .REGDATE = p.REGDATE,
+                                                               .ID_SIGN = p.ID_SIGN,
+                                                               .FROM_DATE = p.FROM_DATE,
+                                                               .TO_DATE = p.TO_DATE,
+                                                               .NVALUE = p.NVALUE,
+                                                               .NVALUE_NAME = ce.NAME,
+                                                               .SVALUE = p.SVALUE
+                                                            }
 
-            'Return query.ToList
+            Return query.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
         Finally

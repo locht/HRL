@@ -5,9 +5,13 @@
     Public Property EMPLOYEE_NAME As String
     Public Property PROCESS As String
     Public Property DISPLAY As String
+    Public Property JOBTITLE As String
+    Public Property DEPARTMENT As String
 
-    Public Property ID_SIGN As Decimal
+    Public Property AT_PORTAL_REG_LIST_ID As Decimal?
+    Public Property ID_SIGN As Decimal?
     Public Property FROM_DATE As Date?
+    Public Property CREATED_DATE As Date?
     Public Property TO_DATE As Date?
     Public Property FROM_HOUR As Date?
     Public Property TO_HOUR As Date?
@@ -17,7 +21,7 @@
     Public Property REGDATE As Date?
     Public Property NOTE As String ' ghi chu
     Public Property NOTE_AT As String
-    Public Property STATUS As Int16
+    Public Property STATUS As Decimal?
     Public Property STATUS_NAME As String
 
     Public Property SIGN_CODE As String
@@ -37,7 +41,7 @@
 
     Public Property ID_NB As Decimal?
     Public Property NGHI_BU As String
-
+    Public Property YEAR As Decimal?
     Public Property TOTAL_LEAVE As Decimal?
 
 End Class

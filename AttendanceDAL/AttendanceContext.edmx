@@ -82,6 +82,7 @@
             <EntitySet Name="AT_OT_REGISTRATION" EntityType="AttendanceModel.Store.AT_OT_REGISTRATION" store:Type="Tables"  />
             <EntitySet Name="AT_OFFSETTING_TIMEKEEPING" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING" store:Type="Tables"  />
             <EntitySet Name="AT_OFFSETTING_TIMEKEEPING_EMP" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING_EMP" store:Type="Tables"  />
+            <EntitySet Name="HUV_AT_PORTAL" EntityType="AttendanceModel.Store.HUV_AT_PORTAL" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2057,6 +2058,16 @@
             <Property Name="TYPE_BT" Type="number" Nullable="true" Precision="38" />
             <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HUV_AT_PORTAL">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="ID_REGGROUP" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROM_DATE" Type="date" Nullable="true" />
+            <Property Name="TO_DATE" Type="date" Nullable="true" />
+            <Property Name="NVALUE" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2358,6 +2369,7 @@
           <EntitySet Name="AT_OT_REGISTRATION" EntityType="AttendanceModel.AT_OT_REGISTRATION" />
           <EntitySet Name="AT_OFFSETTING_TIMEKEEPING" EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING" />
           <EntitySet Name="AT_OFFSETTING_TIMEKEEPING_EMP" EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" />
+          <EntitySet Name="HUV_AT_PORTAL" EntityType="AttendanceModel.HUV_AT_PORTAL" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -4434,6 +4446,16 @@
           <Property Type="Decimal" Name="TYPE_BT" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="GROUP_ID" />
         </EntityType>
+        <EntityType Name="HUV_AT_PORTAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ID_REGGROUP" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="FROM_DATE" />
+          <Property Type="DateTime" Name="TO_DATE" />
+          <Property Type="Decimal" Name="NVALUE" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6438,6 +6460,17 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HUV_AT_PORTAL">
+            <EntityTypeMapping TypeName="AttendanceModel.HUV_AT_PORTAL">
+                <MappingFragment StoreEntitySet="HUV_AT_PORTAL">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="ID_REGGROUP" ColumnName="ID_REGGROUP" />
+                    <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+                    <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+                    <ScalarProperty Name="NVALUE" ColumnName="NVALUE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -6460,7 +6493,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToOracle.tt" />
         <DesignerProperty Name="DatabaseGenerationWorkflow" Value="$(VSEFTools)\DBGen\Generate Oracle Via T4 (TPH).xaml" />
         <DesignerProperty Name="DefaultDatabaseSchema" Value="" />
@@ -6595,6 +6628,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_OT_REGISTRATION" Width="1.5" PointX="21.375" PointY="13.75" Height="7.3647265624999818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING" Width="1.5" PointX="21.75" PointY="22.75" Height="3.9033007812499818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" Width="3.25" PointX="23.75" PointY="13.75" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="AttendanceModel.HUV_AT_PORTAL" Width="1.5" PointX="23.75" PointY="18.75" Height="1.9802864583333246" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

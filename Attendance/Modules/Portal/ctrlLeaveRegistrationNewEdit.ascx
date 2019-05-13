@@ -157,7 +157,7 @@
 </table>
 <div id="divLeaveDetail" style="display: none">
     <tlk:RadGrid PageSize="500" runat="server" ID="rgData" AllowMultiRowEdit="true" Width="65%">
-        <MasterTableView DataKeyNames="EFFECTIVEDATE,LEAVE_VALUE,IS_UPDATE,IS_OFF" ClientDataKeyNames="EFFECTIVEDATE,LEAVE_VALUE,IS_UPDATE,IS_OFF" EditMode="InPlace" CommandItemDisplay="Top">
+        <MasterTableView DataKeyNames="EFFECTIVEDATE,LEAVE_VALUE,IS_UPDATE,IS_OFF" ClientDataKeyNames="EFFECTIVEDATE,LEAVE_NAME,IS_UPDATE,IS_OFF" EditMode="InPlace" CommandItemDisplay="Top">
             <CommandItemStyle Height="28px" />
             <CommandItemTemplate>
                 <div style="padding: 2px 0 0 0">
@@ -182,7 +182,7 @@
                 <tlk:GridTemplateColumn UniqueName="LEAVE_VALUE" HeaderText="<%$ Translate: Giá trị nghỉ %>"
                     SortExpression="LEAVE_VALUE">
                     <ItemTemplate>
-                        <%# DataBinder.Eval(Container.DataItem, "LEAVE_VALUE")%>
+                        <%# DataBinder.Eval(Container.DataItem, "LEAVE_NAME")%>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <tlk:RadComboBox runat="server" ID="cboLeaveValue" Width="100%" OnClientSelectedIndexChanged="valueChange">

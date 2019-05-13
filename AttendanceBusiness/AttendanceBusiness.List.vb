@@ -1136,6 +1136,17 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_DTO, ByVal itemRegister As AT_PORTAL_REG_DTO, ByVal log As UserLog) As Boolean _
+                   Implements ServiceContracts.IAttendanceBusiness.ModifyPortalRegList
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ModifyPortalRegList(obj, itemRegister, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetHolidayByCalender(ByVal startdate As Date,
                                              ByVal enddate As Date) As List(Of Date) _
                                          Implements IAttendanceBusiness.GetHolidayByCalender
@@ -1782,11 +1793,11 @@ Namespace AttendanceBusiness.ServiceImplementations
         End Function
 
 #Region "cham cong"
-        Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_LIST_DTO,
+        Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_DTO,
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_LIST_DTO) _
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO) _
                                      Implements ServiceContracts.IAttendanceBusiness.GetLeaveRegistrationList
             Using rep As New AttendanceRepository
                 Try
@@ -1829,7 +1840,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_LIST_DTO) As AT_PORTAL_REG_LIST_DTO Implements ServiceContracts.IAttendanceBusiness.GetLeaveRegistrationById
+        Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_DTO) As AT_PORTAL_REG_DTO Implements ServiceContracts.IAttendanceBusiness.GetLeaveRegistrationById
             Using rep As New AttendanceRepository
                 Try
                     Return rep.GetLeaveRegistrationById(_filter)
@@ -1867,16 +1878,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean _
-            Implements ServiceContracts.IAttendanceBusiness.ModifyPortalRegList
-            Using rep As New AttendanceRepository
-                Try
-                    Return rep.ModifyPortalRegList(obj, lstObjDetail, log, itemExist, isOverAnnualLeave)
-                Catch ex As Exception
-                    Throw ex
-                End Try
-            End Using
-        End Function
+       
 #End Region
 
     End Class

@@ -2158,11 +2158,11 @@ Partial Class AttendanceRepository
         End Try
     End Function
 #Region "cham cong"
-    Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_LIST_DTO,
+    Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_DTO,
                                 Optional ByRef Total As Integer = 0,
                                 Optional ByVal PageIndex As Integer = 0,
                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_PORTAL_REG_LIST_DTO)
+                                Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_PORTAL_REG_DTO)
         Using rep As New AttendanceBusinessClient
             Try
 
@@ -2208,7 +2208,7 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
-    Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_LIST_DTO) As AT_PORTAL_REG_LIST_DTO
+    Public Function GetLeaveRegistrationById(ByVal _filter As AT_PORTAL_REG_DTO) As AT_PORTAL_REG_DTO
         Using rep As New AttendanceBusinessClient
             Try
 
@@ -2252,16 +2252,25 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
-    Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
+    Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_DTO, ByVal itemRegister As AttendanceBusiness.AT_PORTAL_REG_DTO) As Boolean
+        Try
+            _isAvailable = False
         Using rep As New AttendanceBusinessClient
             Try
 
-                Return rep.ModifyPortalRegList(obj, lstObjDetail, Me.Log, itemExist, isOverAnnualLeave)
+                Return rep.ModifyPortalRegList(obj, itemRegister, Me.Log)
             Catch ex As Exception
                 Throw ex
             End Try
-        End Using
+
+            End Using
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
     End Function
+   
 #End Region
 
 End Class

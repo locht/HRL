@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("5d099cec-6fe8-4c71-a6e0-bab23d227113")>
+<Assembly: EdmSchemaAttribute("0be9cab8-e926-4944-9326-f50eaa01cfb6")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1146,6 +1146,20 @@ Public Partial Class AttendanceContext
 
     Private _AT_OFFSETTING_TIMEKEEPING_EMP As ObjectSet(Of AT_OFFSETTING_TIMEKEEPING_EMP)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HUV_AT_PORTAL() As ObjectSet(Of HUV_AT_PORTAL)
+        Get
+            If (_HUV_AT_PORTAL Is Nothing) Then
+                _HUV_AT_PORTAL = MyBase.CreateObjectSet(Of HUV_AT_PORTAL)("HUV_AT_PORTAL")
+            End If
+            Return _HUV_AT_PORTAL
+        End Get
+    End Property
+
+    Private _HUV_AT_PORTAL As ObjectSet(Of HUV_AT_PORTAL)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1680,6 +1694,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_OFFSETTING_TIMEKEEPING_EMP(ByVal aT_OFFSETTING_TIMEKEEPING_EMP As AT_OFFSETTING_TIMEKEEPING_EMP)
         MyBase.AddObject("AT_OFFSETTING_TIMEKEEPING_EMP", aT_OFFSETTING_TIMEKEEPING_EMP)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HUV_AT_PORTAL EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHUV_AT_PORTAL(ByVal hUV_AT_PORTAL As HUV_AT_PORTAL)
+        MyBase.AddObject("HUV_AT_PORTAL", hUV_AT_PORTAL)
     End Sub
 
     #End Region
@@ -39167,6 +39188,161 @@ Public Partial Class HU_WORKING
     End Sub
 
     Private Partial Sub OnPERCENT_SALARYChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="HUV_AT_PORTAL")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HUV_AT_PORTAL
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HUV_AT_PORTAL object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHUV_AT_PORTAL(id As Global.System.Decimal) As HUV_AT_PORTAL
+        Dim hUV_AT_PORTAL as HUV_AT_PORTAL = New HUV_AT_PORTAL
+        hUV_AT_PORTAL.ID = id
+        Return hUV_AT_PORTAL
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID_REGGROUP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ID_REGGROUP
+        End Get
+        Set
+            OnID_REGGROUPChanging(value)
+            ReportPropertyChanging("ID_REGGROUP")
+            _ID_REGGROUP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ID_REGGROUP")
+            OnID_REGGROUPChanged()
+        End Set
+    End Property
+
+    Private _ID_REGGROUP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_REGGROUPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnID_REGGROUPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FROM_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _FROM_DATE
+        End Get
+        Set
+            OnFROM_DATEChanging(value)
+            ReportPropertyChanging("FROM_DATE")
+            _FROM_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("FROM_DATE")
+            OnFROM_DATEChanged()
+        End Set
+    End Property
+
+    Private _FROM_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnFROM_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnFROM_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TO_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _TO_DATE
+        End Get
+        Set
+            OnTO_DATEChanging(value)
+            ReportPropertyChanging("TO_DATE")
+            _TO_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TO_DATE")
+            OnTO_DATEChanged()
+        End Set
+    End Property
+
+    Private _TO_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnTO_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnTO_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NVALUE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _NVALUE
+        End Get
+        Set
+            OnNVALUEChanging(value)
+            ReportPropertyChanging("NVALUE")
+            _NVALUE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NVALUE")
+            OnNVALUEChanged()
+        End Set
+    End Property
+
+    Private _NVALUE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnNVALUEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnNVALUEChanged()
     End Sub
 
     #End Region

@@ -18,11 +18,11 @@ Public Class ctrlLeaveRegistration
     Public Property EmployeeCode As String
     Public Property unit As String
 
-    Property LeaveMasters As List(Of AT_PORTAL_REG_LIST_DTO)
+    Property LeaveMasters As List(Of AT_PORTAL_REG_DTO)
         Get
             Return ViewState(Me.ID & "_LeaveMasters")
         End Get
-        Set(ByVal value As List(Of AT_PORTAL_REG_LIST_DTO))
+        Set(ByVal value As List(Of AT_PORTAL_REG_DTO))
             ViewState(Me.ID & "_LeaveMasters") = value
         End Set
     End Property
@@ -252,9 +252,9 @@ Public Class ctrlLeaveRegistration
 #Region "Custom"
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
-        Dim _filter As New AT_PORTAL_REG_LIST_DTO
+        Dim _filter As New AT_PORTAL_REG_DTO
         Try
-            _filter.EMPLOYEE_ID = EmployeeID
+            _filter.ID_EMPLOYEE = EmployeeID
             '_filter.YEAR = 0
             If txtYear.Value.HasValue Then
                 _filter.YEAR = txtYear.Value
