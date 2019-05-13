@@ -8,14 +8,23 @@
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
                 <td class="lb">
-                    <%# Translate("Từ ngày")%>
+                    <asp:Label ID="lbMachine_Type" runat ="server"  Text ="Hệ thống chấm công"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat ="server" ID="cbMachine_Type">
+                    </tlk:RadComboBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbStartDate" runat ="server"  Text ="Từ ngày"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdStartDate" runat="server">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                    <%# Translate("Đến ngày")%>
+                    <asp:Label ID="lbEndDate" runat ="server"  Text ="Đến ngày"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEndDate" runat="server">
