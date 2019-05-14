@@ -480,8 +480,9 @@ Public Class ctrlHU_TitleConcurrent
                 hidOrgID.Value = e.CurrentValue
                 'txtOrgName.Text = orgItem.NAME_VN
                 If orgItem.DESCRIPTION_PATH.ToString.Split(";").Count > 1 Then
-                    Dim orgName2 = orgItem.DESCRIPTION_PATH.ToString.Split(";")(1)
-                    txtOrgName2.Text = orgName2.Substring(orgName2.IndexOf(" - ") + 3)
+                    Dim orgName2 = orgItem.DESCRIPTION_PATH.ToString.Split(";")(orgItem.DESCRIPTION_PATH.ToString.Split(";").Count - 1)
+                    'txtOrgName2.Text = orgName2.Substring(orgName2.IndexOf(" - ") + 3)
+                    txtOrgName2.Text = orgName2
                 End If
                 'txtOrgName2.ToolTip = Utilities.DrawTreeByString(orgItem.DESCRIPTION_PATH)
             End If

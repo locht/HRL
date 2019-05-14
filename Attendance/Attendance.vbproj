@@ -381,6 +381,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
+    <Content Include="Modules\Portal\ctrlOTRegistrationByLM.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistration.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationNewEdit.ascx" />
     <Content Include="Modules\Portal\ctrlDBRegApp.ascx" />
@@ -875,6 +876,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\List\ctrlRitual.ascx.vb">
       <DependentUpon>ctrlRitual.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationByLM.ascx.designer.vb">
+      <DependentUpon>ctrlOTRegistrationByLM.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationByLM.ascx.vb">
+      <DependentUpon>ctrlOTRegistrationByLM.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlOTRegistration.ascx.designer.vb">
