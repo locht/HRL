@@ -214,9 +214,17 @@
                  <asp:Label ID="lbNumberDecision" runat="server" Text="Số quyết định"></asp:Label>
                  <span class="lbReq"></span>
                 </td>
-                <td colspan="3">
+                <td>
                     <tlk:RadTextBox ID="txtNumberDecision" runat="server" Width="100%">
                     </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                   <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực của quyết định"></asp:Label>
+                  
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdEffectDate" runat="server">
+                    </tlk:RadDatePicker>
                 </td>
             </tr>
             <tr>
