@@ -251,6 +251,20 @@ Partial Public Class AttendanceRepository
 #End Region
 
 #Region "Máy chấm công"
+    Public Function GetTerminalFromOtOtherList() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_LIST.GET_TERMINAL_FROM_OTOTHERLIST",
+                                               New With {.P_CUR = cls.OUT_CURSOR})
+                Return dtData
+            End Using
+            Return Nothing
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetTerminal(ByVal obj As AT_TERMINALSDTO, ByVal log As UserLog) As DataTable
         Try
             Using cls As New DataAccess.QueryData
