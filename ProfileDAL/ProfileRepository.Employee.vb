@@ -2498,7 +2498,7 @@ Partial Class ProfileRepository
             Dim query As List(Of TitleConcurrentDTO)
             query = (From p In Context.HU_TITLE_CONCURRENT
                    From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
-                     Where p.EMPLOYEE_ID = _empId Order By p.EFFECT_DATE
+                     Where p.EMPLOYEE_ID = _empId Order By p.EFFECT_DATE Descending
                      Select New TitleConcurrentDTO With {
                       .ID = p.ID,
                                    .ORG_ID = p.ORG_ID,
