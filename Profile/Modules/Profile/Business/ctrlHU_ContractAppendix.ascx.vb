@@ -103,6 +103,12 @@ Public Class ctrlHU_ContractAppendix
         Try
             Refresh()
             UpdateControlState()
+
+            'Check state after add new or modify 
+            If Session("Appendix") = "Success" Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                Session("Appendix") = Nothing
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

@@ -513,33 +513,33 @@ Public Class ctrlHU_Contract
                             Exit Sub
                         End If
                         Dim item As GridDataItem = rgContract.SelectedItems(0)
-                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
-                            ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
-                            ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                            Exit Sub
-                        End If
+                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
+                        ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
+                        Exit Sub
+                    End If
 
-                        DeleteContract = New ContractDTO With {.ID = Decimal.Parse(item("ID").Text),
-                                                               .EMPLOYEE_ID = Decimal.Parse(item("EMPLOYEE_ID").Text)}
-                        ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
-                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
-                        ctrlMessageBox.DataBind()
-                        ctrlMessageBox.Show()
+                    DeleteContract = New ContractDTO With {.ID = Decimal.Parse(item("ID").Text),
+                                                           .EMPLOYEE_ID = Decimal.Parse(item("EMPLOYEE_ID").Text)}
+                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                        Dim dtData As DataTable
-                        Using xls As New ExcelCommon
-                            dtData = CreateDataFilter(True)
-                            If dtData.Rows.Count = 0 Then
-                                ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf dtData.Rows.Count > 0 Then
-                                rgContract.ExportExcel(Server, Response, dtData, "Title")
-                                Exit Sub
-                            End If
-                        End Using
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = CreateDataFilter(True)
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            rgContract.ExportExcel(Server, Response, dtData, "Title")
+                            Exit Sub
+                        End If
+                    End Using
             End Select
 
             'UpdateControlState()
