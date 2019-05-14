@@ -26,15 +26,15 @@ Partial Public Class AttendanceRepository
                        From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
                        From title In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                        From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                       From machine In Context.AT_TERMINALS.Where(Function(f) f.ID = p.MACHINE_ID).DefaultIfEmpty
+                       From machine In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_ID).DefaultIfEmpty
                        Select New SetUpCodeAttDTO With {
                            .ID = p.ID,
                            .EMPLOYEE_ID = p.EMPLOYEE_ID,
                            .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                            .EMPLOYEE_NAME = e.FULLNAME_VN,
                            .MACHINE_ID = p.MACHINE_ID,
-                           .MACHINE_NAME = machine.TERMINAL_NAME,
-                           .MACHINE_CODE = machine.TERMINAL_CODE,
+                           .MACHINE_NAME = machine.NAME_VN,
+                           .MACHINE_CODE = machine.CODE,
                            .CODE_ATT = p.CODE_ATT,
                            .APPROVE_DATE = p.APPROVE_DATE,
                            .ORG_ID = e.ORG_ID,

@@ -461,7 +461,7 @@ Public Class ctrlSetUpCodeAttEmp
         Dim dtdata As DataTable = New DataTable()
         Dim rep As New AttendanceRepository
         Try
-            dtdata = rep.GetTerminalAuto()
+            dtdata = rep.GetTerminalFromOtOtherList()
             If dtdata IsNot Nothing AndAlso dtdata.Rows.Count > 0 Then
                 FillRadCombobox(cbMACHINE_CODE, dtdata, "TERMINAL_NAME", "ID")
             End If
