@@ -1462,9 +1462,9 @@ Public Class ctrlHU_EmpDtlProfile
             EmployeeInfo.EMPLOYEE_CODE_OLD = rtEmpCode_OLD.Text
             EmployeeInfo.BOOKNO = rtBookNo.Text
             EmployeeInfo.EMPLOYEE_CODE = txtEmpCODE.Text.Trim
-            EmployeeInfo.FIRST_NAME_VN = txtFirstNameVN.Text.Trim
-            EmployeeInfo.FULLNAME_VN = txtFirstNameVN.Text.Trim & " " & txtLastNameVN.Text.Trim
-            EmployeeInfo.LAST_NAME_VN = txtLastNameVN.Text.Trim
+            EmployeeInfo.FIRST_NAME_VN = txtFirstNameVN.Text.ToUpper.Trim
+            EmployeeInfo.FULLNAME_VN = UpperCaseFirst(txtFirstNameVN.Text.Trim) & " " & UpperCaseFirst(txtLastNameVN.Text.Trim)
+            EmployeeInfo.LAST_NAME_VN = txtLastNameVN.Text.ToUpper.Trim
             EmployeeInfo.ORG_ID = hidOrgID.Value
             If txtTo.Text <> "" Then
                 EmployeeInfo.ORG_ID = txtTo.ToolTip
@@ -1818,5 +1818,24 @@ Public Class ctrlHU_EmpDtlProfile
         Finally
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Create by: TUNGLD - 14/05/2019
+    ''' Upper First Character
+    ''' </summary>
+    ''' <param name="str"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function UpperCaseFirst(ByVal str As String) As String
+        Try
+            If String.IsNullOrEmpty(str) = True Then
+                Return ""
+            Else
+                Return Char.ToUpper(str(0)) + str.Substring(1).ToLower
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 End Class
