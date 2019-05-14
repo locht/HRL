@@ -6382,6 +6382,9 @@ Namespace ProfileBusiness
         Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EFFECT_DATE_OLDField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_3B_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6881,6 +6884,19 @@ Namespace ProfileBusiness
                 If (Me.EFFECT_DATEField.Equals(value) <> true) Then
                     Me.EFFECT_DATEField = value
                     Me.RaisePropertyChanged("EFFECT_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EFFECT_DATE_OLD() As System.Nullable(Of Date)
+            Get
+                Return Me.EFFECT_DATE_OLDField
+            End Get
+            Set
+                If (Me.EFFECT_DATE_OLDField.Equals(value) <> true) Then
+                    Me.EFFECT_DATE_OLDField = value
+                    Me.RaisePropertyChanged("EFFECT_DATE_OLD")
                 End If
             End Set
         End Property

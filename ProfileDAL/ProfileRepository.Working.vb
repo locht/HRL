@@ -615,6 +615,7 @@ Partial Class ProfileRepository
                     workOld.OBJECT_ATTENDANCE_NAME_OLD = working_old.OBJECT_ATTENDANCE_NAME
                     workOld.FILING_DATE_OLD = working_old.FILING_DATE
                     workOld.DECISION_TYPE_NAME_OLD = working_old.DECISION_TYPE_NAME
+                    workOld.EFFECT_DATE_OLD = working_old.EFFECT_DATE
                     workOld.EXPIRE_DATE_OLD = working_old.EXPIRE_DATE
                     workOld.DECISION_NO_OLD = working_old.DECISION_NO
                     workOld.SIGN_DATE_OLD = working_old.SIGN_DATE

@@ -44,6 +44,7 @@
     Public Property EFFECT_DATE As Date?
     Public Property EXPIRE_DATE As Date?
 
+    Public Property EFFECT_DATE_OLD As Date?
     Public Property EXPIRE_DATE_OLD As Date?
 
     Public Property DECISION_TYPE_ID As Decimal?
