@@ -54,7 +54,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-             <asp:Label ID="lbParent_Name" runat="server" Text="Đơn vị cha"></asp:Label>
+                  <asp:Label ID="lbParent_Name" runat="server" Text="Đơn vị cha"></asp:Label>
              <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
@@ -64,19 +64,19 @@
             </tr>
             <tr>
                 <td class="lb">
-                  <asp:Label ID="lbNameVN" runat="server" Text="Tên đơn vị (VN)"></asp:Label>
+                   <asp:Label ID="lbNameVN" runat="server" Text="Tên đơn vị (VN)"></asp:Label>
                    <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:radtextbox id="txtNameVN" runat="server" width="100%">
                     </tlk:radtextbox>
                     <asp:RequiredFieldValidator ID="reqNameVN" ControlToValidate="txtNameVN" runat="server"
-                        ErrorMessage=" Bạn phải nhập Tên đơn vị" ToolTip="Bạn phải nhập Tên đơn vị"></asp:RequiredFieldValidator>
+                        ErrorMessage="Bạn phải nhập Tên đơn vị" ToolTip="Bạn phải nhập Tên đơn vị"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                 <asp:Label ID="lbNameEN" runat="server" Text="Tên đơn vị (EN)"></asp:Label>
+                    <asp:Label ID="lbNameEN" runat="server" Text="Tên đơn vị (EN)"></asp:Label>
                     <span class="lbReq"></span>
                 </td>
                 <td colspan="3">
@@ -99,7 +99,7 @@
                     </tlk:radbutton>
                 </td>
                 <td class="lb">
-                <asp:Label ID="lbUNIT_LEVEL" runat="server" Text="Bậc đơn vị"></asp:Label>
+                   <asp:Label ID="lbUNIT_LEVEL" runat="server" Text="Bậc đơn vị"></asp:Label>
                 </td>
                 <td colspan ="3">
                     <tlk:RadComboBox  id="cbUNIT_LEVEL" runat="server" width="100%">
@@ -113,8 +113,7 @@
             </tr>
             <tr>
                 <td class="lb">
-
-                <asp:Label ID="lbCode" runat="server" Text="Mã đơn vị"></asp:Label>
+                    <asp:Label ID="lbCode" runat="server" Text="Mã đơn vị"></asp:Label>
                    <span class="lbReq"></span>
                 </td>
                 <td>
@@ -125,7 +124,7 @@
                     </asp:RequiredFieldValidator>--%>
                 </td>
                 <td class="lb">
-                 <asp:Label ID="lbOrg_level" runat="server" Text="Cấp phòng ban"></asp:Label>
+                     <asp:Label ID="lbOrg_level" runat="server" Text="Cấp phòng ban"></asp:Label>
                     <span class="lbReq"></span>
                 </td>
                 <td colspan="3">
@@ -138,7 +137,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                <asp:Label ID="lbRegion" runat="server" Text="Vùng"></asp:Label>
+                   <asp:Label ID="lbRegion" runat="server" Text="Vùng"></asp:Label>
                   <span class="lbReq"></span>
                 </td>
                 <td>
@@ -149,7 +148,7 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                  <asp:Label ID="lbU_insurance" runat="server" Text="Đơn vị đóng bảo hiểm"></asp:Label>
+                    <asp:Label ID="lbU_insurance" runat="server" Text="Đơn vị đóng bảo hiểm"></asp:Label>
                  <span class="lbReq"></span>
                 </td>
                 <td colspan="3">
@@ -179,10 +178,10 @@
                     </tlk:RadDatePicker>
                 </td>
             </tr>
-            
+           
             <tr>
                 <td class="lb">
-                <asp:Label ID="lbADDRESS" runat="server" Text="Địa chỉ"></asp:Label>
+                    <asp:Label ID="lbADDRESS" runat="server" Text="Địa chỉ"></asp:Label>
                   <span class="lbReq"></span>
                 </td>
                 <td colspan="3">
@@ -192,7 +191,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                 <asp:Label ID="lbLocationWork" runat="server" Text="Địa điểm làm việc"></asp:Label>
+                    <asp:Label ID="lbLocationWork" runat="server" Text="Địa điểm làm việc"></asp:Label>
                   <span class="lbReq"></span>
                 </td>
                 <td colspan="3">
@@ -202,7 +201,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                 <asp:Label ID="lbTypeDecision" runat="server" Text="Loại quyết định"></asp:Label>
+                  <asp:Label ID="lbTypeDecision" runat="server" Text="Loại quyết định"></asp:Label>
                     <span class="lbReq"></span>
                 </td>
                 <td colspan="3">
@@ -215,14 +214,22 @@
                  <asp:Label ID="lbNumberDecision" runat="server" Text="Số quyết định"></asp:Label>
                  <span class="lbReq"></span>
                 </td>
-                <td colspan="3">
+                <td>
                     <tlk:RadTextBox ID="txtNumberDecision" runat="server" Width="100%">
                     </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                   <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực của quyết định"></asp:Label>
+                  
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdEffectDate" runat="server">
+                    </tlk:RadDatePicker>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                <asp:Label ID="lbFOUNDATION_DATE" runat="server" Text="Ngày thành lập"></asp:Label>
+                   <asp:Label ID="lbFOUNDATION_DATE" runat="server" Text="Ngày thành lập"></asp:Label>
                   
                 </td>
                 <td>
@@ -230,7 +237,7 @@
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                 <asp:Label ID="lbDicision_Date" runat="server" Text="Ngày giải thể"></asp:Label>
+                <asp:Label ID="lbDicision_Date" runat="server" Text="Ngày giải thể"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdDicision_Date" runat="server">
@@ -239,7 +246,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                <asp:Label ID="lbREMARK" runat="server" Text="Ghi chú"></asp:Label>
+                  <asp:Label ID="lbREMARK" runat="server" Text="Ghi chú"></asp:Label>
                    <span class="lbReq"></span>
                 </td>
                 <td colspan="4">
@@ -251,8 +258,8 @@
                 <td>
                 </td>
                 <td>
-                <asp:CheckBox runat="server" ID="chkOrgChart" />
-                <asp:Label ID="lbOrgChart" runat="server" Text="Hiển thị org chart"></asp:Label>
+                    <asp:CheckBox runat="server" ID="chkOrgChart" />
+                  <asp:Label ID="lbOrgChart" runat="server" Text="Hiển thị org chart"></asp:Label>
                   <span class="lbReq"></span>
                  <%--   <tlk:RadButton CausesValidation="false" Text="Hiển thị org chart" ToggleType="CheckBox"
                         runat="server" ID="chkOrgChart" ButtonType="ToggleButton">
@@ -262,7 +269,8 @@
                   <asp:Label ID="lbFile" runat="server" Text="Tập tin đính kèm"></asp:Label>
                 <span class="lbReq"></span>
                 </td>
-                 <td colspan="2">
+               
+                <td colspan="2">
                     <tlk:RadListBox ID="lstFile" runat="server" CheckBoxes="true" Height="100px" OnClientSelectedIndexChanging="OnClientItemSelectedIndexChanging"
                         Width="80%" />
                 </td>
@@ -283,7 +291,6 @@
         </div>
     </tlk:radpane>
 </tlk:radsplitter>
-
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <asp:PlaceHolder ID="phPopup" runat="server"></asp:PlaceHolder>
@@ -295,14 +302,14 @@
             item.set_checked(!item.get_checked());
             args.set_cancel(true);
         }
-
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
+        }
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-        function rbtClicked(sender, eventArgs) {
-            enableAjax = false;
-        }
+
         function btnDownFile_Clicking(sender, args) {
             enableAjax = false;
         }

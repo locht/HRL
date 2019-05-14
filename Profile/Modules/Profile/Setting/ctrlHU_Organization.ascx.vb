@@ -363,6 +363,9 @@ Public Class ctrlHU_Organization
                         If IsNumeric(cbUNIT_LEVEL.SelectedValue) Then
                             objOrgFunction.UNIT_LEVEL = cbUNIT_LEVEL.SelectedValue
                         End If
+                        If IsDate(rdEffectDate.SelectedDate) Then
+                            objOrgFunction.EFFECT_DATE = rdEffectDate.SelectedDate
+                        End If
                         If IsDate(rdDATE_BUSINESS.SelectedDate) Then
                             objOrgFunction.DATE_BUSINESS = rdDATE_BUSINESS.SelectedDate
                         End If
@@ -605,6 +608,7 @@ Public Class ctrlHU_Organization
                     txtLocationWork.Text = ""
                     txtTypeDecision.Text = ""
                     txtNumberDecision.Text = ""
+                    rdEffectDate.SelectedDate = Nothing
                     rdFOUNDATION_DATE.SelectedDate = Nothing
                     rdDATE_BUSINESS.SelectedDate = Nothing
                     rdDicision_Date.SelectedDate = Nothing
@@ -879,6 +883,7 @@ Public Class ctrlHU_Organization
                     'lblChucDanh.Text = ""
                     'rdDate_Business.SelectedDate = Nothing
                     'rntxtOrdNo.Value = Nothing
+                    rdEffectDate.SelectedDate = Nothing
                     rdDicision_Date.SelectedDate = Nothing
                     rdFOUNDATION_DATE.SelectedDate = Nothing
                     'AutoGenTimeSheet.Enabled = True
@@ -910,6 +915,7 @@ Public Class ctrlHU_Organization
                     'AutoGenTimeSheet.Enabled = False
                     EnableRadDatePicker(rdDicision_Date, True)
                     EnableRadDatePicker(rdFOUNDATION_DATE, True)
+                    EnableRadDatePicker(rdEffectDate, True)
                     '_radAsynceUpload.Enabled = True
                     '_radAsynceUpload1.Enabled = True
                 Case "Nothing"
@@ -1149,6 +1155,9 @@ Public Class ctrlHU_Organization
                 rtNUMBER_BUSINESS.Text = orgItem.NUMBER_BUSINESS
                 If IsDate(orgItem.DATE_BUSINESS) Then
                     rdDATE_BUSINESS.SelectedDate = orgItem.DATE_BUSINESS
+                End If
+                If IsDate(orgItem.EFFECT_DATE) Then
+                    rdEffectDate.SelectedDate = orgItem.EFFECT_DATE
                 End If
                 If IsDate(orgItem.FOUNDATION_DATE) Then
                     rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE
