@@ -37857,6 +37857,9 @@ Namespace ProfileBusiness
         Private DISSOLVE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EFFECT_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FAXField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -38108,6 +38111,19 @@ Namespace ProfileBusiness
                 If (Me.DISSOLVE_DATEField.Equals(value) <> true) Then
                     Me.DISSOLVE_DATEField = value
                     Me.RaisePropertyChanged("DISSOLVE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EFFECT_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.EFFECT_DATEField
+            End Get
+            Set
+                If (Me.EFFECT_DATEField.Equals(value) <> true) Then
+                    Me.EFFECT_DATEField = value
+                    Me.RaisePropertyChanged("EFFECT_DATE")
                 End If
             End Set
         End Property

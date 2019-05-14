@@ -44,6 +44,19 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetTerminalFromOtOtherList() As System.Data.DataTable _
+            Implements IAttendanceBusiness.GetTerminalFromOtOtherList
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.GetTerminalFromOtOtherList()
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetTerminal(ByVal obj As AT_TERMINALSDTO, ByVal log As UserLog) As System.Data.DataTable _
             Implements IAttendanceBusiness.GetTerminal
 

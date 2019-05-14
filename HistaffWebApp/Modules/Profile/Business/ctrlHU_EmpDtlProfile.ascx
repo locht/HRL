@@ -90,7 +90,7 @@
                 <tlk:RadTab runat="server" ID="rtIdEmpPaper" PageViewID="rpvEmpPaper" Text="Giấy tờ cần nộp ">
                 </tlk:RadTab>
                 <tlk:RadTab runat="server" ID="rtIdTitleConcurrent" PageViewID="rpvEmpTitleConcurrent"
-                    Text="Chức danh kiêm nhiệm ">
+                    Text="Chức danh kiêm nhiệm " Visible="false" >
                 </tlk:RadTab>
             </Tabs>
         </tlk:RadTabStrip>

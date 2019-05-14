@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalCommend.ascx.vb"
     Inherits="Profile.ctrlPortalCommend" %>
 <tlk:RadGrid PageSize="50" ID="rgCommend" runat="server" Height="350px" AllowFilteringByColumn="true">
-    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="DECISION_NO,EFFECT_DATE,COMMEND_LEVEL_NAME,COMMEND_TYPE_NAME,REMARK,MONEY,YEAR,COMMEND_PAY_NAME,SIGNER_NAME">
+    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="DECISION_NO,EFFECT_DATE,COMMEND_LEVEL_NAME,COMMEND_TYPE_NAME,REMARK,MONEY,YEAR,COMMEND_PAY_NAME,SIGNER_NAME,COMMEND_TITLE_NAME,NOTE">
         <Columns>
             <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
                 UniqueName="DECISION_NO" SortExpression="DECISION_NO" ShowFilterIcon="false"

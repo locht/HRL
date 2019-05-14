@@ -428,6 +428,24 @@ Partial Public Class ctrlHU_Organization
     Protected WithEvents txtNumberDecision As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEffectDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdEffectDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
     '''lbFOUNDATION_DATE control.
     '''</summary>
     '''<remarks>

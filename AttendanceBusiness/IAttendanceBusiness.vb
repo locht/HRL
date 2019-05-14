@@ -542,6 +542,9 @@ Namespace AttendanceBusiness.ServiceContracts
 
 #Region "May cham cong"
         <OperationContract()>
+        Function GetTerminalFromOtOtherList() As DataTable
+
+        <OperationContract()>
         Function GetTerminal(ByVal obj As AT_TERMINALSDTO, ByVal log As UserLog) As DataTable
 
         <OperationContract()>

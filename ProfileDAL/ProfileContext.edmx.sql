@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/7/2019 9:35:15 PM
--- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\ProfileDAL\ProfileContext.edmx
+-- Date Created: 14/05/2019 9:43:30 AM
+-- Generated from EDMX file: E:\histaffhcm-1\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2729,7 +2729,8 @@ CREATE TABLE "dbo"."HU_ORGANIZATION" (
    "NUMBER_DECISION" NCLOB NULL,
    "TYPE_DECISION" NCLOB NULL,
    "CHK_ORGCHART" NUMBER(38,0) NULL,
-   "FILES" NCLOB NULL
+   "FILES" NCLOB NULL,
+   "EFFECT_DATE" DATE NULL
 );
 
 -- Creating table 'HU_TALENT_POOL'

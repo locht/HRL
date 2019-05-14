@@ -874,7 +874,7 @@ Partial Class ProfileRepository
                                             .SIGNER_NAME = p.p.SIGNER_NAME,
                                             .SIGNER_TITLE = p.p.SIGNER_TITLE,
                                             .CREATED_DATE = p.p.CREATED_DATE,
-                                            .STATUS_ID = p.p.ID,
+                                            .STATUS_ID = p.p.STATUS_ID,
                                             .STATUS_NAME = p.status.NAME_VN,
                                             .STATUS_CODE = p.status.CODE,
                                             .MORNING_STOP = p.p.MORNING_STOP,

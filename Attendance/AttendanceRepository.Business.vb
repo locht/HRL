@@ -1469,6 +1469,16 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Public Function GetTerminalFromOtOtherList() As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetTerminalFromOtOtherList()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetTerminalAuto() As DataTable
         Using rep As New AttendanceBusinessClient
             Try

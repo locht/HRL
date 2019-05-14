@@ -1281,6 +1281,7 @@ Partial Class ProfileRepository
                                                       .NAME_VN = p.NAME_VN,
                                                       .NAME_EN = p.NAME_EN,
                                                       .PARENT_ID = p.PARENT_ID,
+                                                      .EFFECT_DATE = p.EFFECT_DATE,
                                                       .FOUNDATION_DATE = p.FOUNDATION_DATE,
                                                       .DISSOLVE_DATE = p.DISSOLVE_DATE,
                                                       .REMARK = p.REMARK,
@@ -1320,6 +1321,7 @@ Partial Class ProfileRepository
                                                           .NAME_EN = p.NAME_EN,
                                                           .PARENT_ID = p.PARENT_ID,
                                                           .PARENT_NAME = parent.NAME_VN,
+                                                          .EFFECT_DATE = p.EFFECT_DATE,
                                                           .FOUNDATION_DATE = p.FOUNDATION_DATE,
                                                           .DISSOLVE_DATE = p.DISSOLVE_DATE,
                                                           .REMARK = p.REMARK,
@@ -1361,6 +1363,7 @@ Partial Class ProfileRepository
                                                           .NAME_EN = p.NAME_EN,
                                                           .PARENT_ID = p.PARENT_ID,
                                                           .PARENT_NAME = parent.NAME_VN,
+                                                          .EFFECT_DATE = p.EFFECT_DATE,
                                                           .FOUNDATION_DATE = p.FOUNDATION_DATE,
                                                           .DISSOLVE_DATE = p.DISSOLVE_DATE,
                                                           .REMARK = p.REMARK,
@@ -1401,6 +1404,7 @@ Partial Class ProfileRepository
             objOrganizationData.NAME_VN = objOrganization.NAME_VN.Trim
             objOrganizationData.NAME_EN = objOrganization.NAME_EN.Trim
             objOrganizationData.COST_CENTER_CODE = objOrganization.COST_CENTER_CODE
+            objOrganizationData.EFFECT_DATE = objOrganization.EFFECT_DATE
             objOrganizationData.FOUNDATION_DATE = objOrganization.FOUNDATION_DATE
             objOrganizationData.DISSOLVE_DATE = objOrganization.DISSOLVE_DATE
             objOrganizationData.PARENT_ID = objOrganization.PARENT_ID
@@ -1529,6 +1533,7 @@ Partial Class ProfileRepository
             objOrganizationData.NAME_VN = objOrganization.NAME_VN.Trim
             objOrganizationData.NAME_EN = objOrganization.NAME_EN.Trim
             objOrganizationData.COST_CENTER_CODE = objOrganization.COST_CENTER_CODE
+            objOrganizationData.EFFECT_DATE = objOrganization.EFFECT_DATE
             objOrganizationData.FOUNDATION_DATE = objOrganization.FOUNDATION_DATE
             objOrganizationData.DISSOLVE_DATE = objOrganization.DISSOLVE_DATE
             objOrganizationData.DESCRIPTION_PATH = objOrganization.DESCRIPTION_PATH
