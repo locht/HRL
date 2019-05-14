@@ -142,7 +142,7 @@
                             <span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtFirstNameVN" runat="server" Width="120px" ClientEvents-OnValueChanged="txtFirstNameVNOnValueChanged">
+                            <tlk:RadTextBox ID="txtFirstNameVN" runat="server" Width="120px">
                             </tlk:RadTextBox>
                             <asp:RequiredFieldValidator ValidationGroup="EmpProfile" ID="reqFirstNameVN" ControlToValidate="txtFirstNameVN"
                                 runat="server" ErrorMessage="Bạn phải nhập họ và tên lót" ToolTip="Bạn phải nhập họ và tên lót ">
@@ -153,7 +153,7 @@
                             <span class="lbReq">*</span>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtLastNameVN" runat="server" Width="100px" ClientEvents-OnValueChanged="txtLastNameVNOnValueChanged">
+                            <tlk:RadTextBox ID="txtLastNameVN" runat="server" Width="100px">
                             </tlk:RadTextBox>
                         </td>
                         <td>
