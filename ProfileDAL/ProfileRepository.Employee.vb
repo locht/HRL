@@ -2447,7 +2447,8 @@ Partial Class ProfileRepository
                      .COMMEND_TITLE_NAME = dhkt.NAME,
                      .YEAR = p.YEAR,
                      .COMMEND_PAY_NAME = httt.NAME_VN,
-                     .SIGNER_NAME = p.SIGNER_NAME}).ToList()
+                     .SIGNER_NAME = p.SIGNER_NAME,
+                     .NOTE = p.NOTE}).ToList()
 
             Return query.ToList
         Catch ex As Exception
