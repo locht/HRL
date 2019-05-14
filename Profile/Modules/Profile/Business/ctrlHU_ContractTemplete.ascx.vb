@@ -348,6 +348,9 @@ Public Class ctrlHU_ContractTemplete
                                     Dim str As String = "getRadWindow().close('1');"
                                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    Session("Appendix") = "Success"
+                                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ContractAppendix&group=Business")
+
                                     'cboContract_SelectedIndexChanged(Nothing, Nothing)
                                     'NORMAL.Enabled = False
                                 Else
@@ -363,6 +366,8 @@ Public Class ctrlHU_ContractTemplete
                                     Dim str As String = "getRadWindow().close('1');"
                                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    Session("Appendix") = "Success"
+                                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ContractAppendix&group=Business")
                                     'Refresh("UpdateView")
                                     'CurrentState = CommonMessage.STATE_EDIT
                                     'ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
