@@ -242,7 +242,7 @@ Public Class ctrlHU_Organization
             Dim UNIT_LEVEL As New ComboBoxDataDTO
             UNIT_LEVEL.GET_UNIT_LEVEL = True
             Dim isUnitlevel = rep.GetComboList(UNIT_LEVEL)
-            If isUnitlevel Then
+            If isUnitlevel AndAlso cbUNIT_LEVEL.Items.Count < 1 Then
                 FillRadCombobox(cbUNIT_LEVEL, UNIT_LEVEL.LIST_UNIT_LEVEL, "NAME_VN", "ID")
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
