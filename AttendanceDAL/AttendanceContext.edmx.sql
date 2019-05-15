@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/14/2019 2:21:57 PM
--- Generated from EDMX file: D:\duan\histaffhcm\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 15/05/2019 10:33:24 AM
+-- Generated from EDMX file: E:\histaffhcm-2\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1854,7 +1854,17 @@ CREATE TABLE "dbo"."AT_TIME_TIMESHEET_MONTHLY" (
    "COMEBACKOUT" NUMBER(38,0) NULL,
    "TOTAL_W_SALARY" NUMBER(38,0) NULL,
    "TOTAL_W_NOSALARY" NUMBER(38,0) NULL,
-   "WORKING_MEAL" NUMBER(38,0) NULL
+   "WORKING_MEAL" NUMBER(38,0) NULL,
+   "OBJECT_ATTENDANCE" NUMBER(38,0) NULL,
+   "MIN_AT_WORK" NUMBER(38,0) NULL,
+   "MIN_OUT_WORK" NUMBER(38,0) NULL,
+   "MIN_DEDUCT_FOR_WORK" NUMBER(38,0) NULL,
+   "MIN_ON_LEAVE" NUMBER(38,0) NULL,
+   "MIN_DEDUCT" NUMBER(38,0) NULL,
+   "MIN_OUT_AFTER_DEDUCT" NUMBER(38,0) NULL,
+   "MIN_LATE" NUMBER(38,0) NULL,
+   "MIN_SOON" NUMBER(38,0) NULL,
+   "MIN_LATE_SOON" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_SHIFT'

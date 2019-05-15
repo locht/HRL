@@ -567,6 +567,12 @@ Public Class ctrlHU_ContractAppendix
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_DELETE
+                    For Each _item As GridDataItem In rgContract.SelectedItems
+                        If _item.GetDataKeyValue("STATUS_ID") = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                            ShowMessage(Translate("Đã được phê duyệt, không thể xóa. Vui lòng kiểm tra lại !"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
                     If rep.DeleteFileContract(Contract) Then
                         Contract = Nothing
                         Refresh("UpdateView")

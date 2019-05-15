@@ -1158,6 +1158,8 @@ Public Class ctrlHU_Organization
                 End If
                 If IsDate(orgItem.EFFECT_DATE) Then
                     rdEffectDate.SelectedDate = orgItem.EFFECT_DATE
+                Else
+                    rdEffectDate.SelectedDate = Nothing
                 End If
                 If IsDate(orgItem.FOUNDATION_DATE) Then
                     rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE

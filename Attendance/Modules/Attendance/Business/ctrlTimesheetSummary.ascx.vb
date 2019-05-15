@@ -96,6 +96,10 @@ Public Class ctrlTimesheetSummary
             rgData.AllowCustomPaging = True
             rgData.ClientSettings.EnablePostBackOnRowClick = False
             InitControl()
+            If Not IsPostBack Then
+                getSE_CASE_CONFIG()
+                GirdConfig(rgData)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -308,6 +312,15 @@ Public Class ctrlTimesheetSummary
                         ShowMessage(Translate("Kỳ công chưa được chọn"), Utilities.NotifyType.Error)
                         Exit Sub
                     End If
+                    'LAY THONG TIN CONFIG CASE :
+                    getSE_CASE_CONFIG()
+                    Dim Status As Boolean = True
+                    If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
+                        Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlTimesheetSummary_case1" + "'")
+                        If ROWS IsNot Nothing AndAlso ROWS.Count > 0 Then
+                            Status = CBool(ROWS(0)("STATUS"))
+                        End If
+                    End If
                     Dim lsEmployee As New List(Of Decimal?)
                     'Dim employee_id As Decimal?
                     'For Each items As GridDataItem In rgData.MasterTableView.GetSelectedItems()
@@ -318,11 +331,13 @@ Public Class ctrlTimesheetSummary
                     Dim _param = New ParamDTO With {.PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue), _
                                                     .ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
                                                     .IS_DISSOLVE = ctrlOrg.IsDissolve}
-                    If rep.CAL_TIME_TIMESHEET_MONTHLY(_param, lsEmployee) Then
-                        Refresh("UpdateView")
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Success)
-                        Exit Sub
+                    If Status <> True Then
+                        If rep.CAL_TIME_TIMESHEET_MONTHLY(_param, lsEmployee) Then
+                            Refresh("UpdateView")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Success)
+                            Exit Sub
+                        End If
                     End If
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon

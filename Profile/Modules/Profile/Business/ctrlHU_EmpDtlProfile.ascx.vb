@@ -1462,9 +1462,9 @@ Public Class ctrlHU_EmpDtlProfile
             EmployeeInfo.EMPLOYEE_CODE_OLD = rtEmpCode_OLD.Text
             EmployeeInfo.BOOKNO = rtBookNo.Text
             EmployeeInfo.EMPLOYEE_CODE = txtEmpCODE.Text.Trim
-            EmployeeInfo.FIRST_NAME_VN = txtFirstNameVN.Text.ToUpper.Trim
-            EmployeeInfo.FULLNAME_VN = UpperCaseFirst(txtFirstNameVN.Text.Trim) & " " & UpperCaseFirst(txtLastNameVN.Text.Trim)
-            EmployeeInfo.LAST_NAME_VN = txtLastNameVN.Text.ToUpper.Trim
+            EmployeeInfo.FIRST_NAME_VN = txtFirstNameVN.Text.Trim
+            EmployeeInfo.FULLNAME_VN = txtFirstNameVN.Text.Trim & " " & txtLastNameVN.Text.Trim
+            EmployeeInfo.LAST_NAME_VN = txtLastNameVN.Text.Trim
             EmployeeInfo.ORG_ID = hidOrgID.Value
             If txtTo.Text <> "" Then
                 EmployeeInfo.ORG_ID = txtTo.ToolTip

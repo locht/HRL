@@ -64,5 +64,15 @@
     Public Property TOTAL_FACTOR As Decimal?
 
     Public Property WORKING_DA As Decimal?
-
+    Public Property OBJECT_ATTENDANCE As Decimal?
+    Public Property OBJECT_ATTENDANCE_NAME As String
+    Public Property MIN_AT_WORK As Decimal?
+    Public Property MIN_OUT_WORK As Decimal?
+    Public Property MIN_DEDUCT_FOR_WORK As Decimal?
+    Public Property MIN_ON_LEAVE As Decimal?
+    Public Property MIN_DEDUCT As Decimal?
+    Public Property MIN_OUT_AFTER_DEDUCT As Decimal?
+    Public Property MIN_LATE As Decimal?
+    Public Property MIN_SOON As Decimal?
+    Public Property MIN_LATE_SOON As Decimal?
 End Class
