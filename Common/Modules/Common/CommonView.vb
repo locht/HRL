@@ -388,6 +388,7 @@ Public Class CommonView
         Dim rCol As GridBoundColumn
         Dim rColClientSelect As GridClientSelectColumn
         Dim rColCheck As GridCheckBoxColumn
+        Dim rColdImage As GridBinaryImageColumn
         rg.MasterTableView.Columns.Clear()
         For Each row As DataRow In dtGrid.Rows
             Try
@@ -405,11 +406,23 @@ Public Class CommonView
                     rColCheck.DataField = row.Field(Of String)("ID").Trim()
                     If IsNumeric(row("Width")) Then
                         rColCheck.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
-                        'rColCheck.FilterControlWidth = Integer.Parse(row("Width").ToString())
                     End If
                     rColCheck.HeaderText = Translate(row.Field(Of String)("Name").Trim())
                     rColCheck.HeaderTooltip = (row.Field(Of String)("Name").Trim())
                     rColCheck.ItemStyle.HorizontalAlign = HorizontalAlign.Center
+                    rColCheck.Visible = Boolean.Parse(row.Item("Is_Visible"))
+                ElseIf row.Field(Of String)("DataType").Trim().ToUpper = "IMAGE".ToUpper Then
+                    rColdImage = New GridBinaryImageColumn
+                    rg.MasterTableView.Columns.Add(rColdImage)
+                    rColdImage.DataField = row.Field(Of String)("ID").Trim()
+                    rColdImage.HeaderText = Translate(row.Field(Of String)("Name").Trim())
+                    rColdImage.Visible = Boolean.Parse(row.Item("Is_Visible"))
+                    rColdImage.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
+                    rColdImage.DataAlternateTextField = row.Field(Of String)("ID").Trim()
+                    rColdImage.ImageHeight = 80
+                    rColdImage.ImageWidth = 80
+                    rColdImage.ResizeMode = "Fit"
+                    rColdImage.DataAlternateTextFormatString = "Image of {0}"
                 Else
                     rCol = New GridBoundColumn()
                     rg.MasterTableView.Columns.Add(rCol)
@@ -430,8 +443,6 @@ Public Class CommonView
                     rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
                     If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
                         rCol.DataFormatString = ConfigurationManager.AppSettings("FDATEGRID")
-                        'ElseIf row.Field(Of String)("image").Trim().ToUpper = "image".ToUpper Then
-                        'rCol.DataAlternateTextField=
                     ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
                         rCol.DataFormatString = "{0:#,##0.##}"
                     End If
