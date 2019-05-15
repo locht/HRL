@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 14/05/2019 5:18:22 PM
--- Generated from EDMX file: E:\histaffhcm-1\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 15/05/2019 10:33:24 AM
+-- Generated from EDMX file: E:\histaffhcm-2\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1021,7 +1021,10 @@ CREATE TABLE "dbo"."AT_LEAVESHEET" (
    "MORNING_ID" NUMBER(38,0) NULL,
    "AFTERNOON_ID" NUMBER(38,0) NULL,
    "MANUAL_ID" NUMBER(38,0) NULL,
-   "NOTE_APP" NCLOB NULL
+   "NOTE_APP" NCLOB NULL,
+   "IS_WORKING_DAY" NUMBER(38,0) NULL,
+   "IN_PLAN_DAYS" NUMBER(38,0) NULL,
+   "NOT_IN_PLAN_DAYS" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_PERIOD'

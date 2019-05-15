@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("7877f075-e0b2-4a67-9f49-cf1ec6042a18")>
+<Assembly: EdmSchemaAttribute("9a502bc3-ef09-4fa6-bc06-584f18d5b9a0")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -11369,6 +11369,81 @@ Public Partial Class AT_LEAVESHEET
     End Sub
 
     Private Partial Sub OnNOTE_APPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_WORKING_DAY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_WORKING_DAY
+        End Get
+        Set
+            OnIS_WORKING_DAYChanging(value)
+            ReportPropertyChanging("IS_WORKING_DAY")
+            _IS_WORKING_DAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_WORKING_DAY")
+            OnIS_WORKING_DAYChanged()
+        End Set
+    End Property
+
+    Private _IS_WORKING_DAY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_WORKING_DAYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_WORKING_DAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IN_PLAN_DAYS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IN_PLAN_DAYS
+        End Get
+        Set
+            OnIN_PLAN_DAYSChanging(value)
+            ReportPropertyChanging("IN_PLAN_DAYS")
+            _IN_PLAN_DAYS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IN_PLAN_DAYS")
+            OnIN_PLAN_DAYSChanged()
+        End Set
+    End Property
+
+    Private _IN_PLAN_DAYS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIN_PLAN_DAYSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIN_PLAN_DAYSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NOT_IN_PLAN_DAYS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _NOT_IN_PLAN_DAYS
+        End Get
+        Set
+            OnNOT_IN_PLAN_DAYSChanging(value)
+            ReportPropertyChanging("NOT_IN_PLAN_DAYS")
+            _NOT_IN_PLAN_DAYS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NOT_IN_PLAN_DAYS")
+            OnNOT_IN_PLAN_DAYSChanged()
+        End Set
+    End Property
+
+    Private _NOT_IN_PLAN_DAYS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnNOT_IN_PLAN_DAYSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnNOT_IN_PLAN_DAYSChanged()
     End Sub
 
     #End Region
