@@ -579,7 +579,7 @@ Public Class ctrlHU_CommendNewEdit
 
                             objCommend.LIST_COMMEND_ORG = lstOrg
                         End If
-                        objCommend.YEAR = Decimal.Parse(txtYear.Text)
+                        objCommend.YEAR = If(txtYear.Text.ToString <> "", Decimal.Parse(txtYear.Text), Nothing)
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertCommend(objCommend, gID) Then
