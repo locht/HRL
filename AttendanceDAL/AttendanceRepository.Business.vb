@@ -1030,10 +1030,11 @@ Partial Public Class AttendanceRepository
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                         From w In Context.HU_WORKING.Where(Function(f) f.ID = p.DECISION_ID).DefaultIfEmpty
+                        From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = w.ORG_ID).DefaultIfEmpty
                         From po In Context.AT_PERIOD.Where(Function(f) f.ID = p.PERIOD_ID)
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
-                        Where p.PERIOD_ID = _filter.PERIOD_ID
+                        Where p.PERIOD_ID = _filter.PERIOD_ID()
 
             Dim lst = query.Select(Function(p) New AT_TIME_TIMESHEET_MONTHLYDTO With {
                                        .ID = p.p.ID,
@@ -1091,7 +1092,18 @@ Partial Public Class AttendanceRepository
                                        .TOTAL_FACTOR2_7 = p.ot.TOTAL_FACTOR2_7,
                                        .TOTAL_FACTOR3 = p.ot.TOTAL_FACTOR3,
                                        .TOTAL_FACTOR3_9 = p.ot.TOTAL_FACTOR3_9,
-                                       .WORKING_DA = p.p.WORKING_DA})
+                                       .WORKING_DA = p.p.WORKING_DA,
+                                       .OBJECT_ATTENDANCE = p.p.OBJECT_ATTENDANCE,
+                                       .OBJECT_ATTENDANCE_NAME = p.obj_att.NAME_VN,
+                                       .MIN_AT_WORK = p.p.MIN_AT_WORK,
+                                       .MIN_DEDUCT = p.p.MIN_DEDUCT,
+                                       .MIN_DEDUCT_FOR_WORK = p.p.MIN_DEDUCT_FOR_WORK,
+                                       .MIN_LATE = p.p.MIN_LATE,
+                                       .MIN_LATE_SOON = p.p.MIN_LATE_SOON,
+                                       .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
+                                       .MIN_OUT_AFTER_DEDUCT = p.p.MIN_OUT_AFTER_DEDUCT,
+                                       .MIN_OUT_WORK = p.p.MIN_OUT_WORK,
+                                       .MIN_SOON = p.p.MIN_SOON})
 
             'If _filter.IS_TERMINATE Then
             '    lst = lst.Where(Function(f) f.WORK_STATUS = 257)

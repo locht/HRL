@@ -67,151 +67,189 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="VN_FULLNAME"
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="VN_FULLNAME"
                                 SortExpression="VN_FULLNAME" UniqueName="VN_FULLNAME" HeaderStyle-Width="150" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME" HeaderStyle-Width="200" Visible="false" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Công chuẩn %>" DataField="PERIOD_STANDARD"
+                            <tlk:GridNumericColumn HeaderText="Công chuẩn" DataField="PERIOD_STANDARD"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="PERIOD_STANDARD"
                                 UniqueName="PERIOD_STANDARD">
                             </tlk:GridNumericColumn>
 
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Làm việc ngày thường (X) %>" DataField="WORKING_X"
+                            <tlk:GridNumericColumn HeaderText="Làm việc ngày thường (X)" DataField="WORKING_X"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="WORKING_X"
                                 UniqueName="WORKING_X">
                             </tlk:GridNumericColumn>
-                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Công cơm %>" DataField="WORKING_MEAL"
+                            <tlk:GridNumericColumn HeaderText="Công cơm" DataField="WORKING_MEAL"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_MEAL"
                                 UniqueName="WORKING_MEAL">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Ngày nghỉ tuần %>" DataField="WORKING_F"
+                            <tlk:GridNumericColumn HeaderText="Ngày nghỉ tuần" DataField="WORKING_F"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_F"
                                 UniqueName="WORKING_F">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ lễ tết (LT) %>" DataField="WORKING_L"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ lễ tết (LT)" DataField="WORKING_L"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_L"
                                 UniqueName="WORKING_L">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ đi đường (DD) %>" DataField="WORKING_D"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ đi đường (DD)" DataField="WORKING_D"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_D"
                                 UniqueName="WORKING_D">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ thai sản (TS) %>" DataField="WORKING_TS"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ thai sản (TS)" DataField="WORKING_TS"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_TS"
                                 UniqueName="WORKING_TS">
                                 <HeaderStyle Width="140px" />
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ ốm (O) %>" DataField="WORKING_O"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ ốm (O)" DataField="WORKING_O"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_O"
                                 UniqueName="WORKING_O">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ phép (P) %>" DataField="WORKING_P"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ phép (P)" DataField="WORKING_P"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_P"
                                 UniqueName="WORKING_P">
                                 <HeaderStyle Width="140px" />
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ bù (B) %>" DataField="WORKING_B"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ bù (B)" DataField="WORKING_B"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_B"
                                 UniqueName="WORKING_B">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ công tác (CT) %>" DataField="WORKING_C"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ công tác (CT)" DataField="WORKING_C"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_C"
                                 UniqueName="WORKING_C">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ việc riêng có hưởng lương (R)  %>"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ việc riêng có hưởng lương (R)"
                                 DataField="WORKING_E" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}"
                                 SortExpression="WORKING_E" UniqueName="WORKING_E" Visible="false">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ đi học (DH) %>" DataField="WORKING_A"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ đi học (DH)" DataField="WORKING_A"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_A"
                                 UniqueName="WORKING_A">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ việc riêng (VR) %>" DataField="WORKING_V"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ việc riêng (VR)" DataField="WORKING_V"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_V"
                                 UniqueName="WORKING_V">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ biến chứng thai sản (BCTS) %>" DataField="WORKING_H"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ biến chứng thai sản (BCTS)" DataField="WORKING_H"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_H"
                                 UniqueName="WORKING_H">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ khám thai (KT) %>" DataField="WORKING_Q"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ khám thai (KT)" DataField="WORKING_Q"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_Q"
                                 UniqueName="WORKING_Q">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ vợ sinh (VS) %>" DataField="WORKING_N"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ vợ sinh (VS)" DataField="WORKING_N"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_N"
                                 UniqueName="WORKING_N">
                                 <HeaderStyle Width="140px" />
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ kết hôn (KH) %>" DataField="WORKING_R"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ kết hôn (KH)" DataField="WORKING_R"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_R"
                                 UniqueName="WORKING_R">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ tang gia (TG) %>" DataField="WORKING_T"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ tang gia (TG)" DataField="WORKING_T"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_T"
                                 UniqueName="WORKING_T">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ không hưởng lương (NKL) %>" DataField="WORKING_K"
+                            <tlk:GridNumericColumn HeaderText="Nghỉ không hưởng lương (NKL)" DataField="WORKING_K"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_K"
                                 UniqueName="WORKING_K">
                             </tlk:GridNumericColumn>
-                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Nghỉ có hưởng lương (NCL) %>" DataField="WORKING_J"
+                             <tlk:GridNumericColumn HeaderText="Nghỉ có hưởng lương (NCL)" DataField="WORKING_J"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="WORKING_J"
                                 UniqueName="WORKING_J">
                             </tlk:GridNumericColumn>
-                              <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số ngày nghỉ có hưởng lương %>" DataField="TOTAL_W_SALARY"
+                             <tlk:GridNumericColumn HeaderText="Tổng số ngày nghỉ có hưởng lương" DataField="TOTAL_W_SALARY"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_W_SALARY"
                                 UniqueName="TOTAL_W_SALARY">
                             </tlk:GridNumericColumn>
-                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số ngày nghỉ không hưởng lương %>" DataField="TOTAL_W_NOSALARY"
+                             <tlk:GridNumericColumn HeaderText="Tổng số ngày nghỉ không hưởng lương" DataField="TOTAL_W_NOSALARY"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_W_NOSALARY"
                                 UniqueName="TOTAL_W_NOSALARY">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Đi trễ (phút) %>" DataField="LATE"
+                            <tlk:GridNumericColumn HeaderText="Đi trễ (phút)" DataField="LATE"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
                                 UniqueName="LATE">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Về sớm (phút) %>" DataField="COMEBACKOUT"
+                            <tlk:GridNumericColumn HeaderText="Về sớm (phút)" DataField="COMEBACKOUT"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="COMEBACKOUT"
                                 UniqueName="COMEBACKOUT">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tỉ lệ WOS %>" DataField="WORKING_ADD"
+                            <tlk:GridNumericColumn HeaderText="Tỉ lệ WOS" DataField="WORKING_ADD"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n3}" SortExpression="WORKING_ADD"
                                 UniqueName="WORKING_ADD">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: OT ngày thường %>" DataField="TOTAL_FACTOR1"
+                            <tlk:GridNumericColumn HeaderText="OT ngày thường" DataField="TOTAL_FACTOR1"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_FACTOR1"
                                 UniqueName="TOTAL_FACTOR1">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: OT đêm ngày thường %>" DataField="TOTAL_FACTOR1_5"
+                            <tlk:GridNumericColumn HeaderText="OT đêm ngày thường" DataField="TOTAL_FACTOR1_5"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_FACTOR1_5"
                                 UniqueName="TOTAL_FACTOR1_5">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: OT ngày nghỉ %>" DataField="TOTAL_FACTOR2"
+                            <tlk:GridNumericColumn HeaderText="OT ngày nghỉ" DataField="TOTAL_FACTOR2"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_FACTOR2"
                                 UniqueName="TOTAL_FACTOR2">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: OT đêm ngày nghỉ%>" DataField="TOTAL_FACTOR2_7"
+                            <tlk:GridNumericColumn HeaderText="OT đêm ngày nghỉ" DataField="TOTAL_FACTOR2_7"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_FACTOR2_7"
                                 UniqueName="TOTAL_FACTOR2_7">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: OT ngày lễ %>" DataField="TOTAL_FACTOR3"
+                            <tlk:GridNumericColumn HeaderText="OT ngày lễ" DataField="TOTAL_FACTOR3"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_FACTOR3"
                                 UniqueName="TOTAL_FACTOR3">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: OT đêm ngày lễ %>" DataField="TOTAL_FACTOR3_9"
+                            <tlk:GridNumericColumn HeaderText="OT đêm ngày lễ" DataField="TOTAL_FACTOR3_9"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="TOTAL_FACTOR3_9"
                                 UniqueName="TOTAL_FACTOR3_9">
                             </tlk:GridNumericColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Từ ngày %>" DataField="DECISION_START"
+                            <tlk:GridDateTimeColumn HeaderText="Từ ngày" DataField="DECISION_START"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="DECISION_START" UniqueName="DECISION_START" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đến ngày %>" DataField="DECISION_END"
+                            <tlk:GridDateTimeColumn HeaderText="Đến ngày" DataField="DECISION_END"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="DECISION_END" UniqueName="DECISION_END" />
+                            <tlk:GridBoundColumn HeaderText="Đối tượng chấm công" DataField="OBJECT_ATTENDANCE_NAME"
+                                SortExpression="OBJECT_ATTENDANCE_NAME" UniqueName="OBJECT_ATTENDANCE_NAME" />
+                            <tlk:GridNumericColumn HeaderText="Số phút ở cơ quan" DataField="MIN_AT_WORK"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_AT_WORK"
+                                UniqueName="MIN_AT_WORK">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút ngoài cơ quan" DataField="MIN_DEDUCT"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_DEDUCT"
+                                UniqueName="MIN_DEDUCT">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút giảm trừ do đi việc công" DataField="MIN_DEDUCT_FOR_WORK"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_DEDUCT_FOR_WORK"
+                                UniqueName="MIN_DEDUCT_FOR_WORK">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút trên đơn đăng ký nghỉ" DataField="MIN_LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_LATE"
+                                UniqueName="MIN_LATE">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút giảm trừ" DataField="MIN_LATE_SOON"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_LATE_SOON"
+                                UniqueName="MIN_LATE_SOON">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút ngoài cơ quan sau khi giảm trừ" DataField="MIN_ON_LEAVE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_ON_LEAVE"
+                                UniqueName="MIN_ON_LEAVE">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút đi trễ" DataField="MIN_OUT_AFTER_DEDUCT"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_OUT_AFTER_DEDUCT"
+                                UniqueName="MIN_OUT_AFTER_DEDUCT">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút về sớm" DataField="MIN_OUT_WORK"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_OUT_WORK"
+                                UniqueName="MIN_OUT_WORK">
+                                </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="Số phút đi trễ/về sớm" DataField="MIN_SOON"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_SOON"
+                                UniqueName="MIN_SOON">
+                                </tlk:GridNumericColumn>--%>
                         </Columns>
                         <HeaderStyle Width="105px" />
                     </MasterTableView>
