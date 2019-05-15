@@ -135,10 +135,11 @@ Public Class ctrlHU_WageNewEdit
             CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             Using rep As New ProfileRepository
-                Dim taxTables = rep.GetOtherList(OtherTypes.TaxTable)
-                cboTaxTable.DataSource = taxTables
-                cboTaxTable.DataTextField = "Name"
-                cboTaxTable.DataValueField = "ID"
+                Dim dtdata As DataTable
+                dtdata = rep.GetOtherList(OtherTypes.TaxTable)
+                FillRadCombobox(cboTaxTable, dtdata, "NAME", "ID", True)
+                dtdata = rep.GetOtherList(OtherTypes.DecisionStatus, True)
+                FillRadCombobox(cboStatus, dtdata, "NAME", "ID", True)
             End Using
         Catch ex As Exception
             Throw ex
@@ -260,6 +261,7 @@ Public Class ctrlHU_WageNewEdit
                     CalculatorSalary()
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
+                    cboStatus.SelectedIndex = 1
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -628,6 +630,7 @@ Public Class ctrlHU_WageNewEdit
             txtSignName.Text = objEmployee.FULLNAME_VN
             txtSignTitle.Text = objEmployee.TITLE_NAME
             hidSign.Value = objEmployee.EMPLOYEE_ID
+            
             isLoadPopup = 0
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -661,6 +664,8 @@ Public Class ctrlHU_WageNewEdit
                                                 .IS_INSURANCE = CType(dtData.Rows(i)("IS_INSURANCE"), Boolean)})
                         Next
                     Case cboSalTYPE.ID
+                        ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, rnFactorSalary, SalaryInsurance, Allowance_Total, basicSalary,
+                              Salary_Total, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
                         If e.Context("valueCustom") Is Nothing Then
                             dateValue = Date.Now
                         Else
@@ -680,8 +685,9 @@ Public Class ctrlHU_WageNewEdit
                     Case cbSalaryRank.ID
                         dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
                         dtData = rep.GetSalaryRankList(dValue, True)
-                    Case cboStatus.ID
-                        dtData = rep.GetOtherList(OtherTypes.DecisionStatus)
+                        'Case cboStatus.ID
+                        '    dtData = rep.GetOtherList(OtherTypes.DecisionStatus)
+
                     Case cboTaxTable.ID
                         dtData = rep.GetOtherList(OtherTypes.TaxTable)
                     Case cboSaleCommision.ID
@@ -724,10 +730,6 @@ Public Class ctrlHU_WageNewEdit
 
                         For i As Integer = itemOffset To endOffset - 1
                             Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
-                            Select Case sender.ID
-                                'Case cboSalRank.ID
-                                '    radItem.Attributes("SALARY_BASIC") = dtData.Rows(i)("SALARY_BASIC").ToString()
-                            End Select
                             sender.Items.Add(radItem)
                         Next
                     End If
@@ -738,10 +740,6 @@ Public Class ctrlHU_WageNewEdit
 
                     For i As Integer = itemOffset To endOffset - 1
                         Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
-                        Select Case sender.ID
-                            'Case cboSalRank.ID
-                            '    radItem.Attributes("SALARY_BASIC") = dtData.Rows(i)("SALARY_BASIC").ToString()
-                        End Select
                         sender.Items.Add(radItem)
                     Next
                 End If
@@ -796,6 +794,7 @@ Public Class ctrlHU_WageNewEdit
                         allow.ALLOWANCE_LIST_ID = item.GetDataKeyValue("ALLOWANCE_LIST_ID")
                         allow.ALLOWANCE_LIST_NAME = item.GetDataKeyValue("ALLOWANCE_LIST_NAME")
                         allow.AMOUNT = item.GetDataKeyValue("AMOUNT")
+
                         allow.IS_INSURRANCE = item.GetDataKeyValue("IS_INSURRANCE")
                         allow.EFFECT_DATE = item.GetDataKeyValue("EFFECT_DATE")
                         allow.EXPIRE_DATE = item.GetDataKeyValue("EXPIRE_DATE")
@@ -806,6 +805,7 @@ Public Class ctrlHU_WageNewEdit
                     allow1.ALLOWANCE_LIST_ID = cboAllowance.SelectedValue
                     allow1.ALLOWANCE_LIST_NAME = cboAllowance.Text
                     allow1.AMOUNT = rntxtAmount.Value
+
                     allow1.IS_INSURRANCE = chkIsInsurrance.Checked
                     If rdAllowEffectDate.SelectedDate.HasValue Then
                         allow1.EFFECT_DATE = rdAllowEffectDate.SelectedDate.Value
@@ -814,6 +814,7 @@ Public Class ctrlHU_WageNewEdit
                     End If
                     allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
                     lstAllow.Add(allow1)
+                    Allowance_Total.Value = If(Allowance_Total.Value Is Nothing, 0, Allowance_Total.Value) + allow1.AMOUNT
                     ClearControlValue(cboAllowance, rntxtAmount, chkIsInsurrance, rdAllowExpireDate)
                     rgAllow.Rebind()
                 Case "DeleteAllow"
@@ -888,7 +889,6 @@ Public Class ctrlHU_WageNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
     Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, SalaryInsurance.TextChanged, basicSalary.TextChanged, rnPercentSalary.TextChanged
         Try
             CalculatorSalary()
@@ -896,7 +896,6 @@ Public Class ctrlHU_WageNewEdit
             Throw ex
         End Try
     End Sub
-
     ''' <summary>
     ''' Event selected item combobox phu cap
     ''' </summary>
@@ -933,9 +932,10 @@ Public Class ctrlHU_WageNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    SalaryInsurance.Enabled = True
+                    rnPercentSalary.Value = 100
+                    EnableControlAll(True, btnFindEmployee, chkIsInsurrance, SalaryInsurance)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(False, btnFindEmployee)
+                    EnableControlAll(False, btnFindEmployee, chkIsInsurrance)
                     SalaryInsurance.Enabled = True
             End Select
             Select Case isLoadPopup
@@ -1008,6 +1008,10 @@ Public Class ctrlHU_WageNewEdit
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rnFactorSalary, SalaryInsurance, Allowance_Total, basicSalary,
+                              Salary_Total, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+                rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
+                rgAllow.Rebind()
                 hidID.Value = obj.ID.ToString
                 hidEmp.Value = obj.EMPLOYEE_ID
                 txtEmployeeCode.Text = obj.EMPLOYEE_CODE

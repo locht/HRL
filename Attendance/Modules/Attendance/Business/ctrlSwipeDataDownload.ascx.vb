@@ -196,12 +196,22 @@ Public Class ctrlSwipeDataDownload
     End Sub
 
     Public Overrides Sub BindData()
-
+        Dim dtdata As DataTable
+        Try
+            Using rep As New AttendanceRepository
+                dtdata = rep.GetOtherList("TERMINAL_TYPE", True)
+                If dtdata IsNot Nothing AndAlso dtdata.Rows.Count Then
+                    FillRadCombobox(cbMachine_Type, dtdata, "NAME", "ID")
+                End If
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
         'Dim dic As New Dictionary(Of String, Control)
         'Utilities.OnClientRowSelectedChanged(rglSwipeDataDownload, dic)
-        'Dim rep As New AttendanceRepository
+        'Dim rep1 As New AttendanceRepository
         'Dim obj As New AT_TERMINALSDTO
-        'Dim table = rep.GetTerminal(obj)
+        'Dim table = rep1.GetTerminal(obj)
         'FillRadCombobox(cboMachine, table, "TERMINAL_NAME", "TERMINAL_ID")
     End Sub
     ''' <lastupdate>
@@ -219,7 +229,6 @@ Public Class ctrlSwipeDataDownload
             If Not IsPostBack Then
                 CurrentState = CommonMessage.STATE_NORMAL
             Else
-
                 Select Case Message
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -268,9 +277,9 @@ Public Class ctrlSwipeDataDownload
             Dim Sorts As String = rglSwipeDataDownload.MasterTableView.SortExpressions.GetSortString()
             If Not isFull Then
                 If Sorts IsNot Nothing Then
-                    Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows, Sorts)
+                    Me.SWIPE_DATA = New List(Of AT_SWIPE_DATADTO) 'rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows, Sorts)
                 Else
-                    Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows)
+                    Me.SWIPE_DATA = New List(Of AT_SWIPE_DATADTO) 'rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows)
                 End If
             Else
                 Return rep.GetSwipeData(obj).ToTable()

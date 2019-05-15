@@ -133,6 +133,7 @@
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveSetupOrg.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplate.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplateAddEdit.ascx" />
+    <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
     <Content Include="Modules\Common\ctrlDynamicControl.ascx" />
     <Content Include="Modules\Common\ctrlCheckData.ascx" />
     <Content Include="Modules\Common\ctrlFindMEmployeePopup.ascx" />
@@ -428,6 +429,13 @@
     <Compile Include="Modules\Common\CommonRepository.Secure.vb" />
     <Compile Include="Modules\Common\CommonRepository.ApproveProcess.vb" />
     <Compile Include="Modules\Common\CommonWorkflow.vb" />
+    <Compile Include="Modules\Common\ctrlUploadWithTeamplate.ascx.designer.vb">
+      <DependentUpon>ctrlUploadWithTeamplate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlUploadWithTeamplate.ascx.vb">
+      <DependentUpon>ctrlUploadWithTeamplate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Common\ctrlDynamicControl.ascx.designer.vb">
       <DependentUpon>ctrlDynamicControl.ascx</DependentUpon>
     </Compile>

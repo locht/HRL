@@ -183,7 +183,7 @@
                         <asp:Label ID="lbSalaryInsurance" runat="server" Text="Mức lương đóng bảo hiểm"></asp:Label>
                  </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="SalaryInsurance" runat="server" Enabled="False" 
+                    <tlk:RadNumericTextBox ID="SalaryInsurance" runat="server" AutoPostBack ="true"  Enabled="False" 
                         SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
@@ -202,7 +202,7 @@
                     <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="basicSalary" runat="server" 
+                    <tlk:RadNumericTextBox ID="basicSalary" runat="server" AutoPostBack ="true" 
                         ClientEvents-OnValueChanged="OnBasicSalaryChanged" SkinID="Money">
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldBasicSalary" runat="server" 
@@ -215,7 +215,7 @@
                     <asp:Label runat ="server" ID="lbPercentSalary" Text ="% hưởng lương"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rnPercentSalary" SkinID ="Money" 
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnPercentSalary" AutoPostBack ="true"  SkinID ="Money" 
                         MaxValue="100" MinValue="0" ></tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -232,19 +232,19 @@
                     <asp:Label runat ="server" ID="lbOtherSalary1" Text ="Lương khác 1"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary1" SkinID ="Money" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary1" AutoPostBack ="true"  SkinID ="Money" ></tlk:RadNumericTextBox>
                 </td>
                  <td class="lb">
                     <asp:Label runat ="server" ID="lbOtherSalary2" Text ="Lương khác 2"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary2" SkinID ="Money" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary2" AutoPostBack ="true"  SkinID ="Money" ></tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID="lbOtherSalary3" Text ="Lương khác 3"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary3" SkinID ="Money" ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnOtherSalary3" AutoPostBack ="true"  SkinID ="Money" ></tlk:RadNumericTextBox>
                 </td>
             </tr>
             <tr>
