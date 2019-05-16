@@ -43,7 +43,7 @@
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize=50 ID="rgSignWork" runat="server" Height="100%" SkinID="GridSingleSelect">
+                <tlk:RadGrid PageSize= "50" ID="rgSignWork" runat="server" Height="100%" >
                     <ClientSettings>
                         <Scrolling AllowScroll="true" UseStaticHeaders="true" FrozenColumnsCount="3" />
                     </ClientSettings>
