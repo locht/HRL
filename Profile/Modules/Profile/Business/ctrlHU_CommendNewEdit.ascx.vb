@@ -558,10 +558,10 @@ Public Class ctrlHU_CommendNewEdit
                                 lstCommendEmp.Add(o)
                             Next
 
-                            'If lstCommendEmp.Count = 0 Then
-                            '    ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
-                            '    Exit Sub
-                            'End If
+                            If lstCommendEmp.Count = 0 Then
+                                ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
+                                Exit Sub
+                            End If
 
                             objCommend.COMMEND_EMP = lstCommendEmp
                         Else

@@ -473,7 +473,7 @@ Partial Class ProfileRepository
             'Next
 
             'For Each obj As CommendEmpDTO In objCommend.COMMEND_EMP
-            '    objDataEmp = New HU_COMMEND_EMP
+            '    Dim objDataEmp = New HU_COMMEND_EMP
             '    objDataEmp.HU_COMMEND_ID = objCommendData.ID
             '    objDataEmp.HU_EMPLOYEE_ID = obj.HU_EMPLOYEE_ID
             '    objDataEmp.MONEY = obj.MONEY
