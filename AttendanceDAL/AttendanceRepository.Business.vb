@@ -5908,7 +5908,6 @@ Partial Public Class AttendanceRepository
             If _filter.STATUS.HasValue Then
                 query = query.Where(Function(f) f.STATUS = _filter.STATUS)
             End If
-
             If _filter.FROM_DATE.HasValue And _filter.TO_DATE.HasValue Then
                 query = query.Where(Function(f) f.FROM_DATE >= _filter.FROM_DATE And f.TO_DATE <= _filter.TO_DATE)
             ElseIf _filter.FROM_DATE.HasValue Then

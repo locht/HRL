@@ -289,7 +289,7 @@ Public Class ctrlHU_CommendNewEdit
                     Commend = rep.GetCommendByID(New CommendDTO With {.ID = IDSelect})
                     CurrentState = CommonMessage.STATE_EDIT
                     txtDecisionNo.Text = Commend.NO
-                    txtRemark.Text = Commend.REMARK
+                    txtRemark.Text = Commend.NOTE
                     txtSignerName.Text = Commend.SIGNER_NAME
                     txtSignerTitle.Text = Commend.SIGNER_TITLE
                     rdSignDate.SelectedDate = Commend.SIGN_DATE
@@ -486,7 +486,7 @@ Public Class ctrlHU_CommendNewEdit
                         Else
                             objCommend.UPLOADFILE = If(objCommend.UPLOADFILE Is Nothing, "", objCommend.UPLOADFILE)
                         End If
-                        objCommend.REMARK = txtRemark.Text
+                        objCommend.NOTE = txtRemark.Text
                         objCommend.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
                         objCommend.EFFECT_DATE = rdEffectDate.SelectedDate
                         ' objCommend.EXPIRE_DATE = rdExpireDate.SelectedDate

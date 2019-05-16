@@ -410,7 +410,8 @@ Partial Class ProfileRepository
                                                        .OBJ_ORG_NAME = p.org_name.NAME_VN,
                                                        .FORM_ID = p.p.FORM_ID,
                                                        .FORM_NAME = p.form.NAME_VN,
-                                                       .YEAR = p.p.YEAR})
+                                                       .YEAR = p.p.YEAR,
+                                                       .NOTE = p.p.NOTE})
 
 
             Return obj.FirstOrDefault

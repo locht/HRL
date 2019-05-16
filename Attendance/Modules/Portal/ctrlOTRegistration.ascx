@@ -76,8 +76,8 @@
                                         <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đến ngày %>" DataField="TO_DATE"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="TO_DATE" SortExpression="TO_DATE"
                                         DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center" />
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ký hiệu ca %>" DataField="SIGN_CODE"
-                                         HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="SIGN_CODE" SortExpression="SIGN_CODE" ItemStyle-HorizontalAlign="Center" />
+                                    <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Ký hiệu ca %>" DataField="SIGN_CODE"
+                                         HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="SIGN_CODE" SortExpression="SIGN_CODE" ItemStyle-HorizontalAlign="Center" />--%>
                                     <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Loại làm thêm %>" DataField="OT_TYPE_NAME"
                                          HeaderStyle-Width="150px" ItemStyle-Width="150px" UniqueName="OT_TYPE_NAME" SortExpression="OT_TYPE_NAME"
                                         ItemStyle-HorizontalAlign="Center" /> --%>                                   
