@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("0c4dac79-c991-41b8-8bf4-d2e8622c3f74")>
+<Assembly: EdmSchemaAttribute("f98e7990-d2e4-4764-8ee7-a4aec944e65b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -22025,81 +22025,6 @@ Public Partial Class AT_TIME_MANUAL
     End Sub
 
     Private Partial Sub OnMODIFIED_LOGChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property IS_PAID_RICE() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _IS_PAID_RICE
-        End Get
-        Set
-            OnIS_PAID_RICEChanging(value)
-            ReportPropertyChanging("IS_PAID_RICE")
-            _IS_PAID_RICE = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("IS_PAID_RICE")
-            OnIS_PAID_RICEChanged()
-        End Set
-    End Property
-
-    Private _IS_PAID_RICE As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnIS_PAID_RICEChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnIS_PAID_RICEChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property LIMIT_DAY() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _LIMIT_DAY
-        End Get
-        Set
-            OnLIMIT_DAYChanging(value)
-            ReportPropertyChanging("LIMIT_DAY")
-            _LIMIT_DAY = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("LIMIT_DAY")
-            OnLIMIT_DAYChanged()
-        End Set
-    End Property
-
-    Private _LIMIT_DAY As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnLIMIT_DAYChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnLIMIT_DAYChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property LIMIT_YEAR() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _LIMIT_YEAR
-        End Get
-        Set
-            OnLIMIT_YEARChanging(value)
-            ReportPropertyChanging("LIMIT_YEAR")
-            _LIMIT_YEAR = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("LIMIT_YEAR")
-            OnLIMIT_YEARChanged()
-        End Set
-    End Property
-
-    Private _LIMIT_YEAR As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnLIMIT_YEARChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnLIMIT_YEARChanged()
     End Sub
 
     #End Region
