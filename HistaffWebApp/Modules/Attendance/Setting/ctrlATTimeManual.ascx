@@ -58,7 +58,7 @@
                     </asp:CustomValidator>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td class="lb">
                     <%# Translate("Hưởng công cơm")%>
                 </td>
@@ -77,7 +77,7 @@
                 <td>
                      <tlk:RadNumericTextBox ID="rdLimitYear" runat="server" />
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td class="lb">
                     <%# Translate("Ghi chú")%>
@@ -97,7 +97,7 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,ACTFLG,NOTE,IS_PAID_RICE,LIMIT_DAY,LIMIT_YEAR">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,ACTFLG,NOTE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -113,12 +113,12 @@
                         UniqueName="AFTERNOON_NAME" SortExpression="AFTERNOON_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
-                         <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hưởng công cơm %>" AllowFiltering="false"
+                         <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hưởng công cơm %>" AllowFiltering="false"
                                 DataField="IS_PAID_RICE" SortExpression="IS_PAID_RICE" UniqueName="IS_PAID_RICE" />
                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới hạn số ngày tối đa /lần %>" DataField="LIMIT_DAY"
                         UniqueName="LIMIT_DAY" SortExpression="LIMIT_DAY" />
                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới hạn số ngày tối đa /năm %>" DataField="LIMIT_YEAR"
-                        UniqueName="LIMIT_YEAR" SortExpression="LIMIT_YEAR" />
+                        UniqueName="LIMIT_YEAR" SortExpression="LIMIT_YEAR" />--%>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />
                 </Columns>

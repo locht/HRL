@@ -4771,11 +4771,8 @@ Partial Public Class AttendanceRepository
                                        .MORNING_NAME = p.f1.NAME_VN,
                                        .AFTERNOON_ID = p.p.AFTERNOON_ID,
                                        .AFTERNOON_NAME = p.f2.NAME_VN,
-                                       .LIMIT_DAY = p.p.LIMIT_DAY,
-                                       .LIMIT_YEAR = p.p.LIMIT_YEAR,
                                        .NOTE = p.p.NOTE,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
-                                       .IS_PAID_RICE = p.p.IS_PAID_RICE,
                                        .CREATED_BY = p.p.CREATED_BY,
                                        .CREATED_DATE = p.p.CREATED_DATE,
                                        .CREATED_LOG = p.p.CREATED_LOG,
@@ -4840,13 +4837,10 @@ Partial Public Class AttendanceRepository
             objTitleData.NAME = objTitle.NAME_VN.Trim
             objTitleData.MORNING_ID = objTitle.MORNING_ID
             objTitleData.AFTERNOON_ID = objTitle.AFTERNOON_ID
-            objTitleData.LIMIT_DAY = objTitle.LIMIT_DAY
-            objTitleData.LIMIT_YEAR = objTitle.LIMIT_YEAR
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.CREATED_BY = objTitle.CREATED_BY
             objTitleData.CREATED_DATE = objTitle.CREATED_DATE
-            objTitleData.IS_PAID_RICE = objTitle.IS_PAID_RICE
             objTitleData.CREATED_LOG = objTitle.CREATED_LOG
             objTitleData.MODIFIED_BY = objTitle.MODIFIED_BY
             objTitleData.MODIFIED_DATE = objTitle.MODIFIED_DATE
@@ -4905,13 +4899,10 @@ Partial Public Class AttendanceRepository
             objTitleData.NAME = objTitle.NAME_VN.Trim
             objTitleData.MORNING_ID = objTitle.MORNING_ID
             objTitleData.AFTERNOON_ID = objTitle.AFTERNOON_ID
-            objTitleData.LIMIT_DAY = objTitle.LIMIT_DAY
-            objTitleData.LIMIT_YEAR = objTitle.LIMIT_YEAR
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.CREATED_BY = objTitle.CREATED_BY
             objTitleData.CREATED_DATE = objTitle.CREATED_DATE
             objTitleData.CREATED_LOG = objTitle.CREATED_LOG
-            objTitleData.IS_PAID_RICE = objTitle.IS_PAID_RICE
             objTitleData.MODIFIED_BY = objTitle.MODIFIED_BY
             objTitleData.MODIFIED_DATE = objTitle.MODIFIED_DATE
             objTitleData.MODIFIED_LOG = objTitle.MODIFIED_LOG
