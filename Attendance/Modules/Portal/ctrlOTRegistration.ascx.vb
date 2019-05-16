@@ -203,7 +203,7 @@ Public Class ctrlOTRegistration
                     Dim datacheck As AT_PROCESS_DTO
                     'Kiểm tra các điều kiện trước khi xóa
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.chuaguiduyet Then
+                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.unsent Then
                             ShowMessage(Translate("Trạng thái làm thêm này không thể gửi duyệt. Vui lòng chọn dòng khác."), NotifyType.Warning)
                             Exit Sub
                         End If
