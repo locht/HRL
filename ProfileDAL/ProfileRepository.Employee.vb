@@ -2355,6 +2355,7 @@ Partial Class ProfileRepository
                                                     .SIGN_TITLE = p.SIGN_TITLE,
                                                     .OTHERSALARY1 = p.OTHERSALARY1,
                                                     .OTHERSALARY2 = p.OTHERSALARY2,
+                                                    .PERCENTSALARY = p.PERCENTSALARY,
                                                     .FACTORSALARY = p.FACTORSALARY,
                                                     .SAL_TOTAL = p.SAL_TOTAL + If((From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum Is Nothing, 0, (From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum),
                                                     .COST_SUPPORT = p.COST_SUPPORT,
