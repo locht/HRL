@@ -29554,6 +29554,9 @@ Namespace ProfileBusiness
         Private GD_CHINH_SACHField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GD_CHINH_SACH_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GENDERField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -29561,6 +29564,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HANG_THUONG_BINHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HANG_THUONG_BINH_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HOME_PHONEField As String
@@ -30218,6 +30224,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GD_CHINH_SACH_NAME() As String
+            Get
+                Return Me.GD_CHINH_SACH_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GD_CHINH_SACH_NAMEField, value) <> true) Then
+                    Me.GD_CHINH_SACH_NAMEField = value
+                    Me.RaisePropertyChanged("GD_CHINH_SACH_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property GENDER() As System.Nullable(Of Decimal)
             Get
                 Return Me.GENDERField
@@ -30252,6 +30271,19 @@ Namespace ProfileBusiness
                 If (Me.HANG_THUONG_BINHField.Equals(value) <> true) Then
                     Me.HANG_THUONG_BINHField = value
                     Me.RaisePropertyChanged("HANG_THUONG_BINH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HANG_THUONG_BINH_NAME() As String
+            Get
+                Return Me.HANG_THUONG_BINH_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.HANG_THUONG_BINH_NAMEField, value) <> true) Then
+                    Me.HANG_THUONG_BINH_NAMEField = value
+                    Me.RaisePropertyChanged("HANG_THUONG_BINH_NAME")
                 End If
             End Set
         End Property
