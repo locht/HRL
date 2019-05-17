@@ -351,6 +351,8 @@ Public Class ctrlHU_WageNewEdit
                     End If
                 End If
             End Using
+            ClearControlValue(SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -382,10 +384,14 @@ Public Class ctrlHU_WageNewEdit
                     FillRadCombobox(cbSalaryRank, dtData, "NAME", "ID", True)
                 End If
             End Using
+            ClearControlValue(rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
     ''' <summary>
     ''' Event click item cua menu toolbar
     ''' Check validate page khi an luu
@@ -608,6 +614,8 @@ Public Class ctrlHU_WageNewEdit
             Dim empID = ctrlFindEmployeePopup.SelectedEmployeeID(0)
             FillData(empID)
             isLoadPopup = 0
+            ClearControlValue(cbSalaryLevel, rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -630,7 +638,7 @@ Public Class ctrlHU_WageNewEdit
             txtSignName.Text = objEmployee.FULLNAME_VN
             txtSignTitle.Text = objEmployee.TITLE_NAME
             hidSign.Value = objEmployee.EMPLOYEE_ID
-            
+
             isLoadPopup = 0
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -816,6 +824,7 @@ Public Class ctrlHU_WageNewEdit
                     lstAllow.Add(allow1)
                     Allowance_Total.Value = If(Allowance_Total.Value Is Nothing, 0, Allowance_Total.Value) + allow1.AMOUNT
                     ClearControlValue(cboAllowance, rntxtAmount, chkIsInsurrance, rdAllowExpireDate)
+                    CalculatorSalary()
                     rgAllow.Rebind()
                 Case "DeleteAllow"
                     For Each item As GridDataItem In rgAllow.Items
@@ -837,6 +846,8 @@ Public Class ctrlHU_WageNewEdit
                             lstAllow.Add(allow)
                         End If
                     Next
+                    ClearControlValue(Allowance_Total)
+                    CalculatorSalary()
                     rgAllow.Rebind()
             End Select
             'RebindValue()

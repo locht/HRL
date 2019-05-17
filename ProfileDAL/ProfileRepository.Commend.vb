@@ -410,7 +410,8 @@ Partial Class ProfileRepository
                                                        .OBJ_ORG_NAME = p.org_name.NAME_VN,
                                                        .FORM_ID = p.p.FORM_ID,
                                                        .FORM_NAME = p.form.NAME_VN,
-                                                       .YEAR = p.p.YEAR})
+                                                       .YEAR = p.p.YEAR,
+                                                       .NOTE = p.p.NOTE})
 
 
             Return obj.FirstOrDefault
@@ -473,7 +474,7 @@ Partial Class ProfileRepository
             'Next
 
             'For Each obj As CommendEmpDTO In objCommend.COMMEND_EMP
-            '    objDataEmp = New HU_COMMEND_EMP
+            '    Dim objDataEmp = New HU_COMMEND_EMP
             '    objDataEmp.HU_COMMEND_ID = objCommendData.ID
             '    objDataEmp.HU_EMPLOYEE_ID = obj.HU_EMPLOYEE_ID
             '    objDataEmp.MONEY = obj.MONEY

@@ -149,33 +149,6 @@ Partial Public Class ctrlATTimeManual
     Protected WithEvents cvalAfternoon As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''chkIsPrice control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents chkIsPrice As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''rdLimitDay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdLimitDay As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
-    '''rdLimitYear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rdLimitYear As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
     '''rdNote control.
     '''</summary>
     '''<remarks>

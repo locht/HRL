@@ -67,7 +67,7 @@ Public Class ctrlPortalEmpProfile
                                       ckCONG_DOAN, rtCV_BANTT, rdNgay_TG_BanTT, ckNU_CONG, rtCV_Ban_Nu_Cong,
                                       rdNgay_TG_Ban_Nu_Cong, rdNgay_Nhap_Ngu_CA, rdNgay_Xuat_Ngu_CA, rtDV_Xuat_Ngu_CA,
                                       ckQD, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD, ckThuong_Binh,
-                                      cbHang_Thuong_Binh, cbGD_Chinh_Sach, rdNGAY_VAO_DANG_DB, rtCHUC_VU_DANG, rdNGAY_VAO_DANG,
+                                      txtHang_Thuong_Binh, txtGD_Chinh_Sach, rdNGAY_VAO_DANG_DB, rtCHUC_VU_DANG, rdNGAY_VAO_DANG,
                                       rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, ckDOAN_PHI)
     End Sub
 
@@ -199,6 +199,8 @@ Public Class ctrlPortalEmpProfile
                             'txtNoiVaoDang.Text = empCV.NOI_VAO_DANG
                             'txtNoiVaoDoan.Text = empCV.NOI_VAO_DOAN
                             txtBankNo.Text = empCV.BANK_NO
+                            txtHang_Thuong_Binh.Text = empCV.HANG_THUONG_BINH_NAME
+                            txtGD_Chinh_Sach.Text = empCV.GD_CHINH_SACH_NAME
                             chkPayViaBank.Checked = empCV.IS_PAY_BANK
                             '=========================================================
                             If IsNumeric(empCV.DANG) Then
@@ -244,13 +246,6 @@ Public Class ctrlPortalEmpProfile
                             If IsNumeric(empCV.THUONG_BINH) Then
                                 ckThuong_Binh.Checked = CType(empCV.THUONG_BINH, Boolean)
                             End If
-                            If IsNumeric(empCV.HANG_THUONG_BINH) Then
-                                cbHang_Thuong_Binh.SelectedValue = empCV.HANG_THUONG_BINH
-                            End If
-                            If IsNumeric(empCV.GD_CHINH_SACH) Then
-                                cbGD_Chinh_Sach.SelectedValue = empCV.GD_CHINH_SACH
-                            End If
-
                             If IsDate(empCV.NGAY_VAO_DANG_DB) Then
                                 rdNGAY_VAO_DANG_DB.SelectedDate = empCV.NGAY_VAO_DANG_DB
                             End If

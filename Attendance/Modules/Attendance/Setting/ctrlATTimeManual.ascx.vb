@@ -177,15 +177,15 @@ Public Class ctrlATTimeManual
                     txtCode.Text = ""
                     txtNameVN.Text = ""
                     rdNote.Text = ""
-                    chkIsPrice.Enabled = True
-                    chkIsPrice.Checked = False
+                    'chkIsPrice.Enabled = True
+                    'chkIsPrice.Checked = False
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
                     rdNote.Enabled = True
                     cboMorning.Enabled = True
                     cboAfternoon.Enabled = True
-                    rdLimitDay.Enabled = True
-                    rdLimitYear.Enabled = True
+                    'rdLimitDay.Enabled = True
+                    'rdLimitYear.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_NORMAL
@@ -194,30 +194,30 @@ Public Class ctrlATTimeManual
                     rdNote.Text = ""
                     cboAfternoon.Text = ""
                     cboMorning.Text = ""
-                    chkIsPrice.Checked = False
+                    'chkIsPrice.Checked = False
                     cboAfternoon.SelectedValue = Nothing
                     cboMorning.SelectedValue = Nothing
                     txtCode.Enabled = False
                     txtNameVN.Enabled = False
-                    chkIsPrice.Enabled = False
+                    'chkIsPrice.Enabled = False
                     cboAfternoon.Enabled = False
                     cboMorning.Enabled = False
                     rdNote.Enabled = False
-                    rdLimitDay.Enabled = False
-                    rdLimitDay.Value = Nothing
-                    rdLimitYear.Enabled = False
-                    rdLimitYear.Value = Nothing
+                    'rdLimitDay.Enabled = False
+                    ' rdLimitDay.Value = Nothing
+                    'rdLimitYear.Enabled = False
+                    'rdLimitYear.Value = Nothing
                     EnabledGridNotPostback(rgDanhMuc, True)
 
                 Case CommonMessage.STATE_EDIT
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
                     cboAfternoon.Enabled = True
-                    chkIsPrice.Enabled = True
+                    'chkIsPrice.Enabled = True
                     cboMorning.Enabled = True
                     rdNote.Enabled = True
-                    rdLimitDay.Enabled = True
-                    rdLimitYear.Enabled = True
+                    'rdLimitDay.Enabled = True
+                    'rdLimitYear.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_DEACTIVE
@@ -230,7 +230,7 @@ Public Class ctrlATTimeManual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote, chkIsPrice, rdLimitDay, rdLimitYear)
+                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -244,7 +244,7 @@ Public Class ctrlATTimeManual
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote, chkIsPrice, rdLimitDay, rdLimitYear)
+                        ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -288,10 +288,10 @@ Public Class ctrlATTimeManual
             dic.Add("NAME_VN", txtNameVN)
             dic.Add("MORNING_ID", cboMorning)
             dic.Add("AFTERNOON_ID", cboAfternoon)
-            dic.Add("LIMIT_DAY", rdLimitDay)
-            dic.Add("LIMIT_YEAR", rdLimitYear)
+            'dic.Add("LIMIT_DAY", rdLimitDay)
+            'dic.Add("LIMIT_YEAR", rdLimitYear)
             dic.Add("NOTE", rdNote)
-            dic.Add("IS_PAID_RICE", chkIsPrice)
+            'dic.Add("IS_PAID_RICE", chkIsPrice)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                          CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -326,8 +326,8 @@ Public Class ctrlATTimeManual
                     cboMorning.Text = ""
                     cboAfternoon.SelectedValue = Nothing
                     cboMorning.SelectedValue = Nothing
-                    rdLimitDay.Value = Nothing
-                    rdLimitYear.Value = Nothing
+                    'rdLimitDay.Value = Nothing
+                    'rdLimitYear.Value = Nothing
                     rgDanhMuc.SelectedIndexes.Clear()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgDanhMuc.SelectedItems.Count = 0 Then
@@ -389,14 +389,14 @@ Public Class ctrlATTimeManual
                         objHoliday_Gen.NAME_VN = txtNameVN.Text
                         objHoliday_Gen.MORNING_ID = cboMorning.SelectedValue
                         objHoliday_Gen.AFTERNOON_ID = cboAfternoon.SelectedValue
-                        objHoliday_Gen.IS_PAID_RICE = chkIsPrice.Checked
+                        'objHoliday_Gen.IS_PAID_RICE = chkIsPrice.Checked
                         objHoliday_Gen.NOTE = rdNote.Text
-                        If rdLimitDay.Value IsNot Nothing Then
-                            objHoliday_Gen.LIMIT_DAY = rdLimitDay.Value
-                        End If
-                        If rdLimitYear.Value IsNot Nothing Then
-                            objHoliday_Gen.LIMIT_YEAR = rdLimitYear.Value
-                        End If
+                        'If rdLimitDay.Value IsNot Nothing Then
+                        '    objHoliday_Gen.LIMIT_DAY = rdLimitDay.Value
+                        'End If
+                        'If rdLimitYear.Value IsNot Nothing Then
+                        '    objHoliday_Gen.LIMIT_YEAR = rdLimitYear.Value
+                        'End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objHoliday_Gen.ACTFLG = "A"
@@ -415,7 +415,7 @@ Public Class ctrlATTimeManual
                                 validate.ID = objHoliday_Gen.ID
                                 If rep.ValidateAT_TIME_MANUAL(validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, chkIsPrice, rdNote)
+                                    ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
                                     rgDanhMuc.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
@@ -653,7 +653,7 @@ Public Class ctrlATTimeManual
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgDanhMuc.SelectedItems.Count = 0 Or rgDanhMuc.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote, chkIsPrice)
+                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -667,7 +667,7 @@ Public Class ctrlATTimeManual
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If (CurrentState <> CommonMessage.STATE_NEW And (rgDanhMuc.SelectedItems.Count = 0 Or rgDanhMuc.SelectedItems.Count > 1)) Then
-                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote, chkIsPrice)
+                ClearControlValue(txtCode, txtNameVN, cboAfternoon, cboMorning, rdNote)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

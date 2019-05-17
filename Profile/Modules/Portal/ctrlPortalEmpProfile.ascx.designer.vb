@@ -788,13 +788,13 @@ Partial Public Class ctrlPortalEmpProfile
     Protected WithEvents lbHang_Thuong_Binh As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cbHang_Thuong_Binh control.
+    '''txtHang_Thuong_Binh control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbHang_Thuong_Binh As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents txtHang_Thuong_Binh As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbGD_Chinh_Sach control.
@@ -806,13 +806,13 @@ Partial Public Class ctrlPortalEmpProfile
     Protected WithEvents lbGD_Chinh_Sach As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cbGD_Chinh_Sach control.
+    '''txtGD_Chinh_Sach control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbGD_Chinh_Sach As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents txtGD_Chinh_Sach As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtWorkEmail control.

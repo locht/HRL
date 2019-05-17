@@ -101,7 +101,9 @@
     Public Property OPPTION9 As Date?
     Public Property OPPTION10 As Date?
     Public Property GD_CHINH_SACH As Decimal?
+    Public Property GD_CHINH_SACH_NAME As String
     Public Property HANG_THUONG_BINH As Decimal?
+    Public Property HANG_THUONG_BINH_NAME As String
     Public Property THUONG_BINH As Boolean?
     Public Property DV_XUAT_NGU_QD As String
     Public Property NGAY_XUAT_NGU_QD As Date?

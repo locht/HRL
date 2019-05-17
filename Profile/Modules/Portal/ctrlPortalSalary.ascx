@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalSalary.ascx.vb"
     Inherits="Profile.ctrlPortalSalary" %>
 <tlk:RadGrid PageSize="50" ID="rgSalary" runat="server" Height="300px" AllowFilteringByColumn="true" Scrolling="X">
-    <MasterTableView>
+    <MasterTableView DataKeyNames="ID,EFFECT_DATE,EMPLOYEE_ID" ClientDataKeyNames="ID,EFFECT_DATE,EMPLOYEE_ID">
         <Columns>
             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
                 UniqueName="DECISION_NO" SortExpression="DECISION_NO" ShowFilterIcon="false"
@@ -33,8 +33,8 @@
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
-            <tlk:GridNumericColumn HeaderText="<%$ Translate: % lương được hưởng %>" DataField="PERCENT_SALARY"
-                UniqueName="PERCENT_SALARY" SortExpression="PERCENT_SALARY" ShowFilterIcon="true">
+            <tlk:GridNumericColumn HeaderText="<%$ Translate: % lương được hưởng %>" DataField="PERCENTSALARY"
+                UniqueName="PERCENTSALARY" SortExpression="PERCENTSALARY" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>

@@ -289,7 +289,7 @@ Public Class ctrlHU_CommendNewEdit
                     Commend = rep.GetCommendByID(New CommendDTO With {.ID = IDSelect})
                     CurrentState = CommonMessage.STATE_EDIT
                     txtDecisionNo.Text = Commend.NO
-                    txtRemark.Text = Commend.REMARK
+                    txtRemark.Text = Commend.NOTE
                     txtSignerName.Text = Commend.SIGNER_NAME
                     txtSignerTitle.Text = Commend.SIGNER_TITLE
                     rdSignDate.SelectedDate = Commend.SIGN_DATE
@@ -486,7 +486,7 @@ Public Class ctrlHU_CommendNewEdit
                         Else
                             objCommend.UPLOADFILE = If(objCommend.UPLOADFILE Is Nothing, "", objCommend.UPLOADFILE)
                         End If
-                        objCommend.REMARK = txtRemark.Text
+                        objCommend.NOTE = txtRemark.Text
                         objCommend.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
                         objCommend.EFFECT_DATE = rdEffectDate.SelectedDate
                         ' objCommend.EXPIRE_DATE = rdExpireDate.SelectedDate
@@ -558,10 +558,10 @@ Public Class ctrlHU_CommendNewEdit
                                 lstCommendEmp.Add(o)
                             Next
 
-                            'If lstCommendEmp.Count = 0 Then
-                            '    ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
-                            '    Exit Sub
-                            'End If
+                            If lstCommendEmp.Count = 0 Then
+                                ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
+                                Exit Sub
+                            End If
 
                             objCommend.COMMEND_EMP = lstCommendEmp
                         Else
@@ -625,7 +625,7 @@ Public Class ctrlHU_CommendNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Using rep As New ProfileRepository
-                Dim commend_pays = rep.GetOtherList("COMMEND_PAY", True).ToList(Of OtherListDTO)
+                Dim commend_pays = rep.GetOtherList("COMMEND_PAY", True).ToList(Of OtherListDTO)()
                 Dim current = commend_pays.FirstOrDefault(Function(f) f.ID = commend_pay_id)
                 If current IsNot Nothing Then
                     Return current.CODE = ProfileCommon.Commend_Pay.TienMat
@@ -777,7 +777,7 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub cboCommendObj_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboCommendObj.SelectedIndexChanged        
+    Private Sub cboCommendObj_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboCommendObj.SelectedIndexChanged
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim validate As New OtherListDTO
@@ -953,7 +953,7 @@ Public Class ctrlHU_CommendNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub rgEmployee_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgEmployee.NeedDataSource        
+    Private Sub rgEmployee_NeedDataSource(sender As Object, e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgEmployee.NeedDataSource
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
@@ -1889,7 +1889,7 @@ Public Class ctrlHU_CommendNewEdit
             listCommend = psp.Get_Commend_Formality(True, cboCommendObj.SelectedValue)
             FillRadCombobox(cboCommendType, listCommend, "NAME", "ID", False)
 
-            
+
             'cap khen thưởng
             Dim levelCommend As DataTable
             levelCommend = psp.Get_Commend_Level(True)

@@ -58,7 +58,7 @@
                     </asp:CustomValidator>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td class="lb">
                     <%# Translate("Hưởng công cơm")%>
                 </td>
@@ -77,7 +77,7 @@
                 <td>
                      <tlk:RadNumericTextBox ID="rdLimitYear" runat="server" />
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td class="lb">
                     <%# Translate("Ghi chú")%>
@@ -97,7 +97,7 @@
                 <ClientEvents OnGridCreated="GridCreated" />
                 <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,ACTFLG,NOTE,IS_PAID_RICE,LIMIT_DAY,LIMIT_YEAR">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME_VN,MORNING_ID,AFTERNOON_ID,ACTFLG,NOTE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -113,12 +113,12 @@
                         UniqueName="AFTERNOON_NAME" SortExpression="AFTERNOON_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
-                         <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hưởng công cơm %>" AllowFiltering="false"
+                         <%--<tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hưởng công cơm %>" AllowFiltering="false"
                                 DataField="IS_PAID_RICE" SortExpression="IS_PAID_RICE" UniqueName="IS_PAID_RICE" />
                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới hạn số ngày tối đa /lần %>" DataField="LIMIT_DAY"
                         UniqueName="LIMIT_DAY" SortExpression="LIMIT_DAY" />
                      <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới hạn số ngày tối đa /năm %>" DataField="LIMIT_YEAR"
-                        UniqueName="LIMIT_YEAR" SortExpression="LIMIT_YEAR" />
+                        UniqueName="LIMIT_YEAR" SortExpression="LIMIT_YEAR" />--%>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"
                         SortExpression="NOTE" />
                 </Columns>
@@ -193,19 +193,19 @@
         }
         // Hàm khôi phục lại Size ban đầu cho Splitter
         function ResizeSplitterDefault() {
-            var splitter = $find("<%= RadSplitter3.ClientID%>");
-            var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
-            if (oldSize == 0) {
-                oldSize = pane.getContentElement().scrollHeight;
-            } else {
-                var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
-            splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
-            pane.set_height(oldSize);
-            pane2.set_height(splitter.get_height() - oldSize - 1);
+        var splitter = $find("<%= RadSplitter3.ClientID%>");
+        var pane = splitter.getPaneById('<%= RadPane1.ClientID %>');
+        if (oldSize == 0) {
+        oldSize = pane.getContentElement().scrollHeight;
+        } else {
+        var pane2 = splitter.getPaneById('<%= RadPane2.ClientID %>');
+        splitter.set_height(splitter.get_height() + pane.get_height() - oldSize);
+        pane.set_height(oldSize);
+        pane2.set_height(splitter.get_height() - oldSize - 1);
         }
-    }*/
-    function cusMorning(oSrc, args) {
-        var cbo = $find("<%# cboMorning.ClientID %>");
+        }*/
+        function cusMorning(oSrc, args) {
+            var cbo = $find("<%# cboMorning.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
         }
         function cusAfternoon(oSrc, args) {

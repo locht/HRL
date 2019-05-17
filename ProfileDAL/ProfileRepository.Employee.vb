@@ -1571,6 +1571,9 @@ Partial Class ProfileRepository
                     From emp_pro In Context.HU_PROVINCE.Where(Function(f) cv.PER_PROVINCE = f.ID).DefaultIfEmpty
                      From emp_dis In Context.HU_DISTRICT.Where(Function(f) cv.PER_DISTRICT = f.ID).DefaultIfEmpty
                      From emp_ward In Context.HU_WARD.Where(Function(f) cv.PER_WARD = f.ID).DefaultIfEmpty
+                     From nguyenquan In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.PROVINCENQ_ID).DefaultIfEmpty
+                     From thuongbinh In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.HANG_THUONG_BINH).DefaultIfEmpty
+                     From gdchinhsach In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GD_CHINH_SACH).DefaultIfEmpty
             Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
@@ -1649,6 +1652,7 @@ Partial Class ProfileRepository
                          .OPPTION9 = cv.OPPTION9,
                          .OPPTION10 = cv.OPPTION10,
                          .GD_CHINH_SACH = cv.GD_CHINH_SACH,
+                         .GD_CHINH_SACH_NAME = gdchinhsach.NAME_VN,
                          .THUONG_BINH = CType(cv.THUONG_BINH, Boolean),
                          .DV_XUAT_NGU_QD = cv.DV_XUAT_NGU_QD,
                          .NGAY_XUAT_NGU_QD = cv.NGAY_XUAT_NGU_QD,
@@ -1670,6 +1674,7 @@ Partial Class ProfileRepository
                          .WORKPLACE_NAME = cv.WORKPLACE_NAME,
                          .NGAY_VAO_DANG_DB = cv.NGAY_VAO_DANG_DB,
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
+                         .HANG_THUONG_BINH_NAME = thuongbinh.NAME_VN,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
                          .PROVINCEEMP_NAME = emp_pro.NAME_VN,
                          .DISTRICTEMP_NAME = emp_dis.NAME_VN,
@@ -1677,6 +1682,7 @@ Partial Class ProfileRepository
                          .DISTRICTEMP_ID = cv.DISTRICTEMP_ID,
                          .WARDEMP_ID = cv.WARDEMP_ID,
                          .PROVINCENQ_ID = cv.PROVINCENQ_ID,
+                         .PROVINCENQ_NAME = nguyenquan.NAME_VN,
                          .BANK_NO = cv.BANK_NO,
                          .IS_PAY_BANK = cv.IS_PAY_BANK}).FirstOrDefault
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
@@ -2349,6 +2355,7 @@ Partial Class ProfileRepository
                                                     .SIGN_TITLE = p.SIGN_TITLE,
                                                     .OTHERSALARY1 = p.OTHERSALARY1,
                                                     .OTHERSALARY2 = p.OTHERSALARY2,
+                                                    .PERCENTSALARY = p.PERCENTSALARY,
                                                     .FACTORSALARY = p.FACTORSALARY,
                                                     .SAL_TOTAL = p.SAL_TOTAL + If((From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum Is Nothing, 0, (From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum),
                                                     .COST_SUPPORT = p.COST_SUPPORT,

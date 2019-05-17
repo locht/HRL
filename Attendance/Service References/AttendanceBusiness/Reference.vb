@@ -7037,15 +7037,6 @@ Namespace AttendanceBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_PAID_RICEField As System.Nullable(Of Boolean)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LIMIT_DAYField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LIMIT_YEARField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7176,45 +7167,6 @@ Namespace AttendanceBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_PAID_RICE() As System.Nullable(Of Boolean)
-            Get
-                Return Me.IS_PAID_RICEField
-            End Get
-            Set
-                If (Me.IS_PAID_RICEField.Equals(value) <> true) Then
-                    Me.IS_PAID_RICEField = value
-                    Me.RaisePropertyChanged("IS_PAID_RICE")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LIMIT_DAY() As System.Nullable(Of Decimal)
-            Get
-                Return Me.LIMIT_DAYField
-            End Get
-            Set
-                If (Me.LIMIT_DAYField.Equals(value) <> true) Then
-                    Me.LIMIT_DAYField = value
-                    Me.RaisePropertyChanged("LIMIT_DAY")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LIMIT_YEAR() As System.Nullable(Of Decimal)
-            Get
-                Return Me.LIMIT_YEARField
-            End Get
-            Set
-                If (Me.LIMIT_YEARField.Equals(value) <> true) Then
-                    Me.LIMIT_YEARField = value
-                    Me.RaisePropertyChanged("LIMIT_YEAR")
                 End If
             End Set
         End Property

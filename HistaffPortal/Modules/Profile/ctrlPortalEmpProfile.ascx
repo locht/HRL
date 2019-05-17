@@ -571,13 +571,13 @@
             <asp:Label runat="server" ID ="lbHang_Thuong_Binh" Text ="Hạng"></asp:Label>
         </td>
         <td class="control3">
-            <tlk:RadComboBox   runat ="server" ID="cbHang_Thuong_Binh"></tlk:RadComboBox>
+            <tlk:RadTextBox runat ="server" ID="txtHang_Thuong_Binh"></tlk:RadTextBox>
         </td>
         <td class="lb3">
             <asp:Label runat="server" ID ="lbGD_Chinh_Sach" Text ="Gia đình chính sách"></asp:Label>
         </td>
         <td class="control3">
-            <tlk:RadComboBox   runat ="server" ID="cbGD_Chinh_Sach"></tlk:RadComboBox>
+            <tlk:RadTextBox runat ="server" ID="txtGD_Chinh_Sach"></tlk:RadTextBox>
         </td>
     </tr>
     <tr>
