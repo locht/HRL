@@ -213,6 +213,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID="lbPercentSalary" Text ="% hưởng lương"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox runat ="server" ID ="rnPercentSalary" AutoPostBack ="true"  SkinID ="Money" 
