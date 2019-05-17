@@ -372,6 +372,26 @@ Public Class ctrlSwipeDataDownload
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function loadToGrid() As Boolean
+        'LAY THONG TIN CONFIG TMPLATE => @PAR = MACHINE_TYPE 
+        Dim IAttenDance As IAttendanceBusiness = New AttendanceBusinessClient()
+        Dim dtConfig As DataTable = IAttenDance.GET_CONFIG_TEMPLATE(cbMachine_Type.SelectedValue)
+        Dim DATA_IN As New DataTable("DATA_IN")
+        'Create struct DATA IN with table config
+        For Each row In dtConfig.Rows
+            DATA_IN.Columns.Add(row("COLUMN_CODE"), GetType(String))
+        Next
+        'end create struct DATA IN
+        'GET DATA 
+        For Each rowData In dsDataComper.Rows
+            Dim newRow As DataRow = DATA_IN.NewRow()
+            For Each rowConfig In dtConfig.Rows
+                newRow(rowConfig("COLUMN_CODE")) = rowData(CType(rowConfig("ORDER_COLUMN"), Integer))
+            Next
+            DATA_IN.Rows.Add(newRow)
+        Next
+        'END GET DATA
+
+
         Dim dtError As New DataTable("ERROR")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -383,8 +403,6 @@ Public Class ctrlSwipeDataDownload
             Dim rowError As DataRow
             Dim isError As Boolean = False
             Dim sError As String = String.Empty
-            'Dim dtEmpID As DataTable
-            'Dim is_Validate As Boolean
             Dim _validate As New AT_SWIPE_DATADTO
             Dim rep As New AttendanceRepository
             Dim lstEmp As New List(Of String)
@@ -395,18 +413,8 @@ Public Class ctrlSwipeDataDownload
             Dim irowEm = 5
             For Each row As DataRow In dtData.Rows
                 rowError = dtError.NewRow
-
                 sError = "Mã chấm công nhân viên không được để trống"
                 ImportValidate.EmptyValue("ITIME_ID", row, rowError, isError, sError)
-
-                'If row("ITIME_ID") IsNot DBNull.Value Then
-                '    dtEmpID = New DataTable
-                '    dtEmpID = rep.GetEmployeeByTimeID(row("ITIME_ID"))
-                '    If dtEmpID Is Nothing Or dtEmpID.Rows.Count <= 0 Then
-                '        rowError("ITIME_ID") = "Mã chấm công không tồn tại trên hệ thống."
-                '        isError = True
-                '    End If
-                'End If
 
                 sError = "Giờ không được để trống"
                 ImportValidate.EmptyValue("VALTIME", row, rowError, isError, sError)
@@ -508,7 +516,7 @@ Public Class ctrlSwipeDataDownload
         End Try
     End Sub
 
-
+    'https://www.code-sample.net/CSharp/Format-DateTime
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim fileName As String
         Dim dsDataPrepare As New DataSet
@@ -537,7 +545,8 @@ Public Class ctrlSwipeDataDownload
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet = workbook.Worksheets(0)
                 Dim lastRow = worksheet.Cells.GetLastDataRow(2)
-                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(3, 1, lastRow, worksheet.Cells.MaxColumn, True))
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(2, 0, lastRow, worksheet.Cells.MaxColumn, True))
+
                 If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
             Next
             dtData = dtData.Clone()

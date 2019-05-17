@@ -19,6 +19,18 @@ Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 
 Partial Public Class AttendanceRepository
     Dim ls_AT_SWIPE_DATADTO As New List(Of AT_SWIPE_DATADTO)
+#Region "CONFIG TEMPLATE "
+    Public Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet
+        Using cls As New DataAccess.QueryData
+            Dim dtData As DataSet = cls.ExecuteStore("PKG_AT_LIST.GET_CONFIG_TEMPLATE",
+                                           New With {.P_MACHINE_TYPE = MACHINE_TYPE,
+                                                     .P_CUR = cls.OUT_CURSOR,
+                                                     .P_CUR1 = cls.OUT_CURSOR})
+            Return dtData
+        End Using
+        Return Nothing
+    End Function
+#End Region
 
     Public Function ToDate(ByVal item As Object)
         If IsDBNull(item) Then

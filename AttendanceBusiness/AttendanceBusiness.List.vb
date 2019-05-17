@@ -7,6 +7,17 @@ Imports LinqKit
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
+#Region "CONFIG TEMPLATE"
+        Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet Implements ServiceContracts.IAttendanceBusiness.GET_CONFIG_TEMPLATE
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GET_CONFIG_TEMPLATE(MACHINE_TYPE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
         Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
                                    Optional ByVal PageIndex As Integer = 0,
                                  Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -1878,7 +1889,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-       
+
 #End Region
 
     End Class

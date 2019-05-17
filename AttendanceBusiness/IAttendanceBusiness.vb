@@ -7,6 +7,10 @@ Imports System.ServiceModel.Web
 Namespace AttendanceBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IAttendanceBusiness
+#Region "CONFIG TEMPLATE"
+        <OperationContract()>
+        Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet
+#End Region
 
         <OperationContract()>
         Function GetDataFromOrg(ByVal obj As ParamDTO, ByVal log As UserLog) As DataSet
@@ -763,7 +767,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GET_LIST_MINUTE() As DataTable
         <OperationContract()>
-        Function PRI_PROCESS_APP(employee_id As Decimal, period_id As Integer, process_type As String, totalHours As Decimal, totalDay As Decimal, sign_id As Integer, id_reggroup As Integer) As Int32
+        Function PRI_PROCESS_APP(ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal process_type As String, ByVal totalHours As Decimal, ByVal totalDay As Decimal, ByVal sign_id As Integer, ByVal id_reggroup As Integer) As Int32
         <OperationContract()>
         Function GET_SEQ_PORTAL_RGT() As Decimal
         <OperationContract()>
@@ -1046,7 +1050,7 @@ Namespace AttendanceBusiness.ServiceContracts
 #End Region
 #Region "quan ly cham cong bu tru"
         <OperationContract()>
-        Function InsertOffSettingTime(objOffSetting As AT_OFFFSETTINGDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Function InsertOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
         Function ModifyOffSettingTime(ByVal objOffSetting As AT_OFFFSETTINGDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 #End Region
