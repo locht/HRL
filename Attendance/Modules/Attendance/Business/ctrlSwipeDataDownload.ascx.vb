@@ -162,6 +162,11 @@ Public Class ctrlSwipeDataDownload
                                                                      ToolbarAuthorize.Import,
                                                                      Translate("Nhập file mẫu")))
 
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT",
+                                                                    ToolbarIcons.Import,
+                                                                    ToolbarAuthorize.Import,
+                                                                    Translate("Nhập file")))
+
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -199,7 +204,7 @@ Public Class ctrlSwipeDataDownload
         Dim dtdata As DataTable
         Try
             Using rep As New AttendanceRepository
-                dtdata = rep.GetOtherList("TERMINAL_TYPE", True)
+                dtdata = rep.GetOtherList("TIME_RECORDER", True)
                 If dtdata IsNot Nothing AndAlso dtdata.Rows.Count Then
                     FillRadCombobox(cbMachine_Type, dtdata, "NAME", "ID")
                 End If
@@ -315,34 +320,7 @@ Public Class ctrlSwipeDataDownload
         End Try
     End Sub
 
-    'Protected Sub btnConnectData_Click(ByVal sender As Object,
-    '                                ByVal e As EventArgs) Handles btnConnectData.Click
-    '    Try
-    '        Dim rep As New AttendanceRepository
-    '        Dim gid As Decimal = 0
-    '        If txttungay.SelectedDate Is Nothing Or rdDenngay.SelectedDate Is Nothing Then
-    '            ShowMessage(Translate("Từ ngày đến ngày chưa được chọn"), NotifyType.Error)
-    '            Exit Sub
-    '        End If
-    '        If cboMachine.SelectedValue = "" Then
-    '            ShowMessage(Translate("Bạn chưa chọn thông tin máy chấm công"), NotifyType.Error)
-    '            Exit Sub
-    '        End If
-    '        'ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-    '        'Exit Sub
-    '        'sv_GetLogData()
-    '        Dim mcc As New AT_TERMINALSDTO
-    '        mcc.TERMINAL_IP = cboMachine.SelectedValue.Split(":").GetValue(0).ToString()
-    '        mcc.PORT = cboMachine.SelectedValue.Split(":").GetValue(1).ToString()
-    '        mcc.PASS = cboMachine.SelectedValue.Split(":").GetValue(2).ToString()
-    '        rep.InsertSwipeData(ls_AT_SWIPE_DATADTO, mcc, txttungay.SelectedDate, rdDenngay.SelectedDate, gid)
-    '        rglSwipeDataDownload.Rebind()
-    '        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-
-    'End Sub
+  
     ''' <lastupdate>
     ''' 17/08/2017 08:40
     ''' </lastupdate>
@@ -372,6 +350,8 @@ Public Class ctrlSwipeDataDownload
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportSwipeData&orgid=46&IS_DISSOLVE=0')", True)
                 Case "IMPORT_TEMP"
                     ctrlUpload.Show()
+                Case "IMPORT"
+                    ctrlUpload1.Show()
 
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -382,28 +362,7 @@ Public Class ctrlSwipeDataDownload
         End Try
     End Sub
 
-    'Private Sub cboMachine_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboMachine.SelectedIndexChanged
-    '    Dim rep As New AttendanceRepository
-    '    Dim obj As New AT_TERMINALSDTO
-    '    Try
-    '        Me.AT_Terminal = rep.GetAT_TERMINAL(obj)
-    '        Dim mcc As New AT_TERMINALSDTO
-    '        mcc.ID = cboMachine.SelectedValue.Split(":").GetValue(3).ToString()
-
-    '        Dim p = (From o In AT_Terminal Where o.ID = Decimal.Parse(mcc.ID)).FirstOrDefault
-    '        If AT_Terminal IsNot Nothing Then
-    '            txtCode.Text = p.TERMINAL_CODE
-    '            txtName.Text = p.TERMINAL_NAME
-    '            txtAddress.Text = p.ADDRESS_PLACE
-    '        End If
-
-    '        txtPerson.Text = Utilities.GetUsername.ToUpper
-    '        rdNgaytai.SelectedDate = Date.Now
-
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
+  
     ''' <lastupdate>
     ''' 17/08/2017 08:40
     ''' </lastupdate>
@@ -439,7 +398,7 @@ Public Class ctrlSwipeDataDownload
 
                 sError = "Mã chấm công nhân viên không được để trống"
                 ImportValidate.EmptyValue("ITIME_ID", row, rowError, isError, sError)
-                
+
                 'If row("ITIME_ID") IsNot DBNull.Value Then
                 '    dtEmpID = New DataTable
                 '    dtEmpID = rep.GetEmployeeByTimeID(row("ITIME_ID"))
@@ -536,22 +495,6 @@ Public Class ctrlSwipeDataDownload
                 Next
             Next
             If loadToGrid() Then
-                'Dim objSIGN As AT_SWIPE_DATADTO
-                'Dim lstData As New List(Of AT_SWIPE_DATADTO)
-                'Dim gID As Decimal
-                'Dim dtDataImp As DataTable = dsDataPrepare.Tables(0)
-
-                'For Each dr In dsDataComper.Rows
-                '    objSIGN = New AT_SWIPE_DATADTO
-                '    If (dr("ITIME_ID").ToString <> "") Then
-                '        objSIGN.ITIME_ID = dr("ITIME_ID").ToString
-                '        objSIGN.TERMINAL_ID = CInt(dr("TERMINAL_ID"))
-                '        objSIGN.VALTIME = ToDate(dr("WORKINGDAY") + " " + dr("VALTIME"))
-                '        objSIGN.WORKINGDAY = ToDate(dr("WORKINGDAY"))
-                '        lstData.Add(objSIGN)
-                '    End If
-                'Next
-                'rep.InsertSwipeDataImport(lstData, gID)
                 dtData.TableName = "DATA"
                 rep.ImportSwipeData(dtData)
                 CurrentState = CommonMessage.STATE_NORMAL
@@ -564,6 +507,66 @@ Public Class ctrlSwipeDataDownload
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
     End Sub
+
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim fileName As String
+        Dim dsDataPrepare As New DataSet
+        Dim rep As New AttendanceRepository
+        Dim workbook As Aspose.Cells.Workbook
+        Dim worksheet As Aspose.Cells.Worksheet
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            'check validate 
+            If ctrlUpload1.UploadedFiles.Count = 0 Then
+                ShowMessage(Translate(CommonMessage.CM_CTRLPROGRAMS_NOT_CHOOSE_FILE), NotifyType.Warning)
+                Exit Sub
+            End If
+            If Not IsNumeric(cbMachine_Type.SelectedValue) Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_CHOOSE_MACHINE_TYPE), NotifyType.Warning)
+                Exit Sub
+            End If
+            'end check validate
+
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+            For Each file As UploadedFile In ctrlUpload1.UploadedFiles
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+                file.SaveAs(fileName, True)
+                workbook = New Aspose.Cells.Workbook(fileName)
+                worksheet = workbook.Worksheets(0)
+                Dim lastRow = worksheet.Cells.GetLastDataRow(2)
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(3, 1, lastRow, worksheet.Cells.MaxColumn, True))
+                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+            Next
+            dtData = dtData.Clone()
+            dsDataComper = dsDataPrepare.Tables(0).Clone()
+            For Each dt As DataTable In dsDataPrepare.Tables
+                For Each row In dt.Rows
+                    Dim isRow = ImportValidate.TrimRow(row)
+                    If Not isRow Then
+                        Continue For
+                    End If
+                    dtData.ImportRow(row)
+                    dsDataComper.ImportRow(row)
+                Next
+            Next
+            If loadToGrid() Then
+                dtData.TableName = "DATA"
+                rep.ImportSwipeData(dtData)
+                CurrentState = CommonMessage.STATE_NORMAL
+                Refresh("InsertView")
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                           CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        End Try
+    End Sub
+
+
     ''' <lastupdate>
     ''' 17/08/2017 08:40
     ''' </lastupdate>
@@ -592,9 +595,9 @@ Public Class ctrlSwipeDataDownload
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnSearchEmp_Click(sender As Object, e As System.EventArgs) Handles btnSearchEmp.Click
-       Try
-             rglSwipeDataDownload.Rebind()
+    Private Sub btnSearchEmp_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSearchEmp.Click
+        Try
+            rglSwipeDataDownload.Rebind()
         Catch ex As Exception
         End Try
 

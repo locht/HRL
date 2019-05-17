@@ -187,29 +187,29 @@ Public Class ctrlOtherList
                         Dim item = (From p In OtherLists Where p.ID = rgOtherList.SelectedValue).SingleOrDefault
                         If item IsNot Nothing Then
                             txtOtherListNameVN.Text = item.NAME_VN
-                            txtRemark.Text = item.REMARK
+                            'txtRemark.Text = item.REMARK
                             txtCode.Text = item.CODE
                         End If
                     Else
-                        ClearControlValue(txtOtherListNameVN, txtCode, txtRemark)
+                        ClearControlValue(txtOtherListNameVN, txtCode)
                     End If
                     txtOtherListNameVN.ReadOnly = True
                     txtCode.ReadOnly = True
                     txtCode.BackColor = Drawing.Color.White
-                    txtRemark.ReadOnly = True
+                    'txtRemark.ReadOnly = True
                     EnabledGridNotPostback(rgOtherList, True)
                     treeOtherListType.Enabled = True
                 Case CommonMessage.STATE_EDIT
                     txtOtherListNameVN.ReadOnly = False
                     txtCode.ReadOnly = True
                     txtCode.BackColor = Drawing.Color.Yellow
-                    txtRemark.ReadOnly = False
+                    'txtRemark.ReadOnly = False
                     EnabledGridNotPostback(rgOtherList, False)
                     treeOtherListType.Enabled = False
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgOtherList, False)
                     treeOtherListType.Enabled = False
-                    txtRemark.ReadOnly = False
+                    'txtRemark.ReadOnly = False
                     txtOtherListNameVN.ReadOnly = False
                     txtCode.ReadOnly = False
                     txtCode.BackColor = Drawing.Color.White
@@ -250,7 +250,7 @@ Public Class ctrlOtherList
                     Dim _filter As New OtherListDTO
                     _filter.CODE = rgOtherList.MasterTableView.GetColumn("CODE").CurrentFilterValue
                     _filter.NAME_VN = rgOtherList.MasterTableView.GetColumn("NAME_VN").CurrentFilterValue
-                    _filter.REMARK = rgOtherList.MasterTableView.GetColumn("REMARK").CurrentFilterValue
+                    ' _filter.REMARK = rgOtherList.MasterTableView.GetColumn("REMARK").CurrentFilterValue
                     '_filter.NAME_EN = rgOtherList.MasterTableView.GetColumn("NAME_EN").CurrentFilterValue
                     _filter.ACTFLG = rgOtherList.MasterTableView.GetColumn("ACTFLG").CurrentFilterValue
                     '_filter.TYPE_ID =
@@ -289,7 +289,7 @@ Public Class ctrlOtherList
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtOtherListNameVN)
-            dic.Add("REMARK", txtRemark)
+            'dic.Add("REMARK", txtRemark)
             Utilities.OnClientRowSelectedChanged(rgOtherList, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -322,7 +322,7 @@ Public Class ctrlOtherList
                         Exit Sub
                     End If
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                    ClearControlValue(txtCode, txtOtherListNameVN)
                     txtCode.ReadOnly = False
                     UpdatePageViewState()
                     rgOtherList.Rebind()
@@ -387,7 +387,7 @@ Public Class ctrlOtherList
                         objOtherList.NAME_VN = txtOtherListNameVN.Text.Trim
                         objOtherList.NAME_EN = txtOtherListNameVN.Text.Trim
                         objOtherList.CODE = txtCode.Text.Trim
-                        objOtherList.REMARK = txtRemark.Text.Trim
+                        'objOtherList.REMARK = txtRemark.Text.Trim
                         objOtherList.TYPE_ID = Decimal.Parse(OtherListType)
                         objOtherList.TYPE_CODE = (From p In OtherListTypes Where p.ID = Decimal.Parse(OtherListType) Select p.CODE).FirstOrDefault
 
@@ -406,7 +406,7 @@ Public Class ctrlOtherList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     rgOtherList.Rebind()
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                                    ClearControlValue(txtCode, txtOtherListNameVN)
                                     rgOtherList.SelectedIndexes.Clear()
                                 Else
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Warning)
@@ -425,7 +425,7 @@ Public Class ctrlOtherList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     rgOtherList.Rebind()
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                                    ClearControlValue(txtCode, txtOtherListNameVN)
                                     rgOtherList.SelectedIndexes.Clear()
                                 Else
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Warning)
@@ -464,7 +464,7 @@ Public Class ctrlOtherList
                     CurrentState = CommonMessage.STATE_NORMAL
                     txtCode.ReadOnly = False
                     UpdatePageViewState()
-                    ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                    ClearControlValue(txtCode, txtOtherListNameVN)
                     rgOtherList.Rebind()
                     rgOtherList.SelectedIndexes.Clear()
             End Select
@@ -495,7 +495,7 @@ Public Class ctrlOtherList
                         If rep.ActiveOtherList(DeleteItemList, "A", (From p In OtherListTypes Where p.ID = Decimal.Parse(OtherListType) Select p.CODE).FirstOrDefault) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             rgOtherList.Rebind()
-                            ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                            ClearControlValue(txtCode, txtOtherListNameVN)
                             rgOtherList.SelectedIndexes.Clear()
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & "<br />" & Translate(_error), NotifyType.Error)
@@ -504,7 +504,7 @@ Public Class ctrlOtherList
                         If rep.ActiveOtherList(DeleteItemList, "I", (From p In OtherListTypes Where p.ID = Decimal.Parse(OtherListType) Select p.CODE).FirstOrDefault) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             rgOtherList.Rebind()
-                            ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                            ClearControlValue(txtCode, txtOtherListNameVN)
                             rgOtherList.SelectedIndexes.Clear()
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
@@ -512,7 +512,7 @@ Public Class ctrlOtherList
                     Case CommonMessage.TOOLBARITEM_DELETE
                         CurrentState = CommonMessage.STATE_DELETE
                         UpdatePageViewState()
-                        ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                        ClearControlValue(txtCode, txtOtherListNameVN)
                         rgOtherList.SelectedIndexes.Clear()
                 End Select
             End If
@@ -548,7 +548,7 @@ Public Class ctrlOtherList
             If SelectNode IsNot Nothing Then
                 SelectedID = 0
                 OtherListType = treeOtherListType.SelectedValue
-                ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                ClearControlValue(txtCode, txtOtherListNameVN)
                 rgOtherList.CurrentPageIndex = 0
                 Utilities.ClearRadGridFilter(rgOtherList)
                 rgOtherList.Rebind()
@@ -650,12 +650,12 @@ Public Class ctrlOtherList
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If rgOtherList.SelectedItems.Count = 0 Or rgOtherList.SelectedItems.Count > 1 Then
-                ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+                ClearControlValue(txtCode, txtOtherListNameVN)
             ElseIf rgOtherList.SelectedItems.Count = 1 Then
                 Dim item As GridDataItem = rgOtherList.SelectedItems.Item(0)
                 txtCode.Text = item("CODE").Text
                 txtOtherListNameVN.Text = item("NAME_VN").Text
-                txtRemark.Text = item("REMARK").Text.ToString.Replace("&nbsp;", "")
+                'txtRemark.Text = item("REMARK").Text.ToString.Replace("&nbsp;", "")
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -674,7 +674,7 @@ Public Class ctrlOtherList
     End Sub
 
     Private Sub headerChkBox_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs)
-        ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
+        ClearControlValue(txtCode, txtOtherListNameVN)
     End Sub
 
 #End Region

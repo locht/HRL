@@ -41,13 +41,22 @@ Partial Public Class ctrlUploadWithTeamplate
     Protected WithEvents RadAsyncUpload1 As Global.Telerik.Web.UI.RadAsyncUpload
 
     '''<summary>
-    '''cbMachine_Type control.
+    '''lbMachine_Type control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbMachine_Type As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents lbMachine_Type As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cbMachine_type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbMachine_type As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''btnYES control.

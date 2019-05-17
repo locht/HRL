@@ -13,13 +13,16 @@
                 <legend>
                     <%# Translate("Danh sách file")%></legend>
                 <tlk:RadAsyncUpload runat="server" ID="RadAsyncUpload1"
-                    AllowedFileExtensions="xls,xlsx,doc,docx,txt,ctr,png,jpg,sql,jpeg,gif" MaxFileSize="4096000" UploadedFilesRendering="BelowFileInput" 
+                    AllowedFileExtensions="xls,xlsx,rar,zip" MaxFileSize="4096000" UploadedFilesRendering="BelowFileInput" 
                     Skin="Metro" Width="250px" Style="padding: 20px 0px 0px 10px;">
                     <Localization Select="<%$ Translate: Chọn %>" />
                     <Localization Remove="<%$ Translate: Xóa %>" />
                     <Localization Cancel="<%$ Translate: Hủy %>" />
                 </tlk:RadAsyncUpload>
-                <tlk:RadComboBox ID ="cbMachine_Type" runat ="server" AutoPostBack =true  Style="padding: 20px 0px 0px 10px;" ></tlk:RadComboBox>
+                <div>
+                    <asp:Label  runat ="server" ID ="lbMachine_Type" Text ="Chọn hệ thống"  Style="padding: 20px 0px 0px 10px;"></asp:Label>
+                </div>
+                <tlk:RadComboBox runat ="server" ID="cbMachine_type" Style="padding: 20px 0px 0px 10px;"></tlk:RadComboBox>
             </fieldset>
             <div style="margin: 0px 10px 10px 10px; text-align: right;">
                 <tlk:RadButton ID="btnYES" runat="server" Width="60px" Text="<%$ Translate: Hoàn tất %>"

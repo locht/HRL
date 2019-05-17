@@ -210,7 +210,6 @@
                         ErrorMessage="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary) %>" 
                         ToolTip="<%#  GetYouMustChoseMsg(UI.Wage_BasicSalary)%>"> 
                 </asp:RequiredFieldValidator>
-                </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID="lbPercentSalary" Text ="% hưởng lương"></asp:Label>
                 </td>

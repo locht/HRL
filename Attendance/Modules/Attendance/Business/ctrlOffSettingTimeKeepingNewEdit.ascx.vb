@@ -389,11 +389,6 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                     Employee_BT.Add(employee)
                 Next
                 rgEmployee.Rebind()
-
-                For Each i As GridItem In rgEmployee.Items
-                    i.Edit = True
-                Next
-                rgEmployee.Rebind()
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -430,7 +425,6 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            e.Item.Edit = True
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
