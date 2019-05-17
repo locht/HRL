@@ -106,10 +106,12 @@
     <Compile Include="BusinessObjects\AT_HOLIDAYDTO.vb" />
     <Compile Include="BusinessObjects\AT_LATE_COMBACKOUTDTO.vb" />
     <Compile Include="BusinessObjects\AT_LISTPARAM_SYSTEAMDTO.vb" />
+    <Compile Include="BusinessObjects\AT_OT_REGISTRATIONDTO.vb" />
     <Compile Include="BusinessObjects\AT_REGISTER_OTDTO.vb" />
     <Compile Include="BusinessObjects\AT_PERIODDTO.vb" />
     <Compile Include="BusinessObjects\AT_COMPENSATORYDTO.vb" />
     <Compile Include="BusinessObjects\AT_ENTITLEMENTDTO.vb" />
+    <Compile Include="BusinessObjects\AT_SHIFTCYCLEDTO.vb" />
     <Compile Include="BusinessObjects\AT_TERMINALSDTO.vb" />
     <Compile Include="BusinessObjects\AT_SWIPE_DATADTO.vb" />
     <Compile Include="AttendanceRepository.Common.vb" />
@@ -150,6 +152,7 @@
     <Compile Include="BusinessObjects\AT_PROCESS_DTO.vb" />
     <Compile Include="BusinessObjects\AT_OFFFSETTINGDTO.vb" />
     <Compile Include="BusinessObjects\AT_OFFFSETTING_EMPDTO.vb" />
+    <Compile Include="BusinessObjects\EMPLOYEE_SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\LEAVE_DETAIL_EMP_DTO.vb" />
     <Compile Include="BusinessObjects\HistoryLeaveDTO.vb" />
     <Compile Include="BusinessObjects\SetUpCodeAttDTO.vb" />
@@ -219,6 +222,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vbproj">
+      <Project>{4B2EF214-7880-45F2-BB79-B394E552B4BE}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Data\Framework.Data.vbproj">
       <Project>{5AB0D232-7B7A-44B8-9D14-115C065027DB}</Project>
       <Name>Framework.Data</Name>

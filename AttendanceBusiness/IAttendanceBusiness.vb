@@ -746,11 +746,24 @@ Namespace AttendanceBusiness.ServiceContracts
 
 #Region "Đăng ký OT trên portal"
         <OperationContract()>
-        Function GetOtRegistration(ByVal _filter As AT_PORTAL_REG_DTO,
-                                   Optional ByRef Total As Integer = 0,
-                                   Optional ByVal PageIndex As Integer = 0,
-                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
+        Function GetOtRegistration(ByVal _filter As AT_OT_REGISTRATIONDTO,
+                                         Optional ByRef Total As Integer = 0,
+                                         Optional ByVal PageIndex As Integer = 0,
+                                         Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                         Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                         Optional ByVal log As UserLog = Nothing) As List(Of AT_OT_REGISTRATIONDTO)
+        <OperationContract()>
+        Function InsertOtRegistration(ByVal obj As AT_OT_REGISTRATIONDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ModifyotRegistration(ByVal obj As AT_OT_REGISTRATIONDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function ValidateOtRegistration(ByVal _validate As AT_OT_REGISTRATIONDTO)
+        <OperationContract()>
+        Function HRReviewOtRegistration(ByVal lst As List(Of Decimal), ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function DeleteOtRegistration(ByVal lstId As List(Of Decimal)) As Boolean
         <OperationContract()>
         Function GET_REG_PORTAL(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date,
                                 ByVal strId As String, ByVal type As String) As List(Of APPOINTMENT_DTO)
@@ -780,6 +793,8 @@ Namespace AttendanceBusiness.ServiceContracts
 #End Region
 
 #Region "Đăng ký nghỉ trên portal"
+        <OperationContract()>
+        Function GetHolidayByCalenderToTable(ByVal startdate As Date, ByVal enddate As Date) As DataTable
         <OperationContract()>
         Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal, ByVal startdate As DateTime, ByVal enddate As DateTime, _
                                                   ByVal listSign As List(Of AT_TIME_MANUALDTO)) As List(Of AT_TIMESHEET_REGISTERDTO)
@@ -1090,6 +1105,17 @@ Namespace AttendanceBusiness.ServiceContracts
         Function InsertPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef gID As Decimal, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean
         <OperationContract()>
         Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_DTO, ByVal itemRegister As AT_PORTAL_REG_DTO, ByVal log As UserLog) As Boolean
+#End Region
+#Region "SHIFT CYCLE"
+        <OperationContract()>
+        Function GetShiftCycle(ByVal _filter As AT_SHIFTCYCLEDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                     Optional ByVal log As UserLog = Nothing) As List(Of AT_SHIFTCYCLEDTO)
+        <OperationContract()>
+        Function GetEmployeeShifts(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As List(Of EMPLOYEE_SHIFT_DTO)
 #End Region
 
         <OperationContract()>

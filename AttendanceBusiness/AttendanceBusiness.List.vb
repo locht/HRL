@@ -1112,6 +1112,16 @@ Namespace AttendanceBusiness.ServiceImplementations
 #End Region
 
 #Region "đăng ký nghỉ trên iportal"
+        Public Function GetHolidayByCalenderToTable(ByVal startdate As Date, ByVal enddate As Date) As DataTable _
+                                         Implements IAttendanceBusiness.GetHolidayByCalenderToTable
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetHolidayByCalenderToTable(startdate, enddate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal,
                                                   ByVal startdate As DateTime,
                                                   ByVal enddate As DateTime, _

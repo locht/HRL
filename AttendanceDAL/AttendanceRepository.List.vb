@@ -2872,6 +2872,18 @@ Partial Public Class AttendanceRepository
 #End Region
 
 #Region "đăng ký nghỉ trên iportal"
+    Public Function GetHolidayByCalenderToTable(ByVal startdate As Date, ByVal enddate As Date) As DataTable
+        Try
+            Return (From p In Context.AT_HOLIDAY
+                    Where p.WORKINGDAY >= startdate And p.WORKINGDAY <= enddate _
+                    And p.ACTFLG = ATConstant.ACTFLG_ACTIVE
+                    Select p.WORKINGDAY.Value,
+                            p.OFFDAY).ToList().ToTable
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".")
+        End Try
+    End Function
     Public Function GetPlanningAppointmentByEmployee(ByVal empid As Decimal, ByVal startdate As DateTime, ByVal enddate As DateTime, _
                                                     ByVal listSign As List(Of AT_TIME_MANUALDTO)) As List(Of AT_TIMESHEET_REGISTERDTO)
         Dim rtnValue As List(Of AT_TIMESHEET_REGISTERDTO)

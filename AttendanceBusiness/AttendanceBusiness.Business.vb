@@ -1481,15 +1481,106 @@ Namespace AttendanceBusiness.ServiceImplementations
         End Function
 #End Region
 #Region "OT"
-        Public Function GetOtRegistration(ByVal _filter As AT_PORTAL_REG_DTO,
-                                   Optional ByRef Total As Integer = 0,
-                                   Optional ByVal PageIndex As Integer = 0,
-                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO) _
+        Public Function GetOtRegistration(ByVal _filter As AT_OT_REGISTRATIONDTO,
+                                         Optional ByRef Total As Integer = 0,
+                                         Optional ByVal PageIndex As Integer = 0,
+                                         Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                         Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                         Optional ByVal log As UserLog = Nothing) As List(Of AT_OT_REGISTRATIONDTO) _
                     Implements IAttendanceBusiness.GetOtRegistration
             Using rep As New AttendanceRepository
                 Try
                     Return rep.GetOtRegistration(_filter, Total, PageIndex, PageSize, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertOtRegistration(ByVal obj As AT_OT_REGISTRATIONDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+                    Implements IAttendanceBusiness.InsertOtRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.InsertOtRegistration(obj, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyotRegistration(ByVal obj As AT_OT_REGISTRATIONDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+                    Implements IAttendanceBusiness.ModifyotRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ModifyotRegistration(obj, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean _
+                    Implements IAttendanceBusiness.ApproveOtRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ApproveOtRegistration(obj, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ValidateOtRegistration(ByVal _validate As AT_OT_REGISTRATIONDTO) _
+                    Implements IAttendanceBusiness.ValidateOtRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.ValidateOtRegistration(_validate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function HRReviewOtRegistration(ByVal lst As List(Of Decimal), ByVal log As UserLog) As Boolean _
+                    Implements IAttendanceBusiness.HRReviewOtRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.HRReviewOtRegistration(lst, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteOtRegistration(ByVal lstId As List(Of Decimal)) As Boolean _
+                    Implements IAttendanceBusiness.DeleteOtRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.DeleteOtRegistration(lstId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+#Region "SHIFT CYCLE"
+        Public Function GetShiftCycle(ByVal _filter As AT_SHIFTCYCLEDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                     Optional ByVal log As UserLog = Nothing) As List(Of AT_SHIFTCYCLEDTO) _
+                    Implements IAttendanceBusiness.GetShiftCycle
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.GetShiftCycle(_filter, Total, PageIndex, PageSize, Sorts, log)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetEmployeeShifts(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As List(Of EMPLOYEE_SHIFT_DTO) Implements IAttendanceBusiness.GetEmployeeShifts
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.GetEmployeeShifts(employee_Id, fromDate, toDate)
+                    Return lst
                 Catch ex As Exception
                     Throw ex
                 End Try

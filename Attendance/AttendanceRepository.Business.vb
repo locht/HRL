@@ -1491,11 +1491,11 @@ Partial Class AttendanceRepository
     End Function
 #End Region
 #Region "OT"
-    Function GetOtRegistration(ByVal _filter As AT_PORTAL_REG_DTO,
-                                   Optional ByRef Total As Integer = 0,
-                                   Optional ByVal PageIndex As Integer = 0,
-                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                   Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
+    Function GetOtRegistration(ByVal _filter As AT_OT_REGISTRATIONDTO,
+                                         Optional ByRef Total As Integer = 0,
+                                         Optional ByVal PageIndex As Integer = 0,
+                                         Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_OT_REGISTRATIONDTO)
         Using rep As New AttendanceBusinessClient
             Try
                 Dim lst = rep.GetOtRegistration(_filter, Total, PageIndex, PageSize, Sorts, Me.Log)
@@ -1505,6 +1505,98 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Public Function InsertOtRegistration(ByVal obj As AT_OT_REGISTRATIONDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.InsertOtRegistration(obj, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+    End Function
+    Public Function ModifyotRegistration(ByVal obj As AT_OT_REGISTRATIONDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ModifyotRegistration(obj, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ApproveOtRegistration(obj, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ValidateOtRegistration(ByVal _validate As AT_OT_REGISTRATIONDTO) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ValidateOtRegistration(_validate)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function HRReviewOtRegistration(ByVal lst As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.HRReviewOtRegistration(lst, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function DeleteOtRegistration(ByVal lstId As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.DeleteOtRegistration(lstId)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+#End Region
+#Region "SHIFT CYCLE"
+    Public Function GetShiftCycle(ByVal _filter As AT_SHIFTCYCLEDTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SHIFTCYCLEDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                Dim lst = rep.GetShiftCycle(_filter, Total, PageIndex, PageSize, Sorts, Me.Log)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetEmployeeShifts(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As List(Of EMPLOYEE_SHIFT_DTO)
+
+        Using rep As New AttendanceBusinessClient
+            Try
+                Dim lst = rep.GetEmployeeShifts(employee_Id, fromDate, toDate)
+                Return lst
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 End Class
