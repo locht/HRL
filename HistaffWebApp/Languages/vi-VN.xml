@@ -38476,4 +38476,20 @@ Xin cám ơn!
       <string>Thiết lập mã chấm công</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>MESSAGE_NOT_CHOOSE_MACHINE_TYPE</string>
+    </Key>
+    <Value>
+      <string>Chưa chọn hệ thống Import</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>FILE_ISNOT_FORMAT</string>
+    </Key>
+    <Value>
+      <string>Tập tin không đúng định dạng</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

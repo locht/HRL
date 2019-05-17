@@ -66,7 +66,8 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<Common:ctrlUpload ID="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload" runat="server"/>
+<Common:ctrlUpload ID="ctrlUpload1" runat="server"/>
 <script type="text/javascript">
     var enableAjax = true;
     var oldSize = 0;

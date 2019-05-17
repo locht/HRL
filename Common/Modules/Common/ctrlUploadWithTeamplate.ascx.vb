@@ -7,14 +7,23 @@ Public Class ctrlUploadWithTeamplate
 
 #Region "Property"
     Delegate Sub OkClickedDelegate(ByVal sender As Object, ByVal e As EventArgs)
+    Delegate Sub cboSelectedIndexChangedDelegate(ByVal sender As Object, ByVal e As EventArgs)
     Delegate Sub CancelClickedDelegate(ByVal sender As Object, ByVal e As EventArgs)
     Event OkClicked As OkClickedDelegate
+    Event cboSelectedIndexChanged As cboSelectedIndexChangedDelegate
     Event CancelClicked As CancelClickedDelegate
     Public Overrides Property MustAuthorize As Boolean = False
 
     Public ReadOnly Property UploadedFiles As UploadedFileCollection
         Get
             Return RadAsyncUpload1.UploadedFiles
+            Return Nothing
+        End Get
+    End Property
+
+    Public ReadOnly Property Machine_Type As String
+        Get
+            Return cbMachine_type.SelectedValue
             Return Nothing
         End Get
     End Property
@@ -55,6 +64,23 @@ Public Class ctrlUploadWithTeamplate
 #Region "Page"
     Public Overrides Sub ViewInit(ByVal e As EventArgs)
         RadAjaxPanel1.LoadingPanelID = CType(Me.Page, AjaxPage).AjaxLoading.ID
+        Try
+            'Dim arr As New ArrayList()
+            'arr.Add(New DictionaryEntry("--Chọn hệ thống Import--", "NON"))
+            'arr.Add(New DictionaryEntry("Vân tay", "TOUCH_ID"))
+            'arr.Add(New DictionaryEntry("Acess Control", "ACESS_CONTROL"))
+            'arr.Add(New DictionaryEntry("Car Parking", "CAR_PARKING"))
+            Dim ICom As ICommonBusiness = New CommonBusinessClient()
+            Dim dtdata = ICom.GetOtherListByTypeToCombo("TIME_RECORDER")
+            With cbMachine_type
+                .DataSource = dtdata
+                .DataTextField = "NAME_VN"
+                .DataValueField = "CODE"
+                .DataBind()
+            End With
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Hide()
@@ -71,14 +97,8 @@ Public Class ctrlUploadWithTeamplate
         Hide()
         RaiseEvent CancelClicked(sender, e)
     End Sub
-    Private Sub cbMachine_Type_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbMachine_Type.SelectedIndexChanged
-        Try
-            If IsNumeric(cbMachine_Type.SelectedValue) Then
-                MachineType = cbMachine_Type.SelectedValue
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+    Private Sub cbMachine_Type_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbMachine_type.SelectedIndexChanged
+        RaiseEvent cboSelectedIndexChanged(sender, e)
     End Sub
 #End Region
 
@@ -97,5 +117,4 @@ Public Class ctrlUploadWithTeamplate
 
 #End Region
 
-   
 End Class

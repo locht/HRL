@@ -381,6 +381,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
+    <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationByLM.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistration.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationNewEdit.ascx" />
