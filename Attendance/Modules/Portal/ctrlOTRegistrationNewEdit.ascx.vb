@@ -2,35 +2,20 @@
 Imports Framework.UI.Utilities
 Imports Common
 Imports Common.Common
-Imports Common.CommonMessage
-Imports Telerik.Web.UI
 Imports Attendance.AttendanceBusiness
-Imports Common.CommonBusiness
-Imports System.Globalization
-Imports HistaffFrameworkPublic
+Imports Telerik.Web.UI
+Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Imports HistaffFrameworkPublic.FrameworkUtilities
-Imports System.IO
+Imports HistaffFrameworkPublic
 
 Public Class ctrlOTRegistrationNewEdit
     Inherits CommonView
-
     Public Overrides Property MustAuthorize As Boolean = False
-    Dim log As New UserLog
-    Dim psp As New AttendanceStoreProcedure
-    Dim com As New CommonProcedureNew
-    Dim cons As New Contant_OtherList_Attendance
-    Dim cons_com As New Contant_Common
-    Private rep As New HistaffFrameworkRepository
 
 #Region "Property"
-    Property OtRegistration As AT_PORTAL_REG_DTO
-        Get
-            Return ViewState(Me.ID & "_OTRegistration")
-        End Get
-        Set(ByVal value As AT_PORTAL_REG_DTO)
-            ViewState(Me.ID & "_OTRegistration") = value
-        End Set
-    End Property
+
+    Public Property EmployeeID As Decimal
+    Public Property EmployeeCode As String
     Protected Property EmployeeDto As DataTable
         Get
             Return PageViewState(Me.ID & "_EmployeeDto")
@@ -39,119 +24,28 @@ Public Class ctrlOTRegistrationNewEdit
             PageViewState(Me.ID & "_EmployeeDto") = value
         End Set
     End Property
-    Private Property dtTable As DataTable
+    Private Property EmployeeShift As EMPLOYEE_SHIFT_DTO
         Get
-            Return ViewState(Me.ID & "_dtTable")
+            Return PageViewState(Me.ID & "_EmployeeShift")
+        End Get
+        Set(ByVal value As EMPLOYEE_SHIFT_DTO)
+            PageViewState(Me.ID & "_EmployeeShift") = value
+        End Set
+    End Property
+    Private Property lstdtHoliday As DataTable
+        Get
+            Return PageViewState(Me.ID & "_lstdtHoliday")
         End Get
         Set(ByVal value As DataTable)
-            ViewState(Me.ID & "_dtTable") = value
+            PageViewState(Me.ID & "_lstdtHoliday") = value
         End Set
     End Property
-    Private Property EmployeeId As Decimal
+    Protected Property ListManual As List(Of AT_FMLDTO)
         Get
-            Return PageViewState(Me.ID & "_EmployeeId")
+            Return PageViewState(Me.ID & "_ListFML")
         End Get
-        Set(ByVal value As Decimal)
-            PageViewState(Me.ID & "_EmployeeId") = value
-        End Set
-    End Property
-    Private Property perioId As Integer
-        Get
-            Return ViewState(Me.ID & "_perioId")
-        End Get
-        Set(ByVal value As Integer)
-            ViewState(Me.ID & "_perioId") = value
-        End Set
-    End Property
-
-    Private Property orgId As Integer
-        Get
-            Return ViewState(Me.ID & "_orgId")
-        End Get
-        Set(ByVal value As Integer)
-            ViewState(Me.ID & "_orgId") = value
-        End Set
-
-
-    End Property
-    Private Property TotalOT As Decimal
-        Get
-            Return ViewState(Me.ID & "_TotalOT")
-        End Get
-        Set(ByVal value As Decimal)
-            ViewState(Me.ID & "_TotalOT") = value
-        End Set
-
-
-    End Property
-    Private Property ListComboValue As Attendance.AttendanceBusiness.ComboBoxDataDTO
-        Get
-            Return PageViewState(Me.ID & "_ComboBoxDataDTO")
-        End Get
-        Set(ByVal value As Attendance.AttendanceBusiness.ComboBoxDataDTO)
-            PageViewState(Me.ID & "_ComboBoxDataDTO") = value
-        End Set
-    End Property
-
-    Private Property SelectedAppointmentList As List(Of AT_TIMESHEET_REGISTERDTO)
-        Get
-            Return PageViewState(Me.ID & "_SelectedAppointmentList")
-        End Get
-        Set(ByVal value As List(Of AT_TIMESHEET_REGISTERDTO))
-            PageViewState(Me.ID & "_SelectedAppointmentList") = value
-        End Set
-    End Property
-
-    Private Property SelectedAppointmentListId As List(Of Decimal)
-        Get
-            Return PageViewState(Me.ID & "_SelectedAppointmentListId")
-        End Get
-        Set(ByVal value As List(Of Decimal))
-            PageViewState(Me.ID & "_SelectedAppointmentListId") = value
-        End Set
-    End Property
-
-    Public ReadOnly Property ApproveProcess As String
-        Get
-            Return ATConstant.GSIGNCODE_OVERTIME
-        End Get
-    End Property
-
-    Public ReadOnly Property PageId As String
-        Get
-            Return Me.ID
-        End Get
-    End Property
-
-    Public ReadOnly Property CurrentUser As UserDTO
-        Get
-            Return LogHelper.CurrentUser
-        End Get
-    End Property
-
-    Private Property AppointmentList As List(Of APPOINTMENT_DTO)
-        Get
-            Return PageViewState(Me.ID & "_AppointmentList")
-        End Get
-        Set(ByVal value As List(Of APPOINTMENT_DTO))
-            PageViewState(Me.ID & "_AppointmentList") = value
-        End Set
-    End Property
-
-    Private Property lstHolidays As List(Of Date)
-        Get
-            Return ViewState(Me.ID & "_lstHolidays")
-        End Get
-        Set(ByVal value As List(Of Date))
-            ViewState(Me.ID & "_lstHolidays") = value
-        End Set
-    End Property
-    Protected Property ListManual As List(Of OT_OTHERLIST_DTO)
-        Get
-            Return PageViewState(Me.ID & "_ListManual")
-        End Get
-        Set(ByVal value As List(Of OT_OTHERLIST_DTO))
-            PageViewState(Me.ID & "_ListManual") = value
+        Set(ByVal value As List(Of AT_FMLDTO))
+            PageViewState(Me.ID & "_ListFML") = value
         End Set
     End Property
     Property ListComboData As Attendance.AttendanceBusiness.ComboBoxDataDTO
@@ -162,6 +56,15 @@ Public Class ctrlOTRegistrationNewEdit
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
+    Property OtRegistration As AT_OT_REGISTRATIONDTO
+        Get
+            Return ViewState(Me.ID & "_OTRegistration")
+        End Get
+        Set(ByVal value As AT_OT_REGISTRATIONDTO)
+            ViewState(Me.ID & "_OTRegistration") = value
+        End Set
+    End Property
+
     Property userType As String
         Get
             Return ViewState(Me.ID & "_userType")
@@ -170,24 +73,16 @@ Public Class ctrlOTRegistrationNewEdit
             ViewState(Me.ID & "_userType") = value
         End Set
     End Property
-    Property ID_REG_GROUP As Decimal?
-        Get
-            Return ViewState(Me.ID & "_ID_REG_GROUP")
-        End Get
-        Set(ByVal value As Decimal?)
-            ViewState(Me.ID & "_ID_REG_GROUP") = value
-        End Set
-    End Property
+
 #End Region
 
 #Region "Page"
+
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
+
             Refresh()
             UpdateControlState()
-            CreateDataTableUpdate()
-            perioId = AttendanceRepositoryStatic.Instance.GET_PERIOD(FirstDayOfMonth(Date.Now))
-            orgId = AttendanceRepositoryStatic.Instance.GET_ORGID(EmployeeId)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -196,40 +91,43 @@ Public Class ctrlOTRegistrationNewEdit
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         InitControl()
     End Sub
+    Public Overrides Sub BindData()
+        Dim rep As New AttendanceRepository
+        Try
+            If Not IsPostBack Then
+                If ListComboData Is Nothing Then
+                    ListComboData = New Attendance.AttendanceBusiness.ComboBoxDataDTO
+                    ListComboData.GET_LIST_OT_TYPE = True
+                    rep.GetComboboxData(ListComboData)
+                End If
+                FillRadCombobox(cboTypeOT, ListComboData.LIST_LIST_OT_TYPE, "NAME_VN", "ID", True)
+                If ListComboData.LIST_LIST_OT_TYPE.Count > 0 Then
+                    cboTypeOT.SelectedIndex = 0
+                End If
+                Dim table As DataTable = LoadComboMinute()
+                FillRadCombobox(cboFromAM, table, "NAME_VN", "ID", True)
+                FillRadCombobox(cboToAM, table, "NAME_VN", "ID", True)
+                FillRadCombobox(cboFromPM, table, "NAME_VN", "ID", True)
+                FillRadCombobox(cboToPM, table, "NAME_VN", "ID", True)
+
+                EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
+                If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
+                    txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_EN")
+                    txtEmpCode.Text = EmployeeDto.Rows(0)("EMPLOYEE_CODE")
+                    txtDepartment.Text = EmployeeDto.Rows(0)("ORG_NAME")
+                    txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_EN")
+                End If
+            End If
+
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMainToolBar
             BuildToolbar(Me.MainToolBar, ToolbarItem.Save, ToolbarItem.Cancel)
             CType(Me.MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
-
-    Public Overrides Sub BindData()
-        Dim atRepo As New AttendanceRepository
-        Dim dtData As DataTable
-        Try
-            If Not IsPostBack Then
-                dtData = AttendanceRepositoryStatic.Instance.GET_LIST_HOURS()
-                If dtData.Rows.Count > 0 Then
-                    FillRadCombobox(cboHoursFrom, dtData, "NAME", "ID", False)
-                    FillRadCombobox(cboHoursTo, dtData, "NAME", "ID", False)
-                End If
-                dtData = AttendanceRepositoryStatic.Instance.GET_LIST_MINUTE()
-                If dtData.Rows.Count > 0 Then
-                    FillRadCombobox(cboMinuteFrom, dtData, "NAME", "ID", False)
-                    FillRadCombobox(cboMinuteTo, dtData, "NAME", "ID", False)
-                End If
-                EmployeeDto = atRepo.GetEmployeeInfor(EmployeeId, Nothing)
-                If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
-                    txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
-                    txtEmpCode.Text = EmployeeDto.Rows(0)("EMPLOYEE_CODE")
-                    txtDepartment.Text = EmployeeDto.Rows(0)("ORG_NAME")
-                    txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_VN")
-                End If
-
-            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -245,52 +143,86 @@ Public Class ctrlOTRegistrationNewEdit
                 userType = Request.QueryString("typeUser")
                 hidID.Value = id
                 hidValid.Value = 0
-                Dim dto As New AT_PORTAL_REG_DTO
+                Dim dto As New AT_OT_REGISTRATIONDTO
                 dto.ID = hidID.Value
                 If hidID.Value = 0 Then
-                    EmployeeId = LogHelper.CurrentUser.EMPLOYEE_ID
-                    dto.ID_EMPLOYEE = EmployeeId
+                    EmployeeID = LogHelper.CurrentUser.EMPLOYEE_ID
+                    dto.EMPLOYEE_ID = EmployeeID
                 Else
-                    EmployeeId = empId
-                    dto.ID_EMPLOYEE = empId
+                    EmployeeID = empId
+                    dto.EMPLOYEE_ID = empId
                 End If
+                dto.P_USER = LogHelper.CurrentUser.EMPLOYEE_ID
                 Using rep As New AttendanceRepository
 
                     If dto.ID > 0 Then
                         Dim data = rep.GetOtRegistration(dto)
                         If data IsNot Nothing Then
                             OtRegistration = data.FirstOrDefault
-                            'EmployeeShift = rep.GetEmployeeShifts(EmployeeID, OtRegistration.REGIST_DATE, OtRegistration.REGIST_DATE).FirstOrDefault
+                            EmployeeShift = rep.GetEmployeeShifts(EmployeeID, OtRegistration.REGIST_DATE, OtRegistration.REGIST_DATE).FirstOrDefault
                         End If
                     End If
-                    EmployeeDto = rep.GetEmployeeInfor(EmployeeId, Nothing)
+                    EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
                     If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
-                        txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
+                        txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_EN")
                         txtEmpCode.Text = EmployeeDto.Rows(0)("EMPLOYEE_CODE")
                         txtDepartment.Text = EmployeeDto.Rows(0)("ORG_NAME")
-                        txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_VN")
+                        txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_EN")
                     End If
 
                 End Using
 
                 If OtRegistration IsNot Nothing Then
                     hidStatus.Value = If(OtRegistration.STATUS.HasValue, OtRegistration.STATUS, 0)
-                    If OtRegistration.FROM_DATE.HasValue Then
-                        rdFromDate.SelectedDate = OtRegistration.FROM_DATE
+                    rdRegDate.SelectedDate = OtRegistration.REGIST_DATE
+                    If OtRegistration.SIGN_ID IsNot Nothing Then
+                        txtSignCode.Text = OtRegistration.SIGN_CODE
+                        hidSignId.Value = OtRegistration.SIGN_ID
                     End If
-                    If OtRegistration.TO_DATE.HasValue Then
-                        rdToDate.SelectedDate = OtRegistration.TO_DATE
+
+                    txtNote.Text = OtRegistration.NOTE
+                    hid100.Value = OtRegistration.OT_100
+                    hid150.Value = OtRegistration.OT_150
+                    hid200.Value = OtRegistration.OT_200
+                    hid210.Value = OtRegistration.OT_210
+                    hid270.Value = OtRegistration.OT_270
+                    hid300.Value = OtRegistration.OT_300
+                    hid390.Value = OtRegistration.OT_370
+
+                    If OtRegistration.OT_TYPE_ID.HasValue Then
+                        cboTypeOT.SelectedValue = OtRegistration.OT_TYPE_ID
                     End If
-                    If OtRegistration.FROM_HOUR.HasValue Then
-                        cboHoursFrom.Text = OtRegistration.FROM_HOUR.Value.Hour.ToString
-                        cboMinuteFrom.Text = OtRegistration.FROM_HOUR.Value.Minute.ToString
+                    If OtRegistration.FROM_AM.HasValue Then
+                        rntbFromAM.Value = OtRegistration.FROM_AM
                     End If
-                    If OtRegistration.TO_HOUR.HasValue Then
-                        cboHoursTo.Text = OtRegistration.TO_HOUR.Value.Hour.ToString
-                        cboMinuteTo.Text = OtRegistration.TO_HOUR.Value.Minute.ToString
+                    If OtRegistration.FROM_AM_MN.HasValue Then
+                        cboFromAM.SelectedValue = OtRegistration.FROM_AM_MN
                     End If
-                    txtReason.Text = OtRegistration.NOTE
-                    ID_REG_GROUP = OtRegistration.ID_REGGROUP
+                    If OtRegistration.TO_AM.HasValue Then
+                        rntbToAM.Value = OtRegistration.TO_AM
+                    End If
+                    If OtRegistration.TO_AM_MN.HasValue Then
+                        cboToAM.SelectedValue = OtRegistration.TO_AM_MN
+                    End If
+                    If OtRegistration.FROM_PM.HasValue Then
+                        rntbFromPM.Value = OtRegistration.FROM_PM
+                    End If
+                    If OtRegistration.TO_PM_MN.HasValue Then
+                        cboFromPM.SelectedValue = OtRegistration.FROM_PM_MN
+                    End If
+                    If OtRegistration.TO_PM.HasValue Then
+                        rntbToPM.Value = OtRegistration.TO_PM
+                    End If
+                    If OtRegistration.TO_PM_MN.HasValue Then
+                        cboToPM.SelectedValue = OtRegistration.TO_PM_MN
+                    End If
+
+                    Using rep As New HistaffFrameworkRepository
+                        Dim response = rep.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_TOTAL_ACCUMULATIVE_OT", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
+                        If response(0).ToString() <> "" Then
+                            rntTotalAccumulativeOTHours.Text = Decimal.Parse(response(0).ToString()).ToString("N1")
+                        End If
+                    End Using
                 End If
             End If
         Catch ex As Exception
@@ -313,13 +245,13 @@ Public Class ctrlOTRegistrationNewEdit
                 '19 Khong duyet qltt
                 '20 Khong xac nhan nhan su
                 '22 Khong duyet GM
-                Case "", 0, PortalStatus.unsent
+                Case "", 0, PortalStatus.Saved, PortalStatus.UnApprovedByLM, PortalStatus.UnVerifiedByHr
                     If userType = "User" Then
                         tbarMainToolBar.Items(0).Enabled = True
-                        EnableControlAll(True, rdFromDate, rdToDate, cboHoursFrom, cboHoursTo, cboMinuteFrom, cboMinuteTo, txtReason)
+                        EnableControlAll(True, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
                     Else
                         tbarMainToolBar.Items(0).Enabled = False
-                        EnableControlAll(False, rdFromDate, rdToDate, cboHoursFrom, cboHoursTo, cboMinuteFrom, cboMinuteTo, txtReason)
+                        EnableControlAll(False, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
                     End If
                     If Not String.IsNullOrEmpty(hidID.Value) AndAlso hidID.Value > 0 Then
                         CurrentState = CommonMessage.STATE_EDIT
@@ -327,7 +259,7 @@ Public Class ctrlOTRegistrationNewEdit
                         CurrentState = CommonMessage.STATE_NEW
                     End If
                 Case Else
-                    EnableControlAll(False, rdFromDate, rdToDate, cboHoursFrom, cboHoursTo, cboMinuteFrom, cboMinuteTo, txtReason)
+                    EnableControlAll(False, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
             End Select
             'ChangeToolbarState()
 
@@ -335,140 +267,193 @@ Public Class ctrlOTRegistrationNewEdit
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
 #End Region
 
 #Region "Event"
+
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Try
-
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(rdFromDate, rdToDate, cboHoursFrom, cboHoursTo, cboMinuteFrom, cboMinuteTo, txtReason)
+                    ClearControlValue(rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
 
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If CurrentState = CommonMessage.STATE_EDIT Then
-                            com.DELETE_REG_BY_IDGROUP(ID_REG_GROUP)
-                        End If
-                        AppointmentList = AttendanceRepositoryStatic.Instance.GET_REG_PORTAL(CurrentUser.EMPLOYEE_ID, rdFromDate.SelectedDate, rdToDate.SelectedDate, "", cons.OVERTIME)
-                        Dim startDate As Date?
-                        Dim startDate_temp As Date?
-                        Dim endDate As Date?
-                        Dim Sum_Values As Decimal = 0
-                        Dim Values As Decimal = 0
-                        Dim SumPRgtUsed As Decimal? = 0 ' Phep nam da dang ky
-                        Dim SumPRgtCurrent As Decimal? = 0 ' Phep nam dang dang ky
-                        Dim difference As TimeSpan
-                        If CheckValiadte() Then
-                            perioId = AttendanceRepositoryStatic.Instance.GET_PERIOD(rdFromDate.SelectedDate)
-                            'Kiẻm tra trạng thái bảng công
-                            If Not CheckOrgPeriodCloseOT(orgId, perioId) Then
-                                Exit Sub
-                            End If
-                            perioId = AttendanceRepositoryStatic.Instance.GET_PERIOD(rdToDate.SelectedDate)
-                            'Kiểm tra trạng thái bảng công
-                            If Not CheckOrgPeriodCloseOT(orgId, perioId) Then
-                                Exit Sub
-                            End If
-
-                            If Not CheckEmployee(EmployeeId, rdFromDate.SelectedDate) Then
-                                Exit Sub
-                            End If
-
-                            Dim dateFrom As Date
-                            Dim dateTo As Date
-                            Dim strDatafrom As String = rdFromDate.SelectedDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
-                            Dim strDataTo As String = rdToDate.SelectedDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
-
-                            DateTime.TryParseExact(String.Format("{0} {1}:{2}", strDatafrom, cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue), "dd/MM/yyyy HH:mm", New CultureInfo("en-US"), DateTimeStyles.None, dateFrom)
-                            DateTime.TryParseExact(String.Format("{0} {1}:{2}", strDataTo, cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue), "dd/MM/yyyy HH:mm", New CultureInfo("en-US"), DateTimeStyles.None, dateTo)
-
-                            If dateFrom > dateTo Then
-                                difference = dateTo.AddDays(1) - dateFrom
-                            Else
-                                difference = dateTo - dateFrom
-                            End If
-                            Values = difference.TotalHours
-
-                            startDate = rdFromDate.SelectedDate
-                            endDate = rdToDate.SelectedDate
-                            startDate_temp = rdFromDate.SelectedDate
-
-                            Dim RGT_OT_TO As New Date?
-                            Do
-                                For Each item As APPOINTMENT_DTO In AppointmentList.Where(Function(f) f.WORKINGDAY >= startDate_temp AndAlso f.WORKINGDAY <= startDate_temp)
-                                    ' Từ giờ đã đăng ký trước đó
-                                    Dim FROM_HOUR = DateTime.ParseExact(startDate_temp.Value.Date.ToString("dd/MM/yyyy") + " " + Format(item.FROMHOUR, "HH:mm").ToString, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture)
-                                    ' Đến giờ đã đăng ký trước đó
-                                    Dim TO_HOUR = DateTime.ParseExact(startDate_temp.Value.Date.ToString("dd/MM/yyyy") + " " + Format(item.TOHOUR, "HH:mm").ToString, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture)
-                                    ' Từ giờ đăng ký
-                                    Dim RGT_OT_FROM = DateTime.ParseExact(String.Format("{0} {1}:{2}", startDate_temp.Value.Date.ToString("dd/MM/yyyy"), cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture)
-                                    'Đến giờ đăng ký
-                                    If dateFrom > dateTo Then
-                                        RGT_OT_TO = DateTime.ParseExact(String.Format("{0} {1}:{2}", startDate_temp.Value.AddDays(1).Date.ToString("dd/MM/yyyy"), cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture)
-                                    Else
-                                        RGT_OT_TO = DateTime.ParseExact(String.Format("{0} {1}:{2}", startDate_temp.Value.Date.ToString("dd/MM/yyyy"), cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture)
-                                    End If
-
-                                    If RGT_OT_FROM >= FROM_HOUR AndAlso RGT_OT_FROM < TO_HOUR AndAlso TO_HOUR <= RGT_OT_TO Then
-                                        ShowMessage(Translate("Không thỏa điều kiện đăng ký"), NotifyType.Warning)
-                                        Exit Sub
-                                    End If
-
-                                    If RGT_OT_FROM < FROM_HOUR AndAlso FROM_HOUR < RGT_OT_TO Then
-                                        ShowMessage(Translate("Không thỏa điều kiện đăng ký"), NotifyType.Warning)
-                                        Exit Sub
-                                    End If
-                                    If RGT_OT_FROM >= FROM_HOUR AndAlso RGT_OT_TO <= TO_HOUR Then
-                                        ShowMessage(Translate("Không thỏa điều kiện đăng ký"), NotifyType.Warning)
-                                        Exit Sub
-                                    End If
-                                Next
-                                Sum_Values = Sum_Values + Values
-                                startDate_temp = startDate_temp.Value.AddDays(1)
-                            Loop Until startDate_temp > endDate
-                            startDate_temp = startDate
-
-                            Dim total_value_rgt = AttendanceRepositoryStatic.Instance.GET_TOTAL_OT_APPROVE3(EmployeeId, endDate)
-                            Dim check = AttendanceRepositoryStatic.Instance.CHECK_RGT_OT(EmployeeId, startDate, endDate, String.Format("{0}:{1}", cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue) _
-                                                        , String.Format("{0}:{1}", cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue), Sum_Values + total_value_rgt)
-                            If check = 1 Then
-                                ShowMessage(Translate("Nhân viên chưa được thiết lập ca hoặc ca không tồn tại, vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf check = 2 Then
-                                ShowMessage(Translate("Chức danh của nhân viên này không được đăng ký làm thêm, vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf check = 3 Then
-                                ShowMessage(Translate("Thời gian đăng ký OT không nằm trong khoảng ca làm việc, vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf check = 4 Then
-                                ShowMessage(Translate("Thời gian đăng ký nằm trong khoảng thời gian không tính tăng ca, vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf check = 5 Then
-                                ShowMessage(Translate("Số giờ đăng ký vượt quá quy định, vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf check = 6 Then
-                                ShowMessage(Translate("Không cho đăng ký làm thêm đối với trường hợp thai sản , vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf check = 7 Then
-                                ShowMessage(Translate("Không cho đăng ký làm thêm đối với trường hợp nuôi con dưới 12 tháng tuổi, vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            ElseIf check = 8 Then
-                                ShowMessage(Translate("Nhân viên thử việc không được đăng ký làm thêm, vui lòng kiểm tra lại"), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                            GetIDREGGROUP_AND_SAVE()
-                        Else
+                        If String.IsNullOrEmpty(cboTypeOT.SelectedValue) Then
+                            ShowMessage(Translate("Phải nhập loại làm thêm."), NotifyType.Warning)
+                            cboTypeOT.Focus()
                             Exit Sub
                         End If
+                        If rntbFromAM.Value.HasValue Or rntbToAM.Value.HasValue Then
+                            If Not rntbFromAM.Value.HasValue Then
+                                ShowMessage(Translate("Phải nhập từ giờ làm thêm AM."), NotifyType.Warning)
+                                rntbFromAM.Focus()
+                                Exit Sub
+                            Else
+                                If cboFromAM.SelectedValue = "" Then
+                                    ShowMessage(Translate("Vui lòng nhập phút AM"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+
+                            If Not rntbToAM.Value.HasValue Then
+                                ShowMessage(Translate("Phải nhập đến giờ làm thêm AM."), NotifyType.Warning)
+                                rntbToAM.Focus()
+                                Exit Sub
+                            Else
+                                If cboToAM.SelectedValue = "" Then
+                                    ShowMessage(Translate("Vui lòng nhập phút AM"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+                        End If
+                        If rntbFromPM.Value.HasValue Or rntbToPM.Value.HasValue Then
+                            If Not rntbFromPM.Value.HasValue Then
+                                ShowMessage(Translate("Phải nhập từ giờ làm thêm PM."), NotifyType.Warning)
+                                rntbFromPM.Focus()
+                                Exit Sub
+                            Else
+                                If cboFromPM.SelectedValue = "" Then
+                                    ShowMessage(Translate("Vui lòng nhập phút PM"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+
+                            If Not rntbToPM.Value.HasValue Then
+                                ShowMessage(Translate("Phải nhập đến giờ làm thêm PM."), NotifyType.Warning)
+                                rntbToPM.Focus()
+                                Exit Sub
+                            Else
+                                If cboToPM.SelectedValue = "" Then
+                                    ShowMessage(Translate("Vui lòng nhập phút PM"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End If
+                        End If
+                        If rntbFromAM.Value.HasValue AndAlso rntbFromAM.Value = 12 AndAlso cboFromAM.SelectedValue = 30 Then
+                            ShowMessage(Translate("Chỉ được nhập 0 phút cho 12 giờ."), NotifyType.Warning)
+                            cboFromAM.Focus()
+                            Exit Sub
+                        End If
+                        If rntbToAM.Value.HasValue AndAlso rntbToAM.Value = 12 AndAlso cboToAM.SelectedValue = 30 Then
+                            ShowMessage(Translate("Chỉ được nhập 0 phút cho 12 giờ."), NotifyType.Warning)
+                            cboToAM.Focus()
+                            Exit Sub
+                        End If
+                        If rntbFromPM.Value.HasValue AndAlso rntbFromPM.Value = 12 AndAlso cboFromPM.SelectedValue = 30 Then
+                            ShowMessage(Translate("Chỉ được nhập 0 phút cho 12 giờ."), NotifyType.Warning)
+                            cboFromPM.Focus()
+                            Exit Sub
+                        End If
+                        If rntbToPM.Value.HasValue AndAlso rntbToPM.Value = 12 AndAlso cboToPM.SelectedValue = 30 Then
+                            ShowMessage(Translate("Chỉ được nhập 0 phút cho 12 giờ."), NotifyType.Warning)
+                            cboToPM.Focus()
+                            Exit Sub
+                        End If
+                        If Not CalculateOT() Then
+                            Exit Sub
+                        End If
+                        'If (String.IsNullOrEmpty(hid100.Value) Or (Not String.IsNullOrEmpty(hid100.Value) AndAlso Decimal.Parse(hid100.Value) <= 0)) _
+                        '    And (String.IsNullOrEmpty(hid150.Value) Or (Not String.IsNullOrEmpty(hid150.Value) AndAlso Decimal.Parse(hid150.Value) <= 0)) _
+                        '    And (String.IsNullOrEmpty(hid210.Value) Or (Not String.IsNullOrEmpty(hid210.Value) AndAlso Decimal.Parse(hid210.Value) <= 0)) _
+                        '    And (String.IsNullOrEmpty(hid200.Value) Or (Not String.IsNullOrEmpty(hid200.Value) AndAlso Decimal.Parse(hid200.Value) <= 0)) _
+                        '    And (String.IsNullOrEmpty(hid270.Value) Or (Not String.IsNullOrEmpty(hid270.Value) AndAlso Decimal.Parse(hid270.Value) <= 0)) _
+                        '    And (String.IsNullOrEmpty(hid300.Value) Or (Not String.IsNullOrEmpty(hid300.Value) AndAlso Decimal.Parse(hid300.Value) <= 0)) _
+                        '    And (String.IsNullOrEmpty(hid390.Value) Or (Not String.IsNullOrEmpty(hid390.Value) AndAlso Decimal.Parse(hid390.Value) <= 0)) Then
+                        '    ShowMessage(Translate("Thông tin đăng ký tăng ca không hợp lệ."), NotifyType.Warning)
+                        '    UpdateControlState()
+                        '    Exit Sub
+                        'End If
+                        If String.IsNullOrEmpty(hidTotal.Value) Or (Not String.IsNullOrEmpty(hidTotal.Value) AndAlso Decimal.Parse(hidTotal.Value) <= 0) Then
+                            ShowMessage(Translate("Tổng đăng ký tăng ca không hợp lệ."), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
+                        End If
+                        Dim isInsert As Boolean = True
+                        Dim obj As New AT_OT_REGISTRATIONDTO
+                        obj.EMPLOYEE_ID = EmployeeID
+                        obj.IS_DELETED = 0
+                        obj.NOTE = txtNote.Text
+                        obj.OT_TYPE_ID = ObjToDecima(cboTypeOT.SelectedValue, 0) 'txtDayRegist.Text
+                        obj.REGIST_DATE = rdRegDate.SelectedDate
+                        If hidSignId.Value Is Nothing Then
+                            ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        obj.SIGN_CODE = txtSignCode.Text
+                        obj.SIGN_ID = hidSignId.Value
+
+                        obj.TOTAL_OT = ObjToDecima(hidTotal.Value, 0)
+                        obj.OT_100 = ObjToDecima(hid100.Value, 0)
+                        obj.OT_150 = ObjToDecima(hid150.Value, 0)
+                        obj.OT_200 = ObjToDecima(hid200.Value, 0)
+                        obj.OT_210 = ObjToDecima(hid210.Value, 0)
+                        obj.OT_270 = ObjToDecima(hid270.Value, 0)
+                        obj.OT_300 = ObjToDecima(hid300.Value, 0)
+                        obj.OT_370 = ObjToDecima(hid390.Value, 0)
+
+                        obj.FROM_AM = rntbFromAM.Value
+                        If Not String.IsNullOrEmpty(cboFromAM.SelectedValue) Then
+                            obj.FROM_AM_MN = cboFromAM.SelectedValue
+                        End If
+                        obj.TO_AM = rntbToAM.Value
+                        If Not String.IsNullOrEmpty(cboToAM.SelectedValue) Then
+                            obj.TO_AM_MN = cboToAM.SelectedValue
+                        End If
+
+                        obj.FROM_PM = rntbFromPM.Value
+                        If Not String.IsNullOrEmpty(cboFromPM.SelectedValue) Then
+                            obj.FROM_PM_MN = cboFromPM.SelectedValue
+                        End If
+                        obj.TO_PM = rntbToPM.Value
+                        If Not String.IsNullOrEmpty(cboToPM.SelectedValue) Then
+                            obj.TO_PM_MN = cboToPM.SelectedValue
+                        End If
+
+                        obj.STATUS = 16
+                        hidStatus.Value = 16
+
+                        Using rep As New AttendanceRepository
+                            If String.IsNullOrEmpty(hidID.Value) Then
+                                hidID.Value = 0
+                            End If
+                            If hidID.Value <> 0 Then
+                                isInsert = False
+                            End If
+                            obj.ID = hidID.Value
+                            Dim valid = rep.ValidateOtRegistration(obj)
+                            If valid Then
+                                ShowMessage(Translate("Ngày OT đã được đăng ký, vui lòng chọn ngày khác."), NotifyType.Warning)
+                                UpdateControlState()
+                                Exit Sub
+                            End If
+                            If isInsert Then
+                                rep.InsertOtRegistration(obj, hidID.Value)
+                                obj.ID = hidID.Value
+                            Else
+                                obj.ID = hidID.Value
+                                rep.ModifyotRegistration(obj, hidID.Value)
+                            End If
+
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            UpdateControlState()
+                        End Using
                     End If
+                    'Case CommonMessage.TOOLBARITEM_SUBMIT
+                    '    ctrlMessageBox.MessageText = Translate("Thông tin đã gửi duyệt sẽ không được chỉnh sửa. Bạn chắc chắn muốn gửi duyệt?")
+                    '    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
+                    '    ctrlMessageBox.DataBind()
+                    '    ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     If userType = "User" Then
                         Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
                     ElseIf userType = "LM" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByManager")
+                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByLM")
                     ElseIf userType = "HR" Then
                         Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByHR")
                     End If
@@ -477,303 +462,230 @@ Public Class ctrlOTRegistrationNewEdit
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-
-    Private Sub GetIDREGGROUP_AND_SAVE()
-        Dim rtnVal As Decimal
-        Dim startDate As Date?
-        Dim startDate_temp As Date?
-        Dim endDate As Date?
-        startDate = rdFromDate.SelectedDate
-        endDate = rdToDate.SelectedDate
-        Dim NOTE As String = ""
-        Dim strId As String
-        Dim lstId As New List(Of Decimal)
-        'Dim VALUES As Decimal?
-
-        log = LogHelper.GetUserLog
+    Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
-            dtTable.Clear()
-            Dim IdGroup = AttendanceRepositoryStatic.Instance.GET_SEQ_PORTAL_RGT()
+            If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                'Using rep As New ProfileBusinessRepository
+                '    Dim lstID As New List(Of Decimal)
+                '    lstID.Add(hidID.Value)
+                '    If lstID.Count > 0 Then
+                '        rep.SendEmployeeEdit(lstID)
+                '        hidStatus.Value = 1
+                '        lbStatus.Text = "Thông tin chỉnh sửa đang ở trạng thái [ Chờ phê duyệt ], Bạn không thể chỉnh sửa"
+                '        tbarMainToolBar.Items(0).Enabled = False
+                '        tbarMainToolBar.Items(3).Enabled = False
+                '        EnableControlAll(False, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
+                '                    cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
+                '                    txtIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
 
-            If AppointmentList IsNot Nothing Then
-                For Each item As APPOINTMENT_DTO In AppointmentList.Where(Function(f) f.WORKINGDAY >= startDate And f.WORKINGDAY <= endDate And f.STATUS = 0)
-                    lstId.Add(item.ID)
-                    NOTE = item.NOTE
-                Next
-                ' Lấy danh sách ID portal register
-                For Each dr As Decimal In lstId
-                    strId &= IIf(strId = vbNullString, dr, "," & dr)
-                Next
-                If strId = "," Then
-                    strId = ""
-                End If
+                '    End If
+                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                'End Using
             End If
-            dtTable.TableName = "DATA"
-            startDate_temp = rdFromDate.SelectedDate
 
-            Dim dateFrom As Date
-            Dim dateTo As Date
-            Dim strDatafrom As String = rdFromDate.SelectedDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
-            Dim strDataTo As String = rdToDate.SelectedDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
 
-            DateTime.TryParseExact(String.Format("{0} {1}:{2}", strDatafrom, cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue), "dd/MM/yyyy HH:mm", New CultureInfo("en-US"), DateTimeStyles.None, dateFrom)
-            DateTime.TryParseExact(String.Format("{0} {1}:{2}", strDataTo, cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue), "dd/MM/yyyy HH:mm", New CultureInfo("en-US"), DateTimeStyles.None, dateTo)
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
 
-            Dim difference As TimeSpan = dateTo - dateFrom
-            Dim atRepo As New AttendanceRepository
-            Do
-                Dim dr As DataRow = dtTable.NewRow()
-                Dim atRegDTO As New AT_PORTAL_REG_DTO
-                dr("P_EMPLOYEE_ID") = CurrentUser.EMPLOYEE_ID
-                dr("P_WORKINGDAY") = startDate_temp
-                dr("P_SIGN_CODE") = ATConstant.SIGINCODE_OT
-                dr("P_NVALUE") = difference.TotalHours
-                If cboHoursFrom.Text <> "" And cboMinuteFrom.Text <> "" Then
-                    dr("P_FROM_HOUR_STRING") = String.Format("{0}:{1}", cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue)
-                End If
-                If cboHoursTo.Text <> "" And cboMinuteTo.Text <> "" Then
-                    dr("P_TO_HOUR_STRING") = String.Format("{0}:{1}", cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue)
-                End If
-                dr("P_NOTE") = txtReason.Text
-                dr("P_ID_GROUP") = IdGroup
-                dr("P_CREATED_BY") = log.Username
-                dr("P_CREATED_LOG") = log.Ip + "/" + log.ComputerName
-                dr("P_NB") = If(chkNB.Checked, 1, 0)
-                dr("FROM_DATE") = rdFromDate.SelectedDate
-                dr("TO_DATE") = rdToDate.SelectedDate
-                dtTable.Rows.Add(dr)
-                startDate_temp = startDate_temp.Value.AddDays(1)
-            Loop Until startDate_temp > endDate
-            rtnVal = CreatePlanningAppointment(dtTable)
-            If rtnVal Then
-                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
-                CurrentState = CommonMessage.STATE_NORMAL
-                UpdateControlState()
-            Else : ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+    End Sub
+    Protected Sub rdRegDate_Select(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdRegDate.SelectedDateChanged
+        Try
+            If rdRegDate.SelectedDate IsNot Nothing Then
+                Using rep As New AttendanceRepository
+                    Dim dto As New AT_OT_REGISTRATIONDTO
+                    dto.REGIST_DATE = rdRegDate.SelectedDate
+                    dto.EMPLOYEE_ID = EmployeeID
+                    Dim data = rep.GetOtRegistration(dto)
+                    If data IsNot Nothing AndAlso data.Where(Function(f) f.ID <> hidID.Value).FirstOrDefault IsNot Nothing Then
+                        ShowMessage(Translate("Ngày làm thêm đã được đăng ký"), NotifyType.Warning)
+                        rdRegDate.ClearValue()
+                        txtSignCode.ClearValue()
+                        hidSignId.Value = Nothing
+                        rdRegDate.Focus()
+                        Exit Sub
+                    End If
+
+                    EmployeeShift = rep.GetEmployeeShifts(EmployeeID, rdRegDate.SelectedDate, rdRegDate.SelectedDate).FirstOrDefault
+                    If EmployeeShift IsNot Nothing Then
+                        txtSignCode.Text = EmployeeShift.SUBJECT
+                        hidSignId.Value = EmployeeShift.ID_SIGN
+                        lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+                        'CalculateOT()
+                    End If
+                End Using
+
+                Using rep As New HistaffFrameworkRepository
+                    Dim response = rep.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_TOTAL_ACCUMULATIVE_OT", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
+                    If response(0).ToString() <> "" Then
+                        rntTotalAccumulativeOTHours.Text = Decimal.Parse(response(0).ToString()).ToString("N1")
+                    End If
+                End Using
             End If
         Catch ex As Exception
-            ShowMessage(ex.Message, NotifyType.Error)
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-
-    Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As Common.MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
-        Dim rtnVal As Decimal
-        Dim startDate As Date?
-        Dim startDate_temp As Date?
-        Dim endDate As Date?
-        startDate = rdFromDate.SelectedDate
-        endDate = rdToDate.SelectedDate
-        Dim NOTE As String = ""
-        Dim strId As String
-        Dim lstId As New List(Of Decimal)
-        'Dim VALUES As Decimal?
-
-        log = LogHelper.GetUserLog
-        Try
-            If e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                dtTable.Clear()
-                Select Case e.ActionName
-                    Case "BTNREGISTER"
-
-                        'Dim NEXTDATE = DateTime.Now.AddMonths(1)
-
-                        'If (rdFromDate.SelectedDate > NEXTDATE And rdToDate.SelectedDate > NEXTDATE) Or (NEXTDATE >= rdFromDate.SelectedDate And rdToDate.SelectedDate > NEXTDATE) Then
-                        '    ShowMessage(Translate("Thời gian đăng ký làm thêm không hợp lệ, vui lòng kiểm tra lại"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
-
-                        'Lay ID group moi lan dang ky portal ( muc dich de su dung bao cao)
-                        Dim IdGroup = AttendanceRepositoryStatic.Instance.GET_SEQ_PORTAL_RGT()
-                        If AppointmentList IsNot Nothing Then
-                            For Each item As APPOINTMENT_DTO In AppointmentList.Where(Function(f) f.WORKINGDAY >= startDate And f.WORKINGDAY <= endDate And f.STATUS = 0)
-                                lstId.Add(item.ID)
-                                NOTE = item.NOTE
-                            Next
-                            ' Lấy danh sách ID portal register
-                            For Each dr As Decimal In lstId
-                                strId &= IIf(strId = vbNullString, dr, "," & dr)
-                            Next
-                            If strId = "," Then
-                                strId = ""
-                            End If
-                        End If
-                        dtTable.TableName = "DATA"
-                        startDate_temp = rdFromDate.SelectedDate
-
-                        Dim dateFrom As Date
-                        Dim dateTo As Date
-                        Dim strDatafrom As String = rdFromDate.SelectedDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
-                        Dim strDataTo As String = rdToDate.SelectedDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
-
-                        DateTime.TryParseExact(String.Format("{0} {1}:{2}", strDatafrom, cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue), "dd/MM/yyyy HH:mm", New CultureInfo("en-US"), DateTimeStyles.None, dateFrom)
-                        DateTime.TryParseExact(String.Format("{0} {1}:{2}", strDataTo, cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue), "dd/MM/yyyy HH:mm", New CultureInfo("en-US"), DateTimeStyles.None, dateTo)
-
-                        Dim difference As TimeSpan = dateTo - dateFrom
-                        Dim atRepo As New AttendanceRepository
-                        Do
-                            Dim dr As DataRow = dtTable.NewRow()
-                            Dim atRegDTO As New AT_PORTAL_REG_DTO
-                            dr("P_EMPLOYEE_ID") = CurrentUser.EMPLOYEE_ID
-                            dr("P_WORKINGDAY") = startDate_temp
-                            dr("P_SIGN_CODE") = ATConstant.SIGINCODE_OT
-                            dr("P_NVALUE") = difference.TotalHours
-                            If cboHoursFrom.Text <> "" And cboMinuteFrom.Text <> "" Then
-                                dr("P_FROM_HOUR_STRING") = String.Format("{0}:{1}", cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue)
-                            End If
-                            If cboHoursTo.Text <> "" And cboMinuteTo.Text <> "" Then
-                                dr("P_TO_HOUR_STRING") = String.Format("{0}:{1}", cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue)
-                            End If
-                            dr("P_NOTE") = txtReason.Text
-                            dr("P_ID_GROUP") = IdGroup
-                            dr("P_CREATED_BY") = log.Username
-                            dr("P_CREATED_LOG") = log.Ip + "/" + log.ComputerName
-                            dr("P_NB") = If(chkNB.Checked, 1, 0)
-                            dtTable.Rows.Add(dr)
-                            startDate_temp = startDate_temp.Value.AddDays(1)
-                            'atRegDTO.ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID
-                            'atRegDTO.FROM_DATE = startDate
-                            'atRegDTO.TO_DATE = endDate
-                            'atRegDTO.SIGN_CODE = ATConstant.SIGINCODE_OT
-                            'atRegDTO.NVALUE = difference.TotalHours
-                            'If cboHoursFrom.Text <> "" And cboMinuteFrom.Text <> "" Then
-                            '    atRegDTO.FROM_HOUR = String.Format("{0}:{1}", cboHoursFrom.SelectedValue, cboMinuteFrom.SelectedValue)
-                            'End If
-                            'If cboHoursTo.Text <> "" And cboMinuteTo.Text <> "" Then
-                            '    atRegDTO.TO_HOUR = String.Format("{0}:{1}", cboHoursTo.SelectedValue, cboMinuteTo.SelectedValue)
-                            'End If
-                            'atRegDTO.NOTE = txtReason.Text
-                            'atRegDTO.ID_REGGROUP = IdGroup
-
-                            'atRegDTO.ID_NB = If(chkNB.Checked, 1, 0)
-                            'rtnVal = atRepo.InsertPortalRegister(atRegDTO)                            
-                        Loop Until startDate_temp > endDate
-                        rtnVal = CreatePlanningAppointment(dtTable)
-                        If rtnVal Then
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
-                            CurrentState = CommonMessage.STATE_NORMAL
-                            UpdateControlState()
-                        Else : ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                        End If
-                End Select
-
-            End If
-        Catch ex As Exception
-            ShowMessage(ex.Message, NotifyType.Error)
-        End Try
-    End Sub
-    
 #End Region
 
 #Region "Custom"
-    Public Function CreatePlanningAppointment(ByVal dtTable As DataTable) As Integer
+    Private Function Valid() As Boolean
         Try
-            Return rep.ExecuteBatchCommand("PKG_AT_ATTENDANCE_PORTAL.AT_INSERT_PORTAL_REG", dtTable)
+
         Catch ex As Exception
-            Throw ex
+
+        End Try
+
+    End Function
+    Private Function LoadComboMinute() As DataTable
+        Try
+            Dim table As New DataTable
+            table.Columns.Add("NAME_VN", GetType(String))
+            table.Columns.Add("ID", GetType(Decimal))
+            Dim row As DataRow
+            'row = table.NewRow
+            'row("ID") = ""
+            'row("VALUE") = ""
+            'table.Rows.Add(row)
+
+            row = table.NewRow
+            row("ID") = 0
+            row("NAME_VN") = "0"
+            table.Rows.Add(row)
+
+            row = table.NewRow
+            row("ID") = 30
+            row("NAME_VN") = "30"
+            table.Rows.Add(row)
+            Return table
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Function
-    Private Function CreateDataTableUpdate() As DataTable
-        'Các cột đi theo thứ tự của các cột trong store update
-        dtTable = New DataTable
-        dtTable.TableName = "DATA"
-        dtTable.Columns.Add("P_EMPLOYEE_ID", GetType(Decimal))
-        dtTable.Columns.Add("P_WORKINGDAY", GetType(Date))
-        dtTable.Columns.Add("P_SIGN_CODE", GetType(String))
-        dtTable.Columns.Add("P_NVALUE", GetType(Decimal))
-        dtTable.Columns.Add("P_TYPE_LEAVE", GetType(String))
-        dtTable.Columns.Add("P_FROM_HOUR_STRING", GetType(String))
-        dtTable.Columns.Add("P_TO_HOUR_STRING", GetType(String))
-        dtTable.Columns.Add("P_NOTE", GetType(String))
-        dtTable.Columns.Add("P_ID_GROUP", GetType(Decimal))
-        dtTable.Columns.Add("P_CREATED_BY", GetType(String))
-        dtTable.Columns.Add("P_CREATED_LOG", GetType(String))
-        dtTable.Columns.Add("P_NB", GetType(Decimal))
-        dtTable.Columns.Add("FROM_DATE", GetType(Date))
-        dtTable.Columns.Add("TO_DATE", GetType(Date))
-        Return dtTable
-    End Function
+    Private Function CalculateOT() As Boolean
+        If rdRegDate.SelectedDate.HasValue AndAlso EmployeeShift IsNot Nothing Then
+            Dim totalHour As Decimal = 0.0
+            Dim fromAM As Decimal = 0.0
+            Dim fromMNAM As Decimal = 0.0
+            Dim toAM As Decimal = 0.0
+            Dim toMMAM As Decimal = 0.0
+            Dim fromPM As Decimal = 0.0
+            Dim fromMNPM As Decimal = 0.0
+            Dim toPM As Decimal = 0.0
+            Dim toMNPM As Decimal = 0.0
 
-    Private Function CheckOrgPeriodCloseOT(ByVal ORG_ID As String, ByVal perioId As Decimal) As Boolean
-        If perioId <> 0 Then
-            Dim check = AttendanceRepositoryStatic.Instance.AT_CHECK_ORG_PERIOD_STATUS_OT(ORG_ID, perioId)
-            If check = 1 Then
-                ShowMessage(Translate("Bảng công đã được đóng trước đó, vui lòng kiểm tra lại"), NotifyType.Warning)
+            Dim totalFromAM As Decimal = 0.0
+            Dim totalToAM As Decimal = 0.0
+            Dim totalFromPM As Decimal = 0.0
+            Dim totalToPM As Decimal = 0.0
+            Dim OTAM As Decimal = 0.0
+            Dim AM As Decimal = 0.0
+            Dim OTPM As Decimal = 0.0
+            Dim PM As Decimal = 0.0
+            Try
+                Dim workingType As Decimal = 0
+                'Get working type of employee
+                Using repStore As New HistaffFrameworkRepository
+                    Dim response = repStore.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_WORKING_TYPE_BY_DATE", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
+                    If response(0).ToString() <> "" Then
+                        workingType = Decimal.Parse(response(0).ToString())
+                    End If
+                End Using
+
+
+                'AM
+                If rntbFromAM.Value.HasValue And rntbToAM.Value.HasValue Then
+                    fromAM = IIf(rntbFromAM.Value.HasValue, rntbFromAM.Value, 0.0)
+                    fromMNAM = Decimal.Parse(If(cboFromAM.SelectedValue = 30, 0.5, 0))
+                    toAM = IIf(rntbToAM.Value.HasValue, rntbToAM.Value, 0.0)
+                    toMMAM = Decimal.Parse(If(cboToAM.SelectedValue = 30, 0.5, 0))
+                    totalFromAM = fromAM + fromMNAM
+                    totalToAM = toAM + toMMAM
+                    If totalFromAM > totalToAM Then
+                        ShowMessage(Translate("Giờ làm thêm AM không hợp lệ."), NotifyType.Warning)
+                        rntbToAM.Focus()
+                        Return False
+                    End If
+                    If totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM <= 6 Then
+                        OTAM = totalToAM - totalFromAM
+                        AM = 0
+                    ElseIf totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM > 6 Then
+                        OTAM = 6 - totalFromAM
+                        AM = totalToAM - 6
+                    ElseIf totalFromAM > 6 Then
+                        OTAM = 0
+                        AM = totalToAM - totalFromAM
+                    End If
+                End If
+                'PM
+                If rntbFromPM.Value.HasValue And rntbToPM.Value.HasValue Then
+                    fromPM = IIf(rntbFromPM.Value.HasValue, rntbFromPM.Value, 0.0)
+                    fromMNPM = Decimal.Parse(If(cboFromPM.SelectedValue = 30, 0.5, 0))
+                    toPM = IIf(rntbToPM.Value.HasValue, rntbToPM.Value, 0.0)
+                    toMNPM = Decimal.Parse(If(cboToPM.SelectedValue = 30, 0.5, 0))
+                    totalFromPM = fromPM + fromMNPM
+                    totalToPM = toPM + toMNPM
+                    If totalFromPM > totalToPM Then
+                        ShowMessage(Translate("Giờ làm thêm PM không hợp lệ."), NotifyType.Warning)
+                        rntbFromPM.Focus()
+                        Return False
+                    End If
+                    If totalFromPM >= 10 Then
+                        OTPM = totalToPM - totalFromPM
+                        PM = 0
+                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM >= 10 Then
+                        OTPM = totalToPM - 10
+                        PM = 10 - totalFromPM
+                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM < 10 Then
+                        OTPM = 0
+                        PM = totalToPM - totalFromPM
+                    End If
+                End If
+                totalHour = OTAM + AM + OTPM + PM
+
+                hidTotal.Value = totalHour
+                hid100.Value = 0.0
+                hid150.Value = 0.0
+                hid200.Value = 0.0
+                hid210.Value = 0.0
+                hid270.Value = 0.0
+                hid300.Value = 0.0
+                hid390.Value = 0.0
+
+                If cboTypeOT.SelectedValue = "6607" Then
+                    hid100.Value = totalHour
+                Else
+                    'OT
+                    lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+                    If lstdtHoliday IsNot Nothing AndAlso lstdtHoliday.Rows.Count > 0 Then
+                        'nghi bu
+                        If lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
+                            hid200.Value = AM + PM
+                            hid270.Value = OTAM + OTPM
+                        Else 'Le, Tet
+                            hid300.Value = AM + PM
+                            hid390.Value = OTAM + OTPM
+                        End If
+                    ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
+                        hid200.Value = AM + PM
+                        hid270.Value = OTAM + OTPM
+                    Else
+                        If workingType <> 1090 Then 'Khac Office Type 
+                            hid200.Value = AM + PM
+                            hid270.Value = OTAM + OTPM
+                        Else
+                            hid150.Value = AM + PM
+                            hid210.Value = OTAM + OTPM
+                        End If
+                    End If
+                End If
+                Return True
+
+            Catch ex As Exception
+                ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
                 Return False
-            ElseIf check = 2 Then
-                ShowMessage(Translate("Phòng ban chưa được thiết lập trạng thái kỳ công"), NotifyType.Warning)
-                Return False
-            End If
-        Else
-            ShowMessage(Translate("Kỳ công không tồn tại, vui lòng kiểm tra lại"), NotifyType.Warning)
-            Return False
+            End Try
         End If
-        Return True
-    End Function
-    Private Function GET_TOTAL_OT_APPROVE(ByVal EMPID As Decimal?, ByVal ENDDATE As Date) As Decimal
-        Dim result = AttendanceRepositoryStatic.Instance.GET_TOTAL_OT_APPROVE(EMPID, ENDDATE)
-        Return result
-    End Function
-    'Private Function CheckEmployeeAppointment(ByVal lstEmp As List(Of EmployeeDTO), ByVal startdate As Date, ByVal enddate As Date, ByVal sign_code As AT_TIMESHEET_REGISTERDTO, ByRef sAction As String)
-    '    Try
-    '        Return AttendanceRepositoryStatic.Instance.CheckRegisterAppointmentByEmployee(lstEmp, startdate, enddate, ListSign, sign_code, sAction)
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
-    Private Function CheckValiadte() As Boolean
-
-        If rdFromDate.SelectedDate Is Nothing Or rdToDate.SelectedDate Is Nothing Then
-            ShowMessage(Translate("Bạn chưa chọn ngày, vui lòng kiểm tra lại "), NotifyType.Warning)
-            Return False
-        End If
-        'If rtpFROM.SelectedTime Is Nothing Or rtpTO.SelectedTime Is Nothing Then
-        '    ShowMessage(Translate("Bạn chưa thời gian, vui lòng kiểm tra lại"), NotifyType.Warning)
-        '    Return False
-        'End If
-        If rdFromDate.SelectedDate IsNot Nothing AndAlso rdToDate.SelectedDate IsNot Nothing AndAlso _
-            rdToDate.SelectedDate < rdFromDate.SelectedDate Then
-            ShowMessage(Translate("Đến ngày phải lớn hơn từ ngày, vui lòng kiểm tra lại"), NotifyType.Warning)
-            Return False
-        End If
-        'If rtpFROM.SelectedTime IsNot Nothing AndAlso rtpTO.SelectedTime IsNot Nothing AndAlso rtpTO.SelectedDate < rtpFROM.SelectedDate Then
-        '    ShowMessage(Translate("Thời gian kết thúc phải lớn hơn thời gian bắt đầu, vui lòng kiểm tra lại"), NotifyType.Warning)
-        '    Return False
-        'End If
-        If txtReason.Text.Trim = "" Then
-            ShowMessage(Translate("Bạn chưa nhập lý do "), NotifyType.Warning)
-            Return False
-        End If
-        'For Each item As APPOINTMENT_DTO In AppointmentList.Where(Function(f) f.WORKINGDAY >= rdFromdate.SelectedDate And f.WORKINGDAY <= rdToDate.SelectedDate)
-        '    If rdFromdate.SelectedDate = item.WORKINGDAY Then
-        '        ShowMessage(Translate("Không thỏa điều kiện đăng ký"), NotifyType.Warning)
-        '        Return False
-        '    End If
-        'Next
-        Return True
-    End Function
-
-    Private Function CheckEmployee(ByVal empID As Decimal?, ByVal ENDDATE As Date) As Boolean
-        Dim check = AttendanceRepositoryStatic.Instance.AT_CHECK_EMPLOYEE(empID, ENDDATE)
-        If check = 1 Then
-            ShowMessage(Translate("Nhân viên chưa có quyết định, vui lòng kiểm tra lại"), NotifyType.Warning)
-            Return False
-        ElseIf check = 2 Then
-            ShowMessage(Translate("Cộng tác viên không thể đăng ký, vui lòng kiểm tra lại"), NotifyType.Warning)
-            Return False
-        End If
-        Return True
-    End Function
-
-    Public Function FirstDayOfMonth(ByVal sourceDate As DateTime) As DateTime
-        Return New DateTime(sourceDate.Year, sourceDate.Month, 1)
-    End Function
-
-    'Get the last day of the month
-    Public Function LastDayOfMonth(ByVal sourceDate As DateTime) As DateTime
-        Dim lastDay As DateTime = New DateTime(sourceDate.Year, sourceDate.Month, 1)
-        Return lastDay.AddMonths(1).AddDays(-1)
     End Function
 #End Region
 

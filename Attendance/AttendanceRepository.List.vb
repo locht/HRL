@@ -1314,6 +1314,24 @@ Partial Class AttendanceRepository
 #End Region
 
 #Region "Đăng ký nghỉ trên iportal"
+    Public Function GetHolidayByCalenderToTable(ByVal startdate As Date, ByVal enddate As Date) As DataTable
+        Try
+            _isAvailable = False
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.GetHolidayByCalenderToTable(startdate, enddate)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+
+        Catch ex As Exception
+            Throw ex
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
     Public Function GetRegisterAppointmentInPortalByEmployee(ByVal empid As Decimal, ByVal startdate As Date, ByVal enddate As Date,
                                                                 ByVal listSign As List(Of AT_TIME_MANUALDTO), ByVal status As List(Of Short)) As List(Of AT_TIMESHEET_REGISTERDTO)
 

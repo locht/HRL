@@ -6,84 +6,87 @@
     <edmx:StorageModels>
     <Schema Namespace="AttendanceModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="AttendanceModelStoreContainer">
-            <EntitySet Name="OT_OTHER_LIST" EntityType="AttendanceModel.Store.OT_OTHER_LIST" store:Type="Tables"/>
-            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="AttendanceModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables"/>
-            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="AttendanceModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables"/>
-            <EntitySet Name="SE_CHOSEN_ORG" EntityType="AttendanceModel.Store.SE_CHOSEN_ORG" store:Type="Tables"/>
-            <EntitySet Name="AT_GSIGN" EntityType="AttendanceModel.Store.AT_GSIGN" store:Type="Tables"/>
-            <EntitySet Name="AT_SWIPE_DATA" EntityType="AttendanceModel.Store.AT_SWIPE_DATA" store:Type="Tables"/>
-            <EntitySet Name="AT_ORG_PERIOD" EntityType="AttendanceModel.Store.AT_ORG_PERIOD" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE" EntityType="AttendanceModel.Store.HU_EMPLOYEE" store:Type="Tables"/>
-            <EntitySet Name="HU_CONTRACT" EntityType="AttendanceModel.Store.HU_CONTRACT" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="AttendanceModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="AttendanceModel.Store.HU_EMPLOYEE_FILES" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="AttendanceModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="AttendanceModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE_SALARY" EntityType="AttendanceModel.Store.HU_EMPLOYEE_SALARY" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="AttendanceModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables"/>
-            <EntitySet Name="AT_TIMESHEET_REGISTER" EntityType="AttendanceModel.Store.AT_TIMESHEET_REGISTER" store:Type="Tables"/>
-            <EntitySet Name="SE_APP_PROCESS" EntityType="AttendanceModel.Store.SE_APP_PROCESS" store:Type="Tables"/>
-            <EntitySet Name="SE_APP_SETUP" EntityType="AttendanceModel.Store.SE_APP_SETUP" store:Type="Tables"/>
-            <EntitySet Name="SE_APP_SETUPEXT" EntityType="AttendanceModel.Store.SE_APP_SETUPEXT" store:Type="Tables"/>
-            <EntitySet Name="SE_APP_TEMPLATE_DTL" EntityType="AttendanceModel.Store.SE_APP_TEMPLATE_DTL" store:Type="Tables"/>
-            <EntitySet Name="SE_APP_TEMPLATE" EntityType="AttendanceModel.Store.SE_APP_TEMPLATE" store:Type="Tables"/>
-            <EntitySet Name="HU_ORGANIZATION" EntityType="AttendanceModel.Store.HU_ORGANIZATION" store:Type="Tables"/>
-            <EntitySet Name="HU_WORKING" EntityType="AttendanceModel.Store.HU_WORKING" store:Type="Tables"/>
-            <EntitySet Name="AT_PORTAL_APP" EntityType="AttendanceModel.Store.AT_PORTAL_APP" store:Type="Tables"/>
-            <EntitySet Name="AT_RGT" EntityType="AttendanceModel.Store.AT_RGT" store:Type="Tables"/>
-            <EntitySet Name="HU_ORG_TITLE" EntityType="AttendanceModel.Store.HU_ORG_TITLE" store:Type="Tables"/>
-            <EntitySet Name="HU_TITLE" EntityType="AttendanceModel.Store.HU_TITLE" store:Type="Tables"/>
-            <EntitySet Name="AT_WORKSIGN" EntityType="AttendanceModel.Store.AT_WORKSIGN" store:Type="Tables"/>
-            <EntitySet Name="AT_PORTAL_REG" EntityType="AttendanceModel.Store.AT_PORTAL_REG" store:Type="Tables"/>
-            <EntitySet Name="HU_STAFF_RANK" EntityType="AttendanceModel.Store.HU_STAFF_RANK" store:Type="Tables"/>
-            <EntitySet Name="AT_TIME_TIMESHEET_RICE" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_RICE" store:Type="Tables"/>
-            <EntitySet Name="AT_TIME_TIMESHEET_OT" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_OT" store:Type="Tables"/>
-            <EntitySet Name="AT_DMVS" EntityType="AttendanceModel.Store.AT_DMVS" store:Type="Tables"/>
-            <EntitySet Name="AT_HOLIDAY" EntityType="AttendanceModel.Store.AT_HOLIDAY" store:Type="Tables"/>
-            <EntitySet Name="AT_HOLIDAY_GENERAL" EntityType="AttendanceModel.Store.AT_HOLIDAY_GENERAL" store:Type="Tables"/>
-            <EntitySet Name="AT_HOLIDAY_OBJECT" EntityType="AttendanceModel.Store.AT_HOLIDAY_OBJECT" store:Type="Tables"/>
-            <EntitySet Name="AT_LATE_COMBACKOUT" EntityType="AttendanceModel.Store.AT_LATE_COMBACKOUT" store:Type="Tables"/>
-            <EntitySet Name="AT_LEAVESHEET" EntityType="AttendanceModel.Store.AT_LEAVESHEET" store:Type="Tables"/>
-            <EntitySet Name="AT_PERIOD" EntityType="AttendanceModel.Store.AT_PERIOD" store:Type="Tables"/>
-            <EntitySet Name="AT_SETUP_SPECIAL" EntityType="AttendanceModel.Store.AT_SETUP_SPECIAL" store:Type="Tables"/>
-            <EntitySet Name="AT_SIGNDEFAULT" EntityType="AttendanceModel.Store.AT_SIGNDEFAULT" store:Type="Tables"/>
-            <EntitySet Name="AT_TIME_MANUAL" EntityType="AttendanceModel.Store.AT_TIME_MANUAL" store:Type="Tables"/>
-            <EntitySet Name="AT_TIME_RICE" EntityType="AttendanceModel.Store.AT_TIME_RICE" store:Type="Tables"/>
-            <EntitySet Name="AT_TIME_TIMESHEET_DAILY" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_DAILY" store:Type="Tables"/>
-            <EntitySet Name="AT_TIME_TIMESHEET_MACHINET" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_MACHINET" store:Type="Tables"/>
-            <EntitySet Name="AT_DATA_INOUT" EntityType="AttendanceModel.Store.AT_DATA_INOUT" store:Type="Tables"/>
-            <EntitySet Name="AT_FML" EntityType="AttendanceModel.Store.AT_FML" store:Type="Tables"/>
-            <EntitySet Name="AT_TERMINALS" EntityType="AttendanceModel.Store.AT_TERMINALS" store:Type="Tables"/>
-            <EntitySet Name="AT_ACTION_ORG_LOG" EntityType="AttendanceModel.Store.AT_ACTION_ORG_LOG" store:Type="Tables"/>
-            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="AttendanceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables"/>
-            <EntitySet Name="SE_MAIL" EntityType="AttendanceModel.Store.SE_MAIL" store:Type="Tables"/>
-            <EntitySet Name="AT_SETUP_TIME_EMP" EntityType="AttendanceModel.Store.AT_SETUP_TIME_EMP" store:Type="Tables"/>
-            <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_ENTITLEMENT" store:Type="Tables"/>
-            <EntitySet Name="SE_EMPLOYEE_CHOSEN" EntityType="AttendanceModel.Store.SE_EMPLOYEE_CHOSEN" store:Type="Tables"/>
-            <EntitySet Name="AT_LIST_PARAM_SYSTEM" EntityType="AttendanceModel.Store.AT_LIST_PARAM_SYSTEM" store:Type="Tables"/>
-            <EntitySet Name="AT_REGISTER_OT" EntityType="AttendanceModel.Store.AT_REGISTER_OT" store:Type="Tables"/>
-            <EntitySet Name="SE_USER" EntityType="AttendanceModel.Store.SE_USER" store:Type="Tables"/>
-            <EntitySet Name="SE_REPORT" EntityType="AttendanceModel.Store.SE_REPORT" store:Type="Tables"/>
-            <EntitySet Name="AT_COMPENSATORY" EntityType="AttendanceModel.Store.AT_COMPENSATORY" store:Type="Tables"/>
-            <EntitySet Name="AT_ACTION_LOG" EntityType="AttendanceModel.Store.AT_ACTION_LOG" store:Type="Tables"/>
-            <EntitySet Name="AT_DECLARE_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_DECLARE_ENTITLEMENT" store:Type="Tables"/>
-            <EntitySet Name="AT_PROJECT" EntityType="AttendanceModel.Store.AT_PROJECT" store:Type="Tables"/>
-            <EntitySet Name="AT_PROJECT_TITLE" EntityType="AttendanceModel.Store.AT_PROJECT_TITLE" store:Type="Tables"/>
-            <EntitySet Name="AT_PROJECT_EMP" EntityType="AttendanceModel.Store.AT_PROJECT_EMP" store:Type="Tables"/>
-            <EntitySet Name="AT_PROJECT_WORK" EntityType="AttendanceModel.Store.AT_PROJECT_WORK" store:Type="Tables"/>
-            <EntitySet Name="AT_PROJECT_ASSIGN" EntityType="AttendanceModel.Store.AT_PROJECT_ASSIGN" store:Type="Tables"/>
-            <EntitySet Name="AT_TIMESHEET_OT_DTL" EntityType="AttendanceModel.Store.AT_TIMESHEET_OT_DTL" store:Type="Tables"/>
-            <EntitySet Name="AT_TIME_TIMESHEET_MONTHLY" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_MONTHLY" store:Type="Tables"/>
-            <EntitySet Name="AT_SHIFT" EntityType="AttendanceModel.Store.AT_SHIFT" store:Type="Tables"/>
-            <EntitySet Name="AT_PORTAL_REG_LIST" EntityType="AttendanceModel.Store.AT_PORTAL_REG_LIST" store:Type="Tables"/>
-            <EntitySet Name="AT_TIMESHEET" EntityType="AttendanceModel.Store.AT_TIMESHEET" store:Type="Tables"/>
-            <EntitySet Name="AT_SHIFTCYCLE_EMP_DETAIL" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_EMP_DETAIL" store:Type="Tables"/>
-            <EntitySet Name="AT_SETUP_ATT_EMP" EntityType="AttendanceModel.Store.AT_SETUP_ATT_EMP" store:Type="Tables"/>
-            <EntitySet Name="AT_OT_REGISTRATION" EntityType="AttendanceModel.Store.AT_OT_REGISTRATION" store:Type="Tables"/>
-            <EntitySet Name="AT_OFFSETTING_TIMEKEEPING" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING" store:Type="Tables"/>
-            <EntitySet Name="AT_OFFSETTING_TIMEKEEPING_EMP" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING_EMP" store:Type="Tables"/>
-            <EntitySet Name="HUV_AT_PORTAL" EntityType="AttendanceModel.Store.HUV_AT_PORTAL" store:Type="Tables"/>
-            <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"/>
+            <EntitySet Name="OT_OTHER_LIST" EntityType="AttendanceModel.Store.OT_OTHER_LIST" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="AttendanceModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables" />
+            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="AttendanceModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables" />
+            <EntitySet Name="SE_CHOSEN_ORG" EntityType="AttendanceModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
+            <EntitySet Name="AT_GSIGN" EntityType="AttendanceModel.Store.AT_GSIGN" store:Type="Tables" />
+            <EntitySet Name="AT_SWIPE_DATA" EntityType="AttendanceModel.Store.AT_SWIPE_DATA" store:Type="Tables" />
+            <EntitySet Name="AT_ORG_PERIOD" EntityType="AttendanceModel.Store.AT_ORG_PERIOD" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="AttendanceModel.Store.HU_EMPLOYEE" store:Type="Tables" />
+            <EntitySet Name="HU_CONTRACT" EntityType="AttendanceModel.Store.HU_CONTRACT" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_EDUCATION" EntityType="AttendanceModel.Store.HU_EMPLOYEE_EDUCATION" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_FILES" EntityType="AttendanceModel.Store.HU_EMPLOYEE_FILES" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_HEALTH" EntityType="AttendanceModel.Store.HU_EMPLOYEE_HEALTH" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_OTHER_INFO" EntityType="AttendanceModel.Store.HU_EMPLOYEE_OTHER_INFO" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_SALARY" EntityType="AttendanceModel.Store.HU_EMPLOYEE_SALARY" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_TRAIN" EntityType="AttendanceModel.Store.HU_EMPLOYEE_TRAIN" store:Type="Tables" />
+            <EntitySet Name="AT_TIMESHEET_REGISTER" EntityType="AttendanceModel.Store.AT_TIMESHEET_REGISTER" store:Type="Tables" />
+            <EntitySet Name="SE_APP_PROCESS" EntityType="AttendanceModel.Store.SE_APP_PROCESS" store:Type="Tables" />
+            <EntitySet Name="SE_APP_SETUP" EntityType="AttendanceModel.Store.SE_APP_SETUP" store:Type="Tables" />
+            <EntitySet Name="SE_APP_SETUPEXT" EntityType="AttendanceModel.Store.SE_APP_SETUPEXT" store:Type="Tables" />
+            <EntitySet Name="SE_APP_TEMPLATE_DTL" EntityType="AttendanceModel.Store.SE_APP_TEMPLATE_DTL" store:Type="Tables" />
+            <EntitySet Name="SE_APP_TEMPLATE" EntityType="AttendanceModel.Store.SE_APP_TEMPLATE" store:Type="Tables" />
+            <EntitySet Name="HU_ORGANIZATION" EntityType="AttendanceModel.Store.HU_ORGANIZATION" store:Type="Tables" />
+            <EntitySet Name="HU_WORKING" EntityType="AttendanceModel.Store.HU_WORKING" store:Type="Tables" />
+            <EntitySet Name="AT_PORTAL_APP" EntityType="AttendanceModel.Store.AT_PORTAL_APP" store:Type="Tables" />
+            <EntitySet Name="AT_RGT" EntityType="AttendanceModel.Store.AT_RGT" store:Type="Tables" />
+            <EntitySet Name="HU_ORG_TITLE" EntityType="AttendanceModel.Store.HU_ORG_TITLE" store:Type="Tables" />
+            <EntitySet Name="HU_TITLE" EntityType="AttendanceModel.Store.HU_TITLE" store:Type="Tables" />
+            <EntitySet Name="AT_WORKSIGN" EntityType="AttendanceModel.Store.AT_WORKSIGN" store:Type="Tables" />
+            <EntitySet Name="AT_PORTAL_REG" EntityType="AttendanceModel.Store.AT_PORTAL_REG" store:Type="Tables" />
+            <EntitySet Name="HU_STAFF_RANK" EntityType="AttendanceModel.Store.HU_STAFF_RANK" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_TIMESHEET_RICE" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_RICE" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_TIMESHEET_OT" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_OT" store:Type="Tables" />
+            <EntitySet Name="AT_DMVS" EntityType="AttendanceModel.Store.AT_DMVS" store:Type="Tables" />
+            <EntitySet Name="AT_HOLIDAY" EntityType="AttendanceModel.Store.AT_HOLIDAY" store:Type="Tables" />
+            <EntitySet Name="AT_HOLIDAY_GENERAL" EntityType="AttendanceModel.Store.AT_HOLIDAY_GENERAL" store:Type="Tables" />
+            <EntitySet Name="AT_HOLIDAY_OBJECT" EntityType="AttendanceModel.Store.AT_HOLIDAY_OBJECT" store:Type="Tables" />
+            <EntitySet Name="AT_LATE_COMBACKOUT" EntityType="AttendanceModel.Store.AT_LATE_COMBACKOUT" store:Type="Tables" />
+            <EntitySet Name="AT_LEAVESHEET" EntityType="AttendanceModel.Store.AT_LEAVESHEET" store:Type="Tables" />
+            <EntitySet Name="AT_PERIOD" EntityType="AttendanceModel.Store.AT_PERIOD" store:Type="Tables" />
+            <EntitySet Name="AT_SETUP_SPECIAL" EntityType="AttendanceModel.Store.AT_SETUP_SPECIAL" store:Type="Tables" />
+            <EntitySet Name="AT_SIGNDEFAULT" EntityType="AttendanceModel.Store.AT_SIGNDEFAULT" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_MANUAL" EntityType="AttendanceModel.Store.AT_TIME_MANUAL" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_RICE" EntityType="AttendanceModel.Store.AT_TIME_RICE" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_TIMESHEET_DAILY" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_DAILY" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_TIMESHEET_MACHINET" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_MACHINET" store:Type="Tables" />
+            <EntitySet Name="AT_DATA_INOUT" EntityType="AttendanceModel.Store.AT_DATA_INOUT" store:Type="Tables" />
+            <EntitySet Name="AT_FML" EntityType="AttendanceModel.Store.AT_FML" store:Type="Tables" />
+            <EntitySet Name="AT_TERMINALS" EntityType="AttendanceModel.Store.AT_TERMINALS" store:Type="Tables" />
+            <EntitySet Name="AT_ACTION_ORG_LOG" EntityType="AttendanceModel.Store.AT_ACTION_ORG_LOG" store:Type="Tables" />
+            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="AttendanceModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
+            <EntitySet Name="SE_MAIL" EntityType="AttendanceModel.Store.SE_MAIL" store:Type="Tables" />
+            <EntitySet Name="AT_SETUP_TIME_EMP" EntityType="AttendanceModel.Store.AT_SETUP_TIME_EMP" store:Type="Tables" />
+            <EntitySet Name="AT_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_ENTITLEMENT" store:Type="Tables" />
+            <EntitySet Name="SE_EMPLOYEE_CHOSEN" EntityType="AttendanceModel.Store.SE_EMPLOYEE_CHOSEN" store:Type="Tables" />
+            <EntitySet Name="AT_LIST_PARAM_SYSTEM" EntityType="AttendanceModel.Store.AT_LIST_PARAM_SYSTEM" store:Type="Tables" />
+            <EntitySet Name="AT_REGISTER_OT" EntityType="AttendanceModel.Store.AT_REGISTER_OT" store:Type="Tables" />
+            <EntitySet Name="SE_USER" EntityType="AttendanceModel.Store.SE_USER" store:Type="Tables" />
+            <EntitySet Name="SE_REPORT" EntityType="AttendanceModel.Store.SE_REPORT" store:Type="Tables" />
+            <EntitySet Name="AT_COMPENSATORY" EntityType="AttendanceModel.Store.AT_COMPENSATORY" store:Type="Tables" />
+            <EntitySet Name="AT_ACTION_LOG" EntityType="AttendanceModel.Store.AT_ACTION_LOG" store:Type="Tables" />
+            <EntitySet Name="AT_DECLARE_ENTITLEMENT" EntityType="AttendanceModel.Store.AT_DECLARE_ENTITLEMENT" store:Type="Tables" />
+            <EntitySet Name="AT_PROJECT" EntityType="AttendanceModel.Store.AT_PROJECT" store:Type="Tables" />
+            <EntitySet Name="AT_PROJECT_TITLE" EntityType="AttendanceModel.Store.AT_PROJECT_TITLE" store:Type="Tables" />
+            <EntitySet Name="AT_PROJECT_EMP" EntityType="AttendanceModel.Store.AT_PROJECT_EMP" store:Type="Tables" />
+            <EntitySet Name="AT_PROJECT_WORK" EntityType="AttendanceModel.Store.AT_PROJECT_WORK" store:Type="Tables" />
+            <EntitySet Name="AT_PROJECT_ASSIGN" EntityType="AttendanceModel.Store.AT_PROJECT_ASSIGN" store:Type="Tables" />
+            <EntitySet Name="AT_TIMESHEET_OT_DTL" EntityType="AttendanceModel.Store.AT_TIMESHEET_OT_DTL" store:Type="Tables" />
+            <EntitySet Name="AT_TIME_TIMESHEET_MONTHLY" EntityType="AttendanceModel.Store.AT_TIME_TIMESHEET_MONTHLY" store:Type="Tables" />
+            <EntitySet Name="AT_SHIFT" EntityType="AttendanceModel.Store.AT_SHIFT" store:Type="Tables" />
+            <EntitySet Name="AT_PORTAL_REG_LIST" EntityType="AttendanceModel.Store.AT_PORTAL_REG_LIST" store:Type="Tables" />
+            <EntitySet Name="AT_TIMESHEET" EntityType="AttendanceModel.Store.AT_TIMESHEET" store:Type="Tables" />
+            <EntitySet Name="AT_SHIFTCYCLE_EMP_DETAIL" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_EMP_DETAIL" store:Type="Tables" />
+            <EntitySet Name="AT_SETUP_ATT_EMP" EntityType="AttendanceModel.Store.AT_SETUP_ATT_EMP" store:Type="Tables" />
+            <EntitySet Name="AT_OT_REGISTRATION" EntityType="AttendanceModel.Store.AT_OT_REGISTRATION" store:Type="Tables" />
+            <EntitySet Name="AT_OFFSETTING_TIMEKEEPING" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING" store:Type="Tables" />
+            <EntitySet Name="AT_OFFSETTING_TIMEKEEPING_EMP" EntityType="AttendanceModel.Store.AT_OFFSETTING_TIMEKEEPING_EMP" store:Type="Tables" />
+            <EntitySet Name="HUV_AT_PORTAL" EntityType="AttendanceModel.Store.HUV_AT_PORTAL" store:Type="Tables" />
+            <EntitySet Name="AT_SHIFTCYCLE" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE" store:Type="Tables" />
+            <EntitySet Name="AT_SHIFTCYCLE_EMP" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_EMP" store:Type="Tables" />
+            <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_DETAIL" store:Type="Tables" />
+            <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables" />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
                 <End Role="OT_OTHER_LIST" EntitySet="OT_OTHER_LIST" />
@@ -282,6 +285,8 @@
             <Property Name="ITIME_ID" Type="nclob" Nullable="true" />
             <Property Name="STAFF_RANK_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="JOIN_DATE_STATE" Type="date" Nullable="true" />
+            <Property Name="DIRECT_MANAGER_2" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DIRECT_MANAGER_3" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_CONTRACT">
             <Key>
@@ -918,6 +923,7 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
             <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OFFDAY" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_HOLIDAY_GENERAL">
             <Key>
@@ -1210,6 +1216,7 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="IS_LEAVE" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_CALHOLIDAY" Type="number" Nullable="true" Precision="5" />
+            <Property Name="HOURS" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_TERMINALS">
             <Key>
@@ -2078,6 +2085,85 @@
             <Property Name="TO_DATE" Type="date" Nullable="true" />
             <Property Name="NVALUE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_SHIFTCYCLE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="STARTDATE" Type="date" Nullable="true" />
+            <Property Name="ENDDATE" Type="date" Nullable="true" />
+            <Property Name="NOTE" Type="nvarchar2" Nullable="true" MaxLength="250" />
+            <Property Name="IS_DELETED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML01_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML02_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML03_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML04_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML05_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML06_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML07_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML08_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML09_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML10_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML11_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML12_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML13_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML14_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML15_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML16_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML17_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML18_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML19_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML20_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML21_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML22_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML23_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML24_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML25_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML26_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML27_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML28_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FML29_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML30_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FML31_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="AT_SHIFTCYCLE_EMP">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROMDATE" Type="date" Nullable="true" />
+            <Property Name="TODATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="AT_SHIFTCYCLE_DETAIL">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="SHIFTCYCLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFTDATE" Type="date" Nullable="true" />
+            <Property Name="FML_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2380,6 +2466,9 @@
           <EntitySet Name="AT_OFFSETTING_TIMEKEEPING" EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING" />
           <EntitySet Name="AT_OFFSETTING_TIMEKEEPING_EMP" EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" />
           <EntitySet Name="HUV_AT_PORTAL" EntityType="AttendanceModel.HUV_AT_PORTAL" />
+          <EntitySet Name="AT_SHIFTCYCLE" EntityType="AttendanceModel.AT_SHIFTCYCLE" />
+          <EntitySet Name="AT_SHIFTCYCLE_EMP" EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" />
+          <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -2565,6 +2654,8 @@
           <NavigationProperty Name="HU_EMPLOYEE1" Relationship="AttendanceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE" ToRole="HU_EMPLOYEE1" />
           <NavigationProperty Name="HU_EMPLOYEE2" Relationship="AttendanceModel.FK_HUEMD_HUEM" FromRole="HU_EMPLOYEE1" ToRole="HU_EMPLOYEE" />
           <Property Type="DateTime" Name="JOIN_DATE_STATE" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER_2" Nullable="true" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER_3" Nullable="true" />
         </EntityType>
 		<EntityType Name="HU_CONTRACT">
           <Key>
@@ -3310,6 +3401,7 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OFFDAY" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_HOLIDAY_GENERAL">
           <Key>
@@ -3602,6 +3694,7 @@
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="IS_LEAVE" Precision="38" Scale="0" />
           <Property Type="Int16" Name="IS_CALHOLIDAY" />
+          <Property Type="Decimal" Name="HOURS" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_TERMINALS">
           <Key>
@@ -4476,6 +4569,85 @@
           <Property Type="DateTime" Name="TO_DATE" />
           <Property Type="Decimal" Name="NVALUE" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="AT_SHIFTCYCLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="STARTDATE" />
+          <Property Type="DateTime" Name="ENDDATE" />
+          <Property Type="String" Name="NOTE" MaxLength="250" />
+          <Property Type="Decimal" Name="IS_DELETED" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML01_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML02_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML03_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML04_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML05_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML06_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML07_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML08_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML09_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML10_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML11_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML12_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML13_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML14_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML15_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML16_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML17_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML18_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML19_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML20_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML21_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML22_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML23_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML24_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML25_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML26_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML27_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML28_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="FML29_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML30_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FML31_ID" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="AT_SHIFTCYCLE_EMP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="FROMDATE" />
+          <Property Type="DateTime" Name="TODATE" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AT_SHIFTCYCLE_DETAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SHIFTCYCLE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="SHIFTDATE" />
+          <Property Type="Decimal" Name="FML_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4636,6 +4808,8 @@
                     <ScalarProperty Name="ITIME_ID" ColumnName="ITIME_ID" />
                     <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
                     <ScalarProperty Name="JOIN_DATE_STATE" ColumnName="JOIN_DATE_STATE" />
+                    <ScalarProperty Name="DIRECT_MANAGER_2" ColumnName="DIRECT_MANAGER_2" />
+                    <ScalarProperty Name="DIRECT_MANAGER_3" ColumnName="DIRECT_MANAGER_3" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5298,6 +5472,7 @@
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
                     <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="OFFDAY" ColumnName="OFFDAY" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5603,6 +5778,7 @@
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="IS_LEAVE" ColumnName="IS_LEAVE" />
                     <ScalarProperty Name="IS_CALHOLIDAY" ColumnName="IS_CALHOLIDAY" />
+                    <ScalarProperty Name="HOURS" ColumnName="HOURS" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -6501,6 +6677,88 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_SHIFTCYCLE">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_SHIFTCYCLE">
+                <MappingFragment StoreEntitySet="AT_SHIFTCYCLE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                    <ScalarProperty Name="STARTDATE" ColumnName="STARTDATE" />
+                    <ScalarProperty Name="ENDDATE" ColumnName="ENDDATE" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+                    <ScalarProperty Name="FML01_ID" ColumnName="FML01_ID" />
+                    <ScalarProperty Name="FML02_ID" ColumnName="FML02_ID" />
+                    <ScalarProperty Name="FML03_ID" ColumnName="FML03_ID" />
+                    <ScalarProperty Name="FML04_ID" ColumnName="FML04_ID" />
+                    <ScalarProperty Name="FML05_ID" ColumnName="FML05_ID" />
+                    <ScalarProperty Name="FML06_ID" ColumnName="FML06_ID" />
+                    <ScalarProperty Name="FML07_ID" ColumnName="FML07_ID" />
+                    <ScalarProperty Name="FML08_ID" ColumnName="FML08_ID" />
+                    <ScalarProperty Name="FML09_ID" ColumnName="FML09_ID" />
+                    <ScalarProperty Name="FML10_ID" ColumnName="FML10_ID" />
+                    <ScalarProperty Name="FML11_ID" ColumnName="FML11_ID" />
+                    <ScalarProperty Name="FML12_ID" ColumnName="FML12_ID" />
+                    <ScalarProperty Name="FML13_ID" ColumnName="FML13_ID" />
+                    <ScalarProperty Name="FML14_ID" ColumnName="FML14_ID" />
+                    <ScalarProperty Name="FML15_ID" ColumnName="FML15_ID" />
+                    <ScalarProperty Name="FML16_ID" ColumnName="FML16_ID" />
+                    <ScalarProperty Name="FML17_ID" ColumnName="FML17_ID" />
+                    <ScalarProperty Name="FML18_ID" ColumnName="FML18_ID" />
+                    <ScalarProperty Name="FML19_ID" ColumnName="FML19_ID" />
+                    <ScalarProperty Name="FML20_ID" ColumnName="FML20_ID" />
+                    <ScalarProperty Name="FML21_ID" ColumnName="FML21_ID" />
+                    <ScalarProperty Name="FML22_ID" ColumnName="FML22_ID" />
+                    <ScalarProperty Name="FML23_ID" ColumnName="FML23_ID" />
+                    <ScalarProperty Name="FML24_ID" ColumnName="FML24_ID" />
+                    <ScalarProperty Name="FML25_ID" ColumnName="FML25_ID" />
+                    <ScalarProperty Name="FML26_ID" ColumnName="FML26_ID" />
+                    <ScalarProperty Name="FML27_ID" ColumnName="FML27_ID" />
+                    <ScalarProperty Name="FML28_ID" ColumnName="FML28_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="FML29_ID" ColumnName="FML29_ID" />
+                    <ScalarProperty Name="FML30_ID" ColumnName="FML30_ID" />
+                    <ScalarProperty Name="FML31_ID" ColumnName="FML31_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="AT_SHIFTCYCLE_EMP">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_SHIFTCYCLE_EMP">
+                <MappingFragment StoreEntitySet="AT_SHIFTCYCLE_EMP">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                    <ScalarProperty Name="FROMDATE" ColumnName="FROMDATE" />
+                    <ScalarProperty Name="TODATE" ColumnName="TODATE" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="AT_SHIFTCYCLE_DETAIL">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_SHIFTCYCLE_DETAIL">
+                <MappingFragment StoreEntitySet="AT_SHIFTCYCLE_DETAIL">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="SHIFTCYCLE_ID" ColumnName="SHIFTCYCLE_ID" />
+                    <ScalarProperty Name="SHIFTDATE" ColumnName="SHIFTDATE" />
+                    <ScalarProperty Name="FML_ID" ColumnName="FML_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -6531,7 +6789,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="93" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="59" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -6547,7 +6805,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_GSIGN" Width="1.5" PointX="0.625" PointY="4.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SWIPE_DATA" Width="1.5" PointX="7.625" PointY="6.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ORG_PERIOD" Width="1.5" PointX="7.625" PointY="8.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE" Width="2.375" PointX="0.625" PointY="3.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE" Width="2.375" PointX="0.625" PointY="3.125" Height="7.7493294270833335" IsExpanded="true" />
 		<EntityTypeShape EntityType="AttendanceModel.HU_CONTRACT" Width="2.5" PointX="8.5" PointY="1.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_EDUCATION" Width="2.75" PointX="3.75" PointY="2" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_FILES" Width="1.5" PointX="6.625" PointY="1.125" Height="0.4" IsExpanded="false" />
@@ -6556,33 +6814,34 @@
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_SALARY" Width="3.25" PointX="3.75" PointY="5.375" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_TRAIN" Width="1.625" PointX="0.625" PointY="9.5" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="AttendanceModel.FK_FE_HEH" >
-          <ConnectorPoint PointX="3" PointY="3.325" />
-          <ConnectorPoint PointX="3.75" PointY="3.325" />
+          <ConnectorPoint PointX="3" PointY="3.3250000000000028" />
+          <ConnectorPoint PointX="3.75" PointY="3.3250000000000028" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEE" >
-          <ConnectorPoint PointX="3" PointY="3.125" />
-          <ConnectorPoint PointX="3.75" PointY="2.400000000372529" />
+          <ConnectorPoint PointX="1.42382671875" PointY="3.125" />
+          <ConnectorPoint PointX="1.42382671875" PointY="2.2000000001862645" />
+          <ConnectorPoint PointX="2.1598325260416664" PointY="2.2000000001862641" />
+          <ConnectorPoint PointX="2.3264991927083334" PointY="2.2000000001862645" />
+          <ConnectorPoint PointX="3.75" PointY="2.2000000001862645" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEF" >
-          <ConnectorPoint PointX="3" PointY="3.125" />
-          <ConnectorPoint PointX="3.375" PointY="2.75" />
-          <ConnectorPoint PointX="3.375" PointY="1.3250000000000002" />
+          <ConnectorPoint PointX="2.243165859375" PointY="3.125" />
+          <ConnectorPoint PointX="2.243165859375" PointY="1.3250000000000002" />
           <ConnectorPoint PointX="6.625" PointY="1.3250000000000002" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEO" >
-          <ConnectorPoint PointX="2.9999999999999996" PointY="3.525" />
-          <ConnectorPoint PointX="3.75" PointY="4.25" />
+          <ConnectorPoint PointX="3" PointY="4.4500000001862645" />
+          <ConnectorPoint PointX="3.75" PointY="4.4500000001862645" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HES" >
-          <ConnectorPoint PointX="2.5624975" PointY="3.525" />
-          <ConnectorPoint PointX="2.5624975" PointY="5.5750000001862645" />
+          <ConnectorPoint PointX="3" PointY="5.5750000001862645" />
           <ConnectorPoint PointX="3.75" PointY="5.5750000001862645" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HUEMD_HUEM" >
-          <ConnectorPoint PointX="0.625" PointY="3.2668461538461542" />
-          <ConnectorPoint PointX="0.375" PointY="3.2668461538461542" />
-          <ConnectorPoint PointX="0.375" PointY="3.3859230769230773" />
-          <ConnectorPoint PointX="0.625" PointY="3.3859230769230773" />
+          <ConnectorPoint PointX="1.4672115384615385" PointY="10.874329427083334" />
+          <ConnectorPoint PointX="1.4672115384615385" PointY="11.124329427083334" />
+          <ConnectorPoint PointX="2.1742307692307694" PointY="11.124329427083334" />
+          <ConnectorPoint PointX="2.1742307692307694" PointY="10.874329427083334" />
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_REGISTER" Width="2.75" PointX="3.625" PointY="9.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.SE_APP_PROCESS" Width="1.5" PointX="9.625" PointY="6.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -6612,7 +6871,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_RICE" Width="1.5" PointX="12.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_OT" Width="1.5" PointX="12.625" PointY="2.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DMVS" Width="1.5" PointX="12.625" PointY="4.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.5" PointX="6.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.5" PointX="6.625" PointY="12.5" Height="3.9033007812500031" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_GENERAL" Width="1.5" PointX="8.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_OBJECT" Width="1.5" PointX="10.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LATE_COMBACKOUT" Width="1.5" PointX="12.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -6625,7 +6884,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_DAILY" Width="2.375" PointX="14.625" PointY="2.5" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_MACHINET" Width="2.5" PointX="14.625" PointY="4.5" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DATA_INOUT" Width="1.5" PointX="4.625" PointY="14.5" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="10.375" PointY="15.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="10.375" PointY="15.5" Height="4.0956022135416674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TERMINALS" Width="1.5" PointX="10.75" PointY="11.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ACTION_ORG_LOG" Width="1.5" PointX="10.625" PointY="14.5" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_CV" Width="2.625" PointX="15.25" PointY="12.25" Height="0.4" IsExpanded="false" />
@@ -6660,6 +6919,9 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING" Width="1.5" PointX="21.75" PointY="22.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" Width="3.25" PointX="23.75" PointY="13.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HUV_AT_PORTAL" Width="1.5" PointX="23.75" PointY="18.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE" Width="1.5" PointX="5.1826480241411588" PointY="26.960923237242234" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" Width="1.5" PointX="6.3377412587114339" PointY="0.53933958734354914" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" Width="1.5" PointX="11.998932212590674" PointY="2.4056456398245158" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

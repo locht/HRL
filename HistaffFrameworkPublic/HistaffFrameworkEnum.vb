@@ -26,16 +26,26 @@
         ImportDeduct = 2
     End Enum
     Public Enum PortalStatus
+        Saved = 16
+        WaitingForApproval = 17
+        ApprovedByLM = 18
+        UnApprovedByLM = 19
+        UnVerifiedByHr = 20
+        ApprovedByGM = 21
+        UnApprovedByGM = 22
+        Discussing = 23
+        ApprovedBySDC = 24
+        SupportedByManager = 25
+        VerifiedByHR = 26
+        ApprovedByNCSP = 27
+        UnapprovedByNCSP = 28
+        ApprovedByTCT = 29
+        UnapprovedByTCT = 30
+
         unsent = 6860
         waitsend = 6861
         aprrove = 6862
         unaprrove = 6863
         unCBNS = 6864
-
-        chuaguiduyet = 0
-        daduyet = 1
-        chopheduyet = 2
-        tuchoi = 3
-        tuchoipheduyetvadaxoa = 4
     End Enum
 End Module

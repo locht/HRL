@@ -264,17 +264,17 @@ Public Class ctrlOTRegistration
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
             If isFull Then
-                If Sorts IsNot Nothing Then
-                    Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue, Sorts).ToTable()
-                Else
-                    Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue).ToTable
-                End If
+                'If Sorts IsNot Nothing Then
+                '    Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue, Sorts).ToTable()
+                'Else
+                '    Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue).ToTable
+                'End If
             Else
-                If Sorts IsNot Nothing Then
-                    Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
-                Else
-                    Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
-                End If
+                'If Sorts IsNot Nothing Then
+                '    Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
+                'Else
+                '    Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
+                'End If
             End If
 
             rgMain.VirtualItemCount = Me.OtRegistrationTotal

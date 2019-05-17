@@ -281,6 +281,9 @@
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_OFFFSETTING_EMPDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_OT_REGISTRATIONDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_PERIODDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -309,6 +312,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SETUP_TIME_EMPDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SHIFTCYCLEDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.AT_SHIFTDTO.datasource">
@@ -348,6 +354,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.ComboBoxDataDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.EMPLOYEE_SHIFT_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.HistoryLeaveDTO.datasource">
