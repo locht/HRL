@@ -320,7 +320,6 @@ Public Class ctrlSwipeDataDownload
         End Try
     End Sub
 
-  
     ''' <lastupdate>
     ''' 17/08/2017 08:40
     ''' </lastupdate>
@@ -372,23 +371,21 @@ Public Class ctrlSwipeDataDownload
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function loadToGrid() As Boolean
-        'LAY THONG TIN CONFIG TMPLATE => @PAR = MACHINE_TYPE 
-        Dim IAttenDance As IAttendanceBusiness = New AttendanceBusinessClient()
-        Dim dtConfig As DataTable = IAttenDance.GET_CONFIG_TEMPLATE(cbMachine_Type.SelectedValue)
+        
         Dim DATA_IN As New DataTable("DATA_IN")
         'Create struct DATA IN with table config
-        For Each row In dtConfig.Rows
-            DATA_IN.Columns.Add(row("COLUMN_CODE"), GetType(String))
-        Next
-        'end create struct DATA IN
-        'GET DATA 
-        For Each rowData In dsDataComper.Rows
-            Dim newRow As DataRow = DATA_IN.NewRow()
-            For Each rowConfig In dtConfig.Rows
-                newRow(rowConfig("COLUMN_CODE")) = rowData(CType(rowConfig("ORDER_COLUMN"), Integer))
-            Next
-            DATA_IN.Rows.Add(newRow)
-        Next
+        'For Each row In dtConfig.Rows
+        '    DATA_IN.Columns.Add(row("COLUMN_CODE"), GetType(String))
+        'Next
+        ''end create struct DATA IN
+        ''GET DATA 
+        'For Each rowData In dsDataComper.Rows
+        '    Dim newRow As DataRow = DATA_IN.NewRow()
+        '    For Each rowConfig In dtConfig.Rows
+        '        newRow(rowConfig("COLUMN_CODE")) = rowData(CType(rowConfig("ORDER_COLUMN"), Integer))
+        '    Next
+        '    DATA_IN.Rows.Add(newRow)
+        'Next
         'END GET DATA
 
 
@@ -536,7 +533,11 @@ Public Class ctrlSwipeDataDownload
                 Exit Sub
             End If
             'end check validate
+            'LAY THONG TIN CONFIG TMPLATE => @PAR = MACHINE_TYPE 
+            Dim IAttenDance As IAttendanceBusiness = New AttendanceBusinessClient()
+            Dim dsConfig As DataSet = IAttenDance.GET_CONFIG_TEMPLATE(cbMachine_Type.SelectedValue)
 
+            'end get config
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
             Dim savepath = Context.Server.MapPath(tempPath)
             For Each file As UploadedFile In ctrlUpload1.UploadedFiles
