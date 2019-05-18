@@ -391,6 +391,7 @@
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
     <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
+    <Content Include="Modules\Portal\ctrlOTRegistrationByHR.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationByLM.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistration.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationNewEdit.ascx" />
@@ -886,6 +887,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\List\ctrlRitual.ascx.vb">
       <DependentUpon>ctrlRitual.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationByHR.ascx.designer.vb">
+      <DependentUpon>ctrlOTRegistrationByHR.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationByHR.ascx.vb">
+      <DependentUpon>ctrlOTRegistrationByHR.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlOTRegistrationByLM.ascx.designer.vb">

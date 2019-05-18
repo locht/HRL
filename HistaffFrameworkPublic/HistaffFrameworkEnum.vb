@@ -26,11 +26,11 @@
         ImportDeduct = 2
     End Enum
     Public Enum PortalStatus
-        Saved = 16
-        WaitingForApproval = 17
-        ApprovedByLM = 18
-        UnApprovedByLM = 19
-        UnVerifiedByHr = 20
+        Saved = 6860
+        WaitingForApproval = 6861
+        ApprovedByLM = 6862
+        UnApprovedByLM = 6863
+        UnVerifiedByHr = 6864
         ApprovedByGM = 21
         UnApprovedByGM = 22
         Discussing = 23

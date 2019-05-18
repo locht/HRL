@@ -76,10 +76,7 @@
             <%# Translate("Ký hiệu công")%>
         </td>
         <td>
-            <tlk:RadTextBox runat="server" ID="txtSignCode" ReadOnly="true"></tlk:RadTextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="txtSignCode"
-                runat="server" ErrorMessage="<%$ Translate: Chưa có thông tin ký hiệu công. %>"
-                ToolTip="<%$ Translate: Chưa có thông tin ký hiệu công. %>"></asp:RequiredFieldValidator>
+            <tlk:RadTextBox runat="server" ID="txtSignCode" ReadOnly="true"></tlk:RadTextBox>            
         </td>
     </tr>
     <tr>

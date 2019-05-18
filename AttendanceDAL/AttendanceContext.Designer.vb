@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("6a05c058-3ec7-4f1f-a505-286ab54e8565")>
+<Assembly: EdmSchemaAttribute("004fcf5d-1ea0-4af4-88dd-6c5814d850e5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1202,20 +1202,6 @@ Public Partial Class AttendanceContext
 
     Private _AT_SHIFTCYCLE_DETAIL As ObjectSet(Of AT_SHIFTCYCLE_DETAIL)
 
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    Public ReadOnly Property ATV_OFFSETTING_TIMEKEEPING() As ObjectSet(Of ATV_OFFSETTING_TIMEKEEPING)
-        Get
-            If (_ATV_OFFSETTING_TIMEKEEPING Is Nothing) Then
-                _ATV_OFFSETTING_TIMEKEEPING = MyBase.CreateObjectSet(Of ATV_OFFSETTING_TIMEKEEPING)("ATV_OFFSETTING_TIMEKEEPING")
-            End If
-            Return _ATV_OFFSETTING_TIMEKEEPING
-        End Get
-    End Property
-
-    Private _ATV_OFFSETTING_TIMEKEEPING As ObjectSet(Of ATV_OFFSETTING_TIMEKEEPING)
-
     #End Region
 
     #Region "AddTo Methods"
@@ -1778,13 +1764,6 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToAT_SHIFTCYCLE_DETAIL(ByVal aT_SHIFTCYCLE_DETAIL As AT_SHIFTCYCLE_DETAIL)
         MyBase.AddObject("AT_SHIFTCYCLE_DETAIL", aT_SHIFTCYCLE_DETAIL)
-    End Sub
-
-    ''' <summary>
-    ''' Deprecated Method for adding a new object to the ATV_OFFSETTING_TIMEKEEPING EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToATV_OFFSETTING_TIMEKEEPING(ByVal aTV_OFFSETTING_TIMEKEEPING As ATV_OFFSETTING_TIMEKEEPING)
-        MyBase.AddObject("ATV_OFFSETTING_TIMEKEEPING", aTV_OFFSETTING_TIMEKEEPING)
     End Sub
 
     #End Region
@@ -14103,6 +14082,31 @@ Public Partial Class AT_OT_REGISTRATION
     End Sub
 
     Private Partial Sub OnHR_REVIEWChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID_REGGROUP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ID_REGGROUP
+        End Get
+        Set
+            OnID_REGGROUPChanging(value)
+            ReportPropertyChanging("ID_REGGROUP")
+            _ID_REGGROUP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ID_REGGROUP")
+            OnID_REGGROUPChanged()
+        End Set
+    End Property
+
+    Private _ID_REGGROUP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_REGGROUPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnID_REGGROUPChanged()
     End Sub
 
     #End Region
@@ -32807,86 +32811,6 @@ Public Partial Class AT_WORKSIGN
     End Sub
 
     Private Partial Sub OnSHIFT_IDChanged()
-    End Sub
-
-    #End Region
-
-End Class
-
-''' <summary>
-''' No Metadata Documentation available.
-''' </summary>
-<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="ATV_OFFSETTING_TIMEKEEPING")>
-<Serializable()>
-<DataContractAttribute(IsReference:=True)>
-Public Partial Class ATV_OFFSETTING_TIMEKEEPING
-    Inherits EntityObject
-    #Region "Factory Method"
-
-    ''' <summary>
-    ''' Create a new ATV_OFFSETTING_TIMEKEEPING object.
-    ''' </summary>
-    ''' <param name="id">Initial value of the ID property.</param>
-    Public Shared Function CreateATV_OFFSETTING_TIMEKEEPING(id As Global.System.Decimal) As ATV_OFFSETTING_TIMEKEEPING
-        Dim aTV_OFFSETTING_TIMEKEEPING as ATV_OFFSETTING_TIMEKEEPING = New ATV_OFFSETTING_TIMEKEEPING
-        aTV_OFFSETTING_TIMEKEEPING.ID = id
-        Return aTV_OFFSETTING_TIMEKEEPING
-    End Function
-
-    #End Region
-
-    #Region "Primitive Properties"
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
-    <DataMemberAttribute()>
-    Public Property ID() As Global.System.Decimal
-        Get
-            Return _ID
-        End Get
-        Set
-            If (_ID <> Value) Then
-                OnIDChanging(value)
-                ReportPropertyChanging("ID")
-                _ID = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("ID")
-                OnIDChanged()
-            End If
-        End Set
-    End Property
-
-    Private _ID As Global.System.Decimal
-    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
-    End Sub
-
-    Private Partial Sub OnIDChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property TONG() As Nullable(Of Global.System.Decimal)
-        Get
-            Return _TONG
-        End Get
-        Set
-            OnTONGChanging(value)
-            ReportPropertyChanging("TONG")
-            _TONG = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("TONG")
-            OnTONGChanged()
-        End Set
-    End Property
-
-    Private _TONG As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnTONGChanging(value As Nullable(Of Global.System.Decimal))
-    End Sub
-
-    Private Partial Sub OnTONGChanged()
     End Sub
 
     #End Region
