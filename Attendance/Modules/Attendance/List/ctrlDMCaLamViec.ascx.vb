@@ -600,13 +600,14 @@ Public Class ctrlDMCaLamViec
                             ValueCaThu7 = cboSaturday.SelectedValue
                         End If
 
-                        If ValueKieuCongCN <> 0 Then
-                            objShift.SUNDAY = ValueKieuCongCN
-                        End If
-                        If ValueCaThu7 <> 0 Then
-                            objShift.SATURDAY = ValueCaThu7
-                        End If
-
+                        'If ValueKieuCongCN <> 0 Then
+                        '    objShift.SUNDAY = ValueKieuCongCN
+                        'End If
+                        'If ValueCaThu7 <> 0 Then
+                        '    objShift.SATURDAY = ValueCaThu7
+                        'End If
+                        objShift.SUNDAY = ValueKieuCongCN
+                        objShift.SATURDAY = ValueCaThu7
                         objShift.HOURS_START = rdHours_Start.SelectedDate
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
                         objShift.NOTE = txtNote.Text.Trim
