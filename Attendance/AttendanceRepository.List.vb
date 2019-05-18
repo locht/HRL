@@ -93,6 +93,25 @@ Partial Class AttendanceRepository
 
         Return Nothing
     End Function
+    Public Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
+                                      Optional ByVal PageIndex As Integer = 0,
+                                        Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                        Optional ByRef Total As Integer = 0,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_HOLIDAYDTO)
+        Dim lstHoliday As List(Of AT_HOLIDAYDTO)
+
+        Using rep As New AttendanceBusinessClient
+            Try
+                lstHoliday = rep.GetHoliday_Hose(_filter, PageIndex, PageSize, Total, Sorts)
+                Return lstHoliday
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
 
     Public Function InsertHoliday(ByVal objHoliday As AT_HOLIDAYDTO, ByRef gID As Decimal) As Boolean
         Using rep As New AttendanceBusinessClient

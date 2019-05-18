@@ -60,6 +60,7 @@
         <Item Value="ctrlDMKieuCong" Text="Time Symbol" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDMKieuCong&amp;group=List" CheckPermission="true" />
         <Item Value="ctrlDMCaLamViec" Text="Time" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlDMCaLamViec&amp;group=List" CheckPermission="true" />
         <Item Value="ctrlRitual" Text="National leave" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRitual&amp;group=List" CheckPermission="true"/>
+        <Item Value="ctrlRitual_Hose" Text="National leave Hose" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlRitual_Hose&amp;group=List" CheckPermission="true"/>
         <Item Text="Project"  PostBack="False">
           <Group>
             <Item Value="ctrlAT_PROJECT" Text="Project" NavigateUrl="Default.aspx?mid=Attendance&amp;fid=ctrlAT_PROJECT&amp;group=List" CheckPermission="true"/>

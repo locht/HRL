@@ -86,6 +86,7 @@
             <EntitySet Name="AT_SHIFTCYCLE" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE" store:Type="Tables" />
             <EntitySet Name="AT_SHIFTCYCLE_EMP" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_EMP" store:Type="Tables" />
             <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_DETAIL" store:Type="Tables" />
+            <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.Store.ATV_HOLIDAY_HOSE" store:Type="Tables" />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables" />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2165,6 +2166,17 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="ATV_HOLIDAY_HOSE">
+            <Key>
+                <PropertyRef Name="CODE" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="false" MaxLength="50" />
+            <Property Name="FROMDATE" Type="date" Nullable="true" />
+            <Property Name="TODATE" Type="date" Nullable="true" />
+            <Property Name="IS_SA" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_SU" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2470,6 +2482,7 @@
           <EntitySet Name="AT_SHIFTCYCLE" EntityType="AttendanceModel.AT_SHIFTCYCLE" />
           <EntitySet Name="AT_SHIFTCYCLE_EMP" EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" />
           <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" />
+          <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -4650,6 +4663,17 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ATV_HOLIDAY_HOSE">
+          <Key>
+            <PropertyRef Name="CODE" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="FROMDATE" />
+          <Property Type="DateTime" Name="TODATE" />
+          <Property Type="Decimal" Name="IS_SA" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_SU" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6762,6 +6786,18 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="ATV_HOLIDAY_HOSE">
+            <EntityTypeMapping TypeName="AttendanceModel.ATV_HOLIDAY_HOSE">
+                <MappingFragment StoreEntitySet="ATV_HOLIDAY_HOSE">
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="FROMDATE" ColumnName="FROMDATE" />
+                    <ScalarProperty Name="TODATE" ColumnName="TODATE" />
+                    <ScalarProperty Name="IS_SA" ColumnName="IS_SA" />
+                    <ScalarProperty Name="IS_SU" ColumnName="IS_SU" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -6874,7 +6910,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_RICE" Width="1.5" PointX="12.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_OT" Width="1.5" PointX="12.625" PointY="2.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DMVS" Width="1.5" PointX="12.625" PointY="4.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.5" PointX="6.625" PointY="12.5" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.5" PointX="6.375" PointY="12" Height="3.9033007812500031" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_GENERAL" Width="1.5" PointX="8.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_OBJECT" Width="1.5" PointX="10.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LATE_COMBACKOUT" Width="1.5" PointX="12.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -6925,6 +6961,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE" Width="1.5" PointX="5.1826480241411588" PointY="26.960923237242234" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" Width="1.5" PointX="6.3377412587114339" PointY="0.53933958734354914" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" Width="1.5" PointX="11.998932212590674" PointY="2.4056456398245158" />
+        <EntityTypeShape EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" Width="1.5" PointX="15.375" PointY="15.75" Height="2.1725878906249818" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

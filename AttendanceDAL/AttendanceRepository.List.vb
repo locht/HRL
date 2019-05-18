@@ -340,6 +340,7 @@ Partial Public Class AttendanceRepository
         End Try
 
     End Function
+   
 
     Public Function ValidateHoliday(ByVal _validate As AT_HOLIDAYDTO)
         Dim query
@@ -443,7 +444,89 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+    Public Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
+                                 Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                 Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_HOLIDAYDTO)
+        Try
 
+            Dim query = From p In Context.AT_HOLIDAY
+                        From s In Context.ATV_HOLIDAY_HOSE.Where(Function(f) f.ID = p.ID)
+            Dim lst = query.Select(Function(p) New AT_HOLIDAYDTO With {
+                                       .ID = p.p.ID,
+                                       .CODE = p.p.CODE,
+                                       .NAME_EN = p.p.NAME_EN,
+                                       .NAME_VN = p.p.NAME_VN,
+                                       .WORKINGDAY = p.p.WORKINGDAY,
+                                       .YEAR = p.p.YEAR,
+                                       .NOTE = p.p.NOTE,
+                                       .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
+                                       .CREATED_BY = p.p.CREATED_BY,
+                                       .CREATED_DATE = p.p.CREATED_DATE,
+                                       .CREATED_LOG = p.p.CREATED_LOG,
+                                       .FROMDATE = p.s.FROMDATE,
+                                       .TODATE = p.s.TODATE,
+                                       .IS_SA = p.s.IS_SA,
+                                       .IS_SUN = p.s.IS_SU,
+                                       .MODIFIED_BY = p.p.MODIFIED_BY,
+                                       .MODIFIED_DATE = p.p.MODIFIED_DATE,
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+
+            If Not String.IsNullOrEmpty(_filter.CODE) Then
+                lst = lst.Where(Function(f) f.CODE.ToLower().Contains(_filter.CODE.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.NAME_VN) Then
+                lst = lst.Where(Function(f) f.NAME_VN.ToLower().Contains(_filter.NAME_VN.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.NAME_EN) Then
+                lst = lst.Where(Function(f) f.NAME_EN.ToLower().Contains(_filter.NAME_EN.ToLower()))
+            End If
+            If Not String.IsNullOrEmpty(_filter.ACTFLG) Then
+                lst = lst.Where(Function(f) f.ACTFLG.ToLower().Contains(_filter.ACTFLG.ToLower()))
+            End If
+            If _filter.WORKINGDAY.HasValue Then
+                lst = lst.Where(Function(f) f.WORKINGDAY = _filter.WORKINGDAY)
+            End If
+            If _filter.YEAR <> 0 Then
+                lst = lst.Where(Function(f) f.YEAR = _filter.YEAR)
+            End If
+            If Not String.IsNullOrEmpty(_filter.NOTE) Then
+                lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
+            End If
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+
+            Return lst.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function InsertHoliday_Hose(ByVal objTitle As AT_HOLIDAYDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objTitleData As New AT_HOLIDAY
+        Dim iCount As Integer = 0
+        Try
+            objTitleData.ID = Utilities.GetNextSequence(Context, Context.AT_HOLIDAY.EntitySet.Name)
+            objTitleData.CODE = objTitle.CODE.Trim
+            objTitleData.NAME_VN = objTitle.NAME_VN.Trim
+            objTitleData.WORKINGDAY = objTitle.WORKINGDAY
+            objTitleData.YEAR = objTitle.YEAR
+            objTitleData.NOTE = objTitle.NOTE
+            objTitleData.ACTFLG = objTitle.ACTFLG
+            Context.AT_HOLIDAY.AddObject(objTitleData)
+            Context.SaveChanges(log)
+            gID = objTitleData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+
+    End Function
 #End Region
 
 #Region "List Holiday gerenal"

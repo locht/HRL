@@ -96,6 +96,21 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
+                                    Optional ByVal PageIndex As Integer = 0,
+                                        Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                        Optional ByRef Total As Integer = 0,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_HOLIDAYDTO) Implements ServiceContracts.IAttendanceBusiness.GetHoliday_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.GetHoliday_Hose(_filter, PageIndex, PageSize, Total, Sorts)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function InsertHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.InsertHOLIDAY
             Using rep As New AttendanceRepository

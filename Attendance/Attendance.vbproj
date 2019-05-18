@@ -193,6 +193,7 @@
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx" />
     <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlRitual_Hose.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx" />
@@ -670,6 +671,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\List\ctrlListParamSystem.ascx.vb">
       <DependentUpon>ctrlListParamSystem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlRitual_Hose.ascx.designer.vb">
+      <DependentUpon>ctrlRitual_Hose.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlRitual_Hose.ascx.vb">
+      <DependentUpon>ctrlRitual_Hose.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx.designer.vb">
