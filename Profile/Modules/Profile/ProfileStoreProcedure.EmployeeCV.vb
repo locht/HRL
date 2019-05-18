@@ -12,4 +12,11 @@ Partial Class ProfileStoreProcedure
         End If
         Return dt
     End Function
+
+    ' In cv nhan vien
+    Public Function PRINT_CV(ByVal ID As Decimal?) As DataSet
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.PRINT_CV", _
+                                                 New List(Of Object)(New Object() {ID}))
+        Return ds
+    End Function
 End Class
