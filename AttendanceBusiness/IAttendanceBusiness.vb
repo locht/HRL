@@ -11,7 +11,8 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet
 #End Region
-
+        <OperationContract()>
+        Function IMPORT_AT_SWIPE_DATA(ByVal log As UserLog, ByVal DATA_IN As String) As Boolean
         <OperationContract()>
         Function GetDataFromOrg(ByVal obj As ParamDTO, ByVal log As UserLog) As DataSet
         <OperationContract()>

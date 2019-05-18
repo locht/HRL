@@ -272,6 +272,22 @@ Namespace AttendanceBusiness.ServiceImplementations
 #End Region
 
 #Region "May cham cong"
+        Function IMPORT_AT_SWIPE_DATA(ByVal log As UserLog, ByVal DATA_IN As String) As Boolean Implements IAttendanceBusiness.IMPORT_AT_SWIPE_DATA
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Dim isSusses = rep.IMPORT_AT_SWIPE_DATA(log, DATA_IN)
+                        Return isSusses
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+                Return False
+            End Try
+        End Function
+
         Function GetSwipeData(ByVal _filter As AT_SWIPE_DATADTO,
                               Optional ByVal PageIndex As Integer = 0,
                               Optional ByVal PageSize As Integer = Integer.MaxValue,
