@@ -6046,7 +6046,7 @@ Partial Public Class AttendanceRepository
                               From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                               From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
                               From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY).DefaultIfEmpty
+                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
                               From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
                               Where (e.DIRECT_MANAGER = _filter.P_MANAGER_ID Or e.DIRECT_MANAGER_2 = _filter.P_MANAGER_ID Or e.DIRECT_MANAGER_3 = _filter.P_MANAGER_ID) _
                         And (r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
@@ -6210,7 +6210,7 @@ Partial Public Class AttendanceRepository
                               From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                               From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
                               From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY).DefaultIfEmpty
+                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
                               From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
                               Where (r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
 
@@ -6509,7 +6509,23 @@ Partial Public Class AttendanceRepository
     End Function
     Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean
         Try
-            
+            Using cls As New DataAccess.QueryData
+                For Each item In obj
+                    Dim dtCheckSendApprove As DataTable = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.CHECK_SEND_APPROVE",
+                                                                           New With {.P_ID = item.ID.ToString, .P_OUT_CUR = cls.OUT_CURSOR})
+                    Dim processType As String = "OVERTIME"
+                    Dim periodId As Integer = Int32.Parse(dtCheckSendApprove.Rows(0)("PERIOD_ID").ToString())
+                    Dim signId As Integer = Int32.Parse(dtCheckSendApprove.Rows(0)("SIGN_ID").ToString())
+                    Dim totalHours As Decimal = Decimal.Parse(dtCheckSendApprove.Rows(0)("SUMVAL").ToString())
+                    Dim IdGroup1 As Decimal = Decimal.Parse(dtCheckSendApprove.Rows(0)("ID_REGGROUP").ToString())
+                    Dim priProcessApp = New With {.P_EMPLOYEE_ID = item.EMPLOYEE_ID, .P_PERIOD_ID = periodId, .P_PROCESS_TYPE = processType, .P_TOTAL_HOURS = totalHours, .P_TOTAL_DAY = 0, .P_SIGN_ID = signId, .P_ID_REGGROUP = IdGroup1, .P_RESULT = cls.OUT_NUMBER}
+                    Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS_APP", priProcessApp)
+                    Dim outNumber As Integer = Int32.Parse(priProcessApp.P_RESULT)
+                    If outNumber <> 0 Then
+                        Return False
+                    End If
+                Next
+            End Using
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
