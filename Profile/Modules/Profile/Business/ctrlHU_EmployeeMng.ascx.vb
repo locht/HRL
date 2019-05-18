@@ -9,6 +9,7 @@ Imports WebAppLog
 Imports System.IO
 Imports System.Globalization
 Imports Ionic.Zip
+Imports System.Drawing
 
 Public Class ctrlHU_EmployeeMng
     Inherits Common.CommonView
@@ -93,7 +94,8 @@ Public Class ctrlHU_EmployeeMng
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
-                                       ToolbarItem.Export)
+                                       ToolbarItem.Export,
+                                       ToolbarItem.Print)
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_CV", ToolbarIcons.Print,
             '                                                        ToolbarAuthorize.Export, Translate("In lý lịch trích ngang")))
 
@@ -214,7 +216,7 @@ Public Class ctrlHU_EmployeeMng
                         End If
                     End Using
 
-                Case "PRINT_CV"
+                Case CommonMessage.TOOLBARITEM_PRINT
                     Print_CV()
 
             End Select
@@ -541,6 +543,7 @@ Public Class ctrlHU_EmployeeMng
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Function
+
     ''' <summary>
     ''' Xử lý sự kiện xóa nhân viên
     ''' </summary>
@@ -566,79 +569,97 @@ Public Class ctrlHU_EmployeeMng
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
     ''' <summary>
     ''' Xử lý action in cv
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub Print_CV()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim dsData As DataSet
+        Dim rp As New ProfileStoreProcedure
+        Dim IDEMPLOYEE As Decimal
+        Dim reportName As String = String.Empty
+        Dim reportNameOut As String = "String.Empty"
+        Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Dim dsData As DataSet
-            Dim rp As New ProfileRepository
-            Dim sPath As String = ""
-
             If rgEmployeeList.SelectedItems.Count = 0 Then
                 ShowMessage(Translate("Bạn phải chọn nhân viên trước khi in ."), Utilities.NotifyType.Warning)
                 Exit Sub
             End If
-
             If rgEmployeeList.SelectedItems.Count > 1 Then
                 ShowMessage(Translate("Chỉ được chọn 1 bản ghi để in ."), Utilities.NotifyType.Warning)
                 Exit Sub
             End If
 
-            'Kiểm tra các điều kiện trước khi in
-            Dim lstEmpID As String = ""
-            Dim srtImage As String = ""
-
             For Each dr As Telerik.Web.UI.GridDataItem In rgEmployeeList.SelectedItems
-                lstEmpID = dr.GetDataKeyValue("ID")
-                srtImage = dr.GetDataKeyValue("IMAGE")
+                IDEMPLOYEE = Decimal.Parse(dr.GetDataKeyValue("ID").ToString())
             Next
+            dsData = rp.PRINT_CV(IDEMPLOYEE)
 
-            Dim rep As New ProfileBusinessRepository
-
-            dsData = rp.GetEmployeeCVByID("PKG_PROFILE_REPORT.HU0150", lstEmpID)
-            dsData.Tables(0).TableName = "DATA"
-            dsData.Tables(1).TableName = "DATA1" ' quá trình đào tạo ngoài tập đoàn ( hiện tại chưa có)
-            dsData.Tables(2).TableName = "DATA2" ' qua trinh cong tac tai tap doan
-            dsData.Tables(3).TableName = "DATA3" ' quá trình công tác trước khi vào tập đoàn
-            dsData.Tables(4).TableName = "DATA4" ' quá trình đóng bh trước khi vào tập đoàn
-            dsData.Tables(5).TableName = "DATA5" ' quá trình đóng bh tại tập đoàn
-
-            dsData.Tables(6).TableName = "DATA6" ' quá trình khen thưởng
-            dsData.Tables(7).TableName = "DATA7" ' quan hệ nhân thân
-
-            dsData.Tables(8).TableName = "DATA8" ' thông tin nhân viên
-
-            dsData.Tables(9).TableName = "DATA9" ' quá trình kỷ luật
-            dsData.Tables(10).TableName = "DATA10" ' có thể BHXH hay không
-            dsData.Tables(11).TableName = "DATA12" ' tình trạng hôn nhân
-            dsData.Tables(12).TableName = "DATA13" ' QUÁ TRÌNH THAY ĐỔI LUONG VÀ PHỤ CẤP
-            sPath = Server.MapPath("~/ReportTemplates/Profile/Report/InCV.xls")
-            'sPath = Server.MapPath("~/ReportTemplates/Profile/Report/InCV.docx")
-
-
-            Dim arrPicture() As Byte
-            Dim sError As String = ""
-
-            If srtImage <> "" Then
-                arrPicture = rep.GetEmployeeImage(lstEmpID, sError) 'Lấy ảnh của nhân viên.
-            Else
-                arrPicture = rep.GetEmployeeImage(0, sError) 'Lấy ảnh mặc định (NoImage.jpg)
+            If dsData Is Nothing Then
+                ShowMessage("Không có dữ liệu in báo cáo", NotifyType.Warning)
+                Exit Sub
             End If
 
+            If Not File.Exists(Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\" + dsData.Tables(0).Rows(0)("IMAGE")) Then
+                dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\" + "NoImage.jpg"
+            Else
+                'Delete file trong thu muc tam
+                DeleteDirectory(Server.MapPath("~/RadUploadTemp"))
+                DeleteDirectory(Server.MapPath("~/EmployeeImageTemp"))
 
-            Using xls As New ExcelCommon
-                xls.ExportExcelTemplate(sPath,
-                    "InCV", arrPicture, dsData, Nothing, Response, "", ExcelCommon.ExportType.Excel)
-            End Using
-            rep.Dispose()
-            '' Export file mẫu
-            'Using word As New WordCommon
-            '    word.ExportMailMerge(sPath, "InCV", dsData, arrPicture, Response)
-            'End Using
+                Dim tempPathFile = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage"))
+                Dim Image = dsData.Tables(0).Rows(0)("IMAGE")
+                Dim target As String = Server.MapPath("~/RadUploadTemp")
+                If Not Directory.Exists(target) Then
+                    Directory.CreateDirectory(target)
+                End If
+                Dim file = New FileInfo(tempPathFile + "\" + Image)
+
+                Try
+                    file.CopyTo(Path.Combine(target + "\" + Image), True)
+                Catch ex As Exception
+                    ShowMessage(Translate("Bạn vui lòng xuất lại CV sau 2 phút"), Utilities.NotifyType.Warning)
+                    Exit Sub
+                End Try
+
+                file.IsReadOnly = False
+
+                Dim originalImage = System.Drawing.Image.FromFile(Path.Combine(target, Image))
+                Dim thumbnail As New Bitmap(90, 120)
+                Using g As Graphics = Graphics.FromImage(DirectCast(thumbnail, System.Drawing.Image))
+                    g.DrawImage(originalImage, 0, 0, 90, 120)
+                End Using
+                Dim cfileName = Image
+                Dim fileName = System.IO.Path.Combine(Server.MapPath("~/EmployeeImageTemp"), cfileName)
+                If Not Directory.Exists(Server.MapPath("~/EmployeeImageTemp")) Then
+                    Directory.CreateDirectory(Server.MapPath("~/EmployeeImageTemp"))
+                End If
+                Dim thumbnailFileName As String = fileName
+                thumbnail.Save(thumbnailFileName)
+
+                dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath("~/EmployeeImageTemp") + "\" + dsData.Tables(0).Rows(0)("IMAGE")
+            End If
+
+            dsData.Tables(0).TableName = "DT"
+            dsData.Tables(1).TableName = "DT1"
+            dsData.Tables(2).TableName = "DT2"
+            dsData.Tables(3).TableName = "DT3"
+            dsData.Tables(4).TableName = "DT4"
+            dsData.Tables(5).TableName = "DT5"
+            reportName = "Employee\CV_Template.doc"
+            reportNameOut = "CV.doc"
+            If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath), reportName)) Then
+                ExportWordMailMergeDS(System.IO.Path.Combine(Server.MapPath(tempPath), reportName),
+                                  reportNameOut,
+                                  dsData,
+                                  Response)
+            Else
+                ShowMessage("Mẫu báo cáo không tồn tại", NotifyType.Error)
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -660,6 +681,19 @@ Public Class ctrlHU_EmployeeMng
             Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
+    End Sub
+
+    Private Sub DeleteDirectory(ByVal path As String)
+        If Directory.Exists(path) Then
+            For Each file As String In Directory.GetFiles(path)
+                Try
+                    System.IO.File.Delete(file)
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+        End If
+
     End Sub
 #End Region
 
