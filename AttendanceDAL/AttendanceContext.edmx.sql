@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 5/17/2019 2:44:52 PM
--- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 18/05/2019 2:05:08 PM
+-- Generated from EDMX file: E:\TVC\histaffhcm\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "AttendanceModelStoreContainer"."ATV_OFFSETTING_TIMEKEEPING";
+-- DROP TABLE "AttendanceModelStoreContainer"."ATV_HOLIDAY_HOSE";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1841,7 +1841,8 @@ CREATE TABLE "dbo"."AT_OT_REGISTRATION" (
    "FROM_PM_MN" NUMBER(38,0) NULL,
    "TO_PM" NUMBER(38,0) NULL,
    "TO_PM_MN" NUMBER(38,0) NULL,
-   "HR_REVIEW" NUMBER(38,0) NULL
+   "HR_REVIEW" NUMBER(38,0) NULL,
+   "ID_REGGROUP" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_OFFSETTING_TIMEKEEPING'
@@ -1964,10 +1965,14 @@ CREATE TABLE "dbo"."AT_SHIFTCYCLE_DETAIL" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL
 );
 
--- Creating table 'ATV_OFFSETTING_TIMEKEEPING'
-CREATE TABLE "dbo"."ATV_OFFSETTING_TIMEKEEPING" (
-   "ID" NUMBER(38,0) NOT NULL,
-   "TONG" NUMBER(38,0) NULL
+-- Creating table 'ATV_HOLIDAY_HOSE'
+CREATE TABLE "dbo"."ATV_HOLIDAY_HOSE" (
+   "ID" NUMBER(38,0) NULL,
+   "CODE" NVARCHAR2(50) NOT NULL,
+   "FROMDATE" DATE NULL,
+   "TODATE" DATE NULL,
+   "IS_SA" NUMBER(38,0) NULL,
+   "IS_SU" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'
@@ -2621,10 +2626,10 @@ ADD CONSTRAINT "PK_AT_SHIFTCYCLE_DETAIL"
    VALIDATE;
 
 
--- Creating primary key on "ID"in table 'ATV_OFFSETTING_TIMEKEEPING'
-ALTER TABLE "dbo"."ATV_OFFSETTING_TIMEKEEPING"
-ADD CONSTRAINT "PK_ATV_OFFSETTING_TIMEKEEPING"
-   PRIMARY KEY ("ID" )
+-- Creating primary key on "CODE"in table 'ATV_HOLIDAY_HOSE'
+ALTER TABLE "dbo"."ATV_HOLIDAY_HOSE"
+ADD CONSTRAINT "PK_ATV_HOLIDAY_HOSE"
+   PRIMARY KEY ("CODE" )
    ENABLE
    VALIDATE;
 

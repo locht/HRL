@@ -351,7 +351,8 @@ Public Class ctrlHU_WageNewEdit
                     End If
                 End If
             End Using
-            ClearControlValue(SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+            CalculatorSalary()
+            ClearControlValue(basicSalary, Salary_Total, rnOtherSalary1, _
                               rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
@@ -369,6 +370,8 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             CalculatorSalary()
+            ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -417,6 +420,10 @@ Public Class ctrlHU_WageNewEdit
                         If rdEffectDate.SelectedDate Is Nothing Then
                             ShowMessage(Translate("Bạn phải chọn Ngày hiệu lực"), NotifyType.Warning)
                             rdEffectDate.Focus()
+                            Exit Sub
+                        End If
+                        If rnPercentSalary.Text = "" Then
+                            ShowMessage(Translate("Bạn phải chọn % hưởng lương"), NotifyType.Warning)
                             Exit Sub
                         End If
                         Dim gID As Decimal
@@ -907,6 +914,7 @@ Public Class ctrlHU_WageNewEdit
             Throw ex
         End Try
     End Sub
+    
     ''' <summary>
     ''' Event selected item combobox phu cap
     ''' </summary>
@@ -943,7 +951,7 @@ Public Class ctrlHU_WageNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    rnPercentSalary.Value = 100
+                    'rnPercentSalary.Value = 100
                     EnableControlAll(True, btnFindEmployee, chkIsInsurrance, SalaryInsurance)
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(False, btnFindEmployee, chkIsInsurrance)

@@ -48,4 +48,5 @@
     Public Property P_GM_ID As Decimal?
     Public Property REGIST_DATE_FROM As Date?
     Public Property HR_REVIEW As String
+    Public Property ID_REGGROUP As Decimal?
 End Class

@@ -6,7 +6,7 @@ Imports Attendance.AttendanceBusiness
 Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 
-Public Class ctrlOTRegistration
+Public Class ctrlOTRegistrationByHR
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     Public Overrides Property MustAuthorize As Boolean = False
@@ -51,39 +51,7 @@ Public Class ctrlOTRegistration
         Dim rep As New AttendanceRepository
         Try
             Select Case CurrentState
-                Case CommonMessage.STATE_DELETE
-                    Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgMain.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        lstDeletes.Add(item.GetDataKeyValue("ID"))
-                    Next
-                    If rep.DeleteOtRegistration(lstDeletes) Then
-                        Refresh("UpdateView")
-                        CurrentState = CommonMessage.STATE_NORMAL
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        UpdateControlState()
-                    Else
-                        CurrentState = CommonMessage.STATE_NORMAL
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                        UpdateControlState()
-                    End If
-                Case CommonMessage.STATE_APPROVE
-                    Dim lstApp As New List(Of AT_OT_REGISTRATIONDTO)
-                    For idx = 0 To rgMain.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        Dim dto As New AT_OT_REGISTRATIONDTO
-                        dto.ID = item.GetDataKeyValue("ID")
-                        dto.STATUS = PortalStatus.WaitingForApproval
-                        dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
-                        dto.REASON = ""
-                        lstApp.Add(dto)
-                    Next
-                    If Not rep.ApproveOtRegistration(lstApp) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        CurrentState = CommonMessage.STATE_NORMAL
-                    End If
+
             End Select
         Catch ex As Exception
 
@@ -93,9 +61,7 @@ Public Class ctrlOTRegistration
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
-            If Not IsPostBack Then
 
-            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -113,8 +79,10 @@ Public Class ctrlOTRegistration
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMainToolBar
-            BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, _
-                         ToolbarItem.Submit, ToolbarItem.Export, ToolbarItem.Seperator, ToolbarItem.Delete)
+            BuildToolbar(Me.MainToolBar, ToolbarItem.View, ToolbarItem.Reject, ToolbarItem.Export)
+            CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("Không xác nhận (NS)")
+            CType(MainToolBar.Items(0), RadToolBarButton).Text = Translate("Verified (HR)")
+            CType(MainToolBar.Items(2), RadToolBarButton).Text = Translate("Xuất Excel")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -126,13 +94,12 @@ Public Class ctrlOTRegistration
             dtData = rep.GetOtherList("PORTAL_STATUS", True)
             If dtData IsNot Nothing Then
                 Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString() _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.ApprovedByLM).ToString() _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnVerifiedByHr).ToString()).CopyToDataTable()
                 FillRadCombobox(cboStatus, data, "NAME", "ID")
-
+                cboStatus.SelectedValue = PortalStatus.ApprovedByLM
             End If
 
             rdRegDateFrom.SelectedDate = New DateTime(DateTime.Now.Year, 1, 1)
@@ -147,6 +114,7 @@ Public Class ctrlOTRegistration
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgMain.NeedDataSource
         Try
             CreateDataFilter()
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -164,28 +132,33 @@ Public Class ctrlOTRegistration
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
-                Case CommonMessage.TOOLBARITEM_DELETE
-                    Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgMain.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") <> 0 And item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And item.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
-                            ShowMessage(Translate("Action only apply for status Save, UnApprove for manager, UnApprove for HR. Please choose other record"), NotifyType.Error)
-                            Exit Sub
-                        End If
-                    Next
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         Dim dtDatas As DataTable
                         dtDatas = CreateDataFilter(True)
                         If dtDatas.Rows.Count > 0 Then
-                            rgMain.ExportExcel(Server, Response, dtDatas, "Overtime Record")
+                            rgMain.ExportExcel(Server, Response, dtDatas, "Verify OT Request (HR)")
                         End If
                     End Using
-                Case CommonMessage.TOOLBARITEM_SUBMIT
+                Case CommonMessage.TOOLBARITEM_VIEW
+                    If rgMain.SelectedItems.Count = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    Dim lstApp As New List(Of Decimal)
+                    For idx = 0 To rgMain.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
+                        lstApp.Add(item.GetDataKeyValue("ID"))
+                    Next
+                    Using rep As New AttendanceRepository
+                        If Not rep.HRReviewOtRegistration(lstApp) Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        End If
+                    End Using
+                    rgMain.Rebind()
+                Case CommonMessage.TOOLBARITEM_REJECT
                     If rgMain.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
@@ -195,8 +168,8 @@ Public Class ctrlOTRegistration
                     Dim datacheck As AT_PROCESS_DTO
                     'Kiểm tra các điều kiện trước khi xóa
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.Saved And dr.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And dr.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
-                            ShowMessage(String.Format(Translate("Overtime status {0}, can't send approve. Please cho other record"), dr.GetDataKeyValue("STATUS_NAME")), NotifyType.Warning)
+                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.ApprovedByLM Then
+                            ShowMessage(Translate("Thao tác này chỉ thực hiện với giờ làm thêm đã được phê duyệt bởi QLTT, vui lòng chọn đơn khác"), NotifyType.Warning)
                             Exit Sub
                         End If
                         datacheck = New AT_PROCESS_DTO With {
@@ -216,11 +189,7 @@ Public Class ctrlOTRegistration
                         End If
                     End Using
 
-                    ctrlMessageBox.MessageText = Translate("Send aprrove. Are you sure?")
-                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
-                    ctrlMessageBox.DataBind()
-                    ctrlMessageBox.Show()
-
+                    ctrlCommon_Reject.Show()
             End Select
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
@@ -229,16 +198,38 @@ Public Class ctrlOTRegistration
     End Sub
 
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
-        If e.ActionName = CommonMessage.TOOLBARITEM_SUBMIT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+        If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
             CurrentState = CommonMessage.STATE_APPROVE
             UpdateControlState()
         End If
+    End Sub
 
-        If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-            CurrentState = CommonMessage.STATE_DELETE
-            UpdateControlState()
-        End If
-        rgMain.Rebind()
+    Protected WithEvents ctrlCommon_Reject As ctrlCommon_Reject
+    Private Sub ctrlCommon_Reject_ButtonCommand(ByVal sender As Object, ByVal e As CommandSaveEventArgs) Handles ctrlCommon_Reject.ButtonCommand
+        Try
+            Dim rep As New AttendanceRepository
+            Dim strComment As String = e.Comment
+
+            Dim lstApp As New List(Of AT_OT_REGISTRATIONDTO)
+            For idx = 0 To rgMain.SelectedItems.Count - 1
+                Dim item As GridDataItem = rgMain.SelectedItems(idx)
+                Dim dto As New AT_OT_REGISTRATIONDTO
+                dto.ID = item.GetDataKeyValue("ID")
+                dto.STATUS = PortalStatus.UnVerifiedByHr
+                dto.REASON = strComment
+                dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
+                lstApp.Add(dto)
+            Next
+            If Not rep.ApproveOtRegistration(lstApp) Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+            Else
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+            End If
+
+            rgMain.Rebind()
+        Catch ex As Exception
+
+        End Try
     End Sub
 
 #End Region
@@ -249,8 +240,8 @@ Public Class ctrlOTRegistration
         Dim rep As New AttendanceRepository
         Dim _filter As New AT_OT_REGISTRATIONDTO
         Try
-            _filter.EMPLOYEE_ID = EmployeeID
-            _filter.P_USER = LogHelper.CurrentUser.USERNAME
+            '_filter.EMPLOYEE_ID = EmployeeID
+            _filter.P_GM_ID = LogHelper.CurrentUser.EMPLOYEE_ID
             If rdRegDateFrom.SelectedDate.HasValue Then
                 _filter.REGIST_DATE_FROM = rdRegDateFrom.SelectedDate
             End If

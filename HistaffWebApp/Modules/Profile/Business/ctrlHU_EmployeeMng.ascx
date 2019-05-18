@@ -217,7 +217,7 @@
                 enableAjax = false;
             }
 
-            if (item.get_commandName() == "PRINT_CV") {
+            if (item.get_commandName() == "PRINT") {
                 enableAjax = false;
             }
 

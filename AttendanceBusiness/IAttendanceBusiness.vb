@@ -435,10 +435,20 @@ Namespace AttendanceBusiness.ServiceContracts
                                  Optional ByRef Total As Integer = 0,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_HOLIDAYDTO)
         <OperationContract()>
+        Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
+                             Optional ByVal PageIndex As Integer = 0,
+                                 Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                 Optional ByRef Total As Integer = 0,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_HOLIDAYDTO)
+        <OperationContract()>
         Function InsertHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function InsertHOLIDAY_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
         <OperationContract()>
         Function ValidateHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean
+        <OperationContract()>
+        Function ValidateHOLIDAY_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean
 
         <OperationContract()>
         Function ModifyHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -448,6 +458,8 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeleteHOLIDAY(ByVal lstID As List(Of Decimal)) As Boolean
+        <OperationContract()>
+        Function DeleteHOLIDAY_Hose(ByVal lstID As List(Of Decimal)) As Boolean
 
 #End Region
 

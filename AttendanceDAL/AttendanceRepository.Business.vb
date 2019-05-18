@@ -5898,7 +5898,7 @@ Partial Public Class AttendanceRepository
                             From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                             From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
                             From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                            From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY).DefaultIfEmpty
+                            From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
                             From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
                             Where (r.STATUS = PortalStatus.Saved Or r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
                 Dim lst = query.Select(Function(p) New AT_OT_REGISTRATIONDTO With {
@@ -6060,7 +6060,7 @@ Partial Public Class AttendanceRepository
                               From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                               From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
                               From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY).DefaultIfEmpty
+                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
                               From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
                               Where (e.DIRECT_MANAGER = _filter.P_MANAGER_ID Or e.DIRECT_MANAGER_2 = _filter.P_MANAGER_ID Or e.DIRECT_MANAGER_3 = _filter.P_MANAGER_ID) _
                         And (r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
@@ -6224,7 +6224,7 @@ Partial Public Class AttendanceRepository
                               From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                               From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
                               From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY).DefaultIfEmpty
+                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
                               From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
                               Where (r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
 
@@ -6472,6 +6472,7 @@ Partial Public Class AttendanceRepository
             objData.SIGN_ID = obj.SIGN_ID
             objData.STATUS = obj.STATUS
             objData.TOTAL_OT = obj.TOTAL_OT
+            objData.ID_REGGROUP = Utilities.GetNextSequence(Context, Context.AT_PORTAL_APP.EntitySet.Name)
             Context.AT_OT_REGISTRATION.AddObject(objData)
             Context.SaveChanges(log)
             gID = objData.ID
@@ -6522,6 +6523,23 @@ Partial Public Class AttendanceRepository
     End Function
     Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean
         Try
+            Using cls As New DataAccess.QueryData
+                For Each item In obj
+                    Dim dtCheckSendApprove As DataTable = cls.ExecuteStore("PKG_AT_ATTENDANCE_PORTAL.CHECK_SEND_APPROVE",
+                                                                           New With {.P_ID = item.ID.ToString, .P_OUT_CUR = cls.OUT_CURSOR})
+                    Dim processType As String = "OVERTIME"
+                    Dim periodId As Integer = Int32.Parse(dtCheckSendApprove.Rows(0)("PERIOD_ID").ToString())
+                    Dim signId As Integer = Int32.Parse(dtCheckSendApprove.Rows(0)("SIGN_ID").ToString())
+                    Dim totalHours As Decimal = Decimal.Parse(dtCheckSendApprove.Rows(0)("SUMVAL").ToString())
+                    Dim IdGroup1 As Decimal = Decimal.Parse(dtCheckSendApprove.Rows(0)("ID_REGGROUP").ToString())
+                    Dim priProcessApp = New With {.P_EMPLOYEE_ID = item.EMPLOYEE_ID, .P_PERIOD_ID = periodId, .P_PROCESS_TYPE = processType, .P_TOTAL_HOURS = totalHours, .P_TOTAL_DAY = 0, .P_SIGN_ID = signId, .P_ID_REGGROUP = IdGroup1, .P_RESULT = cls.OUT_NUMBER}
+                    Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS_APP", priProcessApp)
+                    Dim outNumber As Integer = Int32.Parse(priProcessApp.P_RESULT)
+                    If outNumber <> 0 Then
+                        Return False
+                    End If
+                Next
+            End Using
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
@@ -6770,21 +6788,14 @@ Partial Public Class AttendanceRepository
     End Function
     Public Function GetEmployeeShifts(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As List(Of EMPLOYEE_SHIFT_DTO)
         Try
-            Dim query = From d In Context.AT_SHIFTCYCLE_EMP_DETAIL
-                        From e In Context.AT_SHIFTCYCLE_EMP.Where(Function(f) f.ID = d.AT_SHIFTCYCLE_EMP_ID)
-                        From c In Context.AT_SHIFTCYCLE.Where(Function(f) f.SHIFT_ID = e.SHIFT_ID)
-                        From cd In Context.AT_SHIFTCYCLE_DETAIL.Where(Function(f) f.SHIFTDATE = d.EFFECTIVEDATE And c.ID = f.SHIFTCYCLE_ID)
-                        From fm In Context.AT_FML.Where(Function(f) f.ID = d.FML_ID)
-                        Where e.EMPLOYEE_ID = employee_Id And d.EFFECTIVEDATE >= fromDate And d.EFFECTIVEDATE <= toDate
-                        Select New EMPLOYEE_SHIFT_DTO With {
-                                                               .EMPLOYEE_ID = e.EMPLOYEE_ID,
-                                                               .EFFECTIVEDATE = d.EFFECTIVEDATE,
-                                                               .ID_SIGN = d.FML_ID,
-                                                               .SHIFT_ID = e.SHIFT_ID,
-                                                               .IS_LEAVE = fm.IS_LEAVE,
-                                                               .SUBJECT = fm.NAME_VN,
-                                                               .HOURS = fm.HOURS,
-                                                               .SIGN_CODE = fm.CODE
+            Dim query = From p In Context.AT_WORKSIGN
+                         From s In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID)
+                         Where p.EMPLOYEE_ID = employee_Id And p.WORKINGDAY >= fromDate And p.WORKINGDAY <= toDate
+                         Select New EMPLOYEE_SHIFT_DTO With {
+                                                                .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                                .EFFECTIVEDATE = p.WORKINGDAY,
+                                                                .ID_SIGN = s.ID,
+                                                                .SIGN_CODE = s.CODE
                                                             }
 
             Return query.ToList

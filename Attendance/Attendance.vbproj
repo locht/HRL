@@ -193,6 +193,7 @@
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx" />
     <Content Include="Modules\Attendance\List\ctrlListParamSystem.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlRitual_Hose.ascx" />
     <Content Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSetUpCodeAttEmp.ascx" />
     <Content Include="Modules\Attendance\Setting\ctrlSwipeMachineStatus.ascx" />
@@ -391,6 +392,7 @@
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
     <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
+    <Content Include="Modules\Portal\ctrlOTRegistrationByHR.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationByLM.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistration.ascx" />
     <Content Include="Modules\Portal\ctrlOTRegistrationNewEdit.ascx" />
@@ -671,6 +673,13 @@
       <DependentUpon>ctrlListParamSystem.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlRitual_Hose.ascx.designer.vb">
+      <DependentUpon>ctrlRitual_Hose.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Attendance\List\ctrlRitual_Hose.ascx.vb">
+      <DependentUpon>ctrlRitual_Hose.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Modules\Attendance\Report\ctrlAT_ReportList.ascx.designer.vb">
       <DependentUpon>ctrlAT_ReportList.ascx</DependentUpon>
     </Compile>
@@ -886,6 +895,13 @@
     </Compile>
     <Compile Include="Modules\Attendance\List\ctrlRitual.ascx.vb">
       <DependentUpon>ctrlRitual.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationByHR.ascx.designer.vb">
+      <DependentUpon>ctrlOTRegistrationByHR.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlOTRegistrationByHR.ascx.vb">
+      <DependentUpon>ctrlOTRegistrationByHR.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlOTRegistrationByLM.ascx.designer.vb">

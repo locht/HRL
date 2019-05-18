@@ -11,6 +11,7 @@ Imports HistaffFrameworkPublic
 Public Class ctrlOTRegistrationNewEdit
     Inherits CommonView
     Public Overrides Property MustAuthorize As Boolean = False
+    Dim checkSave As Boolean = False
 
 #Region "Property"
 
@@ -112,10 +113,10 @@ Public Class ctrlOTRegistrationNewEdit
 
                 EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
                 If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
-                    txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_EN")
+                    txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
                     txtEmpCode.Text = EmployeeDto.Rows(0)("EMPLOYEE_CODE")
                     txtDepartment.Text = EmployeeDto.Rows(0)("ORG_NAME")
-                    txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_EN")
+                    txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_VN")
                 End If
             End If
 
@@ -164,10 +165,10 @@ Public Class ctrlOTRegistrationNewEdit
                     End If
                     EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing)
                     If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
-                        txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_EN")
+                        txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
                         txtEmpCode.Text = EmployeeDto.Rows(0)("EMPLOYEE_CODE")
                         txtDepartment.Text = EmployeeDto.Rows(0)("ORG_NAME")
-                        txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_EN")
+                        txtTitle.Text = EmployeeDto.Rows(0)("TITLE_NAME_VN")
                     End If
 
                 End Using
@@ -413,8 +414,8 @@ Public Class ctrlOTRegistrationNewEdit
                             obj.TO_PM_MN = cboToPM.SelectedValue
                         End If
 
-                        obj.STATUS = 16
-                        hidStatus.Value = 16
+                        obj.STATUS = 6860
+                        hidStatus.Value = 6860
 
                         Using rep As New AttendanceRepository
                             If String.IsNullOrEmpty(hidID.Value) Then
@@ -430,18 +431,41 @@ Public Class ctrlOTRegistrationNewEdit
                                 UpdateControlState()
                                 Exit Sub
                             End If
-                            If isInsert Then
-                                rep.InsertOtRegistration(obj, hidID.Value)
-                                obj.ID = hidID.Value
-                            Else
-                                obj.ID = hidID.Value
-                                rep.ModifyotRegistration(obj, hidID.Value)
-                            End If
+                            If String.IsNullOrEmpty(txtSignCode.Text) Then
+                                ctrlMessageBox.MessageText = Translate("Chưa có ký hiệu ca. Bạn có chắc chắn muốn lưu?")
+                                ctrlMessageBox.MessageTitle = Translate("Cảnh báo")
+                                ctrlMessageBox.ActionName = "SAVE"
+                                ctrlMessageBox.DataBind()
+                                ctrlMessageBox.Show()
+                                If checkSave Then
+                                    If isInsert Then
+                                        rep.InsertOtRegistration(obj, hidID.Value)
+                                        obj.ID = hidID.Value
+                                    Else
+                                        obj.ID = hidID.Value
+                                        rep.ModifyotRegistration(obj, hidID.Value)
+                                    End If
 
-                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
-                            CurrentState = CommonMessage.STATE_NORMAL
-                            UpdateControlState()
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    UpdateControlState()
+                                End If
+                            Else
+                                If isInsert Then
+                                    rep.InsertOtRegistration(obj, hidID.Value)
+                                    obj.ID = hidID.Value
+                                Else
+                                    obj.ID = hidID.Value
+                                    rep.ModifyotRegistration(obj, hidID.Value)
+                                End If
+
+                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                                Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
+                                CurrentState = CommonMessage.STATE_NORMAL
+                                UpdateControlState()
+                            End If
+                            
                         End Using
                     End If
                     'Case CommonMessage.TOOLBARITEM_SUBMIT
@@ -482,7 +506,11 @@ Public Class ctrlOTRegistrationNewEdit
                 '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                 'End Using
             End If
-
+            If e.ActionName = "SAVE" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                checkSave = True
+            Else
+                checkSave = False
+            End If
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -508,7 +536,7 @@ Public Class ctrlOTRegistrationNewEdit
 
                     EmployeeShift = rep.GetEmployeeShifts(EmployeeID, rdRegDate.SelectedDate, rdRegDate.SelectedDate).FirstOrDefault
                     If EmployeeShift IsNot Nothing Then
-                        txtSignCode.Text = EmployeeShift.SUBJECT
+                        txtSignCode.Text = EmployeeShift.SIGN_CODE
                         hidSignId.Value = EmployeeShift.ID_SIGN
                         lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
                         'CalculateOT()
@@ -563,7 +591,7 @@ Public Class ctrlOTRegistrationNewEdit
         End Try
     End Function
     Private Function CalculateOT() As Boolean
-        If rdRegDate.SelectedDate.HasValue AndAlso EmployeeShift IsNot Nothing Then
+        If rdRegDate.SelectedDate.HasValue Then 'AndAlso EmployeeShift IsNot Nothing 
             Dim totalHour As Decimal = 0.0
             Dim fromAM As Decimal = 0.0
             Dim fromMNAM As Decimal = 0.0
@@ -583,14 +611,14 @@ Public Class ctrlOTRegistrationNewEdit
             Dim OTPM As Decimal = 0.0
             Dim PM As Decimal = 0.0
             Try
-                Dim workingType As Decimal = 0
-                'Get working type of employee
-                Using repStore As New HistaffFrameworkRepository
-                    Dim response = repStore.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_WORKING_TYPE_BY_DATE", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
-                    If response(0).ToString() <> "" Then
-                        workingType = Decimal.Parse(response(0).ToString())
-                    End If
-                End Using
+                'Dim workingType As Decimal = 0
+                ''Get working type of employee
+                'Using repStore As New HistaffFrameworkRepository
+                '    Dim response = repStore.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_WORKING_TYPE_BY_DATE", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
+                '    If response(0).ToString() <> "" Then
+                '        workingType = Decimal.Parse(response(0).ToString())
+                '    End If
+                'End Using
 
 
                 'AM
@@ -606,7 +634,7 @@ Public Class ctrlOTRegistrationNewEdit
                         rntbToAM.Focus()
                         Return False
                     End If
-                    If totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM <= 6 Then
+                    If totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM <= 6 Then 'totalfromAM tu 0-6 va totalToAM <=6
                         OTAM = totalToAM - totalFromAM
                         AM = 0
                     ElseIf totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM > 6 Then
@@ -652,39 +680,39 @@ Public Class ctrlOTRegistrationNewEdit
                 hid300.Value = 0.0
                 hid390.Value = 0.0
 
-                If cboTypeOT.SelectedValue = "6607" Then
-                    hid100.Value = totalHour
+                'If cboTypeOT.SelectedValue = "6607" Then
+                '    hid100.Value = totalHour
+                'Else
+                'OT
+                lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+                If lstdtHoliday IsNot Nothing AndAlso lstdtHoliday.Rows.Count > 0 Then
+                    'nghi bu
+                    'If lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
+                    '    hid200.Value = AM + PM
+                    '    hid270.Value = OTAM + OTPM
+                    'Else 'Le, Tet
+                    hid300.Value = AM + PM
+                    hid390.Value = OTAM + OTPM
+                    'End If
+                    'ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
+                    'hid200.Value = AM + PM
+                    'hid270.Value = OTAM + OTPM
                 Else
-                    'OT
-                    lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
-                    If lstdtHoliday IsNot Nothing AndAlso lstdtHoliday.Rows.Count > 0 Then
-                        'nghi bu
-                        If lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
-                            hid200.Value = AM + PM
-                            hid270.Value = OTAM + OTPM
-                        Else 'Le, Tet
-                            hid300.Value = AM + PM
-                            hid390.Value = OTAM + OTPM
-                        End If
-                    ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
-                        hid200.Value = AM + PM
-                        hid270.Value = OTAM + OTPM
-                    Else
-                        If workingType <> 1090 Then 'Khac Office Type 
-                            hid200.Value = AM + PM
-                            hid270.Value = OTAM + OTPM
-                        Else
-                            hid150.Value = AM + PM
-                            hid210.Value = OTAM + OTPM
-                        End If
-                    End If
+                'If workingType <> 1090 Then 'Khac Office Type 
+                '    hid200.Value = AM + PM
+                '    hid270.Value = OTAM + OTPM
+                'Else
+                hid150.Value = AM + PM
+                hid210.Value = OTAM + OTPM
+                'End If
+                'End If
                 End If
-                Return True
+        Return True
 
             Catch ex As Exception
-                ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
-                Return False
-            End Try
+            ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
+            Return False
+        End Try
         End If
     End Function
 #End Region

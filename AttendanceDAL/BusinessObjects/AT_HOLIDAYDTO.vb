@@ -13,4 +13,9 @@
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+    Public Property IS_SA As Decimal?
+    Public Property IS_SUN As Decimal?
+    Public Property FROMDATE As Date?
+    Public Property TODATE As Date?
+
 End Class

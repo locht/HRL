@@ -17,8 +17,9 @@
   <Item Text="Leave &amp; OT" Expanded="True" Value="Attendance">
     <Item Value="Attendance;ctrlLeaveRegistration;NoPer;NoEdit" Text="Đăng ký nghỉ" ImageUrl="~/Static/Images/RibbonBar/leave.png"/>
     <Item Value="Attendance;ctrlOTRegistration;NoPer;NoEdit" Text="Đăng ký làm thêm" ImageUrl="~/Static/Images/RibbonBar/ot.png"/>
+    <Item Value="Attendance;ctrlOTRegistrationByHR;NoPer;NoEdit" Text="Xác thực làm thêm (HR)" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
     <Item Value="Attendance;ctrlLeaveApprove;NoPer;NoEdit" Text="Phê duyệt nghỉ" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
-    <Item Value="Attendance;ctrlOTApprove;NoPer;NoEdit" Text="Phê duyệt làm thêm" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
+    <Item Value="Attendance;ctrlOTRegistrationByLM;NoPer;NoEdit" Text="Phê duyệt làm thêm (LM)" ImageUrl="~/Static/Images/RibbonBar/approve.png" />
   </Item>
   <Item Text="Phiếu lương" Expanded="True" Value="Payroll;ctrlPA_PortalSalary;NoPer;NoEdit" />
   <Item Text="Đánh giá" Expanded="True" Value="Performance">

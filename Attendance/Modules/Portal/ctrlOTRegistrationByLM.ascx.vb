@@ -17,11 +17,11 @@ Public Class ctrlOTRegistrationByLM
     Public Property EmployeeCode As String
     Public Property unit As String
 
-    Property RegistrationList As List(Of AT_PORTAL_REG_DTO)
+    Property RegistrationList As List(Of AT_OT_REGISTRATIONDTO)
         Get
             Return ViewState(Me.ID & "_OT_REGISTRATIONDTOS")
         End Get
-        Set(ByVal value As List(Of AT_PORTAL_REG_DTO))
+        Set(ByVal value As List(Of AT_OT_REGISTRATIONDTO))
             ViewState(Me.ID & "_OT_REGISTRATIONDTOS") = value
         End Set
     End Property
@@ -53,21 +53,21 @@ Public Class ctrlOTRegistrationByLM
             Select Case CurrentState
 
                 Case CommonMessage.STATE_APPROVE
-                    Dim lstApp As New List(Of AT_PORTAL_REG_DTO)
+                    Dim lstApp As New List(Of AT_OT_REGISTRATIONDTO)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        Dim dto As New AT_PORTAL_REG_DTO
+                        Dim dto As New AT_OT_REGISTRATIONDTO
                         dto.ID = item.GetDataKeyValue("ID")
-                        'dto.STATUS = PortalStatus.ApprovedByLM
-                        'dto.REASON = ""
+                        dto.STATUS = PortalStatus.ApprovedByLM
+                        dto.REASON = ""
                         lstApp.Add(dto)
                     Next
-                    'If Not rep.ApproveOtRegistration(lstApp) Then
-                    '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                    'Else
-                    '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                    'End If
-                    'rgMain.Rebind()
+                    If Not rep.ApproveOtRegistration(lstApp) Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    End If
+                    rgMain.Rebind()
             End Select
         Catch ex As Exception
 
@@ -113,13 +113,12 @@ Public Class ctrlOTRegistrationByLM
             dtData = rep.GetOtherList("PORTAL_STATUS", True)
             If dtData IsNot Nothing Then
                 Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.unsent).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.waitsend).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.aprrove).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.unaprrove).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.unCBNS).ToString()).CopyToDataTable()
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.ApprovedByLM).ToString() _
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnVerifiedByHr).ToString()).CopyToDataTable()
                 FillRadCombobox(cboStatus, data, "NAME", "ID")
-                'cboStatus.SelectedValue = PortalStatus.WaitingForApproval
+                cboStatus.SelectedValue = PortalStatus.WaitingForApproval
             End If
 
             rdRegDateFrom.SelectedDate = New DateTime(DateTime.Now.Year, 1, 1)
@@ -170,10 +169,10 @@ Public Class ctrlOTRegistrationByLM
                     Dim datacheck As AT_PROCESS_DTO
                     'Kiểm tra các điều kiện trước khi xóa
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        'If dr.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
-                        '    ShowMessage(Translate("Thao tác này chỉ thực hiện với giờ làm thêm đang chờ phê duyệt, vui lòng chọn đơn khác"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
+                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
+                            ShowMessage(Translate("Thao tác này chỉ thực hiện với giờ làm thêm đang chờ phê duyệt, vui lòng chọn đơn khác"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         datacheck = New AT_PROCESS_DTO With {
                             .EMPLOYEE_ID = dr.GetDataKeyValue("EMPLOYEE_ID"),
                             .FROM_DATE = dr.GetDataKeyValue("REGIST_DATE"),
@@ -205,10 +204,10 @@ Public Class ctrlOTRegistrationByLM
                     Dim datacheck As AT_PROCESS_DTO
                     'Kiểm tra các điều kiện trước khi xóa
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        'If dr.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
-                        '    ShowMessage(Translate("Thao tác này chỉ thực hiện với giờ làm thêm đang chờ phê duyệt, vui lòng chọn đơn khác"), NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
+                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
+                            ShowMessage(Translate("Thao tác này chỉ thực hiện với giờ làm thêm đang chờ phê duyệt, vui lòng chọn đơn khác"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         datacheck = New AT_PROCESS_DTO With {
                             .EMPLOYEE_ID = dr.GetDataKeyValue("EMPLOYEE_ID"),
                             .FROM_DATE = dr.GetDataKeyValue("REGIST_DATE"),
@@ -226,7 +225,7 @@ Public Class ctrlOTRegistrationByLM
                         End If
                     End Using
 
-                    'ctrlCommon_Reject.Show()
+                    ctrlCommon_Reject.Show()
             End Select
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
@@ -241,33 +240,33 @@ Public Class ctrlOTRegistrationByLM
         End If
     End Sub
 
-    'Protected WithEvents ctrlCommon_Reject As ctrlCommon_Reject
-    'Private Sub ctrlCommon_Reject_ButtonCommand(ByVal sender As Object, ByVal e As CommandSaveEventArgs) Handles ctrlCommon_Reject.ButtonCommand
-    '    Try
-    '        Dim rep As New AttendanceRepository
-    '        Dim strComment As String = e.Comment
+    Protected WithEvents ctrlCommon_Reject As ctrlCommon_Reject
+    Private Sub ctrlCommon_Reject_ButtonCommand(ByVal sender As Object, ByVal e As CommandSaveEventArgs) Handles ctrlCommon_Reject.ButtonCommand
+        Try
+            Dim rep As New AttendanceRepository
+            Dim strComment As String = e.Comment
 
-    '        Dim lstApp As New List(Of AT_PORTAL_REG_DTO)
-    '        For idx = 0 To rgMain.SelectedItems.Count - 1
-    '            Dim item As GridDataItem = rgMain.SelectedItems(idx)
-    '            Dim dto As New AT_PORTAL_REG_DTO
-    '            dto.ID = item.GetDataKeyValue("ID")
-    '            dto.STATUS = PortalStatus.UnApprovedByLM
-    '            dto.REASON = strComment
-    '            dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
-    '            lstApp.Add(dto)
-    '        Next
-    '        If Not rep.ApproveOtRegistration(lstApp) Then
-    '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-    '        Else
-    '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-    '        End If
+            Dim lstApp As New List(Of AT_OT_REGISTRATIONDTO)
+            For idx = 0 To rgMain.SelectedItems.Count - 1
+                Dim item As GridDataItem = rgMain.SelectedItems(idx)
+                Dim dto As New AT_OT_REGISTRATIONDTO
+                dto.ID = item.GetDataKeyValue("ID")
+                dto.STATUS = PortalStatus.UnApprovedByLM
+                dto.REASON = strComment
+                dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
+                lstApp.Add(dto)
+            Next
+            If Not rep.ApproveOtRegistration(lstApp) Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+            Else
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+            End If
 
-    '        rgMain.Rebind()
-    '    Catch ex As Exception
+            rgMain.Rebind()
+        Catch ex As Exception
 
-    '    End Try
-    'End Sub
+        End Try
+    End Sub
 
 #End Region
 
@@ -275,34 +274,34 @@ Public Class ctrlOTRegistrationByLM
 
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
-        Dim _filter As New AT_PORTAL_REG_DTO
+        Dim _filter As New AT_OT_REGISTRATIONDTO
         Try
             '_filter.EMPLOYEE_ID = EmployeeID
-            '_filter.P_MANAGER_ID = LogHelper.CurrentUser.EMPLOYEE_ID
-            'If rdRegDateFrom.SelectedDate.HasValue Then
-            '    _filter.REGIST_DATE_FROM = rdRegDateFrom.SelectedDate
-            'End If
+            _filter.P_MANAGER_ID = LogHelper.CurrentUser.EMPLOYEE_ID
+            If rdRegDateFrom.SelectedDate.HasValue Then
+                _filter.REGIST_DATE_FROM = rdRegDateFrom.SelectedDate
+            End If
             If rdRegDateTo.SelectedDate.HasValue Then
-                '_filter.REGIST_DATE_TO = rdRegDateTo.SelectedDate
+                _filter.REGIST_DATE_TO = rdRegDateTo.SelectedDate
             End If
             If Not String.IsNullOrEmpty(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
             End If
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
-            'If isFull Then
-            '    If Sorts IsNot Nothing Then
-            '        Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue, Sorts).ToTable()
-            '    Else
-            '        Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue).ToTable
-            '    End If
-            'Else
-            '    If Sorts IsNot Nothing Then
-            '        Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
-            '    Else
-            '        Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
-            '    End If
-            'End If
+            If isFull Then
+                If Sorts IsNot Nothing Then
+                    Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue, Sorts).ToTable()
+                Else
+                    Return rep.GetOtRegistration(_filter, Integer.MaxValue, 0, Integer.MaxValue).ToTable
+                End If
+            Else
+                If Sorts IsNot Nothing Then
+                    Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize, Sorts)
+                Else
+                    Me.RegistrationList = rep.GetOtRegistration(_filter, Me.OtRegistrationTotal, rgMain.CurrentPageIndex, rgMain.PageSize)
+                End If
+            End If
 
             rgMain.VirtualItemCount = Me.OtRegistrationTotal
             rgMain.DataSource = Me.RegistrationList

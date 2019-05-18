@@ -96,6 +96,21 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
+                                    Optional ByVal PageIndex As Integer = 0,
+                                        Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                        Optional ByRef Total As Integer = 0,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_HOLIDAYDTO) Implements ServiceContracts.IAttendanceBusiness.GetHoliday_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.GetHoliday_Hose(_filter, PageIndex, PageSize, Total, Sorts)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function InsertHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.InsertHOLIDAY
             Using rep As New AttendanceRepository
@@ -108,12 +123,33 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function InsertHoliday_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.InsertHOLIDAY_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.InsertHoliday_Hose(objHOLIDAY, log, gID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function ValidateHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateHOLIDAY
             Using rep As New AttendanceRepository
                 Try
 
                     Return rep.ValidateHoliday(objHOLIDAY)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ValidateHOLIDAY_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateHOLIDAY_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.ValidateHoliday_Hose(objHOLIDAY)
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -147,6 +183,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Try
 
                     Return rep.DeleteHoliday(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeleteHOLIDAY_Hose(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IAttendanceBusiness.DeleteHOLIDAY_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.DeleteHoliday_Hose(lstID)
                 Catch ex As Exception
                     Throw ex
                 End Try

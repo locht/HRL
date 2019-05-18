@@ -133,6 +133,7 @@
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveSetupOrg.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplate.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplateAddEdit.ascx" />
+    <Content Include="Modules\Common\ctrlCommon_Reject.ascx" />
     <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
     <Content Include="Modules\Common\ctrlDynamicControl.ascx" />
     <Content Include="Modules\Common\ctrlCheckData.ascx" />
@@ -429,6 +430,13 @@
     <Compile Include="Modules\Common\CommonRepository.Secure.vb" />
     <Compile Include="Modules\Common\CommonRepository.ApproveProcess.vb" />
     <Compile Include="Modules\Common\CommonWorkflow.vb" />
+    <Compile Include="Modules\Common\ctrlCommon_Reject.ascx.designer.vb">
+      <DependentUpon>ctrlCommon_Reject.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlCommon_Reject.ascx.vb">
+      <DependentUpon>ctrlCommon_Reject.ascx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Modules\Common\ctrlUploadWithTeamplate.ascx.designer.vb">
       <DependentUpon>ctrlUploadWithTeamplate.ascx</DependentUpon>
     </Compile>

@@ -179,6 +179,7 @@
     <Content Include="Modules\Attendance\Dashboard\ctrlAT_DBTotalWorking.ascx" />
     <Content Include="Modules\Attendance\Dashboard\ctrlDashboard.ascx" />
     <Content Include="Modules\Attendance\Dashboard\ctrlDashboardSixCell.ascx" />
+    <Content Include="Modules\Attendance\List\ctrlRitual_Hose.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_TITLE.ascx" />
     <Content Include="Modules\Attendance\List\ctrlAT_PROJECT_WORK.ascx" />
