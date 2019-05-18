@@ -25,7 +25,7 @@ Partial Public Class AttendanceRepository
             Dim dtData As DataSet = cls.ExecuteStore("PKG_AT_LIST.GET_CONFIG_TEMPLATE",
                                            New With {.P_MACHINE_TYPE = MACHINE_TYPE,
                                                      .P_CUR = cls.OUT_CURSOR,
-                                                     .P_CUR1 = cls.OUT_CURSOR})
+                                                     .P_CUR1 = cls.OUT_CURSOR}, False)
             Return dtData
         End Using
         Return Nothing
@@ -45,6 +45,20 @@ Partial Public Class AttendanceRepository
         Else
             Return CDec(item)
         End If
+    End Function
+
+    Public Function IMPORT_AT_SWIPE_DATA(ByVal log As UserLog, ByVal DATA_IN As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.IMPORT_AT_SWIPE_DATA",
+                                               New With {.P_USER = log.Username.ToUpper,
+                                                         .P_DATA = DATA_IN,
+                                                         .P_CUR = cls.OUT_CURSOR}, True)
+                Return CBool(dtData(0)(0))
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
 
 #Region "Di som ve muon"

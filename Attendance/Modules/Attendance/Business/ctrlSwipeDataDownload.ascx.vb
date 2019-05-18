@@ -5,12 +5,15 @@ Imports Framework.UI.Utilities
 Imports Telerik.Web
 Imports Framework.UI
 Imports WebAppLog
+Imports System.Web.Script.Serialization
 
 Public Class ctrlSwipeDataDownload
     Inherits Common.CommonView
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
+    Const TOTAL_ROW_IMPORT As Integer = 200
+
 #Region "Property"
     ''' <lastupdate>
     ''' 17/08/2017 08:40
@@ -58,7 +61,7 @@ Public Class ctrlSwipeDataDownload
         End Set
 
     End Property
-
+    Private JSONDATA As List(Of DATA_IN)
     Dim dsDataComper As New DataTable
     ''' <summary>
     ''' Danh sach du lieu cham cong
@@ -212,12 +215,6 @@ Public Class ctrlSwipeDataDownload
         Catch ex As Exception
             Throw ex
         End Try
-        'Dim dic As New Dictionary(Of String, Control)
-        'Utilities.OnClientRowSelectedChanged(rglSwipeDataDownload, dic)
-        'Dim rep1 As New AttendanceRepository
-        'Dim obj As New AT_TERMINALSDTO
-        'Dim table = rep1.GetTerminal(obj)
-        'FillRadCombobox(cboMachine, table, "TERMINAL_NAME", "TERMINAL_ID")
     End Sub
     ''' <lastupdate>
     ''' 17/08/2017 08:40
@@ -361,34 +358,7 @@ Public Class ctrlSwipeDataDownload
         End Try
     End Sub
 
-  
-    ''' <lastupdate>
-    ''' 17/08/2017 08:40
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Bind du lieu cho rad grid
-    ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Function loadToGrid() As Boolean
-        
-        Dim DATA_IN As New DataTable("DATA_IN")
-        'Create struct DATA IN with table config
-        'For Each row In dtConfig.Rows
-        '    DATA_IN.Columns.Add(row("COLUMN_CODE"), GetType(String))
-        'Next
-        ''end create struct DATA IN
-        ''GET DATA 
-        'For Each rowData In dsDataComper.Rows
-        '    Dim newRow As DataRow = DATA_IN.NewRow()
-        '    For Each rowConfig In dtConfig.Rows
-        '        newRow(rowConfig("COLUMN_CODE")) = rowData(CType(rowConfig("ORDER_COLUMN"), Integer))
-        '    Next
-        '    DATA_IN.Rows.Add(newRow)
-        'Next
-        'END GET DATA
-
-
         Dim dtError As New DataTable("ERROR")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -400,6 +370,8 @@ Public Class ctrlSwipeDataDownload
             Dim rowError As DataRow
             Dim isError As Boolean = False
             Dim sError As String = String.Empty
+            'Dim dtEmpID As DataTable
+            'Dim is_Validate As Boolean
             Dim _validate As New AT_SWIPE_DATADTO
             Dim rep As New AttendanceRepository
             Dim lstEmp As New List(Of String)
@@ -410,8 +382,18 @@ Public Class ctrlSwipeDataDownload
             Dim irowEm = 5
             For Each row As DataRow In dtData.Rows
                 rowError = dtError.NewRow
+
                 sError = "Mã chấm công nhân viên không được để trống"
                 ImportValidate.EmptyValue("ITIME_ID", row, rowError, isError, sError)
+
+                'If row("ITIME_ID") IsNot DBNull.Value Then
+                '    dtEmpID = New DataTable
+                '    dtEmpID = rep.GetEmployeeByTimeID(row("ITIME_ID"))
+                '    If dtEmpID Is Nothing Or dtEmpID.Rows.Count <= 0 Then
+                '        rowError("ITIME_ID") = "Mã chấm công không tồn tại trên hệ thống."
+                '        isError = True
+                '    End If
+                'End If
 
                 sError = "Giờ không được để trống"
                 ImportValidate.EmptyValue("VALTIME", row, rowError, isError, sError)
@@ -441,6 +423,84 @@ Public Class ctrlSwipeDataDownload
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                 Return False
             End If
+            Return True
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                           CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Function
+
+    ''' <lastupdate>
+    ''' 17/08/2017 08:40
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Bind du lieu cho rad grid
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+
+    Function loadToGridByConfig(ByVal dtConfig As DataTable) As Boolean
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim dtdata As DataTable
+            Using rep As New AttendanceRepository
+                dtdata = rep.GetOtherList("TIME_RECORDER", False)
+            End Using
+            Dim MACHINE_TYPE_CODE As String = String.Empty
+            If dtdata IsNot Nothing AndAlso dtdata.Rows.Count > 0 Then
+                MACHINE_TYPE_CODE = (From P In dtdata.AsEnumerable Where P("ID") = cbMachine_Type.SelectedValue Select P("CODE")).FirstOrDefault
+            End If
+            Dim DATA_IN As New DataTable("DATA_IN")
+            'Create struct DATA IN with table config
+            For Each row In dtConfig.Rows
+                DATA_IN.Columns.Add(row("COLUMN_CODE").ToString.Trim, GetType(String))
+            Next
+            'end create struct DATA IN
+            'GET DATA 
+            For Each rowData In dsDataComper.Rows
+                Dim newRow As DataRow = DATA_IN.NewRow()
+                For Each rowConfig In dtConfig.Rows
+                    newRow(rowConfig("COLUMN_CODE")) = rowData(CType(rowConfig("ORDER_COLUMN"), Integer))
+                Next
+                DATA_IN.Rows.Add(newRow)
+            Next
+            'END GET DATA
+            If DATA_IN.Rows.Count = 0 Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_ROW), NotifyType.Warning)
+                Return False
+            End If
+            JSONDATA = New List(Of DATA_IN)
+            Dim ArrData As New ArrayList()
+            For Each row As DataRow In DATA_IN.Rows
+                If Not IsNumeric(row("USER_ID")) OrElse row("USER_ID").ToString.Trim = String.Empty Then Continue For
+                Dim objJSON As New DATA_IN
+                Dim strCultureInfo As String = String.Empty
+                objJSON.USER_ID = row("USER_ID").ToString()
+                objJSON.MACHINE_TYPE = cbMachine_Type.SelectedValue
+                If MACHINE_TYPE_CODE.ToUpper = "CP" Then 'CAR PARKING
+                    objJSON.TERMINAL_ID = row("TERMINAL_ID")
+                    If row("TERMINAL_ID") = 1 Then
+                        strCultureInfo = (From p In dtConfig.AsEnumerable Where p("COLUMN_CODE") = "TIME_IN" Select p("FORMAT")).FirstOrDefault
+                        objJSON.WORKING_DAY = ConvertDateTo24H(row("TIME_IN"), strCultureInfo)
+                    ElseIf row("TERMINAL_ID") = 2 Then
+                        strCultureInfo = (From p In dtConfig.AsEnumerable Where p("COLUMN_CODE") = "TIME_OUT" Select p("FORMAT")).FirstOrDefault
+                        objJSON.WORKING_DAY = ConvertDateTo24H(row("TIME_OUT"), strCultureInfo)
+                    End If
+                ElseIf MACHINE_TYPE_CODE = "VT" Then 'TOUCH ID
+                    objJSON.TERMINAL_ID = row("TERMINAL_ID")
+                    strCultureInfo = (From p In dtConfig.AsEnumerable Where p("COLUMN_CODE") = "WORKING_DAY" Select p("FORMAT")).FirstOrDefault
+                    objJSON.WORKING_DAY = ConvertDateTo24H(row("WORKING_DAY"), strCultureInfo)
+                ElseIf MACHINE_TYPE_CODE = "AC" Then ' ACCESS CONTROL
+                    objJSON.TERMINAL_ID = ""
+                    strCultureInfo = (From p In dtConfig.AsEnumerable Where p("COLUMN_CODE") = "WORKING_DAY" Select p("FORMAT")).FirstOrDefault
+                    objJSON.WORKING_DAY = ConvertDateTo24H(row("WORKING_DAY"), strCultureInfo)
+                End If
+                JSONDATA.Add(objJSON)
+            Next
+
             Return True
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -513,7 +573,6 @@ Public Class ctrlSwipeDataDownload
         End Try
     End Sub
 
-    'https://www.code-sample.net/CSharp/Format-DateTime
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
         Dim fileName As String
         Dim dsDataPrepare As New DataSet
@@ -534,9 +593,14 @@ Public Class ctrlSwipeDataDownload
             End If
             'end check validate
             'LAY THONG TIN CONFIG TMPLATE => @PAR = MACHINE_TYPE 
+            Dim fistRow As Integer = 0
+            Dim fistCol As Integer = 0
             Dim IAttenDance As IAttendanceBusiness = New AttendanceBusinessClient()
             Dim dsConfig As DataSet = IAttenDance.GET_CONFIG_TEMPLATE(cbMachine_Type.SelectedValue)
-
+            If dsConfig IsNot Nothing AndAlso dsConfig.Tables.Count = 2 AndAlso dsConfig.Tables(1) IsNot Nothing AndAlso dsConfig.Tables(1).Rows.Count = 1 Then
+                fistRow = dsConfig.Tables(1)(0)("FIST_ROW")
+                fistCol = dsConfig.Tables(1)(0)("FIST_COL")
+            End If
             'end get config
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
             Dim savepath = Context.Server.MapPath(tempPath)
@@ -546,11 +610,9 @@ Public Class ctrlSwipeDataDownload
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet = workbook.Worksheets(0)
                 Dim lastRow = worksheet.Cells.GetLastDataRow(2)
-                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(2, 0, lastRow, worksheet.Cells.MaxColumn, True))
-
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(fistRow, fistCol, lastRow, worksheet.Cells.MaxColumn, True))
                 If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
             Next
-            dtData = dtData.Clone()
             dsDataComper = dsDataPrepare.Tables(0).Clone()
             For Each dt As DataTable In dsDataPrepare.Tables
                 For Each row In dt.Rows
@@ -558,13 +620,40 @@ Public Class ctrlSwipeDataDownload
                     If Not isRow Then
                         Continue For
                     End If
-                    dtData.ImportRow(row)
                     dsDataComper.ImportRow(row)
                 Next
             Next
-            If loadToGrid() Then
-                dtData.TableName = "DATA"
-                rep.ImportSwipeData(dtData)
+            'Dim thrIMPORT_DATA As Threading.Thread
+            If loadToGridByConfig(dsConfig.Tables(0)) Then
+                Dim jsonSerialiser = New JavaScriptSerializer()
+                Dim Index As Integer = 0
+                Dim TotalRow As Integer = JSONDATA.Count
+                Dim Sum As Integer = 0
+                Dim subArray As DATA_IN()
+                While (True)
+
+                    If TotalRow <= TOTAL_ROW_IMPORT Then
+                        subArray = New DATA_IN(TotalRow - 1) {}
+                        JSONDATA.CopyTo(Index, subArray, 0, TotalRow)
+                        Dim strJson = jsonSerialiser.Serialize(subArray)
+                        'CAL FUNCTION IMPORT
+                        Sum += subArray.Length
+                        Exit While
+                    Else
+                        Try
+                            subArray = New DATA_IN(TOTAL_ROW_IMPORT - 1) {}
+                            JSONDATA.CopyTo(Index, subArray, 0, TOTAL_ROW_IMPORT)
+                            Dim strJson = jsonSerialiser.Serialize(subArray)
+                            'CAL FUNCTION IMPORT
+                            'END CALL FUNCTION IMPORT
+                            Index = Index + TOTAL_ROW_IMPORT
+                            TotalRow = TotalRow - TOTAL_ROW_IMPORT
+                            Sum += subArray.Length
+                        Catch ex As Exception
+
+                        End Try
+                    End If
+                End While
                 CurrentState = CommonMessage.STATE_NORMAL
                 Refresh("InsertView")
             End If
@@ -575,8 +664,6 @@ Public Class ctrlSwipeDataDownload
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
     End Sub
-
-
     ''' <lastupdate>
     ''' 17/08/2017 08:40
     ''' </lastupdate>
@@ -613,6 +700,23 @@ Public Class ctrlSwipeDataDownload
 
     End Sub
 
+    Private Function ConvertDateTo24H(ByVal strDate As String, ByVal strCulture As String) As String
+        Try
+            If strDate = String.Empty Then Return String.Empty
+            Dim StrOut As String = String.Empty
+            Dim culture As System.Globalization.CultureInfo = New System.Globalization.CultureInfo(strCulture)
+            Dim outDate As Date = Convert.ToDateTime(strDate, culture)
+            StrOut = String.Format("{0}/{1}/{2} {3}:{4}", outDate.Day, outDate.Month, outDate.Year, outDate.Hour, outDate.Minute)
+            Return StrOut
+        Catch ex As Exception
+            Return String.Empty
+        End Try
+    End Function
 #End Region
-
 End Class
+Public Structure DATA_IN
+    Public USER_ID As String
+    Public TERMINAL_ID As String
+    Public WORKING_DAY As String
+    Public MACHINE_TYPE As String
+End Structure
