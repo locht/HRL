@@ -15,6 +15,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Setting/" + Me.GetType().Name.ToString()
+    Dim _result As Boolean = True
 #Region "Property"
 
     Property Employee_BT As List(Of AT_OFFFSETTING_EMPDTO)
@@ -155,45 +156,6 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-        Dim rep As New AttendanceRepository
-        Try
-            Message = Request.Params("VIEW")
-            Select Case Message
-                Case "TRUE"
-                    Dim obj As New AT_OFFFSETTINGDTO
-                    obj.ID = Decimal.Parse(Request.Params("ID"))
-                    CurrentState = CommonMessage.STATE_EDIT
-                    obj = rep.GetOffSettingTimeKeepingById(obj.ID)
-                    If obj IsNot Nothing Then
-                        isEdit = True
-                        'txtCode.Text = obj.EMPLOYEE_CODE
-                        'txtName.Text = obj.VN_FULLNAME
-                        'txtChucDanh.Text = obj.TITLE_NAME
-                        Employee_id = obj.EMPLOYEE_ID
-                        txtNumber.Text = obj.MINUTES_BT
-                        txtREMARK.Text = obj.REMARK
-                        rdFromDate.SelectedDate = obj.FROMDATE
-                        rdToDate.SelectedDate = obj.TODATE
-                        cboTypeBT.Text = obj.TYPE_NAME
-                        _Value = obj.ID
-                    Else
-                        isEdit = False
-                    End If
-                    Employee_BT = rep.GetEmployeeTimeKeepingID(obj.ID)
-
-                Case Nothing
-                    CurrentState = CommonMessage.STATE_NEW
-                    If Not IsPostBack Then
-                        Employee_BT = New List(Of AT_OFFFSETTING_EMPDTO)
-                    End If
-            End Select
-            rgEmployee.Rebind()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
     End Sub
 #End Region
     Private Sub GetDataCombo()
@@ -283,11 +245,11 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                         If _Value.HasValue Then
                             obj.ID = _Value
                         End If
-                        For Each i As GridDataItem In rgEmployee.SelectedItems
+                        For Each item In Employee_BT
                             Dim o As New AT_OFFFSETTING_EMPDTO
-                            o.EMPLOYEE_ID = i.GetDataKeyValue("EMPLOYEE_ID")
-                            o.ORG_ID = i.GetDataKeyValue("ORG_ID")
-                            o.TITLE_ID = i.GetDataKeyValue("TITLE_ID")
+                            o.EMPLOYEE_ID = item.EMPLOYEE_ID
+                            o.ORG_ID = item.ORG_ID
+                            o.TITLE_ID = item.TITLE_ID
                             lstOffSettingEmp.Add(o)
                         Next
                         If lstOffSettingEmp.Count = 0 Then
@@ -386,8 +348,15 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                     'If cboCommendObj.SelectedIndex = 0 Then
                     '    txtDecisionNo.Text = employee.EMPLOYEE_CODE + " / KT / " + Date.Now.ToString("MMyy")
                     'End If
+
+                    Dim checkEmployeeCode As AT_OFFFSETTING_EMPDTO = Employee_BT.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    If (Not checkEmployeeCode Is Nothing) Then
+                        Continue For
+                    End If
+
                     Employee_BT.Add(employee)
                 Next
+                _result = False
                 rgEmployee.Rebind()
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -414,27 +383,62 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                                  q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
                         Employee_BT.Remove(s)
                     Next
+                    _result = False
                     rgEmployee.Rebind()
             End Select
         Catch ex As Exception
 
         End Try
     End Sub
-    Private Sub rgEmployee_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployee.ItemDataBound
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    'Private Sub rgEmployee_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployee.ItemDataBound
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
-        Try
-            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '    Try
+    '        _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
     Private Sub rgEmployee_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgEmployee.NeedDataSource
+        Dim rep As New AttendanceRepository
         Try
+            If _result = True Then
+                Dim Message = Request.Params("VIEW")
+                Select Case Message
+                    Case "TRUE"
+                        Dim obj As New AT_OFFFSETTINGDTO
+                        obj.ID = Decimal.Parse(Request.Params("ID"))
+                        CurrentState = CommonMessage.STATE_EDIT
+                        obj = rep.GetOffSettingTimeKeepingById(obj.ID)
+                        If obj IsNot Nothing Then
+                            isEdit = True
+                            'txtCode.Text = obj.EMPLOYEE_CODE
+                            'txtName.Text = obj.VN_FULLNAME
+                            'txtChucDanh.Text = obj.TITLE_NAME
+                            Employee_id = obj.EMPLOYEE_ID
+                            txtNumber.Text = obj.MINUTES_BT
+                            txtREMARK.Text = obj.REMARK
+                            rdFromDate.SelectedDate = obj.FROMDATE
+                            rdToDate.SelectedDate = obj.TODATE
+                            cboTypeBT.Text = obj.TYPE_NAME
+                            _Value = obj.ID
+                        Else
+                            isEdit = False
+                        End If
+                        Employee_BT = rep.GetEmployeeTimeKeepingID(obj.ID)
+
+                    Case Nothing
+                        CurrentState = CommonMessage.STATE_NEW
+                        If Not IsPostBack Then
+                            Employee_BT = New List(Of AT_OFFFSETTING_EMPDTO)
+                        End If
+                End Select
+            End If
+
             rgEmployee.DataSource = Employee_BT
         Catch ex As Exception
-
+            DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
