@@ -1527,10 +1527,21 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
-    Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO)) As Boolean
+    Public Function SendApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO)) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
-                Return rep.ApproveOtRegistration(obj, Me.Log)
+                Return rep.SendApproveOtRegistration(obj, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal empId As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ApproveOtRegistration(obj, empId, Me.Log)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

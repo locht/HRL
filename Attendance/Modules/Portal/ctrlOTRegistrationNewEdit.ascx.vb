@@ -246,7 +246,7 @@ Public Class ctrlOTRegistrationNewEdit
                 '19 Khong duyet qltt
                 '20 Khong xac nhan nhan su
                 '22 Khong duyet GM
-                Case "", 0, PortalStatus.Saved, PortalStatus.UnApprovedByLM, PortalStatus.UnVerifiedByHr
+                Case "", PortalStatus.Saved, PortalStatus.UnApprovedByLM
                     If userType = "User" Then
                         tbarMainToolBar.Items(0).Enabled = True
                         EnableControlAll(True, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
@@ -414,8 +414,8 @@ Public Class ctrlOTRegistrationNewEdit
                             obj.TO_PM_MN = cboToPM.SelectedValue
                         End If
 
-                        obj.STATUS = 6860
-                        hidStatus.Value = 6860
+                        obj.STATUS = 3
+                        hidStatus.Value = 3
 
                         Using rep As New AttendanceRepository
                             If String.IsNullOrEmpty(hidID.Value) Then

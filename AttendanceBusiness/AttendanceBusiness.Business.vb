@@ -1532,11 +1532,21 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean _
+        Public Function SendApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean _
+                    Implements IAttendanceBusiness.SendApproveOtRegistration
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.SendApproveOTRegistration(obj, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal empId As Decimal, ByVal log As UserLog) As Boolean _
                     Implements IAttendanceBusiness.ApproveOtRegistration
             Using rep As New AttendanceRepository
                 Try
-                    Return rep.ApproveOtRegistration(obj, log)
+                    Return rep.ApproveOtRegistration(obj, empId, log)
                 Catch ex As Exception
                     Throw ex
                 End Try

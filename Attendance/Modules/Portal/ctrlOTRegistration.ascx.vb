@@ -78,7 +78,7 @@ Public Class ctrlOTRegistration
                         dto.REASON = ""
                         lstApp.Add(dto)
                     Next
-                    If Not rep.ApproveOtRegistration(lstApp) Then
+                    If Not rep.SendApproveOtRegistration(lstApp) Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -123,14 +123,13 @@ Public Class ctrlOTRegistration
     Public Overrides Sub BindData()
         Dim dtData As DataTable
         Using rep As New AttendanceRepository
-            dtData = rep.GetOtherList("PORTAL_STATUS", True)
+            dtData = rep.GetOtherList("PROCESS_STATUS", True)
             If dtData IsNot Nothing Then
                 Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString() _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.ApprovedByLM).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnVerifiedByHr).ToString()).CopyToDataTable()
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString()).CopyToDataTable()
                 FillRadCombobox(cboStatus, data, "NAME", "ID")
 
             End If
@@ -168,7 +167,7 @@ Public Class ctrlOTRegistration
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") <> 0 And item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And item.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
+                        If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
                             ShowMessage(Translate("Action only apply for status Save, UnApprove for manager, UnApprove for HR. Please choose other record"), NotifyType.Error)
                             Exit Sub
                         End If
@@ -195,7 +194,7 @@ Public Class ctrlOTRegistration
                     Dim datacheck As AT_PROCESS_DTO
                     'Kiểm tra các điều kiện trước khi xóa
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.Saved And dr.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And dr.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
+                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.Saved And dr.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
                             ShowMessage(String.Format(Translate("Overtime status {0}, can't send approve. Please cho other record"), dr.GetDataKeyValue("STATUS_NAME")), NotifyType.Warning)
                             Exit Sub
                         End If
