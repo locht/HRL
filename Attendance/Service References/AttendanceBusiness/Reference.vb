@@ -18184,6 +18184,15 @@ Namespace AttendanceBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private END_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -18199,6 +18208,12 @@ Namespace AttendanceBusiness
         Private ITIME_ID_SField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MACHINE_TYPEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MACHINE_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -18212,6 +18227,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TERMINAL_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TERMINAL_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VALTIMEField As System.Nullable(Of Date)
@@ -18264,6 +18282,45 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
                     Me.CREATED_LOGField = value
                     Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_CODE() As String
+            Get
+                Return Me.EMPLOYEE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_CODEField, value) <> true) Then
+                    Me.EMPLOYEE_CODEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMPLOYEE_IDField
+            End Get
+            Set
+                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_IDField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_NAME() As String
+            Get
+                Return Me.EMPLOYEE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMPLOYEE_NAMEField, value) <> true) Then
+                    Me.EMPLOYEE_NAMEField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_NAME")
                 End If
             End Set
         End Property
@@ -18334,6 +18391,32 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MACHINE_TYPE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MACHINE_TYPEField
+            End Get
+            Set
+                If (Me.MACHINE_TYPEField.Equals(value) <> true) Then
+                    Me.MACHINE_TYPEField = value
+                    Me.RaisePropertyChanged("MACHINE_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MACHINE_TYPE_NAME() As String
+            Get
+                Return Me.MACHINE_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MACHINE_TYPE_NAMEField, value) <> true) Then
+                    Me.MACHINE_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("MACHINE_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -18394,6 +18477,19 @@ Namespace AttendanceBusiness
                 If (Me.TERMINAL_IDField.Equals(value) <> true) Then
                     Me.TERMINAL_IDField = value
                     Me.RaisePropertyChanged("TERMINAL_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TERMINAL_NAME() As String
+            Get
+                Return Me.TERMINAL_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TERMINAL_NAMEField, value) <> true) Then
+                    Me.TERMINAL_NAMEField = value
+                    Me.RaisePropertyChanged("TERMINAL_NAME")
                 End If
             End Set
         End Property
