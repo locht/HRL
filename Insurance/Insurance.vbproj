@@ -660,7 +660,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53809</DevelopmentServerPort>
+          <DevelopmentServerPort>50835</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/ins</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -280,7 +280,7 @@ Public Class ctrlOTRegistrationByLM
         Dim rep As New AttendanceRepository
         Dim _filter As New AT_OT_REGISTRATIONDTO
         Try
-            '_filter.EMPLOYEE_ID = EmployeeID
+            _filter.EMPLOYEE_ID = EmployeeID
             _filter.P_MANAGER_ID = LogHelper.CurrentUser.EMPLOYEE_ID
             If rdRegDateFrom.SelectedDate.HasValue Then
                 _filter.REGIST_DATE_FROM = rdRegDateFrom.SelectedDate

@@ -249,7 +249,7 @@ Public Class ctrlOTRegistration
         Dim _filter As New AT_OT_REGISTRATIONDTO
         Try
             _filter.EMPLOYEE_ID = EmployeeID
-            _filter.P_USER = LogHelper.CurrentUser.USERNAME
+            _filter.P_USER = LogHelper.CurrentUser.EMPLOYEE_ID
             If rdRegDateFrom.SelectedDate.HasValue Then
                 _filter.REGIST_DATE_FROM = rdRegDateFrom.SelectedDate
             End If

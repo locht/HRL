@@ -50,10 +50,10 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, FULLNAME, DEPARTMENT_NAME, TITLE_NAME, 
                  REGIST_DATE,SIGN_CODE, OT_TYPE_NAME, TOTAL_OT, OT_100,OT_150, OT_200, OT_210, OT_270,OT_300,OT_370,
-                 NOTE,REASON,STATUS, STATUS_NAME, MODIFIED_BY,MODIFIED_DATE"
+                 NOTE,REASON,STATUS, STATUS_NAME, MODIFIED_BY,MODIFIED_DATE,ID_REGGROUP"
                         ClientDataKeyNames="ID, EMPLOYEE_ID, EMPLOYEE_CODE, FULLNAME, DEPARTMENT_NAME, TITLE_NAME, 
                  REGIST_DATE,SIGN_CODE, OT_TYPE_NAME, TOTAL_OT, OT_100,OT_150, OT_200, OT_210, OT_270,OT_300,OT_370,
-                 NOTE,REASON,STATUS, STATUS_NAME, MODIFIED_BY,MODIFIED_DATE">
+                 NOTE,REASON,STATUS, STATUS_NAME, MODIFIED_BY,MODIFIED_DATE,ID_REGGROUP">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
