@@ -123,12 +123,33 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function InsertHoliday_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.InsertHOLIDAY_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.InsertHoliday_Hose(objHOLIDAY, log, gID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function ValidateHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateHOLIDAY
             Using rep As New AttendanceRepository
                 Try
 
                     Return rep.ValidateHoliday(objHOLIDAY)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ValidateHOLIDAY_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateHOLIDAY_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.ValidateHoliday_Hose(objHOLIDAY)
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -162,6 +183,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 Try
 
                     Return rep.DeleteHoliday(lstID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function DeleteHOLIDAY_Hose(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IAttendanceBusiness.DeleteHOLIDAY_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.DeleteHoliday_Hose(lstID)
                 Catch ex As Exception
                     Throw ex
                 End Try

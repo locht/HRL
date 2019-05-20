@@ -11,7 +11,8 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet
 #End Region
-
+        <OperationContract()>
+        Function IMPORT_AT_SWIPE_DATA(ByVal log As UserLog, ByVal DATA_IN As String) As Boolean
         <OperationContract()>
         Function GetDataFromOrg(ByVal obj As ParamDTO, ByVal log As UserLog) As DataSet
         <OperationContract()>
@@ -441,9 +442,13 @@ Namespace AttendanceBusiness.ServiceContracts
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_HOLIDAYDTO)
         <OperationContract()>
         Function InsertHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function InsertHOLIDAY_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
         <OperationContract()>
         Function ValidateHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean
+        <OperationContract()>
+        Function ValidateHOLIDAY_Hose(ByVal objHOLIDAY As AT_HOLIDAYDTO) As Boolean
 
         <OperationContract()>
         Function ModifyHOLIDAY(ByVal objHOLIDAY As AT_HOLIDAYDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -453,6 +458,8 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function DeleteHOLIDAY(ByVal lstID As List(Of Decimal)) As Boolean
+        <OperationContract()>
+        Function DeleteHOLIDAY_Hose(ByVal lstID As List(Of Decimal)) As Boolean
 
 #End Region
 

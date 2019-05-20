@@ -124,11 +124,33 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
+    Public Function InsertHoliday_Hose(ByVal objHoliday As AT_HOLIDAYDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.InsertHoliday_Hose(objHoliday, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function ValidateHoliday(ByVal objHoliday As AT_HOLIDAYDTO) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
                 Return rep.ValidateHOLIDAY(objHoliday)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ValidateHOLIDAY_Hose(ByVal objHoliday As AT_HOLIDAYDTO) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ValidateHOLIDAY_Hose(objHoliday)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -172,7 +194,17 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
+    Public Function DeleteHoliday_Hose(ByVal lstHoliday As List(Of Decimal)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.DeleteHOLIDAY_Hose(lstHoliday)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+    End Function
 #End Region
 
 #Region "Holiday Gerenal"

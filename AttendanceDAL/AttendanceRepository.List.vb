@@ -384,6 +384,50 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+    Public Function ValidateHoliday_Hose(ByVal _validate As AT_HOLIDAYDTO)
+        Dim query
+        Try
+            If _validate.CODE <> Nothing Then
+                If _validate.ID <> 0 Then
+                    query = (From p In Context.AT_HOLIDAY
+                             Where p.CODE.ToUpper = _validate.CODE.ToUpper _
+                             And p.ID <> _validate.ID).FirstOrDefault
+                Else
+                    query = (From p In Context.AT_HOLIDAY
+                             Where p.CODE.ToUpper = _validate.CODE.ToUpper).FirstOrDefault
+                End If
+                Return (query Is Nothing)
+            ElseIf _validate.WORKINGDAY.HasValue Then
+                If _validate.ID <> 0 Then
+                    query = (From p In Context.AT_HOLIDAY
+                             Where (p.WORKINGDAY >= _validate.TODATE _
+                                   And p.WORKINGDAY <= _validate.FROMDATE) _
+                             And p.ID <> _validate.ID).FirstOrDefault
+                Else
+                    query = (From p In Context.AT_HOLIDAY
+                             Where (p.WORKINGDAY >= _validate.TODATE _
+                                   And p.WORKINGDAY <= _validate.FROMDATE)).FirstOrDefault
+                End If
+                Return (query Is Nothing)
+            Else
+                If _validate.ACTFLG <> "" And _validate.ID <> 0 Then
+                    query = (From p In Context.AT_HOLIDAY
+                             Where p.ACTFLG.ToUpper = _validate.ACTFLG.ToUpper _
+                             And p.ID = _validate.ID).FirstOrDefault
+                    Return (Not query Is Nothing)
+                End If
+                If _validate.ID <> 0 And _validate.ACTFLG = "" Then
+                    query = (From p In Context.AT_HOLIDAY
+                             Where p.ID = _validate.ID).FirstOrDefault
+                    Return (query Is Nothing)
+                End If
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
 
     Public Function ModifyHoliday(ByVal objTitle As AT_HOLIDAYDTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -432,6 +476,23 @@ Partial Public Class AttendanceRepository
         Dim lstHolidayData As List(Of AT_HOLIDAY)
         Try
             lstHolidayData = (From p In Context.AT_HOLIDAY Where lstID.Contains(p.ID)).ToList
+            For index = 0 To lstHolidayData.Count - 1
+                Context.AT_HOLIDAY.DeleteObject(lstHolidayData(index))
+            Next
+            Context.SaveChanges()
+            Return True
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteCostCenter")
+            Throw ex
+        End Try
+    End Function
+    Public Function DeleteHoliday_Hose(ByVal lstID As List(Of Decimal)) As Boolean
+        Dim lstHolidayData As List(Of AT_HOLIDAY)
+        Try
+            lstHolidayData = (From p In Context.AT_HOLIDAY Where lstID.Contains(p.ID)).ToList
+            'Sua tiep cho nay HUNGNA
             For index = 0 To lstHolidayData.Count - 1
                 Context.AT_HOLIDAY.DeleteObject(lstHolidayData(index))
             Next
@@ -507,19 +568,26 @@ Partial Public Class AttendanceRepository
     End Function
     Public Function InsertHoliday_Hose(ByVal objTitle As AT_HOLIDAYDTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
-        Dim objTitleData As New AT_HOLIDAY
         Dim iCount As Integer = 0
+        Dim Id As Integer
         Try
-            objTitleData.ID = Utilities.GetNextSequence(Context, Context.AT_HOLIDAY.EntitySet.Name)
-            objTitleData.CODE = objTitle.CODE.Trim
-            objTitleData.NAME_VN = objTitle.NAME_VN.Trim
-            objTitleData.WORKINGDAY = objTitle.WORKINGDAY
-            objTitleData.YEAR = objTitle.YEAR
-            objTitleData.NOTE = objTitle.NOTE
-            objTitleData.ACTFLG = objTitle.ACTFLG
-            Context.AT_HOLIDAY.AddObject(objTitleData)
+            Id = Utilities.GetNextSequence(Context, Context.AT_HOLIDAY.EntitySet.Name)
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_AT_LIST.INSERT_AT_HOLIDAY_HOSE",
+                                 New With {.P_ID = Id,
+                                           .P_CODE = objTitle.CODE,
+                                           .P_NAME = objTitle.NAME_VN,
+                                           .P_FROMDATE = objTitle.FROMDATE,
+                                           .P_TODATE = objTitle.TODATE,
+                                           .P_YEAR = objTitle.YEAR,
+                                           .P_NOTE = objTitle.NOTE,
+                                           .P_ACTFLG = objTitle.ACTFLG,
+                                           .P_ISSA = objTitle.IS_SA,
+                                           .P_ISSU = objTitle.IS_SUN})
+            End Using
+
             Context.SaveChanges(log)
-            gID = objTitleData.ID
+            gID = Id
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
