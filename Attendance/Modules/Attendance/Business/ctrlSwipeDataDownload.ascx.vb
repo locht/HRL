@@ -12,8 +12,8 @@ Public Class ctrlSwipeDataDownload
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
-    Const TOTAL_ROW_IMPORT As Integer = 200
-
+    Const TOTAL_ROW_IMPORT As Integer = 100
+    Dim log As New CommonBusiness.UserLog
 #Region "Property"
     ''' <lastupdate>
     ''' 17/08/2017 08:40
@@ -133,6 +133,7 @@ Public Class ctrlSwipeDataDownload
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            log = LogHelper.GetUserLog
             InitControl()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -482,10 +483,10 @@ Public Class ctrlSwipeDataDownload
                 objJSON.MACHINE_TYPE = cbMachine_Type.SelectedValue
                 If MACHINE_TYPE_CODE.ToUpper = "CP" Then 'CAR PARKING
                     objJSON.TERMINAL_ID = row("TERMINAL_ID")
-                    If row("TERMINAL_ID") = 1 Then
+                    If row("TERMINAL_ID") = 1 Then 'MAY IN
                         strCultureInfo = (From p In dtConfig.AsEnumerable Where p("COLUMN_CODE") = "TIME_IN" Select p("FORMAT")).FirstOrDefault
                         objJSON.WORKING_DAY = ConvertDateTo24H(row("TIME_IN"), strCultureInfo)
-                    ElseIf row("TERMINAL_ID") = 2 Then
+                    ElseIf row("TERMINAL_ID") = 2 Then 'MAY OUT
                         strCultureInfo = (From p In dtConfig.AsEnumerable Where p("COLUMN_CODE") = "TIME_OUT" Select p("FORMAT")).FirstOrDefault
                         objJSON.WORKING_DAY = ConvertDateTo24H(row("TIME_OUT"), strCultureInfo)
                     End If
@@ -500,7 +501,6 @@ Public Class ctrlSwipeDataDownload
                 End If
                 JSONDATA.Add(objJSON)
             Next
-
             Return True
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -623,7 +623,7 @@ Public Class ctrlSwipeDataDownload
                     dsDataComper.ImportRow(row)
                 Next
             Next
-            'Dim thrIMPORT_DATA As Threading.Thread
+            Dim thrIMPORT_DATA As Threading.Thread
             If loadToGridByConfig(dsConfig.Tables(0)) Then
                 Dim jsonSerialiser = New JavaScriptSerializer()
                 Dim Index As Integer = 0
@@ -631,12 +631,12 @@ Public Class ctrlSwipeDataDownload
                 Dim Sum As Integer = 0
                 Dim subArray As DATA_IN()
                 While (True)
-
                     If TotalRow <= TOTAL_ROW_IMPORT Then
                         subArray = New DATA_IN(TotalRow - 1) {}
                         JSONDATA.CopyTo(Index, subArray, 0, TotalRow)
                         Dim strJson = jsonSerialiser.Serialize(subArray)
                         'CAL FUNCTION IMPORT
+                        IAttenDance.IMPORT_AT_SWIPE_DATA(log, strJson)
                         Sum += subArray.Length
                         Exit While
                     Else
@@ -645,12 +645,16 @@ Public Class ctrlSwipeDataDownload
                             JSONDATA.CopyTo(Index, subArray, 0, TOTAL_ROW_IMPORT)
                             Dim strJson = jsonSerialiser.Serialize(subArray)
                             'CAL FUNCTION IMPORT
+                            thrIMPORT_DATA = New Threading.Thread(New Threading.ThreadStart(Function()
+                                                                                                Return IAttenDance.IMPORT_AT_SWIPE_DATA(log, strJson)
+                                                                                            End Function))
+                            thrIMPORT_DATA.IsBackground = True
+                            thrIMPORT_DATA.Start()
                             'END CALL FUNCTION IMPORT
                             Index = Index + TOTAL_ROW_IMPORT
                             TotalRow = TotalRow - TOTAL_ROW_IMPORT
                             Sum += subArray.Length
                         Catch ex As Exception
-
                         End Try
                     End If
                 End While

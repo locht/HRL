@@ -14,4 +14,5 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property TERMINAL_CODE As String
+    Public Property TERMINAL_NAME As String
 End Class
