@@ -491,6 +491,12 @@ Partial Class ProfileRepository
                         objFamilyData.DEDUCT_TO = item.DEDUCT_TO
                         objFamilyData.REMARK = item.REMARK
                         objFamilyData.ADDRESS = item.ADDRESS
+
+                        ' 20190520 CanhNX: Edit cho lưu Nguyên quán, Nghề nghiệp, Chức danh
+                        objFamilyData.CAREER = item.CAREER
+                        objFamilyData.TITLE_NAME = item.TITLE_NAME
+                        objFamilyData.PROVINCE_ID = item.PROVINCE_ID
+
                     Else
                         Dim objFamilyData As New HU_FAMILY
                         objFamilyData.ID = Utilities.GetNextSequence(Context, Context.HU_FAMILY.EntitySet.Name)
@@ -506,6 +512,12 @@ Partial Class ProfileRepository
                         objFamilyData.DEDUCT_TO = item.DEDUCT_TO
                         objFamilyData.REMARK = item.REMARK
                         objFamilyData.ADDRESS = item.ADDRESS
+
+                        ' 20190520 CanhNX: Edit cho lưu Nguyên quán, Nghề nghiệp, Chức danh
+                        objFamilyData.CAREER = item.CAREER
+                        objFamilyData.TITLE_NAME = item.TITLE_NAME
+                        objFamilyData.PROVINCE_ID = item.PROVINCE_ID
+
                         Context.HU_FAMILY.AddObject(objFamilyData)
                     End If
                 End If

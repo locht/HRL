@@ -15,6 +15,89 @@ Imports System.Reflection
 Partial Public Class AttendanceRepository
     Dim nvalue_id As Decimal?
 
+    Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
+                                  Optional ByRef Total As Integer = 0,
+                                  Optional ByVal PageIndex As Integer = 0,
+                                  Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                  Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
+        Try
+            Dim query = From p In Context.AT_PORTAL_REG
+                       From ce In Context.HUV_AT_PORTAL.Where(Function(f) f.ID_REGGROUP = p.ID)
+                       From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.ID_EMPLOYEE).DefaultIfEmpty
+                       From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                       From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
+                       From fl In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
+                       From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
+                       From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
+                       From sh In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
+                       Where p.STATUS = 0
+                       Select New AT_PORTAL_REG_DTO With {
+                                                              .ID = p.ID,
+                                                              .ID_EMPLOYEE = p.ID_EMPLOYEE,
+                                                              .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                              .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                              .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
+                                                              .FROM_DATE = ce.FROM_DATE,
+                                                              .TO_DATE = ce.TO_DATE,
+                                                              .ID_SIGN = p.ID_SIGN,
+                                                              .SIGN_CODE = fl.CODE,
+                                                              .TOTAL_LEAVE = ce.NVALUE,
+                                                              .SIGN_NAME = fl.NAME,
+                                                              .STATUS = p.STATUS,
+                                                              .STATUS_NAME = ot.NAME_EN,
+                                                              .NOTE = p.NOTE,
+                                                           .CREATED_DATE = p.CREATED_DATE,
+                                                              .DEPARTMENT = o.NAME_VN,
+           .JOBTITLE = t.NAME_VN
+                                                           }
+
+            If _filter.ID_EMPLOYEE > 0 Then
+                query = query.Where(Function(f) f.ID_EMPLOYEE = _filter.ID_EMPLOYEE)
+            End If
+            If _filter.ID > 0 Then
+                query = query.Where(Function(f) f.ID = _filter.ID)
+            End If
+            If _filter.YEAR > 0 Then
+                query = query.Where(Function(f) f.YEAR = _filter.YEAR)
+            End If
+            If _filter.STATUS.HasValue Then
+                query = query.Where(Function(f) f.STATUS = _filter.STATUS)
+            End If
+
+            If _filter.FROM_DATE.HasValue And _filter.TO_DATE.HasValue Then
+                query = query.Where(Function(f) f.FROM_DATE >= _filter.FROM_DATE And f.TO_DATE <= _filter.TO_DATE)
+            ElseIf _filter.FROM_DATE.HasValue Then
+                query = query.Where(Function(f) f.FROM_DATE = _filter.FROM_DATE)
+            ElseIf _filter.TO_DATE.HasValue Then
+                query = query.Where(Function(f) f.TO_DATE = _filter.TO_DATE)
+            End If
+            If _filter.EMPLOYEE_CODE IsNot Nothing Then
+                query = query.Where(Function(p) p.EMPLOYEE_CODE.ToLower.Contains(_filter.EMPLOYEE_CODE.ToLower()))
+            End If
+
+            If _filter.EMPLOYEE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.EMPLOYEE_NAME.ToLower.Contains(_filter.EMPLOYEE_NAME.ToLower()))
+            End If
+            If _filter.NOTE IsNot Nothing Then
+                query = query.Where(Function(p) p.NOTE.ToLower.Contains(_filter.NOTE.ToLower()))
+            End If
+            If _filter.STATUS_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.STATUS_NAME.ToLower.Contains(_filter.STATUS_NAME.ToLower()))
+            End If
+            If _filter.SIGN_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.SIGN_NAME.ToLower.Contains(_filter.SIGN_NAME.ToLower()))
+            End If
+            query = query.OrderBy(Sorts)
+            Total = query.Count
+            query = query.Skip(PageIndex * PageSize).Take(PageSize)
+            Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+
     Public Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
                                    Optional ByVal PageIndex As Integer = 0,
                                  Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -169,13 +252,10 @@ Partial Public Class AttendanceRepository
                 itemInsert.CREATED_BY = log.Username.ToUpper
                 itemInsert.CREATED_DATE = Date.Now
                 itemInsert.CREATED_LOG = log.ComputerName
-                itemInsert.STATUS = RegisterStatus.Regist
                 itemInsert.NVALUE = itemRegister.NVALUE
                 itemInsert.SVALUE = itemRegister.PROCESS
                 itemInsert.NVALUE_ID = itemRegister.NVALUE_ID
-
                 itemInsert.ID_REGGROUP = groupid
-
                 itemInsert.IS_NB = itemRegister.ID_NB
                 Context.AT_PORTAL_REG.AddObject(itemInsert)
 
@@ -6597,6 +6677,7 @@ Partial Public Class AttendanceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From fl In Context.AT_FML.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
+                        Where p.ID_REGGROUP = _filter.ID
                         Select New AT_PORTAL_REG_DTO With {
                                                                            .ID = p.ID,
                                                                            .ID_EMPLOYEE = e.ID,
@@ -6633,6 +6714,7 @@ Partial Public Class AttendanceRepository
     Public Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
         Try
             Dim query = From d In Context.AT_PORTAL_REG
+                               Where d.FROM_DATE >= fromDate And d.FROM_DATE <= toDate
                         Select New LEAVE_DETAIL_EMP_DTO With {
              .FROM_DATE = d.FROM_DATE
                             }

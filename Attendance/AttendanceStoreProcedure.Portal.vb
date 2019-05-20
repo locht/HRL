@@ -16,6 +16,15 @@ Partial Class AttendanceStoreProcedure
         End If
         Return dt
     End Function
+    Public Function CHECK_APPROVAL(ByVal listID As String) As DataTable
+        Dim dt As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.CHECK_APPROVAL", New List(Of Object)(New Object() {listID}))
+        'Return ds
+        If ds IsNot Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     'APPROVE BY PROCESS
     Public Function GET_APPROVE_STATUS(ByVal ID As Decimal, ByVal P_PROCESS_CODE As String) As DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_PROCESS.GET_APPROVE_STATUS", New List(Of Object)(New Object() {ID, P_PROCESS_CODE}))

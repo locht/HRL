@@ -83,6 +83,15 @@ Public Class ctrlLeaveRegistrationNewEdit
             ViewState(Me.ID & "_userType") = value
         End Set
     End Property
+    Property check As Integer
+        Get
+            Return ViewState(Me.ID & "_check")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_check") = value
+        End Set
+    End Property
+
 
 #End Region
 
@@ -138,6 +147,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 hidID.Value = id
                 hidValid.Value = 0
                 Dim state = Request.QueryString("id")
+                check = state
                 userType = Request.QueryString("typeUser")
                 CurrentState = CommonMessage.STATE_NORMAL
                 Dim dto As New AT_PORTAL_REG_DTO
@@ -213,7 +223,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 '19 Khong duyet qltt
                 '20 Khong xac nhan nhan su
                 '22 Khong duyet GM
-                Case 0, PortalStatus.unsent
+                Case 0, PortalStatus.Saved, PortalStatus.UnApprovedByLM
                     ', PortalStatus.Saved, PortalStatus.UnApprovedByLM, PortalStatus.UnVerifiedByHr
                     If userType = "User" Then
                         tbarMainToolBar.Items(0).Enabled = True
@@ -268,6 +278,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .SVALUE = ApproveProcess,
                            .NOTE = txtNote.Text,
                            .NOTE_AT = txtNote.Text,
+                           .STATUS = 3,
                                 .PROCESS = ApproveProcess
                        }
                                 AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
@@ -282,9 +293,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .SVALUE = ApproveProcess,
                            .NOTE = txtNote.Text,
                            .NOTE_AT = txtNote.Text,
+                           .STATUS = 3,
                                 .PROCESS = ApproveProcess
                        }
-
                                 obj.ID = hidID.Value
                                 rep.ModifyPortalRegList(obj, itemInsert)
                             End If
@@ -501,30 +512,37 @@ Public Class ctrlLeaveRegistrationNewEdit
     Protected Function CreateDataFilter(Optional ByVal fromDate As Date? = Nothing, Optional ByVal toDate As Date? = Nothing, Optional ByVal isFull As Boolean = False) As DataTable
         Try
             Dim calDay As Integer = 0
+     
+          
             Using rep As New AttendanceRepository
                 If fromDate IsNot Nothing Or toDate IsNot Nothing Then
                     leaveEmpDetails = rep.GetLeaveEmpDetail(EmployeeID, fromDate.Value, toDate.Value, If(IsNumeric(hidID.Value), hidID.Value, 0) <> 0)
                 ElseIf rdFromDate.SelectedDate IsNot Nothing And rdToDate.SelectedDate IsNot Nothing Then
                     leaveEmpDetails = rep.GetLeaveEmpDetail(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate, If(IsNumeric(hidID.Value), hidID.Value, 0) <> 0)
                     'Truog hop k co phan ca thi generate ca default
-
-                    If leaveEmpDetails IsNot Nothing AndAlso leaveEmpDetails.Count = 0 Then
-                        leaveEmpDetails = New List(Of LEAVE_DETAIL_EMP_DTO)
-                        'Initial default list 
-                        Dim selectedFromDate = rdFromDate.SelectedDate
-                        Dim selectedToDate = rdToDate.SelectedDate
-                        While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                            Dim leaveEmpDetail = New LEAVE_DETAIL_EMP_DTO
-
-
-                            leaveEmpDetail.EFFECTIVEDATE = selectedFromDate
-                            leaveEmpDetail.LEAVE_VALUE = 1
-                            leaveEmpDetail.IS_UPDATE = 0
-                            leaveEmpDetails.Add(leaveEmpDetail)
-                            selectedFromDate = selectedFromDate.Value.AddDays(1)
-                            calDay += 1
-                        End While
+                    If check = 0 Then
+                        If leaveEmpDetails.Count <> 0 Then
+                            ShowMessage(Translate("Ngày nghĩ đã được đăng ký."), NotifyType.Warning)
+                            Exit Function
+                        Else
+                            If leaveEmpDetails IsNot Nothing AndAlso leaveEmpDetails.Count = 0 Then
+                                leaveEmpDetails = New List(Of LEAVE_DETAIL_EMP_DTO)
+                                'Initial default list 
+                                Dim selectedFromDate = rdFromDate.SelectedDate
+                                Dim selectedToDate = rdToDate.SelectedDate
+                                While selectedFromDate.Value.Date <= selectedToDate.Value.Date
+                                    Dim leaveEmpDetail = New LEAVE_DETAIL_EMP_DTO
+                                    leaveEmpDetail.EFFECTIVEDATE = selectedFromDate
+                                    leaveEmpDetail.LEAVE_VALUE = 1
+                                    leaveEmpDetail.IS_UPDATE = 0
+                                    leaveEmpDetails.Add(leaveEmpDetail)
+                                    selectedFromDate = selectedFromDate.Value.AddDays(1)
+                                End While
+                            End If
+                        End If
+                     
                     End If
+                    'trường hợp sửa
                 Else
                     leaveEmpDetails = New List(Of LEAVE_DETAIL_EMP_DTO)
                 End If
@@ -537,16 +555,24 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 detail.LEAVE_NAME = item.NVALUE_NAME
                                 detail.EFFECTIVEDATE = item.FROM_DATE
                                 leaveEmpDetails(index) = detail
-                                calDay += 1
                             End If
                         End If
                     Next
                 End If
             End Using
+            If rdFromDate.SelectedDate IsNot Nothing And rdToDate.SelectedDate IsNot Nothing Then
+                Dim selectedFromDate1 = rdFromDate.SelectedDate
+                Dim selectedToDate1 = rdToDate.SelectedDate
+                While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
+                    calDay += 1
+                    selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
+                End While
+            End If
             If leaveEmpDetails IsNot Nothing Then
                 txtDayRegist.Text = 0
                 rntxDayRegist.Value = 0
                 If leaveEmpDetails IsNot Nothing Then
+
                     txtDayRegist.Text = calDay.ToString
                     rntxDayRegist.Value = Decimal.Parse(calDay)
                 End If
