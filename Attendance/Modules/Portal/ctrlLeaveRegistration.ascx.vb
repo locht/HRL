@@ -11,7 +11,7 @@ Public Class ctrlLeaveRegistration
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     Public Overrides Property MustAuthorize As Boolean = False
-
+    Dim psp As New AttendanceStoreProcedure
 #Region "Property"
 
     Public Property EmployeeID As Decimal
@@ -120,14 +120,13 @@ Public Class ctrlLeaveRegistration
     Public Overrides Sub BindData()
         Dim dtData As DataTable
         Using rep As New AttendanceRepository
-            dtData = rep.GetOtherList("PORTAL_STATUS", True)
+            dtData = rep.GetOtherList("PROCESS_STATUS", True)
             If dtData IsNot Nothing Then
                 Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.unsent).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.waitsend).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.aprrove).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.unaprrove).ToString() _
-                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.unCBNS).ToString()).CopyToDataTable()
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.ApprovedByLM).ToString() _
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
+                                                           Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString()).CopyToDataTable()
                 FillRadCombobox(cboStatus, data, "NAME", "ID")
             End If
         End Using
@@ -179,21 +178,26 @@ Public Class ctrlLeaveRegistration
                     End Using
                 Case CommonMessage.TOOLBARITEM_SUBMIT
                     Dim listDataCheck As New List(Of AT_PROCESS_DTO)
+                    Dim strId As String
                     Dim datacheck As AT_PROCESS_DTO
-                    For idx = 0 To rgMain.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        'If item.GetDataKeyValue("STATUS") <> 0 And item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And item.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
-                        '    ShowMessage(Translate("The action only applies for the records that have status as 'Saved' or 'Unverified by HR'. Please select other record."), NotifyType.Error)
-                        '    Exit Sub
-                        'End If
-                        datacheck = New AT_PROCESS_DTO With {
-                            .EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID"),
-                            .FROM_DATE = item.GetDataKeyValue("FROM_DATE"),
-                            .TO_DATE = item.GetDataKeyValue("TO_DATE"),
-                            .FULL_NAME = item.GetDataKeyValue("EMPLOYEE_NAME")
-                        }
-                        listDataCheck.Add(datacheck)
+                    'For idx = 0 To rgMain.SelectedItems.Count - 1
+                    '    Dim item As GridDataItem = rgMain.SelectedItems(idx)
+                    '    'If item.GetDataKeyValue("STATUS") <> 0 And item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And item.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
+                    '    '    ShowMessage(Translate("The action only applies for the records that have status as 'Saved' or 'Unverified by HR'. Please select other record."), NotifyType.Error)
+                    '    '    Exit Sub
+                    '    'End If
+                    '    datacheck = New AT_PROCESS_DTO With {
+                    '        .EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID"),
+                    '        .FROM_DATE = item.GetDataKeyValue("FROM_DATE"),
+                    '        .TO_DATE = item.GetDataKeyValue("TO_DATE"),
+                    '        .FULL_NAME = item.GetDataKeyValue("EMPLOYEE_NAME")
+                    '    }
+                    '    listDataCheck.Add(datacheck)
+                    'Next
+                    For Each dr As Decimal In rgMain.SelectedValues
+                        strId &= IIf(strId = vbNullString, dr, "," & dr)
                     Next
+                    Dim dtCheckSendApprove As DataTable = psp.CHECK_APPROVAL(strId)
 
                     Dim itemError As New AT_PROCESS_DTO
                     Using rep As New AttendanceRepository
@@ -223,22 +227,21 @@ Public Class ctrlLeaveRegistration
     End Sub
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         If e.ActionName = CommonMessage.TOOLBARITEM_SUBMIT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-            Dim lstApp As New List(Of AT_PORTAL_REG_LIST_DTO)
+            Dim lstApp As New List(Of AT_PORTAL_REG_DTO)
             For idx = 0 To rgMain.SelectedItems.Count - 1
                 Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                Dim dto As New AT_PORTAL_REG_LIST_DTO
+                Dim dto As New AT_PORTAL_REG_DTO
                 dto.ID = item.GetDataKeyValue("ID")
                 'dto.STATUS = PortalStatus.WaitingForApproval
-                dto.REASON = ""
-                dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
+                dto.ID_EMPLOYEE = LogHelper.CurrentUser.EMPLOYEE_ID
                 lstApp.Add(dto)
             Next
             Using rep As New AttendanceRepository
-                If Not rep.ApprovePortalRegList(lstApp) Then
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                End If
+                'If Not rep.ApprovePortalRegList(lstApp) Then
+                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                'Else
+                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                'End If
             End Using
             rgMain.Rebind()
         End If

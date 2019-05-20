@@ -3,6 +3,22 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+    Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
+                               Optional ByRef Total As Integer = 0,
+                               Optional ByVal PageIndex As Integer = 0,
+                               Optional ByVal PageSize As Integer = Integer.MaxValue,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_PORTAL_REG_DTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.GetLeaveRegistrationListByLM(_filter, Total, PageIndex, PageSize, Sorts, Me.Log)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function getSetUpAttEmp(ByVal _filter As SetUpCodeAttDTO,
                                      Optional ByVal PageIndex As Integer = 0,
                                        Optional ByVal PageSize As Integer = Integer.MaxValue,

@@ -7,6 +7,12 @@ Imports System.ServiceModel.Web
 Namespace AttendanceBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IAttendanceBusiness
+        <OperationContract()>
+        Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
+                                     Optional ByRef Total As Integer = 0,
+                                     Optional ByVal PageIndex As Integer = 0,
+                                     Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
 #Region "CONFIG TEMPLATE"
         <OperationContract()>
         Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet

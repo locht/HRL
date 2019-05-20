@@ -7,6 +7,21 @@ Imports LinqKit
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
+        Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
+                                  Optional ByRef Total As Integer = 0,
+                                  Optional ByVal PageIndex As Integer = 0,
+                                  Optional ByVal PageSize As Integer = Integer.MaxValue,
+                                  Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO) _
+                                  Implements ServiceContracts.IAttendanceBusiness.GetLeaveRegistrationListByLM
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.GetLeaveRegistrationListByLM(_filter, Total, PageIndex, PageSize, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #Region "CONFIG TEMPLATE"
         Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet Implements ServiceContracts.IAttendanceBusiness.GET_CONFIG_TEMPLATE
             Using rep As New AttendanceRepository

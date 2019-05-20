@@ -2098,12 +2098,12 @@ Partial Public Class AttendanceRepository
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
 
             Dim lst = query.Select(Function(p) New AT_OFFFSETTINGDTO With {
-                                       .ID = p.p.ID,
-                                       .EMPLOYEE_CODE = "Nhiều nhân viên",
-                                       .FULLNAME_VN = "Nhiều nhân viên",
+                                      .ID = p.p.ID,
+                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                       .FULLNAME_VN = p.e.FULLNAME_VN,
                                        .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
-                                       .TITLE_NAME = "Nhiều nhân viên",
-                                       .ORG_NAME = "Nhiều nhân viên",
+                                       .TITLE_NAME = p.t.NAME_VN,
+                                       .ORG_NAME = p.o.NAME_VN,
                                        .ORG_ID = p.e.ORG_ID,
                                        .FROMDATE = p.p.FROMDATE,
                                        .TODATE = p.p.TODATE,
@@ -2149,7 +2149,36 @@ Partial Public Class AttendanceRepository
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
-            Return lst.ToList
+
+            Dim lst_Tem As List(Of AT_OFFFSETTINGDTO) = lst.ToList
+            Dim objData As New AT_OFFFSETTINGDTO
+            For index = 0 To lst_Tem.Count - 1
+                objData = lst_Tem(index)
+
+                Dim dtCount As DataTable = CountTimeKeeping_Emp(objData.ID.ToString())
+                If (dtCount.Rows.Count > 0) And (dtCount.Rows(0)(0) > 1) Then
+                    lst_Tem(index).EMPLOYEE_CODE = "Nhiều nhân viên"
+                    lst_Tem(index).FULLNAME_VN = "Nhiều nhân viên"
+                    lst_Tem(index).TITLE_NAME = "Nhiều nhân viên"
+                    lst_Tem(index).ORG_NAME = "Nhiều nhân viên"
+                End If
+            Next
+
+            Return lst_Tem
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function CountTimeKeeping_Emp(ByVal group_id As String) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteSQL("SELECT COUNT(*) FROM AT_OFFSETTING_TIMEKEEPING_EMP TE WHERE TE.GROUP_ID ='" + group_id + "'")
+
+                Return dtData
+            End Using
+
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex

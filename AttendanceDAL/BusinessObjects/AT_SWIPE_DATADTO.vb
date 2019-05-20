@@ -14,4 +14,10 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property TERMINAL_CODE As String
+    Public Property TERMINAL_NAME As String
+    Public Property MACHINE_TYPE As Decimal?
+    Public Property MACHINE_TYPE_NAME As String
+    Public Property EMPLOYEE_ID As Decimal?
+    Public Property EMPLOYEE_CODE As String
+    Public Property EMPLOYEE_NAME As String
 End Class
