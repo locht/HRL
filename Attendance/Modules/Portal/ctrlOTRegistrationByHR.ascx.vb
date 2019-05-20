@@ -91,7 +91,7 @@ Public Class ctrlOTRegistrationByHR
     Public Overrides Sub BindData()
         Dim dtData As DataTable
         Using rep As New AttendanceRepository
-            dtData = rep.GetOtherList("PORTAL_STATUS", True)
+            dtData = rep.GetOtherList("PROCESS_STATUS", True)
             If dtData IsNot Nothing Then
                 Dim data = dtData.AsEnumerable().Where(Function(f) Not f.Field(Of Decimal?)("ID").HasValue _
                                                            Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.WaitingForApproval).ToString() _
@@ -217,10 +217,12 @@ Public Class ctrlOTRegistrationByHR
                 dto.ID = item.GetDataKeyValue("ID")
                 dto.STATUS = PortalStatus.UnVerifiedByHr
                 dto.REASON = strComment
-                dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
+                dto.ID_REGGROUP = item.GetDataKeyValue("ID_REGGROUP")
+                dto.REGIST_DATE = item.GetDataKeyValue("REGIST_DATE")
+                dto.EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID")
                 lstApp.Add(dto)
             Next
-            If Not rep.ApproveOtRegistration(lstApp) Then
+            If Not rep.ApproveOtRegistration(lstApp, LogHelper.CurrentUser.EMPLOYEE_ID) Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)

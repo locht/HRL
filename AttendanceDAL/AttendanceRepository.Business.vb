@@ -6507,7 +6507,7 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
-    Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean
+    Public Function SendApproveOTRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean
         Try
             Using cls As New DataAccess.QueryData
                 For Each item In obj
@@ -6521,6 +6521,27 @@ Partial Public Class AttendanceRepository
                     Dim priProcessApp = New With {.P_EMPLOYEE_ID = item.EMPLOYEE_ID, .P_PERIOD_ID = periodId, .P_PROCESS_TYPE = processType, .P_TOTAL_HOURS = totalHours, .P_TOTAL_DAY = 0, .P_SIGN_ID = signId, .P_ID_REGGROUP = IdGroup1, .P_RESULT = cls.OUT_NUMBER}
                     Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS_APP", priProcessApp)
                     Dim outNumber As Integer = Int32.Parse(priProcessApp.P_RESULT)
+                    If outNumber <> 0 Then
+                        Return False
+                    End If
+                Next
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+    End Function
+    Public Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal empId As Decimal, ByVal log As UserLog) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                For Each item In obj
+                    Dim processType As String = "OVERTIME"
+                    Dim periodId As Integer = Context.AT_PERIOD.Where(Function(f) f.START_DATE <= item.REGIST_DATE And f.END_DATE >= item.REGIST_DATE).Select(Function(f) f.ID).FirstOrDefault
+                    Dim IdGroup1 As Decimal = item.ID_REGGROUP
+                    Dim priProcess = New With {.P_EMPLOYEE_APP_ID = empId, .P_EMPLOYEE_ID = item.EMPLOYEE_ID, .P_PE_PERIOD_ID = periodId, .P_STATUS_ID = item.STATUS, .P_PROCESS_TYPE = processType, .P_NOTES = item.REASON, .P_ID_REGGROUP = IdGroup1, .P_RESULT = cls.OUT_NUMBER}
+                    Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS", priProcess)
+                    Dim outNumber As Integer = Int32.Parse(priProcess.P_RESULT)
                     If outNumber <> 0 Then
                         Return False
                     End If

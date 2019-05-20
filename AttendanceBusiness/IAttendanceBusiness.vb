@@ -767,7 +767,9 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function ModifyotRegistration(ByVal obj As AT_OT_REGISTRATIONDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>
-        Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean
+        Function SendApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function ApproveOtRegistration(ByVal obj As List(Of AT_OT_REGISTRATIONDTO), ByVal empId As Decimal, ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function ValidateOtRegistration(ByVal _validate As AT_OT_REGISTRATIONDTO)
         <OperationContract()>
