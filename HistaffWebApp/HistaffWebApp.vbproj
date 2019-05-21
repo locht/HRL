@@ -1533,6 +1533,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Word\Recruitment\BM04_TT_Ke_hoach_TD.doc" />
+    <None Include="Word\Employee\CV_Template.doc" />
     <None Include="Word\Profile\PLHD.doc" />
   </ItemGroup>
   <ItemGroup>
