@@ -5927,7 +5927,7 @@ Partial Public Class AttendanceRepository
                 If _filter.P_MANAGER_ID.ToString <> "" Then
                     userIdOrMngId = _filter.P_MANAGER_ID
                     obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
-                                    .P_STATUS = If(_filter.STATUS.ToString <> "", _filter.STATUS, 0),
+                                    .P_STATUS = _filter.STATUS,
                                     .P_FROM_DATE = _filter.REGIST_DATE_FROM,
                                     .P_TO_DATE = _filter.REGIST_DATE_TO,
                                     .P_RESULT = cls.OUT_CURSOR}
@@ -5935,7 +5935,7 @@ Partial Public Class AttendanceRepository
                 Else
                     userIdOrMngId = Decimal.Parse(_filter.P_USER)
                     obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
-                                    .P_STATUS = If(_filter.STATUS.ToString <> "", _filter.STATUS, 0),
+                                    .P_STATUS = _filter.STATUS,
                                     .P_FROM_DATE = _filter.REGIST_DATE_FROM,
                                     .P_TO_DATE = _filter.REGIST_DATE_TO,
                                     .P_RESULT = cls.OUT_CURSOR}
