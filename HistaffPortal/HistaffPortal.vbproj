@@ -113,6 +113,7 @@
     <Content Include="About.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Modules\Attendance\ctrlOTRegistrationMng.ascx" />
     <Content Include="Modules\Attendance\ctrlLeaveRegistrationByManager.ascx" />
     <Content Include="Modules\Attendance\ctrlOTRegistrationByHR.ascx" />
     <Content Include="Modules\Attendance\ctrlOTRegistrationByLM.ascx" />
