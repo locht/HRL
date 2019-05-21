@@ -5804,7 +5804,7 @@ Partial Public Class AttendanceRepository
                         result.LIMIT_YEAR = If(IsDBNull(dtData.Rows(0)("LIMIT_YEAR")), Nothing, dtData.Rows(0)("LIMIT_YEAR"))
                     End If
                     'nghi phep
-                ElseIf (ListManul IsNot Nothing) Then
+                ElseIf (_filter.LEAVE_TYPE = 251) Then
                     Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_ENTITLEMENT",
                                     New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
                                               .P_DATE_TIME = _filter.DATE_REGISTER,
