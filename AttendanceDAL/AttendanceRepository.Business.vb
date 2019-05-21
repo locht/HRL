@@ -5021,14 +5021,19 @@ Partial Public Class AttendanceRepository
                                        Optional ByVal Sorts As String = "iTime_id, VALTIME desc") As List(Of AT_SWIPE_DATADTO)
         Try
             Dim query = From p In Context.AT_SWIPE_DATA
-                        From m In Context.AT_TERMINALS.Where(Function(f) f.ID = p.TERMINAL_ID).DefaultIfEmpty
-
+                        From machine_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_TYPE)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
             Dim lst = query.Select(Function(p) New AT_SWIPE_DATADTO With {
                                        .ID = p.p.ID,
                                        .ITIME_ID = p.p.ITIME_ID,
                                        .ITIME_ID_S = p.p.ITIME_ID,
                                        .TERMINAL_ID = p.p.TERMINAL_ID,
-                                       .TERMINAL_CODE = p.m.TERMINAL_CODE,
+                                       .TERMINAL_CODE = If(p.p.TERMINAL_ID = 1, "Máy vào", "Máy ra"),
+                                       .MACHINE_TYPE = p.p.MACHINE_TYPE,
+                                       .MACHINE_TYPE_NAME = p.machine_type.NAME_VN,
+                                       .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                        .WORKINGDAY = p.p.WORKINGDAY,
                                        .VALTIME = p.p.VALTIME})
 
@@ -5041,13 +5046,14 @@ Partial Public Class AttendanceRepository
             If (_filter.ITIME_ID_S <> "") Then
                 lst = lst.Where(Function(f) f.ITIME_ID_S.ToUpper.Contains(_filter.ITIME_ID_S.ToUpper))
             End If
-            'If _filter.ITIME_ID_S <> "" Then
-            '    If IsNumeric(_filter.ITIME_ID_S) Then
-            '        lst = lst.Where(Function(f) f.ITIME_ID = _filter.ITIME_ID_S)
-            '    Else
-            '        lst = lst.Where(Function(f) f.ITIME_ID = 0)
-            '    End If
-            'End If
+            If (_filter.MACHINE_TYPE_NAME <> "") Then
+                lst = lst.Where(Function(f) f.MACHINE_TYPE_NAME.ToUpper.Contains(_filter.MACHINE_TYPE_NAME.ToUpper))
+            End If
+
+            If Not IsNothing(_filter.MACHINE_TYPE) Then
+                lst = lst.Where(Function(f) f.MACHINE_TYPE = _filter.MACHINE_TYPE)
+            End If
+
             If _filter.WORKINGDAY.HasValue Then
                 lst = lst.Where(Function(f) f.WORKINGDAY = _filter.WORKINGDAY)
             End If
@@ -5804,7 +5810,7 @@ Partial Public Class AttendanceRepository
                         result.LIMIT_YEAR = If(IsDBNull(dtData.Rows(0)("LIMIT_YEAR")), Nothing, dtData.Rows(0)("LIMIT_YEAR"))
                     End If
                     'nghi phep
-                ElseIf (ListManul IsNot Nothing) Then
+                ElseIf (_filter.LEAVE_TYPE = 251) Then
                     Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_ENTITLEMENT",
                                     New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
                                               .P_DATE_TIME = _filter.DATE_REGISTER,
@@ -5824,6 +5830,7 @@ Partial Public Class AttendanceRepository
                         result.PREVTOTAL_HAVE = dtData.Rows(0)("PREVTOTAL_HAVE")
                         result.SENIORITYHAVE = dtData.Rows(0)("SENIORITYHAVE")
                         result.TOTAL_HAVE1 = dtData.Rows(0)("TOTAL_HAVE1")
+                        result.TIME_OUTSIDE_COMPANY = dtData.Rows(0)("TIME_OUTSIDE_COMPANY")
                     End If
                 End If
             End Using

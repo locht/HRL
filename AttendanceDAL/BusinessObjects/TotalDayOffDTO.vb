@@ -14,5 +14,6 @@
     Public Property PREVTOTAL_HAVE As Decimal? 'Phép cũ còn lại
     Public Property SENIORITYHAVE As Decimal? 'Phép thâm niên
     Public Property TOTAL_HAVE1 As Decimal? 'hép chuẩn năm nay
+    Public Property TIME_OUTSIDE_COMPANY As Decimal? 'hép chuẩn năm nay
 
 End Class

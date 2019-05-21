@@ -137,7 +137,7 @@ Partial Public Class ctrlPA_SalaryRank
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntxtSalaryBasic As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents rntxtSalaryBasic As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''RequiredFieldValidator1 control.

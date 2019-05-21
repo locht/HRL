@@ -15,7 +15,8 @@
     </tr>
     <tr>
         <td colspan="4">
-            <b style="color: red"><%# Translate("Thông tin nhân viên")%></b>
+            <b style="color: red">
+                <%# Translate("Thông tin nhân viên")%></b>
             <hr />
         </td>
     </tr>
@@ -24,13 +25,15 @@
             <%# Translate("Họ tên")%>
         </td>
         <td>
-            <tlk:RadTextBox runat="server" ID="txtFullName" ReadOnly="true"></tlk:RadTextBox>
+            <tlk:RadTextBox runat="server" ID="txtFullName" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Phòng ban")%>
         </td>
         <td>
-            <tlk:RadTextBox runat="server" ID="txtDepartment" ReadOnly="true"></tlk:RadTextBox>
+            <tlk:RadTextBox runat="server" ID="txtDepartment" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
     </tr>
     <tr>
@@ -38,66 +41,82 @@
             <%# Translate("Mã nhân viên")%>
         </td>
         <td>
-            <tlk:RadTextBox runat="server" ID="txtEmpCode" ReadOnly="true"></tlk:RadTextBox>
+            <tlk:RadTextBox runat="server" ID="txtEmpCode" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Chức danh")%>
         </td>
         <td>
-            <tlk:RadTextBox runat="server" ID="txtTitle" ReadOnly="true"></tlk:RadTextBox>
+            <tlk:RadTextBox runat="server" ID="txtTitle" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
     </tr>
     <tr>
         <td colspan="4">
-            <b style="color: red"><%# Translate("Leave Information")%></b>
+            <b style="color: red">
+                <%# Translate("Thông tin phép năm")%></b>
             <hr />
         </td>
     </tr>
     <tr>
         <td class="lb">
-            <%# Translate("Entitilement")%>
+            <%# Translate("Phép chế độ")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox  SkinID="Decimal" runat="server" DataType="System.Decimal" Culture="en-GB" ID="rntEntitlement" ReadOnly="true"></tlk:RadNumericTextBox>
+            <tlk:RadNumericTextBox SkinID="number" runat="server" 
+                Culture="en-GB" ID="rntEntitlement" ReadOnly="true">
+            </tlk:RadNumericTextBox>
         </td>
         <td class="lb">
-            <%# Translate("Seniority")%>
+            <%# Translate("Phép đã nghĩ")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox  SkinID="Decimal" runat="server" DataType="System.Decimal" Culture="en-GB" ID="rntSeniority" ReadOnly="true"></tlk:RadNumericTextBox>
+            <tlk:RadNumericTextBox SkinID="number" runat="server"
+                Culture="en-GB" ID="rntSeniority" ReadOnly="true">
+            </tlk:RadNumericTextBox>
         </td>
     </tr>
     <tr>
         <td class="lb">
-            <%# Translate("Brought")%>
+            <%# Translate("Phép thâm niên")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox  SkinID="Decimal" runat="server" DataType="System.Decimal" Culture="en-GB" ID="rntBrought" ReadOnly="true"></tlk:RadNumericTextBox>
+            <tlk:RadNumericTextBox SkinID="number" runat="server" 
+                Culture="en-GB" ID="rntBrought" ReadOnly="true">
+            </tlk:RadNumericTextBox>
         </td>
         <td class="lb">
-            <%# Translate("Total")%>
+            <%# Translate("Phép trừ quy đổi từ số phút ngoài cơ quan")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox  SkinID="Decimal" runat="server" DataType="System.Decimal" Culture="en-GB" ID="rntTotal" ReadOnly="true"></tlk:RadNumericTextBox>
+            <tlk:RadNumericTextBox SkinID="number" runat="server"
+                Culture="en-GB" ID="rntTotal" ReadOnly="true">
+            </tlk:RadNumericTextBox>
         </td>
     </tr>
     <tr>
         <td class="lb">
-            <%# Translate("Total Taken")%>
+            <%# Translate("Phép năm trước còn lại")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox  SkinID="Decimal" runat="server" DataType="System.Decimal" Culture="en-GB" ID="rntTotalTaken" ReadOnly="true"></tlk:RadNumericTextBox>
+            <tlk:RadNumericTextBox SkinID="number" runat="server" 
+                Culture="en-GB" ID="rntTotalTaken" ReadOnly="true">
+            </tlk:RadNumericTextBox>
         </td>
         <td class="lb">
-            <%# Translate("Balance")%>
+            <%# Translate("Phép còn lại")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox  SkinID="Decimal" runat="server" DataType="System.Decimal" Culture="en-GB" ID="rntBalance" ReadOnly="true"></tlk:RadNumericTextBox>
+            <tlk:RadNumericTextBox SkinID="number" runat="server"
+                Culture="en-GB" ID="rntBalance" ReadOnly="true">
+            </tlk:RadNumericTextBox>
         </td>
     </tr>
     <tr>
         <td colspan="4">
-            <b style="color: red"><%# Translate("Thông tin đăng ký nghỉ phép")%></b>
+            <b style="color: red">
+                <%# Translate("Thông tin đăng ký nghỉ phép")%></b>
             <hr />
         </td>
     </tr>
@@ -110,16 +129,17 @@
                 DataValueField="ID" AutoPostBack="false">
             </tlk:RadComboBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboleaveType"
-                runat="server" ErrorMessage="<%$ Translate: Chưa chọn loại nghỉ. %>"
-                ToolTip="<%$ Translate: Chưa chọn loại nghỉ. %>"></asp:RequiredFieldValidator>
+                runat="server" ErrorMessage="<%$ Translate: Chưa chọn loại nghỉ. %>" ToolTip="<%$ Translate: Chưa chọn loại nghỉ. %>"></asp:RequiredFieldValidator>
         </td>
         <td class="lb">
             <%# Translate("Số ngày")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox runat="server" ID="rntxDayRegist" ReadOnly="true" Visible="false"></tlk:RadNumericTextBox>
-            <tlk:RadTextBox runat="server" ID="txtDayRegist" ReadOnly="true"></tlk:RadTextBox>
-            <input id="btnDetail" value= "<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')">
+            <tlk:RadNumericTextBox runat="server" ID="rntxDayRegist" ReadOnly="true" Visible="false">
+            </tlk:RadNumericTextBox>
+            <tlk:RadTextBox runat="server" ID="txtDayRegist" ReadOnly="true">
+            </tlk:RadTextBox>
+            <input id="btnDetail" value="<%# Translate("Chi tiết")%>" type="button" onclick="showDetail('')">
         </td>
     </tr>
     <tr>
@@ -127,17 +147,18 @@
             <%# Translate("Thời gian bắt đầu nghỉ")%><span class="lbReq">*</span>
         </td>
         <td>
-            <tlk:RadDatePicker runat="server" ID="rdFromDate" AutoPostBack="true"></tlk:RadDatePicker>
+            <tlk:RadDatePicker runat="server" ID="rdFromDate" AutoPostBack="true">
+            </tlk:RadDatePicker>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdFromDate"
                 runat="server" ErrorMessage="<%$ Translate: Chưa chọn thời gian bắt đầu nghỉ. %>"
                 ToolTip="<%$ Translate: Chưa chọn thời gian bắt đầu nghỉ. %>"></asp:RequiredFieldValidator>
-
         </td>
         <td class="lb">
             <%# Translate("Thời gian kết thúc nghỉ")%><span class="lbReq">*</span>
         </td>
         <td>
-            <tlk:RadDatePicker runat="server" ID="rdToDate" AutoPostBack="true"></tlk:RadDatePicker>
+            <tlk:RadDatePicker runat="server" ID="rdToDate" AutoPostBack="true">
+            </tlk:RadDatePicker>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdToDate"
                 runat="server" ErrorMessage="<%$ Translate: Chưa chọn thời gian kết thúc nghỉ. %>"
                 ToolTip="<%$ Translate: Chưa chọn loại nghỉ. %>"></asp:RequiredFieldValidator>
@@ -145,25 +166,49 @@
                 Type="Date" ControlToCompare="rdFromDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"
                 ToolTip="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"></asp:CompareValidator>
         </td>
+        <td>
+            <asp:CheckBox runat="server" ID="chkWorkday" Text="Ngày làm việc" />
+        </td>
+    </tr>
+    <tr>
+        <td class="lb">
+            <%# Translate("Số ngày trong kế hoạch")%>
+        </td>
+        <td>
+            <tlk:RadNumericTextBox SkinID="Decimal" runat="server"
+                Culture="en-GB" ID="rtxtdayinkh" ReadOnly="true">
+            </tlk:RadNumericTextBox>
+        </td>
+        <td class="lb">
+            <%# Translate("Số ngày ngày kế hoạch")%>
+        </td>
+        <td>
+            <tlk:RadNumericTextBox SkinID="Decimal" runat="server" DataType="System.Decimal"
+                Culture="en-GB" ID="rtxtdayoutkh" ReadOnly="true">
+            </tlk:RadNumericTextBox>
+        </td>
     </tr>
     <tr>
         <td class="lb">
             <%# Translate("Lý do nghỉ phép")%>
         </td>
         <td colspan="3">
-            <tlk:RadTextBox runat="server" ID="txtNote" TextMode="MultiLine" Width="100%"></tlk:RadTextBox>
+            <tlk:RadTextBox runat="server" ID="txtNote" TextMode="MultiLine" Width="100%">
+            </tlk:RadTextBox>
         </td>
     </tr>
 </table>
 <div id="divLeaveDetail" style="display: none">
     <tlk:RadGrid PageSize="500" runat="server" ID="rgData" AllowMultiRowEdit="true" Width="65%">
-        <MasterTableView DataKeyNames="EFFECTIVEDATE,LEAVE_VALUE,IS_UPDATE,IS_OFF" ClientDataKeyNames="EFFECTIVEDATE,LEAVE_NAME,IS_UPDATE,IS_OFF" EditMode="InPlace" CommandItemDisplay="Top">
+        <MasterTableView DataKeyNames="EFFECTIVEDATE,LEAVE_VALUE,IS_UPDATE,IS_OFF" ClientDataKeyNames="EFFECTIVEDATE,LEAVE_NAME,IS_UPDATE,IS_OFF"
+            EditMode="InPlace" CommandItemDisplay="Top">
             <CommandItemStyle Height="28px" />
             <CommandItemTemplate>
                 <div style="padding: 2px 0 0 0">
                     <div style="float: left">
                         <tlk:RadButton ID="btnEditDetail" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/add.png"
-                            CausesValidation="false" Width="70px" Text="<%$ Translate: Edit %>" CommandName="EditDetail" Visible="false">
+                            CausesValidation="false" Width="70px" Text="<%$ Translate: Edit %>" CommandName="EditDetail"
+                            Visible="false">
                         </tlk:RadButton>
                     </div>
                 </div>
@@ -171,7 +216,7 @@
             <Columns>
                 <tlk:GridBoundColumn HeaderText='<%$ Translate: Ngày nghỉ %>' DataField="EFFECTIVEDATE"
                     UniqueName="EFFECTIVEDATE" SortExpression="EFFECTIVEDATE" ReadOnly="true" DataFormatString="{0:dd/MM/yyyy}"
-                                ItemStyle-HorizontalAlign="Center" >
+                    ItemStyle-HorizontalAlign="Center">
                     <ItemStyle Width="50%" />
                     <HeaderStyle Width="50%" />
                 </tlk:GridBoundColumn>

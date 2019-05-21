@@ -43,9 +43,9 @@
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE, 
-                 YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, 
+                 YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,
                  STATUS, STATUS_NAME" ClientDataKeyNames="ID, ID_EMPLOYEE, EMPLOYEE_CODE, EMPLOYEE_NAME, DEPARTMENT, JOBTITLE, 
-                 YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, 
+                 YEAR,FROM_DATE, TO_DATE, ID_SIGN, SIGN_CODE,SIGN_NAME, TOTAL_LEAVE, NOTE, ID_REGGROUP,
                  STATUS, STATUS_NAME">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"

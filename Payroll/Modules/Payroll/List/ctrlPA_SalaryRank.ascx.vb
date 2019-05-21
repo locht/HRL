@@ -242,7 +242,7 @@ Public Class ctrlPA_SalaryRank
                     EnabledGridNotPostback(rgData, False)
                     'cboSalaryLevel.SelectedValue = Nothing
                     txtRank.Text = ""
-                    rntxtSalaryBasic.Text = ""
+                    'rntxtSalaryBasic.Text = ""
                     txtRemark.Text = ""
                     rntxtOrders.Text = "1"
                     rntxtSalaryBasic.ReadOnly = False
@@ -253,7 +253,7 @@ Public Class ctrlPA_SalaryRank
                     Utilities.EnableRadCombo(cboSalaryGroup, True)
                 Case CommonMessage.STATE_NORMAL
                     txtRank.Text = ""
-                    rntxtSalaryBasic.Text = ""
+                    'rntxtSalaryBasic.Text = ""
                     txtRemark.Text = ""
                     rntxtOrders.Text = ""
                     EnabledGridNotPostback(rgData, True)
@@ -434,7 +434,7 @@ Public Class ctrlPA_SalaryRank
                             Exit Sub
                         End If
                         Try
-                            salary = Decimal.Parse(rntxtSalaryBasic.Text)
+                            salary = CDec(Val(rntxtSalaryBasic.Text))
                         Catch ex As Exception
                             ShowMessage("Số tiền/ Hệ số phải là số", NotifyType.Warning)
                             Exit Sub

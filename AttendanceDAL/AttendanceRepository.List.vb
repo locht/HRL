@@ -15,6 +15,20 @@ Imports System.Reflection
 Partial Public Class AttendanceRepository
     Dim nvalue_id As Decimal?
 
+    Public Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, Optional ByVal log As UserLog = Nothing) As Int32
+        Using cls As New DataAccess.QueryData
+            Dim obj = New With {.P_EMPLOYEE_ID = employee_id, .P_PERIOD_ID = period_id, .P_STATUS = status, .P_PROCESS_TYPE = process_type, .P_NOTE = notes, .P_ID_REGGROUP = id_reggroup, .P_RESULT = cls.OUT_NUMBER}
+            Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS", obj)
+            Return Int32.Parse(obj.P_RESULT)
+        End Using
+    End Function
+    Public Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer, Optional ByVal log As UserLog = Nothing) As DataTable
+        Using cls As New DataAccess.QueryData
+            Dim dt As DataTable = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETLEAVE_BY_APPROVE", New With {.P_EMPLOYEE_ID = employee_id,
+                                                                                               .P_STATUS = status_id, .P_YEAR = year, .P_CUR = cls.OUT_CURSOR})
+            Return dt
+        End Using
+    End Function
     Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
                                   Optional ByRef Total As Integer = 0,
                                   Optional ByVal PageIndex As Integer = 0,
@@ -420,7 +434,7 @@ Partial Public Class AttendanceRepository
         End Try
 
     End Function
-   
+
 
     Public Function ValidateHoliday(ByVal _validate As AT_HOLIDAYDTO)
         Dim query
@@ -6267,6 +6281,7 @@ Partial Public Class AttendanceRepository
             Return Int32.Parse(obj.P_RESULT)
         End Using
     End Function
+  
     ' lấy seq đăng ký portal
     Public Function GET_SEQ_PORTAL_RGT() As Decimal
         Using cls As New DataAccess.QueryData
