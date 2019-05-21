@@ -12,10 +12,12 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
 
     Public Overrides Property MustAuthorize As Boolean = False
+    Public WithEvents AjaxManager As RadAjaxManager
+    Public Property AjaxManagerId As String
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Setting/" + Me.GetType().Name.ToString()
-    Dim _result As Boolean = True
+    Dim _result As Boolean = False
 #Region "Property"
 
     Property Employee_BT As List(Of AT_OFFFSETTING_EMPDTO)
@@ -105,8 +107,14 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
+            SetGridFilter(rgEmployee)
+            AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
+            AjaxManagerId = AjaxManager.ClientID
+            rgEmployee.AllowCustomPaging = True
+            rgEmployee.ClientSettings.EnablePostBackOnRowClick = False
             InitControl()
             If Not IsPostBack Then
+                _result = True
                 ViewConfig(RadPane2)
                 GirdConfig(rgEmployee)
             End If
@@ -287,6 +295,31 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
 
 #Region "Custom"
     ''' <summary>
+    ''' Event Request for ajax
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    'Private Sub AjaxManager_AjaxRequest(ByVal sender As Object, ByVal e As Telerik.Web.UI.AjaxRequestEventArgs) Handles AjaxManager.AjaxRequest
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Try
+    '        Dim url = e.Argument
+    '        If (url.Contains("reload=1")) Then
+    '            rgEmployee.CurrentPageIndex = 0
+    '            rgEmployee.Rebind()
+    '            If rgEmployee.Items IsNot Nothing AndAlso rgEmployee.Items.Count > 0 Then
+    '                rgEmployee.Items(0).Selected = True
+    '            End If
+    '        End If
+    '        _myLog.WriteLog(_myLog._info, _classPath, method,
+    '                                           CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
+    ''' <summary>
     ''' Update trạng thái control
     ''' </summary>
     ''' <remarks></remarks>
@@ -390,6 +423,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
 
         End Try
     End Sub
+
     'Private Sub rgEmployee_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployee.ItemDataBound
     '    Dim startTime As DateTime = DateTime.UtcNow
     '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -435,8 +469,11 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                         End If
                 End Select
             End If
+            rgEmployee.VirtualItemCount = Employee_BT.Count
 
-            rgEmployee.DataSource = Employee_BT
+            Dim lst = Employee_BT.Skip(rgEmployee.CurrentPageIndex * rgEmployee.PageSize).Take(rgEmployee.PageSize)
+
+            rgEmployee.DataSource = lst
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
