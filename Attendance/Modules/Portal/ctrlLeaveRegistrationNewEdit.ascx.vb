@@ -197,6 +197,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Using rep As New AttendanceRepository
                     obj = rep.GetTotalDayOff(_filter)
                     If obj IsNot Nothing Then
+                        'PHÉP NGOÀI CÔNG TY
+                        If obj.TIME_OUTSIDE_COMPANY IsNot Nothing Then
+                            rntTotal.Text = If(obj.TIME_OUTSIDE_COMPANY = 0, 0, Decimal.Parse(obj.TIME_OUTSIDE_COMPANY).ToString())
+                        Else
+                            rntTotal.Text = Decimal.Parse(0).ToString()
+                        End If
                         'phep chế độ
                         If obj.TOTAL_HAVE1 IsNot Nothing Then
                             rntEntitlement.Text = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1).ToString())
@@ -233,9 +239,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                         rntTotalTaken.Text = Decimal.Parse(0).ToString()
                         rntBalance.Text = Decimal.Parse(0).ToString()
                         rntEntitlement.Text = Decimal.Parse(0).ToString()
+                        rntTotal.Text = Decimal.Parse(0).ToString()
                     End If
                 End Using
-
                 If leaveMaster IsNot Nothing Then
                     hidStatus.Value = If(leaveMaster.STATUS.HasValue, leaveMaster.STATUS, 5)
                     If leaveMaster.ID_SIGN.HasValue Then

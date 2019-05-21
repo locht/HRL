@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("6eb3a1c5-2593-4398-84fe-2388ce6fdede")>
+<Assembly: EdmSchemaAttribute("3de2f7a6-72a0-4548-954e-5172e44093f2")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -8512,6 +8512,31 @@ Public Partial Class AT_ENTITLEMENT
     End Sub
 
     Private Partial Sub OnPREVTOTAL_HAVEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIME_OUTSIDE_COMPANY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TIME_OUTSIDE_COMPANY
+        End Get
+        Set
+            OnTIME_OUTSIDE_COMPANYChanging(value)
+            ReportPropertyChanging("TIME_OUTSIDE_COMPANY")
+            _TIME_OUTSIDE_COMPANY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TIME_OUTSIDE_COMPANY")
+            OnTIME_OUTSIDE_COMPANYChanged()
+        End Set
+    End Property
+
+    Private _TIME_OUTSIDE_COMPANY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTIME_OUTSIDE_COMPANYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTIME_OUTSIDE_COMPANYChanged()
     End Sub
 
     #End Region

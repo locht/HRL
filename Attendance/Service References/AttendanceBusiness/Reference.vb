@@ -3567,6 +3567,9 @@ Namespace AttendanceBusiness
         Private TIME_MANUAL_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_OUTSIDE_COMPANYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TOTAL_DAYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -3724,6 +3727,19 @@ Namespace AttendanceBusiness
                 If (Me.TIME_MANUAL_IDField.Equals(value) <> true) Then
                     Me.TIME_MANUAL_IDField = value
                     Me.RaisePropertyChanged("TIME_MANUAL_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_OUTSIDE_COMPANY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TIME_OUTSIDE_COMPANYField
+            End Get
+            Set
+                If (Me.TIME_OUTSIDE_COMPANYField.Equals(value) <> true) Then
+                    Me.TIME_OUTSIDE_COMPANYField = value
+                    Me.RaisePropertyChanged("TIME_OUTSIDE_COMPANY")
                 End If
             End Set
         End Property

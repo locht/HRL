@@ -5824,6 +5824,7 @@ Partial Public Class AttendanceRepository
                         result.PREVTOTAL_HAVE = dtData.Rows(0)("PREVTOTAL_HAVE")
                         result.SENIORITYHAVE = dtData.Rows(0)("SENIORITYHAVE")
                         result.TOTAL_HAVE1 = dtData.Rows(0)("TOTAL_HAVE1")
+                        result.TIME_OUTSIDE_COMPANY = dtData.Rows(0)("TIME_OUTSIDE_COMPANY")
                     End If
                 End If
             End Using
