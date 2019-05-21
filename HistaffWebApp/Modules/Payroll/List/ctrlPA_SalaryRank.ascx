@@ -68,9 +68,11 @@
                     <%# Translate("Hệ số/Mức lương")%><span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="rntxtSalaryBasic" runat="server" Style="text-align: right">
+                    <%--<tlk:RadTextBox ID="rntxtSalaryBasic" runat="server" Style="text-align: right">
                         <ClientEvents OnKeyPress="keyPress" OnBlur="OnBlur" />
-                    </tlk:RadTextBox>
+                    </tlk:RadTextBox>--%>
+                    <tlk:RadNumericTextBox ID="rntxtSalaryBasic" runat="server" SkinID="Decimal" NumberFormat-AllowRounding="false" NumberFormat-DecimalDigits="2">
+                    </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rntxtSalaryBasic"
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Số tiền %>" ToolTip="<%$ Translate: Bạn phải nhập Số tiền %>">
                     </asp:RequiredFieldValidator>
@@ -121,7 +123,7 @@
                     <tlk:GridNumericColumn DataField="SALARY_BASIC" HeaderText="<%$ Translate: Hệ số/Mức lương %>"
                         SortExpression="SALARY_BASIC" UniqueName="SALARY_BASIC" ShowFilterIcon="false"
                         Display="True" AutoPostBackOnFilter="true" CurrentFilterFunction="EqualTo" Visible="True"
-                        DataFormatString="{0:n0}">
+                        DataFormatString="{0:#.###}">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="right" />
                     </tlk:GridNumericColumn>

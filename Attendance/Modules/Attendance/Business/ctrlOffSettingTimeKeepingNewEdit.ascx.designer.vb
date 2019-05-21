@@ -122,6 +122,15 @@ Partial Public Class ctrlOffSettingTimeKeepingNewEdit
     Protected WithEvents cboTypeBT As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''reqEmployeeCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqEmployeeCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbFromDate control.
     '''</summary>
     '''<remarks>
@@ -138,6 +147,15 @@ Partial Public Class ctrlOffSettingTimeKeepingNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbToDate control.
@@ -158,6 +176,15 @@ Partial Public Class ctrlOffSettingTimeKeepingNewEdit
     Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbNumber control.
     '''</summary>
     '''<remarks>
@@ -176,6 +203,15 @@ Partial Public Class ctrlOffSettingTimeKeepingNewEdit
     Protected WithEvents txtNumber As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbREMARK control.
     '''</summary>
     '''<remarks>
@@ -192,6 +228,15 @@ Partial Public Class ctrlOffSettingTimeKeepingNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtREMARK As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RadPane3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
     '''rgEmployee control.
