@@ -178,40 +178,29 @@ Public Class ctrlLeaveRegistration
                     End Using
                 Case CommonMessage.TOOLBARITEM_SUBMIT
                     Dim listDataCheck As New List(Of AT_PROCESS_DTO)
-                    Dim strId As String
-                    Dim datacheck As AT_PROCESS_DTO
-                    'For idx = 0 To rgMain.SelectedItems.Count - 1
-                    '    Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                    '    'If item.GetDataKeyValue("STATUS") <> 0 And item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And item.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
-                    '    '    ShowMessage(Translate("The action only applies for the records that have status as 'Saved' or 'Unverified by HR'. Please select other record."), NotifyType.Error)
-                    '    '    Exit Sub
-                    '    'End If
-                    '    datacheck = New AT_PROCESS_DTO With {
-                    '        .EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID"),
-                    '        .FROM_DATE = item.GetDataKeyValue("FROM_DATE"),
-                    '        .TO_DATE = item.GetDataKeyValue("TO_DATE"),
-                    '        .FULL_NAME = item.GetDataKeyValue("EMPLOYEE_NAME")
-                    '    }
-                    '    listDataCheck.Add(datacheck)
-                    'Next
-                    For Each dr As Decimal In rgMain.SelectedValues
-                        strId &= IIf(strId = vbNullString, dr, "," & dr)
-                    Next
-                    Dim dtCheckSendApprove As DataTable = psp.CHECK_APPROVAL(strId)
 
-                    Dim itemError As New AT_PROCESS_DTO
-                    Using rep As New AttendanceRepository
-                        Dim checkResult = rep.CheckTimeSheetApproveVerify(listDataCheck, "LEAVE", itemError)
-                        If Not checkResult Then
-                            If itemError.FROM_DATE IsNot Nothing Then
-                                ShowMessage(String.Format(Translate("TimeSheet of {0} in {1} has been approved"), itemError.FULL_NAME, itemError.FROM_DATE.Value.Month & "/" & itemError.FROM_DATE.Value.Year), NotifyType.Warning)
-                                Exit Sub
-                            Else
-                                ShowMessage(String.Format(Translate("TimeSheet of {0} in {1} has been approved"), itemError.FULL_NAME, itemError.TO_DATE.Value.Month & "/" & itemError.TO_DATE.Value.Year), NotifyType.Warning)
-                                Exit Sub
-                            End If
+                    Dim datacheck As AT_PROCESS_DTO
+                    For idx = 0 To rgMain.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgMain.SelectedItems(idx)
+                        If item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval And item.GetDataKeyValue("STATUS") <> PortalStatus.ApprovedByLM Then
+                            ShowMessage(Translate("Đang ở trạng thái chờ phê duyệt hoặc đã phê duyệt,không thể chỉnh sửa"), NotifyType.Error)
+                            Exit Sub
                         End If
-                    End Using
+                    Next
+
+                    'Dim itemError As New AT_PROCESS_DTO
+                    'Using rep As New AttendanceRepository
+                    '    Dim checkResult = rep.CheckTimeSheetApproveVerify(listDataCheck, "LEAVE", itemError)
+                    '    If Not checkResult Then
+                    '        If itemError.FROM_DATE IsNot Nothing Then
+                    '            ShowMessage(String.Format(Translate("TimeSheet of {0} in {1} has been approved"), itemError.FULL_NAME, itemError.FROM_DATE.Value.Month & "/" & itemError.FROM_DATE.Value.Year), NotifyType.Warning)
+                    '            Exit Sub
+                    '        Else
+                    '            ShowMessage(String.Format(Translate("TimeSheet of {0} in {1} has been approved"), itemError.FULL_NAME, itemError.TO_DATE.Value.Month & "/" & itemError.TO_DATE.Value.Year), NotifyType.Warning)
+                    '            Exit Sub
+                    '        End If
+                    '    End If
+                    'End Using
 
 
                     ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")
@@ -228,21 +217,36 @@ Public Class ctrlLeaveRegistration
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         If e.ActionName = CommonMessage.TOOLBARITEM_SUBMIT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
             Dim lstApp As New List(Of AT_PORTAL_REG_DTO)
-            For idx = 0 To rgMain.SelectedItems.Count - 1
-                Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                Dim dto As New AT_PORTAL_REG_DTO
-                dto.ID = item.GetDataKeyValue("ID")
-                'dto.STATUS = PortalStatus.WaitingForApproval
-                dto.ID_EMPLOYEE = LogHelper.CurrentUser.EMPLOYEE_ID
-                lstApp.Add(dto)
+            Dim strId As String
+            Dim sign_id As Integer
+            Dim period_id As Integer
+            Dim id_group As Integer
+            For Each dr As GridDataItem In rgMain.SelectedItems
+                strId += dr.GetDataKeyValue("ID").ToString + ","
             Next
-            Using rep As New AttendanceRepository
-                'If Not rep.ApprovePortalRegList(lstApp) Then
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                'Else
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                'End If
-            End Using
+            strId = strId.Remove(strId.LastIndexOf(",")).ToString
+            Dim dtCheckSendApprove As DataTable = psp.CHECK_APPROVAL(strId)
+            If dtCheckSendApprove.Rows.Count > 0 Then
+                If dtCheckSendApprove(0)("MESSAGE") > 1 Then
+                    ShowMessage(Translate("Không thể gửi phê duyệt các loại nghĩ khác nhau cùng lúc"), NotifyType.Warning)
+                    Exit Sub
+                End If
+                If dtCheckSendApprove(0)("SIGN_ID").ToString <> "" Then
+                    sign_id = dtCheckSendApprove(0)("SIGN_ID")
+                End If
+                If dtCheckSendApprove(0)("PERIOD_ID").ToString <> "" Then
+                    period_id = dtCheckSendApprove(0)("PERIOD_ID")
+                End If
+                If dtCheckSendApprove(0)("ID_REGGROUP").ToString <> "" Then
+                    id_group = dtCheckSendApprove(0)("ID_REGGROUP")
+                End If
+            End If
+            Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, 0, sign_id, id_group)
+            If outNumber = 0 Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+            Else
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+            End If
             rgMain.Rebind()
         End If
         If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then

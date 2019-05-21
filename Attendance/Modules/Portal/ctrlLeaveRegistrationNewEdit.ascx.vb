@@ -8,6 +8,7 @@ Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 Imports System.IO
 
+
 Public Class ctrlLeaveRegistrationNewEdit
     Inherits CommonView
     Public Overrides Property MustAuthorize As Boolean = False
@@ -164,6 +165,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                 leaveDetails = New List(Of AT_PORTAL_REG_DTO)
                 EmployeeDto = New DataTable
 
+
+
+
                 Using rep As New AttendanceRepository
                     EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing, rdFromDate.SelectedDate)
                     If dto.ID > 0 Then
@@ -185,8 +189,55 @@ Public Class ctrlLeaveRegistrationNewEdit
                     'rntTotalTaken.Value = If(EmployeeDto.Rows(0)("CUR_USED") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_USED").ToString()))
                     'rntBalance.Value = If(EmployeeDto.Rows(0)("CUR_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_HAVE").ToString()))
                 End If
+                Dim _filter As New TotalDayOffDTO
+                _filter.DATE_REGISTER = Date.Now
+                _filter.LEAVE_TYPE = 251
+                _filter.EMPLOYEE_ID = EmployeeID
+                Dim obj As New TotalDayOffDTO
+                Using rep As New AttendanceRepository
+                    obj = rep.GetTotalDayOff(_filter)
+                    If obj IsNot Nothing Then
+                        'phep chế độ
+                        If obj.TOTAL_HAVE1 IsNot Nothing Then
+                            rntEntitlement.Text = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1).ToString())
+                        Else
+                            rntEntitlement.Text = Decimal.Parse(0).ToString()
+                        End If
+                        'phep dã nghĩ
+                        If obj.USED_DAY IsNot Nothing Then
+                            rntSeniority.Text = If(obj.USED_DAY = 0, 0, Decimal.Parse(obj.USED_DAY).ToString())
+                        Else
+                            rntSeniority.Text = Decimal.Parse(0).ToString()
+                        End If
+                        'phep tham nien
+                        If obj.SENIORITYHAVE IsNot Nothing Then
+                            rntBrought.Text = If(obj.SENIORITYHAVE = 0, 0, Decimal.Parse(obj.SENIORITYHAVE).ToString())
+                        Else
+                            rntBrought.Text = Decimal.Parse(0).ToString()
+                        End If
+                        'phep nam truoc con lai
+                        If obj.PREVTOTAL_HAVE IsNot Nothing Then
+                            rntTotalTaken.Text = If(obj.PREVTOTAL_HAVE = 0, 0, Decimal.Parse(obj.PREVTOTAL_HAVE).ToString())
+                        Else
+                            rntTotalTaken.Text = Decimal.Parse(0).ToString()
+                        End If
+                        'phép còn lại
+                        If obj.REST_DAY IsNot Nothing Then
+                            rntBalance.Text = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY).ToString())
+                        Else
+                            rntBalance.Text = Decimal.Parse(0).ToString()
+                        End If
+                    Else
+                        rntSeniority.Text = Decimal.Parse(0).ToString()
+                        rntBrought.Text = Decimal.Parse(0).ToString()
+                        rntTotalTaken.Text = Decimal.Parse(0).ToString()
+                        rntBalance.Text = Decimal.Parse(0).ToString()
+                        rntEntitlement.Text = Decimal.Parse(0).ToString()
+                    End If
+                End Using
+
                 If leaveMaster IsNot Nothing Then
-                    hidStatus.Value = If(leaveMaster.STATUS.HasValue, leaveMaster.STATUS, 0)
+                    hidStatus.Value = If(leaveMaster.STATUS.HasValue, leaveMaster.STATUS, 5)
                     If leaveMaster.ID_SIGN.HasValue Then
                         cboleaveType.SelectedValue = leaveMaster.ID_SIGN
                     End If
@@ -223,7 +274,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 '19 Khong duyet qltt
                 '20 Khong xac nhan nhan su
                 '22 Khong duyet GM
-                Case 0, PortalStatus.Saved, PortalStatus.UnApprovedByLM
+                Case 5, PortalStatus.Saved _
                     ', PortalStatus.Saved, PortalStatus.UnApprovedByLM, PortalStatus.UnVerifiedByHr
                     If userType = "User" Then
                         tbarMainToolBar.Items(0).Enabled = True

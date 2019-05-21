@@ -40,7 +40,10 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function CheckValidateAPPROVE_DATE(ByVal obj As SetUpCodeAttDTO) As Boolean
 #Region "Get Data Combobox"
-
+        <OperationContract()>
+        Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, Optional ByVal log As UserLog = Nothing) As Int32
+        <OperationContract()>
+        Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer, Optional ByVal log As UserLog = Nothing) As DataTable
         <OperationContract()>
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
 

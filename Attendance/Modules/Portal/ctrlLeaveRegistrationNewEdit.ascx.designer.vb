@@ -248,6 +248,33 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
+    '''chkWorkday control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkWorkday As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rtxtdayinkh control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtdayinkh As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rtxtdayoutkh control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rtxtdayoutkh As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''txtNote control.
     '''</summary>
     '''<remarks>
