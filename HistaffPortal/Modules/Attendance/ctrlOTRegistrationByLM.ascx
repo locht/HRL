@@ -11,6 +11,7 @@
             <tlk:RadPane ID="RadPane4" runat="server" Height="40px" Scrolling="None">
                 <table class="table-form">
                     <tr>
+
                         <td class="lb">
                             <%# Translate("Từ ngày làm thêm")%>
                         </td>

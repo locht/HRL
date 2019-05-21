@@ -40,6 +40,7 @@ Public Class ctrlOTRegistrationByLM
 #Region "Page"
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
+
             Refresh()
             UpdateControlState()
         Catch ex As Exception
