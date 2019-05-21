@@ -96,6 +96,7 @@ Public Class ctrlHU_EmployeeMng
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
                                        ToolbarItem.Print)
+            CType(MainToolBar.Items(3), RadToolBarButton).Text = Translate("In lý lịch trích ngang")
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_CV", ToolbarIcons.Print,
             '                                                        ToolbarAuthorize.Export, Translate("In lý lịch trích ngang")))
 
@@ -604,7 +605,7 @@ Public Class ctrlHU_EmployeeMng
             End If
 
             If Not File.Exists(Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\" + dsData.Tables(0).Rows(0)("IMAGE")) Then
-                dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\" + "NoImage.jpg"
+                dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\UploadFile\" + "NoImage.jpg"
             Else
                 'Delete file trong thu muc tam
                 DeleteDirectory(Server.MapPath("~/RadUploadTemp"))
@@ -649,6 +650,8 @@ Public Class ctrlHU_EmployeeMng
             dsData.Tables(3).TableName = "DT3"
             dsData.Tables(4).TableName = "DT4"
             dsData.Tables(5).TableName = "DT5"
+            dsData.Tables(6).TableName = "DT6"
+            dsData.Tables(7).TableName = "DT7"
             reportName = "Employee\CV_Template.doc"
             reportNameOut = "CV.doc"
             If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath), reportName)) Then
