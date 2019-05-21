@@ -3,6 +3,28 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+    Public Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer) As Int32
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.PRI_PROCESS(employee_id_app, employee_id, period_id, status, process_type, notes, id_reggroup, Me.Log)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function PRS_GETLEAVE_BY_APPROVE(ByVal employee_id As Decimal, ByVal status_id As Integer, ByVal year As Integer) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.PRS_GETLEAVE_BY_APPROVE(employee_id, status_id, year, Me.Log)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
                                Optional ByRef Total As Integer = 0,
                                Optional ByVal PageIndex As Integer = 0,

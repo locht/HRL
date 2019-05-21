@@ -524,6 +524,7 @@ Public Class ctrlOTRegistrationNewEdit
                     Dim dto As New AT_OT_REGISTRATIONDTO
                     dto.REGIST_DATE = rdRegDate.SelectedDate
                     dto.EMPLOYEE_ID = EmployeeID
+                    dto.P_USER = LogHelper.CurrentUser.EMPLOYEE_ID
                     Dim data = rep.GetOtRegistration(dto)
                     If data IsNot Nothing AndAlso data.Where(Function(f) f.ID <> hidID.Value).FirstOrDefault IsNot Nothing Then
                         ShowMessage(Translate("Ngày làm thêm đã được đăng ký"), NotifyType.Warning)

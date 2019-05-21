@@ -5,7 +5,7 @@
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="tbarOT" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane2" runat="server">
+    <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height ="20%">
         <asp:HiddenField ID="hidID" runat="server" />
         <asp:HiddenField ID="hidDecisionID" runat="server" />
         <asp:HiddenField ID="hidEmpID" runat="server" />
@@ -69,10 +69,11 @@
             </tr>
         </table>
     </tlk:RadPane>
-    <tlk:RadGrid ID="rgEmployee" AllowPaging="false" AllowMultiRowEdit="true" runat="server"
-        Height="200px">
+    <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
+         <tlk:RadGrid ID="rgEmployee" AllowPaging="true" AllowMultiRowEdit="true" runat="server" PageSize="50" 
+        Height="100%">
         <groupingsettings casesensitive="false" />
-        <mastertableview editmode="InPlace" allowpaging="false" allowcustompaging="false"
+        <mastertableview editmode="InPlace" allowpaging="true" allowcustompaging="true"
             datakeynames="ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID" clientdatakeynames="ID,EMPLOYEE_ID,FULLNAME_VN,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE"
             commanditemdisplay="Top">
                 <CommandItemStyle Height="25px" />
@@ -112,6 +113,7 @@
                 <Selecting AllowRowSelect="True" />
             </clientsettings>
     </tlk:RadGrid>
+    <//tlk:RadPane>   
 </tlk:RadSplitter>
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>

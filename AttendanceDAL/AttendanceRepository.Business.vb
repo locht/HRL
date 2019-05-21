@@ -4696,7 +4696,7 @@ Partial Public Class AttendanceRepository
         Dim objWorkSign As New AT_WORKSIGNDTO
         Dim p_fromDateBefor As Date = p_fromdate
         Dim CODE_CN As String = ""
-        CODE_CN = "RD"
+        CODE_CN = "HC"
         Try
             For index = 0 To objWorkSigns.Count - 1
                 objWorkSign = objWorkSigns(index)
@@ -5810,7 +5810,7 @@ Partial Public Class AttendanceRepository
                         result.LIMIT_YEAR = If(IsDBNull(dtData.Rows(0)("LIMIT_YEAR")), Nothing, dtData.Rows(0)("LIMIT_YEAR"))
                     End If
                     'nghi phep
-                ElseIf (ListManul IsNot Nothing) Then
+                ElseIf (_filter.LEAVE_TYPE = 251) Then
                     Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_ENTITLEMENT",
                                     New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
                                               .P_DATE_TIME = _filter.DATE_REGISTER,
@@ -5830,6 +5830,7 @@ Partial Public Class AttendanceRepository
                         result.PREVTOTAL_HAVE = dtData.Rows(0)("PREVTOTAL_HAVE")
                         result.SENIORITYHAVE = dtData.Rows(0)("SENIORITYHAVE")
                         result.TOTAL_HAVE1 = dtData.Rows(0)("TOTAL_HAVE1")
+                        result.TIME_OUTSIDE_COMPANY = dtData.Rows(0)("TIME_OUTSIDE_COMPANY")
                     End If
                 End If
             End Using
@@ -5926,509 +5927,221 @@ Partial Public Class AttendanceRepository
                                      Optional ByVal Sorts As String = "CREATED_DATE desc",
                                      Optional ByVal log As UserLog = Nothing) As List(Of AT_OT_REGISTRATIONDTO)
         Try
-            If _filter.P_USER IsNot Nothing Then
-                Dim query = From r In Context.AT_OT_REGISTRATION
-                            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = r.EMPLOYEE_ID)
-                            From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                            From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
-                            From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
-                            From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                            From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
-                            From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
-                            Where (r.STATUS = PortalStatus.Saved Or r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
-                Dim lst = query.Select(Function(p) New AT_OT_REGISTRATIONDTO With {
-                                       .ID = p.r.ID,
-                                       .EMPLOYEE_ID = p.e.ID,
-                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
-                                       .FULLNAME = p.e.FULLNAME_EN,
-                                       .DEPARTMENT_ID = p.e.ORG_ID,
-                                       .DEPARTMENT_NAME = p.o.NAME_EN,
-                                       .TITLE_ID = p.e.TITLE_ID,
-                                       .TITLE_NAME = p.t.NAME_EN,
-                                       .REGIST_DATE = p.r.REGIST_DATE,
-                                       .SIGN_ID = p.r.SIGN_ID,
-                                       .SIGN_CODE = p.r.SIGN_CODE,
-                                       .OT_TYPE_ID = p.r.OT_TYPE_ID,
-                                       .OT_TYPE_NAME = p.ot.NAME_VN,
-                                       .TOTAL_OT = If(p.r.TOTAL_OT Is Nothing, 0, p.r.TOTAL_OT),
-                                       .OT_100 = If(p.r.OT_100 Is Nothing, 0, p.r.OT_100),
-                                       .OT_150 = If(p.r.OT_150 Is Nothing, 0, p.r.OT_150),
-                                       .OT_200 = If(p.r.OT_200 Is Nothing, 0, p.r.OT_200),
-                                       .OT_210 = If(p.r.OT_210 Is Nothing, 0, p.r.OT_210),
-                                       .OT_270 = If(p.r.OT_270 Is Nothing, 0, p.r.OT_270),
-                                       .OT_300 = If(p.r.OT_300 Is Nothing, 0, p.r.OT_300),
-                                       .OT_370 = If(p.r.OT_370 Is Nothing, 0, p.r.OT_370),
-                                       .FROM_AM = p.r.FROM_AM,
-                                       .FROM_AM_MN = p.r.FROM_AM_MN,
-                                       .TO_AM = p.r.TO_AM,
-                                       .TO_AM_MN = p.r.TO_AM_MN,
-                                       .FROM_PM = p.r.FROM_PM,
-                                       .FROM_PM_MN = p.r.FROM_PM_MN,
-                                       .TO_PM = p.r.TO_PM,
-                                       .TO_PM_MN = p.r.TO_PM_MN,
-                                       .STATUS = p.r.STATUS,
-                                       .STATUS_NAME = p.os.NAME_EN,
-                                       .REASON = p.r.REASON,
-                                       .NOTE = p.r.NOTE,
-                                       .IS_DELETED = p.r.IS_DELETED,
-                                       .CREATED_BY = p.r.CREATED_BY,
-                                       .CREATED_DATE = p.r.CREATED_DATE,
-                                       .CREATED_LOG = p.r.CREATED_LOG,
-                                       .MODIFIED_BY = p.se.FULLNAME_EN,
-                                       .MODIFIED_DATE = p.r.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.r.MODIFIED_LOG})
-                'FILTER 
+            Using cls As New DataAccess.QueryData
+                Dim userIdOrMngId As Decimal
+                Dim dt As DataTable
+                Dim obj
+                If _filter.P_MANAGER_ID.ToString <> "" Then
+                    userIdOrMngId = _filter.P_MANAGER_ID
+                    obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
+                                    .P_STATUS = _filter.STATUS,
+                                    .P_FROM_DATE = _filter.REGIST_DATE_FROM,
+                                    .P_TO_DATE = _filter.REGIST_DATE_TO,
+                                    .P_RESULT = cls.OUT_CURSOR}
+                    dt = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETOT_BY_APPROVE", obj)
+                Else
+                    userIdOrMngId = Decimal.Parse(_filter.P_USER)
+                    obj = New With {.P_EMPLOYEE_APP_ID = userIdOrMngId,
+                                    .P_STATUS = _filter.STATUS,
+                                    .P_FROM_DATE = _filter.REGIST_DATE_FROM,
+                                    .P_TO_DATE = _filter.REGIST_DATE_TO,
+                                    .P_RESULT = cls.OUT_CURSOR}
+                    dt = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETOT_BY_EMPLOYEE", obj)
+                End If
+                Dim lst As New List(Of AT_OT_REGISTRATIONDTO)
+                For Each row As DataRow In dt.Rows
+                    Dim dto As New AT_OT_REGISTRATIONDTO
+                    dto.ID = row("ID")
+                    dto.EMPLOYEE_ID = row("EMPLOYEE_ID")
+                    dto.EMPLOYEE_CODE = row("EMPLOYEE_CODE")
+                    dto.FULLNAME = row("FULLNAME_VN")
+                    dto.DEPARTMENT_ID = row("ORG_ID")
+                    dto.DEPARTMENT_NAME = row("ORG_NAME")
+                    dto.TITLE_ID = row("TITLE_ID")
+                    dto.TITLE_NAME = row("TITLE_NAME")
+                    dto.REGIST_DATE = row("REGIST_DATE")
+                    dto.SIGN_ID = row("SIGN_ID")
+                    dto.SIGN_CODE = row("SIGN_CODE")
+                    dto.OT_TYPE_ID = row("OT_TYPE_ID")
+                    dto.OT_TYPE_NAME = row("OT_TYPE_NAME")
+                    dto.ID_REGGROUP = row("ID_REGGROUP")
+                    dto.TOTAL_OT = row("TOTAL_OT")
+                    dto.OT_100 = row("OT_100")
+                    dto.OT_150 = row("OT_150")
+                    dto.OT_200 = row("OT_200")
+                    dto.OT_210 = row("OT_210")
+                    dto.OT_270 = row("OT_270")
+                    dto.OT_300 = row("OT_300")
+                    dto.OT_370 = row("OT_370")
+                    dto.FROM_AM = row("FROM_AM")
+                    dto.FROM_AM_MN = row("FROM_AM_MN")
+                    dto.TO_AM = row("TO_AM")
+                    dto.TO_AM_MN = row("TO_AM_MN")
+                    dto.FROM_PM = If(row("FROM_PM").ToString <> "", row("FROM_PM"), Nothing)
+                    dto.FROM_PM_MN = If(row("FROM_PM_MN").ToString <> "", row("FROM_PM_MN"), Nothing)
+                    dto.TO_PM = If(row("TO_PM").ToString <> "", row("TO_PM"), Nothing)
+                    dto.TO_PM_MN = If(row("TO_PM_MN").ToString <> "", row("TO_PM_MN"), Nothing)
+                    dto.STATUS = row("STATUS")
+                    dto.STATUS_NAME = row("STATUS_NAME")
+                    dto.REASON = If(row("REASON").ToString <> "", row("REASON"), Nothing)
+                    dto.NOTE = row("NOTE")
+                    dto.IS_DELETED = row("IS_DELETED")
+                    dto.CREATED_BY = row("CREATED_BY")
+                    dto.CREATED_DATE = row("CREATED_DATE")
+                    dto.CREATED_LOG = row("CREATED_LOG")
+                    dto.MODIFIED_BY = row("MODIFIED_BY")
+                    dto.MODIFIED_DATE = row("MODIFIED_DATE")
+                    dto.MODIFIED_LOG = row("MODIFIED_LOG")
+                    lst.Add(dto)
+                Next
                 If _filter.REGIST_DATE_FROM.HasValue And _filter.REGIST_DATE_TO.HasValue Then
-                    lst = lst.Where(Function(f) f.REGIST_DATE <= _filter.REGIST_DATE_TO AndAlso f.REGIST_DATE >= _filter.REGIST_DATE_FROM)
+                    lst = (From p In lst.AsEnumerable Where p.REGIST_DATE <= _filter.REGIST_DATE_TO And p.REGIST_DATE >= _filter.REGIST_DATE_FROM
+                           Select p).ToList
                 Else
                     If _filter.REGIST_DATE_FROM.HasValue Then
-                        lst = lst.Where(Function(f) f.REGIST_DATE >= _filter.REGIST_DATE_FROM)
+                        lst = (From f In lst.AsEnumerable Where f.REGIST_DATE >= _filter.REGIST_DATE_FROM
+                               Select f).ToList
                     ElseIf _filter.REGIST_DATE_TO.HasValue Then
-                        lst = lst.Where(Function(f) f.REGIST_DATE <= _filter.REGIST_DATE_TO)
+                        lst = (From f In lst.AsEnumerable Where f.REGIST_DATE <= _filter.REGIST_DATE_TO
+                               Select f).ToList
                     End If
                 End If
-
                 If _filter.STATUS > 0 Then
-                    lst = lst.Where(Function(f) f.STATUS = _filter.STATUS)
+                    lst = (From f In lst.AsEnumerable Where f.STATUS = _filter.STATUS
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.STATUS_NAME) Then
-                    lst = lst.Where(Function(f) f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
-                    lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.FULLNAME) Then
-                    lst = lst.Where(Function(f) f.FULLNAME.ToLower().Contains(_filter.FULLNAME.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.FULLNAME.ToLower().Contains(_filter.FULLNAME.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.DEPARTMENT_NAME) Then
-                    lst = lst.Where(Function(f) f.DEPARTMENT_NAME.ToLower().Contains(_filter.DEPARTMENT_NAME.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.DEPARTMENT_NAME.ToLower().Contains(_filter.DEPARTMENT_NAME.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
-                    lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower())
+                               Select f).ToList
                 End If
 
                 If _filter.REGIST_DATE.HasValue Then
-                    lst = lst.Where(Function(f) f.REGIST_DATE >= _filter.REGIST_DATE)
+                    lst = (From f In lst.AsEnumerable Where f.REGIST_DATE >= _filter.REGIST_DATE
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.SIGN_CODE) Then
-                    lst = lst.Where(Function(f) f.SIGN_CODE.ToLower().Contains(_filter.SIGN_CODE.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.SIGN_CODE.ToLower().Contains(_filter.SIGN_CODE.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.OT_TYPE_NAME) Then
-                    lst = lst.Where(Function(f) f.OT_TYPE_NAME.ToLower().Contains(_filter.OT_TYPE_NAME.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.OT_TYPE_NAME.ToLower().Contains(_filter.OT_TYPE_NAME.ToLower())
+                               Select f).ToList
                 End If
 
-                If _filter.EMPLOYEE_ID > 0 Then
-                    lst = lst.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+                If Not _filter.P_MANAGER_ID.HasValue And _filter.EMPLOYEE_ID > 0 Then
+                    lst = (From f In lst.AsEnumerable Where f.EMPLOYEE_ID = _filter.EMPLOYEE_ID
+                               Select f).ToList
                 End If
                 If _filter.ID > 0 Then
-                    lst = lst.Where(Function(f) f.ID = _filter.ID)
+                    lst = (From f In lst.AsEnumerable Where f.ID = _filter.ID
+                               Select f).ToList
                 End If
                 'lst = lst.Where(Function(f) f.IS_DELETED = 0)
 
                 If _filter.OT_100.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_100 = _filter.OT_100)
+                    lst = (From f In lst.AsEnumerable Where f.OT_100 = _filter.OT_100
+                               Select f).ToList
                 End If
 
                 If _filter.OT_100.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_100 = _filter.OT_100)
+                    lst = (From f In lst.AsEnumerable Where f.OT_100 = _filter.OT_100
+                               Select f).ToList
                 End If
 
                 If _filter.OT_150.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_150 = _filter.OT_150)
+                    lst = (From f In lst.AsEnumerable Where f.OT_150 = _filter.OT_150
+                               Select f).ToList
                 End If
 
                 If _filter.OT_200.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_200 = _filter.OT_200)
+                    lst = (From f In lst.AsEnumerable Where f.OT_200 = _filter.OT_200
+                               Select f).ToList
                 End If
 
                 If _filter.OT_210.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_210 = _filter.OT_210)
+                    lst = (From f In lst.AsEnumerable Where f.OT_210 = _filter.OT_210
+                               Select f).ToList
                 End If
 
                 If _filter.OT_270.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_270 = _filter.OT_270)
+                    lst = (From f In lst.AsEnumerable Where f.OT_270 = _filter.OT_270
+                               Select f).ToList
                 End If
 
                 If _filter.OT_300.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_300 = _filter.OT_300)
+                    lst = (From f In lst.AsEnumerable Where f.OT_300 = _filter.OT_300
+                               Select f).ToList
                 End If
 
                 If _filter.OT_370.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_370 = _filter.OT_370)
+                    lst = (From f In lst.AsEnumerable Where f.OT_370 = _filter.OT_370
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.NOTE) Then
-                    lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.NOTE.ToLower().Contains(_filter.NOTE.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.REASON) Then
-                    lst = lst.Where(Function(f) f.REASON.ToLower().Contains(_filter.REASON.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.REASON.ToLower().Contains(_filter.REASON.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.STATUS_NAME) Then
-                    lst = lst.Where(Function(f) f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower())
+                               Select f).ToList
                 End If
 
                 If Not String.IsNullOrEmpty(_filter.MODIFIED_BY) Then
-                    lst = lst.Where(Function(f) f.MODIFIED_BY.ToLower().Contains(_filter.MODIFIED_BY.ToLower()))
+                    lst = (From f In lst.AsEnumerable Where f.MODIFIED_BY.ToLower().Contains(_filter.MODIFIED_BY.ToLower())
+                               Select f).ToList
                 End If
 
                 If _filter.MODIFIED_DATE.HasValue Then
-                    lst = lst.Where(Function(f) f.MODIFIED_DATE = _filter.MODIFIED_DATE)
+                    lst = (From f In lst.AsEnumerable Where f.MODIFIED_DATE = _filter.MODIFIED_DATE
+                               Select f).ToList
                 End If
 
-                lst = lst.OrderBy(Sorts)
+                lst = (From f In lst.AsEnumerable
+                       Order By f.CREATED_DATE Descending
+                       Select f).ToList
                 Total = lst.Count
-                lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+                lst = (From f In lst.AsEnumerable
+                      Skip PageIndex * PageSize
+                      Take PageSize
+                      Select f).ToList
+                'lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
                 Return lst.ToList
-            ElseIf _filter.P_MANAGER_ID IsNot Nothing Then
-                Dim queryLM = From r In Context.AT_OT_REGISTRATION
-                              From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = r.EMPLOYEE_ID)
-                              From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                              From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
-                              From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
-                              From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
-                              From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
-                              Where (e.DIRECT_MANAGER = _filter.P_MANAGER_ID Or e.DIRECT_MANAGER_2 = _filter.P_MANAGER_ID Or e.DIRECT_MANAGER_3 = _filter.P_MANAGER_ID) _
-                        And (r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
-
-                Dim lst = queryLM.Select(Function(p) New AT_OT_REGISTRATIONDTO With {
-                                       .ID = p.r.ID,
-                                       .EMPLOYEE_ID = p.e.ID,
-                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
-                                       .FULLNAME = p.e.FULLNAME_EN,
-                                       .DEPARTMENT_ID = p.e.ORG_ID,
-                                       .DEPARTMENT_NAME = p.o.NAME_EN,
-                                       .TITLE_ID = p.e.TITLE_ID,
-                                       .TITLE_NAME = p.t.NAME_EN,
-                                       .REGIST_DATE = p.r.REGIST_DATE,
-                                       .SIGN_ID = p.r.SIGN_ID,
-                                       .SIGN_CODE = p.r.SIGN_CODE,
-                                       .OT_TYPE_ID = p.r.OT_TYPE_ID,
-                                       .OT_TYPE_NAME = p.ot.NAME_VN,
-                                       .TOTAL_OT = p.r.TOTAL_OT,
-                                       .OT_100 = p.r.OT_100,
-                                       .OT_150 = p.r.OT_150,
-                                       .OT_200 = p.r.OT_200,
-                                       .OT_210 = p.r.OT_210,
-                                       .OT_270 = p.r.OT_270,
-                                       .OT_300 = p.r.OT_300,
-                                       .OT_370 = p.r.OT_370,
-                                       .FROM_AM = p.r.FROM_AM,
-                                       .FROM_AM_MN = p.r.FROM_AM_MN,
-                                       .TO_AM = p.r.TO_AM,
-                                       .TO_AM_MN = p.r.TO_AM_MN,
-                                       .FROM_PM = p.r.FROM_PM,
-                                       .FROM_PM_MN = p.r.FROM_PM_MN,
-                                       .TO_PM = p.r.TO_PM,
-                                       .TO_PM_MN = p.r.TO_PM_MN,
-                                       .STATUS = p.r.STATUS,
-                                       .STATUS_NAME = p.os.NAME_EN,
-                                       .REASON = p.r.REASON,
-                                       .NOTE = p.r.NOTE,
-                                       .IS_DELETED = p.r.IS_DELETED,
-                                       .CREATED_BY = p.r.CREATED_BY,
-                                       .CREATED_DATE = p.r.CREATED_DATE,
-                                       .CREATED_LOG = p.r.CREATED_LOG,
-                                       .MODIFIED_BY = p.se.FULLNAME_EN,
-                                       .MODIFIED_DATE = p.r.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.r.MODIFIED_LOG})
-                'FILTER 
-                If _filter.REGIST_DATE_FROM.HasValue And _filter.REGIST_DATE_TO.HasValue Then
-                    lst = lst.Where(Function(f) f.REGIST_DATE <= _filter.REGIST_DATE_TO AndAlso f.REGIST_DATE >= _filter.REGIST_DATE_FROM)
-                Else
-                    If _filter.REGIST_DATE_FROM.HasValue Then
-                        lst = lst.Where(Function(f) f.REGIST_DATE >= _filter.REGIST_DATE_FROM)
-                    ElseIf _filter.REGIST_DATE_TO.HasValue Then
-                        lst = lst.Where(Function(f) f.REGIST_DATE <= _filter.REGIST_DATE_TO)
-                    End If
-                End If
-
-                If _filter.STATUS > 0 Then
-                    lst = lst.Where(Function(f) f.STATUS = _filter.STATUS)
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.STATUS_NAME) Then
-                    lst = lst.Where(Function(f) f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
-                    lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.FULLNAME) Then
-                    lst = lst.Where(Function(f) f.FULLNAME.ToLower().Contains(_filter.FULLNAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.DEPARTMENT_NAME) Then
-                    lst = lst.Where(Function(f) f.DEPARTMENT_NAME.ToLower().Contains(_filter.DEPARTMENT_NAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
-                    lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
-                End If
-
-                If _filter.REGIST_DATE.HasValue Then
-                    lst = lst.Where(Function(f) f.REGIST_DATE >= _filter.REGIST_DATE)
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.SIGN_CODE) Then
-                    lst = lst.Where(Function(f) f.SIGN_CODE.ToLower().Contains(_filter.SIGN_CODE.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.OT_TYPE_NAME) Then
-                    lst = lst.Where(Function(f) f.OT_TYPE_NAME.ToLower().Contains(_filter.OT_TYPE_NAME.ToLower()))
-                End If
-
-                If _filter.EMPLOYEE_ID > 0 Then
-                    lst = lst.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
-                End If
-                If _filter.ID > 0 Then
-                    lst = lst.Where(Function(f) f.ID = _filter.ID)
-                End If
-                'lst = lst.Where(Function(f) f.IS_DELETED = 0)
-
-                If _filter.OT_100.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_100 = _filter.OT_100)
-                End If
-
-                If _filter.OT_100.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_100 = _filter.OT_100)
-                End If
-
-                If _filter.OT_150.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_150 = _filter.OT_150)
-                End If
-
-                If _filter.OT_200.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_200 = _filter.OT_200)
-                End If
-
-                If _filter.OT_210.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_210 = _filter.OT_210)
-                End If
-
-                If _filter.OT_270.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_270 = _filter.OT_270)
-                End If
-
-                If _filter.OT_300.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_300 = _filter.OT_300)
-                End If
-
-                If _filter.OT_370.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_370 = _filter.OT_370)
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.NOTE) Then
-                    lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.REASON) Then
-                    lst = lst.Where(Function(f) f.REASON.ToLower().Contains(_filter.REASON.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.STATUS_NAME) Then
-                    lst = lst.Where(Function(f) f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.MODIFIED_BY) Then
-                    lst = lst.Where(Function(f) f.MODIFIED_BY.ToLower().Contains(_filter.MODIFIED_BY.ToLower()))
-                End If
-
-                If _filter.MODIFIED_DATE.HasValue Then
-                    lst = lst.Where(Function(f) f.MODIFIED_DATE = _filter.MODIFIED_DATE)
-                End If
-
-                lst = lst.OrderBy(Sorts)
-                Total = lst.Count
-                lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
-                Return lst.ToList
-            ElseIf _filter.P_GM_ID IsNot Nothing Then
-                Dim queryGM = From r In Context.AT_OT_REGISTRATION
-                              From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = r.EMPLOYEE_ID)
-                              From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
-                              From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
-                              From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.OT_TYPE_ID).DefaultIfEmpty
-                              From os In Context.OT_OTHER_LIST.Where(Function(f) f.ID = r.STATUS).DefaultIfEmpty
-                              From s In Context.SE_USER.Where(Function(f) f.USERNAME = r.MODIFIED_BY And f.ACTFLG = "A").DefaultIfEmpty
-                              From se In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = s.EMPLOYEE_CODE).DefaultIfEmpty
-                              Where (r.STATUS = PortalStatus.WaitingForApproval Or r.STATUS = PortalStatus.ApprovedByLM Or r.STATUS = PortalStatus.UnApprovedByLM Or r.STATUS = PortalStatus.UnVerifiedByHr)
-
-                Dim lst = queryGM.Select(Function(p) New AT_OT_REGISTRATIONDTO With {
-                                       .ID = p.r.ID,
-                                       .EMPLOYEE_ID = p.e.ID,
-                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
-                                       .FULLNAME = p.e.FULLNAME_EN,
-                                       .DEPARTMENT_ID = p.e.ORG_ID,
-                                       .DEPARTMENT_NAME = p.o.NAME_EN,
-                                       .TITLE_ID = p.e.TITLE_ID,
-                                       .TITLE_NAME = p.t.NAME_EN,
-                                       .REGIST_DATE = p.r.REGIST_DATE,
-                                       .SIGN_ID = p.r.SIGN_ID,
-                                       .SIGN_CODE = p.r.SIGN_CODE,
-                                       .OT_TYPE_ID = p.r.OT_TYPE_ID,
-                                       .OT_TYPE_NAME = p.ot.NAME_VN,
-                                       .TOTAL_OT = p.r.TOTAL_OT,
-                                       .OT_100 = p.r.OT_100,
-                                       .OT_150 = p.r.OT_150,
-                                       .OT_200 = p.r.OT_200,
-                                       .OT_210 = p.r.OT_210,
-                                       .OT_270 = p.r.OT_270,
-                                       .OT_300 = p.r.OT_300,
-                                       .OT_370 = p.r.OT_370,
-                                       .FROM_AM = p.r.FROM_AM,
-                                       .FROM_AM_MN = p.r.FROM_AM_MN,
-                                       .TO_AM = p.r.TO_AM,
-                                       .TO_AM_MN = p.r.TO_AM_MN,
-                                       .FROM_PM = p.r.FROM_PM,
-                                       .FROM_PM_MN = p.r.FROM_PM_MN,
-                                       .TO_PM = p.r.TO_PM,
-                                       .TO_PM_MN = p.r.TO_PM_MN,
-                                       .STATUS = p.r.STATUS,
-                                       .STATUS_NAME = p.os.NAME_EN,
-                                       .REASON = p.r.REASON,
-                                       .NOTE = p.r.NOTE,
-                                       .HR_REVIEW = If(p.r.HR_REVIEW = -1, "Verified by HR", "Waiting for HR verification"),
-                                       .IS_DELETED = p.r.IS_DELETED,
-                                       .CREATED_BY = p.r.CREATED_BY,
-                                       .CREATED_DATE = p.r.CREATED_DATE,
-                                       .CREATED_LOG = p.r.CREATED_LOG,
-                                       .MODIFIED_BY = p.se.FULLNAME_EN,
-                                       .MODIFIED_DATE = p.r.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.r.MODIFIED_LOG})
-                'FILTER 
-                If _filter.REGIST_DATE_FROM.HasValue And _filter.REGIST_DATE_TO.HasValue Then
-                    lst = lst.Where(Function(f) f.REGIST_DATE <= _filter.REGIST_DATE_TO AndAlso f.REGIST_DATE >= _filter.REGIST_DATE_FROM)
-                Else
-                    If _filter.REGIST_DATE_FROM.HasValue Then
-                        lst = lst.Where(Function(f) f.REGIST_DATE >= _filter.REGIST_DATE_FROM)
-                    ElseIf _filter.REGIST_DATE_TO.HasValue Then
-                        lst = lst.Where(Function(f) f.REGIST_DATE <= _filter.REGIST_DATE_TO)
-                    End If
-                End If
-
-                If _filter.STATUS > 0 Then
-                    lst = lst.Where(Function(f) f.STATUS = _filter.STATUS)
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.STATUS_NAME) Then
-                    lst = lst.Where(Function(f) f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
-                    lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.FULLNAME) Then
-                    lst = lst.Where(Function(f) f.FULLNAME.ToLower().Contains(_filter.FULLNAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.DEPARTMENT_NAME) Then
-                    lst = lst.Where(Function(f) f.DEPARTMENT_NAME.ToLower().Contains(_filter.DEPARTMENT_NAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
-                    lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
-                End If
-
-                If _filter.REGIST_DATE.HasValue Then
-                    lst = lst.Where(Function(f) f.REGIST_DATE >= _filter.REGIST_DATE)
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.SIGN_CODE) Then
-                    lst = lst.Where(Function(f) f.SIGN_CODE.ToLower().Contains(_filter.SIGN_CODE.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.OT_TYPE_NAME) Then
-                    lst = lst.Where(Function(f) f.OT_TYPE_NAME.ToLower().Contains(_filter.OT_TYPE_NAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.HR_REVIEW) Then
-                    lst = lst.Where(Function(f) f.HR_REVIEW.ToLower().Contains(_filter.HR_REVIEW.ToLower()))
-                End If
-
-                If _filter.EMPLOYEE_ID > 0 Then
-                    lst = lst.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
-                End If
-                If _filter.ID > 0 Then
-                    lst = lst.Where(Function(f) f.ID = _filter.ID)
-                End If
-                'lst = lst.Where(Function(f) f.IS_DELETED = 0)
-
-                If _filter.OT_100.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_100 = _filter.OT_100)
-                End If
-
-                If _filter.OT_100.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_100 = _filter.OT_100)
-                End If
-
-                If _filter.OT_150.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_150 = _filter.OT_150)
-                End If
-
-                If _filter.OT_200.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_200 = _filter.OT_200)
-                End If
-
-                If _filter.OT_210.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_210 = _filter.OT_210)
-                End If
-
-                If _filter.OT_270.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_270 = _filter.OT_270)
-                End If
-
-                If _filter.OT_300.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_300 = _filter.OT_300)
-                End If
-
-                If _filter.OT_370.HasValue Then
-                    lst = lst.Where(Function(f) f.OT_370 = _filter.OT_370)
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.NOTE) Then
-                    lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.REASON) Then
-                    lst = lst.Where(Function(f) f.REASON.ToLower().Contains(_filter.REASON.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.STATUS_NAME) Then
-                    lst = lst.Where(Function(f) f.STATUS_NAME.ToLower().Contains(_filter.STATUS_NAME.ToLower()))
-                End If
-
-                If Not String.IsNullOrEmpty(_filter.MODIFIED_BY) Then
-                    lst = lst.Where(Function(f) f.MODIFIED_BY.ToLower().Contains(_filter.MODIFIED_BY.ToLower()))
-                End If
-
-                If _filter.MODIFIED_DATE.HasValue Then
-                    lst = lst.Where(Function(f) f.MODIFIED_DATE = _filter.MODIFIED_DATE)
-                End If
-
-                lst = lst.OrderBy(Sorts)
-                Total = lst.Count
-                lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
-                Return lst.ToList
-            End If
-
+            End Using
             Total = 0
             Return New List(Of AT_OT_REGISTRATIONDTO)
-
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
-
         End Try
     End Function
     Public Function GetOtRegistrationForTimeSheet(ByVal _filter As AT_OT_REGISTRATIONDTO) As List(Of AT_OT_REGISTRATIONDTO)
@@ -6586,7 +6299,7 @@ Partial Public Class AttendanceRepository
             Using cls As New DataAccess.QueryData
                 For Each item In obj
                     Dim processType As String = "OVERTIME"
-                    Dim periodId As Integer = Context.AT_PERIOD.Where(Function(f) f.START_DATE <= item.REGIST_DATE And f.END_DATE >= item.REGIST_DATE).Select(Function(f) f.ID).FirstOrDefault
+                    Dim periodId As Integer = Context.AT_PERIOD.Where(Function(f) f.START_DATE <= item.REGIST_DATE AndAlso item.REGIST_DATE <= f.END_DATE).Select(Function(f) f.ID).FirstOrDefault
                     Dim IdGroup1 As Decimal = item.ID_REGGROUP
                     Dim priProcess = New With {.P_EMPLOYEE_APP_ID = empId, .P_EMPLOYEE_ID = item.EMPLOYEE_ID, .P_PE_PERIOD_ID = periodId, .P_STATUS_ID = item.STATUS, .P_PROCESS_TYPE = processType, .P_NOTES = item.REASON, .P_ID_REGGROUP = IdGroup1, .P_RESULT = cls.OUT_NUMBER}
                     Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS", priProcess)
