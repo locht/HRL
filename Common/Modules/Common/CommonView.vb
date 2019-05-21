@@ -441,7 +441,9 @@ Public Class CommonView
                     rCol.HeaderTooltip = (row.Field(Of String)("Name").Trim())
                     rCol.FilterControlToolTip = (row.Field(Of String)("Name").Trim())
                     rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
-                    rCol.DataFormatString = ConfigurationManager.AppSettings("FDATE_MONTH_YEAR_GRID")
+                    If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
+                        rCol.DataFormatString = ConfigurationManager.AppSettings("FDATE_MONTH_YEAR_GRID")
+                    End If
                 Else
                     rCol = New GridBoundColumn()
                     rg.MasterTableView.Columns.Add(rCol)
@@ -465,7 +467,7 @@ Public Class CommonView
                     ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
                         rCol.DataFormatString = "{0:#,##0.##}"
                     End If
-                End If
+                    End If
 
             Catch ex As Exception
                 Continue For
