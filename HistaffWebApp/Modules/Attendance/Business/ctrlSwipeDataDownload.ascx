@@ -4,7 +4,7 @@
     <tlk:RadPane ID="RadPane3" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="rtbMain" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane1" runat="server" Height="70px" Scrolling="X">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="70px" Scrolling="None">
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
                 <td class="lb">
@@ -45,14 +45,31 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ITIME_ID" ClientDataKeyNames="VALTIME,ITIME_ID">
                 <Columns>
+                    
+                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE"
+                        UniqueName="EMPLOYEE_CODE">
+                        <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME"
+                        UniqueName="EMPLOYEE_NAME">
+                        <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Loại máy" DataField="TERMINAL_CODE" SortExpression="TERMINAL_CODE"
+                        UniqueName="TERMINAL_CODE">
+                        <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn HeaderText="Hệ thống chấm công" DataField="MACHINE_TYPE_NAME" SortExpression="MACHINE_TYPE_NAME"
+                        UniqueName="MACHINE_TYPE_NAME">
+                        <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                    </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="Mã CC" DataField="ITIME_ID_S" SortExpression="ITIME_ID_S"
                         UniqueName="ITIME_ID_S">
-                        <HeaderStyle HorizontalAlign="Center" Width="300px" />
+                        <HeaderStyle HorizontalAlign="Center" Width="200px" />
                     </tlk:GridBoundColumn>
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày quẹt thẻ %>" DataField="WORKINGDAY"
                         SortExpression="WORKINGDAY" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}"
                         UniqueName="WORKINGDAY">
-                        <HeaderStyle Width="300px" />
+                        <HeaderStyle Width="200px" />
                     </tlk:GridDateTimeColumn>
                     <tlk:GridDateTimeColumn AllowFiltering="false" HeaderText="<%$ Translate:Thời gian quẹt thẻ %>"
                         DataField="VALTIME" UniqueName="VALTIME" DataFormatString="{0:HH:mm}" DataType="System.DateTime"
@@ -66,8 +83,8 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<Common:ctrlUpload ID="ctrlUpload" runat="server"/>
-<Common:ctrlUpload ID="ctrlUpload1" runat="server"/>
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <script type="text/javascript">
     var enableAjax = true;
     var oldSize = 0;
