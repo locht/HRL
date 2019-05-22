@@ -94,86 +94,187 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 1 %>" DataField="VALIN1" UniqueName="VALIN1"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 1 %>" DataField="VALIN1" UniqueName="VALIN1"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN1" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 2 %>" DataField="VALIN2" UniqueName="VALIN2"
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 1 %>" DataField="VALOUT1" UniqueName="VALOUT1"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT1" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 2 %>" DataField="VALIN2" UniqueName="VALIN2"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN2" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 3 %>" DataField="VALIN3" UniqueName="VALIN3"
-                                DataFormatString="{0: HH:mm}" SortExpression="VALIN3" AllowFiltering="false" >
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 2 %>" DataField="VALOUT2" UniqueName="VALOUT2"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT2" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 4 %>" DataField="VALIN4" UniqueName="VALIN4"
-                                DataFormatString="{0:  HH:mm}" SortExpression="VALIN4" AllowFiltering="false" >
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 3 %>" DataField="VALIN3" UniqueName="VALIN3"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN3" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 5 %>" DataField="VALIN5" UniqueName="VALIN5"
-                                DataFormatString="{0:  HH:mm}" SortExpression="VALIN5" AllowFiltering="false" >
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 3 %>" DataField="VALOUT3" UniqueName="VALOUT3"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT3" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 6 %>" DataField="VALIN6" UniqueName="VALIN6"
-                                DataFormatString="{0: HH:mm}" SortExpression="VALIN6" AllowFiltering="false" >
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 4 %>" DataField="VALIN4" UniqueName="VALIN4"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN4" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 7 %>" DataField="VALIN7" UniqueName="VALIN7"
-                                DataFormatString="{0: HH:mm}" SortExpression="VALIN7" AllowFiltering="false" >
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 4 %>" DataField="VALOUT4" UniqueName="VALOUT4"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT4" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 8 %>" DataField="VALIN8" UniqueName="VALIN8"
-                                DataFormatString="{0:  HH:mm}" SortExpression="VALIN8" AllowFiltering="false" >
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 5 %>" DataField="VALIN5" UniqueName="VALIN5"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN5" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 9 %>" DataField="VALIN9" UniqueName="VALIN9"
-                                DataFormatString="{0:  HH:mm}" SortExpression="VALIN9" AllowFiltering="false" >
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 5 %>" DataField="VALOUT5" UniqueName="VALOUT5"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT5" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 10 %>" DataField="VALIN10" UniqueName="VALIN10"
-                                DataFormatString="{0: HH:mm}" SortExpression="VALIN10" AllowFiltering="false" >
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 6 %>" DataField="VALIN6" UniqueName="VALIN6"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN6" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 11 %>" DataField="VALIN11" UniqueName="VALIN11"
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 6 %>" DataField="VALOUT6" UniqueName="VALOUT6"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT6" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 7 %>" DataField="VALIN7" UniqueName="VALIN7"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN7" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 7 %>" DataField="VALOUT7" UniqueName="VALOUT7"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT7" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 8 %>" DataField="VALIN8" UniqueName="VALIN8"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN8" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 8 %>" DataField="VALOUT8" UniqueName="VALOUT8"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT8" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 9 %>" DataField="VALIN9" UniqueName="VALIN9"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN9" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 9 %>" DataField="VALOUT9" UniqueName="VALOUT9"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT9" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 10 %>" DataField="VALIN10" UniqueName="VALIN10"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALIN10" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 10 %>" DataField="VALOUT10" UniqueName="VALOUT10"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT10" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 11 %>" DataField="VALIN11" UniqueName="VALIN11"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN11" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 12 %>" DataField="VALIN12" UniqueName="VALIN12"
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 11 %>" DataField="VALOUT11" UniqueName="VALOUT11"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT11" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 12 %>" DataField="VALIN12" UniqueName="VALIN12"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN12" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 13 %>" DataField="VALIN13" UniqueName="VALIN13"
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 12 %>" DataField="VALOUT12" UniqueName="VALOUT12"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT12" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 13 %>" DataField="VALIN13" UniqueName="VALIN13"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN13" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 14 %>" DataField="VALIN14" UniqueName="VALIN14"
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 13 %>" DataField="VALOUT13" UniqueName="VALOUT13"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT13" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 14 %>" DataField="VALIN14" UniqueName="VALIN14"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN14" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 15 %>" DataField="VALIN15" UniqueName="VALIN15"
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 14 %>" DataField="VALOUT14" UniqueName="VALOUT14"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT14" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 15 %>" DataField="VALIN15" UniqueName="VALIN15"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN15" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Lần 16 %>" DataField="VALIN16" UniqueName="VALIN16"
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 15 %>" DataField="VALOUT15" UniqueName="VALOUT15"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT15" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+                            
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: VÀO 16 %>" DataField="VALIN16" UniqueName="VALIN16"
                                 DataFormatString="{0:HH:mm}" SortExpression="VALIN16" AllowFiltering="false" >
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: RA 16 %>" DataField="VALOUT9" UniqueName="VALOUT16"
+                                DataFormatString="{0:HH:mm}" SortExpression="VALOUT16" AllowFiltering="false" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+
+                           
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" />
