@@ -84,6 +84,15 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Set
     End Property
 
+    Property dayholiday As List(Of AT_HOLIDAYDTO)
+        Get
+            Return ViewState(Me.ID & "_dayholiday")
+        End Get
+        Set(ByVal value As List(Of AT_HOLIDAYDTO))
+            ViewState(Me.ID & "_dayholiday") = value
+        End Set
+    End Property
+
     Property userType As String
         Get
             Return ViewState(Me.ID & "_userType")
@@ -184,6 +193,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                             leaveDetails = rep.GetLeaveRegistrationDetailById(leaveMaster.ID)
                         End If
                     End If
+                    dayholiday = rep.GetDayHoliday()
                 End Using
                 If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
                     txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
@@ -579,7 +589,7 @@ Public Class ctrlLeaveRegistrationNewEdit
     Protected Function CreateDataFilter(Optional ByVal fromDate As Date? = Nothing, Optional ByVal toDate As Date? = Nothing, Optional ByVal isFull As Boolean = False) As DataTable
         Try
             Dim calDay As Integer = 0
-
+            Dim ktra As Integer
             Dim calDay1 As Integer = 0
             Using rep As New AttendanceRepository
                 If fromDate IsNot Nothing Or toDate IsNot Nothing Then
@@ -607,7 +617,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 End While
                             End If
                         End If
-                     
+
                     End If
                     'trường hợp sửa
                 Else
@@ -630,29 +640,43 @@ Public Class ctrlLeaveRegistrationNewEdit
             If rdFromDate.SelectedDate IsNot Nothing And rdToDate.SelectedDate IsNot Nothing Then
                 Dim selectedFromDate1 = rdFromDate.SelectedDate
                 Dim selectedToDate1 = rdToDate.SelectedDate
+
                 While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
                     calDay += 1
-                    Using rep As New AttendanceRepository
-                        leaveInOutKH = rep.PRS_COUNT_INOUTKH(EmployeeID, Year(rdToDate.SelectedDate))
-                        Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
-                        If COUNT = 1 Then
-                            calDay1 += 1
-                        End If
-                    End Using
+                    ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                    If ktra = 1 Then
+                        Using rep As New AttendanceRepository
+                            leaveInOutKH = rep.PRS_COUNT_INOUTKH(EmployeeID, Year(rdToDate.SelectedDate))
+                            Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
+                            If COUNT = 1 Then
+                                calDay1 += 1
+                            End If
+                            If Not chkWorkday.Checked Then
+                                Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
+                                If check > 0 OrElse selectedFromDate1.Value.Date.DayOfWeek = DayOfWeek.Saturday OrElse selectedFromDate1.Value.Date.DayOfWeek = DayOfWeek.Sunday Then
+                                    calDay -= 1
+                                End If
+                            End If
+                        End Using
+                    End If
                     selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                 End While
-              
+
             End If
 
             If leaveEmpDetails IsNot Nothing Then
                 txtDayRegist.Text = 0
                 rntxDayRegist.Value = 0
                 If leaveEmpDetails IsNot Nothing Then
-
                     txtDayRegist.Text = calDay.ToString
                     rntxDayRegist.Value = Decimal.Parse(calDay)
-                    rtxtdayinkh.Value = Decimal.Parse(calDay1)
-                    rtxtdayoutkh.Value = Decimal.Parse(calDay) - Decimal.Parse(calDay1)
+                    If ktra = 1 Then
+                        rtxtdayinkh.Value = Decimal.Parse(calDay1)
+                        rtxtdayoutkh.Value = Decimal.Parse(calDay) - Decimal.Parse(calDay1)
+                    Else
+                        rtxtdayinkh.Text = Decimal.Parse(0).ToString()
+                        rtxtdayoutkh.Text = Decimal.Parse(0).ToString()
+                    End If
                 End If
                 rgData.DataSource = leaveEmpDetails.OrderBy(Function(f) f.EFFECTIVEDATE)
             End If
@@ -690,6 +714,14 @@ Public Class ctrlLeaveRegistrationNewEdit
     Private Sub cboleaveType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboleaveType.SelectedIndexChanged
         Try
 
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub chkWorkday_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkWorkday.CheckedChanged
+        Try
+            CreateDataFilter()
         Catch ex As Exception
 
         End Try
