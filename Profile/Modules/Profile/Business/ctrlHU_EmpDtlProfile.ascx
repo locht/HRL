@@ -190,7 +190,7 @@
                         </td>
                         <td>
                             <asp:CheckBox ID="chkSaveHistory" runat="server" Text="<%$ Translate: Có lưu lại lịch sử không? %>"
-                                AutoPostBack="false" Visible="false" />
+                                AutoPostBack="false" Visible="false" Checked="true" />
                         </td>
                     </tr>
                 </table>
