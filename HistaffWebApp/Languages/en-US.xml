@@ -15003,6 +15003,14 @@
   </Item>
   <Item>
     <Key>
+      <string>DANH MỤC NGÀY NGHỈ LỄ HOSE</string>
+    </Key>
+    <Value>
+      <string>Danh mục ngày nghỉ lễ HOSE</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
       <string>APPROVEPROCESS</string>
     </Key>
     <Value>

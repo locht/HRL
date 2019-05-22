@@ -38,6 +38,11 @@ Public Class ctrlRitual_Hose
             SetGridFilter(rgDanhMuc)
             rgDanhMuc.AllowCustomPaging = True
             InitControl()
+            If Not IsPostBack Then
+                getSE_CASE_CONFIG()
+                ViewConfig(RadPane1)
+                GirdConfig(rgDanhMuc)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

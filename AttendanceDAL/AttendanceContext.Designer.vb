@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("10abb587-66ce-431e-bb88-9e0a7f9f627e")>
+<Assembly: EdmSchemaAttribute("3806d555-124a-430c-ba29-afd0e1ffa771")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1205,20 +1205,6 @@ Public Partial Class AttendanceContext
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    Public ReadOnly Property ATV_HOLIDAY_HOSE() As ObjectSet(Of ATV_HOLIDAY_HOSE)
-        Get
-            If (_ATV_HOLIDAY_HOSE Is Nothing) Then
-                _ATV_HOLIDAY_HOSE = MyBase.CreateObjectSet(Of ATV_HOLIDAY_HOSE)("ATV_HOLIDAY_HOSE")
-            End If
-            Return _ATV_HOLIDAY_HOSE
-        End Get
-    End Property
-
-    Private _ATV_HOLIDAY_HOSE As ObjectSet(Of ATV_HOLIDAY_HOSE)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
     Public ReadOnly Property HU_ANNUALLEAVE_PLANS() As ObjectSet(Of HU_ANNUALLEAVE_PLANS)
         Get
             If (_HU_ANNUALLEAVE_PLANS Is Nothing) Then
@@ -1229,6 +1215,20 @@ Public Partial Class AttendanceContext
     End Property
 
     Private _HU_ANNUALLEAVE_PLANS As ObjectSet(Of HU_ANNUALLEAVE_PLANS)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property ATV_HOLIDAY_HOSE() As ObjectSet(Of ATV_HOLIDAY_HOSE)
+        Get
+            If (_ATV_HOLIDAY_HOSE Is Nothing) Then
+                _ATV_HOLIDAY_HOSE = MyBase.CreateObjectSet(Of ATV_HOLIDAY_HOSE)("ATV_HOLIDAY_HOSE")
+            End If
+            Return _ATV_HOLIDAY_HOSE
+        End Get
+    End Property
+
+    Private _ATV_HOLIDAY_HOSE As ObjectSet(Of ATV_HOLIDAY_HOSE)
 
     #End Region
 
@@ -1795,17 +1795,17 @@ Public Partial Class AttendanceContext
     End Sub
 
     ''' <summary>
-    ''' Deprecated Method for adding a new object to the ATV_HOLIDAY_HOSE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToATV_HOLIDAY_HOSE(ByVal aTV_HOLIDAY_HOSE As ATV_HOLIDAY_HOSE)
-        MyBase.AddObject("ATV_HOLIDAY_HOSE", aTV_HOLIDAY_HOSE)
-    End Sub
-
-    ''' <summary>
     ''' Deprecated Method for adding a new object to the HU_ANNUALLEAVE_PLANS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
     ''' </summary>
     Public Sub AddToHU_ANNUALLEAVE_PLANS(ByVal hU_ANNUALLEAVE_PLANS As HU_ANNUALLEAVE_PLANS)
         MyBase.AddObject("HU_ANNUALLEAVE_PLANS", hU_ANNUALLEAVE_PLANS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the ATV_HOLIDAY_HOSE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToATV_HOLIDAY_HOSE(ByVal aTV_HOLIDAY_HOSE As ATV_HOLIDAY_HOSE)
+        MyBase.AddObject("ATV_HOLIDAY_HOSE", aTV_HOLIDAY_HOSE)
     End Sub
 
     #End Region
