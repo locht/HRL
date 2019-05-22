@@ -3,6 +3,7 @@
     <%@ Import Namespace="Common" %>
     <link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+ 
     <tlk:RadPane ID="RadPane1" runat="server" Height="145px" Scrolling="None">
         <tlk:RadToolBar ID="tbarCostCenters" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
@@ -90,7 +91,7 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,FROMDATE,TODATE,YEAR,ACTFLG,NOTE,IS_SA,IS_SUN">
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                  <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR" UniqueName="YEAR"
@@ -117,7 +118,7 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"
-                        SortExpression="NOTE" />
+                        SortExpression="NOTE" />--%>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
