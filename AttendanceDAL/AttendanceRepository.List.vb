@@ -14,6 +14,14 @@ Imports System.Reflection
 
 Partial Public Class AttendanceRepository
     Dim nvalue_id As Decimal?
+    Public Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable
+        Using cls As New DataAccess.QueryData
+            Dim dt As DataTable = cls.ExecuteStore("PKG_AT_PROCESS.PRS_COUNT_INOUTKH", New With {.P_EMPLOYEE_ID = employee_id,
+                                                                                                .P_YEAR = year, .P_CUR = cls.OUT_CURSOR})
+
+            Return dt
+        End Using
+    End Function
 
     Public Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, Optional ByVal log As UserLog = Nothing) As Int32
         Using cls As New DataAccess.QueryData
@@ -246,6 +254,8 @@ Partial Public Class AttendanceRepository
                 itemInsert.ID_SIGN = itemRegister.ID_SIGN
                 itemInsert.FROM_DATE = itemRegister.FROM_DATE
                 itemInsert.TO_DATE = itemRegister.FROM_DATE
+                itemInsert.DAYIN_KH = itemRegister.DAYIN_KH
+                itemInsert.DAYOUT_KH = itemRegister.DAYOUT_KH
                 If itemRegister.FROM_HOUR.HasValue Then
                     itemInsert.FROM_HOUR = itemRegister.FROM_DATE.Value.Date.AddMinutes(itemRegister.FROM_HOUR.Value.TimeOfDay.TotalMinutes)
                 End If
@@ -267,6 +277,8 @@ Partial Public Class AttendanceRepository
                 itemInsert.CREATED_DATE = Date.Now
                 itemInsert.CREATED_LOG = log.ComputerName
                 itemInsert.NVALUE = itemRegister.NVALUE
+                itemInsert.MODIFIED_BY = log.ComputerName
+                itemInsert.MODIFIED_DATE = Date.Now
                 itemInsert.SVALUE = itemRegister.PROCESS
                 itemInsert.NVALUE_ID = itemRegister.NVALUE_ID
                 itemInsert.ID_REGGROUP = groupid
@@ -6354,10 +6366,14 @@ Partial Public Class AttendanceRepository
                                                                .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
                                                                .FROM_DATE = ce.FROM_DATE,
                                                                .TO_DATE = ce.TO_DATE,
+                                                               .MODIFIED_DATE = p.MODIFIED_DATE,
+                                                               .MODIFIED_BY = p.MODIFIED_BY,
                                                                .ID_SIGN = p.ID_SIGN,
                                                                .SIGN_CODE = fl.CODE,
                                                                .TOTAL_LEAVE = ce.NVALUE,
                                                                .SIGN_NAME = fl.NAME,
+                                                               .DAYIN_KH = p.DAYIN_KH,
+                                                               .DAYOUT_KH = p.DAYOUT_KH,
                                                                .STATUS = p.STATUS,
                                                                .STATUS_NAME = ot.NAME_EN,
                                                                .NOTE = p.NOTE,
@@ -6750,6 +6766,21 @@ Partial Public Class AttendanceRepository
             '                                                   .IS_OFF = If(d.FML_ID = 4, 1, 0)
             '                                                }
 
+            Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GetLeaveInOutKH(ByVal employee_Id As Decimal) As List(Of LEAVEINOUTKHDTO)
+        Try
+            Dim query = From d In Context.HU_ANNUALLEAVE_PLANS
+                        Where d.EMPLOYEE_ID = employee_Id
+                        Select New LEAVEINOUTKHDTO With {
+             .FROM_DATE = d.START_DATE,
+             .TO_DATE = d.END_DATE
+                            }
             Return query.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")

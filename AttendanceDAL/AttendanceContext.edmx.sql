@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/21/2019 11:00:26 AM
+-- Date Created: 05/21/2019 5:49:07 PM
 -- Generated from EDMX file: D:\MyProject\core1\histaffhcm-20052019\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -198,6 +198,8 @@
 -- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_DETAIL";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."ATV_HOLIDAY_HOSE";
+
+-- DROP TABLE "AttendanceModelStoreContainer"."HU_ANNUALLEAVE_PLANS";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT";
 
@@ -782,7 +784,9 @@ CREATE TABLE "dbo"."AT_PORTAL_REG" (
    "TYPE_LEAVE" NCLOB NULL,
    "DIRECT_ID" NUMBER(38,0) NULL,
    "APPROVE_DATE" DATE NULL,
-   "AT_PORTAL_REG_LIST_ID" NUMBER(38,0) NULL
+   "AT_PORTAL_REG_LIST_ID" NUMBER(38,0) NULL,
+   "DAYIN_KH" NUMBER(38,0) NULL,
+   "DAYOUT_KH" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_STAFF_RANK'
@@ -2164,6 +2168,25 @@ CREATE TABLE "dbo"."ATV_HOLIDAY_HOSE" (
    "IS_SU" NUMBER(38,0) NULL
 );
 
+-- Creating table 'HU_ANNUALLEAVE_PLANS'
+CREATE TABLE "dbo"."HU_ANNUALLEAVE_PLANS" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "TITLE_ID" NUMBER(38,0) NULL,
+   "START_DATE" DATE NULL,
+   "END_DATE" DATE NULL,
+   "YEAR" NUMBER(5,0) NULL,
+   "DAY_NUMBER" NUMBER(38,0) NULL,
+   "REMARK" NVARCHAR2(1023) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -2819,6 +2842,14 @@ ADD CONSTRAINT "PK_AT_SHIFTCYCLE_DETAIL"
 ALTER TABLE "dbo"."ATV_HOLIDAY_HOSE"
 ADD CONSTRAINT "PK_ATV_HOLIDAY_HOSE"
    PRIMARY KEY ("CODE" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'HU_ANNUALLEAVE_PLANS'
+ALTER TABLE "dbo"."HU_ANNUALLEAVE_PLANS"
+ADD CONSTRAINT "PK_HU_ANNUALLEAVE_PLANS"
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 

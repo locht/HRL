@@ -93,12 +93,12 @@
                                 ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày trong kế hoạch %>" DataField=""
-                                UniqueName="" SortExpression="" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày trong kế hoạch %>" DataField="DAYIN_KH"
+                                UniqueName="DAYIN_KH" SortExpression="DAYIN_KH" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày ngoài kế hoạch %>" DataField=""
-                                UniqueName="" SortExpression="" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số ngày ngoài kế hoạch %>" DataField="DAYOUT_KH"
+                                UniqueName="DAYOUT_KH" SortExpression="DAYOUT_KH" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do nghỉ phép %>" DataField="NOTE"

@@ -175,7 +175,7 @@
             <%# Translate("Số ngày trong kế hoạch")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="Decimal" runat="server" DataType="System.Decimal"
+            <tlk:RadNumericTextBox SkinID="NUMBER" runat="server" 
                 Culture="en-GB" ID="rtxtdayinkh" ReadOnly="true">
             </tlk:RadNumericTextBox>
         </td>
@@ -183,7 +183,7 @@
             <%# Translate("Số ngày ngày kế hoạch")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="Decimal" runat="server" DataType="System.Decimal"
+            <tlk:RadNumericTextBox SkinID="NUMBER" runat="server" 
                 Culture="en-GB" ID="rtxtdayoutkh" ReadOnly="true">
             </tlk:RadNumericTextBox>
         </td>

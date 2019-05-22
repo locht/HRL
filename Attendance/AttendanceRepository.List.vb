@@ -3,6 +3,28 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+    Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.PRS_COUNT_INOUTKH(employee_id, year)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetLeaveInOutKH(ByVal employee_Id As Decimal) As List(Of LEAVEINOUTKHDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.GetLeaveInOutKH(employee_Id)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer) As Int32
         Using rep As New AttendanceBusinessClient
             Try

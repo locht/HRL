@@ -87,6 +87,7 @@
             <EntitySet Name="AT_SHIFTCYCLE_EMP" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_EMP" store:Type="Tables"  />
             <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_DETAIL" store:Type="Tables"  />
             <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.Store.ATV_HOLIDAY_HOSE" store:Type="Tables"  />
+            <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="AttendanceModel.Store.HU_ANNUALLEAVE_PLANS" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -746,6 +747,8 @@
             <Property Name="DIRECT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="APPROVE_DATE" Type="date" Nullable="true" />
             <Property Name="AT_PORTAL_REG_LIST_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DAYIN_KH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DAYOUT_KH" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_STAFF_RANK">
             <Key>
@@ -2180,6 +2183,26 @@
             <Property Name="IS_SA" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_SU" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_ANNUALLEAVE_PLANS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="START_DATE" Type="date" Nullable="true" />
+            <Property Name="END_DATE" Type="date" Nullable="true" />
+            <Property Name="YEAR" Type="number" Nullable="true" Precision="5" />
+            <Property Name="DAY_NUMBER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2486,6 +2509,7 @@
           <EntitySet Name="AT_SHIFTCYCLE_EMP" EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" />
           <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" />
           <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" />
+          <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="AttendanceModel.HU_ANNUALLEAVE_PLANS" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -3240,6 +3264,8 @@
           <Property Type="Decimal" Name="DIRECT_ID" Nullable="true" />
           <Property Type="DateTime" Name="APPROVE_DATE" Nullable="true" />
           <Property Type="Decimal" Name="AT_PORTAL_REG_LIST_ID" />
+          <Property Type="Decimal" Name="DAYIN_KH" />
+          <Property Type="Decimal" Name="DAYOUT_KH" />
         </EntityType>
         <EntityType Name="HU_STAFF_RANK">
           <Key>
@@ -4680,6 +4706,26 @@
           <Property Type="Decimal" Name="IS_SA" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="IS_SU" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="HU_ANNUALLEAVE_PLANS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="START_DATE" />
+          <Property Type="DateTime" Name="END_DATE" />
+          <Property Type="Int16" Name="YEAR" />
+          <Property Type="Decimal" Name="DAY_NUMBER" Precision="38" Scale="0" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5321,6 +5367,8 @@
                     <ScalarProperty Name="DIRECT_ID" ColumnName="DIRECT_ID" />
                     <ScalarProperty Name="APPROVE_DATE" ColumnName="APPROVE_DATE" />
                     <ScalarProperty Name="AT_PORTAL_REG_LIST_ID" ColumnName="AT_PORTAL_REG_LIST_ID" />
+                    <ScalarProperty Name="DAYIN_KH" ColumnName="DAYIN_KH" />
+                    <ScalarProperty Name="DAYOUT_KH" ColumnName="DAYOUT_KH" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -6807,6 +6855,27 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_ANNUALLEAVE_PLANS">
+            <EntityTypeMapping TypeName="AttendanceModel.HU_ANNUALLEAVE_PLANS">
+                <MappingFragment StoreEntitySet="HU_ANNUALLEAVE_PLANS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                    <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="DAY_NUMBER" ColumnName="DAY_NUMBER" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -6914,7 +6983,7 @@
           <ConnectorPoint PointX="9.875" PointY="4.8250000001862645" />
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.AT_WORKSIGN" Width="1.5" PointX="11.625" PointY="6.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG" Width="2.625" PointX="18" PointY="6.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_REG" Width="2.625" PointX="18" PointY="6.375" Height="7.1724251302083335" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.HU_STAFF_RANK" Width="1.5" PointX="11.625" PointY="10.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_RICE" Width="1.5" PointX="12.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_OT" Width="1.5" PointX="12.625" PointY="2.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -6971,6 +7040,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" Width="1.5" PointX="6.3377412587114339" PointY="0.53933958734354914" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" Width="1.5" PointX="11.998932212590674" PointY="2.4056456398245158" />
         <EntityTypeShape EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" Width="1.5" PointX="15.375" PointY="15.75" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="AttendanceModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="16.375" PointY="18.75" Height="3.9033007812499818" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
