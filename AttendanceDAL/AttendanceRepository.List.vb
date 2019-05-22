@@ -256,6 +256,7 @@ Partial Public Class AttendanceRepository
                 itemInsert.TO_DATE = itemRegister.FROM_DATE
                 itemInsert.DAYIN_KH = itemRegister.DAYIN_KH
                 itemInsert.DAYOUT_KH = itemRegister.DAYOUT_KH
+                itemInsert.WORK_DAY = itemRegister.WORK_HARD
                 If itemRegister.FROM_HOUR.HasValue Then
                     itemInsert.FROM_HOUR = itemRegister.FROM_DATE.Value.Date.AddMinutes(itemRegister.FROM_HOUR.Value.TimeOfDay.TotalMinutes)
                 End If
@@ -6734,6 +6735,7 @@ Partial Public Class AttendanceRepository
                                                                            .STATUS = p.STATUS,
                                                                            .STATUS_NAME = ot.NAME_VN,
                                                                            .NOTE = p.NOTE,
+                                                                           .WORK_HARD = p.WORK_DAY,
             .CREATED_DATE = p.CREATED_DATE
                                                                         }
             If _filter.ID_EMPLOYEE > 0 Then
