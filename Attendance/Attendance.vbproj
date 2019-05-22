@@ -363,6 +363,9 @@
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.HistoryLeaveDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.LEAVEINOUTKHDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AttendanceBusiness\Attendance.AttendanceBusiness.LEAVE_DETAIL_EMP_DTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
