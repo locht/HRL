@@ -59,6 +59,15 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''hidManager control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidManager As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''RadSplitter1 control.
     '''</summary>
     '''<remarks>
@@ -624,6 +633,51 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbManagerOld control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbManagerOld As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtManagerOld control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtManagerOld As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbManagerNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbManagerNew As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtManagerNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtManagerNew As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnFindDirect control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnFindDirect As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''chkIsProcess control.

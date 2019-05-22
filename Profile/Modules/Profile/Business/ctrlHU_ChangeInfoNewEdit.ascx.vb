@@ -29,6 +29,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
     ''' <remarks></remarks>
     Protected WithEvents ctrlFindOrgPopup As ctrlFindOrgPopup
 
+    ''' <summary>
+    ''' ctrl FindManager
+    ''' </summary>
+    ''' <remarks></remarks>
+    Protected WithEvents ctrlFindManager As ctrlFindEmployeePopup
+
     ''' <creator>HongDX</creator>
     ''' <lastupdate>21/06/2017</lastupdate>
     ''' <summary>Write Log</summary>
@@ -277,6 +283,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             'End If
                             txtDecisionold.Text = .DECISION_NO
                             txtOrgNameOld.Text = .ORG_NAME
+                            txtManagerOld.Text = .DIRECT_MANAGER_NAME
                         End With
                     End If
 
@@ -357,6 +364,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     txtRemark.Text = Working.REMARK
                     '  rntxtPercentSalary.Value = Working.PERCENT_SALARY
                     lstAllow = Working.lstAllowance
+
+                    If Working.DIRECT_MANAGER IsNot Nothing Then
+                        txtManagerNew.Text = Working.DIRECT_MANAGER_NAME
+                        hidManager.Value = Working.DIRECT_MANAGER
+                    End If
 
                     'Dim total As Decimal = 0
                     'If rntxtCostSupport.Value IsNot Nothing Then
@@ -533,7 +545,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             .REMARK = txtRemark.Text
                             .IS_PROCESS = chkIsProcess.Checked
                             .IS_MISSION = True
-
+                            If hidManager.Value <> "" Then
+                                .DIRECT_MANAGER = hidManager.Value
+                            End If
                             '.IS_WAGE = chkIsWage.Checked
                             .IS_3B = False
                             .IS_WAGE = IsWageDecisionType(cboDecisionType.SelectedValue)
@@ -1174,6 +1188,40 @@ Public Class ctrlHU_ChangeInfoNewEdit
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Event select Manager
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnFindDirect_Click(sender As Object, e As System.EventArgs) Handles btnFindDirect.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            isLoadPopup = 4
+            UpdateControlState()
+            ctrlFindManager.MustHaveContract = False
+            ctrlFindManager.Show()
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub ctrlFindManager_EmployeeSelected(sender As Object, e As System.EventArgs) Handles ctrlFindManager.EmployeeSelected
+        Dim objEmployee As CommonBusiness.EmployeePopupFindDTO
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            objEmployee = ctrlFindManager.SelectedEmployee(0)
+            txtManagerNew.Text = objEmployee.FULLNAME_VN
+            hidManager.Value = objEmployee.EMPLOYEE_ID
+            isLoadPopup = 0
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -1225,6 +1273,15 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 Case 3
                     ctrlFindOrgPopup = Me.Register("ctrlFindOrgPopup", "Common", "ctrlFindOrgPopup")
                     phFindOrg.Controls.Add(ctrlFindOrgPopup)
+
+                Case 4
+                    If Not phFindSign.Controls.Contains(ctrlFindManager) Then
+                        ctrlFindManager = Me.Register("ctrlFindManager", "Common", "ctrlFindEmployeePopup")
+                        phFindSign.Controls.Add(ctrlFindManager)
+                        ctrlFindManager.MultiSelect = False
+                        ctrlFindManager.LoadAllOrganization = True
+                        ctrlFindManager.MustHaveContract = False
+                    End If
             End Select
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1293,6 +1350,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
                 rdExpireDateOld.SelectedDate = obj.EXPIRE_DATE
                 txtStaffRankOld.Text = obj.STAFF_RANK_NAME
+                If obj.DIRECT_MANAGER IsNot Nothing Then
+                    txtManagerOld.Text = obj.DIRECT_MANAGER_NAME
+                    txtManagerNew.Text = obj.DIRECT_MANAGER_NAME
+                    hidManager.Value = obj.DIRECT_MANAGER
+                End If
                 If obj.STAFF_RANK_ID IsNot Nothing Then
                     cboStaffRank.SelectedValue = obj.STAFF_RANK_ID
                     cboStaffRank.Text = obj.STAFF_RANK_NAME
