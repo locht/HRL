@@ -52,7 +52,6 @@ Public Class ctrlOTApprove
         Dim rep As New AttendanceRepository
         Try
             Select Case CurrentState
-
                 Case CommonMessage.STATE_APPROVE
                     Dim lstApp As New List(Of AT_OT_REGISTRATIONDTO)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
