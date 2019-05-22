@@ -16718,6 +16718,14 @@ Xin cám ơn!
   </Item>
   <Item>
     <Key>
+      <string>CTRLRITUAL_HOSE</string>
+    </Key>
+    <Value>
+      <string>Danh mục ngày nghỉ lễ HOSE</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
       <string>MÃ NGÀY NGHỈ</string>
     </Key>
     <Value>
