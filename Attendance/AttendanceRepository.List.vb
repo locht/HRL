@@ -254,6 +254,17 @@ Partial Class AttendanceRepository
         End Using
 
     End Function
+    Public Function ActiveHoliday_Hose(ByVal lstHoliday As List(Of Decimal), ByVal sActive As String) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ActiveHoliday_Hose(lstHoliday, Me.Log, sActive)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function DeleteHoliday(ByVal lstHoliday As List(Of Decimal)) As Boolean
         Using rep As New AttendanceBusinessClient

@@ -166,7 +166,8 @@ Public Class ctrlRitual_Hose
                     rdNote.Text = ""
                     rdFromDate.SelectedDate = Nothing
                     rdToDate.SelectedDate = Nothing
-
+                    ckIsSA.Enabled = True
+                    ckIsSU.Enabled = True
                     txtCode.Enabled = False
                     txtNameVN.Enabled = True
                     rdFromDate.Enabled = True
@@ -180,7 +181,8 @@ Public Class ctrlRitual_Hose
                     rdNote.Text = ""
                     rdFromDate.SelectedDate = Nothing
                     rdToDate.SelectedDate = Nothing
-
+                    ckIsSA.Enabled = False
+                    ckIsSU.Enabled = False
                     rdFromDate.Enabled = False
                     rdToDate.Enabled = False
                     txtCode.Enabled = False
@@ -195,14 +197,15 @@ Public Class ctrlRitual_Hose
                     txtNameVN.Enabled = True
                     rdNote.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
-
+                    ckIsSA.Enabled = True
+                    ckIsSU.Enabled = True
                 Case CommonMessage.STATE_DEACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-                    If rep.ActiveHoliday(lstDeletes, "I") Then
+                    If rep.ActiveHoliday_Hose(lstDeletes, "I") Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
@@ -219,7 +222,7 @@ Public Class ctrlRitual_Hose
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-                    If rep.ActiveHoliday(lstDeletes, "A") Then
+                    If rep.ActiveHoliday_Hose(lstDeletes, "A") Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
@@ -278,7 +281,7 @@ Public Class ctrlRitual_Hose
             dic.Add("NOTE", rdNote)
             dic.Add("ID", txtID)
             dic.Add("IS_SA", ckIsSA)
-            dic.Add("IS_SU_SU", ckIsSU)
+            dic.Add("IS_SUN", ckIsSU)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -372,16 +375,6 @@ Public Class ctrlRitual_Hose
                         objHoliday.FROMDATE = rdFromDate.SelectedDate
                         objHoliday.TODATE = rdToDate.SelectedDate
                         objHoliday.NOTE = rdNote.Text.Trim
-                        If ckIsSA.Checked = True Then
-                            SAcheck = -1
-                        Else
-                            SAcheck = 0
-                        End If
-                        If ckIsSU.Checked = True Then
-                            SUcheck = -1
-                        Else
-                            SUcheck = 0
-                        End If
                         objHoliday.IS_SA = SAcheck
                         objHoliday.IS_SUN = SUcheck
                         Select Case CurrentState
