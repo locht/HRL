@@ -32,6 +32,22 @@
     Public Property VALIN14 As Date?
     Public Property VALIN15 As Date?
     Public Property VALIN16 As Date?
+    Public Property VALOUT1 As Date?
+    Public Property VALOUT2 As Date?
+    Public Property VALOUT3 As Date?
+    Public Property VALOUT4 As Date?
+    Public Property VALOUT5 As Date?
+    Public Property VALOUT6 As Date?
+    Public Property VALOUT7 As Date?
+    Public Property VALOUT8 As Date?
+    Public Property VALOUT9 As Date?
+    Public Property VALOUT10 As Date?
+    Public Property VALOUT11 As Date?
+    Public Property VALOUT12 As Date?
+    Public Property VALOUT13 As Date?
+    Public Property VALOUT14 As Date?
+    Public Property VALOUT15 As Date?
+    Public Property VALOUT16 As Date?
     Public Property CREATED_DATE As Date?
     Public Property CREATED_BY As String
     Public Property CREATED_LOG As String

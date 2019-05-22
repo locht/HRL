@@ -155,6 +155,18 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetDayHoliday() As List(Of AT_HOLIDAYDTO) Implements ServiceContracts.IAttendanceBusiness.GetDayHoliday
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GetDayHoliday()
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+
         Public Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
                                     Optional ByVal PageIndex As Integer = 0,
                                         Optional ByVal PageSize As Integer = Integer.MaxValue,

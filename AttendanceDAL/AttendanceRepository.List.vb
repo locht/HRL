@@ -551,8 +551,15 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
-
-
+   
+    Public Function GetDayHoliday() As List(Of AT_HOLIDAYDTO)
+        Dim query = From p In Context.AT_HOLIDAY
+        Dim lst = query.Select(Function(p) New AT_HOLIDAYDTO With {
+                                   .ID = p.ID,
+        .WORKINGDAY = p.WORKINGDAY
+                })
+        Return lst.ToList
+    End Function
     Public Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
                                  Optional ByVal PageIndex As Integer = 0,
                                  Optional ByVal PageSize As Integer = Integer.MaxValue,

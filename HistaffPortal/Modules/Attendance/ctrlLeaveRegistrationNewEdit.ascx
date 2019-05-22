@@ -167,7 +167,7 @@
                 ToolTip="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"></asp:CompareValidator>
         </td>
         <td>
-            <asp:CheckBox runat="server" ID="chkWorkday" Text="Ngày làm việc" />
+            <asp:CheckBox runat="server" ID="chkWorkday" Text="Ngày làm việc" AutoPostBack="true"/>
         </td>
     </tr>
     <tr>
@@ -180,7 +180,7 @@
             </tlk:RadNumericTextBox>
         </td>
         <td class="lb">
-            <%# Translate("Số ngày ngày kế hoạch")%>
+            <%# Translate("Số ngày ngoài kế hoạch")%>
         </td>
         <td>
             <tlk:RadNumericTextBox SkinID="NUMBER" runat="server" 
