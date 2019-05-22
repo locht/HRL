@@ -344,6 +344,10 @@ Public Class ctrlHU_CommendNewEdit
                     rdEffectDate.SelectedDate = Commend.EFFECT_DATE
                     rdEffectDate_SelectedDateChanged(Nothing, Nothing)
 
+                    If Commend.EXPIRE_DATE IsNot Nothing Then
+                        rdExpireDate.SelectedDate = Commend.EXPIRE_DATE
+                    End If
+
                     If Commend.PERIOD_ID IsNot Nothing Then
                         cboPeriod.SelectedValue = Commend.PERIOD_ID
                     End If
@@ -489,7 +493,7 @@ Public Class ctrlHU_CommendNewEdit
                         objCommend.NOTE = txtRemark.Text
                         objCommend.STATUS_ID = Decimal.Parse(cboStatus.SelectedValue)
                         objCommend.EFFECT_DATE = rdEffectDate.SelectedDate
-                        ' objCommend.EXPIRE_DATE = rdExpireDate.SelectedDate
+                        objCommend.EXPIRE_DATE = rdExpireDate.SelectedDate
                         objCommend.SIGNER_NAME = txtSignerName.Text
                         objCommend.SIGN_DATE = rdSignDate.SelectedDate
 
