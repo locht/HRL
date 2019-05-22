@@ -1428,6 +1428,11 @@
                     clearSelectRadcombo(cbo);
                     break;
 
+                case '<%= cbDISTRICTEMP_ID.ClientID %>':
+                    cbo = $find('<%= cbWARDEMP_ID.ClientID %>');
+                    clearSelectRadcombo(cbo);
+                    break;
+
                 case '<%= cboTitle.ClientID %>':
                     cbo = $find('<%= txtTitleGroup.ClientID %>');
                     clearSelectRadtextbox(cbo);

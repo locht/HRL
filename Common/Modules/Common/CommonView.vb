@@ -423,6 +423,27 @@ Public Class CommonView
                     rColdImage.ImageWidth = 80
                     rColdImage.ResizeMode = "Fit"
                     rColdImage.DataAlternateTextFormatString = "Image of {0}"
+                ElseIf row.Field(Of String)("ID").Trim().Contains("FROM_MONTH") Or row.Field(Of String)("ID").Trim().Contains("TO_MONTH") Then
+                    rCol = New GridBoundColumn()
+                    rg.MasterTableView.Columns.Add(rCol)
+                    rCol.DataField = row.Field(Of String)("ID").Trim()
+                    rCol.HeaderText = Translate(row.Field(Of String)("Name").Trim())
+                    If IsNumeric(row("Width").ToString()) Then
+                        rCol.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
+                        rCol.FilterControlWidth = Integer.Parse(row("Width").ToString())
+                    End If
+                    rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                    rCol.AllowFiltering = True
+                    rCol.AllowSorting = True
+                    rCol.AutoPostBackOnFilter = True
+                    rCol.CurrentFilterFunction = GridKnownFunction.Contains
+                    rCol.ShowFilterIcon = False
+                    rCol.HeaderTooltip = (row.Field(Of String)("Name").Trim())
+                    rCol.FilterControlToolTip = (row.Field(Of String)("Name").Trim())
+                    rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
+                    If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
+                        rCol.DataFormatString = ConfigurationManager.AppSettings("FDATE_MONTH_YEAR_GRID")
+                    End If
                 Else
                     rCol = New GridBoundColumn()
                     rg.MasterTableView.Columns.Add(rCol)
@@ -446,7 +467,7 @@ Public Class CommonView
                     ElseIf row.Field(Of String)("DataType").Trim() = "Number" Then
                         rCol.DataFormatString = "{0:#,##0.##}"
                     End If
-                End If
+                    End If
 
             Catch ex As Exception
                 Continue For

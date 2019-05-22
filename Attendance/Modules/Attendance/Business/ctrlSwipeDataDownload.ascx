@@ -45,6 +45,23 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ITIME_ID" ClientDataKeyNames="VALTIME,ITIME_ID">
                 <Columns>
+                    
+                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE"
+                        UniqueName="EMPLOYEE_CODE">
+                        <HeaderStyle HorizontalAlign="Center" Width="300px" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME"
+                        UniqueName="EMPLOYEE_NAME">
+                        <HeaderStyle HorizontalAlign="Center" Width="300px" />
+                    </tlk:GridBoundColumn>
+                    <tlk:GridBoundColumn HeaderText="Loại máy" DataField="TERMINAL_CODE" SortExpression="TERMINAL_CODE"
+                        UniqueName="TERMINAL_CODE">
+                        <HeaderStyle HorizontalAlign="Center" Width="300px" />
+                    </tlk:GridBoundColumn>
+                     <tlk:GridBoundColumn HeaderText="Hệ thống chấm công" DataField="MACHINE_TYPE_NAME" SortExpression="MACHINE_TYPE_NAME"
+                        UniqueName="MACHINE_TYPE_NAME">
+                        <HeaderStyle HorizontalAlign="Center" Width="300px" />
+                    </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="Mã CC" DataField="ITIME_ID_S" SortExpression="ITIME_ID_S"
                         UniqueName="ITIME_ID_S">
                         <HeaderStyle HorizontalAlign="Center" Width="300px" />

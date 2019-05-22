@@ -6,7 +6,7 @@ Imports Attendance.AttendanceBusiness
 Imports Telerik.Web.UI
 Imports HistaffFrameworkPublic.HistaffFrameworkEnum
 
-Public Class ctrlOTRegistrationByLM
+Public Class ctrlOTRegistrationMng
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     Public Overrides Property MustAuthorize As Boolean = False

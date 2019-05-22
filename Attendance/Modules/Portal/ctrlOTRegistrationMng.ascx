@@ -1,5 +1,5 @@
-﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlOTRegistrationByLM.ascx.vb"
-    Inherits="Attendance.ctrlOTRegistrationByLM" %>
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlOTRegistrationMng.ascx.vb"
+    Inherits="Attendance.ctrlOTRegistrationMng" %>
 <%@ Import Namespace="Common" %>
 <asp:HiddenField ID="hidValid" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">

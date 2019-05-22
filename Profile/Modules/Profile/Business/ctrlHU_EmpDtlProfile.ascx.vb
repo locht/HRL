@@ -105,6 +105,8 @@ Public Class ctrlHU_EmpDtlProfile
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim repNS As New ProfileRepository
+        Dim lstP, lstD, lstW As DataTable
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If EmployeeInfo IsNot Nothing Then
@@ -214,8 +216,8 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsDate(empCV.OPPTION6) Then
                                 rdOpption6.SelectedDate = empCV.OPPTION6
                             End If
-                            If IsDate(empCV.OPPTION6) Then
-                                rdOpption6.SelectedDate = empCV.OPPTION6
+                            If IsDate(empCV.OPPTION8) Then
+                                rdOpption8.SelectedDate = empCV.OPPTION8
                             End If
                             If IsDate(empCV.OPPTION7) Then
                                 rdOpption7.SelectedDate = empCV.OPPTION7
@@ -226,18 +228,26 @@ Public Class ctrlHU_EmpDtlProfile
                             If IsDate(empCV.OPPTION10) Then
                                 rdOpption10.SelectedDate = empCV.OPPTION10
                             End If
-                          
+
+                            'Get Province lst
+                            lstP = repNS.GetProvinceList(True)
+                            FillRadCombobox(cbPROVINCEEMP_ID, lstP, "NAME", "ID")
+
                             If IsNumeric(empCV.PROVINCEEMP_ID) Then
                                 cbPROVINCEEMP_ID.SelectedValue = empCV.PROVINCEEMP_ID
-                                cbPROVINCEEMP_ID.Text = empCV.PROVINCEEMP_NAME
+                                'cbPROVINCEEMP_ID.Text = empCV.PROVINCEEMP_NAME
+                                lstD = repNS.GetDistrictList(cbPROVINCEEMP_ID.SelectedValue, True)
+                                FillRadCombobox(cbDISTRICTEMP_ID, lstD, "NAME", "ID")
                             End If
                             If IsNumeric(empCV.DISTRICTEMP_ID) Then
                                 cbDISTRICTEMP_ID.SelectedValue = empCV.DISTRICTEMP_ID
-                                cbDISTRICTEMP_ID.Text = empCV.DISTRICTEMP_NAME
+                                'cbDISTRICTEMP_ID.Text = empCV.DISTRICTEMP_NAME
+                                lstW = repNS.GetWardList(cbDISTRICTEMP_ID.SelectedValue, True)
+                                FillRadCombobox(cbWARDEMP_ID, lstW, "NAME", "ID")
                             End If
                             If IsNumeric(empCV.WARDEMP_ID) Then
                                 cbWARDEMP_ID.SelectedValue = empCV.WARDEMP_ID
-                                cbWARDEMP_ID.Text = empCV.WARDEMP_NAME
+                                'cbWARDEMP_ID.Text = empCV.WARDEMP_NAME
                             End If
                             '=========================================================
                             rtSkill.Text = empCV.SKILL
@@ -1172,7 +1182,7 @@ Public Class ctrlHU_EmpDtlProfile
                         Dim itemOffset As Integer = e.NumberOfItems
                         Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
                         e.EndOfItems = endOffset = dtData.Rows.Count
-
+                        sender.Items.Clear()
                         For i As Integer = itemOffset To endOffset - 1
                             Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
                             Select Case sender.ID
@@ -1186,7 +1196,7 @@ Public Class ctrlHU_EmpDtlProfile
                         Dim itemOffset As Integer = e.NumberOfItems
                         Dim endOffset As Integer = dtData.Rows.Count
                         e.EndOfItems = True
-
+                        sender.Items.Clear()
                         For i As Integer = itemOffset To endOffset - 1
                             Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
                             Select Case sender.ID
@@ -1200,7 +1210,7 @@ Public Class ctrlHU_EmpDtlProfile
                     Dim itemOffset As Integer = e.NumberOfItems
                     Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
                     e.EndOfItems = endOffset = dtData.Rows.Count
-
+                    sender.Items.Clear()
                     For i As Integer = itemOffset To endOffset - 1
                         Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
                         Select Case sender.ID
@@ -1584,7 +1594,8 @@ Public Class ctrlHU_EmpDtlProfile
                 EmpCV.BANK_BRANCH_ID = Decimal.Parse(cboBankBranch.SelectedValue)
             End If
             ' EmpCV.NGAY_VAO_DANG = rdNgayVaoDang.SelectedDate
-            EmpCV.NGAY_VAO_DOAN = rdNgayVaoDoan.SelectedDate
+            'EmpCV.NGAY_VAO_DOAN = rdNgayVaoDoan.SelectedDate
+            EmpCV.NGAY_VAO_DOAN = rdNGAY_VAO_DOAN.SelectedDate
             'EmpCV.CHUC_VU_DANG = txtChucVuDang.Text.Trim()
             EmpCV.CHUC_VU_DOAN = txtChucVuDoan.Text.Trim()
             ' EmpCV.NOI_VAO_DANG = txtNoiVaoDang.Text.Trim()
@@ -1838,4 +1849,7 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Function
 #End Region
+
+    
+    
 End Class

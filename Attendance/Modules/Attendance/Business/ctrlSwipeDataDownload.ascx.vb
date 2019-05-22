@@ -277,12 +277,15 @@ Public Class ctrlSwipeDataDownload
             SetValueObjectByRadGrid(rglSwipeDataDownload, obj)
             obj.FROM_DATE = rdStartDate.SelectedDate
             obj.END_DATE = rdEndDate.SelectedDate
+            If IsNumeric(cbMachine_Type.SelectedValue) Then
+                obj.MACHINE_TYPE = cbMachine_Type.SelectedValue
+            End If
             Dim Sorts As String = rglSwipeDataDownload.MasterTableView.SortExpressions.GetSortString()
             If Not isFull Then
                 If Sorts IsNot Nothing Then
-                    Me.SWIPE_DATA = New List(Of AT_SWIPE_DATADTO) 'rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows, Sorts)
+                    Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows, Sorts)
                 Else
-                    Me.SWIPE_DATA = New List(Of AT_SWIPE_DATADTO) 'rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows)
+                    Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows)
                 End If
             Else
                 Return rep.GetSwipeData(obj).ToTable()
