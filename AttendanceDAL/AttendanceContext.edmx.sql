@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/21/2019 5:49:07 PM
--- Generated from EDMX file: D:\MyProject\core1\histaffhcm-20052019\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 5/22/2019 10:56:34 AM
+-- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1222,7 +1222,23 @@ CREATE TABLE "dbo"."AT_DATA_INOUT" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "VALOUT1" DATE NULL,
+   "VALOUT2" DATE NULL,
+   "VALOUT3" DATE NULL,
+   "VALOUT4" DATE NULL,
+   "VALOUT5" DATE NULL,
+   "VALOUT6" DATE NULL,
+   "VALOUT7" DATE NULL,
+   "VALOUT8" DATE NULL,
+   "VALOUT9" DATE NULL,
+   "VALOUT10" DATE NULL,
+   "VALOUT11" DATE NULL,
+   "VALOUT12" DATE NULL,
+   "VALOUT13" DATE NULL,
+   "VALOUT14" DATE NULL,
+   "VALOUT15" DATE NULL,
+   "VALOUT16" DATE NULL
 );
 
 -- Creating table 'AT_FML'

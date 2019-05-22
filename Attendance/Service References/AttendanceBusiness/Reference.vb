@@ -20329,6 +20329,54 @@ Namespace AttendanceBusiness
         Private VALIN9Field As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT1Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT10Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT11Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT12Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT13Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT14Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT15Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT16Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT2Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT3Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT4Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT5Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT6Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT7Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT8Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VALOUT9Field As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private VN_FULLNAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -20821,6 +20869,214 @@ Namespace AttendanceBusiness
                 If (Me.VALIN9Field.Equals(value) <> true) Then
                     Me.VALIN9Field = value
                     Me.RaisePropertyChanged("VALIN9")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT1() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT1Field
+            End Get
+            Set
+                If (Me.VALOUT1Field.Equals(value) <> true) Then
+                    Me.VALOUT1Field = value
+                    Me.RaisePropertyChanged("VALOUT1")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT10() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT10Field
+            End Get
+            Set
+                If (Me.VALOUT10Field.Equals(value) <> true) Then
+                    Me.VALOUT10Field = value
+                    Me.RaisePropertyChanged("VALOUT10")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT11() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT11Field
+            End Get
+            Set
+                If (Me.VALOUT11Field.Equals(value) <> true) Then
+                    Me.VALOUT11Field = value
+                    Me.RaisePropertyChanged("VALOUT11")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT12() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT12Field
+            End Get
+            Set
+                If (Me.VALOUT12Field.Equals(value) <> true) Then
+                    Me.VALOUT12Field = value
+                    Me.RaisePropertyChanged("VALOUT12")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT13() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT13Field
+            End Get
+            Set
+                If (Me.VALOUT13Field.Equals(value) <> true) Then
+                    Me.VALOUT13Field = value
+                    Me.RaisePropertyChanged("VALOUT13")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT14() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT14Field
+            End Get
+            Set
+                If (Me.VALOUT14Field.Equals(value) <> true) Then
+                    Me.VALOUT14Field = value
+                    Me.RaisePropertyChanged("VALOUT14")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT15() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT15Field
+            End Get
+            Set
+                If (Me.VALOUT15Field.Equals(value) <> true) Then
+                    Me.VALOUT15Field = value
+                    Me.RaisePropertyChanged("VALOUT15")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT16() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT16Field
+            End Get
+            Set
+                If (Me.VALOUT16Field.Equals(value) <> true) Then
+                    Me.VALOUT16Field = value
+                    Me.RaisePropertyChanged("VALOUT16")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT2() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT2Field
+            End Get
+            Set
+                If (Me.VALOUT2Field.Equals(value) <> true) Then
+                    Me.VALOUT2Field = value
+                    Me.RaisePropertyChanged("VALOUT2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT3() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT3Field
+            End Get
+            Set
+                If (Me.VALOUT3Field.Equals(value) <> true) Then
+                    Me.VALOUT3Field = value
+                    Me.RaisePropertyChanged("VALOUT3")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT4() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT4Field
+            End Get
+            Set
+                If (Me.VALOUT4Field.Equals(value) <> true) Then
+                    Me.VALOUT4Field = value
+                    Me.RaisePropertyChanged("VALOUT4")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT5() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT5Field
+            End Get
+            Set
+                If (Me.VALOUT5Field.Equals(value) <> true) Then
+                    Me.VALOUT5Field = value
+                    Me.RaisePropertyChanged("VALOUT5")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT6() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT6Field
+            End Get
+            Set
+                If (Me.VALOUT6Field.Equals(value) <> true) Then
+                    Me.VALOUT6Field = value
+                    Me.RaisePropertyChanged("VALOUT6")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT7() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT7Field
+            End Get
+            Set
+                If (Me.VALOUT7Field.Equals(value) <> true) Then
+                    Me.VALOUT7Field = value
+                    Me.RaisePropertyChanged("VALOUT7")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT8() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT8Field
+            End Get
+            Set
+                If (Me.VALOUT8Field.Equals(value) <> true) Then
+                    Me.VALOUT8Field = value
+                    Me.RaisePropertyChanged("VALOUT8")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VALOUT9() As System.Nullable(Of Date)
+            Get
+                Return Me.VALOUT9Field
+            End Get
+            Set
+                If (Me.VALOUT9Field.Equals(value) <> true) Then
+                    Me.VALOUT9Field = value
+                    Me.RaisePropertyChanged("VALOUT9")
                 End If
             End Set
         End Property
