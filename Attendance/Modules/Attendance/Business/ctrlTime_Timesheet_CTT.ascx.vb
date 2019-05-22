@@ -430,23 +430,34 @@ Public Class ctrlTime_Timesheet_CTT
                         ShowMessage(Translate("Từ ngày đến ngày chưa được chọn"), Utilities.NotifyType.Warning)
                         Exit Sub
                     End If
+                    'LAY THONG TIN CONFIG CASE :
+                    getSE_CASE_CONFIG()
+                    Dim Status As Boolean = True
+                    If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
+                        Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlTime_Timesheet_CTT_case1" + "'")
+                        If ROWS IsNot Nothing AndAlso ROWS.Count > 0 Then
+                            Status = CBool(ROWS(0)("STATUS"))
+                        End If
+                    End If
                     Dim lsEmployee As New List(Of Decimal?)
                     Dim employee_id As Decimal?
-                    For Each items As GridDataItem In rgTimeTimesheet_cct.MasterTableView.GetSelectedItems()
-                        Dim item = Decimal.Parse(items.GetDataKeyValue("EMPLOYEE_ID"))
-                        employee_id = Decimal.Parse(item)
-                        lsEmployee.Add(employee_id)
-                    Next
-                    Dim is_delete As Decimal = 0
+                    If Not Status Then
+                        For Each items As GridDataItem In rgTimeTimesheet_cct.MasterTableView.GetSelectedItems()
+                            Dim item = Decimal.Parse(items.GetDataKeyValue("EMPLOYEE_ID"))
+                            employee_id = Decimal.Parse(item)
+                            lsEmployee.Add(employee_id)
+                        Next
+                        Dim is_delete As Decimal = 0
 
-                    If chkSummary.Checked Then
-                        is_delete = 1
-                    Else
-                        is_delete = 0
+                        If chkSummary.Checked Then
+                            is_delete = 1
+                        Else
+                            is_delete = 0
+                        End If
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                       Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete)
+                        Refresh("UpdateView")
                     End If
-                    rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete)
-                    Refresh("UpdateView")
                 Case TOOLBARITEM_DELETE
                     If rep.IS_PERIODSTATUS(_param) = False Then
                         ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)
