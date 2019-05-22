@@ -195,7 +195,10 @@ Public Class ctrlMngIO
             rgMngIO.ClientSettings.EnablePostBackOnRowClick = False
             ctrlUpload1.isMultiple = False
             InitControl()
-
+            If Not IsPostBack Then
+                ViewConfig(RadPane2)
+                GirdConfig(rgMngIO)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)

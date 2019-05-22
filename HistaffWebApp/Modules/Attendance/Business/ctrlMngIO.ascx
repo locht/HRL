@@ -64,7 +64,7 @@
                 <tlk:RadGrid PageSize=50 ID="rgMngIO" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="EMPLOYEE_CODE">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
@@ -75,8 +75,6 @@
                                 UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" HeaderStyle-Width="120px" />
                                  <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự %>" DataField="STAFF_RANK_NAME"
                                 UniqueName="STAFF_RANK_NAME" SortExpression="STAFF_RANK_NAME" HeaderStyle-Width="120px" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                                SortExpression="ORG_NAME" HeaderStyle-Width="200px" />--%>
                             <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
@@ -273,7 +271,7 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="70px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-
+--%>
                            
                         </Columns>
                     </MasterTableView>

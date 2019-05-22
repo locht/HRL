@@ -30,7 +30,7 @@ Namespace PayrollBusiness.BackgroundProcess
 
             ThreadPool.QueueUserWorkItem(AddressOf New PayrollRepository().CheckAndSendPayslip, Now)
             ThreadPool.QueueUserWorkItem(AddressOf New PayrollRepository().CheckAndSendBonusSlip, Now)
-
+            'ThreadPool.QueueUserWorkItem (AddressOf New PayrollRepository().CAL_DATA_IN
         End Sub
 
     End Class

@@ -393,6 +393,15 @@ Public Class PayrollRepository
         End Try
     End Function
 
+
+    Private Function CAL_DATA_INOUT() As Boolean
+        Try
+
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
     Public Function CheckAndSendBonusSlip() As Boolean
         Try
             '1. Kiểm tra có action nào đang chạy hay không?

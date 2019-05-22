@@ -26,7 +26,17 @@ Partial Public Class AttendanceRepository
         End Get
     End Property
 
-
+    Public Function CAL_SUMMARY_DATA_INOUT() As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_AT_LIST.CAL_SUMMARY_DATA_INOUT",
+                                         New With {.P_CUR = cls.OUT_CURSOR})
+                Return CBool(dtData(0)(0))
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As DataTable
         Try
             Using cls As New DataAccess.QueryData
