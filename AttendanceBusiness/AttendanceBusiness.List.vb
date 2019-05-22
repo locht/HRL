@@ -236,6 +236,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function ActiveHoliday_Hose(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean Implements ServiceContracts.IAttendanceBusiness.ActiveHoliday_Hose
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.ActiveHoliday_Hose(lstID, log, bActive)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function DeleteHOLIDAY(ByVal lstID As List(Of Decimal)) As Boolean Implements ServiceContracts.IAttendanceBusiness.DeleteHOLIDAY
             Using rep As New AttendanceRepository

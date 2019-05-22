@@ -468,6 +468,8 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function ActiveHoliday(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
+        <OperationContract()>
+        Function ActiveHoliday_Hose(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As String) As Boolean
 
         <OperationContract()>
         Function DeleteHOLIDAY(ByVal lstID As List(Of Decimal)) As Boolean

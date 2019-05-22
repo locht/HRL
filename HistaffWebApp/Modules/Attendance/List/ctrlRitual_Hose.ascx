@@ -88,7 +88,7 @@
                 <ClientEvents OnCommand="ValidateFilter" />
                 <KeyboardNavigationSettings AllowSubmitOnEnter="true" EnableKeyboardShortcuts="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,FROMDATE,TODATE,YEAR,ACTFLG,NOTE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,FROMDATE,TODATE,YEAR,ACTFLG,NOTE,IS_SA,IS_SUN">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -110,6 +110,10 @@
                         UniqueName="CODE" SortExpression="CODE" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên ngày nghỉ %>" DataField="NAME_VN"
                         UniqueName="NAME_VN" SortExpression="NAME_VN" />
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trừ T7 vào ngày lễ %>" DataField="IS_SA"
+                        UniqueName="IS_SA" SortExpression="IS_SA"> </tlk:GridCheckBoxColumn>
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Trừ CN vào ngày lễ %>" DataField="IS_SUN"
+                        UniqueName="IS_SUN" SortExpression="IS_SUN"> </tlk:GridCheckBoxColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"

@@ -19028,10 +19028,10 @@ Namespace AttendanceBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_SAField As System.Nullable(Of Decimal)
+        Private IS_SAField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_SUNField As System.Nullable(Of Decimal)
+        Private IS_SUNField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
@@ -19162,7 +19162,7 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_SA() As System.Nullable(Of Decimal)
+        Public Property IS_SA() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_SAField
             End Get
@@ -19175,7 +19175,7 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_SUN() As System.Nullable(Of Decimal)
+        Public Property IS_SUN() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_SUNField
             End Get
@@ -28345,6 +28345,9 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALById", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALByIdResponse")>  _
+        Function GetAT_TIME_MANUALById(ByVal _id As System.Nullable(Of Decimal)) As AttendanceBusiness.AT_TIME_MANUALDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUALResponse")>  _
         Function InsertAT_TIME_MANUAL(ByVal objHOLIDAY As AttendanceBusiness.AT_TIME_MANUALDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -28567,6 +28570,9 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAuto", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAutoResponse")>  _
+        Function ImportSwipeDataAuto(ByVal lstSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImport", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImportResponse")>  _
         Function InsertSwipeDataImport(ByVal objDelareRice As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -28934,9 +28940,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALResponse")>  _
         Function GetAT_TIME_MANUAL(ByVal _filter As AttendanceBusiness.AT_TIME_MANUALDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO)
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALById", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALByIdResponse")>  _
-        Function GetAT_TIME_MANUALById(ByVal _id As System.Nullable(Of Decimal)) As AttendanceBusiness.AT_TIME_MANUALDTO
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRice", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRiceResponse")>  _
         Function ModifyLeaveSheetRice(ByVal objLeave As AttendanceBusiness.AT_TIME_TIMESHEET_RICEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -29316,6 +29319,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ActiveHoliday", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ActiveHolidayResponse")>  _
         Function ActiveHoliday(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ActiveHoliday_Hose", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ActiveHoliday_HoseResponse")>  _
+        Function ActiveHoliday_Hose(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAY", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAYResponse")>  _
         Function DeleteHOLIDAY(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -29417,9 +29423,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertSwipeData", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataResponse")>  _
         Function InsertSwipeData(ByVal objSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO), ByVal machine As AttendanceBusiness.AT_TERMINALSDTO, ByVal P_FROMDATE As System.Nullable(Of Date), ByVal P_ENDDATE As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAuto", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAutoResponse")>  _
-        Function ImportSwipeDataAuto(ByVal lstSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_INOUTKH", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_INOUTKHResponse")>  _
         Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As System.Data.DataTable
@@ -29822,6 +29825,10 @@ Namespace AttendanceBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetAT_TIME_MANUALById(ByVal _id As System.Nullable(Of Decimal)) As AttendanceBusiness.AT_TIME_MANUALDTO Implements AttendanceBusiness.IAttendanceBusiness.GetAT_TIME_MANUALById
+            Return MyBase.Channel.GetAT_TIME_MANUALById(_id)
+        End Function
+        
         Public Function InsertAT_TIME_MANUAL(ByVal objHOLIDAY As AttendanceBusiness.AT_TIME_MANUALDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertAT_TIME_MANUAL
             Return MyBase.Channel.InsertAT_TIME_MANUAL(objHOLIDAY, log, gID)
         End Function
@@ -30116,6 +30123,10 @@ Namespace AttendanceBusiness
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS
             Return MyBase.Channel.GET_PE_ASSESS_MESS(EMP)
+        End Function
+        
+        Public Function ImportSwipeDataAuto(ByVal lstSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ImportSwipeDataAuto
+            Return MyBase.Channel.ImportSwipeDataAuto(lstSwipeData)
         End Function
         
         Public Function InsertSwipeDataImport(ByVal objDelareRice As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertSwipeDataImport
@@ -30454,10 +30465,6 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetAT_TIME_MANUAL(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
         
-        Public Function GetAT_TIME_MANUALById(ByVal _id As System.Nullable(Of Decimal)) As AttendanceBusiness.AT_TIME_MANUALDTO Implements AttendanceBusiness.IAttendanceBusiness.GetAT_TIME_MANUALById
-            Return MyBase.Channel.GetAT_TIME_MANUALById(_id)
-        End Function
-        
         Public Function ModifyLeaveSheetRice(ByVal objLeave As AttendanceBusiness.AT_TIME_TIMESHEET_RICEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ModifyLeaveSheetRice
             Return MyBase.Channel.ModifyLeaveSheetRice(objLeave, log, gID)
         End Function
@@ -30658,6 +30665,10 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.ActiveHoliday(lstID, log, bActive)
         End Function
         
+        Public Function ActiveHoliday_Hose(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ActiveHoliday_Hose
+            Return MyBase.Channel.ActiveHoliday_Hose(lstID, log, bActive)
+        End Function
+        
         Public Function DeleteHOLIDAY(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteHOLIDAY
             Return MyBase.Channel.DeleteHOLIDAY(lstID)
         End Function
@@ -30792,10 +30803,6 @@ Namespace AttendanceBusiness
         
         Public Function InsertSwipeData(ByVal objSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO), ByVal machine As AttendanceBusiness.AT_TERMINALSDTO, ByVal P_FROMDATE As System.Nullable(Of Date), ByVal P_ENDDATE As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertSwipeData
             Return MyBase.Channel.InsertSwipeData(objSwipeData, machine, P_FROMDATE, P_ENDDATE, log, gID)
-        End Function
-        
-        Public Function ImportSwipeDataAuto(ByVal lstSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ImportSwipeDataAuto
-            Return MyBase.Channel.ImportSwipeDataAuto(lstSwipeData)
         End Function
         
         Public Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.PRS_COUNT_INOUTKH
