@@ -106,8 +106,12 @@ Public Class ctrlEntitlement
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Calculate,
-                                       ToolbarItem.Export)
+                                       ToolbarItem.Export,
+                                       ToolbarItem.Import,
+                                       ToolbarItem.Submit)
             MainToolBar.Items(0).Text = Translate("Tổng hợp")
+            MainToolBar.Items(2).Text = Translate("Import số ngày ngoài cơ quan")
+            MainToolBar.Items(3).Text = Translate("Kết xuất")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,

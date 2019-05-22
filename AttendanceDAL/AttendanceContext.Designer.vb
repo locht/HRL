@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3806d555-124a-430c-ba29-afd0e1ffa771")>
+<Assembly: EdmSchemaAttribute("cb185ee8-41b9-468a-be69-e64e842bf362")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1205,20 +1205,6 @@ Public Partial Class AttendanceContext
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    Public ReadOnly Property HU_ANNUALLEAVE_PLANS() As ObjectSet(Of HU_ANNUALLEAVE_PLANS)
-        Get
-            If (_HU_ANNUALLEAVE_PLANS Is Nothing) Then
-                _HU_ANNUALLEAVE_PLANS = MyBase.CreateObjectSet(Of HU_ANNUALLEAVE_PLANS)("HU_ANNUALLEAVE_PLANS")
-            End If
-            Return _HU_ANNUALLEAVE_PLANS
-        End Get
-    End Property
-
-    Private _HU_ANNUALLEAVE_PLANS As ObjectSet(Of HU_ANNUALLEAVE_PLANS)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
     Public ReadOnly Property ATV_HOLIDAY_HOSE() As ObjectSet(Of ATV_HOLIDAY_HOSE)
         Get
             If (_ATV_HOLIDAY_HOSE Is Nothing) Then
@@ -1229,6 +1215,20 @@ Public Partial Class AttendanceContext
     End Property
 
     Private _ATV_HOLIDAY_HOSE As ObjectSet(Of ATV_HOLIDAY_HOSE)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_ANNUALLEAVE_PLANS() As ObjectSet(Of HU_ANNUALLEAVE_PLANS)
+        Get
+            If (_HU_ANNUALLEAVE_PLANS Is Nothing) Then
+                _HU_ANNUALLEAVE_PLANS = MyBase.CreateObjectSet(Of HU_ANNUALLEAVE_PLANS)("HU_ANNUALLEAVE_PLANS")
+            End If
+            Return _HU_ANNUALLEAVE_PLANS
+        End Get
+    End Property
+
+    Private _HU_ANNUALLEAVE_PLANS As ObjectSet(Of HU_ANNUALLEAVE_PLANS)
 
     #End Region
 
@@ -1795,17 +1795,17 @@ Public Partial Class AttendanceContext
     End Sub
 
     ''' <summary>
-    ''' Deprecated Method for adding a new object to the HU_ANNUALLEAVE_PLANS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToHU_ANNUALLEAVE_PLANS(ByVal hU_ANNUALLEAVE_PLANS As HU_ANNUALLEAVE_PLANS)
-        MyBase.AddObject("HU_ANNUALLEAVE_PLANS", hU_ANNUALLEAVE_PLANS)
-    End Sub
-
-    ''' <summary>
     ''' Deprecated Method for adding a new object to the ATV_HOLIDAY_HOSE EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
     ''' </summary>
     Public Sub AddToATV_HOLIDAY_HOSE(ByVal aTV_HOLIDAY_HOSE As ATV_HOLIDAY_HOSE)
         MyBase.AddObject("ATV_HOLIDAY_HOSE", aTV_HOLIDAY_HOSE)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_ANNUALLEAVE_PLANS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_ANNUALLEAVE_PLANS(ByVal hU_ANNUALLEAVE_PLANS As HU_ANNUALLEAVE_PLANS)
+        MyBase.AddObject("HU_ANNUALLEAVE_PLANS", hU_ANNUALLEAVE_PLANS)
     End Sub
 
     #End Region
@@ -8958,6 +8958,81 @@ Public Partial Class AT_ENTITLEMENT
     End Sub
 
     Private Partial Sub OnTIME_OUTSIDE_COMPANYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIME_SENIORITY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TIME_SENIORITY
+        End Get
+        Set
+            OnTIME_SENIORITYChanging(value)
+            ReportPropertyChanging("TIME_SENIORITY")
+            _TIME_SENIORITY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TIME_SENIORITY")
+            OnTIME_SENIORITYChanged()
+        End Set
+    End Property
+
+    Private _TIME_SENIORITY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTIME_SENIORITYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTIME_SENIORITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MONTH_SENIORITY_CHANGE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MONTH_SENIORITY_CHANGE
+        End Get
+        Set
+            OnMONTH_SENIORITY_CHANGEChanging(value)
+            ReportPropertyChanging("MONTH_SENIORITY_CHANGE")
+            _MONTH_SENIORITY_CHANGE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MONTH_SENIORITY_CHANGE")
+            OnMONTH_SENIORITY_CHANGEChanged()
+        End Set
+    End Property
+
+    Private _MONTH_SENIORITY_CHANGE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMONTH_SENIORITY_CHANGEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMONTH_SENIORITY_CHANGEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIME_SENIORITY_AFTER_CHANGE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TIME_SENIORITY_AFTER_CHANGE
+        End Get
+        Set
+            OnTIME_SENIORITY_AFTER_CHANGEChanging(value)
+            ReportPropertyChanging("TIME_SENIORITY_AFTER_CHANGE")
+            _TIME_SENIORITY_AFTER_CHANGE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TIME_SENIORITY_AFTER_CHANGE")
+            OnTIME_SENIORITY_AFTER_CHANGEChanged()
+        End Set
+    End Property
+
+    Private _TIME_SENIORITY_AFTER_CHANGE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTIME_SENIORITY_AFTER_CHANGEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTIME_SENIORITY_AFTER_CHANGEChanged()
     End Sub
 
     #End Region

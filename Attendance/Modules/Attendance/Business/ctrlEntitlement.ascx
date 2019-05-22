@@ -78,21 +78,36 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phép năm trước còn lại chuyển sang %>"
+
+
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Thời gian thâm niên %>"
+                                DataField="TIME_SENIORITY" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TIME_SENIORITY" UniqueName="TIME_SENIORITY" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tháng thâm niên điều chỉnh %>"
+                                DataField="MONTH_SENIORITY_CHANGE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="MONTH_SENIORITY_CHANGE" UniqueName="MONTH_SENIORITY_CHANGE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Thời gian thâm niên sau điều chỉnh %>"
+                                DataField="TIME_SENIORITY_AFTER_CHANGE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
+                                SortExpression="TIME_SENIORITY_AFTER_CHANGE" UniqueName="TIME_SENIORITY_AFTER_CHANGE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép năm trước còn lại chuyển sang %>"
                                 DataField="PREV_HAVE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="PREV_HAVE" UniqueName="PREV_HAVE" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phép năm trước đã nghỉ %>"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép năm trước đã nghỉ %>"
                                 DataField="PREV_USED" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="PREV_USED" UniqueName="PREV_USED" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
 
-                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phép năm trước còn lại được sử dụng %>"
+                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép năm trước còn lại được sử dụng %>"
                                 DataField="PREVTOTAL_HAVE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="PREVTOTAL_HAVE" UniqueName="PREVTOTAL_HAVE" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
 
-                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phép thâm niên %>"
+                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép thâm niên %>"
                                 DataField="SENIORITYHAVE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="SENIORITYHAVE" UniqueName="SENIORITYHAVE" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
@@ -106,7 +121,7 @@
                                 DataField="TOTAL_CUR_HAVE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="TOTAL_CUR_HAVE" UniqueName="TOTAL_CUR_HAVE" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số phép năm nay đã sử dụng %>"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép năm nay đã sử dụng %>"
                                 DataField="CUR_USED" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="CUR_USED" UniqueName="CUR_USED" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
@@ -114,51 +129,110 @@
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_HAVE"
                                 UniqueName="CUR_HAVE" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 01 %>" DataField="CUR_USED1"
+
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép trừ từ số ngày ngoài cơ quan %>" DataField="CUR_HAVE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_HAVE"
+                                UniqueName="CUR_HAVE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép trừ từ số ngày ngoài cơ quan %>" DataField="CUR_HAVE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_HAVE"
+                                UniqueName="CUR_HAVE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 01 %>" DataField="CUR_USED1"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED1"
                                 UniqueName="CUR_USED1">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 02 %>" DataField="CUR_USED2"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 02 %>" DataField="CUR_USED2"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED2"
                                 UniqueName="CUR_USED2">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 03 %>" DataField="CUR_USED3"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 03 %>" DataField="CUR_USED3"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED3"
                                 UniqueName="CUR_USED3">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 04 %>" DataField="CUR_USED4"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 04 %>" DataField="CUR_USED4"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED4"
                                 UniqueName="CUR_USED4">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 05 %>" DataField="CUR_USED5"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 05 %>" DataField="CUR_USED5"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED5"
                                 UniqueName="CUR_USED5">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 06 %>" DataField="CUR_USED6"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 06 %>" DataField="CUR_USED6"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED6"
                                 UniqueName="CUR_USED6">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 07 %>" DataField="CUR_USED7"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 07 %>" DataField="CUR_USED7"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED7"
                                 UniqueName="CUR_USED7">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 08 %>" DataField="CUR_USED8"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 08 %>" DataField="CUR_USED8"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED8"
                                 UniqueName="CUR_USED8">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 09 %>" DataField="CUR_USED9"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 09 %>" DataField="CUR_USED9"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED9"
                                 UniqueName="CUR_USED9">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 10 %>" DataField="CUR_USED10"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 10 %>" DataField="CUR_USED10"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED10"
                                 UniqueName="CUR_USED10">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 11 %>" DataField="CUR_USED11"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 11 %>" DataField="CUR_USED11"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED11"
                                 UniqueName="CUR_USED11">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Tháng 12 %>" DataField="CUR_USED12"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 12 %>" DataField="CUR_USED12"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED12"
+                                UniqueName="CUR_USED12">
+                            </tlk:GridNumericColumn>
+
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 01 %>" DataField="CUR_USED1"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED1"
+                                UniqueName="CUR_USED1">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 02 %>" DataField="CUR_USED2"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED2"
+                                UniqueName="CUR_USED2">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 03 %>" DataField="CUR_USED3"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED3"
+                                UniqueName="CUR_USED3">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 04 %>" DataField="CUR_USED4"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED4"
+                                UniqueName="CUR_USED4">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 05 %>" DataField="CUR_USED5"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED5"
+                                UniqueName="CUR_USED5">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 06 %>" DataField="CUR_USED6"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED6"
+                                UniqueName="CUR_USED6">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 07 %>" DataField="CUR_USED7"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED7"
+                                UniqueName="CUR_USED7">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 08 %>" DataField="CUR_USED8"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED8"
+                                UniqueName="CUR_USED8">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 09 %>" DataField="CUR_USED9"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED9"
+                                UniqueName="CUR_USED9">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 10 %>" DataField="CUR_USED10"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED10"
+                                UniqueName="CUR_USED10">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 11 %>" DataField="CUR_USED11"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED11"
+                                UniqueName="CUR_USED11">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 12 %>" DataField="CUR_USED12"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED12"
                                 UniqueName="CUR_USED12">
                             </tlk:GridNumericColumn>

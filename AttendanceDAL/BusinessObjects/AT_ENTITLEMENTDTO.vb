@@ -59,4 +59,9 @@
     Public Property SENIORITYHAVE As Decimal?
     Public Property TOTAL_HAVE1 As Decimal?
     Public Property PREVTOTAL_HAVE As Decimal?
+
+    Public Property TIME_SENIORITY As Decimal?
+    Public Property MONTH_SENIORITY_CHANGE As Decimal?
+    Public Property TIME_SENIORITY_AFTER_CHANGE As Decimal?
+
 End Class

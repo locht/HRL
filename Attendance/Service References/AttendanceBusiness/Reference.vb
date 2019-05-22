@@ -15157,6 +15157,9 @@ Namespace AttendanceBusiness
         Private MODIFIED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MONTH_SENIORITY_CHANGEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_DESCField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15179,6 +15182,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_SENIORITYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_SENIORITY_AFTER_CHANGEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAME_VNField As String
@@ -15768,6 +15777,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MONTH_SENIORITY_CHANGE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MONTH_SENIORITY_CHANGEField
+            End Get
+            Set
+                If (Me.MONTH_SENIORITY_CHANGEField.Equals(value) <> true) Then
+                    Me.MONTH_SENIORITY_CHANGEField = value
+                    Me.RaisePropertyChanged("MONTH_SENIORITY_CHANGE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ORG_DESC() As String
             Get
                 Return Me.ORG_DESCField
@@ -15867,6 +15889,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.STAFF_RANK_NAMEField, value) <> true) Then
                     Me.STAFF_RANK_NAMEField = value
                     Me.RaisePropertyChanged("STAFF_RANK_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_SENIORITY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TIME_SENIORITYField
+            End Get
+            Set
+                If (Me.TIME_SENIORITYField.Equals(value) <> true) Then
+                    Me.TIME_SENIORITYField = value
+                    Me.RaisePropertyChanged("TIME_SENIORITY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_SENIORITY_AFTER_CHANGE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TIME_SENIORITY_AFTER_CHANGEField
+            End Get
+            Set
+                If (Me.TIME_SENIORITY_AFTER_CHANGEField.Equals(value) <> true) Then
+                    Me.TIME_SENIORITY_AFTER_CHANGEField = value
+                    Me.RaisePropertyChanged("TIME_SENIORITY_AFTER_CHANGE")
                 End If
             End Set
         End Property
