@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("60dfc96b-0a91-482c-bbd1-07e805ed10e2")>
+<Assembly: EdmSchemaAttribute("10abb587-66ce-431e-bb88-9e0a7f9f627e")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -15964,6 +15964,31 @@ Public Partial Class AT_PORTAL_REG
     End Sub
 
     Private Partial Sub OnDAYOUT_KHChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_DAY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _WORK_DAY
+        End Get
+        Set
+            OnWORK_DAYChanging(value)
+            ReportPropertyChanging("WORK_DAY")
+            _WORK_DAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORK_DAY")
+            OnWORK_DAYChanged()
+        End Set
+    End Property
+
+    Private _WORK_DAY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWORK_DAYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnWORK_DAYChanged()
     End Sub
 
     #End Region
