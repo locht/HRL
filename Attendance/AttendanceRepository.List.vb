@@ -153,6 +153,18 @@ Partial Class AttendanceRepository
 
         Return Nothing
     End Function
+    Function GetDayHoliday() As List(Of AT_HOLIDAYDTO)
+        Dim lstHoliday As List(Of AT_HOLIDAYDTO)
+        Using rep As New AttendanceBusinessClient
+            Try
+                lstHoliday = rep.GetDayHoliday()
+                Return lstHoliday
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetHoliday_Hose(ByVal _filter As AT_HOLIDAYDTO,
                                       Optional ByVal PageIndex As Integer = 0,
                                         Optional ByVal PageSize As Integer = Integer.MaxValue,
