@@ -852,7 +852,8 @@ Partial Class ProfileRepository
                                    From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                                    From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
                                    From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID)
-                                    From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) p.SAL_TYPE_ID = f.ID).DefaultIfEmpty
+                                   From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
+                                   From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) p.SAL_TYPE_ID = f.ID).DefaultIfEmpty
                                    From titlegroup In Context.OT_OTHER_LIST.Where(Function(f) t.TITLE_GROUP_ID = f.ID).DefaultIfEmpty
                                    From deci_type In Context.OT_OTHER_LIST.Where(Function(f) p.DECISION_TYPE_ID = f.ID).DefaultIfEmpty
                                    From staffrank In Context.HU_STAFF_RANK.Where(Function(f) p.STAFF_RANK_ID = f.ID).DefaultIfEmpty
@@ -897,7 +898,9 @@ Partial Class ProfileRepository
                                        .SAL_LEVEL_ID = p.SAL_LEVEL_ID,
                                        .SAL_LEVEL_NAME = sal_level.NAME,
                                        .SAL_RANK_ID = p.SAL_RANK_ID,
-                                       .SAL_RANK_NAME = sal_rank.RANK}).FirstOrDefault
+                                       .SAL_RANK_NAME = sal_rank.RANK,
+                                       .DIRECT_MANAGER = p.DIRECT_MANAGER,
+                                       .DIRECT_MANAGER_NAME = direct.FULLNAME_VN}).FirstOrDefault
 
                 working.WORKING_OLD = working_old
             End If
@@ -933,6 +936,7 @@ Partial Class ProfileRepository
                             From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
                             From filecontract In Context.HU_FILECONTRACT.Where(Function(f) f.EMP_ID = e.ID).DefaultIfEmpty
                             From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
+                            From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
                             Where e.ID = _filter.EMPLOYEE_ID And p.ID = workingOLD.ID
                             Order By p.EFFECT_DATE Descending
                             Select New WorkingDTO With {
@@ -979,7 +983,9 @@ Partial Class ProfileRepository
                                  .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE,
                                  .OBJECT_ATTENDANCE_NAME = obj_att.NAME_VN,
                                  .FILING_DATE = p.FILING_DATE,
-                                .TAX_TABLE_Name = taxTable.NAME_VN}
+                                .TAX_TABLE_Name = taxTable.NAME_VN,
+                                 .DIRECT_MANAGER = p.DIRECT_MANAGER,
+                                 .DIRECT_MANAGER_NAME = direct.FULLNAME_VN}
 
                 Dim working = query.First()
                 Dim allowListIds = New Integer() {1, 2, 3, 4, 5}
@@ -1048,6 +1054,7 @@ Partial Class ProfileRepository
             objWorkingData.SAL_RANK_ID = objWorking.SAL_RANK_ID
             objWorkingData.SAL_BASIC = objWorking.SAL_BASIC
             objWorkingData.COST_SUPPORT = objWorking.COST_SUPPORT
+            objWorkingData.DIRECT_MANAGER = objWorking.DIRECT_MANAGER
             objWorkingData.SIGN_DATE = objWorking.SIGN_DATE
             objWorkingData.SIGN_ID = objWorking.SIGN_ID
             objWorkingData.SIGN_NAME = objWorking.SIGN_NAME
@@ -1191,6 +1198,7 @@ Partial Class ProfileRepository
             objWorkingData.SALE_COMMISION_ID = objWorking.SALE_COMMISION_ID
             objWorkingData.SAL_BASIC = objWorking.SAL_BASIC
             objWorkingData.COST_SUPPORT = objWorking.COST_SUPPORT
+            objWorkingData.DIRECT_MANAGER = objWorking.DIRECT_MANAGER
             objWorkingData.SIGN_DATE = objWorking.SIGN_DATE
             objWorkingData.SIGN_ID = objWorking.SIGN_ID
             objWorkingData.SIGN_NAME = objWorking.SIGN_NAME
@@ -1420,6 +1428,7 @@ Partial Class ProfileRepository
                 item.TITLE_ID = objWorking.TITLE_ID
                 item.ORG_ID = objWorking.ORG_ID
                 item.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
+                item.DIRECT_MANAGER = objWorking.DIRECT_MANAGER
                 item.LAST_WORKING_ID = objWorking.ID
                 item.MODIFIED_DATE = Date.Now
             End If

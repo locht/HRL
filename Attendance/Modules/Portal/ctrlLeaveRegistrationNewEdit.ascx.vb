@@ -275,6 +275,10 @@ Public Class ctrlLeaveRegistrationNewEdit
                     If leaveMaster.TO_DATE.HasValue Then
                         rdToDate.SelectedDate = leaveMaster.TO_DATE
                     End If
+                    If leaveMaster.WORK_HARD <> 0 Then
+                        chkWorkday.Checked = leaveMaster.WORK_HARD
+                    End If
+
                     txtNote.Text = leaveMaster.NOTE
                     rgData.Rebind()
                 End If
@@ -356,6 +360,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .STATUS = 3,
                            .DAYIN_KH = rtxtdayinkh.Text,
                            .DAYOUT_KH = rtxtdayoutkh.Text,
+                            .WORK_HARD = chkWorkday.Checked,
                                 .PROCESS = ApproveProcess
                        }
                                 AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
@@ -371,6 +376,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .NOTE = txtNote.Text,
                            .NOTE_AT = txtNote.Text,
                            .STATUS = 3,
+                         .DAYIN_KH = rtxtdayinkh.Text,
+                           .DAYOUT_KH = rtxtdayoutkh.Text,
+                            .WORK_HARD = chkWorkday.Checked,
                                 .PROCESS = ApproveProcess
                        }
                                 obj.ID = hidID.Value
@@ -643,12 +651,17 @@ Public Class ctrlLeaveRegistrationNewEdit
 
                 While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
                     calDay += 1
+                    If cboleaveType.SelectedValue = "" Then
+                        ShowMessage(Translate("CHỌN LOẠI NGHĨ"), NotifyType.Warning)
+                        Exit Function
+                    End If
                     ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+
                     If ktra = 1 Then
                         Using rep As New AttendanceRepository
                             leaveInOutKH = rep.PRS_COUNT_INOUTKH(EmployeeID, Year(rdToDate.SelectedDate))
                             Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
-                            If COUNT = 1 Then
+                            If COUNT > 0 Then
                                 calDay1 += 1
                             End If
                             If Not chkWorkday.Checked Then

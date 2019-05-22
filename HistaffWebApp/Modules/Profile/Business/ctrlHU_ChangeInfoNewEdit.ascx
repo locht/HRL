@@ -7,6 +7,7 @@
 <asp:HiddenField ID="hidOrg" runat="server" />
 <asp:HiddenField ID="hidStaffRank" runat="server" />
 <asp:HiddenField ID="hidID" runat="server" />
+<asp:HiddenField ID="hidManager" runat="server" />
 <style type="text/css">
     .borderRight
     {
@@ -263,6 +264,31 @@
                     <tlk:radbutton id="btnDownload" runat="server" text="<%$ Translate: Tải xuống%>"
                         causesvalidation="false" onclientclicked="rbtClicked" tabindex="3" enableviewstate="false">
                     </tlk:radbutton>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbManagerOld" runat="server" Text="Quản lý trực tiếp"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtManagerOld" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                </td>
+                <td class="borderRight">
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbManagerNew" runat="server" Text="Quản lý trực tiếp"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox runat="server" ID="txtManagerNew" ReadOnly="true" Width="130px" />
+                    <tlk:RadButton runat="server" ID="btnFindDirect" SkinID="ButtonView" CausesValidation="false">
+                    </tlk:RadButton>
+                </td>
+                <td class="lb">
+                </td>
+                <td>
                 </td>
             </tr>
             <tr>

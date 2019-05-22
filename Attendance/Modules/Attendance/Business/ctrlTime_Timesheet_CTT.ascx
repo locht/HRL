@@ -152,6 +152,8 @@
                                 UniqueName="TITLE_NAME" HeaderStyle-Width="150px" SortExpression="TITLE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" UniqueName="ORG_NAME"
                                 SortExpression="ORG_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME" UniqueName="OBJECT_ATTENDANCE_NAME"
+                                SortExpression="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridTemplateColumn HeaderText="D1" AllowFiltering="false" Visible="false" UniqueName="D1">
                                 <HeaderStyle Width="80px" />
                                 <ItemStyle HorizontalAlign="Center" />

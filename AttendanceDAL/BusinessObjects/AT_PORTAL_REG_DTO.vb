@@ -45,6 +45,7 @@
     Public Property TOTAL_LEAVE As Decimal?
     Public Property DAYIN_KH As Decimal?
     Public Property DAYOUT_KH As Decimal?
+    Public Property WORK_HARD As Decimal? ' CHECKBOX NGAY LAM VIEC
     Public Property MODIFIED_BY As String
 
     Public Property MODIFIED_DATE As Date?

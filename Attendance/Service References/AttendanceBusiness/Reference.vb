@@ -4202,6 +4202,9 @@ Namespace AttendanceBusiness
         Private TO_HOURField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HARDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private YEARField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -4756,6 +4759,19 @@ Namespace AttendanceBusiness
                 If (Me.TO_HOURField.Equals(value) <> true) Then
                     Me.TO_HOURField = value
                     Me.RaisePropertyChanged("TO_HOUR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HARD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORK_HARDField
+            End Get
+            Set
+                If (Me.WORK_HARDField.Equals(value) <> true) Then
+                    Me.WORK_HARDField = value
+                    Me.RaisePropertyChanged("WORK_HARD")
                 End If
             End Set
         End Property

@@ -582,8 +582,8 @@ Partial Class ProfileRepository
             'insert phòng ban
             For Each obj As CommendOrgDTO In objCommend.LIST_COMMEND_ORG
                 objDataOrg = New HU_COMMEND_ORG
-                'objDataOrg.ID = Utilities.GetNextSequence(Context, Context.HU_COMMEND_ORG.EntitySet.Name)
-                objDataOrg.ID = rep.AutoGenID("HU_COMMEND_ORG")
+                objDataOrg.ID = Utilities.GetNextSequence(Context, Context.HU_COMMEND_ORG.EntitySet.Name)
+                'objDataOrg.ID = rep.AutoGenID("HU_COMMEND_ORG")
                 objDataOrg.HU_COMMEND_ID = objCommend.ID
                 objDataOrg.MONEY = obj.MONEY
                 objDataOrg.ORG_ID = obj.ORG_ID
