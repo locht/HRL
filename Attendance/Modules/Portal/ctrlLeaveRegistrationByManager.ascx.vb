@@ -170,36 +170,6 @@ Public Class ctrlLeaveRegistrationByManager
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    Dim listDataCheck As New List(Of AT_PROCESS_DTO)
-                    Dim datacheck As AT_PROCESS_DTO
-                    'Kiểm tra các điều kiện trước khi không xác nhận
-                    For Each item As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
-                        If item.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
-                            ShowMessage(Translate("Thao tác này chỉ thực hiện với đơn xin nghỉ phép đang chờ phê duyệt, vui lòng chọn đơn khác"), NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        datacheck = New AT_PROCESS_DTO With {
-                            .EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID"),
-                            .FROM_DATE = item.GetDataKeyValue("FROM_DATE"),
-                            .TO_DATE = item.GetDataKeyValue("TO_DATE"),
-                            .FULL_NAME = item.GetDataKeyValue("EMPLOYEE_NAME")
-                        }
-                        listDataCheck.Add(datacheck)
-                    Next
-
-                    Dim itemError As New AT_PROCESS_DTO
-                    Using rep As New AttendanceRepository
-                        Dim checkResult = rep.CheckTimeSheetApproveVerify(listDataCheck, "LEAVE", itemError)
-                        If Not checkResult Then
-                            If itemError.FROM_DATE IsNot Nothing Then
-                                ShowMessage(String.Format(Translate("TimeSheet of {0} in {1} has been approved"), itemError.FULL_NAME, itemError.FROM_DATE.Value.Month & "/" & itemError.FROM_DATE.Value.Year), NotifyType.Warning)
-                                Exit Sub
-                            Else
-                                ShowMessage(String.Format(Translate("TimeSheet of {0} in {1} has been approved"), itemError.FULL_NAME, itemError.TO_DATE.Value.Month & "/" & itemError.TO_DATE.Value.Year), NotifyType.Warning)
-                                Exit Sub
-                            End If
-                        End If
-                    End Using
                     ctrlCommon_Reject.Show()
             End Select
         Catch ex As Exception
@@ -211,17 +181,29 @@ Public Class ctrlLeaveRegistrationByManager
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
             Dim ID_EMPLOYEE As Integer
-            Dim STATUS As Integer
             Dim NOTE As String
             Dim ID_REGGROUP As Integer
+            Dim fromdate As Date
+            Dim todate As Date
             For Each dr As GridDataItem In rgMain.SelectedItems
                 ID_EMPLOYEE = dr.GetDataKeyValue("ID_EMPLOYEE")
-                STATUS = dr.GetDataKeyValue("STATUS")
                 NOTE = dr.GetDataKeyValue("NOTE")
                 ID_REGGROUP = dr.GetDataKeyValue("ID_REGGROUP")
-                Dim A = EmployeeID
+                fromdate = dr.GetDataKeyValue("FROM_DATE")
+                todate = dr.GetDataKeyValue("TO_DATE")
+                Using rep As New AttendanceRepository
+                    Dim periodid = rep.GetperiodID(ID_EMPLOYEE, fromdate, todate)
+                    Dim result = rep.PRI_PROCESS(EmployeeID, ID_EMPLOYEE, periodid, 1, "LEAVE", NOTE, ID_REGGROUP)
+                    If result = 0 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        Refresh("UpdateView")
+                    Else
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    End If
+                End Using
             Next
-            CurrentState = CommonMessage.STATE_APPROVE
+            rgMain.Rebind()
             UpdateControlState()
         End If
     End Sub
@@ -230,15 +212,26 @@ Public Class ctrlLeaveRegistrationByManager
     Private Sub ctrlCommon_Reject_ButtonCommand(ByVal sender As Object, ByVal e As CommandSaveEventArgs) Handles ctrlCommon_Reject.ButtonCommand
         Dim strComment As String = e.Comment
         Dim ID_EMPLOYEE As Integer
-        Dim STATUS As Integer
-        Dim NOTE As String
+
         Dim ID_REGGROUP As Integer
+        Dim fromdate As Date
+        Dim todate As Date
         For Each dr As GridDataItem In rgMain.SelectedItems
             ID_EMPLOYEE = dr.GetDataKeyValue("ID_EMPLOYEE")
-            STATUS = dr.GetDataKeyValue("STATUS")
-            NOTE = dr.GetDataKeyValue("NOTE")
             ID_REGGROUP = dr.GetDataKeyValue("ID_REGGROUP")
-            Dim A = EmployeeID
+            fromdate = dr.GetDataKeyValue("FROM_DATE")
+            todate = dr.GetDataKeyValue("TO_DATE")
+            Using rep As New AttendanceRepository
+                Dim periodid = rep.GetperiodID(ID_EMPLOYEE, fromdate, todate)
+                Dim result = rep.PRI_PROCESS(EmployeeID, ID_EMPLOYEE, periodid, 2, "LEAVE", strComment, ID_REGGROUP)
+                If result = 0 Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    Refresh("UpdateView")
+                Else
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+            End Using
         Next
         Using rep As New AttendanceRepository
             'If rep.ApprovePortalRegList(lstReject) Then

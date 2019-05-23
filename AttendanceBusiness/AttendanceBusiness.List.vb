@@ -7,6 +7,18 @@ Imports LinqKit
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
+
+        Public Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal _
+             Implements ServiceContracts.IAttendanceBusiness.GetperiodID
+            Using rep As New AttendanceRepository
+                Try
+
+                    Return rep.GetperiodID(employee_Id, fromDate, toDate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable _
               Implements ServiceContracts.IAttendanceBusiness.PRS_COUNT_INOUTKH
             Using rep As New AttendanceRepository

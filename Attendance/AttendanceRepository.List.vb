@@ -3,6 +3,17 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+    Public Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.GetperiodID(employee_Id, fromDate, toDate)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
     Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable
         Using rep As New AttendanceBusinessClient
             Try

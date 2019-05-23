@@ -28665,6 +28665,9 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetLeaveDay", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetLeaveDayResponse")>  _
+        Function GetLeaveDay(ByVal dDate As Date) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUAL", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALResponse")>  _
         Function GetAT_TIME_MANUAL(ByVal _filter As AttendanceBusiness.AT_TIME_MANUALDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO)
         
@@ -28894,6 +28897,9 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetSwipeData", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetSwipeDataResponse")>  _
+        Function GetSwipeData(ByVal _filter As AttendanceBusiness.AT_SWIPE_DATADTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertSwipeData", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataResponse")>  _
         Function InsertSwipeData(ByVal objSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO), ByVal machine As AttendanceBusiness.AT_TERMINALSDTO, ByVal P_FROMDATE As System.Nullable(Of Date), ByVal P_ENDDATE As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -29054,11 +29060,8 @@ Namespace AttendanceBusiness
         Function ApproveOtRegistration(ByVal obj As System.Collections.Generic.List(Of AttendanceBusiness.AT_OT_REGISTRATIONDTO), ByVal empId As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistration", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistrationResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO)),  _
@@ -29098,8 +29101,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTCYCLEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.EMPLOYEE_SHIFT_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.EMPLOYEE_SHIFT_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SWIPE_DATADTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TERMINALSDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
@@ -29167,7 +29170,10 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTINGDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short)))>  _
         Function ValidateOtRegistration(ByVal _validate As AttendanceBusiness.AT_OT_REGISTRATIONDTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/HRReviewOtRegistration", ReplyAction:="http://tempuri.org/IAttendanceBusiness/HRReviewOtRegistrationResponse")>  _
@@ -29261,8 +29267,8 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetEmployeeList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetEmployeeListResponse")>  _
         Function GetEmployeeList() As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetLeaveDay", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetLeaveDayResponse")>  _
-        Function GetLeaveDay(ByVal dDate As Date) As System.Data.DataTable
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_Rice", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_RiceResponse")>  _
+        Function Cal_TimeTImesheet_Rice(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_period_id As System.Nullable(Of Decimal), ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal))) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetSummaryRice", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetSummaryRiceResponse")>  _
         Function GetSummaryRice(ByVal param As AttendanceBusiness.AT_TIME_TIMESHEET_RICEDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
@@ -29364,11 +29370,8 @@ Namespace AttendanceBusiness
         Function InsertWORKSIGNByImport(ByVal dtData As System.Data.DataTable, ByVal period_id As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertWorkSign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertWorkSignResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO)),  _
@@ -29408,8 +29411,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTCYCLEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.EMPLOYEE_SHIFT_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.EMPLOYEE_SHIFT_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SWIPE_DATADTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TERMINALSDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
@@ -29477,7 +29480,10 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTINGDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short)))>  _
         Function InsertWorkSign(ByVal objWorkSigns As System.Collections.Generic.List(Of AttendanceBusiness.AT_WORKSIGNDTO), ByVal objWork As AttendanceBusiness.AT_WORKSIGNDTO, ByVal p_fromdate As Date, ByVal p_endDate As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateWORKSIGN", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateWORKSIGNResponse")>  _
@@ -29499,11 +29505,8 @@ Namespace AttendanceBusiness
         Function GET_ProjectAssign(ByVal param As AttendanceBusiness.AT_PROJECT_ASSIGNDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertProjectAssign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertProjectAssignResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO)),  _
@@ -29543,8 +29546,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTCYCLEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.EMPLOYEE_SHIFT_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.EMPLOYEE_SHIFT_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SWIPE_DATADTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TERMINALSDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
@@ -29612,7 +29615,10 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTINGDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short)))>  _
         Function InsertProjectAssign(ByVal objProjectAssigns As System.Collections.Generic.List(Of AttendanceBusiness.AT_PROJECT_ASSIGNDTO), ByVal objWork As AttendanceBusiness.AT_PROJECT_ASSIGNDTO, ByVal p_fromdate As Date, ByVal p_endDate As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyProjectAssign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyProjectAssignResponse")>  _
@@ -29744,8 +29750,8 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatus", ReplyAction:="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatusResponse")>  _
         Function UpdateTerminalStatus(ByVal obj As AttendanceBusiness.AT_TERMINALSDTO) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetSwipeData", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetSwipeDataResponse")>  _
-        Function GetSwipeData(ByVal _filter As AttendanceBusiness.AT_SWIPE_DATADTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetperiodID", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetperiodIDResponse")>  _
+        Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_INOUTKH", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_INOUTKHResponse")>  _
         Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As System.Data.DataTable
@@ -29928,11 +29934,8 @@ Namespace AttendanceBusiness
         Function GetTimeSheetPortal(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateTimesheet", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateTimesheetResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short))),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_LISTPARAM_SYSTEAMDTO)),  _
@@ -29972,8 +29975,8 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTCYCLEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.EMPLOYEE_SHIFT_DTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.EMPLOYEE_SHIFT_DTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SWIPE_DATADTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TERMINALSDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_SHIFTDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_SHIFTDTO))),  _
@@ -30041,7 +30044,10 @@ Namespace AttendanceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_RICEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_OFFFSETTINGDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO)))>  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Date))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Short)))>  _
         Function ValidateTimesheet(ByVal _validate As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal sType As String, ByVal log As Common.CommonBusiness.UserLog) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetDelareRice", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetDelareRiceResponse")>  _
@@ -30112,9 +30118,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBu", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBuResponse")>  _
         Function ValidateMonthNghiBu(ByVal _validate As AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_Rice", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_RiceResponse")>  _
-        Function Cal_TimeTImesheet_Rice(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_period_id As System.Nullable(Of Decimal), ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal))) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -30147,6 +30150,10 @@ Namespace AttendanceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetLeaveDay(ByVal dDate As Date) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetLeaveDay
+            Return MyBase.Channel.GetLeaveDay(dDate)
+        End Function
         
         Public Function GetAT_TIME_MANUAL(ByVal _filter As AttendanceBusiness.AT_TIME_MANUALDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetAT_TIME_MANUAL
             Return MyBase.Channel.GetAT_TIME_MANUAL(_filter, PageIndex, PageSize, Total, Sorts)
@@ -30450,6 +30457,10 @@ Namespace AttendanceBusiness
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS
             Return MyBase.Channel.GET_PE_ASSESS_MESS(EMP)
+        End Function
+        
+        Public Function GetSwipeData(ByVal _filter As AttendanceBusiness.AT_SWIPE_DATADTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO) Implements AttendanceBusiness.IAttendanceBusiness.GetSwipeData
+            Return MyBase.Channel.GetSwipeData(_filter, PageIndex, PageSize, Total, Sorts)
         End Function
         
         Public Function InsertSwipeData(ByVal objSwipeData As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO), ByVal machine As AttendanceBusiness.AT_TERMINALSDTO, ByVal P_FROMDATE As System.Nullable(Of Date), ByVal P_ENDDATE As System.Nullable(Of Date), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.InsertSwipeData
@@ -30788,8 +30799,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetEmployeeList
         End Function
         
-        Public Function GetLeaveDay(ByVal dDate As Date) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetLeaveDay
-            Return MyBase.Channel.GetLeaveDay(dDate)
+        Public Function Cal_TimeTImesheet_Rice(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_period_id As System.Nullable(Of Decimal), ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal))) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Cal_TimeTImesheet_Rice
+            Return MyBase.Channel.Cal_TimeTImesheet_Rice(_param, log, p_period_id, P_ORG_ID, lstEmployee)
         End Function
         
         Public Function GetSummaryRice(ByVal param As AttendanceBusiness.AT_TIME_TIMESHEET_RICEDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GetSummaryRice
@@ -31128,8 +31139,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.UpdateTerminalStatus(obj)
         End Function
         
-        Public Function GetSwipeData(ByVal _filter As AttendanceBusiness.AT_SWIPE_DATADTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_SWIPE_DATADTO) Implements AttendanceBusiness.IAttendanceBusiness.GetSwipeData
-            Return MyBase.Channel.GetSwipeData(_filter, PageIndex, PageSize, Total, Sorts)
+        Public Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal Implements AttendanceBusiness.IAttendanceBusiness.GetperiodID
+            Return MyBase.Channel.GetperiodID(employee_Id, fromDate, toDate)
         End Function
         
         Public Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.PRS_COUNT_INOUTKH
@@ -31466,10 +31477,6 @@ Namespace AttendanceBusiness
         
         Public Function ValidateMonthNghiBu(ByVal _validate As AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ValidateMonthNghiBu
             Return MyBase.Channel.ValidateMonthNghiBu(_validate)
-        End Function
-        
-        Public Function Cal_TimeTImesheet_Rice(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_period_id As System.Nullable(Of Decimal), ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal))) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Cal_TimeTImesheet_Rice
-            Return MyBase.Channel.Cal_TimeTImesheet_Rice(_param, log, p_period_id, P_ORG_ID, lstEmployee)
         End Function
     End Class
 End Namespace

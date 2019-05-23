@@ -25,7 +25,7 @@ Partial Public Class AttendanceRepository
 
     Public Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, Optional ByVal log As UserLog = Nothing) As Int32
         Using cls As New DataAccess.QueryData
-            Dim obj = New With {.P_EMPLOYEE_ID = employee_id, .P_PERIOD_ID = period_id, .P_STATUS = status, .P_PROCESS_TYPE = process_type, .P_NOTE = notes, .P_ID_REGGROUP = id_reggroup, .P_RESULT = cls.OUT_NUMBER}
+            Dim obj = New With {.p_employee_app_id = employee_id_app, .P_EMPLOYEE_ID = employee_id, .P_PERIOD_ID = period_id, .P_STATUS = status, .P_PROCESS_TYPE = process_type, .P_NOTE = notes, .P_ID_REGGROUP = id_reggroup, .P_RESULT = cls.OUT_NUMBER}
             Dim store = cls.ExecuteStore("PKG_AT_PROCESS.PRI_PROCESS", obj)
             Return Int32.Parse(obj.P_RESULT)
         End Using
@@ -6787,6 +6787,18 @@ Partial Public Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
+    Public Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal
+        Try
+            Dim query = (From d In Context.AT_PERIOD
+                               Where d.START_DATE <= fromDate AndAlso d.END_DATE >= fromDate).Select(Function(f) f.ID).FirstOrDefault()
+            Return query
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+
     Public Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
         Try
             Dim query = From d In Context.AT_PORTAL_REG
