@@ -30,8 +30,13 @@ Public Class _Default
             Exit Sub
         End If
         If mid IsNot Nothing AndAlso mid.Trim <> "" AndAlso fid IsNot Nothing AndAlso fid.Trim <> "" Then
-            view = Me.Register(fid, mid, fid, group, , True)
-            Me.Title = view.ViewDescription
+            Try
+                view = Me.Register(fid, mid, fid, group, , True)
+                Me.Title = view.ViewDescription
+            Catch ex As Exception
+                'ShowMessage(ex.ToString, Utilities.NotifyType.Warning)
+                DisplayException(Me.Title, "", ex)
+            End Try
         End If
     End Sub
 
