@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("927ec7d5-a536-49e5-b5b9-8cd83e6d610d")>
+<Assembly: EdmSchemaAttribute("157c5494-91a9-481d-bb71-955ca22a0a66")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -26408,6 +26408,256 @@ Public Partial Class AT_TIME_TIMESHEET_MACHINET
     End Sub
 
     Private Partial Sub OnLEAVE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_ATTENDANCE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECT_ATTENDANCE
+        End Get
+        Set
+            OnOBJECT_ATTENDANCEChanging(value)
+            ReportPropertyChanging("OBJECT_ATTENDANCE")
+            _OBJECT_ATTENDANCE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECT_ATTENDANCE")
+            OnOBJECT_ATTENDANCEChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_ATTENDANCE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECT_ATTENDANCEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECT_ATTENDANCEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_IN_WORK() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_IN_WORK
+        End Get
+        Set
+            OnMIN_IN_WORKChanging(value)
+            ReportPropertyChanging("MIN_IN_WORK")
+            _MIN_IN_WORK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_IN_WORK")
+            OnMIN_IN_WORKChanged()
+        End Set
+    End Property
+
+    Private _MIN_IN_WORK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_IN_WORKChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_IN_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_OUT_WORK() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_OUT_WORK
+        End Get
+        Set
+            OnMIN_OUT_WORKChanging(value)
+            ReportPropertyChanging("MIN_OUT_WORK")
+            _MIN_OUT_WORK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_OUT_WORK")
+            OnMIN_OUT_WORKChanged()
+        End Set
+    End Property
+
+    Private _MIN_OUT_WORK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_OUT_WORKChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_OUT_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_DEDUCT_WORK() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_DEDUCT_WORK
+        End Get
+        Set
+            OnMIN_DEDUCT_WORKChanging(value)
+            ReportPropertyChanging("MIN_DEDUCT_WORK")
+            _MIN_DEDUCT_WORK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_DEDUCT_WORK")
+            OnMIN_DEDUCT_WORKChanged()
+        End Set
+    End Property
+
+    Private _MIN_DEDUCT_WORK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_DEDUCT_WORKChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_DEDUCT_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_ON_LEAVE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_ON_LEAVE
+        End Get
+        Set
+            OnMIN_ON_LEAVEChanging(value)
+            ReportPropertyChanging("MIN_ON_LEAVE")
+            _MIN_ON_LEAVE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_ON_LEAVE")
+            OnMIN_ON_LEAVEChanged()
+        End Set
+    End Property
+
+    Private _MIN_ON_LEAVE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_ON_LEAVEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_ON_LEAVEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_DEDUCT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_DEDUCT
+        End Get
+        Set
+            OnMIN_DEDUCTChanging(value)
+            ReportPropertyChanging("MIN_DEDUCT")
+            _MIN_DEDUCT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_DEDUCT")
+            OnMIN_DEDUCTChanged()
+        End Set
+    End Property
+
+    Private _MIN_DEDUCT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_DEDUCTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_DEDUCTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_OUT_WORK_DEDUCT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_OUT_WORK_DEDUCT
+        End Get
+        Set
+            OnMIN_OUT_WORK_DEDUCTChanging(value)
+            ReportPropertyChanging("MIN_OUT_WORK_DEDUCT")
+            _MIN_OUT_WORK_DEDUCT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_OUT_WORK_DEDUCT")
+            OnMIN_OUT_WORK_DEDUCTChanged()
+        End Set
+    End Property
+
+    Private _MIN_OUT_WORK_DEDUCT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_OUT_WORK_DEDUCTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_OUT_WORK_DEDUCTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_LATE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_LATE
+        End Get
+        Set
+            OnMIN_LATEChanging(value)
+            ReportPropertyChanging("MIN_LATE")
+            _MIN_LATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_LATE")
+            OnMIN_LATEChanged()
+        End Set
+    End Property
+
+    Private _MIN_LATE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_LATEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_LATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_EARLY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_EARLY
+        End Get
+        Set
+            OnMIN_EARLYChanging(value)
+            ReportPropertyChanging("MIN_EARLY")
+            _MIN_EARLY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_EARLY")
+            OnMIN_EARLYChanged()
+        End Set
+    End Property
+
+    Private _MIN_EARLY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_EARLYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_EARLYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MIN_LATE_EARLY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MIN_LATE_EARLY
+        End Get
+        Set
+            OnMIN_LATE_EARLYChanging(value)
+            ReportPropertyChanging("MIN_LATE_EARLY")
+            _MIN_LATE_EARLY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_LATE_EARLY")
+            OnMIN_LATE_EARLYChanged()
+        End Set
+    End Property
+
+    Private _MIN_LATE_EARLY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_LATE_EARLYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMIN_LATE_EARLYChanged()
     End Sub
 
     #End Region

@@ -113,6 +113,44 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME"
+                                UniqueName="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="120px" SortExpression="OBJECT_ATTENDANCE_NAME" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Đi muộn(Phút) %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút ở cơ quan %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút ngoài cơ quan %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút giảm trừ do đi việc công %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Đi muộn(Phút) %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Đi muộn(Phút) %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Đi muộn(Phút) %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Đi muộn(Phút) %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Đi muộn(Phút) %>" DataField="LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="LATE"
+                                UniqueName="LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
                             <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Vào giữa %>" DataField="SHIFTBACKIN"
                                 UniqueName="SHIFTBACKIN" PickerType="TimePicker" AllowFiltering="false" DataFormatString="{0:HH:mm}"
                                 SortExpression="SHIFTBACKIN">
