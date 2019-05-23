@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlRegisterCO.ascx.vb"
     Inherits="Attendance.ctrlRegisterCO" %>
 <%@ Import Namespace="Common" %>
+
+<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="260" Width="260px" Scrolling="None">
@@ -50,11 +52,11 @@
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdDenngay" MaxLength="12" SkinID="Readonly" runat="server"
-                                ToolTip="">
+                                ToolTip="" Width="150px">
                             </tlk:RadDatePicker>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" Text="Tìm kiếm" runat="server" ToolTip="">
+                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip="" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -65,6 +67,8 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
+                        <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE">
                         <Columns>
@@ -99,6 +103,22 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày %>" DataField="DAY_NUM"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="DAY_NUM"
+                                UniqueName="DAY_NUM">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate:Ngày làm việc %>" DataField="IS_WORKING_DAY" DataType="System.Boolean" FilterControlWidth="20px"   
+                                SortExpression="IS_WORKING_DAY" UniqueName="IS_WORKING_DAY" >
+                                <HeaderStyle HorizontalAlign="Center" Width="50px"/>
+                            </tlk:GridCheckBoxColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày trong kế hoạch %>" DataField="IN_PLAN_DAYS"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="IN_PLAN_DAYS"
+                                UniqueName="IN_PLAN_DAYS">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày ngoài kế hoạch %>" DataField="NOT_IN_PLAN_DAYS"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="NOT_IN_PLAN_DAYS"
+                                UniqueName="NOT_IN_PLAN_DAYS">
+                            </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công %>" DataField="MANUAL_NAME"
                                 SortExpression="MANUAL_NAME" UniqueName="MANUAL_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công nửa ngày %>" DataField="MORNING_NAME"
@@ -129,11 +149,65 @@
 <Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
+
         var enableAjax = true;
-        var oldSize = 0;
+
+        function ValidateFilter(sender, eventArgs) {
+            var params = eventArgs.get_commandArgument() + '';
+            if (params.indexOf("|") > 0) {
+                var s = eventArgs.get_commandArgument().split("|");
+                if (s.length > 1) {
+                    var val = s[1];
+                    if (validateHTMLText(val) || validateSQLText(val)) {
+                        eventArgs.set_cancel(true);
+                    }
+                }
+            }
+        }
+
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('ctl00_MainContent_ctrlRegisterCO_RadSplitter3');
+        //        }
+
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
         }
+
+        function OnClientButtonClicking(sender, args) {
+            if (args.get_item().get_commandName() == 'CREATE') {
+                OpenInsertWindow();
+                args.set_cancel(true);
+            } else if (args.get_item().get_commandName() == 'EDIT') {
+                var bCheck = $find('<%= rgRegisterLeave.ClientID %>').get_masterTableView().get_selectedItems().length;
+                if (bCheck == 0) {
+                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                    args.set_cancel(true);
+                }
+                else if (bCheck > 1) {
+                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                    args.set_cancel(true);
+                } else {
+                    OpenEditWindow();
+                    args.set_cancel(true);
+                }
+            }
+            else if (args.get_item().get_commandName() == 'EXPORT') {
+                var rows = $find('<%= rgRegisterLeave.ClientID %>').get_masterTableView().get_dataItems().length;
+                if (rows == 0) {
+                    var m = '<%= Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY) %>';
+                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                    args.set_cancel(true);
+                    return;
+                }
+                enableAjax = false;
+            }
+        }
+
         function OpenInsertWindow() {
             var m;
             var cbo = $find("<%# cboPeriod.ClientID %>");
@@ -144,10 +218,11 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
             }
-            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0&noscroll=1&periodid=' + periodID, "rwPopup");
+            window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&FormType=0&periodid=' + periodID, "_self"); /*
             oWindow.setSize(800, 480);
-            oWindow.center();
+            oWindow.center(); */
         }
+
         function OpenEditWindow() {
             var grid = $find('<%# rgRegisterLeave.ClientID %>');
             var gridSelected = grid.get_masterTableView().get_selectedItems();
@@ -166,36 +241,17 @@
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     return;
                 }
-                var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&noscroll=1&periodid=' + periodID, "rwPopup");
+                window.open('/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&periodid=' + periodID, "_self"); /*
                 oWindow.setSize(800, 480);
-                oWindow.center();
+                oWindow.center(); */
             }
         }
+
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-        function OnClientButtonClicking(sender, args) {
-            if (args.get_item().get_commandName() == 'CREATE') {
-                OpenInsertWindow();
-                args.set_cancel(true);
-            } else if (args.get_item().get_commandName() == 'EDIT') {
-                var bCheck = $find('<%= rgRegisterLeave.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                }
-                else {
-                    OpenEditWindow();
-                    args.set_cancel(true);
-                }
-            }
-            else if (args.get_item().get_commandName() == 'EXPORT') {
-                enableAjax = false;
-            }
-        }
+
         function OnClientClose(sender, args) {
             var m;
             var arg = args.get_argument();

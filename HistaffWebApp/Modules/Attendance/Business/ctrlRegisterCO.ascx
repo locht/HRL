@@ -67,7 +67,7 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
-                        <ClientEvents OnGridCreated="GridCreated" />
+                        <%--<ClientEvents OnGridCreated="GridCreated" />--%>
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE">
@@ -103,6 +103,22 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày %>" DataField="DAY_NUM"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="DAY_NUM"
+                                UniqueName="DAY_NUM">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate:Ngày làm việc %>" DataField="IS_WORKING_DAY" DataType="System.Boolean" FilterControlWidth="20px"   
+                                SortExpression="IS_WORKING_DAY" UniqueName="IS_WORKING_DAY" >
+                                <HeaderStyle HorizontalAlign="Center" Width="50px"/>
+                            </tlk:GridCheckBoxColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày trong kế hoạch %>" DataField="IN_PLAN_DAYS"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="IN_PLAN_DAYS"
+                                UniqueName="IN_PLAN_DAYS">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày ngoài kế hoạch %>" DataField="NOT_IN_PLAN_DAYS"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="NOT_IN_PLAN_DAYS"
+                                UniqueName="NOT_IN_PLAN_DAYS">
+                            </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công %>" DataField="MANUAL_NAME"
                                 SortExpression="MANUAL_NAME" UniqueName="MANUAL_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công nửa ngày %>" DataField="MORNING_NAME"
@@ -149,9 +165,9 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('ctl00_MainContent_ctrlRegisterCO_RadSplitter3');
-        }
+//        function GridCreated(sender, eventArgs) {
+//            registerOnfocusOut('ctl00_MainContent_ctrlRegisterCO_RadSplitter3');
+//        }
 
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
