@@ -49,7 +49,7 @@
                             <%# Translate("Đối tượng khen thưởng")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboCommendObj" runat="server" CausesValidation="False">
+                            <tlk:RadComboBox ID="cboCommendObj" AutoPostBack="false" runat="server" CausesValidation="False">
                             </tlk:RadComboBox>
                         </td>
                     </tr>
