@@ -14,6 +14,16 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Public Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.PRS_COUNT_SHIFT(employee_id)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
     Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable
         Using rep As New AttendanceBusinessClient
             Try

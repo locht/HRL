@@ -323,7 +323,7 @@ Partial Class ProfileRepository
 
 
             Dim query = (From p In Context.HU_FAMILY_EDIT
-                         From p_g In Context.OT_OTHER_LIST.Where(Function(f) p.RELATION_ID = f.ID).DefaultIfEmpty
+                         From p_g In Context.HU_RELATIONSHIP_LIST.Where(Function(f) p.RELATION_ID = f.ID).DefaultIfEmpty
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And f.USERNAME = log.Username.ToUpper)
                         Where p.STATUS = 1
@@ -335,7 +335,7 @@ Partial Class ProfileRepository
                             .EMPLOYEE_NAME = e.FULLNAME_VN,
                             .FULLNAME = p.FULLNAME,
                             .RELATION_ID = p.RELATION_ID,
-                            .RELATION_NAME = p_g.NAME_VN,
+                            .RELATION_NAME = p_g.NAME,
                             .BIRTH_DATE = p.BIRTH_DATE,
                             .DEDUCT_REG = p.DEDUCT_REG,
                             .ID_NO = p.ID_NO,
