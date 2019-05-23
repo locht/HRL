@@ -250,6 +250,8 @@ Partial Class ProfileRepository
                                                                .DECISION_NO = p.p.NO,
                                                                .COMMEND_OBJ = p.p.COMMEND_OBJ,
                                                                .COMMEND_OBJ_NAME = p.dtkt.NAME_VN,
+                                                               .ORG_NAME = p.o.NAME_VN,
+                                                               .ORG_DESC = p.o.DESCRIPTION_PATH,
                                                                .EFFECT_DATE = p.p.EFFECT_DATE,
                                                                .MONEY = p.p.MONEY,
                                                                .REMARK = p.p.REMARK,
