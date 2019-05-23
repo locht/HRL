@@ -152,6 +152,7 @@
     <Compile Include="BusinessObjects\AT_PROCESS_DTO.vb" />
     <Compile Include="BusinessObjects\AT_OFFFSETTINGDTO.vb" />
     <Compile Include="BusinessObjects\AT_OFFFSETTING_EMPDTO.vb" />
+    <Compile Include="BusinessObjects\CONTRACT_DTO.vb" />
     <Compile Include="BusinessObjects\EMPLOYEE_SHIFT_DTO.vb" />
     <Compile Include="BusinessObjects\LEAVEINOUTKHDTO.vb" />
     <Compile Include="BusinessObjects\LEAVE_DETAIL_EMP_DTO.vb" />

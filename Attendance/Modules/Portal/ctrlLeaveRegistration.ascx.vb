@@ -159,10 +159,10 @@ Public Class ctrlLeaveRegistration
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        'If item.GetDataKeyValue("STATUS") <> 0 And item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM And item.GetDataKeyValue("STATUS") <> PortalStatus.UnVerifiedByHr Then
-                        '    ShowMessage(Translate("Thao tác này chỉ áp dụng với những đơn xin nghỉ phép ở trạng thái Đã lưu, Không duyệt bởi QLTT hoặc Không xác nhận bởi nhân sự. Vui lòng chọn đơn khác"), NotifyType.Error)
-                        '    Exit Sub
-                        'End If
+                        If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
+                            ShowMessage(Translate("Chỉ được xóa ở trạng thái chưa gửi duyệt và không phê duyệt"), NotifyType.Error)
+                            Exit Sub
+                        End If
                     Next
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
@@ -182,7 +182,7 @@ Public Class ctrlLeaveRegistration
                     Dim datacheck As AT_PROCESS_DTO
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval And item.GetDataKeyValue("STATUS") <> PortalStatus.ApprovedByLM Then
+                        If item.GetDataKeyValue("STATUS") = PortalStatus.ApprovedByLM OrElse item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval Then
                             ShowMessage(Translate("Đang ở trạng thái chờ phê duyệt hoặc đã phê duyệt,không thể chỉnh sửa"), NotifyType.Error)
                             Exit Sub
                         End If
@@ -241,6 +241,18 @@ Public Class ctrlLeaveRegistration
                     id_group = dtCheckSendApprove(0)("ID_REGGROUP")
                 End If
             End If
+
+            Using rep As New AttendanceRepository
+                Dim check = rep.CHECK_PERIOD_CLOSE(period_id)
+
+                If check = 0 Then
+                    ShowMessage(Translate("Kì công đã đóng,Xin kiểm tra lại"), NotifyType.Warning)
+                    Exit Sub
+                End If
+            End Using
+           
+
+
             Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, 0, sign_id, id_group)
             If outNumber = 0 Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)

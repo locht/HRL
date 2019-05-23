@@ -38,6 +38,23 @@ Partial Public Class AttendanceRepository
             Return dt
         End Using
     End Function
+    Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
+        Try
+
+            Dim query = From p In Context.HU_CONTRACT
+                      From ce In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
+                      From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.TYPE_ID).DefaultIfEmpty
+                      Where ot.ID = 6358 And p.EMPLOYEE_ID = employee_id
+            Dim lst = query.Select(Function(p) New CONTRACT_DTO With {
+                                       .ID = p.p.ID,
+                                       .STARTDATE = p.p.START_DATE,
+                                       .ENDDATE = p.p.EXPIRE_DATE
+                }).ToList
+            Return lst.ToTable
+        Catch ex As Exception
+
+        End Try
+    End Function
     Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
                                   Optional ByRef Total As Integer = 0,
                                   Optional ByVal PageIndex As Integer = 0,
@@ -6960,12 +6977,13 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 #End Region
-#Region ""
+#Region "CHECK KI CONG DA DONG HAY CHUA"
     Public Function CHECK_PERIOD_CLOSE(ByVal periodid As Integer) As Integer
         Try
 
-            'Dim query = (From p In Context.AT_PERIOD.Where(Function(f) f.ID = periodid)).Select(Function(f) f.s)
+            Dim query = (From p In Context.AT_PERIOD.Where(Function(f) f.ID = periodid)).Select(Function(f) f.STATUS).FirstOrDefault
 
+            Return query
         Catch ex As Exception
 
         End Try
