@@ -49,7 +49,7 @@
                             <%# Translate("Đối tượng khen thưởng")%>
                         </td>
                         <td>
-                            <tlk:RadComboBox ID="cboCommendObj" runat="server" AutoPostBack="True" CausesValidation="False">
+                            <tlk:RadComboBox ID="cboCommendObj" AutoPostBack="false" runat="server" CausesValidation="False">
                             </tlk:RadComboBox>
                         </td>
                     </tr>
@@ -88,7 +88,7 @@
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị nhân viên %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                                 <ItemTemplate>
