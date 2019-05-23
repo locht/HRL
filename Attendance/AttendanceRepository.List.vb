@@ -3,6 +3,28 @@ Imports Framework.UI
 
 Partial Class AttendanceRepository
     Inherits AttendanceRepositoryBase
+    Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.CHECK_CONTRACT(employee_id)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function CHECK_PERIOD_CLOSE(ByVal periodid As Integer) As Integer
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.CHECK_PERIOD_CLOSE(periodid)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal
         Using rep As New AttendanceBusinessClient
             Try

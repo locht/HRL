@@ -88,6 +88,7 @@
             <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.Store.AT_SHIFTCYCLE_DETAIL" store:Type="Tables" Schema="dbo" />
             <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.Store.ATV_HOLIDAY_HOSE" store:Type="Tables" Schema="dbo" />
             <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="AttendanceModel.Store.HU_ANNUALLEAVE_PLANS" store:Type="Tables" Schema="dbo" />
+            <EntitySet Name="HU_CONTRACT_TYPE" EntityType="AttendanceModel.Store.HU_CONTRACT_TYPE" store:Type="Tables" Schema="dbo" />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables" Schema="dbo" />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -1034,6 +1035,7 @@
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_SETUP_SPECIAL">
             <Key>
@@ -1174,16 +1176,16 @@
             <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="MANUAL_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="LEAVE_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="OBJECT_ATTENDANCE" Type="nclob" Nullable="false" />
-            <Property Name="MIN_IN_WORK" Type="nclob" Nullable="false" />
-            <Property Name="MIN_OUT_WORK" Type="nclob" Nullable="false" />
-            <Property Name="MIN_DEDUCT_WORK" Type="nclob" Nullable="false" />
-            <Property Name="MIN_ON_LEAVE" Type="nclob" Nullable="false" />
-            <Property Name="MIN_DEDUCT" Type="nclob" Nullable="false" />
-            <Property Name="MIN_OUT_WORK_DEDUCT" Type="nclob" Nullable="false" />
-            <Property Name="MIN_LATE" Type="nclob" Nullable="false" />
-            <Property Name="MIN_EARLY" Type="nclob" Nullable="false" />
-            <Property Name="MIN_LATE_EARLY" Type="nclob" Nullable="false" />
+            <Property Name="OBJECT_ATTENDANCE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_IN_WORK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_OUT_WORK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_DEDUCT_WORK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_ON_LEAVE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_DEDUCT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_OUT_WORK_DEDUCT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_LATE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_EARLY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MIN_LATE_EARLY" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_DATA_INOUT">
             <Key>
@@ -2235,6 +2237,29 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HU_CONTRACT_TYPE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CODE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PERIOD" Type="number" Nullable="true" Precision="10" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="BHXH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BHYT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BHTN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORD_NO" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TYPE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TYPE_CODE" Type="varchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2542,6 +2567,7 @@
           <EntitySet Name="AT_SHIFTCYCLE_DETAIL" EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" />
           <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" />
           <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="AttendanceModel.HU_ANNUALLEAVE_PLANS" />
+          <EntitySet Name="HU_CONTRACT_TYPE" EntityType="AttendanceModel.HU_CONTRACT_TYPE" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -3583,6 +3609,7 @@
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="STATUS" />
         </EntityType>
         <EntityType Name="AT_SETUP_SPECIAL">
           <Key>
@@ -3723,16 +3750,16 @@
           <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="MANUAL_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="LEAVE_ID" Precision="38" Scale="0" />
-          <Property Type="String" Name="OBJECT_ATTENDANCE" Nullable="false" />
-          <Property Type="String" Name="MIN_IN_WORK" Nullable="false" />
-          <Property Type="String" Name="MIN_OUT_WORK" Nullable="false" />
-          <Property Type="String" Name="MIN_DEDUCT_WORK" Nullable="false" />
-          <Property Type="String" Name="MIN_ON_LEAVE" Nullable="false" />
-          <Property Type="String" Name="MIN_DEDUCT" Nullable="false" />
-          <Property Type="String" Name="MIN_OUT_WORK_DEDUCT" Nullable="false" />
-          <Property Type="String" Name="MIN_LATE" Nullable="false" />
-          <Property Type="String" Name="MIN_EARLY" Nullable="false" />
-          <Property Type="String" Name="MIN_LATE_EARLY" Nullable="false" />
+          <Property Type="Decimal" Name="OBJECT_ATTENDANCE" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_IN_WORK" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_OUT_WORK" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_DEDUCT_WORK" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_ON_LEAVE" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_DEDUCT" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_OUT_WORK_DEDUCT" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_LATE" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_EARLY" Nullable="true" />
+          <Property Type="Decimal" Name="MIN_LATE_EARLY" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_DATA_INOUT">
           <Key>
@@ -4790,6 +4817,29 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HU_CONTRACT_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PERIOD" />
+          <Property Type="String" Name="REMARK" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="BHXH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BHYT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BHTN" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORD_NO" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TYPE_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="TYPE_CODE" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5728,6 +5778,7 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -6972,6 +7023,30 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_CONTRACT_TYPE">
+            <EntityTypeMapping TypeName="AttendanceModel.HU_CONTRACT_TYPE">
+                <MappingFragment StoreEntitySet="HU_CONTRACT_TYPE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="CODE" ColumnName="CODE" />
+                    <ScalarProperty Name="PERIOD" ColumnName="PERIOD" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="BHXH" ColumnName="BHXH" />
+                    <ScalarProperty Name="BHYT" ColumnName="BHYT" />
+                    <ScalarProperty Name="BHTN" ColumnName="BHTN" />
+                    <ScalarProperty Name="ORD_NO" ColumnName="ORD_NO" />
+                    <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                    <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -7002,7 +7077,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="51" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="73" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7052,8 +7127,8 @@
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HUEMD_HUEM" >
           <ConnectorPoint PointX="1.4672115384615385" PointY="10.874329427083334" />
-          <ConnectorPoint PointX="1.4672115384615385" PointY="11.124329427083334" />
-          <ConnectorPoint PointX="2.1742307692307694" PointY="11.124329427083334" />
+          <ConnectorPoint PointX="1.4672115384615385" PointY="11.124329427083332" />
+          <ConnectorPoint PointX="2.1742307692307694" PointY="11.124329427083332" />
           <ConnectorPoint PointX="2.1742307692307694" PointY="10.874329427083334" />
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.AT_TIMESHEET_REGISTER" Width="2.75" PointX="3.625" PointY="9.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -7089,7 +7164,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_OBJECT" Width="1.5" PointX="10.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LATE_COMBACKOUT" Width="1.5" PointX="12.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="25.625" PointY="15.125" Height="5.0571093750000031" IsExpanded="true" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_PERIOD" Width="1.5" PointX="2.625" PointY="13.5" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_PERIOD" Width="2" PointX="2.75" PointY="11.375" Height="3.7109993489583335" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_SPECIAL" Width="1.5" PointX="13.625" PointY="6.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SIGNDEFAULT" Width="1.5" PointX="13.625" PointY="8.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL" Width="1.875" PointX="13.625" PointY="10.5" Height="3.5186979166666656" IsExpanded="true" />
@@ -7137,6 +7212,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" Width="1.5" PointX="11.998932212590674" PointY="2.4056456398245158" />
         <EntityTypeShape EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" Width="1.5" PointX="15.375" PointY="15.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="AttendanceModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="16.375" PointY="18.75" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="AttendanceModel.HU_CONTRACT_TYPE" Width="1.5" PointX="21.375" PointY="3.75" Height="4.4802050781249818" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

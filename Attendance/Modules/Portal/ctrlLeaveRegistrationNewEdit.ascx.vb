@@ -91,6 +91,14 @@ Public Class ctrlLeaveRegistrationNewEdit
             ViewState(Me.ID & "_CHECKSHIFT") = value
         End Set
     End Property
+    Property CHECKCONTRACT As DataTable
+        Get
+            Return ViewState(Me.ID & "_CHECKCONTRACT")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_CHECKCONTRACT") = value
+        End Set
+    End Property
 
     Property dayholiday As List(Of AT_HOLIDAYDTO)
         Get
@@ -203,6 +211,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                     End If
                     dayholiday = rep.GetDayHoliday()
                     CHECKSHIFT = rep.PRS_COUNT_SHIFT(EmployeeID)
+                    CHECKCONTRACT = rep.CHECK_CONTRACT(EmployeeID)
                 End Using
                 If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
                     txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
@@ -367,6 +376,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
+
+
                         Dim selectedFromDate = rdFromDate.SelectedDate
                         Dim selectedToDate = rdToDate.SelectedDate
                         While selectedFromDate.Value.Date <= selectedToDate.Value.Date
@@ -376,8 +387,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 UpdateControlState()
                                 Exit Sub
                             End If
+                            'Dim checkhopdong = (From P In CHECKCONTRACT Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
                             selectedFromDate = selectedFromDate.Value.AddDays(1)
                         End While
+
+
+
                         Dim isInsert As Boolean = True
                         Dim obj As New AT_PORTAL_REG_DTO
                         Dim itemExist = New AT_PORTAL_REG_DTO
@@ -397,8 +412,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .NOTE = txtNote.Text,
                            .NOTE_AT = txtNote.Text,
                            .STATUS = 3,
-                           .DAYIN_KH = rtxtdayinkh.Text,
-                           .DAYOUT_KH = rtxtdayoutkh.Text,
+                           .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
+                           .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
                             .WORK_HARD = chkWorkday.Checked,
                            .MODIFIED_BY = EmployeeID,
                                 .PROCESS = ApproveProcess
@@ -726,8 +741,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                         rtxtdayinkh.Value = Decimal.Parse(calDay1)
                         rtxtdayoutkh.Value = Decimal.Parse(calDay) - Decimal.Parse(calDay1)
                     Else
-                        rtxtdayinkh.Text = Decimal.Parse(0).ToString()
-                        rtxtdayoutkh.Text = Decimal.Parse(0).ToString()
+                        rtxtdayinkh.Text = Nothing
+                        rtxtdayoutkh.Text = Nothing
                     End If
                 End If
                 rgData.DataSource = leaveEmpDetails.OrderBy(Function(f) f.EFFECTIVEDATE)
