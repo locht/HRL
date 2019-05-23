@@ -4,6 +4,7 @@
     Public Property VN_FULLNAME As String
     Public Property EMPLOYEE_CODE As String    
     Public Property WORKINGDAY As DateTime?
+
     Public Property IS_DISSOLVE As Boolean
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String
@@ -45,4 +46,5 @@
     Public Property D29 As String
     Public Property D30 As String
     Public Property D31 As String
+    Public Property WORKINGDAY1 As DateTime?
 End Class

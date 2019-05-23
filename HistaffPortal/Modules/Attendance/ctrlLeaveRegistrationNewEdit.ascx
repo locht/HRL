@@ -126,10 +126,9 @@
         </td>
         <td>
             <tlk:RadComboBox runat="server" ID="cboleaveType" Width="250px" DataTextField="NAME_VN"
-                DataValueField="ID" AutoPostBack="false">
+                DataValueField="ID" AutoPostBack="TRUE">
             </tlk:RadComboBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboleaveType"
-                runat="server" ErrorMessage="<%$ Translate: Chưa chọn loại nghỉ. %>" ToolTip="<%$ Translate: Chưa chọn loại nghỉ. %>"></asp:RequiredFieldValidator>
+           
         </td>
         <td class="lb">
             <%# Translate("Số ngày")%>
@@ -149,9 +148,7 @@
         <td>
             <tlk:RadDatePicker runat="server" ID="rdFromDate" AutoPostBack="true">
             </tlk:RadDatePicker>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdFromDate"
-                runat="server" ErrorMessage="<%$ Translate: Chưa chọn thời gian bắt đầu nghỉ. %>"
-                ToolTip="<%$ Translate: Chưa chọn thời gian bắt đầu nghỉ. %>"></asp:RequiredFieldValidator>
+           
         </td>
         <td class="lb">
             <%# Translate("Thời gian kết thúc nghỉ")%><span class="lbReq">*</span>
@@ -159,9 +156,6 @@
         <td>
             <tlk:RadDatePicker runat="server" ID="rdToDate" AutoPostBack="true">
             </tlk:RadDatePicker>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdToDate"
-                runat="server" ErrorMessage="<%$ Translate: Chưa chọn thời gian kết thúc nghỉ. %>"
-                ToolTip="<%$ Translate: Chưa chọn loại nghỉ. %>"></asp:RequiredFieldValidator>
             <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdToDate"
                 Type="Date" ControlToCompare="rdFromDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"
                 ToolTip="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"></asp:CompareValidator>

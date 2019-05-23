@@ -8,6 +8,8 @@ Namespace AttendanceBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IAttendanceBusiness
         <OperationContract()>
+        Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal) As DataTable
+        <OperationContract()>
         Function GetperiodID(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date) As Decimal
         <OperationContract()>
         Function PRS_COUNT_INOUTKH(ByVal employee_id As Decimal, ByVal year As Decimal) As DataTable
