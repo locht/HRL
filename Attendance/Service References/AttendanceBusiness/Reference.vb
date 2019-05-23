@@ -14503,6 +14503,9 @@ Namespace AttendanceBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DAY_NUMField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14518,7 +14521,13 @@ Namespace AttendanceBusiness
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IN_PLAN_DAYSField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ISTEMINALField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_WORKING_DAYField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LEAVE_FROMField As System.Nullable(Of Date)
@@ -14558,6 +14567,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOTE_APPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOT_IN_PLAN_DAYSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_DESCField As String
@@ -14672,6 +14684,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DAY_NUM() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DAY_NUMField
+            End Get
+            Set
+                If (Me.DAY_NUMField.Equals(value) <> true) Then
+                    Me.DAY_NUMField = value
+                    Me.RaisePropertyChanged("DAY_NUM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EMPLOYEE_CODE() As String
             Get
                 Return Me.EMPLOYEE_CODEField
@@ -14737,6 +14762,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IN_PLAN_DAYS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IN_PLAN_DAYSField
+            End Get
+            Set
+                If (Me.IN_PLAN_DAYSField.Equals(value) <> true) Then
+                    Me.IN_PLAN_DAYSField = value
+                    Me.RaisePropertyChanged("IN_PLAN_DAYS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ISTEMINAL() As System.Nullable(Of Boolean)
             Get
                 Return Me.ISTEMINALField
@@ -14745,6 +14783,19 @@ Namespace AttendanceBusiness
                 If (Me.ISTEMINALField.Equals(value) <> true) Then
                     Me.ISTEMINALField = value
                     Me.RaisePropertyChanged("ISTEMINAL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_WORKING_DAY() As Boolean
+            Get
+                Return Me.IS_WORKING_DAYField
+            End Get
+            Set
+                If (Me.IS_WORKING_DAYField.Equals(value) <> true) Then
+                    Me.IS_WORKING_DAYField = value
+                    Me.RaisePropertyChanged("IS_WORKING_DAY")
                 End If
             End Set
         End Property
@@ -14914,6 +14965,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.NOTE_APPField, value) <> true) Then
                     Me.NOTE_APPField = value
                     Me.RaisePropertyChanged("NOTE_APP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOT_IN_PLAN_DAYS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.NOT_IN_PLAN_DAYSField
+            End Get
+            Set
+                If (Me.NOT_IN_PLAN_DAYSField.Equals(value) <> true) Then
+                    Me.NOT_IN_PLAN_DAYSField = value
+                    Me.RaisePropertyChanged("NOT_IN_PLAN_DAYS")
                 End If
             End Set
         End Property
