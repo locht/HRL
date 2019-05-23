@@ -83,6 +83,22 @@ Public Class ctrlLeaveRegistrationNewEdit
             ViewState(Me.ID & "_leaveInOutKH") = value
         End Set
     End Property
+    Property CHECKSHIFT As DataTable
+        Get
+            Return ViewState(Me.ID & "_CHECKSHIFT")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_CHECKSHIFT") = value
+        End Set
+    End Property
+    Property CHECKCONTRACT As DataTable
+        Get
+            Return ViewState(Me.ID & "_CHECKCONTRACT")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_CHECKCONTRACT") = value
+        End Set
+    End Property
 
     Property dayholiday As List(Of AT_HOLIDAYDTO)
         Get
@@ -194,6 +210,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                         End If
                     End If
                     dayholiday = rep.GetDayHoliday()
+                    CHECKSHIFT = rep.PRS_COUNT_SHIFT(EmployeeID)
+                    CHECKCONTRACT = rep.CHECK_CONTRACT(EmployeeID)
                 End Using
                 If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
                     txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
@@ -338,6 +356,42 @@ Public Class ctrlLeaveRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
+                        If rntxDayRegist.Value.HasValue < rntBalance.Value.HasValue Then
+                            ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
+                        End If
+                        If cboleaveType.SelectedValue = "" Then
+                            ShowMessage(Translate("Chọn loại nghỉ."), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
+                        End If
+                        If rdFromDate.SelectedDate Is Nothing Then
+                            ShowMessage(Translate("Chọn thời gian bắt đầu."), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
+                        End If
+                        If rdToDate.SelectedDate Is Nothing Then
+                            ShowMessage(Translate("Chọn thời gian kết thúc."), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
+                        End If
+
+
+                        Dim selectedFromDate = rdFromDate.SelectedDate
+                        Dim selectedToDate = rdToDate.SelectedDate
+                        While selectedFromDate.Value.Date <= selectedToDate.Value.Date
+                            Dim CHECK1 = (From P In CHECKSHIFT Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                            If CHECK1 = 0 Then
+                                ShowMessage(Translate("Thời gian bạn chọn không có trong ca làn việc,bạn chọn lại."), NotifyType.Warning)
+                                UpdateControlState()
+                                Exit Sub
+                            End If
+                            'Dim checkhopdong = (From P In CHECKCONTRACT Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                            selectedFromDate = selectedFromDate.Value.AddDays(1)
+                        End While
+
+
 
                         Dim isInsert As Boolean = True
                         Dim obj As New AT_PORTAL_REG_DTO
@@ -358,9 +412,10 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .NOTE = txtNote.Text,
                            .NOTE_AT = txtNote.Text,
                            .STATUS = 3,
-                           .DAYIN_KH = rtxtdayinkh.Text,
-                           .DAYOUT_KH = rtxtdayoutkh.Text,
+                           .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
+                           .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
                             .WORK_HARD = chkWorkday.Checked,
+                           .MODIFIED_BY = EmployeeID,
                                 .PROCESS = ApproveProcess
                        }
                                 AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
@@ -379,6 +434,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                          .DAYIN_KH = rtxtdayinkh.Text,
                            .DAYOUT_KH = rtxtdayoutkh.Text,
                             .WORK_HARD = chkWorkday.Checked,
+                            .MODIFIED_BY = EmployeeID,
                                 .PROCESS = ApproveProcess
                        }
                                 obj.ID = hidID.Value
@@ -651,30 +707,28 @@ Public Class ctrlLeaveRegistrationNewEdit
 
                 While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
                     calDay += 1
-                    If cboleaveType.SelectedValue = "" Then
-                        ShowMessage(Translate("CHỌN LOẠI NGHĨ"), NotifyType.Warning)
-                        Exit Function
-                    End If
-                    ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-
-                    If ktra = 1 Then
-                        Using rep As New AttendanceRepository
-                            leaveInOutKH = rep.PRS_COUNT_INOUTKH(EmployeeID, Year(rdToDate.SelectedDate))
-                            Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
+                    Using rep As New AttendanceRepository
+                        leaveInOutKH = rep.PRS_COUNT_INOUTKH(EmployeeID, Year(rdToDate.SelectedDate))
+                        Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
+                        If cboleaveType.SelectedValue = "" Then
+                            ShowMessage(Translate("CHỌN LOẠI NGHĨ"), NotifyType.Warning)
+                            Exit Function
+                        End If
+                        ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                        If ktra = 1 Then
                             If COUNT > 0 Then
                                 calDay1 += 1
                             End If
-                            If Not chkWorkday.Checked Then
-                                Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
-                                If check > 0 OrElse selectedFromDate1.Value.Date.DayOfWeek = DayOfWeek.Saturday OrElse selectedFromDate1.Value.Date.DayOfWeek = DayOfWeek.Sunday Then
-                                    calDay -= 1
-                                End If
+                        End If
+                        If Not chkWorkday.Checked Then
+                            Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
+                            If check > 0 Then
+                                calDay -= 1
                             End If
-                        End Using
-                    End If
+                        End If
+                    End Using
                     selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                 End While
-
             End If
 
             If leaveEmpDetails IsNot Nothing Then
@@ -687,8 +741,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                         rtxtdayinkh.Value = Decimal.Parse(calDay1)
                         rtxtdayoutkh.Value = Decimal.Parse(calDay) - Decimal.Parse(calDay1)
                     Else
-                        rtxtdayinkh.Text = Decimal.Parse(0).ToString()
-                        rtxtdayoutkh.Text = Decimal.Parse(0).ToString()
+                        rtxtdayinkh.Text = Nothing
+                        rtxtdayoutkh.Text = Nothing
                     End If
                 End If
                 rgData.DataSource = leaveEmpDetails.OrderBy(Function(f) f.EFFECTIVEDATE)
@@ -726,7 +780,7 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Private Sub cboleaveType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboleaveType.SelectedIndexChanged
         Try
-
+            CreateDataFilter()
         Catch ex As Exception
 
         End Try
@@ -739,4 +793,5 @@ Public Class ctrlLeaveRegistrationNewEdit
 
         End Try
     End Sub
+
 End Class

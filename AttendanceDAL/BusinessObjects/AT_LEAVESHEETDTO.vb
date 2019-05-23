@@ -27,6 +27,11 @@
     Public Property AFTERNOON_NAME As String
 
     Public Property NOTE As String
+    Public Property IS_WORKING_DAY As Boolean
+    Public Property IN_PLAN_DAYS As Decimal?
+    Public Property NOT_IN_PLAN_DAYS As Decimal?
+    Public Property DAY_NUM As Decimal?
+
     Public Property CREATED_DATE As Date?
     Public Property CREATED_BY As String
     Public Property CREATED_LOG As String

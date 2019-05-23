@@ -34,12 +34,18 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="rdLeaveTo"
                         runat="server" ErrorMessage="<%$ Translate: Nghỉ đến ngày chưa chọn. %>" ToolTip="<%$ Translate: Nghỉ đến ngày chưa chọn. %>"> </asp:RequiredFieldValidator>
                 </td>
+                <td class="lb">
+                    <%# Translate("Số ngày nghỉ")%>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtDayNum" runat="server" CausesValidation="false" Enabled="false"></tlk:RadTextBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
                     <%# Translate("Kiểu công")%><span class="lbReq">*</span>
                 </td>
-                <td colspan="3">
+                <td>
                     <tlk:RadComboBox ID="cboKieuCong" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="cboKieuCong"
@@ -47,6 +53,13 @@
                     <asp:CustomValidator ID="cvalKieuCong" ControlToValidate="cboKieuCong" runat="server" ErrorMessage="<%$ Translate: Kiểu công không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Kiểu công không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("Ngày làm việc")%>
+                </td>
+                <td>
+                    <tlk:RadButton ToggleType="CheckBox" runat="server" ID="chkIsWorkingDay" ButtonType="ToggleButton" CausesValidation="false">
+                    </tlk:RadButton>
                 </td>
             </tr>
             <tr>

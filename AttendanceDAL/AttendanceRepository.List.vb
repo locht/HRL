@@ -23,6 +23,7 @@ Partial Public Class AttendanceRepository
         End Using
     End Function
 
+
     Public Function PRI_PROCESS(ByVal employee_id_app As Decimal, ByVal employee_id As Decimal, ByVal period_id As Integer, ByVal status As Decimal, ByVal process_type As String, ByVal notes As String, ByVal id_reggroup As Integer, Optional ByVal log As UserLog = Nothing) As Int32
         Using cls As New DataAccess.QueryData
             Dim obj = New With {.p_employee_app_id = employee_id_app, .P_EMPLOYEE_ID = employee_id, .P_PERIOD_ID = period_id, .P_STATUS = status, .P_PROCESS_TYPE = process_type, .P_NOTE = notes, .P_ID_REGGROUP = id_reggroup, .P_RESULT = cls.OUT_NUMBER}
@@ -36,6 +37,23 @@ Partial Public Class AttendanceRepository
                                                                                                .P_STATUS = status_id, .P_YEAR = year, .P_CUR = cls.OUT_CURSOR})
             Return dt
         End Using
+    End Function
+    Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
+        Try
+
+            Dim query = From p In Context.HU_CONTRACT
+                      From ce In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.CONTRACT_TYPE_ID).DefaultIfEmpty
+                      From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.TYPE_ID).DefaultIfEmpty
+                      Where ot.ID = 6358 And p.EMPLOYEE_ID = employee_id
+            Dim lst = query.Select(Function(p) New CONTRACT_DTO With {
+                                       .ID = p.p.ID,
+                                       .STARTDATE = p.p.START_DATE,
+                                       .ENDDATE = p.p.EXPIRE_DATE
+                }).ToList
+            Return lst.ToTable
+        Catch ex As Exception
+
+        End Try
     End Function
     Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
                                   Optional ByRef Total As Integer = 0,
@@ -278,7 +296,7 @@ Partial Public Class AttendanceRepository
                 itemInsert.CREATED_DATE = Date.Now
                 itemInsert.CREATED_LOG = log.ComputerName
                 itemInsert.NVALUE = itemRegister.NVALUE
-                itemInsert.MODIFIED_BY = log.ComputerName
+                itemInsert.MODIFIED_BY = itemRegister.MODIFIED_BY
                 itemInsert.MODIFIED_DATE = Date.Now
                 itemInsert.SVALUE = itemRegister.PROCESS
                 itemInsert.NVALUE_ID = itemRegister.NVALUE_ID
@@ -491,7 +509,7 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
-    
+
 
     Public Function ModifyHoliday(ByVal objTitle As AT_HOLIDAYDTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -552,7 +570,7 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
-   
+
     Public Function GetDayHoliday() As List(Of AT_HOLIDAYDTO)
         Dim query = From p In Context.AT_HOLIDAY
         Dim lst = query.Select(Function(p) New AT_HOLIDAYDTO With {
@@ -2962,7 +2980,19 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+    Public Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal) As DataTable
+        Try
+            Dim query = From p In Context.AT_WORKSIGN
+                        From E In Context.HU_EMPLOYEE.Where(Function(F) F.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+            Dim lst = query.Select(Function(p) New AT_WORKSIGNDTO With {
+                                       .ID = p.p.ID,
+                                .WORKINGDAY1 = p.p.WORKINGDAY}).ToList
+            Return lst.ToTable
 
+        Catch ex As Exception
+
+        End Try
+    End Function
     Public Function GetAT_ListShift() As DataTable
         Try
 
@@ -6337,7 +6367,7 @@ Partial Public Class AttendanceRepository
             Return Int32.Parse(obj.P_RESULT)
         End Using
     End Function
-  
+
     ' lấy seq đăng ký portal
     Public Function GET_SEQ_PORTAL_RGT() As Decimal
         Using cls As New DataAccess.QueryData
@@ -6396,6 +6426,7 @@ Partial Public Class AttendanceRepository
             Dim query = From p In Context.AT_PORTAL_REG
                         From ce In Context.HUV_AT_PORTAL.Where(Function(f) f.ID_REGGROUP = p.ID)
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.ID_EMPLOYEE).DefaultIfEmpty
+                        From user In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.MODIFIED_BY).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From fl In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.ID_SIGN).DefaultIfEmpty
@@ -6412,7 +6443,7 @@ Partial Public Class AttendanceRepository
                                                                .TO_DATE = ce.TO_DATE,
                                                                .REASON = p.REASON,
                                                                .MODIFIED_DATE = p.MODIFIED_DATE,
-                                                               .MODIFIED_BY = p.MODIFIED_BY,
+                                                               .MODIFIED_BY = user.FULLNAME_VN,
                                                                .ID_SIGN = p.ID_SIGN,
                                                                .SIGN_CODE = fl.CODE,
                                                                .TOTAL_LEAVE = ce.NVALUE,
@@ -6946,4 +6977,19 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 #End Region
+#Region "CHECK KI CONG DA DONG HAY CHUA"
+    Public Function CHECK_PERIOD_CLOSE(ByVal periodid As Integer) As Integer
+        Try
+
+            Dim query = (From p In Context.AT_PERIOD.Where(Function(f) f.ID = periodid)).Select(Function(f) f.STATUS).FirstOrDefault
+
+            Return query
+        Catch ex As Exception
+
+        End Try
+    End Function
+#End Region
+
+
+
 End Class

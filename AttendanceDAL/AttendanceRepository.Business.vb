@@ -3086,6 +3086,10 @@ Partial Public Class AttendanceRepository
                                                                        .NGHIBUCONLAI = If((p.m.MORNING_ID = 251 Or p.m.AFTERNOON_ID = 251), p.nb.CUR_HAVE, Nothing),
                                                                        .WORKINGDAY = p.p.WORKINGDAY,
                                                                        .NOTE = p.p.NOTE,
+                                                                       .IS_WORKING_DAY = p.p.IS_WORKING_DAY,
+                                                                       .IN_PLAN_DAYS = p.p.IN_PLAN_DAYS,
+                                                                       .NOT_IN_PLAN_DAYS = p.p.NOT_IN_PLAN_DAYS,
+                                                                       .DAY_NUM = p.p.DAY_NUM,
                                                                        .NOTE_APP = p.p.NOTE_APP,
                                                                        .CREATED_BY = p.p.CREATED_BY,
                                                                        .CREATED_DATE = p.p.CREATED_DATE,
@@ -3119,6 +3123,10 @@ Partial Public Class AttendanceRepository
                               BALANCE_NOW = g.Max(Function(p) p.BALANCE_NOW),
                               NGHIBUCONLAI = g.Max(Function(p) p.NGHIBUCONLAI),
                               NOTE = g.Max(Function(p) p.NOTE),
+                              IS_WORKING_DAY = g.Max(Function(p) If(p.IS_WORKING_DAY = False, 0, -1)),
+                              IN_PLAN_DAYS = g.Max(Function(p) p.IN_PLAN_DAYS),
+                              NOT_IN_PLAN_DAYS = g.Max(Function(p) p.NOT_IN_PLAN_DAYS),
+                              DAY_NUM = g.Max(Function(p) p.DAY_NUM),
                               CREATED_DATE = CType(g.Max(Function(p) p.CREATED_DATE), DateTime?),
                               CREATED_BY = g.Max(Function(p) p.CREATED_BY),
                               CREATED_LOG = g.Max(Function(p) p.CREATED_LOG),
@@ -3153,6 +3161,10 @@ Partial Public Class AttendanceRepository
                                                                        .NGHIBUCONLAI = f.NGHIBUCONLAI,
                                                                        .WORKINGDAY = f.WORKINGDAY,
                                                                        .NOTE = f.NOTE,
+                                                                       .IS_WORKING_DAY = f.IS_WORKING_DAY,
+                                                                       .IN_PLAN_DAYS = f.IN_PLAN_DAYS,
+                                                                       .NOT_IN_PLAN_DAYS = f.NOT_IN_PLAN_DAYS,
+                                                                       .DAY_NUM = f.DAY_NUM,
                                                                        .CREATED_BY = f.CREATED_BY,
                                                                        .CREATED_DATE = f.CREATED_DATE,
                                                                        .CREATED_LOG = f.CREATED_LOG,
@@ -3331,6 +3343,10 @@ Partial Public Class AttendanceRepository
                                                                        .NBCL = p.nb.CUR_HAVE,
                                                                        .WORKINGDAY = p.p.WORKINGDAY,
                                                                        .NOTE = p.p.NOTE,
+                                                                       .IS_WORKING_DAY = p.p.IS_WORKING_DAY,
+                                                                       .DAY_NUM = p.p.DAY_NUM,
+                                                                       .IN_PLAN_DAYS = p.p.IN_PLAN_DAYS,
+                                                                       .NOT_IN_PLAN_DAYS = p.p.NOT_IN_PLAN_DAYS,
                                                                        .NOTE_APP = p.p.NOTE_APP,
                                                                        .CREATED_BY = p.p.CREATED_BY,
                                                                        .CREATED_DATE = p.p.CREATED_DATE,
@@ -3461,6 +3477,8 @@ Partial Public Class AttendanceRepository
                             objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID
                             objLeaveData.MORNING_ID = objLeave.MORNING_ID
                             'objLeaveData.NOTE = objLeave.NOTE
+                            objLeaveData.IS_WORKING_DAY = objLeave.IS_WORKING_DAY
+                            objLeaveData.DAY_NUM = objLeave.DAY_NUM
                             objLeaveData.NOTE_APP = objLeave.NOTE_APP
                             fromdateNext = fromdateNext.Value.AddDays(1)
                             Context.AT_LEAVESHEET.AddObject(objLeaveData)
@@ -3488,6 +3506,8 @@ Partial Public Class AttendanceRepository
                             objLeaveData.MANUAL_ID = objLeave.MANUAL_ID
                             objLeaveData.AFTERNOON_ID = objLeave.AFTERNOON_ID
                             objLeaveData.MORNING_ID = objLeave.MORNING_ID
+                            objLeaveData.IS_WORKING_DAY = objLeave.IS_WORKING_DAY
+                            objLeaveData.DAY_NUM = objLeave.DAY_NUM
                             'objLeaveData.NOTE = objLeave.NOTE
                             objLeaveData.NOTE_APP = objLeave.NOTE_APP
                             fromdateNext = fromdateNext.Value.AddDays(1)
@@ -3564,6 +3584,8 @@ Partial Public Class AttendanceRepository
                 objLeaveData.MORNING_ID = objLeave.MORNING_ID
                 'objLeaveData.NOTE = objLeave.NOTE
                 objLeaveData.NOTE_APP = objLeave.NOTE_APP
+                objLeaveData.IS_WORKING_DAY = objLeave.IS_WORKING_DAY
+                objLeaveData.DAY_NUM = objLeave.DAY_NUM
                 objLeave.LEAVE_FROM = objLeave.LEAVE_FROM.Value.AddDays(1)
                 Context.AT_LEAVESHEET.AddObject(objLeaveData)
             End While
