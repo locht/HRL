@@ -708,15 +708,17 @@ Public Class ctrlSwipeDataDownload
     End Sub
 
     Private Function ConvertDateTo24H(ByVal strDate As String, ByVal strCulture As String) As String
+        Dim outDate As Date
+        Dim StrOut As String = String.Empty
         Try
             If strDate = String.Empty Then Return String.Empty
-            Dim StrOut As String = String.Empty
             Dim culture As System.Globalization.CultureInfo = New System.Globalization.CultureInfo(strCulture)
-            Dim outDate As Date = Convert.ToDateTime(strDate, culture)
+            outDate = Convert.ToDateTime(strDate, culture)
             StrOut = String.Format("{0}/{1}/{2} {3}:{4}", outDate.Day, outDate.Month, outDate.Year, outDate.Hour, outDate.Minute)
             Return StrOut
         Catch ex As Exception
-            Return String.Empty
+            ShowMessage(strDate + " Loi format date:" + ex.ToString, NotifyType.Warning)
+            'Return String.Empty
         End Try
     End Function
 #End Region
