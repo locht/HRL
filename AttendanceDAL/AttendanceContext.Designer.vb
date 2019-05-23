@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("022ef128-fec3-4588-9a86-d730d5e939a4")>
+<Assembly: EdmSchemaAttribute("9b016bde-3eaa-41b8-adb2-03f0af33c9d1")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -25702,9 +25702,29 @@ Public Partial Class AT_TIME_TIMESHEET_MACHINET
     ''' Create a new AT_TIME_TIMESHEET_MACHINET object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    Public Shared Function CreateAT_TIME_TIMESHEET_MACHINET(id As Global.System.Decimal) As AT_TIME_TIMESHEET_MACHINET
+    ''' <param name="oBJECT_ATTENDANCE">Initial value of the OBJECT_ATTENDANCE property.</param>
+    ''' <param name="mIN_IN_WORK">Initial value of the MIN_IN_WORK property.</param>
+    ''' <param name="mIN_OUT_WORK">Initial value of the MIN_OUT_WORK property.</param>
+    ''' <param name="mIN_DEDUCT_WORK">Initial value of the MIN_DEDUCT_WORK property.</param>
+    ''' <param name="mIN_ON_LEAVE">Initial value of the MIN_ON_LEAVE property.</param>
+    ''' <param name="mIN_DEDUCT">Initial value of the MIN_DEDUCT property.</param>
+    ''' <param name="mIN_OUT_WORK_DEDUCT">Initial value of the MIN_OUT_WORK_DEDUCT property.</param>
+    ''' <param name="mIN_LATE">Initial value of the MIN_LATE property.</param>
+    ''' <param name="mIN_EARLY">Initial value of the MIN_EARLY property.</param>
+    ''' <param name="mIN_LATE_EARLY">Initial value of the MIN_LATE_EARLY property.</param>
+    Public Shared Function CreateAT_TIME_TIMESHEET_MACHINET(id As Global.System.Decimal, oBJECT_ATTENDANCE As Global.System.String, mIN_IN_WORK As Global.System.String, mIN_OUT_WORK As Global.System.String, mIN_DEDUCT_WORK As Global.System.String, mIN_ON_LEAVE As Global.System.String, mIN_DEDUCT As Global.System.String, mIN_OUT_WORK_DEDUCT As Global.System.String, mIN_LATE As Global.System.String, mIN_EARLY As Global.System.String, mIN_LATE_EARLY As Global.System.String) As AT_TIME_TIMESHEET_MACHINET
         Dim aT_TIME_TIMESHEET_MACHINET as AT_TIME_TIMESHEET_MACHINET = New AT_TIME_TIMESHEET_MACHINET
         aT_TIME_TIMESHEET_MACHINET.ID = id
+        aT_TIME_TIMESHEET_MACHINET.OBJECT_ATTENDANCE = oBJECT_ATTENDANCE
+        aT_TIME_TIMESHEET_MACHINET.MIN_IN_WORK = mIN_IN_WORK
+        aT_TIME_TIMESHEET_MACHINET.MIN_OUT_WORK = mIN_OUT_WORK
+        aT_TIME_TIMESHEET_MACHINET.MIN_DEDUCT_WORK = mIN_DEDUCT_WORK
+        aT_TIME_TIMESHEET_MACHINET.MIN_ON_LEAVE = mIN_ON_LEAVE
+        aT_TIME_TIMESHEET_MACHINET.MIN_DEDUCT = mIN_DEDUCT
+        aT_TIME_TIMESHEET_MACHINET.MIN_OUT_WORK_DEDUCT = mIN_OUT_WORK_DEDUCT
+        aT_TIME_TIMESHEET_MACHINET.MIN_LATE = mIN_LATE
+        aT_TIME_TIMESHEET_MACHINET.MIN_EARLY = mIN_EARLY
+        aT_TIME_TIMESHEET_MACHINET.MIN_LATE_EARLY = mIN_LATE_EARLY
         Return aT_TIME_TIMESHEET_MACHINET
     End Function
 
@@ -26362,6 +26382,256 @@ Public Partial Class AT_TIME_TIMESHEET_MACHINET
     End Sub
 
     Private Partial Sub OnLEAVE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_ATTENDANCE() As Global.System.String
+        Get
+            Return _OBJECT_ATTENDANCE
+        End Get
+        Set
+            OnOBJECT_ATTENDANCEChanging(value)
+            ReportPropertyChanging("OBJECT_ATTENDANCE")
+            _OBJECT_ATTENDANCE = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("OBJECT_ATTENDANCE")
+            OnOBJECT_ATTENDANCEChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_ATTENDANCE As Global.System.String
+    Private Partial Sub OnOBJECT_ATTENDANCEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnOBJECT_ATTENDANCEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_IN_WORK() As Global.System.String
+        Get
+            Return _MIN_IN_WORK
+        End Get
+        Set
+            OnMIN_IN_WORKChanging(value)
+            ReportPropertyChanging("MIN_IN_WORK")
+            _MIN_IN_WORK = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_IN_WORK")
+            OnMIN_IN_WORKChanged()
+        End Set
+    End Property
+
+    Private _MIN_IN_WORK As Global.System.String
+    Private Partial Sub OnMIN_IN_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_IN_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_OUT_WORK() As Global.System.String
+        Get
+            Return _MIN_OUT_WORK
+        End Get
+        Set
+            OnMIN_OUT_WORKChanging(value)
+            ReportPropertyChanging("MIN_OUT_WORK")
+            _MIN_OUT_WORK = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_OUT_WORK")
+            OnMIN_OUT_WORKChanged()
+        End Set
+    End Property
+
+    Private _MIN_OUT_WORK As Global.System.String
+    Private Partial Sub OnMIN_OUT_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_OUT_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_DEDUCT_WORK() As Global.System.String
+        Get
+            Return _MIN_DEDUCT_WORK
+        End Get
+        Set
+            OnMIN_DEDUCT_WORKChanging(value)
+            ReportPropertyChanging("MIN_DEDUCT_WORK")
+            _MIN_DEDUCT_WORK = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_DEDUCT_WORK")
+            OnMIN_DEDUCT_WORKChanged()
+        End Set
+    End Property
+
+    Private _MIN_DEDUCT_WORK As Global.System.String
+    Private Partial Sub OnMIN_DEDUCT_WORKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_DEDUCT_WORKChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_ON_LEAVE() As Global.System.String
+        Get
+            Return _MIN_ON_LEAVE
+        End Get
+        Set
+            OnMIN_ON_LEAVEChanging(value)
+            ReportPropertyChanging("MIN_ON_LEAVE")
+            _MIN_ON_LEAVE = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_ON_LEAVE")
+            OnMIN_ON_LEAVEChanged()
+        End Set
+    End Property
+
+    Private _MIN_ON_LEAVE As Global.System.String
+    Private Partial Sub OnMIN_ON_LEAVEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_ON_LEAVEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_DEDUCT() As Global.System.String
+        Get
+            Return _MIN_DEDUCT
+        End Get
+        Set
+            OnMIN_DEDUCTChanging(value)
+            ReportPropertyChanging("MIN_DEDUCT")
+            _MIN_DEDUCT = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_DEDUCT")
+            OnMIN_DEDUCTChanged()
+        End Set
+    End Property
+
+    Private _MIN_DEDUCT As Global.System.String
+    Private Partial Sub OnMIN_DEDUCTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_DEDUCTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_OUT_WORK_DEDUCT() As Global.System.String
+        Get
+            Return _MIN_OUT_WORK_DEDUCT
+        End Get
+        Set
+            OnMIN_OUT_WORK_DEDUCTChanging(value)
+            ReportPropertyChanging("MIN_OUT_WORK_DEDUCT")
+            _MIN_OUT_WORK_DEDUCT = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_OUT_WORK_DEDUCT")
+            OnMIN_OUT_WORK_DEDUCTChanged()
+        End Set
+    End Property
+
+    Private _MIN_OUT_WORK_DEDUCT As Global.System.String
+    Private Partial Sub OnMIN_OUT_WORK_DEDUCTChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_OUT_WORK_DEDUCTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_LATE() As Global.System.String
+        Get
+            Return _MIN_LATE
+        End Get
+        Set
+            OnMIN_LATEChanging(value)
+            ReportPropertyChanging("MIN_LATE")
+            _MIN_LATE = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_LATE")
+            OnMIN_LATEChanged()
+        End Set
+    End Property
+
+    Private _MIN_LATE As Global.System.String
+    Private Partial Sub OnMIN_LATEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_LATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_EARLY() As Global.System.String
+        Get
+            Return _MIN_EARLY
+        End Get
+        Set
+            OnMIN_EARLYChanging(value)
+            ReportPropertyChanging("MIN_EARLY")
+            _MIN_EARLY = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_EARLY")
+            OnMIN_EARLYChanged()
+        End Set
+    End Property
+
+    Private _MIN_EARLY As Global.System.String
+    Private Partial Sub OnMIN_EARLYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_EARLYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property MIN_LATE_EARLY() As Global.System.String
+        Get
+            Return _MIN_LATE_EARLY
+        End Get
+        Set
+            OnMIN_LATE_EARLYChanging(value)
+            ReportPropertyChanging("MIN_LATE_EARLY")
+            _MIN_LATE_EARLY = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("MIN_LATE_EARLY")
+            OnMIN_LATE_EARLYChanged()
+        End Set
+    End Property
+
+    Private _MIN_LATE_EARLY As Global.System.String
+    Private Partial Sub OnMIN_LATE_EARLYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMIN_LATE_EARLYChanged()
     End Sub
 
     #End Region

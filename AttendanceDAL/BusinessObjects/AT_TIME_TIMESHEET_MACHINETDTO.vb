@@ -51,4 +51,17 @@
     Public Property MODIFIED_LOG As String
     Public Property SALARIED_HOUR As Decimal?
     Public Property NOTSALARIED_HOUR As Decimal?
+
+    Public Property OBJECT_ATTENDANCE As Decimal?
+    Public Property OBJECT_ATTENDANCE_NAME As String
+    Public Property MIN_IN_WORK As Decimal?
+    Public Property MIN_OUT_WORK As Decimal?
+    Public Property MIN_DEDUCT_WORK As Decimal?
+    Public Property MIN_ON_LEAVE As Decimal?
+    Public Property MIN_DEDUCT As Decimal?
+    Public Property MIN_OUT_WORK_DEDUCT As Decimal?
+    Public Property MIN_LATE As Decimal?
+    Public Property MIN_EARLY As Decimal?
+    Public Property MIN_LATE_EARLY As Decimal?
+
 End Class
