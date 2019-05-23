@@ -105,7 +105,7 @@ Partial Class ProfileRepository
                                                                        .EFFECT_DATE = d.d.EFFECT_DATE,
                                                                        .PERIOD_ID = d.d.PERIOD_ID,
                                                                        .DEDUCT_FROM_SALARY = d.d.DEDUCT_FROM_SALARY,
-                                                                       .MONEY = d.de.MONEY,
+                                                                       .MONEY = d.d.MONEY,
                                                                        .INDEMNIFY_MONEY = d.d.INDEMNIFY_MONEY,
                                                                        .TITLE_NAME = d.t.NAME_VN,
                                                                        .ORG_NAME = d.o.NAME_VN,

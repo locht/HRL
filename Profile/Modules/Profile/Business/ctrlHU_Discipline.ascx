@@ -96,6 +96,8 @@
                                 DataFormatString="{0:dd/MM/yyyy}" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="MONEY" ItemStyle-HorizontalAlign="Right"
                                 DataFormatString="{0:N0}" SortExpression="MONEY" UniqueName="MONEY" />
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng giá trị thiệt hại %>" DataField="INDEMNIFY_MONEY" ItemStyle-HorizontalAlign="Right"
+                                DataFormatString="{0:N0}" SortExpression="INDEMNIFY_MONEY" UniqueName="INDEMNIFY_MONEY" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian thi hành kỷ luật %>" DataField="PERFORM_TIME"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="PERFORM_TIME" UniqueName="PERFORM_TIME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
@@ -140,10 +142,10 @@
 
         function OpenNew() {
             window.open('/Default.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&FormType=0&noscroll=1', "_self")
-//            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&FormType=0&noscroll=1', "rwPopup");
-//            var pos = $("html").offset();
-//            oWindow.setSize(1020, $(window).height());
-//            oWindow.center();
+            //            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&FormType=0&noscroll=1', "rwPopup");
+            //            var pos = $("html").offset();
+            //            oWindow.setSize(1020, $(window).height());
+            //            oWindow.center();
         }
 
         function OpenEdit() {
@@ -154,11 +156,11 @@
                 return 1;
             var id = $find('<%= rgDiscipline.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             window.open('/Default.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&noscroll=1&FormType=1&ID=' + id, "_self")
-//            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&noscroll=1&FormType=1&ID=' + id, "rwPopup");
-//            var pos = $("html").offset();
-//            oWindow.setSize(1020, $(window).height());
-//            oWindow.center();
-//            return 2;
+            //            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&noscroll=1&FormType=1&ID=' + id, "rwPopup");
+            //            var pos = $("html").offset();
+            //            oWindow.setSize(1020, $(window).height());
+            //            oWindow.center();
+            //            return 2;
         }
 
         function clientButtonClicking(sender, args) {
