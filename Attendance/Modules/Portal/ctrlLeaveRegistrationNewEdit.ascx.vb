@@ -387,7 +387,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 UpdateControlState()
                                 Exit Sub
                             End If
-                            'Dim checkhopdong = (From P In CHECKCONTRACT Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                            Dim checkhopdong = (From P In CHECKCONTRACT Where P("STARTDATE") <= selectedFromDate And P("STARTDATE") >= selectedFromDate Select P).ToList.Count
+                            If checkhopdong > 0 Then
+                                ShowMessage(Translate("Nhân viên đang là hợp đồng thử việc,thao thác không thành công"), NotifyType.Warning)
+                                UpdateControlState()
+                                Exit Sub
+                            End If
                             selectedFromDate = selectedFromDate.Value.AddDays(1)
                         End While
 
@@ -663,7 +668,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                     'Truog hop k co phan ca thi generate ca default
                     If check = 0 Then
                         If leaveEmpDetails.Count <> 0 Then
-                            ShowMessage(Translate("Ngày nghĩ đã được đăng ký."), NotifyType.Warning)
+                            ShowMessage(Translate("Ngày nghỉ đã được đăng ký."), NotifyType.Warning)
                             Exit Function
                         Else
                             If leaveEmpDetails IsNot Nothing AndAlso leaveEmpDetails.Count = 0 Then
@@ -711,7 +716,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                         leaveInOutKH = rep.PRS_COUNT_INOUTKH(EmployeeID, Year(rdToDate.SelectedDate))
                         Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
                         If cboleaveType.SelectedValue = "" Then
-                            ShowMessage(Translate("CHỌN LOẠI NGHĨ"), NotifyType.Warning)
+                            ShowMessage(Translate("Chọn loại nghỉ"), NotifyType.Warning)
                             Exit Function
                         End If
                         ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
