@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("cb185ee8-41b9-468a-be69-e64e842bf362")>
+<Assembly: EdmSchemaAttribute("8cd48cb6-ef35-4948-8c01-21001a8d0614")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -16064,6 +16064,31 @@ Public Partial Class AT_PORTAL_REG
     End Sub
 
     Private Partial Sub OnWORK_DAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REASON() As Global.System.String
+        Get
+            Return _REASON
+        End Get
+        Set
+            OnREASONChanging(value)
+            ReportPropertyChanging("REASON")
+            _REASON = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REASON")
+            OnREASONChanged()
+        End Set
+    End Property
+
+    Private _REASON As Global.System.String
+    Private Partial Sub OnREASONChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREASONChanged()
     End Sub
 
     #End Region

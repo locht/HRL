@@ -4172,6 +4172,9 @@ Namespace AttendanceBusiness
         Private PROCESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REASONField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REGDATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -4629,6 +4632,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.PROCESSField, value) <> true) Then
                     Me.PROCESSField = value
                     Me.RaisePropertyChanged("PROCESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REASON() As String
+            Get
+                Return Me.REASONField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REASONField, value) <> true) Then
+                    Me.REASONField = value
+                    Me.RaisePropertyChanged("REASON")
                 End If
             End Set
         End Property

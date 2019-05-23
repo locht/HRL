@@ -6410,6 +6410,7 @@ Partial Public Class AttendanceRepository
                                                                .YEAR = If(p.FROM_DATE.HasValue, p.FROM_DATE.Value.Year, 0),
                                                                .FROM_DATE = ce.FROM_DATE,
                                                                .TO_DATE = ce.TO_DATE,
+                                                               .REASON = p.REASON,
                                                                .MODIFIED_DATE = p.MODIFIED_DATE,
                                                                .MODIFIED_BY = p.MODIFIED_BY,
                                                                .ID_SIGN = p.ID_SIGN,

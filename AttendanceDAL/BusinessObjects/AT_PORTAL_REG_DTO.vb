@@ -23,6 +23,7 @@
     Public Property NOTE_AT As String
     Public Property STATUS As Decimal?
     Public Property STATUS_NAME As String
+    Public Property REASON As String
 
     Public Property SIGN_CODE As String
     Public Property SIGN_NAME As String ' loai dang ky
