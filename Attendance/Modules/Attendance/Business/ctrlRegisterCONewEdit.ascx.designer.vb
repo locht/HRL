@@ -140,6 +140,15 @@ Partial Public Class ctrlRegisterCONewEdit
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''txtDayNum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDayNum As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''cboKieuCong control.
     '''</summary>
     '''<remarks>
@@ -165,6 +174,15 @@ Partial Public Class ctrlRegisterCONewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalKieuCong As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''chkIsWorkingDay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIsWorkingDay As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''cbosang control.
