@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 23/05/2019 9:37:10 AM
+-- Date Created: 23/05/2019 3:53:20 PM
 -- Generated from EDMX file: E:\histaffhcm-2\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -1195,7 +1195,17 @@ CREATE TABLE "dbo"."AT_TIME_TIMESHEET_MACHINET" (
    "VALIN4" DATE NULL,
    "SHIFT_ID" NUMBER(38,0) NULL,
    "MANUAL_ID" NUMBER(38,0) NULL,
-   "LEAVE_ID" NUMBER(38,0) NULL
+   "LEAVE_ID" NUMBER(38,0) NULL,
+   "OBJECT_ATTENDANCE" NCLOB NOT NULL,
+   "MIN_IN_WORK" NCLOB NOT NULL,
+   "MIN_OUT_WORK" NCLOB NOT NULL,
+   "MIN_DEDUCT_WORK" NCLOB NOT NULL,
+   "MIN_ON_LEAVE" NCLOB NOT NULL,
+   "MIN_DEDUCT" NCLOB NOT NULL,
+   "MIN_OUT_WORK_DEDUCT" NCLOB NOT NULL,
+   "MIN_LATE" NCLOB NOT NULL,
+   "MIN_EARLY" NCLOB NOT NULL,
+   "MIN_LATE_EARLY" NCLOB NOT NULL
 );
 
 -- Creating table 'AT_DATA_INOUT'

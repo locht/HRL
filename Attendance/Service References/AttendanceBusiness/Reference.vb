@@ -22828,6 +22828,33 @@ Namespace AttendanceBusiness
         Private MANUAL_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_DEDUCTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_DEDUCT_WORKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_EARLYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_IN_WORKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_LATEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_LATE_EARLYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_ON_LEAVEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_OUT_WORKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_OUT_WORK_DEDUCTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -22844,6 +22871,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOTSALARIED_HOURField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_DESCField As String
@@ -23224,6 +23257,123 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_DEDUCT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_DEDUCTField
+            End Get
+            Set
+                If (Me.MIN_DEDUCTField.Equals(value) <> true) Then
+                    Me.MIN_DEDUCTField = value
+                    Me.RaisePropertyChanged("MIN_DEDUCT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_DEDUCT_WORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_DEDUCT_WORKField
+            End Get
+            Set
+                If (Me.MIN_DEDUCT_WORKField.Equals(value) <> true) Then
+                    Me.MIN_DEDUCT_WORKField = value
+                    Me.RaisePropertyChanged("MIN_DEDUCT_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_EARLY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_EARLYField
+            End Get
+            Set
+                If (Me.MIN_EARLYField.Equals(value) <> true) Then
+                    Me.MIN_EARLYField = value
+                    Me.RaisePropertyChanged("MIN_EARLY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_IN_WORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_IN_WORKField
+            End Get
+            Set
+                If (Me.MIN_IN_WORKField.Equals(value) <> true) Then
+                    Me.MIN_IN_WORKField = value
+                    Me.RaisePropertyChanged("MIN_IN_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_LATE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_LATEField
+            End Get
+            Set
+                If (Me.MIN_LATEField.Equals(value) <> true) Then
+                    Me.MIN_LATEField = value
+                    Me.RaisePropertyChanged("MIN_LATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_LATE_EARLY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_LATE_EARLYField
+            End Get
+            Set
+                If (Me.MIN_LATE_EARLYField.Equals(value) <> true) Then
+                    Me.MIN_LATE_EARLYField = value
+                    Me.RaisePropertyChanged("MIN_LATE_EARLY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_ON_LEAVE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_ON_LEAVEField
+            End Get
+            Set
+                If (Me.MIN_ON_LEAVEField.Equals(value) <> true) Then
+                    Me.MIN_ON_LEAVEField = value
+                    Me.RaisePropertyChanged("MIN_ON_LEAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_OUT_WORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_OUT_WORKField
+            End Get
+            Set
+                If (Me.MIN_OUT_WORKField.Equals(value) <> true) Then
+                    Me.MIN_OUT_WORKField = value
+                    Me.RaisePropertyChanged("MIN_OUT_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_OUT_WORK_DEDUCT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_OUT_WORK_DEDUCTField
+            End Get
+            Set
+                If (Me.MIN_OUT_WORK_DEDUCTField.Equals(value) <> true) Then
+                    Me.MIN_OUT_WORK_DEDUCTField = value
+                    Me.RaisePropertyChanged("MIN_OUT_WORK_DEDUCT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -23297,6 +23447,32 @@ Namespace AttendanceBusiness
                 If (Me.NOTSALARIED_HOURField.Equals(value) <> true) Then
                     Me.NOTSALARIED_HOURField = value
                     Me.RaisePropertyChanged("NOTSALARIED_HOUR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECT_ATTENDANCEField
+            End Get
+            Set
+                If (Me.OBJECT_ATTENDANCEField.Equals(value) <> true) Then
+                    Me.OBJECT_ATTENDANCEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE_NAME() As String
+            Get
+                Return Me.OBJECT_ATTENDANCE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_ATTENDANCE_NAMEField, value) <> true) Then
+                    Me.OBJECT_ATTENDANCE_NAMEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE_NAME")
                 End If
             End Set
         End Property

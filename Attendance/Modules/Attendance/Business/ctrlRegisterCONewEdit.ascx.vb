@@ -171,7 +171,7 @@ Public Class ctrlRegisterCONewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            'Message = Request.Params("VIEW")
+            Message = Request.Params("VIEW")
             'If Not IsPostBack Then
             '    If Request.Params("periodid") IsNot Nothing AndAlso Request.Params("periodid").ToString <> "" Then
             '        periodid = Request.Params("periodid")
@@ -212,6 +212,11 @@ Public Class ctrlRegisterCONewEdit
                         txtnote.Text = obj.NOTE_APP
                         rdLeaveFrom.SelectedDate = obj.LEAVE_FROM
                         rdLeaveTo.SelectedDate = obj.LEAVE_TO
+                        If obj.DAY_NUM.HasValue Then
+                            txtDayNum.Text = obj.DAY_NUM.ToString
+                        End If
+                        chkIsWorkingDay.Checked = obj.IS_WORKING_DAY
+                        cboKieuCong.SelectedValue = obj.MANUAL_ID
                         For Each x As AttendanceBusiness.AT_TIME_MANUALDTO In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE
                             If (x.ID = obj.MANUAL_ID) Then
                                 cboKieuCong.SelectedValue = obj.MANUAL_ID
@@ -415,6 +420,8 @@ Public Class ctrlRegisterCONewEdit
                             obj.LEAVE_TO = rdLeaveTo.SelectedDate
                             obj.MANUAL_ID = cboKieuCong.SelectedValue
                             obj.NOTE_APP = txtnote.Text
+                            obj.IS_WORKING_DAY = chkIsWorkingDay.Checked
+                            obj.DAY_NUM = If(IsNumeric(txtDayNum.Text.ToString), Decimal.Parse(txtDayNum.Text.ToString), 0)
                             Dim employeeData = rgWorkschedule.MasterTableView.Items(0)
                             obj.EMPLOYEE_ID = employeeData.GetDataKeyValue("EMPLOYEE_ID")
                             obj.EMPLOYEE_CODE = employeeData.GetDataKeyValue("EMPLOYEE_CODE")
@@ -425,6 +432,8 @@ Public Class ctrlRegisterCONewEdit
                             obj.LEAVE_TO = rdLeaveTo.SelectedDate
                             obj.MANUAL_ID = cboKieuCong.SelectedValue
                             obj.NOTE_APP = txtnote.Text
+                            obj.IS_WORKING_DAY = chkIsWorkingDay.Checked
+                            obj.DAY_NUM = If(IsNumeric(txtDayNum.Text.ToString), Decimal.Parse(txtDayNum.Text.ToString), 0)
                             rep.InsertLeaveSheetList(RegisterLeaveList, obj, gstatus)
                         End If
 
