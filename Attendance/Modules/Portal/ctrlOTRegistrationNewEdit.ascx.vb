@@ -380,7 +380,7 @@ Public Class ctrlOTRegistrationNewEdit
                         obj.NOTE = txtNote.Text
                         obj.OT_TYPE_ID = ObjToDecima(cboTypeOT.SelectedValue, 0) 'txtDayRegist.Text
                         obj.REGIST_DATE = rdRegDate.SelectedDate
-                        If hidSignId.Value Is Nothing Then
+                        If hidSignId.Value.ToString = "" Then
                             ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
                             Exit Sub
                         End If
@@ -432,40 +432,22 @@ Public Class ctrlOTRegistrationNewEdit
                                 Exit Sub
                             End If
                             If String.IsNullOrEmpty(txtSignCode.Text) Then
-                                ctrlMessageBox.MessageText = Translate("Chưa có ký hiệu ca. Bạn có chắc chắn muốn lưu?")
-                                ctrlMessageBox.MessageTitle = Translate("Cảnh báo")
-                                ctrlMessageBox.ActionName = "SAVE"
-                                ctrlMessageBox.DataBind()
-                                ctrlMessageBox.Show()
-                                If checkSave Then
-                                    If isInsert Then
-                                        rep.InsertOtRegistration(obj, hidID.Value)
-                                        obj.ID = hidID.Value
-                                    Else
-                                        obj.ID = hidID.Value
-                                        rep.ModifyotRegistration(obj, hidID.Value)
-                                    End If
-
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    UpdateControlState()
-                                End If
-                            Else
-                                If isInsert Then
-                                    rep.InsertOtRegistration(obj, hidID.Value)
-                                    obj.ID = hidID.Value
-                                Else
-                                    obj.ID = hidID.Value
-                                    rep.ModifyotRegistration(obj, hidID.Value)
-                                End If
-
-                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                                Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
-                                CurrentState = CommonMessage.STATE_NORMAL
+                                ShowMessage(Translate("Chưa có ký hiệu ca, vui lòng đăng ký ca."), NotifyType.Warning)
                                 UpdateControlState()
+                                Exit Sub
                             End If
-                            
+                            If isInsert Then
+                                rep.InsertOtRegistration(obj, hidID.Value)
+                                obj.ID = hidID.Value
+                            Else
+                                obj.ID = hidID.Value
+                                rep.ModifyotRegistration(obj, hidID.Value)
+                            End If
+
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
+                            CurrentState = CommonMessage.STATE_NORMAL
+                            UpdateControlState()
                         End Using
                     End If
                     'Case CommonMessage.TOOLBARITEM_SUBMIT
@@ -505,11 +487,6 @@ Public Class ctrlOTRegistrationNewEdit
                 '    End If
                 '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                 'End Using
-            End If
-            If e.ActionName = "SAVE" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                checkSave = True
-            Else
-                checkSave = False
             End If
 
         Catch ex As Exception
