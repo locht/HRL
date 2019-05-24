@@ -374,11 +374,13 @@ Public Class ctrlOTRegistrationNewEdit
                             Exit Sub
                         End If
                         Dim isInsert As Boolean = True
+                        
                         Dim obj As New AT_OT_REGISTRATIONDTO
                         obj.EMPLOYEE_ID = EmployeeID
                         obj.IS_DELETED = 0
                         obj.NOTE = txtNote.Text
-                        obj.OT_TYPE_ID = ListComboData.LIST_LIST_TYPE_OT.Where(Function(f) f.CODE = "OT").Select(Function(g) g.ID).FirstOrDefault
+                        obj.OT_TYPE_ID = ListComboData.LIST_LIST_OT_TYPE.Where(Function(f) f.CODE = "OT").Select(Function(g) g.ID).FirstOrDefault
+
                         obj.REGIST_DATE = rdRegDate.SelectedDate
                         If hidSignId.Value.ToString = "" Then
                             ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
@@ -418,6 +420,7 @@ Public Class ctrlOTRegistrationNewEdit
                         hidStatus.Value = 3
 
                         Using rep As New AttendanceRepository
+
                             If String.IsNullOrEmpty(hidID.Value) Then
                                 hidID.Value = 0
                             End If
