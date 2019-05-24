@@ -113,6 +113,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbFullName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFullName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtFullName control.
     '''</summary>
     '''<remarks>
@@ -131,6 +140,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     Protected WithEvents reqFullname As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lbNumberCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNumberCode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtNumberCode control.
     '''</summary>
     '''<remarks>
@@ -138,6 +156,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNumberCode As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbradAsynceUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbradAsynceUpload1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''_radAsynceUpload1 control.
@@ -158,6 +185,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     Protected WithEvents txtFileNameVN As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbSign control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSign As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtSign control.
     '''</summary>
     '''<remarks>
@@ -165,6 +201,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSign As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbAdress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAdress As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtAdress control.
@@ -176,6 +221,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     Protected WithEvents txtAdress As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbFromDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFromDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdFromDate control.
     '''</summary>
     '''<remarks>
@@ -183,6 +237,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdToDate control.
@@ -201,6 +264,15 @@ Partial Public Class ctrlHU_EmpDtlFile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents compareFromDate_DeductToDate As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''lbNote control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNote As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtNote control.

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_EmpDtlFile.ascx.vb"
     Inherits="Profile.ctrlHU_EmpDtlFile" %>
-    <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
+<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <%@ Register Src="../Shared/ctrlEmpBasicInfo.ascx" TagName="ctrlEmpBasicInfo" TagPrefix="Profile" %>
 <asp:HiddenField ID="hidHuFileID" runat="server" />
 <asp:HiddenField ID="txtFileNameSys" runat="server" />
@@ -19,7 +19,8 @@
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Tên văn bản")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbFullName" runat="server" Text="Tên văn bản"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtFullName">
@@ -29,7 +30,7 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Số hiệu ban hành")%>
+                 <asp:Label ID="lbNumberCode" runat="server" Text="Số hiệu ban hành"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtNumberCode" SkinID="Textbox15">
@@ -38,7 +39,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Tệp tin")%>
+                    <asp:Label ID="lbradAsynceUpload1" runat="server" Text="Tệp tin"></asp:Label>
                 </td>
                 <td style="padding-left: 12px;">
                     <tlk:RadAsyncUpload Width="120px" Height="20px" runat="server" ID="_radAsynceUpload1"
@@ -47,12 +48,13 @@
                         HideFileInput="True" DisablePlugins="True" MaxFileInputsCount="1" MultipleFileSelection="Disabled">
                         <Localization Select="<%$ Translate: Chọn file %>" />
                     </tlk:RadAsyncUpload>
-                    <tlk:RadTextBox ID ="txtFileNameVN" runat ="server" ReadOnly="true" style="border:none;" ></tlk:RadTextBox>
-                  <%--  <asp:LinkButton ID="txtFileName" runat="server" OnClientClick="txtFileName_Click('<%# "txtDownload_Click(""" & Eval("ID").ToString() &  """ , """ &   Eval("FILENAME").ToString() & """, """ &   Eval("FILENAME_SYS").ToString() & """)" %>')">
+                    <tlk:RadTextBox ID="txtFileNameVN" runat="server" ReadOnly="true" Style="border: none;">
+                    </tlk:RadTextBox>
+                    <%--  <asp:LinkButton ID="txtFileName" runat="server" OnClientClick="txtFileName_Click('<%# "txtDownload_Click(""" & Eval("ID").ToString() &  """ , """ &   Eval("FILENAME").ToString() & """, """ &   Eval("FILENAME_SYS").ToString() & """)" %>')">
                     </asp:LinkButton>--%>
                 </td>
-                 <td class="lb" style="width: 130px">
-                    <%# Translate("Người ký")%>
+                <td class="lb" style="width: 130px">
+                      <asp:Label ID="lbSign" runat="server" Text="Người ký"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtSign">
@@ -61,7 +63,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Cơ quan ban hành")%>
+                    <asp:Label ID="lbAdress" runat="server" Text="Cơ quan ban hành"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtAdress" Width="100%" />
@@ -69,23 +71,23 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ngày hiệu lực")%>
+                    <asp:Label ID="lbFromDate" runat="server" Text="Ngày hiệu lực"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdFromDate">
-                     <DateInput ID="DateInput1" onkeydown="_rdFromDate_OnKeyDown(event)" runat="server"> 
-                           <ClientEvents OnFocus="_rdFromDate_OnFocus" /> 
-                      </DateInput> 
+                        <DateInput ID="DateInput1" onkeydown="_rdFromDate_OnKeyDown(event)" runat="server">
+                            <ClientEvents OnFocus="_rdFromDate_OnFocus" />
+                        </DateInput>
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                    <%# Translate("Ngày hết hiệu lực")%>
+                   <asp:Label ID="lbToDate" runat="server" Text="Ngày hết hiệu lực"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdToDate">
-                     <DateInput ID="DateInput2" onkeydown="_rdToDate_OnKeyDown(event)" runat="server"> 
-                           <ClientEvents OnFocus="_rdToDate_OnFocus" /> 
-                      </DateInput> 
+                        <DateInput ID="DateInput2" onkeydown="_rdToDate_OnKeyDown(event)" runat="server">
+                            <ClientEvents OnFocus="_rdToDate_OnFocus" />
+                        </DateInput>
                     </tlk:RadDatePicker>
                     <asp:CompareValidator ID="compareFromDate_DeductToDate" runat="server" ErrorMessage="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>"
                         ToolTip="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>" ControlToValidate="rdToDate"
@@ -95,7 +97,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ghi chú")%>
+                  <asp:Label ID="lbNote" runat="server" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtNote" SkinID="Textbox1023" Width="100%" />
@@ -117,50 +119,50 @@
                     Không có bản ghi nào
                 </NoRecordsTemplate>
                 <Columns>
-                    <tlk:GridClientSelectColumn HeaderStyle-Width="40px">
+                  <%--  <tlk:GridClientSelectColumn HeaderStyle-Width="40px">
                         <ItemStyle HorizontalAlign="Center" />
                     </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn DataField="NUMBER_CODE" HeaderText="<%$ Translate: Số hiệu văn bản %>"
-                        UniqueName="NUMBER_CODE" >
+                    <tlk:GridBoundColumn DataField="NUMBER_CODE" HeaderText="Số hiệu văn bản"
+                        UniqueName="NUMBER_CODE">
                         <HeaderStyle Width="60px" HorizontalAlign="Center" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="NAME" HeaderText="<%$ Translate: Tên văn bản %>"
-                        UniqueName="NAME" >
+                    <tlk:GridBoundColumn DataField="NAME" HeaderText="Tên văn bản"
+                        UniqueName="NAME">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="SIGN_PERSON" HeaderText="<%$ Translate: Người ký %>"
-                        UniqueName="SIGN_PERSON" >
+                    <tlk:GridBoundColumn DataField="SIGN_PERSON" HeaderText="Người ký"
+                        UniqueName="SIGN_PERSON">
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="FILENAME" HeaderText="<%$ Translate: Tên file %>" Visible = "true"
-                        UniqueName="FILENAME" >
+                    <tlk:GridBoundColumn DataField="FILENAME" HeaderText="Tên file"
+                        Visible="true" UniqueName="FILENAME">
                     </tlk:GridBoundColumn>
-                    <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="<%$ Translate: Ngày hiệu lực%>"
+                    <tlk:GridDateTimeColumn DataField="FROM_DATE" HeaderText="Ngày hiệu lực"
                         UniqueName="FROM_DATE" DataFormatString="{0:dd/MM/yyyy}">
                         <HeaderStyle HorizontalAlign="Center" Width="65px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="<%$ Translate: Ngày hết hiệu lực %>"
+                    <tlk:GridDateTimeColumn DataField="TO_DATE" HeaderText="Ngày hết hiệu lực"
                         UniqueName="TO_DATE" DataFormatString="{0:dd/MM/yyyy}">
                         <HeaderStyle HorizontalAlign="Center" Width="65px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridBoundColumn DataField="ADDRESS" HeaderText="<%$ Translate: Nơi ban hành %>"
+                    <tlk:GridBoundColumn DataField="ADDRESS" HeaderText="Nơi ban hành"
                         UniqueName="ADDRESS" EmptyDataText="">
                         <HeaderStyle HorizontalAlign="Center" Width="70px" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn DataField="REMARK" HeaderText="<%$ Translate: Ghi chú %>" UniqueName="REMARK"
+                    <tlk:GridBoundColumn DataField="REMARK" HeaderText="Ghi chú" UniqueName="REMARK"
                         EmptyDataText="">
                         <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                    </tlk:GridBoundColumn>
+                    </tlk:GridBoundColumn>--%>
                     <%--<asp:LinkButton ID ="LinkButton1" runat="server" OnClientClick="download(<%$ Eval("FILENAME_SYS").ToString() %>)" Text="Tải tệp">
                     </asp:LinkButton>   --%>
                     <%--<tlk:GridHyperLinkColumn UniqueName="FILENAME_SYS" 
                             FilterControlAltText="Filter column column" DataNavigateUrlFields="FILENAME_SYS" 
                             Text="Tải tệp" >
                     </tlk:GridHyperLinkColumn>--%>
-                    <tlk:GridTemplateColumn DataField="ID" HeaderText="Tải tệp" UniqueName="ID">
+                <%--    <tlk:GridTemplateColumn DataField="ID" HeaderText="Tải tệp" UniqueName="ID">
                         <ItemTemplate>
                             <asp:LinkButton ID="txtDownload" runat="server" Text=' Tải tệp' CausesValidation="false"
                                 OnClientClick='<%# "txtDownload_Click(""" & Eval("ID").ToString() &  """ , """ &   Eval("FILENAME").ToString() & """, """ &   Eval("FILENAME_SYS").ToString() & """)" %>'></asp:LinkButton>
                         </ItemTemplate>
-                    </tlk:GridTemplateColumn>
+                    </tlk:GridTemplateColumn>--%>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
