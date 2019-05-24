@@ -403,65 +403,6 @@ Public Class ctrlPortalFamily_Edit
         End Try
     End Sub
 
-
-    'Private Sub rgFamily_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgFamily.SelectedIndexChanged
-    '    Try
-    '        If rgFamily.SelectedItems.Count = 0 Then
-    '            ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark,
-    '                             rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-    '                             chkIsDeduct, hidFamilyID, hidID)
-    '            Exit Sub
-    '        End If
-    '        Dim item = CType(rgFamily.SelectedItems(rgFamily.SelectedItems.Count - 1), GridDataItem)
-    '        hidFamilyID.Value = item.GetDataKeyValue("ID")
-    '        txtAdress.Text = item.GetDataKeyValue("ADDRESS")
-    '        txtIDNO.Text = item.GetDataKeyValue("ID_NO")
-    '        txtFullName.Text = item.GetDataKeyValue("FULLNAME")
-    '        txtRemark.Text = item.GetDataKeyValue("REMARK")
-    '        rdBirthDate.SelectedDate = item.GetDataKeyValue("BIRTH_DATE")
-    '        chkIsDeduct.Checked = item.GetDataKeyValue("IS_DEDUCT")
-    '        rdDeductReg.SelectedDate = item.GetDataKeyValue("DEDUCT_REG")
-    '        rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
-    '        rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
-    '        cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
-    '        hidFamilyID.Value = item.GetDataKeyValue("ID")
-    '        hidID.Value = ""
-    '        chkIsDeduct_CheckedChanged(Nothing, Nothing)
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
-    'Private Sub rgFamilyEdit_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgFamilyEdit.SelectedIndexChanged
-    '    Try
-    '        If rgFamilyEdit.SelectedItems.Count = 0 Then
-    '            ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark,
-    '                             rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-    '                             chkIsDeduct, hidFamilyID, hidID)
-    '            Exit Sub
-    '        End If
-    '        Dim item = CType(rgFamilyEdit.SelectedItems(rgFamilyEdit.SelectedItems.Count - 1), GridDataItem)
-    '        hidFamilyID.Value = item.GetDataKeyValue("ID")
-    '        txtAdress.Text = item.GetDataKeyValue("ADDRESS")
-    '        txtIDNO.Text = item.GetDataKeyValue("ID_NO")
-    '        txtFullName.Text = item.GetDataKeyValue("FULLNAME")
-    '        txtRemark.Text = item.GetDataKeyValue("REMARK")
-    '        rdBirthDate.SelectedDate = item.GetDataKeyValue("BIRTH_DATE")
-    '        chkIsDeduct.Checked = item.GetDataKeyValue("IS_DEDUCT")
-    '        rdDeductReg.SelectedDate = item.GetDataKeyValue("DEDUCT_REG")
-    '        rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
-    '        rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
-    '        cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
-    '        If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
-    '            hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
-    '        End If
-    '        hidID.Value = item.GetDataKeyValue("ID")
-    '        chkIsDeduct_CheckedChanged(Nothing, Nothing)
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Protected Sub chkIsDeduct_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIsDeduct.CheckedChanged
         rdDeductFrom.Enabled = chkIsDeduct.Checked
         rdDeductTo.Enabled = chkIsDeduct.Checked
@@ -508,4 +449,89 @@ Public Class ctrlPortalFamily_Edit
 
 #End Region
 
+    Protected Sub rgFamilyEdit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgFamilyEdit.SelectedIndexChanged
+        Try
+            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO,
+                                txtCareer, txtTitle, cboNguyenQuan,
+                                txtAdress, txtRemark, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                chkIsDeduct, hidFamilyID, hidID)
+
+            Dim item = CType(rgFamilyEdit.SelectedItems(rgFamilyEdit.SelectedItems.Count - 1), GridDataItem)
+            Dim status As String = ""
+            If item.GetDataKeyValue("STATUS") IsNot Nothing Then
+                status = item.GetDataKeyValue("STATUS")
+            End If
+            Select Case status
+                Case 1
+                    'ShowMessage("Bản ghi đang Chờ phê duyệt chỉ được xem thông tin", NotifyType.Warning)
+                    CurrentState = CommonMessage.STATE_NORMAL
+                Case 2
+                    'ShowMessage("Bản ghi đã Phê duyệt chỉ được xem thông tin", NotifyType.Warning)
+                    CurrentState = CommonMessage.STATE_NORMAL
+                Case Else
+                    CurrentState = CommonMessage.STATE_EDIT
+            End Select
+            hidFamilyID.Value = item.GetDataKeyValue("ID")
+            txtAdress.Text = item.GetDataKeyValue("ADDRESS")
+            txtIDNO.Text = item.GetDataKeyValue("ID_NO")
+            txtFullName.Text = item.GetDataKeyValue("FULLNAME")
+            txtTax.Text = item.GetDataKeyValue("TAXTATION")
+            txtRemark.Text = item.GetDataKeyValue("REMARK")
+            rdBirthDate.SelectedDate = item.GetDataKeyValue("BIRTH_DATE")
+            chkIsDeduct.Checked = item.GetDataKeyValue("IS_DEDUCT")
+            rdDeductReg.SelectedDate = item.GetDataKeyValue("DEDUCT_REG")
+            rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
+            rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
+            cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
+            txtCareer.Text = item.GetDataKeyValue("CAREER")
+            txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
+            cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+            If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
+                hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
+            End If
+            hidID.Value = item.GetDataKeyValue("ID")
+            chkIsDeduct_CheckedChanged(Nothing, Nothing)
+            UpdateControlState()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub rgFamily_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgFamily.SelectedIndexChanged
+        Try
+            If rgFamily.SelectedItems.Count = 0 Then
+                ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark,
+                                 rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                 chkIsDeduct, hidFamilyID, hidID)
+                Exit Sub
+            End If
+            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO,
+                                txtCareer, txtTitle, cboNguyenQuan,
+                                txtAdress, txtRemark, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                chkIsDeduct, hidFamilyID, hidID)
+            CurrentState = CommonMessage.STATE_NORMAL
+            Dim item = CType(rgFamily.SelectedItems(rgFamily.SelectedItems.Count - 1), GridDataItem)
+            hidFamilyID.Value = item.GetDataKeyValue("ID")
+            txtAdress.Text = item.GetDataKeyValue("ADDRESS")
+            txtIDNO.Text = item.GetDataKeyValue("ID_NO")
+            txtFullName.Text = item.GetDataKeyValue("FULLNAME")
+            txtTax.Text = item.GetDataKeyValue("TAXTATION")
+            txtRemark.Text = item.GetDataKeyValue("REMARK")
+            rdBirthDate.SelectedDate = item.GetDataKeyValue("BIRTH_DATE")
+            chkIsDeduct.Checked = item.GetDataKeyValue("IS_DEDUCT")
+            rdDeductReg.SelectedDate = item.GetDataKeyValue("DEDUCT_REG")
+            rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
+            rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
+            cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
+            txtCareer.Text = item.GetDataKeyValue("CAREER")
+            txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
+            cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+            hidFamilyID.Value = item.GetDataKeyValue("ID")
+            hidID.Value = ""
+            chkIsDeduct_CheckedChanged(Nothing, Nothing)
+            UpdateControlState()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
