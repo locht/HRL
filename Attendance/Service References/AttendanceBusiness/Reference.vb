@@ -28937,6 +28937,9 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApprove", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveResponse")>  _
+        Function GetListWaitingForApprove(ByVal approveId As Decimal, ByVal process As String, ByVal filter As AttendanceBusiness.ATRegSearchDTO) As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOTResponse")>  _
         Function GetListWaitingForApproveOT(ByVal approveId As Decimal, ByVal process As String, ByVal filter As AttendanceBusiness.ATRegSearchDTO) As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO)
         
@@ -29177,6 +29180,9 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTerminal", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTerminalResponse")>  _
+        Function GetTerminal(ByVal obj As AttendanceBusiness.AT_TERMINALSDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTerminalAuto", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTerminalAutoResponse")>  _
         Function GetTerminalAuto() As System.Data.DataTable
@@ -29545,8 +29551,8 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetListSignCode", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetListSignCodeResponse")>  _
         Function GetListSignCode(ByVal gSignCode As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApprove", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveResponse")>  _
-        Function GetListWaitingForApprove(ByVal approveId As Decimal, ByVal process As String, ByVal filter As AttendanceBusiness.ATRegSearchDTO) As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNB", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNBResponse")>  _
+        Function DeleteDelareEntitlementNB(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNien", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNienResponse")>  _
         Function ValidateMonthThamNien(ByVal _validate As AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO) As Boolean
@@ -30028,8 +30034,8 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherListResponse")>  _
         Function GetTerminalFromOtOtherList() As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTerminal", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTerminalResponse")>  _
-        Function GetTerminal(ByVal obj As AttendanceBusiness.AT_TERMINALSDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CAL_SUMMARY_DATA_INOUT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CAL_SUMMARY_DATA_INOUTResponse")>  _
+        Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CHECK_CONTRACT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CHECK_CONTRACTResponse")>  _
         Function CHECK_CONTRACT(ByVal employee_id As Decimal) As System.Data.DataTable
@@ -30396,9 +30402,6 @@ Namespace AttendanceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeeping", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeepingResponse")>  _
         Function DeleteOffTimeKeeping(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNB", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNBResponse")>  _
-        Function DeleteDelareEntitlementNB(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -30431,6 +30434,10 @@ Namespace AttendanceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetListWaitingForApprove(ByVal approveId As Decimal, ByVal process As String, ByVal filter As AttendanceBusiness.ATRegSearchDTO) As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO) Implements AttendanceBusiness.IAttendanceBusiness.GetListWaitingForApprove
+            Return MyBase.Channel.GetListWaitingForApprove(approveId, process, filter)
+        End Function
         
         Public Function GetListWaitingForApproveOT(ByVal approveId As Decimal, ByVal process As String, ByVal filter As AttendanceBusiness.ATRegSearchDTO) As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO) Implements AttendanceBusiness.IAttendanceBusiness.GetListWaitingForApproveOT
             Return MyBase.Channel.GetListWaitingForApproveOT(approveId, process, filter)
@@ -30750,6 +30757,10 @@ Namespace AttendanceBusiness
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS
             Return MyBase.Channel.GET_PE_ASSESS_MESS(EMP)
+        End Function
+        
+        Public Function GetTerminal(ByVal obj As AttendanceBusiness.AT_TERMINALSDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTerminal
+            Return MyBase.Channel.GetTerminal(obj, log)
         End Function
         
         Public Function GetTerminalAuto() As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTerminalAuto
@@ -31088,8 +31099,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetListSignCode(gSignCode)
         End Function
         
-        Public Function GetListWaitingForApprove(ByVal approveId As Decimal, ByVal process As String, ByVal filter As AttendanceBusiness.ATRegSearchDTO) As System.Collections.Generic.List(Of AttendanceBusiness.AT_PORTAL_REG_DTO) Implements AttendanceBusiness.IAttendanceBusiness.GetListWaitingForApprove
-            Return MyBase.Channel.GetListWaitingForApprove(approveId, process, filter)
+        Public Function DeleteDelareEntitlementNB(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteDelareEntitlementNB
+            Return MyBase.Channel.DeleteDelareEntitlementNB(lstID)
         End Function
         
         Public Function ValidateMonthThamNien(ByVal _validate As AttendanceBusiness.AT_DECLARE_ENTITLEMENTDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ValidateMonthThamNien
@@ -31428,8 +31439,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetTerminalFromOtOtherList
         End Function
         
-        Public Function GetTerminal(ByVal obj As AttendanceBusiness.AT_TERMINALSDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTerminal
-            Return MyBase.Channel.GetTerminal(obj, log)
+        Public Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CAL_SUMMARY_DATA_INOUT
+            Return MyBase.Channel.CAL_SUMMARY_DATA_INOUT(Period_id)
         End Function
         
         Public Function CHECK_CONTRACT(ByVal employee_id As Decimal) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.CHECK_CONTRACT
@@ -31766,10 +31777,6 @@ Namespace AttendanceBusiness
         
         Public Function DeleteOffTimeKeeping(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteOffTimeKeeping
             Return MyBase.Channel.DeleteOffTimeKeeping(lstID)
-        End Function
-        
-        Public Function DeleteDelareEntitlementNB(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteDelareEntitlementNB
-            Return MyBase.Channel.DeleteDelareEntitlementNB(lstID)
         End Function
     End Class
 End Namespace
