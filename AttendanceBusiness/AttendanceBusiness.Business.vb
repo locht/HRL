@@ -288,6 +288,8 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Try
         End Function
 
+
+
         Function GetSwipeData(ByVal _filter As AT_SWIPE_DATADTO,
                               Optional ByVal PageIndex As Integer = 0,
                               Optional ByVal PageSize As Integer = Integer.MaxValue,
