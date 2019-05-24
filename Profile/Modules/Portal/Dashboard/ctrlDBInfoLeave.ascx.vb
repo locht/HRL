@@ -64,47 +64,61 @@ Public Class ctrlDBInfoLeave
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim rep As New ProfileDashboardRepository
+        'Dim rep As New ProfileDashboardRepository
         Try
             Dim _filter As New TotalDayOffDTO
             _filter.DATE_REGISTER = Date.Now
             _filter.LEAVE_TYPE = 251
             _filter.EMPLOYEE_ID = Session("_EmployeeID")
             Dim obj As New TotalDayOffDTO
-            obj = rep.GetTotalDayOff(_filter)
-            If obj IsNot Nothing Then
-                If obj.TOTAL_DAY IsNot Nothing Then
-                    lblNgayDuocNghi.Text = If(obj.TOTAL_DAY = 0, 0, Decimal.Parse(obj.TOTAL_DAY).ToString())
+            Using rep As New ProfileDashboardRepository
+                obj = rep.GetTotalDayOff(_filter)
+                If obj IsNot Nothing Then
+                    'PHÉP NGOÀI CÔNG TY
+                    If obj.TIME_OUTSIDE_COMPANY IsNot Nothing Then
+                        lblPhepTQD.Text = If(obj.TIME_OUTSIDE_COMPANY = 0, 0, Decimal.Parse(obj.TIME_OUTSIDE_COMPANY).ToString())
+                    Else
+                        lblPhepTQD.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep chế độ
+                    If obj.TOTAL_HAVE1 IsNot Nothing Then
+                        lblNgayPhepCD.Text = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1).ToString())
+                    Else
+                        lblNgayPhepCD.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep dã nghĩ
+                    If obj.USED_DAY IsNot Nothing Then
+                        lblNgayPhepSD.Text = If(obj.USED_DAY = 0, 0, Decimal.Parse(obj.USED_DAY).ToString())
+                    Else
+                        lblNgayPhepSD.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep tham nien
+                    If obj.SENIORITYHAVE IsNot Nothing Then
+                        lblPhepTN.Text = If(obj.SENIORITYHAVE = 0, 0, Decimal.Parse(obj.SENIORITYHAVE).ToString())
+                    Else
+                        lblPhepTN.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep nam truoc con lai
+                    If obj.PREVTOTAL_HAVE IsNot Nothing Then
+                        lblPhepNT.Text = If(obj.PREVTOTAL_HAVE = 0, 0, Decimal.Parse(obj.PREVTOTAL_HAVE).ToString())
+                    Else
+                        lblPhepNT.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phép còn lại
+                    If obj.REST_DAY IsNot Nothing Then
+                        lblPhepConLai.Text = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY).ToString())
+                    Else
+                        lblPhepConLai.Text = Decimal.Parse(0).ToString()
+                    End If
                 Else
-                    lblNgayDuocNghi.Text = Decimal.Parse(0).ToString()
+                    lblPhepTQD.Text = Decimal.Parse(0).ToString()
+                    lblNgayPhepCD.Text = Decimal.Parse(0).ToString()
+                    lblNgayPhepSD.Text = Decimal.Parse(0).ToString()
+                    lblPhepTN.Text = Decimal.Parse(0).ToString()
+                    lblPhepConLai.Text = Decimal.Parse(0).ToString()
+                    lblPhepNT.Text = Decimal.Parse(0).ToString()
                 End If
-                If obj.REST_DAY IsNot Nothing Then
-                    lblConLai.Text = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY).ToString())
-                Else
-                    lblConLai.Text = Decimal.Parse(0).ToString()
-                End If
-            Else
-                lblNgayDuocNghi.Text = Decimal.Parse(0).ToString()
-                lblConLai.Text = Decimal.Parse(0).ToString()
-            End If
-
-            _filter.LEAVE_TYPE = 255
-            obj = rep.GetTotalDayOff(_filter)
-            If obj IsNot Nothing Then
-                If obj.TOTAL_DAY IsNot Nothing Then
-                    lblNgayDuocNghiB.Text = If(obj.TOTAL_DAY = 0, 0, Decimal.Parse(obj.TOTAL_DAY).ToString())
-                Else
-                    lblNgayDuocNghiB.Text = Decimal.Parse(0).ToString()
-                End If
-                If obj.REST_DAY IsNot Nothing Then
-                    lblConLaiB.Text = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY).ToString())
-                Else
-                    lblConLaiB.Text = Decimal.Parse(0).ToString()
-                End If
-            Else
-                lblNgayDuocNghiB.Text = Decimal.Parse(0).ToString()
-                lblConLaiB.Text = Decimal.Parse(0).ToString()
-            End If
+            End Using
         Catch ex As Exception
             Throw ex
         End Try
