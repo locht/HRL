@@ -602,8 +602,8 @@ Partial Public Class AttendanceRepository
                                        .CREATED_LOG = p.p.CREATED_LOG,
                                        .FROMDATE = p.s.FROMDATE,
                                        .TODATE = p.s.TODATE,
-                                       .IS_SA = If(p.s.IS_SA = "-1", True, False),
-                                       .IS_SUN = If(p.s.IS_SU = "-1", True, False),
+                                       .IS_SA = If(p.s.IS_SA = 0, False, True),
+                                       .IS_SUN = If(p.s.IS_SU = 0, False, True),
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
                                        .MODIFIED_LOG = p.p.MODIFIED_LOG})

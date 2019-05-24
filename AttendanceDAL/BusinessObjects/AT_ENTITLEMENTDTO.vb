@@ -63,5 +63,6 @@
     Public Property TIME_SENIORITY As Decimal?
     Public Property MONTH_SENIORITY_CHANGE As Decimal?
     Public Property TIME_SENIORITY_AFTER_CHANGE As Decimal?
+    Public Property TIME_OUTSIDE_COMPANY As Decimal?
 
 End Class

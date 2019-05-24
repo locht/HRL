@@ -35,13 +35,13 @@ Public Class ctrlRitual_Hose
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            SetGridFilter(rgDanhMuc)
-            rgDanhMuc.AllowCustomPaging = True
+            SetGridFilter(rgDanhMucHS)
+            rgDanhMucHS.AllowCustomPaging = True
             InitControl()
             If Not IsPostBack Then
                 getSE_CASE_CONFIG()
                 ViewConfig(RadPane1)
-                GirdConfig(rgDanhMuc)
+                GirdConfig(rgDanhMucHS)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -96,17 +96,17 @@ Public Class ctrlRitual_Hose
                 Select Case Message
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        rgDanhMuc.Rebind()
-                        'SelectedItemDataGridByKey(rgDanhMuc, IDSelect, , rgDanhMuc.CurrentPageIndex)
+                        rgDanhMucHS.Rebind()
+                        'SelectedItemDataGridByKey(rgDanhMucHS, IDSelect, , rgDanhMucHS.CurrentPageIndex)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        rgDanhMuc.CurrentPageIndex = 0
-                        rgDanhMuc.MasterTableView.SortExpressions.Clear()
-                        rgDanhMuc.Rebind()
-                        'SelectedItemDataGridByKey(rgDanhMuc, IDSelect, )
+                        rgDanhMucHS.CurrentPageIndex = 0
+                        rgDanhMucHS.MasterTableView.SortExpressions.Clear()
+                        rgDanhMucHS.Rebind()
+                        'SelectedItemDataGridByKey(rgDanhMucHS, IDSelect, )
                     Case "Cancel"
-                        rgDanhMuc.MasterTableView.ClearSelectedItems()
+                        rgDanhMucHS.MasterTableView.ClearSelectedItems()
                 End Select
             End If
             UpdateControlState()
@@ -132,17 +132,17 @@ Public Class ctrlRitual_Hose
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim MaximumRows As Integer
-            SetValueObjectByRadGrid(rgDanhMuc, obj)
-            Dim Sorts As String = rgDanhMuc.MasterTableView.SortExpressions.GetSortString()
+            SetValueObjectByRadGrid(rgDanhMucHS, obj)
+            Dim Sorts As String = rgDanhMucHS.MasterTableView.SortExpressions.GetSortString()
             If Not isFull Then
 
                 If Sorts IsNot Nothing Then
-                    Me.At_Holiday = rep.GetHoliday_Hose(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, Sorts)
+                    Me.At_Holiday = rep.GetHoliday_Hose(obj, rgDanhMucHS.CurrentPageIndex, rgDanhMucHS.PageSize, MaximumRows, Sorts)
                 Else
-                    Me.At_Holiday = rep.GetHoliday_Hose(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows)
+                    Me.At_Holiday = rep.GetHoliday_Hose(obj, rgDanhMucHS.CurrentPageIndex, rgDanhMucHS.PageSize, MaximumRows)
                 End If
-                rgDanhMuc.VirtualItemCount = MaximumRows
-                rgDanhMuc.DataSource = Me.At_Holiday
+                rgDanhMucHS.VirtualItemCount = MaximumRows
+                rgDanhMucHS.DataSource = Me.At_Holiday
             Else
                 Return rep.GetHoliday(obj).ToTable
             End If
@@ -178,7 +178,9 @@ Public Class ctrlRitual_Hose
                     rdFromDate.Enabled = True
                     rdToDate.Enabled = True
                     rdNote.Enabled = True
-                    EnabledGridNotPostback(rgDanhMuc, False)
+                    ckIsSA.Checked = True 'Khi thêm mới tự động check
+                    ckIsSU.Checked = True 'Khi thêm mới tự động check
+                    EnabledGridNotPostback(rgDanhMucHS, False)
 
                 Case CommonMessage.STATE_NORMAL
                     txtCode.Text = ""
@@ -193,7 +195,7 @@ Public Class ctrlRitual_Hose
                     txtCode.Enabled = False
                     txtNameVN.Enabled = False
                     rdNote.Enabled = False
-                    EnabledGridNotPostback(rgDanhMuc, True)
+                    EnabledGridNotPostback(rgDanhMucHS, True)
                 Case CommonMessage.STATE_EDIT
 
                     rdFromDate.Enabled = True
@@ -201,48 +203,48 @@ Public Class ctrlRitual_Hose
                     txtCode.Enabled = False
                     txtNameVN.Enabled = True
                     rdNote.Enabled = True
-                    EnabledGridNotPostback(rgDanhMuc, False)
+                    EnabledGridNotPostback(rgDanhMucHS, False)
                     ckIsSA.Enabled = True
                     ckIsSU.Enabled = True
                 Case CommonMessage.STATE_DEACTIVE
                     Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
+                    For idx = 0 To rgDanhMucHS.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgDanhMucHS.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
                     If rep.ActiveHoliday_Hose(lstDeletes, "I") Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
-                        rgDanhMuc.Rebind()
+                        rgDanhMucHS.Rebind()
                         ClearControlValue(txtCode, rdFromDate, rdToDate, rdNote, txtNameVN)
                         rdFromDate.SelectedDate = Nothing
                         rdToDate.SelectedDate = Nothing
-                        rgDanhMuc.SelectedIndexes.Clear()
+                        rgDanhMucHS.SelectedIndexes.Clear()
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
+                    For idx = 0 To rgDanhMucHS.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgDanhMucHS.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
                     If rep.ActiveHoliday_Hose(lstDeletes, "A") Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
-                        rgDanhMuc.Rebind()
+                        rgDanhMucHS.Rebind()
                         ClearControlValue(txtCode, rdFromDate, rdToDate, rdNote, txtNameVN)
                         rdFromDate.SelectedDate = Nothing
                         rdToDate.SelectedDate = Nothing
-                        rgDanhMuc.SelectedIndexes.Clear()
+                        rgDanhMucHS.SelectedIndexes.Clear()
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
 
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
-                    For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
-                        Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
+                    For idx = 0 To rgDanhMucHS.SelectedItems.Count - 1
+                        Dim item As GridDataItem = rgDanhMucHS.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
                     If Not rep.CheckExistInDatabase(lstDeletes, AttendanceCommonTABLE_NAME.AT_HOLIDAY) Then
@@ -287,7 +289,7 @@ Public Class ctrlRitual_Hose
             dic.Add("ID", txtID)
             dic.Add("IS_SA", ckIsSA)
             dic.Add("IS_SUN", ckIsSU)
-            Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
+            Utilities.OnClientRowSelectedChanged(rgDanhMucHS, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -322,15 +324,15 @@ Public Class ctrlRitual_Hose
                     rdToDate.Clear()
                     rdFromDate.DateInput.Clear()
                     rdToDate.DateInput.Clear()
-                    rgDanhMuc.SelectedIndexes.Clear()
+                    rgDanhMucHS.SelectedIndexes.Clear()
                     txtNameVN.Focus()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     txtNameVN.Focus()
-                    If rgDanhMuc.SelectedItems.Count = 0 Then
+                    If rgDanhMucHS.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-                    If rgDanhMuc.SelectedItems.Count > 1 Then
+                    If rgDanhMucHS.SelectedItems.Count > 1 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
@@ -338,7 +340,7 @@ Public Class ctrlRitual_Hose
                     UpdateControlState()
 
                 Case CommonMessage.TOOLBARITEM_ACTIVE
-                    If rgDanhMuc.SelectedItems.Count = 0 Then
+                    If rgDanhMucHS.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
@@ -349,7 +351,7 @@ Public Class ctrlRitual_Hose
                     ctrlMessageBox.Show()
 
                 Case CommonMessage.TOOLBARITEM_DEACTIVE
-                    If rgDanhMuc.SelectedItems.Count = 0 Then
+                    If rgDanhMucHS.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
@@ -360,7 +362,7 @@ Public Class ctrlRitual_Hose
                     ctrlMessageBox.Show()
 
                 Case CommonMessage.TOOLBARITEM_DELETE
-                    If rgDanhMuc.SelectedItems.Count = 0 Then
+                    If rgDanhMucHS.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
@@ -400,19 +402,19 @@ Public Class ctrlRitual_Hose
                                 End If
                             Case CommonMessage.STATE_EDIT
                                 Dim Validate As New AT_HOLIDAYDTO
-                                Validate.ID = rgDanhMuc.SelectedValue
+                                Validate.ID = rgDanhMucHS.SelectedValue
                                 If rep.ValidateHoliday(Validate) Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
                                     ClearControlValue(txtCode, txtNameVN, txtID, rdFromDate, rdToDate, rdNote)
                                     rdFromDate.SelectedDate = Nothing
                                     rdToDate.SelectedDate = Nothing
-                                    rgDanhMuc.Rebind()
+                                    rgDanhMucHS.Rebind()
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     UpdateControlState()
                                     Exit Sub
                                 End If
-                                objHoliday.ID = rgDanhMuc.SelectedValue
-                                If rep.InsertHoliday_Hose(objHoliday, rgDanhMuc.SelectedValue) Then
+                                objHoliday.ID = rgDanhMucHS.SelectedValue
+                                If rep.InsertHoliday_Hose(objHoliday, rgDanhMucHS.SelectedValue) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     IDSelect = objHoliday.ID
                                     Refresh("UpdateView")
@@ -421,7 +423,7 @@ Public Class ctrlRitual_Hose
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                         End Select
-                        rgDanhMuc.SelectedIndexes.Clear()
+                        rgDanhMucHS.SelectedIndexes.Clear()
                     Else
                         'ExcuteScript("Resize", "ResizeSplitter()")
                     End If
@@ -445,7 +447,7 @@ Public Class ctrlRitual_Hose
                             For Each row As DataRow In dtDatas.Rows
                                 data.ImportRow(row)
                             Next
-                            rgDanhMuc.ExportExcel(Server, Response, data, "DMNghiLe")
+                            rgDanhMucHS.ExportExcel(Server, Response, data, "DMNghiLe")
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                             Exit Sub
@@ -498,7 +500,7 @@ Public Class ctrlRitual_Hose
     ''' <param name="source"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgDanhMuc.NeedDataSource
+    Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgDanhMucHS.NeedDataSource
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -525,7 +527,7 @@ Public Class ctrlRitual_Hose
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If CurrentState = CommonMessage.STATE_EDIT Then
-                _validate.ID = rgDanhMuc.SelectedValue
+                _validate.ID = rgDanhMucHS.SelectedValue
                 _validate.CODE = txtCode.Text.Trim
                 ' args.IsValid = rep.ValidateHoliday(_validate)
             Else
@@ -555,7 +557,7 @@ Public Class ctrlRitual_Hose
     '    Try
     '        Dim startTime As DateTime = DateTime.UtcNow
     '        If CurrentState = CommonMessage.STATE_EDIT Then
-    '            _validate.ID = rgDanhMuc.SelectedValue
+    '            _validate.ID = rgDanhMucHS.SelectedValue
     '            _validate.WORKINGDAY = rdDate.SelectedDate
     '            args.IsValid = rep.ValidateHoliday(_validate)
     '        Else

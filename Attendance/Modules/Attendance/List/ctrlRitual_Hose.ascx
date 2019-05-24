@@ -80,7 +80,7 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgDanhMuc" runat="server" AutoGenerateColumns="False" AllowPaging="True"
+        <tlk:RadGrid PageSize=50 ID="rgDanhMucHS" runat="server" AutoGenerateColumns="False" AllowPaging="True"
             Height="100%" AllowSorting="True" AllowMultiRowSelection="true" >
             <ClientSettings EnableRowHoverStyle="true" AllowKeyboardNavigation="true">
                 <Selecting AllowRowSelect="true" />
@@ -152,7 +152,7 @@
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
             if (args.get_item().get_commandName() == "EXPORT") {
-                var grid = $find("<%=rgDanhMuc.ClientID %>");
+                var grid = $find("<%=rgDanhMucHS.ClientID %>");
                 var masterTable = grid.get_masterTableView();
                 var rows = masterTable.get_dataItems();
                 if (rows.length == 0) {
@@ -174,7 +174,7 @@
             {
                 // Nếu nhấn nút SAVE thì resize
                 if (!Page_ClientValidate(""))
-                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDanhMuc');
+                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDanhMucHS');
                 else
                     ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
             } else {
