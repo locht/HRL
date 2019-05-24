@@ -18,24 +18,24 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày bắt đầu từ")%>
+                            < <asp:Label ID="lbFromDate" runat="server" Text="Ngày bắt đầu từ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến")%>
+                           <asp:Label ID="lbToDate" runat="server" Text="Đến"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td>
-                            <asp:CheckBox ID="chkTerminate" runat="server" Text="<%$ Translate: Liệt kê cả nhân viên nghỉ việc %>" />
+                            <asp:CheckBox ID="chkTerminate" runat="server" Text="Liệt kê cả nhân viên nghỉ việc" />
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm %>" SkinID="ButtonFind">
+                            <tlk:RadButton ID="btnSearch" runat="server" Text="Tìm" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -52,17 +52,19 @@
                     <MasterTableView DataKeyNames="ID,ORG_ID,EMPLOYEE_ID,EMPLOYEE_CODE,STATUS_CODE,STATUS_ID,CONTRACTTYPE_ID"
                         ClientDataKeyNames="ID,ORG_ID,EMPLOYEE_ID,STATUS_CODE,CONTRACTTYPE_CODE">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="EMPLOYEE_ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="STATUS_CODE" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viêngFormatCurrencyVN" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="EMPLOYEE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" HeaderStyle-Width="150px" />
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />  
+                            <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
                                 <ItemTemplate>
@@ -74,53 +76,35 @@
                                 </tlk:RadToolTip>
                             </ItemTemplate>
                             </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Chức danhgFormatCurrencyVN" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số HĐLĐ %>" DataField="CONTRACT_NO"
+                            <tlk:GridBoundColumn HeaderText="Số HĐLĐgFormatCurrencyVN" DataField="CONTRACT_NO"
                                 SortExpression="CONTRACT_NO" UniqueName="CONTRACT_NO" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng %>" DataField="CONTRACTTYPE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Loại hợp đồnggFormatCurrencyVN" DataField="CONTRACTTYPE_NAME"
                                 SortExpression="CONTRACTTYPE_NAME" UniqueName="CONTRACTTYPE_NAME" HeaderStyle-Width="250px" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày bắt đầu %>" DataField="START_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày bắt đầugFormatCurrencyVN" DataField="START_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="START_DATE" UniqueName="START_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày kết thúc %>" DataField="EXPIRE_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày kết thúcgFormatCurrencyVN" DataField="EXPIRE_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Người ký %>" DataField="SIGNER_NAME"
+                            <tlk:GridBoundColumn HeaderText="Người kýgFormatCurrencyVN" DataField="SIGNER_NAME"
                                 SortExpression="SIGNER_NAME" UniqueName="SIGNER_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày ký %>" DataField="SIGN_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày kýgFormatCurrencyVN" DataField="SIGN_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="SIGN_DATE" UniqueName="SIGN_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                            <tlk:GridBoundColumn HeaderText="Trạng tháigFormatCurrencyVN" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
-                                SortExpression="ORG_DESC" Visible="false" />
+                                SortExpression="ORG_DESC" Visible="false" />--%>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle Width="120px" />
                 </tlk:RadGrid>
-            </tlk:RadPane>
-            <%--<tlk:RadPane ID="RadPane4" runat="server" Scrolling="None" Height="45px">
-                <table class="table-form">
-                    <tr>
-                        <td class="lb">
-                            <%# Translate("Biễu mẫu hỗ trợ")%>
-                        </td>
-                        <td>
-                            <tlk:RadComboBox runat="server" Width="400px" ID="cboPrintSupport">
-                            </tlk:RadComboBox>
-                        </td>
-                        <td>
-                            <tlk:RadButton ID="btnPrintSupport" runat="server" Text="<%$ Translate: Hỗ trợ in %>"
-                                OnClientClicking="btnPrintSupportClick" AutoPostBack="true" CausesValidation="false">
-                            </tlk:RadButton>
-                        </td>
-                    </tr>
-                </table>
-            </tlk:RadPane>--%>
+            </tlk:RadPane>         
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>

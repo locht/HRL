@@ -219,7 +219,7 @@ Public Class ctrlMngIO
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
 
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Export)
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Export, ToolbarItem.Calculate)
 
             'CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
@@ -537,11 +537,13 @@ Public Class ctrlMngIO
 
                 Case TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
-                    'Case TOOLBARITEM_SAVE
-                    '    SaveInOut()
-                    '    Refresh("InsertView")
-                    '    CurrentState = CommonMessage.STATE_NORMAL
-                    '    UpdateControlState()
+                Case TOOLBARTIEM_CALCULATE
+                    Dim IAttendanceBusiness As IAttendanceBusiness = New AttendanceBusinessClient()
+                    If IsNumeric(cboPeriod.SelectedValue) Then
+                        IAttendanceBusiness.CAL_SUMMARY_DATA_INOUT(cboPeriod.SelectedValue)
+                    End If
+                    isLoadPopup = 1
+                    UpdateControlState()
             End Select
 
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -26,7 +26,7 @@ Partial Public Class AttendanceRepository
         End Get
     End Property
 
-    Public Function CAL_SUMMARY_DATA_INOUT() As Boolean
+    Public Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_AT_LIST.CAL_SUMMARY_DATA_INOUT",

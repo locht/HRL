@@ -34,6 +34,10 @@ Public Class ctrlHU_WelfareList
             rgWelfareList.SetFilter()
             rgWelfareList.AllowCustomPaging = True
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgWelfareList)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

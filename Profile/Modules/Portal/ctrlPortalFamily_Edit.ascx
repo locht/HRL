@@ -137,9 +137,13 @@
         </tr>
     </table>
     <tlk:RadGrid PageSize="50" ID="rgFamilyEdit" runat="server" Height="250px" Width="99%">
+        <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+                <Selecting AllowRowSelect="true" />
+            </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
             ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
+            
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                     HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -220,6 +224,9 @@
     </tlk:RadGrid>
     <br />
     <tlk:RadGrid PageSize="50" ID="rgFamily" runat="server" Height="250px" Width="99%">
+          <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+                <Selecting AllowRowSelect="true" />
+            </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
             ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
             Caption="<%$ Translate: Thông tin hiện tại %>">
