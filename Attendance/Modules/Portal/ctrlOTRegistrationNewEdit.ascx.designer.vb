@@ -221,15 +221,6 @@ Partial Public Class ctrlOTRegistrationNewEdit
     Protected WithEvents txtSignCode As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''RequiredFieldValidator5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''rntbFromAM control.
     '''</summary>
     '''<remarks>
@@ -300,15 +291,6 @@ Partial Public Class ctrlOTRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboToPM As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''cboTypeOT control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboTypeOT As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''txtNote control.

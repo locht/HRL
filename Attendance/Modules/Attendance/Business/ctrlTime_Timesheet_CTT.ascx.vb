@@ -90,6 +90,9 @@ Public Class ctrlTime_Timesheet_CTT
             ctrlUpload1.isMultiple = AsyncUpload.MultipleFileSelection.Disabled
             ctrlUpload1.MaxFileInput = 1
             InitControl()
+            If Not IsPostBack Then
+                getSE_CASE_CONFIG()
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

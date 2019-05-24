@@ -356,7 +356,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
-                        If rntxDayRegist.Value.HasValue < rntBalance.Value.HasValue Then
+                        If rntxDayRegist.Value.HasValue > rntBalance.Value.HasValue Then
                             ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
                             UpdateControlState()
                             Exit Sub

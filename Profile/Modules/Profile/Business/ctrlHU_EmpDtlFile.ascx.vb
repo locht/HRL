@@ -159,6 +159,10 @@ Public Class ctrlHU_EmpDtlFile
         Try
             rgHuFile.SetFilter()
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPaneLeft)
+                GirdConfig(rgHuFile)
+            End If
         Catch ex As Exception
 
         End Try
