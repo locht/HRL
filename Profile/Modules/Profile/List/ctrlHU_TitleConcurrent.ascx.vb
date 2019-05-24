@@ -220,11 +220,8 @@ Public Class ctrlHU_TitleConcurrent
                     EnableControlAll(False, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode, btnEmployee, btnFindOrg)
                     ClearControlValue(txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode)
                 Case CommonMessage.STATE_EDIT
-
                     EnabledGridNotPostback(rgMain, False)
                     EnableControlAll(True, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode, btnEmployee, btnFindOrg)
-
-
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgMain.SelectedItems.Count - 1
