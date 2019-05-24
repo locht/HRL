@@ -95,6 +95,15 @@ Partial Public Class ctrlHU_Contract
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbFromDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFromDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdFromDate control.
     '''</summary>
     '''<remarks>
@@ -102,6 +111,15 @@ Partial Public Class ctrlHU_Contract
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdToDate control.

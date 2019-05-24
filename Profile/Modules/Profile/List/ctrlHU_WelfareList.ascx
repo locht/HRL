@@ -21,8 +21,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbCode" runat="server" Text="Mã chế độ phúc lợi"></asp:Label>
-                    <span class="lbReq">*</span>
+                    <asp:Label ID="lbCode" runat="server" Text="Mã chế độ phúc lợi"></asp:Label>                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" SkinID="ReadOnly" runat="server">
@@ -39,7 +38,6 @@
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbName" runat="server" Text="Tên chế độ phúc lợi"></asp:Label>
-                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
@@ -66,7 +64,6 @@
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbMoney" runat="server" Text="Số tiền"></asp:Label>
-                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmMONEY" MinValue="1" MaxLength="38" runat="server">
@@ -102,7 +99,6 @@
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbSTART_DATE" runat="server" Text="Ngày hiệu lực"></asp:Label>
-                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="dpSTART_DATE">
