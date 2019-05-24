@@ -61,7 +61,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbEffectDate" Text="Ngày hiệu lực"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server" AutoPostBack="true" TabIndex="3">
@@ -92,7 +92,7 @@
                 </td>             
                 <td class="lb">
                     <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3">
@@ -151,7 +151,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbCommendObj" Text="Đối tượng"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboCommendObj" runat="server" AutoPostBack="True" CausesValidation="False" TabIndex="3">
@@ -168,7 +168,7 @@
                 </td>
                   <td class="lb">
                     <asp:Label runat="server" ID="lbCommend_Title" Text="Danh hiệu khen thưởng"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboCommend_Title" runat="server" TabIndex="3">
@@ -182,7 +182,7 @@
                 </td>
                 <td class="lb">
                 <asp:Label runat="server" ID="lbYear" Text="Năm"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                 <tlk:RadTextBox ID="txtYear" runat="server" TabIndex="3">
@@ -245,7 +245,7 @@
                 </td>                
                   <td class="lb">
                     <asp:Label runat="server" ID="lbCommendLevel" Text="Cấp khen thưởng"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboCommendLevel" runat="server" CausesValidation="False" TabIndex="3">
