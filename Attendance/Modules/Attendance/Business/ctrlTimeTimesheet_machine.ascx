@@ -113,7 +113,7 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME"
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME"
                                 UniqueName="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="120px" SortExpression="OBJECT_ATTENDANCE_NAME" />                            
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút ở cơ quan %>" DataField="MIN_IN_WORK"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_IN_WORK"
@@ -150,7 +150,8 @@
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút đi trễ/về sớm %>" DataField="MIN_LATE_EARLY"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_LATE_EARLY"
                                 UniqueName="MIN_LATE_EARLY" HeaderStyle-Width="100px">
-                            </tlk:GridNumericColumn>
+                            </tlk:GridNumericColumn>--%>
+
                             <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Vào giữa %>" DataField="SHIFTBACKIN"
                                 UniqueName="SHIFTBACKIN" PickerType="TimePicker" AllowFiltering="false" DataFormatString="{0:HH:mm}"
                                 SortExpression="SHIFTBACKIN">
