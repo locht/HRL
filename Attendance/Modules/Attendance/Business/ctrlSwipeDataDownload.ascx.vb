@@ -612,7 +612,7 @@ Public Class ctrlSwipeDataDownload
                 file.SaveAs(fileName, True)
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet = workbook.Worksheets(0)
-                Dim lastRow = worksheet.Cells.GetLastDataRow(2)
+                Dim lastRow = worksheet.Cells.GetLastDataRow(2) + 1
                 dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(fistRow, fistCol, lastRow, worksheet.Cells.MaxColumn, True))
                 If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
             Next
