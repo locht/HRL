@@ -86,5 +86,14 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function IMPORT_AT_SWIPE_DATA_V1(ByVal log As UserLog, ByVal DATA_IN As String, ByVal Machine_type As Decimal) As Boolean Implements ServiceContracts.IAttendanceBusiness.IMPORT_AT_SWIPE_DATA_V1
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.IMPORT_AT_SWIPE_DATA_V1(log, DATA_IN, Machine_type)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
     End Class
 End Namespace
