@@ -352,7 +352,6 @@ Public Class ctrlGetSignDefault
                         rgWorkschedule.MasterTableView.SortExpressions.Clear()
                         rgWorkschedule.Rebind()
                         SelectedItemDataGridByKey(rgWorkschedule, IDSelect, )
-
                     Case "Cancel"
                         rgWorkschedule.MasterTableView.ClearSelectedItems()
                 End Select
@@ -394,7 +393,7 @@ Public Class ctrlGetSignDefault
             Else
                 Return rep.GetAT_SIGNDEFAULT(obj).ToTable
             End If
-
+            rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -434,10 +433,8 @@ Public Class ctrlGetSignDefault
                     EnableControlAll(False, txtEmpCode, txtEmpName, txtOrg, txtTitle)
                     btnChooseEmployee.Enabled = True
                     cboSign.SelectedIndex = 0
-                    rgWorkschedule.Rebind()
                     ExcuteScript("Clear", "clRadDatePicker()")
                     EnabledGridNotPostback(rgWorkschedule, False)
-
                 Case CommonMessage.STATE_NORMAL
                     btnChooseEmployee.Enabled = False
                     ClearControlValue(txtEmpCode, txtEmpName, txtOrg, rdToDate, txtTitle, txtNote, rdFromDate, cboSign)
@@ -732,8 +729,7 @@ Public Class ctrlGetSignDefault
                         End If
                     End Using
             End Select
-
-            CreateDataFilter()
+            rep.Dispose()
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

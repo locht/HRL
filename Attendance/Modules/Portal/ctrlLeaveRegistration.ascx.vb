@@ -228,7 +228,7 @@ Public Class ctrlLeaveRegistration
             Dim dtCheckSendApprove As DataTable = psp.CHECK_APPROVAL(strId)
             If dtCheckSendApprove.Rows.Count > 0 Then
                 If dtCheckSendApprove(0)("MESSAGE") > 1 Then
-                    ShowMessage(Translate("Không thể gửi phê duyệt các loại nghĩ khác nhau cùng lúc"), NotifyType.Warning)
+                    ShowMessage(Translate("Không thể gửi phê duyệt các loại nghỉ khác nhau cùng lúc"), NotifyType.Warning)
                     Exit Sub
                 End If
                 If dtCheckSendApprove(0)("SIGN_ID").ToString <> "" Then
@@ -250,7 +250,6 @@ Public Class ctrlLeaveRegistration
                     Exit Sub
                 End If
             End Using
-           
 
 
             Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, 0, sign_id, id_group)
