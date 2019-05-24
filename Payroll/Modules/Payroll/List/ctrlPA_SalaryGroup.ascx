@@ -10,40 +10,40 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                    <%# Translate("Mã bảng lương")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbCode" runat="server" Text="Mã bảng lương"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" SkinID="Textbox50" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập mã. %>" ToolTip="<%$ Translate: Bạn phải nhập mã. %>">
+                        ErrorMessage="Bạn phải nhập mã. ToolTip="Bạn phải nhập mã.">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã đã tồn tại. %>"
-                        ToolTip="<%$ Translate: Mã đã tồn tại. %>">
+                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="Mã đã tồn tại."
+                        ToolTip="Mã đã tồn tại.">
                     </asp:CustomValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="<%$ Translate: Mã không được chứa ký tự đặc biệt và khoảng trắng %>"
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Tên bảng lương")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbName" runat="server" Text="Tên bảng lương"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtName" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập tên thang bảng lương. %>" ToolTip="<%$ Translate: Bạn phải nhập tên thang bảng lương. %>">
+                        ErrorMessage="Bạn phải nhập tên thang bảng lương." ToolTip="Bạn phải nhập tên thang bảng lương.">
                     </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ngày hiệu lực")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqEffectDate" ControlToValidate="rdEffectDate" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày hiệu lực. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày hiệu lực. %>">
+                        ErrorMessage="Bạn phải nhập ngày hiệu lực." ToolTip="Bạn phải nhập ngày hiệu lực.">
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
@@ -78,8 +78,7 @@
             </tr>
             <tr>
                 <td class="lb" id="tdSGlbOrders">
-                    <label id="lbOrders">
-                        <%# Translate("Thứ tự")%><span class="lbReq">*</span></label>
+                    <asp:Label ID="lbOrders" runat="server" Text="Thứ tự"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox runat="server" ID="rntxtOrders" MinValue="1" Width="60px"
@@ -87,11 +86,10 @@
                         <NumberFormat GroupSeparator="" DecimalDigits="0" />
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rntxtOrders"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập số thứ tự. %>" ToolTip="<%$ Translate: Bạn phải nhập số thứ tự. %>"></asp:RequiredFieldValidator>
+                        runat="server" ErrorMessage="Bạn phải nhập số thứ tự." ToolTip="Bạn phải nhập số thứ tự."></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" id="tdSGlbIs_Incentive"  style='<%# if(Utilities.Account = "U", "display: None" , "Block") %>'>
-                    <label id="Label3">
-                        <%# Translate("Bảng thưởng HQCV")%></label>
+                     <asp:Label ID="lbIS_INCENTIVE" runat="server" Text="Bảng thưởng HQCV"></asp:Label>
                 </td>
                 <td id="tdSGcbIs_Incentive" runat="server"  style='<%# if(Utilities.Account = "U", "display: None" , "Block") %>'>
                     <div style="margin: -4px; margin-top: 1px">
@@ -107,57 +105,32 @@
         <tlk:RadGrid ID="rgData" runat="server" Height="100%">
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,EFFECT_DATE,REMARK,IS_COEFFICIENT,IS_INCENTIVE,ORDERS,ISHOSE">
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                      <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã bảng lương %>" DataField="CODE" SortExpression="CODE"
+                    <tlk:GridBoundColumn HeaderText="Mã bảng lương" DataField="CODE" SortExpression="CODE"
                         UniqueName="CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên bảng lương %>" DataField="NAME" SortExpression="NAME"
+                    <tlk:GridBoundColumn HeaderText="Tên bảng lương" DataField="NAME" SortExpression="NAME"
                         UniqueName="NAME" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
+                    <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                         UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECT_DATE">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
-                    </tlk:GridDateTimeColumn>
-                    <tlk:GridTemplateColumn HeaderText="Theo hệ số" UniqueName="IS_COEFFICIENT" DataField="IS_COEFFICIENT">
-                        <ItemTemplate>
-                            <tlk:RadButton ID="chkIS_COEFFICIENT" ToggleType="CheckBox" ButtonType="ToggleButton"
-                                Checked='<%# if(Eval("IS_COEFFICIENT").ToString() = "0", false , true) %>' Text=""
-                                runat="server" AutoPostBack="false" CausesValidation="false" ReadOnly="True">
-                            </tlk:RadButton>
-                        </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="10%"></ItemStyle>
-                        <HeaderStyle HorizontalAlign="Center" Width="10%"></HeaderStyle>
-                    </tlk:GridTemplateColumn>
-
-                    <tlk:GridTemplateColumn HeaderText="Thang lương quản lý (Hose)" UniqueName="ISHOSE" DataField="ISHOSE">
-                        <ItemTemplate>
-                            <tlk:RadButton ID="chkISHOSE" ToggleType="CheckBox" ButtonType="ToggleButton"
-                                Checked='<%# if(Eval("ISHOSE").ToString() = "0", false , true) %>' Text=""
-                                runat="server" AutoPostBack="false" CausesValidation="false" ReadOnly="True">
-                            </tlk:RadButton>
-                        </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="10%"></ItemStyle>
-                        <HeaderStyle HorizontalAlign="Center" Width="10%"></HeaderStyle>
-                    </tlk:GridTemplateColumn>
-                    <tlk:GridTemplateColumn HeaderText="<%$ Translate: Bảng thưởng HQCV %>" UniqueName="IS_INCENTIVE" DataField="IS_INCENTIVE" >
-                        <ItemTemplate>
-                            <tlk:RadButton ID="chkIS_INCENTIVE" ToggleType="CheckBox" ButtonType="ToggleButton"
-                                Checked='<%# ParseBoolean(Eval("IS_INCENTIVE").ToString()) %>' Text=""
-                                runat="server" AutoPostBack="false" CausesValidation="false" ReadOnly="True">
-                            </tlk:RadButton>
-                        </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="10%"></ItemStyle>
-                        <HeaderStyle HorizontalAlign="Center" Width="10%"></HeaderStyle>
-                    </tlk:GridTemplateColumn>
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Thứ tự %>" DataField="ORDERS" SortExpression="ORDERS"
+                    </tlk:GridDateTimeColumn>                    
+                    <tlk:GridCheckBoxColumn HeaderText="Theo hệ số" DataField="IS_COEFFICIENT"
+                        AllowFiltering="false"  SortExpression="IS_COEFFICIENT" UniqueName="IS_COEFFICIENT" />                        
+                    <tlk:GridCheckBoxColumn HeaderText="Thang lương quản lý (Hose)" DataField="ISHOSE"
+                        AllowFiltering="false"  SortExpression="ISHOSE" UniqueName="ISHOSE" />                   
+                    <tlk:GridCheckBoxColumn HeaderText="Bảng thưởng HQCV" DataField="IS_INCENTIVE"
+                        AllowFiltering="false"  SortExpression="IS_INCENTIVE" UniqueName="IS_INCENTIVE" />
+                    <tlk:GridNumericColumn HeaderText="Thứ tự" DataField="ORDERS" SortExpression="ORDERS"
                         UniqueName="ORDERS">
                         <HeaderStyle HorizontalAlign="Center" Width="10%" />
                         <ItemStyle HorizontalAlign="Right" />
                     </tlk:GridNumericColumn>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
-                        SortExpression="ACTFLG" UniqueName="ACTFLG" />
+                    <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="ACTFLG"
+                        SortExpression="ACTFLG" UniqueName="ACTFLG" />--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>

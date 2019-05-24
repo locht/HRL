@@ -61,6 +61,23 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function IMPORT_AT_SWIPE_DATA_V1(ByVal log As UserLog, ByVal DATA_IN As String, ByVal Machine_type As Decimal) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_AT_PROCESS.IMPORT_AT_SWIPE_DATA",
+                                               New With {.P_MACHINE_TYPE = Machine_type,
+                                                         .P_DATA = DATA_IN,
+                                                         .P_USER = log.Username,
+                                                         .P_CUR = cls.OUT_CURSOR}, True)
+                Return CBool(dtData(0)(0))
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
+
 #Region "Di som ve muon"
     Public Function GetDSVM(ByVal _filter As AT_LATE_COMBACKOUTDTO,
                                      ByVal _param As ParamDTO,

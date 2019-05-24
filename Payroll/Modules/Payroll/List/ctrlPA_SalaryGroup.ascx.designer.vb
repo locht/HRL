@@ -59,6 +59,15 @@ Partial Public Class ctrlPA_SalaryGroup
     Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtCode control.
     '''</summary>
     '''<remarks>
@@ -66,15 +75,6 @@ Partial Public Class ctrlPA_SalaryGroup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCode As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''reqCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqCode As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''cvalCode control.
@@ -95,6 +95,15 @@ Partial Public Class ctrlPA_SalaryGroup
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''lbName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtName control.
     '''</summary>
     '''<remarks>
@@ -111,6 +120,15 @@ Partial Public Class ctrlPA_SalaryGroup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reqName As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''lbEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEffectDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdEffectDate control.
@@ -185,6 +203,15 @@ Partial Public Class ctrlPA_SalaryGroup
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbOrders control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOrders As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rntxtOrders control.
     '''</summary>
     '''<remarks>
@@ -201,6 +228,15 @@ Partial Public Class ctrlPA_SalaryGroup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''lbIS_INCENTIVE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbIS_INCENTIVE As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''tdSGcbIs_Incentive control.

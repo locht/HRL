@@ -3167,16 +3167,16 @@ Namespace PayrollBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ISHOSEField As System.Nullable(Of Decimal)
+        Private ISHOSEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_COEFFICIENTField As System.Nullable(Of Decimal)
+        Private IS_COEFFICIENTField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_DELETEDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private IS_INCENTIVEField As System.Nullable(Of Decimal)
+        Private IS_INCENTIVEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NAMEField As String
@@ -3263,7 +3263,7 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ISHOSE() As System.Nullable(Of Decimal)
+        Public Property ISHOSE() As System.Nullable(Of Boolean)
             Get
                 Return Me.ISHOSEField
             End Get
@@ -3276,7 +3276,7 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_COEFFICIENT() As System.Nullable(Of Decimal)
+        Public Property IS_COEFFICIENT() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_COEFFICIENTField
             End Get
@@ -3302,7 +3302,7 @@ Namespace PayrollBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property IS_INCENTIVE() As System.Nullable(Of Decimal)
+        Public Property IS_INCENTIVE() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_INCENTIVEField
             End Get

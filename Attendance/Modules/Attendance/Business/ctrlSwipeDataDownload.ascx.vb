@@ -6,6 +6,7 @@ Imports Telerik.Web
 Imports Framework.UI
 Imports WebAppLog
 Imports System.Web.Script.Serialization
+Imports System.IO
 
 Public Class ctrlSwipeDataDownload
     Inherits Common.CommonView
@@ -62,6 +63,7 @@ Public Class ctrlSwipeDataDownload
 
     End Property
     Private JSONDATA As List(Of DATA_IN)
+    Private DATA_IN As DataTable
     Dim dsDataComper As New DataTable
     ''' <summary>
     ''' Danh sach du lieu cham cong
@@ -457,7 +459,7 @@ Public Class ctrlSwipeDataDownload
             If dtdata IsNot Nothing AndAlso dtdata.Rows.Count > 0 Then
                 MACHINE_TYPE_CODE = (From P In dtdata.AsEnumerable Where P("ID") = cbMachine_Type.SelectedValue Select P("CODE")).FirstOrDefault
             End If
-            Dim DATA_IN As New DataTable("DATA_IN")
+            DATA_IN = New DataTable("DATA_IN")
             'Create struct DATA IN with table config
             For Each row In dtConfig.Rows
                 DATA_IN.Columns.Add(row("COLUMN_CODE").ToString.Trim, GetType(String))
@@ -471,14 +473,19 @@ Public Class ctrlSwipeDataDownload
                 Next
                 DATA_IN.Rows.Add(newRow)
             Next
+
             'END GET DATA
             If DATA_IN.Rows.Count = 0 Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_NOT_ROW), NotifyType.Warning)
                 Return False
+            Else
+                Return True
             End If
+
+            'TAM THOI NGAT XU LY DEN LINE NAY
             JSONDATA = New List(Of DATA_IN)
             Dim ArrData As New ArrayList()
-            For Each row As DataRow In DATA_IN.Rows
+            For Each row As DataRow In (From P In DATA_IN.AsEnumerable Where P("USER_ID") <> String.Empty OrElse P("USER_ID") <> "" Select P)
                 If Not IsNumeric(row("USER_ID")) OrElse row("USER_ID").ToString.Trim = String.Empty Then Continue For
                 Dim objJSON As New DATA_IN
                 Dim strCultureInfo As String = String.Empty
@@ -598,17 +605,19 @@ Public Class ctrlSwipeDataDownload
             'LAY THONG TIN CONFIG TMPLATE => @PAR = MACHINE_TYPE 
             Dim fistRow As Integer = 0
             Dim fistCol As Integer = 0
+            Dim file_type As String = String.Empty
             Dim IAttenDance As IAttendanceBusiness = New AttendanceBusinessClient()
             Dim dsConfig As DataSet = IAttenDance.GET_CONFIG_TEMPLATE(cbMachine_Type.SelectedValue)
             If dsConfig IsNot Nothing AndAlso dsConfig.Tables.Count = 2 AndAlso dsConfig.Tables(1) IsNot Nothing AndAlso dsConfig.Tables(1).Rows.Count = 1 Then
                 fistRow = dsConfig.Tables(1)(0)("FIST_ROW")
                 fistCol = dsConfig.Tables(1)(0)("FIST_COL")
+                file_type = dsConfig.Tables(1)(0)("FILE_TYPE")
             End If
             'end get config
             Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
             Dim savepath = Context.Server.MapPath(tempPath)
             For Each file As UploadedFile In ctrlUpload1.UploadedFiles
-                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & "." & file_type)
                 file.SaveAs(fileName, True)
                 workbook = New Aspose.Cells.Workbook(fileName)
                 worksheet = workbook.Worksheets(0)
@@ -628,6 +637,13 @@ Public Class ctrlSwipeDataDownload
             Next
             Dim thrIMPORT_DATA As Threading.Thread
             If loadToGridByConfig(dsConfig.Tables(0)) Then
+                Dim sw As New StringWriter()
+                Dim DocXml As String = String.Empty
+                DATA_IN.WriteXml(sw, False)
+                DocXml = sw.ToString
+
+
+                Exit Sub 'NGAT LUONG LAM VIEC O DAY LAM THEO HUONG MOI
                 Dim jsonSerialiser = New JavaScriptSerializer()
                 Dim Index As Integer = 0
                 Dim TotalRow As Integer = JSONDATA.Count
