@@ -218,7 +218,7 @@ Public Class ctrlHU_TitleConcurrent
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
                     EnableControlAll(False, txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode, btnEmployee, btnFindOrg)
-
+                    ClearControlValue(txtOrgName2, cboTitle, rdEffectDate, rdExpireDate, txtNote, txtDecisionNo, txtEmployeeCode)
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgMain, False)
@@ -256,11 +256,11 @@ Public Class ctrlHU_TitleConcurrent
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            Using rep As New ProfileRepository
-                Dim _filter As New TitleDTO
-                Dim dtDataTitle As DataTable = rep.GetTitle(_filter).ToTable()
-                FillRadCombobox(cboTitle, dtDataTitle, "NAME_VN", "ID", False)
-            End Using
+            'Using rep As New ProfileRepository
+            '    Dim _filter As New TitleDTO
+            '    Dim dtDataTitle As DataTable = rep.GetTitle(_filter).ToTable()
+            '    FillRadCombobox(cboTitle, dtDataTitle, "NAME_VN", "ID", False)
+            'End Using
             'Dim dtData As DataTable
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("ORG_ID", hidOrgID)
@@ -473,6 +473,7 @@ Public Class ctrlHU_TitleConcurrent
 
     Private Sub ctrlOrgPopup_OrganizationSelected(ByVal sender As Object, ByVal e As Common.OrganizationSelectedEventArgs) Handles ctrlFindOrgPopup.OrganizationSelected
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New ProfileRepository
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Dim orgItem = ctrlFindOrgPopup.CurrentItemDataObject
@@ -487,6 +488,10 @@ Public Class ctrlHU_TitleConcurrent
                 'txtOrgName2.ToolTip = Utilities.DrawTreeByString(orgItem.DESCRIPTION_PATH)
             End If
             cboTitle.ClearValue()
+
+            Dim dtTitle As DataTable = rep.GetTitleByOrgID(hidOrgID.Value, True)
+            FillRadCombobox(cboTitle, dtTitle, "NAME", "ID")
+
             ' isLoadPopup = 0
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -578,7 +583,33 @@ Handles cboTitle.ItemsRequested
         End Try
     End Sub
 
-
+    Private Sub rgMain_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgMain.SelectedIndexChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New ProfileRepository
+        Try
+            If rgMain.SelectedItems.Count = 1 Then
+                Dim item As GridDataItem = rgMain.SelectedItems(0)
+                hidEmployee.Value = item.GetDataKeyValue("EMPLOYEE_ID")
+                txtEmployeeCode.Text = item.GetDataKeyValue("EMPLOYEE_NAME")
+                hidOrgID.Value = item.GetDataKeyValue("ORG_ID")
+                txtOrgName2.Text = item.GetDataKeyValue("ORG_NAME")
+                Dim dtTitle As DataTable = rep.GetTitleByOrgID(hidOrgID.Value, True)
+                FillRadCombobox(cboTitle, dtTitle, "NAME", "ID")
+                cboTitle.SelectedValue = item.GetDataKeyValue("TITLE_ID")
+                If item.GetDataKeyValue("EFFECT_DATE") IsNot Nothing Then
+                    rdEffectDate.SelectedDate = item.GetDataKeyValue("EFFECT_DATE")
+                End If
+                If item.GetDataKeyValue("EXPIRE_DATE") IsNot Nothing Then
+                    rdExpireDate.SelectedDate = item.GetDataKeyValue("EXPIRE_DATE")
+                End If
+                txtNote.Text = item.GetDataKeyValue("NOTE")
+                txtDecisionNo.Text = item.GetDataKeyValue("DECISION_NO")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
 
+    
 End Class
