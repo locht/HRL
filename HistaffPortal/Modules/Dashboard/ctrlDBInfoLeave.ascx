@@ -13,42 +13,51 @@
     <table class="table-form">
         <tr>
             <td>
-                <span class="lbllegen">Tổng số phép năm:</span>
+                <span class="lbllegen">Phép chế độ:</span>
             </td>
             <td>
                 <span class="lblNumber">
-                    <asp:Label ID="lblNgayDuocNghi" runat="server"></asp:Label>
-                    (ngày)</span>
+                    <asp:Label ID="lblNgayPhepCD" runat="server"></asp:Label></span>
+            </td>
+            <td>
+                <span class="lbllegen">Phép đã sử dụng:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblNgayPhepSD" runat="server"></asp:Label></span>
             </td>
         </tr>
         <tr>
             <td>
-                <span class="lbllegen">Số phép năm còn lại:</span>
+                <span class="lbllegen">Phép thâm niên:</span>
             </td>
             <td>
                 <span class="lblNumber">
-                    <asp:Label ID="lblConLai" runat="server"></asp:Label>
-                    (ngày)</span>
+                    <asp:Label ID="lblPhepTN" runat="server"></asp:Label></span>
+            </td>
+
+             <td>
+                <span class="lbllegen">Phép trừ quy đổi từ số phút ngoài cơ quan:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblPhepTQD" runat="server"></asp:Label></span>
             </td>
         </tr>
         <tr>
             <td>
-                <span class="lbllegen">Tổng số ngày nghỉ bù:</span>
+                <span class="lbllegen">Phép năm trước còn lại:</span>
             </td>
             <td>
                 <span class="lblNumber">
-                    <asp:Label ID="lblNgayDuocNghiB" runat="server"></asp:Label>
-                    (ngày)</span>
+                    <asp:Label ID="lblPhepNT" runat="server"></asp:Label></span>
             </td>
-        </tr>
-        <tr>
             <td>
-                <span class="lbllegen">Số ngày nghỉ bù còn lại:</span>
+                <span class="lbllegen">Phép còn lại:</span>
             </td>
             <td>
                 <span class="lblNumber">
-                    <asp:Label ID="lblConLaiB" runat="server"></asp:Label>
-                    (ngày)</span>
+                    <asp:Label ID="lblPhepConLai" runat="server"></asp:Label></span>
             </td>
         </tr>
     </table>

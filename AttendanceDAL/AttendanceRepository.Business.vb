@@ -61,6 +61,23 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function IMPORT_AT_SWIPE_DATA_V1(ByVal log As UserLog, ByVal DATA_IN As String, ByVal Machine_type As Decimal) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_AT_PROCESS.IMPORT_AT_SWIPE_DATA",
+                                               New With {.P_MACHINE_TYPE = Machine_type,
+                                                         .P_DATA = DATA_IN,
+                                                         .P_USER = log.Username,
+                                                         .P_CUR = cls.OUT_CURSOR}, True)
+                Return CBool(dtData(0)(0))
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
+
 #Region "Di som ve muon"
     Public Function GetDSVM(ByVal _filter As AT_LATE_COMBACKOUTDTO,
                                      ByVal _param As ParamDTO,
@@ -398,7 +415,7 @@ Partial Public Class AttendanceRepository
         Try
             Dim obj As New AT_ACTION_LOGDTO
             Using cls As New DataAccess.NonQueryData
-                Dim Period = (From w In Context.AT_PERIOD Where w.START_DATE = p_fromdate).FirstOrDefault
+                Dim Period = (From w In Context.AT_PERIOD Where w.START_DATE.Value.Year = p_fromdate.Year And w.START_DATE.Value.Month = p_fromdate.Month).FirstOrDefault
                 obj.PERIOD_ID = Period.ID
 
                 'cls.ExecuteSQL("DELETE FROM SE_EMPLOYEE_CHOSEN S WHERE UPPER(S.USING_USER) ='" + log.Username.ToUpper + "'")

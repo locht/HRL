@@ -413,35 +413,26 @@ Public Class ProfileDashboardRepository
             Dim result As New TotalDayOffDTO
             Using cls As New DataAccess.QueryData
 
-                ' nghi bu 
-                If (_filter.LEAVE_TYPE = 255) Then
-                    Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_COMPENSATORY",
-                                     New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
-                                               .P_DATE_TIME = _filter.DATE_REGISTER,
-                                               .P_OUT = cls.OUT_CURSOR})
-                    If dtData IsNot Nothing AndAlso dtData.Rows.Count = 1 Then
-                        result.EMPLOYEE_ID = _filter.EMPLOYEE_ID
-                        result.DATE_REGISTER = _filter.DATE_REGISTER
-                        result.LEAVE_TYPE = _filter.LEAVE_TYPE
-                        result.TOTAL_DAY = dtData.Rows(0)("TONG_NB")
-                        result.USED_DAY = dtData.Rows(0)("DA_NB")
-                        result.REST_DAY = dtData.Rows(0)("NB_CON_LAI")
-                    End If
-                    'nghi phep
-                ElseIf (_filter.LEAVE_TYPE = 251) Then
-                    Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_ENTITLEMENT",
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_ENTITLEMENT",
                                     New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
                                               .P_DATE_TIME = _filter.DATE_REGISTER,
                                               .P_OUT = cls.OUT_CURSOR})
-                    If dtData IsNot Nothing AndAlso dtData.Rows.Count = 1 Then
-                        result.EMPLOYEE_ID = _filter.EMPLOYEE_ID
-                        result.DATE_REGISTER = _filter.DATE_REGISTER
-                        result.LEAVE_TYPE = _filter.LEAVE_TYPE
-                        result.TOTAL_DAY = dtData.Rows(0)("PHEP_TRONG_NAM")
-                        result.USED_DAY = dtData.Rows(0)("PHEP_DA_NGHI")
-                        result.REST_DAY = dtData.Rows(0)("PHEP_CON_LAI")
+                If dtData IsNot Nothing AndAlso dtData.Rows.Count = 1 Then
+                    result.EMPLOYEE_ID = _filter.EMPLOYEE_ID
+                    result.DATE_REGISTER = _filter.DATE_REGISTER
+                    result.LEAVE_TYPE = _filter.LEAVE_TYPE
+                    result.TOTAL_DAY = dtData.Rows(0)("PHEP_TRONG_NAM")
+                    result.USED_DAY = dtData.Rows(0)("PHEP_DA_NGHI")
+                    result.REST_DAY = dtData.Rows(0)("PHEP_CON_LAI")
+                    result.LIMIT_DAY = If(IsDBNull(dtData.Rows(0)("LIMIT_DAY")), Nothing, dtData.Rows(0)("LIMIT_DAY"))
+                    result.LIMIT_YEAR = If(IsDBNull(dtData.Rows(0)("LIMIT_YEAR")), Nothing, dtData.Rows(0)("LIMIT_YEAR"))
 
-                    End If
+                    result.PREV_HAVE = dtData.Rows(0)("PREV_HAVE")
+                    result.PREV_USED = dtData.Rows(0)("PREV_USED")
+                    result.PREVTOTAL_HAVE = dtData.Rows(0)("PREVTOTAL_HAVE")
+                    result.SENIORITYHAVE = dtData.Rows(0)("SENIORITYHAVE")
+                    result.TOTAL_HAVE1 = dtData.Rows(0)("TOTAL_HAVE1")
+                    result.TIME_OUTSIDE_COMPANY = dtData.Rows(0)("TIME_OUTSIDE_COMPANY")
                 End If
             End Using
             Return result

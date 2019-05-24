@@ -72,6 +72,10 @@ Public Class ctrlTimeTimesheet_machine
             rgTimeTimesheet_machine.AllowCustomPaging = True
             rgTimeTimesheet_machine.ClientSettings.EnablePostBackOnRowClick = False
             InitControl()
+            If Not IsPostBack Then
+                getSE_CASE_CONFIG()
+                'GirdConfig(rgTimeTimesheet_machine)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -241,23 +245,34 @@ Public Class ctrlTimeTimesheet_machine
                         ShowMessage(Translate("Từ ngày đến ngày chưa được chọn"), Utilities.NotifyType.Warning)
                         Exit Sub
                     End If
+                    'LAY THONG TIN CONFIG CASE :
+                    getSE_CASE_CONFIG()
+                    Dim Status As Boolean = True
+                    If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
+                        Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlTimeTimesheet_machine_case1" + "'")
+                        If ROWS IsNot Nothing AndAlso ROWS.Count > 0 Then
+                            Status = CBool(ROWS(0)("STATUS"))
+                        End If
+                    End If
                     Dim lsEmployee As New List(Of Decimal?)
                     Dim employee_id As Decimal?
-                    For Each items As GridDataItem In rgTimeTimesheet_machine.MasterTableView.GetSelectedItems()
-                        Dim item = Decimal.Parse(items.GetDataKeyValue("EMPLOYEE_ID"))
-                        employee_id = Decimal.Parse(item)
-                        lsEmployee.Add(employee_id)
-                    Next
-                    rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0)
-                    Refresh("UpdateView")
-                    'If rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                    '                               Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee) Then
-                    '    Refresh("UpdateView")
-                    'Else
-                    '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Success)
-                    '    Exit Sub
-                    'End If
+                    If Not Status Then
+                        For Each items As GridDataItem In rgTimeTimesheet_machine.MasterTableView.GetSelectedItems()
+                            Dim item = Decimal.Parse(items.GetDataKeyValue("EMPLOYEE_ID"))
+                            employee_id = Decimal.Parse(item)
+                            lsEmployee.Add(employee_id)
+                        Next
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                       Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0)
+                        Refresh("UpdateView")
+                        'If rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                        '                               Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee) Then
+                        '    Refresh("UpdateView")
+                        'Else
+                        '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Success)
+                        '    Exit Sub
+                        'End If
+                    End If
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         Dim dtDatas As DataTable

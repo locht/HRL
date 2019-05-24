@@ -221,6 +221,7 @@ Public Class ctrlLeaveRegistration
             Dim sign_id As Integer
             Dim period_id As Integer
             Dim id_group As Integer
+            Dim sumday As Integer
             For Each dr As GridDataItem In rgMain.SelectedItems
                 strId += dr.GetDataKeyValue("ID").ToString + ","
             Next
@@ -240,6 +241,9 @@ Public Class ctrlLeaveRegistration
                 If dtCheckSendApprove(0)("ID_REGGROUP").ToString <> "" Then
                     id_group = dtCheckSendApprove(0)("ID_REGGROUP")
                 End If
+                If dtCheckSendApprove(0)("SUMDAY").ToString <> "" Then
+                    sumday = dtCheckSendApprove(0)("SUMDAY")
+                End If
             End If
 
             Using rep As New AttendanceRepository
@@ -252,12 +256,15 @@ Public Class ctrlLeaveRegistration
             End Using
 
 
-            Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, 0, sign_id, id_group)
+            Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
             If outNumber = 0 Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+            ElseIf outNumber = 1 Then
+                ShowMessage(Translate("CHƯA CÓ TEMPLATE"), NotifyType.Success)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
             End If
+
             rgMain.Rebind()
         End If
         If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
