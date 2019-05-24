@@ -398,7 +398,7 @@ Partial Public Class AttendanceRepository
         Try
             Dim obj As New AT_ACTION_LOGDTO
             Using cls As New DataAccess.NonQueryData
-                Dim Period = (From w In Context.AT_PERIOD Where w.START_DATE = p_fromdate).FirstOrDefault
+                Dim Period = (From w In Context.AT_PERIOD Where w.START_DATE.Value.Year = p_fromdate.Year And w.START_DATE.Value.Month = p_fromdate.Month).FirstOrDefault
                 obj.PERIOD_ID = Period.ID
 
                 'cls.ExecuteSQL("DELETE FROM SE_EMPLOYEE_CHOSEN S WHERE UPPER(S.USING_USER) ='" + log.Username.ToUpper + "'")
