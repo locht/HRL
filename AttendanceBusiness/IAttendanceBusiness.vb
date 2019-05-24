@@ -8,6 +8,8 @@ Namespace AttendanceBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IAttendanceBusiness
         <OperationContract()>
+        Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean
+        <OperationContract()>
         Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
         <OperationContract()>
         Function CHECK_PERIOD_CLOSE(ByVal periodid As Integer) As Integer
