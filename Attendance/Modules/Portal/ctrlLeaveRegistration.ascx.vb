@@ -255,9 +255,12 @@ Public Class ctrlLeaveRegistration
             Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, 0, sign_id, id_group)
             If outNumber = 0 Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+            ElseIf outNumber = 1 Then
+                ShowMessage(Translate("CHƯA CÓ TEMPLATE"), NotifyType.Success)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
             End If
+
             rgMain.Rebind()
         End If
         If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
