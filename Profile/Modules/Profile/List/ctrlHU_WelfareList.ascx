@@ -12,40 +12,41 @@
             <tr>
                 <td colspan="4">
                 </td>
-                <td>
-                    <%# Translate("Giới tính")%>
+                <td>                    
+                    <asp:Label ID="lbGender" runat="server" Text="Giới tính"></asp:Label>
                 </td>
                 <td>
-                    <%# Translate("Loại hợp đồng")%>
+                    <asp:Label ID="lbContractType" runat="server" Text="Loại hợp đồng"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Mã chế độ phúc lợi")%>
+                    <asp:Label ID="lbCode" runat="server" Text="Mã chế độ phúc lợi"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" SkinID="ReadOnly" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server" ValidationGroup="WelfareList"
-                        CausesValidation="false" ErrorMessage="<%$ Translate: Bạn phải nhập mã chế độ phúc lợi. %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập mã chế độ phúc lợi. %>">
+                        CausesValidation="false" ErrorMessage="Bạn phải nhập mã chế độ phúc lợi"
+                        ToolTip="Bạn phải nhập mã chế độ phúc lợi.">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã chế độ phúc lợi đã tồn tại. %>"
-                        ToolTip="<%$ Translate: Mã chế độ phúc lợi đã tồn tại. %>" ValidationGroup="WelfareList">
+                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="Mã chế độ phúc lợi đã tồn tại."
+                        ToolTip="Mã chế độ phúc lợi đã tồn tại." ValidationGroup="WelfareList">
                     </asp:CustomValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="WelfareList" ErrorMessage="<%$ Translate: Mã không được chứa ký tự đặc biệt và khoảng trắng %>"
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="WelfareList" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Tên chế độ phúc lợi")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbName" runat="server" Text="Tên chế độ phúc lợi"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server" ValidationGroup="WelfareList"
-                        CausesValidation="false" ErrorMessage="<%$ Translate: Bạn phải nhập tên chế độ phúc lợi. %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập tên chế độ phúc lợi. %>"></asp:RequiredFieldValidator>
+                        CausesValidation="false" ErrorMessage="Bạn phải nhập tên chế độ phúc lợi."
+                        ToolTip="Bạn phải nhập tên chế độ phúc lợi."></asp:RequiredFieldValidator>
                 </td>
                 <td rowspan="5" style="vertical-align: top;">
                     <tlk:RadListBox ID="lstbGender" CheckBoxes="true" runat="server" Height="60px" Width="100px"
@@ -57,24 +58,25 @@
                         Width="290px">
                     </tlk:RadListBox>
                     <asp:CustomValidator ID="cvalContractType" runat="server" ValidationGroup="WelfareList" ControlToValidate="lstCONTRACT_TYPE"
-                        ErrorMessage="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng. %>">
+                        ErrorMessage="Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Số tiền")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbMoney" runat="server" Text="Số tiền"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmMONEY" MinValue="1" MaxLength="38" runat="server">
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="cvalMONEY" ControlToValidate="nmMONEY" runat="server" ValidationGroup="WelfareList"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập số tiền. %>" ToolTip="<%$ Translate: Bạn phải nhập số tiền. %>">
+                        ErrorMessage="Bạn phải nhập số tiền." ToolTip="Bạn phải nhập số tiền.">
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Thâm niên (tháng)")%>
+                    <asp:Label ID="lbSENIORITY" runat="server" Text="Thâm niên (tháng)"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmSENIORITY" SkinID="Number" MaxLength="38" runat="server">
@@ -83,14 +85,14 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Tuổi con nhỏ từ")%>
+                    <asp:Label ID="lbCHILD_OLD_FROM" runat="server" Text="Tuổi con nhỏ từ"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmCHILD_OLD_FROM" MinValue="0" MaxLength="38" runat="server">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("đến")%>
+                    <asp:Label ID="lbCHILD_OLD_TO" runat="server" Text="đến"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmCHILD_OLD_TO" MinValue="0" MaxLength="38" runat="server">
@@ -99,23 +101,24 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ngày hiệu lực")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbSTART_DATE" runat="server" Text="Ngày hiệu lực"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="dpSTART_DATE">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="dpSTART_DATE" ValidationGroup="WelfareList"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập ngày hiệu lực %>" ToolTip="<%$ Translate: Bạn phải nhập ngày hiệu lực %>">
+                        runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực." ToolTip="Bạn phải nhập ngày hiệu lực.">
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Ngày hết hiệu lực")%>
+                    <asp:Label ID="lbEND_DATE" runat="server" Text="Ngày hết hiệu lực"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="dpEND_DATE">
                     </tlk:RadDatePicker>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ValidationGroup="WelfareList" ToolTip="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>"
-                        ErrorMessage="<%$ Translate: Ngày hết hiệu lực phải lớn hơn ngày hiệu lực %>"
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" ValidationGroup="WelfareList" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
+                        ErrorMessage="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
                         Type="Date" Operator="GreaterThan" ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>
                 </td>
             </tr>
@@ -124,7 +127,7 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="chkIS_AUTO" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton" ValidateRequestMode="Disabled"
-                    ValidationGroup="a" runat="server" Text="<%$ Translate: Tự động áp dụng %>">
+                    ValidationGroup="a" runat="server" Text="Tự động áp dụng.">
                     </tlk:RadButton>
                 </td>
             </tr>
@@ -138,38 +141,38 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,CONTRACT_TYPE_NAME,CONTRACT_TYPE,GENDER,SENIORITY,MONEY,START_DATE,END_DATE,IS_AUTO,CHILD_OLD_FROM,CHILD_OLD_TO">
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
-                        HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
-                    </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã chế độ phúc lợi %>" DataField="CODE"
-                        SortExpression="CODE" UniqueName="CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên chế độ phúc lợi %>" DataField="NAME"
-                        SortExpression="NAME" UniqueName="NAME">
-                        <HeaderStyle Width="200px" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng %>" DataField="CONTRACT_TYPE_NAME"
-                        SortExpression="CONTRACT_TYPE_NAME" UniqueName="CONTRACT_TYPE_NAME">
-                        <HeaderStyle Width="250px" />
-                    </tlk:GridBoundColumn>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER_NAME"
-                        SortExpression="GENDER_NAME" UniqueName="GENDER_NAME" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Thâm niên %>" DataField="SENIORITY"
-                        SortExpression="SENIORITY" UniqueName="SENIORITY" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Tuổi con nhỏ từ %>" DataField="CHILD_OLD_FROM"
-                        SortExpression="CHILD_OLD_FROM" UniqueName="CHILD_OLD_FROM" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Tuổi con nhỏ đến %>" DataField="CHILD_OLD_TO"
-                        SortExpression="CHILD_OLD_TO" UniqueName="CHILD_OLD_TO" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="MONEY" SortExpression="MONEY"
-                        DataFormatString="{0:n0}" UniqueName="MONEY" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày bắt đầu %>" DataField="START_DATE"
-                        DataFormatString="{0:dd/MM/yyyy}" SortExpression="START_DATE" UniqueName="START_DATE" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày kết thúc %>" DataField="END_DATE"
-                        DataFormatString="{0:dd/MM/yyyy}" SortExpression="END_DATE" UniqueName="END_DATE" />
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Tự động áp dụng %>" DataField="IS_AUTO"
-                        AllowFiltering="false"  SortExpression="IS_AUTO" UniqueName="IS_AUTO" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
-                        SortExpression="ACTFLG" UniqueName="ACTFLG" />
+                   <%--<tlk:gridclientselectcolumn uniquename="cbstatus" headerstyle-horizontalalign="center"
+                        headerstyle-width="30px" itemstyle-horizontalalign="center">
+                    </tlk:gridclientselectcolumn>
+                    <tlk:gridboundcolumn datafield="id" visible="false" />
+                    <tlk:gridboundcolumn headertext="Mã chế độ phúc lợi" datafield="code"
+                        sortexpression="code" uniquename="code" />
+                    <tlk:gridboundcolumn headertext="Tên chế độ phúc lợi" datafield="name"
+                        sortexpression="name" uniquename="name">
+                        <headerstyle width="200px" />
+                    </tlk:gridboundcolumn>
+                    <tlk:gridboundcolumn headertext="Loại hợp đồng" datafield="contract_type_name"
+                        sortexpression="contract_type_name" uniquename="contract_type_name">
+                        <headerstyle width="250px" />
+                    </tlk:gridboundcolumn>
+                    <tlk:gridboundcolumn headertext="Giới tính" datafield="gender_name"
+                        sortexpression="gender_name" uniquename="gender_name" />
+                    <tlk:gridnumericcolumn headertext="Thâm niên" datafield="seniority"
+                        sortexpression="seniority" uniquename="seniority" />
+                    <tlk:gridnumericcolumn headertext="Tuổi con nhỏ từ" datafield="child_old_from"
+                        sortexpression="child_old_from" uniquename="child_old_from" />
+                    <tlk:gridnumericcolumn headertext="Tuổi con nhỏ đến" datafield="child_old_to"
+                        sortexpression="child_old_to" uniquename="child_old_to" />
+                    <tlk:gridnumericcolumn headertext="Số tiền" datafield="money" sortexpression="money"
+                        dataformatstring="{0:n0}" uniquename="money" />
+                    <tlk:griddatetimecolumn headertext="Ngày bắt đầu" datafield="start_date"
+                        dataformatstring="{0:dd/mm/yyyy}" sortexpression="start_date" uniquename="start_date" />
+                    <tlk:griddatetimecolumn headertext="Ngày kết thúc" datafield="end_date"
+                        dataformatstring="{0:dd/mm/yyyy}" sortexpression="end_date" uniquename="end_date" />
+                    <tlk:gridcheckboxcolumn headertext="Tự động áp dụng" datafield="is_auto"
+                        allowfiltering="false"  sortexpression="is_auto" uniquename="is_auto" />
+                    <tlk:gridboundcolumn headertext="Trạng thái" datafield="actflg"
+                        sortexpression="actflg" uniquename="actflg" />--%>
                 </Columns>
                 <HeaderStyle Width="120px" />
             </MasterTableView>
