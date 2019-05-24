@@ -131,14 +131,14 @@
             <%# Translate(" phút:")%>
         </td>
     </tr>
-    <tr>
+    <%--<tr>
         <td class="lb">
             <%# Translate("Loại làm thêm")%><span class="lbReq">*</span>
         </td>
         <td colspan="3">
             <tlk:RadComboBox runat="server" ID="cboTypeOT"></tlk:RadComboBox>
         </td>
-    </tr>
+    </tr>--%>
     <tr>
         <td class="lb">
             <%# Translate("Lý do làm thêm:")%><span class="lbReq">*</span>

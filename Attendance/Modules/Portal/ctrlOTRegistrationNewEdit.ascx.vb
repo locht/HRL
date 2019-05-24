@@ -101,10 +101,10 @@ Public Class ctrlOTRegistrationNewEdit
                     ListComboData.GET_LIST_OT_TYPE = True
                     rep.GetComboboxData(ListComboData)
                 End If
-                FillRadCombobox(cboTypeOT, ListComboData.LIST_LIST_OT_TYPE, "NAME_VN", "ID", True)
-                If ListComboData.LIST_LIST_OT_TYPE.Count > 0 Then
-                    cboTypeOT.SelectedIndex = 0
-                End If
+                'FillRadCombobox(cboTypeOT, ListComboData.LIST_LIST_OT_TYPE, "NAME_VN", "ID", True)
+                'If ListComboData.LIST_LIST_OT_TYPE.Count > 0 Then
+                '    cboTypeOT.SelectedIndex = 0
+                'End If
                 Dim table As DataTable = LoadComboMinute()
                 FillRadCombobox(cboFromAM, table, "NAME_VN", "ID", True)
                 FillRadCombobox(cboToAM, table, "NAME_VN", "ID", True)
@@ -190,9 +190,9 @@ Public Class ctrlOTRegistrationNewEdit
                     hid300.Value = OtRegistration.OT_300
                     hid390.Value = OtRegistration.OT_370
 
-                    If OtRegistration.OT_TYPE_ID.HasValue Then
-                        cboTypeOT.SelectedValue = OtRegistration.OT_TYPE_ID
-                    End If
+                    'If OtRegistration.OT_TYPE_ID.HasValue Then
+                    '    cboTypeOT.SelectedValue = OtRegistration.OT_TYPE_ID
+                    'End If
                     If OtRegistration.FROM_AM.HasValue Then
                         rntbFromAM.Value = OtRegistration.FROM_AM
                     End If
@@ -249,10 +249,10 @@ Public Class ctrlOTRegistrationNewEdit
                 Case "", PortalStatus.Saved, PortalStatus.UnApprovedByLM
                     If userType = "User" Then
                         tbarMainToolBar.Items(0).Enabled = True
-                        EnableControlAll(True, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
+                        EnableControlAll(True, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, txtNote)
                     Else
                         tbarMainToolBar.Items(0).Enabled = False
-                        EnableControlAll(False, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
+                        EnableControlAll(False, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, txtNote)
                     End If
                     If Not String.IsNullOrEmpty(hidID.Value) AndAlso hidID.Value > 0 Then
                         CurrentState = CommonMessage.STATE_EDIT
@@ -260,7 +260,7 @@ Public Class ctrlOTRegistrationNewEdit
                         CurrentState = CommonMessage.STATE_NEW
                     End If
                 Case Else
-                    EnableControlAll(False, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
+                    EnableControlAll(False, rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, txtNote)
             End Select
             'ChangeToolbarState()
 
@@ -278,16 +278,16 @@ Public Class ctrlOTRegistrationNewEdit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, cboTypeOT, txtNote)
+                    ClearControlValue(rdRegDate, rntbFromAM, cboFromAM, rntbToAM, cboToAM, rntbToPM, rntbFromPM, cboFromPM, rntbToPM, cboToPM, txtNote)
 
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If String.IsNullOrEmpty(cboTypeOT.SelectedValue) Then
-                            ShowMessage(Translate("Phải nhập loại làm thêm."), NotifyType.Warning)
-                            cboTypeOT.Focus()
-                            Exit Sub
-                        End If
+                        'If String.IsNullOrEmpty(cboTypeOT.SelectedValue) Then
+                        '    ShowMessage(Translate("Phải nhập loại làm thêm."), NotifyType.Warning)
+                        '    cboTypeOT.Focus()
+                        '    Exit Sub
+                        'End If
                         If rntbFromAM.Value.HasValue Or rntbToAM.Value.HasValue Then
                             If Not rntbFromAM.Value.HasValue Then
                                 ShowMessage(Translate("Phải nhập từ giờ làm thêm AM."), NotifyType.Warning)
@@ -378,7 +378,7 @@ Public Class ctrlOTRegistrationNewEdit
                         obj.EMPLOYEE_ID = EmployeeID
                         obj.IS_DELETED = 0
                         obj.NOTE = txtNote.Text
-                        obj.OT_TYPE_ID = ObjToDecima(cboTypeOT.SelectedValue, 0) 'txtDayRegist.Text
+                        obj.OT_TYPE_ID = ListComboData.LIST_LIST_TYPE_OT.Where(Function(f) f.CODE = "OT").Select(Function(g) g.ID).FirstOrDefault
                         obj.REGIST_DATE = rdRegDate.SelectedDate
                         If hidSignId.Value.ToString = "" Then
                             ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
