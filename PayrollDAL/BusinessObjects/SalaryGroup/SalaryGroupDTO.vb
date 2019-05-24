@@ -6,9 +6,9 @@
     Public Property REMARK As String
     Public Property CREATED_DATE As Date?
     Public Property ORDERS As Decimal?
-    Public Property IS_COEFFICIENT As Decimal?
-    Public Property IS_INCENTIVE As Decimal?
+    Public Property IS_COEFFICIENT As Boolean?
+    Public Property IS_INCENTIVE As Boolean?
     Public Property ACTFLG As String
     Public Property IS_DELETED As Decimal?
-    Public Property ISHOSE As Decimal?
+    Public Property ISHOSE As Boolean?
 End Class
