@@ -1503,10 +1503,37 @@ Namespace ProfileBusiness
         Private LEAVE_TYPEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIMIT_DAYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIMIT_YEARField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREVTOTAL_HAVEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_HAVEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PREV_USEDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REST_DAYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SENIORITYHAVEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_MANUAL_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_OUTSIDE_COMPANYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TOTAL_DAYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TOTAL_HAVE1Field As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private USED_DAYField As System.Nullable(Of Decimal)
@@ -1561,6 +1588,71 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIMIT_DAY() As String
+            Get
+                Return Me.LIMIT_DAYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIMIT_DAYField, value) <> true) Then
+                    Me.LIMIT_DAYField = value
+                    Me.RaisePropertyChanged("LIMIT_DAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIMIT_YEAR() As String
+            Get
+                Return Me.LIMIT_YEARField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIMIT_YEARField, value) <> true) Then
+                    Me.LIMIT_YEARField = value
+                    Me.RaisePropertyChanged("LIMIT_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREVTOTAL_HAVE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREVTOTAL_HAVEField
+            End Get
+            Set
+                If (Me.PREVTOTAL_HAVEField.Equals(value) <> true) Then
+                    Me.PREVTOTAL_HAVEField = value
+                    Me.RaisePropertyChanged("PREVTOTAL_HAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_HAVE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_HAVEField
+            End Get
+            Set
+                If (Me.PREV_HAVEField.Equals(value) <> true) Then
+                    Me.PREV_HAVEField = value
+                    Me.RaisePropertyChanged("PREV_HAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PREV_USED() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PREV_USEDField
+            End Get
+            Set
+                If (Me.PREV_USEDField.Equals(value) <> true) Then
+                    Me.PREV_USEDField = value
+                    Me.RaisePropertyChanged("PREV_USED")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property REST_DAY() As System.Nullable(Of Decimal)
             Get
                 Return Me.REST_DAYField
@@ -1574,6 +1666,45 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SENIORITYHAVE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SENIORITYHAVEField
+            End Get
+            Set
+                If (Me.SENIORITYHAVEField.Equals(value) <> true) Then
+                    Me.SENIORITYHAVEField = value
+                    Me.RaisePropertyChanged("SENIORITYHAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_MANUAL_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TIME_MANUAL_IDField
+            End Get
+            Set
+                If (Me.TIME_MANUAL_IDField.Equals(value) <> true) Then
+                    Me.TIME_MANUAL_IDField = value
+                    Me.RaisePropertyChanged("TIME_MANUAL_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_OUTSIDE_COMPANY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TIME_OUTSIDE_COMPANYField
+            End Get
+            Set
+                If (Me.TIME_OUTSIDE_COMPANYField.Equals(value) <> true) Then
+                    Me.TIME_OUTSIDE_COMPANYField = value
+                    Me.RaisePropertyChanged("TIME_OUTSIDE_COMPANY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TOTAL_DAY() As System.Nullable(Of Decimal)
             Get
                 Return Me.TOTAL_DAYField
@@ -1582,6 +1713,19 @@ Namespace ProfileBusiness
                 If (Me.TOTAL_DAYField.Equals(value) <> true) Then
                     Me.TOTAL_DAYField = value
                     Me.RaisePropertyChanged("TOTAL_DAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TOTAL_HAVE1() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TOTAL_HAVE1Field
+            End Get
+            Set
+                If (Me.TOTAL_HAVE1Field.Equals(value) <> true) Then
+                    Me.TOTAL_HAVE1Field = value
+                    Me.RaisePropertyChanged("TOTAL_HAVE1")
                 End If
             End Set
         End Property
