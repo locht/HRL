@@ -113,6 +113,44 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME"
+                                UniqueName="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="120px" SortExpression="OBJECT_ATTENDANCE_NAME" />                            
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút ở cơ quan %>" DataField="MIN_IN_WORK"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_IN_WORK"
+                                UniqueName="MIN_IN_WORK" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút ngoài cơ quan %>" DataField="MIN_OUT_WORK"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_OUT_WORK"
+                                UniqueName="MIN_OUT_WORK" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút giảm trừ do đi việc công %>" DataField="MIN_DEDUCT_WORK"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_DEDUCT_WORK"
+                                UniqueName="MIN_DEDUCT_WORK" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút trên đơn đăng ký nghỉ %>" DataField="MIN_ON_LEAVE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_ON_LEAVE"
+                                UniqueName="MIN_ON_LEAVE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút giảm trừ %>" DataField="MIN_DEDUCT"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_DEDUCT"
+                                UniqueName="MIN_DEDUCT" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút ngoài cơ quan sau khi giảm trừ %>" DataField="MIN_OUT_WORK_DEDUCT"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_OUT_WORK_DEDUCT"
+                                UniqueName="MIN_OUT_WORK_DEDUCT" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút đi trễ %>" DataField="MIN_LATE"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_LATE"
+                                UniqueName="MIN_LATE" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút về sớm %>" DataField="MIN_EARLY"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_EARLY"
+                                UniqueName="MIN_EARLY" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Số phút đi trễ/về sớm %>" DataField="MIN_LATE_EARLY"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n1}" SortExpression="MIN_LATE_EARLY"
+                                UniqueName="MIN_LATE_EARLY" HeaderStyle-Width="100px">
+                            </tlk:GridNumericColumn>
                             <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Vào giữa %>" DataField="SHIFTBACKIN"
                                 UniqueName="SHIFTBACKIN" PickerType="TimePicker" AllowFiltering="false" DataFormatString="{0:HH:mm}"
                                 SortExpression="SHIFTBACKIN">

@@ -22,6 +22,6 @@ Public Class ApproveSetupDTO
     Public Property TO_HOUR As Decimal?
     Public Property FROM_DAY As Decimal?
     Public Property TO_DAY As Decimal?
-    Public Property FROM_DATE As Date
+    Public Property FROM_DATE As Date?
     Public Property TO_DATE As Date?
 End Class

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 06/05/2019 4:42:53 PM
--- Generated from EDMX file: E:\histaffhcm-1\CommonDAL\CommonContext.edmx
+-- Date Created: 24/05/2019 8:52:17 AM
+-- Generated from EDMX file: E:\histaffhcm-2\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -106,6 +106,8 @@
 -- DROP TABLE "CommonModelStoreContainer"."SE_VIEW_CONFIG";
 
 -- DROP TABLE "CommonModelStoreContainer"."AT_TIME_MANUAL";
+
+-- DROP TABLE "CommonModelStoreContainer"."SE_CASE_CONFIG";
 
 -- DROP TABLE "CommonModelStoreContainer"."SE_GRP_SE_USR";
 

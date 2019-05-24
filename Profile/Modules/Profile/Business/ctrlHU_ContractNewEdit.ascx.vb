@@ -213,6 +213,11 @@ Public Class ctrlHU_ContractNewEdit
                             rgAllow.DataSource = Contract.Working.lstAllowance
                             rgAllow.DataBind()
                             Working_ID.Text = Contract.WORKING_ID
+                        Else
+                            Dim dt As New DataTable
+                            rgAllow.DataSource = dt
+                            rgAllow.DataBind()
+
                         End If
                         If Contract.STATUS_ID IsNot Nothing Then
                             cboStatus.SelectedValue = Contract.STATUS_ID
@@ -228,6 +233,9 @@ Public Class ctrlHU_ContractNewEdit
                     End If
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
+                    Dim dt As New DataTable
+                    rgAllow.DataSource = dt
+                    rgAllow.DataBind()
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

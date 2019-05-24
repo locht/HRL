@@ -1541,8 +1541,8 @@
           <Property Type="Decimal" Name="TEMPLATE_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
-          <Property Type="DateTime" Name="FROM_DATE" />
-          <Property Type="DateTime" Name="TO_DATE" />
+          <Property Type="DateTime" Name="FROM_DATE" Nullable="true" />
+          <Property Type="DateTime" Name="TO_DATE" Nullable="true" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
