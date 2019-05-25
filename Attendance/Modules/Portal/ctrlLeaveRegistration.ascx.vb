@@ -182,7 +182,7 @@ Public Class ctrlLeaveRegistration
                     Dim datacheck As AT_PROCESS_DTO
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") = PortalStatus.ApprovedByLM OrElse item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval Then
+                        If item.GetDataKeyValue("STATUS") = PortalStatus.ApprovedByLM OrElse item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval OrElse item.GetDataKeyValue("STATUS") = PortalStatus.UnApprovedByLM Then
                             ShowMessage(Translate("Đang ở trạng thái chờ phê duyệt hoặc đã phê duyệt,không thể chỉnh sửa"), NotifyType.Error)
                             Exit Sub
                         End If
@@ -262,7 +262,7 @@ Public Class ctrlLeaveRegistration
             ElseIf outNumber = 1 Then
                 ShowMessage(Translate("CHƯA CÓ TEMPLATE"), NotifyType.Success)
             Else
-                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                ShowMessage(Translate("Thao tác xảy ra lỗi,bạn kiểm tra lại quy trình"), NotifyType.Error)
             End If
 
             rgMain.Rebind()
@@ -287,6 +287,8 @@ Public Class ctrlLeaveRegistration
             If Not String.IsNullOrEmpty(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
             End If
+           
+
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
 

@@ -65,18 +65,18 @@ Public Class ctrlDBRegApp
             .Status = 0
             }
             Dim listApprove = db.GetListWaitingForApprove(Session("_EmployeeID"), ATConstant.GSIGNCODE_LEAVE, filter)
-            listApprove = listApprove.Where(Function(p) p.STATUS = 1).ToList()
+            listApprove = listApprove.Where(Function(p) p.STATUS = 0).ToList()
             ltrTime_LEAVE.DataSource = listApprove
             ltrTime_LEAVE.DataBind()
 
             Dim listApproveOv = db.GetListWaitingForApprove(Session("_EmployeeID"), ATConstant.GSIGNCODE_OVERTIME, filter)
-            listApproveOv = listApproveOv.Where(Function(p) p.STATUS = 1).ToList()
+            listApproveOv = listApproveOv.Where(Function(p) p.STATUS = 0).ToList()
             ltrTime_LEAVE.DataSource = listApproveOv
             ltrOVERTIME.DataBind()
 
 
             Dim listApproveDMVS = db.GetListWaitingForApprove(LogHelper.CurrentUser.EMPLOYEE_ID, ATConstant.GSIGNCODE_WLEO, filter)
-            listApproveDMVS = listApproveDMVS.Where(Function(p) p.STATUS = 1).ToList()
+            listApproveDMVS = listApproveDMVS.Where(Function(p) p.STATUS = 0).ToList()
             ltrWLEO.DataSource = listApproveDMVS
             ltrWLEO.DataBind()
 
