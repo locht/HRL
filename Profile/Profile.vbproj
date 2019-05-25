@@ -172,6 +172,8 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDashboardPortalSixCell.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBEmployeeReg.ascx" />
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_ALP.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
@@ -671,6 +673,20 @@
     </Compile>
     <Compile Include="Modules\Competency\Business\ctrlHU_CompetencyAss.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyAss.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ALP.ascx.designer.vb">
+      <DependentUpon>ctrlHU_ALP.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ALP.ascx.vb">
+      <DependentUpon>ctrlHU_ALP.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlHU_ALPNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx.vb">
+      <DependentUpon>ctrlHU_ALPNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx.designer.vb">
