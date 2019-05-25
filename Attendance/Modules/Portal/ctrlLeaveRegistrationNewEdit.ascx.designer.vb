@@ -176,15 +176,6 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents cboleaveType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''rntxDayRegist control.
     '''</summary>
     '''<remarks>
@@ -212,15 +203,6 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''rdToDate control.
     '''</summary>
     '''<remarks>
@@ -228,15 +210,6 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
-
-    '''<summary>
-    '''RequiredFieldValidator3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''CompareValidator2 control.

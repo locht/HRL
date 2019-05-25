@@ -118,7 +118,7 @@ Public Class ctrlLeaveRegistrationByManager
                                                         Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.UnApprovedByLM).ToString() _
                                                         Or f.Field(Of Decimal?)("ID") = Int16.Parse(PortalStatus.Saved).ToString()).CopyToDataTable()
                 FillRadCombobox(cboStatus, data, "NAME", "ID")
-                cboStatus.SelectedValue = PortalStatus.WaitingForApproval
+                cboStatus.SelectedValue = 0
             End If
         End Using
         txtYear.Value = Date.Now.Year
@@ -263,21 +263,22 @@ Public Class ctrlLeaveRegistrationByManager
             If Not String.IsNullOrEmpty(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
             End If
+         
 
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
 
             If isFull Then
                 If Sorts IsNot Nothing Then
-                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, cboStatus.SelectedValue, txtYear.Text)
+                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
                 Else
-                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, cboStatus.SelectedValue, txtYear.Text)
+                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, cboStatus.SelectedValue, txtYear.Text)
+                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
                 Else
-                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, cboStatus.SelectedValue, txtYear.Text)
+                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
                 End If
             End If
             rgMain.MasterTableView.FilterExpression = String.Empty
