@@ -320,7 +320,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                 '19 Khong duyet qltt
                 '20 Khong xac nhan nhan su
                 '22 Khong duyet GM
-                Case 5, PortalStatus.Saved _
+                Case 5, PortalStatus.Saved, PortalStatus.UnApprovedByLM
                     ', PortalStatus.Saved, PortalStatus.UnApprovedByLM, PortalStatus.UnVerifiedByHr
                     If userType = "User" Then
                         tbarMainToolBar.Items(0).Enabled = True
@@ -356,13 +356,18 @@ Public Class ctrlLeaveRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
-                        If rntxDayRegist.Value.HasValue > rntBalance.Value.HasValue Then
+                        If rntxDayRegist.Value > rntBalance.Value Then
                             ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
                             UpdateControlState()
                             Exit Sub
                         End If
                         If cboleaveType.SelectedValue = "" Then
                             ShowMessage(Translate("Chọn loại nghỉ."), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
+                        End If
+                        If txtNote.Text = "" Then
+                            ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
                             UpdateControlState()
                             Exit Sub
                         End If

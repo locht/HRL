@@ -1395,6 +1395,266 @@ Partial Class ProfileRepository
 
 #End Region
 
+#Region "Manage annual leave plans (ALP)"
+    Public Function GetListALPByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
+
+        Try
+
+            'Using cls As New DataAccess.QueryData
+            '    cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+            '                     New With {.P_USERNAME = log.Username,
+            '                               .P_ORGID = _param.ORG_ID,
+            '                               .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            'End Using
+            'Dim query = From p In Context.HU_CONTRACT Order By p.HU_EMPLOYEE.EMPLOYEE_CODE
+            '            From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+            '            From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+            '            From c In Context.HU_CONTRACT_TYPE.Where(Function(f) p.CONTRACT_TYPE_ID = f.ID)
+            '            From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+            '            From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
+            '            From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
+            '                                                           f.USERNAME = log.Username.ToUpper)
+
+            Dim query = From p In Context.HU_ANNUALLEAVE_PLANS.Where(Function(f) f.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                       From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+            ' lọc điều kiện
+            Dim dateNow = Date.Now.Date
+            Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            If Not _filter.IS_TER Then
+                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or
+                                        (p.e.WORK_STATUS.HasValue And
+                                         ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
+
+            End If
+            ' select thuộc tính
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.EMPLOYEE_NAME <> "" Then
+                query = query.Where(Function(p) p.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
+            End If
+            If _filter.FROM_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE >= _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE <= _filter.TO_DATE)
+            End If
+            If _filter.START_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE = _filter.START_DATE)
+            End If
+            If _filter.TITLE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.t.NAME_VN = _filter.TITLE_NAME)
+            End If
+            If _filter.ORG_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.o.NAME_VN = _filter.ORG_NAME)
+            End If
+
+            Dim trainingforeign = query.Select(Function(p) New TrainningManageDTO With {
+                                            .ID = p.p.ID,
+                                            .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                            .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                            .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                            .ORG_ID = p.p.ID,
+                                            .ORG_NAME = p.o.NAME_VN,
+                                            .ORG_DESC = p.o.DESCRIPTION_PATH,
+                                            .TITLE_ID = p.p.TITLE_ID,
+                                            .TITLE_NAME = p.t.NAME_VN,
+                                            .START_DATE = p.p.START_DATE,
+                                            .EXPIRE_DATE = p.p.END_DATE,
+                                            .REMARK = p.p.REMARK,
+                                            .CREATED_DATE = p.p.CREATED_DATE,
+                                            .WORK_STATUS = p.p.YEAR,
+                                            .COST = p.p.DAY_NUMBER
+                                            })
+
+            trainingforeign = trainingforeign.OrderBy(Sorts)
+            'Total = trainingforeign.Count
+            'trainingforeign = trainingforeign.Skip(PageIndex * PageSize).Take(PageSize)
+            Return trainingforeign.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetALP(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
+                               ByVal PageSize As Integer,
+                               ByRef Total As Integer, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc",
+                               Optional ByVal log As UserLog = Nothing) As List(Of TrainningManageDTO)
+
+        Try
+
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+            Dim query = From p In Context.HU_ANNUALLEAVE_PLANS
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
+                                                                  f.USERNAME = log.Username.ToUpper)
+            ' lọc điều kiện
+            Dim dateNow = Date.Now.Date
+            Dim terID = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            If Not _filter.IS_TER Then
+                query = query.Where(Function(p) Not p.e.WORK_STATUS.HasValue Or
+                                        (p.e.WORK_STATUS.HasValue And
+                                         ((p.e.WORK_STATUS <> terID) Or (p.e.WORK_STATUS = terID And p.e.TER_EFFECT_DATE > dateNow))))
+
+            End If
+            ' select thuộc tính
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.EMPLOYEE_NAME <> "" Then
+                query = query.Where(Function(p) p.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
+            End If
+            If _filter.FROM_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE >= _filter.FROM_DATE)
+            End If
+            If _filter.TO_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE <= _filter.TO_DATE)
+            End If
+            If _filter.START_DATE IsNot Nothing Then
+                query = query.Where(Function(p) p.p.START_DATE = _filter.START_DATE)
+            End If
+            If _filter.TITLE_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.t.NAME_VN = _filter.TITLE_NAME)
+            End If
+            If _filter.ORG_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.o.NAME_VN = _filter.ORG_NAME)
+            End If
+            Dim trainingforeign = query.Select(Function(p) New TrainningManageDTO With {
+                                            .ID = p.p.ID,
+                                            .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                            .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                            .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                            .ORG_ID = p.e.ID,
+                                            .ORG_NAME = p.o.NAME_VN,
+                                            .ORG_DESC = p.o.DESCRIPTION_PATH,
+                                            .TITLE_ID = p.p.TITLE_ID,
+                                            .TITLE_NAME = p.t.NAME_VN,
+                                            .START_DATE = p.p.START_DATE,
+                                            .EXPIRE_DATE = p.p.END_DATE,
+                                            .REMARK = p.p.REMARK,
+                                            .CREATED_DATE = p.p.CREATED_DATE,
+                                            .WORK_STATUS = p.p.YEAR,
+                                            .COST = p.p.DAY_NUMBER
+                                            })
+
+            trainingforeign = trainingforeign.OrderBy(Sorts)
+            Total = trainingforeign.Count
+            trainingforeign = trainingforeign.Skip(PageIndex * PageSize).Take(PageSize)
+            Return trainingforeign.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function InsertALP(ByVal objContract As TrainningManageDTO,
+                                 ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objContractData As New HU_ANNUALLEAVE_PLANS
+        Try
+            objContractData.ID = Utilities.GetNextSequence(Context, Context.HU_ANNUALLEAVE_PLANS.EntitySet.Name)
+            objContract.ID = objContractData.ID
+            objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+            objContractData.TITLE_ID = objContract.TITLE_ID
+            objContractData.ORG_ID = objContract.ORG_ID
+            objContractData.START_DATE = objContract.START_DATE
+            objContractData.END_DATE = objContract.EXPIRE_DATE
+            objContractData.DAY_NUMBER = objContract.COST
+            objContractData.REMARK = objContract.REMARK
+            objContractData.YEAR = objContract.WORK_STATUS
+            Context.HU_ANNUALLEAVE_PLANS.AddObject(objContractData)
+            ' Phê duyệt
+            Context.SaveChanges(log)
+            gID = objContractData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+
+    End Function
+    Public Function ModifyALP(ByVal objContract As TrainningManageDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objContractData As New HU_ANNUALLEAVE_PLANS With {.ID = objContract.ID}
+        Try
+            objContractData = (From p In Context.HU_ANNUALLEAVE_PLANS Where p.ID = objContract.ID).FirstOrDefault
+            objContract.ID = objContractData.ID
+            objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+            objContractData.TITLE_ID = objContract.TITLE_ID
+            objContractData.ORG_ID = objContract.ORG_ID
+            objContractData.START_DATE = objContract.START_DATE
+            objContractData.END_DATE = objContract.EXPIRE_DATE
+            objContractData.REMARK = objContract.REMARK
+            objContractData.DAY_NUMBER = objContract.COST
+            objContractData.YEAR = objContract.WORK_STATUS
+            Context.SaveChanges(log)
+            gID = objContractData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+
+    End Function
+    Public Function GetALPById(ByVal _filter As TrainningManageDTO) As TrainningManageDTO
+        Try
+            Dim query = From p In Context.HU_ANNUALLEAVE_PLANS
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                       From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+            Where (p.ID = _filter.ID)
+                        Select New TrainningManageDTO With {.ID = p.ID,
+                                                     .START_DATE = p.START_DATE,
+                                                     .EXPIRE_DATE = p.END_DATE,
+                                                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                                     .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
+                                                     .EMPLOYEE_NAME = e.FULLNAME_VN,
+                                                     .ORG_ID = e.ID,
+                                                     .ORG_NAME = o.NAME_VN,
+                                                     .ORG_DESC = o.DESCRIPTION_PATH,
+                                                     .TITLE_NAME = t.NAME_VN,
+                                                    .COST = p.DAY_NUMBER,
+                                                    .REMARK = p.REMARK,
+                                                    .WORK_STATUS = p.YEAR
+                            }
+            Dim result = query.FirstOrDefault
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+
+    End Function
+    Public Function DeleteALP(ByVal objContract As TrainningManageDTO) As Boolean
+        Dim objContractData As HU_ANNUALLEAVE_PLANS
+        Try
+            ' Xóa  hợp đồng
+            objContractData = (From p In Context.HU_ANNUALLEAVE_PLANS Where objContract.ID = p.ID).SingleOrDefault
+            If Not objContractData Is Nothing Then
+                Context.HU_ANNUALLEAVE_PLANS.DeleteObject(objContractData)
+                Context.SaveChanges()
+                Return True
+            End If
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+#End Region
+
 #Region "PLHD"
     Public Function GetContractForm(ByVal formID As Decimal) As OtherListDTO
         Try

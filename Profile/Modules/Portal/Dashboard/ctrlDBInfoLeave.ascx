@@ -8,52 +8,60 @@
     }
 </style>
 <link href="../../../../Styles/font-awesome.css" rel="stylesheet" type="text/css" />
-<tlk:RadSplitter ID="RadSplitter1" runat="server" Width="95%" Height="100%" Orientation="Horizontal"
-    SkinID="Demo">
-    <tlk:RadPane ID="EmpReg" runat="server" Scrolling="None">
-        <span class="title-dbportal">Ngày phép của tôi</span>
-        <div class="boxdbPortal">
-            <table class="table-form">
-                <tr>
-                    <td>
-                        <span class="lbllegen">Tổng số phép năm:</span>
-                    </td>
-                    <td>
-                        <span class="lblNumber">
-                            <asp:Label ID="lblNgayDuocNghi" runat="server"></asp:Label> (ngày)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="lbllegen">Số phép năm còn lại:</span>
-                    </td>
-                    <td>
-                        <span class="lblNumber">
-                            <asp:Label ID="lblConLai" runat="server"></asp:Label> (ngày)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="lbllegen">Tổng số ngày nghỉ bù:</span>
-                    </td>
-                    <td>
-                        <span class="lblNumber">
-                            <asp:Label ID="lblNgayDuocNghiB" runat="server"></asp:Label> (ngày)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="lbllegen">Số ngày nghỉ bù còn lại:</span>
-                    </td>
-                    <td>
-                        <span class="lblNumber">
-                            <asp:Label ID="lblConLaiB" runat="server"></asp:Label> (ngày)</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </tlk:RadPane>
-</tlk:RadSplitter>
+<span class="title-dbportal">Ngày phép của tôi</span>
+<div class="boxdbPortal">
+    <table class="table-form">
+        <tr>
+            <td>
+                <span class="lbllegen">Phép chế độ:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblNgayPhepCD" runat="server"></asp:Label></span>
+            </td>
+            <td>
+                <span class="lbllegen">Phép đã sử dụng:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblNgayPhepSD" runat="server"></asp:Label></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="lbllegen">Phép thâm niên:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblPhepTN" runat="server"></asp:Label></span>
+            </td>
+
+             <td>
+                <span class="lbllegen">Phép trừ quy đổi từ số phút ngoài cơ quan:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblPhepTQD" runat="server"></asp:Label></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="lbllegen">Phép năm trước còn lại:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblPhepNT" runat="server"></asp:Label></span>
+            </td>
+            <td>
+                <span class="lbllegen">Phép còn lại:</span>
+            </td>
+            <td>
+                <span class="lblNumber">
+                    <asp:Label ID="lblPhepConLai" runat="server"></asp:Label></span>
+            </td>
+        </tr>
+    </table>
+</div>
 <tlk:RadScriptBlock ID="RadScriptBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;

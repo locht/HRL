@@ -185,6 +185,7 @@
     <tr>
         <td class="lb">
             <%# Translate("Lý do nghỉ phép")%>
+            <span class="lbReq">*</span>
         </td>
         <td colspan="3">
             <tlk:RadTextBox runat="server" ID="txtNote" TextMode="MultiLine" Width="100%">

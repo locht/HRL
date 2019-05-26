@@ -14,58 +14,58 @@ Option Explicit On
 Partial Public Class ctrlDBInfoLeave
 
     '''<summary>
-    '''RadSplitter1 control.
+    '''lblNgayPhepCD control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
+    Protected WithEvents lblNgayPhepCD As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''EmpReg control.
+    '''lblNgayPhepSD control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents EmpReg As Global.Telerik.Web.UI.RadPane
+    Protected WithEvents lblNgayPhepSD As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblNgayDuocNghi control.
+    '''lblPhepTN control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblNgayDuocNghi As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblPhepTN As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblConLai control.
+    '''lblPhepTQD control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblConLai As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblPhepTQD As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblNgayDuocNghiB control.
+    '''lblPhepNT control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblNgayDuocNghiB As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblPhepNT As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblConLaiB control.
+    '''lblPhepConLai control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblConLaiB As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblPhepConLai As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''RadScriptBlock1 control.

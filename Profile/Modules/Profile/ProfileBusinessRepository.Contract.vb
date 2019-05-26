@@ -167,6 +167,95 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 #End Region
+#Region "Manage annual leave plans (ALP)"
+    Public Function GetListALPByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetListALPByEmpID(_filter, _param, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GetALP(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
+                           ByVal PageSize As Integer,
+                           ByRef Total As Integer, ByVal _param As ParamDTO,
+                           Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetALP(_filter, PageIndex, PageSize, Total, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function GetALP(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetALP(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function InsertALP(ByVal objContract As TrainningManageDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertALP(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifyALP(ByVal objContract As TrainningManageDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyALP(objContract, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function GetALPByID(ByVal _filter As TrainningManageDTO) As TrainningManageDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetALPByID(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+    Public Function DeleteALP(ByVal objContract As TrainningManageDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.DeleteALP(objContract)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+#End Region
 #Region "trainingforeign"
     Public Function GetTrainingForeign(ByVal _filter As TrainningForeignDTO, ByVal PageIndex As Integer,
                                ByVal PageSize As Integer,

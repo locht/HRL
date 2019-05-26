@@ -2113,7 +2113,29 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #End Region
+#Region "Manage annual leave plans (ALP)"
+        <OperationContract()>
+        Function GetListALPByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO)
 
+        <OperationContract()>
+        Function GetALP(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
+                                ByVal PageSize As Integer,
+                                ByRef Total As Integer, ByVal _param As ParamDTO,
+                                Optional ByVal Sorts As String = "CREATED_DATE desc",
+                                Optional ByVal log As UserLog = Nothing) As List(Of TrainningManageDTO)
+
+        <OperationContract()>
+        Function InsertALP(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function DeleteALP(ByVal objAssetMng As TrainningManageDTO) As Boolean
+        <OperationContract()>
+        Function GetALPByID(ByVal _filter As TrainningManageDTO) As TrainningManageDTO
+        <OperationContract()>
+        Function ModifyALP(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+#End Region
 #Region "Reports"
 
 #Region "Dynamic"

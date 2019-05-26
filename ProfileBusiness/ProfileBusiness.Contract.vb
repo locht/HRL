@@ -63,6 +63,74 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "Manage annual leave plans (ALP)"
+        Public Function GetListALPByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
+                              Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO) _
+                                   Implements ServiceContracts.IProfileBusiness.GetListALPByEmpID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetListALPByEmpID(_filter, _param)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetALP(ByVal _filter As TrainningManageDTO, ByVal PageIndex As Integer,
+                               ByVal PageSize As Integer,
+                               ByRef Total As Integer, ByVal _param As ParamDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc",
+                               Optional ByVal log As UserLog = Nothing) As List(Of TrainningManageDTO) _
+                                   Implements ServiceContracts.IProfileBusiness.GetALP
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetALP(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function InsertALP(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.InsertALP
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.InsertALP(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function ModifyALP(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.ModifyALP
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ModifyALP(objContract, log, gID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+        Public Function GetALPByID(ByVal _filter As TrainningManageDTO) As TrainningManageDTO _
+                                  Implements ServiceContracts.IProfileBusiness.GetALPByID
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingManageById(_filter)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function DeleteALP(ByVal objContract As TrainningManageDTO) As Boolean _
+           Implements ServiceContracts.IProfileBusiness.DeleteALP
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.DeleteTrainingManage(objContract)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 #Region "training manage"
         Public Function GetListTrainingManageByEmpID(ByVal _filter As TrainningManageDTO, ByVal _param As ParamDTO,
                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of TrainningManageDTO) _

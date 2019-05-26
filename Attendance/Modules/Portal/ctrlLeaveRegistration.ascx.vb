@@ -182,7 +182,7 @@ Public Class ctrlLeaveRegistration
                     Dim datacheck As AT_PROCESS_DTO
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
-                        If item.GetDataKeyValue("STATUS") = PortalStatus.ApprovedByLM OrElse item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval Then
+                        If item.GetDataKeyValue("STATUS") = PortalStatus.ApprovedByLM OrElse item.GetDataKeyValue("STATUS") = PortalStatus.WaitingForApproval OrElse item.GetDataKeyValue("STATUS") = PortalStatus.UnApprovedByLM Then
                             ShowMessage(Translate("Đang ở trạng thái chờ phê duyệt hoặc đã phê duyệt,không thể chỉnh sửa"), NotifyType.Error)
                             Exit Sub
                         End If
@@ -221,6 +221,7 @@ Public Class ctrlLeaveRegistration
             Dim sign_id As Integer
             Dim period_id As Integer
             Dim id_group As Integer
+            Dim sumday As Integer
             For Each dr As GridDataItem In rgMain.SelectedItems
                 strId += dr.GetDataKeyValue("ID").ToString + ","
             Next
@@ -240,6 +241,9 @@ Public Class ctrlLeaveRegistration
                 If dtCheckSendApprove(0)("ID_REGGROUP").ToString <> "" Then
                     id_group = dtCheckSendApprove(0)("ID_REGGROUP")
                 End If
+                If dtCheckSendApprove(0)("SUMDAY").ToString <> "" Then
+                    sumday = dtCheckSendApprove(0)("SUMDAY")
+                End If
             End If
 
             Using rep As New AttendanceRepository
@@ -252,13 +256,13 @@ Public Class ctrlLeaveRegistration
             End Using
 
 
-            Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, 0, sign_id, id_group)
+            Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
             If outNumber = 0 Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
             ElseIf outNumber = 1 Then
                 ShowMessage(Translate("CHƯA CÓ TEMPLATE"), NotifyType.Success)
             Else
-                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                ShowMessage(Translate("Thao tác xảy ra lỗi,bạn kiểm tra lại quy trình"), NotifyType.Error)
             End If
 
             rgMain.Rebind()
@@ -283,6 +287,8 @@ Public Class ctrlLeaveRegistration
             If Not String.IsNullOrEmpty(cboStatus.SelectedValue) Then
                 _filter.STATUS = cboStatus.SelectedValue
             End If
+           
+
             SetValueObjectByRadGrid(rgMain, _filter)
             Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
 
