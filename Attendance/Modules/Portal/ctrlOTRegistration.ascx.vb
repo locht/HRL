@@ -168,7 +168,7 @@ Public Class ctrlOTRegistration
                     For idx = 0 To rgMain.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
                         If item.GetDataKeyValue("STATUS") <> PortalStatus.Saved And item.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
-                            ShowMessage(Translate("Action only apply for status Save, UnApprove for manager, UnApprove for HR. Please choose other record"), NotifyType.Error)
+                            ShowMessage(Translate("Thao tác này chỉ áp dụng đối với trạng thái Chưa gửi duyệt, Không phê duyệt. Vui lòng chọn dòng khác."), NotifyType.Error)
                             Exit Sub
                         End If
                     Next
@@ -195,7 +195,7 @@ Public Class ctrlOTRegistration
                     'Kiểm tra các điều kiện trước khi xóa
                     For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
                         If dr.GetDataKeyValue("STATUS") <> PortalStatus.Saved And dr.GetDataKeyValue("STATUS") <> PortalStatus.UnApprovedByLM Then
-                            ShowMessage(String.Format(Translate("Overtime status {0}, can't send approve. Please cho other record"), dr.GetDataKeyValue("STATUS_NAME")), NotifyType.Warning)
+                            ShowMessage(String.Format(Translate("Trạng thái {0} không thể gửi duyệt. Vui lòng chọn dòng khác."), dr.GetDataKeyValue("STATUS_NAME")), NotifyType.Warning)
                             Exit Sub
                         End If
                         datacheck = New AT_PROCESS_DTO With {
@@ -210,12 +210,12 @@ Public Class ctrlOTRegistration
                     Using rep As New AttendanceRepository
                         Dim checkResult = rep.CheckTimeSheetApproveVerify(listDataCheck, "LEAVE", itemError)
                         If Not checkResult Then
-                            ShowMessage(String.Format(Translate("TimeSheet of {0} in {1} has been approved"), itemError.FULL_NAME, itemError.FROM_DATE.Value.Month & "/" & itemError.FROM_DATE.Value.Year), NotifyType.Warning)
+                            ShowMessage(String.Format(Translate("Thời gian biểu của {0} trong tháng {1} đã được phê duyệt."), itemError.FULL_NAME, itemError.FROM_DATE.Value.Month & "/" & itemError.FROM_DATE.Value.Year), NotifyType.Warning)
                             Exit Sub
                         End If
                     End Using
 
-                    ctrlMessageBox.MessageText = Translate("Send aprrove. Are you sure?")
+                    ctrlMessageBox.MessageText = Translate("Gửi duyệt. Bạn có chắc chắn gửi duyệt?")
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()

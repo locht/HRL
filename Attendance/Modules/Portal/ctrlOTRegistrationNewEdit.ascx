@@ -152,7 +152,7 @@
     </tr>
     <tr>
         <td class="lb">
-            <%# Translate("Total Accumulative OT Hours:")%>
+            <%# Translate("Tổng số giờ làm thêm trong năm:")%>
         </td>
         <td>
             <%--<tlk:RadNumericTextBox runat="server" ID="rntTotalAccumulativeOTHours" SkinID="Number"

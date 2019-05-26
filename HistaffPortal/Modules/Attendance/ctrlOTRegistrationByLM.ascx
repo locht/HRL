@@ -77,13 +77,13 @@
                                 DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ký hiệu ca %>" DataField="SIGN_CODE"
                                 HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="SIGN_CODE" SortExpression="SIGN_CODE" ItemStyle-HorizontalAlign="Center" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại làm thêm %>" DataField="OT_TYPE_NAME"
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Loại làm thêm %>" DataField="OT_TYPE_NAME"
                                 HeaderStyle-Width="150px" ItemStyle-Width="150px" UniqueName="OT_TYPE_NAME" SortExpression="OT_TYPE_NAME"
-                                ItemStyle-HorizontalAlign="Center" />
+                                ItemStyle-HorizontalAlign="Center" />--%>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Tổng số giờ làm thêm %>" DataField="TOTAL_OT"
                                 HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="TOTAL_OT" SortExpression="TOTAL_OT" ItemStyle-HorizontalAlign="Center" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: 100% %>" DataField="OT_100" UniqueName="OT_100"
-                                HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_100" ItemStyle-HorizontalAlign="Center" />
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate: 100% %>" DataField="OT_100" UniqueName="OT_100"
+                                HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_100" ItemStyle-HorizontalAlign="Center" />--%>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: 150% %>" DataField="OT_150" UniqueName="OT_150"
                                 HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_150" ItemStyle-HorizontalAlign="Center" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: 200% %>" DataField="OT_200" UniqueName="OT_200"
