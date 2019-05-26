@@ -16,4 +16,6 @@
     Public Property MODIFIED_LOG As String
     Public Property NOTE As String
     Public Property DECISION_NO As String
+
+    Public Property EMPLOYEE_CODE As String
 End Class

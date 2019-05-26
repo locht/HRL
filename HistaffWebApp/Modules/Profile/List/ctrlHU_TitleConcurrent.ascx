@@ -116,7 +116,7 @@
                     <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="True">
                         <Selecting AllowRowSelect="true" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,EXPIRE_DATE,NOTE,ORG_ID,ORG_NAME,TITLE_ID,DECISION_NO,EMPLOYEE_ID,EMPLOYEE_NAME">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,EXPIRE_DATE,NOTE,ORG_ID,ORG_NAME,TITLE_ID,DECISION_NO,EMPLOYEE_ID,EMPLOYEE_NAME,EMPLOYEE_CODE">
                         <Columns>
                          <%--   <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

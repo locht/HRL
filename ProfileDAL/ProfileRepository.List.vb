@@ -322,6 +322,7 @@ Partial Class ProfileRepository
                                    .TITLE_ID = p.TITLE_ID,
                                    .NAME = p.NAME,
                                    .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                                   .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                    .EMPLOYEE_NAME = e.FULLNAME_VN,
                                    .DECISION_NO = p.DECISION_NO,
                                    .EFFECT_DATE = p.EFFECT_DATE,
