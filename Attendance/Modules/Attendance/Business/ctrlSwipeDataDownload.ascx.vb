@@ -640,8 +640,10 @@ Public Class ctrlSwipeDataDownload
                 Dim sw As New StringWriter()
                 Dim DocXml As String = String.Empty
                 DATA_IN.WriteXml(sw, False)
-                DocXml = sw.ToString
-
+                DocXml = sw.ToString.Replace(vbCr, "").Replace(vbCrLf, "").Replace(vbLf, "").Trim
+                IAttenDance.IMPORT_AT_SWIPE_DATA_V1(log, DocXml, cbMachine_Type.SelectedValue)
+                CurrentState = CommonMessage.STATE_NORMAL
+                Refresh("InsertView")
 
                 Exit Sub 'NGAT LUONG LAM VIEC O DAY LAM THEO HUONG MOI
                 Dim jsonSerialiser = New JavaScriptSerializer()

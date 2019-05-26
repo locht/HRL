@@ -1,5 +1,4 @@
 ﻿Imports Oracle.DataAccess.Client
-
 Namespace DataAccess
     Public Class OracleCommon
         Implements IDisposable
@@ -42,7 +41,12 @@ Namespace DataAccess
                                 para.DbType = DbType.Int32
                                 para.Value = sValue
                             Case GetType(String)
-                                para.DbType = DbType.String
+                                If sValue.ToString.Length > 225 Then
+                                    para.OracleDbType = OracleDbType.Clob
+                                Else
+                                    para.DbType = DbType.String
+                                End If
+
                                 para.Value = sValue
                             Case GetType(Byte())
                                 para.DbType = DbType.Binary
@@ -69,7 +73,7 @@ Namespace DataAccess
                         Case 2
                             bOut = True
                             para.OracleDbType = OracleDbType.NVarchar2
-                            para.Size = 255
+                            'para.Size = 255
                         Case 3
                             bOut = True
                             para.OracleDbType = OracleDbType.Date
