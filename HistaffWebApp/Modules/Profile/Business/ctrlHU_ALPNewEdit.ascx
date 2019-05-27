@@ -19,7 +19,7 @@
             <tr>
                 <td class="item-head" colspan="6">
                     <b>
-                        <%# Translate("Thông tin đi công tác")%>
+                        <%# Translate("Thông tin Kế hoạch nghỉ phép năm")%>
                     </b>
                     <hr />
                 </td>
@@ -63,8 +63,14 @@
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
+                    <asp:Label ID="lbYear" runat="server" Text="Năm"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="txtYear" runat="server"  SkinID="number">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
                     <asp:Label ID="lbStartDate" runat="server" Text="Thời gian bắt đầu"></asp:Label>
-                    <%--<span class="lbReq">*</span>--%>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
@@ -75,28 +81,29 @@
                         ToolTip="Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất">
                     </asp:CustomValidator>
                 </td>
-                <td class="lb">
+            </tr>
+            
+            <tr>
+               <td class="lb">
                     <asp:Label ID="lbExpireDate" runat="server" Text="Thời gian kết thúc"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdExpireDate" runat="server">
+                    <tlk:RadDatePicker ID="rdExpireDate" runat="server" AutoPostBack="True">
                     </tlk:RadDatePicker>
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdExpireDate"
                         Type="Date" ControlToCompare="rdStartDate" Operator="GreaterThanEqual" ErrorMessage="Ngày kết thúc phải lớn hơn ngày bắt đầu"
                         ToolTip="Ngày kết thúc phải lớn hơn ngày bắt đầu"></asp:CompareValidator>
                 </td>
-            </tr>
-            
-            <tr>
-               
                 <td class="lb">
-                    <asp:Label ID="lbCost" runat="server" Text="Chi phí"></asp:Label>
+                    <asp:Label ID="lbCost" runat="server" Text="Số ngày"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtCost" runat="server">
+                    <tlk:RadNumericTextBox ID="txtCost" runat="server" ReadOnly="True" SkinID="ReadOnly">
                     </tlk:RadNumericTextBox>
                 </td>
-              <td class="lb">
+            </tr>
+            <tr>
+                 <td class="lb">
                     <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="3">
