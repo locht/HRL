@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("29568dd1-b669-43d6-aa57-f635ea83a255")>
+<Assembly: EdmSchemaAttribute("1bf1009b-8317-4932-978e-70ed96b2f065")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -19061,6 +19061,31 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnEMPLOYEE_NAME_OTHERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECTTIMEKEEPING() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECTTIMEKEEPING
+        End Get
+        Set
+            OnOBJECTTIMEKEEPINGChanging(value)
+            ReportPropertyChanging("OBJECTTIMEKEEPING")
+            _OBJECTTIMEKEEPING = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECTTIMEKEEPING")
+            OnOBJECTTIMEKEEPINGChanged()
+        End Set
+    End Property
+
+    Private _OBJECTTIMEKEEPING As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanged()
     End Sub
 
     #End Region
