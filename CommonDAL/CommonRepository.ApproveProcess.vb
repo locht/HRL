@@ -198,7 +198,8 @@ Partial Public Class CommonRepository
                                   .NUM_REQUEST = proc.NUMREQUEST,
                                   .REQUEST_EMAIL = proc.EMAIL,
                                   .SIGN_ID = s.SIGN_ID,
-                                  .TITLE_ID = s.TITLE_ID
+                                  .TITLE_ID = s.TITLE_ID,
+                                  .LEAVEPLAN_ID = s.LEAVEPLAN_ID
                               }
 
             Return itemReturn.OrderBy(Function(p) Sorts).ThenByDescending(Function(p) p.FROM_DATE).ToList 'itemReturn.OrderBy(Function(p) p.PROCESS_NAME).ThenByDescending(Function(p) p.FROM_DATE).ToList
@@ -218,6 +219,7 @@ Partial Public Class CommonRepository
                                   .TEMPLATE_ID = s.TEMPLATE_ID,
                                   .TITLE_ID = s.TITLE_ID,
                                   .SIGN_ID = s.SIGN_ID,
+                                  .LEAVEPLAN_ID = s.LEAVEPLAN_ID,
                                   .FROM_HOUR = s.FROM_HOUR,
                                   .TO_HOUR = s.TO_HOUR,
                                   .FROM_DAY = s.FROM_DAY,
@@ -247,6 +249,7 @@ Partial Public Class CommonRepository
                 .ORG_ID = item.ORG_ID,
                 .TITLE_ID = item.TITLE_ID,
                 .SIGN_ID = item.SIGN_ID,
+                .LEAVEPLAN_ID = item.LEAVEPLAN_ID,
                 .FROM_HOUR = item.FROM_HOUR,
                 .TO_HOUR = item.TO_HOUR,
                 .FROM_DAY = item.FROM_DAY,
@@ -284,6 +287,7 @@ Partial Public Class CommonRepository
                     .TEMPLATE_ID = item.TEMPLATE_ID
                     .TITLE_ID = item.TITLE_ID
                     .SIGN_ID = item.SIGN_ID
+                    .LEAVEPLAN_ID = item.LEAVEPLAN_ID
                     .FROM_HOUR = item.FROM_HOUR
                     .TO_HOUR = item.TO_HOUR
                     .FROM_DAY = item.FROM_DAY
