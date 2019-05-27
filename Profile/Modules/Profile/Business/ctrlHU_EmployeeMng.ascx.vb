@@ -49,6 +49,7 @@ Public Class ctrlHU_EmployeeMng
                 ctrlOrganization.LoadDataAfterLoaded = True
                 ctrlOrganization.OrganizationType = OrganizationType.OrganizationLocation
                 ctrlOrganization.CheckBoxes = TreeNodeTypes.None
+                rgEmployeeList.SetFilter()
                 Refresh()
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             Catch ex As Exception
@@ -73,6 +74,8 @@ Public Class ctrlHU_EmployeeMng
             AjaxManagerId = AjaxManager.ClientID
             If Not IsPostBack Then
                 ViewConfig(LeftPane)
+                ViewConfig(RadPane1)
+                ViewConfig(RadPane4)
                 GirdConfig(rgEmployeeList)
             End If
             'rgEmployeeList.SetFilter()
