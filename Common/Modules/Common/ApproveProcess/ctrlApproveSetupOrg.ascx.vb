@@ -594,7 +594,7 @@ Public Class ctrlApproveSetupOrg
             cboKieuCong.DataBind()
 
             Dim dtLeavePlan = db.GetLeavePlanList()
-            cboLeavePlan.DataSource = dtSignList
+            cboLeavePlan.DataSource = dtLeavePlan
             cboLeavePlan.DataTextField = "NAME_VN"
             cboLeavePlan.DataValueField = "ID"
             cboLeavePlan.DataBind()
