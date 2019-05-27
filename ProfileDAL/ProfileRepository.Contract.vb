@@ -1673,17 +1673,17 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
         Try
             Using cls As New DataAccess.QueryData
-                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
-                                 New With {.P_DOCXML = P_DOCXML,.P_USER = P_USER})
+                cls.ExecuteStore("PKG_ATTENDANCE_LIST.IMPORT_ANNUALLEAVE_PLANS",
+                                 New With {.P_DOCXML = P_DOCXML, .P_USER = P_USER, .P_YEAR = P_YEAR})
             End Using
             Return True
         Catch ex As Exception
             Return False
         End Try
-       
+
     End Function
 
 #End Region
