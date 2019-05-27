@@ -332,6 +332,7 @@ Public Class ExcelCommon
             sheet.Cells.ImportDataTable(dsData.Tables(2), False, 1, 4, False)
             sheet.Cells.ImportDataTable(dsData.Tables(3), False, 1, 6, False)
             sheet.Cells.ImportDataTable(dsData.Tables(4), False, 1, 8, False)
+            sheet.Cells.ImportDataTable(dsData.Tables(4), False, 1, 10, False)
             designer.SetDataSource(dsData)
             designer.Process()
             designer.Workbook.CalculateFormula()
