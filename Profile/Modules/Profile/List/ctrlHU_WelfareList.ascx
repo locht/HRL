@@ -137,7 +137,7 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,CONTRACT_TYPE_NAME,CONTRACT_TYPE,GENDER,SENIORITY,MONEY,START_DATE,END_DATE,IS_AUTO,CHILD_OLD_FROM,CHILD_OLD_TO">
                 <Columns>
-                   <%--<tlk:gridclientselectcolumn uniquename="cbstatus" headerstyle-horizontalalign="center"
+                   <%--<tlk:gridclientselectcolumn uniquename="cbStatus" headerstyle-horizontalalign="center"
                         headerstyle-width="30px" itemstyle-horizontalalign="center">
                     </tlk:gridclientselectcolumn>
                     <tlk:gridboundcolumn datafield="id" visible="false" />
