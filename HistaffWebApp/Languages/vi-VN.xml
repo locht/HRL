@@ -38508,4 +38508,36 @@ Xin cám ơn!
       <string>Bạn chưa chọn kỳ công</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_ALP</string>
+    </Key>
+    <Value>
+      <string>Quản lý kế hoạch nghỉ phép năm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN KẾT THÚC</string>
+    </Key>
+    <Value>
+      <string>Thời gian kết thúc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QUẢN LÝ KẾ HOẠCH NGHỈ PHÉP NĂM</string>
+    </Key>
+    <Value>
+      <string>Quản lý kế hoạch nghỉ phép năm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CÓ LỖI TRONG QUÁ TRÌNH IMPORT. LƯU FILE LỖI CHI TIẾT</string>
+    </Key>
+    <Value>
+      <string>Có lỗi trong quá trình import. Lưu file lỗi chi tiết</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
