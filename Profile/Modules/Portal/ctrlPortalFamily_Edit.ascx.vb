@@ -457,20 +457,7 @@ Public Class ctrlPortalFamily_Edit
                                 chkIsDeduct, hidFamilyID, hidID)
 
             Dim item = CType(rgFamilyEdit.SelectedItems(rgFamilyEdit.SelectedItems.Count - 1), GridDataItem)
-            Dim status As String = ""
-            If item.GetDataKeyValue("STATUS") IsNot Nothing Then
-                status = item.GetDataKeyValue("STATUS")
-            End If
-            Select Case status
-                Case 1
-                    'ShowMessage("Bản ghi đang Chờ phê duyệt chỉ được xem thông tin", NotifyType.Warning)
-                    CurrentState = CommonMessage.STATE_NORMAL
-                Case 2
-                    'ShowMessage("Bản ghi đã Phê duyệt chỉ được xem thông tin", NotifyType.Warning)
-                    CurrentState = CommonMessage.STATE_NORMAL
-                Case Else
-                    CurrentState = CommonMessage.STATE_EDIT
-            End Select
+            CurrentState = CommonMessage.STATE_NORMAL
             hidFamilyID.Value = item.GetDataKeyValue("ID")
             txtAdress.Text = item.GetDataKeyValue("ADDRESS")
             txtIDNO.Text = item.GetDataKeyValue("ID_NO")

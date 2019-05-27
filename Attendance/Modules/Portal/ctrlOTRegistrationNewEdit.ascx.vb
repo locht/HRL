@@ -526,7 +526,7 @@ Public Class ctrlOTRegistrationNewEdit
 
                 Using rep As New HistaffFrameworkRepository
                     Dim response = rep.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_TOTAL_ACCUMULATIVE_OT", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
-                    If response(0).ToString() <> "" Then
+                    If response IsNot Nothing Then
                         rntTotalAccumulativeOTHours.Text = Decimal.Parse(response(0).ToString()).ToString("N1")
                     End If
                 End Using
@@ -679,21 +679,21 @@ Public Class ctrlOTRegistrationNewEdit
                     'hid200.Value = AM + PM
                     'hid270.Value = OTAM + OTPM
                 Else
-                'If workingType <> 1090 Then 'Khac Office Type 
-                '    hid200.Value = AM + PM
-                '    hid270.Value = OTAM + OTPM
-                'Else
-                hid150.Value = AM + PM
-                hid210.Value = OTAM + OTPM
-                'End If
-                'End If
+                    'If workingType <> 1090 Then 'Khac Office Type 
+                    '    hid200.Value = AM + PM
+                    '    hid270.Value = OTAM + OTPM
+                    'Else
+                    hid150.Value = AM + PM
+                    hid210.Value = OTAM + OTPM
+                    'End If
+                    'End If
                 End If
-        Return True
+                Return True
 
             Catch ex As Exception
-            ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
-            Return False
-        End Try
+                ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
+                Return False
+            End Try
         End If
     End Function
 #End Region

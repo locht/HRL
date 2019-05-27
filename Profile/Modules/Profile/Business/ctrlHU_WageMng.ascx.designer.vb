@@ -95,6 +95,15 @@ Partial Public Class ctrlHU_WageMng
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEffectDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdEffectDate control.
     '''</summary>
     '''<remarks>
@@ -102,6 +111,15 @@ Partial Public Class ctrlHU_WageMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdEffectDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbExpireDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbExpireDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdExpireDate control.

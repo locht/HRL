@@ -128,7 +128,7 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgWelfareList" runat="server" AutoGenerateColumns="False" AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
+        <tlk:RadGrid PageSize="50" ID="rgWelfareList" runat="server" AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
                 <ClientEvents OnGridCreated="GridCreated" />
@@ -136,13 +136,13 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,CONTRACT_TYPE_NAME,CONTRACT_TYPE,GENDER,SENIORITY,MONEY,START_DATE,END_DATE,IS_AUTO,CHILD_OLD_FROM,CHILD_OLD_TO">
                 <Columns>
-                    <%--<tlk:gridclientselectcolumn uniquename="cbstatus" headerstyle-horizontalalign="center"
+                    <%--<tlk:GridClientSelectColumn uniquename="cbStatus" headertext="CheckBox" headerstyle-horizontalalign="center"
                         headerstyle-width="30px" itemstyle-horizontalalign="center">
-                    </tlk:gridclientselectcolumn>
-                    <tlk:gridboundcolumn datafield="id" visible="false" />
-                    <tlk:gridboundcolumn headertext="Mã chế độ phúc lợi" datafield="code"
+                    </tlk:GridClientSelectColumn>
+                    <tlk:GridBoundColumn datafield="id" visible="false" />
+                    <tlk:GridBoundColumn headertext="Mã chế độ phúc lợi" datafield="code"
                         sortexpression="code" uniquename="code" />
-                    <tlk:gridboundcolumn headertext="Tên chế độ phúc lợi" datafield="name"
+                    <tlk:GridBoundColumn headertext="Tên chế độ phúc lợi" datafield="name"
                         sortexpression="name" uniquename="name">
                         <headerstyle width="200px" />
                     </tlk:gridboundcolumn>
