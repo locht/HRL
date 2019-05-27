@@ -239,15 +239,6 @@ Partial Public Class ctrlPA_SalaryGroup
     Protected WithEvents lbIS_INCENTIVE As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''tdSGcbIs_Incentive control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tdSGcbIs_Incentive As Global.System.Web.UI.HtmlControls.HtmlTableCell
-
-    '''<summary>
     '''cbIS_INCENTIVE control.
     '''</summary>
     '''<remarks>
