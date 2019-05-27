@@ -88,10 +88,10 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rntxtOrders"
                         runat="server" ErrorMessage="Bạn phải nhập số thứ tự." ToolTip="Bạn phải nhập số thứ tự."></asp:RequiredFieldValidator>
                 </td>
-                <td class="lb" id="tdSGlbIs_Incentive"  style='<%# if(Utilities.Account = "U", "display: None" , "Block") %>'>
+                <td>
                      <asp:Label ID="lbIS_INCENTIVE" runat="server" Text="Bảng thưởng HQCV"></asp:Label>
                 </td>
-                <td id="tdSGcbIs_Incentive" runat="server"  style='<%# if(Utilities.Account = "U", "display: None" , "Block") %>'>
+                <td>
                     <div style="margin: -4px; margin-top: 1px">
                         <tlk:RadButton ID="cbIS_INCENTIVE" ToggleType="CheckBox" ButtonType="ToggleButton"
                             Text="" runat="server" AutoPostBack="false" CausesValidation="false">

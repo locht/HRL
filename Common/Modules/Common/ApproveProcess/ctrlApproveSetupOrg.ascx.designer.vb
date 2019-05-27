@@ -113,6 +113,15 @@ Partial Public Class ctrlApproveSetupOrg
     Protected WithEvents cboPosition As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''cboPosition control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboLeavePlan As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''cboKieuCong control.
     '''</summary>
     '''<remarks>

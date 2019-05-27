@@ -66,6 +66,10 @@ Public Class ctrlHU_WageMng
             rgWorking.SetFilter()
             rgWorking.AllowCustomPaging = True
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgWorking)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -88,16 +92,16 @@ Public Class ctrlHU_WageMng
             CType(MainToolBar.Items(3), RadToolBarButton).Text = UI.Approve
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-            rgWorking.MasterTableView.GetColumn("SAL_TYPE_NAME").HeaderText = UI.Wage_WageGRoup
-            rgWorking.MasterTableView.GetColumn("SAL_BASIC").HeaderText = UI.Wage_BasicSalary
-            rgWorking.MasterTableView.GetColumn("TAX_TABLE_Name").HeaderText = UI.Wage_TaxTable
-            rgWorking.MasterTableView.GetColumn("ResponsibilityAllowances").HeaderText = UI.Wage_ResponsibilityAllowances
-            rgWorking.MasterTableView.GetColumn("WorkAllowances").HeaderText = UI.WorkAllowances
-            rgWorking.MasterTableView.GetColumn("AttendanceAllowances").HeaderText = UI.AttendanceAllowances
-            rgWorking.MasterTableView.GetColumn("HousingAllowances").HeaderText = UI.HousingAllowances
-            rgWorking.MasterTableView.GetColumn("CarRentalAllowances").HeaderText = UI.CarRentalAllowances
-            rgWorking.MasterTableView.GetColumn("SAL_INS").HeaderText = UI.Wage_Sal_Ins
-            rgWorking.MasterTableView.GetColumn("SAL_TOTAL").HeaderText = UI.Wage_Salary_Total
+            'rgWorking.MasterTableView.GetColumn("SAL_TYPE_NAME").HeaderText = UI.Wage_WageGRoup
+            'rgWorking.MasterTableView.GetColumn("SAL_BASIC").HeaderText = UI.Wage_BasicSalary
+            'rgWorking.MasterTableView.GetColumn("TAX_TABLE_Name").HeaderText = UI.Wage_TaxTable
+            'rgWorking.MasterTableView.GetColumn("ResponsibilityAllowances").HeaderText = UI.Wage_ResponsibilityAllowances
+            'rgWorking.MasterTableView.GetColumn("WorkAllowances").HeaderText = UI.WorkAllowances
+            'rgWorking.MasterTableView.GetColumn("AttendanceAllowances").HeaderText = UI.AttendanceAllowances
+            'rgWorking.MasterTableView.GetColumn("HousingAllowances").HeaderText = UI.HousingAllowances
+            'rgWorking.MasterTableView.GetColumn("CarRentalAllowances").HeaderText = UI.CarRentalAllowances
+            'rgWorking.MasterTableView.GetColumn("SAL_INS").HeaderText = UI.Wage_Sal_Ins
+            'rgWorking.MasterTableView.GetColumn("SAL_TOTAL").HeaderText = UI.Wage_Salary_Total
 
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

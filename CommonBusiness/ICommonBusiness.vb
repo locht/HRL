@@ -859,6 +859,8 @@ Namespace CommonBusiness.ServiceContracts
 
 #Region "Setup Approve - Thiết lập phê duyệt"
         <OperationContract()>
+        Function GetLeavePlanList() As List(Of OtherListDTO)
+        <OperationContract()>
         Function GetTitleList() As List(Of OtherListDTO)
         <OperationContract()>
         Function GetApproveSetupByEmployee(ByVal employeeId As Decimal,

@@ -25,7 +25,8 @@ Partial Class ProfileRepository
                              .ORG_ID = p.ORG_ID,
                              .ID = p.ID,
                              .STAFF_RANK_ID = p.STAFF_RANK_ID,
-                             .EFFECT_DATE = p.EFFECT_DATE
+                             .EFFECT_DATE = p.EFFECT_DATE,
+                             .DIRECT_MANAGER = p.DIRECT_MANAGER
                              }).ToList
 
             For i As Integer = 0 To query.Count - 1

@@ -4773,7 +4773,7 @@ Partial Public Class AttendanceRepository
 
                         Dim shiftIDU = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
 
-                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = CODE_CN Select f).FirstOrDefault
+                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_ID Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
                                 If shiftIDU.SUNDAY.HasValue Then
@@ -4797,7 +4797,7 @@ Partial Public Class AttendanceRepository
                     objWorkSignData.WORKINGDAY = p_fromdate
 
                     Dim shiftId = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
-                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = CODE_CN Select f).FirstOrDefault
+                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_ID Select f).FirstOrDefault
                     If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOff.ID) Then
                         If shiftId.SUNDAY.HasValue Then
                             objWorkSignData.SHIFT_ID = shiftOff.ID
@@ -5079,14 +5079,14 @@ Partial Public Class AttendanceRepository
                                        Optional ByVal Sorts As String = "iTime_id, VALTIME desc") As List(Of AT_SWIPE_DATADTO)
         Try
             Dim query = From p In Context.AT_SWIPE_DATA
-                        From machine_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_TYPE)
-                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From machine_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_TYPE).DefaultIfEmpty
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
             Dim lst = query.Select(Function(p) New AT_SWIPE_DATADTO With {
                                        .ID = p.p.ID,
                                        .ITIME_ID = p.p.ITIME_ID,
                                        .ITIME_ID_S = p.p.ITIME_ID,
                                        .TERMINAL_ID = p.p.TERMINAL_ID,
-                                       .TERMINAL_CODE = If(p.p.TERMINAL_ID = 1, "Máy vào", "Máy ra"),
+                                       .TERMINAL_CODE = If(p.p.TERMINAL_ID = 1, "Máy vào", If(p.p.TERMINAL_ID = 2, "Máy ra", "")),
                                        .MACHINE_TYPE = p.p.MACHINE_TYPE,
                                        .MACHINE_TYPE_NAME = p.machine_type.NAME_VN,
                                        .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
@@ -6094,10 +6094,10 @@ Partial Public Class AttendanceRepository
                                Select f).ToList
                 End If
 
-                If _filter.REGIST_DATE.HasValue Then
-                    lst = (From f In lst.AsEnumerable Where f.REGIST_DATE >= _filter.REGIST_DATE
-                               Select f).ToList
-                End If
+                'If _filter.REGIST_DATE.HasValue Then
+                '    lst = (From f In lst.AsEnumerable Where f.REGIST_DATE >= _filter.REGIST_DATE
+                '               Select f).ToList
+                'End If
 
                 If Not String.IsNullOrEmpty(_filter.SIGN_CODE) Then
                     lst = (From f In lst.AsEnumerable Where f.SIGN_CODE.ToLower().Contains(_filter.SIGN_CODE.ToLower())
