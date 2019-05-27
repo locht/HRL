@@ -66,6 +66,13 @@
                                 runat="server">
                             </tlk:RadNumericTextBox>
                         </td>
+                        <td class="lb">
+                            <%# Translate("Máy chấm công")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboSwipeMachine" runat="server" ToolTip="" TabIndex="3">
+                            </tlk:RadComboBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="lb">
@@ -107,7 +114,7 @@
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="TERMINAL_CODE,TERMINAL_NAME,ADDRESS_PLACE,TERMINAL_IP,PASS,PORT,NOTE,TERMINAL_TYPE,TERMINAL_TYPE_NAME">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="TERMINAL_CODE,TERMINAL_NAME,ADDRESS_PLACE,TERMINAL_IP,PASS,PORT,NOTE,TERMINAL_TYPE,TERMINAL_TYPE_NAME,TIME_RECORDER">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -133,6 +140,8 @@
                                 SortExpression="PORT" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại máy %>" DataField="TERMINAL_TYPE_NAME" UniqueName="TERMINAL_TYPE_NAME"
                                 SortExpression="TERMINAL_TYPE_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Máy chấm công %>" DataField="TIME_RECORDER_NAME" UniqueName="TIME_RECORDER_NAME"
+                                SortExpression="TIME_RECORDER_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" UniqueName="NOTE"
                                 SortExpression="NOTE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
