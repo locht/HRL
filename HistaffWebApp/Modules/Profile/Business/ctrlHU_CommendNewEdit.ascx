@@ -8,8 +8,7 @@
 <style type="text/css">
     #ctl00_MainContent_ctrlHU_CommendNewEdit_btnUploadFile_input
     {
-        height:24px;
-        width: 28px !important;
+        height:24px;     
     }
     
     #ctl00_MainContent_ctrlHU_CommendNewEdit_btnUploadFile .rbPrimaryIcon
@@ -18,8 +17,7 @@
     }
     
     #ctl00_MainContent_ctrlHU_CommendNewEdit_btnDownload
-    {
-        height: 24px;
+    {       
         display: inline-block;
         margin-top: -1px;
     }
@@ -307,11 +305,11 @@
                  <%--   <tlk:RadComboBox ID="cboUpload" runat="server" CheckBoxes="true" SkinID="number" Width="160px" TabIndex="3">
                     </tlk:RadComboBox>--%>
 
-                      <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server">
+                      <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server" Width="130px">
                     </tlk:RadTextBox>
-                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
+                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false" Width="130px">
                     </tlk:RadTextBox>
-                    <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false" TabIndex="3"/>                          
+                    <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false" TabIndex="3"/> 
                     <tlk:RadButton ID="btnDownload" runat="server" Text="Tải xuống"
                         CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
                     </tlk:RadButton>                
