@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalWorking.ascx.vb"
     Inherits="Profile.ctrlPortalWorking" %>
-<tlk:RadGrid PageSize=50 ID="rgWorking" runat="server" Height="350px" AllowFilteringByColumn="true">
+<tlk:RadGrid PageSize=50 ID="rgWorking" runat="server" Height="450px" AllowFilteringByColumn="true">
     <MasterTableView DataKeyNames="ID">
         <Columns>
             <%--<tlk:GridBoundColumn HeaderText="Loại quyết định" DataField="DECISION_TYPE_NAME"
@@ -55,7 +55,7 @@
     </MasterTableView>
 </tlk:RadGrid>
 
-<tlk:RadGrid PageSize=50 ID="rgMain" runat="server" AutoGenerateColumns="False" AllowPaging="True" 
+<%--<tlk:RadGrid PageSize=50 ID="rgMain" runat="server" AutoGenerateColumns="False" AllowPaging="True" 
     Height="250px" AllowSorting="True" AllowMultiRowSelection="true" Width="100%">
     <ClientSettings EnableRowHoverStyle="true">
         <Selecting AllowRowSelect="true" />
@@ -75,4 +75,4 @@
                 ItemStyle-HorizontalAlign="Center" />
         </Columns>
     </MasterTableView>
-</tlk:RadGrid>
+</tlk:RadGrid>--%>
