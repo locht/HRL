@@ -261,7 +261,7 @@ Public Class ctrlApproveSetupOrg
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
                             .TITLE_ID = If(cboPosition.SelectedValue <> "", Decimal.Parse(cboPosition.SelectedValue), Nothing)
                             .SIGN_ID = If(cboKieuCong.SelectedValue <> "", Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
-                            '.LEAVEPLAN_ID = If(cboLeavePlan.SelectedValue <> "", Decimal.Parse(cboLeavePlan.SelectedValue), Nothing)
+                            .LEAVEPLAN_ID = If(cboLeavePlan.SelectedValue <> "", Decimal.Parse(cboLeavePlan.SelectedValue), Nothing)
                             .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
                             .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
                             .FROM_DAY = If(rntxtFromDay.Value IsNot Nothing, Decimal.Parse(rntxtFromDay.Value), Nothing)
@@ -297,7 +297,7 @@ Public Class ctrlApproveSetupOrg
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
                             .TITLE_ID = If(cboPosition.SelectedValue <> "", Decimal.Parse(cboPosition.SelectedValue), Nothing)
                             .SIGN_ID = If(cboKieuCong.SelectedValue <> "", Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
-                            '.LEAVEPLAN_ID = If(cboLeavePlan.SelectedValue <> "", Decimal.Parse(cboLeavePlan.SelectedValue), Nothing)
+                            .LEAVEPLAN_ID = If(cboLeavePlan.SelectedValue <> "", Decimal.Parse(cboLeavePlan.SelectedValue), Nothing)
                             .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
                             .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
                             .FROM_DAY = If(rntxtFromDay.Value IsNot Nothing, Decimal.Parse(rntxtFromDay.Value), Nothing)
@@ -356,14 +356,14 @@ Public Class ctrlApproveSetupOrg
                                        Select New With {l.NAME_VN, l.CODE}).ToList()
                         Dim sign = (From l In db.GetSignList()
                                         Select New With {l.NAME, l.ID}).ToList()
-                        'Dim leaveplan = (From l In db.GetLeavePlanList()
-                        '                Select New With {l.NAME_VN, l.ID}).ToList()
+                        Dim leaveplan = (From l In db.GetLeavePlanList()
+                                        Select New With {l.NAME_VN, l.ID}).ToList()
                         ds.Tables.Add(org.ToTable())
                         ds.Tables.Add(process.ToTable())
                         ds.Tables.Add(template.ToTable())
                         ds.Tables.Add(title.ToTable())
                         ds.Tables.Add(sign.ToTable())
-                        'ds.Tables.Add(leaveplan.ToTable())
+                        ds.Tables.Add(leaveplan.ToTable())
                         xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve/Import_Phe_Duyet_PhongBan.xls"), "Template phê duyệt phòng ban", ds, Response, 1)
                     End Using
                 Case CommonMessage.TOOLBARITEM_IMPORT
@@ -621,7 +621,7 @@ Public Class ctrlApproveSetupOrg
                 cboApproveTemplate.SelectedValue = itemSelected.TEMPLATE_ID.ToString
                 cboPosition.SelectedValue = itemSelected.TITLE_ID.ToString
                 cboKieuCong.SelectedValue = itemSelected.SIGN_ID.ToString
-                'cboLeavePlan.SelectedValue = itemSelected.LEAVEPLAN_ID.ToString
+                cboLeavePlan.SelectedValue = itemSelected.LEAVEPLAN_ID.ToString
                 rntxtFromHour.Value = itemSelected.FROM_HOUR
                 rntxtToHour.Value = itemSelected.TO_HOUR
                 rntxtFromDay.Value = itemSelected.FROM_DAY
