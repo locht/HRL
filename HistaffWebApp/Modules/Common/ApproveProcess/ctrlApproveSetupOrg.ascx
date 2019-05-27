@@ -13,7 +13,7 @@
     </tlk:RadPane>
     <tlk:RadPane runat="server" ID="paneRightFull" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-            <tlk:RadPane ID="RadPane1" runat="server" Height="190px" Scrolling="None">
+            <tlk:RadPane ID="RadPane1" runat="server" Height="230px" Scrolling="None">
                 <tlk:RadToolBar runat="server" ID="tbarDetail" Width="100%" OnClientButtonClicking="OnClientButtonClicking" />
                 <asp:ValidationSummary runat="server" ID="valSummaryVal" />
                 <asp:Panel runat="server" ID="pnlDetail" Enabled="false">
@@ -29,28 +29,24 @@
                             <td class="lb">
                                 <%# Translate("Chức vụ")%>
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadComboBox runat="server" ID="cboPosition" Width="150px">
                                 </tlk:RadComboBox>
                             </td>
                             <td class="lb">
                                 <%# Translate("Kiểu công")%>
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadComboBox runat="server" ID="cboKieuCong" Width="150px">
                                 </tlk:RadComboBox>
                             </td>
                             <td class="lb">
-                                <%# Translate("CC mail khi được duyệt")%>
+                                <%# Translate("Kế hoạch nghỉ")%>
                             </td>
-                            <td colspan="2">
-                                <tlk:RadTextBox runat="server" ID="txtCCMailAccepted" Width="150px">
-                                </tlk:RadTextBox>
+                            <td>
+                                <tlk:RadComboBox runat="server" ID="cboLeavePlan" Width="150px">
+                                </tlk:RadComboBox>
                             </td>
-                            <asp:RegularExpressionValidator ID="emailValidator" runat="server" Display="Dynamic"
-                                    ErrorMessage="Vui lòng nhập email hợp lệ tại trường CC mail khi được duyệt." ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
-                                    ControlToValidate="txtCCMailAccepted">
-                                </asp:RegularExpressionValidator>
                         </tr>
                         <tr>
                             <td class="lb">
@@ -63,7 +59,7 @@
                             <td class="lb">
                                 <%# Translate("Số giờ từ")%>
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadNumericTextBox runat="server" ID="rntxtFromHour" MinValue="0" Width="150px" DataType="System.Decimal">
                                     <NumberFormat DecimalDigits="2" AllowRounding="false" DecimalSeparator="." KeepNotRoundedValue="true"/>
                                 </tlk:RadNumericTextBox>
@@ -71,7 +67,7 @@
                             <td class="lb">
                                 <%# Translate("đến")%>                                
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadNumericTextBox runat="server" ID="rntxtToHour" MinValue="0" Width="150px">
                                     <NumberFormat DecimalDigits="2" AllowRounding="false" DecimalSeparator="." KeepNotRoundedValue="true"/>
                                 </tlk:RadNumericTextBox>
@@ -81,7 +77,7 @@
                             <td class="lb">
                                 <%# Translate("Số ngày từ")%>
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadNumericTextBox runat="server" ID="rntxtFromDay" MinValue="0" Width="150px">
                                     <NumberFormat DecimalDigits="2" AllowRounding="false" DecimalSeparator="." KeepNotRoundedValue="true"/>
                                 </tlk:RadNumericTextBox>
@@ -89,7 +85,7 @@
                             <td class="lb">
                                 <%# Translate("đến")%>                                
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadNumericTextBox runat="server" ID="rntxtToDay" MinValue="0" Width="150px">
                                     <NumberFormat DecimalDigits="2" AllowRounding="false" DecimalSeparator="." KeepNotRoundedValue="true"/>
                                 </tlk:RadNumericTextBox>
@@ -97,7 +93,7 @@
                             <td class="lb">
                                 <%# Translate("CC mail trong khi duyệt")%>
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadTextBox runat="server" ID="txtCCMailAccepting">
                                 </tlk:RadTextBox>
                             </td>
@@ -105,12 +101,23 @@
                                     ErrorMessage="Vui lòng nhập email hợp lệ tại trường CC mail trong khi duyệt." ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
                                     ControlToValidate="txtCCMailAccepting">
                                 </asp:RegularExpressionValidator>
+                            <td class="lb">
+                                <%# Translate("CC mail khi được duyệt")%>
+                            </td>
+                            <td>
+                                <tlk:RadTextBox runat="server" ID="txtCCMailAccepted" Width="150px">
+                                </tlk:RadTextBox>
+                            </td>
+                            <asp:RegularExpressionValidator ID="emailValidator" runat="server" Display="Dynamic"
+                                    ErrorMessage="Vui lòng nhập email hợp lệ tại trường CC mail khi được duyệt." ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
+                                    ControlToValidate="txtCCMailAccepted">
+                                </asp:RegularExpressionValidator>
                         </tr>
                         <tr>
                             <td class="lb">
                                 <%# Translate("Áp dụng từ ngày")%><span class="lbReq">*</span>                                
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <tlk:RadDatePicker runat="server" ID="rdFromDate">
                                 </tlk:RadDatePicker>
                                 <asp:RequiredFieldValidator runat="server" ID="reqFromDate" ControlToValidate="rdFromDate"
@@ -201,9 +208,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut(splitterID);
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut(splitterID);
+        //        }
 
         function setDefaultSize() {
             ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDetail');
