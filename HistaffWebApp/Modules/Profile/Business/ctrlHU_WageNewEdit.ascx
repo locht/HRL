@@ -74,7 +74,7 @@
                     <asp:Label runat ="server" ID ="lbEffectDate" Text ="Ngày hiệu lực" ></asp:Label> <span class="lbReq">*</span>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdEffectDate" runat="server">
+                    <tlk:RadDatePicker ID="rdEffectDate" AutoPostBack ="true"  runat="server">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqEffectDate" runat="server" ControlToValidate="rdEffectDate"
                         ErrorMessage="Bạn phải nhập ngày hiệu lực" ToolTip="Bạn phải nhập ngày hiệu lực"></asp:RequiredFieldValidator>
@@ -177,7 +177,7 @@
                     <asp:Label runat ="server" ID="lbFactorSalary" Text ="Hệ số/mức tiền"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rnFactorSalary" SkinID ="Money" ReadOnly ="true"  ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnFactorSalary" SkinID ="Decimal" ReadOnly ="true"  ></tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                         <asp:Label ID="lbSalaryInsurance" runat="server" Text="Mức lương đóng bảo hiểm"></asp:Label>
