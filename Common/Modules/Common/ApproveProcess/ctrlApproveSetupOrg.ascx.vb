@@ -363,7 +363,7 @@ Public Class ctrlApproveSetupOrg
                         ds.Tables.Add(template.ToTable())
                         ds.Tables.Add(title.ToTable())
                         ds.Tables.Add(sign.ToTable())
-                        ds.Tables.Add(leaveplan.ToTable())
+                        'ds.Tables.Add(leaveplan.ToTable())
                         xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve/Import_Phe_Duyet_PhongBan.xls"), "Template phê duyệt phòng ban", ds, Response, 1)
                     End Using
                 Case CommonMessage.TOOLBARITEM_IMPORT
