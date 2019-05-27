@@ -311,6 +311,7 @@ Public Class ctrlRitual_Hose
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim objHoliday As New AT_HOLIDAYDTO
         Dim rep As New AttendanceRepository
+        Dim psp As New AttendanceStoreProcedure
         Dim gID As Decimal
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -384,6 +385,12 @@ Public Class ctrlRitual_Hose
                         objHoliday.IS_SUN = ckIsSU.Checked
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
+                                'Kiểm tra trùng ngày
+                                Dim check = psp.CHECK_VALIDATE(0, objHoliday.CODE, objHoliday.FROMDATE, objHoliday.TODATE)
+                                If check <> 0 Then
+                                    ShowMessage(Translate("Ngày nghỉ lễ đã tồn tại. Vui lòng chọn ngày khác"), Utilities.NotifyType.Warning)
+                                    Exit Sub
+                                End If
                                 Dim Validate As New AT_HOLIDAYDTO
                                 Validate.CODE = txtCode.Text
                                 If Not rep.ValidateHOLIDAY_Hose(Validate) Then
@@ -396,9 +403,14 @@ Public Class ctrlRitual_Hose
                                     Refresh("InsertView")
                                     UpdateControlState()
                                 Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Warning)
                                 End If
                             Case CommonMessage.STATE_EDIT
+                                Dim check = psp.CHECK_VALIDATE(1, objHoliday.CODE, objHoliday.FROMDATE, objHoliday.TODATE)
+                                If check <> 0 Then
+                                    ShowMessage(Translate("Ngày nghỉ lễ đã tồn tại. Vui lòng chọn ngày khác"), Utilities.NotifyType.Error)
+                                    Exit Sub
+                                End If
                                 objHoliday.ID = rgDanhMucHS.SelectedValue
                                 If rep.InsertHoliday_Hose(objHoliday, rgDanhMucHS.SelectedValue) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
