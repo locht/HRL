@@ -386,13 +386,13 @@ Public Class ctrlLeaveRegistrationNewEdit
                         Dim selectedFromDate = rdFromDate.SelectedDate
                         Dim selectedToDate = rdToDate.SelectedDate
                         While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                            Dim CHECK1 = (From P In CHECKSHIFT Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                            Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
                             If CHECK1 = 0 Then
                                 ShowMessage(Translate("Thời gian bạn chọn không có trong ca làn việc,bạn chọn lại."), NotifyType.Warning)
                                 UpdateControlState()
                                 Exit Sub
                             End If
-                            Dim checkhopdong = (From P In CHECKCONTRACT Where P("STARTDATE") <= selectedFromDate And P("STARTDATE") >= selectedFromDate Select P).ToList.Count
+                            Dim checkhopdong = (From P In CHECKCONTRACT.AsEnumerable Where P("STARTDATE") <= selectedFromDate And P("ENDDATE") >= selectedFromDate Select P).ToList.Count
                             If checkhopdong > 0 Then
                                 ShowMessage(Translate("Nhân viên đang là hợp đồng thử việc,thao thác không thành công"), NotifyType.Warning)
                                 UpdateControlState()
