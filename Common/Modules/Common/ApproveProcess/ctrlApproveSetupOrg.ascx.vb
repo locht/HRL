@@ -238,7 +238,7 @@ Public Class ctrlApproveSetupOrg
                     IDDetailSelecting = Nothing
                     UpdateControlState()
                     ClearControlForInsertOrDelete()
-                    ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
+                    ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate)
 
                 Case CommonMessage.TOOLBARITEM_EDIT
                     Me.CurrentState = CommonMessage.STATE_EDIT
@@ -261,6 +261,7 @@ Public Class ctrlApproveSetupOrg
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
                             .TITLE_ID = If(cboPosition.SelectedValue <> "", Decimal.Parse(cboPosition.SelectedValue), Nothing)
                             .SIGN_ID = If(cboKieuCong.SelectedValue <> "", Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
+                            .LEAVEPLAN_ID = If(cboLeavePlan.SelectedValue <> "", Decimal.Parse(cboLeavePlan.SelectedValue), Nothing)
                             .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
                             .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
                             .FROM_DAY = If(rntxtFromDay.Value IsNot Nothing, Decimal.Parse(rntxtFromDay.Value), Nothing)
@@ -280,7 +281,7 @@ Public Class ctrlApproveSetupOrg
                         End If
 
                         If db.InsertApproveSetup(itemAdd) Then
-                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
+                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate)
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -296,6 +297,7 @@ Public Class ctrlApproveSetupOrg
                             .TEMPLATE_ID = Decimal.Parse(cboApproveTemplate.SelectedValue)
                             .TITLE_ID = If(cboPosition.SelectedValue <> "", Decimal.Parse(cboPosition.SelectedValue), Nothing)
                             .SIGN_ID = If(cboKieuCong.SelectedValue <> "", Decimal.Parse(cboKieuCong.SelectedValue), Nothing)
+                            .LEAVEPLAN_ID = If(cboLeavePlan.SelectedValue <> "", Decimal.Parse(cboLeavePlan.SelectedValue), Nothing)
                             .FROM_HOUR = If(rntxtFromHour.Value IsNot Nothing, Decimal.Parse(rntxtFromHour.Value), Nothing)
                             .TO_HOUR = If(rntxtToHour.Value IsNot Nothing, Decimal.Parse(rntxtToHour.Value), Nothing)
                             .FROM_DAY = If(rntxtFromDay.Value IsNot Nothing, Decimal.Parse(rntxtFromDay.Value), Nothing)
@@ -315,7 +317,7 @@ Public Class ctrlApproveSetupOrg
                         End If
 
                         If db.UpdateApproveSetup(itemEdit) Then
-                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
+                            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate)
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
@@ -354,11 +356,14 @@ Public Class ctrlApproveSetupOrg
                                        Select New With {l.NAME_VN, l.CODE}).ToList()
                         Dim sign = (From l In db.GetSignList()
                                         Select New With {l.NAME, l.ID}).ToList()
+                        Dim leaveplan = (From l In db.GetLeavePlanList()
+                                        Select New With {l.NAME_VN, l.ID}).ToList()
                         ds.Tables.Add(org.ToTable())
                         ds.Tables.Add(process.ToTable())
                         ds.Tables.Add(template.ToTable())
                         ds.Tables.Add(title.ToTable())
                         ds.Tables.Add(sign.ToTable())
+                        ds.Tables.Add(leaveplan.ToTable())
                         xls.ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Common/Approve/Import_Phe_Duyet_PhongBan.xls"), "Template phê duyệt phòng ban", ds, Response, 1)
                     End Using
                 Case CommonMessage.TOOLBARITEM_IMPORT
@@ -400,7 +405,7 @@ Public Class ctrlApproveSetupOrg
                 Dim db As New CommonRepository
 
                 If db.DeleteApproveSetup(ListToDelete) Then
-                    ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
+                    ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate)
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                     Refresh()
                 Else
@@ -519,7 +524,7 @@ Public Class ctrlApproveSetupOrg
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, rdFromDate, rdToDate)
+            ClearControlValue(cboApproveProcess, cboApproveTemplate, cboKieuCong, cboPosition, cboLeavePlan, rdFromDate, rdToDate)
             rgDetail.Rebind()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -539,6 +544,7 @@ Public Class ctrlApproveSetupOrg
             cboApproveTemplate.SelectedIndex = 0
             cboPosition.SelectedIndex = 0
             cboKieuCong.SelectedIndex = 0
+            cboLeavePlan.SelectedIndex = 0
             rntxtFromHour.Text = String.Empty
             rntxtToHour.Text = String.Empty
             rntxtFromDay.Text = String.Empty
@@ -587,6 +593,12 @@ Public Class ctrlApproveSetupOrg
             cboKieuCong.DataValueField = "ID"
             cboKieuCong.DataBind()
 
+            Dim dtLeavePlan = db.GetLeavePlanList()
+            cboLeavePlan.DataSource = dtSignList
+            cboLeavePlan.DataTextField = "NAME_VN"
+            cboLeavePlan.DataValueField = "ID"
+            cboLeavePlan.DataBind()
+
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -609,6 +621,7 @@ Public Class ctrlApproveSetupOrg
                 cboApproveTemplate.SelectedValue = itemSelected.TEMPLATE_ID.ToString
                 cboPosition.SelectedValue = itemSelected.TITLE_ID.ToString
                 cboKieuCong.SelectedValue = itemSelected.SIGN_ID.ToString
+                cboLeavePlan.SelectedValue = itemSelected.LEAVEPLAN_ID.ToString
                 rntxtFromHour.Value = itemSelected.FROM_HOUR
                 rntxtToHour.Value = itemSelected.TO_HOUR
                 rntxtFromDay.Value = itemSelected.FROM_DAY
@@ -758,12 +771,13 @@ Public Class ctrlApproveSetupOrg
         dtTemp.Columns(8).ColumnName = "TITLE_ID"
         'dtTemp.Columns(9).ColumnName = "SIGN_NAME"
         dtTemp.Columns(10).ColumnName = "SIGN_ID"
-        dtTemp.Columns(11).ColumnName = "FROM_DAY"
-        dtTemp.Columns(12).ColumnName = "TO_DAY"
-        dtTemp.Columns(13).ColumnName = "FROM_HOUR"
-        dtTemp.Columns(14).ColumnName = "TO_HOUR"
-        dtTemp.Columns(15).ColumnName = "MAIL_ACCEPTED"
-        dtTemp.Columns(16).ColumnName = "MAIL_ACCEPTING"
+        dtTemp.Columns(12).ColumnName = "LEAVEPLAN_ID"
+        dtTemp.Columns(13).ColumnName = "FROM_DAY"
+        dtTemp.Columns(14).ColumnName = "TO_DAY"
+        dtTemp.Columns(15).ColumnName = "FROM_HOUR"
+        dtTemp.Columns(16).ColumnName = "TO_HOUR"
+        dtTemp.Columns(17).ColumnName = "MAIL_ACCEPTED"
+        dtTemp.Columns(18).ColumnName = "MAIL_ACCEPTING"
 
         'XOA DONG TIEU DE VA HEADER
         dtTemp.Rows(0).Delete()

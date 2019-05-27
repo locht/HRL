@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("2ea21b41-3da7-4aa4-807f-e13fde4c012c")>
+<Assembly: EdmSchemaAttribute("1b10d97e-9b9e-4c27-ba55-6dd2d6a9074d")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -8661,6 +8661,31 @@ Public Partial Class SE_APP_SETUP
     End Sub
 
     Private Partial Sub OnSIGN_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property LEAVEPLAN_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LEAVEPLAN_ID
+        End Get
+        Set
+            OnLEAVEPLAN_IDChanging(value)
+            ReportPropertyChanging("LEAVEPLAN_ID")
+            _LEAVEPLAN_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LEAVEPLAN_ID")
+            OnLEAVEPLAN_IDChanged()
+        End Set
+    End Property
+
+    Private _LEAVEPLAN_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLEAVEPLAN_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLEAVEPLAN_IDChanged()
     End Sub
 
     #End Region

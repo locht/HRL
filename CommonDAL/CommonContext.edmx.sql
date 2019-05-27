@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 24/05/2019 8:52:17 AM
+-- Date Created: 27/05/2019 11:15:36 AM
 -- Generated from EDMX file: E:\histaffhcm-2\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
@@ -453,7 +453,8 @@ CREATE TABLE "dbo"."SE_APP_SETUP" (
    "MAIL_ACCEPTED" NCLOB NULL,
    "MAIL_ACCEPTING" NCLOB NULL,
    "TITLE_ID" NUMBER(38,0) NULL,
-   "SIGN_ID" NUMBER(38,0) NULL
+   "SIGN_ID" NUMBER(38,0) NULL,
+   "LEAVEPLAN_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_APP_SETUPEXT'
