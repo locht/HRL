@@ -71,9 +71,13 @@ Public Class ctrlHU_EmployeeMng
             Dim startTime As DateTime = DateTime.UtcNow
             AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
             AjaxManagerId = AjaxManager.ClientID
-            rgEmployeeList.SetFilter()
-            rgEmployeeList.AllowCustomPaging = True
-            rgEmployeeList.ClientSettings.EnablePostBackOnRowClick = False
+            If Not IsPostBack Then
+                ViewConfig(LeftPane)
+                GirdConfig(rgEmployeeList)
+            End If
+            'rgEmployeeList.SetFilter()
+            'rgEmployeeList.AllowCustomPaging = True
+            'rgEmployeeList.ClientSettings.EnablePostBackOnRowClick = False
             InitControl()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
