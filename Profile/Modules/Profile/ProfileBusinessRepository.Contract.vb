@@ -268,10 +268,10 @@ Partial Public Class ProfileBusinessRepository
 
     End Function
 
-    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.ImportAnnualLeave(P_DOCXML, P_USER)
+                Return rep.ImportAnnualLeave(P_DOCXML, P_USER, P_YEAR)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
