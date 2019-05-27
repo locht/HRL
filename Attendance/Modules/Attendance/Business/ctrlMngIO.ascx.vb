@@ -849,7 +849,11 @@ Public Class ctrlMngIO
             If e.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 CurrentState = CommonMessage.TOOLBARTIEM_CALCULATE
                 Dim IAttendanceBusiness As IAttendanceBusiness = New AttendanceBusinessClient()
-                IAttendanceBusiness.CAL_SUMMARY_DATA_INOUT(cboPeriod.SelectedValue)
+                If IAttendanceBusiness.CAL_SUMMARY_DATA_INOUT(cboPeriod.SelectedValue) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
                 UpdateControlState()
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

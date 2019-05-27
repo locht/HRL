@@ -30,7 +30,9 @@ Partial Public Class AttendanceRepository
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_AT_LIST.CAL_SUMMARY_DATA_INOUT",
-                                         New With {.P_CUR = cls.OUT_CURSOR})
+                                         New With {
+                                             .P_PERIOD_ID = Period_id,
+                                             .P_CUR = cls.OUT_CURSOR})
                 Return CBool(dtData(0)(0))
             End Using
         Catch ex As Exception
