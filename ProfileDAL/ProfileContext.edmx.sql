@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 27-May-19 11:58:14 AM
--- Generated from EDMX file: E:\PROJECT\MyHiStaffHCM\ProfileDAL\ProfileContext.edmx
+-- Date Created: 05/27/2019 4:05:14 PM
+-- Generated from EDMX file: D:\MyProject\core1\histaffhcm-27052019\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -493,7 +493,8 @@ CREATE TABLE "dbo"."HU_EMPLOYEE" (
    "IS_3B" NUMBER(5,0) NULL,
    "EMP_STATUS" NUMBER(38,0) NULL,
    "BOOK_NO" NCLOB NULL,
-   "EMPLOYEE_NAME_OTHER" NCLOB NULL
+   "EMPLOYEE_NAME_OTHER" NCLOB NULL,
+   "OBJECTTIMEKEEPING" NUMBER(38,0) NULL
 );
 
 -- Creating table 'OT_OTHER_LIST_TYPE'
