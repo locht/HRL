@@ -15,6 +15,18 @@ Imports System.Configuration
 Partial Public Class CommonRepository
 
 #Region "Process Setup"
+    Public Function GetLeavePlanList() As List(Of OtherListDTO)
+        Try
+            Dim listTitle = (From t In Context.OT_OTHER_LIST
+                             Where t.TYPE_ID = 2000 And t.ACTFLG = "A"
+                             Select New OtherListDTO With {
+                                .CODE = t.CODE, .NAME_VN = t.NAME_VN
+                             }).ToList()
+            Return listTitle
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetSignList() As List(Of ATTimeManualDTO)
         Try
             Dim listSign = (From t In Context.AT_TIME_MANUAL

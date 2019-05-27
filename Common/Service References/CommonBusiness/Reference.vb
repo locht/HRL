@@ -958,6 +958,12 @@ Namespace CommonBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEAVEPLAN_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LEAVEPLAN_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MAIL_ACCEPTEDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1076,6 +1082,32 @@ Namespace CommonBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEAVEPLAN_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.LEAVEPLAN_IDField
+            End Get
+            Set
+                If (Me.LEAVEPLAN_IDField.Equals(value) <> true) Then
+                    Me.LEAVEPLAN_IDField = value
+                    Me.RaisePropertyChanged("LEAVEPLAN_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LEAVEPLAN_NAME() As String
+            Get
+                Return Me.LEAVEPLAN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LEAVEPLAN_NAMEField, value) <> true) Then
+                    Me.LEAVEPLAN_NAMEField = value
+                    Me.RaisePropertyChanged("LEAVEPLAN_NAME")
                 End If
             End Set
         End Property
@@ -8306,6 +8338,9 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatus", ReplyAction:="http://tempuri.org/ICommonBusiness/UpdateApproveProcessStatusResponse")>  _
         Function UpdateApproveProcessStatus(ByVal itemUpdates As System.Collections.Generic.List(Of Decimal), ByVal status As String) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLeavePlanList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLeavePlanListResponse")>  _
+        Function GetLeavePlanList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetTitleList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetTitleListResponse")>  _
         Function GetTitleList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO)
         
@@ -8997,6 +9032,10 @@ Namespace CommonBusiness
         
         Public Function UpdateApproveProcessStatus(ByVal itemUpdates As System.Collections.Generic.List(Of Decimal), ByVal status As String) As Boolean Implements CommonBusiness.ICommonBusiness.UpdateApproveProcessStatus
             Return MyBase.Channel.UpdateApproveProcessStatus(itemUpdates, status)
+        End Function
+        
+        Public Function GetLeavePlanList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO) Implements CommonBusiness.ICommonBusiness.GetLeavePlanList
+            Return MyBase.Channel.GetLeavePlanList
         End Function
         
         Public Function GetTitleList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO) Implements CommonBusiness.ICommonBusiness.GetTitleList
