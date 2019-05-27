@@ -1653,6 +1653,37 @@ Partial Class ProfileRepository
         End Try
 
     End Function
+
+    Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        Dim objEmp As HU_EMPLOYEE
+        Dim result As Integer
+        Try
+            objEmp = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = empCode.Replace(" ", "")).SingleOrDefault
+            If objEmp IsNot Nothing Then
+                result = objEmp.ID
+            Else
+                result = 0
+            End If
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_DOCXML = P_DOCXML,.P_USER = P_USER})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+       
+    End Function
+
 #End Region
 
 #Region "PLHD"

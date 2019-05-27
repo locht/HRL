@@ -17,12 +17,13 @@ Partial Public Class CommonRepository
 #Region "Process Setup"
     Public Function GetLeavePlanList() As List(Of OtherListDTO)
         Try
-            Dim listTitle = (From t In Context.OT_OTHER_LIST
-                             Where t.TYPE_ID = 2000 And t.ACTFLG = "A"
+            Dim listLeavePlan = (From t In Context.OT_OTHER_LIST
+                                 From type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = t.TYPE_ID)
+                             Where type.CODE = "LEAVE_PLAN" And t.ACTFLG = "A"
                              Select New OtherListDTO With {
-                                .CODE = t.CODE, .NAME_VN = t.NAME_VN
+                                .ID = t.ID, .NAME_VN = t.NAME_VN
                              }).ToList()
-            Return listTitle
+            Return listLeavePlan
         Catch ex As Exception
             Throw ex
         End Try

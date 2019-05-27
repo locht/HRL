@@ -328,6 +328,7 @@
                 // Nếu nhấn nút SAVE thì resize
                 // ResizeSplitter();
             } else if (item.get_commandName() == "DELETE") {
+            
                 var bCheck = $find('<%= rgSignWork.ClientID %>').get_masterTableView().get_selectedItems().length;
                 if (bCheck == 0) {
                     var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';

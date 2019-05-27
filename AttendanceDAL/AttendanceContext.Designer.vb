@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("157c5494-91a9-481d-bb71-955ca22a0a66")>
+<Assembly: EdmSchemaAttribute("8215fac5-4aaf-4377-96ed-b4350f02e925")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -10423,6 +10423,56 @@ Public Partial Class AT_HOLIDAY
     End Sub
 
     Private Partial Sub OnOFFDAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_SA() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_SA
+        End Get
+        Set
+            OnIS_SAChanging(value)
+            ReportPropertyChanging("IS_SA")
+            _IS_SA = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_SA")
+            OnIS_SAChanged()
+        End Set
+    End Property
+
+    Private _IS_SA As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_SAChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_SAChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_SU() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_SU
+        End Get
+        Set
+            OnIS_SUChanging(value)
+            ReportPropertyChanging("IS_SU")
+            _IS_SU = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_SU")
+            OnIS_SUChanged()
+        End Set
+    End Property
+
+    Private _IS_SU As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_SUChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_SUChanged()
     End Sub
 
     #End Region

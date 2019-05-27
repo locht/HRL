@@ -3,7 +3,6 @@
     <%@ Import Namespace="Common" %>
     <link type  = "text/css" href = "/Styles/StyleCustom.css" rel = "Stylesheet"/>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
- 
     <tlk:RadPane ID="RadPane1" runat="server" Height="145px" Scrolling="None">
         <tlk:RadToolBar ID="tbarCostCenters" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
@@ -81,17 +80,14 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgDanhMuc" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-            Height="100%" AllowSorting="True" AllowMultiRowSelection="true" >
-            <ClientSettings EnableRowHoverStyle="true" AllowKeyboardNavigation="true">
-                <Selecting AllowRowSelect="true" />
-                <ClientEvents OnGridCreated="GridCreated" />
-                <ClientEvents OnCommand="ValidateFilter" />
-                <KeyboardNavigationSettings AllowSubmitOnEnter="true" EnableKeyboardShortcuts="true" />
+        <tlk:RadGrid ID="rgDanhMucHS" runat="server" Height="100%">
+            <ClientSettings EnablePostBackOnRowClick="True">
+                        <ClientEvents OnGridCreated="GridCreated" />
+                        <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,FROMDATE,TODATE,YEAR,ACTFLG,NOTE,IS_SA,IS_SUN">
                 <Columns>
-                  <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                   <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR" UniqueName="YEAR"
@@ -153,7 +149,7 @@
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
             if (args.get_item().get_commandName() == "EXPORT") {
-                var grid = $find("<%=rgDanhMuc.ClientID %>");
+                var grid = $find("<%=rgDanhMucHS.ClientID %>");
                 var masterTable = grid.get_masterTableView();
                 var rows = masterTable.get_dataItems();
                 if (rows.length == 0) {
@@ -175,7 +171,7 @@
             {
                 // Nếu nhấn nút SAVE thì resize
                 if (!Page_ClientValidate(""))
-                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDanhMuc');
+                    ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDanhMucHS');
                 else
                     ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
             } else {

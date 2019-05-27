@@ -16,6 +16,15 @@ Partial Class AttendanceStoreProcedure
         End If
         Return dt
     End Function
+    Public Function CHECK_DELETE_SIGNWORK(ByVal listID As String) As DataTable
+        Dim dt As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.CHECK_DELETE_SIGNWORK", New List(Of Object)(New Object() {listID}))
+        'Return ds
+        If ds IsNot Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function CHECK_APPROVAL(ByVal listID As String) As DataTable
         Dim dt As DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.CHECK_APPROVAL", New List(Of Object)(New Object() {listID}))

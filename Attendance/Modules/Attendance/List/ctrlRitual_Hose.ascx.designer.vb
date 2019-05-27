@@ -194,13 +194,13 @@ Partial Public Class ctrlRitual_Hose
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''rgDanhMuc control.
+    '''rgDanhMucHS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rgDanhMuc As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rgDanhMucHS As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''ctrlMessageBox control.
