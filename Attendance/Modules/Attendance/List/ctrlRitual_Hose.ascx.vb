@@ -374,16 +374,14 @@ Public Class ctrlRitual_Hose
 
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        Dim SAcheck As Integer
-                        Dim SUcheck As Integer
                         objHoliday.CODE = txtCode.Text.Trim
                         objHoliday.YEAR = rdFromDate.SelectedDate.Value.Year
                         objHoliday.NAME_VN = txtNameVN.Text.Trim
                         objHoliday.FROMDATE = rdFromDate.SelectedDate
                         objHoliday.TODATE = rdToDate.SelectedDate
                         objHoliday.NOTE = rdNote.Text.Trim
-                        objHoliday.IS_SA = SAcheck
-                        objHoliday.IS_SUN = SUcheck
+                        objHoliday.IS_SA = ckIsSA.Checked
+                        objHoliday.IS_SUN = ckIsSU.Checked
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 Dim Validate As New AT_HOLIDAYDTO
@@ -401,18 +399,6 @@ Public Class ctrlRitual_Hose
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                             Case CommonMessage.STATE_EDIT
-                                Dim Validate As New AT_HOLIDAYDTO
-                                Validate.ID = rgDanhMucHS.SelectedValue
-                                If rep.ValidateHoliday(Validate) Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                    ClearControlValue(txtCode, txtNameVN, txtID, rdFromDate, rdToDate, rdNote)
-                                    rdFromDate.SelectedDate = Nothing
-                                    rdToDate.SelectedDate = Nothing
-                                    rgDanhMucHS.Rebind()
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    UpdateControlState()
-                                    Exit Sub
-                                End If
                                 objHoliday.ID = rgDanhMucHS.SelectedValue
                                 If rep.InsertHoliday_Hose(objHoliday, rgDanhMucHS.SelectedValue) Then
                                     CurrentState = CommonMessage.STATE_NORMAL
@@ -512,7 +498,7 @@ Public Class ctrlRitual_Hose
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-
+    
     ''' <summary>
     ''' Ham xu ly viec check gia tri ID, Code
     ''' Tu dong gen code khi them moi
@@ -598,5 +584,28 @@ Public Class ctrlRitual_Hose
         End Try
     End Sub
 #End Region
+    Protected Sub rgDanhMucHS_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgDanhMucHS.SelectedIndexChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            If rgDanhMucHS.SelectedItems.Count > 0 Then
+                Dim slItem As GridDataItem
+                slItem = rgDanhMucHS.SelectedItems(0)
+                If slItem.GetDataKeyValue("IS_SA").ToString = True Then
+                    ckIsSA.Checked = True
+                Else
+                    ckIsSA.Checked = False
+                End If
+                If slItem.GetDataKeyValue("IS_SUN").ToString = True Then
+                    ckIsSU.Checked = True
+                Else
+                    ckIsSU.Checked = False
+                End If
+            End If
 
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 End Class

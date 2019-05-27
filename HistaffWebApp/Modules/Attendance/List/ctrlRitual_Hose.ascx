@@ -80,13 +80,10 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgDanhMucHS" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-            Height="100%" AllowSorting="True" AllowMultiRowSelection="true" >
-            <ClientSettings EnableRowHoverStyle="true" AllowKeyboardNavigation="true">
-                <Selecting AllowRowSelect="true" />
-                <ClientEvents OnGridCreated="GridCreated" />
-                <ClientEvents OnCommand="ValidateFilter" />
-                <KeyboardNavigationSettings AllowSubmitOnEnter="true" EnableKeyboardShortcuts="true" />
+        <tlk:RadGrid ID="rgDanhMucHS" runat="server" Height="100%">
+            <ClientSettings EnablePostBackOnRowClick="True">
+                        <ClientEvents OnGridCreated="GridCreated" />
+                        <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,FROMDATE,TODATE,YEAR,ACTFLG,NOTE,IS_SA,IS_SUN">
                 <Columns>
