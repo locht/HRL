@@ -119,7 +119,7 @@
                     Không có bản ghi nào
                 </NoRecordsTemplate>
                 <Columns>
-                  <%--  <tlk:GridClientSelectColumn HeaderStyle-Width="40px">
+                    <tlk:GridClientSelectColumn HeaderStyle-Width="40px">
                         <ItemStyle HorizontalAlign="Center" />
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="NUMBER_CODE" HeaderText="Số hiệu văn bản"
@@ -150,19 +150,19 @@
                     <tlk:GridBoundColumn DataField="REMARK" HeaderText="Ghi chú" UniqueName="REMARK"
                         EmptyDataText="">
                         <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                    </tlk:GridBoundColumn>--%>
+                    </tlk:GridBoundColumn>
                     <%--<asp:LinkButton ID ="LinkButton1" runat="server" OnClientClick="download(<%$ Eval("FILENAME_SYS").ToString() %>)" Text="Tải tệp">
                     </asp:LinkButton>   --%>
                     <%--<tlk:GridHyperLinkColumn UniqueName="FILENAME_SYS" 
                             FilterControlAltText="Filter column column" DataNavigateUrlFields="FILENAME_SYS" 
                             Text="Tải tệp" >
                     </tlk:GridHyperLinkColumn>--%>
-                   <%-- <tlk:GridTemplateColumn DataField="ID" HeaderText="Tải tệp" UniqueName="ID">
+                    <tlk:GridTemplateColumn DataField="ID" HeaderText="Tải tệp" UniqueName="ID">
                         <ItemTemplate>
                             <asp:LinkButton ID="txtDownload" runat="server" Text=' Tải tệp' CausesValidation="false"
                                 OnClientClick='<%# "txtDownload_Click(""" & Eval("ID").ToString() &  """ , """ &   Eval("FILENAME").ToString() & """, """ &   Eval("FILENAME_SYS").ToString() & """)" %>'></asp:LinkButton>
                         </ItemTemplate>
-                    </tlk:GridTemplateColumn>--%>
+                    </tlk:GridTemplateColumn>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>
