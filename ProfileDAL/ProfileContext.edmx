@@ -140,6 +140,7 @@
             <EntitySet Name="HU_RELATIONSHIP_LIST" EntityType="ProfileModel.Store.HU_RELATIONSHIP_LIST" store:Type="Tables"  />
             <EntitySet Name="HU_RELATIONSHIP_GROUP" EntityType="ProfileModel.Store.HU_RELATIONSHIP_GROUP" store:Type="Tables"  />
             <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="ProfileModel.Store.HU_ANNUALLEAVE_PLANS" store:Type="Tables"  />
+            <EntitySet Name="HUV_CURRENT_WORKING1" EntityType="ProfileModel.Store.HUV_CURRENT_WORKING1" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3335,6 +3336,20 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HUV_CURRENT_WORKING1">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="STAFF_RANK_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_3B" Type="number" Nullable="true" Precision="5" />
+            <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
+            <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OBJECT_ATTENDANCE" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -3960,6 +3975,7 @@
           <EntitySet Name="HU_RELATIONSHIP_LIST" EntityType="ProfileModel.HU_RELATIONSHIP_LIST" />
           <EntitySet Name="HU_RELATIONSHIP_GROUP" EntityType="ProfileModel.HU_RELATIONSHIP_GROUP" />
           <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="ProfileModel.HU_ANNUALLEAVE_PLANS" />
+          <EntitySet Name="HUV_CURRENT_WORKING1" EntityType="ProfileModel.HUV_CURRENT_WORKING1" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -7438,6 +7454,20 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HUV_CURRENT_WORKING1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="IS_3B" />
+          <Property Type="DateTime" Name="EFFECT_DATE" />
+          <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OBJECT_ATTENDANCE" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10642,6 +10672,21 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HUV_CURRENT_WORKING1">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_CURRENT_WORKING1)">
+                <MappingFragment StoreEntitySet="HUV_CURRENT_WORKING1">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+                    <ScalarProperty Name="IS_3B" ColumnName="IS_3B" />
+                    <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
+                    <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
+                    <ScalarProperty Name="OBJECT_ATTENDANCE" ColumnName="OBJECT_ATTENDANCE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -10963,6 +11008,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_LIST" Width="1.5" PointX="34.375" PointY="0.75" Height="3.3263964843749996" />
         <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_GROUP" Width="2.375" PointX="34.375" PointY="11.75" Height="3.1340950520833335" />
         <EntityTypeShape EntityType="ProfileModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="34.375" PointY="15.75" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING1" Width="1.5" PointX="34.375" PointY="20.875" Height="2.7494921874999818" />
         </Diagram>
     </Diagrams>
   </Designer>

@@ -1439,6 +1439,7 @@ Partial Class ProfileRepository
                 item.DIRECT_MANAGER = objWorking.DIRECT_MANAGER
                 item.LAST_WORKING_ID = objWorking.ID
                 item.MODIFIED_DATE = Date.Now
+                item.OBJECTTIMEKEEPING = objWorking.OBJECT_ATTENDANCE
             End If
 
             Return True
