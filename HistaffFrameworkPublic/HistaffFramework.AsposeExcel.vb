@@ -699,6 +699,54 @@ Public Class AsposeExcelCommon
     End Function
 
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="filePath"></param>
+    ''' <param name="fileName"></param>
+    ''' <param name="dtData"></param>
+    ''' <param name="Response"></param>
+    ''' <param name="_error">
+    ''' 1 - Temp không tồn tại
+    ''' 2 - Data không tồn tại
+    ''' </param>
+    ''' <param name="type">
+    ''' 0 - Excel
+    ''' 1 - Pdf</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function ExportExcelTemplateNoData(ByVal filePath As String,
+                                            ByVal fileName As String,
+                                            ByVal Response As System.Web.HttpResponse,
+                                            Optional ByVal tableName As String = "DATA",
+                                            Optional ByRef _error As String = "",
+                                            Optional ByVal type As ExportType = ExportType.Excel) As Boolean
+        'check license
+        Dim designer As WorkbookDesigner
+        Try
+            If Not File.Exists(filePath) Then
+                _error = CStr(1)
+                Return False
+            End If
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            With designer.Workbook
+                .CalculateFormula()
+                Select Case type
+                    Case ExportType.Excel
+                        .Save(Response, fileName & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+                    Case ExportType.PDF
+                        .Save(Response, fileName & ".pdf", ContentDisposition.Attachment, New OoxmlSaveOptions(CType(FileFormatType.Pdf, SaveFormat)))
+                End Select
+            End With
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Enum ExportType
         Excel = 0
         PDF = 1

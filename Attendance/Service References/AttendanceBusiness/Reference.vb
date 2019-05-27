@@ -15983,6 +15983,9 @@ Namespace AttendanceBusiness
         Private STAFF_RANK_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_OUTSIDE_COMPANYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TIME_SENIORITYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -16688,6 +16691,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.STAFF_RANK_NAMEField, value) <> true) Then
                     Me.STAFF_RANK_NAMEField = value
                     Me.RaisePropertyChanged("STAFF_RANK_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_OUTSIDE_COMPANY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TIME_OUTSIDE_COMPANYField
+            End Get
+            Set
+                If (Me.TIME_OUTSIDE_COMPANYField.Equals(value) <> true) Then
+                    Me.TIME_OUTSIDE_COMPANYField = value
+                    Me.RaisePropertyChanged("TIME_OUTSIDE_COMPANY")
                 End If
             End Set
         End Property

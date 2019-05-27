@@ -933,6 +933,8 @@
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
             <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
             <Property Name="OFFDAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_SA" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_SU" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_HOLIDAY_GENERAL">
             <Key>
@@ -3507,6 +3509,8 @@
           <Property Type="String" Name="ACTFLG" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="OFFDAY" Nullable="true" />
+          <Property Type="Decimal" Name="IS_SA" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="IS_SU" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="AT_HOLIDAY_GENERAL">
           <Key>
@@ -5671,6 +5675,8 @@
                     <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
                     <ScalarProperty Name="YEAR" ColumnName="YEAR" />
                     <ScalarProperty Name="OFFDAY" ColumnName="OFFDAY" />
+                    <ScalarProperty Name="IS_SA" ColumnName="IS_SA" />
+                    <ScalarProperty Name="IS_SU" ColumnName="IS_SU" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7077,7 +7083,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="73" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="82" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7159,7 +7165,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_RICE" Width="1.5" PointX="12.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_OT" Width="1.5" PointX="12.625" PointY="2.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DMVS" Width="1.5" PointX="12.625" PointY="4.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.5" PointX="6.375" PointY="12" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY" Width="1.875" PointX="6.375" PointY="12" Height="3.9033007812500031" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_GENERAL" Width="1.5" PointX="8.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_OBJECT" Width="1.5" PointX="10.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LATE_COMBACKOUT" Width="1.5" PointX="12.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -7190,7 +7196,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.AT_COMPENSATORY" Width="1.5" PointX="4.625" PointY="16.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ACTION_LOG" Width="1.5" PointX="6.625" PointY="16.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_DECLARE_ENTITLEMENT" Width="2.125" PointX="7.75" PointY="15.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_DECLARE_ENTITLEMENT" Width="2.125" PointX="8.125" PointY="16.25" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT" Width="1.5" PointX="13.25" PointY="16.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_TITLE" Width="1.5" PointX="19.125" PointY="15.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_EMP" Width="1.5" PointX="18.875" PointY="14.375" Height="0.4" IsExpanded="false" />

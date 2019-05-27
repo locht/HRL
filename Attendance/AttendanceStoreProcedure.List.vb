@@ -52,4 +52,8 @@ Partial Class AttendanceStoreProcedure
         End If
         Return lst
     End Function
+    Public Function CHECK_VALIDATE(ByVal type As Decimal, ByVal code As String, ByVal todate As DateTime, ByVal fromdate As DateTime) As Int32
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_AT_LIST.CHECK_VALIDATE", New List(Of Object)(New Object() {type, code, todate, fromdate, OUT_NUMBER}))
+        Return Int32.Parse(obj(0).ToString())
+    End Function
 End Class

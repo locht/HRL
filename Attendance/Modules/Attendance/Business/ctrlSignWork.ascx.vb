@@ -10,12 +10,14 @@ Imports WebAppLog
 Imports System.ComponentModel
 Imports System.Reflection
 
+
 Public Class ctrlSignWork
     Inherits Common.CommonView
     Protected WithEvents ctrlOrgPopup As ctrlFindOrgPopup
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
 
+    Dim psp As New AttendanceStoreProcedure
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
@@ -469,6 +471,21 @@ Public Class ctrlSignWork
                     Refresh("InsertView")
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
+                Case TOOLBARITEM_DELETE
+                    If rgSignWork.SelectedItems.Count > 0 Then
+                        For idx = 0 To rgSignWork.SelectedItems.Count - 1
+                            Dim item As GridDataItem = rgSignWork.SelectedItems(idx)
+                            Dim slItem As GridDataItem
+                            Dim id As String
+                            slItem = rgSignWork.SelectedItems(idx)
+                            id = slItem("ID").Text
+                            psp.CHECK_SEND_APPROVE(id)
+                        Next
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
+
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -113,7 +113,7 @@ Namespace ProfileBusiness.ServiceImplementations
                                   Implements ServiceContracts.IProfileBusiness.GetALPByID
             Using rep As New ProfileRepository
                 Try
-                    Return rep.GetTrainingManageById(_filter)
+                    Return rep.GetALPById(_filter)
                 Catch ex As Exception
                     Throw ex
                 End Try
@@ -124,7 +124,29 @@ Namespace ProfileBusiness.ServiceImplementations
            Implements ServiceContracts.IProfileBusiness.DeleteALP
             Using rep As New ProfileRepository
                 Try
-                    Return rep.DeleteTrainingManage(objContract)
+                    Return rep.DeleteALP(objContract)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer _
+           Implements ServiceContracts.IProfileBusiness.CheckEmployee_Exits
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.CheckEmployee_Exits(empCode)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean _
+          Implements ServiceContracts.IProfileBusiness.ImportAnnualLeave
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ImportAnnualLeave(P_DOCXML, P_USER)
                 Catch ex As Exception
                     Throw ex
                 End Try

@@ -130,13 +130,9 @@
                                 UniqueName="CUR_HAVE" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
 
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép trừ từ số ngày ngoài cơ quan %>" DataField="CUR_HAVE"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_HAVE"
-                                UniqueName="CUR_HAVE" HeaderStyle-Width="100px">
-                            </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép trừ từ số ngày ngoài cơ quan %>" DataField="CUR_HAVE"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_HAVE"
-                                UniqueName="CUR_HAVE" HeaderStyle-Width="100px">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép trừ từ số ngày ngoài cơ quan %>" DataField="TIME_OUTSIDE_COMPANY"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="TIME_OUTSIDE_COMPANY"
+                                UniqueName="TIME_OUTSIDE_COMPANY" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
 
                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép đã nghỉ trong tháng 01 %>" DataField="CUR_USED1"
@@ -188,7 +184,7 @@
                                 UniqueName="CUR_USED12">
                             </tlk:GridNumericColumn>
 
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 01 %>" DataField="CUR_USED1"
+                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 01 %>" DataField="CUR_USED1"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED1"
                                 UniqueName="CUR_USED1">
                             </tlk:GridNumericColumn>
@@ -235,7 +231,7 @@
                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 12 %>" DataField="CUR_USED12"
                                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED12"
                                 UniqueName="CUR_USED12">
-                            </tlk:GridNumericColumn>
+                            </tlk:GridNumericColumn>--%>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" Width="50px" />
