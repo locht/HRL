@@ -75,7 +75,7 @@
                     <asp:Label ID="lbCareer" runat="server" Text="Nghề nghiệp"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtCareer" SkinID="Textbox15">
+                    <tlk:RadTextBox runat="server" ID="txtCareer">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -90,7 +90,7 @@
                     <asp:Label ID="lbTitle" runat="server" Text="Chức danh"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox15">
+                    <tlk:RadTextBox runat="server" ID="txtTitle">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -111,7 +111,7 @@
                     <asp:Label ID="lbTax" runat="server" Text="Mã số thuế"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox runat="server" ID="txtTax" SkinID="Textbox15">
+                    <tlk:RadTextBox runat="server" ID="txtTax">
                     </tlk:RadTextBox>
                 </td>
             </tr>
