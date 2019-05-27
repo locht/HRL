@@ -171,7 +171,7 @@
                         var id = rg[i].getDataKeyValue('ID');
                         var status = rg[i].getDataKeyValue('STATUS');
                         if (status == 17 || status == 18 || status == 21) {
-                            m = '<%# Translate("The action only applies for the records that have status as Saved, Unapproved by LM or Unverified by HR. Please select other record.") %>';
+                            m = '<%# Translate("Thao tác này chỉ áp dụng đối với trạng thái Chưa gửi duyệt và Từ chối phê duyệt. Vui lòng chọn dòng khác.") %>';
                             var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                             setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                             args.set_cancel(true);
@@ -211,7 +211,7 @@
                 //args.set_cancel(true);
             }
             else if (bCheck > 1) {
-                var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+                var m = '<%= Translate("CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW") %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 //args.set_cancel(true);

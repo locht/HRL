@@ -526,7 +526,7 @@ Public Class ctrlOTRegistrationNewEdit
 
                 Using rep As New HistaffFrameworkRepository
                     Dim response = rep.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_TOTAL_ACCUMULATIVE_OT", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
-                    If response(0).ToString() <> "" Then
+                    If response IsNot Nothing Then
                         rntTotalAccumulativeOTHours.Text = Decimal.Parse(response(0).ToString()).ToString("N1")
                     End If
                 End Using

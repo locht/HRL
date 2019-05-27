@@ -6091,10 +6091,10 @@ Partial Public Class AttendanceRepository
                                Select f).ToList
                 End If
 
-                If _filter.REGIST_DATE.HasValue Then
-                    lst = (From f In lst.AsEnumerable Where f.REGIST_DATE >= _filter.REGIST_DATE
-                               Select f).ToList
-                End If
+                'If _filter.REGIST_DATE.HasValue Then
+                '    lst = (From f In lst.AsEnumerable Where f.REGIST_DATE >= _filter.REGIST_DATE
+                '               Select f).ToList
+                'End If
 
                 If Not String.IsNullOrEmpty(_filter.SIGN_CODE) Then
                     lst = (From f In lst.AsEnumerable Where f.SIGN_CODE.ToLower().Contains(_filter.SIGN_CODE.ToLower())
