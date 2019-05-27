@@ -571,6 +571,7 @@
       <xs:element minOccurs="0" name="DECISION_TYPE_NAME_OLD" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DIRECT_MANAGER" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="DIRECT_MANAGER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DIRECT_MANAGER_NAME_OLD" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EFFECT_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="EFFECT_DATE_OLD" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="EMPLOYEE_3B_ID" nillable="true" type="xs:decimal" />
