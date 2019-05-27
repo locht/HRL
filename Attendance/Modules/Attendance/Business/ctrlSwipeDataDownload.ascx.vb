@@ -283,14 +283,18 @@ Public Class ctrlSwipeDataDownload
                 obj.MACHINE_TYPE = cbMachine_Type.SelectedValue
             End If
             Dim Sorts As String = rglSwipeDataDownload.MasterTableView.SortExpressions.GetSortString()
-            If Not isFull Then
-                If Sorts IsNot Nothing Then
-                    Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows, Sorts)
-                Else
-                    Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows)
-                End If
+            If Not IsDate(rdStartDate.SelectedDate) And Not IsDate(rdEndDate.SelectedDate) Then
+                Me.SWIPE_DATA = New List(Of AT_SWIPE_DATADTO)
             Else
-                Return rep.GetSwipeData(obj).ToTable()
+                If Not isFull Then
+                    If Sorts IsNot Nothing Then
+                        Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows, Sorts)
+                    Else
+                        Me.SWIPE_DATA = rep.GetSwipeData(obj, rglSwipeDataDownload.CurrentPageIndex, rglSwipeDataDownload.PageSize, MaximumRows)
+                    End If
+                Else
+                    Return rep.GetSwipeData(obj).ToTable()
+                End If
             End If
             rglSwipeDataDownload.VirtualItemCount = MaximumRows
             rglSwipeDataDownload.DataSource = Me.SWIPE_DATA
@@ -353,8 +357,12 @@ Public Class ctrlSwipeDataDownload
                 Case "IMPORT_TEMP"
                     ctrlUpload.Show()
                 Case "IMPORT"
-                    ctrlUpload1.Show()
-
+                    If IsNumeric(cbMachine_Type.SelectedValue) Then
+                        ctrlUpload1.Show()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_CHOOSE_MACHINE_TYPE), NotifyType.Warning)
+                        Exit Sub
+                    End If
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -640,8 +648,10 @@ Public Class ctrlSwipeDataDownload
                 Dim sw As New StringWriter()
                 Dim DocXml As String = String.Empty
                 DATA_IN.WriteXml(sw, False)
-                DocXml = sw.ToString
-
+                DocXml = sw.ToString.Replace(vbCr, "").Replace(vbCrLf, "").Replace(vbLf, "").Trim
+                IAttenDance.IMPORT_AT_SWIPE_DATA_V1(log, DocXml, cbMachine_Type.SelectedValue)
+                CurrentState = CommonMessage.STATE_NORMAL
+                Refresh("InsertView")
 
                 Exit Sub 'NGAT LUONG LAM VIEC O DAY LAM THEO HUONG MOI
                 Dim jsonSerialiser = New JavaScriptSerializer()
