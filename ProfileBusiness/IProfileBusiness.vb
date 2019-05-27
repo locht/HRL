@@ -2131,6 +2131,10 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function DeleteALP(ByVal objAssetMng As TrainningManageDTO) As Boolean
         <OperationContract()>
+        Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        <OperationContract()>
+        Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        <OperationContract()>
         Function GetALPByID(ByVal _filter As TrainningManageDTO) As TrainningManageDTO
         <OperationContract()>
         Function ModifyALP(ByVal objContract As TrainningManageDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean

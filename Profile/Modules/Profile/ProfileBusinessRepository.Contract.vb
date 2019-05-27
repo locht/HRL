@@ -255,6 +255,30 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+
+    Public Function CheckEmployee_Exits(ByVal empCode As String) As Integer
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckEmployee_Exits(empCode)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ImportAnnualLeave(P_DOCXML, P_USER)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 #End Region
 #Region "trainingforeign"
     Public Function GetTrainingForeign(ByVal _filter As TrainningForeignDTO, ByVal PageIndex As Integer,
