@@ -451,7 +451,7 @@ Public Class ctrlPortalFamily_Edit
 
     Protected Sub rgFamilyEdit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgFamilyEdit.SelectedIndexChanged
         Try
-            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO,
+            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtTax,
                                 txtCareer, txtTitle, cboNguyenQuan,
                                 txtAdress, txtRemark, rdDeductFrom, rdDeductReg, rdDeductTo,
                                 chkIsDeduct, hidFamilyID, hidID)
@@ -492,7 +492,7 @@ Public Class ctrlPortalFamily_Edit
                                  chkIsDeduct, hidFamilyID, hidID)
                 Exit Sub
             End If
-            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO,
+            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtTax,
                                 txtCareer, txtTitle, cboNguyenQuan,
                                 txtAdress, txtRemark, rdDeductFrom, rdDeductReg, rdDeductTo,
                                 chkIsDeduct, hidFamilyID, hidID)

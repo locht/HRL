@@ -310,7 +310,8 @@ Public Class ctrlHU_EmpDtlFamily
                 SelectedItem.Add(dr.GetDataKeyValue("ID"))
             Next
 
-            Dim item As GridDataItem = rgFamily.SelectedItems(0)
+            'Dim item As GridDataItem = rgFamily.SelectedItems(0)
+            Dim item = CType(rgFamily.SelectedItems(rgFamily.SelectedItems.Count - 1), GridDataItem)
             hidFamilyID.Value = item.GetDataKeyValue("ID")
             txtAdress.Text = item.GetDataKeyValue("ADDRESS")
             txtIDNO.Text = item.GetDataKeyValue("ID_NO")
