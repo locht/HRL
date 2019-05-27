@@ -139,6 +139,10 @@ Public Class ctrlHU_EmpDtlProfile
                         If EmployeeInfo.LAST_WORKING_ID IsNot Nothing Then
                             hidWorkingID.Value = EmployeeInfo.LAST_WORKING_ID
                         End If
+                        If EmployeeInfo.OBJECTTIMEKEEPING IsNot Nothing Then
+                            cboObject.SelectedValue = EmployeeInfo.OBJECTTIMEKEEPING
+                            cboObject.Text = EmployeeInfo.OBJECTTIMEKEEPING_NAME
+                        End If
                         If EmployeeInfo.CONTRACT_ID IsNot Nothing Then
                             hidContractID.Value = EmployeeInfo.CONTRACT_ID
                         End If
@@ -743,7 +747,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
-                                        txtPassNo, txtPassPlace,
+                                        txtPassNo, txtPassPlace, cboObject,
                                        txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                        txtVienGanB, txtVisa, txtVisaPlace,
@@ -784,7 +788,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
-                                        txtPassNo, txtPassPlace,
+                                        txtPassNo, txtPassPlace, cboObject,
                                        txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                        txtVienGanB, txtVisa, txtVisaPlace,
@@ -816,7 +820,7 @@ Public Class ctrlHU_EmpDtlProfile
                         txtTimeID.ReadOnly = True
                     End If
                     If EmployeeInfo.LAST_WORKING_ID IsNot Nothing Then
-                        EnableControlAll(False, cboTitle, cboStaffRank, btnFindOrg)
+                        EnableControlAll(False, cboTitle, cboStaffRank, cboObject, btnFindOrg)
                     End If
                 Case Else
                     EnableControlAll(False, lstbPaper, lstbPaperFiled, cboWorkStatus, cboEmpStatus, txtEmpCODE,
@@ -827,7 +831,7 @@ Public Class ctrlHU_EmpDtlProfile
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
                                        txtMobilePhone, txtNavAddress, txtNhomMau,
-                                        txtPassNo, txtPassPlace,
+                                        txtPassNo, txtPassPlace, cboObject,
                                        txtPerAddress, txtPerEmail, txtPhoiNguc, txtCareer,
                                        txtPitCode, txtRangHamMat, txtTaiMuiHong, txtTim,
                                        txtVienGanB, txtVisa, txtVisaPlace,
@@ -1100,7 +1104,7 @@ Public Class ctrlHU_EmpDtlProfile
     Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
     Handles cboAcademy.ItemsRequested, cboBank.ItemsRequested, cboBankBranch.ItemsRequested,
         cboFamilyStatus.ItemsRequested, cboGender.ItemsRequested, cboLangLevel.ItemsRequested, cboLangLevel2.ItemsRequested, cboLearningLevel.ItemsRequested, cboMajor.ItemsRequested,
-         cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested,
+         cboNationlity.ItemsRequested, cboNative.ItemsRequested, cboNav_Province.ItemsRequested, cboObject.ItemsRequested,
         cboPer_Province.ItemsRequested, cboReligion.ItemsRequested, cboStaffRank.ItemsRequested, cboTitle.ItemsRequested,
         cboWorkStatus.ItemsRequested, cboEmpStatus.ItemsRequested, cbWARDEMP_ID.ItemsRequested, cbDISTRICTEMP_ID.ItemsRequested, cbPROVINCEEMP_ID.ItemsRequested,
         cboPer_District.ItemsRequested, cboPer_Ward.ItemsRequested, cboNav_District.ItemsRequested, cboNav_Ward.ItemsRequested, cbPROVINCENQ_ID.ItemsRequested
@@ -1115,6 +1119,8 @@ Public Class ctrlHU_EmpDtlProfile
                 Select Case sender.ID
                     'Case cboGraduateSchool.ID
                     '    dtData = rep.GetOtherList("HU_GRADUATE_SCHOOL", True)
+                    Case cboObject.ID
+                        dtData = rep.GetOtherList("OBJECT_ATTENDANCE", True)
                     Case cboAcademy.ID
                         dtData = rep.GetOtherList("ACADEMY", True)
                     Case cboBank.ID
@@ -1461,7 +1467,9 @@ Public Class ctrlHU_EmpDtlProfile
             Else
                 EmployeeInfo.ID = Decimal.Parse(hidID.Value)
             End If
-
+            If cboObject.SelectedValue <> "" Then
+                EmployeeInfo.OBJECTTIMEKEEPING = cboObject.SelectedValue
+            End If
             If hidDirectManager.Value <> "" Then
                 EmployeeInfo.DIRECT_MANAGER = hidDirectManager.Value
             End If

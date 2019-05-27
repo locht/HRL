@@ -104,6 +104,15 @@ Partial Public Class ctrlHU_EmployeeMng
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbFromDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFromDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdFromDate control.
     '''</summary>
     '''<remarks>
@@ -111,6 +120,15 @@ Partial Public Class ctrlHU_EmployeeMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdToDate control.
@@ -138,6 +156,15 @@ Partial Public Class ctrlHU_EmployeeMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSearch As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbGhiChu control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbGhiChu As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtGhiChu control.
@@ -174,6 +201,15 @@ Partial Public Class ctrlHU_EmployeeMng
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane4 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''lbTemplatePrint control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTemplatePrint As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboPrintSupport control.

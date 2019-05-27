@@ -52,9 +52,28 @@ Partial Class ProfileRepository
 
             For i As Integer = 0 To query.Count - 1
                 Dim empId = query(i).EMPLOYEE_ID
+                Dim contractID = query(i).ID
                 Dim emp = (From p In Context.HU_EMPLOYEE Where p.ID = empId).FirstOrDefault
                 If (emp.TER_EFFECT_DATE Is Nothing) OrElse (emp.TER_EFFECT_DATE IsNot Nothing AndAlso query(i).START_DATE <= emp.TER_EFFECT_DATE) Then
                     ApproveContract(query(i))
+                    Dim objContract = From p In Context.HU_CONTRACT
+                                    From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                                    Where p.ID = contractID
+                                    Select New ContractDTO With {
+                  .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                  .WORKING_ID = p.WORKING_ID,
+                  .ORG_ID = p.ORG_ID,
+                  .TITLE_ID = p.TITLE_ID,
+                  .START_DATE = p.START_DATE,
+                  .SIGN_ID = p.SIGN_ID,
+                  .SIGNER_TITLE = p.SIGNER_TITLE,
+                  .SIGN_DATE = p.SIGN_DATE,
+                  .OBJECTTIMEKEEPING = e.OBJECTTIMEKEEPING,
+                  .SIGNER_NAME = p.SIGNER_NAME
+                                        }
+                    If IsFirstContract(objContract) Then
+                        InsertDecision(objContract)
+                    End If
                 End If
             Next
 
