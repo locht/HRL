@@ -161,7 +161,6 @@ Public Class ctrlHU_EmpDtlFile
             InitControl()
             If Not IsPostBack Then
                 ViewConfig(RadPaneLeft)
-                GirdConfig(rgHuFile)
             End If
         Catch ex As Exception
 
@@ -541,6 +540,7 @@ Public Class ctrlHU_EmpDtlFile
 
     Private Sub SetStatusControl(ByVal sTrangThai As Boolean)
         txtFullName.ReadOnly = Not sTrangThai
+        _radAsynceUpload1.Enabled = sTrangThai
         txtNumberCode.ReadOnly = Not sTrangThai
         txtAdress.ReadOnly = Not sTrangThai
         txtFullName.ReadOnly = Not sTrangThai
