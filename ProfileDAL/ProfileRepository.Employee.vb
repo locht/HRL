@@ -609,7 +609,6 @@ Partial Class ProfileRepository
                      From c In Context.HU_CONTRACT.Where(Function(c) c.ID = e.CONTRACT_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(t) t.ID = e.ORG_ID).DefaultIfEmpty
                      From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
-                     From ce In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECTTIMEKEEPING).DefaultIfEmpty
                      From titlegroup In Context.OT_OTHER_LIST.Where(Function(f) f.ID = title.TITLE_GROUP_ID And
                                                                         f.TYPE_ID = 2000).DefaultIfEmpty
                      From workstatus In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.WORK_STATUS And
@@ -628,8 +627,6 @@ Partial Class ProfileRepository
                          .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                          .EMPLOYEE_CODE_OLD = e.EMPLOYEE_CODE_OLD,
                          .BOOKNO = e.BOOK_NO,
-                         .OBJECTTIMEKEEPING = e.OBJECTTIMEKEEPING,
-                         .OBJECTTIMEKEEPING_NAME = ce.NAME_VN,
                          .EMPLOYEE_NAME_OTHER = e.EMPLOYEE_NAME_OTHER,
                          .IMAGE = e.HU_EMPLOYEE_CV.IMAGE,
                          .TITLE_ID = e.TITLE_ID,
@@ -798,7 +795,6 @@ Partial Class ProfileRepository
             objEmpData.LEVEL_MANAGER = objEmp.LEVEL_MANAGER
             objEmpData.STAFF_RANK_ID = objEmp.STAFF_RANK_ID
             objEmpData.ITIME_ID = objEmp.ITIME_ID
-            objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
             objEmpData.PA_OBJECT_SALARY_ID = 1
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
@@ -1165,7 +1161,6 @@ Partial Class ProfileRepository
             objEmpData.EMPLOYEE_NAME_OTHER = objEmp.EMPLOYEE_NAME_OTHER
             objEmpData.EMPLOYEE_CODE_OLD = objEmp.EMPLOYEE_CODE_OLD
             objEmpData.BOOK_NO = objEmp.BOOKNO
-            objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
             '==============================================
             objEmpData.EMPLOYEE_CODE = objEmp.EMPLOYEE_CODE
             objEmpData.FIRST_NAME_VN = objEmp.FIRST_NAME_VN

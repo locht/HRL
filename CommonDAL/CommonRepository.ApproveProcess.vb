@@ -27,19 +27,6 @@ Partial Public Class CommonRepository
             Throw ex
         End Try
     End Function
-    Public Function GetLeavePlanList() As List(Of OtherListDTO)
-        Try
-            Dim listLeavePlan = (From t In Context.OT_OTHER_LIST
-                                 From type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = t.TYPE_ID)
-                             Where type.CODE = "LEAVE_PLAN" And t.ACTFLG = "A"
-                             Select New OtherListDTO With {
-                                .ID = t.ID, .NAME_VN = t.NAME_VN
-                             }).ToList()
-            Return listLeavePlan
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
     Public Function GetTitleList() As List(Of OtherListDTO)
         Try
             Dim listTitle = (From t In Context.OT_OTHER_LIST
@@ -199,8 +186,7 @@ Partial Public Class CommonRepository
                                   .NUM_REQUEST = proc.NUMREQUEST,
                                   .REQUEST_EMAIL = proc.EMAIL,
                                   .SIGN_ID = s.SIGN_ID,
-                                  .TITLE_ID = s.TITLE_ID,
-                                  .LEAVEPLAN_ID = s.LEAVEPLAN_ID
+                                  .TITLE_ID = s.TITLE_ID
                               }
 
             Return itemReturn.OrderBy(Function(p) Sorts).ThenByDescending(Function(p) p.FROM_DATE).ToList 'itemReturn.OrderBy(Function(p) p.PROCESS_NAME).ThenByDescending(Function(p) p.FROM_DATE).ToList
@@ -220,7 +206,6 @@ Partial Public Class CommonRepository
                                   .TEMPLATE_ID = s.TEMPLATE_ID,
                                   .TITLE_ID = s.TITLE_ID,
                                   .SIGN_ID = s.SIGN_ID,
-                                  .LEAVEPLAN_ID = s.LEAVEPLAN_ID,
                                   .FROM_HOUR = s.FROM_HOUR,
                                   .TO_HOUR = s.TO_HOUR,
                                   .FROM_DAY = s.FROM_DAY,
@@ -250,7 +235,6 @@ Partial Public Class CommonRepository
                 .ORG_ID = item.ORG_ID,
                 .TITLE_ID = item.TITLE_ID,
                 .SIGN_ID = item.SIGN_ID,
-                .LEAVEPLAN_ID = item.LEAVEPLAN_ID,
                 .FROM_HOUR = item.FROM_HOUR,
                 .TO_HOUR = item.TO_HOUR,
                 .FROM_DAY = item.FROM_DAY,
@@ -288,7 +272,6 @@ Partial Public Class CommonRepository
                     .TEMPLATE_ID = item.TEMPLATE_ID
                     .TITLE_ID = item.TITLE_ID
                     .SIGN_ID = item.SIGN_ID
-                    .LEAVEPLAN_ID = item.LEAVEPLAN_ID
                     .FROM_HOUR = item.FROM_HOUR
                     .TO_HOUR = item.TO_HOUR
                     .FROM_DAY = item.FROM_DAY

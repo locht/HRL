@@ -60,7 +60,7 @@
                 <tlk:RadGrid PageSize="50" ID="rgEmployeeList" runat="server" Height="100%" EnableHeaderContextMenu="true">
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,ORG_DESC,IMAGE" ClientDataKeyNames="ID,EMPLOYEE_CODE,IMAGE">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -85,15 +85,15 @@
                                 UniqueName="JOIN_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="JOIN_DATE">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
-                            </tlk:GridDateTimeColumn>
+                            </tlk:GridDateTimeColumn>--%>
                             <%--<tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày vào tập đoàn %>" DataField="JOIN_DATE_STATE"
                                 UniqueName="JOIN_DATE_STATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="JOIN_DATE_STATE">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>--%>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="WORK_STATUS_NAME"
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="WORK_STATUS_NAME"
                                 UniqueName="WORK_STATUS_NAME" SortExpression="WORK_STATUS_NAME" HeaderStyle-Width="130px"
-                                Visible="true" />
+                                Visible="true" />--%>
                            <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm máu %>" DataField="NHOM_MAU"
                                 UniqueName="NHOM_MAU" SortExpression="NHOM_MAU">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />

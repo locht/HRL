@@ -5076,14 +5076,14 @@ Partial Public Class AttendanceRepository
                                        Optional ByVal Sorts As String = "iTime_id, VALTIME desc") As List(Of AT_SWIPE_DATADTO)
         Try
             Dim query = From p In Context.AT_SWIPE_DATA
-                        From machine_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_TYPE)
+                        From machine_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MACHINE_TYPE).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
             Dim lst = query.Select(Function(p) New AT_SWIPE_DATADTO With {
                                        .ID = p.p.ID,
                                        .ITIME_ID = p.p.ITIME_ID,
                                        .ITIME_ID_S = p.p.ITIME_ID,
                                        .TERMINAL_ID = p.p.TERMINAL_ID,
-                                       .TERMINAL_CODE = If(p.p.TERMINAL_ID = 1, "Máy vào", "Máy ra"),
+                                       .TERMINAL_CODE = If(p.p.TERMINAL_ID = 1, "Máy vào", If(p.p.TERMINAL_ID = 2, "Máy ra", "")),
                                        .MACHINE_TYPE = p.p.MACHINE_TYPE,
                                        .MACHINE_TYPE_NAME = p.machine_type.NAME_VN,
                                        .EMPLOYEE_ID = p.p.EMPLOYEE_ID,

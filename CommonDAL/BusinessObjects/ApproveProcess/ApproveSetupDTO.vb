@@ -7,13 +7,11 @@ Public Class ApproveSetupDTO
     Public Property ORG_ID As Decimal?
     Public Property TITLE_ID As Decimal?
     Public Property SIGN_ID As Decimal?
-    Public Property LEAVEPLAN_ID As Decimal?
 
     Public Property PROCESS_NAME As String
     Public Property TEMPLATE_NAME As String
     Public Property TITLE_NAME As String
     Public Property SIGN_NAME As String
-    Public Property LEAVEPLAN_NAME As String
 
     Public Property NUM_REQUEST As Decimal?
     Public Property REQUEST_EMAIL As String

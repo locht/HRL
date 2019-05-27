@@ -38500,4 +38500,12 @@ Xin cám ơn!
       <string>Tập tin không đúng định dạng</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>MESSAGE_NOTSELECT_PERIOD</string>
+    </Key>
+    <Value>
+      <string>Bạn chưa chọn kỳ công</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

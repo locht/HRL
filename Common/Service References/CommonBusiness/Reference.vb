@@ -958,12 +958,6 @@ Namespace CommonBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LEAVEPLAN_IDField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private LEAVEPLAN_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MAIL_ACCEPTEDField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1082,32 +1076,6 @@ Namespace CommonBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LEAVEPLAN_ID() As System.Nullable(Of Decimal)
-            Get
-                Return Me.LEAVEPLAN_IDField
-            End Get
-            Set
-                If (Me.LEAVEPLAN_IDField.Equals(value) <> true) Then
-                    Me.LEAVEPLAN_IDField = value
-                    Me.RaisePropertyChanged("LEAVEPLAN_ID")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property LEAVEPLAN_NAME() As String
-            Get
-                Return Me.LEAVEPLAN_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.LEAVEPLAN_NAMEField, value) <> true) Then
-                    Me.LEAVEPLAN_NAMEField = value
-                    Me.RaisePropertyChanged("LEAVEPLAN_NAME")
                 End If
             End Set
         End Property
@@ -8165,9 +8133,6 @@ Namespace CommonBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="CommonBusiness.ICommonBusiness")>  _
     Public Interface ICommonBusiness
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetClassification", ReplyAction:="http://tempuri.org/ICommonBusiness/GetClassificationResponse")>  _
-        Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLearningLevel", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse")>  _
         Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
         
@@ -8553,9 +8518,6 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetSignList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetSignListResponse")>  _
         Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLeavePlanList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLeavePlanListResponse")>  _
-        Function GetLeavePlanList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO)
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/IsUsernameExist", ReplyAction:="http://tempuri.org/ICommonBusiness/IsUsernameExistResponse")>  _
         Function IsUsernameExist(ByVal Username As String) As Boolean
         
@@ -8869,6 +8831,9 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetPeriodByYear", ReplyAction:="http://tempuri.org/ICommonBusiness/GetPeriodByYearResponse")>  _
         Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetClassification", ReplyAction:="http://tempuri.org/ICommonBusiness/GetClassificationResponse")>  _
+        Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -8901,10 +8866,6 @@ Namespace CommonBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
-        
-        Public Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetClassification
-            Return MyBase.Channel.GetClassification(isBlank)
-        End Function
         
         Public Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetLearningLevel
             Return MyBase.Channel.GetLearningLevel(sLang, isBlank)
@@ -9220,10 +9181,6 @@ Namespace CommonBusiness
         
         Public Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO) Implements CommonBusiness.ICommonBusiness.GetSignList
             Return MyBase.Channel.GetSignList
-        End Function
-        
-        Public Function GetLeavePlanList() As System.Collections.Generic.List(Of CommonBusiness.OtherListDTO) Implements CommonBusiness.ICommonBusiness.GetLeavePlanList
-            Return MyBase.Channel.GetLeavePlanList
         End Function
         
         Public Function IsUsernameExist(ByVal Username As String) As Boolean Implements CommonBusiness.ICommonBusiness.IsUsernameExist
@@ -9544,6 +9501,10 @@ Namespace CommonBusiness
         
         Public Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetPeriodByYear
             Return MyBase.Channel.GetPeriodByYear(isBlank, year)
+        End Function
+        
+        Public Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetClassification
+            Return MyBase.Channel.GetClassification(isBlank)
         End Function
     End Class
 End Namespace

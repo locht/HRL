@@ -21,10 +21,6 @@ Namespace CommonBusiness.ServiceContracts
         <OperationContract()>
         Function GetSignList() As List(Of ATTimeManualDTO)
 #End Region
-#Region "Leave Plan"
-        <OperationContract()>
-        Function GetLeavePlanList() As List(Of OtherListDTO)
-#End Region
 
 #Region "Check User Login"
 

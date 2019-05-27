@@ -80,6 +80,4 @@
     Public Property EMPLOYEE_CODE_OLD As String
     Public Property BOOKNO As String
     Public Property EMPLOYEE_NAME_OTHER As String
-    Public Property OBJECTTIMEKEEPING As Decimal?
-    Public Property OBJECTTIMEKEEPING_NAME As String
 End Class

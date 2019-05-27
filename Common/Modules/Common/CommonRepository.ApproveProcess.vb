@@ -9,19 +9,6 @@ Partial Public Class CommonRepository
 
 
 #Region "Process Setup"
-    Public Function GetLeavePlanList() As List(Of OtherListDTO)
-        Try
-            Using rep As New CommonBusinessClient
-                Try
-                    Return rep.GetLeavePlanList
-                Catch ex As Exception
-                    Throw ex
-                End Try
-            End Using
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
     Public Function GetSignList() As List(Of ATTimeManualDTO)
         Try
             Using rep As New CommonBusinessClient

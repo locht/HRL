@@ -460,7 +460,6 @@
             <Property Name="MAIL_ACCEPTING" Type="nclob" Nullable="true" />
             <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="SIGN_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="LEAVEPLAN_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_APP_SETUPEXT">
             <Key>
@@ -1558,7 +1557,6 @@
           <Property Type="String" Name="MAIL_ACCEPTING" Nullable="true" />
           <Property Type="Decimal" Name="TITLE_ID" Nullable="true" />
           <Property Type="Decimal" Name="SIGN_ID" Nullable="true" />
-          <Property Type="Decimal" Name="LEAVEPLAN_ID" Nullable="true" />
         </EntityType>
         <EntityType Name="SE_APP_SETUPEXT">
           <Key>
@@ -2198,7 +2196,6 @@
                     <ScalarProperty Name="MAIL_ACCEPTING" ColumnName="MAIL_ACCEPTING" />
                     <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
                     <ScalarProperty Name="SIGN_ID" ColumnName="SIGN_ID" />
-                    <ScalarProperty Name="LEAVEPLAN_ID" ColumnName="LEAVEPLAN_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -2615,7 +2612,7 @@
           <ConnectorPoint PointX="13.125" PointY="5.9499999999999993" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_APP_PROCESS" Width="1.5" PointX="6.75" PointY="8.125" Height="0.40000000000000213" IsExpanded="false" />
-        <EntityTypeShape EntityType="CommonModel.SE_APP_SETUP" Width="2.25" PointX="13.125" PointY="7" Height="5.2494108072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommonModel.SE_APP_SETUP" Width="2.25" PointX="13.125" PointY="7" Height="5.057109375" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_SETUPEXT" Width="1.875" PointX="9.75" PointY="1.125" Height="3.5186979166666656" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_TEMPLATE" Width="2.125" PointX="6.75" PointY="10.125" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_TEMPLATE_DTL" Width="1.5" PointX="9.125" PointY="8.625" Height="3.5186979166666656" IsExpanded="true" />

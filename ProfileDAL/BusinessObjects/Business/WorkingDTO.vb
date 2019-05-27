@@ -28,6 +28,7 @@
 
     Public Property DIRECT_MANAGER As Decimal?
     Public Property DIRECT_MANAGER_NAME As String
+    Public Property DIRECT_MANAGER_NAME_OLD As String
 
     Public Property ORG_ID As Decimal?
     Public Property ORG_NAME As String

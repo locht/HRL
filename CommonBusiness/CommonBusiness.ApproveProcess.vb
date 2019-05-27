@@ -9,16 +9,6 @@ Namespace CommonBusiness.ServiceImplementations
         Implements ICommonBusiness
 
 #Region "Process Setup"
-        Public Function GetLeavePlanList() As List(Of OtherListDTO) _
-            Implements ICommonBusiness.GetLeavePlanList
-            Using rep As New CommonRepository
-                Try
-                    Return rep.GetLeavePlanList
-                Catch ex As Exception
-                    Throw ex
-                End Try
-            End Using
-        End Function
         Public Function GetSignList() As List(Of ATTimeManualDTO) _
             Implements ICommonBusiness.GetSignList
             Using rep As New CommonRepository

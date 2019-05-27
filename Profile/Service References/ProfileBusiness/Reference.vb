@@ -6523,6 +6523,9 @@ Namespace ProfileBusiness
         Private DIRECT_MANAGER_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DIRECT_MANAGER_NAME_OLDField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECT_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7015,6 +7018,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DIRECT_MANAGER_NAMEField, value) <> true) Then
                     Me.DIRECT_MANAGER_NAMEField = value
                     Me.RaisePropertyChanged("DIRECT_MANAGER_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DIRECT_MANAGER_NAME_OLD() As String
+            Get
+                Return Me.DIRECT_MANAGER_NAME_OLDField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DIRECT_MANAGER_NAME_OLDField, value) <> true) Then
+                    Me.DIRECT_MANAGER_NAME_OLDField = value
+                    Me.RaisePropertyChanged("DIRECT_MANAGER_NAME_OLD")
                 End If
             End Set
         End Property
@@ -22363,12 +22379,6 @@ Namespace ProfileBusiness
         Private NHOM_MAUField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private OBJECTTIMEKEEPINGField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private OBJECTTIMEKEEPING_NAMEField As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23077,32 +23087,6 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.NHOM_MAUField, value) <> true) Then
                     Me.NHOM_MAUField = value
                     Me.RaisePropertyChanged("NHOM_MAU")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property OBJECTTIMEKEEPING() As System.Nullable(Of Decimal)
-            Get
-                Return Me.OBJECTTIMEKEEPINGField
-            End Get
-            Set
-                If (Me.OBJECTTIMEKEEPINGField.Equals(value) <> true) Then
-                    Me.OBJECTTIMEKEEPINGField = value
-                    Me.RaisePropertyChanged("OBJECTTIMEKEEPING")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property OBJECTTIMEKEEPING_NAME() As String
-            Get
-                Return Me.OBJECTTIMEKEEPING_NAMEField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.OBJECTTIMEKEEPING_NAMEField, value) <> true) Then
-                    Me.OBJECTTIMEKEEPING_NAMEField = value
-                    Me.RaisePropertyChanged("OBJECTTIMEKEEPING_NAME")
                 End If
             End Set
         End Property
