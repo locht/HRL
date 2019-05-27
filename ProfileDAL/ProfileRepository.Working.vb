@@ -390,6 +390,7 @@ Partial Class ProfileRepository
                         From obj_att_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = obj_att.TYPE_ID).DefaultIfEmpty
                         From staffrank In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
+                        From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = e.ORG_ID And
                                                            f.USERNAME = log.Username.ToUpper)
             Select New WorkingDTO With {.ID = p.ID,
@@ -444,7 +445,8 @@ Partial Class ProfileRepository
                                         .SIGN_DATE = p.SIGN_DATE,
                                         .SIGN_NAME = p.SIGN_NAME,
                                         .SIGN_TITLE = p.SIGN_TITLE,
-                                        .REMARK = p.REMARK
+                                        .REMARK = p.REMARK,
+                                        .DIRECT_MANAGER_NAME = direct.FULLNAME_VN
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then
@@ -546,6 +548,9 @@ Partial Class ProfileRepository
             If _filter.STATUS_NAME IsNot Nothing Then
                 query = query.Where(Function(p) p.STATUS_NAME.ToUpper.Contains(_filter.STATUS_NAME.ToUpper))
             End If
+            If _filter.DIRECT_MANAGER_NAME IsNot Nothing Then
+                query = query.Where(Function(p) p.DIRECT_MANAGER_NAME.ToUpper.Contains(_filter.DIRECT_MANAGER_NAME.ToUpper))
+            End If
             If _filter.Ids IsNot Nothing Then
                 If _filter.Ids.Any() Then
                     query = query.Where(Function(p) _filter.Ids.Contains(p.ID))
@@ -591,6 +596,7 @@ Partial Class ProfileRepository
                                    From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) p.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
                                    From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
                                    From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
+                                   From oldDirect In Context.HU_EMPLOYEE.Where(Function(f) p.DIRECT_MANAGER = f.ID).DefaultIfEmpty
                 From OBJ_ATT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                 Where (p.ID = rowQuery.ID)
                     Select New WorkingDTO With {
@@ -609,7 +615,8 @@ Partial Class ProfileRepository
                                        .TITLE_NAME = t.NAME_VN,
                                        .SIGN_DATE = p.SIGN_DATE,
                                        .SIGN_NAME = p.SIGN_NAME,
-                                       .SIGN_TITLE = p.SIGN_TITLE}).FirstOrDefault
+                                       .SIGN_TITLE = p.SIGN_TITLE,
+                                       .DIRECT_MANAGER_NAME = oldDirect.FULLNAME_VN}).FirstOrDefault
                     workOld.ORG_NAME_OLD = working_old.ORG_NAME
                     workOld.TITLE_NAME_OLD = working_old.TITLE_NAME
                     workOld.OBJECT_ATTENDANCE_NAME_OLD = working_old.OBJECT_ATTENDANCE_NAME
@@ -622,6 +629,7 @@ Partial Class ProfileRepository
                     workOld.SIGN_NAME_OLD = working_old.SIGN_NAME
                     workOld.SIGN_TITLE_OLD = working_old.SIGN_TITLE
                     workOld.REMARK_OLD = working_old.REMARK
+                    workOld.DIRECT_MANAGER_NAME_OLD = working_old.DIRECT_MANAGER_NAME
                 End If
             Next
 
