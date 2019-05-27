@@ -18,7 +18,7 @@ Partial Class ProfileRepository
 
     Private Sub UpdateWorking()
         Try
-            Dim query = (From p In Context.HUV_CURRENT_WORKING
+            Dim query = (From p In Context.HUV_CURRENT_WORKING1
                          Select New WorkingDTO With {
                              .EMPLOYEE_ID = p.EMPLOYEE_ID,
                              .TITLE_ID = p.TITLE_ID,
@@ -26,7 +26,8 @@ Partial Class ProfileRepository
                              .ID = p.ID,
                              .STAFF_RANK_ID = p.STAFF_RANK_ID,
                              .EFFECT_DATE = p.EFFECT_DATE,
-                             .DIRECT_MANAGER = p.DIRECT_MANAGER
+                             .DIRECT_MANAGER = p.DIRECT_MANAGER,
+                             .OBJECT_ATTENDANCE = p.OBJECT_ATTENDANCE
                              }).ToList
 
             For i As Integer = 0 To query.Count - 1
