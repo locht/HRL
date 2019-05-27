@@ -2133,7 +2133,7 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         <OperationContract()>
-        Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
         <OperationContract()>
         Function GetALPByID(ByVal _filter As TrainningManageDTO) As TrainningManageDTO
         <OperationContract()>
