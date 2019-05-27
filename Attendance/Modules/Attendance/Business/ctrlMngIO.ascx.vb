@@ -538,9 +538,14 @@ Public Class ctrlMngIO
                 Case TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
                 Case TOOLBARTIEM_CALCULATE
-                    Dim IAttendanceBusiness As IAttendanceBusiness = New AttendanceBusinessClient()
                     If IsNumeric(cboPeriod.SelectedValue) Then
-                        IAttendanceBusiness.CAL_SUMMARY_DATA_INOUT(cboPeriod.SelectedValue)
+                        ctrlMessageBox.MessageText = Translate(CommonMessage.TOOLBARTIEM_CALCULATE)
+                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE
+                        ctrlMessageBox.DataBind()
+                        ctrlMessageBox.Show()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOTSELECT_PERIOD), NotifyType.Warning)
+                        Exit Sub
                     End If
                     isLoadPopup = 1
                     UpdateControlState()
@@ -841,7 +846,12 @@ Public Class ctrlMngIO
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
-
+            If e.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                CurrentState = CommonMessage.TOOLBARTIEM_CALCULATE
+                Dim IAttendanceBusiness As IAttendanceBusiness = New AttendanceBusinessClient()
+                IAttendanceBusiness.CAL_SUMMARY_DATA_INOUT(cboPeriod.SelectedValue)
+                UpdateControlState()
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
