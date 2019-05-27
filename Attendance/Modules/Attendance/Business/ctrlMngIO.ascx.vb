@@ -539,7 +539,7 @@ Public Class ctrlMngIO
                     ctrlUpload1.Show()
                 Case TOOLBARTIEM_CALCULATE
                     If IsNumeric(cboPeriod.SelectedValue) Then
-                        ctrlMessageBox.MessageText = Translate(CommonMessage.TOOLBARTIEM_CALCULATE)
+                        ctrlMessageBox.MessageText = Translate("Tổng hợp dữ liệu vào ra")
                         ctrlMessageBox.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE
                         ctrlMessageBox.DataBind()
                         ctrlMessageBox.Show()
@@ -854,6 +854,7 @@ Public Class ctrlMngIO
                 Else
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                 End If
+                rgMngIO.Rebind()
                 UpdateControlState()
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
