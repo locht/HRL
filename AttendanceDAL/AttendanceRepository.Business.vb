@@ -4770,7 +4770,7 @@ Partial Public Class AttendanceRepository
 
                         Dim shiftIDU = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
 
-                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = CODE_CN Select f).FirstOrDefault
+                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_ID Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
                                 If shiftIDU.SUNDAY.HasValue Then
@@ -4794,7 +4794,7 @@ Partial Public Class AttendanceRepository
                     objWorkSignData.WORKINGDAY = p_fromdate
 
                     Dim shiftId = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
-                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = CODE_CN Select f).FirstOrDefault
+                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_ID Select f).FirstOrDefault
                     If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOff.ID) Then
                         If shiftId.SUNDAY.HasValue Then
                             objWorkSignData.SHIFT_ID = shiftOff.ID

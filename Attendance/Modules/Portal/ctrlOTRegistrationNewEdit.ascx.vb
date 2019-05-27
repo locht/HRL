@@ -679,21 +679,21 @@ Public Class ctrlOTRegistrationNewEdit
                     'hid200.Value = AM + PM
                     'hid270.Value = OTAM + OTPM
                 Else
-                'If workingType <> 1090 Then 'Khac Office Type 
-                '    hid200.Value = AM + PM
-                '    hid270.Value = OTAM + OTPM
-                'Else
-                hid150.Value = AM + PM
-                hid210.Value = OTAM + OTPM
-                'End If
-                'End If
+                    'If workingType <> 1090 Then 'Khac Office Type 
+                    '    hid200.Value = AM + PM
+                    '    hid270.Value = OTAM + OTPM
+                    'Else
+                    hid150.Value = AM + PM
+                    hid210.Value = OTAM + OTPM
+                    'End If
+                    'End If
                 End If
-        Return True
+                Return True
 
             Catch ex As Exception
-            ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
-            Return False
-        End Try
+                ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
+                Return False
+            End Try
         End If
     End Function
 #End Region
