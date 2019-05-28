@@ -10858,6 +10858,9 @@ Namespace ProfileBusiness
         Private GET_TRANSFER_TYPE_NEW_HIREField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_TYPE_INS_STATUSField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_TYPE_NGHIField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -10976,6 +10979,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_INDUSTRYField As System.Collections.Generic.List(Of ProfileBusiness.IndustryDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_INS_STATUSField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LABOURPROTECTIONField As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionDTO)
@@ -11824,6 +11830,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_TYPE_INS_STATUS() As Boolean
+            Get
+                Return Me.GET_TYPE_INS_STATUSField
+            End Get
+            Set
+                If (Me.GET_TYPE_INS_STATUSField.Equals(value) <> true) Then
+                    Me.GET_TYPE_INS_STATUSField = value
+                    Me.RaisePropertyChanged("GET_TYPE_INS_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property GET_TYPE_NGHI() As Boolean
             Get
                 Return Me.GET_TYPE_NGHIField
@@ -12339,6 +12358,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_INDUSTRYField, value) <> true) Then
                     Me.LIST_INDUSTRYField = value
                     Me.RaisePropertyChanged("LIST_INDUSTRY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_INS_STATUS() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_INS_STATUSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_INS_STATUSField, value) <> true) Then
+                    Me.LIST_INS_STATUSField = value
+                    Me.RaisePropertyChanged("LIST_INS_STATUS")
                 End If
             End Set
         End Property

@@ -4,10 +4,12 @@
     Public Property LIST_UNIT_LEVEL As List(Of OtherListDTO)
 
     'Loại nguyên nhân tai nạn.
+    Public Property GET_TYPE_INS_STATUS As Boolean
+    Public Property LIST_INS_STATUS As List(Of OtherListDTO)
+
+    'Trang thai so BH
     Public Property GET_REASON As Boolean
     Public Property LIST_REASON As List(Of OtherListDTO)
-
-    
 
     'Loại công tác.
     Public Property GET_TYPE_WORK As Boolean

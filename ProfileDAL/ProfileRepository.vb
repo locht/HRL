@@ -1296,6 +1296,19 @@ Public Class ProfileRepository
                         .CODE = p.CODE}).ToList
             _combolistDTO.LIST_COMMEND_STATUS = query
         End If
+        'Danh muc trang thai so
+        If _combolistDTO.GET_TYPE_INS_STATUS Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "INS_STATUS" _
+                     And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN,
+                        .CODE = p.CODE}).ToList
+            _combolistDTO.LIST_INS_STATUS = query
+        End If
         'Danh mục trạng thái nghỉ việc
         If _combolistDTO.GET_DISCIPLINE_STATUS Then
             query = (From p In Context.OT_OTHER_LIST

@@ -1561,12 +1561,13 @@ Public Class ctrlHU_TerminateNewEdit
                 ListComboData.GET_TER_REASON = True
                 ListComboData.GET_TER_STATUS = True
                 ListComboData.GET_TYPE_NGHI = True
-
+                ListComboData.GET_TYPE_INS_STATUS = True
                 rep.GetComboList(ListComboData)
             End If
             rep.Dispose()
             'rep.GetOtherListByType("HU_CCQD"
-            'FillDropDownList(cboStatus, ListComboData.LIST_TER_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboStatus, ListComboData.LIST_TER_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboInsStatus, ListComboData.LIST_INS_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             cboStatus.DataSource = Status()
             cboStatus.DataTextField = "Text"
             cboStatus.DataValueField = "Value"
