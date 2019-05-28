@@ -411,7 +411,8 @@ Partial Public Class AttendanceRepository
                                                ByVal p_enddate As Date,
                                                ByVal P_ORG_ID As Decimal,
                                                ByVal lstEmployee As List(Of Decimal?),
-                                               ByVal p_delAll As Decimal) As Boolean
+                                               ByVal p_delAll As Decimal,
+                                               ByVal codecase As String) As Boolean
         Try
             Dim obj As New AT_ACTION_LOGDTO
             Using cls As New DataAccess.NonQueryData
@@ -441,12 +442,22 @@ Partial Public Class AttendanceRepository
                 '                                         .P_ENDDATE = p_enddate,
                 '                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
 
-                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_ALL",
+                
+                If codecase = "ctrlTimeTimesheet_machine_case1" Then
+                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_HOSE",
                                                New With {.P_USERNAME = log.Username.ToUpper,
                                                          .P_ORG_ID = P_ORG_ID,
                                                          .P_PERIOD_ID = Period.ID,
                                                          .P_ISDISSOLVE = _param.IS_DISSOLVE,
                                                          .P_DELETE_ALL = p_delAll})
+                Else
+                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_ALL",
+                                               New With {.P_USERNAME = log.Username.ToUpper,
+                                                         .P_ORG_ID = P_ORG_ID,
+                                                         .P_PERIOD_ID = Period.ID,
+                                                         .P_ISDISSOLVE = _param.IS_DISSOLVE,
+                                                         .P_DELETE_ALL = p_delAll})
+                End If
                 Return True
 
             End Using
@@ -456,7 +467,6 @@ Partial Public Class AttendanceRepository
 
         End Try
     End Function
-
     Public Function GetMachines(ByVal _filter As AT_TIME_TIMESHEET_MACHINETDTO,
                                      ByVal _param As ParamDTO,
                                      Optional ByRef Total As Integer = 0,

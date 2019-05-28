@@ -8548,7 +8548,7 @@ Namespace CommonBusiness
         Function GetATOrgPeriod(ByVal periodID As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetCaseConfigByID", ReplyAction:="http://tempuri.org/ICommonBusiness/GetCaseConfigByIDResponse")>  _
-        Function GetCaseConfigByID(ByVal codename As String) As System.Data.DataTable
+        Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetSignList", ReplyAction:="http://tempuri.org/ICommonBusiness/GetSignListResponse")>  _
         Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO)
@@ -9214,8 +9214,8 @@ Namespace CommonBusiness
             Return MyBase.Channel.GetATOrgPeriod(periodID)
         End Function
         
-        Public Function GetCaseConfigByID(ByVal codename As String) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetCaseConfigByID
-            Return MyBase.Channel.GetCaseConfigByID(codename)
+        Public Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer Implements CommonBusiness.ICommonBusiness.GetCaseConfigByID
+            Return MyBase.Channel.GetCaseConfigByID(codename, codecase)
         End Function
         
         Public Function GetSignList() As System.Collections.Generic.List(Of CommonBusiness.ATTimeManualDTO) Implements CommonBusiness.ICommonBusiness.GetSignList

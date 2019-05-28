@@ -18,14 +18,14 @@ Imports System.Reflection
 Partial Public Class CommonRepository
 
 #Region "Case config"
-    Public Function GetCaseConfigByID(ByVal codename As String) As DataTable
+    Public Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer
         Try
             Using cls As New DataAccess.QueryData
-                Dim dtData As DataTable = cls.ExecuteStore("PKG_COMMON_LIST.GET_SE_CASE_CONFIG",
-                                           New With {.P_CODE_NAME = codename,
-                                                     .P_CUR = cls.OUT_CURSOR})
-
-                Return dtData
+                Dim obj = New With {.P_CODE_NAME = codename,
+                                    .P_CODE_CASE = codecase,
+                                    .P_OUT = cls.OUT_NUMBER}
+                cls.ExecuteStore("PKG_COMMON_LIST.GET_SE_CASE_CONFIG", obj)
+                Return Integer.Parse(obj.P_OUT)
             End Using
         Catch ex As Exception
             Throw ex

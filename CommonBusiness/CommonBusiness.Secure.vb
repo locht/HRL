@@ -9,10 +9,10 @@ Namespace CommonBusiness.ServiceImplementations
         Implements ICommonBusiness
 
 #Region "Case config"
-        Public Function GetCaseConfigByID(ByVal codename As String) As DataTable Implements ServiceContracts.ICommonBusiness.GetCaseConfigByID
+        Public Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer Implements ServiceContracts.ICommonBusiness.GetCaseConfigByID
             Using rep As New CommonRepository
                 Try
-                    Return rep.GetCaseConfigByID(codename)
+                    Return rep.GetCaseConfigByID(codename, codecase)
                 Catch ex As Exception
                     Throw ex
                 End Try

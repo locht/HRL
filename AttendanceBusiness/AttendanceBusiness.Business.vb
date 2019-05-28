@@ -579,11 +579,11 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Function Init_TimeTImesheetMachines(ByVal _param As ParamDTO, ByVal log As UserLog, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?), ByVal p_delAll As Decimal) As Boolean Implements IAttendanceBusiness.Init_TimeTImesheetMachines
+        Function Init_TimeTImesheetMachines(ByVal _param As ParamDTO, ByVal log As UserLog, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?), ByVal p_delAll As Decimal, ByVal codecase As String) As Boolean Implements IAttendanceBusiness.Init_TimeTImesheetMachines
 
             Using rep As New AttendanceRepository
                 Try
-                    Dim lst = rep.Init_TimeTImesheetMachines(_param, log, p_fromdate, p_enddate, P_ORG_ID, lstEmployee, p_delAll)
+                    Dim lst = rep.Init_TimeTImesheetMachines(_param, log, p_fromdate, p_enddate, P_ORG_ID, lstEmployee, p_delAll, codecase)
                     Return lst
                 Catch ex As Exception
                     Throw ex

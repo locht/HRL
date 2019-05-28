@@ -15,7 +15,7 @@ Namespace CommonBusiness.ServiceContracts
 
 #Region "Case Config"
         <OperationContract()>
-        Function GetCaseConfigByID(ByVal codename As String) As DataTable
+        Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer
 #End Region
 #Region "Sign"
         <OperationContract()>

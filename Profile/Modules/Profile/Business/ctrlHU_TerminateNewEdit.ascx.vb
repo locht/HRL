@@ -135,6 +135,9 @@ Public Class ctrlHU_TerminateNewEdit
         Try
             rgReason.AllowSorting = False
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane2)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1475,13 +1478,29 @@ Public Class ctrlHU_TerminateNewEdit
                 'trợ cấp thôi việc
                 rntxtAllowanceTerminate.Value = Utilities.ObjToDecima(dt.Rows(0)("SUPPORT_TERMINATE"))
                 'Bổ xung lương trùng bình 6 tháng
-                'rntxtSalaryMedium_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SALBASIC_6TH"))
+                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_SalaryMedium_loss") > 0 Then 'Active
+
+                Else 'Unactive
+                    rntxtSalaryMedium_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SALBASIC_6TH"))
+                End If
+                'Thoi gian tham gia BH
+                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_TimeAccidentIns_loss") > 0 Then
+
+                Else
+                    Get_InforWorkLoss()
+                End If
                 hiSalbasic.Value = Utilities.ObjToDecima(dt.Rows(0)("SAL_BASIC"))
                 'số năm tính trợ cấp mất việc
-                'rntxtyearforallow_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SO_NAM_TRO_CAP"))
+                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_yearforallow_loss") > 0 Then
 
-                'Get_InforWorkLoss()
-                'Tinh_Tien_Con_lai()
+                Else
+                    rntxtyearforallow_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SO_NAM_TRO_CAP"))
+                End If
+                If getSE_CASE_CONFIG("ctrlHU_TerminateNewEdit_MoneyReturn") > 0 Then
+
+                Else
+                    Tinh_Tien_Con_lai()
+                End If
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

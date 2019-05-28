@@ -39,7 +39,6 @@ Public Class ctrlRitual_Hose
             rgDanhMucHS.AllowCustomPaging = True
             InitControl()
             If Not IsPostBack Then
-                getSE_CASE_CONFIG()
                 ViewConfig(RadPane1)
                 GirdConfig(rgDanhMucHS)
             End If

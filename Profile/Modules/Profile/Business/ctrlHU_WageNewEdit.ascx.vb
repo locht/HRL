@@ -88,7 +88,6 @@ Public Class ctrlHU_WageNewEdit
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
             If Not IsPostBack Then
-                getSE_CASE_CONFIG()
                 ViewConfig(LeftPane)
                 GirdConfig(rgAllow)
             End If
@@ -1191,24 +1190,21 @@ Public Class ctrlHU_WageNewEdit
     Private Sub CalculatorSalary()
         'kiem tra check IS_HOSE
         'LAY THONG TIN CONFIG CASE :
-        getSE_CASE_CONFIG()
         Dim Status As Boolean = False
         Try
             Dim DATA_OUT As DataTable
-            If SE_CASE_CONFIG IsNot Nothing AndAlso SE_CASE_CONFIG.Rows.Count > 0 Then
-                Dim ROWS = SE_CASE_CONFIG.Select("CODE_CASE ='" + "ctrlHU_WageNewEdit_case1" + "'")
-                If ROWS IsNot Nothing AndAlso ROWS.Count > 0 Then
-                    Status = CBool(ROWS(0)("STATUS"))
+            If getSE_CASE_CONFIG("ctrlHU_WageNewEdit_case1") <= 0 Then 'Unactive
+                Using rep As New ProfileBusinessRepository
+                    DATA_OUT = rep.Calculator_Salary(GetDATA_IN())
+                End Using
+                'BIDING DATA TO CONTROLS
+                If DATA_OUT IsNot Nothing AndAlso DATA_OUT.Rows.Count > 0 Then
+                    BidingDataToControls(DATA_OUT)
                 End If
+            Else 'Active
+
             End If
-            If Status = False Then Return
-            Using rep As New ProfileBusinessRepository
-                DATA_OUT = rep.Calculator_Salary(GetDATA_IN())
-            End Using
-            'BIDING DATA TO CONTROLS
-            If DATA_OUT IsNot Nothing AndAlso DATA_OUT.Rows.Count > 0 Then
-                BidingDataToControls(DATA_OUT)
-            End If
+            
         Catch ex As Exception
             Throw ex
         End Try

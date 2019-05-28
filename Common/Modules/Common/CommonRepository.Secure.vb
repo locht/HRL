@@ -6,10 +6,10 @@ Partial Public Class CommonRepository
     Inherits CommonRepositoryBase
 
 #Region "Case Config"
-    Public Function GetCaseConfigByID(ByVal codename As String) As DataTable
+    Public Function GetCaseConfigByID(ByVal codename As String, ByVal codecase As String) As Integer
         Using rep As New CommonBusinessClient
             Try
-                Return rep.GetCaseConfigByID(codename)
+                Return rep.GetCaseConfigByID(codename, codecase)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

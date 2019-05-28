@@ -562,11 +562,11 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Function Init_TimeTImesheetMachines(ByVal _param As Attendance.AttendanceBusiness.ParamDTO, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?), ByVal p_delAll As Decimal) As Boolean
+    Function Init_TimeTImesheetMachines(ByVal _param As Attendance.AttendanceBusiness.ParamDTO, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As List(Of Decimal?), ByVal p_delAll As Decimal, ByVal codecase As String) As Boolean
         Dim dt As Boolean
         Using rep As New AttendanceBusinessClient
             Try
-                dt = rep.Init_TimeTImesheetMachines(_param, Me.Log, p_fromdate, p_enddate, P_ORG_ID, lstEmployee, p_delAll)
+                dt = rep.Init_TimeTImesheetMachines(_param, Me.Log, p_fromdate, p_enddate, P_ORG_ID, lstEmployee, p_delAll, codecase)
                 Return dt
             Catch ex As Exception
                 rep.Abort()

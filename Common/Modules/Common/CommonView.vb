@@ -40,17 +40,16 @@ Public Class CommonView
         End Set
     End Property
 
-    Public Sub getSE_CASE_CONFIG()
+    Public Function getSE_CASE_CONFIG(ByVal codecase As String) As Integer
         Try
             Dim rep As New CommonRepository
-            Dim dtConfigCase As New DataTable ' get thong config case theo Me.ID
-            dtConfigCase = rep.GetCaseConfigByID(Me.ID)
-            SE_CASE_CONFIG = New DataTable()
-            SE_CASE_CONFIG = dtConfigCase
+            Dim count As Integer ' get thong config case theo Me.ID
+            count = rep.GetCaseConfigByID(Me.ID, codecase)
+            Return count
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
+    End Function
 
 
     ''' <lastupdate>
