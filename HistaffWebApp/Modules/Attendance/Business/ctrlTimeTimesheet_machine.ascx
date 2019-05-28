@@ -64,7 +64,7 @@
                 <tlk:RadGrid PageSize="50" ID="rgTimeTimesheet_machine" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
@@ -72,7 +72,7 @@
                             <tlk:GridBoundColumn HeaderText="Họ tên" DataField="VN_FULLNAME"
                                 UniqueName="VN_FULLNAME" HeaderStyle-Width="120px" SortExpression="VN_FULLNAME" />
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
-                                UniqueName="TITLE_NAME" HeaderStyle-Width="120px" SortExpression="TITLE_NAME" />--%>
+                                UniqueName="TITLE_NAME" HeaderStyle-Width="120px" SortExpression="TITLE_NAME" />
                             <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME">
                                 <HeaderStyle Width="200px" />
