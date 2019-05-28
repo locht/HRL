@@ -484,6 +484,11 @@ Public Class ctrlHU_ALP
             End If
 
             If CheckDate(rows("START_DATE"), startDate) And CheckDate(rows("END_DATE"), endDate) Then
+                If startDate > endDate Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Đến ngày phải lớn hơn hoặc bằng từ ngày,"
+                    _error = False
+                End If
+
                 Dim difference As TimeSpan
                 difference = endDate.AddDays(1) - startDate
                 rows("DAY_NUMBER") = difference.TotalDays
