@@ -212,6 +212,24 @@ Partial Public Class ctrlHU_ALPNewEdit
     Protected WithEvents txtOrg_Name As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtYear As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''lbStartDate control.
     '''</summary>
     '''<remarks>

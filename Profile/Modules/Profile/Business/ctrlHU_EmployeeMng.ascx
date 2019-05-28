@@ -20,24 +20,24 @@
                 <table class="table-form padding-10">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày vào công ty từ")%>
+                            <asp:Label ID="lbFromDate" runat="server" Text="Ngày vào công ty từ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến")%>
+                            <asp:Label ID="lbToDate" runat="server" Text="Đến"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td colspan="2">
-                            <asp:CheckBox ID="chkTerminate" runat="server" Text="<%$ Translate: Liệt kê cả nhân viên nghỉ việc %>" />
+                            <asp:CheckBox ID="chkTerminate" runat="server" Text="Liệt kê cả nhân viên nghỉ việc" />
                         </td>
                         <td style="padding-left: 20px;">
-                            <tlk:RadButton runat="server" Text="<%$ Translate: Tìm%>" ID="btnSearch" SkinID="ButtonFind">
+                            <tlk:RadButton runat="server" Text="Tìm" ID="btnSearch" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
 
@@ -47,7 +47,7 @@
                     </tr>
                     <tr style="visibility: hidden;">
                         <td class="lb">
-                            <%# Translate("Ghi chú")%>
+                            <asp:Label ID="lbGhiChu" runat="server" Text="Ghi chú"></asp:Label>
                         </td>
                         <td colspan="4">
                             <tlk:RadTextBox ID="txtGhiChu" runat="server" Width="100%">
@@ -115,14 +115,14 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Biễu mẫu hỗ trợ")%>
+                            <asp:Label ID="lbTemplatePrint" runat="server" Text="Biễu mẫu hỗ trợ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox runat="server" Width="400px" ID="cboPrintSupport">
                             </tlk:RadComboBox>
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnPrintSupport" runat="server" Text="<%$ Translate: Hỗ trợ in %>"
+                            <tlk:RadButton ID="btnPrintSupport" runat="server" Text="Hỗ trợ in"
                                 OnClientClicking="btnPrintSupportClick" AutoPostBack="true" CausesValidation="false">
                             </tlk:RadButton>
                         </td>

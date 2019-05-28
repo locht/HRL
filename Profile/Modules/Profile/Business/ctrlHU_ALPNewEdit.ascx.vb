@@ -172,7 +172,7 @@ Public Class ctrlHU_ALPNewEdit
             Select Case Message
                 Case "UpdateView"
                     CurrentState = CommonMessage.STATE_EDIT
-                    Contract = rep.GetTrainingManageByID(New TrainningManageDTO With {.ID = hidID.Value})
+                    Contract = rep.GetALPByID(New TrainningManageDTO With {.ID = hidID.Value})
                     If Contract IsNot Nothing Then
                         hidID.Value = Contract.ID
                         hidEmployeeID.Value = Contract.EMPLOYEE_ID.ToString
@@ -185,6 +185,7 @@ Public Class ctrlHU_ALPNewEdit
                         rdExpireDate.SelectedDate = Contract.EXPIRE_DATE
                         txtRemark.Text = Contract.REMARK
                         txtCost.Text = Contract.COST
+                        txtYear.Value = Contract.WORK_STATUS
                     End If
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -228,6 +229,7 @@ Public Class ctrlHU_ALPNewEdit
                     If Page.IsValid Then
                         Dim employee = rep.GetEmployeeByID(Decimal.Parse(hidEmployeeID.Value))
                         objContract.EMPLOYEE_ID = Decimal.Parse(hidEmployeeID.Value)
+                        objContract.WORK_STATUS = txtYear.Value
                         objContract.EXPIRE_DATE = rdExpireDate.SelectedDate
                         objContract.START_DATE = rdStartDate.SelectedDate
                         objContract.ORG_ID = employee.ORG_ID
@@ -533,7 +535,63 @@ Public Class ctrlHU_ALPNewEdit
 
 #Region "Custom"
 
+    ''' <lastupdate>
+    ''' 06/07/2018 17:53
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien SelectedDateChanged cua control rdStartDate
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Protected Sub rdStartDate_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdStartDate.SelectedDateChanged
+        Dim item As New ContractTypeDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim difference As TimeSpan
+        Try
+            If rdStartDate.SelectedDate IsNot Nothing AndAlso rdExpireDate.SelectedDate IsNot Nothing Then
+                difference = rdExpireDate.SelectedDate.Value.AddDays(1) - rdStartDate.SelectedDate
+                txtCost.Value = difference.TotalDays
+            Else
+                txtCost.Value = 0
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
 
+    End Sub
+
+    ''' <lastupdate>
+    ''' 06/07/2018 17:53
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien SelectedDateChanged cua control rdStartDate
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Protected Sub rdExpireDate_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdExpireDate.SelectedDateChanged
+        Dim item As New ContractTypeDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim difference As TimeSpan
+        Try
+            If rdStartDate.SelectedDate IsNot Nothing AndAlso rdExpireDate.SelectedDate IsNot Nothing Then
+                difference = rdExpireDate.SelectedDate.Value.AddDays(1) - rdStartDate.SelectedDate
+                txtCost.Value = difference.TotalDays
+            Else
+                txtCost.Value = 0
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+
+    End Sub
 
 
 

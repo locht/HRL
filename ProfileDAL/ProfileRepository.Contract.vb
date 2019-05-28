@@ -1118,6 +1118,7 @@ Partial Class ProfileRepository
                                      .SIGN_NAME = contractDto.SIGNER_NAME,
                                      .ALLOWANCE_TOTAL = result.Sum(Function(f) f.AMOUNT),
                                      .SAL_INS = updateWorking.SAL_INS,
+                                    .OBJECT_ATTENDANCE = contractDto.OBJECTTIMEKEEPING,
                                      .TAX_TABLE_ID = updateWorking.TAX_TABLE_ID,
                                      .SAL_TOTAL = updateWorking.SAL_TOTAL,
                                      .SAL_TYPE_ID = updateWorking.SAL_TYPE_ID,
@@ -1332,6 +1333,7 @@ Partial Class ProfileRepository
                        .TITLE_ID = t.ID,
                        .TITLE_NAME_VN = t.NAME_VN,
                        .JOIN_DATE = p.JOIN_DATE,
+                       .OBJECTTIMEKEEPING = p.OBJECTTIMEKEEPING,
                        .STAFF_RANK_ID = p.STAFF_RANK_ID,
                        .STAFF_RANK_NAME = staffrank.NAME,
                        .WORK_STATUS = p.WORK_STATUS,
@@ -1671,17 +1673,17 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+    Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
         Try
             Using cls As New DataAccess.QueryData
-                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
-                                 New With {.P_DOCXML = P_DOCXML,.P_USER = P_USER})
+                cls.ExecuteStore("PKG_ATTENDANCE_LIST.IMPORT_ANNUALLEAVE_PLANS",
+                                 New With {.P_DOCXML = P_DOCXML, .P_USER = P_USER, .P_YEAR = P_YEAR})
             End Using
             Return True
         Catch ex As Exception
             Return False
         End Try
-       
+
     End Function
 
 #End Region

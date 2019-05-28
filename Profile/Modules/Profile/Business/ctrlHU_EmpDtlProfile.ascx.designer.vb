@@ -356,6 +356,33 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents rtBookNo As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbObject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbObject As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboObject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboObject As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''reqObject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqObject As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbFirstNameVN control.
     '''</summary>
     '''<remarks>
@@ -428,6 +455,24 @@ Partial Public Class ctrlHU_EmpDtlProfile
     Protected WithEvents rtOtherName As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboEmpStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboEmpStatus As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''lbTimeID control.
     '''</summary>
     '''<remarks>
@@ -453,24 +498,6 @@ Partial Public Class ctrlHU_EmpDtlProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusTimeID As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''cboEmpStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cboEmpStatus As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''chkSaveHistory control.

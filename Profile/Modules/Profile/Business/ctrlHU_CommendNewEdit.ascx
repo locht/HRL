@@ -8,8 +8,7 @@
 <style type="text/css">
     #ctl00_MainContent_ctrlHU_CommendNewEdit_btnUploadFile_input
     {
-        height:24px;
-        width: 28px !important;
+        height:24px;        
     }
     
     #ctl00_MainContent_ctrlHU_CommendNewEdit_btnUploadFile .rbPrimaryIcon
@@ -18,8 +17,7 @@
     }
     
     #ctl00_MainContent_ctrlHU_CommendNewEdit_btnDownload
-    {
-        height: 24px;
+    {       
         display: inline-block;
         margin-top: -1px;
     }

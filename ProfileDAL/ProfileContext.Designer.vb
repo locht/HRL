@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("6067631d-aa9c-4e9a-b503-67d6e1e2bd6e")>
+<Assembly: EdmSchemaAttribute("bfa54c38-b8d8-4680-87d1-0a110eecf303")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -754,20 +754,6 @@ Public Partial Class ProfileContext
     End Property
 
     Private _HUV_CURRENT_WORKING As ObjectSet(Of HUV_CURRENT_WORKING)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    Public ReadOnly Property HUV_CURRENT_CONTRACT() As ObjectSet(Of HUV_CURRENT_CONTRACT)
-        Get
-            If (_HUV_CURRENT_CONTRACT Is Nothing) Then
-                _HUV_CURRENT_CONTRACT = MyBase.CreateObjectSet(Of HUV_CURRENT_CONTRACT)("HUV_CURRENT_CONTRACT")
-            End If
-            Return _HUV_CURRENT_CONTRACT
-        End Get
-    End Property
-
-    Private _HUV_CURRENT_CONTRACT As ObjectSet(Of HUV_CURRENT_CONTRACT)
 
     ''' <summary>
     ''' No Metadata Documentation available.
@@ -1973,6 +1959,34 @@ Public Partial Class ProfileContext
 
     Private _HU_ANNUALLEAVE_PLANS As ObjectSet(Of HU_ANNUALLEAVE_PLANS)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HUV_CURRENT_WORKING1() As ObjectSet(Of HUV_CURRENT_WORKING1)
+        Get
+            If (_HUV_CURRENT_WORKING1 Is Nothing) Then
+                _HUV_CURRENT_WORKING1 = MyBase.CreateObjectSet(Of HUV_CURRENT_WORKING1)("HUV_CURRENT_WORKING1")
+            End If
+            Return _HUV_CURRENT_WORKING1
+        End Get
+    End Property
+
+    Private _HUV_CURRENT_WORKING1 As ObjectSet(Of HUV_CURRENT_WORKING1)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HUV_CURRENT_CONTRACT() As ObjectSet(Of HUV_CURRENT_CONTRACT)
+        Get
+            If (_HUV_CURRENT_CONTRACT Is Nothing) Then
+                _HUV_CURRENT_CONTRACT = MyBase.CreateObjectSet(Of HUV_CURRENT_CONTRACT)("HUV_CURRENT_CONTRACT")
+            End If
+            Return _HUV_CURRENT_CONTRACT
+        End Get
+    End Property
+
+    Private _HUV_CURRENT_CONTRACT As ObjectSet(Of HUV_CURRENT_CONTRACT)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -2304,13 +2318,6 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToHUV_CURRENT_WORKING(ByVal hUV_CURRENT_WORKING As HUV_CURRENT_WORKING)
         MyBase.AddObject("HUV_CURRENT_WORKING", hUV_CURRENT_WORKING)
-    End Sub
-
-    ''' <summary>
-    ''' Deprecated Method for adding a new object to the HUV_CURRENT_CONTRACT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToHUV_CURRENT_CONTRACT(ByVal hUV_CURRENT_CONTRACT As HUV_CURRENT_CONTRACT)
-        MyBase.AddObject("HUV_CURRENT_CONTRACT", hUV_CURRENT_CONTRACT)
     End Sub
 
     ''' <summary>
@@ -2913,6 +2920,20 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToHU_ANNUALLEAVE_PLANS(ByVal hU_ANNUALLEAVE_PLANS As HU_ANNUALLEAVE_PLANS)
         MyBase.AddObject("HU_ANNUALLEAVE_PLANS", hU_ANNUALLEAVE_PLANS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HUV_CURRENT_WORKING1 EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHUV_CURRENT_WORKING1(ByVal hUV_CURRENT_WORKING1 As HUV_CURRENT_WORKING1)
+        MyBase.AddObject("HUV_CURRENT_WORKING1", hUV_CURRENT_WORKING1)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HUV_CURRENT_CONTRACT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHUV_CURRENT_CONTRACT(ByVal hUV_CURRENT_CONTRACT As HUV_CURRENT_CONTRACT)
+        MyBase.AddObject("HUV_CURRENT_CONTRACT", hUV_CURRENT_CONTRACT)
     End Sub
 
     #End Region
@@ -19061,6 +19082,31 @@ Public Partial Class HU_EMPLOYEE
     End Sub
 
     Private Partial Sub OnEMPLOYEE_NAME_OTHERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECTTIMEKEEPING() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECTTIMEKEEPING
+        End Get
+        Set
+            OnOBJECTTIMEKEEPINGChanging(value)
+            ReportPropertyChanging("OBJECTTIMEKEEPING")
+            _OBJECTTIMEKEEPING = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECTTIMEKEEPING")
+            OnOBJECTTIMEKEEPINGChanged()
+        End Set
+    End Property
+
+    Private _OBJECTTIMEKEEPING As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECTTIMEKEEPINGChanged()
     End Sub
 
     #End Region
@@ -52296,6 +52342,261 @@ Public Partial Class HUV_CURRENT_WORKING
     End Sub
 
     Private Partial Sub OnDIRECT_MANAGERChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="ProfileModel", Name:="HUV_CURRENT_WORKING1")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HUV_CURRENT_WORKING1
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HUV_CURRENT_WORKING1 object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHUV_CURRENT_WORKING1(id As Global.System.Decimal) As HUV_CURRENT_WORKING1
+        Dim hUV_CURRENT_WORKING1 as HUV_CURRENT_WORKING1 = New HUV_CURRENT_WORKING1
+        hUV_CURRENT_WORKING1.ID = id
+        Return hUV_CURRENT_WORKING1
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_ID
+        End Get
+        Set
+            OnEMPLOYEE_IDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_ID")
+            _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_ID")
+            OnEMPLOYEE_IDChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TITLE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TITLE_ID
+        End Get
+        Set
+            OnTITLE_IDChanging(value)
+            ReportPropertyChanging("TITLE_ID")
+            _TITLE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TITLE_ID")
+            OnTITLE_IDChanged()
+        End Set
+    End Property
+
+    Private _TITLE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTITLE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTITLE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property STAFF_RANK_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _STAFF_RANK_ID
+        End Get
+        Set
+            OnSTAFF_RANK_IDChanging(value)
+            ReportPropertyChanging("STAFF_RANK_ID")
+            _STAFF_RANK_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("STAFF_RANK_ID")
+            OnSTAFF_RANK_IDChanged()
+        End Set
+    End Property
+
+    Private _STAFF_RANK_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSTAFF_RANK_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSTAFF_RANK_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_3B() As Nullable(Of Global.System.Int16)
+        Get
+            Return _IS_3B
+        End Get
+        Set
+            OnIS_3BChanging(value)
+            ReportPropertyChanging("IS_3B")
+            _IS_3B = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_3B")
+            OnIS_3BChanged()
+        End Set
+    End Property
+
+    Private _IS_3B As Nullable(Of Global.System.Int16)
+    Private Partial Sub OnIS_3BChanging(value As Nullable(Of Global.System.Int16))
+    End Sub
+
+    Private Partial Sub OnIS_3BChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EFFECT_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _EFFECT_DATE
+        End Get
+        Set
+            OnEFFECT_DATEChanging(value)
+            ReportPropertyChanging("EFFECT_DATE")
+            _EFFECT_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EFFECT_DATE")
+            OnEFFECT_DATEChanged()
+        End Set
+    End Property
+
+    Private _EFFECT_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEFFECT_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEFFECT_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DIRECT_MANAGER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DIRECT_MANAGER
+        End Get
+        Set
+            OnDIRECT_MANAGERChanging(value)
+            ReportPropertyChanging("DIRECT_MANAGER")
+            _DIRECT_MANAGER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DIRECT_MANAGER")
+            OnDIRECT_MANAGERChanged()
+        End Set
+    End Property
+
+    Private _DIRECT_MANAGER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDIRECT_MANAGERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDIRECT_MANAGERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OBJECT_ATTENDANCE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _OBJECT_ATTENDANCE
+        End Get
+        Set
+            OnOBJECT_ATTENDANCEChanging(value)
+            ReportPropertyChanging("OBJECT_ATTENDANCE")
+            _OBJECT_ATTENDANCE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OBJECT_ATTENDANCE")
+            OnOBJECT_ATTENDANCEChanged()
+        End Set
+    End Property
+
+    Private _OBJECT_ATTENDANCE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnOBJECT_ATTENDANCEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnOBJECT_ATTENDANCEChanged()
     End Sub
 
     #End Region

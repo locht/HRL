@@ -52,7 +52,14 @@ Public Class ctrlHU_ContractNewEdit
             ViewState(Me.ID & "_ListComboData") = value
         End Set
     End Property
-
+    Property code_timekeeping As Integer
+        Get
+            Return ViewState(Me.ID & "_code_timekeeping")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_code_timekeeping") = value
+        End Set
+    End Property
     '0 - normal
     '1 - Employee
     '2 - Signer
@@ -234,7 +241,7 @@ Public Class ctrlHU_ContractNewEdit
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
                     Dim dt As New DataTable
-                    rgAllow.DataSource = dt
+                    rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
                     rgAllow.DataBind()
             End Select
             rep.Dispose()
@@ -286,6 +293,7 @@ Public Class ctrlHU_ContractNewEdit
                         objContract.EXPIRE_DATE = rdExpireDate.SelectedDate
                         objContract.CONTRACT_NO = txtContractNo.Text
                         objContract.REMARK = txtRemark.Text
+                        objContract.OBJECTTIMEKEEPING = code_timekeeping
                         If hidSign.Value <> "" Then
                             objContract.SIGN_ID = Decimal.Parse(hidSign.Value)
                         End If
@@ -977,6 +985,7 @@ Public Class ctrlHU_ContractNewEdit
                 End If
                 hidEmployeeID.Value = item.ID.ToString
                 hidOrgCode.Value = item.ORG_CODE
+                code_timekeeping = item.OBJECTTIMEKEEPING
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
                 txtTITLE.Text = item.TITLE_NAME_VN

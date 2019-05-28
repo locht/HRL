@@ -293,9 +293,6 @@ Public Class ctrlLeaveRegistrationNewEdit
                     If leaveMaster.TO_DATE.HasValue Then
                         rdToDate.SelectedDate = leaveMaster.TO_DATE
                     End If
-                    If leaveMaster.WORK_HARD <> 0 Then
-                        chkWorkday.Checked = leaveMaster.WORK_HARD
-                    End If
 
                     txtNote.Text = leaveMaster.NOTE
                     rgData.Rebind()
@@ -356,15 +353,18 @@ Public Class ctrlLeaveRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
-                        If rntxDayRegist.Value > rntBalance.Value Then
-                            ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
-                            UpdateControlState()
-                            Exit Sub
-                        End If
                         If cboleaveType.SelectedValue = "" Then
                             ShowMessage(Translate("Chọn loại nghỉ."), NotifyType.Warning)
                             UpdateControlState()
                             Exit Sub
+                        End If
+                        Dim ktra = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                        If ktra = 1 Then
+                            If rntxDayRegist.Value > rntBalance.Value Then
+                                ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
+                                UpdateControlState()
+                                Exit Sub
+                            End If
                         End If
                         If txtNote.Text = "" Then
                             ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
@@ -381,18 +381,18 @@ Public Class ctrlLeaveRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
-
+                     
 
                         Dim selectedFromDate = rdFromDate.SelectedDate
                         Dim selectedToDate = rdToDate.SelectedDate
                         While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                            Dim CHECK1 = (From P In CHECKSHIFT Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                            Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
                             If CHECK1 = 0 Then
                                 ShowMessage(Translate("Thời gian bạn chọn không có trong ca làn việc,bạn chọn lại."), NotifyType.Warning)
                                 UpdateControlState()
                                 Exit Sub
                             End If
-                            Dim checkhopdong = (From P In CHECKCONTRACT Where P("STARTDATE") <= selectedFromDate And P("STARTDATE") >= selectedFromDate Select P).ToList.Count
+                            Dim checkhopdong = (From P In CHECKCONTRACT.AsEnumerable Where P("STARTDATE") <= selectedFromDate And P("ENDDATE") >= selectedFromDate Select P).ToList.Count
                             If checkhopdong > 0 Then
                                 ShowMessage(Translate("Nhân viên đang là hợp đồng thử việc,thao thác không thành công"), NotifyType.Warning)
                                 UpdateControlState()
@@ -400,7 +400,13 @@ Public Class ctrlLeaveRegistrationNewEdit
                             End If
                             selectedFromDate = selectedFromDate.Value.AddDays(1)
                         End While
-
+                        If rtxtdayinkh.Value IsNot Nothing AndAlso rtxtdayoutkh.Value IsNot Nothing Then
+                            ctrlMessageBox.MessageText = Translate("Số ngày trong kế hoạch là " + rtxtdayinkh.Text + " số ngày ngoài kế hoạch là " + rtxtdayoutkh.Text + ". Bạn có muốn tiếp tục ?")
+                            ctrlMessageBox.ActionName = CommonMessage.ACTION_SAVED
+                            ctrlMessageBox.DataBind()
+                            ctrlMessageBox.Show()
+                            Exit Sub
+                        End If
 
 
                         Dim isInsert As Boolean = True
@@ -424,7 +430,6 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .STATUS = 3,
                            .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
                            .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
-                            .WORK_HARD = chkWorkday.Checked,
                            .MODIFIED_BY = EmployeeID,
                                 .PROCESS = ApproveProcess
                        }
@@ -443,7 +448,6 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .STATUS = 3,
                          .DAYIN_KH = rtxtdayinkh.Text,
                            .DAYOUT_KH = rtxtdayoutkh.Text,
-                            .WORK_HARD = chkWorkday.Checked,
                             .MODIFIED_BY = EmployeeID,
                                 .PROCESS = ApproveProcess
                        }
@@ -485,23 +489,64 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Sub
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
-            If e.ActionName = CommonMessage.TOOLBARITEM_APPROVE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                'Using rep As New ProfileBusinessRepository
-                '    Dim lstID As New List(Of Decimal)
-                '    lstID.Add(hidID.Value)
-                '    If lstID.Count > 0 Then
-                '        rep.SendEmployeeEdit(lstID)
-                '        hidStatus.Value = 1
-                '        lbStatus.Text = "Thông tin chỉnh sửa đang ở trạng thái [ Chờ phê duyệt ], Bạn không thể chỉnh sửa"
-                '        tbarMainToolBar.Items(0).Enabled = False
-                '        tbarMainToolBar.Items(3).Enabled = False
-                '        EnableControlAll(False, cboFamilyStatus, cboNav_District, cboNav_Province, cboNav_Ward,
-                '                    cboPer_District, cboPer_Province, cboPer_Ward, txtID_NO,
-                '                    txtIDPlace, txtNavAddress, txtPerAddress, rdIDDate)
+            If e.ActionName = CommonMessage.ACTION_SAVED And e.ButtonID = MessageBoxButtonType.ButtonYes Then
 
-                '    End If
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                'End Using
+                Dim isInsert As Boolean = True
+                Dim obj As New AT_PORTAL_REG_DTO
+                Dim itemExist = New AT_PORTAL_REG_DTO
+                Dim isOverAnnualLeave As Boolean = False
+                Using rep As New AttendanceRepository
+                    If hidID.Value <> 0 Then
+                        isInsert = False
+                    End If
+                    If isInsert Then
+                        Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
+                   .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
+                   .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
+                   .FROM_DATE = rdFromDate.SelectedDate,
+                   .TO_DATE = rdToDate.SelectedDate,
+                   .NVALUE = 1,
+                   .SVALUE = ApproveProcess,
+                   .NOTE = txtNote.Text,
+                   .NOTE_AT = txtNote.Text,
+                   .STATUS = 3,
+                   .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
+                   .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
+                   .MODIFIED_BY = EmployeeID,
+                        .PROCESS = ApproveProcess
+               }
+                        AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
+                        obj.ID = hidID.Value
+                    Else
+                        Dim itemInsert As New AttendanceBusiness.AT_PORTAL_REG_DTO With {
+                   .ID_EMPLOYEE = CurrentUser.EMPLOYEE_ID,
+                   .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
+                   .FROM_DATE = rdFromDate.SelectedDate,
+                   .TO_DATE = rdToDate.SelectedDate,
+                   .NVALUE = 1,
+                   .SVALUE = ApproveProcess,
+                   .NOTE = txtNote.Text,
+                   .NOTE_AT = txtNote.Text,
+                   .STATUS = 3,
+                 .DAYIN_KH = rtxtdayinkh.Text,
+                   .DAYOUT_KH = rtxtdayoutkh.Text,
+                    .MODIFIED_BY = EmployeeID,
+                        .PROCESS = ApproveProcess
+               }
+                        obj.ID = hidID.Value
+                        rep.ModifyPortalRegList(obj, itemInsert)
+                    End If
+
+                    If isOverAnnualLeave Then
+                        ShowMessage(Translate("Không được đăng ký nghỉ vượt quá số ngày phép con lại trong năm"), NotifyType.Warning)
+                        Return
+                    End If
+
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    UpdateControlState()
+                End Using
             End If
 
 
@@ -533,6 +578,59 @@ Public Class ctrlLeaveRegistrationNewEdit
                     'rntTotal.Value = If(EmployeeDto.Rows(0)("TOTAL_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("TOTAL_HAVE").ToString()))
                     'rntTotalTaken.Value = If(EmployeeDto.Rows(0)("CUR_USED") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_USED").ToString()))
                     'rntBalance.Value = If(EmployeeDto.Rows(0)("CUR_HAVE") Is Nothing, Nothing, Decimal.Parse(EmployeeDto.Rows(0)("CUR_HAVE").ToString()))
+                End If
+            End Using
+            Dim _filter As New TotalDayOffDTO
+            _filter.DATE_REGISTER = rdFromDate.SelectedDate
+            _filter.LEAVE_TYPE = 251
+            _filter.EMPLOYEE_ID = EmployeeID
+            Dim obj As New TotalDayOffDTO
+            Using rep As New AttendanceRepository
+                obj = rep.GetTotalDayOff(_filter)
+                If obj IsNot Nothing Then
+                    'PHÉP NGOÀI CÔNG TY
+                    If obj.TIME_OUTSIDE_COMPANY IsNot Nothing Then
+                        rntTotal.Text = If(obj.TIME_OUTSIDE_COMPANY = 0, 0, Decimal.Parse(obj.TIME_OUTSIDE_COMPANY).ToString())
+                    Else
+                        rntTotal.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep chế độ
+                    If obj.TOTAL_HAVE1 IsNot Nothing Then
+                        rntEntitlement.Text = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1).ToString())
+                    Else
+                        rntEntitlement.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep dã nghĩ
+                    If obj.USED_DAY IsNot Nothing Then
+                        rntSeniority.Text = If(obj.USED_DAY = 0, 0, Decimal.Parse(obj.USED_DAY).ToString())
+                    Else
+                        rntSeniority.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep tham nien
+                    If obj.SENIORITYHAVE IsNot Nothing Then
+                        rntBrought.Text = If(obj.SENIORITYHAVE = 0, 0, Decimal.Parse(obj.SENIORITYHAVE).ToString())
+                    Else
+                        rntBrought.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phep nam truoc con lai
+                    If obj.PREVTOTAL_HAVE IsNot Nothing Then
+                        rntTotalTaken.Text = If(obj.PREVTOTAL_HAVE = 0, 0, Decimal.Parse(obj.PREVTOTAL_HAVE).ToString())
+                    Else
+                        rntTotalTaken.Text = Decimal.Parse(0).ToString()
+                    End If
+                    'phép còn lại
+                    If obj.REST_DAY IsNot Nothing Then
+                        rntBalance.Text = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY).ToString())
+                    Else
+                        rntBalance.Text = Decimal.Parse(0).ToString()
+                    End If
+                Else
+                    rntSeniority.Text = Decimal.Parse(0).ToString()
+                    rntBrought.Text = Decimal.Parse(0).ToString()
+                    rntTotalTaken.Text = Decimal.Parse(0).ToString()
+                    rntBalance.Text = Decimal.Parse(0).ToString()
+                    rntEntitlement.Text = Decimal.Parse(0).ToString()
+                    rntTotal.Text = Decimal.Parse(0).ToString()
                 End If
             End Using
 
@@ -730,11 +828,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 calDay1 += 1
                             End If
                         End If
-                        If Not chkWorkday.Checked Then
-                            Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
-                            If check > 0 Then
-                                calDay -= 1
-                            End If
+                        Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
+                        If check > 0 Then
+                            calDay -= 1
                         End If
                     End Using
                     selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
@@ -796,12 +892,5 @@ Public Class ctrlLeaveRegistrationNewEdit
         End Try
     End Sub
 
-    Private Sub chkWorkday_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkWorkday.CheckedChanged
-        Try
-            CreateDataFilter()
-        Catch ex As Exception
-
-        End Try
-    End Sub
 
 End Class

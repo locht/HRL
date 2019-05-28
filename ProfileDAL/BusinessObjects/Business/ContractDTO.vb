@@ -60,5 +60,5 @@
     Public Property TITLE_ID As Decimal?
     Public Property Working As WorkingDTO
     Public Property ListAttachFiles As List(Of AttachFilesDTO)
-
+    Public Property OBJECTTIMEKEEPING As Decimal?
 End Class

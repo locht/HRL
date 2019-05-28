@@ -651,7 +651,7 @@ Partial Public Class AttendanceRepository
         Else
             IS_SA = 0
         End If
-        If objTitle.IS_SUN = False Then
+        If objTitle.IS_SUN = True Then
             IS_SUN = -1
         Else
             IS_SUN = 0

@@ -5792,6 +5792,9 @@ Namespace ProfileBusiness
         Private MORNING_STOPField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECTTIMEKEEPINGField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6189,6 +6192,19 @@ Namespace ProfileBusiness
                 If (Me.MORNING_STOPField.Equals(value) <> true) Then
                     Me.MORNING_STOPField = value
                     Me.RaisePropertyChanged("MORNING_STOP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECTTIMEKEEPING() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECTTIMEKEEPINGField
+            End Get
+            Set
+                If (Me.OBJECTTIMEKEEPINGField.Equals(value) <> true) Then
+                    Me.OBJECTTIMEKEEPINGField = value
+                    Me.RaisePropertyChanged("OBJECTTIMEKEEPING")
                 End If
             End Set
         End Property
@@ -22522,6 +22538,12 @@ Namespace ProfileBusiness
         Private NHOM_MAUField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECTTIMEKEEPINGField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECTTIMEKEEPING_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23230,6 +23252,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.NHOM_MAUField, value) <> true) Then
                     Me.NHOM_MAUField = value
                     Me.RaisePropertyChanged("NHOM_MAU")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECTTIMEKEEPING() As System.Nullable(Of Decimal)
+            Get
+                Return Me.OBJECTTIMEKEEPINGField
+            End Get
+            Set
+                If (Me.OBJECTTIMEKEEPINGField.Equals(value) <> true) Then
+                    Me.OBJECTTIMEKEEPINGField = value
+                    Me.RaisePropertyChanged("OBJECTTIMEKEEPING")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECTTIMEKEEPING_NAME() As String
+            Get
+                Return Me.OBJECTTIMEKEEPING_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECTTIMEKEEPING_NAMEField, value) <> true) Then
+                    Me.OBJECTTIMEKEEPING_NAMEField = value
+                    Me.RaisePropertyChanged("OBJECTTIMEKEEPING_NAME")
                 End If
             End Set
         End Property
@@ -42543,7 +42591,7 @@ Namespace ProfileBusiness
         Function CheckEmployee_Exits(ByVal empCode As String) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ImportAnnualLeave", ReplyAction:="http://tempuri.org/IProfileBusiness/ImportAnnualLeaveResponse")>  _
-        Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean
+        Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetALPByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetALPByIDResponse")>  _
         Function GetALPByID(ByVal _filter As ProfileBusiness.TrainningManageDTO) As ProfileBusiness.TrainningManageDTO
@@ -44139,8 +44187,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.CheckEmployee_Exits(empCode)
         End Function
         
-        Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean Implements ProfileBusiness.IProfileBusiness.ImportAnnualLeave
-            Return MyBase.Channel.ImportAnnualLeave(P_DOCXML, P_USER)
+        Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ImportAnnualLeave
+            Return MyBase.Channel.ImportAnnualLeave(P_DOCXML, P_USER, P_YEAR)
         End Function
         
         Public Function GetALPByID(ByVal _filter As ProfileBusiness.TrainningManageDTO) As ProfileBusiness.TrainningManageDTO Implements ProfileBusiness.IProfileBusiness.GetALPByID
