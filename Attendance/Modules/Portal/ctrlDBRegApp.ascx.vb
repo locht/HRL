@@ -64,25 +64,25 @@ Public Class ctrlDBRegApp
                 .ToDate = Date.Now.LastDateOfMonth(),
             .Status = 0
             }
-            Dim listApprove = db.GetListWaitingForApprove(Session("_EmployeeID"), ATConstant.GSIGNCODE_LEAVE, filter)
-            listApprove = listApprove.Where(Function(p) p.STATUS = 0).ToList()
+            Dim listApprove = db.PRS_DASHBOARD_BY_APPROVE(Session("_EmployeeID"), ATConstant.GSIGNCODE_LEAVE)
+            'listApprove = listApprove.Where(Function(p) p.STATUS = 0).ToList()
             ltrTime_LEAVE.DataSource = listApprove
             ltrTime_LEAVE.DataBind()
 
-            Dim listApproveOv = db.GetListWaitingForApprove(Session("_EmployeeID"), ATConstant.GSIGNCODE_OVERTIME, filter)
-            listApproveOv = listApproveOv.Where(Function(p) p.STATUS = 0).ToList()
+            Dim listApproveOv = db.PRS_DASHBOARD_BY_APPROVE(Session("_EmployeeID"), ATConstant.GSIGNCODE_OVERTIME)
+            'listApproveOv = listApproveOv.Where(Function(p) p.STATUS = 0).ToList()
             ltrTime_LEAVE.DataSource = listApproveOv
             ltrOVERTIME.DataBind()
 
 
-            Dim listApproveDMVS = db.GetListWaitingForApprove(LogHelper.CurrentUser.EMPLOYEE_ID, ATConstant.GSIGNCODE_WLEO, filter)
-            listApproveDMVS = listApproveDMVS.Where(Function(p) p.STATUS = 0).ToList()
-            ltrWLEO.DataSource = listApproveDMVS
-            ltrWLEO.DataBind()
+            'Dim listApproveDMVS = db.GetListWaitingForApprove(LogHelper.CurrentUser.EMPLOYEE_ID, ATConstant.GSIGNCODE_WLEO, filter)
+            'listApproveDMVS = listApproveDMVS.Where(Function(p) p.STATUS = 0).ToList()
+            'ltrWLEO.DataSource = listApproveDMVS
+            'ltrWLEO.DataBind()
 
-            Dim listAssess As DataTable = db.GET_PE_ASSESS_MESS(LogHelper.CurrentUser.EMPLOYEE_ID)
-            ltrASSESS.DataSource = listAssess
-            ltrASSESS.DataBind()
+            'Dim listAssess As DataTable = db.GET_PE_ASSESS_MESS(LogHelper.CurrentUser.EMPLOYEE_ID)
+            'ltrASSESS.DataSource = listAssess
+            'ltrASSESS.DataBind()
 
         Catch ex As Exception
             Throw ex

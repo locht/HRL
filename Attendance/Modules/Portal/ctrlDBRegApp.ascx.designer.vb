@@ -50,24 +50,6 @@ Partial Public Class ctrlDBRegApp
     Protected WithEvents ltrOVERTIME As Global.System.Web.UI.WebControls.ListView
 
     '''<summary>
-    '''ltrWLEO control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ltrWLEO As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''ltrASSESS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ltrASSESS As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
     '''RadScriptBlock1 control.
     '''</summary>
     '''<remarks>
