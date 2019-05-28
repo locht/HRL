@@ -15,5 +15,6 @@
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+    Public Property WORKING_DAY As Date?
 End Class
 

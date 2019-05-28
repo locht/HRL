@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 27-May-19 5:39:35 PM
--- Generated from EDMX file: E:\PROJECT\MyHiStaffHCM\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 5/28/2019 4:24:58 PM
+-- Generated from EDMX file: C:\workpasces\hiSSTAFF_HCM\histaffhcm\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2108,7 +2108,8 @@ CREATE TABLE "dbo"."AT_OFFSETTING_TIMEKEEPING_EMP" (
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "TYPE_BT" NUMBER(38,0) NULL,
-   "GROUP_ID" NUMBER(38,0) NULL
+   "GROUP_ID" NUMBER(38,0) NULL,
+   "WORKING_DAY" DATE NULL
 );
 
 -- Creating table 'HUV_AT_PORTAL'

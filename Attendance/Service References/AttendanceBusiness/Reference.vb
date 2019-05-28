@@ -4182,6 +4182,9 @@ Namespace AttendanceBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORKING_DAYField As System.Nullable(Of Date)
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -4370,6 +4373,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORKING_DAY() As System.Nullable(Of Date)
+            Get
+                Return Me.WORKING_DAYField
+            End Get
+            Set
+                If (Me.WORKING_DAYField.Equals(value) <> true) Then
+                    Me.WORKING_DAYField = value
+                    Me.RaisePropertyChanged("WORKING_DAY")
                 End If
             End Set
         End Property
