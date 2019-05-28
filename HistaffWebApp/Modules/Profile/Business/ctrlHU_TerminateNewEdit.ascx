@@ -249,9 +249,16 @@
                 <td class="lb">
                     <%# Translate("Lý do chi tiết")%>
                 </td>
-                <td colspan="5">
+                <td colspan="3">
                     <tlk:RadTextBox ID="txtTerReasonDetail" runat="server" SkinID="TextBox1023" Width="100%">
                     </tlk:RadTextBox>
+                </td>
+                <td class="lb">
+                    <%# Translate("Tình trạng sổ BHXH")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboInsStatus" runat="server">
+                    </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>
@@ -506,7 +513,7 @@
                     <hr />
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td class="lb">
                     <%# Translate("Số phép còn lại")%>
                 </td>
@@ -530,13 +537,13 @@
                     <tlk:RadNumericTextBox ID="rntxtPaymentLeave" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td class="lb">
                     <%# Translate("Lương trung bình tính 6 tháng")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtSalaryMedium_loss" runat="server" MinValue="0" ReadOnly="True">
+                    <tlk:RadNumericTextBox ID="rntxtSalaryMedium_loss" runat="server" MinValue="0">
                         <NumberFormat AllowRounding="false" DecimalDigits="0" DecimalSeparator="." GroupSeparator=","
                             GroupSizes="3" />
                     </tlk:RadNumericTextBox>
@@ -546,7 +553,7 @@
                     <%# Translate("Thời gian tham gia BHTN")%>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtTimeAccidentIns_loss" runat="server" ReadOnly="True">
+                    <tlk:RadTextBox ID="txtTimeAccidentIns_loss" runat="server">
                     </tlk:RadTextBox>
                 </td>
 
@@ -554,8 +561,7 @@
                     <%# Translate("Số năm tính trợ cấp mất việc")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtyearforallow_loss" MinValue="0" runat="server" SkinID="Money"
-                        ReadOnly="true">
+                    <tlk:RadNumericTextBox ID="rntxtyearforallow_loss" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                     <%-- <%--<NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                                     <ClientEvents OnBlur="displayDecimalFormat" OnLoad="displayDecimalFormat" OnValueChanged="displayDecimalFormat" />
@@ -568,7 +574,7 @@
                     <%# Translate("Số tiền còn lại")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtMoneyReturn" MinValue="0" runat="server" SkinID="Money" ReadOnly="true">
+                    <tlk:RadNumericTextBox ID="rntxtMoneyReturn" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
@@ -587,13 +593,13 @@
                     <tlk:RadNumericTextBox ID="rntxtAmountWrongful" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
-                <td class="lb">
+                <%--<td class="lb">
                     <%# Translate("Tiền thanh toán nghỉ bù")%>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtCompensatoryPayment" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
-                </td>
+                </td>--%>
             </tr>
             <tr>
                 <td class="lb">

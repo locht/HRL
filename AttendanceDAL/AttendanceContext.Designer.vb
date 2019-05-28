@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8215fac5-4aaf-4377-96ed-b4350f02e925")>
+<Assembly: EdmSchemaAttribute("e1d0d182-926a-4dc1-8ca8-d76d7d70be60")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -24313,6 +24313,31 @@ Public Partial Class AT_TERMINALS
     End Sub
 
     Private Partial Sub OnTERMINAL_TYPEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TIME_RECORDER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TIME_RECORDER
+        End Get
+        Set
+            OnTIME_RECORDERChanging(value)
+            ReportPropertyChanging("TIME_RECORDER")
+            _TIME_RECORDER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TIME_RECORDER")
+            OnTIME_RECORDERChanged()
+        End Set
+    End Property
+
+    Private _TIME_RECORDER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTIME_RECORDERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTIME_RECORDERChanged()
     End Sub
 
     #End Region

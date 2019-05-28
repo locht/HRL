@@ -194,6 +194,15 @@ Partial Public Class ctrlSwipeMachine
     Protected WithEvents txtPort As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''cboSwipeMachine control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboSwipeMachine As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''txtIP control.
     '''</summary>
     '''<remarks>

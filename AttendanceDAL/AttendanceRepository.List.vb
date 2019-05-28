@@ -2597,6 +2597,7 @@ Partial Public Class AttendanceRepository
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TERMINAL_TYPE And f.ACTFLG = "A").DefaultIfEmpty
+                        From swipe In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TIME_RECORDER And f.ACTFLG = "A").DefaultIfEmpty
                         Select New AT_TERMINALSDTO With {
                                        .ID = p.ID,
                                        .TERMINAL_CODE = p.TERMINAL_CODE,
@@ -2611,6 +2612,8 @@ Partial Public Class AttendanceRepository
                                        .PORT = p.PORT,
                                        .TERMINAL_TYPE = p.TERMINAL_TYPE,
                                        .TERMINAL_TYPE_NAME = ot.NAME_VN,
+                                       .TIME_RECORDER = p.TIME_RECORDER,
+                                       .TIME_RECORDER_NAME = swipe.NAME_VN,
                                        .CREATED_DATE = p.CREATED_DATE,
                                        .CREATED_BY = p.CREATED_BY,
                                        .CREATED_LOG = p.CREATED_LOG,
@@ -2772,6 +2775,7 @@ Partial Public Class AttendanceRepository
             objTitleData.PASS = objTitle.PASS
             objTitleData.PORT = objTitle.PORT
             objTitleData.TERMINAL_TYPE = objTitle.TERMINAL_TYPE
+            objTitleData.TIME_RECORDER = objTitle.TIME_RECORDER
             Context.AT_TERMINALS.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -2841,6 +2845,7 @@ Partial Public Class AttendanceRepository
             objTitleData.PASS = objTitle.PASS
             objTitleData.PORT = objTitle.PORT
             objTitleData.TERMINAL_TYPE = objTitle.TERMINAL_TYPE
+            objTitleData.TIME_RECORDER = objTitle.TIME_RECORDER
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

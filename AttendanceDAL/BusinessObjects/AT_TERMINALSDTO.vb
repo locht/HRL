@@ -24,4 +24,7 @@
     Public Property MODIFIED_LOG As String
     Public Property LAST_TIME_UPDATE As Date?
     Public Property LAST_TIME_STATUS As Date?
+
+    Public Property TIME_RECORDER As Decimal?
+    Public Property TIME_RECORDER_NAME As String
 End Class

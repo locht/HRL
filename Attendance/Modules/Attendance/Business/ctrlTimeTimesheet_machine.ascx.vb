@@ -74,7 +74,7 @@ Public Class ctrlTimeTimesheet_machine
             InitControl()
             If Not IsPostBack Then
                 getSE_CASE_CONFIG()
-                'GirdConfig(rgTimeTimesheet_machine)
+                GirdConfig(rgTimeTimesheet_machine)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

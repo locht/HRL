@@ -105,6 +105,16 @@ Partial Public Class AttendanceRepository
 
     Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO) As Boolean
         Try
+            If cbxData.GET_LIST_TIME_RECORDER Then
+                cbxData.LIST_LIST_TIME_RECORDER = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
+                                            Where p.ACTFLG = "A" And t.CODE = "TIME_RECORDER" Order By p.CREATED_DATE Descending
+                        Select New OT_OTHERLIST_DTO With {
+                            .ID = p.ID,
+                            .CODE = p.CODE,
+                            .NAME_EN = p.NAME_EN,
+                            .NAME_VN = p.NAME_VN,
+                            .TYPE_ID = p.TYPE_ID}).ToList
+            End If
             'GET LOAIJ NGHI BU
             If cbxData.GET_LIST_OFFTIME_TYPE Then
                 cbxData.LIST_LIST_OFFTIME = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
