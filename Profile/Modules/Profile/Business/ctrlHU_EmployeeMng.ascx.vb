@@ -81,6 +81,10 @@ Public Class ctrlHU_EmployeeMng
             'rgEmployeeList.SetFilter()
             'rgEmployeeList.AllowCustomPaging = True
             'rgEmployeeList.ClientSettings.EnablePostBackOnRowClick = False
+            rgEmployeeList.SetFilter()
+            rgEmployeeList.AllowCustomPaging = True
+            rgEmployeeList.PageSize = Common.Common.DefaultPageSize
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
