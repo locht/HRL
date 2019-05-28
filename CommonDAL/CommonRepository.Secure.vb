@@ -1449,13 +1449,13 @@ Partial Public Class CommonRepository
 
 
             If _filter.MODULE_NAME <> "" Then
-                lstTemp = lstTemp.Where(Function(p) p.SE_MODULE.NAME.ToUpper.Contains(_filter.MODULE_NAME.ToUpper))
+                lstTemp = lstTemp.Where(Function(p) p.SE_MODULE.NAME.ToUpper.Contains(_filter.MODULE_NAME.ToUpper)).ToList
             End If
             If _filter.FUNCTION_GROUP_NAME <> "" Then
-                lstTemp = lstTemp.Where(Function(p) p.SE_FUNCTION_GROUP.NAME.ToUpper.Contains(_filter.FUNCTION_GROUP_NAME.ToUpper))
+                lstTemp = lstTemp.Where(Function(p) p.SE_FUNCTION_GROUP.NAME.ToUpper.Contains(_filter.FUNCTION_GROUP_NAME.ToUpper)).ToList
             End If
             If _filter.NAME <> "" Then
-                lstTemp = lstTemp.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper))
+                lstTemp = lstTemp.Where(Function(p) p.NAME.ToUpper.Contains(_filter.NAME.ToUpper)).ToList
             End If
             Dim lst1 = (From p In lstTemp Select p.ID)
             Dim lst2 = (From p In Context.SE_USER_PERMISSION Where p.USER_ID = _UserID Select p.FUNCTION_ID)

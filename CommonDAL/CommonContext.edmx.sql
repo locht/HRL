@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 27/05/2019 3:10:05 PM
--- Generated from EDMX file: E:\histaffhcm-4\CommonDAL\CommonContext.edmx
+-- Date Created: 05/28/2019 5:40:27 PM
+-- Generated from EDMX file: D:\MyProject\core1\histaffhcm-27052019\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -139,14 +139,14 @@ CREATE TABLE "dbo"."SE_GROUP" (
 -- Creating table 'SE_FUNCTION'
 CREATE TABLE "dbo"."SE_FUNCTION" (
    "ID" NUMBER(38,0) NOT NULL,
-   "NAME" NVARCHAR2(255) NOT NULL,
+   "NAME" NVARCHAR2(255) NULL,
    "MODULE_ID" NUMBER(38,0) NULL,
-   "FID" NVARCHAR2(255) NOT NULL,
-   "MODIFIED_DATE" DATE NOT NULL,
-   "MODIFIED_BY" NVARCHAR2(255) NOT NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
+   "FID" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "GROUP_ID" NUMBER(38,0) NULL,
-   "ACTFLG" NVARCHAR2(1) NOT NULL
+   "ACTFLG" NVARCHAR2(1) NULL
 );
 
 -- Creating table 'SE_USER'
