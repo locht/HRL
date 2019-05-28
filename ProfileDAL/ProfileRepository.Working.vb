@@ -1018,6 +1018,7 @@ Partial Class ProfileRepository
                                                         .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                         .EMPLOYEE_NAME = e.FULLNAME_VN,
                                                         .TITLE_ID = e.TITLE_ID,
+                                                        .CODE_ATTENDANCE = e.OBJECTTIMEKEEPING,
                                                         .TITLE_NAME = t.NAME_VN,
                                                         .STAFF_RANK_ID = e.STAFF_RANK_ID,
                                                         .STAFF_RANK_NAME = staffrank.NAME,
@@ -1033,6 +1034,131 @@ Partial Class ProfileRepository
             Throw ex
         End Try
 
+
+    End Function
+    Public Function InsertWorking1(ByVal objWorking As WorkingDTO,
+                                 ByVal log As UserLog,
+                                 ByRef gID As Decimal) As Boolean
+        Dim iCount As Integer = 0
+
+        Try
+            Dim objWorkingData As New HU_WORKING
+            objWorkingData.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name)
+            objWorking.ID = objWorkingData.ID
+            objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            objWorkingData.FILING_DATE = objWorking.FILING_DATE
+            objWorkingData.TITLE_ID = objWorking.TITLE_ID
+            objWorkingData.ORG_ID = objWorking.ORG_ID
+            objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
+            objWorkingData.STATUS_ID = objWorking.STATUS_ID
+            objWorkingData.SALE_COMMISION_ID = objWorking.SALE_COMMISION_ID
+            objWorkingData.EFFECT_DATE = objWorking.EFFECT_DATE
+            objWorkingData.EXPIRE_DATE = objWorking.EXPIRE_DATE
+            objWorkingData.DECISION_TYPE_ID = objWorking.DECISION_TYPE_ID
+            objWorkingData.DECISION_NO = objWorking.DECISION_NO
+            objWorkingData.SAL_TYPE_ID = objWorking.SAL_TYPE_ID
+            objWorkingData.SAL_GROUP_ID = objWorking.SAL_GROUP_ID
+            objWorkingData.SAL_LEVEL_ID = objWorking.SAL_LEVEL_ID
+            objWorkingData.SAL_RANK_ID = objWorking.SAL_RANK_ID
+            objWorkingData.SAL_BASIC = objWorking.SAL_BASIC
+            objWorkingData.COST_SUPPORT = objWorking.COST_SUPPORT
+            objWorkingData.DIRECT_MANAGER = objWorking.DIRECT_MANAGER
+            objWorkingData.SIGN_DATE = objWorking.SIGN_DATE
+            objWorkingData.SIGN_ID = objWorking.SIGN_ID
+            objWorkingData.SIGN_NAME = objWorking.SIGN_NAME
+            objWorkingData.SIGN_TITLE = objWorking.SIGN_TITLE
+            objWorkingData.REMARK = objWorking.REMARK
+            objWorkingData.IS_PROCESS = objWorking.IS_PROCESS
+            objWorkingData.IS_MISSION = objWorking.IS_MISSION
+            objWorkingData.IS_WAGE = objWorking.IS_WAGE
+            objWorkingData.IS_3B = False
+            objWorkingData.PERCENT_SALARY = objWorking.PERCENT_SALARY
+            objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
+            objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
+            objWorkingData.FILENAME = objWorking.FILENAME
+            objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
+            objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
+            objWorkingData.SAL_INS = objWorking.SAL_INS
+            objWorkingData.ALLOWANCE_TOTAL = objWorking.ALLOWANCE_TOTAL
+            objWorkingData.SAL_INS = objWorking.SAL_INS
+            objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
+            objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
+            objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
+            objWorkingData.OTHERSALARY1 = objWorking.OTHERSALARY1
+            objWorkingData.OTHERSALARY2 = objWorking.OTHERSALARY2
+            objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
+            objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
+            objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
+            Context.HU_WORKING.AddObject(objWorkingData)
+
+            ' nếu phê duyệt
+            If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                ApproveWorking1(objWorking)
+            End If
+
+            If objWorking.lstAllowance IsNot Nothing Then
+                objWorking.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT)
+                For Each item In objWorking.lstAllowance
+                    If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        Dim objALlow = (From p In Context.HU_WORKING_ALLOW
+                                        From w In Context.HU_WORKING.Where(Function(f) f.ID = p.HU_WORKING_ID)
+                                        Where p.ALLOWANCE_LIST_ID = item.ALLOWANCE_LIST_ID And
+                                        w.EMPLOYEE_ID = objWorking.EMPLOYEE_ID And
+                                        p.EFFECT_DATE < item.EFFECT_DATE And
+                                        p.EXPIRE_DATE Is Nothing
+                                        Select p).FirstOrDefault
+
+                        If objALlow IsNot Nothing Then
+                            objALlow.EXPIRE_DATE = item.EFFECT_DATE.Value.AddDays(-1)
+                        End If
+                    End If
+                    Dim allow As New HU_WORKING_ALLOW
+                    allow.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING_ALLOW.EntitySet.Name)
+                    allow.HU_WORKING_ID = objWorkingData.ID
+                    allow.ALLOWANCE_LIST_ID = item.ALLOWANCE_LIST_ID
+                    allow.AMOUNT = item.AMOUNT
+                    allow.IS_INSURRANCE = item.IS_INSURRANCE
+                    allow.EFFECT_DATE = item.EFFECT_DATE
+                    allow.EXPIRE_DATE = item.EXPIRE_DATE
+                    Context.HU_WORKING_ALLOW.AddObject(allow)
+                Next
+            End If
+
+
+            'Dim insurranceAllow = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID And f.IS_INSURRANCE = True).Sum(Function(f) f.AMOUNT)
+            'If insurranceAllow.HasValue = False Then
+            '    insurranceAllow = 0
+            'End If
+            'objWorkingData.SAL_INS = objWorkingData.SAL_BASIC + insurranceAllow
+            Context.SaveChanges(log)
+            'Dim sumAllowIns As Decimal?
+            'Dim sumAllow = GetAllowanceTotalByDate(objWorking.EMPLOYEE_ID, objWorking.EFFECT_DATE, sumAllowIns)
+            'Dim total As Decimal? = 0
+            'If objWorkingData.SAL_BASIC IsNot Nothing Then
+            '    total = total + objWorkingData.SAL_BASIC
+            'End If
+            If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                Dim totalIns As Decimal = 0
+                'If sumAllowIns IsNot Nothing Then
+                '    totalIns += sumAllowIns
+                'End If
+                AutoGenInsChangeByWorking(objWorkingData.EMPLOYEE_ID,
+                                 objWorkingData.ORG_ID,
+                                 objWorkingData.TITLE_ID,
+                                 objWorkingData.EFFECT_DATE,
+                                 objWorkingData.SAL_INS,
+                                 log)
+            End If
+
+
+            Context.SaveChanges()
+
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
 
     End Function
 
@@ -1184,7 +1310,140 @@ Partial Class ProfileRepository
 
         Return sumAllow
     End Function
+    Public Function ModifyWorking1(ByVal objWorking As WorkingDTO,
+                                 ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
+        Try
+            Dim objWorkingData = (From p In Context.HU_WORKING Where objWorking.ID = p.ID).First()
+            objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
+            objWorkingData.TITLE_ID = objWorking.TITLE_ID
+            objWorkingData.ORG_ID = objWorking.ORG_ID
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            'objWorkingData.OBJECT_ATTENDANCE = objWorking.CODE_ATTENDANCE
+            objWorkingData.FILING_DATE = objWorking.FILING_DATE
+            objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
+            objWorkingData.STATUS_ID = objWorking.STATUS_ID
+            objWorkingData.EFFECT_DATE = objWorking.EFFECT_DATE
+            objWorkingData.EXPIRE_DATE = objWorking.EXPIRE_DATE
+            objWorkingData.DECISION_TYPE_ID = objWorking.DECISION_TYPE_ID
+            objWorkingData.DECISION_NO = objWorking.DECISION_NO
+            objWorkingData.SAL_TYPE_ID = objWorking.SAL_TYPE_ID
+            objWorkingData.SAL_GROUP_ID = objWorking.SAL_GROUP_ID
+            objWorkingData.SAL_LEVEL_ID = objWorking.SAL_LEVEL_ID
+            objWorkingData.SAL_RANK_ID = objWorking.SAL_RANK_ID
+            objWorkingData.SALE_COMMISION_ID = objWorking.SALE_COMMISION_ID
+            objWorkingData.SAL_BASIC = objWorking.SAL_BASIC
+            objWorkingData.COST_SUPPORT = objWorking.COST_SUPPORT
+            objWorkingData.DIRECT_MANAGER = objWorking.DIRECT_MANAGER
+            objWorkingData.SIGN_DATE = objWorking.SIGN_DATE
+            objWorkingData.SIGN_ID = objWorking.SIGN_ID
+            objWorkingData.SIGN_NAME = objWorking.SIGN_NAME
+            objWorkingData.SIGN_TITLE = objWorking.SIGN_TITLE
+            objWorkingData.REMARK = objWorking.REMARK
+            objWorkingData.IS_PROCESS = objWorking.IS_PROCESS
+            objWorkingData.IS_MISSION = objWorking.IS_MISSION
+            objWorkingData.PERCENT_SALARY = objWorking.PERCENT_SALARY
+            objWorkingData.IS_WAGE = objWorking.IS_WAGE
+            objWorkingData.IS_3B = False
+            objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
+            objWorkingData.SAL_INS = objWorking.SAL_INS
+            objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
+            objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
+            objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
+            objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
+            objWorkingData.OTHERSALARY1 = objWorking.OTHERSALARY1
+            objWorkingData.OTHERSALARY2 = objWorking.OTHERSALARY2
+            objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
+            objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
+            objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
+            If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                ApproveWorking1(objWorking)
+            End If
+
+            If objWorking.lstAllowance IsNot Nothing Then
+                objWorking.ALLOWANCE_TOTAL = objWorking.lstAllowance.Sum(Function(f) f.AMOUNT)
+                Dim lstAll = (From p In Context.HU_WORKING_ALLOW Where p.HU_WORKING_ID = objWorking.ID).ToList
+                For Each item In lstAll
+                    Context.HU_WORKING_ALLOW.DeleteObject(item)
+                Next
+
+                For Each item In objWorking.lstAllowance
+                    If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        Dim objALlow = (From p In Context.HU_WORKING_ALLOW
+                                        From w In Context.HU_WORKING.Where(Function(f) f.ID = p.HU_WORKING_ID)
+                                        Where p.ALLOWANCE_LIST_ID = item.ALLOWANCE_LIST_ID And
+                                        w.EMPLOYEE_ID = objWorking.EMPLOYEE_ID And
+                                        p.EFFECT_DATE < item.EFFECT_DATE And
+                                        p.EXPIRE_DATE Is Nothing And w.ID <> objWorking.ID
+                                        Select p).FirstOrDefault
+
+                        If objALlow IsNot Nothing Then
+                            objALlow.EXPIRE_DATE = item.EFFECT_DATE.Value.AddDays(-1)
+                        End If
+                    End If
+                    Dim allow As New HU_WORKING_ALLOW
+                    allow.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING_ALLOW.EntitySet.Name)
+                    allow.HU_WORKING_ID = objWorkingData.ID
+                    allow.ALLOWANCE_LIST_ID = item.ALLOWANCE_LIST_ID
+                    allow.AMOUNT = item.AMOUNT
+                    allow.IS_INSURRANCE = item.IS_INSURRANCE
+                    allow.EFFECT_DATE = item.EFFECT_DATE
+                    allow.EXPIRE_DATE = item.EXPIRE_DATE
+                    Context.HU_WORKING_ALLOW.AddObject(allow)
+                Next
+            End If
+
+            Context.SaveChanges(log)
+            objWorkingData.ALLOWANCE_TOTAL = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID).Sum(Function(f) f.AMOUNT)
+            Dim allowanceTotal = 0
+            If objWorkingData.ALLOWANCE_TOTAL.HasValue Then
+                allowanceTotal = objWorkingData.ALLOWANCE_TOTAL.Value
+            End If
+            objWorkingData.SAL_TOTAL = objWorkingData.SAL_BASIC + allowanceTotal
+
+            Dim insurranceAllow = Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = objWorking.ID And f.IS_INSURRANCE = True).Sum(Function(f) f.AMOUNT)
+            If insurranceAllow.HasValue = False Then
+                insurranceAllow = 0
+            End If
+            objWorkingData.SAL_INS = objWorkingData.SAL_INS
+
+            'Dim sumAllowIns As Decimal?
+            'Dim sumAllow = GetAllowanceTotalByDate(objWorking.EMPLOYEE_ID, objWorking.EFFECT_DATE, sumAllowIns)
+            ' Dim total As Decimal? = 0
+            'If objWorkingData.SAL_BASIC IsNot Nothing Then
+            '    total = total + objWorkingData.SAL_BASIC
+            'End If
+            If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                'Dim totalIns As Decimal = 0
+                'If sumAllowIns IsNot Nothing Then
+                '    totalIns += sumAllowIns
+                'End If
+                AutoGenInsChangeByWorking(objWorkingData.EMPLOYEE_ID,
+                                 objWorkingData.ORG_ID,
+                                 objWorkingData.TITLE_ID,
+                                 objWorkingData.EFFECT_DATE,
+                                          objWorkingData.SAL_INS,
+                                 log)
+            End If
+            'If objWorkingData.COST_SUPPORT IsNot Nothing Then
+            '    total = total + objWorkingData.COST_SUPPORT
+            'End If
+            'If objWorkingData.PERCENT_SALARY IsNot Nothing Then
+            '    total = total * objWorkingData.PERCENT_SALARY / 100
+            'Else
+            '    total = 0
+            'End If
+            'objWorkingData.SAL_TOTAL = total
+
+
+            Context.SaveChanges()
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Return False
+        End Try
+
+    End Function
     Public Function ModifyWorking(ByVal objWorking As WorkingDTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
@@ -1424,8 +1683,7 @@ Partial Class ProfileRepository
         End Try
 
     End Function
-
-    Public Function ApproveWorking(ByVal objWorking As WorkingDTO) As Boolean
+    Public Function ApproveWorking1(ByVal objWorking As WorkingDTO) As Boolean
 
         Try
             ' Phê duyệt và cập nhật sang hồ sơ
@@ -1443,6 +1701,29 @@ Partial Class ProfileRepository
                 item.LAST_WORKING_ID = objWorking.ID
                 item.MODIFIED_DATE = Date.Now
                 item.OBJECTTIMEKEEPING = objWorking.OBJECT_ATTENDANCE
+            End If
+
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+    Public Function ApproveWorking(ByVal objWorking As WorkingDTO) As Boolean
+
+        Try
+            ' Phê duyệt và cập nhật sang hồ sơ
+
+            If Format(objWorking.EFFECT_DATE, "yyyyMMdd") > Format(Date.Now, "yyyyMMdd") Then
+                Exit Function
+            End If
+
+            Dim item = (From p In Context.HU_EMPLOYEE Where objWorking.EMPLOYEE_ID = p.ID).FirstOrDefault
+            If item IsNot Nothing Then
+          
+                item.LAST_WORKING_ID = objWorking.ID
+             
             End If
 
             Return True

@@ -572,7 +572,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                If rep.InsertWorking(objWorking, gID) Then
+                                If rep.InsertWorking1(objWorking, gID) Then
                                     Dim str As String = "getRadWindow().close('1');"
                                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
@@ -594,7 +594,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                 End If
                             Case CommonMessage.STATE_EDIT
                                 objWorking.ID = Decimal.Parse(hidID.Value)
-                                If rep.ModifyWorking(objWorking, gID) Then
+                                If rep.ModifyWorking1(objWorking, gID) Then
                                     'Dim str As String = "getRadWindow().close('1');"
                                     'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
