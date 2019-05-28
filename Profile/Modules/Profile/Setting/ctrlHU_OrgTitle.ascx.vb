@@ -108,6 +108,9 @@ Public Class ctrlHU_OrgTitle
             rgOrgTitle.SetFilter()
             rgOrgTitle.AllowCustomPaging = True
             InitControl()
+            If Not IsPostBack Then
+                GirdConfig(rgOrgTitle)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

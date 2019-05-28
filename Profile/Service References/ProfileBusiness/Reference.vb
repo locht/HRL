@@ -1817,105 +1817,105 @@ Namespace ProfileBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
         
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ID_PORTAL_REGField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LEAVE_TYPEField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIMIT_DAYField As String
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIMIT_YEARField As String
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PREVTOTAL_HAVEField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PREV_HAVEField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PREV_USEDField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REST_DAYField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SENIORITYHAVEField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TIME_MANUAL_IDField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TIME_OUTSIDE_COMPANYField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TOTAL_DAYField As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TOTAL_HAVE1Field As System.Nullable(Of Decimal)
-
-        <System.Runtime.Serialization.OptionalFieldAttribute()> _
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private USED_DAYField As System.Nullable(Of Decimal)
-
-        <Global.System.ComponentModel.BrowsableAttribute(False)> _
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
                 Return Me.extensionDataField
             End Get
-            Set(value As System.Runtime.Serialization.ExtensionDataObject)
+            Set
                 Me.extensionDataField = value
             End Set
         End Property
-
-        <System.Runtime.Serialization.DataMemberAttribute()> _
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property DATE_REGISTER() As System.Nullable(Of Date)
             Get
                 Return Me.DATE_REGISTERField
             End Get
-            Set(value As System.Nullable(Of Date))
-                If (Me.DATE_REGISTERField.Equals(value) <> True) Then
+            Set
+                If (Me.DATE_REGISTERField.Equals(value) <> true) Then
                     Me.DATE_REGISTERField = value
                     Me.RaisePropertyChanged("DATE_REGISTER")
                 End If
             End Set
         End Property
-
-        <System.Runtime.Serialization.DataMemberAttribute()> _
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.EMPLOYEE_IDField
             End Get
-            Set(value As System.Nullable(Of Decimal))
-                If (Me.EMPLOYEE_IDField.Equals(value) <> True) Then
+            Set
+                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
                     Me.EMPLOYEE_IDField = value
                     Me.RaisePropertyChanged("EMPLOYEE_ID")
                 End If
             End Set
         End Property
-
-        <System.Runtime.Serialization.DataMemberAttribute()> _
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ID_PORTAL_REG() As System.Nullable(Of Decimal)
             Get
                 Return Me.ID_PORTAL_REGField
             End Get
-            Set(value As System.Nullable(Of Decimal))
-                If (Me.ID_PORTAL_REGField.Equals(value) <> True) Then
+            Set
+                If (Me.ID_PORTAL_REGField.Equals(value) <> true) Then
                     Me.ID_PORTAL_REGField = value
                     Me.RaisePropertyChanged("ID_PORTAL_REG")
                 End If
             End Set
         End Property
-
-        <System.Runtime.Serialization.DataMemberAttribute()> _
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property LEAVE_TYPE() As System.Nullable(Of Decimal)
             Get
                 Return Me.LEAVE_TYPEField
             End Get
-            Set(value As System.Nullable(Of Decimal))
-                If (Me.LEAVE_TYPEField.Equals(Value) <> True) Then
-                    Me.LEAVE_TYPEField = Value
+            Set
+                If (Me.LEAVE_TYPEField.Equals(value) <> true) Then
+                    Me.LEAVE_TYPEField = value
                     Me.RaisePropertyChanged("LEAVE_TYPE")
                 End If
             End Set
@@ -6837,6 +6837,9 @@ Namespace ProfileBusiness
         Private CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CODE_ATTENDANCEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private COST_SUPPORTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7212,6 +7215,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CODEField, value) <> true) Then
                     Me.CODEField = value
                     Me.RaisePropertyChanged("CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CODE_ATTENDANCE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.CODE_ATTENDANCEField
+            End Get
+            Set
+                If (Me.CODE_ATTENDANCEField.Equals(value) <> true) Then
+                    Me.CODE_ATTENDANCEField = value
+                    Me.RaisePropertyChanged("CODE_ATTENDANCE")
                 End If
             End Set
         End Property

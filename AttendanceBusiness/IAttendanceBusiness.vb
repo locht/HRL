@@ -1168,5 +1168,8 @@ Namespace AttendanceBusiness.ServiceContracts
 
         <OperationContract()>
         Function GET_PE_ASSESS_MESS(ByVal EMP As Decimal?) As DataTable
+
+        <OperationContract()>
+        Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As DataTable
     End Interface
 End Namespace

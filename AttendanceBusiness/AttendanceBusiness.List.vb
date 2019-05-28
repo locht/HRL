@@ -1982,6 +1982,17 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
+        Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As DataTable _
+            Implements IAttendanceBusiness.PRS_DASHBOARD_BY_APPROVE
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.PRS_DASHBOARD_BY_APPROVE(P_EMPLOYEE_APP_ID, P_PROCESS_TYPE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
 #Region "cham cong"
         Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_DTO,
                                      Optional ByRef Total As Integer = 0,

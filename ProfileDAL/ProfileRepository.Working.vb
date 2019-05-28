@@ -959,6 +959,7 @@ Partial Class ProfileRepository
                                  .STAFF_RANK_NAME = staffrank.NAME,
                                  .ORG_ID = p.ORG_ID,
                                  .ORG_NAME = o.NAME_VN,
+                                 .CODE_ATTENDANCE = e.OBJECTTIMEKEEPING,
                                  .ORG_DESC = o.DESCRIPTION_PATH,
                                  .EFFECT_DATE = p.EFFECT_DATE,
                                  .EXPIRE_DATE = p.EXPIRE_DATE,
@@ -1045,10 +1046,11 @@ Partial Class ProfileRepository
             objWorkingData.ID = Utilities.GetNextSequence(Context, Context.HU_WORKING.EntitySet.Name)
             objWorking.ID = objWorkingData.ID
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
-            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            ' objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
             objWorkingData.FILING_DATE = objWorking.FILING_DATE
             objWorkingData.TITLE_ID = objWorking.TITLE_ID
             objWorkingData.ORG_ID = objWorking.ORG_ID
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.CODE_ATTENDANCE
             objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
             objWorkingData.STATUS_ID = objWorking.STATUS_ID
             objWorkingData.SALE_COMMISION_ID = objWorking.SALE_COMMISION_ID
@@ -1191,7 +1193,8 @@ Partial Class ProfileRepository
             objWorkingData.EMPLOYEE_ID = objWorking.EMPLOYEE_ID
             objWorkingData.TITLE_ID = objWorking.TITLE_ID
             objWorkingData.ORG_ID = objWorking.ORG_ID
-            objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            'objWorkingData.OBJECT_ATTENDANCE = objWorking.OBJECT_ATTENDANCE
+            objWorkingData.OBJECT_ATTENDANCE = objWorking.CODE_ATTENDANCE
             objWorkingData.FILING_DATE = objWorking.FILING_DATE
             objWorkingData.STAFF_RANK_ID = objWorking.STAFF_RANK_ID
             objWorkingData.STATUS_ID = objWorking.STATUS_ID

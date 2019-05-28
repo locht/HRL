@@ -131,4 +131,5 @@
     Public Property OTHERSALARY3 As Decimal?
     Public Property OTHERSALARY4 As Decimal?
     Public Property OTHERSALARY5 As Decimal?
+    Public Property CODE_ATTENDANCE As Decimal?
 End Class

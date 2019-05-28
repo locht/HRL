@@ -6995,6 +6995,13 @@ Partial Public Class AttendanceRepository
     End Function
 #End Region
 
+    Public Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As DataTable
+        Using cls As New DataAccess.QueryData
+            Dim dt As DataTable = cls.ExecuteStore("PKG_AT_PROCESS.PRS_DASHBOARD_BY_APPROVE", New With {.P_EMPLOYEE_APP_ID = P_EMPLOYEE_APP_ID,
+                                                                                                .P_PROCESS_TYPE = P_PROCESS_TYPE, .P_CUR = cls.OUT_CURSOR})
 
+            Return dt
+        End Using
+    End Function
 
 End Class

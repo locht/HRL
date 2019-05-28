@@ -32,6 +32,14 @@ Public Class ctrlHU_WageNewEdit
             ViewState(Me.ID & "_Working") = value
         End Set
     End Property
+    Property code_attendent As Integer
+        Get
+            Return ViewState(Me.ID & "_code_attendent")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_code_attendent") = value
+        End Set
+    End Property
     'Kieu man hinh tim kiem
     '0 - normal
     '1 - Employee
@@ -436,6 +444,7 @@ Public Class ctrlHU_WageNewEdit
                             .EFFECT_DATE = rdEffectDate.SelectedDate
                             .EXPIRE_DATE = rdExpireDate.SelectedDate
                             .DECISION_NO = txtDecisionNo.Text
+                            .CODE_ATTENDANCE = code_attendent
                             If cboSalTYPE.SelectedValue <> "" Then
                                 .SAL_TYPE_ID = cboSalTYPE.SelectedValue
                             End If
@@ -1032,6 +1041,7 @@ Public Class ctrlHU_WageNewEdit
                 rgAllow.Rebind()
                 hidID.Value = obj.ID.ToString
                 hidEmp.Value = obj.EMPLOYEE_ID
+                code_attendent = obj.CODE_ATTENDANCE
                 txtEmployeeCode.Text = obj.EMPLOYEE_CODE
                 txtEmployeeName.Text = obj.EMPLOYEE_NAME
                 hidTitle.Value = obj.TITLE_ID

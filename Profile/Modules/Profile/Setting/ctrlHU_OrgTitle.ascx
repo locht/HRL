@@ -19,21 +19,21 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,TITLE_ID,ACTFLG,NAME_VN">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã chức danh %>" DataField="CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã chức danh" DataField="CODE"
                                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" SortExpression="CODE"
                                 UniqueName="CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên chức danh %>" DataField="NAME_VN"
+                            <tlk:GridBoundColumn HeaderText="Tên chức danh" DataField="NAME_VN"
                                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" SortExpression="NAME_VN"
                                 UniqueName="NAME_VN" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm chức danh %>" DataField="TITLE_GROUP_NAME"
+                            <tlk:GridBoundColumn HeaderText="Nhóm chức danh" DataField="TITLE_GROUP_NAME"
                                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" SortExpression="TITLE_GROUP_NAME"
                                 UniqueName="TITLE_GROUP_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="ACTFLG"
                                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" SortExpression="ACTFLG"
-                                UniqueName="ACTFLG" />
+                                UniqueName="ACTFLG" />--%>
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>
