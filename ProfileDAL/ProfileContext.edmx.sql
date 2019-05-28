@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/27/2019 5:00:00 PM
+-- Date Created: 05/28/2019 9:04:18 AM
 -- Generated from EDMX file: D:\MyProject\core1\histaffhcm-27052019\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_WORKING";
+-- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_CONTRACT";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1061,16 +1061,6 @@ CREATE TABLE "dbo"."HUV_CURRENT_WORKING" (
    "STAFF_RANK_ID" NUMBER(38,0) NULL,
    "EFFECT_DATE" DATE NULL,
    "DIRECT_MANAGER" NUMBER(38,0) NULL
-);
-
--- Creating table 'HUV_CURRENT_CONTRACT'
-CREATE TABLE "dbo"."HUV_CURRENT_CONTRACT" (
-   "ID" NUMBER(38,0) NOT NULL,
-   "EMPLOYEE_ID" NUMBER(38,0) NULL,
-   "START_DATE" DATE NULL,
-   "EXPIRE_DATE" DATE NULL,
-   "WORKING_ID" NUMBER(38,0) NULL,
-   "CONTRACT_TYPE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_CONDITION_COL'
@@ -2963,6 +2953,16 @@ CREATE TABLE "dbo"."HUV_CURRENT_WORKING1" (
    "OBJECT_ATTENDANCE" NUMBER(38,0) NULL
 );
 
+-- Creating table 'HUV_CURRENT_CONTRACT'
+CREATE TABLE "dbo"."HUV_CURRENT_CONTRACT" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "START_DATE" DATE NULL,
+   "EXPIRE_DATE" DATE NULL,
+   "WORKING_ID" NUMBER(38,0) NULL,
+   "CONTRACT_TYPE_ID" NUMBER(38,0) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -3345,14 +3345,6 @@ ADD CONSTRAINT "PK_INS_INFORMATION"
 -- Creating primary key on "ID"in table 'HUV_CURRENT_WORKING'
 ALTER TABLE "dbo"."HUV_CURRENT_WORKING"
 ADD CONSTRAINT "PK_HUV_CURRENT_WORKING"
-   PRIMARY KEY ("ID" )
-   ENABLE
-   VALIDATE;
-
-
--- Creating primary key on "ID"in table 'HUV_CURRENT_CONTRACT'
-ALTER TABLE "dbo"."HUV_CURRENT_CONTRACT"
-ADD CONSTRAINT "PK_HUV_CURRENT_CONTRACT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
@@ -4049,6 +4041,14 @@ ADD CONSTRAINT "PK_HU_ANNUALLEAVE_PLANS"
 -- Creating primary key on "ID"in table 'HUV_CURRENT_WORKING1'
 ALTER TABLE "dbo"."HUV_CURRENT_WORKING1"
 ADD CONSTRAINT "PK_HUV_CURRENT_WORKING1"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'HUV_CURRENT_CONTRACT'
+ALTER TABLE "dbo"."HUV_CURRENT_CONTRACT"
+ADD CONSTRAINT "PK_HUV_CURRENT_CONTRACT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
