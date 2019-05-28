@@ -1518,12 +1518,18 @@ Partial Class ProfileRepository
             If _filter.EMPLOYEE_NAME <> "" Then
                 query = query.Where(Function(p) p.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
             End If
-            If _filter.FROM_DATE IsNot Nothing Then
+            If _filter.FROM_DATE IsNot Nothing And _filter.TO_DATE Is Nothing Then
                 query = query.Where(Function(p) p.p.START_DATE >= _filter.FROM_DATE)
             End If
-            If _filter.TO_DATE IsNot Nothing Then
+            If _filter.TO_DATE IsNot Nothing And _filter.FROM_DATE Is Nothing Then
                 query = query.Where(Function(p) p.p.START_DATE <= _filter.TO_DATE)
             End If
+
+            If _filter.FROM_DATE IsNot Nothing And _filter.TO_DATE IsNot Nothing Then
+                query = query.Where(Function(p) (_filter.FROM_DATE >= p.p.START_DATE And p.p.END_DATE >= _filter.FROM_DATE) Or (_filter.TO_DATE >= p.p.START_DATE And p.p.END_DATE >= _filter.TO_DATE))
+            End If
+
+
             If _filter.START_DATE IsNot Nothing Then
                 query = query.Where(Function(p) p.p.START_DATE = _filter.START_DATE)
             End If
