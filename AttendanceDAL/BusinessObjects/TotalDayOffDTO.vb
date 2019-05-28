@@ -16,4 +16,6 @@
     Public Property TOTAL_HAVE1 As Decimal? 'hép chuẩn năm nay
     Public Property TIME_OUTSIDE_COMPANY As Decimal? 'hép chuẩn năm nay
 
+    Public Property ID_PORTAL_REG As Decimal?
+
 End Class

@@ -17,12 +17,174 @@
       <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AttendanceDAL" />
       <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
-      <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd4" />
+      <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
       <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd6" />
       <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IAttendanceBusiness_GetListSignCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListSignCode" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetListSignCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListSignCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApprove_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListWaitingForApprove" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApprove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListWaitingForApproveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApproveOT_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListWaitingForApproveOT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApproveOT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListWaitingForApproveOTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ApprovePortalRegister_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApprovePortalRegister" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ApprovePortalRegister_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApprovePortalRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetEmployeeList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeList" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetEmployeeList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetLeaveDay_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveDay" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetLeaveDay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveDayResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUAL" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALById" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertAT_TIME_MANUAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAT_TIME_MANUAL" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertAT_TIME_MANUAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAT_TIME_MANUALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateAT_TIME_MANUAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateAT_TIME_MANUAL" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateAT_TIME_MANUAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateAT_TIME_MANUALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyAT_TIME_MANUAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyAT_TIME_MANUAL" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyAT_TIME_MANUAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyAT_TIME_MANUALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveAT_TIME_MANUAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveAT_TIME_MANUAL" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveAT_TIME_MANUAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveAT_TIME_MANUALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteAT_TIME_MANUAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAT_TIME_MANUAL" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteAT_TIME_MANUAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAT_TIME_MANUALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetDataImportCO_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataImportCO" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetDataImportCO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataImportCOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetListParamItime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListParamItime" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetListParamItime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListParamItimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertListParamItime_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertListParamItime" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertListParamItime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertListParamItimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateListParamItime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateListParamItime" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateListParamItime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateListParamItimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyListParamItime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyListParamItime" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyListParamItime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyListParamItimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveListParamItime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveListParamItime" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveListParamItime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveListParamItimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteListParamItime_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteListParamItime" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteListParamItime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteListParamItimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_REPORT_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_REPORT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_REPORT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_REPORTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetReportById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportById" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetReportById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT001_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT001" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT001_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT001Response" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT002_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT002" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT002_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT002Response" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT003_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT003" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT003_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT003Response" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT004_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT004" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT004_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT004Response" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT005_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT005" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GET_AT005_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_AT005Response" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GET_AT006_InputMessage">
     <wsdl:part name="parameters" element="tns:GET_AT006" />
   </wsdl:message>
@@ -335,11 +497,137 @@
   <wsdl:message name="IAttendanceBusiness_ModifyPortalRegList_OutputMessage">
     <wsdl:part name="parameters" element="tns:ModifyPortalRegListResponse" />
   </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetShiftCycle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShiftCycle" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetShiftCycle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShiftCycleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetEmployeeShifts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeShifts" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetEmployeeShifts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeShiftsResponse" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GET_PE_ASSESS_MESS_InputMessage">
     <wsdl:part name="parameters" element="tns:GET_PE_ASSESS_MESS" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GET_PE_ASSESS_MESS_OutputMessage">
     <wsdl:part name="parameters" element="tns:GET_PE_ASSESS_MESSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetTerminalFromOtOtherList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalFromOtOtherList" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetTerminalFromOtOtherList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalFromOtOtherListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetTerminal_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminal" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetTerminal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetTerminalAuto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalAuto" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetTerminalAuto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminalAutoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_UpdateTerminalLastTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalLastTime" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_UpdateTerminalLastTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalLastTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_UpdateTerminalStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalStatus" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_UpdateTerminalStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTerminalStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetSwipeData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSwipeData" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetSwipeData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSwipeDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertSwipeData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSwipeData" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertSwipeData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSwipeDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ImportSwipeDataAuto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSwipeDataAuto" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ImportSwipeDataAuto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSwipeDataAutoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertSwipeDataImport_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSwipeDataImport" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertSwipeDataImport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSwipeDataImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ImportSwipeData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSwipeData" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ImportSwipeData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportSwipeDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_SHIFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_SHIFT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_SHIFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_SHIFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertAT_SHIFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAT_SHIFT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertAT_SHIFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAT_SHIFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateAT_SHIFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateAT_SHIFT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateAT_SHIFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateAT_SHIFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyAT_SHIFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyAT_SHIFT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyAT_SHIFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyAT_SHIFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveAT_SHIFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveAT_SHIFT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveAT_SHIFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveAT_SHIFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteAT_SHIFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAT_SHIFT" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteAT_SHIFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAT_SHIFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALBINCOMBO" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALBINCOMBOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateCombobox_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateCombobox" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateCombobox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateComboboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_Holiday_Object_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_Holiday_Object" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetAT_Holiday_Object_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAT_Holiday_ObjectResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_InsertAT_Holiday_Object_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertAT_Holiday_Object" />
@@ -557,6 +845,48 @@
   <wsdl:message name="IAttendanceBusiness_GetOtRegistration_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOtRegistrationResponse" />
   </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertOtRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOtRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertOtRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOtRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyotRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyotRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ModifyotRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyotRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_SendApproveOtRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendApproveOtRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_SendApproveOtRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendApproveOtRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ApproveOtRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveOtRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ApproveOtRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveOtRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateOtRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateOtRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateOtRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateOtRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_HRReviewOtRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:HRReviewOtRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_HRReviewOtRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HRReviewOtRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteOtRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOtRegistration" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteOtRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOtRegistrationResponse" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GET_REG_PORTAL_InputMessage">
     <wsdl:part name="parameters" element="tns:GET_REG_PORTAL" />
   </wsdl:message>
@@ -629,6 +959,12 @@
   <wsdl:message name="IAttendanceBusiness_CHECK_RGT_OT_OutputMessage">
     <wsdl:part name="parameters" element="tns:CHECK_RGT_OTResponse" />
   </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetHolidayByCalenderToTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHolidayByCalenderToTable" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetHolidayByCalenderToTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHolidayByCalenderToTableResponse" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GetPlanningAppointmentByEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlanningAppointmentByEmployee" />
   </wsdl:message>
@@ -689,167 +1025,89 @@
   <wsdl:message name="IAttendanceBusiness_SendRegisterToApprove_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendRegisterToApproveResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListSignCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetListSignCode" />
+  <wsdl:message name="IAttendanceBusiness_DeleteOffTimeKeeping_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOffTimeKeeping" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListSignCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetListSignCodeResponse" />
+  <wsdl:message name="IAttendanceBusiness_DeleteOffTimeKeeping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOffTimeKeepingResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApprove_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetListWaitingForApprove" />
+  <wsdl:message name="IAttendanceBusiness_DeleteDelareEntitlementNB_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDelareEntitlementNB" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApprove_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetListWaitingForApproveResponse" />
+  <wsdl:message name="IAttendanceBusiness_DeleteDelareEntitlementNB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDelareEntitlementNBResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApproveOT_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetListWaitingForApproveOT" />
+  <wsdl:message name="IAttendanceBusiness_ValidateMonthThamNien_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMonthThamNien" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListWaitingForApproveOT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetListWaitingForApproveOTResponse" />
+  <wsdl:message name="IAttendanceBusiness_ValidateMonthThamNien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMonthThamNienResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ApprovePortalRegister_InputMessage">
-    <wsdl:part name="parameters" element="tns:ApprovePortalRegister" />
+  <wsdl:message name="IAttendanceBusiness_ValidateMonthPhepNam_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMonthPhepNam" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ApprovePortalRegister_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ApprovePortalRegisterResponse" />
+  <wsdl:message name="IAttendanceBusiness_ValidateMonthPhepNam_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMonthPhepNamResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetEmployeeList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetEmployeeList" />
+  <wsdl:message name="IAttendanceBusiness_ValidateMonthNghiBu_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMonthNghiBu" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetEmployeeList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetEmployeeListResponse" />
+  <wsdl:message name="IAttendanceBusiness_ValidateMonthNghiBu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMonthNghiBuResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetLeaveDay_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetLeaveDay" />
+  <wsdl:message name="IAttendanceBusiness_Cal_TimeTImesheet_Rice_InputMessage">
+    <wsdl:part name="parameters" element="tns:Cal_TimeTImesheet_Rice" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetLeaveDay_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetLeaveDayResponse" />
+  <wsdl:message name="IAttendanceBusiness_Cal_TimeTImesheet_Rice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Cal_TimeTImesheet_RiceResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUAL" />
+  <wsdl:message name="IAttendanceBusiness_GetSummaryRice_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryRice" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALResponse" />
+  <wsdl:message name="IAttendanceBusiness_GetSummaryRice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryRiceResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALById" />
+  <wsdl:message name="IAttendanceBusiness_ModifyLeaveSheetRice_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyLeaveSheetRice" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALByIdResponse" />
+  <wsdl:message name="IAttendanceBusiness_ModifyLeaveSheetRice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyLeaveSheetRiceResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertAT_TIME_MANUAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertAT_TIME_MANUAL" />
+  <wsdl:message name="IAttendanceBusiness_ApprovedTimeSheetRice_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApprovedTimeSheetRice" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertAT_TIME_MANUAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertAT_TIME_MANUALResponse" />
+  <wsdl:message name="IAttendanceBusiness_ApprovedTimeSheetRice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApprovedTimeSheetRiceResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateAT_TIME_MANUAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateAT_TIME_MANUAL" />
+  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetRice_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLeaveSheetRice" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateAT_TIME_MANUAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateAT_TIME_MANUALResponse" />
+  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetRice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLeaveSheetRiceResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyAT_TIME_MANUAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyAT_TIME_MANUAL" />
+  <wsdl:message name="IAttendanceBusiness_GetTimeSheetRiceById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeSheetRiceById" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyAT_TIME_MANUAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyAT_TIME_MANUALResponse" />
+  <wsdl:message name="IAttendanceBusiness_GetTimeSheetRiceById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeSheetRiceByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveAT_TIME_MANUAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveAT_TIME_MANUAL" />
+  <wsdl:message name="IAttendanceBusiness_GetLeaveSheet_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveSheet" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveAT_TIME_MANUAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveAT_TIME_MANUALResponse" />
+  <wsdl:message name="IAttendanceBusiness_GetLeaveSheet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveSheetResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteAT_TIME_MANUAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAT_TIME_MANUAL" />
+  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheet_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLeaveSheet" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteAT_TIME_MANUAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAT_TIME_MANUALResponse" />
+  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLeaveSheetResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetDataImportCO_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataImportCO" />
+  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLeaveSheetList" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetDataImportCO_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataImportCOResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListParamItime_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetListParamItime" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetListParamItime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetListParamItimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertListParamItime_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertListParamItime" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertListParamItime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertListParamItimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateListParamItime_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateListParamItime" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateListParamItime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateListParamItimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyListParamItime_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyListParamItime" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyListParamItime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyListParamItimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveListParamItime_InputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveListParamItime" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveListParamItime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveListParamItimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteListParamItime_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteListParamItime" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteListParamItime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteListParamItimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_REPORT_InputMessage">
-    <wsdl:part name="parameters" element="tns:GET_REPORT" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_REPORT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GET_REPORTResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetReportById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetReportById" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetReportById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetReportByIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT001_InputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT001" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT001_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT001Response" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT002_InputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT002" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT002_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT002Response" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT003_InputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT003" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT003_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT003Response" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT004_InputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT004" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT004_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT004Response" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT005_InputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT005" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GET_AT005_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GET_AT005Response" />
+  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLeaveSheetListResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_ModifyLeaveSheet_InputMessage">
     <wsdl:part name="parameters" element="tns:ModifyLeaveSheet" />
@@ -1067,17 +1325,35 @@
   <wsdl:message name="IAttendanceBusiness_GetHoliday_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHolidayResponse" />
   </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetHoliday_Hose_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHoliday_Hose" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetHoliday_Hose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHoliday_HoseResponse" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_InsertHOLIDAY_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertHOLIDAY" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_InsertHOLIDAY_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertHOLIDAYResponse" />
   </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertHOLIDAY_Hose_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHOLIDAY_Hose" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertHOLIDAY_Hose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHOLIDAY_HoseResponse" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_ValidateHOLIDAY_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidateHOLIDAY" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_ValidateHOLIDAY_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidateHOLIDAYResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateHOLIDAY_Hose_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateHOLIDAY_Hose" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ValidateHOLIDAY_Hose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateHOLIDAY_HoseResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_ModifyHOLIDAY_InputMessage">
     <wsdl:part name="parameters" element="tns:ModifyHOLIDAY" />
@@ -1091,11 +1367,23 @@
   <wsdl:message name="IAttendanceBusiness_ActiveHoliday_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActiveHolidayResponse" />
   </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveHoliday_Hose_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveHoliday_Hose" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_ActiveHoliday_Hose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveHoliday_HoseResponse" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_DeleteHOLIDAY_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteHOLIDAY" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_DeleteHOLIDAY_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteHOLIDAYResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteHOLIDAY_Hose_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHOLIDAY_Hose" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_DeleteHOLIDAY_Hose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHOLIDAY_HoseResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GetHolidayGerenal_InputMessage">
     <wsdl:part name="parameters" element="tns:GetHolidayGerenal" />
@@ -1247,119 +1535,77 @@
   <wsdl:message name="IAttendanceBusiness_DeleteAT_DMVS_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteAT_DMVSResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTerminalFromOtOtherList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminalFromOtOtherList" />
+  <wsdl:message name="IAttendanceBusiness_CAL_SUMMARY_DATA_INOUT_InputMessage">
+    <wsdl:part name="parameters" element="tns:CAL_SUMMARY_DATA_INOUT" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTerminalFromOtOtherList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminalFromOtOtherListResponse" />
+  <wsdl:message name="IAttendanceBusiness_CAL_SUMMARY_DATA_INOUT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CAL_SUMMARY_DATA_INOUTResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTerminal_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminal" />
+  <wsdl:message name="IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_V1_InputMessage">
+    <wsdl:part name="parameters" element="tns:IMPORT_AT_SWIPE_DATA_V1" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTerminal_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminalResponse" />
+  <wsdl:message name="IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_V1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IMPORT_AT_SWIPE_DATA_V1Response" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTerminalAuto_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminalAuto" />
+  <wsdl:message name="IAttendanceBusiness_CHECK_CONTRACT_InputMessage">
+    <wsdl:part name="parameters" element="tns:CHECK_CONTRACT" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTerminalAuto_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminalAutoResponse" />
+  <wsdl:message name="IAttendanceBusiness_CHECK_CONTRACT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CHECK_CONTRACTResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_UpdateTerminalLastTime_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateTerminalLastTime" />
+  <wsdl:message name="IAttendanceBusiness_CHECK_PERIOD_CLOSE_InputMessage">
+    <wsdl:part name="parameters" element="tns:CHECK_PERIOD_CLOSE" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_UpdateTerminalLastTime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateTerminalLastTimeResponse" />
+  <wsdl:message name="IAttendanceBusiness_CHECK_PERIOD_CLOSE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CHECK_PERIOD_CLOSEResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_UpdateTerminalStatus_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateTerminalStatus" />
+  <wsdl:message name="IAttendanceBusiness_PRS_COUNT_SHIFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:PRS_COUNT_SHIFT" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_UpdateTerminalStatus_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateTerminalStatusResponse" />
+  <wsdl:message name="IAttendanceBusiness_PRS_COUNT_SHIFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PRS_COUNT_SHIFTResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetSwipeData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSwipeData" />
+  <wsdl:message name="IAttendanceBusiness_GetperiodID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetperiodID" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetSwipeData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSwipeDataResponse" />
+  <wsdl:message name="IAttendanceBusiness_GetperiodID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetperiodIDResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertSwipeData_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertSwipeData" />
+  <wsdl:message name="IAttendanceBusiness_PRS_COUNT_INOUTKH_InputMessage">
+    <wsdl:part name="parameters" element="tns:PRS_COUNT_INOUTKH" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertSwipeData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertSwipeDataResponse" />
+  <wsdl:message name="IAttendanceBusiness_PRS_COUNT_INOUTKH_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PRS_COUNT_INOUTKHResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ImportSwipeDataAuto_InputMessage">
-    <wsdl:part name="parameters" element="tns:ImportSwipeDataAuto" />
+  <wsdl:message name="IAttendanceBusiness_GetDayHoliday_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDayHoliday" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ImportSwipeDataAuto_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ImportSwipeDataAutoResponse" />
+  <wsdl:message name="IAttendanceBusiness_GetDayHoliday_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDayHolidayResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertSwipeDataImport_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertSwipeDataImport" />
+  <wsdl:message name="IAttendanceBusiness_GetLeaveInOutKH_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveInOutKH" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertSwipeDataImport_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertSwipeDataImportResponse" />
+  <wsdl:message name="IAttendanceBusiness_GetLeaveInOutKH_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveInOutKHResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ImportSwipeData_InputMessage">
-    <wsdl:part name="parameters" element="tns:ImportSwipeData" />
+  <wsdl:message name="IAttendanceBusiness_GetLeaveRegistrationListByLM_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveRegistrationListByLM" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ImportSwipeData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ImportSwipeDataResponse" />
+  <wsdl:message name="IAttendanceBusiness_GetLeaveRegistrationListByLM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeaveRegistrationListByLMResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_SHIFT_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_SHIFT" />
+  <wsdl:message name="IAttendanceBusiness_GET_CONFIG_TEMPLATE_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_CONFIG_TEMPLATE" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_SHIFT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_SHIFTResponse" />
+  <wsdl:message name="IAttendanceBusiness_GET_CONFIG_TEMPLATE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_CONFIG_TEMPLATEResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertAT_SHIFT_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertAT_SHIFT" />
+  <wsdl:message name="IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_InputMessage">
+    <wsdl:part name="parameters" element="tns:IMPORT_AT_SWIPE_DATA" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertAT_SHIFT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertAT_SHIFTResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateAT_SHIFT_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateAT_SHIFT" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateAT_SHIFT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateAT_SHIFTResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyAT_SHIFT_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyAT_SHIFT" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyAT_SHIFT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyAT_SHIFTResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveAT_SHIFT_InputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveAT_SHIFT" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveAT_SHIFT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveAT_SHIFTResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteAT_SHIFT_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAT_SHIFT" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteAT_SHIFT_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAT_SHIFTResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALBINCOMBO" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_TIME_MANUALBINCOMBOResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateCombobox_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateCombobox" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateCombobox_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateComboboxResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_Holiday_Object_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_Holiday_Object" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetAT_Holiday_Object_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAT_Holiday_ObjectResponse" />
+  <wsdl:message name="IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IMPORT_AT_SWIPE_DATAResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GetDataFromOrg_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDataFromOrg" />
@@ -1402,6 +1648,18 @@
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_CheckValidateAPPROVE_DATE_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckValidateAPPROVE_DATEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_PRI_PROCESS_InputMessage">
+    <wsdl:part name="parameters" element="tns:PRI_PROCESS" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_PRI_PROCESS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PRI_PROCESSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_PRS_GETLEAVE_BY_APPROVE_InputMessage">
+    <wsdl:part name="parameters" element="tns:PRS_GETLEAVE_BY_APPROVE" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_PRS_GETLEAVE_BY_APPROVE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PRS_GETLEAVE_BY_APPROVEResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GetOtherList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOtherList" />
@@ -1787,91 +2045,115 @@
   <wsdl:message name="IAttendanceBusiness_GetDelareEntitlementNBById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDelareEntitlementNBByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteOffTimeKeeping_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteOffTimeKeeping" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteOffTimeKeeping_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteOffTimeKeepingResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteDelareEntitlementNB_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteDelareEntitlementNB" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteDelareEntitlementNB_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteDelareEntitlementNBResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateMonthThamNien_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMonthThamNien" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateMonthThamNien_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMonthThamNienResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateMonthPhepNam_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMonthPhepNam" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateMonthPhepNam_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMonthPhepNamResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateMonthNghiBu_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMonthNghiBu" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ValidateMonthNghiBu_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMonthNghiBuResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_Cal_TimeTImesheet_Rice_InputMessage">
-    <wsdl:part name="parameters" element="tns:Cal_TimeTImesheet_Rice" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_Cal_TimeTImesheet_Rice_OutputMessage">
-    <wsdl:part name="parameters" element="tns:Cal_TimeTImesheet_RiceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetSummaryRice_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSummaryRice" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetSummaryRice_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSummaryRiceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyLeaveSheetRice_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyLeaveSheetRice" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ModifyLeaveSheetRice_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyLeaveSheetRiceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ApprovedTimeSheetRice_InputMessage">
-    <wsdl:part name="parameters" element="tns:ApprovedTimeSheetRice" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ApprovedTimeSheetRice_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ApprovedTimeSheetRiceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetRice_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertLeaveSheetRice" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetRice_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertLeaveSheetRiceResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTimeSheetRiceById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTimeSheetRiceById" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetTimeSheetRiceById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTimeSheetRiceByIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetLeaveSheet_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetLeaveSheet" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetLeaveSheet_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetLeaveSheetResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheet_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertLeaveSheet" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheet_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertLeaveSheetResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetList_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertLeaveSheetList" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertLeaveSheetList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertLeaveSheetListResponse" />
-  </wsdl:message>
   <wsdl:portType name="IAttendanceBusiness">
+    <wsdl:operation name="GetListSignCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListSignCode" message="tns:IAttendanceBusiness_GetListSignCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListSignCodeResponse" message="tns:IAttendanceBusiness_GetListSignCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListWaitingForApprove">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApprove" message="tns:IAttendanceBusiness_GetListWaitingForApprove_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveResponse" message="tns:IAttendanceBusiness_GetListWaitingForApprove_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListWaitingForApproveOT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOT" message="tns:IAttendanceBusiness_GetListWaitingForApproveOT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOTResponse" message="tns:IAttendanceBusiness_GetListWaitingForApproveOT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApprovePortalRegister">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovePortalRegister" message="tns:IAttendanceBusiness_ApprovePortalRegister_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovePortalRegisterResponse" message="tns:IAttendanceBusiness_ApprovePortalRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetEmployeeList" message="tns:IAttendanceBusiness_GetEmployeeList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetEmployeeListResponse" message="tns:IAttendanceBusiness_GetEmployeeList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaveDay">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveDay" message="tns:IAttendanceBusiness_GetLeaveDay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveDayResponse" message="tns:IAttendanceBusiness_GetLeaveDay_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_TIME_MANUAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUAL" message="tns:IAttendanceBusiness_GetAT_TIME_MANUAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_GetAT_TIME_MANUAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_TIME_MANUALById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALById" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALByIdResponse" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAT_TIME_MANUAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUAL" message="tns:IAttendanceBusiness_InsertAT_TIME_MANUAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_InsertAT_TIME_MANUAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAT_TIME_MANUAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_TIME_MANUAL" message="tns:IAttendanceBusiness_ValidateAT_TIME_MANUAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_ValidateAT_TIME_MANUAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyAT_TIME_MANUAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_TIME_MANUAL" message="tns:IAttendanceBusiness_ModifyAT_TIME_MANUAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_ModifyAT_TIME_MANUAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveAT_TIME_MANUAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_TIME_MANUAL" message="tns:IAttendanceBusiness_ActiveAT_TIME_MANUAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_ActiveAT_TIME_MANUAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAT_TIME_MANUAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_TIME_MANUAL" message="tns:IAttendanceBusiness_DeleteAT_TIME_MANUAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_DeleteAT_TIME_MANUAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImportCO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDataImportCO" message="tns:IAttendanceBusiness_GetDataImportCO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDataImportCOResponse" message="tns:IAttendanceBusiness_GetDataImportCO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListParamItime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListParamItime" message="tns:IAttendanceBusiness_GetListParamItime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListParamItimeResponse" message="tns:IAttendanceBusiness_GetListParamItime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertListParamItime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertListParamItime" message="tns:IAttendanceBusiness_InsertListParamItime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertListParamItimeResponse" message="tns:IAttendanceBusiness_InsertListParamItime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateListParamItime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateListParamItime" message="tns:IAttendanceBusiness_ValidateListParamItime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateListParamItimeResponse" message="tns:IAttendanceBusiness_ValidateListParamItime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyListParamItime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyListParamItime" message="tns:IAttendanceBusiness_ModifyListParamItime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyListParamItimeResponse" message="tns:IAttendanceBusiness_ModifyListParamItime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveListParamItime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveListParamItime" message="tns:IAttendanceBusiness_ActiveListParamItime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveListParamItimeResponse" message="tns:IAttendanceBusiness_ActiveListParamItime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteListParamItime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteListParamItime" message="tns:IAttendanceBusiness_DeleteListParamItime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteListParamItimeResponse" message="tns:IAttendanceBusiness_DeleteListParamItime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_REPORT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_REPORT" message="tns:IAttendanceBusiness_GET_REPORT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_REPORTResponse" message="tns:IAttendanceBusiness_GET_REPORT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetReportById" message="tns:IAttendanceBusiness_GetReportById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetReportByIdResponse" message="tns:IAttendanceBusiness_GetReportById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT001">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT001" message="tns:IAttendanceBusiness_GET_AT001_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT001Response" message="tns:IAttendanceBusiness_GET_AT001_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT002">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT002" message="tns:IAttendanceBusiness_GET_AT002_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT002Response" message="tns:IAttendanceBusiness_GET_AT002_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT003">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT003" message="tns:IAttendanceBusiness_GET_AT003_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT003Response" message="tns:IAttendanceBusiness_GET_AT003_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT004">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT004" message="tns:IAttendanceBusiness_GET_AT004_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT004Response" message="tns:IAttendanceBusiness_GET_AT004_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT005">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT005" message="tns:IAttendanceBusiness_GET_AT005_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT005Response" message="tns:IAttendanceBusiness_GET_AT005_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GET_AT006">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT006" message="tns:IAttendanceBusiness_GET_AT006_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT006Response" message="tns:IAttendanceBusiness_GET_AT006_OutputMessage" />
@@ -2080,9 +2362,93 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyPortalRegList" message="tns:IAttendanceBusiness_ModifyPortalRegList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyPortalRegListResponse" message="tns:IAttendanceBusiness_ModifyPortalRegList_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetShiftCycle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetShiftCycle" message="tns:IAttendanceBusiness_GetShiftCycle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetShiftCycleResponse" message="tns:IAttendanceBusiness_GetShiftCycle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeShifts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetEmployeeShifts" message="tns:IAttendanceBusiness_GetEmployeeShifts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetEmployeeShiftsResponse" message="tns:IAttendanceBusiness_GetEmployeeShifts_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GET_PE_ASSESS_MESS">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS" message="tns:IAttendanceBusiness_GET_PE_ASSESS_MESS_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse" message="tns:IAttendanceBusiness_GET_PE_ASSESS_MESS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalFromOtOtherList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherList" message="tns:IAttendanceBusiness_GetTerminalFromOtOtherList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherListResponse" message="tns:IAttendanceBusiness_GetTerminalFromOtOtherList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminal">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminal" message="tns:IAttendanceBusiness_GetTerminal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalResponse" message="tns:IAttendanceBusiness_GetTerminal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalAuto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalAuto" message="tns:IAttendanceBusiness_GetTerminalAuto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalAutoResponse" message="tns:IAttendanceBusiness_GetTerminalAuto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalLastTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalLastTime" message="tns:IAttendanceBusiness_UpdateTerminalLastTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalLastTimeResponse" message="tns:IAttendanceBusiness_UpdateTerminalLastTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatus" message="tns:IAttendanceBusiness_UpdateTerminalStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatusResponse" message="tns:IAttendanceBusiness_UpdateTerminalStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSwipeData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSwipeData" message="tns:IAttendanceBusiness_GetSwipeData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSwipeDataResponse" message="tns:IAttendanceBusiness_GetSwipeData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertSwipeData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeData" message="tns:IAttendanceBusiness_InsertSwipeData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataResponse" message="tns:IAttendanceBusiness_InsertSwipeData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSwipeDataAuto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAuto" message="tns:IAttendanceBusiness_ImportSwipeDataAuto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAutoResponse" message="tns:IAttendanceBusiness_ImportSwipeDataAuto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertSwipeDataImport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImport" message="tns:IAttendanceBusiness_InsertSwipeDataImport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImportResponse" message="tns:IAttendanceBusiness_InsertSwipeDataImport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSwipeData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeData" message="tns:IAttendanceBusiness_ImportSwipeData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataResponse" message="tns:IAttendanceBusiness_ImportSwipeData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_SHIFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_SHIFT" message="tns:IAttendanceBusiness_GetAT_SHIFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_SHIFTResponse" message="tns:IAttendanceBusiness_GetAT_SHIFT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAT_SHIFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_SHIFT" message="tns:IAttendanceBusiness_InsertAT_SHIFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_SHIFTResponse" message="tns:IAttendanceBusiness_InsertAT_SHIFT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAT_SHIFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_SHIFT" message="tns:IAttendanceBusiness_ValidateAT_SHIFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_SHIFTResponse" message="tns:IAttendanceBusiness_ValidateAT_SHIFT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyAT_SHIFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_SHIFT" message="tns:IAttendanceBusiness_ModifyAT_SHIFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_SHIFTResponse" message="tns:IAttendanceBusiness_ModifyAT_SHIFT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActiveAT_SHIFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_SHIFT" message="tns:IAttendanceBusiness_ActiveAT_SHIFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_SHIFTResponse" message="tns:IAttendanceBusiness_ActiveAT_SHIFT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAT_SHIFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_SHIFT" message="tns:IAttendanceBusiness_DeleteAT_SHIFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_SHIFTResponse" message="tns:IAttendanceBusiness_DeleteAT_SHIFT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_TIME_MANUALBINCOMBO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALBINCOMBO" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALBINCOMBOResponse" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCombobox">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateCombobox" message="tns:IAttendanceBusiness_ValidateCombobox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateComboboxResponse" message="tns:IAttendanceBusiness_ValidateCombobox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_Holiday_Object">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_Holiday_Object" message="tns:IAttendanceBusiness_GetAT_Holiday_Object_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_Holiday_ObjectResponse" message="tns:IAttendanceBusiness_GetAT_Holiday_Object_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertAT_Holiday_Object">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_Holiday_Object" message="tns:IAttendanceBusiness_InsertAT_Holiday_Object_InputMessage" />
@@ -2228,6 +2594,34 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetOtRegistration" message="tns:IAttendanceBusiness_GetOtRegistration_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetOtRegistrationResponse" message="tns:IAttendanceBusiness_GetOtRegistration_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="InsertOtRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertOtRegistration" message="tns:IAttendanceBusiness_InsertOtRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertOtRegistrationResponse" message="tns:IAttendanceBusiness_InsertOtRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyotRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyotRegistration" message="tns:IAttendanceBusiness_ModifyotRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyotRegistrationResponse" message="tns:IAttendanceBusiness_ModifyotRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendApproveOtRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/SendApproveOtRegistration" message="tns:IAttendanceBusiness_SendApproveOtRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/SendApproveOtRegistrationResponse" message="tns:IAttendanceBusiness_SendApproveOtRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveOtRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApproveOtRegistration" message="tns:IAttendanceBusiness_ApproveOtRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApproveOtRegistrationResponse" message="tns:IAttendanceBusiness_ApproveOtRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateOtRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistration" message="tns:IAttendanceBusiness_ValidateOtRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistrationResponse" message="tns:IAttendanceBusiness_ValidateOtRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HRReviewOtRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/HRReviewOtRegistration" message="tns:IAttendanceBusiness_HRReviewOtRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/HRReviewOtRegistrationResponse" message="tns:IAttendanceBusiness_HRReviewOtRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOtRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteOtRegistration" message="tns:IAttendanceBusiness_DeleteOtRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteOtRegistrationResponse" message="tns:IAttendanceBusiness_DeleteOtRegistration_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GET_REG_PORTAL">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_REG_PORTAL" message="tns:IAttendanceBusiness_GET_REG_PORTAL_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_REG_PORTALResponse" message="tns:IAttendanceBusiness_GET_REG_PORTAL_OutputMessage" />
@@ -2276,6 +2670,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/CHECK_RGT_OT" message="tns:IAttendanceBusiness_CHECK_RGT_OT_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/CHECK_RGT_OTResponse" message="tns:IAttendanceBusiness_CHECK_RGT_OT_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetHolidayByCalenderToTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalenderToTable" message="tns:IAttendanceBusiness_GetHolidayByCalenderToTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalenderToTableResponse" message="tns:IAttendanceBusiness_GetHolidayByCalenderToTable_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetPlanningAppointmentByEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetPlanningAppointmentByEmployee" message="tns:IAttendanceBusiness_GetPlanningAppointmentByEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetPlanningAppointmentByEmployeeResponse" message="tns:IAttendanceBusiness_GetPlanningAppointmentByEmployee_OutputMessage" />
@@ -2316,113 +2714,61 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/SendRegisterToApprove" message="tns:IAttendanceBusiness_SendRegisterToApprove_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/SendRegisterToApproveResponse" message="tns:IAttendanceBusiness_SendRegisterToApprove_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetListSignCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListSignCode" message="tns:IAttendanceBusiness_GetListSignCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListSignCodeResponse" message="tns:IAttendanceBusiness_GetListSignCode_OutputMessage" />
+    <wsdl:operation name="DeleteOffTimeKeeping">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeeping" message="tns:IAttendanceBusiness_DeleteOffTimeKeeping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeepingResponse" message="tns:IAttendanceBusiness_DeleteOffTimeKeeping_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetListWaitingForApprove">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApprove" message="tns:IAttendanceBusiness_GetListWaitingForApprove_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveResponse" message="tns:IAttendanceBusiness_GetListWaitingForApprove_OutputMessage" />
+    <wsdl:operation name="DeleteDelareEntitlementNB">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNB" message="tns:IAttendanceBusiness_DeleteDelareEntitlementNB_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNBResponse" message="tns:IAttendanceBusiness_DeleteDelareEntitlementNB_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetListWaitingForApproveOT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOT" message="tns:IAttendanceBusiness_GetListWaitingForApproveOT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOTResponse" message="tns:IAttendanceBusiness_GetListWaitingForApproveOT_OutputMessage" />
+    <wsdl:operation name="ValidateMonthThamNien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNien" message="tns:IAttendanceBusiness_ValidateMonthThamNien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNienResponse" message="tns:IAttendanceBusiness_ValidateMonthThamNien_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ApprovePortalRegister">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovePortalRegister" message="tns:IAttendanceBusiness_ApprovePortalRegister_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovePortalRegisterResponse" message="tns:IAttendanceBusiness_ApprovePortalRegister_OutputMessage" />
+    <wsdl:operation name="ValidateMonthPhepNam">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthPhepNam" message="tns:IAttendanceBusiness_ValidateMonthPhepNam_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthPhepNamResponse" message="tns:IAttendanceBusiness_ValidateMonthPhepNam_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetEmployeeList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetEmployeeList" message="tns:IAttendanceBusiness_GetEmployeeList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetEmployeeListResponse" message="tns:IAttendanceBusiness_GetEmployeeList_OutputMessage" />
+    <wsdl:operation name="ValidateMonthNghiBu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBu" message="tns:IAttendanceBusiness_ValidateMonthNghiBu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBuResponse" message="tns:IAttendanceBusiness_ValidateMonthNghiBu_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetLeaveDay">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveDay" message="tns:IAttendanceBusiness_GetLeaveDay_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveDayResponse" message="tns:IAttendanceBusiness_GetLeaveDay_OutputMessage" />
+    <wsdl:operation name="Cal_TimeTImesheet_Rice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_Rice" message="tns:IAttendanceBusiness_Cal_TimeTImesheet_Rice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_RiceResponse" message="tns:IAttendanceBusiness_Cal_TimeTImesheet_Rice_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAT_TIME_MANUAL">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUAL" message="tns:IAttendanceBusiness_GetAT_TIME_MANUAL_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_GetAT_TIME_MANUAL_OutputMessage" />
+    <wsdl:operation name="GetSummaryRice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSummaryRice" message="tns:IAttendanceBusiness_GetSummaryRice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSummaryRiceResponse" message="tns:IAttendanceBusiness_GetSummaryRice_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAT_TIME_MANUALById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALById" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALByIdResponse" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALById_OutputMessage" />
+    <wsdl:operation name="ModifyLeaveSheetRice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRice" message="tns:IAttendanceBusiness_ModifyLeaveSheetRice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRiceResponse" message="tns:IAttendanceBusiness_ModifyLeaveSheetRice_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertAT_TIME_MANUAL">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUAL" message="tns:IAttendanceBusiness_InsertAT_TIME_MANUAL_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_InsertAT_TIME_MANUAL_OutputMessage" />
+    <wsdl:operation name="ApprovedTimeSheetRice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovedTimeSheetRice" message="tns:IAttendanceBusiness_ApprovedTimeSheetRice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovedTimeSheetRiceResponse" message="tns:IAttendanceBusiness_ApprovedTimeSheetRice_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ValidateAT_TIME_MANUAL">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_TIME_MANUAL" message="tns:IAttendanceBusiness_ValidateAT_TIME_MANUAL_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_ValidateAT_TIME_MANUAL_OutputMessage" />
+    <wsdl:operation name="InsertLeaveSheetRice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetRice" message="tns:IAttendanceBusiness_InsertLeaveSheetRice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetRiceResponse" message="tns:IAttendanceBusiness_InsertLeaveSheetRice_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ModifyAT_TIME_MANUAL">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_TIME_MANUAL" message="tns:IAttendanceBusiness_ModifyAT_TIME_MANUAL_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_ModifyAT_TIME_MANUAL_OutputMessage" />
+    <wsdl:operation name="GetTimeSheetRiceById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTimeSheetRiceById" message="tns:IAttendanceBusiness_GetTimeSheetRiceById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTimeSheetRiceByIdResponse" message="tns:IAttendanceBusiness_GetTimeSheetRiceById_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ActiveAT_TIME_MANUAL">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_TIME_MANUAL" message="tns:IAttendanceBusiness_ActiveAT_TIME_MANUAL_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_ActiveAT_TIME_MANUAL_OutputMessage" />
+    <wsdl:operation name="GetLeaveSheet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveSheet" message="tns:IAttendanceBusiness_GetLeaveSheet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveSheetResponse" message="tns:IAttendanceBusiness_GetLeaveSheet_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteAT_TIME_MANUAL">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_TIME_MANUAL" message="tns:IAttendanceBusiness_DeleteAT_TIME_MANUAL_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_TIME_MANUALResponse" message="tns:IAttendanceBusiness_DeleteAT_TIME_MANUAL_OutputMessage" />
+    <wsdl:operation name="InsertLeaveSheet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheet" message="tns:IAttendanceBusiness_InsertLeaveSheet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetResponse" message="tns:IAttendanceBusiness_InsertLeaveSheet_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetDataImportCO">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDataImportCO" message="tns:IAttendanceBusiness_GetDataImportCO_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDataImportCOResponse" message="tns:IAttendanceBusiness_GetDataImportCO_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetListParamItime">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListParamItime" message="tns:IAttendanceBusiness_GetListParamItime_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetListParamItimeResponse" message="tns:IAttendanceBusiness_GetListParamItime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertListParamItime">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertListParamItime" message="tns:IAttendanceBusiness_InsertListParamItime_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertListParamItimeResponse" message="tns:IAttendanceBusiness_InsertListParamItime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateListParamItime">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateListParamItime" message="tns:IAttendanceBusiness_ValidateListParamItime_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateListParamItimeResponse" message="tns:IAttendanceBusiness_ValidateListParamItime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModifyListParamItime">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyListParamItime" message="tns:IAttendanceBusiness_ModifyListParamItime_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyListParamItimeResponse" message="tns:IAttendanceBusiness_ModifyListParamItime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ActiveListParamItime">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveListParamItime" message="tns:IAttendanceBusiness_ActiveListParamItime_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveListParamItimeResponse" message="tns:IAttendanceBusiness_ActiveListParamItime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteListParamItime">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteListParamItime" message="tns:IAttendanceBusiness_DeleteListParamItime_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteListParamItimeResponse" message="tns:IAttendanceBusiness_DeleteListParamItime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GET_REPORT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_REPORT" message="tns:IAttendanceBusiness_GET_REPORT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_REPORTResponse" message="tns:IAttendanceBusiness_GET_REPORT_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetReportById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetReportById" message="tns:IAttendanceBusiness_GetReportById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetReportByIdResponse" message="tns:IAttendanceBusiness_GetReportById_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT001">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT001" message="tns:IAttendanceBusiness_GET_AT001_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT001Response" message="tns:IAttendanceBusiness_GET_AT001_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT002">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT002" message="tns:IAttendanceBusiness_GET_AT002_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT002Response" message="tns:IAttendanceBusiness_GET_AT002_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT003">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT003" message="tns:IAttendanceBusiness_GET_AT003_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT003Response" message="tns:IAttendanceBusiness_GET_AT003_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT004">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT004" message="tns:IAttendanceBusiness_GET_AT004_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT004Response" message="tns:IAttendanceBusiness_GET_AT004_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT005">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT005" message="tns:IAttendanceBusiness_GET_AT005_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_AT005Response" message="tns:IAttendanceBusiness_GET_AT005_OutputMessage" />
+    <wsdl:operation name="InsertLeaveSheetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetList" message="tns:IAttendanceBusiness_InsertLeaveSheetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetListResponse" message="tns:IAttendanceBusiness_InsertLeaveSheetList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ModifyLeaveSheet">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheet" message="tns:IAttendanceBusiness_ModifyLeaveSheet_InputMessage" />
@@ -2568,13 +2914,25 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHoliday" message="tns:IAttendanceBusiness_GetHoliday_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayResponse" message="tns:IAttendanceBusiness_GetHoliday_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetHoliday_Hose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHoliday_Hose" message="tns:IAttendanceBusiness_GetHoliday_Hose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHoliday_HoseResponse" message="tns:IAttendanceBusiness_GetHoliday_Hose_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InsertHOLIDAY">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertHOLIDAY" message="tns:IAttendanceBusiness_InsertHOLIDAY_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertHOLIDAYResponse" message="tns:IAttendanceBusiness_InsertHOLIDAY_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="InsertHOLIDAY_Hose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertHOLIDAY_Hose" message="tns:IAttendanceBusiness_InsertHOLIDAY_Hose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertHOLIDAY_HoseResponse" message="tns:IAttendanceBusiness_InsertHOLIDAY_Hose_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ValidateHOLIDAY">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateHOLIDAY" message="tns:IAttendanceBusiness_ValidateHOLIDAY_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateHOLIDAYResponse" message="tns:IAttendanceBusiness_ValidateHOLIDAY_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateHOLIDAY_Hose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateHOLIDAY_Hose" message="tns:IAttendanceBusiness_ValidateHOLIDAY_Hose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateHOLIDAY_HoseResponse" message="tns:IAttendanceBusiness_ValidateHOLIDAY_Hose_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ModifyHOLIDAY">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyHOLIDAY" message="tns:IAttendanceBusiness_ModifyHOLIDAY_InputMessage" />
@@ -2584,9 +2942,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveHoliday" message="tns:IAttendanceBusiness_ActiveHoliday_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveHolidayResponse" message="tns:IAttendanceBusiness_ActiveHoliday_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ActiveHoliday_Hose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveHoliday_Hose" message="tns:IAttendanceBusiness_ActiveHoliday_Hose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveHoliday_HoseResponse" message="tns:IAttendanceBusiness_ActiveHoliday_Hose_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteHOLIDAY">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAY" message="tns:IAttendanceBusiness_DeleteHOLIDAY_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAYResponse" message="tns:IAttendanceBusiness_DeleteHOLIDAY_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHOLIDAY_Hose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAY_Hose" message="tns:IAttendanceBusiness_DeleteHOLIDAY_Hose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAY_HoseResponse" message="tns:IAttendanceBusiness_DeleteHOLIDAY_Hose_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetHolidayGerenal">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayGerenal" message="tns:IAttendanceBusiness_GetHolidayGerenal_InputMessage" />
@@ -2688,81 +3054,53 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_DMVS" message="tns:IAttendanceBusiness_DeleteAT_DMVS_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_DMVSResponse" message="tns:IAttendanceBusiness_DeleteAT_DMVS_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTerminalFromOtOtherList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherList" message="tns:IAttendanceBusiness_GetTerminalFromOtOtherList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherListResponse" message="tns:IAttendanceBusiness_GetTerminalFromOtOtherList_OutputMessage" />
+    <wsdl:operation name="CAL_SUMMARY_DATA_INOUT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/CAL_SUMMARY_DATA_INOUT" message="tns:IAttendanceBusiness_CAL_SUMMARY_DATA_INOUT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/CAL_SUMMARY_DATA_INOUTResponse" message="tns:IAttendanceBusiness_CAL_SUMMARY_DATA_INOUT_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTerminal">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminal" message="tns:IAttendanceBusiness_GetTerminal_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalResponse" message="tns:IAttendanceBusiness_GetTerminal_OutputMessage" />
+    <wsdl:operation name="IMPORT_AT_SWIPE_DATA_V1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/IMPORT_AT_SWIPE_DATA_V1" message="tns:IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_V1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/IMPORT_AT_SWIPE_DATA_V1Response" message="tns:IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_V1_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTerminalAuto">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalAuto" message="tns:IAttendanceBusiness_GetTerminalAuto_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTerminalAutoResponse" message="tns:IAttendanceBusiness_GetTerminalAuto_OutputMessage" />
+    <wsdl:operation name="CHECK_CONTRACT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/CHECK_CONTRACT" message="tns:IAttendanceBusiness_CHECK_CONTRACT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/CHECK_CONTRACTResponse" message="tns:IAttendanceBusiness_CHECK_CONTRACT_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateTerminalLastTime">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalLastTime" message="tns:IAttendanceBusiness_UpdateTerminalLastTime_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalLastTimeResponse" message="tns:IAttendanceBusiness_UpdateTerminalLastTime_OutputMessage" />
+    <wsdl:operation name="CHECK_PERIOD_CLOSE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/CHECK_PERIOD_CLOSE" message="tns:IAttendanceBusiness_CHECK_PERIOD_CLOSE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/CHECK_PERIOD_CLOSEResponse" message="tns:IAttendanceBusiness_CHECK_PERIOD_CLOSE_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateTerminalStatus">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatus" message="tns:IAttendanceBusiness_UpdateTerminalStatus_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatusResponse" message="tns:IAttendanceBusiness_UpdateTerminalStatus_OutputMessage" />
+    <wsdl:operation name="PRS_COUNT_SHIFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_SHIFT" message="tns:IAttendanceBusiness_PRS_COUNT_SHIFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_SHIFTResponse" message="tns:IAttendanceBusiness_PRS_COUNT_SHIFT_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSwipeData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSwipeData" message="tns:IAttendanceBusiness_GetSwipeData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSwipeDataResponse" message="tns:IAttendanceBusiness_GetSwipeData_OutputMessage" />
+    <wsdl:operation name="GetperiodID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetperiodID" message="tns:IAttendanceBusiness_GetperiodID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetperiodIDResponse" message="tns:IAttendanceBusiness_GetperiodID_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertSwipeData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeData" message="tns:IAttendanceBusiness_InsertSwipeData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataResponse" message="tns:IAttendanceBusiness_InsertSwipeData_OutputMessage" />
+    <wsdl:operation name="PRS_COUNT_INOUTKH">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_INOUTKH" message="tns:IAttendanceBusiness_PRS_COUNT_INOUTKH_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_INOUTKHResponse" message="tns:IAttendanceBusiness_PRS_COUNT_INOUTKH_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ImportSwipeDataAuto">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAuto" message="tns:IAttendanceBusiness_ImportSwipeDataAuto_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAutoResponse" message="tns:IAttendanceBusiness_ImportSwipeDataAuto_OutputMessage" />
+    <wsdl:operation name="GetDayHoliday">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDayHoliday" message="tns:IAttendanceBusiness_GetDayHoliday_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDayHolidayResponse" message="tns:IAttendanceBusiness_GetDayHoliday_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertSwipeDataImport">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImport" message="tns:IAttendanceBusiness_InsertSwipeDataImport_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImportResponse" message="tns:IAttendanceBusiness_InsertSwipeDataImport_OutputMessage" />
+    <wsdl:operation name="GetLeaveInOutKH">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveInOutKH" message="tns:IAttendanceBusiness_GetLeaveInOutKH_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveInOutKHResponse" message="tns:IAttendanceBusiness_GetLeaveInOutKH_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ImportSwipeData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeData" message="tns:IAttendanceBusiness_ImportSwipeData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataResponse" message="tns:IAttendanceBusiness_ImportSwipeData_OutputMessage" />
+    <wsdl:operation name="GetLeaveRegistrationListByLM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationListByLM" message="tns:IAttendanceBusiness_GetLeaveRegistrationListByLM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationListByLMResponse" message="tns:IAttendanceBusiness_GetLeaveRegistrationListByLM_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAT_SHIFT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_SHIFT" message="tns:IAttendanceBusiness_GetAT_SHIFT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_SHIFTResponse" message="tns:IAttendanceBusiness_GetAT_SHIFT_OutputMessage" />
+    <wsdl:operation name="GET_CONFIG_TEMPLATE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_CONFIG_TEMPLATE" message="tns:IAttendanceBusiness_GET_CONFIG_TEMPLATE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_CONFIG_TEMPLATEResponse" message="tns:IAttendanceBusiness_GET_CONFIG_TEMPLATE_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertAT_SHIFT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_SHIFT" message="tns:IAttendanceBusiness_InsertAT_SHIFT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertAT_SHIFTResponse" message="tns:IAttendanceBusiness_InsertAT_SHIFT_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateAT_SHIFT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_SHIFT" message="tns:IAttendanceBusiness_ValidateAT_SHIFT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateAT_SHIFTResponse" message="tns:IAttendanceBusiness_ValidateAT_SHIFT_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModifyAT_SHIFT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_SHIFT" message="tns:IAttendanceBusiness_ModifyAT_SHIFT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyAT_SHIFTResponse" message="tns:IAttendanceBusiness_ModifyAT_SHIFT_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ActiveAT_SHIFT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_SHIFT" message="tns:IAttendanceBusiness_ActiveAT_SHIFT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_SHIFTResponse" message="tns:IAttendanceBusiness_ActiveAT_SHIFT_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteAT_SHIFT">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_SHIFT" message="tns:IAttendanceBusiness_DeleteAT_SHIFT_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_SHIFTResponse" message="tns:IAttendanceBusiness_DeleteAT_SHIFT_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAT_TIME_MANUALBINCOMBO">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALBINCOMBO" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALBINCOMBOResponse" message="tns:IAttendanceBusiness_GetAT_TIME_MANUALBINCOMBO_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateCombobox">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateCombobox" message="tns:IAttendanceBusiness_ValidateCombobox_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateComboboxResponse" message="tns:IAttendanceBusiness_ValidateCombobox_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAT_Holiday_Object">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_Holiday_Object" message="tns:IAttendanceBusiness_GetAT_Holiday_Object_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_Holiday_ObjectResponse" message="tns:IAttendanceBusiness_GetAT_Holiday_Object_OutputMessage" />
+    <wsdl:operation name="IMPORT_AT_SWIPE_DATA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/IMPORT_AT_SWIPE_DATA" message="tns:IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/IMPORT_AT_SWIPE_DATAResponse" message="tns:IAttendanceBusiness_IMPORT_AT_SWIPE_DATA_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetDataFromOrg">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDataFromOrg" message="tns:IAttendanceBusiness_GetDataFromOrg_InputMessage" />
@@ -2791,6 +3129,14 @@
     <wsdl:operation name="CheckValidateAPPROVE_DATE">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/CheckValidateAPPROVE_DATE" message="tns:IAttendanceBusiness_CheckValidateAPPROVE_DATE_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/CheckValidateAPPROVE_DATEResponse" message="tns:IAttendanceBusiness_CheckValidateAPPROVE_DATE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PRI_PROCESS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRI_PROCESS" message="tns:IAttendanceBusiness_PRI_PROCESS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRI_PROCESSResponse" message="tns:IAttendanceBusiness_PRI_PROCESS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PRS_GETLEAVE_BY_APPROVE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_GETLEAVE_BY_APPROVE" message="tns:IAttendanceBusiness_PRS_GETLEAVE_BY_APPROVE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_GETLEAVE_BY_APPROVEResponse" message="tns:IAttendanceBusiness_PRS_GETLEAVE_BY_APPROVE_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetOtherList">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetOtherList" message="tns:IAttendanceBusiness_GetOtherList_InputMessage" />
@@ -3048,66 +3394,253 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDelareEntitlementNBById" message="tns:IAttendanceBusiness_GetDelareEntitlementNBById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetDelareEntitlementNBByIdResponse" message="tns:IAttendanceBusiness_GetDelareEntitlementNBById_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteOffTimeKeeping">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeeping" message="tns:IAttendanceBusiness_DeleteOffTimeKeeping_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeepingResponse" message="tns:IAttendanceBusiness_DeleteOffTimeKeeping_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteDelareEntitlementNB">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNB" message="tns:IAttendanceBusiness_DeleteDelareEntitlementNB_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNBResponse" message="tns:IAttendanceBusiness_DeleteDelareEntitlementNB_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateMonthThamNien">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNien" message="tns:IAttendanceBusiness_ValidateMonthThamNien_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNienResponse" message="tns:IAttendanceBusiness_ValidateMonthThamNien_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateMonthPhepNam">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthPhepNam" message="tns:IAttendanceBusiness_ValidateMonthPhepNam_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthPhepNamResponse" message="tns:IAttendanceBusiness_ValidateMonthPhepNam_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateMonthNghiBu">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBu" message="tns:IAttendanceBusiness_ValidateMonthNghiBu_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBuResponse" message="tns:IAttendanceBusiness_ValidateMonthNghiBu_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Cal_TimeTImesheet_Rice">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_Rice" message="tns:IAttendanceBusiness_Cal_TimeTImesheet_Rice_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_RiceResponse" message="tns:IAttendanceBusiness_Cal_TimeTImesheet_Rice_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetSummaryRice">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSummaryRice" message="tns:IAttendanceBusiness_GetSummaryRice_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetSummaryRiceResponse" message="tns:IAttendanceBusiness_GetSummaryRice_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModifyLeaveSheetRice">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRice" message="tns:IAttendanceBusiness_ModifyLeaveSheetRice_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRiceResponse" message="tns:IAttendanceBusiness_ModifyLeaveSheetRice_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ApprovedTimeSheetRice">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovedTimeSheetRice" message="tns:IAttendanceBusiness_ApprovedTimeSheetRice_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ApprovedTimeSheetRiceResponse" message="tns:IAttendanceBusiness_ApprovedTimeSheetRice_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertLeaveSheetRice">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetRice" message="tns:IAttendanceBusiness_InsertLeaveSheetRice_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetRiceResponse" message="tns:IAttendanceBusiness_InsertLeaveSheetRice_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTimeSheetRiceById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTimeSheetRiceById" message="tns:IAttendanceBusiness_GetTimeSheetRiceById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetTimeSheetRiceByIdResponse" message="tns:IAttendanceBusiness_GetTimeSheetRiceById_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetLeaveSheet">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveSheet" message="tns:IAttendanceBusiness_GetLeaveSheet_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveSheetResponse" message="tns:IAttendanceBusiness_GetLeaveSheet_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertLeaveSheet">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheet" message="tns:IAttendanceBusiness_InsertLeaveSheet_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetResponse" message="tns:IAttendanceBusiness_InsertLeaveSheet_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertLeaveSheetList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetList" message="tns:IAttendanceBusiness_InsertLeaveSheetList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetListResponse" message="tns:IAttendanceBusiness_InsertLeaveSheetList_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IAttendanceBusiness" type="tns:IAttendanceBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IAttendanceBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListSignCode">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListSignCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListWaitingForApprove">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApprove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListWaitingForApproveOT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApprovePortalRegister">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ApprovePortalRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeList">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetEmployeeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaveDay">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetLeaveDay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_TIME_MANUAL">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_TIME_MANUALById">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAT_TIME_MANUAL">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAT_TIME_MANUAL">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateAT_TIME_MANUAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyAT_TIME_MANUAL">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyAT_TIME_MANUAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveAT_TIME_MANUAL">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveAT_TIME_MANUAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAT_TIME_MANUAL">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteAT_TIME_MANUAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImportCO">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetDataImportCO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListParamItime">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListParamItime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertListParamItime">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertListParamItime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateListParamItime">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateListParamItime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyListParamItime">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyListParamItime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveListParamItime">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveListParamItime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteListParamItime">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteListParamItime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_REPORT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_REPORT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportById">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetReportById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT001">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT001" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT002">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT002" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT003">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT003" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT004">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT004" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_AT005">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT005" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GET_AT006">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT006" style="document" />
       <wsdl:input>
@@ -3576,8 +4109,197 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetShiftCycle">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetShiftCycle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeShifts">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetEmployeeShifts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GET_PE_ASSESS_MESS">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalFromOtOtherList">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminal">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTerminal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminalAuto">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTerminalAuto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalLastTime">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/UpdateTerminalLastTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTerminalStatus">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSwipeData">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetSwipeData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSwipeData">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertSwipeData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSwipeDataAuto">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAuto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSwipeDataImport">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSwipeData">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ImportSwipeData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_SHIFT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_SHIFT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAT_SHIFT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertAT_SHIFT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAT_SHIFT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateAT_SHIFT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyAT_SHIFT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyAT_SHIFT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActiveAT_SHIFT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveAT_SHIFT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAT_SHIFT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteAT_SHIFT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_TIME_MANUALBINCOMBO">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALBINCOMBO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCombobox">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateCombobox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAT_Holiday_Object">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_Holiday_Object" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3909,6 +4631,69 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertOtRegistration">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertOtRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyotRegistration">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyotRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendApproveOtRegistration">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/SendApproveOtRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveOtRegistration">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ApproveOtRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateOtRegistration">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HRReviewOtRegistration">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/HRReviewOtRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOtRegistration">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteOtRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GET_REG_PORTAL">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_REG_PORTAL" style="document" />
       <wsdl:input>
@@ -4017,6 +4802,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetHolidayByCalenderToTable">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalenderToTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetPlanningAppointmentByEmployee">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetPlanningAppointmentByEmployee" style="document" />
       <wsdl:input>
@@ -4107,8 +4901,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetListSignCode">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListSignCode" style="document" />
+    <wsdl:operation name="DeleteOffTimeKeeping">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeeping" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4116,8 +4910,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetListWaitingForApprove">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApprove" style="document" />
+    <wsdl:operation name="DeleteDelareEntitlementNB">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNB" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4125,8 +4919,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetListWaitingForApproveOT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListWaitingForApproveOT" style="document" />
+    <wsdl:operation name="ValidateMonthThamNien">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNien" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4134,8 +4928,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ApprovePortalRegister">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ApprovePortalRegister" style="document" />
+    <wsdl:operation name="ValidateMonthPhepNam">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateMonthPhepNam" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4143,8 +4937,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEmployeeList">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetEmployeeList" style="document" />
+    <wsdl:operation name="ValidateMonthNghiBu">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBu" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4152,8 +4946,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetLeaveDay">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetLeaveDay" style="document" />
+    <wsdl:operation name="Cal_TimeTImesheet_Rice">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_Rice" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4161,8 +4955,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAT_TIME_MANUAL">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUAL" style="document" />
+    <wsdl:operation name="GetSummaryRice">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetSummaryRice" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4170,8 +4964,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAT_TIME_MANUALById">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALById" style="document" />
+    <wsdl:operation name="ModifyLeaveSheetRice">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRice" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4179,8 +4973,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertAT_TIME_MANUAL">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertAT_TIME_MANUAL" style="document" />
+    <wsdl:operation name="ApprovedTimeSheetRice">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ApprovedTimeSheetRice" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4188,8 +4982,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ValidateAT_TIME_MANUAL">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateAT_TIME_MANUAL" style="document" />
+    <wsdl:operation name="InsertLeaveSheetRice">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetRice" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4197,8 +4991,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModifyAT_TIME_MANUAL">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyAT_TIME_MANUAL" style="document" />
+    <wsdl:operation name="GetTimeSheetRiceById">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTimeSheetRiceById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4206,8 +5000,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ActiveAT_TIME_MANUAL">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveAT_TIME_MANUAL" style="document" />
+    <wsdl:operation name="GetLeaveSheet">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetLeaveSheet" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4215,8 +5009,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteAT_TIME_MANUAL">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteAT_TIME_MANUAL" style="document" />
+    <wsdl:operation name="InsertLeaveSheet">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheet" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4224,125 +5018,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetDataImportCO">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetDataImportCO" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetListParamItime">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetListParamItime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertListParamItime">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertListParamItime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateListParamItime">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateListParamItime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModifyListParamItime">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyListParamItime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ActiveListParamItime">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveListParamItime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteListParamItime">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteListParamItime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GET_REPORT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_REPORT" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetReportById">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetReportById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT001">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT001" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT002">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT002" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT003">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT003" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT004">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT004" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GET_AT005">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_AT005" style="document" />
+    <wsdl:operation name="InsertLeaveSheetList">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4674,6 +5351,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetHoliday_Hose">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetHoliday_Hose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InsertHOLIDAY">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertHOLIDAY" style="document" />
       <wsdl:input>
@@ -4683,8 +5369,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertHOLIDAY_Hose">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertHOLIDAY_Hose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ValidateHOLIDAY">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateHOLIDAY" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateHOLIDAY_Hose">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateHOLIDAY_Hose" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4710,8 +5414,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ActiveHoliday_Hose">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveHoliday_Hose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteHOLIDAY">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAY" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHOLIDAY_Hose">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteHOLIDAY_Hose" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4944,8 +5666,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTerminalFromOtOtherList">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherList" style="document" />
+    <wsdl:operation name="CAL_SUMMARY_DATA_INOUT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/CAL_SUMMARY_DATA_INOUT" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4953,8 +5675,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTerminal">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTerminal" style="document" />
+    <wsdl:operation name="IMPORT_AT_SWIPE_DATA_V1">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/IMPORT_AT_SWIPE_DATA_V1" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4962,8 +5684,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTerminalAuto">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTerminalAuto" style="document" />
+    <wsdl:operation name="CHECK_CONTRACT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/CHECK_CONTRACT" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4971,8 +5693,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateTerminalLastTime">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/UpdateTerminalLastTime" style="document" />
+    <wsdl:operation name="CHECK_PERIOD_CLOSE">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/CHECK_PERIOD_CLOSE" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4980,8 +5702,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateTerminalStatus">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/UpdateTerminalStatus" style="document" />
+    <wsdl:operation name="PRS_COUNT_SHIFT">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_SHIFT" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4989,8 +5711,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetSwipeData">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetSwipeData" style="document" />
+    <wsdl:operation name="GetperiodID">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetperiodID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4998,8 +5720,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertSwipeData">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertSwipeData" style="document" />
+    <wsdl:operation name="PRS_COUNT_INOUTKH">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/PRS_COUNT_INOUTKH" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5007,8 +5729,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ImportSwipeDataAuto">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ImportSwipeDataAuto" style="document" />
+    <wsdl:operation name="GetDayHoliday">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetDayHoliday" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5016,8 +5738,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertSwipeDataImport">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertSwipeDataImport" style="document" />
+    <wsdl:operation name="GetLeaveInOutKH">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetLeaveInOutKH" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5025,8 +5747,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ImportSwipeData">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ImportSwipeData" style="document" />
+    <wsdl:operation name="GetLeaveRegistrationListByLM">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationListByLM" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5034,8 +5756,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAT_SHIFT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_SHIFT" style="document" />
+    <wsdl:operation name="GET_CONFIG_TEMPLATE">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GET_CONFIG_TEMPLATE" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5043,71 +5765,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertAT_SHIFT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertAT_SHIFT" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateAT_SHIFT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateAT_SHIFT" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModifyAT_SHIFT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyAT_SHIFT" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ActiveAT_SHIFT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveAT_SHIFT" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteAT_SHIFT">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteAT_SHIFT" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAT_TIME_MANUALBINCOMBO">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_TIME_MANUALBINCOMBO" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateCombobox">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateCombobox" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAT_Holiday_Object">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetAT_Holiday_Object" style="document" />
+    <wsdl:operation name="IMPORT_AT_SWIPE_DATA">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/IMPORT_AT_SWIPE_DATA" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5171,6 +5830,24 @@
     </wsdl:operation>
     <wsdl:operation name="CheckValidateAPPROVE_DATE">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/CheckValidateAPPROVE_DATE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PRI_PROCESS">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/PRI_PROCESS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PRS_GETLEAVE_BY_APPROVE">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/PRS_GETLEAVE_BY_APPROVE" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5747,132 +6424,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetDelareEntitlementNBById">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetDelareEntitlementNBById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteOffTimeKeeping">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeeping" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteDelareEntitlementNB">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteDelareEntitlementNB" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateMonthThamNien">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateMonthThamNien" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateMonthPhepNam">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateMonthPhepNam" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateMonthNghiBu">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ValidateMonthNghiBu" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Cal_TimeTImesheet_Rice">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/Cal_TimeTImesheet_Rice" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSummaryRice">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetSummaryRice" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModifyLeaveSheetRice">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyLeaveSheetRice" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ApprovedTimeSheetRice">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ApprovedTimeSheetRice" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertLeaveSheetRice">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetRice" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetTimeSheetRiceById">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetTimeSheetRiceById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetLeaveSheet">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetLeaveSheet" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertLeaveSheet">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheet" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertLeaveSheetList">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertLeaveSheetList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

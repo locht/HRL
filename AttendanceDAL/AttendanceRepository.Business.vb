@@ -5855,6 +5855,7 @@ Partial Public Class AttendanceRepository
                 If (_filter.LEAVE_TYPE = 255) Then
                     Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_COMPENSATORY",
                                      New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
+                                                .P_ID_PORTAL_REG = _filter.ID_PORTAL_REG,
                                                .P_DATE_TIME = _filter.DATE_REGISTER,
                                                .P_OUT = cls.OUT_CURSOR})
                     If dtData IsNot Nothing AndAlso dtData.Rows.Count = 1 Then
@@ -5871,6 +5872,7 @@ Partial Public Class AttendanceRepository
                 ElseIf (_filter.LEAVE_TYPE = 251) Then
                     Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_ENTITLEMENT",
                                     New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
+                                              .P_ID_PORTAL_REG = _filter.ID_PORTAL_REG,
                                               .P_DATE_TIME = _filter.DATE_REGISTER,
                                               .P_OUT = cls.OUT_CURSOR})
                     If dtData IsNot Nothing AndAlso dtData.Rows.Count = 1 Then
@@ -6003,6 +6005,7 @@ Partial Public Class AttendanceRepository
                                     .P_STATUS = _filter.STATUS,
                                     .P_FROM_DATE = _filter.REGIST_DATE_FROM,
                                     .P_TO_DATE = _filter.REGIST_DATE_TO,
+                                    .P_REG_DATE = _filter.REGIST_DATE,
                                     .P_RESULT = cls.OUT_CURSOR}
                     dt = cls.ExecuteStore("PKG_AT_PROCESS.PRS_GETOT_BY_EMPLOYEE", obj)
                 End If

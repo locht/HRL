@@ -1153,9 +1153,11 @@ Public Class ctrlHU_Organization
                 cboRegion.SelectedValue = orgItem.REGION_ID
                 txtRepresentativeName.Text = orgItem.REPRESENTATIVE_NAME
                 rtNUMBER_BUSINESS.Text = orgItem.NUMBER_BUSINESS
+                rdDATE_BUSINESS.SelectedDate = Nothing
                 If IsDate(orgItem.DATE_BUSINESS) Then
                     rdDATE_BUSINESS.SelectedDate = orgItem.DATE_BUSINESS
                 End If
+                rdEffectDate.SelectedDate = Nothing
                 If IsDate(orgItem.EFFECT_DATE) Then
                     rdEffectDate.SelectedDate = orgItem.EFFECT_DATE
                 Else
@@ -1164,6 +1166,7 @@ Public Class ctrlHU_Organization
                 If IsDate(orgItem.FOUNDATION_DATE) Then
                     rdFOUNDATION_DATE.SelectedDate = orgItem.FOUNDATION_DATE
                 End If
+                rdDicision_Date.SelectedDate = Nothing
                 If IsDate(orgItem.DISSOLVE_DATE) Then
                     rdDicision_Date.SelectedDate = orgItem.DISSOLVE_DATE
                 End If

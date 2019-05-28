@@ -70,6 +70,7 @@ Public Class ctrlDBInfoLeave
             _filter.DATE_REGISTER = Date.Now
             _filter.LEAVE_TYPE = 251
             _filter.EMPLOYEE_ID = Session("_EmployeeID")
+            _filter.ID_PORTAL_REG = 0
             Dim obj As New TotalDayOffDTO
             Using rep As New ProfileDashboardRepository
                 obj = rep.GetTotalDayOff(_filter)

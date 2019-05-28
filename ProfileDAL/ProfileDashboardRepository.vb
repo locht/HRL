@@ -415,6 +415,7 @@ Public Class ProfileDashboardRepository
 
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.MANAGEMENT_TOTAL_ENTITLEMENT",
                                     New With {.P_EMPLOYEE_ID = _filter.EMPLOYEE_ID,
+                                              .P_ID_PORTAL_REG = _filter.ID_PORTAL_REG,
                                               .P_DATE_TIME = _filter.DATE_REGISTER,
                                               .P_OUT = cls.OUT_CURSOR})
                 If dtData IsNot Nothing AndAlso dtData.Rows.Count = 1 Then

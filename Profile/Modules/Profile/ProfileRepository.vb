@@ -46,6 +46,17 @@ Partial Public Class ProfileRepository
         Return Nothing
     End Function
 
+    Public Function HU_PAPER_LIST(ByVal P_EMP_ID As Decimal) As DataTable
+        'Dim dtData As DataTable
+
+        Using rep As New ProfileBusinessClient
+
+            Return rep.HU_PAPER_LIST(P_EMP_ID, Common.Common.SystemLanguage.Name)
+        End Using
+
+        Return Nothing
+    End Function
+
     Public Function GetBankList(Optional ByVal isBlank As Boolean = False) As DataTable
         Dim dtData As DataTable
 

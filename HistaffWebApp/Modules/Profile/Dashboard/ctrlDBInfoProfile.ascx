@@ -24,7 +24,7 @@
             </tr>
             <tr class="crum-top">
                 <td>
-                    <%# Translate("Tổng số nhân viên hiện tại:")%>
+                    <asp:Label runat="server" ID="lbEmpCount" Text="Tổng số nhân viên hiện tại:"></asp:Label>
                 </td>
                 <td style="width: 50px" class="lb">
                     <asp:Label ID="lbtnEmpCount" runat="server" CssClass="lblInfo" />
@@ -32,7 +32,7 @@
                 <td style="width: 20px" class="lb">
                 </td>
                 <td>
-                    <%# Translate("Nhân viên tuyển mới trong tháng:")%>
+                    <asp:Label runat="server" ID="lbEmpNew" Text="Nhân viên tuyển mới trong tháng:"></asp:Label>
                 </td>
                 <td style="width: 50px" class="lb">
                     <asp:Label ID="lbtnEmpNew" runat="server" CssClass="lblInfo" />
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>
-                    <%# Translate("Nhân viên nghỉ việc trong tháng:")%>
+                    <asp:Label runat="server" ID="lbEmpTer" Text="Nhân viên nghỉ việc trong tháng:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbtnEmpTer" runat="server" CssClass="lblInfo" />
@@ -48,7 +48,7 @@
                 <td>
                 </td>
                 <td>
-                    <%# Translate("Hợp đồng tạo mới trong tháng:")%>
+                    <asp:Label runat="server" ID="lbContractNew" Text="Hợp đồng tạo mới trong tháng:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbtnContractNew" runat="server" CssClass="lblInfo" />
@@ -56,7 +56,7 @@
             </tr>
             <tr>
                 <td>
-                    <%# Translate("Lao động chuyển đi:")%>
+                    <asp:Label runat="server" ID="lbTransferNew" Text="Lao động chuyển đi:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbtnTransferNew" runat="server" CssClass="lblInfo" />
@@ -64,7 +64,7 @@
                 <td>
                 </td>
                 <td>
-                    <%# Translate("Lao động chuyển đến:")%>
+                    <asp:Label runat="server" ID="lbTransferMove" Text="Lao động chuyển đến:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbtnTransferMove" runat="server" CssClass="lblInfo" />
@@ -72,7 +72,7 @@
             </tr>
             <tr class="crum-bottom">
                 <td>
-                    <%# Translate("Tuổi bình quân:")%>
+                    <asp:Label runat="server" ID="lbAgeAvg" Text="Tuổi bình quân:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbtnAgeAvg" runat="server" CssClass="lblInfo" />
@@ -80,7 +80,7 @@
                 <td>
                 </td>
                 <td>
-                    <%# Translate("Thâm niên bình quân (năm):")%>
+                    <asp:Label runat="server" ID="lbSeniority" Text="Thâm niên bình quân (năm):"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbtnSeniority" runat="server" CssClass="lblInfo" />
@@ -94,7 +94,7 @@
             </tr>
             <tr class="crum-top">
                 <td>
-                    <%# Translate("Hết hạn hợp đồng:")%>
+                    <asp:Label runat="server" ID="lbReminder" Text="Hết hạn hợp đồng:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder1" runat="server" CssClass="lblInfo" />
@@ -102,7 +102,7 @@
                 <td>
                 </td>
                 <td>
-                    <%# Translate("Sắp đến sinh nhật:")%>
+                    <asp:Label runat="server" ID="lbReminderDay" Text="Sắp đến sinh nhật:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder2" runat="server" CssClass="lblInfo" />
@@ -110,7 +110,7 @@
             </tr>
             <tr>
                 <td>
-                    <%# Translate("Chưa nộp đủ giấy tờ khi tiếp nhận:")%>
+                    <asp:Label runat="server" ID="lbReminderPage" Text="Chưa nộp đủ giấy tờ khi tiếp nhận:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder16" runat="server" CssClass="lblInfo" />
@@ -118,7 +118,7 @@
                 <td>
                 </td>
                 <td>
-                    <%# Translate("Hết hạn Visa:")%>
+                   <asp:Label runat="server" ID="lbVisa" Text="Hết hạn Visa:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder5" runat="server" CssClass="lblInfo" />
@@ -126,7 +126,7 @@
             </tr>
             <tr>
                 <td>
-                    <%# Translate("Hết hạn tờ trình:")%>
+                    <asp:Label runat="server" ID="lbToTrinh" Text="Hết hạn tờ trình:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder13" runat="server" CssClass="lblInfo" />
@@ -134,7 +134,7 @@
                 <td>
                 </td>
                 <td>
-                    <%# Translate("Giấy phép lao động:")%>
+                    <asp:Label runat="server" ID="lbGPLD" Text="Giấy phép lao động:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder19" runat="server" CssClass="lblInfo" />
@@ -142,7 +142,7 @@
             </tr>
             <tr>
                 <td>
-                    <%# Translate("Chứng chỉ lao động:")%>
+                   <asp:Label runat="server" ID="lbCCLD" Text="Chứng chỉ lao động:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder20" runat="server" CssClass="lblInfo" />
@@ -150,7 +150,7 @@
                 <td>
                 </td>
                 <td>
-                    <%# Translate("Nghỉ việc trong tháng:")%>
+                    <asp:Label runat="server" ID="lbNVTT" Text="Nghỉ việc trong tháng:"></asp:Label>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbReminder14" runat="server" CssClass="lblInfo" />
