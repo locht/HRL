@@ -53,7 +53,6 @@
             <EntitySet Name="INS_CHANGE_TYPE" EntityType="ProfileModel.Store.INS_CHANGE_TYPE" store:Type="Tables"  />
             <EntitySet Name="INS_INFORMATION" EntityType="ProfileModel.Store.INS_INFORMATION" store:Type="Tables"  />
             <EntitySet Name="HUV_CURRENT_WORKING" EntityType="ProfileModel.Store.HUV_CURRENT_WORKING" store:Type="Tables"  />
-            <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.Store.HUV_CURRENT_CONTRACT" store:Type="Tables"  />
             <EntitySet Name="HU_CONDITION_COL" EntityType="ProfileModel.Store.HU_CONDITION_COL" store:Type="Tables"  />
             <EntitySet Name="HU_DYNAMIC_CONDITION" EntityType="ProfileModel.Store.HU_DYNAMIC_CONDITION" store:Type="Tables"  />
             <EntitySet Name="HU_WARD" EntityType="ProfileModel.Store.HU_WARD" store:Type="Tables"  />
@@ -141,6 +140,7 @@
             <EntitySet Name="HU_RELATIONSHIP_GROUP" EntityType="ProfileModel.Store.HU_RELATIONSHIP_GROUP" store:Type="Tables"  />
             <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="ProfileModel.Store.HU_ANNUALLEAVE_PLANS" store:Type="Tables"  />
             <EntitySet Name="HUV_CURRENT_WORKING1" EntityType="ProfileModel.Store.HUV_CURRENT_WORKING1" store:Type="Tables"  />
+            <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.Store.HUV_CURRENT_CONTRACT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -1349,17 +1349,6 @@
             <Property Name="STAFF_RANK_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="EFFECT_DATE" Type="date" Nullable="true" />
             <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
-        </EntityType>
-        <EntityType Name="HUV_CURRENT_CONTRACT">
-            <Key>
-                <PropertyRef Name="ID" />
-            </Key>
-            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="START_DATE" Type="date" Nullable="true" />
-            <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
-            <Property Name="WORKING_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CONTRACT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_CONDITION_COL">
             <Key>
@@ -3350,6 +3339,17 @@
             <Property Name="DIRECT_MANAGER" Type="number" Nullable="true" Precision="38" />
             <Property Name="OBJECT_ATTENDANCE" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HUV_CURRENT_CONTRACT">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="START_DATE" Type="date" Nullable="true" />
+            <Property Name="EXPIRE_DATE" Type="date" Nullable="true" />
+            <Property Name="WORKING_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTRACT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -3876,7 +3876,6 @@
           <EntitySet Name="INS_CHANGE_TYPE" EntityType="ProfileModel.INS_CHANGE_TYPE" />
           <EntitySet Name="INS_INFORMATION" EntityType="ProfileModel.INS_INFORMATION" />
           <EntitySet Name="HUV_CURRENT_WORKING" EntityType="ProfileModel.HUV_CURRENT_WORKING" />
-          <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.HUV_CURRENT_CONTRACT" />
           <EntitySet Name="HU_CONDITION_COL" EntityType="ProfileModel.HU_CONDITION_COL" />
           <EntitySet Name="HU_DYNAMIC_CONDITION" EntityType="ProfileModel.HU_DYNAMIC_CONDITION" />
           <EntitySet Name="HU_WARD" EntityType="ProfileModel.HU_WARD" />
@@ -3976,6 +3975,7 @@
           <EntitySet Name="HU_RELATIONSHIP_GROUP" EntityType="ProfileModel.HU_RELATIONSHIP_GROUP" />
           <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="ProfileModel.HU_ANNUALLEAVE_PLANS" />
           <EntitySet Name="HUV_CURRENT_WORKING1" EntityType="ProfileModel.HUV_CURRENT_WORKING1" />
+          <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.HUV_CURRENT_CONTRACT" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -5437,17 +5437,6 @@
           <Property Type="Decimal" Name="STAFF_RANK_ID" Precision="38" Scale="0" />
           <Property Type="DateTime" Name="EFFECT_DATE" />
           <Property Type="Decimal" Name="DIRECT_MANAGER" />
-        </EntityType>
-        <EntityType Name="HUV_CURRENT_CONTRACT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
-          <Property Type="DateTime" Name="START_DATE" />
-          <Property Type="DateTime" Name="EXPIRE_DATE" />
-          <Property Type="Decimal" Name="WORKING_ID" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="CONTRACT_TYPE_ID" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="HU_CONDITION_COL">
           <Key>
@@ -7468,6 +7457,17 @@
           <Property Type="Decimal" Name="DIRECT_MANAGER" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="OBJECT_ATTENDANCE" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="HUV_CURRENT_CONTRACT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="START_DATE" />
+          <Property Type="DateTime" Name="EXPIRE_DATE" />
+          <Property Type="Decimal" Name="WORKING_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CONTRACT_TYPE_ID" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8609,18 +8609,6 @@
                     <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
                     <ScalarProperty Name="EFFECT_DATE" ColumnName="EFFECT_DATE" />
                     <ScalarProperty Name="DIRECT_MANAGER" ColumnName="DIRECT_MANAGER" />
-                </MappingFragment>
-            </EntityTypeMapping>
-        </EntitySetMapping>
-        <EntitySetMapping Name="HUV_CURRENT_CONTRACT">
-            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_CURRENT_CONTRACT)">
-                <MappingFragment StoreEntitySet="HUV_CURRENT_CONTRACT">
-                    <ScalarProperty Name="ID" ColumnName="ID" />
-                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
-                    <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
-                    <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
-                    <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
-                    <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10687,6 +10675,18 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HUV_CURRENT_CONTRACT">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HUV_CURRENT_CONTRACT)">
+                <MappingFragment StoreEntitySet="HUV_CURRENT_CONTRACT">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                    <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+                    <ScalarProperty Name="WORKING_ID" ColumnName="WORKING_ID" />
+                    <ScalarProperty Name="CONTRACT_TYPE_ID" ColumnName="CONTRACT_TYPE_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -10905,7 +10905,6 @@
         <EntityTypeShape EntityType="ProfileModel.INS_CHANGE_TYPE" Width="1.5" PointX="17.75" PointY="6.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.INS_INFORMATION" Width="1.5" PointX="17.75" PointY="8.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING" Width="2.5" PointX="12.75" PointY="17.875" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_CONTRACT" Width="1.5" PointX="15.75" PointY="17.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_CONDITION_COL" Width="3.75" PointX="17.75" PointY="17.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DYNAMIC_CONDITION" Width="3.375" PointX="0.75" PointY="18.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WARD" Width="1.5" PointX="18.75" PointY="2.875" Height="0.39999999999999147" IsExpanded="false" />
@@ -11009,6 +11008,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_GROUP" Width="2.375" PointX="34.375" PointY="11.75" Height="3.1340950520833335" />
         <EntityTypeShape EntityType="ProfileModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="34.375" PointY="15.75" Height="3.9033007812499818" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING1" Width="1.5" PointX="34.375" PointY="20.875" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_CONTRACT" Width="1.5" PointX="7.375" PointY="36.25" Height="2.1725878906249818" />
         </Diagram>
     </Diagrams>
   </Designer>

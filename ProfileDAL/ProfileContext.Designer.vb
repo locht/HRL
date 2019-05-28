@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c79a4533-6498-401c-b16a-7f7f0ed08ff2")>
+<Assembly: EdmSchemaAttribute("bfa54c38-b8d8-4680-87d1-0a110eecf303")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -754,20 +754,6 @@ Public Partial Class ProfileContext
     End Property
 
     Private _HUV_CURRENT_WORKING As ObjectSet(Of HUV_CURRENT_WORKING)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    Public ReadOnly Property HUV_CURRENT_CONTRACT() As ObjectSet(Of HUV_CURRENT_CONTRACT)
-        Get
-            If (_HUV_CURRENT_CONTRACT Is Nothing) Then
-                _HUV_CURRENT_CONTRACT = MyBase.CreateObjectSet(Of HUV_CURRENT_CONTRACT)("HUV_CURRENT_CONTRACT")
-            End If
-            Return _HUV_CURRENT_CONTRACT
-        End Get
-    End Property
-
-    Private _HUV_CURRENT_CONTRACT As ObjectSet(Of HUV_CURRENT_CONTRACT)
 
     ''' <summary>
     ''' No Metadata Documentation available.
@@ -1987,6 +1973,20 @@ Public Partial Class ProfileContext
 
     Private _HUV_CURRENT_WORKING1 As ObjectSet(Of HUV_CURRENT_WORKING1)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HUV_CURRENT_CONTRACT() As ObjectSet(Of HUV_CURRENT_CONTRACT)
+        Get
+            If (_HUV_CURRENT_CONTRACT Is Nothing) Then
+                _HUV_CURRENT_CONTRACT = MyBase.CreateObjectSet(Of HUV_CURRENT_CONTRACT)("HUV_CURRENT_CONTRACT")
+            End If
+            Return _HUV_CURRENT_CONTRACT
+        End Get
+    End Property
+
+    Private _HUV_CURRENT_CONTRACT As ObjectSet(Of HUV_CURRENT_CONTRACT)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -2318,13 +2318,6 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToHUV_CURRENT_WORKING(ByVal hUV_CURRENT_WORKING As HUV_CURRENT_WORKING)
         MyBase.AddObject("HUV_CURRENT_WORKING", hUV_CURRENT_WORKING)
-    End Sub
-
-    ''' <summary>
-    ''' Deprecated Method for adding a new object to the HUV_CURRENT_CONTRACT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToHUV_CURRENT_CONTRACT(ByVal hUV_CURRENT_CONTRACT As HUV_CURRENT_CONTRACT)
-        MyBase.AddObject("HUV_CURRENT_CONTRACT", hUV_CURRENT_CONTRACT)
     End Sub
 
     ''' <summary>
@@ -2934,6 +2927,13 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToHUV_CURRENT_WORKING1(ByVal hUV_CURRENT_WORKING1 As HUV_CURRENT_WORKING1)
         MyBase.AddObject("HUV_CURRENT_WORKING1", hUV_CURRENT_WORKING1)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HUV_CURRENT_CONTRACT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHUV_CURRENT_CONTRACT(ByVal hUV_CURRENT_CONTRACT As HUV_CURRENT_CONTRACT)
+        MyBase.AddObject("HUV_CURRENT_CONTRACT", hUV_CURRENT_CONTRACT)
     End Sub
 
     #End Region
