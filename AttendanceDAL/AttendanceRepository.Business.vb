@@ -442,7 +442,7 @@ Partial Public Class AttendanceRepository
                 '                                         .P_ENDDATE = p_enddate,
                 '                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
 
-                
+
                 If codecase = "ctrlTimeTimesheet_machine_case1" Then
                     cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_HOSE",
                                                New With {.P_USERNAME = log.Username.ToUpper,
@@ -2224,7 +2224,7 @@ Partial Public Class AttendanceRepository
                                                   .TITLE_ID = e.TITLE_ID,
                                                   .ORG_ID = e.ORG_ID,
                                                   .TITLE_NAME = t.NAME_VN}).ToList
-            Return q
+            Return q.Distinct.ToList()
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
@@ -2517,6 +2517,7 @@ Partial Public Class AttendanceRepository
                 objDataEmp.TITILE_ID = obj.TITLE_ID
                 objDataEmp.ORG_ID = obj.ORG_ID
                 objDataEmp.TYPE_BT = objOffSetting.TYPE_BT
+                objDataEmp.WORKING_DAY = obj.WORKING_DAY
                 Context.AT_OFFSETTING_TIMEKEEPING_EMP.AddObject(objDataEmp)
             Next
         End If
