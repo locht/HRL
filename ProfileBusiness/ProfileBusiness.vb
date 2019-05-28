@@ -25,6 +25,17 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function HU_PAPER_LIST(ByVal P_EMP_ID As Decimal, ByVal sLang As String) As DataTable Implements ServiceContracts.IProfileBusiness.HU_PAPER_LIST
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.HU_PAPER_LIST(P_EMP_ID, sLang)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetBankList(ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetBankList
             Using rep As New ProfileRepository
                 Try
