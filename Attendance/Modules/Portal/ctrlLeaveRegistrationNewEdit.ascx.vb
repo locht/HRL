@@ -229,6 +229,11 @@ Public Class ctrlLeaveRegistrationNewEdit
                 _filter.DATE_REGISTER = Date.Now
                 _filter.LEAVE_TYPE = 251
                 _filter.EMPLOYEE_ID = EmployeeID
+                If check <> 0 Then
+                    _filter.ID_PORTAL_REG = check
+                Else
+                    _filter.ID_PORTAL_REG = 0
+                End If
                 Dim obj As New TotalDayOffDTO
                 Using rep As New AttendanceRepository
                     obj = rep.GetTotalDayOff(_filter)
@@ -584,6 +589,12 @@ Public Class ctrlLeaveRegistrationNewEdit
             _filter.DATE_REGISTER = rdFromDate.SelectedDate
             _filter.LEAVE_TYPE = 251
             _filter.EMPLOYEE_ID = EmployeeID
+            If check <> 0 Then
+                _filter.ID_PORTAL_REG = check
+            Else
+                _filter.ID_PORTAL_REG = 0
+            End If
+
             Dim obj As New TotalDayOffDTO
             Using rep As New AttendanceRepository
                 obj = rep.GetTotalDayOff(_filter)

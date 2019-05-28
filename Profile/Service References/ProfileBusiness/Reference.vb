@@ -1643,6 +1643,9 @@ Namespace ProfileBusiness
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_PORTAL_REGField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LEAVE_TYPEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1713,6 +1716,19 @@ Namespace ProfileBusiness
                 If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
                     Me.EMPLOYEE_IDField = value
                     Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_PORTAL_REG() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ID_PORTAL_REGField
+            End Get
+            Set
+                If (Me.ID_PORTAL_REGField.Equals(value) <> true) Then
+                    Me.ID_PORTAL_REGField = value
+                    Me.RaisePropertyChanged("ID_PORTAL_REG")
                 End If
             End Set
         End Property
