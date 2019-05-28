@@ -258,15 +258,15 @@ Public Class ctrlHU_TerminateNewEdit
                     'rntxtIdentifiMoney.value = Terminate.IDENTIFI_MONEY
                     'rntxtSunMoney.value = Terminate.SUN_MONEY
                     'rntxtInsuranceMoney.value = Terminate.INSURANCE_MONEY
-                    rntxtRemainingLeave.Value = Terminate.REMAINING_LEAVE
-                    rntxtPaymentLeave.Value = Terminate.PAYMENT_LEAVE
+                    'rntxtRemainingLeave.Value = Terminate.REMAINING_LEAVE
+                    'rntxtPaymentLeave.Value = Terminate.PAYMENT_LEAVE
                     rntxtAmountViolations.Value = Terminate.AMOUNT_VIOLATIONS
                     rntxtAmountWrongful.Value = Terminate.AMOUNT_WRONGFUL
                     rntxtAllowanceTerminate.Value = Terminate.ALLOWANCE_TERMINATE
                     rntxtTrainingCosts.Value = Terminate.TRAINING_COSTS
                     rntxtOtherCompensation.Value = Terminate.OTHER_COMPENSATION
-                    rntxtCompensatoryLeave.Value = Terminate.COMPENSATORY_LEAVE
-                    rntxtCompensatoryPayment.Value = Terminate.COMPENSATORY_PAYMENT
+                    'rntxtCompensatoryLeave.Value = Terminate.COMPENSATORY_LEAVE
+                    'rntxtCompensatoryPayment.Value = Terminate.COMPENSATORY_PAYMENT
 
                     rntxtSalaryMedium_loss.Value = Terminate.SALARYMEDIUM
                     ' MO RA
@@ -380,7 +380,7 @@ Public Class ctrlHU_TerminateNewEdit
                                 Exit Sub
                             End If
                         End If
-                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
                             'If txtDecisionNo.Text = "" Then
                             '    ShowMessage(Translate("Bạn phải nhập số quyết định"), NotifyType.Warning)
                             '    Exit Sub
@@ -448,15 +448,15 @@ Public Class ctrlHU_TerminateNewEdit
                         'objTerminate.IDENTIFI_MONEY = rntxtIdentifiMoney.value
                         'objTerminate.SUN_MONEY = rntxtSunMoney.value
                         'objTerminate.INSURANCE_MONEY = rntxtInsuranceMoney.value
-                        objTerminate.REMAINING_LEAVE = rntxtRemainingLeave.Value
-                        objTerminate.PAYMENT_LEAVE = rntxtPaymentLeave.Value
+                        'objTerminate.REMAINING_LEAVE = rntxtRemainingLeave.Value
+                        'objTerminate.PAYMENT_LEAVE = rntxtPaymentLeave.Value
                         objTerminate.AMOUNT_VIOLATIONS = rntxtAmountViolations.Value
                         objTerminate.AMOUNT_WRONGFUL = rntxtAmountWrongful.Value
                         objTerminate.ALLOWANCE_TERMINATE = rntxtAllowanceTerminate.Value
                         objTerminate.TRAINING_COSTS = rntxtTrainingCosts.Value
                         objTerminate.OTHER_COMPENSATION = rntxtOtherCompensation.Value
-                        objTerminate.COMPENSATORY_LEAVE = rntxtCompensatoryLeave.Value
-                        objTerminate.COMPENSATORY_PAYMENT = rntxtCompensatoryPayment.Value
+                        'objTerminate.COMPENSATORY_LEAVE = rntxtCompensatoryLeave.Value
+                        'objTerminate.COMPENSATORY_PAYMENT = rntxtCompensatoryPayment.Value
 
                         objTerminate.ORG_ABBR = hidOrgAbbr.Value
 
@@ -1434,7 +1434,7 @@ Public Class ctrlHU_TerminateNewEdit
 
 
     'tien tro cap thoi viec
-    Private Sub Tinh_Tien_Con_Lai_Changed(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtAllowanceTerminate.TextChanged, rntxtPaymentLeave.TextChanged, rntxtAmountViolations.TextChanged, rntxtOtherCompensation.TextChanged, rntxtTrainingCosts.TextChanged, rntxtAmountWrongful.TextChanged
+    Private Sub Tinh_Tien_Con_Lai_Changed(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtAllowanceTerminate.TextChanged, rntxtAmountViolations.TextChanged, rntxtOtherCompensation.TextChanged, rntxtTrainingCosts.TextChanged, rntxtAmountWrongful.TextChanged
         Tinh_Tien_Con_lai()
     End Sub
 
@@ -1452,11 +1452,11 @@ Public Class ctrlHU_TerminateNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If hidEmpID.Value Is Nothing Or rdLastDate.SelectedDate Is Nothing Then
-                rntxtRemainingLeave.ClearValue()
-                rntxtPaymentLeave.ClearValue()
-                rntxtCompensatoryLeave.ClearValue()
-                rntxtCompensatoryPayment.ClearValue()
-                rntxtAllowanceTerminate.ClearValue()
+                'rntxtRemainingLeave.ClearValue()
+                'rntxtPaymentLeave.ClearValue()
+                'rntxtCompensatoryLeave.ClearValue()
+                'rntxtCompensatoryPayment.ClearValue()
+                'rntxtAllowanceTerminate.ClearValue()
                 hiSalbasic.ClearValue()
                 Exit Sub
             End If
@@ -1465,23 +1465,23 @@ Public Class ctrlHU_TerminateNewEdit
             End Using
             If dt IsNot Nothing Then
                 'Số phép năm còn lại
-                rntxtRemainingLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("LEAVE"))
+                'rntxtRemainingLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("LEAVE"))
                 'tiền thanh toán phép
-                rntxtPaymentLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("MONEY_LEAVE"))
+                'rntxtPaymentLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("MONEY_LEAVE"))
                 'số ngày nghỉ bù còn lại
-                rntxtCompensatoryLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("COMP_LEAVE"))
+                'rntxtCompensatoryLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("COMP_LEAVE"))
                 'tiền thanh toán nghỉ bù
-                rntxtCompensatoryPayment.Value = Utilities.ObjToDecima(dt.Rows(0)("MONEY_COMP_LEAVE"))
+                'rntxtCompensatoryPayment.Value = Utilities.ObjToDecima(dt.Rows(0)("MONEY_COMP_LEAVE"))
                 'trợ cấp thôi việc
                 rntxtAllowanceTerminate.Value = Utilities.ObjToDecima(dt.Rows(0)("SUPPORT_TERMINATE"))
                 'Bổ xung lương trùng bình 6 tháng
-                rntxtSalaryMedium_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SALBASIC_6TH"))
+                'rntxtSalaryMedium_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SALBASIC_6TH"))
                 hiSalbasic.Value = Utilities.ObjToDecima(dt.Rows(0)("SAL_BASIC"))
                 'số năm tính trợ cấp mất việc
-                rntxtyearforallow_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SO_NAM_TRO_CAP"))
+                'rntxtyearforallow_loss.Value = Utilities.ObjToDecima(dt.Rows(0)("SO_NAM_TRO_CAP"))
 
-                Get_InforWorkLoss()
-                Tinh_Tien_Con_lai()
+                'Get_InforWorkLoss()
+                'Tinh_Tien_Con_lai()
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1542,6 +1542,7 @@ Public Class ctrlHU_TerminateNewEdit
                 ListComboData.GET_TER_REASON = True
                 ListComboData.GET_TER_STATUS = True
                 ListComboData.GET_TYPE_NGHI = True
+
                 rep.GetComboList(ListComboData)
             End If
             rep.Dispose()
@@ -1631,8 +1632,8 @@ Public Class ctrlHU_TerminateNewEdit
     End Sub
 
     Private Sub Tinh_Tien_Con_lai()
-        Dim tempValue = IIf(rntxtPaymentLeave.Value Is Nothing, 0, rntxtPaymentLeave.Value) + IIf(rntxtAllowanceTerminate.Value Is Nothing, 0, rntxtAllowanceTerminate.Value) - IIf(rntxtAmountViolations.Value Is Nothing, 0, rntxtAmountViolations.Value) - IIf(rntxtAmountWrongful.Value Is Nothing, 0, rntxtAmountWrongful.Value) - IIf(rntxtTrainingCosts.Value Is Nothing, 0, rntxtTrainingCosts.Value) - IIf(rntxtOtherCompensation.Value Is Nothing, 0, rntxtOtherCompensation.Value)
-        rntxtMoneyReturn.Value = IIf(tempValue > 0, tempValue, Nothing)
+        'Dim tempValue = IIf(rntxtPaymentLeave.Value Is Nothing, 0, rntxtPaymentLeave.Value) + IIf(rntxtAllowanceTerminate.Value Is Nothing, 0, rntxtAllowanceTerminate.Value) - IIf(rntxtAmountViolations.Value Is Nothing, 0, rntxtAmountViolations.Value) - IIf(rntxtAmountWrongful.Value Is Nothing, 0, rntxtAmountWrongful.Value) - IIf(rntxtTrainingCosts.Value Is Nothing, 0, rntxtTrainingCosts.Value) - IIf(rntxtOtherCompensation.Value Is Nothing, 0, rntxtOtherCompensation.Value)
+        'rntxtMoneyReturn.Value = IIf(tempValue > 0, tempValue, Nothing)
     End Sub
 
     Protected Sub txtAssetCode_ItemsRequested(sender As Object, e As RadComboBoxItemsRequestedEventArgs)

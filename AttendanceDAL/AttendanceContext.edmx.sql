@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 24/05/2019 2:54:37 PM
--- Generated from EDMX file: E:\Công nghệ\histaffhcm\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 27-May-19 5:39:35 PM
+-- Generated from EDMX file: E:\PROJECT\MyHiStaffHCM\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1302,7 +1302,8 @@ CREATE TABLE "dbo"."AT_TERMINALS" (
    "TERMINAL_STATUS" NVARCHAR2(50) NULL,
    "ORG_ID" NUMBER(38,0) NULL,
    "TERMINAL_ROW" NUMBER(38,0) NULL,
-   "TERMINAL_TYPE" NUMBER(38,0) NULL
+   "TERMINAL_TYPE" NUMBER(38,0) NULL,
+   "TIME_RECORDER" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_ACTION_ORG_LOG'

@@ -63,4 +63,6 @@
     Public Property GET_LIST_OT_TYPE As Boolean
     Public Property LIST_LIST_OT_TYPE As List(Of OT_OTHERLIST_DTO)
 
+    Public Property GET_LIST_TIME_RECORDER As Boolean
+    Public Property LIST_LIST_TIME_RECORDER As List(Of OT_OTHERLIST_DTO)
 End Class

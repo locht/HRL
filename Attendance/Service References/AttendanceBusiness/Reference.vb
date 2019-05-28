@@ -6831,6 +6831,12 @@ Namespace AttendanceBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TERMINAL_TYPE_NAMEField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_RECORDERField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIME_RECORDER_NAMEField As String
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -7162,6 +7168,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.TERMINAL_TYPE_NAMEField, value) <> true) Then
                     Me.TERMINAL_TYPE_NAMEField = value
                     Me.RaisePropertyChanged("TERMINAL_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_RECORDER() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TIME_RECORDERField
+            End Get
+            Set
+                If (Me.TIME_RECORDERField.Equals(value) <> true) Then
+                    Me.TIME_RECORDERField = value
+                    Me.RaisePropertyChanged("TIME_RECORDER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIME_RECORDER_NAME() As String
+            Get
+                Return Me.TIME_RECORDER_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TIME_RECORDER_NAMEField, value) <> true) Then
+                    Me.TIME_RECORDER_NAMEField = value
+                    Me.RaisePropertyChanged("TIME_RECORDER_NAME")
                 End If
             End Set
         End Property
@@ -8118,6 +8150,9 @@ Namespace AttendanceBusiness
         Private GET_LIST_TERMINAL_TYPEField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_LIST_TIME_RECORDERField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_LIST_TIME_SHIFTField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8176,6 +8211,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_STAFF_RANKField As System.Collections.Generic.List(Of AttendanceBusiness.HU_STAFF_RANKDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_LIST_TIME_RECORDERField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_TIME_SHIFTField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
@@ -8369,6 +8407,19 @@ Namespace AttendanceBusiness
                 If (Me.GET_LIST_TERMINAL_TYPEField.Equals(value) <> true) Then
                     Me.GET_LIST_TERMINAL_TYPEField = value
                     Me.RaisePropertyChanged("GET_LIST_TERMINAL_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_LIST_TIME_RECORDER() As Boolean
+            Get
+                Return Me.GET_LIST_TIME_RECORDERField
+            End Get
+            Set
+                If (Me.GET_LIST_TIME_RECORDERField.Equals(value) <> true) Then
+                    Me.GET_LIST_TIME_RECORDERField = value
+                    Me.RaisePropertyChanged("GET_LIST_TIME_RECORDER")
                 End If
             End Set
         End Property
@@ -8629,6 +8680,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.LIST_LIST_STAFF_RANKField, value) <> true) Then
                     Me.LIST_LIST_STAFF_RANKField = value
                     Me.RaisePropertyChanged("LIST_LIST_STAFF_RANK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_LIST_TIME_RECORDER() As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
+            Get
+                Return Me.LIST_LIST_TIME_RECORDERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_LIST_TIME_RECORDERField, value) <> true) Then
+                    Me.LIST_LIST_TIME_RECORDERField = value
+                    Me.RaisePropertyChanged("LIST_LIST_TIME_RECORDER")
                 End If
             End Set
         End Property
