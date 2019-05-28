@@ -791,11 +791,16 @@ Public Class ctrlSignWork
                         Else
                             row("D" & index) = ""
                             Dim workingDate As Date = dtDatas.START_DATE.Value.AddDays(index - 1)
-                            If workingDate.DayOfWeek = DayOfWeek.Sunday And exists.SUNDAY.HasValue Then
-                                row("D" & index) = 81 ' OFF
-                            Else
+                            If IsNumeric(exists.ID) Then
                                 row("D" & index) = exists.ID
+                            Else
+                                If workingDate.DayOfWeek = DayOfWeek.Sunday And exists.SUNDAY.HasValue Then
+                                    row("D" & index) = 81 ' OFF
+                                Else
+                                    row("D" & index) = exists.ID
+                                End If
                             End If
+                            
                         End If
                     Else
 
