@@ -29280,9 +29280,6 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_PE_ASSESS_MESSResponse")>  _
         Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVEResponse")>  _
-        Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As System.Data.DataTable
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherListResponse")>  _
         Function GetTerminalFromOtOtherList() As System.Data.DataTable
         
@@ -30287,7 +30284,7 @@ Namespace AttendanceBusiness
         Function GetMachines(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MACHINETDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MACHINETDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Init_TimeTImesheetMachines", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Init_TimeTImesheetMachinesResponse")>  _
-        Function Init_TimeTImesheetMachines(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal p_delAll As Decimal) As Boolean
+        Function Init_TimeTImesheetMachines(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal p_delAll As Decimal, ByVal codecase As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetCCT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetCCTResponse")>  _
         Function GetCCT(ByVal param As AttendanceBusiness.AT_TIME_TIMESHEET_DAILYDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
@@ -30863,10 +30860,6 @@ Namespace AttendanceBusiness
         
         Public Function GET_PE_ASSESS_MESS(ByVal EMP As System.Nullable(Of Decimal)) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_PE_ASSESS_MESS
             Return MyBase.Channel.GET_PE_ASSESS_MESS(EMP)
-        End Function
-        
-        Public Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.PRS_DASHBOARD_BY_APPROVE
-            Return MyBase.Channel.PRS_DASHBOARD_BY_APPROVE(P_EMPLOYEE_APP_ID, P_PROCESS_TYPE)
         End Function
         
         Public Function GetTerminalFromOtOtherList() As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTerminalFromOtOtherList
@@ -31749,8 +31742,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetMachines(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
         End Function
         
-        Public Function Init_TimeTImesheetMachines(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal p_delAll As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Init_TimeTImesheetMachines
-            Return MyBase.Channel.Init_TimeTImesheetMachines(_param, log, p_fromdate, p_enddate, P_ORG_ID, lstEmployee, p_delAll)
+        Public Function Init_TimeTImesheetMachines(ByVal _param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog, ByVal p_fromdate As Date, ByVal p_enddate As Date, ByVal P_ORG_ID As Decimal, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal p_delAll As Decimal, ByVal codecase As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Init_TimeTImesheetMachines
+            Return MyBase.Channel.Init_TimeTImesheetMachines(_param, log, p_fromdate, p_enddate, P_ORG_ID, lstEmployee, p_delAll, codecase)
         End Function
         
         Public Function GetCCT(ByVal param As AttendanceBusiness.AT_TIME_TIMESHEET_DAILYDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GetCCT
