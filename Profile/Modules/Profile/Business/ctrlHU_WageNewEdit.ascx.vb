@@ -1203,7 +1203,9 @@ Public Class ctrlHU_WageNewEdit
         Dim Status As Boolean = False
         Try
             Dim DATA_OUT As DataTable
-            If getSE_CASE_CONFIG("ctrlHU_WageNewEdit_case1") <= 0 Then 'Unactive
+            If getSE_CASE_CONFIG("ctrlHU_WageNewEdit_case1") > 0 Then 'Active
+
+            Else 'Unactive
                 Using rep As New ProfileBusinessRepository
                     DATA_OUT = rep.Calculator_Salary(GetDATA_IN())
                 End Using
@@ -1211,8 +1213,6 @@ Public Class ctrlHU_WageNewEdit
                 If DATA_OUT IsNot Nothing AndAlso DATA_OUT.Rows.Count > 0 Then
                     BidingDataToControls(DATA_OUT)
                 End If
-            Else 'Active
-
             End If
             
         Catch ex As Exception

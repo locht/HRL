@@ -885,7 +885,9 @@ Public Class ctrlInsArisingManual
                 Dim item = lstCommonEmployee(0)
                 Dim lstSource As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetEmpInfo(item.EMPLOYEE_ID, 0)
                 If (Not (lstSource Is Nothing) AndAlso lstSource.Rows.Count > 0) Then
-                    If getSE_CASE_CONFIG("ctrlInsArisingManual_case1") <= 0 Then
+                    If getSE_CASE_CONFIG("ctrlInsArisingManual_case1") > 0 Then
+
+                    Else
                         If lstSource.Rows(0)("CHECK_EMP_INFOR").ToString() = "" Then 'nhân viên đó không tham gia bảo hiểm
                             btnSearchEmp.Focus()
                             ShowMessage("Nhân viên đã chọn không có thông tin bảo hiểm. Vui lòng chọn khác", NotifyType.Warning, 10)
