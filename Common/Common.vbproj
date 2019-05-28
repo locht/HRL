@@ -435,7 +435,7 @@
     </Compile>
     <Compile Include="Modules\Common\ctrlCommon_Reject.ascx.vb">
       <DependentUpon>ctrlCommon_Reject.ascx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Common\ctrlUploadWithTeamplate.ascx.designer.vb">
       <DependentUpon>ctrlUploadWithTeamplate.ascx</DependentUpon>
@@ -456,7 +456,7 @@
     </Compile>
     <Compile Include="Modules\Common\ctrlCheckData.ascx.vb">
       <DependentUpon>ctrlCheckData.ascx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Common\ctrlFindMEmployeePopup.ascx.designer.vb">
       <DependentUpon>ctrlFindMEmployeePopup.ascx</DependentUpon>

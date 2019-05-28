@@ -404,7 +404,7 @@
     </Compile>
     <Compile Include="Modules\Payroll\List\ctrlPA_SaleCommision.ascx.vb">
       <DependentUpon>ctrlPA_SaleCommision.ascx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Payroll\PayrollRepository.Dashboard.vb" />
     <Compile Include="Modules\Payroll\BusinessObjects\MessageDTO.vb" />
