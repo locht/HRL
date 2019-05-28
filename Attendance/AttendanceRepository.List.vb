@@ -2352,6 +2352,22 @@ Partial Class AttendanceRepository
             Throw ex
         End Try
     End Function
+
+    Public Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As DataTable
+        Try
+            Using rep As New AttendanceBusinessClient
+                Try
+                    Return rep.PRS_DASHBOARD_BY_APPROVE(P_EMPLOYEE_APP_ID, P_PROCESS_TYPE)
+                Catch ex As Exception
+                    rep.Abort()
+                    Throw ex
+                End Try
+            End Using
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #Region "cham cong"
     Public Function GetLeaveRegistrationList(ByVal _filter As AT_PORTAL_REG_DTO,
                                 Optional ByRef Total As Integer = 0,
