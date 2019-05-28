@@ -511,9 +511,9 @@
                     <hr />
                 </td>
             </tr>
-            <%--<tr>
+            <tr>
                 <td class="lb">
-                    <%# Translate("Số phép còn lại")%>
+                    <asp:Label runat ="server" ID ="lbRemainingLeave" Text ="Số phép còn lại" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtRemainingLeave" runat="server" SkinID="ReadonlyDecimal"
@@ -521,7 +521,7 @@
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Số ngày nghỉ bù còn lại")%>
+                    <asp:Label runat ="server" ID ="lbCompensatoryLeave" Text ="Số ngày nghỉ bù còn lại" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtCompensatoryLeave" runat="server" ReadOnly="true"
@@ -529,13 +529,13 @@
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Tiền thanh toán phép")%>
+                    <asp:Label runat ="server" ID ="lbPaymentLeave" Text ="Tiền thanh toán phép"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtPaymentLeave" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
-            </tr>--%>
+            </tr>
             <tr>
                 <td class="lb">
                     <asp:Label runat ="server" ID ="lbSalaryMedium_loss" Text ="Lương trung bình tính 6 tháng" ></asp:Label>
@@ -591,13 +591,13 @@
                     <tlk:RadNumericTextBox ID="rntxtAmountWrongful" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
-                <%--<td class="lb">
-                    <%# Translate("Tiền thanh toán nghỉ bù")%>
+                <td class="lb">
+                    <asp:Label runat ="server" ID ="lbCompensatoryPayment" Text ="Tiền thanh toán nghỉ bù" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtCompensatoryPayment" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
-                </td>--%>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
