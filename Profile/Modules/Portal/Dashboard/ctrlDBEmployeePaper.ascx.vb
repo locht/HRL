@@ -60,7 +60,7 @@ Public Class ctrlDBEmployeePaper
         Try
             Dim dtData
             Using rep As New ProfileRepository
-                dtData = rep.GetOtherList("HU_PAPER")
+                dtData = rep.HU_PAPER_LIST(Session("_EmployeeID"))
             End Using
             FillCheckBoxList(lstbPaperFiled, dtData, "NAME", "ID")
         Catch ex As Exception
