@@ -13,6 +13,9 @@ Imports Aspose.Words.Reporting
 Imports ICSharpCode.SharpZipLib.Checksums
 Imports System.IO.Compression
 Imports WebAppLog
+Imports HistaffFrameworkPublic
+Imports System.Globalization
+Imports Common.CommonBusiness
 
 Public Class ctrlHU_ALP
     Inherits Common.CommonView
@@ -21,6 +24,7 @@ Public Class ctrlHU_ALP
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
+    Dim log As New UserLog
 
 
 #Region "Property"
@@ -78,6 +82,15 @@ Public Class ctrlHU_ALP
         End Get
         Set(ByVal value As TrainningManageDTO)
             ViewState(Me.ID & "_DeleteContract") = value
+        End Set
+    End Property
+
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
         End Set
     End Property
 
@@ -157,6 +170,8 @@ Public Class ctrlHU_ALP
                 ViewConfig(RadPane1)
                 GirdConfig(rgContract)
             End If
+            'ctrlUpload1.isMultiple = AsyncUpload.MultipleFileSelection.Disabled
+            'ctrlUpload1.MaxFileInput = 1
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -196,16 +211,15 @@ Public Class ctrlHU_ALP
             Dim startTime As DateTime = DateTime.UtcNow
             Me.MainToolBar = tbarContracts
 
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
-                                       ToolbarItem.Edit,
+            Common.Common.BuildToolbar(Me.MainToolBar, 
                                        ToolbarItem.Export,
                                        ToolbarItem.Delete,
                                        ToolbarItem.Print,
                                         ToolbarItem.Import
                                        )
-            CType(MainToolBar.Items(4), RadToolBarButton).Text = "Xuất file mẫu"
-            CType(MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl
-            CType(MainToolBar.Items(5), RadToolBarButton).Text = "nhập file mẫu"
+            CType(MainToolBar.Items(2), RadToolBarButton).Text = "Xuất file mẫu"
+            CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl = CType(MainToolBar.Items(2), RadToolBarButton).ImageUrl
+            CType(MainToolBar.Items(3), RadToolBarButton).Text = "Nhập file mẫu"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -269,149 +283,32 @@ Public Class ctrlHU_ALP
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
-        Dim objOrgFunction As New OrganizationDTO
+        Dim objOrgFunction As New Profile.ProfileBusiness.OrganizationDTO
         Dim sError As String = ""
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_PRINT
-                    Dim dtData As DataTable
-                    Dim dtDataCon As DataTable
-                    Dim folderName As String = "ContractSupport"
-                    Dim filePath As String = ""
-                    Dim extension As String = ""
-                    Dim iError As Integer = 0
-                    Dim path As String = ""
-                    If Not Directory.Exists(AppDomain.CurrentDomain.BaseDirectory & "Zip\") Then
-                        Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory & "Zip\")
+                    Dim dataSet As New DataSet
+                    Dim dtVariable As New DataTable
+                    Dim tempPath = "~/ReportTemplates//Attendance//Import//TEMPLATE_QLKeHoachNghiPN.xls"
+                    If Not File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath))) Then
+                        ' Mẫu báo cáo không tồn tại
+                        ShowMessage(Translate("Mẫu báo cáo không tồn tại"), Framework.UI.Utilities.NotifyType.Warning)
+                        Exit Sub
                     End If
-                    Dim dir As String() = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory & "Zip\")
-                    If dir.Length > 0 Then
-                        For Each f As String In dir
-                            Try
-                                File.Delete(f)
-                            Catch ex As Exception
-                            End Try
-                        Next
-                    End If
-                    If Not Directory.Exists(AppDomain.CurrentDomain.BaseDirectory & "Files\") Then
-                        Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory & "Files\")
-                    End If
-                    Dim dir2 As String() = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory & "Files\")
-                    If dir2.Length > 0 Then
-                        For Each f2 As String In dir2
-                            Try
-                                File.Delete(f2)
-                            Catch ex As Exception
-                            End Try
-                        Next
-                    End If
-
-                    Dim item = rgContract.SelectedItems
-
-                    Dim lstIDs As String = ""
-                    For idx = 0 To rgContract.SelectedItems.Count - 1
-                        If idx <> rgContract.SelectedItems.Count - 1 Then
-                            Dim value As GridDataItem = rgContract.SelectedItems(idx)
-                            lstIDs = lstIDs & value.GetDataKeyValue("ID") & ","
-                        Else
-                            Dim value As GridDataItem = rgContract.SelectedItems(idx)
-                            lstIDs = lstIDs & value.GetDataKeyValue("ID")
-                        End If
-                    Next
-                    'check loại hợp đồng cùng loại
-                    Using rep As New ProfileRepository
-                        dtDataCon = rep.GetCheckContractTypeID(lstIDs)
-                        If dtDataCon.Rows(0)(0) = 2 Then
-                            ShowMessage("Các bản ghi không cùng loại hợp đồng !", NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If folderName = "" Then
-                            ShowMessage("Thư mục không tồn tại", NotifyType.Warning)
-                            Exit Sub
-                        End If
+                    Using xls As New AsposeExcelCommon
+                        Dim bCheck = xls.ExportExcelTemplateNoData(
+                          System.IO.Path.Combine(Server.MapPath(tempPath)), "IMPORT_QLKeHoachNghiPN", Response)
                     End Using
-
-                    Dim icheck As GridDataItem = item.Item(0)
-                    ' Kiểm tra file theo thông tin trong database
-                    If Not Utilities.GetTemplateLinkFile(icheck.GetDataKeyValue("CONTRACTTYPE_CODE"),
-                                                         folderName,
-                                                         filePath,
-                                                         extension,
-                                                         iError) Then
-                        Select Case iError
-                            Case 1
-                                ShowMessage("Biểu mẫu không tồn tại", NotifyType.Warning)
-                                Exit Sub
-                        End Select
-                    End If
-
-                    Dim lstID As String = ""
-                    For Each i As GridDataItem In item
-                        lstID &= "|" & i.GetDataKeyValue("ID").ToString() & "|"
-                    Next
-
-                    Using rep As New ProfileRepository
-                        dtData = rep.GetHU_DataDynamicContract(lstID,
-                                                       ProfileCommon.HU_TEMPLATE_TYPE.CONTRACT_ID,
-                                                       folderName)
-                        If dtData.Rows.Count = 0 Then
-                            ShowMessage("Dữ liệu không tồn tại", NotifyType.Warning)
-                            Exit Sub
-                        End If
-                        If folderName = "" Then
-                            ShowMessage("Thư mục không tồn tại", NotifyType.Warning)
-                            Exit Sub
-                        End If
-                    End Using
-
-                    If item.Count = 1 Then
-                        'Export file mẫu
-                        Using word As New WordCommon
-                            word.ExportMailMerge(filePath,
-                                                 icheck.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                 Format(Date.Now, "yyyyMMddHHmmss") & extension,
-                                                 dtData,
-                                                 Response)
-                        End Using
-                    Else
-                        For lst = 0 To rgContract.SelectedItems.Count - 1
-                            Dim item1 As GridDataItem = rgContract.SelectedItems(lst)
-                            Dim fileName As String = item1.GetDataKeyValue("EMPLOYEE_CODE") & "_HDLD_" & _
-                                                     Format(Date.Now, "yyyyMMddHHmmss") & lst & extension
-                            Dim doc As New Document(filePath)
-                            doc.MailMerge.Execute(dtData.Rows(lst))
-                            path = AppDomain.CurrentDomain.BaseDirectory & "Files\"
-                            'path = "Files\"
-                            If Not Directory.Exists(path) Then
-                                Directory.CreateDirectory(path)
-                            End If
-                            doc.Save(path & fileName)
-                        Next
-                        ZipFiles(path)
-                    End If
 
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgContract.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
-                    ElseIf rgContract.SelectedItems.Count > 1 Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    Dim item As GridDataItem = rgContract.SelectedItems(0)
-                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
-                        ShowMessage(Translate("Bản ghi đã phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If item.GetDataKeyValue("STATUS_ID") = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
-                        ShowMessage(Translate("Bản ghi không phê duyệt. Thao tác thực hiện không thành công"), NotifyType.Warning)
-                        Exit Sub
                     End If
 
-                    DeleteContract = New TrainningManageDTO With {.ID = Decimal.Parse(item("ID").Text),
-                                                           .EMPLOYEE_ID = Decimal.Parse(item("EMPLOYEE_ID").Text)}
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -428,6 +325,10 @@ Public Class ctrlHU_ALP
                             Exit Sub
                         End If
                     End Using
+                Case Common.CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload1.isMultiple = False
+                    ctrlUpload1.Show()
+
             End Select
 
             'UpdateControlState()
@@ -437,6 +338,174 @@ Public Class ctrlHU_ALP
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Try
+            Import_Data()
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Private Sub Import_Data()
+        Try
+            Dim rep As New ProfileBusinessRepository
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload1.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim workbook As Aspose.Cells.Workbook
+            Dim ds As New DataSet
+            log = LogHelper.GetUserLog
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload1.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                workbook = New Aspose.Cells.Workbook(fileName)
+                If workbook.Worksheets.GetSheetByCodeName("ImportData") Is Nothing Then
+                    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
+                    Exit Sub
+                End If
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+
+            TableMapping(ds.Tables(0))
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                Dim count As Integer = ds.Tables(0).Columns.Count - 6
+                For i = 0 To count
+                    If ds.Tables(0).Columns(i).ColumnName.Contains("Column") Then
+                        ds.Tables(0).Columns.RemoveAt(i)
+                        i = i - 1
+                    End If
+                Next
+            End If
+
+            'ViewLog()
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                Dim count As Integer = ds.Tables(0).Columns.Count - 6
+                For i = 0 To count
+                    If ds.Tables(0).Columns(i).ColumnName.Contains("Column") Then
+                        ds.Tables(0).Columns.RemoveAt(i)
+                        i = i - 1
+                    End If
+                Next
+
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.ImportAnnualLeave(DocXml, log.Username, cboYear.SelectedValue) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        rgContract.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(1).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(5).ColumnName = "START_DATE"
+        dtTemp.Columns(6).ColumnName = "END_DATE"
+        dtTemp.Columns(2).ColumnName = "DAY_NUMBER"
+        dtTemp.Columns(7).ColumnName = "NOTE"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+        dtTemp.Rows(2).Delete()
+        dtTemp.Rows(3).Delete()
+
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        Dim empId As Integer
+        Dim startDate As Date
+        Dim endDate As Date
+        Dim rep As New ProfileBusinessRepository
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
+
+            If empId = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            Else
+                rows("EMPLOYEE_CODE") = empId
+            End If
+            If IsDBNull(rows("START_DATE")) OrElse rows("START_DATE") = "" OrElse CheckDate(rows("START_DATE"), startDate) = False Then
+                rows("START_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Từ ngày - Không đúng định dạng,"
+                _error = False
+            End If
+            If IsDBNull(rows("END_DATE")) OrElse rows("END_DATE") = "" OrElse CheckDate(rows("END_DATE"), endDate) = False Then
+                rows("END_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Đến ngày - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If CheckDate(rows("START_DATE"), startDate) And CheckDate(rows("END_DATE"), endDate) Then
+                If startDate > endDate Then
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Đến ngày phải lớn hơn hoặc bằng từ ngày,"
+                    _error = False
+                End If
+
+                Dim difference As TimeSpan
+                difference = endDate.AddDays(1) - startDate
+                rows("DAY_NUMBER") = difference.TotalDays
+            Else
+                rows("DAY_NUMBER") = "NULL"
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                count += 1
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
+
     ''' <lastupdate>
     ''' 07/07/2017 08:24
     ''' </lastupdate>
@@ -452,6 +521,14 @@ Public Class ctrlHU_ALP
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim rep As New ProfileBusinessRepository
+                For Each item In rgContract.SelectedItems
+                    DeleteContract = New TrainningManageDTO With {.ID = Decimal.Parse(item("ID").Text),
+                                                       .EMPLOYEE_ID = Decimal.Parse(item("EMPLOYEE_ID").Text)}
+
+                    rep.DeleteALP(DeleteContract)
+                Next
+                Refresh("UpdateView")
                 CurrentState = CommonMessage.STATE_DELETE
                 UpdateControlState()
             End If
@@ -605,16 +682,16 @@ Public Class ctrlHU_ALP
             tbarContracts.Enabled = True
             rgContract.Enabled = True
             ctrlOrg.Enabled = True
-            Select Case CurrentState
-                Case CommonMessage.STATE_DELETE
-                    If rep.DeleteTrainingManage(DeleteContract) Then
-                        DeleteContract = Nothing
-                        IDSelect = Nothing
-                        Refresh("UpdateView")
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                    End If
-            End Select
+            'Select Case CurrentState
+            '    Case CommonMessage.STATE_DELETE
+            '        If rep.DeleteTrainingManage(DeleteContract) Then
+            '            DeleteContract = Nothing
+            '            IDSelect = Nothing
+            '            Refresh("UpdateView")
+            '        Else
+            '            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+            '        End If
+            'End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -634,10 +711,18 @@ Public Class ctrlHU_ALP
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            'Using rep As New ProfileRepository
-            '    dtData = rep.GetOtherList("CONTRACT_SUPPORT")
-            '    FillRadCombobox(cboPrintSupport, dtData, "NAME", "ID")
-            'End Using
+            Dim table As New DataTable
+            table.Columns.Add("YEAR", GetType(Integer))
+            table.Columns.Add("ID", GetType(Integer))
+            Dim row As DataRow
+            For index = 2015 To Date.Now.Year + 1
+                row = table.NewRow
+                row("ID") = index
+                row("YEAR") = index
+                table.Rows.Add(row)
+            Next
+            FillRadCombobox(cboYear, table, "YEAR", "ID")
+            cboYear.SelectedValue = Date.Now.Year
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -663,7 +748,7 @@ Public Class ctrlHU_ALP
                 rgContract.DataSource = New List(Of TrainningManageDTO)
                 Exit Function
             End If
-            Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
+            Dim _param = New Profile.ProfileBusiness.ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
                                             .IS_DISSOLVE = ctrlOrg.IsDissolve}
 
             If rdFromDate.SelectedDate IsNot Nothing Then
@@ -700,6 +785,20 @@ Public Class ctrlHU_ALP
         End Try
     End Function
 
+    Private Function CheckDate(ByVal value As String, ByVal result As Date) As Boolean
+        Dim dateCheck As Boolean
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
 
 #End Region

@@ -18,6 +18,13 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
+                            <asp:Label ID="lbYear" runat="server" Text="Năm"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboYear" runat="server">
+                            </tlk:RadComboBox>
+                        </td>
+                        <td class="lb">
                             <asp:Label ID="lbFromDate" runat="server" Text="Thời gian bắt đầu"></asp:Label>
                         </td>
                         <td>
@@ -86,6 +93,7 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <%--<tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="950px"
@@ -128,7 +136,7 @@
                     args.set_cancel(true);
                     return;
                 }
-            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_TrainingManageNewEdit&group=Business' + extented, "_self");
+            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ALPNewEdit&group=Business' + extented, "_self");
         }
 
         function OpenEditContract() {
@@ -142,7 +150,7 @@
             var emp_id = $find('<%= rgContract.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('EMPLOYEE_ID');
 
 
-            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_TrainingManageNewEdit&group=Business&IDSelect=' + id + '&empid=' + emp_id, "_self"); /*
+            window.open('/Default.aspx?mid=Profile&fid=ctrlHU_ALPNewEdit&group=Business&IDSelect=' + id + '&empid=' + emp_id, "_self"); /*
 
             oWindow.setSize(1020, $(window).height());
             oWindow.center(); */
@@ -156,14 +164,6 @@
                 args.set_cancel(true);
             }
             if (args.get_item().get_commandName() == "PRINT") {
-                var bCheck = $find('<%= rgContract.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                    return;
-                }
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == "NEXT") {

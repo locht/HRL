@@ -113,7 +113,8 @@ Public Class Export
                         Template_ImportQTThueTNCN()
                     Case "Template_ImportSalary_FundMapping"
                         Template_ImportSalary_FundMapping()
-
+                    Case "HU_ANNUALLEAVE_PLANS_ERROR"
+                        HU_ANNUALLEAVE_PLANS_ERROR()
                 End Select
             Catch ex As Exception
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
@@ -1080,6 +1081,18 @@ Public Class Export
             ExportTemplate("Profile\Import\ChangeInfo_Error.xls", _
                                       dtData, Nothing, _
                                       "TemplateImport_Error_" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub HU_ANNUALLEAVE_PLANS_ERROR()
+        Try
+            Dim dtData = Session("EXPORTREPORT")
+            ExportTemplate("Attendance\Import\Template_QLKeHoachNghiPN _error.xls", _
+                                      dtData, Nothing, _
+                                      "TemplateImport_Error_" & Format(Date.Now, "yyyyMMdd"))
+            Session("EXPORTREPORT") = Nothing
         Catch ex As Exception
             Throw ex
         End Try

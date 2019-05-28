@@ -142,11 +142,11 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String) As Boolean _
+        Public Function ImportAnnualLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_YEAR As Decimal) As Boolean _
           Implements ServiceContracts.IProfileBusiness.ImportAnnualLeave
             Using rep As New ProfileRepository
                 Try
-                    Return rep.ImportAnnualLeave(P_DOCXML, P_USER)
+                    Return rep.ImportAnnualLeave(P_DOCXML, P_USER, P_YEAR)
                 Catch ex As Exception
                     Throw ex
                 End Try

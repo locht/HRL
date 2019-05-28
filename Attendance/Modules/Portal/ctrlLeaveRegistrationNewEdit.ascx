@@ -160,9 +160,7 @@
                 Type="Date" ControlToCompare="rdFromDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"
                 ToolTip="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"></asp:CompareValidator>
         </td>
-        <td>
-            <asp:CheckBox runat="server" ID="chkWorkday" Text="Ngày làm việc" AutoPostBack="true" />
-        </td>
+     
     </tr>
     <tr>
         <td class="lb">
