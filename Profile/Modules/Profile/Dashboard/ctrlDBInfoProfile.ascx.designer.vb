@@ -32,6 +32,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbEmpCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmpCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbtnEmpCount control.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnEmpCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbEmpNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmpNew As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbtnEmpNew control.
@@ -50,6 +68,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents lbtnEmpNew As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbEmpTer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmpTer As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbtnEmpTer control.
     '''</summary>
     '''<remarks>
@@ -57,6 +84,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnEmpTer As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbContractNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbContractNew As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbtnContractNew control.
@@ -68,6 +104,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents lbtnContractNew As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbTransferNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTransferNew As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbtnTransferNew control.
     '''</summary>
     '''<remarks>
@@ -75,6 +120,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnTransferNew As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbTransferMove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTransferMove As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbtnTransferMove control.
@@ -86,6 +140,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents lbtnTransferMove As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbAgeAvg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAgeAvg As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbtnAgeAvg control.
     '''</summary>
     '''<remarks>
@@ -93,6 +156,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnAgeAvg As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbSeniority control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSeniority As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbtnSeniority control.
@@ -104,6 +176,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents lbtnSeniority As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbReminder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbReminder As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbReminder1 control.
     '''</summary>
     '''<remarks>
@@ -111,6 +192,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbReminder1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbReminderDay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbReminderDay As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbReminder2 control.
@@ -122,6 +212,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents lbReminder2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbReminderPage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbReminderPage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbReminder16 control.
     '''</summary>
     '''<remarks>
@@ -129,6 +228,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbReminder16 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbVisa control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbVisa As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbReminder5 control.
@@ -140,6 +248,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents lbReminder5 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbToTrinh control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToTrinh As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbReminder13 control.
     '''</summary>
     '''<remarks>
@@ -147,6 +264,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbReminder13 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbGPLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbGPLD As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbReminder19 control.
@@ -158,6 +284,15 @@ Partial Public Class ctrlDBInfoProfile
     Protected WithEvents lbReminder19 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbCCLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCCLD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''lbReminder20 control.
     '''</summary>
     '''<remarks>
@@ -165,6 +300,15 @@ Partial Public Class ctrlDBInfoProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbReminder20 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbNVTT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNVTT As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lbReminder14 control.
