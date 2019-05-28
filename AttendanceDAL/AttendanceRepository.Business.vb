@@ -5101,6 +5101,12 @@ Partial Public Class AttendanceRepository
             If (_filter.TERMINAL_CODE <> "") Then
                 lst = lst.Where(Function(f) f.TERMINAL_CODE.ToUpper.Contains(_filter.TERMINAL_CODE.ToUpper))
             End If
+            If (_filter.EMPLOYEE_CODE <> "") Then
+                lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If (_filter.EMPLOYEE_NAME <> "") Then
+                lst = lst.Where(Function(f) f.EMPLOYEE_NAME.ToUpper.Contains(_filter.EMPLOYEE_NAME.ToUpper))
+            End If
             If (_filter.ITIME_ID_S <> "") Then
                 lst = lst.Where(Function(f) f.ITIME_ID_S.ToUpper.Contains(_filter.ITIME_ID_S.ToUpper))
             End If
