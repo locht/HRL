@@ -1148,15 +1148,15 @@ Partial Public Class AttendanceRepository
                                        .WORKING_DA = p.p.WORKING_DA,
                                        .OBJECT_ATTENDANCE = p.p.OBJECT_ATTENDANCE,
                                        .OBJECT_ATTENDANCE_NAME = p.obj_att.NAME_VN,
-                                       .MIN_AT_WORK = p.p.MIN_AT_WORK,
-                                       .MIN_DEDUCT = p.p.MIN_DEDUCT,
-                                       .MIN_DEDUCT_FOR_WORK = p.p.MIN_DEDUCT_FOR_WORK,
-                                       .MIN_LATE = p.p.MIN_LATE,
-                                       .MIN_LATE_SOON = p.p.MIN_LATE_SOON,
-                                       .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
-                                       .MIN_OUT_AFTER_DEDUCT = p.p.MIN_OUT_AFTER_DEDUCT,
                                        .MIN_OUT_WORK = p.p.MIN_OUT_WORK,
-                                       .MIN_SOON = p.p.MIN_SOON})
+                                       .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
+                                       .MIN_DEDUCT = p.p.MIN_DEDUCT,
+                                       .MIN_LATE = p.p.MIN_LATE,
+                                       .MIN_LATE_EARLY = p.p.MIN_LATE_EARLY,
+                                       .MIN_IN_WORK = p.p.MIN_IN_WORK,
+                                       .MIN_DEDUCT_WORK = p.p.MIN_DEDUCT_WORK,
+                                       .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT,
+                                       .MIN_EARLY = p.p.MIN_EARLY})
 
             'If _filter.IS_TERMINATE Then
             '    lst = lst.Where(Function(f) f.WORK_STATUS = 257)

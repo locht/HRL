@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("b062af7f-f214-4ee5-802a-0655d7647a12")>
+<Assembly: EdmSchemaAttribute("f5af6cf6-31b8-4832-a634-3de24c861bbd")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -27970,24 +27970,24 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MIN_AT_WORK() As Nullable(Of Global.System.Decimal)
+    Public Property MIN_IN_WORK() As Nullable(Of Global.System.Decimal)
         Get
-            Return _MIN_AT_WORK
+            Return _MIN_IN_WORK
         End Get
         Set
-            OnMIN_AT_WORKChanging(value)
-            ReportPropertyChanging("MIN_AT_WORK")
-            _MIN_AT_WORK = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("MIN_AT_WORK")
-            OnMIN_AT_WORKChanged()
+            OnMIN_IN_WORKChanging(value)
+            ReportPropertyChanging("MIN_IN_WORK")
+            _MIN_IN_WORK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_IN_WORK")
+            OnMIN_IN_WORKChanged()
         End Set
     End Property
 
-    Private _MIN_AT_WORK As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnMIN_AT_WORKChanging(value As Nullable(Of Global.System.Decimal))
+    Private _MIN_IN_WORK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_IN_WORKChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnMIN_AT_WORKChanged()
+    Private Partial Sub OnMIN_IN_WORKChanged()
     End Sub
 
     ''' <summary>
@@ -28020,24 +28020,24 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MIN_DEDUCT_FOR_WORK() As Nullable(Of Global.System.Decimal)
+    Public Property MIN_DEDUCT_WORK() As Nullable(Of Global.System.Decimal)
         Get
-            Return _MIN_DEDUCT_FOR_WORK
+            Return _MIN_DEDUCT_WORK
         End Get
         Set
-            OnMIN_DEDUCT_FOR_WORKChanging(value)
-            ReportPropertyChanging("MIN_DEDUCT_FOR_WORK")
-            _MIN_DEDUCT_FOR_WORK = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("MIN_DEDUCT_FOR_WORK")
-            OnMIN_DEDUCT_FOR_WORKChanged()
+            OnMIN_DEDUCT_WORKChanging(value)
+            ReportPropertyChanging("MIN_DEDUCT_WORK")
+            _MIN_DEDUCT_WORK = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_DEDUCT_WORK")
+            OnMIN_DEDUCT_WORKChanged()
         End Set
     End Property
 
-    Private _MIN_DEDUCT_FOR_WORK As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnMIN_DEDUCT_FOR_WORKChanging(value As Nullable(Of Global.System.Decimal))
+    Private _MIN_DEDUCT_WORK As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_DEDUCT_WORKChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnMIN_DEDUCT_FOR_WORKChanged()
+    Private Partial Sub OnMIN_DEDUCT_WORKChanged()
     End Sub
 
     ''' <summary>
@@ -28095,24 +28095,24 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MIN_OUT_AFTER_DEDUCT() As Nullable(Of Global.System.Decimal)
+    Public Property MIN_OUT_WORK_DEDUCT() As Nullable(Of Global.System.Decimal)
         Get
-            Return _MIN_OUT_AFTER_DEDUCT
+            Return _MIN_OUT_WORK_DEDUCT
         End Get
         Set
-            OnMIN_OUT_AFTER_DEDUCTChanging(value)
-            ReportPropertyChanging("MIN_OUT_AFTER_DEDUCT")
-            _MIN_OUT_AFTER_DEDUCT = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("MIN_OUT_AFTER_DEDUCT")
-            OnMIN_OUT_AFTER_DEDUCTChanged()
+            OnMIN_OUT_WORK_DEDUCTChanging(value)
+            ReportPropertyChanging("MIN_OUT_WORK_DEDUCT")
+            _MIN_OUT_WORK_DEDUCT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_OUT_WORK_DEDUCT")
+            OnMIN_OUT_WORK_DEDUCTChanged()
         End Set
     End Property
 
-    Private _MIN_OUT_AFTER_DEDUCT As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnMIN_OUT_AFTER_DEDUCTChanging(value As Nullable(Of Global.System.Decimal))
+    Private _MIN_OUT_WORK_DEDUCT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_OUT_WORK_DEDUCTChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnMIN_OUT_AFTER_DEDUCTChanged()
+    Private Partial Sub OnMIN_OUT_WORK_DEDUCTChanged()
     End Sub
 
     ''' <summary>
@@ -28145,24 +28145,24 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MIN_SOON() As Nullable(Of Global.System.Decimal)
+    Public Property MIN_EARLY() As Nullable(Of Global.System.Decimal)
         Get
-            Return _MIN_SOON
+            Return _MIN_EARLY
         End Get
         Set
-            OnMIN_SOONChanging(value)
-            ReportPropertyChanging("MIN_SOON")
-            _MIN_SOON = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("MIN_SOON")
-            OnMIN_SOONChanged()
+            OnMIN_EARLYChanging(value)
+            ReportPropertyChanging("MIN_EARLY")
+            _MIN_EARLY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_EARLY")
+            OnMIN_EARLYChanged()
         End Set
     End Property
 
-    Private _MIN_SOON As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnMIN_SOONChanging(value As Nullable(Of Global.System.Decimal))
+    Private _MIN_EARLY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_EARLYChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnMIN_SOONChanged()
+    Private Partial Sub OnMIN_EARLYChanged()
     End Sub
 
     ''' <summary>
@@ -28170,24 +28170,24 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MIN_LATE_SOON() As Nullable(Of Global.System.Decimal)
+    Public Property MIN_LATE_EARLY() As Nullable(Of Global.System.Decimal)
         Get
-            Return _MIN_LATE_SOON
+            Return _MIN_LATE_EARLY
         End Get
         Set
-            OnMIN_LATE_SOONChanging(value)
-            ReportPropertyChanging("MIN_LATE_SOON")
-            _MIN_LATE_SOON = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("MIN_LATE_SOON")
-            OnMIN_LATE_SOONChanged()
+            OnMIN_LATE_EARLYChanging(value)
+            ReportPropertyChanging("MIN_LATE_EARLY")
+            _MIN_LATE_EARLY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MIN_LATE_EARLY")
+            OnMIN_LATE_EARLYChanged()
         End Set
     End Property
 
-    Private _MIN_LATE_SOON As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnMIN_LATE_SOONChanging(value As Nullable(Of Global.System.Decimal))
+    Private _MIN_LATE_EARLY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMIN_LATE_EARLYChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnMIN_LATE_SOONChanged()
+    Private Partial Sub OnMIN_LATE_EARLYChanged()
     End Sub
 
     #End Region

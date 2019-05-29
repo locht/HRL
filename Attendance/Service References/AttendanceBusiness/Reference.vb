@@ -27456,31 +27456,31 @@ Namespace AttendanceBusiness
         Private LATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_AT_WORKField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_DEDUCTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_DEDUCT_FOR_WORKField As System.Nullable(Of Decimal)
+        Private MIN_DEDUCT_WORKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_EARLYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_IN_WORKField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_LATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_LATE_SOONField As System.Nullable(Of Decimal)
+        Private MIN_LATE_EARLYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_ON_LEAVEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_OUT_AFTER_DEDUCTField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_OUT_WORKField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_SOONField As System.Nullable(Of Decimal)
+        Private MIN_OUT_WORK_DEDUCTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
@@ -27835,19 +27835,6 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_AT_WORK() As System.Nullable(Of Decimal)
-            Get
-                Return Me.MIN_AT_WORKField
-            End Get
-            Set
-                If (Me.MIN_AT_WORKField.Equals(value) <> true) Then
-                    Me.MIN_AT_WORKField = value
-                    Me.RaisePropertyChanged("MIN_AT_WORK")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MIN_DEDUCT() As System.Nullable(Of Decimal)
             Get
                 Return Me.MIN_DEDUCTField
@@ -27861,14 +27848,40 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_DEDUCT_FOR_WORK() As System.Nullable(Of Decimal)
+        Public Property MIN_DEDUCT_WORK() As System.Nullable(Of Decimal)
             Get
-                Return Me.MIN_DEDUCT_FOR_WORKField
+                Return Me.MIN_DEDUCT_WORKField
             End Get
             Set
-                If (Me.MIN_DEDUCT_FOR_WORKField.Equals(value) <> true) Then
-                    Me.MIN_DEDUCT_FOR_WORKField = value
-                    Me.RaisePropertyChanged("MIN_DEDUCT_FOR_WORK")
+                If (Me.MIN_DEDUCT_WORKField.Equals(value) <> true) Then
+                    Me.MIN_DEDUCT_WORKField = value
+                    Me.RaisePropertyChanged("MIN_DEDUCT_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_EARLY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_EARLYField
+            End Get
+            Set
+                If (Me.MIN_EARLYField.Equals(value) <> true) Then
+                    Me.MIN_EARLYField = value
+                    Me.RaisePropertyChanged("MIN_EARLY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_IN_WORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_IN_WORKField
+            End Get
+            Set
+                If (Me.MIN_IN_WORKField.Equals(value) <> true) Then
+                    Me.MIN_IN_WORKField = value
+                    Me.RaisePropertyChanged("MIN_IN_WORK")
                 End If
             End Set
         End Property
@@ -27887,14 +27900,14 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_LATE_SOON() As System.Nullable(Of Decimal)
+        Public Property MIN_LATE_EARLY() As System.Nullable(Of Decimal)
             Get
-                Return Me.MIN_LATE_SOONField
+                Return Me.MIN_LATE_EARLYField
             End Get
             Set
-                If (Me.MIN_LATE_SOONField.Equals(value) <> true) Then
-                    Me.MIN_LATE_SOONField = value
-                    Me.RaisePropertyChanged("MIN_LATE_SOON")
+                If (Me.MIN_LATE_EARLYField.Equals(value) <> true) Then
+                    Me.MIN_LATE_EARLYField = value
+                    Me.RaisePropertyChanged("MIN_LATE_EARLY")
                 End If
             End Set
         End Property
@@ -27913,19 +27926,6 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_OUT_AFTER_DEDUCT() As System.Nullable(Of Decimal)
-            Get
-                Return Me.MIN_OUT_AFTER_DEDUCTField
-            End Get
-            Set
-                If (Me.MIN_OUT_AFTER_DEDUCTField.Equals(value) <> true) Then
-                    Me.MIN_OUT_AFTER_DEDUCTField = value
-                    Me.RaisePropertyChanged("MIN_OUT_AFTER_DEDUCT")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MIN_OUT_WORK() As System.Nullable(Of Decimal)
             Get
                 Return Me.MIN_OUT_WORKField
@@ -27939,14 +27939,14 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_SOON() As System.Nullable(Of Decimal)
+        Public Property MIN_OUT_WORK_DEDUCT() As System.Nullable(Of Decimal)
             Get
-                Return Me.MIN_SOONField
+                Return Me.MIN_OUT_WORK_DEDUCTField
             End Get
             Set
-                If (Me.MIN_SOONField.Equals(value) <> true) Then
-                    Me.MIN_SOONField = value
-                    Me.RaisePropertyChanged("MIN_SOON")
+                If (Me.MIN_OUT_WORK_DEDUCTField.Equals(value) <> true) Then
+                    Me.MIN_OUT_WORK_DEDUCTField = value
+                    Me.RaisePropertyChanged("MIN_OUT_WORK_DEDUCT")
                 End If
             End Set
         End Property
