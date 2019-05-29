@@ -15,8 +15,23 @@
                 UniqueName="ORG_NAME" />
             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm đánh giá %>" DataField="PE_PERIO_YEAR"
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="PE_PERIO_YEAR"
                 UniqueName="PE_PERIO_YEAR" SortExpression="PE_PERIO_YEAR" ShowFilterIcon="false"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ đánh giá %>" DataField="PE_PERIO_NAME"
+                UniqueName="PE_PERIO_NAME" SortExpression="PE_PERIO_NAME" ShowFilterIcon="false"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ đánh giá %>" DataField="PE_PERIO_NAME"
+                UniqueName="PE_PERIO_NAME" SortExpression="PE_PERIO_NAME" ShowFilterIcon="false"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="<%$ Translate: Kỳ đánh giá %>" DataField="PE_PERIO_NAME"
+                UniqueName="PE_PERIO_NAME" SortExpression="PE_PERIO_NAME" ShowFilterIcon="false"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
