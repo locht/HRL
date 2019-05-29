@@ -40,7 +40,6 @@ Public Class ctrlOTRegistrationByLM
 #Region "Page"
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
-
             Refresh()
             UpdateControlState()
         Catch ex As Exception
@@ -70,6 +69,7 @@ Public Class ctrlOTRegistrationByLM
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        Response.Redirect(HttpContext.Current.Request.Url.ToString(), True)
                     End If
                     rgMain.Rebind()
             End Select
@@ -81,10 +81,7 @@ Public Class ctrlOTRegistrationByLM
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Try
-            If Not IsPostBack Then
-
-
-            End If
+            'BindData()
         Catch ex As Exception
             Throw ex
         End Try
@@ -265,6 +262,7 @@ Public Class ctrlOTRegistrationByLM
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
             Else
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                Response.Redirect(HttpContext.Current.Request.Url.ToString(), True)
             End If
 
             rgMain.Rebind()
