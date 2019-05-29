@@ -254,11 +254,16 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
                             obj.ID = _Value
                         End If
                         For Each item In Employee_BT
-                            Dim o As New AT_OFFFSETTING_EMPDTO
-                            o.EMPLOYEE_ID = item.EMPLOYEE_ID
-                            o.ORG_ID = item.ORG_ID
-                            o.TITLE_ID = item.TITLE_ID
-                            lstOffSettingEmp.Add(o)
+                            Dim fromDate = rdFromDate.SelectedDate
+                            While (fromDate <= rdToDate.SelectedDate)
+                                Dim o As New AT_OFFFSETTING_EMPDTO
+                                o.EMPLOYEE_ID = item.EMPLOYEE_ID
+                                o.ORG_ID = item.ORG_ID
+                                o.TITLE_ID = item.TITLE_ID
+                                o.WORKING_DAY = fromDate
+                                lstOffSettingEmp.Add(o)
+                                fromDate = fromDate.Value.AddDays(1)
+                            End While
                         Next
                         If lstOffSettingEmp.Count = 0 Then
                             ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)

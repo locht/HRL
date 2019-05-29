@@ -31,6 +31,7 @@ Partial Class ProfileRepository
                              }).ToList
 
             For i As Integer = 0 To query.Count - 1
+                ApproveWorking1(query(i))
                 ApproveWorking(query(i))
             Next
             If query.Count > 0 Then Context.SaveChanges()

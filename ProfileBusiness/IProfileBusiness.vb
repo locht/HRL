@@ -1610,6 +1610,11 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetEmployeCurrentByID(ByVal _filter As WorkingDTO) As WorkingDTO
+        <OperationContract()>
+        Function InsertWorking1(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ModifyWorking1(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
 
         <OperationContract()>
         Function InsertWorking(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean

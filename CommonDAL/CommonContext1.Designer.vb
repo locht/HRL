@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3023b6e1-b46d-4a36-ac71-e173e3ecf70d")>
+<Assembly: EdmSchemaAttribute("8897c90b-eab4-40f8-a450-a927c3fbfa68")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -9962,21 +9962,9 @@ Public Partial Class SE_FUNCTION
     ''' Create a new SE_FUNCTION object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    ''' <param name="nAME">Initial value of the NAME property.</param>
-    ''' <param name="fID">Initial value of the FID property.</param>
-    ''' <param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
-    ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
-    ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
-    ''' <param name="aCTFLG">Initial value of the ACTFLG property.</param>
-    Public Shared Function CreateSE_FUNCTION(id As Global.System.Decimal, nAME As Global.System.String, fID As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, aCTFLG As Global.System.String) As SE_FUNCTION
+    Public Shared Function CreateSE_FUNCTION(id As Global.System.Decimal) As SE_FUNCTION
         Dim sE_FUNCTION as SE_FUNCTION = New SE_FUNCTION
         sE_FUNCTION.ID = id
-        sE_FUNCTION.NAME = nAME
-        sE_FUNCTION.FID = fID
-        sE_FUNCTION.MODIFIED_DATE = mODIFIED_DATE
-        sE_FUNCTION.MODIFIED_BY = mODIFIED_BY
-        sE_FUNCTION.MODIFIED_LOG = mODIFIED_LOG
-        sE_FUNCTION.ACTFLG = aCTFLG
         Return sE_FUNCTION
     End Function
 
@@ -10014,7 +10002,7 @@ Public Partial Class SE_FUNCTION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property NAME() As Global.System.String
         Get
@@ -10023,7 +10011,7 @@ Public Partial Class SE_FUNCTION
         Set
             OnNAMEChanging(value)
             ReportPropertyChanging("NAME")
-            _NAME = StructuralObject.SetValidValue(value, false)
+            _NAME = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("NAME")
             OnNAMEChanged()
         End Set
@@ -10064,7 +10052,7 @@ Public Partial Class SE_FUNCTION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property FID() As Global.System.String
         Get
@@ -10073,7 +10061,7 @@ Public Partial Class SE_FUNCTION
         Set
             OnFIDChanging(value)
             ReportPropertyChanging("FID")
-            _FID = StructuralObject.SetValidValue(value, false)
+            _FID = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("FID")
             OnFIDChanged()
         End Set
@@ -10089,9 +10077,9 @@ Public Partial Class SE_FUNCTION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property MODIFIED_DATE() As Global.System.DateTime
+    Public Property MODIFIED_DATE() As Nullable(Of Global.System.DateTime)
         Get
             Return _MODIFIED_DATE
         End Get
@@ -10104,8 +10092,8 @@ Public Partial Class SE_FUNCTION
         End Set
     End Property
 
-    Private _MODIFIED_DATE As Global.System.DateTime
-    Private Partial Sub OnMODIFIED_DATEChanging(value As Global.System.DateTime)
+    Private _MODIFIED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnMODIFIED_DATEChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnMODIFIED_DATEChanged()
@@ -10114,7 +10102,7 @@ Public Partial Class SE_FUNCTION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property MODIFIED_BY() As Global.System.String
         Get
@@ -10123,7 +10111,7 @@ Public Partial Class SE_FUNCTION
         Set
             OnMODIFIED_BYChanging(value)
             ReportPropertyChanging("MODIFIED_BY")
-            _MODIFIED_BY = StructuralObject.SetValidValue(value, false)
+            _MODIFIED_BY = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("MODIFIED_BY")
             OnMODIFIED_BYChanged()
         End Set
@@ -10139,7 +10127,7 @@ Public Partial Class SE_FUNCTION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property MODIFIED_LOG() As Global.System.String
         Get
@@ -10148,7 +10136,7 @@ Public Partial Class SE_FUNCTION
         Set
             OnMODIFIED_LOGChanging(value)
             ReportPropertyChanging("MODIFIED_LOG")
-            _MODIFIED_LOG = StructuralObject.SetValidValue(value, false)
+            _MODIFIED_LOG = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("MODIFIED_LOG")
             OnMODIFIED_LOGChanged()
         End Set
@@ -10189,7 +10177,7 @@ Public Partial Class SE_FUNCTION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property ACTFLG() As Global.System.String
         Get
@@ -10198,7 +10186,7 @@ Public Partial Class SE_FUNCTION
         Set
             OnACTFLGChanging(value)
             ReportPropertyChanging("ACTFLG")
-            _ACTFLG = StructuralObject.SetValidValue(value, false)
+            _ACTFLG = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("ACTFLG")
             OnACTFLGChanged()
         End Set

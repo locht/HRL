@@ -270,6 +270,29 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+    Public Function InsertWorking1(ByVal objWorking As WorkingDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertWorking1(objWorking, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyWorking1(ByVal objWorking As WorkingDTO, ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyWorking1(objWorking, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function DeleteWorking(ByVal objWorking As WorkingDTO) As Boolean
         Using rep As New ProfileBusinessClient

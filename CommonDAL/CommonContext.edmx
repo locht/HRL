@@ -6,41 +6,41 @@
     <edmx:StorageModels>
     <Schema Namespace="CommonModel.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="12.2" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="CommonModelStoreContainer">
-            <EntitySet Name="SE_GROUP" EntityType="CommonModel.Store.SE_GROUP" store:Type="Tables" />
-            <EntitySet Name="SE_FUNCTION" EntityType="CommonModel.Store.SE_FUNCTION" store:Type="Tables" />
-            <EntitySet Name="SE_USER" EntityType="CommonModel.Store.SE_USER" store:Type="Tables" />
-            <EntitySet Name="SE_MODULE" EntityType="CommonModel.Store.SE_MODULE" store:Type="Tables" />
-            <EntitySet Name="SE_GROUP_PERMISSION" EntityType="CommonModel.Store.SE_GROUP_PERMISSION" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST" EntityType="CommonModel.Store.OT_OTHER_LIST" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="CommonModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables" />
-            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="CommonModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables" />
-            <EntitySet Name="SE_REPORT" EntityType="CommonModel.Store.SE_REPORT" store:Type="Tables" />
-            <EntitySet Name="HU_ORGANIZATION" EntityType="CommonModel.Store.HU_ORGANIZATION" store:Type="Tables" />
-            <EntitySet Name="SE_FUNCTION_GROUP" EntityType="CommonModel.Store.SE_FUNCTION_GROUP" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE" EntityType="CommonModel.Store.HU_EMPLOYEE" store:Type="Tables" />
-            <EntitySet Name="HU_TERMINATE" EntityType="CommonModel.Store.HU_TERMINATE" store:Type="Tables" />
-            <EntitySet Name="SE_MAIL" EntityType="CommonModel.Store.SE_MAIL" store:Type="Tables" />
-            <EntitySet Name="SE_REMINDER" EntityType="CommonModel.Store.SE_REMINDER" store:Type="Tables" />
-            <EntitySet Name="HU_TITLE" EntityType="CommonModel.Store.HU_TITLE" store:Type="Tables" />
-            <EntitySet Name="SE_APP_PROCESS" EntityType="CommonModel.Store.SE_APP_PROCESS" store:Type="Tables" />
-            <EntitySet Name="SE_APP_SETUP" EntityType="CommonModel.Store.SE_APP_SETUP" store:Type="Tables" />
-            <EntitySet Name="SE_APP_SETUPEXT" EntityType="CommonModel.Store.SE_APP_SETUPEXT" store:Type="Tables" />
-            <EntitySet Name="SE_APP_TEMPLATE" EntityType="CommonModel.Store.SE_APP_TEMPLATE" store:Type="Tables" />
-            <EntitySet Name="SE_APP_TEMPLATE_DTL" EntityType="CommonModel.Store.SE_APP_TEMPLATE_DTL" store:Type="Tables" />
-            <EntitySet Name="HU_WORKING" EntityType="CommonModel.Store.HU_WORKING" store:Type="Tables" />
-            <EntitySet Name="SE_CHOSEN_ORG" EntityType="CommonModel.Store.SE_CHOSEN_ORG" store:Type="Tables" />
-            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="CommonModel.Store.HU_EMPLOYEE_CV" store:Type="Tables" />
-            <EntitySet Name="HU_STAFF_RANK" EntityType="CommonModel.Store.HU_STAFF_RANK" store:Type="Tables" />
-            <EntitySet Name="SE_LDAP" EntityType="CommonModel.Store.SE_LDAP" store:Type="Tables" />
-            <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="CommonModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables" />
-            <EntitySet Name="SE_USER_PERMISSION" EntityType="CommonModel.Store.SE_USER_PERMISSION" store:Type="Tables" />
-            <EntitySet Name="HUV_SE_GRP_SE_USR" EntityType="CommonModel.Store.HUV_SE_GRP_SE_USR" store:Type="Tables" />
-            <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.Store.SE_VIEW_CONFIG" store:Type="Tables" />
-            <EntitySet Name="AT_TIME_MANUAL" EntityType="CommonModel.Store.AT_TIME_MANUAL" store:Type="Tables" />
-            <EntitySet Name="SE_CASE_CONFIG" EntityType="CommonModel.Store.SE_CASE_CONFIG" store:Type="Tables" />
-            <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables" />
-            <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables" />
-            <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables" />
+            <EntitySet Name="SE_GROUP" EntityType="CommonModel.Store.SE_GROUP" store:Type="Tables"  />
+            <EntitySet Name="SE_FUNCTION" EntityType="CommonModel.Store.SE_FUNCTION" store:Type="Tables"  />
+            <EntitySet Name="SE_USER" EntityType="CommonModel.Store.SE_USER" store:Type="Tables"  />
+            <EntitySet Name="SE_MODULE" EntityType="CommonModel.Store.SE_MODULE" store:Type="Tables"  />
+            <EntitySet Name="SE_GROUP_PERMISSION" EntityType="CommonModel.Store.SE_GROUP_PERMISSION" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST" EntityType="CommonModel.Store.OT_OTHER_LIST" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST_GROUP" EntityType="CommonModel.Store.OT_OTHER_LIST_GROUP" store:Type="Tables"  />
+            <EntitySet Name="OT_OTHER_LIST_TYPE" EntityType="CommonModel.Store.OT_OTHER_LIST_TYPE" store:Type="Tables"  />
+            <EntitySet Name="SE_REPORT" EntityType="CommonModel.Store.SE_REPORT" store:Type="Tables"  />
+            <EntitySet Name="HU_ORGANIZATION" EntityType="CommonModel.Store.HU_ORGANIZATION" store:Type="Tables"  />
+            <EntitySet Name="SE_FUNCTION_GROUP" EntityType="CommonModel.Store.SE_FUNCTION_GROUP" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE" EntityType="CommonModel.Store.HU_EMPLOYEE" store:Type="Tables"  />
+            <EntitySet Name="HU_TERMINATE" EntityType="CommonModel.Store.HU_TERMINATE" store:Type="Tables"  />
+            <EntitySet Name="SE_MAIL" EntityType="CommonModel.Store.SE_MAIL" store:Type="Tables"  />
+            <EntitySet Name="SE_REMINDER" EntityType="CommonModel.Store.SE_REMINDER" store:Type="Tables"  />
+            <EntitySet Name="HU_TITLE" EntityType="CommonModel.Store.HU_TITLE" store:Type="Tables"  />
+            <EntitySet Name="SE_APP_PROCESS" EntityType="CommonModel.Store.SE_APP_PROCESS" store:Type="Tables"  />
+            <EntitySet Name="SE_APP_SETUP" EntityType="CommonModel.Store.SE_APP_SETUP" store:Type="Tables"  />
+            <EntitySet Name="SE_APP_SETUPEXT" EntityType="CommonModel.Store.SE_APP_SETUPEXT" store:Type="Tables"  />
+            <EntitySet Name="SE_APP_TEMPLATE" EntityType="CommonModel.Store.SE_APP_TEMPLATE" store:Type="Tables"  />
+            <EntitySet Name="SE_APP_TEMPLATE_DTL" EntityType="CommonModel.Store.SE_APP_TEMPLATE_DTL" store:Type="Tables"  />
+            <EntitySet Name="HU_WORKING" EntityType="CommonModel.Store.HU_WORKING" store:Type="Tables"  />
+            <EntitySet Name="SE_CHOSEN_ORG" EntityType="CommonModel.Store.SE_CHOSEN_ORG" store:Type="Tables"  />
+            <EntitySet Name="HU_EMPLOYEE_CV" EntityType="CommonModel.Store.HU_EMPLOYEE_CV" store:Type="Tables"  />
+            <EntitySet Name="HU_STAFF_RANK" EntityType="CommonModel.Store.HU_STAFF_RANK" store:Type="Tables"  />
+            <EntitySet Name="SE_LDAP" EntityType="CommonModel.Store.SE_LDAP" store:Type="Tables"  />
+            <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="CommonModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables"  />
+            <EntitySet Name="SE_USER_PERMISSION" EntityType="CommonModel.Store.SE_USER_PERMISSION" store:Type="Tables"  />
+            <EntitySet Name="HUV_SE_GRP_SE_USR" EntityType="CommonModel.Store.HUV_SE_GRP_SE_USR" store:Type="Tables"  />
+            <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.Store.SE_VIEW_CONFIG" store:Type="Tables"  />
+            <EntitySet Name="AT_TIME_MANUAL" EntityType="CommonModel.Store.AT_TIME_MANUAL" store:Type="Tables"  />
+            <EntitySet Name="SE_CASE_CONFIG" EntityType="CommonModel.Store.SE_CASE_CONFIG" store:Type="Tables"  />
+            <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
+            <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
+            <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_SE_GRP_SE_USR_SE_GROUP" Association="CommonModel.Store.FK_SE_GRP_SE_USR_SE_GROUP">
                 <End Role="SE_GROUP" EntitySet="SE_GROUP" />
                 <End Role="SE_GRP_SE_USR" EntitySet="SE_GRP_SE_USR" />
@@ -129,14 +129,14 @@
                 <PropertyRef Name="ID" />
             </Key>
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
-            <Property Name="NAME" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODULE_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="FID" Type="nvarchar2" Nullable="false" MaxLength="255" />
-            <Property Name="MODIFIED_DATE" Type="date" Nullable="false" />
-            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="false" MaxLength="255" />
-            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
+            <Property Name="FID" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="ACTFLG" Type="nvarchar2" Nullable="false" MaxLength="1" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="1" />
         </EntityType>
         <EntityType Name="SE_USER">
             <Key>
@@ -1072,17 +1072,17 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Decimal" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="NAME" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true" />
+          <Property Type="String" Name="NAME" FixedLength="false" MaxLength="255" Unicode="true" />
           <Property Type="Decimal" Name="MODULE_ID" Nullable="true" />
-          <Property Type="String" Name="FID" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="FID" MaxLength="255" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="SE_MODULE" Relationship="CommonModel.FK_SM_SF" FromRole="SE_FUNCTION" ToRole="SE_MODULE" />
           <NavigationProperty Name="SE_GROUP_PERMISSION" Relationship="CommonModel.FK_SF_SGP" FromRole="SE_FUNCTION" ToRole="SE_GROUP_PERMISSION" />
-          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="false" />
-          <Property Type="String" Name="MODIFIED_BY" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="GROUP_ID" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="GROUP_ID" />
           <NavigationProperty Name="SE_FUNCTION_GROUP" Relationship="CommonModel.FK_SFG_SF" FromRole="SE_FUNCTION" ToRole="SE_FUNCTION_GROUP" />
-          <Property Type="String" Name="ACTFLG" Nullable="false" FixedLength="false" MaxLength="1" />
+          <Property Type="String" Name="ACTFLG" FixedLength="false" MaxLength="1" />
         </EntityType>
         <EntityType Name="SE_USER">
           <Key>
@@ -2521,34 +2521,39 @@
     <Diagrams>
       <Diagram Name="CommonContext" DisplayType="true" ZoomLevel="81" >
         <EntityTypeShape EntityType="CommonModel.SE_GROUP" Width="2.375" PointX="0.75" PointY="4.375" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="CommonModel.SE_FUNCTION" Width="2.125" PointX="1" PointY="2.375" Height="0.40000000000000036" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.SE_FUNCTION" Width="2.125" PointX="2.25" PointY="1.625" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_USER" Width="2.125" PointX="3.875" PointY="8.875" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.SE_GRP_SE_USR" >
-          <ConnectorPoint PointX="3.0468775" PointY="4.7749999999999986" />
-          <ConnectorPoint PointX="3.0468775" PointY="9.075" />
-          <ConnectorPoint PointX="3.1588541666666665" PointY="9.075" />
-          <ConnectorPoint PointX="3.3255208333333335" PointY="9.075" />
-          <ConnectorPoint PointX="3.4166691666666664" PointY="9.075" />
-          <ConnectorPoint PointX="3.5833358333333334" PointY="9.075" />
+          <ConnectorPoint PointX="1.4687505" PointY="4.7749999999999986" />
+          <ConnectorPoint PointX="1.4687505" PointY="5.8749999999999991" />
+          <ConnectorPoint PointX="2.875" PointY="5.8749999999999991" />
+          <ConnectorPoint PointX="2.875" PointY="9.075" />
+          <ConnectorPoint PointX="3.3229166666666665" PointY="9.075" />
+          <ConnectorPoint PointX="3.4895833333333335" PointY="9.075" />
           <ConnectorPoint PointX="3.875" PointY="9.075" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_MODULE" Width="1.5" PointX="2.375" PointY="10.875" Height="0.40000000000000213" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SM_SF" >
-          <ConnectorPoint PointX="3.5000025" PointY="10.875" />
-          <ConnectorPoint PointX="3.5000025" PointY="2.6437525000000011" />
-          <ConnectorPoint PointX="3.125" PointY="2.6437525000000011" />
+          <ConnectorPoint PointX="3.40625" PointY="10.875" />
+          <ConnectorPoint PointX="3.40625" PointY="4.951396484375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_GROUP_PERMISSION" Width="2.625" PointX="5.125" PointY="2.125" Height="0.40000000000000036" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SF_SGP" >
-          <ConnectorPoint PointX="3.125" PointY="2.45" />
-          <ConnectorPoint PointX="5.125" PointY="2.45" />
+          <ConnectorPoint PointX="4.375" PointY="2.325" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="2.3249999999999997" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="2.325" />
+          <ConnectorPoint PointX="5.125" PointY="2.325" />
         </AssociationConnector>
         <AssociationConnector Association="CommonModel.FK_SG_SGP" >
-          <ConnectorPoint PointX="0.84375" PointY="4.375" />
-          <ConnectorPoint PointX="0.84375" PointY="2.21875" />
-          <ConnectorPoint PointX="2.3541666666666665" PointY="2.2187499999999996" />
-          <ConnectorPoint PointX="2.5208333333333335" PointY="2.21875" />
-          <ConnectorPoint PointX="5.125" PointY="2.21875" />
+          <ConnectorPoint PointX="1.4687505" PointY="4.375" />
+          <ConnectorPoint PointX="1.4687505" PointY="1.375" />
+          <ConnectorPoint PointX="2.9791666666666665" PointY="1.3749999999999993" />
+          <ConnectorPoint PointX="3.1458333333333335" PointY="1.375" />
+          <ConnectorPoint PointX="4.5" PointY="1.375" />
+          <ConnectorPoint PointX="4.5" PointY="1.7749999999999995" />
+          <ConnectorPoint PointX="4.75" PointY="1.7749999999999995" />
+          <ConnectorPoint PointX="4.75" PointY="2.456252000000001" />
+          <ConnectorPoint PointX="5.125" PointY="2.456252000000001" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.OT_OTHER_LIST" Width="1.875" PointX="13.25" PointY="3.125" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.OT_OTHER_LIST_GROUP" Width="2" PointX="7.75" PointY="3.125" Height="0.40000000000000036" IsExpanded="false" />
@@ -2568,18 +2573,18 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_REPORT" Width="1.5" PointX="4.875" PointY="5.25" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SM_SR">
-          <ConnectorPoint PointX="3.2421875" PointY="10.875" />
-          <ConnectorPoint PointX="3.2421875" PointY="5.4499999999999993" />
-          <ConnectorPoint PointX="3.4166691666666664" PointY="5.4499999999999984" />
-          <ConnectorPoint PointX="3.5833358333333334" PointY="5.4499999999999993" />
-          <ConnectorPoint PointX="4.875" PointY="5.4499999999999993" />
+          <ConnectorPoint PointX="3.875" PointY="11.15" />
+          <ConnectorPoint PointX="6.28125" PointY="11.15" />
+          <ConnectorPoint PointX="6.28125" PointY="5.6499999999999986" />
         </AssociationConnector>
         <AssociationConnector Association="CommonModel.SE_GROUP_REPORT">
-          <ConnectorPoint PointX="3.125" PointY="4.6406262499999995" />
-          <ConnectorPoint PointX="3.4166691666666664" PointY="4.6406262499999986" />
-          <ConnectorPoint PointX="3.5833358333333334" PointY="4.6406262499999995" />
-          <ConnectorPoint PointX="5.78125" PointY="4.6406262499999995" />
-          <ConnectorPoint PointX="5.78125" PointY="5.25" />
+          <ConnectorPoint PointX="1.0781227500000001" PointY="4.7749999999999986" />
+          <ConnectorPoint PointX="1.0781227500000001" PointY="5.4499999999999993" />
+          <ConnectorPoint PointX="1.3854171666666668" PointY="5.4499999999999984" />
+          <ConnectorPoint PointX="1.5520838333333333" PointY="5.4499999999999993" />
+          <ConnectorPoint PointX="3.3229166666666665" PointY="5.4499999999999984" />
+          <ConnectorPoint PointX="3.4895833333333335" PointY="5.4499999999999993" />
+          <ConnectorPoint PointX="4.875" PointY="5.4499999999999993" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.HU_ORGANIZATION" Width="1.5" PointX="4.625" PointY="10.375" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_HU_ORG_HU_ORG" >
@@ -2590,14 +2595,16 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_FUNCTION_GROUP" Width="2.125" PointX="1.75" PointY="0.75" Height="0.40000000000000036" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_SFG_SF">
-          <ConnectorPoint PointX="2.4375" PointY="1.1500000000000004" />
-          <ConnectorPoint PointX="2.4375" PointY="2.375" />
+          <ConnectorPoint PointX="3.0625" PointY="1.1500000000000004" />
+          <ConnectorPoint PointX="3.0625" PointY="1.625" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.HU_EMPLOYEE" PointX="10" PointY="5.75" Width="3.125" Height="0.39999999999999858" IsExpanded="false" />
 		<EntityTypeShape EntityType="CommonModel.HU_TERMINATE" Width="6.125" PointX="8.75" PointY="12.875" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_HU_ORG_HU_EMP">
           <ConnectorPoint PointX="6.09375" PointY="10.375" />
           <ConnectorPoint PointX="6.09375" PointY="5.9499999999999993" />
+          <ConnectorPoint PointX="6.197916666666667" PointY="5.9499999999999984" />
+          <ConnectorPoint PointX="6.364583333333333" PointY="5.9499999999999993" />
           <ConnectorPoint PointX="10" PointY="5.9499999999999993" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_MAIL" PointX="0.75" PointY="6.125" Width="1.875" Height="0.40000000000000036" IsExpanded="false" />
