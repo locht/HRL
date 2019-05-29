@@ -18555,6 +18555,9 @@ Namespace AttendanceBusiness
         Private PERIOD_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SHIFT_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -19111,6 +19114,19 @@ Namespace AttendanceBusiness
                 If (Me.PERIOD_IDField.Equals(value) <> true) Then
                     Me.PERIOD_IDField = value
                     Me.RaisePropertyChanged("PERIOD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_CODE() As String
+            Get
+                Return Me.SHIFT_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SHIFT_CODEField, value) <> true) Then
+                    Me.SHIFT_CODEField = value
+                    Me.RaisePropertyChanged("SHIFT_CODE")
                 End If
             End Set
         End Property

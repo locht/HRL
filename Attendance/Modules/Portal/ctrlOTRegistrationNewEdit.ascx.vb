@@ -572,7 +572,7 @@ Public Class ctrlOTRegistrationNewEdit
         End Try
     End Function
     Private Function CalculateOT() As Boolean
-        If rdRegDate.SelectedDate.HasValue Then 'AndAlso EmployeeShift IsNot Nothing 
+        If rdRegDate.SelectedDate.HasValue Then
             Dim totalHour As Decimal = 0.0
             Dim fromAM As Decimal = 0.0
             Dim fromMNAM As Decimal = 0.0
@@ -588,20 +588,12 @@ Public Class ctrlOTRegistrationNewEdit
             Dim totalFromPM As Decimal = 0.0
             Dim totalToPM As Decimal = 0.0
             Dim OTAM As Decimal = 0.0
-            Dim AM As Decimal = 0.0
+            Dim AM As Decimal = 0.0 'Gio lam them ngoai OT ban dem
             Dim OTPM As Decimal = 0.0
-            Dim PM As Decimal = 0.0
+            Dim PM As Decimal = 0.0 'Gio lam them ngoai OT ban ngay
+
+
             Try
-                'Dim workingType As Decimal = 0
-                ''Get working type of employee
-                'Using repStore As New HistaffFrameworkRepository
-                '    Dim response = repStore.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_WORKING_TYPE_BY_DATE", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
-                '    If response(0).ToString() <> "" Then
-                '        workingType = Decimal.Parse(response(0).ToString())
-                '    End If
-                'End Using
-
-
                 'AM
                 If rntbFromAM.Value.HasValue And rntbToAM.Value.HasValue Then
                     fromAM = IIf(rntbFromAM.Value.HasValue, rntbFromAM.Value, 0.0)
@@ -615,15 +607,15 @@ Public Class ctrlOTRegistrationNewEdit
                         rntbToAM.Focus()
                         Return False
                     End If
-                    If totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM <= 6 Then 'totalfromAM tu 0-6 va totalToAM <=6
-                        OTAM = totalToAM - totalFromAM
-                        AM = 0
-                    ElseIf totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM > 6 Then
-                        OTAM = 6 - totalFromAM
-                        AM = totalToAM - 6
-                    ElseIf totalFromAM > 6 Then
+                    If totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM <= 6 Then 'OT ban dem
                         OTAM = 0
                         AM = totalToAM - totalFromAM
+                    ElseIf totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM > 6 Then 'OT ban dem, co them OT ban ngay
+                        OTAM = 6 - totalFromAM
+                        AM = totalToAM - 6
+                    ElseIf totalFromAM > 6 Then 'OT ban ngay
+                        OTAM = totalToAM - totalFromAM
+                        AM = 0
                     End If
                 End If
                 'PM
@@ -639,19 +631,18 @@ Public Class ctrlOTRegistrationNewEdit
                         rntbFromPM.Focus()
                         Return False
                     End If
-                    If totalFromPM >= 10 Then
+                    If totalFromPM >= 10 Then 'OT ban dem
                         OTPM = totalToPM - totalFromPM
                         PM = 0
-                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM >= 10 Then
-                        OTPM = totalToPM - 10
-                        PM = 10 - totalFromPM
-                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM < 10 Then
-                        OTPM = 0
-                        PM = totalToPM - totalFromPM
+                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM >= 10 Then 'OT ban ngay, co them OT ban dem
+                        OTPM = 10 - totalFromPM
+                        PM = totalToPM - 10
+                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM < 10 Then 'OT ban ngay
+                        OTPM = totalToPM - totalFromPM
+                        PM = 0
                     End If
                 End If
-                totalHour = OTAM + AM + OTPM + PM
-
+                totalHour = OTAM + AM + OTPM + PM 'vd: 6h pm - 12h pm -> OTPM = 4, PM = 2 
                 hidTotal.Value = totalHour
                 hid100.Value = 0.0
                 hid150.Value = 0.0
@@ -661,20 +652,16 @@ Public Class ctrlOTRegistrationNewEdit
                 hid300.Value = 0.0
                 hid390.Value = 0.0
 
-                'If cboTypeOT.SelectedValue = "6607" Then
-                '    hid100.Value = totalHour
-                'Else
-                'OT
                 lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
                 If lstdtHoliday IsNot Nothing AndAlso lstdtHoliday.Rows.Count > 0 Then
                     'nghi bu
-                    'If lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
-                    '    hid200.Value = AM + PM
-                    '    hid270.Value = OTAM + OTPM
-                    'Else 'Le, Tet
-                    hid300.Value = AM + PM
-                    hid390.Value = OTAM + OTPM
-                    'End If
+                    If Not IsDBNull(lstdtHoliday.Rows(0)("OFFDAY")) AndAlso lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
+                        hid200.Value = OTPM + AM
+                        hid270.Value = OTAM + PM
+                    Else 'Le, Tet
+                        hid300.Value = OTPM + AM
+                        hid390.Value = OTAM + PM
+                    End If
                     'ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
                     'hid200.Value = AM + PM
                     'hid270.Value = OTAM + OTPM
@@ -683,19 +670,143 @@ Public Class ctrlOTRegistrationNewEdit
                     '    hid200.Value = AM + PM
                     '    hid270.Value = OTAM + OTPM
                     'Else
-                    hid150.Value = AM + PM
-                    hid210.Value = OTAM + OTPM
+                    hid150.Value = OTPM + AM
+                    hid210.Value = OTAM + PM
                     'End If
                     'End If
                 End If
                 Return True
-
             Catch ex As Exception
                 ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
                 Return False
             End Try
         End If
     End Function
+    'Private Function CalculateOT() As Boolean
+    '    If rdRegDate.SelectedDate.HasValue Then 'AndAlso EmployeeShift IsNot Nothing 
+    '        Dim totalHour As Decimal = 0.0
+    '        Dim fromAM As Decimal = 0.0
+    '        Dim fromMNAM As Decimal = 0.0
+    '        Dim toAM As Decimal = 0.0
+    '        Dim toMMAM As Decimal = 0.0
+    '        Dim fromPM As Decimal = 0.0
+    '        Dim fromMNPM As Decimal = 0.0
+    '        Dim toPM As Decimal = 0.0
+    '        Dim toMNPM As Decimal = 0.0
+
+    '        Dim totalFromAM As Decimal = 0.0
+    '        Dim totalToAM As Decimal = 0.0
+    '        Dim totalFromPM As Decimal = 0.0
+    '        Dim totalToPM As Decimal = 0.0
+    '        Dim OTAM As Decimal = 0.0
+    '        Dim AM As Decimal = 0.0
+    '        Dim OTPM As Decimal = 0.0
+    '        Dim PM As Decimal = 0.0
+    '        Try
+    '            'Dim workingType As Decimal = 0
+    '            ''Get working type of employee
+    '            'Using repStore As New HistaffFrameworkRepository
+    '            '    Dim response = repStore.ExecuteStoreScalar("PKG_ATTENDANCE_BUSINESS.GET_WORKING_TYPE_BY_DATE", New List(Of Object)(New Object() {EmployeeID, rdRegDate.SelectedDate.Value, OUT_NUMBER}))
+    '            '    If response(0).ToString() <> "" Then
+    '            '        workingType = Decimal.Parse(response(0).ToString())
+    '            '    End If
+    '            'End Using
+
+
+    '            'AM
+    '            If rntbFromAM.Value.HasValue And rntbToAM.Value.HasValue Then
+    '                fromAM = IIf(rntbFromAM.Value.HasValue, rntbFromAM.Value, 0.0)
+    '                fromMNAM = Decimal.Parse(If(cboFromAM.SelectedValue = 30, 0.5, 0))
+    '                toAM = IIf(rntbToAM.Value.HasValue, rntbToAM.Value, 0.0)
+    '                toMMAM = Decimal.Parse(If(cboToAM.SelectedValue = 30, 0.5, 0))
+    '                totalFromAM = fromAM + fromMNAM
+    '                totalToAM = toAM + toMMAM
+    '                If totalFromAM > totalToAM Then
+    '                    ShowMessage(Translate("Giờ làm thêm AM không hợp lệ."), NotifyType.Warning)
+    '                    rntbToAM.Focus()
+    '                    Return False
+    '                End If
+    '                If totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM <= 6 Then 'totalfromAM tu 0-6 va totalToAM <=6
+    '                    OTAM = totalToAM - totalFromAM
+    '                    AM = 0
+    '                ElseIf totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM > 6 Then
+    '                    OTAM = 6 - totalFromAM
+    '                    AM = totalToAM - 6
+    '                ElseIf totalFromAM > 6 Then
+    '                    OTAM = 0
+    '                    AM = totalToAM - totalFromAM
+    '                End If
+    '            End If
+    '            'PM
+    '            If rntbFromPM.Value.HasValue And rntbToPM.Value.HasValue Then
+    '                fromPM = IIf(rntbFromPM.Value.HasValue, rntbFromPM.Value, 0.0)
+    '                fromMNPM = Decimal.Parse(If(cboFromPM.SelectedValue = 30, 0.5, 0))
+    '                toPM = IIf(rntbToPM.Value.HasValue, rntbToPM.Value, 0.0)
+    '                toMNPM = Decimal.Parse(If(cboToPM.SelectedValue = 30, 0.5, 0))
+    '                totalFromPM = fromPM + fromMNPM
+    '                totalToPM = toPM + toMNPM
+    '                If totalFromPM > totalToPM Then
+    '                    ShowMessage(Translate("Giờ làm thêm PM không hợp lệ."), NotifyType.Warning)
+    '                    rntbFromPM.Focus()
+    '                    Return False
+    '                End If
+    '                If totalFromPM >= 10 Then
+    '                    OTPM = totalToPM - totalFromPM
+    '                    PM = 0
+    '                ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM >= 10 Then
+    '                    OTPM = totalToPM - 10
+    '                    PM = 10 - totalFromPM
+    '                ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM < 10 Then
+    '                    OTPM = 0
+    '                    PM = totalToPM - totalFromPM
+    '                End If
+    '            End If
+    '            totalHour = OTAM + AM + OTPM + PM
+
+    '            hidTotal.Value = totalHour
+    '            hid100.Value = 0.0
+    '            hid150.Value = 0.0
+    '            hid200.Value = 0.0
+    '            hid210.Value = 0.0
+    '            hid270.Value = 0.0
+    '            hid300.Value = 0.0
+    '            hid390.Value = 0.0
+
+    '            'If cboTypeOT.SelectedValue = "6607" Then
+    '            '    hid100.Value = totalHour
+    '            'Else
+    '            'OT
+    '            lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+    '            If lstdtHoliday IsNot Nothing AndAlso lstdtHoliday.Rows.Count > 0 Then
+    '                'nghi bu
+    '                If lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
+    '                    hid200.Value = AM + PM
+    '                    hid270.Value = OTAM + OTPM
+    '                Else 'Le, Tet
+    '                    hid300.Value = AM + PM
+    '                    hid390.Value = OTAM + OTPM
+    '                End If
+    '                'ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
+    '                'hid200.Value = AM + PM
+    '                'hid270.Value = OTAM + OTPM
+    '            Else
+    '                'If workingType <> 1090 Then 'Khac Office Type 
+    '                '    hid200.Value = AM + PM
+    '                '    hid270.Value = OTAM + OTPM
+    '                'Else
+    '                hid150.Value = AM + PM
+    '                hid210.Value = OTAM + OTPM
+    '                'End If
+    '                'End If
+    '            End If
+    '            Return True
+
+    '        Catch ex As Exception
+    '            ShowMessage(Translate("Thời gian OT không hợp lệ."), NotifyType.Warning)
+    '            Return False
+    '        End Try
+    '    End If
+    'End Function
 #End Region
 
 End Class

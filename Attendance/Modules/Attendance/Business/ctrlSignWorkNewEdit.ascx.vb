@@ -240,6 +240,8 @@ Public Class ctrlSignWorkNewEdit
                     objWorksign.PERIOD_ID = periodid
                     objWorksign.WORKINGDAY = startdate
                     objWorksign.SHIFT_ID = cboSign.SelectedValue
+                    Dim shift_code = (From p In ListComboData.LIST_LIST_SHIFT Where p.ID = cboSign.SelectedValue Select p.CODE).FirstOrDefault
+                    objWorksign.SHIFT_CODE = shift_code
                     Dim at_shift As New AT_SHIFTDTO
                     at_shift.ID = cboSign.SelectedValue
                     at_shift.ACTFLG = "A"
