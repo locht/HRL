@@ -69,9 +69,9 @@ Public Class ctrlDBRegApp
             ltrTime_LEAVE.DataSource = listApprove
             ltrTime_LEAVE.DataBind()
 
-            Dim listApproveOv = db.PRS_DASHBOARD_BY_APPROVE(Session("_EmployeeID"), ATConstant.GSIGNCODE_OVERTIME)
+            Dim listApproveOv As DataTable = db.PRS_DASHBOARD_BY_APPROVE(Session("_EmployeeID"), ATConstant.GSIGNCODE_OVERTIME)
             'listApproveOv = listApproveOv.Where(Function(p) p.STATUS = 0).ToList()
-            ltrTime_LEAVE.DataSource = listApproveOv
+            ltrOVERTIME.DataSource = listApproveOv
             ltrOVERTIME.DataBind()
 
 
