@@ -2600,7 +2600,7 @@ Partial Class ProfileRepository
                 End If
             End Using
 
-            Return lst
+            Return lst.OrderByDescending(Function(f) f.PE_PERIO_END_DATE)
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
