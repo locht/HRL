@@ -364,7 +364,19 @@ Public Class ctrlLeaveRegistrationNewEdit
                             Exit Sub
                         End If
                         Dim ktra = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                        Dim selectedFromDate1 = rdFromDate.SelectedDate
+                        Dim selectedToDate1 = rdToDate.SelectedDate
                         If ktra = 1 Then
+                            While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
+                                Dim checkhopdong = (From P In CHECKCONTRACT.AsEnumerable Where P("STARTDATE") <= selectedFromDate1 And P("ENDDATE") >= selectedFromDate1 Select P).ToList.Count
+                                If checkhopdong > 0 Then
+                                    ShowMessage(Translate("Không được đăng ký phép năm trong thời gian thử việc"), NotifyType.Warning)
+                                    UpdateControlState()
+                                    Exit Sub
+                                End If
+                                selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
+                            End While
+                          
                             If rntxDayRegist.Value > rntBalance.Value Then
                                 ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
                                 UpdateControlState()
@@ -394,12 +406,6 @@ Public Class ctrlLeaveRegistrationNewEdit
                             Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
                             If CHECK1 = 0 Then
                                 ShowMessage(Translate("Thời gian bạn chọn không có trong ca làn việc,bạn chọn lại."), NotifyType.Warning)
-                                UpdateControlState()
-                                Exit Sub
-                            End If
-                            Dim checkhopdong = (From P In CHECKCONTRACT.AsEnumerable Where P("STARTDATE") <= selectedFromDate And P("ENDDATE") >= selectedFromDate Select P).ToList.Count
-                            If checkhopdong > 0 Then
-                                ShowMessage(Translate("Nhân viên đang là hợp đồng thử việc,thao thác không thành công"), NotifyType.Warning)
                                 UpdateControlState()
                                 Exit Sub
                             End If
