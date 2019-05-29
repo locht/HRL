@@ -1278,7 +1278,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal _param As ParamDTO, ByVal lstEmployee As List(Of Decimal?), ByVal log As UserLog) As Boolean
+    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal _param As ParamDTO, ByVal codecase As String, ByVal lstEmployee As List(Of Decimal?), ByVal log As UserLog) As Boolean
         Try
             'Using cls As New DataAccess.NonQueryData
             '    cls.ExecuteSQL("DELETE FROM SE_EMPLOYEE_CHOSEN S WHERE  UPPER(S.USING_USER) ='" + log.Username.ToUpper + "'")
@@ -1297,11 +1297,19 @@ Partial Public Class AttendanceRepository
             obj.PERIOD_ID = _param.PERIOD_ID
             LOG_AT(_param, log, lstEmployee, "TỔNG HỢP BẢNG CÔNG TỔNG HỢP", obj, _param.ORG_ID)
             Using cls As New DataAccess.NonQueryData
-                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_MONTHLY",
+                If codecase = "ctrlTimesheetSummary_case1" Then
+                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIMESHEET_MONTHLY_HOSE",
                                                New With {.P_USERNAME = log.Username,
                                                          .P_PERIOD_ID = _param.PERIOD_ID,
                                                          .P_ORG_ID = _param.ORG_ID,
                                                          .P_ISDISSOLVE = _param.IS_DISSOLVE})
+                Else
+                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_MONTHLY",
+                                               New With {.P_USERNAME = log.Username,
+                                                         .P_PERIOD_ID = _param.PERIOD_ID,
+                                                         .P_ORG_ID = _param.ORG_ID,
+                                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
+                End If
             End Using
             Return True
         Catch ex As Exception

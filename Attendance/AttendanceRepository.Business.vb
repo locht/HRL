@@ -653,11 +653,11 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As Attendance.AttendanceBusiness.ParamDTO, ByVal lstEmployee As List(Of Decimal?)) As Boolean
+    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As Attendance.AttendanceBusiness.ParamDTO, ByVal codecase As String, ByVal lstEmployee As List(Of Decimal?)) As Boolean
         Dim dt As Boolean
         Using rep As New AttendanceBusinessClient
             Try
-                dt = rep.CAL_TIME_TIMESHEET_MONTHLY(param, lstEmployee, Me.Log)
+                dt = rep.CAL_TIME_TIMESHEET_MONTHLY(param, codecase, lstEmployee, Me.Log)
                 Return dt
             Catch ex As Exception
                 rep.Abort()

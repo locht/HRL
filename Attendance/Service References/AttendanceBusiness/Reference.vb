@@ -30345,7 +30345,7 @@ Namespace AttendanceBusiness
         Function GetTimeSheet(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CAL_TIME_TIMESHEET_MONTHLY", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CAL_TIME_TIMESHEET_MONTHLYResponse")>  _
-        Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal codecase As String, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTimeSheetPortal", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTimeSheetPortalResponse")>  _
         Function GetTimeSheetPortal(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)
@@ -31821,8 +31821,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetTimeSheet(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
         End Function
         
-        Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CAL_TIME_TIMESHEET_MONTHLY
-            Return MyBase.Channel.CAL_TIME_TIMESHEET_MONTHLY(param, lstEmployee, log)
+        Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal codecase As String, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CAL_TIME_TIMESHEET_MONTHLY
+            Return MyBase.Channel.CAL_TIME_TIMESHEET_MONTHLY(param, codecase, lstEmployee, log)
         End Function
         
         Public Function GetTimeSheetPortal(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetTimeSheetPortal
