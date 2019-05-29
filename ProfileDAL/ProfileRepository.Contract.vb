@@ -1085,7 +1085,7 @@ Partial Class ProfileRepository
     End Function
     Private Sub InsertDecision(ByVal contractDto As ContractDTO)
         Dim recruitDecision = (From otherList In Context.OT_OTHER_LIST
-                               From otherListType In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.CODE = ProfileCommon.OT_DECISION_TYPE.Name And f.ID = otherList.TYPE_ID)
+                               From otherListType In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.CODE = ProfileCommon.OT_DECISION_TYPE.Name And f.ID = otherList.TYPE_ID And otherList.CODE = "QDTD")
                                Select otherList).FirstOrDefault
         'Where otherList.CODE = ProfileCommon.OT_DECISION_TYPE.RecruitDecision
         'If recruitDecision Is Nothing Then
