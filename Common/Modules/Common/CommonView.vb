@@ -466,7 +466,7 @@ Public Class CommonView
                     If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
                         rCol.DataFormatString = ConfigurationManager.AppSettings("FDATE_MONTH_YEAR_GRID")
                     End If
-                ElseIf row.Field(Of String)("DataType").Trim().ToUpper.Contains("Time".ToUpper) = True Then
+                ElseIf row.Field(Of String)("DataType").Trim().ToUpper = "Time".ToUpper Then
                     rCol = New GridBoundColumn()
                     rg.MasterTableView.Columns.Add(rCol)
                     rCol.DataField = row.Field(Of String)("ID").Trim()

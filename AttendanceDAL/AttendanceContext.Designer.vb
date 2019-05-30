@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("37ab57c6-d637-48b5-adc4-6d2807510799")>
+<Assembly: EdmSchemaAttribute("2dc137ee-ab51-4af1-baff-fd08488252b9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -25848,11 +25848,9 @@ Public Partial Class AT_TIME_TIMESHEET_MACHINET
     ''' Create a new AT_TIME_TIMESHEET_MACHINET object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    ''' <param name="sTAFF_RANK_ID">Initial value of the STAFF_RANK_ID property.</param>
-    Public Shared Function CreateAT_TIME_TIMESHEET_MACHINET(id As Global.System.Decimal, sTAFF_RANK_ID As Global.System.Decimal) As AT_TIME_TIMESHEET_MACHINET
+    Public Shared Function CreateAT_TIME_TIMESHEET_MACHINET(id As Global.System.Decimal) As AT_TIME_TIMESHEET_MACHINET
         Dim aT_TIME_TIMESHEET_MACHINET as AT_TIME_TIMESHEET_MACHINET = New AT_TIME_TIMESHEET_MACHINET
         aT_TIME_TIMESHEET_MACHINET.ID = id
-        aT_TIME_TIMESHEET_MACHINET.STAFF_RANK_ID = sTAFF_RANK_ID
         Return aT_TIME_TIMESHEET_MACHINET
     End Function
 
@@ -27090,9 +27088,9 @@ Public Partial Class AT_TIME_TIMESHEET_MACHINET
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property STAFF_RANK_ID() As Global.System.Decimal
+    Public Property STAFF_RANK_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _STAFF_RANK_ID
         End Get
@@ -27105,8 +27103,8 @@ Public Partial Class AT_TIME_TIMESHEET_MACHINET
         End Set
     End Property
 
-    Private _STAFF_RANK_ID As Global.System.Decimal
-    Private Partial Sub OnSTAFF_RANK_IDChanging(value As Global.System.Decimal)
+    Private _STAFF_RANK_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSTAFF_RANK_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnSTAFF_RANK_IDChanged()

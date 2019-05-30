@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 30/05/2019 11:46:26 AM
+-- Date Created: 30/05/2019 2:51:46 PM
 -- Generated from EDMX file: E:\histaffhcm-5\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -1224,7 +1224,7 @@ CREATE TABLE "dbo"."AT_TIME_TIMESHEET_MACHINET" (
    "MINUTE_DM" NUMBER(38,0) NULL,
    "MINUTE_VS" NUMBER(38,0) NULL,
    "REQUEST_ID" NUMBER(38,0) NULL,
-   "STAFF_RANK_ID" NUMBER(38,0) NOT NULL,
+   "STAFF_RANK_ID" NUMBER(38,0) NULL,
    "VALIN5" DATE NULL,
    "VALIN6" DATE NULL,
    "VALIN7" DATE NULL,
