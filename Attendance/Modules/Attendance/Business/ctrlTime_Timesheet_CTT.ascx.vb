@@ -444,9 +444,16 @@ Public Class ctrlTime_Timesheet_CTT
                     Else
                         is_delete = 0
                     End If
-                    rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                    If getSE_CASE_CONFIG("ctrlTime_Timesheet_CTT_case1") > 0 Then
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
                                                    Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTime_Timesheet_CTT_case1")
-                    Refresh("UpdateView")
+                        Refresh("UpdateView")
+                    Else
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "")
+                        Refresh("UpdateView")
+                    End If
+                    
                 Case TOOLBARITEM_DELETE
                     If rep.IS_PERIODSTATUS(_param) = False Then
                         ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)

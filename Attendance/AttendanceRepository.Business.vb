@@ -706,6 +706,28 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+
+    Public Function CALCULATE_ENTITLEMENT_HOSE(ByVal param As Attendance.AttendanceBusiness.ParamDTO, ByVal listEmployeeId As List(Of Decimal?)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CALCULATE_ENTITLEMENT_HOSE(param, listEmployeeId, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.ImportEntitlementLeave(P_DOCXML, P_USER, P_PERIOD)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 
 #Region "Nghỉ bu"

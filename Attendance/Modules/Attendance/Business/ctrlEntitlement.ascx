@@ -184,54 +184,54 @@
                                 UniqueName="CUR_USED12">
                             </tlk:GridNumericColumn>
 
-                            <%--<tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 01 %>" DataField="CUR_USED1"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED1"
-                                UniqueName="CUR_USED1">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 01 %>" DataField="AL_T1"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T1"
+                                UniqueName="AL_T1">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 02 %>" DataField="CUR_USED2"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED2"
-                                UniqueName="CUR_USED2">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 02 %>" DataField="AL_T2"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T2"
+                                UniqueName="AL_T2">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 03 %>" DataField="CUR_USED3"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED3"
-                                UniqueName="CUR_USED3">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 03 %>" DataField="AL_T3"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T3"
+                                UniqueName="AL_T3">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 04 %>" DataField="CUR_USED4"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED4"
-                                UniqueName="CUR_USED4">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 04 %>" DataField="AL_T4"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T4"
+                                UniqueName="AL_T4">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 05 %>" DataField="CUR_USED5"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED5"
-                                UniqueName="CUR_USED5">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 05 %>" DataField="AL_T5"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T5"
+                                UniqueName="AL_T5">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 06 %>" DataField="CUR_USED6"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED6"
-                                UniqueName="CUR_USED6">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 06 %>" DataField="AL_T6"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T6"
+                                UniqueName="AL_T6">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 07 %>" DataField="CUR_USED7"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED7"
-                                UniqueName="CUR_USED7">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 07 %>" DataField="AL_T7"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T7"
+                                UniqueName="AL_T7">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 08 %>" DataField="CUR_USED8"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED8"
-                                UniqueName="CUR_USED8">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 08 %>" DataField="AL_T8"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T8"
+                                UniqueName="AL_T8">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 09 %>" DataField="CUR_USED9"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED9"
-                                UniqueName="CUR_USED9">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 09 %>" DataField="AL_T9"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T9"
+                                UniqueName="AL_T9">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 10 %>" DataField="CUR_USED10"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED10"
-                                UniqueName="CUR_USED10">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 10 %>" DataField="AL_T10"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T10"
+                                UniqueName="AL_T10">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 11 %>" DataField="CUR_USED11"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED11"
-                                UniqueName="CUR_USED11">
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 11 %>" DataField="AL_T11"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T11"
+                                UniqueName="AL_T11">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 12 %>" DataField="CUR_USED12"
-                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="CUR_USED12"
-                                UniqueName="CUR_USED12">
-                            </tlk:GridNumericColumn>--%>
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate:Số ngày phép bị trừ từ số ngày ngoài cơ quan tháng 12 %>" DataField="AL_T12"
+                                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}" SortExpression="AL_T12"
+                                UniqueName="AL_T12">
+                            </tlk:GridNumericColumn>
                         </Columns>
                     </MasterTableView>
                     <HeaderStyle HorizontalAlign="Center" Width="50px" />
@@ -248,6 +248,7 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
@@ -314,14 +315,14 @@
                 }
                 enableAjax = false;
             }
-        }
+}
 
-        function OnClientClose(oWnd, args) {
-            postBack(oWnd.get_navigateUrl());
-        }
+function OnClientClose(oWnd, args) {
+    postBack(oWnd.get_navigateUrl());
+}
 
-        function postBack(url) {
-            var ajaxManager = $find("<%= AjaxManagerId %>");
+function postBack(url) {
+    var ajaxManager = $find("<%= AjaxManagerId %>");
             ajaxManager.ajaxRequest(url); //Making ajax request with the argument
         }
 

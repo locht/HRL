@@ -587,10 +587,10 @@ Public Class ctrlOTRegistrationNewEdit
             Dim totalToAM As Decimal = 0.0
             Dim totalFromPM As Decimal = 0.0
             Dim totalToPM As Decimal = 0.0
-            Dim OTAM As Decimal = 0.0
-            Dim AM As Decimal = 0.0 'Gio lam them ngoai OT ban dem
-            Dim OTPM As Decimal = 0.0
-            Dim PM As Decimal = 0.0 'Gio lam them ngoai OT ban ngay
+            Dim OTAM As Decimal = 0.0 'tong tgian OT tu 6am - 12am
+            Dim AM As Decimal = 0.0 'tong tgian OT tu 0am - 6am
+            Dim OTPM As Decimal = 0.0 'tong tgian OT tu 12h01pm - 10pm
+            Dim PM As Decimal = 0.0 'tong tgian OT tu 10pm - 11h59pm
 
 
             Try
@@ -611,8 +611,8 @@ Public Class ctrlOTRegistrationNewEdit
                         OTAM = 0
                         AM = totalToAM - totalFromAM
                     ElseIf totalFromAM >= 0 And totalFromAM <= 6 AndAlso totalToAM > 6 Then 'OT ban dem, co them OT ban ngay
-                        OTAM = 6 - totalFromAM
-                        AM = totalToAM - 6
+                        OTAM = totalToAM - 6
+                        AM = 6 - totalFromAM
                     ElseIf totalFromAM > 6 Then 'OT ban ngay
                         OTAM = totalToAM - totalFromAM
                         AM = 0
@@ -634,10 +634,10 @@ Public Class ctrlOTRegistrationNewEdit
                     If totalFromPM >= 10 Then 'OT ban dem
                         OTPM = totalToPM - totalFromPM
                         PM = 0
-                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM >= 10 Then 'OT ban ngay, co them OT ban dem
+                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM > 10 Then 'OT ban ngay, co them OT ban dem
                         OTPM = 10 - totalFromPM
                         PM = totalToPM - 10
-                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM < 10 Then 'OT ban ngay
+                    ElseIf totalFromPM >= 0 And totalFromPM < 10 AndAlso totalToPM <= 10 Then 'OT ban ngay
                         OTPM = totalToPM - totalFromPM
                         PM = 0
                     End If
@@ -656,11 +656,11 @@ Public Class ctrlOTRegistrationNewEdit
                 If lstdtHoliday IsNot Nothing AndAlso lstdtHoliday.Rows.Count > 0 Then
                     'nghi bu
                     If Not IsDBNull(lstdtHoliday.Rows(0)("OFFDAY")) AndAlso lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
-                        hid200.Value = OTPM + AM
-                        hid270.Value = OTAM + PM
+                        hid200.Value = OTPM + OTAM
+                        hid270.Value = AM + PM
                     Else 'Le, Tet
-                        hid300.Value = OTPM + AM
-                        hid390.Value = OTAM + PM
+                        hid300.Value = OTPM + OTAM
+                        hid390.Value = AM + PM
                     End If
                     'ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
                     'hid200.Value = AM + PM
@@ -670,8 +670,8 @@ Public Class ctrlOTRegistrationNewEdit
                     '    hid200.Value = AM + PM
                     '    hid270.Value = OTAM + OTPM
                     'Else
-                    hid150.Value = OTPM + AM
-                    hid210.Value = OTAM + PM
+                    hid150.Value = OTPM + OTAM
+                    hid210.Value = AM + PM
                     'End If
                     'End If
                 End If
