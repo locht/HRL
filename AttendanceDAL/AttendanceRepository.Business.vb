@@ -486,6 +486,7 @@ Partial Public Class AttendanceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
+                        From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And
                                                                   f.USERNAME.ToUpper = log.Username.ToUpper.ToUpper)
 
@@ -559,7 +560,21 @@ Partial Public Class AttendanceRepository
                                        .SHIFTBACKOUT = p.p.VALIN2,
                                        .SHIFTBACKIN = p.p.VALIN3,
                                        .SHIFTOUT = p.p.VALIN4,
-                                       .COMEBACKOUT = p.p.COMEBACKOUT})
+                                       .COMEBACKOUT = p.p.COMEBACKOUT,
+                                       .TIMEVALIN = p.p.TIMEVALIN,
+                                       .TIMEVALOUT = p.p.TIMEVALOUT,
+                                       .OBJECT_ATTENDANCE = p.p.OBJECT_ATTENDANCE,
+                                       .OBJECT_ATTENDANCE_NAME = p.obj_att.NAME_VN,
+                                       .OBJECT_ATTENDANCE_CODE = p.p.OBJECT_ATTENDANCE_CODE,
+                                       .MIN_DEDUCT = p.p.MIN_DEDUCT,
+                                       .MIN_DEDUCT_WORK = p.p.MIN_DEDUCT_WORK,
+                                       .MIN_EARLY = p.p.MIN_EARLY,
+                                       .MIN_IN_WORK = p.p.MIN_IN_WORK,
+                                       .MIN_LATE = p.p.MIN_LATE,
+                                       .MIN_LATE_EARLY = p.p.MIN_LATE_EARLY,
+                                       .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
+                                       .MIN_OUT_WORK = p.p.MIN_OUT_WORK,
+                                       .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

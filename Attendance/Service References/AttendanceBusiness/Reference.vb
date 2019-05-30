@@ -23004,6 +23004,9 @@ Namespace AttendanceBusiness
         Private OBJECT_ATTENDANCEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OBJECT_ATTENDANCE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23043,6 +23046,15 @@ Namespace AttendanceBusiness
         Private STAFF_RANK_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEVALINField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEVALIN_TEMPField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEVALOUTField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23074,6 +23086,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKINGHOURField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HOURField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -23593,6 +23608,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE_CODE() As String
+            Get
+                Return Me.OBJECT_ATTENDANCE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_ATTENDANCE_CODEField, value) <> true) Then
+                    Me.OBJECT_ATTENDANCE_CODEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property OBJECT_ATTENDANCE_NAME() As String
             Get
                 Return Me.OBJECT_ATTENDANCE_NAMEField
@@ -23762,6 +23790,45 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEVALIN() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEVALINField
+            End Get
+            Set
+                If (Me.TIMEVALINField.Equals(value) <> true) Then
+                    Me.TIMEVALINField = value
+                    Me.RaisePropertyChanged("TIMEVALIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEVALIN_TEMP() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEVALIN_TEMPField
+            End Get
+            Set
+                If (Me.TIMEVALIN_TEMPField.Equals(value) <> true) Then
+                    Me.TIMEVALIN_TEMPField = value
+                    Me.RaisePropertyChanged("TIMEVALIN_TEMP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEVALOUT() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEVALOUTField
+            End Get
+            Set
+                If (Me.TIMEVALOUTField.Equals(value) <> true) Then
+                    Me.TIMEVALOUTField = value
+                    Me.RaisePropertyChanged("TIMEVALOUT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TITLE_NAME() As String
             Get
                 Return Me.TITLE_NAMEField
@@ -23900,6 +23967,19 @@ Namespace AttendanceBusiness
                 If (Me.WORKINGHOURField.Equals(value) <> true) Then
                     Me.WORKINGHOURField = value
                     Me.RaisePropertyChanged("WORKINGHOUR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HOUR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORK_HOURField
+            End Get
+            Set
+                If (Me.WORK_HOURField.Equals(value) <> true) Then
+                    Me.WORK_HOURField = value
+                    Me.RaisePropertyChanged("WORK_HOUR")
                 End If
             End Set
         End Property
