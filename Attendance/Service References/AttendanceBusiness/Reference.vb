@@ -29145,6 +29145,12 @@ Namespace AttendanceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="AttendanceBusiness.IAttendanceBusiness")>  _
     Public Interface IAttendanceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeletePortalRegister", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeletePortalRegisterResponse")>  _
+        Function DeletePortalRegister(ByVal id As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/SendRegisterToApprove", ReplyAction:="http://tempuri.org/IAttendanceBusiness/SendRegisterToApproveResponse")>  _
+        Function SendRegisterToApprove(ByVal objLstRegisterId As System.Collections.Generic.List(Of Decimal), ByVal process As String, ByVal currentUrl As String) As String
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetListSignCode", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetListSignCodeResponse")>  _
         Function GetListSignCode(ByVal gSignCode As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO)
         
@@ -29395,6 +29401,12 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVEResponse")>  _
         Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As System.Data.DataTable
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ActiveAT_DMVS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ActiveAT_DMVSResponse")>  _
+        Function ActiveAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteAT_DMVS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteAT_DMVSResponse")>  _
+        Function DeleteAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherList", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTerminalFromOtOtherListResponse")>  _
         Function GetTerminalFromOtOtherList() As System.Data.DataTable
         
@@ -29573,8 +29585,8 @@ Namespace AttendanceBusiness
         Function ApproveOtRegistration(ByVal obj As System.Collections.Generic.List(Of AttendanceBusiness.AT_OT_REGISTRATIONDTO), ByVal empId As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistration", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateOtRegistrationResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ATRegSearchDTO)),  _
@@ -29759,12 +29771,6 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeletePortalRegisterByDateOT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeletePortalRegisterByDateOTResponse")>  _
         Function DeletePortalRegisterByDateOT(ByVal listappointment As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIMESHEET_REGISTERDTO), ByVal listSign As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeletePortalRegister", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeletePortalRegisterResponse")>  _
-        Function DeletePortalRegister(ByVal id As Decimal) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/SendRegisterToApprove", ReplyAction:="http://tempuri.org/IAttendanceBusiness/SendRegisterToApproveResponse")>  _
-        Function SendRegisterToApprove(ByVal objLstRegisterId As System.Collections.Generic.List(Of Decimal), ByVal process As String, ByVal currentUrl As String) As String
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeeping", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteOffTimeKeepingResponse")>  _
         Function DeleteOffTimeKeeping(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
         
@@ -29873,8 +29879,14 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CALCULATE_ENTITLEMENT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CALCULATE_ENTITLEMENTResponse")>  _
         Function CALCULATE_ENTITLEMENT(ByVal param As AttendanceBusiness.ParamDTO, ByVal listEmployeeId As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CALCULATE_ENTITLEMENT_HOSE", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CALCULATE_ENTITLEMENT_HOSEResponse")>  _
+        Function CALCULATE_ENTITLEMENT_HOSE(ByVal param As AttendanceBusiness.ParamDTO, ByVal listEmployeeId As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetEntitlement", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetEntitlementResponse")>  _
         Function GetEntitlement(ByVal _filter As AttendanceBusiness.AT_ENTITLEMENTDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_ENTITLEMENTDTO)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ImportEntitlementLeave", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ImportEntitlementLeaveResponse")>  _
+        Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_WORKSIGN", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_WORKSIGNResponse")>  _
         Function GET_WORKSIGN(ByVal param As AttendanceBusiness.AT_WORKSIGNDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
@@ -29883,8 +29895,8 @@ Namespace AttendanceBusiness
         Function InsertWORKSIGNByImport(ByVal dtData As System.Data.DataTable, ByVal period_id As Decimal, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertWorkSign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertWorkSignResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ATRegSearchDTO)),  _
@@ -30018,8 +30030,8 @@ Namespace AttendanceBusiness
         Function GET_ProjectAssign(ByVal param As AttendanceBusiness.AT_PROJECT_ASSIGNDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertProjectAssign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertProjectAssignResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ATRegSearchDTO)),  _
@@ -30242,12 +30254,6 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ModifyAT_DMVS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ModifyAT_DMVSResponse")>  _
         Function ModifyAT_DMVS(ByVal objData As AttendanceBusiness.AT_DMVSDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ActiveAT_DMVS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ActiveAT_DMVSResponse")>  _
-        Function ActiveAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/DeleteAT_DMVS", ReplyAction:="http://tempuri.org/IAttendanceBusiness/DeleteAT_DMVSResponse")>  _
-        Function DeleteAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CAL_SUMMARY_DATA_INOUT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CAL_SUMMARY_DATA_INOUTResponse")>  _
         Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean
         
@@ -30447,8 +30453,8 @@ Namespace AttendanceBusiness
         Function GetTimeSheetPortal(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/ValidateTimesheet", ReplyAction:="http://tempuri.org/IAttendanceBusiness/ValidateTimesheetResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of System.Nullable(Of Decimal)))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.AT_TIME_MANUALDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(AttendanceBusiness.ATRegSearchDTO)),  _
@@ -30648,6 +30654,14 @@ Namespace AttendanceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function DeletePortalRegister(ByVal id As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeletePortalRegister
+            Return MyBase.Channel.DeletePortalRegister(id)
+        End Function
+        
+        Public Function SendRegisterToApprove(ByVal objLstRegisterId As System.Collections.Generic.List(Of Decimal), ByVal process As String, ByVal currentUrl As String) As String Implements AttendanceBusiness.IAttendanceBusiness.SendRegisterToApprove
+            Return MyBase.Channel.SendRegisterToApprove(objLstRegisterId, process, currentUrl)
+        End Function
         
         Public Function GetListSignCode(ByVal gSignCode As String) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_MANUALDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetListSignCode
             Return MyBase.Channel.GetListSignCode(gSignCode)
@@ -30979,6 +30993,14 @@ Namespace AttendanceBusiness
         
         Public Function PRS_DASHBOARD_BY_APPROVE(ByVal P_EMPLOYEE_APP_ID As Decimal, ByVal P_PROCESS_TYPE As String) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.PRS_DASHBOARD_BY_APPROVE
             Return MyBase.Channel.PRS_DASHBOARD_BY_APPROVE(P_EMPLOYEE_APP_ID, P_PROCESS_TYPE)
+        End Function
+        
+        Public Function ActiveAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ActiveAT_DMVS
+            Return MyBase.Channel.ActiveAT_DMVS(lstID, log, bActive)
+        End Function
+        
+        Public Function DeleteAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteAT_DMVS
+            Return MyBase.Channel.DeleteAT_DMVS(lstID)
         End Function
         
         Public Function GetTerminalFromOtOtherList() As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GetTerminalFromOtOtherList
@@ -31313,14 +31335,6 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.DeletePortalRegisterByDateOT(listappointment, listSign)
         End Function
         
-        Public Function DeletePortalRegister(ByVal id As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeletePortalRegister
-            Return MyBase.Channel.DeletePortalRegister(id)
-        End Function
-        
-        Public Function SendRegisterToApprove(ByVal objLstRegisterId As System.Collections.Generic.List(Of Decimal), ByVal process As String, ByVal currentUrl As String) As String Implements AttendanceBusiness.IAttendanceBusiness.SendRegisterToApprove
-            Return MyBase.Channel.SendRegisterToApprove(objLstRegisterId, process, currentUrl)
-        End Function
-        
         Public Function DeleteOffTimeKeeping(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteOffTimeKeeping
             Return MyBase.Channel.DeleteOffTimeKeeping(lstID)
         End Function
@@ -31465,8 +31479,16 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.CALCULATE_ENTITLEMENT(param, listEmployeeId, log)
         End Function
         
+        Public Function CALCULATE_ENTITLEMENT_HOSE(ByVal param As AttendanceBusiness.ParamDTO, ByVal listEmployeeId As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CALCULATE_ENTITLEMENT_HOSE
+            Return MyBase.Channel.CALCULATE_ENTITLEMENT_HOSE(param, listEmployeeId, log)
+        End Function
+        
         Public Function GetEntitlement(ByVal _filter As AttendanceBusiness.AT_ENTITLEMENTDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_ENTITLEMENTDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetEntitlement
             Return MyBase.Channel.GetEntitlement(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
+        End Function
+        
+        Public Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ImportEntitlementLeave
+            Return MyBase.Channel.ImportEntitlementLeave(P_DOCXML, P_USER, P_PERIOD)
         End Function
         
         Public Function GET_WORKSIGN(ByVal param As AttendanceBusiness.AT_WORKSIGNDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet Implements AttendanceBusiness.IAttendanceBusiness.GET_WORKSIGN
@@ -31651,14 +31673,6 @@ Namespace AttendanceBusiness
         
         Public Function ModifyAT_DMVS(ByVal objData As AttendanceBusiness.AT_DMVSDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ModifyAT_DMVS
             Return MyBase.Channel.ModifyAT_DMVS(objData, log, gID)
-        End Function
-        
-        Public Function ActiveAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.ActiveAT_DMVS
-            Return MyBase.Channel.ActiveAT_DMVS(lstID, log, bActive)
-        End Function
-        
-        Public Function DeleteAT_DMVS(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.DeleteAT_DMVS
-            Return MyBase.Channel.DeleteAT_DMVS(lstID)
         End Function
         
         Public Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CAL_SUMMARY_DATA_INOUT
