@@ -4421,6 +4421,29 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function CALL_ENTITLEMENT_HOSE(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As UserLog) As Boolean
+        Try
+            Dim obj As New AT_ACTION_LOGDTO
+            obj.PERIOD_ID = param.PERIOD_ID
+            Using cls As New DataAccess.NonQueryData
+                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CALL_ENTITLEMENT_HOSE",
+                                               New With {.P_USERNAME = log.Username.ToUpper,
+                                                         .P_ORG_ID = param.ORG_ID,
+                                                         .P_PERIOD_ID = param.PERIOD_ID,
+                                                         .P_ISDISSOLVE = param.IS_DISSOLVE})
+            End Using
+
+            LOG_AT(param, log, listEmployeeId, "TỔNG HỢP NGHỈ PHÉP", obj, param.ORG_ID)
+
+            Return True
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+
+        End Try
+    End Function
+
     Public Function GetEntitlement(ByVal _filter As AT_ENTITLEMENTDTO,
                                   ByVal _param As ParamDTO,
                                       Optional ByRef Total As Integer = 0,
@@ -4621,6 +4644,19 @@ Partial Public Class AttendanceRepository
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
         End Try
+    End Function
+
+    Public Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.IMPORT_ENTITLEMENT_LEAVE",
+                                 New With {.P_DOCXML = P_DOCXML, .P_USER = P_USER, .P_PERIOD = P_PERIOD})
+            End Using
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
     End Function
 #End Region
 
