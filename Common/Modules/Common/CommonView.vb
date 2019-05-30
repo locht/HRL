@@ -466,6 +466,27 @@ Public Class CommonView
                     If row.Field(Of String)("DataType").Trim().ToUpper = "DateTime".ToUpper Then
                         rCol.DataFormatString = ConfigurationManager.AppSettings("FDATE_MONTH_YEAR_GRID")
                     End If
+                ElseIf row.Field(Of String)("DataType").Trim().ToUpper.Contains("Time".ToUpper) = True Then
+                    rCol = New GridBoundColumn()
+                    rg.MasterTableView.Columns.Add(rCol)
+                    rCol.DataField = row.Field(Of String)("ID").Trim()
+                    rCol.HeaderText = Translate(row.Field(Of String)("Name").Trim())
+                    If IsNumeric(row("Width").ToString()) Then
+                        rCol.HeaderStyle.Width = Integer.Parse(row("Width").ToString())
+                        rCol.FilterControlWidth = Integer.Parse(row("Width").ToString())
+                    End If
+                    rCol.HeaderStyle.HorizontalAlign = HorizontalAlign.Center
+                    rCol.AllowFiltering = True
+                    rCol.AllowSorting = True
+                    rCol.AutoPostBackOnFilter = True
+                    rCol.CurrentFilterFunction = GridKnownFunction.Contains
+                    rCol.ShowFilterIcon = False
+                    rCol.HeaderTooltip = (row.Field(Of String)("Name").Trim())
+                    rCol.FilterControlToolTip = (row.Field(Of String)("Name").Trim())
+                    rCol.Visible = Boolean.Parse(row.Item("Is_Visible"))
+                    If row.Field(Of String)("DataType").Trim().ToUpper = "Time".ToUpper Then
+                        rCol.DataFormatString = ConfigurationManager.AppSettings("TIME")
+                    End If
                 Else
                     rCol = New GridBoundColumn()
                     rg.MasterTableView.Columns.Add(rCol)
