@@ -186,7 +186,11 @@ Public Class ctrlLeaveRegistration
                             ShowMessage(Translate("Đang ở trạng thái chờ phê duyệt hoặc đã phê duyệt,không thể chỉnh sửa"), NotifyType.Error)
                             Exit Sub
                         End If
+
                     Next
+
+                   
+
 
                     'Dim itemError As New AT_PROCESS_DTO
                     'Using rep As New AttendanceRepository
@@ -201,6 +205,15 @@ Public Class ctrlLeaveRegistration
                     '        End If
                     '    End If
                     'End Using
+                    Dim strId As String
+                    For Each dr As GridDataItem In rgMain.SelectedItems
+                        strId += dr.GetDataKeyValue("ID").ToString + ","
+                    Next
+                    strId = strId.Remove(strId.LastIndexOf(",")).ToString
+                    If strId.Contains(",") Then
+                        ShowMessage(Translate("Chỉ gửi được từng đơn một"), NotifyType.Warning)
+                        Exit Sub
+                    End If
 
 
                     ctrlMessageBox.MessageText = Translate("Bạn có muốn gửi phê duyệt?")

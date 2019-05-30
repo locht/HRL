@@ -398,17 +398,27 @@ Public Class ctrlLeaveRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
-                     
-
                         Dim selectedFromDate = rdFromDate.SelectedDate
                         Dim selectedToDate = rdToDate.SelectedDate
                         While selectedFromDate.Value.Date <= selectedToDate.Value.Date
                             Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
                             If CHECK1 = 0 Then
-                                ShowMessage(Translate("Thời gian bạn chọn không có trong ca làn việc,bạn chọn lại."), NotifyType.Warning)
+                                ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
                                 UpdateControlState()
                                 Exit Sub
                             End If
+                            Using rep As New AttendanceRepository
+                                Dim periodid = rep.GetperiodID(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate)
+                                If periodid = 0 Then
+                                    ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                                Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
+                                If checkKicong = 0 Then
+                                    ShowMessage(Translate("Kì công đã đóng,Xin kiểm tra lại"), NotifyType.Warning)
+                                    Exit Sub
+                                End If
+                            End Using
                             selectedFromDate = selectedFromDate.Value.AddDays(1)
                         End While
                         If rtxtdayinkh.Value IsNot Nothing AndAlso rtxtdayoutkh.Value IsNot Nothing Then
@@ -490,8 +500,9 @@ Public Class ctrlLeaveRegistrationNewEdit
 
                     ElseIf userType = "HR" Then
                         Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistrationByHR")
+                    Else
+                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlLeaveRegistration")
                     End If
-
 
             End Select
         Catch ex As Exception

@@ -254,7 +254,9 @@ Partial Public Class AttendanceRepository
         Try
             _isAvailable = False
             Dim itemInsert As AT_PORTAL_REG
+            Dim dayholiday As List(Of AT_HOLIDAYDTO)
             Dim groupid As Decimal? = Nothing
+            dayholiday = GetDayHoliday()
             Dim I As Integer = 0
             If itemRegister.PROCESS = ATConstant.GSIGNCODE_LEAVE Or itemRegister.PROCESS = ATConstant.GSIGNCODE_WLEO Then
                 DeleteRegisterLeavePortal(itemRegister.ID_EMPLOYEE, itemRegister.FROM_DATE,
@@ -262,12 +264,18 @@ Partial Public Class AttendanceRepository
             End If
 
             While itemRegister.FROM_DATE <= itemRegister.TO_DATE
+                Dim check = (From p In dayholiday Where p.WORKINGDAY <= itemRegister.FROM_DATE And p.WORKINGDAY >= itemRegister.FROM_DATE Select p).ToList.Count
+                If check > 0 Then
+                    itemRegister.FROM_DATE = itemRegister.FROM_DATE.Value.AddDays(1)
+                    Continue While
+                End If
                 itemInsert = New AT_PORTAL_REG
                 itemInsert.ID = Utilities.GetNextSequence(Context, Context.AT_PORTAL_REG.EntitySet.Name)
                 I += 1
                 If I = 1 Then
                     groupid = itemInsert.ID
                 End If
+
                 itemInsert.ID_EMPLOYEE = itemRegister.ID_EMPLOYEE
                 itemInsert.ID_SIGN = itemRegister.ID_SIGN
                 itemInsert.FROM_DATE = itemRegister.FROM_DATE
