@@ -7,11 +7,17 @@ Imports Common.CommonMessage
 Imports Attendance.AttendanceRepository
 Imports Attendance.AttendanceBusiness
 Imports WebAppLog
+Imports System.IO
+Imports HistaffFrameworkPublic
+Imports Profile
+Imports Common.CommonBusiness
+
 Public Class ctrlEntitlement
     Inherits Common.CommonView
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
+    Dim log As New UserLog
 #Region "Properties"
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
@@ -41,8 +47,17 @@ Public Class ctrlEntitlement
             ViewState(Me.ID & "_PERIOD") = value
         End Set
     End Property
+
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
+        End Set
+    End Property
 #End Region
-    
+
 #Region "Page"
     ''' <summary>
     ''' Khởi tạo, load page
@@ -256,7 +271,7 @@ Public Class ctrlEntitlement
                         ShowMessage(Translate("Bạn phải chọn kỳ tính"), Utilities.NotifyType.Error)
                         Exit Sub
                     End If
-                    Dim _param = New ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
+                    Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
                                                     .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue), _
                                                     .IS_DISSOLVE = ctrlOrganization.IsDissolve}
                     Dim lsEmployee As New List(Of Decimal?)
@@ -282,6 +297,13 @@ Public Class ctrlEntitlement
                             rgEntitlement.ExportExcel(Server, Response, dtDatas, "DataEntitlement")
                         End If
                     End Using
+                Case TOOLBARITEM_IMPORT
+                    If cboPeriod.SelectedValue Is Nothing Then
+                        ShowMessage("Bạn phải chọn kỳ công", Utilities.NotifyType.Warning)
+                        Return
+                    End If
+                    ctrlUpload.isMultiple = True
+                    ctrlUpload.Show()
             End Select
             ' 
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -311,7 +333,7 @@ Public Class ctrlEntitlement
         Try
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgEntitlement, obj)
-            Dim _param = New ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
+            Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
                                             .IS_DISSOLVE = ctrlOrganization.IsDissolve,
                                             .IS_FULL = True}
             Dim Sorts As String = rgEntitlement.MasterTableView.SortExpressions.GetSortString()
@@ -357,6 +379,140 @@ Public Class ctrlEntitlement
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
 
+    End Sub
+
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
+        Try
+            Import_Data()
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
+        End Try
+
+    End Sub
+
+    Private Sub Import_Data()
+        Try
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim rep As New AttendanceRepository
+            log = LogHelper.GetUserLog
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                Dim count As Integer = ds.Tables(0).Columns.Count - 12
+                For i = 0 To count
+                    If ds.Tables(0).Columns(i).ColumnName.Contains("Column") Then
+                        ds.Tables(0).Columns.RemoveAt(i)
+                        If ds.Tables(0).Columns(i).ColumnName.Contains("Column14") Then
+                            ds.Tables(0).Columns.RemoveAt(i)
+                            i = i + 1
+                        Else
+                            i = i - 1
+                        End If
+
+                    End If
+                Next
+
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.ImportEntitlementLeave(DocXml, log.Username, cboPeriod.SelectedValue) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(6).ColumnName = "LEAVE"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+        dtTemp.Rows(1).Delete()
+        dtTemp.Rows(2).Delete()
+        dtTemp.Rows(3).Delete()
+
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        Dim empId As Integer
+        Dim rep As New ProfileBusinessRepository
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            empId = rep.CheckEmployee_Exits(rows("EMPLOYEE_CODE"))
+
+            If empId = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            Else
+                rows("EMPLOYEE_CODE") = empId
+            End If
+
+            If IsDBNull(rows("LEAVE")) Then
+                rows("LEAVE") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Chi phí cho 1 học viên (USD) - Bắt buộc nhập,"
+                _error = False
+            Else
+                If Not (IsNumeric(rows("LEAVE"))) Then
+                    rows("LEAVE") = 0
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Chi phí cho 1 học viên (USD) - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
     End Sub
     ''' <summary>
     ''' Event click button tìm kiếm
@@ -481,5 +637,5 @@ Public Class ctrlEntitlement
     End Sub
 #End Region
 
-    
+
 End Class
