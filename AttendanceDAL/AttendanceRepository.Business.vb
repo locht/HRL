@@ -4787,8 +4787,8 @@ Partial Public Class AttendanceRepository
     Public Function InsertWorkSign(ByVal objWorkSigns As List(Of AT_WORKSIGNDTO), ByVal objWork As AT_WORKSIGNDTO, ByVal p_fromdate As Date, ByVal p_endDate As Date?, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objWorkSign As New AT_WORKSIGNDTO
         Dim p_fromDateBefor As Date = p_fromdate
-        Dim CODE_CN As String = ""
-        CODE_CN = "HC"
+        Dim CODE_OFF As String = ""
+        CODE_OFF = "OFF"
         Try
             For index = 0 To objWorkSigns.Count - 1
                 objWorkSign = objWorkSigns(index)
@@ -4807,7 +4807,7 @@ Partial Public Class AttendanceRepository
 
                         Dim shiftIDU = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
 
-                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_CODE Select f).FirstOrDefault
+                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
                                 If shiftIDU.SUNDAY.HasValue Then
@@ -4815,13 +4815,12 @@ Partial Public Class AttendanceRepository
                                 Else
                                     query.SHIFT_ID = objWork.SHIFT_ID
                                 End If
-                            ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And shiftIDU.SATURDAY IsNot Nothing Then
-                                query.SHIFT_ID = shiftIDU.SATURDAY
+                            ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
+                                query.SHIFT_ID = shiftOffu.ID 'shiftIDU.SATURDAY
                             Else
                                 query.SHIFT_ID = objWork.SHIFT_ID
                             End If
                         End If
-
                         Context.SaveChanges(log)
                         p_fromdate = p_fromdate.AddDays(1)
                         Continue While
@@ -4831,15 +4830,15 @@ Partial Public Class AttendanceRepository
                     objWorkSignData.WORKINGDAY = p_fromdate
 
                     Dim shiftId = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
-                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_CODE Select f).FirstOrDefault
+                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                     If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOff.ID) Then
                         If shiftId.SUNDAY.HasValue Then
                             objWorkSignData.SHIFT_ID = shiftOff.ID
                         Else
                             objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                         End If
-                    ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And shiftId.SATURDAY IsNot Nothing Then
-                        objWorkSignData.SHIFT_ID = shiftId.SATURDAY
+                    ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And Not String.IsNullOrEmpty(shiftOff.ID) Then
+                        objWorkSignData.SHIFT_ID = shiftOff.ID 'shiftIDU.SATURDAY
                     Else
                         objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                     End If
