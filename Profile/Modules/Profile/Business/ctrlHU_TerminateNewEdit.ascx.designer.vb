@@ -653,6 +653,60 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents rgAsset As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
+    '''lbRemainingLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemainingLeave As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rntxtRemainingLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtRemainingLeave As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbCompensatoryLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCompensatoryLeave As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rntxtCompensatoryLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtCompensatoryLeave As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbPaymentLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPaymentLeave As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rntxtPaymentLeave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtPaymentLeave As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''lbSalaryMedium_loss control.
     '''</summary>
     '''<remarks>
@@ -759,6 +813,24 @@ Partial Public Class ctrlHU_TerminateNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtAmountWrongful As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbCompensatoryPayment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCompensatoryPayment As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rntxtCompensatoryPayment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtCompensatoryPayment As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbAllowanceTerminate control.

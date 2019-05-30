@@ -29,6 +29,15 @@ Public Class ctrlPortalEmpDtlViewKPI
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+    Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
+        Try
+            If Not IsPostBack Then
+                GirdConfig(rgTraining)
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New ProfileBusinessRepository

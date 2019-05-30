@@ -768,11 +768,11 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
-        Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As ParamDTO, ByVal lstEmployee As List(Of Decimal?), ByVal log As Framework.Data.UserLog) As Boolean Implements IAttendanceBusiness.CAL_TIME_TIMESHEET_MONTHLY
+        Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As ParamDTO, ByVal codecase As String, ByVal lstEmployee As List(Of Decimal?), ByVal log As Framework.Data.UserLog) As Boolean Implements IAttendanceBusiness.CAL_TIME_TIMESHEET_MONTHLY
 
             Using rep As New AttendanceRepository
                 Try
-                    Dim lst = rep.CAL_TIME_TIMESHEET_MONTHLY(param, lstEmployee, log)
+                    Dim lst = rep.CAL_TIME_TIMESHEET_MONTHLY(param, codecase, lstEmployee, log)
                     Return lst
                 Catch ex As Exception
                     Throw ex

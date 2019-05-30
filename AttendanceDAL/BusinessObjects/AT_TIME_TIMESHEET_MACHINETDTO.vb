@@ -64,4 +64,9 @@
     Public Property MIN_EARLY As Decimal?
     Public Property MIN_LATE_EARLY As Decimal?
 
+    Public Property TIMEVALIN As Date?
+    Public Property TIMEVALOUT As Date?
+    Public Property WORK_HOUR As Decimal?
+    Public Property TIMEVALIN_TEMP As Date?
+    Public Property OBJECT_ATTENDANCE_CODE As String
 End Class

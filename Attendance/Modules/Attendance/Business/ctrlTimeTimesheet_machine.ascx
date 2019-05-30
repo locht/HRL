@@ -64,7 +64,7 @@
                 <tlk:RadGrid PageSize="50" ID="rgTimeTimesheet_machine" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
@@ -84,7 +84,7 @@
                                 <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
                                 </tlk:RadToolTip>
                             </ItemTemplate>
-                         </tlk:GridTemplateColumn>
+                         </tlk:GridTemplateColumn>--%>
                             <%--<tlk:GridDateTimeColumn HeaderText="Ngày làm việc" DataField="WORKINGDAY"
                                 UniqueName="WORKINGDAY" DataFormatString="{0:dd/MM/yyyy}" SortExpression="WORKINGDAY">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />

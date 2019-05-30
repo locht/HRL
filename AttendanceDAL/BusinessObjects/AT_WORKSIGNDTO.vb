@@ -14,6 +14,7 @@
     Public Property PAGE_SIZE As Decimal?
     Public Property TOTAL_RECORD As Decimal?
     Public Property SHIFT_ID As Decimal?
+    Public Property SHIFT_CODE As String
     Public Property CODE As String
     Public Property D1 As String
     Public Property D2 As String

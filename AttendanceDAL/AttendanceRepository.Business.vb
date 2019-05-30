@@ -486,6 +486,7 @@ Partial Public Class AttendanceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
+                        From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And
                                                                   f.USERNAME.ToUpper = log.Username.ToUpper.ToUpper)
 
@@ -559,7 +560,21 @@ Partial Public Class AttendanceRepository
                                        .SHIFTBACKOUT = p.p.VALIN2,
                                        .SHIFTBACKIN = p.p.VALIN3,
                                        .SHIFTOUT = p.p.VALIN4,
-                                       .COMEBACKOUT = p.p.COMEBACKOUT})
+                                       .COMEBACKOUT = p.p.COMEBACKOUT,
+                                       .TIMEVALIN = p.p.TIMEVALIN,
+                                       .TIMEVALOUT = p.p.TIMEVALOUT,
+                                       .OBJECT_ATTENDANCE = p.p.OBJECT_ATTENDANCE,
+                                       .OBJECT_ATTENDANCE_NAME = p.obj_att.NAME_VN,
+                                       .OBJECT_ATTENDANCE_CODE = p.p.OBJECT_ATTENDANCE_CODE,
+                                       .MIN_DEDUCT = p.p.MIN_DEDUCT,
+                                       .MIN_DEDUCT_WORK = p.p.MIN_DEDUCT_WORK,
+                                       .MIN_EARLY = p.p.MIN_EARLY,
+                                       .MIN_IN_WORK = p.p.MIN_IN_WORK,
+                                       .MIN_LATE = p.p.MIN_LATE,
+                                       .MIN_LATE_EARLY = p.p.MIN_LATE_EARLY,
+                                       .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
+                                       .MIN_OUT_WORK = p.p.MIN_OUT_WORK,
+                                       .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -1148,15 +1163,15 @@ Partial Public Class AttendanceRepository
                                        .WORKING_DA = p.p.WORKING_DA,
                                        .OBJECT_ATTENDANCE = p.p.OBJECT_ATTENDANCE,
                                        .OBJECT_ATTENDANCE_NAME = p.obj_att.NAME_VN,
-                                       .MIN_AT_WORK = p.p.MIN_AT_WORK,
-                                       .MIN_DEDUCT = p.p.MIN_DEDUCT,
-                                       .MIN_DEDUCT_FOR_WORK = p.p.MIN_DEDUCT_FOR_WORK,
-                                       .MIN_LATE = p.p.MIN_LATE,
-                                       .MIN_LATE_SOON = p.p.MIN_LATE_SOON,
-                                       .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
-                                       .MIN_OUT_AFTER_DEDUCT = p.p.MIN_OUT_AFTER_DEDUCT,
                                        .MIN_OUT_WORK = p.p.MIN_OUT_WORK,
-                                       .MIN_SOON = p.p.MIN_SOON})
+                                       .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
+                                       .MIN_DEDUCT = p.p.MIN_DEDUCT,
+                                       .MIN_LATE = p.p.MIN_LATE,
+                                       .MIN_LATE_EARLY = p.p.MIN_LATE_EARLY,
+                                       .MIN_IN_WORK = p.p.MIN_IN_WORK,
+                                       .MIN_DEDUCT_WORK = p.p.MIN_DEDUCT_WORK,
+                                       .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT,
+                                       .MIN_EARLY = p.p.MIN_EARLY})
 
             'If _filter.IS_TERMINATE Then
             '    lst = lst.Where(Function(f) f.WORK_STATUS = 257)
@@ -1278,7 +1293,7 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
-    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal _param As ParamDTO, ByVal lstEmployee As List(Of Decimal?), ByVal log As UserLog) As Boolean
+    Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal _param As ParamDTO, ByVal codecase As String, ByVal lstEmployee As List(Of Decimal?), ByVal log As UserLog) As Boolean
         Try
             'Using cls As New DataAccess.NonQueryData
             '    cls.ExecuteSQL("DELETE FROM SE_EMPLOYEE_CHOSEN S WHERE  UPPER(S.USING_USER) ='" + log.Username.ToUpper + "'")
@@ -1297,11 +1312,19 @@ Partial Public Class AttendanceRepository
             obj.PERIOD_ID = _param.PERIOD_ID
             LOG_AT(_param, log, lstEmployee, "TỔNG HỢP BẢNG CÔNG TỔNG HỢP", obj, _param.ORG_ID)
             Using cls As New DataAccess.NonQueryData
-                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_MONTHLY",
+                If codecase = "ctrlTimesheetSummary_case1" Then
+                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIMESHEET_MONTHLY_HOSE",
                                                New With {.P_USERNAME = log.Username,
                                                          .P_PERIOD_ID = _param.PERIOD_ID,
                                                          .P_ORG_ID = _param.ORG_ID,
                                                          .P_ISDISSOLVE = _param.IS_DISSOLVE})
+                Else
+                    cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_MONTHLY",
+                                               New With {.P_USERNAME = log.Username,
+                                                         .P_PERIOD_ID = _param.PERIOD_ID,
+                                                         .P_ORG_ID = _param.ORG_ID,
+                                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
+                End If
             End Using
             Return True
         Catch ex As Exception
@@ -4784,7 +4807,7 @@ Partial Public Class AttendanceRepository
 
                         Dim shiftIDU = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
 
-                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_ID Select f).FirstOrDefault
+                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_CODE Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
                                 If shiftIDU.SUNDAY.HasValue Then
@@ -4808,7 +4831,7 @@ Partial Public Class AttendanceRepository
                     objWorkSignData.WORKINGDAY = p_fromdate
 
                     Dim shiftId = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
-                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_ID Select f).FirstOrDefault
+                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_CODE Select f).FirstOrDefault
                     If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOff.ID) Then
                         If shiftId.SUNDAY.HasValue Then
                             objWorkSignData.SHIFT_ID = shiftOff.ID

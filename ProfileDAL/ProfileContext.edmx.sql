@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/28/2019 9:04:18 AM
+-- Date Created: 05/30/2019 9:07:10 AM
 -- Generated from EDMX file: D:\MyProject\core1\histaffhcm-27052019\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_CONTRACT";
+-- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_WORKING";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -1050,17 +1050,6 @@ CREATE TABLE "dbo"."INS_INFORMATION" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "DAYPAYMENTCOMPANY" DATE NULL,
    "NOTE_SO" NVARCHAR2(1000) NULL
-);
-
--- Creating table 'HUV_CURRENT_WORKING'
-CREATE TABLE "dbo"."HUV_CURRENT_WORKING" (
-   "EMPLOYEE_ID" NUMBER(38,0) NULL,
-   "TITLE_ID" NUMBER(38,0) NULL,
-   "ORG_ID" NUMBER(38,0) NULL,
-   "ID" NUMBER(38,0) NOT NULL,
-   "STAFF_RANK_ID" NUMBER(38,0) NULL,
-   "EFFECT_DATE" DATE NULL,
-   "DIRECT_MANAGER" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_CONDITION_COL'
@@ -2940,8 +2929,18 @@ CREATE TABLE "dbo"."HU_ANNUALLEAVE_PLANS" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL
 );
 
--- Creating table 'HUV_CURRENT_WORKING1'
-CREATE TABLE "dbo"."HUV_CURRENT_WORKING1" (
+-- Creating table 'HUV_CURRENT_CONTRACT'
+CREATE TABLE "dbo"."HUV_CURRENT_CONTRACT" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "START_DATE" DATE NULL,
+   "EXPIRE_DATE" DATE NULL,
+   "WORKING_ID" NUMBER(38,0) NULL,
+   "CONTRACT_TYPE_ID" NUMBER(38,0) NULL
+);
+
+-- Creating table 'HUV_CURRENT_WORKING'
+CREATE TABLE "dbo"."HUV_CURRENT_WORKING" (
    "EMPLOYEE_ID" NUMBER(38,0) NULL,
    "TITLE_ID" NUMBER(38,0) NULL,
    "ORG_ID" NUMBER(38,0) NULL,
@@ -2951,16 +2950,6 @@ CREATE TABLE "dbo"."HUV_CURRENT_WORKING1" (
    "EFFECT_DATE" DATE NULL,
    "DIRECT_MANAGER" NUMBER(38,0) NULL,
    "OBJECT_ATTENDANCE" NUMBER(38,0) NULL
-);
-
--- Creating table 'HUV_CURRENT_CONTRACT'
-CREATE TABLE "dbo"."HUV_CURRENT_CONTRACT" (
-   "ID" NUMBER(38,0) NOT NULL,
-   "EMPLOYEE_ID" NUMBER(38,0) NULL,
-   "START_DATE" DATE NULL,
-   "EXPIRE_DATE" DATE NULL,
-   "WORKING_ID" NUMBER(38,0) NULL,
-   "CONTRACT_TYPE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'
@@ -3337,14 +3326,6 @@ ADD CONSTRAINT "PK_INS_CHANGE_TYPE"
 -- Creating primary key on "ID"in table 'INS_INFORMATION'
 ALTER TABLE "dbo"."INS_INFORMATION"
 ADD CONSTRAINT "PK_INS_INFORMATION"
-   PRIMARY KEY ("ID" )
-   ENABLE
-   VALIDATE;
-
-
--- Creating primary key on "ID"in table 'HUV_CURRENT_WORKING'
-ALTER TABLE "dbo"."HUV_CURRENT_WORKING"
-ADD CONSTRAINT "PK_HUV_CURRENT_WORKING"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
@@ -4038,17 +4019,17 @@ ADD CONSTRAINT "PK_HU_ANNUALLEAVE_PLANS"
    VALIDATE;
 
 
--- Creating primary key on "ID"in table 'HUV_CURRENT_WORKING1'
-ALTER TABLE "dbo"."HUV_CURRENT_WORKING1"
-ADD CONSTRAINT "PK_HUV_CURRENT_WORKING1"
+-- Creating primary key on "ID"in table 'HUV_CURRENT_CONTRACT'
+ALTER TABLE "dbo"."HUV_CURRENT_CONTRACT"
+ADD CONSTRAINT "PK_HUV_CURRENT_CONTRACT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 
 
--- Creating primary key on "ID"in table 'HUV_CURRENT_CONTRACT'
-ALTER TABLE "dbo"."HUV_CURRENT_CONTRACT"
-ADD CONSTRAINT "PK_HUV_CURRENT_CONTRACT"
+-- Creating primary key on "ID"in table 'HUV_CURRENT_WORKING'
+ALTER TABLE "dbo"."HUV_CURRENT_WORKING"
+ADD CONSTRAINT "PK_HUV_CURRENT_WORKING"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

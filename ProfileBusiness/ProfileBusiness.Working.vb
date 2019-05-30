@@ -187,6 +187,30 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function InsertWorking1(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.InsertWorking1
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.InsertWorking1(objWorking, log, gID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ModifyWorking1(ByVal objWorking As WorkingDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyWorking1
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.ModifyWorking1(objWorking, log, gID)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function DeleteWorking(ByVal objWorking As WorkingDTO) As Boolean Implements ServiceContracts.IProfileBusiness.DeleteWorking
             Using rep As New ProfileRepository
                 Try

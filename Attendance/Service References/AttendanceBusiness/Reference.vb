@@ -18555,6 +18555,9 @@ Namespace AttendanceBusiness
         Private PERIOD_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SHIFT_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -19111,6 +19114,19 @@ Namespace AttendanceBusiness
                 If (Me.PERIOD_IDField.Equals(value) <> true) Then
                     Me.PERIOD_IDField = value
                     Me.RaisePropertyChanged("PERIOD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_CODE() As String
+            Get
+                Return Me.SHIFT_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SHIFT_CODEField, value) <> true) Then
+                    Me.SHIFT_CODEField = value
+                    Me.RaisePropertyChanged("SHIFT_CODE")
                 End If
             End Set
         End Property
@@ -22988,6 +23004,9 @@ Namespace AttendanceBusiness
         Private OBJECT_ATTENDANCEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private OBJECT_ATTENDANCE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OBJECT_ATTENDANCE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23027,6 +23046,15 @@ Namespace AttendanceBusiness
         Private STAFF_RANK_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEVALINField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEVALIN_TEMPField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEVALOUTField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23058,6 +23086,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKINGHOURField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORK_HOURField As System.Nullable(Of Decimal)
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -23577,6 +23608,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property OBJECT_ATTENDANCE_CODE() As String
+            Get
+                Return Me.OBJECT_ATTENDANCE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.OBJECT_ATTENDANCE_CODEField, value) <> true) Then
+                    Me.OBJECT_ATTENDANCE_CODEField = value
+                    Me.RaisePropertyChanged("OBJECT_ATTENDANCE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property OBJECT_ATTENDANCE_NAME() As String
             Get
                 Return Me.OBJECT_ATTENDANCE_NAMEField
@@ -23746,6 +23790,45 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEVALIN() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEVALINField
+            End Get
+            Set
+                If (Me.TIMEVALINField.Equals(value) <> true) Then
+                    Me.TIMEVALINField = value
+                    Me.RaisePropertyChanged("TIMEVALIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEVALIN_TEMP() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEVALIN_TEMPField
+            End Get
+            Set
+                If (Me.TIMEVALIN_TEMPField.Equals(value) <> true) Then
+                    Me.TIMEVALIN_TEMPField = value
+                    Me.RaisePropertyChanged("TIMEVALIN_TEMP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEVALOUT() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEVALOUTField
+            End Get
+            Set
+                If (Me.TIMEVALOUTField.Equals(value) <> true) Then
+                    Me.TIMEVALOUTField = value
+                    Me.RaisePropertyChanged("TIMEVALOUT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TITLE_NAME() As String
             Get
                 Return Me.TITLE_NAMEField
@@ -23884,6 +23967,19 @@ Namespace AttendanceBusiness
                 If (Me.WORKINGHOURField.Equals(value) <> true) Then
                     Me.WORKINGHOURField = value
                     Me.RaisePropertyChanged("WORKINGHOUR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORK_HOUR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORK_HOURField
+            End Get
+            Set
+                If (Me.WORK_HOURField.Equals(value) <> true) Then
+                    Me.WORK_HOURField = value
+                    Me.RaisePropertyChanged("WORK_HOUR")
                 End If
             End Set
         End Property
@@ -27456,31 +27552,31 @@ Namespace AttendanceBusiness
         Private LATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_AT_WORKField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_DEDUCTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_DEDUCT_FOR_WORKField As System.Nullable(Of Decimal)
+        Private MIN_DEDUCT_WORKField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_EARLYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MIN_IN_WORKField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_LATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_LATE_SOONField As System.Nullable(Of Decimal)
+        Private MIN_LATE_EARLYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_ON_LEAVEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_OUT_AFTER_DEDUCTField As System.Nullable(Of Decimal)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MIN_OUT_WORKField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private MIN_SOONField As System.Nullable(Of Decimal)
+        Private MIN_OUT_WORK_DEDUCTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
@@ -27835,19 +27931,6 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_AT_WORK() As System.Nullable(Of Decimal)
-            Get
-                Return Me.MIN_AT_WORKField
-            End Get
-            Set
-                If (Me.MIN_AT_WORKField.Equals(value) <> true) Then
-                    Me.MIN_AT_WORKField = value
-                    Me.RaisePropertyChanged("MIN_AT_WORK")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MIN_DEDUCT() As System.Nullable(Of Decimal)
             Get
                 Return Me.MIN_DEDUCTField
@@ -27861,14 +27944,40 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_DEDUCT_FOR_WORK() As System.Nullable(Of Decimal)
+        Public Property MIN_DEDUCT_WORK() As System.Nullable(Of Decimal)
             Get
-                Return Me.MIN_DEDUCT_FOR_WORKField
+                Return Me.MIN_DEDUCT_WORKField
             End Get
             Set
-                If (Me.MIN_DEDUCT_FOR_WORKField.Equals(value) <> true) Then
-                    Me.MIN_DEDUCT_FOR_WORKField = value
-                    Me.RaisePropertyChanged("MIN_DEDUCT_FOR_WORK")
+                If (Me.MIN_DEDUCT_WORKField.Equals(value) <> true) Then
+                    Me.MIN_DEDUCT_WORKField = value
+                    Me.RaisePropertyChanged("MIN_DEDUCT_WORK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_EARLY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_EARLYField
+            End Get
+            Set
+                If (Me.MIN_EARLYField.Equals(value) <> true) Then
+                    Me.MIN_EARLYField = value
+                    Me.RaisePropertyChanged("MIN_EARLY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MIN_IN_WORK() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MIN_IN_WORKField
+            End Get
+            Set
+                If (Me.MIN_IN_WORKField.Equals(value) <> true) Then
+                    Me.MIN_IN_WORKField = value
+                    Me.RaisePropertyChanged("MIN_IN_WORK")
                 End If
             End Set
         End Property
@@ -27887,14 +27996,14 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_LATE_SOON() As System.Nullable(Of Decimal)
+        Public Property MIN_LATE_EARLY() As System.Nullable(Of Decimal)
             Get
-                Return Me.MIN_LATE_SOONField
+                Return Me.MIN_LATE_EARLYField
             End Get
             Set
-                If (Me.MIN_LATE_SOONField.Equals(value) <> true) Then
-                    Me.MIN_LATE_SOONField = value
-                    Me.RaisePropertyChanged("MIN_LATE_SOON")
+                If (Me.MIN_LATE_EARLYField.Equals(value) <> true) Then
+                    Me.MIN_LATE_EARLYField = value
+                    Me.RaisePropertyChanged("MIN_LATE_EARLY")
                 End If
             End Set
         End Property
@@ -27913,19 +28022,6 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_OUT_AFTER_DEDUCT() As System.Nullable(Of Decimal)
-            Get
-                Return Me.MIN_OUT_AFTER_DEDUCTField
-            End Get
-            Set
-                If (Me.MIN_OUT_AFTER_DEDUCTField.Equals(value) <> true) Then
-                    Me.MIN_OUT_AFTER_DEDUCTField = value
-                    Me.RaisePropertyChanged("MIN_OUT_AFTER_DEDUCT")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MIN_OUT_WORK() As System.Nullable(Of Decimal)
             Get
                 Return Me.MIN_OUT_WORKField
@@ -27939,14 +28035,14 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property MIN_SOON() As System.Nullable(Of Decimal)
+        Public Property MIN_OUT_WORK_DEDUCT() As System.Nullable(Of Decimal)
             Get
-                Return Me.MIN_SOONField
+                Return Me.MIN_OUT_WORK_DEDUCTField
             End Get
             Set
-                If (Me.MIN_SOONField.Equals(value) <> true) Then
-                    Me.MIN_SOONField = value
-                    Me.RaisePropertyChanged("MIN_SOON")
+                If (Me.MIN_OUT_WORK_DEDUCTField.Equals(value) <> true) Then
+                    Me.MIN_OUT_WORK_DEDUCTField = value
+                    Me.RaisePropertyChanged("MIN_OUT_WORK_DEDUCT")
                 End If
             End Set
         End Property
@@ -30345,7 +30441,7 @@ Namespace AttendanceBusiness
         Function GetTimeSheet(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/CAL_TIME_TIMESHEET_MONTHLY", ReplyAction:="http://tempuri.org/IAttendanceBusiness/CAL_TIME_TIMESHEET_MONTHLYResponse")>  _
-        Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal codecase As String, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetTimeSheetPortal", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetTimeSheetPortalResponse")>  _
         Function GetTimeSheetPortal(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO)
@@ -31821,8 +31917,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetTimeSheet(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
         End Function
         
-        Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CAL_TIME_TIMESHEET_MONTHLY
-            Return MyBase.Channel.CAL_TIME_TIMESHEET_MONTHLY(param, lstEmployee, log)
+        Public Function CAL_TIME_TIMESHEET_MONTHLY(ByVal param As AttendanceBusiness.ParamDTO, ByVal codecase As String, ByVal lstEmployee As System.Collections.Generic.List(Of System.Nullable(Of Decimal)), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.CAL_TIME_TIMESHEET_MONTHLY
+            Return MyBase.Channel.CAL_TIME_TIMESHEET_MONTHLY(param, codecase, lstEmployee, log)
         End Function
         
         Public Function GetTimeSheetPortal(ByVal _filter As AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_TIME_TIMESHEET_MONTHLYDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetTimeSheetPortal

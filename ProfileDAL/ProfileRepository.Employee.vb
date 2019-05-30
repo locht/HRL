@@ -2600,7 +2600,7 @@ Partial Class ProfileRepository
                 End If
             End Using
 
-            Return lst
+            Return lst.OrderByDescending(Function(f) f.PE_PERIO_END_DATE)
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
@@ -2731,8 +2731,8 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_PRO_TRAIN_OUT_COMPANY
                         From ot In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.FORM_TRAIN_ID).DefaultIfEmpty
                         From ott In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.TYPE_TRAIN_ID).DefaultIfEmpty
-                        From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM")
-                        From ot_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ott.TYPE_ID And f.CODE = "TRAINING_TYPE")
+                        From ot_train In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ot.TYPE_ID And f.CODE = "TRAINING_FORM").DefaultIfEmpty
+                        From ot_type In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = ott.TYPE_ID And f.CODE = "TRAINING_TYPE").DefaultIfEmpty
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_ID) Then
                 query = query.Where(Function(f) f.p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If

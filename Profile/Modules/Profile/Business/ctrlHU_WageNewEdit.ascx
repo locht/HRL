@@ -177,7 +177,7 @@
                     <asp:Label runat ="server" ID="lbFactorSalary" Text ="Hệ số/mức tiền"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rnFactorSalary" SkinID="Decimal" ReadOnly ="true"  ></tlk:RadNumericTextBox>
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnFactorSalary" SkinID="Money" ReadOnly ="true"  ></tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                         <asp:Label ID="lbSalaryInsurance" runat="server" Text="Mức lương đóng bảo hiểm"></asp:Label>

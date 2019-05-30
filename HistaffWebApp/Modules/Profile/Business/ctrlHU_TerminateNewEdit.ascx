@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbEmployeeCode" Text ="Mã nhân viên" ></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat ="server" ID ="lbEmployeeCode" Text ="Mã nhân viên" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" runat="server" SkinID="Readonly" ReadOnly="true"
@@ -161,8 +161,7 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbEffectDate" Text ="Ngày thôi việc" ></asp:Label>
-                    <span class="lbReq">*</span>
+                    <asp:Label runat ="server" ID ="lbEffectDate" Text ="Ngày thôi việc" ></asp:Label>                    
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server">
@@ -184,7 +183,6 @@
                 </td>--%>
                 <td class="lb">
                     <asp:Label runat ="server" ID ="lbLastDate" Text ="Ngày nghỉ thực tế" ></asp:Label>
-                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdLastDate" runat="server" AutoPostBack="true" DateInput-CausesValidation="false">
@@ -217,7 +215,7 @@
                     <asp:CheckBox ID="cbIsNoHire" runat="server" Text="Danh sách đen" />
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbTYPE_TERMINATE" Text ="Loại nghỉ" ></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat ="server" ID ="lbTYPE_TERMINATE" Text ="Loại nghỉ" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboTYPE_TERMINATE" runat="server" ReadOnly="False" SkinID="ReadOnly">
@@ -632,7 +630,6 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat ="server" ID ="lbStatus" Text ="Trạng thái" ></asp:Label>
-                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server">

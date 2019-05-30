@@ -158,7 +158,10 @@ Public Class ctrlPortalEmpProfile
                             ' CMND
                             txtID_NO.Text = empCV.ID_NO
                             rdIDDate.SelectedDate = empCV.ID_DATE
-                            cboIDPlace.SelectedValue = empCV.ID_PLACE
+                            If empCV.ID_PLACE IsNot Nothing Then
+                                cboIDPlace.SelectedValue = empCV.ID_PLACE
+                            End If
+
                             'Hộ chiếu
                             txtPassNo.Text = empCV.PASS_NO
                             rdPassDate.SelectedDate = empCV.PASS_DATE
@@ -283,7 +286,10 @@ Public Class ctrlPortalEmpProfile
                             txtMajor.Text = empEdu.MAJOR_NAME
                             'txtMajorRemark.Text = empEdu.MAJOR_REMARK
                             'txtGraduateSchool.Text = empEdu.GRADUATE_SCHOOL_NAME
-                            txtSpecialized.Text = empEdu.MAJOR
+                            'txtSpecialized.Text = empEdu.MAJOR
+                            If empEdu.MAJOR IsNot Nothing Then
+                                txtSpecialized.Text = empEdu.MAJOR
+                            End If
                             If IsNumeric(empEdu.QLNN) Then
                                 cboQLNN.SelectedValue = empEdu.QLNN
                             End If
@@ -300,7 +306,9 @@ Public Class ctrlPortalEmpProfile
                             End If
                             txtEngLevel2.Text = empEdu.LANGUAGE_LEVEL_NAME2
                             txtMark2.Text = empEdu.LANGUAGE_MARK2
-                            txtGraduateYear.Text = empEdu.GRADUATION_YEAR
+                            If empEdu.GRADUATION_YEAR IsNot Nothing Then
+                                txtGraduateYear.Text = empEdu.GRADUATION_YEAR
+                            End If
                             If IsNumeric(empEdu.TDTH) Then
                                 cboTDTH.SelectedValue = empEdu.TDTH
                             End If

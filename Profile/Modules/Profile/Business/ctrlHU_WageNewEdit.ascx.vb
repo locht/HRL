@@ -32,11 +32,11 @@ Public Class ctrlHU_WageNewEdit
             ViewState(Me.ID & "_Working") = value
         End Set
     End Property
-    Property code_attendent As Integer
+    Property code_attendent As Decimal?
         Get
             Return ViewState(Me.ID & "_code_attendent")
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As Decimal?)
             ViewState(Me.ID & "_code_attendent") = value
         End Set
     End Property
@@ -1040,8 +1040,14 @@ Public Class ctrlHU_WageNewEdit
                 rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
                 rgAllow.Rebind()
                 hidID.Value = obj.ID.ToString
-                hidEmp.Value = obj.EMPLOYEE_ID
-                code_attendent = obj.CODE_ATTENDANCE
+                hidEmp.Value = obj.EMPLOYEE_ID.ToString()
+
+                If obj.CODE_ATTENDANCE IsNot Nothing Then
+                     code_attendent = obj.CODE_ATTENDANCE
+                Else
+                    code_attendent = Nothing
+                End If
+
                 txtEmployeeCode.Text = obj.EMPLOYEE_CODE
                 txtEmployeeName.Text = obj.EMPLOYEE_NAME
                 hidTitle.Value = obj.TITLE_ID

@@ -252,9 +252,16 @@ Public Class ctrlTimeTimesheet_machine
                         employee_id = Decimal.Parse(item)
                         lsEmployee.Add(employee_id)
                     Next
-                    rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                    If getSE_CASE_CONFIG("ctrlTimeTimesheet_machine_case1") > 0 Then
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
                                                    Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "ctrlTimeTimesheet_machine_case1")
-                    Refresh("UpdateView")
+                        Refresh("UpdateView")
+                    Else
+                        rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "")
+                        Refresh("UpdateView")
+                    End If
+                    
                     'If rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
                     '                               Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee) Then
                     '    Refresh("UpdateView")

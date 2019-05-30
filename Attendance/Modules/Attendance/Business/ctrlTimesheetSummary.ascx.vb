@@ -322,15 +322,22 @@ Public Class ctrlTimesheetSummary
                                                     .ORG_ID = Decimal.Parse(ctrlOrg.CurrentValue),
                                                     .IS_DISSOLVE = ctrlOrg.IsDissolve}
                     If getSE_CASE_CONFIG("ctrlTimesheetSummary_case1") > 0 Then
-                        
+                        If rep.CAL_TIME_TIMESHEET_MONTHLY(_param, "ctrlTimesheetSummary_case1", lsEmployee) Then
+                            Refresh("UpdateView")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Success)
+                            Exit Sub
+                        End If
                     Else
-                        If rep.CAL_TIME_TIMESHEET_MONTHLY(_param, lsEmployee) Then
+                        If rep.CAL_TIME_TIMESHEET_MONTHLY(_param, "", lsEmployee) Then
                             Refresh("UpdateView")
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Success)
                             Exit Sub
                         End If
                     End If
+                    
+                    
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         Dim dtDatas As DataTable

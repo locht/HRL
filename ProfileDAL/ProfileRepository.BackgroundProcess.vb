@@ -18,7 +18,7 @@ Partial Class ProfileRepository
 
     Private Sub UpdateWorking()
         Try
-            Dim query = (From p In Context.HUV_CURRENT_WORKING1
+            Dim query = (From p In Context.HUV_CURRENT_WORKING
                          Select New WorkingDTO With {
                              .EMPLOYEE_ID = p.EMPLOYEE_ID,
                              .TITLE_ID = p.TITLE_ID,
@@ -31,6 +31,7 @@ Partial Class ProfileRepository
                              }).ToList
 
             For i As Integer = 0 To query.Count - 1
+                ApproveWorking1(query(i))
                 ApproveWorking(query(i))
             Next
             If query.Count > 0 Then Context.SaveChanges()
