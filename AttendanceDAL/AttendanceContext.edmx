@@ -1188,6 +1188,53 @@
             <Property Name="MIN_LATE" Type="number" Nullable="true" Precision="38" />
             <Property Name="MIN_EARLY" Type="number" Nullable="true" Precision="38" />
             <Property Name="MIN_LATE_EARLY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="WORKINGHOUR_SHIFT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NUMBER_SWIPE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_HOLIDAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_FULLDAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFT_MANUAL_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_NOON" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFT_HOURS_START" Type="date" Nullable="true" />
+            <Property Name="SHIFT_HOURS_STOP" Type="date" Nullable="true" />
+            <Property Name="BREAKS_FORM" Type="date" Nullable="true" />
+            <Property Name="BREAKS_TO" Type="date" Nullable="true" />
+            <Property Name="MINUTE_DM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MINUTE_VS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REQUEST_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="STAFF_RANK_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="VALIN5" Type="date" Nullable="true" />
+            <Property Name="VALIN6" Type="date" Nullable="true" />
+            <Property Name="VALIN7" Type="date" Nullable="true" />
+            <Property Name="VALIN8" Type="date" Nullable="true" />
+            <Property Name="VALIN9" Type="date" Nullable="true" />
+            <Property Name="VALIN10" Type="date" Nullable="true" />
+            <Property Name="VALIN11" Type="date" Nullable="true" />
+            <Property Name="VALIN12" Type="date" Nullable="true" />
+            <Property Name="VALIN13" Type="date" Nullable="true" />
+            <Property Name="VALIN14" Type="date" Nullable="true" />
+            <Property Name="VALIN15" Type="date" Nullable="true" />
+            <Property Name="VALIN16" Type="date" Nullable="true" />
+            <Property Name="VALOUT1" Type="date" Nullable="true" />
+            <Property Name="VALOUT2" Type="date" Nullable="true" />
+            <Property Name="VALOUT3" Type="date" Nullable="true" />
+            <Property Name="VALOUT4" Type="date" Nullable="true" />
+            <Property Name="VALOUT5" Type="date" Nullable="true" />
+            <Property Name="VALOUT6" Type="date" Nullable="true" />
+            <Property Name="VALOUT7" Type="date" Nullable="true" />
+            <Property Name="VALOUT8" Type="date" Nullable="true" />
+            <Property Name="VALOUT9" Type="date" Nullable="true" />
+            <Property Name="VALOUT10" Type="date" Nullable="true" />
+            <Property Name="VALOUT11" Type="date" Nullable="true" />
+            <Property Name="VALOUT12" Type="date" Nullable="true" />
+            <Property Name="VALOUT13" Type="date" Nullable="true" />
+            <Property Name="VALOUT14" Type="date" Nullable="true" />
+            <Property Name="VALOUT15" Type="date" Nullable="true" />
+            <Property Name="VALOUT16" Type="date" Nullable="true" />
+            <Property Name="TIMEVALIN" Type="date" Nullable="true" />
+            <Property Name="TIMEVALOUT" Type="date" Nullable="true" />
+            <Property Name="WORK_HOUR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TIMEVALIN_TEMP" Type="date" Nullable="true" />
+            <Property Name="OBJECT_ATTENDANCE_CODE" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_DATA_INOUT">
             <Key>
@@ -3766,6 +3813,53 @@
           <Property Type="Decimal" Name="MIN_LATE" Nullable="true" />
           <Property Type="Decimal" Name="MIN_EARLY" Nullable="true" />
           <Property Type="Decimal" Name="MIN_LATE_EARLY" Nullable="true" />
+          <Property Type="Decimal" Name="WORKINGHOUR_SHIFT" Nullable="true" />
+          <Property Type="Decimal" Name="NUMBER_SWIPE" Nullable="true" />
+          <Property Type="Decimal" Name="IS_HOLIDAY" Nullable="true" />
+          <Property Type="Decimal" Name="IS_FULLDAY" Nullable="true" />
+          <Property Type="Decimal" Name="SHIFT_MANUAL_ID" Nullable="true" />
+          <Property Type="Decimal" Name="IS_NOON" Nullable="true" />
+          <Property Type="DateTime" Name="SHIFT_HOURS_START" Nullable="true" />
+          <Property Type="DateTime" Name="SHIFT_HOURS_STOP" Nullable="true" />
+          <Property Type="DateTime" Name="BREAKS_FORM" Nullable="true" />
+          <Property Type="DateTime" Name="BREAKS_TO" Nullable="true" />
+          <Property Type="Decimal" Name="MINUTE_DM" Nullable="true" />
+          <Property Type="Decimal" Name="MINUTE_VS" Nullable="true" />
+          <Property Type="Decimal" Name="REQUEST_ID" Nullable="true" />
+          <Property Type="Decimal" Name="STAFF_RANK_ID" Nullable="false" />
+          <Property Type="DateTime" Name="VALIN5" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN6" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN7" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN8" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN9" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN10" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN11" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN12" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN13" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN14" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN15" Nullable="true" />
+          <Property Type="DateTime" Name="VALIN16" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT1" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT2" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT3" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT4" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT5" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT6" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT7" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT8" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT9" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT10" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT11" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT12" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT13" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT14" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT15" Nullable="true" />
+          <Property Type="DateTime" Name="VALOUT16" Nullable="true" />
+          <Property Type="DateTime" Name="TIMEVALIN" Nullable="true" />
+          <Property Type="DateTime" Name="TIMEVALOUT" Nullable="true" />
+          <Property Type="Decimal" Name="WORK_HOUR" Nullable="true" />
+          <Property Type="DateTime" Name="TIMEVALIN_TEMP" Nullable="true" />
+          <Property Type="String" Name="OBJECT_ATTENDANCE_CODE" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_DATA_INOUT">
           <Key>
@@ -5945,6 +6039,53 @@
                     <ScalarProperty Name="MIN_LATE" ColumnName="MIN_LATE" />
                     <ScalarProperty Name="MIN_EARLY" ColumnName="MIN_EARLY" />
                     <ScalarProperty Name="MIN_LATE_EARLY" ColumnName="MIN_LATE_EARLY" />
+                    <ScalarProperty Name="WORKINGHOUR_SHIFT" ColumnName="WORKINGHOUR_SHIFT" />
+                    <ScalarProperty Name="NUMBER_SWIPE" ColumnName="NUMBER_SWIPE" />
+                    <ScalarProperty Name="IS_HOLIDAY" ColumnName="IS_HOLIDAY" />
+                    <ScalarProperty Name="IS_FULLDAY" ColumnName="IS_FULLDAY" />
+                    <ScalarProperty Name="SHIFT_MANUAL_ID" ColumnName="SHIFT_MANUAL_ID" />
+                    <ScalarProperty Name="IS_NOON" ColumnName="IS_NOON" />
+                    <ScalarProperty Name="SHIFT_HOURS_START" ColumnName="SHIFT_HOURS_START" />
+                    <ScalarProperty Name="SHIFT_HOURS_STOP" ColumnName="SHIFT_HOURS_STOP" />
+                    <ScalarProperty Name="BREAKS_FORM" ColumnName="BREAKS_FORM" />
+                    <ScalarProperty Name="BREAKS_TO" ColumnName="BREAKS_TO" />
+                    <ScalarProperty Name="MINUTE_DM" ColumnName="MINUTE_DM" />
+                    <ScalarProperty Name="MINUTE_VS" ColumnName="MINUTE_VS" />
+                    <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+                    <ScalarProperty Name="STAFF_RANK_ID" ColumnName="STAFF_RANK_ID" />
+                    <ScalarProperty Name="VALIN5" ColumnName="VALIN5" />
+                    <ScalarProperty Name="VALIN6" ColumnName="VALIN6" />
+                    <ScalarProperty Name="VALIN7" ColumnName="VALIN7" />
+                    <ScalarProperty Name="VALIN8" ColumnName="VALIN8" />
+                    <ScalarProperty Name="VALIN9" ColumnName="VALIN9" />
+                    <ScalarProperty Name="VALIN10" ColumnName="VALIN10" />
+                    <ScalarProperty Name="VALIN11" ColumnName="VALIN11" />
+                    <ScalarProperty Name="VALIN12" ColumnName="VALIN12" />
+                    <ScalarProperty Name="VALIN13" ColumnName="VALIN13" />
+                    <ScalarProperty Name="VALIN14" ColumnName="VALIN14" />
+                    <ScalarProperty Name="VALIN15" ColumnName="VALIN15" />
+                    <ScalarProperty Name="VALIN16" ColumnName="VALIN16" />
+                    <ScalarProperty Name="VALOUT1" ColumnName="VALOUT1" />
+                    <ScalarProperty Name="VALOUT2" ColumnName="VALOUT2" />
+                    <ScalarProperty Name="VALOUT3" ColumnName="VALOUT3" />
+                    <ScalarProperty Name="VALOUT4" ColumnName="VALOUT4" />
+                    <ScalarProperty Name="VALOUT5" ColumnName="VALOUT5" />
+                    <ScalarProperty Name="VALOUT6" ColumnName="VALOUT6" />
+                    <ScalarProperty Name="VALOUT7" ColumnName="VALOUT7" />
+                    <ScalarProperty Name="VALOUT8" ColumnName="VALOUT8" />
+                    <ScalarProperty Name="VALOUT9" ColumnName="VALOUT9" />
+                    <ScalarProperty Name="VALOUT10" ColumnName="VALOUT10" />
+                    <ScalarProperty Name="VALOUT11" ColumnName="VALOUT11" />
+                    <ScalarProperty Name="VALOUT12" ColumnName="VALOUT12" />
+                    <ScalarProperty Name="VALOUT13" ColumnName="VALOUT13" />
+                    <ScalarProperty Name="VALOUT14" ColumnName="VALOUT14" />
+                    <ScalarProperty Name="VALOUT15" ColumnName="VALOUT15" />
+                    <ScalarProperty Name="VALOUT16" ColumnName="VALOUT16" />
+                    <ScalarProperty Name="TIMEVALIN" ColumnName="TIMEVALIN" />
+                    <ScalarProperty Name="TIMEVALOUT" ColumnName="TIMEVALOUT" />
+                    <ScalarProperty Name="WORK_HOUR" ColumnName="WORK_HOUR" />
+                    <ScalarProperty Name="TIMEVALIN_TEMP" ColumnName="TIMEVALIN_TEMP" />
+                    <ScalarProperty Name="OBJECT_ATTENDANCE_CODE" ColumnName="OBJECT_ATTENDANCE_CODE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7089,7 +7230,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="82" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="71" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7182,7 +7323,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL" Width="1.875" PointX="13.625" PointY="10.5" Height="3.5186979166666656" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_RICE" Width="1.5" PointX="14.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_DAILY" Width="2.375" PointX="14.625" PointY="2.5" Height="0.39999999999999147" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_MACHINET" Width="2.5" PointX="14.625" PointY="4.5" Height="7.941630859375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_MACHINET" Width="2.5" PointX="14.625" PointY="4.5" Height="16.979798177083335" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DATA_INOUT" Width="1.5" PointX="4.625" PointY="14.5" Height="9.0954394531250031" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="10.375" PointY="15.5" Height="4.0956022135416674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TERMINALS" Width="1.875" PointX="10.375" PointY="11.25" Height="5.4417122395833353" IsExpanded="true" />
