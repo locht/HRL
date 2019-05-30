@@ -18,7 +18,7 @@ Partial Class ProfileRepository
 
     Private Sub UpdateWorking()
         Try
-            Dim query = (From p In Context.HUV_CURRENT_WORKING1
+            Dim query = (From p In Context.HUV_CURRENT_WORKING
                          Select New WorkingDTO With {
                              .EMPLOYEE_ID = p.EMPLOYEE_ID,
                              .TITLE_ID = p.TITLE_ID,
