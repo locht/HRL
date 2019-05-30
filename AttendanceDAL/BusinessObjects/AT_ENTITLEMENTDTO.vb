@@ -64,5 +64,17 @@
     Public Property MONTH_SENIORITY_CHANGE As Decimal?
     Public Property TIME_SENIORITY_AFTER_CHANGE As Decimal?
     Public Property TIME_OUTSIDE_COMPANY As Decimal?
+    Public Property AL_T1 As Decimal?
+    Public Property AL_T2 As Decimal?
+    Public Property AL_T3 As Decimal?
+    Public Property AL_T4 As Decimal?
+    Public Property AL_T5 As Decimal?
+    Public Property AL_T6 As Decimal?
+    Public Property AL_T7 As Decimal?
+    Public Property AL_T8 As Decimal?
+    Public Property AL_T9 As Decimal?
+    Public Property AL_T10 As Decimal?
+    Public Property AL_T11 As Decimal?
+    Public Property AL_T12 As Decimal?
 
 End Class
