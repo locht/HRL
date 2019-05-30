@@ -287,10 +287,10 @@ Public Class ctrlPortalFamily_Edit
                             ShowMessage("Thông tin đang phê duyệt, thao tác thực hiện không thành công", NotifyType.Warning)
                             Exit Sub
                         End If
-                        If status = 3 Then
-                            ShowMessage("Thông tin đang không phê duyệt, thao tác thực hiện không thành công", NotifyType.Warning)
-                            Exit Sub
-                        End If
+                        'If status = 3 Then
+                        '   ShowMessage("Thông tin đang không phê duyệt, thao tác thực hiện không thành công", NotifyType.Warning)
+                        '   Exit Sub
+                        'End If
                     Next
 
                     ctrlMessageBox.MessageText = Translate("Thông tin đã gửi duyệt sẽ không được chỉnh sửa. Bạn chắc chắn muốn gửi duyệt?")
