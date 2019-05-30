@@ -9,7 +9,7 @@
         <tlk:RadGrid PageSize=50 ID="rgGrid" runat="server" AllowFilteringByColumn="true" Height="100%">
             <MasterTableView DataKeyNames="ID">
                 <Columns>
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại quyết định %>" DataField="DECISION_TYPE_NAME"
+                    <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Loại quyết định %>" DataField="DECISION_TYPE_NAME"
                         UniqueName="DECISION_TYPE_NAME" SortExpression="DECISION_TYPE_NAME">
                     </tlk:GridBoundColumn>
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
@@ -48,7 +48,7 @@
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
                         SortExpression="ORG_DESC" HeaderStyle-Width="130px" Visible="false">
-                    </tlk:GridBoundColumn>
+                    </tlk:GridBoundColumn>--%>
                 </Columns>
                 <HeaderStyle Width="120px" />
             </MasterTableView>
