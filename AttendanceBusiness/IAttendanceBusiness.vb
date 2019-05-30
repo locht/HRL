@@ -410,12 +410,16 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function CALCULATE_ENTITLEMENT(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As UserLog) As Boolean
         <OperationContract()>
+        Function CALCULATE_ENTITLEMENT_HOSE(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As UserLog) As Boolean
+        <OperationContract()>
         Function GetEntitlement(ByVal _filter As AT_ENTITLEMENTDTO,
                                   ByVal _param As ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
                                       Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_ENTITLEMENTDTO)
+        <OperationContract()>
+        Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean
 #End Region
 
 #Region "WORKSIGN"

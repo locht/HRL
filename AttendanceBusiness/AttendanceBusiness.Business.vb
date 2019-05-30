@@ -123,6 +123,30 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CALCULATE_ENTITLEMENT_HOSE(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As Framework.Data.UserLog) As Boolean Implements IAttendanceBusiness.CALCULATE_ENTITLEMENT_HOSE
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.CALL_ENTITLEMENT_HOSE(param, listEmployeeId, log)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean Implements IAttendanceBusiness.ImportEntitlementLeave
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.ImportEntitlementLeave(P_DOCXML, P_USER, P_PERIOD)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "XEP CA"
