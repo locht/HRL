@@ -4858,13 +4858,17 @@ Partial Public Class AttendanceRepository
                         Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
-                                If shiftIDU.SUNDAY.HasValue Then
+                                If shiftIDU.SUNDAY.Value > 0 Then
                                     query.SHIFT_ID = shiftOffu.ID
                                 Else
                                     query.SHIFT_ID = objWork.SHIFT_ID
                                 End If
                             ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
-                                query.SHIFT_ID = shiftOffu.ID 'shiftIDU.SATURDAY
+                                If shiftIDU.SATURDAY.Value > 0 Then
+                                    query.SHIFT_ID = shiftOffu.ID 'shiftIDU.SATURDAY
+                                Else
+                                    query.SHIFT_ID = objWork.SHIFT_ID
+                                End If
                             Else
                                 query.SHIFT_ID = objWork.SHIFT_ID
                             End If
@@ -4880,13 +4884,17 @@ Partial Public Class AttendanceRepository
                     Dim shiftId = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
                     Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                     If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOff.ID) Then
-                        If shiftId.SUNDAY.HasValue Then
+                        If shiftId.SUNDAY.Value > 0 Then
                             objWorkSignData.SHIFT_ID = shiftOff.ID
                         Else
                             objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                         End If
                     ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And Not String.IsNullOrEmpty(shiftOff.ID) Then
-                        objWorkSignData.SHIFT_ID = shiftOff.ID 'shiftIDU.SATURDAY
+                        If shiftId.SATURDAY.Value > 0 Then
+                            objWorkSignData.SHIFT_ID = shiftOff.ID 'shiftIDU.SATURDAY
+                        Else
+                            objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
+                        End If
                     Else
                         objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                     End If
