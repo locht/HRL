@@ -655,16 +655,14 @@ Public Class ctrlOTRegistrationNewEdit
                 lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
                 If lstdtHoliday IsNot Nothing AndAlso lstdtHoliday.Rows.Count > 0 Then
                     'nghi bu
-                    If Not IsDBNull(lstdtHoliday.Rows(0)("OFFDAY")) AndAlso lstdtHoliday.Rows(0)("OFFDAY") = "-1" Then
-                        hid200.Value = OTPM + OTAM
-                        hid270.Value = AM + PM
-                    Else 'Le, Tet
-                        hid300.Value = OTPM + OTAM
-                        hid390.Value = AM + PM
-                    End If
+                    hid300.Value = OTPM + OTAM
+                    hid390.Value = AM + PM
                     'ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
                     'hid200.Value = AM + PM
                     'hid270.Value = OTAM + OTPM
+                ElseIf txtSignCode.Text = "OFF" Then
+                    hid200.Value = OTPM + OTAM
+                    hid270.Value = AM + PM
                 Else
                     'If workingType <> 1090 Then 'Khac Office Type 
                     '    hid200.Value = AM + PM
