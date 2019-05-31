@@ -1441,6 +1441,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 #Region "evaluate"
         <OperationContract()>
+        Function GetTrainingEvaluateEmp(ByVal _empId As Decimal) As List(Of TrainningEvaluateDTO)
+        <OperationContract()>
         Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
                                 ByRef Total As Integer, ByVal _param As ParamDTO,

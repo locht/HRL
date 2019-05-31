@@ -8,6 +8,16 @@ Imports System.Configuration
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 #Region "TRANINGEVALUATE"
+        Public Function GetTrainingEvaluateEmp(ByVal _empId As Decimal) As List(Of TrainningEvaluateDTO) _
+                             Implements ServiceContracts.IProfileBusiness.GetTrainingEvaluateEmp
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetTrainingEvaluateEmp(_empId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal PageIndex As Integer,
                          ByVal PageSize As Integer,
                          ByRef Total As Integer, ByVal _param As ParamDTO,

@@ -4,6 +4,49 @@ Imports System.Reflection
 
 Partial Class ProfileRepository
 #Region "evaluate"
+    Public Function GetTrainingEvaluateEmp(ByVal _empId As Decimal) As List(Of TrainningEvaluateDTO)
+
+        Try
+            Dim query = From p In Context.HU_TRAININGEVALUATE
+                        From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) p.TITLE_ID = f.ID).DefaultIfEmpty
+                        From ot In Context.PE_PERIOD.Where(Function(f) f.ID = p.EVALUATE_ID).DefaultIfEmpty
+                        From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RANK_ID).DefaultIfEmpty
+                        From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.CAPACITY_ID).DefaultIfEmpty
+                        Where p.EMPLOYEE_ID = _empId
+            ' lọc điều kiện
+            Dim trainingforeign = query.Select(Function(p) New TrainningEvaluateDTO With {
+                                                .ID = p.p.ID,
+                                                .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                                .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                                .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                                .ORG_ID = p.e.ID,
+                                                .ORG_NAME = p.o.NAME_VN,
+                                                .ORG_DESC = p.o.DESCRIPTION_PATH,
+                                                .TITLE_ID = p.p.TITLE_ID,
+                                                .TITLE_NAME = p.t.NAME_VN,
+                                                .SIGN_DATE = p.p.SIGN_DATE,
+                                                .DECISION_NO = p.p.DECISION_NO,
+                                                .EFFECT_DATE = p.p.EFFECT_DATE,
+                                                .EVALUATE_ID = p.p.EVALUATE_ID,
+                                                .EVALUATE_NAME = p.ot.NAME,
+                                                .RANK_ID = p.p.RANK_ID,
+                                                .YEAR = p.p.YEAR,
+                                                .REMARK = p.p.REMARK,
+                                                .RANK_NAME = p.ot1.NAME_VN,
+                                                .CAPACITY_ID = p.p.CAPACITY_ID,
+                                                .CAPACITY_NAME = p.ot2.NAME_VN,
+                                                .CONTENT = p.p.CONTENT,
+                                                .CREATED_DATE = p.p.CREATED_DATE
+                                                })
+            Return trainingforeign.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
     Public Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal PageIndex As Integer,
                               ByVal PageSize As Integer,
                               ByRef Total As Integer, ByVal _param As ParamDTO,

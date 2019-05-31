@@ -3,6 +3,18 @@
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
 #Region "evaluate"
+    Public Function GetTrainingEvaluateEmp(ByVal _empId As Decimal) As List(Of TrainningEvaluateDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetTrainingEvaluateEmp(_empId)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
     Public Function GetTrainingEvaluate(ByVal _filter As TrainningEvaluateDTO, ByVal PageIndex As Integer,
                               ByVal PageSize As Integer,
                               ByRef Total As Integer, ByVal _param As ParamDTO,

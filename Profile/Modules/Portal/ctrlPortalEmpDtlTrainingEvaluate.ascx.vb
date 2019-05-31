@@ -4,16 +4,16 @@ Imports Common
 Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
 
-Public Class ctrlPortalEmpDtlViewKPI
+Public Class ctrlPortalEmpDtlTrainingEvaluate
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
 
 #Region "Property"
-    Public Property GridList As List(Of EmployeeAssessmentDTO)
+    Public Property GridList As List(Of TrainningEvaluateDTO)
         Get
             Return PageViewState(Me.ID & "_GridList")
         End Get
-        Set(ByVal value As List(Of EmployeeAssessmentDTO))
+        Set(ByVal value As List(Of TrainningEvaluateDTO))
             PageViewState(Me.ID & "_GridList") = value
         End Set
     End Property
@@ -29,11 +29,12 @@ Public Class ctrlPortalEmpDtlViewKPI
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
-            'If Not IsPostBack Then
-            '    GirdConfig(rgTraining)
-            'End If
+            If Not IsPostBack Then
+                GirdConfig(rgTrainingEvaluate)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -42,28 +43,24 @@ Public Class ctrlPortalEmpDtlViewKPI
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New ProfileBusinessRepository
         Try
-            rgTraining.SetFilter()
-            SetValueObjectByRadGrid(rgTraining, New EmployeeAssessmentDTO)
-
-            'Dim objEmployeeTrain As New EmployeeAssessmentDTO
-            'objEmployeeTrain.EMPLOYEE_ID = EmployeeID
-
+            rgTrainingEvaluate.SetFilter()
+            SetValueObjectByRadGrid(rgTrainingEvaluate, New CommendDTO)
             If Not IsPostBack Then
-                GridList = rep.GetAssessKPIEmployee(EmployeeID)
+                GridList = rep.GetTrainingEvaluateEmp(EmployeeID)
                 CurrentState = CommonMessage.STATE_NORMAL
             Else
                 If Message = CommonMessage.ACTION_SAVED Then
-                    GridList = rep.GetAssessKPIEmployee(EmployeeID)
+                    GridList = rep.GetTrainingEvaluateEmp(EmployeeID)
                 End If
             End If
 
             'Đưa dữ liệu vào Grid
             If Me.GridList IsNot Nothing Then
-                rgTraining.DataSource = Me.GridList
-                rgTraining.DataBind()
+                rgTrainingEvaluate.DataSource = Me.GridList
+                rgTrainingEvaluate.DataBind()
             Else
-                rgTraining.DataSource = New List(Of EmployeeAssessmentDTO)
-                rgTraining.DataBind()
+                rgTrainingEvaluate.DataSource = New List(Of CommendDTO)
+                rgTrainingEvaluate.DataBind()
             End If
 
         Catch ex As Exception
@@ -74,17 +71,14 @@ Public Class ctrlPortalEmpDtlViewKPI
 
 #Region "Event"
 
-    Private Sub rgCommend_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgTraining.NeedDataSource
+    Private Sub rgTrainingEvaluate_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgTrainingEvaluate.NeedDataSource
         Try
             If IsPostBack Then Exit Sub
-            SetValueObjectByRadGrid(rgTraining, New EmployeeAssessmentDTO)
+            SetValueObjectByRadGrid(rgTrainingEvaluate, New CommendDTO)
 
             Dim rep As New ProfileBusinessRepository
-            'Dim objEmployeeTrain As New EmployeeAssessmentDTO
-            'objEmployeeTrain.EMPLOYEE_ID = EmployeeID
-
-            GridList = rep.GetAssessKPIEmployee(EmployeeID)
-            rgTraining.DataSource = GridList
+            GridList = rep.GetTrainingEvaluateEmp(EmployeeID)
+            rgTrainingEvaluate.DataSource = GridList
 
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
