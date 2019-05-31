@@ -71,6 +71,7 @@ Partial Class ProfileRepository
                   .SIGNER_TITLE = p.SIGNER_TITLE,
                   .SIGN_DATE = p.SIGN_DATE,
                   .OBJECTTIMEKEEPING = e.OBJECTTIMEKEEPING,
+                  .DIRECT_MANAGER = e.DIRECT_MANAGER,
                   .SIGNER_NAME = p.SIGNER_NAME
                                         }
                     If IsFirstContract(objContract) Then

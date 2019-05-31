@@ -29,6 +29,7 @@
     Public Property TITLE_NAME As String
     Public Property REMARK As String
     Public Property STATUS_ID As Decimal?
+    Public Property DIRECT_MANAGER As Decimal?
     Public Property STATUS_CODE As String
     Public Property STATUS_NAME As String
     Public Property CREATED_DATE As Date

@@ -6311,6 +6311,9 @@ Namespace ProfileBusiness
         Private DECISION_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DIRECT_MANAGERField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMPLOYEE_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6581,6 +6584,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DECISION_NOField, value) <> true) Then
                     Me.DECISION_NOField = value
                     Me.RaisePropertyChanged("DECISION_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DIRECT_MANAGER() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DIRECT_MANAGERField
+            End Get
+            Set
+                If (Me.DIRECT_MANAGERField.Equals(value) <> true) Then
+                    Me.DIRECT_MANAGERField = value
+                    Me.RaisePropertyChanged("DIRECT_MANAGER")
                 End If
             End Set
         End Property
