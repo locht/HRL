@@ -376,7 +376,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 End If
                                 selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                             End While
-                          
+
                             If rntxDayRegist.Value > rntBalance.Value Then
                                 ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
                                 UpdateControlState()
@@ -848,14 +848,15 @@ Public Class ctrlLeaveRegistrationNewEdit
                         Dim COUNT = (From P In leaveInOutKH.AsEnumerable Where P("START_DATE") <= selectedFromDate1 And P("END_DATE") >= selectedFromDate1 Select P).ToList.Count
                         If cboleaveType.SelectedValue = "" Then
                             ShowMessage(Translate("Chọn loại nghỉ"), NotifyType.Warning)
-                            Exit Function
-                        End If
-                        ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-                        If ktra = 1 Then
-                            If COUNT > 0 Then
-                                calDay1 += 1
+                        Else
+                            ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                            If ktra = 1 Then
+                                If COUNT > 0 Then
+                                    calDay1 += 1
+                                End If
                             End If
                         End If
+
                         Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
                         If check > 0 Then
                             calDay -= 1
