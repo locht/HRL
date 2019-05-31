@@ -135,7 +135,10 @@ Public Class ctrlHU_Terminate
                                        ToolbarItem.Delete,
                                        ToolbarItem.Export,
                                        ToolbarItem.Print)
-
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
+                                                                  ToolbarIcons.Add,
+                                                                  ToolbarAuthorize.None,
+                                                                  "Phê duyệt hàng loạt"))
 
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_BBBG", ToolbarIcons.Print,
             '                                                         ToolbarAuthorize.Print, Translate("In biên bản bàn giao")))

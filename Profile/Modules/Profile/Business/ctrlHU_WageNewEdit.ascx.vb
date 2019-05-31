@@ -23,6 +23,14 @@ Public Class ctrlHU_WageNewEdit
 #Region "Property"
 
     Dim lstAllow As New List(Of WorkingAllowanceDTO)
+    Property dtSalaryGroup As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtSalaryGroup")
+        End Get
+        Set(value As DataTable)
+            ViewState(Me.ID & "_dtSalaryGroup") = value
+        End Set
+    End Property
     Dim _allowDataCache As New List(Of AllowanceListDTO)
     Property Working As WorkingDTO
         Get
@@ -121,6 +129,7 @@ Public Class ctrlHU_WageNewEdit
                     FillRadCombobox(cbSalaryGroup, dtData, "NAME", "ID", True)
                 End If
             End Using
+            dtSalaryGroup = dtData
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1204,9 +1213,6 @@ Public Class ctrlHU_WageNewEdit
         End Try
     End Function
     Private Sub CalculatorSalary()
-        'kiem tra check IS_HOSE
-        'LAY THONG TIN CONFIG CASE :
-        Dim Status As Boolean = False
         Try
             Dim DATA_OUT As DataTable
             If getSE_CASE_CONFIG("ctrlHU_WageNewEdit_case1") > 0 Then 'Active
@@ -1220,7 +1226,6 @@ Public Class ctrlHU_WageNewEdit
                     BidingDataToControls(DATA_OUT)
                 End If
             End If
-            
         Catch ex As Exception
             Throw ex
         End Try
@@ -1232,6 +1237,13 @@ Public Class ctrlHU_WageNewEdit
             End If
             If IsNumeric(dtdata(0)("TOTALSALARY")) Then
                 Salary_Total.Value = dtdata(0)("TOTALSALARY").ToString
+            End If
+            'kiem tra check IS_HOSE'
+            Dim rs = From row In dtSalaryGroup.Rows
+                     Where row("ID").ToString = cbSalaryGroup.SelectedValue.ToString
+                     Select row("ISHOSE")
+            If rs(0) = 0 Then
+                SalaryInsurance.Value = basicSalary.Value
             End If
         Catch ex As Exception
             Throw ex

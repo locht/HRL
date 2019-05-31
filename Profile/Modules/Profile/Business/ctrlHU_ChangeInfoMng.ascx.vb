@@ -147,7 +147,10 @@ Public Class ctrlHU_ChangeInfoMng
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Delete,
                                        ToolbarItem.Export, ToolbarItem.Print)
-
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
+                                                                  ToolbarIcons.Add,
+                                                                  ToolbarAuthorize.None,
+                                                                  "Phê duyệt hàng loạt"))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP", ToolbarIcons.Export,
             '                                                         ToolbarAuthorize.Export, Translate("Xuất file mẫu")))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP", ToolbarIcons.Import,

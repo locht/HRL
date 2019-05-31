@@ -184,7 +184,7 @@ Public Class ctrlHU_Commend
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
-                                       ToolbarItem.Delete, ToolbarItem.Print)
+                                       ToolbarItem.Delete, ToolbarItem.Print, ToolbarItem.Approve)
 
             Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
                                                                   ToolbarIcons.Add,

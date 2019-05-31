@@ -186,6 +186,10 @@ Public Class ctrlHU_Discipline
                                        ToolbarItem.Edit,
                                        ToolbarItem.Export,
                                        ToolbarItem.Delete, ToolbarItem.Print)
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem(CommonMessage.TOOLBARITEM_CREATE_BATCH,
+                                                                  ToolbarIcons.Add,
+                                                                  ToolbarAuthorize.None,
+                                                                  "Phê duyệt hàng loạt"))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_VPCT", ToolbarIcons.Print,
             '                                             ToolbarAuthorize.Print, Translate("In CV VPCT")))
             'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("PRINT_BKS", ToolbarIcons.Print,
