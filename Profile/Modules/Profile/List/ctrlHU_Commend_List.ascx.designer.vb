@@ -59,6 +59,15 @@ Partial Public Class ctrlHU_Commend_List
     Protected WithEvents hfID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''lbCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtCode control.
     '''</summary>
     '''<remarks>
@@ -95,6 +104,15 @@ Partial Public Class ctrlHU_Commend_List
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''lbNameVN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNameVN As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtNameVN control.
     '''</summary>
     '''<remarks>
@@ -120,6 +138,15 @@ Partial Public Class ctrlHU_Commend_List
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''lbDatatype control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDatatype As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cbDatatype control.
@@ -149,6 +176,15 @@ Partial Public Class ctrlHU_Commend_List
     Protected WithEvents cusDatatype As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbTYPE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTYPE As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cbTYPE control.
     '''</summary>
     '''<remarks>
@@ -176,6 +212,15 @@ Partial Public Class ctrlHU_Commend_List
     Protected WithEvents cusTYPE As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbNumberOrder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNumberOrder As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''nmNumberOrder control.
     '''</summary>
     '''<remarks>
@@ -192,6 +237,15 @@ Partial Public Class ctrlHU_Commend_List
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalNumberOrder As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''lbLevel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbLevel As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cbLevel control.
@@ -221,6 +275,15 @@ Partial Public Class ctrlHU_Commend_List
     Protected WithEvents cusLevel As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbObject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbObject As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cbObject control.
     '''</summary>
     '''<remarks>
@@ -246,6 +309,15 @@ Partial Public Class ctrlHU_Commend_List
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cusObject As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''lbRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemark As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtRemark control.

@@ -10,106 +10,106 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                    <%# Translate("Mã khen thưởng")%>
+                    <asp:Label runat="server" ID="lbCode" Text="Mã khen thưởng"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Textbox50">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập Mã khen thưởng %>" ToolTip="<%$ Translate: Bạn phải nhập Mã khen thưởng %>">
+                        ErrorMessage="Bạn phải nhập Mã khen thưởng" ToolTip="Bạn phải nhập Mã khen thưởng">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã khen thưởng đã tồn tại. %>"
-                        ToolTip="<%$ Translate: Mã khen thưởng đã tồn tại. %>">
+                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="Mã khen thưởng đã tồn tại."
+                        ToolTip="Mã khen thưởng đã tồn tại.">
                     </asp:CustomValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="<%$ Translate: Mã không được chứa ký tự đặc biệt và khoảng trắng %>"
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Tên khen thưởng")%>
+                    <asp:Label runat="server" ID="lbNameVN" Text="Tên khen thưởng"></asp:Label>
                     <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtNameVN" runat="server">
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqNamVN" ControlToValidate="txtNameVN" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập Tên khen thưởng %>" ToolTip="<%$ Translate: Bạn phải nhập Tên khen thưởng %>">
+                        ErrorMessage="Bạn phải nhập Tên khen thưởng" ToolTip="Bạn phải nhập Tên khen thưởng">
                     </asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="<%$ Translate: Thông tin nhập liệu có chứa mã html %>"
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Thông tin nhập liệu có chứa mã html"
                         ControlToValidate="txtNameVN" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Kiểu dữ liệu")%> <span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbDatatype" Text="Kiểu dữ liệu"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbDatatype" runat="server">
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="reqDatatype" ControlToValidate="cbDatatype" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải chọn Kiểu dữ liệu %>" ToolTip="<%$ Translate: Bạn phải chọn Kiểu dữ liệu %>">
+                        ErrorMessage="Bạn phải chọn Kiểu dữ liệu" ToolTip="Bạn phải chọn Kiểu dữ liệu">
                     </asp:RequiredFieldValidator>
-                     <asp:CustomValidator ID="cusDatatype" ControlToValidate="cbDatatype" runat="server" ErrorMessage="<%$ Translate: Kiểu dữ liệu không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Kiểu dữ liệu không tồn tại hoặc đã ngừng áp dụng. %>">
+                     <asp:CustomValidator ID="cusDatatype" ControlToValidate="cbDatatype" runat="server" ErrorMessage="Kiểu dữ liệu không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Kiểu dữ liệu không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Loại danh mục")%><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbTYPE" Text="Loại danh mục"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbTYPE" runat="server">
                     </tlk:RadComboBox>
                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="cbTYPE"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn loại danh mục %>" ToolTip="<%$ Translate: Bạn phải chọn loại danh mục %>"> 
+                        runat="server" ErrorMessage="Bạn phải chọn loại danh mục" ToolTip="Bạn phải chọn loại danh mục"> 
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusTYPE" ControlToValidate="cbTYPE" runat="server" ErrorMessage="<%$ Translate: Loại danh mục không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Loại danh mục không tồn tại hoặc đã ngừng áp dụng. %>">
+                    <asp:CustomValidator ID="cusTYPE" ControlToValidate="cbTYPE" runat="server" ErrorMessage="Loại danh mục không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Loại danh mục không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Thứ tự")%><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbNumberOrder" Text="Thứ tự"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmNumberOrder" MinValue="0" MaxLength="38" runat="server">
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="cvalNumberOrder" ControlToValidate="nmNumberOrder"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập thứ tự. %>" ToolTip="<%$ Translate: Bạn phải nhập thứ tự. %>">
+                        runat="server" ErrorMessage="Bạn phải nhập thứ tự." ToolTip="Bạn phải nhập thứ tự.">
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Cấp khen thưởng")%><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbLevel" Text="Cấp khen thưởng"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbLevel" runat="server">
                     </tlk:RadComboBox>
                       <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="cbLevel"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn cấp khen thưởng %>" ToolTip="<%$ Translate: Bạn phải chọn cấp khen thưởng %>"> 
+                        runat="server" ErrorMessage="Bạn phải chọn cấp khen thưởng" ToolTip="Bạn phải chọn cấp khen thưởng"> 
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusLevel" ControlToValidate="cbLevel" runat="server" ErrorMessage="<%$ Translate: Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng. %>">
+                    <asp:CustomValidator ID="cusLevel" ControlToValidate="cbLevel" runat="server" ErrorMessage="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Cấp khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Đối tượng khen thưởng")%><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbObject" Text="Đối tượng khen thưởng"></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbObject" runat="server">
                     </tlk:RadComboBox>
                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cbLevel"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn đối tượng khen thưởng %>" ToolTip="<%$ Translate: Bạn phải chọn đối tượng khen thưởng %>"> 
+                        runat="server" ErrorMessage="Bạn phải chọn đối tượng khen thưởng" ToolTip="Bạn phải chọn đối tượng khen thưởng"> 
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cusObject" ControlToValidate="cbObject" runat="server" ErrorMessage="<%$ Translate: Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng. %>">
+                    <asp:CustomValidator ID="cusObject" ControlToValidate="cbObject" runat="server" ErrorMessage="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng."
+                        ToolTip="Đối tượng khen thưởng không tồn tại hoặc đã ngừng áp dụng.">
                     </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ghi chú")%>
+                    <asp:Label runat="server" ID="lbRemark" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="100%" Height = "38px">
@@ -123,7 +123,7 @@
                 </td>
                 <td>
                     <tlk:RadButton ID="chkExcel" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton" ValidationGroup="Val"
-                        runat="server" Text="<%$ Translate: Import dữ liệu từ excel %>">
+                        runat="server" Text="Import dữ liệu từ excel">
                     </tlk:RadButton>
                 </td>
             </tr>
@@ -139,30 +139,30 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,DATATYPE_ID,DATATYPE_NAME,TYPE_ID,TYPE_NAME,NUMBER_ORDER,LEVEL_ID,LEVEL_NAME,OBJECT_ID,OBJECT_NAME,REMARK,EXCEL,EXCEL_BOOL">
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                    <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã khen thưởng %>" DataField="CODE"
+                    <tlk:GridBoundColumn HeaderText="Mã khen thưởng" DataField="CODE"
                         UniqueName="CODE" SortExpression="CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên khen thưởng%>" DataField="NAME"
+                    <tlk:GridBoundColumn HeaderText="Tên khen thưởng" DataField="NAME"
                         UniqueName="NAME" SortExpression="NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu dữ liệu %>" DataField="DATATYPE_NAME"
+                    <tlk:GridBoundColumn HeaderText="Kiểu dữ liệu" DataField="DATATYPE_NAME"
                         UniqueName="DATATYPE_NAME" SortExpression="DATATYPE_NAME" Display="False" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại danh mục %>" DataField="TYPE_NAME"
+                    <tlk:GridBoundColumn HeaderText="Loại danh mục" DataField="TYPE_NAME"
                         UniqueName="TYPE_NAME" SortExpression="TYPE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Thứ tự %>" DataField="NUMBER_ORDER"
+                    <tlk:GridBoundColumn HeaderText="Thứ tự" DataField="NUMBER_ORDER"
                         UniqueName="NUMBER_ORDER" SortExpression="NUMBER_ORDER" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp khen thưởng %>" DataField="LEVEL_NAME"
+                    <tlk:GridBoundColumn HeaderText="Cấp khen thưởng" DataField="LEVEL_NAME"
                         UniqueName="LEVEL_NAME" SortExpression="LEVEL_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng khen thưởng %>" DataField="OBJECT_NAME"
+                    <tlk:GridBoundColumn HeaderText="Đối tượng khen thưởng" DataField="OBJECT_NAME"
                          UniqueName="OBJECT_NAME" SortExpression="OBJECT_NAME" />
-                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Import từ excel %>" DataField="EXCEL_BOOL" AllowFiltering ="false"
+                    <tlk:GridCheckBoxColumn HeaderText="Import từ excel" DataField="EXCEL_BOOL" AllowFiltering ="false"
                          SortExpression="EXCEL" UniqueName="EXCEL" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
+                    <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" UniqueName="REMARK"
                         SortExpression="REMARK" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
-                        UniqueName="ACTFLG" SortExpression="ACTFLG" />
+                    <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="ACTFLG"
+                        UniqueName="ACTFLG" SortExpression="ACTFLG" />--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
