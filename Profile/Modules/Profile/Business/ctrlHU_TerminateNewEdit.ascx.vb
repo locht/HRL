@@ -309,9 +309,8 @@ Public Class ctrlHU_TerminateNewEdit
                         i.Edit = True
                     Next
                     rgReason.Rebind()
-
+                    cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
                     CurrentState = CommonMessage.STATE_NEW
-
                 Case "NormalView"
 
                     Refresh("UpdateView")
