@@ -660,7 +660,7 @@ Public Class ctrlOTRegistrationNewEdit
                     'ElseIf (rdRegDate.SelectedDate.Value.ToString("dd-MM") = "25-12") Or (EmployeeShift IsNot Nothing AndAlso EmployeeShift.SIGN_CODE = "OFF") Then
                     'hid200.Value = AM + PM
                     'hid270.Value = OTAM + OTPM
-                ElseIf txtSignCode.Text = "OFF" Then
+                ElseIf lstdtHoliday Is Nothing AndAlso lstdtHoliday.Rows.Count <= 0 AndAlso txtSignCode.Text = "OFF" Then
                     hid200.Value = OTPM + OTAM
                     hid270.Value = AM + PM
                 Else
