@@ -4856,4 +4856,44 @@
       <string>Bạn có muốn gửi phê duyệt?</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLPORTALEMPDTLTRAININGEVALUATE</string>
+    </Key>
+    <Value>
+      <string>Quá trình đánh giá</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string />
+    </Key>
+    <Value>
+      <string />
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KỲ ĐÁNH GIÁ</string>
+    </Key>
+    <Value>
+      <string>Kỳ đánh giá</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>XẾP LOẠI</string>
+    </Key>
+    <Value>
+      <string>Xếp loại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHẬN XÉT ĐÁNH GIÁ</string>
+    </Key>
+    <Value>
+      <string>Nhận xét đánh giá</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
