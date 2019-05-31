@@ -9,48 +9,51 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                    <%# Translate("Mã loại hợp đồng")%><span class="lbReq">*</span>
+                  <asp:Label ID="lbCode" runat="server" Text="Mã loại hợp đồng"></asp:Label>
+                  <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" runat="server">
                     </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập mã loại hợp đồng. %>" ToolTip="<%$ Translate: Bạn phải nhập mã loại hợp đồng. %>">
+                  <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
+                        ErrorMessage="Bạn phải nhập mã loại hợp đồng." ToolTip="Bạn phải nhập mã loại hợp đồng.">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="<%$ Translate: Mã loại hợp đồng đã tồn tại. %>"
-                        ToolTip="<%$ Translate: Mã loại hợp đồng đã tồn tại. %>">
+                    <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="Mã loại hợp đồng đã tồn tại."
+                        ToolTip="Mã loại hợp đồng đã tồn tại.">
                     </asp:CustomValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="<%$ Translate: Mã không được chứa ký tự đặc biệt và khoảng trắng %>"
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã không được chứa ký tự đặc biệt và khoảng trắng"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Thời hạn loại hợp đồng")%> <span class="lbReq">*</span>
+                    <asp:Label ID="lbPeriod" runat="server" Text="Thời hạn loại hợp đồng"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtPeriod" runat="server" MinValue="0">
                         <NumberFormat ZeroPattern="n" DecimalDigits="0"></NumberFormat>
                     </tlk:RadNumericTextBox>
-                    <%# Translate("(tháng)")%>
-                    <asp:RequiredFieldValidator ID="reqPeriod" ControlToValidate="rntxtPeriod" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập thời hạn loại hợp đồng >= 0. %>" ToolTip="<%$ Translate: Bạn phải nhập thời hạn loại hợp đồng >=0. %>">
+                  <asp:Label ID="lbmonth" runat="server" Text="(tháng)"></asp:Label>
+                  <asp:RequiredFieldValidator ID="reqPeriod" ControlToValidate="rntxtPeriod" runat="server"
+                        ErrorMessage="Bạn phải nhập thời hạn loại hợp đồng >= 0." ToolTip="Bạn phải nhập thời hạn loại hợp đồng >=0.">
                     </asp:RequiredFieldValidator>
-                    <asp:CustomValidator ID="cvalPeriod" runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập thời hạn loại hợp đồng >= 0. %>"
-                        ToolTip="<%$ Translate: Bạn phải nhập thời hạn loại hợp đồng >= 0. %>">
+                    <asp:CustomValidator ID="cvalPeriod" runat="server" ErrorMessage="Bạn phải nhập thời hạn loại hợp đồng >= 0."
+                        ToolTip="Bạn phải nhập thời hạn loại hợp đồng >= 0.">
                     </asp:CustomValidator>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Tên loại hợp đồng")%><span class="lbReq">*</span>
+                    <asp:Label ID="lbName" runat="server" Text="Tên loại hợp đồng"></asp:Label>
+                   <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
                     </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập tên loại hợp đồng. %>" ToolTip="<%$ Translate: Bạn phải nhập tên loại hợp đồng. %>"></asp:RequiredFieldValidator>
+                   <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
+                        ErrorMessage="Bạn phải nhập tên loại hợp đồng." ToolTip="Bạn phải nhập tên loại hợp đồng."></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Loại hợp đồng")%>
+                     <asp:Label ID="lbContract_Type" runat="server" Text="Loại hợp đồng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboContract_Type" runat="server" CausesValidation="false" >
@@ -59,7 +62,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ghi chú")%>
+                   <asp:Label ID="lbRemark" runat="server" Text="Ghi chú"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Width="472px" Height="43px" />
@@ -77,22 +80,22 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,PERIOD,REMARK,TYPE_ID">
                 <Columns>
-                    <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                 <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã loại HĐLĐ %>" DataField="CODE" SortExpression="CODE"
+                    <tlk:GridBoundColumn HeaderText="Mã loại HĐLĐ" DataField="CODE" SortExpression="CODE"
                         UniqueName="CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên loại hợp đồng %>" DataField="NAME"
+                    <tlk:GridBoundColumn HeaderText="Tên loại hợp đồng" DataField="NAME"
                         SortExpression="NAME" UniqueName="NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng %>" DataField="TYPE_NAME" SortExpression="TYPE_NAME"
+                    <tlk:GridBoundColumn HeaderText="Loại hợp đồng" DataField="TYPE_NAME" SortExpression="TYPE_NAME"
                         UniqueName="TYPE_NAME" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Thời hạn loại hợp đồng (tháng) %>" DataField="PERIOD"
+                    <tlk:GridNumericColumn HeaderText="Thời hạn loại hợp đồng (tháng)" DataField="PERIOD"
                         SortExpression="PERIOD" UniqueName="PERIOD" ItemStyle-HorizontalAlign="Right" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                    <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
                         UniqueName="REMARK" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
-                        SortExpression="ACTFLG" UniqueName="ACTFLG" />
+                    <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="ACTFLG"
+                        SortExpression="ACTFLG" UniqueName="ACTFLG" />--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>
