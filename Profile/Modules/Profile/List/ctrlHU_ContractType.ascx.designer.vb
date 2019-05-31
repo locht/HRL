@@ -50,6 +50,15 @@ Partial Public Class ctrlHU_ContractType
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtCode control.
     '''</summary>
     '''<remarks>
@@ -86,6 +95,15 @@ Partial Public Class ctrlHU_ContractType
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''lbPeriod control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPeriod As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rntxtPeriod control.
     '''</summary>
     '''<remarks>
@@ -93,6 +111,15 @@ Partial Public Class ctrlHU_ContractType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtPeriod As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbmonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbmonth As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''reqPeriod control.
@@ -113,6 +140,15 @@ Partial Public Class ctrlHU_ContractType
     Protected WithEvents cvalPeriod As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtName control.
     '''</summary>
     '''<remarks>
@@ -131,6 +167,15 @@ Partial Public Class ctrlHU_ContractType
     Protected WithEvents reqName As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lbContract_Type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbContract_Type As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cboContract_Type control.
     '''</summary>
     '''<remarks>
@@ -138,6 +183,15 @@ Partial Public Class ctrlHU_ContractType
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboContract_Type As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemark As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtRemark control.
