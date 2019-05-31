@@ -49,6 +49,9 @@ Public Class ctrlHU_EmpDtlWorking
     ''' <remarks></remarks>
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
+            If Not IsPostBack Then
+                GirdConfig(rgGrid)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

@@ -675,6 +675,7 @@ Public Class ctrlHU_ContractNewEdit
                     rdExpireDate.SelectedDate = Nothing
                 Else
                     dExpire = dExpire.AddMonths(CType(hidPeriod.Value, Double))
+                    dExpire = dExpire.AddDays(CType(-1, Double))
                     rdExpireDate.SelectedDate = dExpire
                 End If
                 ' CreateDynamicContractNo()

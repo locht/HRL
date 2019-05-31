@@ -273,7 +273,7 @@ Public Class ctrlLeaveRegistration
             If outNumber = 0 Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
             ElseIf outNumber = 1 Then
-                ShowMessage(Translate("CHƯA CÓ TEMPLATE"), NotifyType.Success)
+                ShowMessage(Translate("Quy trình phê duyệt chưa được thiết lập"), NotifyType.Success)
             Else
                 ShowMessage(Translate("Thao tác xảy ra lỗi,bạn kiểm tra lại quy trình"), NotifyType.Error)
             End If

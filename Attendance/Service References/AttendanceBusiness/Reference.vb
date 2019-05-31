@@ -15923,6 +15923,42 @@ Namespace AttendanceBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T1Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T10Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T11Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T12Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T2Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T3Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T4Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T5Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T6Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T7Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T8Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AL_T9Field As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BALANCE_WORKING_TIMEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -16112,6 +16148,162 @@ Namespace AttendanceBusiness
             End Get
             Set
                 Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T1() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T1Field
+            End Get
+            Set
+                If (Me.AL_T1Field.Equals(value) <> true) Then
+                    Me.AL_T1Field = value
+                    Me.RaisePropertyChanged("AL_T1")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T10() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T10Field
+            End Get
+            Set
+                If (Me.AL_T10Field.Equals(value) <> true) Then
+                    Me.AL_T10Field = value
+                    Me.RaisePropertyChanged("AL_T10")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T11() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T11Field
+            End Get
+            Set
+                If (Me.AL_T11Field.Equals(value) <> true) Then
+                    Me.AL_T11Field = value
+                    Me.RaisePropertyChanged("AL_T11")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T12() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T12Field
+            End Get
+            Set
+                If (Me.AL_T12Field.Equals(value) <> true) Then
+                    Me.AL_T12Field = value
+                    Me.RaisePropertyChanged("AL_T12")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T2() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T2Field
+            End Get
+            Set
+                If (Me.AL_T2Field.Equals(value) <> true) Then
+                    Me.AL_T2Field = value
+                    Me.RaisePropertyChanged("AL_T2")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T3() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T3Field
+            End Get
+            Set
+                If (Me.AL_T3Field.Equals(value) <> true) Then
+                    Me.AL_T3Field = value
+                    Me.RaisePropertyChanged("AL_T3")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T4() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T4Field
+            End Get
+            Set
+                If (Me.AL_T4Field.Equals(value) <> true) Then
+                    Me.AL_T4Field = value
+                    Me.RaisePropertyChanged("AL_T4")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T5() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T5Field
+            End Get
+            Set
+                If (Me.AL_T5Field.Equals(value) <> true) Then
+                    Me.AL_T5Field = value
+                    Me.RaisePropertyChanged("AL_T5")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T6() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T6Field
+            End Get
+            Set
+                If (Me.AL_T6Field.Equals(value) <> true) Then
+                    Me.AL_T6Field = value
+                    Me.RaisePropertyChanged("AL_T6")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T7() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T7Field
+            End Get
+            Set
+                If (Me.AL_T7Field.Equals(value) <> true) Then
+                    Me.AL_T7Field = value
+                    Me.RaisePropertyChanged("AL_T7")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T8() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T8Field
+            End Get
+            Set
+                If (Me.AL_T8Field.Equals(value) <> true) Then
+                    Me.AL_T8Field = value
+                    Me.RaisePropertyChanged("AL_T8")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AL_T9() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AL_T9Field
+            End Get
+            Set
+                If (Me.AL_T9Field.Equals(value) <> true) Then
+                    Me.AL_T9Field = value
+                    Me.RaisePropertyChanged("AL_T9")
+                End If
             End Set
         End Property
         

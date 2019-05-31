@@ -4604,6 +4604,18 @@ Partial Public Class AttendanceRepository
                                        .CUR_HAVE10 = p.en.CUR_HAVE10,
                                        .CUR_HAVE11 = p.en.CUR_HAVE11,
                                        .CUR_HAVE12 = p.en.CUR_HAVE12,
+                                       .AL_T1 = p.en.AL_T1,
+                                       .AL_T2 = p.en.AL_T2,
+                                       .AL_T3 = p.en.AL_T3,
+                                       .AL_T4 = p.en.AL_T4,
+                                       .AL_T5 = p.en.AL_T5,
+                                       .AL_T6 = p.en.AL_T6,
+                                       .AL_T7 = p.en.AL_T7,
+                                       .AL_T8 = p.en.AL_T8,
+                                       .AL_T9 = p.en.AL_T9,
+                                       .AL_T10 = p.en.AL_T10,
+                                       .AL_T11 = p.en.AL_T11,
+                                       .AL_T12 = p.en.AL_T12,
                                        .CREATED_DATE = p.en.CREATED_DATE,
                                        .CREATED_BY = p.en.CREATED_BY,
                                        .SENIORITYHAVE = p.en.SENIORITYHAVE,
@@ -4616,30 +4628,30 @@ Partial Public Class AttendanceRepository
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
 
-            Dim lstResult = lst.ToList
-            For Each item As AT_ENTITLEMENTDTO In lstResult
-                item.CUR_USED = item.CUR_USED1 + item.CUR_USED2 + item.CUR_USED3 + item.CUR_USED4 + item.CUR_USED5 + item.CUR_USED6 _
-                                + item.CUR_USED7 + item.CUR_USED8 + item.CUR_USED9 + item.CUR_USED10 + item.CUR_USED11 + item.CUR_USED12
-                item.PREV_HAVE = If(item.PREV_HAVE = 0, Nothing, item.PREV_HAVE)
-                item.TOTAL_CUR_HAVE = If(item.TOTAL_CUR_HAVE = 0, Nothing, item.TOTAL_CUR_HAVE)
-                item.CUR_USED = If(item.CUR_USED = 0, Nothing, item.CUR_USED)
-                item.CUR_HAVE = If(item.CUR_HAVE = 0, Nothing, item.CUR_HAVE)
+            'Dim lstResult = lst.ToList
+            'For Each item As AT_ENTITLEMENTDTO In lstResult
+            '    item.CUR_USED = item.CUR_USED1 + item.CUR_USED2 + item.CUR_USED3 + item.CUR_USED4 + item.CUR_USED5 + item.CUR_USED6 _
+            '                    + item.CUR_USED7 + item.CUR_USED8 + item.CUR_USED9 + item.CUR_USED10 + item.CUR_USED11 + item.CUR_USED12
+            '    item.PREV_HAVE = If(item.PREV_HAVE = 0, Nothing, item.PREV_HAVE)
+            '    item.TOTAL_CUR_HAVE = If(item.TOTAL_CUR_HAVE = 0, Nothing, item.TOTAL_CUR_HAVE)
+            '    item.CUR_USED = If(item.CUR_USED = 0, Nothing, item.CUR_USED)
+            '    item.CUR_HAVE = If(item.CUR_HAVE = 0, Nothing, item.CUR_HAVE)
 
-                item.CUR_USED1 = If(item.CUR_USED1 = 0, Nothing, item.CUR_USED1)
-                item.CUR_USED2 = If(item.CUR_USED2 = 0, Nothing, item.CUR_USED2)
-                item.CUR_USED3 = If(item.CUR_USED3 = 0, Nothing, item.CUR_USED3)
-                item.CUR_USED4 = If(item.CUR_USED4 = 0, Nothing, item.CUR_USED4)
-                item.CUR_USED5 = If(item.CUR_USED5 = 0, Nothing, item.CUR_USED5)
-                item.CUR_USED6 = If(item.CUR_USED6 = 0, Nothing, item.CUR_USED6)
-                item.CUR_USED7 = If(item.CUR_USED7 = 0, Nothing, item.CUR_USED7)
-                item.CUR_USED8 = If(item.CUR_USED8 = 0, Nothing, item.CUR_USED8)
-                item.CUR_USED9 = If(item.CUR_USED9 = 0, Nothing, item.CUR_USED9)
-                item.CUR_USED10 = If(item.CUR_USED10 = 0, Nothing, item.CUR_USED10)
-                item.CUR_USED11 = If(item.CUR_USED11 = 0, Nothing, item.CUR_USED11)
-                item.CUR_USED12 = If(item.CUR_USED12 = 0, Nothing, item.CUR_USED12)
-            Next
+            '    item.CUR_USED1 = If(item.CUR_USED1 = 0, Nothing, item.CUR_USED1)
+            '    item.CUR_USED2 = If(item.CUR_USED2 = 0, Nothing, item.CUR_USED2)
+            '    item.CUR_USED3 = If(item.CUR_USED3 = 0, Nothing, item.CUR_USED3)
+            '    item.CUR_USED4 = If(item.CUR_USED4 = 0, Nothing, item.CUR_USED4)
+            '    item.CUR_USED5 = If(item.CUR_USED5 = 0, Nothing, item.CUR_USED5)
+            '    item.CUR_USED6 = If(item.CUR_USED6 = 0, Nothing, item.CUR_USED6)
+            '    item.CUR_USED7 = If(item.CUR_USED7 = 0, Nothing, item.CUR_USED7)
+            '    item.CUR_USED8 = If(item.CUR_USED8 = 0, Nothing, item.CUR_USED8)
+            '    item.CUR_USED9 = If(item.CUR_USED9 = 0, Nothing, item.CUR_USED9)
+            '    item.CUR_USED10 = If(item.CUR_USED10 = 0, Nothing, item.CUR_USED10)
+            '    item.CUR_USED11 = If(item.CUR_USED11 = 0, Nothing, item.CUR_USED11)
+            '    item.CUR_USED12 = If(item.CUR_USED12 = 0, Nothing, item.CUR_USED12)
+            'Next
 
-            Return lstResult
+            Return lst.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
@@ -4823,8 +4835,8 @@ Partial Public Class AttendanceRepository
     Public Function InsertWorkSign(ByVal objWorkSigns As List(Of AT_WORKSIGNDTO), ByVal objWork As AT_WORKSIGNDTO, ByVal p_fromdate As Date, ByVal p_endDate As Date?, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objWorkSign As New AT_WORKSIGNDTO
         Dim p_fromDateBefor As Date = p_fromdate
-        Dim CODE_CN As String = ""
-        CODE_CN = "HC"
+        Dim CODE_OFF As String = ""
+        CODE_OFF = "OFF"
         Try
             For index = 0 To objWorkSigns.Count - 1
                 objWorkSign = objWorkSigns(index)
@@ -4843,7 +4855,7 @@ Partial Public Class AttendanceRepository
 
                         Dim shiftIDU = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
 
-                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_CODE Select f).FirstOrDefault
+                        Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
                                 If shiftIDU.SUNDAY.HasValue Then
@@ -4851,13 +4863,12 @@ Partial Public Class AttendanceRepository
                                 Else
                                     query.SHIFT_ID = objWork.SHIFT_ID
                                 End If
-                            ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And shiftIDU.SATURDAY IsNot Nothing Then
-                                query.SHIFT_ID = shiftIDU.SATURDAY
+                            ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
+                                query.SHIFT_ID = shiftOffu.ID 'shiftIDU.SATURDAY
                             Else
                                 query.SHIFT_ID = objWork.SHIFT_ID
                             End If
                         End If
-
                         Context.SaveChanges(log)
                         p_fromdate = p_fromdate.AddDays(1)
                         Continue While
@@ -4867,15 +4878,15 @@ Partial Public Class AttendanceRepository
                     objWorkSignData.WORKINGDAY = p_fromdate
 
                     Dim shiftId = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
-                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = objWork.SHIFT_CODE Select f).FirstOrDefault
+                    Dim shiftOff = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                     If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOff.ID) Then
                         If shiftId.SUNDAY.HasValue Then
                             objWorkSignData.SHIFT_ID = shiftOff.ID
                         Else
                             objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                         End If
-                    ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And shiftId.SATURDAY IsNot Nothing Then
-                        objWorkSignData.SHIFT_ID = shiftId.SATURDAY
+                    ElseIf p_fromdate.DayOfWeek = DayOfWeek.Saturday And Not String.IsNullOrEmpty(shiftOff.ID) Then
+                        objWorkSignData.SHIFT_ID = shiftOff.ID 'shiftIDU.SATURDAY
                     Else
                         objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                     End If

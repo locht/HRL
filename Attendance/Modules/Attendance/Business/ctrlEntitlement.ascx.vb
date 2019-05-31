@@ -281,13 +281,24 @@ Public Class ctrlEntitlement
                         employee_id = Decimal.Parse(item)
                         lsEmployee.Add(employee_id)
                     Next
-                    If rep.CALCULATE_ENTITLEMENT(_param, lsEmployee) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        Refresh("UpdateView")
+                    If getSE_CASE_CONFIG("ctrlEntitlement_case1") > 0 Then
+                        If rep.CALCULATE_ENTITLEMENT_HOSE(_param, lsEmployee) Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                            Refresh("UpdateView")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                            Exit Sub
+                        End If
                     Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                        Exit Sub
+                        If rep.CALCULATE_ENTITLEMENT(_param, lsEmployee) Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                            Refresh("UpdateView")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                            Exit Sub
+                        End If
                     End If
+                    
 
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon

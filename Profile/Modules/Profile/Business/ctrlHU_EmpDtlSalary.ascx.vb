@@ -60,11 +60,14 @@ Public Class ctrlHU_EmpDtlSalary
     End Sub
     Public Overrides Sub ViewInit(e As EventArgs)
         MyBase.ViewInit(e)
-        rgGrid.MasterTableView.GetColumn("SAL_TYPE_NAME").HeaderText = UI.Wage_WageGRoup
-        rgGrid.MasterTableView.GetColumn("SAL_BASIC").HeaderText = UI.Wage_BasicSalary
-        rgGrid.MasterTableView.GetColumn("TAX_TABLE_Name").HeaderText = UI.Wage_TaxTable
-        rgGrid.MasterTableView.GetColumn("SAL_INS").HeaderText = UI.Wage_Sal_Ins
-        rgGrid.MasterTableView.GetColumn("SAL_TOTAL").HeaderText = UI.Wage_Salary_Total
+        If Not IsPostBack Then
+            GirdConfig(rgGrid)
+        End If
+        'rgGrid.MasterTableView.GetColumn("SAL_TYPE_NAME").HeaderText = UI.Wage_WageGRoup
+        'rgGrid.MasterTableView.GetColumn("SAL_BASIC").HeaderText = UI.Wage_BasicSalary
+        'rgGrid.MasterTableView.GetColumn("TAX_TABLE_Name").HeaderText = UI.Wage_TaxTable
+        'rgGrid.MasterTableView.GetColumn("SAL_INS").HeaderText = UI.Wage_Sal_Ins
+        'rgGrid.MasterTableView.GetColumn("SAL_TOTAL").HeaderText = UI.Wage_Salary_Total
     End Sub
 #End Region
 
