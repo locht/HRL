@@ -60,6 +60,14 @@ Public Class ctrlHU_ContractNewEdit
             ViewState(Me.ID & "_code_timekeeping") = value
         End Set
     End Property
+    Property direct_manager As Integer
+        Get
+            Return ViewState(Me.ID & "_direct_manager")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_direct_manager") = value
+        End Set
+    End Property
     '0 - normal
     '1 - Employee
     '2 - Signer
@@ -294,6 +302,10 @@ Public Class ctrlHU_ContractNewEdit
                         objContract.CONTRACT_NO = txtContractNo.Text
                         objContract.REMARK = txtRemark.Text
                         objContract.OBJECTTIMEKEEPING = code_timekeeping
+                        If direct_manager <> 0 Then
+                            objContract.DIRECT_MANAGER = direct_manager
+                        End If
+
                         If hidSign.Value <> "" Then
                             objContract.SIGN_ID = Decimal.Parse(hidSign.Value)
                         End If
@@ -721,7 +733,7 @@ Public Class ctrlHU_ContractNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-   
+
     ''' <lastupdate>
     ''' 06/07/2017 17:53
     ''' </lastupdate>
@@ -762,9 +774,9 @@ Public Class ctrlHU_ContractNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             ctrlUpload1.Show()
-            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -987,6 +999,10 @@ Public Class ctrlHU_ContractNewEdit
                 hidEmployeeID.Value = item.ID.ToString
                 hidOrgCode.Value = item.ORG_CODE
                 code_timekeeping = item.OBJECTTIMEKEEPING
+                If item.DIRECT_MANAGER IsNot Nothing Then
+                    direct_manager = item.DIRECT_MANAGER
+                End If
+
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 txtEmployeeName.Text = item.FULLNAME_VN
                 txtTITLE.Text = item.TITLE_NAME_VN
@@ -1111,6 +1127,6 @@ Public Class ctrlHU_ContractNewEdit
         End Select
     End Sub
 #End Region
-    
+
 
 End Class

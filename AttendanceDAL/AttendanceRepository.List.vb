@@ -6847,7 +6847,7 @@ Partial Public Class AttendanceRepository
     Public Function GetLeaveEmpDetail(ByVal employee_Id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, Optional ByVal isUpdate As Boolean = False) As List(Of LEAVE_DETAIL_EMP_DTO)
         Try
             Dim query = From d In Context.AT_PORTAL_REG
-                               Where d.FROM_DATE >= fromDate And d.FROM_DATE <= toDate
+                               Where d.FROM_DATE >= fromDate And d.FROM_DATE <= toDate And d.ID_EMPLOYEE = employee_Id
                         Select New LEAVE_DETAIL_EMP_DTO With {
              .FROM_DATE = d.FROM_DATE
                             }
