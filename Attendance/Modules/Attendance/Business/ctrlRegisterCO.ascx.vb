@@ -174,6 +174,9 @@ Public Class ctrlRegisterCO
             ctrlUpload.isMultiple = AsyncUpload.MultipleFileSelection.Disabled
             ctrlUpload.MaxFileInput = 1
             InitControl()
+            If Not IsPostBack Then '
+                GirdConfig(rgRegisterLeave)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

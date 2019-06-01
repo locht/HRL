@@ -72,7 +72,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
@@ -128,7 +128,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người phê duyệt %>" HeaderStyle-Width="200px"
                                 DataField="NOTE" SortExpression="NOTE" UniqueName="NOTE" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi Chú %>" HeaderStyle-Width="200px"
-                                DataField="NOTE_APP" SortExpression="NOTE_APP" UniqueName="NOTE_APP" />
+                                DataField="NOTE_APP" SortExpression="NOTE_APP" UniqueName="NOTE_APP" />--%>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>
@@ -165,9 +165,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut('ctl00_MainContent_ctrlRegisterCO_RadSplitter3');
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('ctl00_MainContent_ctrlRegisterCO_RadSplitter3');
+        //        }
 
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
