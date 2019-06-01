@@ -4623,7 +4623,8 @@ Partial Public Class AttendanceRepository
                                        .TIME_OUTSIDE_COMPANY = p.en.TIME_OUTSIDE_COMPANY,
                                        .TIME_SENIORITY = p.en.TIME_SENIORITY,
                                        .MONTH_SENIORITY_CHANGE = p.en.TIME_SENIORITY_AFTER_CHANGE,
-                                       .TIME_SENIORITY_AFTER_CHANGE = p.en.TIME_SENIORITY_AFTER_CHANGE})
+                                       .TIME_SENIORITY_AFTER_CHANGE = p.en.TIME_SENIORITY_AFTER_CHANGE,
+                                       .SENIORITY = p.en.SENIORITY})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
