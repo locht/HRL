@@ -78,12 +78,10 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="120px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
-
-
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Thời gian thâm niên %>"
-                                DataField="TIME_SENIORITY" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
-                                SortExpression="TIME_SENIORITY" UniqueName="TIME_SENIORITY" HeaderStyle-Width="100px">
-                            </tlk:GridNumericColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian thâm niên %>"
+                                DataField="SENIORITY" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="SENIORITY" UniqueName="SENIORITY" HeaderStyle-Width="120px">
+                            </tlk:GridBoundColumn>
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tháng thâm niên điều chỉnh %>"
                                 DataField="MONTH_SENIORITY_CHANGE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="MONTH_SENIORITY_CHANGE" UniqueName="MONTH_SENIORITY_CHANGE" HeaderStyle-Width="100px">

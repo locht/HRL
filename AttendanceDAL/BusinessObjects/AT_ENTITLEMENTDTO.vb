@@ -76,5 +76,5 @@
     Public Property AL_T10 As Decimal?
     Public Property AL_T11 As Decimal?
     Public Property AL_T12 As Decimal?
-
+    Public Property SENIORITY As String
 End Class
