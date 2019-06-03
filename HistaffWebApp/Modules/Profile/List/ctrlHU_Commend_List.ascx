@@ -11,7 +11,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbCode" Text="Mã khen thưởng"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Textbox50">
@@ -27,7 +27,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbNameVN" Text="Tên khen thưởng"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtNameVN" runat="server">
@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbDatatype" Text="Kiểu dữ liệu"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbDatatype" Text="Kiểu dữ liệu"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbDatatype" runat="server">
@@ -54,7 +54,7 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbTYPE" Text="Loại danh mục"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbTYPE" Text="Loại danh mục"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbTYPE" runat="server">
@@ -69,7 +69,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbNumberOrder" Text="Thứ tự"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbNumberOrder" Text="Thứ tự"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="nmNumberOrder" MinValue="0" MaxLength="38" runat="server">
@@ -79,7 +79,7 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbLevel" Text="Cấp khen thưởng"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbLevel" Text="Cấp khen thưởng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbLevel" runat="server">
@@ -94,7 +94,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbObject" Text="Đối tượng khen thưởng"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbObject" Text="Đối tượng khen thưởng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cbObject" runat="server">
