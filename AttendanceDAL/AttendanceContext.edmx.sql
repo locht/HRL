@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 6/1/2019 2:39:21 PM
--- Generated from EDMX file: E:\Source\SOURCE_CORE\histaffhcm\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 03/06/2019 3:07:11 PM
+-- Generated from EDMX file: E:\histaffhcm-5\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1048,7 +1048,8 @@ CREATE TABLE "dbo"."AT_LEAVESHEET" (
    "IS_WORKING_DAY" NUMBER(38,0) NULL,
    "IN_PLAN_DAYS" NUMBER(38,0) NULL,
    "NOT_IN_PLAN_DAYS" NUMBER(38,0) NULL,
-   "DAY_NUM" NUMBER(38,0) NULL
+   "DAY_NUM" NUMBER(38,0) NULL,
+   "EMP_APPROVES_NAME" NCLOB NULL
 );
 
 -- Creating table 'AT_PERIOD'

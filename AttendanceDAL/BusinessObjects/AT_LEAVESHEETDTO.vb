@@ -31,6 +31,7 @@
     Public Property IN_PLAN_DAYS As Decimal?
     Public Property NOT_IN_PLAN_DAYS As Decimal?
     Public Property DAY_NUM As Decimal?
+    Public Property EMP_APPROVES_NAME As String
 
     Public Property CREATED_DATE As Date?
     Public Property CREATED_BY As String
