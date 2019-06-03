@@ -19,44 +19,44 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày nộp đơn từ")%>
+                           <asp:Label ID="lbFromSend" runat="server" Text = "Ngày nộp đơn từ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromSend" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến")%>
+                            <asp:Label ID="lbToSend" runat="server" Text = "Đến"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToSend" runat="server">
                             </tlk:RadDatePicker>
                             <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdToSend"
-                                Type="Date" ControlToCompare="rdFromSend" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn %>"
-                                ToolTip="<%$ Translate: Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn %>"></asp:CompareValidator>
+                                Type="Date" ControlToCompare="rdFromSend" Operator="GreaterThanEqual" ErrorMessage="Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn"
+                                ToolTip="Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn"></asp:CompareValidator>
                         </td>
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày làm việc cuối cùng từ")%>
+                            <asp:Label ID="lbFromLast" runat="server" Text = "Ngày làm việc cuối cùng từ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromLast" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến")%>
+                            <asp:Label ID="lbToLast" runat="server" Text = "Đến"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToLast" runat="server">
                             </tlk:RadDatePicker>
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdToLast"
-                                Type="Date" ControlToCompare="rdFromLast" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng %>"
-                                ToolTip="<%$ Translate: Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng %>"></asp:CompareValidator>
+                                Type="Date" ControlToCompare="rdFromLast" Operator="GreaterThanEqual" ErrorMessage="Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng"
+                                ToolTip="Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng"></asp:CompareValidator>
                         
                         </td>
                         <td>
-                            <tlk:RadButton runat="server" Text="<%$ Translate: Tìm %>" ID="btnSearch" SkinID="ButtonFind">
+                            <tlk:RadButton runat="server" Text="Tìm" ID="btnSearch" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,TYPE_TERMINATE,CODE" ClientDataKeyNames="ID,STATUS_CODE,IS_NOHIRE,STATUS_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -142,7 +142,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK">
                                 <HeaderStyle Width="200px" />
-                            </tlk:GridBoundColumn>
+                            </tlk:GridBoundColumn>--%>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>

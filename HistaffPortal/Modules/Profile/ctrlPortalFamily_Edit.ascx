@@ -57,14 +57,14 @@
                 <%# Translate("Nghề nghiệp")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtCareer" SkinID="Textbox15">
+                <tlk:RadTextBox runat="server" ID="txtCareer" SkinID="Textbox1023">
                 </tlk:RadTextBox>
             </td>
             <td class="lb">
                 <%# Translate("Chức danh")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox15">
+                <tlk:RadTextBox runat="server" ID="txtTitle" SkinID="Textbox1023">
                 </tlk:RadTextBox>
             </td>
         </tr>

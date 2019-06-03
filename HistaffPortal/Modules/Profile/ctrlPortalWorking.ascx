@@ -55,7 +55,7 @@
     </MasterTableView>
 </tlk:RadGrid>
 
-<tlk:RadGrid PageSize=50 ID="rgMain" runat="server" AutoGenerateColumns="False" AllowPaging="True" 
+<%--<tlk:RadGrid PageSize=50 ID="rgMain" runat="server" AutoGenerateColumns="False" AllowPaging="True" Visible = "true"
     Height="250px" AllowSorting="True" AllowMultiRowSelection="true" Width="100%">
     <ClientSettings EnableRowHoverStyle="true">
         <Selecting AllowRowSelect="true" />
@@ -75,4 +75,4 @@
                 ItemStyle-HorizontalAlign="Center" />
         </Columns>
     </MasterTableView>
-</tlk:RadGrid>
+</tlk:RadGrid>--%>

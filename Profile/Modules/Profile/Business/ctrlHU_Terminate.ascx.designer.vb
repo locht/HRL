@@ -104,6 +104,15 @@ Partial Public Class ctrlHU_Terminate
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbFromSend control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFromSend As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdFromSend control.
     '''</summary>
     '''<remarks>
@@ -111,6 +120,15 @@ Partial Public Class ctrlHU_Terminate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromSend As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbToSend control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToSend As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdToSend control.
@@ -131,6 +149,15 @@ Partial Public Class ctrlHU_Terminate
     Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
+    '''lbFromLast control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFromLast As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdFromLast control.
     '''</summary>
     '''<remarks>
@@ -138,6 +165,15 @@ Partial Public Class ctrlHU_Terminate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdFromLast As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbToLast control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToLast As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdToLast control.
