@@ -1239,11 +1239,13 @@ Public Class ctrlHU_WageNewEdit
                 Salary_Total.Value = dtdata(0)("TOTALSALARY").ToString
             End If
             'kiem tra check IS_HOSE'
-            Dim rs = From row In dtSalaryGroup.Rows
+            If cbSalaryGroup.SelectedValue.ToString <> "" Then
+                Dim rs = From row In dtSalaryGroup.Rows
                      Where row("ID").ToString = cbSalaryGroup.SelectedValue.ToString
                      Select row("ISHOSE")
-            If rs(0) = 0 Then
-                SalaryInsurance.Value = basicSalary.Value
+                If rs(0) = 0 Then
+                    SalaryInsurance.Value = basicSalary.Value
+                End If
             End If
         Catch ex As Exception
             Throw ex
