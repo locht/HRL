@@ -15327,6 +15327,9 @@ Namespace AttendanceBusiness
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMP_APPROVES_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private END_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -15533,6 +15536,19 @@ Namespace AttendanceBusiness
                 If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
                     Me.EMPLOYEE_IDField = value
                     Me.RaisePropertyChanged("EMPLOYEE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMP_APPROVES_NAME() As String
+            Get
+                Return Me.EMP_APPROVES_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EMP_APPROVES_NAMEField, value) <> true) Then
+                    Me.EMP_APPROVES_NAMEField = value
+                    Me.RaisePropertyChanged("EMP_APPROVES_NAME")
                 End If
             End Set
         End Property
