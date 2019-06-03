@@ -16,21 +16,21 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("MSNV/Tên NV")%>
+                           <asp:Label ID="lbEmployee" runat="server" Text="MSNV/Tên NV"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtEmployee" runat="server" CausesValidation="false">
                             </tlk:RadTextBox>
                         </td>
                         <td class="lb">
-                            <%# Translate("Từ ngày")%>
+                            <asp:Label ID="lbFromDate" runat="server" Text="Từ ngày"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến ngày")%>
+                            <asp:Label ID="lbToDate" runat="server" Text="Đến ngày"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
@@ -39,14 +39,14 @@
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Trạng thái")%>
+                            <asp:Label ID="lbStatus" runat="server" Text="Trạng thái"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboStatus" runat="server">
                             </tlk:RadComboBox>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đối tượng khen thưởng")%>
+                            <asp:Label ID="lbCommendObj" runat="server" Text="Đối tượng khen thưởng"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboCommendObj" AutoPostBack="false" runat="server" CausesValidation="False">
@@ -57,10 +57,10 @@
                         <td>
                         </td>
                         <td colspan="2">
-                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Liệt kê cả nhân viên nghỉ việc %>" />
+                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="Liệt kê cả nhân viên nghỉ việc" />
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm %>" SkinID="ButtonFind">
+                            <tlk:RadButton ID="btnSearch" runat="server" Text="Tìm" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -75,7 +75,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID, STATUS_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -100,14 +100,12 @@
                                 </tlk:RadToolTip>
                             </ItemTemplate>
                             </tlk:GridTemplateColumn>
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị nhân viên %>" DataField="ORG_NAME"
-                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />--%>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị nhân viên %>" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh nhân viên %>" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR"
                                 SortExpression="YEAR" UniqueName="YEAR" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp khen thưởng %>" DataField="Commend_LEVEL_NAME"
-                                SortExpression="Commend_LEVEL_NAME" UniqueName="Commend_LEVEL_NAME" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Danh hiệu khen thưởng %>" DataField="COMMEND_TITLE_NAME"
                                 SortExpression="COMMEND_TITLE_NAME" UniqueName="COMMEND_TITLE_NAME" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do %>" DataField="REMARK" SortExpression="REMARK"
@@ -128,10 +126,8 @@
                                 SortExpression="ORG_DESC" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức trả thưởng %>" DataField="COMMEND_PAY_NAME"
                                 SortExpression="COMMEND_PAY_NAME" UniqueName="COMMEND_PAY_NAME" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Nguồn chi %>" DataField="POWER_PAY_NAME"
-                                SortExpression="POWER_PAY_NAME" UniqueName="POWER_PAY_NAME" />--%>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />--%>
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">

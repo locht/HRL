@@ -76,23 +76,23 @@ Public Class ctrlPortalWorking
                 rgWorking.DataBind()
             End If
 
-            ' chức danh kiêm nhiệm
-            Dim re As New ProfileRepository
-            Dim _filter As New TitleConcurrentDTO
-            Dim MaximumRows As Integer
-            SetValueObjectByRadGrid(rgMain, _filter)
-            Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
-            _filter.EMPLOYEE_ID = EmployeeID
+            '' chức danh kiêm nhiệm
+            'Dim re As New ProfileRepository
+            'Dim _filter As New TitleConcurrentDTO
+            'Dim MaximumRows As Integer
+            'SetValueObjectByRadGrid(rgMain, _filter)
+            'Dim Sorts As String = rgMain.MasterTableView.SortExpressions.GetSortString()
+            '_filter.EMPLOYEE_ID = EmployeeID
 
-            Dim TitleConcurrents As List(Of TitleConcurrentDTO)
-            If Sorts IsNot Nothing Then
-                TitleConcurrents = re.GetTitleConcurrent(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows, Sorts)
-            Else
-                TitleConcurrents = re.GetTitleConcurrent(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows)
-            End If
+            'Dim TitleConcurrents As List(Of TitleConcurrentDTO)
+            'If Sorts IsNot Nothing Then
+            '    TitleConcurrents = re.GetTitleConcurrent(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows, Sorts)
+            'Else
+            '    TitleConcurrents = re.GetTitleConcurrent(_filter, rgMain.CurrentPageIndex, rgMain.PageSize, MaximumRows)
+            'End If
 
-            rgMain.VirtualItemCount = MaximumRows
-            rgMain.DataSource = TitleConcurrents
+            'rgMain.VirtualItemCount = MaximumRows
+            'rgMain.DataSource = TitleConcurrents
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

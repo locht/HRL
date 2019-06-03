@@ -86,6 +86,15 @@ Partial Public Class ctrlHU_Commend
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbEmployee control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmployee As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtEmployee control.
     '''</summary>
     '''<remarks>
@@ -93,6 +102,15 @@ Partial Public Class ctrlHU_Commend
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmployee As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbFromDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFromDate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''rdFromDate control.
@@ -104,6 +122,15 @@ Partial Public Class ctrlHU_Commend
     Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''lbToDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbToDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''rdToDate control.
     '''</summary>
     '''<remarks>
@@ -113,6 +140,15 @@ Partial Public Class ctrlHU_Commend
     Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''lbStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbStatus As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cboStatus control.
     '''</summary>
     '''<remarks>
@@ -120,6 +156,15 @@ Partial Public Class ctrlHU_Commend
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboStatus As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbCommendObj control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCommendObj As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboCommendObj control.

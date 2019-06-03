@@ -420,7 +420,7 @@ Public Class CommonView
                     rColdImage.DataAlternateTextField = row.Field(Of String)("ID").Trim()
                     rColdImage.ImageHeight = 80
                     rColdImage.ImageWidth = 80
-                    rColdImage.ResizeMode = "Fit"
+                    rColdImage.ResizeMode = 3
                     rColdImage.DataAlternateTextFormatString = "Image of {0}"
                 ElseIf row.Field(Of String)("DataType").Trim().ToUpper.Contains("Short-DateTime".ToUpper) = True Then
                     rCol = New GridBoundColumn()

@@ -16,21 +16,21 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("MSNV/Tên NV")%>
+                            <asp:Label ID="lbEmployee" runat="server" Text="MSNV/Tên NV"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtEmployee" runat="server" CausesValidation="false">
                             </tlk:RadTextBox>
                         </td>
                         <td class="lb">
-                            <%# Translate("Từ ngày")%>
+                            <asp:Label ID="lbFromDate" runat="server" Text="Từ ngày"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến ngày")%>
+                            <asp:Label ID="lbToDate" runat="server" Text="Đến ngày"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
@@ -39,14 +39,14 @@
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Trạng thái")%>
+                            <asp:Label ID="lbStatus" runat="server" Text="Trạng thái"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboStatus" runat="server">
                             </tlk:RadComboBox>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đối tượng khen thưởng")%>
+                            <asp:Label ID="lbCommendObj" runat="server" Text="Đối tượng khen thưởng"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboCommendObj" runat="server" AutoPostBack="false" CausesValidation="False">
@@ -57,10 +57,10 @@
                         <td>
                         </td>
                         <td colspan="2">
-                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Liệt kê cả nhân viên nghỉ việc %>" />
+                            <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="Liệt kê cả nhân viên nghỉ việc" />
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm %>" SkinID="ButtonFind">
+                            <tlk:RadButton ID="btnSearch" runat="server" Text="Tìm" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -75,63 +75,47 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID, STATUS_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn DataField="STATUS_ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại khen thưởng %>" DataField="Commend_OBJ_NAME"
+                            <tlk:GridBoundColumn DataField="ID" Visible="false" HeaderText = "ID"/>
+                            <tlk:GridBoundColumn DataField="STATUS_ID" Visible="false" HeaderText = "STATUS_ID"/>
+                            <tlk:GridBoundColumn HeaderText="Loại khen thưởng" DataField="Commend_OBJ_NAME"
                                 SortExpression="Commend_OBJ_NAME" UniqueName="Commend_OBJ_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="OBJ_ORG_NAME"
+                            <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="OBJ_ORG_NAME"
                                 SortExpression="OBJ_ORG_NAME" UniqueName="OBJ_ORG_NAME" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
-                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME">
-                                <HeaderStyle Width="200px" />
-                                <ItemTemplate>
-                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
-                                </asp:Label>
-                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
-                                                    RelativeTo="Element" Position="BottomCenter">
-                                <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
-                                </tlk:RadToolTip>
-                            </ItemTemplate>
-                            </tlk:GridTemplateColumn>
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị nhân viên %>" DataField="ORG_NAME"
-                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />--%>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh nhân viên %>" DataField="TITLE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="EMPLOYEE_NAME"
+                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />                   
+                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />
+                            <tlk:GridBoundColumn HeaderText="Chức danh nhân viên" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm %>" DataField="YEAR"
+                            <tlk:GridBoundColumn HeaderText="Năm" DataField="YEAR"
                                 SortExpression="YEAR" UniqueName="YEAR" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp khen thưởng %>" DataField="Commend_LEVEL_NAME"
-                                SortExpression="Commend_LEVEL_NAME" UniqueName="Commend_LEVEL_NAME" />--%>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Danh hiệu khen thưởng %>" DataField="COMMEND_TITLE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Danh hiệu khen thưởng" DataField="COMMEND_TITLE_NAME"
                                 SortExpression="COMMEND_TITLE_NAME" UniqueName="COMMEND_TITLE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do %>" DataField="REMARK" SortExpression="REMARK"
+                            <tlk:GridBoundColumn HeaderText="Lý do" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức khen thưởng %>" DataField="Commend_TYPE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Hình thức khen thưởng" DataField="Commend_TYPE_NAME"
                                 SortExpression="Commend_TYPE_NAME" UniqueName="Commend_TYPE_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức thưởng %>" DataField="MONEY"
+                            <tlk:GridNumericColumn HeaderText="Mức thưởng" DataField="MONEY"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" SortExpression="MONEY"
                                 UniqueName="MONEY" />
 
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
+                            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
                                 SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
 
                             <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
                                 SortExpression="ORG_DESC" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Hình thức trả thưởng %>" DataField="COMMEND_PAY_NAME"
+                            <tlk:GridBoundColumn HeaderText="Hình thức trả thưởng" DataField="COMMEND_PAY_NAME"
                                 SortExpression="COMMEND_PAY_NAME" UniqueName="COMMEND_PAY_NAME" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Nguồn chi %>" DataField="POWER_PAY_NAME"
-                                SortExpression="POWER_PAY_NAME" UniqueName="POWER_PAY_NAME" />--%>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />--%>
                         </Columns>
                     </MasterTableView>
                     <ClientSettings EnableRowHoverStyle="true">

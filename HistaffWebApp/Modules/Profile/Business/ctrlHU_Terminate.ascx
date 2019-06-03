@@ -19,44 +19,44 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày nộp đơn từ")%>
+                            <asp:Label ID="lbFromSend" runat="server" Text = "Ngày nộp đơn từ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromSend" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
-                            <%# Translate("Đến")%>
+                            <asp:Label ID="lbToSend" runat="server" Text = "Đến"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToSend" runat="server">
                             </tlk:RadDatePicker>
                             <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="rdToSend"
-                                Type="Date" ControlToCompare="rdFromSend" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn %>"
-                                ToolTip="<%$ Translate: Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn %>"></asp:CompareValidator>
+                                Type="Date" ControlToCompare="rdFromSend" Operator="GreaterThanEqual" ErrorMessage="Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn"
+                                ToolTip="Đến ngày nộp đơn phải lớn hơn Từ ngày nộp đơn"></asp:CompareValidator>
                         </td>
                     </tr>
                     <tr>
                         <td class="lb">
-                            <%# Translate("Ngày làm việc cuối cùng từ")%>
+                            <asp:Label ID="lbFromLast" runat="server" Text = "Ngày làm việc cuối cùng từ"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFromLast" runat="server">
                             </tlk:RadDatePicker>
                         </td>
-                        <td class="lb">
-                            <%# Translate("Đến")%>
+                        <td class="lb">                         
+                            <asp:Label ID="lbToLast" runat="server" Text = "Đến"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdToLast" runat="server">
                             </tlk:RadDatePicker>
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="rdToLast"
-                                Type="Date" ControlToCompare="rdFromLast" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng %>"
-                                ToolTip="<%$ Translate: Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng %>"></asp:CompareValidator>
+                                Type="Date" ControlToCompare="rdFromLast" Operator="GreaterThanEqual" ErrorMessage="Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng"
+                                ToolTip="Đến ngày làm việc cuối cùng phải lớn hơn Từ ngày làm việc cuối cùng"></asp:CompareValidator>
                         
                         </td>
                         <td>
-                            <tlk:RadButton runat="server" Text="<%$ Translate: Tìm %>" ID="btnSearch" SkinID="ButtonFind">
+                            <tlk:RadButton runat="server" Text="Tìm" ID="btnSearch" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -72,77 +72,67 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,TYPE_TERMINATE,CODE" ClientDataKeyNames="ID,STATUS_CODE,IS_NOHIRE,STATUS_ID">
                         <Columns>
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
-                            <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn DataField="STATUS_CODE" Visible="false" />
-                            <tlk:GridBoundColumn DataField="IS_NOHIRE" Visible="false" />
-                            <tlk:GridBoundColumn DataField="ORG_DESC" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số quyết định %>" DataField="DECISION_NO"
+                            <tlk:GridBoundColumn DataField="ID" Visible="false" HeaderText="ID"/>
+                            <tlk:GridBoundColumn DataField="STATUS_CODE" Visible="false" HeaderText="STATUS_CODE" />
+                            <tlk:GridBoundColumn DataField="IS_NOHIRE" Visible="false" HeaderText="IS_NOHIRE" />
+                            <tlk:GridBoundColumn DataField="ORG_DESC" Visible="false" HeaderText="ORG_DESC" />
+                            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
                                 SortExpression="DECISION_NO" UniqueName="DECISION_NO" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
                                 SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên nhân viên %>" DataField="EMPLOYEE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME"
                                 SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày vào %>" DataField="JOIN_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày vào" DataField="JOIN_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="JOIN_DATE" UniqueName="JOIN_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridTemplateColumn HeaderText="<%$ Translate: Đơn vị/Phòng ban %>" DataField="ORG_NAME" SortExpression="ORG_NAME"
-                                UniqueName="ORG_NAME">
-                                <HeaderStyle Width="200px" />
-                                <ItemTemplate>
-                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
-                                </asp:Label>
-                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
-                                                    RelativeTo="Element" Position="BottomCenter">
-                                <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
-                                </tlk:RadToolTip>
-                            </ItemTemplate>
-                         </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Đơn vị/Phòng ban" DataField="ORG_NAME"
+                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />                  
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                                 SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nộp đơn %>" DataField="SEND_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày nộp đơn" DataField="SEND_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="SEND_DATE" UniqueName="SEND_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nghỉ thực tế %>" DataField="LAST_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày nghỉ thực tế" DataField="LAST_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="LAST_DATE" UniqueName="LAST_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày phê duyệt nghỉ %>" DataField="APPROVAL_DATE"
+                            <tlk:GridDateTimeColumn HeaderText="Ngày phê duyệt nghỉ" DataField="APPROVAL_DATE"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="APPROVAL_DATE" UniqueName="APPROVAL_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số phép còn lại %>" DataField="REMAINING_LEAVE"
+                            <tlk:GridBoundColumn HeaderText="Số phép còn lại" DataField="REMAINING_LEAVE"
                                 SortExpression="REMAINING_LEAVE" UniqueName="REMAINING_LEAVE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày nghỉ bù còn lại %>" DataField="COMPENSATORY_LEAVE"
+                            <tlk:GridBoundColumn HeaderText="Số ngày nghỉ bù còn lại" DataField="COMPENSATORY_LEAVE"
                                 SortExpression="COMPENSATORY_LEAVE" UniqueName="COMPENSATORY_LEAVE" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tiền thanh toán phép %>" DataField="PAYMENT_LEAVE"
+                            <tlk:GridBoundColumn HeaderText="Tiền thanh toán phép" DataField="PAYMENT_LEAVE"
                                 SortExpression="PAYMENT_LEAVE" UniqueName="PAYMENT_LEAVE" DataFormatString="{0:N0}" />
-                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lương trung bình 6 tháng %>" DataField="SALARYMEDIUM"
+                             <tlk:GridBoundColumn HeaderText="Lương trung bình 6 tháng" DataField="SALARYMEDIUM"
                                 SortExpression="SALARYMEDIUM" UniqueName="SALARYMEDIUM" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian tham gia BHTN %>" DataField="SALARYMEDIUM_LOSS"
+                            <tlk:GridBoundColumn HeaderText="Thời gian tham gia BHTN" DataField="SALARYMEDIUM_LOSS"
                                 SortExpression="SALARYMEDIUM_LOSS" UniqueName="SALARYMEDIUM_LOSS" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số năm tính trợ cấp mất việc %>" DataField="YEARFORALLOW"
+                            <tlk:GridBoundColumn HeaderText="Số năm tính trợ cấp mất việc" DataField="YEARFORALLOW"
                                 SortExpression="YEARFORALLOW" UniqueName="YEARFORALLOW" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số tiền còn lại %>" DataField="MONEY_RETURN"
+                            <tlk:GridBoundColumn HeaderText="Số tiền còn lại" DataField="MONEY_RETURN"
                                 SortExpression="MONEY_RETURN" UniqueName="MONEY_RETURN" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phạt thời hạn báo trước %>" DataField="AMOUNT_VIOLATIONS"
+                            <tlk:GridBoundColumn HeaderText="Phạt thời hạn báo trước" DataField="AMOUNT_VIOLATIONS"
                                 SortExpression="AMOUNT_VIOLATIONS" UniqueName="AMOUNT_VIOLATIONS" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phạt chấm dứt trái luật %>" DataField="AMOUNT_WRONGFUL"
+                            <tlk:GridBoundColumn HeaderText="Phạt chấm dứt trái luật" DataField="AMOUNT_WRONGFUL"
                                 SortExpression="AMOUNT_WRONGFUL" UniqueName="AMOUNT_WRONGFUL" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tiền thanh toán nghỉ bù %>" DataField="COMPENSATORY_PAYMENT"
+                            <tlk:GridBoundColumn HeaderText="Tiền thanh toán nghỉ bù" DataField="COMPENSATORY_PAYMENT"
                                 SortExpression="COMPENSATORY_PAYMENT" UniqueName="COMPENSATORY_PAYMENT" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trợ cấp thôi việc %>" DataField="ALLOWANCE_TERMINATE"
+                            <tlk:GridBoundColumn HeaderText="Trợ cấp thôi việc" DataField="ALLOWANCE_TERMINATE"
                                 SortExpression="ALLOWANCE_TERMINATE" UniqueName="ALLOWANCE_TERMINATE" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chi phí đào tạo %>" DataField="TRAINING_COSTS"
+                            <tlk:GridBoundColumn HeaderText="Chi phí đào tạo" DataField="TRAINING_COSTS"
                                 SortExpression="TRAINING_COSTS" UniqueName="TRAINING_COSTS" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Bồi thường khác %>" DataField="OTHER_COMPENSATION"
+                            <tlk:GridBoundColumn HeaderText="Bồi thường khác" DataField="OTHER_COMPENSATION"
                                 SortExpression="OTHER_COMPENSATION" UniqueName="OTHER_COMPENSATION" DataFormatString="{0:N0}" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME"
                                 SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" SortExpression="REMARK"
+                            <tlk:GridBoundColumn HeaderText="Ghi chú" DataField="REMARK" SortExpression="REMARK"
                                 UniqueName="REMARK">
                                 <HeaderStyle Width="200px" />
-                            </tlk:GridBoundColumn>
+                            </tlk:GridBoundColumn>--%>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>

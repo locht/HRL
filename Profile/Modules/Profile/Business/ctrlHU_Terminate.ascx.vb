@@ -94,6 +94,10 @@ Public Class ctrlHU_Terminate
         Try
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgTerminate)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
