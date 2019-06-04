@@ -255,8 +255,9 @@ Public Class ctrlHU_WageNewEdit
                     rgAllow.Rebind()
                     If Working.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
                         Working.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
-                        LeftPane.Enabled = False
+                        EnableControlAll_Cus(False, LeftPane)
                         MainToolBar.Items(0).Enabled = False
+                        btnDownload.Enabled = True
                     End If
 
                     basicSalary.Value = Working.SAL_BASIC
@@ -956,6 +957,7 @@ Public Class ctrlHU_WageNewEdit
     End Sub
 #End Region
 #Region "Custom"
+
     ''' <summary>
     ''' Khoi tao control, Khoi tao popup list Danh sach nhan vien theo 2 loai man hinh
     ''' Set trang thai page, trang thai control
@@ -1052,7 +1054,7 @@ Public Class ctrlHU_WageNewEdit
                 hidEmp.Value = obj.EMPLOYEE_ID.ToString()
 
                 If obj.CODE_ATTENDANCE IsNot Nothing Then
-                     code_attendent = obj.CODE_ATTENDANCE
+                    code_attendent = obj.CODE_ATTENDANCE
                 Else
                     code_attendent = Nothing
                 End If
