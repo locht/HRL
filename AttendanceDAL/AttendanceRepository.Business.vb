@@ -6145,7 +6145,7 @@ Partial Public Class AttendanceRepository
                     dto.STATUS = row("STATUS")
                     dto.STATUS_NAME = row("STATUS_NAME")
                     dto.REASON = If(row("REASON").ToString <> "", row("REASON"), Nothing)
-                    dto.NOTE = row("NOTE")
+                    dto.NOTE = If(row("NOTE").ToString <> "", row("NOTE"), Nothing)
                     dto.IS_DELETED = row("IS_DELETED")
                     dto.CREATED_BY = row("CREATED_BY")
                     dto.CREATED_DATE = row("CREATED_DATE")
