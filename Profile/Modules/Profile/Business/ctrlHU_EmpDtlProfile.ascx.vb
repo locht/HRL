@@ -1159,8 +1159,8 @@ Public Class ctrlHU_EmpDtlProfile
                         '    dtData = rep.GetOtherList("TRAINING_FORM", True)
                     Case cboWorkStatus.ID
                         dtData = rep.GetOtherList("WORK_STATUS", True)
-                    Case cboWorkStatus.ID
-                        dtData = rep.GetOtherList("EMP_STATUS", True)
+                    Case cboEmpStatus.ID
+                        dtData = rep.GetOtherList("WORK_STATUS", True)
                     Case cboLangLevel.ID
                         dtData = rep.GetOtherList("LEARNING_LEVEL", True)
                     Case cboLangLevel2.ID

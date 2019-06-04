@@ -16,6 +16,7 @@ Public Class ctrlHU_ContractNewEdit
     'Content: Write log time and error
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
+    Dim _flag As Boolean = True
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 
     ''' <summary>
@@ -100,6 +101,12 @@ Public Class ctrlHU_ContractNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
+
+            If (_flag = False) Then
+                EnableControlAll_Cus(False, LeftPane)
+                btnDownload.Enabled = True
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -239,9 +246,12 @@ Public Class ctrlHU_ContractNewEdit
                         End If
                         If Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
                             Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
-                            LeftPane.Enabled = False
+                            _flag = False
+                            EnableControlAll_Cus(False, LeftPane)
+                            btnDownload.Enabled = True
                             MainToolBar.Items(0).Enabled = False
                         End If
+
                         If Contract.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
                             MainToolBar.Items(0).Enabled = False
                         End If

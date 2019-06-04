@@ -15,6 +15,7 @@ Public Class ctrlHU_ContractTemplete
     Inherits CommonView
     Private hfr As New HistaffFrameworkRepository
     Dim _mylog As New MyLog()
+    Dim _flag As Boolean = True
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 #Region "Property"
@@ -146,6 +147,10 @@ Public Class ctrlHU_ContractTemplete
             'If Request.Params("IDSelect") IsNot Nothing Then
             '    MainToolBar.Items(3).Enabled = True
             'End If
+            If (_flag = False) Then
+                EnableControlAll_Cus(False, NORMAL)
+                btnDownload.Enabled = True
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -1309,7 +1314,9 @@ Public Class ctrlHU_ContractTemplete
                 rgContract_SelectedIndexChanged(Nothing, Nothing)
 
                 If contractAppen.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                    NORMAL.Enabled = False
+                    _flag = False
+                    EnableControlAll_Cus(False, NORMAL)
+                    btnDownload.Enabled = True
                     MainToolBar.Items(0).Enabled = False
                     MainToolBar.Items(1).Enabled = False
                     'MainToolBar.Items(3).Enabled = True
