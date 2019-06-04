@@ -234,19 +234,19 @@ Public Class ctrlHU_EmpDtlProfile
                             End If
 
                             'Get Province lst
-                            lstP = repNS.GetProvinceList(True)
+                            lstP = repNS.GetProvinceList(False)
                             FillRadCombobox(cbPROVINCEEMP_ID, lstP, "NAME", "ID")
 
                             If IsNumeric(empCV.PROVINCEEMP_ID) Then
                                 cbPROVINCEEMP_ID.SelectedValue = empCV.PROVINCEEMP_ID
                                 'cbPROVINCEEMP_ID.Text = empCV.PROVINCEEMP_NAME
-                                lstD = repNS.GetDistrictList(cbPROVINCEEMP_ID.SelectedValue, True)
+                                lstD = repNS.GetDistrictList(cbPROVINCEEMP_ID.SelectedValue, False)
                                 FillRadCombobox(cbDISTRICTEMP_ID, lstD, "NAME", "ID")
                             End If
                             If IsNumeric(empCV.DISTRICTEMP_ID) Then
                                 cbDISTRICTEMP_ID.SelectedValue = empCV.DISTRICTEMP_ID
                                 'cbDISTRICTEMP_ID.Text = empCV.DISTRICTEMP_NAME
-                                lstW = repNS.GetWardList(cbDISTRICTEMP_ID.SelectedValue, True)
+                                lstW = repNS.GetWardList(cbDISTRICTEMP_ID.SelectedValue, False)
                                 FillRadCombobox(cbWARDEMP_ID, lstW, "NAME", "ID")
                             End If
                             If IsNumeric(empCV.WARDEMP_ID) Then
