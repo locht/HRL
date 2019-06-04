@@ -918,13 +918,24 @@ Public Class ctrlHU_WageNewEdit
                     End If
                 End If
             Next
+            'Ngay hieu luc thay doi => load lai thang luong theo ngay hieu luc
+            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, SalaryInsurance, rnFactorSalary)
+            Dim dtData As DataTable = New DataTable()
+            Using rep As New ProfileRepository
+                dtData = rep.GetSalaryGroupCombo(rdEffectDate.SelectedDate, True)
+                If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
+                    FillRadCombobox(cbSalaryGroup, dtData, "NAME", "ID", True)
+                End If
+            End Using
+            dtSalaryGroup = dtData
+
             CalculatorSalary()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, SalaryInsurance.TextChanged, basicSalary.TextChanged, rnPercentSalary.TextChanged
+    Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, SalaryInsurance.TextChanged, rnPercentSalary.TextChanged
         Try
             CalculatorSalary()
         Catch ex As Exception
@@ -1244,7 +1255,7 @@ Public Class ctrlHU_WageNewEdit
                      Where row("ID").ToString = cbSalaryGroup.SelectedValue.ToString
                      Select row("ISHOSE")
                 If rs(0) = 0 Then
-                    SalaryInsurance.Value = basicSalary.Value
+                    basicSalary.Value = SalaryInsurance.Value
                 End If
             End If
         Catch ex As Exception
