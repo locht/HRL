@@ -611,6 +611,7 @@ Partial Class ProfileRepository
         Try
             objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
             objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            objEmployeeData.EMP_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
             objEmployeeData.TER_EFFECT_DATE = objTerminate.EFFECT_DATE
             objEmployeeData.TER_LAST_DATE = objTerminate.LAST_DATE
             If log IsNot Nothing Then
