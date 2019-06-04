@@ -1391,9 +1391,9 @@ Partial Public Class AttendanceRepository
                 query = query.Where(Function(f) f.p.IS_NB = _filter.IS_NB)
             End If
 
-            If _filter.TYPE_INPUT IsNot Nothing Then
-                query = query.Where(Function(f) f.p.TYPE_INPUT = _filter.TYPE_INPUT)
-            End If
+            'If _filter.TYPE_INPUT IsNot Nothing Then
+            '    query = query.Where(Function(f) f.p.TYPE_INPUT = _filter.TYPE_INPUT)
+            'End If
 
             Dim lst = query.Select(Function(p) New AT_REGISTER_OTDTO With {
                                        .ID = p.p.ID,

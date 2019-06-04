@@ -187,29 +187,29 @@ Public Class ctrlOtherList
                         Dim item = (From p In OtherLists Where p.ID = rgOtherList.SelectedValue).SingleOrDefault
                         If item IsNot Nothing Then
                             txtOtherListNameVN.Text = item.NAME_VN
-                            'txtRemark.Text = item.REMARK
+                            txtRemark.Text = item.REMARK
                             txtCode.Text = item.CODE
                         End If
                     Else
-                        ClearControlValue(txtOtherListNameVN, txtCode)
+                        ClearControlValue(txtOtherListNameVN, txtCode, txtRemark)
                     End If
                     txtOtherListNameVN.ReadOnly = True
                     txtCode.ReadOnly = True
                     txtCode.BackColor = Drawing.Color.White
-                    'txtRemark.ReadOnly = True
+                    txtRemark.ReadOnly = True
                     EnabledGridNotPostback(rgOtherList, True)
                     treeOtherListType.Enabled = True
                 Case CommonMessage.STATE_EDIT
                     txtOtherListNameVN.ReadOnly = False
                     txtCode.ReadOnly = True
                     txtCode.BackColor = Drawing.Color.Yellow
-                    'txtRemark.ReadOnly = False
+                    txtRemark.ReadOnly = False
                     EnabledGridNotPostback(rgOtherList, False)
                     treeOtherListType.Enabled = False
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgOtherList, False)
                     treeOtherListType.Enabled = False
-                    'txtRemark.ReadOnly = False
+                    txtRemark.ReadOnly = False
                     txtOtherListNameVN.ReadOnly = False
                     txtCode.ReadOnly = False
                     txtCode.BackColor = Drawing.Color.White
@@ -289,7 +289,7 @@ Public Class ctrlOtherList
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtOtherListNameVN)
-            'dic.Add("REMARK", txtRemark)
+            dic.Add("REMARK", txtRemark)
             Utilities.OnClientRowSelectedChanged(rgOtherList, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -387,7 +387,7 @@ Public Class ctrlOtherList
                         objOtherList.NAME_VN = txtOtherListNameVN.Text.Trim
                         objOtherList.NAME_EN = txtOtherListNameVN.Text.Trim
                         objOtherList.CODE = txtCode.Text.Trim
-                        'objOtherList.REMARK = txtRemark.Text.Trim
+                        objOtherList.REMARK = txtRemark.Text.Trim
                         objOtherList.TYPE_ID = Decimal.Parse(OtherListType)
                         objOtherList.TYPE_CODE = (From p In OtherListTypes Where p.ID = Decimal.Parse(OtherListType) Select p.CODE).FirstOrDefault
 
@@ -406,7 +406,7 @@ Public Class ctrlOtherList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     rgOtherList.Rebind()
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    ClearControlValue(txtCode, txtOtherListNameVN)
+                                    ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
                                     rgOtherList.SelectedIndexes.Clear()
                                 Else
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Warning)
@@ -425,7 +425,7 @@ Public Class ctrlOtherList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     rgOtherList.Rebind()
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    ClearControlValue(txtCode, txtOtherListNameVN)
+                                    ClearControlValue(txtCode, txtOtherListNameVN, txtRemark)
                                     rgOtherList.SelectedIndexes.Clear()
                                 Else
                                     Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Warning)
@@ -655,7 +655,7 @@ Public Class ctrlOtherList
                 Dim item As GridDataItem = rgOtherList.SelectedItems.Item(0)
                 txtCode.Text = item("CODE").Text
                 txtOtherListNameVN.Text = item("NAME_VN").Text
-                'txtRemark.Text = item("REMARK").Text.ToString.Replace("&nbsp;", "")
+                txtRemark.Text = item("REMARK").Text.ToString.Replace("&nbsp;", "")
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -313,6 +313,7 @@ Partial Class ProfileRepository
             Dim query = From p In Context.HU_TITLE_CONCURRENT
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From org In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From title In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                         From chosen In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = p.ORG_ID And
                                                                        f.USERNAME = log.Username.ToUpper)
                         Select New TitleConcurrentDTO With {
@@ -320,7 +321,7 @@ Partial Class ProfileRepository
                                    .ORG_ID = p.ORG_ID,
                                    .ORG_NAME = org.NAME_VN,
                                    .TITLE_ID = p.TITLE_ID,
-                                   .NAME = p.NAME,
+                                   .NAME = title.NAME_VN,
                                    .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                    .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                    .EMPLOYEE_NAME = e.FULLNAME_VN,

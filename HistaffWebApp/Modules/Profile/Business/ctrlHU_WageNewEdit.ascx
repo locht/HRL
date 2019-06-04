@@ -658,7 +658,7 @@
                 allowanceTotal += allowAmount;
             }
             salaryTotal.set_value(basicSalary + allowanceTotal);
-            salIn.set_value(basicSalary + allowanceIns);
+            //salIn.set_value(basicSalary + allowanceIns);
         }
         function OnValueChanged(sender, args) {
             var id = sender.get_id();

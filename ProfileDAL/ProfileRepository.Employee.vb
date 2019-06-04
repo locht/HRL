@@ -1579,6 +1579,9 @@ Partial Class ProfileRepository
                      From nguyenquan In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.PROVINCENQ_ID).DefaultIfEmpty
                      From thuongbinh In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.HANG_THUONG_BINH).DefaultIfEmpty
                      From gdchinhsach In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GD_CHINH_SACH).DefaultIfEmpty
+                    From bir_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
+                     From bir_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_ID = f.ID).DefaultIfEmpty
+                     From bir_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
             Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
@@ -1681,9 +1684,9 @@ Partial Class ProfileRepository
                          .HANG_THUONG_BINH = cv.HANG_THUONG_BINH,
                          .HANG_THUONG_BINH_NAME = thuongbinh.NAME_VN,
                          .PROVINCEEMP_ID = cv.PROVINCEEMP_ID,
-                         .PROVINCEEMP_NAME = emp_pro.NAME_VN,
-                         .DISTRICTEMP_NAME = emp_dis.NAME_VN,
-                         .WARDEMP_NAME = emp_ward.NAME_VN,
+                         .PROVINCEEMP_NAME = bir_pro.NAME_VN,
+                         .DISTRICTEMP_NAME = bir_dis.NAME_VN,
+                         .WARDEMP_NAME = bir_ward.NAME_VN,
                          .DISTRICTEMP_ID = cv.DISTRICTEMP_ID,
                          .WARDEMP_ID = cv.WARDEMP_ID,
                          .PROVINCENQ_ID = cv.PROVINCENQ_ID,
