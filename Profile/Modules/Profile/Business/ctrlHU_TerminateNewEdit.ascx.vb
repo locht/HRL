@@ -292,7 +292,8 @@ Public Class ctrlHU_TerminateNewEdit
                     ' phê duyệt và ko phê duyêt
                     If Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
                         Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
-                        RadPane2.Enabled = False
+                        EnableControlAll_Cus(False, RadPane2)
+                        btnDownload.Enabled = True
                         MainToolBar.Items(0).Enabled = False
                     End If
 

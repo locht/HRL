@@ -195,7 +195,6 @@ Public Class ctrlHU_CommendNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -1939,7 +1938,7 @@ Public Class ctrlHU_CommendNewEdit
                                          btnFindSinger, txtSignerTitle, cboCommendObj, cboCommend_Title,
                                          cboCommendType, cboCommendPay, rntxtMoney, cboCommendList,
                                          cboPeriod, chkTAX, cboPeriodTax, txtCommend_Detail, txtRemark, txtUpload,
-                                         btnUploadFile, btnDownload, cboForm, txtYear)
+                                         btnUploadFile, cboForm, txtYear)
                         Utilities.EnabledGrid(rgEmployee, False, False)
                         Utilities.EnabledGrid(rgOrg, False, False)
                     End If

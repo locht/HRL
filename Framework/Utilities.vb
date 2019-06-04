@@ -1296,6 +1296,69 @@ Public Class Utilities
 
         End Try
     End Sub
+
+    Public Shared Sub EnableControlAll_Cus(ByVal isEnable As Boolean, ByVal ctrPane As RadPane)
+        Try
+            For Each ctrl As Control In ctrPane.Controls
+
+                If TypeOf (ctrl) Is RadComboBox Then
+                    Dim c As RadComboBox = ctrl
+                    EnableRadCombo(c, isEnable)
+                End If
+                If TypeOf (ctrl) Is RadTextBox Then
+                    Dim c As RadTextBox = ctrl
+                    c.ReadOnly = Not isEnable
+                End If
+                If TypeOf (ctrl) Is RadNumericTextBox Then
+                    Dim c As RadNumericTextBox = ctrl
+                    c.ReadOnly = Not isEnable
+                End If
+                If TypeOf (ctrl) Is RadDatePicker Then
+                    Dim c As RadDatePicker = ctrl
+                    EnableRadDatePicker(c, isEnable)
+                End If
+                If TypeOf (ctrl) Is RadDateTimePicker Then
+                    Dim c As RadDateTimePicker = ctrl
+                    EnableRadDateTimePicker(c, isEnable)
+                End If
+                If TypeOf (ctrl) Is RadTimePicker Then
+                    Dim c As RadTimePicker = ctrl
+                    EnableRadTimePicker(c, isEnable)
+                End If
+                If TypeOf (ctrl) Is TextBox Then
+                    Dim c As TextBox = ctrl
+                    c.ReadOnly = Not isEnable
+                End If
+                If TypeOf (ctrl) Is CheckBox Then
+                    Dim c As CheckBox = ctrl
+                    c.Enabled = isEnable
+                End If
+                If TypeOf (ctrl) Is RadButton Then
+                    Dim c As RadButton = ctrl
+                    c.Enabled = isEnable
+                End If
+                If TypeOf (ctrl) Is Button Then
+                    Dim c As Button = ctrl
+                    c.Enabled = isEnable
+                End If
+                If TypeOf (ctrl) Is RadListBox Then
+                    Dim c As RadListBox = ctrl
+                    c.Enabled = isEnable
+                End If
+                If TypeOf (ctrl) Is RadMonthYearPicker Then
+                    Dim c As RadMonthYearPicker = ctrl
+                    c.Enabled = isEnable
+                End If
+                If TypeOf (ctrl) Is RadGrid Then
+                    Dim c As RadGrid = ctrl
+                    c.Enabled = isEnable
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Public Shared Sub SetValueComboBox(ByRef radComboBox As RadComboBox, ByVal value As Object, ByVal text As String)
         If value IsNot Nothing Then
             radComboBox.SelectedValue = value

@@ -301,7 +301,8 @@ Public Class ctrlHU_DisciplineNewEdit
                     rgEmployee.Rebind()
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
                         PanelEmployee.Enabled = False
-                        RadPane2.Enabled = False
+                        EnableControlAll_Cus(False, RadPane2)
+                        btnDownload.Enabled = True
                         CurrentState = CommonMessage.STATE_NORMAL
                         CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     End If

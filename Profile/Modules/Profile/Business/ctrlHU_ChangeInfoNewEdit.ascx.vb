@@ -385,8 +385,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     'rntxtTotal.Value = total
                     If Working.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
                         Working.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
-                        LeftPane.Enabled = False
+                        EnableControlAll_Cus(False, LeftPane)
                         MainToolBar.Items(0).Enabled = False
+                        btnDownload.Enabled = True
                     End If
 
                 Case "NormalView"
