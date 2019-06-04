@@ -410,7 +410,11 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function CALCULATE_ENTITLEMENT(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As UserLog) As Boolean
         <OperationContract()>
+        Function AT_ENTITLEMENT_PREV_HAVE(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As UserLog) As Boolean
+        <OperationContract()>
         Function CALCULATE_ENTITLEMENT_HOSE(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function CheckPeriodMonth(ByVal year As Integer, ByVal PeriodId As Integer, ByRef PeriodNext As Integer) As Boolean
         <OperationContract()>
         Function GetEntitlement(ByVal _filter As AT_ENTITLEMENTDTO,
                                   ByVal _param As ParamDTO,

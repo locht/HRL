@@ -136,6 +136,30 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function AT_ENTITLEMENT_PREV_HAVE(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As Framework.Data.UserLog) As Boolean Implements IAttendanceBusiness.AT_ENTITLEMENT_PREV_HAVE
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.AT_ENTITLEMENT_PREV_HAVE(param, listEmployeeId, log)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function CheckPeriodMonth(ByVal year As Integer, ByVal PeriodId As Integer, ByRef PeriodNext As Integer) As Boolean Implements IAttendanceBusiness.CheckPeriodMonth
+
+            Using rep As New AttendanceRepository
+                Try
+                    Dim lst = rep.CheckPeriodMonth(year, PeriodId, PeriodNext)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean Implements IAttendanceBusiness.ImportEntitlementLeave
 
             Using rep As New AttendanceRepository

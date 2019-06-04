@@ -126,7 +126,7 @@ Public Class ctrlEntitlement
                                        ToolbarItem.Submit)
             MainToolBar.Items(0).Text = Translate("Tổng hợp")
             MainToolBar.Items(2).Text = Translate("Import số ngày ngoài cơ quan")
-            MainToolBar.Items(3).Text = Translate("Kết xuất")
+            MainToolBar.Items(3).Text = Translate("Kết phép")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -315,6 +315,42 @@ Public Class ctrlEntitlement
                     End If
                     ctrlUpload.isMultiple = True
                     ctrlUpload.Show()
+
+                Case TOOLBARITEM_SUBMIT
+                    Dim rep As New AttendanceRepository
+                    If String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                        ShowMessage(Translate("Bạn phải chọn kỳ công tính"), Utilities.NotifyType.Error)
+                        Exit Sub
+                    End If
+
+                    Dim periodnext As Integer
+
+                    If rep.CheckPeriodMonth(cboYear.SelectedValue, cboPeriod.SelectedValue, periodnext) Then
+                        ShowMessage(Translate("Bạn phải chọn kỳ công tháng 12 để kết phép."), Utilities.NotifyType.Error)
+                        Exit Sub
+                    End If
+
+                    Dim _param1 = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
+                                                        .PERIOD_ID = periodnext, _
+                                                        .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+                    If Not rep.IS_PERIODSTATUS(_param1) Then
+                        ShowMessage(Translate("Bảng Công tháng 1 năm sau đã đóng không thể thực hiện chức năng này."), Utilities.NotifyType.Error)
+                        Exit Sub
+                    End If
+
+
+                    Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
+                                                    .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue), _
+                                                    .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+                    Dim lsEmployee As New List(Of Decimal?)
+
+                    If rep.AT_ENTITLEMENT_PREV_HAVE(_param, lsEmployee) Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                        Refresh("UpdateView")
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                        Exit Sub
+                    End If
             End Select
             ' 
             _myLog.WriteLog(_myLog._info, _classPath, method,

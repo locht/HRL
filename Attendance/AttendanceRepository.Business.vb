@@ -718,6 +718,28 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
+    Public Function CheckPeriodMonth(ByVal year As Integer, ByVal PeriodId As Integer, ByRef PeriodNext As Integer) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CheckPeriodMonth(year, PeriodId, PeriodNext)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function AT_ENTITLEMENT_PREV_HAVE(ByVal param As Attendance.AttendanceBusiness.ParamDTO, ByVal listEmployeeId As List(Of Decimal?)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.AT_ENTITLEMENT_PREV_HAVE(param, listEmployeeId, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
     Public Function ImportEntitlementLeave(ByVal P_DOCXML As String, ByVal P_USER As String, ByVal P_PERIOD As Decimal) As Boolean
         Using rep As New AttendanceBusinessClient
             Try

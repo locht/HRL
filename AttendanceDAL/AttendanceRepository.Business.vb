@@ -4447,6 +4447,53 @@ Partial Public Class AttendanceRepository
         End Try
     End Function
 
+    Public Function AT_ENTITLEMENT_PREV_HAVE(ByVal param As ParamDTO, ByVal listEmployeeId As List(Of Decimal?), ByVal log As UserLog) As Boolean
+        Try
+            Dim obj As New AT_ACTION_LOGDTO
+            obj.PERIOD_ID = param.PERIOD_ID
+            Using cls As New DataAccess.NonQueryData
+                cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.AT_ENTITLEMENT_PREV_HAVE",
+                                               New With {.P_USERNAME = log.Username.ToUpper,
+                                                         .P_ORG_ID = param.ORG_ID,
+                                                         .P_PERIOD_ID = param.PERIOD_ID,
+                                                         .P_ISDISSOLVE = param.IS_DISSOLVE})
+            End Using
+
+            LOG_AT(param, log, listEmployeeId, "KẾT NGHỈ PHÉP", obj, param.ORG_ID)
+
+            Return True
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+
+        End Try
+    End Function
+
+    Public Function CheckPeriodMonth(ByVal year As Integer, ByVal PeriodId As Integer, ByRef PeriodNext As Integer) As Boolean
+        Try
+
+            Dim query = (From p In Context.AT_PERIOD
+                         Where p.ID = PeriodId And p.MONTH = 12).FirstOrDefault
+
+
+            If query IsNot Nothing Then
+
+                Dim query1 = (From p In Context.AT_PERIOD
+                         Where p.YEAR = year + 1 And p.MONTH = 1).FirstOrDefault
+                PeriodNext = query1.ID
+                Return False
+            Else
+                PeriodNext = 0S
+                Return True
+            End If
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+            Throw ex
+        End Try
+
+    End Function
+
     Public Function GetEntitlement(ByVal _filter As AT_ENTITLEMENTDTO,
                                   ByVal _param As ParamDTO,
                                       Optional ByRef Total As Integer = 0,
