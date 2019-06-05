@@ -98,8 +98,8 @@
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" SortExpression="OT_370" ItemStyle-HorizontalAlign="Center" />
                                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do làm thêm %>" DataField="NOTE"
                                          HeaderStyle-Width="200px" ItemStyle-Width="200px" UniqueName="NOTE" SortExpression="NOTE" />
-                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Người cập nhật %>" DataField="MODIFIED_BY"
-                                         HeaderStyle-Width="140px" ItemStyle-Width="140px" UniqueName="MODIFIED_BY" SortExpression="MODIFIED_BY" />
+                                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Người cập nhật %>" DataField="MODIFIED_NAME"
+                                         HeaderStyle-Width="140px" ItemStyle-Width="140px" UniqueName="MODIFIED_NAME" SortExpression="MODIFIED_NAME" />
                                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cập nhật %>" DataField="MODIFIED_DATE"
                                          HeaderStyle-Width="100px" ItemStyle-Width="100px" UniqueName="MODIFIED_DATE" SortExpression="MODIFIED_DATE"
                                         DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Center" />

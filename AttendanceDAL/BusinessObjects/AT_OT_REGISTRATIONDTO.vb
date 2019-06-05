@@ -40,6 +40,7 @@
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+    Public Property MODIFIED_NAME As String
     Public Property P_LANG As String
     Public Property P_USER As String
     Public Property P_MANAGER As String

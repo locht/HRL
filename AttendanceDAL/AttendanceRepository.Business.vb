@@ -6201,6 +6201,7 @@ Partial Public Class AttendanceRepository
                     dto.MODIFIED_BY = row("MODIFIED_BY")
                     dto.MODIFIED_DATE = row("MODIFIED_DATE")
                     dto.MODIFIED_LOG = row("MODIFIED_LOG")
+                    dto.MODIFIED_NAME = row("FULLNAME")
                     lst.Add(dto)
                 Next
                 If _filter.REGIST_DATE_FROM.HasValue And _filter.REGIST_DATE_TO.HasValue Then
