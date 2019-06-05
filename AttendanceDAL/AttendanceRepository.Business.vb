@@ -4672,10 +4672,11 @@ Partial Public Class AttendanceRepository
                                        .TOTAL_HAVE1 = p.en.TOTAL_HAVE1,
                                        .TIME_OUTSIDE_COMPANY = p.en.TIME_OUTSIDE_COMPANY,
                                        .TIME_SENIORITY = p.en.TIME_SENIORITY,
-                                       .MONTH_SENIORITY_CHANGE = p.en.TIME_SENIORITY_AFTER_CHANGE,
+                                       .MONTH_SENIORITY_CHANGE = p.en.MONTH_SENIORITY_CHANGE,
                                        .TIME_SENIORITY_AFTER_CHANGE = p.en.TIME_SENIORITY_AFTER_CHANGE,
                                        .SENIORITY = p.en.SENIORITY,
-                                       .PREVTOTAL_HAVE = p.en.PREVTOTAL_HAVE})
+                                       .PREVTOTAL_HAVE = p.en.PREVTOTAL_HAVE,
+                                       .SENIORITY_EDIT = p.en.SENIORITY_EDIT})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

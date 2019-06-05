@@ -86,10 +86,10 @@
                                 DataField="MONTH_SENIORITY_CHANGE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
                                 SortExpression="MONTH_SENIORITY_CHANGE" UniqueName="MONTH_SENIORITY_CHANGE" HeaderStyle-Width="100px">
                             </tlk:GridNumericColumn>
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Thời gian thâm niên sau điều chỉnh %>"
-                                DataField="TIME_SENIORITY_AFTER_CHANGE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"
-                                SortExpression="TIME_SENIORITY_AFTER_CHANGE" UniqueName="TIME_SENIORITY_AFTER_CHANGE" HeaderStyle-Width="100px">
-                            </tlk:GridNumericColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thời gian thâm niên sau điều chỉnh %>"
+                                DataField="SENIORITY_EDIT" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="SENIORITY_EDIT" UniqueName="SENIORITY_EDIT" HeaderStyle-Width="120px">
+                            </tlk:GridBoundColumn>
 
                             <tlk:GridNumericColumn HeaderText="<%$ Translate:Phép năm trước còn lại chuyển sang %>"
                                 DataField="PREV_HAVE" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n2}"

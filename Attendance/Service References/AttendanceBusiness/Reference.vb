@@ -16131,6 +16131,9 @@ Namespace AttendanceBusiness
         Private SENIORITYHAVEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SENIORITY_EDITField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -16998,6 +17001,19 @@ Namespace AttendanceBusiness
                 If (Me.SENIORITYHAVEField.Equals(value) <> true) Then
                     Me.SENIORITYHAVEField = value
                     Me.RaisePropertyChanged("SENIORITYHAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SENIORITY_EDIT() As String
+            Get
+                Return Me.SENIORITY_EDITField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SENIORITY_EDITField, value) <> true) Then
+                    Me.SENIORITY_EDITField = value
+                    Me.RaisePropertyChanged("SENIORITY_EDIT")
                 End If
             End Set
         End Property
