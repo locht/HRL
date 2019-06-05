@@ -439,6 +439,8 @@ Partial Class ProfileRepository
             Context.SaveChanges(log)
             If objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And DateTime.Now >= objTerminate.EFFECT_DATE Then
                 ApproveTerminate(objTerminate, log)
+            Else
+                ApproveTerminate_Customer(objTerminate, log)
             End If
             InsertOrUpdateAssetByTerminate(objTerminate, log)
             gID = objTerminateData.ID
@@ -611,9 +613,26 @@ Partial Class ProfileRepository
         Try
             objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
             objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
-            objEmployeeData.EMP_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
             objEmployeeData.TER_EFFECT_DATE = objTerminate.EFFECT_DATE
             objEmployeeData.TER_LAST_DATE = objTerminate.LAST_DATE
+            If log IsNot Nothing Then
+                Context.SaveChanges(log)
+            Else
+                Context.SaveChanges()
+            End If
+
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function ApproveTerminate_Customer(ByVal objTerminate As TerminateDTO, ByVal log As UserLog) As Boolean
+        Dim objEmployeeData As HU_EMPLOYEE
+        Try
+            objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
+            objEmployeeData.EMP_STATUS = ProfileCommon.OT_WORK_STATUS.EMP_STATUS
+            objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
             If log IsNot Nothing Then
                 Context.SaveChanges(log)
             Else

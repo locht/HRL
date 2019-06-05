@@ -1318,7 +1318,7 @@ Public Class ctrlHU_ContractTemplete
                     EnableControlAll_Cus(False, NORMAL)
                     btnDownload.Enabled = True
                     MainToolBar.Items(0).Enabled = False
-                    MainToolBar.Items(1).Enabled = False
+                    MainToolBar.Items(1).Enabled = True
                     'MainToolBar.Items(3).Enabled = True
                 End If
             End If
