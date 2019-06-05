@@ -1527,6 +1527,10 @@
                     cbo = $find('<%= cboNav_District.ClientID %>');
                     value = cbo.get_value();
                     break;
+                case '<%= cboNative.ClientID %>':
+                    cbo = $find('<%= cboNative.ClientID %>');
+                    value = cbo.get_value();
+                    break;
                 default:
                     break;
             }

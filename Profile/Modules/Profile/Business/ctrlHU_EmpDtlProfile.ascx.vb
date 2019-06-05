@@ -1174,44 +1174,44 @@ Public Class ctrlHU_EmpDtlProfile
                                    Where p("NAME") IsNot DBNull.Value AndAlso
                                   p("NAME").ToString.ToUpper = sText.ToUpper)
 
-                    If dtExist.Count = 0 Then
-                        Dim dtFilter = (From p In dtData
-                                        Where p("NAME") IsNot DBNull.Value AndAlso
-                                  p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+                    'If dtExist.Count = 0 Then
+                    Dim dtFilter = (From p In dtData
+                                    Where p("NAME") IsNot DBNull.Value AndAlso
+                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
 
-                        If dtFilter.Count > 0 Then
-                            dtData = dtFilter.CopyToDataTable
-                        Else
-                            dtData = dtData.Clone
-                        End If
-
-                        Dim itemOffset As Integer = e.NumberOfItems
-                        Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
-                        e.EndOfItems = endOffset = dtData.Rows.Count
-                        sender.Items.Clear()
-                        For i As Integer = itemOffset To endOffset - 1
-                            Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
-                            Select Case sender.ID
-                                Case cboTitle.ID
-                                    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
-                            End Select
-                            sender.Items.Add(radItem)
-                        Next
+                    If dtFilter.Count > 0 Then
+                        dtData = dtFilter.CopyToDataTable
                     Else
-
-                        Dim itemOffset As Integer = e.NumberOfItems
-                        Dim endOffset As Integer = dtData.Rows.Count
-                        e.EndOfItems = True
-                        sender.Items.Clear()
-                        For i As Integer = itemOffset To endOffset - 1
-                            Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
-                            Select Case sender.ID
-                                Case cboTitle.ID
-                                    radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
-                            End Select
-                            sender.Items.Add(radItem)
-                        Next
+                        dtData = dtData.Clone
                     End If
+
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+                    sender.Items.Clear()
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        Select Case sender.ID
+                            Case cboTitle.ID
+                                radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                        End Select
+                        sender.Items.Add(radItem)
+                    Next
+                    'Else
+
+                    '    Dim itemOffset As Integer = e.NumberOfItems
+                    '    Dim endOffset As Integer = dtData.Rows.Count
+                    '    e.EndOfItems = True
+                    '    sender.Items.Clear()
+                    '    For i As Integer = itemOffset To endOffset - 1
+                    '        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                    '        Select Case sender.ID
+                    '            Case cboTitle.ID
+                    '                radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                    '        End Select
+                    '        sender.Items.Add(radItem)
+                    '    Next
+                    'End If
                 Else
                     Dim itemOffset As Integer = e.NumberOfItems
                     Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
