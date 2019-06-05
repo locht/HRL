@@ -124,12 +124,12 @@ Namespace AttendanceBusiness.ServiceContracts
 
 #Region "Dang ky lam them"
         <OperationContract()>
-        Function GetRegisterOT(ByVal _filter As AT_REGISTER_OTDTO,
+        Function GetRegisterOT(ByVal _filter As AT_OT_REGISTRATIONDTO,
                                       ByVal _param As ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                      Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_REGISTER_OTDTO)
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_OT_REGISTRATIONDTO)
         <OperationContract()>
         Function InsertRegisterOT(ByVal objRegisterOT As AT_REGISTER_OTDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         <OperationContract()>

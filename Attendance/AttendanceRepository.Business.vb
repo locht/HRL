@@ -152,12 +152,12 @@ Partial Class AttendanceRepository
 #End Region
 
 #Region "lam them"
-    Function GetRegisterOT(ByVal _filter As AT_REGISTER_OTDTO,
+    Function GetRegisterOT(ByVal _filter As AT_OT_REGISTRATIONDTO,
                                       ByVal _param As Attendance.AttendanceBusiness.ParamDTO,
                                       Optional ByRef Total As Integer = 0,
                                       Optional ByVal PageIndex As Integer = 0,
                                       Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                      Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_REGISTER_OTDTO)
+                                      Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_OT_REGISTRATIONDTO)
         Using rep As New AttendanceBusinessClient
             Try
                 Dim lst = rep.GetRegisterOT(_filter, _param, Total, PageIndex, PageSize, Sorts, Me.Log)

@@ -13,11 +13,11 @@ Public Class ctrlApproveOT
     Public Property AjaxManagerId As String
 
 #Region "Properties"
-    Private Property REGISTER_OT As List(Of AT_REGISTER_OTDTO)
+    Private Property REGISTER_OT As List(Of AT_OT_REGISTRATIONDTO)
         Get
             Return ViewState(Me.ID & "_REGISTER_OT")
         End Get
-        Set(ByVal value As List(Of AT_REGISTER_OTDTO))
+        Set(ByVal value As List(Of AT_OT_REGISTRATIONDTO))
             ViewState(Me.ID & "_REGISTER_OT") = value
         End Set
     End Property
@@ -385,7 +385,7 @@ Public Class ctrlApproveOT
 
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
-        Dim obj As New AT_REGISTER_OTDTO
+        Dim obj As New AT_OT_REGISTRATIONDTO
         Try
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgDeclaresOT, obj)
@@ -395,17 +395,17 @@ Public Class ctrlApproveOT
             Dim Sorts As String = rgDeclaresOT.MasterTableView.SortExpressions.GetSortString()
 
             If rdtungay.SelectedDate.HasValue Then
-                obj.FROM_DATE = rdtungay.SelectedDate
+                obj.REGIST_DATE_FROM = rdtungay.SelectedDate
             End If
             If rdDenngay.SelectedDate.HasValue Then
-                obj.END_DATE = rdDenngay.SelectedDate
+                obj.REGIST_DATE_TO = rdDenngay.SelectedDate
             End If
-            If chkChecknghiViec.Checked Then
-                obj.IS_TERMINATE = True
-            Else
-                obj.IS_TERMINATE = False
-            End If
-            obj.IS_NB = False
+            'If chkChecknghiViec.Checked Then
+            '    obj.IS_TERMINATE = True
+            'Else
+            '    obj.IS_TERMINATE = False
+            'End If
+            'obj.IS_NB = False
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.REGISTER_OT = rep.GetRegisterOT(obj, _param, MaximumRows,

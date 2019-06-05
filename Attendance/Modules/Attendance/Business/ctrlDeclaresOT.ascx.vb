@@ -16,11 +16,11 @@ Public Class ctrlDeclaresOT
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
 #Region "Properties"
-    Private Property REGISTER_OT As List(Of AT_REGISTER_OTDTO)
+    Private Property REGISTER_OT As List(Of AT_OT_REGISTRATIONDTO)
         Get
             Return ViewState(Me.ID & "_REGISTER_OT")
         End Get
-        Set(ByVal value As List(Of AT_REGISTER_OTDTO))
+        Set(ByVal value As List(Of AT_OT_REGISTRATIONDTO))
             ViewState(Me.ID & "_REGISTER_OT") = value
         End Set
     End Property
@@ -814,7 +814,7 @@ Public Class ctrlDeclaresOT
     ''' <remarks></remarks>
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New AttendanceRepository
-        Dim obj As New AT_REGISTER_OTDTO
+        Dim obj As New AT_OT_REGISTRATIONDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
@@ -828,26 +828,26 @@ Public Class ctrlDeclaresOT
             If rdtungay.SelectedDate Is Nothing Then
                 rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
             End If
-            obj.FROM_DATE = rdtungay.SelectedDate
+            obj.REGIST_DATE_FROM = rdtungay.SelectedDate
             If rdDenngay.SelectedDate.HasValue Then
-                obj.END_DATE = rdDenngay.SelectedDate
+                obj.REGIST_DATE_TO = rdDenngay.SelectedDate
             Else
                 If (cboYear.SelectedValue IsNot Nothing) Then
                     If (Common.Common.GetShortDatePattern().Trim.ToUpper.Contains("DD/MM/YYYY")) Then
-                        obj.END_DATE = CType("31/01/" & cboYear.SelectedValue.Trim.ToString, Date)
+                        obj.REGIST_DATE_TO = CType("31/01/" & cboYear.SelectedValue.Trim.ToString, Date)
                     Else
-                        obj.END_DATE = CType("01/31/" & cboYear.SelectedValue.Trim.ToString, Date)
+                        obj.REGIST_DATE_TO = CType("01/31/" & cboYear.SelectedValue.Trim.ToString, Date)
                     End If
-                    rdDenngay.SelectedDate = obj.END_DATE
+                    rdDenngay.SelectedDate = obj.REGIST_DATE_TO
                 End If
                 rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.Trim.ToString, Date)
             End If
-            If chkChecknghiViec.Checked Then
-                obj.IS_TERMINATE = True
-            Else
-                obj.IS_TERMINATE = False
-            End If
-            obj.TYPE_INPUT = False
+            'If chkChecknghiViec.Checked Then
+            '    obj.IS_TERMINATE = True
+            'Else
+            '    obj.IS_TERMINATE = False
+            'End If
+            'obj.TYPE_INPUT = False
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.REGISTER_OT = rep.GetRegisterOT(obj, _param, MaximumRows, rgDeclaresOT.CurrentPageIndex, rgDeclaresOT.PageSize, "CREATED_DATE desc")

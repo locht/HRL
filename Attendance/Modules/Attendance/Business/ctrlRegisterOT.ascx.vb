@@ -47,11 +47,11 @@ Public Class ctrlRegisterOT
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Property REGISTER_OT As List(Of AT_REGISTER_OTDTO)
+    Private Property REGISTER_OT As List(Of AT_OT_REGISTRATIONDTO)
         Get
             Return ViewState(Me.ID & "_REGISTER_OT")
         End Get
-        Set(ByVal value As List(Of AT_REGISTER_OTDTO))
+        Set(ByVal value As List(Of AT_OT_REGISTRATIONDTO))
             ViewState(Me.ID & "_REGISTER_OT") = value
         End Set
     End Property
@@ -993,7 +993,7 @@ Public Class ctrlRegisterOT
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New AttendanceRepository
-        Dim obj As New AT_REGISTER_OTDTO
+        Dim obj As New AT_OT_REGISTRATIONDTO
 
         Try
             Dim MaximumRows As Integer
@@ -1008,18 +1008,18 @@ Public Class ctrlRegisterOT
             '    obj.EMPLOYEE_CODE = txtName.Text
             'End If
             If rdtungay.SelectedDate.HasValue Then
-                obj.FROM_DATE = rdtungay.SelectedDate
+                obj.REGIST_DATE_FROM = rdtungay.SelectedDate
             End If
 
             If rdDenngay.SelectedDate.HasValue Then
-                obj.END_DATE = rdDenngay.SelectedDate
+                obj.REGIST_DATE_TO = rdDenngay.SelectedDate
             End If
 
-            If chkChecknghiViec.Checked Then
-                obj.IS_TERMINATE = True
-            End If
+            'If chkChecknghiViec.Checked Then
+            '    obj.IS_TERMINATE = True
+            'End If
 
-            obj.TYPE_INPUT = True
+            'obj.TYPE_INPUT = True
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.REGISTER_OT = rep.GetRegisterOT(obj, _param, MaximumRows, rgRegisterOT.CurrentPageIndex, rgRegisterOT.PageSize, Sorts)

@@ -30634,7 +30634,7 @@ Namespace AttendanceBusiness
         Function DeleteDataInout(ByVal lstDataInout As System.Collections.Generic.List(Of AttendanceBusiness.AT_DATAINOUTDTO)) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetRegisterOT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetRegisterOTResponse")>  _
-        Function GetRegisterOT(ByVal _filter As AttendanceBusiness.AT_REGISTER_OTDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_REGISTER_OTDTO)
+        Function GetRegisterOT(ByVal _filter As AttendanceBusiness.AT_OT_REGISTRATIONDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_OT_REGISTRATIONDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/InsertRegisterOT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/InsertRegisterOTResponse")>  _
         Function InsertRegisterOT(ByVal objRegisterOT As AttendanceBusiness.AT_REGISTER_OTDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -32101,7 +32101,7 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.DeleteDataInout(lstDataInout)
         End Function
         
-        Public Function GetRegisterOT(ByVal _filter As AttendanceBusiness.AT_REGISTER_OTDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_REGISTER_OTDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetRegisterOT
+        Public Function GetRegisterOT(ByVal _filter As AttendanceBusiness.AT_OT_REGISTRATIONDTO, ByVal _param As AttendanceBusiness.ParamDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of AttendanceBusiness.AT_OT_REGISTRATIONDTO) Implements AttendanceBusiness.IAttendanceBusiness.GetRegisterOT
             Return MyBase.Channel.GetRegisterOT(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
         End Function
         

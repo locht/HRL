@@ -1364,12 +1364,12 @@ Partial Public Class AttendanceRepository
 #End Region
 
 #Region "Lam thêm"
-    Public Function GetRegisterOT(ByVal _filter As AT_REGISTER_OTDTO,
+    Public Function GetRegisterOT(ByVal _filter As AT_OT_REGISTRATIONDTO,
                                      ByVal _param As ParamDTO,
                                      Optional ByRef Total As Integer = 0,
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
-                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_REGISTER_OTDTO)
+                                     Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_OT_REGISTRATIONDTO)
         Try
             Using cls As New DataAccess.QueryData
                 cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
@@ -1377,116 +1377,103 @@ Partial Public Class AttendanceRepository
                                            .P_ORGID = _param.ORG_ID,
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
-            Dim query = From p In Context.AT_REGISTER_OT
+            Dim query = From p In Context.AT_OT_REGISTRATION
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From c In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
-                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.HS_OT And f.TYPE_CODE = "HS_OT").DefaultIfEmpty
-                        From typeot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TYPE_OT And f.TYPE_CODE = "TYPE_OT").DefaultIfEmpty
-                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                        From typeot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OT_TYPE_ID).DefaultIfEmpty
+                        From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
+                        From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
+                        Where p.STATUS = 1
+            'From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
 
 
-            If _filter.IS_NB IsNot Nothing Then
-                query = query.Where(Function(f) f.p.IS_NB = _filter.IS_NB)
-            End If
+            'If _filter.IS_NB IsNot Nothing Then
+            '    query = query.Where(Function(f) f.p.IS_NB = _filter.IS_NB)
+            'End If
 
             'If _filter.TYPE_INPUT IsNot Nothing Then
             '    query = query.Where(Function(f) f.p.TYPE_INPUT = _filter.TYPE_INPUT)
             'End If
 
-            Dim lst = query.Select(Function(p) New AT_REGISTER_OTDTO With {
+            Dim lst = query.Select(Function(p) New AT_OT_REGISTRATIONDTO With {
                                        .ID = p.p.ID,
-                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
-                                       .VN_FULLNAME = p.e.FULLNAME_VN,
                                        .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                       .FULLNAME = p.e.FULLNAME_VN,
+                                       .TITLE_ID = p.t.ID,
                                        .TITLE_NAME = p.t.NAME_VN,
-                                       .ORG_NAME = p.o.NAME_VN,
-                                       .ORG_DESC = p.o.DESCRIPTION_PATH,
-                                       .TYPE_OT_NAME = p.typeot.NAME_VN,
-                                       .ORG_ID = p.e.ORG_ID,
-                                       .IS_NB = p.p.IS_NB,
-                                       .WORKINGDAY = p.p.WORKINGDAY,
-                                       .FROM_HOUR = p.p.FROM_HOUR,
-                                       .TO_HOUR = p.p.TO_HOUR,
-                                       .BREAK_HOUR = p.p.BREAK_HOUR,
-                                       .STAFF_RANK_NAME = p.c.NAME,
+                                       .DEPARTMENT_NAME = p.o.NAME_VN,
+                                       .DEPARTMENT_ID = p.o.ID,
+                                       .SIGN_ID = p.p.SIGN_ID,
+                                       .SIGN_CODE = p.p.SIGN_CODE,
+                                       .OT_TYPE_ID = p.p.OT_TYPE_ID,
+                                       .OT_TYPE_NAME = p.typeot.NAME_VN,
+                                       .REGIST_DATE = p.p.REGIST_DATE,
+                                       .ID_REGGROUP = p.p.ID_REGGROUP,
+                                       .TOTAL_OT = p.p.TOTAL_OT,
+                                       .OT_100 = p.p.OT_100,
+                                       .OT_150 = p.p.OT_150,
+                                       .OT_200 = p.p.OT_200,
+                                       .OT_210 = p.p.OT_210,
+                                       .OT_270 = p.p.OT_270,
+                                       .OT_300 = p.p.OT_300,
+                                       .OT_370 = p.p.OT_370,
+                                       .FROM_AM = p.p.FROM_AM,
+                                       .TO_AM = p.p.TO_AM,
+                                       .FROM_PM = p.p.FROM_PM,
+                                       .TO_PM = p.p.TO_PM,
+                                       .STATUS = p.p.STATUS,
+                                       .STATUS_NAME = p.status.NAME_VN,
+                                       .REASON = p.p.REASON,
                                        .NOTE = p.p.NOTE,
-                                       .HOUR = p.p.HOUR,
-                                       .HS_OT_NAME = p.ot.CODE,
-                                       .WORK_STATUS = p.e.WORK_STATUS,
-                                       .APPROVE_DATE = p.p.APPROVE_DATE,
-                                       .APPROVE_HOUR = If(p.p.APPROVE_ID = 0, p.p.HOUR, p.p.APPROVE_HOUR),
-                                       .APPROVE_ID = p.p.APPROVE_ID,
-                                       .APPROVE_NAME = If(p.p.APPROVE_ID = 0, "Chờ phê duyệt",
-                                                        If(p.p.APPROVE_ID = 1, "Phê duyệt", "Không phê duyệt")),
-                                       .TER_LAST_DATE = p.e.TER_LAST_DATE,
-                                       .CREATED_BY = p.p.CREATED_BY,
-                                       .CREATED_DATE = p.p.CREATED_DATE,
-                                       .CREATED_LOG = p.p.CREATED_LOG,
+                                       .IS_DELETED = p.p.IS_DELETED,
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                       .MODIFIED_NAME = p.s.FULLNAME,
+                                       .CREATED_DATE = p.p.CREATED_DATE})
 
 
-            If _filter.IS_TERMINATE Then
-                lst = lst.Where(Function(f) f.WORK_STATUS = 257)
-                If _filter.WORKINGDAY.HasValue Then
-                    lst = lst.Where(Function(f) f.TER_LAST_DATE <= _filter.WORKINGDAY)
-                Else
-                    lst = lst.Where(Function(f) f.TER_LAST_DATE <= Date.Now)
-                End If
-            End If
+            'If _filter.IS_TERMINATE Then
+            '    lst = lst.Where(Function(f) f.WORK_STATUS = 257)
+            '    If _filter.WORKINGDAY.HasValue Then
+            '        lst = lst.Where(Function(f) f.TER_LAST_DATE <= _filter.WORKINGDAY)
+            '    Else
+            '        lst = lst.Where(Function(f) f.TER_LAST_DATE <= Date.Now)
+            '    End If
+            'End If
             'Dim dateNow = Date.Now.Date
             'If Not _filter.IS_TERMINATE Then
             '    lst = lst.Where(Function(f) f.WORK_STATUS <> 257 Or (f.WORK_STATUS = 257 And f.TER_LAST_DATE >= dateNow) Or f.WORK_STATUS Is Nothing)
             'End If
-            If _filter.FROM_DATE.HasValue Then
-                lst = lst.Where(Function(f) f.WORKINGDAY >= _filter.FROM_DATE)
+            If _filter.REGIST_DATE_FROM.HasValue Then
+                lst = lst.Where(Function(f) f.REGIST_DATE >= _filter.REGIST_DATE_FROM)
             End If
-            If _filter.END_DATE.HasValue Then
-                lst = lst.Where(Function(f) f.WORKINGDAY <= _filter.END_DATE)
+            If _filter.REGIST_DATE_TO.HasValue Then
+                lst = lst.Where(Function(f) f.REGIST_DATE <= _filter.REGIST_DATE_TO)
             End If
             If Not String.IsNullOrEmpty(_filter.EMPLOYEE_CODE) Then
                 lst = lst.Where(Function(f) f.EMPLOYEE_CODE.ToLower().Contains(_filter.EMPLOYEE_CODE.ToLower()))
             End If
-            If Not String.IsNullOrEmpty(_filter.VN_FULLNAME) Then
-                lst = lst.Where(Function(f) f.VN_FULLNAME.ToLower().Contains(_filter.VN_FULLNAME.ToLower()))
-            End If
-            If Not String.IsNullOrEmpty(_filter.ORG_NAME) Then
-                lst = lst.Where(Function(f) f.ORG_NAME.ToLower().Contains(_filter.ORG_NAME.ToLower()))
+            If Not String.IsNullOrEmpty(_filter.FULLNAME) Then
+                lst = lst.Where(Function(f) f.FULLNAME.ToLower().Contains(_filter.FULLNAME.ToLower()))
             End If
             If Not String.IsNullOrEmpty(_filter.TITLE_NAME) Then
                 lst = lst.Where(Function(f) f.TITLE_NAME.ToLower().Contains(_filter.TITLE_NAME.ToLower()))
             End If
-            If Not String.IsNullOrEmpty(_filter.STAFF_RANK_NAME) Then
-                lst = lst.Where(Function(f) f.STAFF_RANK_NAME.ToLower().Contains(_filter.STAFF_RANK_NAME.ToLower()))
-            End If
-            If Not String.IsNullOrEmpty(_filter.HS_OT_NAME) Then
-                lst = lst.Where(Function(f) f.HS_OT_NAME.ToLower().Contains(_filter.HS_OT_NAME.ToLower()))
-            End If
-            If _filter.WORKINGDAY.HasValue Then
-                lst = lst.Where(Function(f) f.WORKINGDAY = _filter.WORKINGDAY)
-            End If
-            If _filter.FROM_HOUR.HasValue Then
-                lst = lst.Where(Function(f) f.FROM_HOUR = _filter.FROM_HOUR)
-            End If
-            If _filter.TO_HOUR.HasValue Then
-                lst = lst.Where(Function(f) f.TO_HOUR = _filter.TO_HOUR)
+            If _filter.REGIST_DATE.HasValue Then
+                lst = lst.Where(Function(f) f.REGIST_DATE = _filter.REGIST_DATE)
             End If
             If Not String.IsNullOrEmpty(_filter.NOTE) Then
                 lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
-            End If
-            If Not String.IsNullOrEmpty(_filter.TYPE_OT_NAME) Then
-                lst = lst.Where(Function(f) f.TYPE_OT_NAME.ToLower().Contains(_filter.TYPE_OT_NAME.ToLower()))
             End If
 
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
-
-            Dim lstTime = lst.ToList
-            Return lstTime
+            Return lst.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
