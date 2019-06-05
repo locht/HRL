@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 03/06/2019 3:07:11 PM
--- Generated from EDMX file: E:\histaffhcm-5\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 6/5/2019 2:14:47 PM
+-- Generated from EDMX file: E:\Source\SOURCE_CORE\histaffhcm\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1546,7 +1546,8 @@ CREATE TABLE "dbo"."AT_ENTITLEMENT" (
    "TIME_SENIORITY" NUMBER(38,0) NULL,
    "MONTH_SENIORITY_CHANGE" NUMBER(38,0) NULL,
    "TIME_SENIORITY_AFTER_CHANGE" NUMBER(38,0) NULL,
-   "SENIORITY" NCLOB NULL
+   "SENIORITY" NCLOB NULL,
+   "SENIORITY_EDIT" NCLOB NULL
 );
 
 -- Creating table 'SE_EMPLOYEE_CHOSEN'

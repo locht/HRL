@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3defbaba-bdf1-4243-829c-3354ee1e32eb")>
+<Assembly: EdmSchemaAttribute("cd747ba8-eb69-4f92-867c-5aa9f119965a")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -9079,6 +9079,31 @@ Public Partial Class AT_ENTITLEMENT
     End Sub
 
     Private Partial Sub OnSENIORITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SENIORITY_EDIT() As Global.System.String
+        Get
+            Return _SENIORITY_EDIT
+        End Get
+        Set
+            OnSENIORITY_EDITChanging(value)
+            ReportPropertyChanging("SENIORITY_EDIT")
+            _SENIORITY_EDIT = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("SENIORITY_EDIT")
+            OnSENIORITY_EDITChanged()
+        End Set
+    End Property
+
+    Private _SENIORITY_EDIT As Global.System.String
+    Private Partial Sub OnSENIORITY_EDITChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSENIORITY_EDITChanged()
     End Sub
 
     #End Region
