@@ -6156,7 +6156,7 @@ Partial Public Class AttendanceRepository
                     dto.SIGN_ID = row("SIGN_ID")
                     dto.SIGN_CODE = row("SIGN_CODE")
                     dto.OT_TYPE_ID = row("OT_TYPE_ID")
-                    dto.OT_TYPE_NAME = row("OT_TYPE_NAME")
+                    dto.OT_TYPE_NAME = If(row("OT_TYPE_NAME").ToString <> "", row("OT_TYPE_NAME"), Nothing)
                     dto.ID_REGGROUP = row("ID_REGGROUP")
                     dto.TOTAL_OT = row("TOTAL_OT")
                     dto.OT_100 = row("OT_100")
