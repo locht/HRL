@@ -12211,6 +12211,12 @@ Namespace AttendanceBusiness
         Private FROM_AM_MNField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROM_HOUR_AMField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FROM_HOUR_PMField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_PMField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -12329,6 +12335,12 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_AM_MNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TO_HOUR_AMField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TO_HOUR_PMField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TO_PMField As System.Nullable(Of Decimal)
@@ -12459,6 +12471,32 @@ Namespace AttendanceBusiness
                 If (Me.FROM_AM_MNField.Equals(value) <> true) Then
                     Me.FROM_AM_MNField = value
                     Me.RaisePropertyChanged("FROM_AM_MN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROM_HOUR_AM() As String
+            Get
+                Return Me.FROM_HOUR_AMField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FROM_HOUR_AMField, value) <> true) Then
+                    Me.FROM_HOUR_AMField = value
+                    Me.RaisePropertyChanged("FROM_HOUR_AM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FROM_HOUR_PM() As String
+            Get
+                Return Me.FROM_HOUR_PMField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FROM_HOUR_PMField, value) <> true) Then
+                    Me.FROM_HOUR_PMField = value
+                    Me.RaisePropertyChanged("FROM_HOUR_PM")
                 End If
             End Set
         End Property
@@ -12979,6 +13017,32 @@ Namespace AttendanceBusiness
                 If (Me.TO_AM_MNField.Equals(value) <> true) Then
                     Me.TO_AM_MNField = value
                     Me.RaisePropertyChanged("TO_AM_MN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TO_HOUR_AM() As String
+            Get
+                Return Me.TO_HOUR_AMField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TO_HOUR_AMField, value) <> true) Then
+                    Me.TO_HOUR_AMField = value
+                    Me.RaisePropertyChanged("TO_HOUR_AM")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TO_HOUR_PM() As String
+            Get
+                Return Me.TO_HOUR_PMField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TO_HOUR_PMField, value) <> true) Then
+                    Me.TO_HOUR_PMField = value
+                    Me.RaisePropertyChanged("TO_HOUR_PM")
                 End If
             End Set
         End Property

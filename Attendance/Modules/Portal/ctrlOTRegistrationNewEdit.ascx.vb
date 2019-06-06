@@ -434,11 +434,11 @@ Public Class ctrlOTRegistrationNewEdit
                                 UpdateControlState()
                                 Exit Sub
                             End If
-                            If String.IsNullOrEmpty(txtSignCode.Text) Then
-                                ShowMessage(Translate("Chưa có ký hiệu ca, vui lòng đăng ký ca."), NotifyType.Warning)
-                                UpdateControlState()
-                                Exit Sub
-                            End If
+                            'If String.IsNullOrEmpty(txtSignCode.Text) Then
+                            '    ShowMessage(Translate("Chưa có ký hiệu ca, vui lòng đăng ký ca."), NotifyType.Warning)
+                            '    UpdateControlState()
+                            '    Exit Sub
+                            'End If
                             If isInsert Then
                                 rep.InsertOtRegistration(obj, hidID.Value)
                                 obj.ID = hidID.Value
