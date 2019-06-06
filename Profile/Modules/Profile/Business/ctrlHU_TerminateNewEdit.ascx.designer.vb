@@ -401,6 +401,15 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents rdEffectDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''cval_EffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cval_EffectDate As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''lbLastDate control.
     '''</summary>
     '''<remarks>
@@ -491,6 +500,15 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents cboTYPE_TERMINATE As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''cval_TYPE_TERMINATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cval_TYPE_TERMINATE As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''rgReason control.
     '''</summary>
     '''<remarks>
@@ -534,6 +552,15 @@ Partial Public Class ctrlHU_TerminateNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboInsStatus As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cval_InsStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cval_InsStatus As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lbRemark control.

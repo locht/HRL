@@ -166,6 +166,8 @@
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server">
                     </tlk:RadDatePicker>
+                     <asp:RequiredFieldValidator ID="reqEffectDate" ControlToValidate="rdEffectDate" runat="server"
+                        ErrorMessage="Bạn phải nhập ngày thôi việc." ToolTip="Bạn phải nhập ngày thôi việc."> </asp:RequiredFieldValidator>
                 </td>
                 <%--
                 <td>
@@ -190,9 +192,9 @@
                     <%--<asp:RequiredFieldValidator ID="reqLastDate" ControlToValidate="rdLastDate" runat="server"
                         ErrorMessage="<%$ Translate: Bạn phải nhập ngày nghỉ thực tế. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày nghỉ thực tế. %>"> </asp:RequiredFieldValidator>
                     --%>
-                    <asp:CustomValidator ID="cval_LastDate" runat="server" ControlToValidate="rdLastDate" ErrorMessage="Bạn phải nhập ngày nghỉ thực tế."
-                        ToolTip="Bạn phải nhập ngày nghỉ thực tế.">
-                    </asp:CustomValidator>
+                    <asp:RequiredFieldValidator ID="reqLastDate" ControlToValidate="rdLastDate" runat="server"
+                        ErrorMessage="Bạn phải nhập ngày nghỉ thực tế." ToolTip="Bạn phải nhập ngày nghỉ thực tế."> </asp:RequiredFieldValidator>
+
                     <asp:CustomValidator ID="cval_LastDate_SendDate" runat="server" ErrorMessage="Ngày nghỉ thực tế phải lớn hơn ngày nộp đơn."
                         ToolTip="Ngày nghỉ thực tế phải lớn hơn ngày nộp đơn.">
                     </asp:CustomValidator>
@@ -220,6 +222,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboTYPE_TERMINATE" runat="server" ReadOnly="False" SkinID="ReadOnly">
                     </tlk:RadComboBox>
+                      <asp:RequiredFieldValidator ID="reqTYPE_TERMINATE" ControlToValidate="cboTYPE_TERMINATE" runat="server"
+                        ErrorMessage="Bạn phải nhập loại nghỉ." ToolTip="Bạn phải nhập loại nghỉ."> </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -255,6 +259,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboInsStatus" runat="server">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqInsStatus" ControlToValidate="cboInsStatus" runat="server"
+                        ErrorMessage= "Bạn phải nhập tình trạng sổ BHXH." ToolTip="Bạn phải nhập tình trạng sổ BHXH"> </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -634,9 +640,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cusStatus" runat="server" ErrorMessage="Bạn phải nhập Trạng tháỉ"
-                        ToolTip="Bạn phải nhập Trạng tháỉ" ClientValidationFunction="cusStatus">
-                    </asp:CustomValidator>
+                    <asp:RequiredFieldValidator ID="reqStatus" ControlToValidate="cboStatus" runat="server"
+                        ErrorMessage= "Bạn phải nhập Trạng tháỉ." ToolTip="Bạn phải nhập Trạng tháỉ."> </asp:RequiredFieldValidator>
                    <%-- <asp:CustomValidator ID="cvalStatus" ControlToValidate="cboStatus" runat="server" ErrorMessage="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Trạng thái không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>--%>

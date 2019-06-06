@@ -50,6 +50,51 @@ Partial Public Class ctrlRemindConfig
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''radProbation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radProbation As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''chkProbation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkProbation As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rntxtProbation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtProbation As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''cvalProbation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalProbation As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''radCONTRACT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radCONTRACT As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''chkCONTRACT control.
     '''</summary>
     '''<remarks>
@@ -75,6 +120,15 @@ Partial Public Class ctrlRemindConfig
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalCONTRACT As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''radBIRTHDAY control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radBIRTHDAY As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''chkBIRTHDAY control.
@@ -104,22 +158,13 @@ Partial Public Class ctrlRemindConfig
     Protected WithEvents cvalBIRTHDAY As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''chkNoPaper control.
+    '''radVISA control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkNoPaper As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''rntxtNOPAPER control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rntxtNOPAPER As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents radVISA As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''chkVisa control.
@@ -149,6 +194,15 @@ Partial Public Class ctrlRemindConfig
     Protected WithEvents valnmVISA As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''radWORKING control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radWORKING As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''chkWorking control.
     '''</summary>
     '''<remarks>
@@ -165,6 +219,15 @@ Partial Public Class ctrlRemindConfig
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtWORKING As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''radLABOR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radLABOR As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''chkLabor control.
@@ -185,6 +248,15 @@ Partial Public Class ctrlRemindConfig
     Protected WithEvents rntxtLABOR As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''radCERTIFICATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radCERTIFICATE As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''chkCertificate control.
     '''</summary>
     '''<remarks>
@@ -201,6 +273,15 @@ Partial Public Class ctrlRemindConfig
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtCERTIFICATE As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''radTERMINATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radTERMINATE As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''chkTerminate control.
@@ -221,6 +302,15 @@ Partial Public Class ctrlRemindConfig
     Protected WithEvents rntxtTERMINATE As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''radTERMINATEDEBT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radTERMINATEDEBT As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''chkTerminateDebt control.
     '''</summary>
     '''<remarks>
@@ -237,6 +327,141 @@ Partial Public Class ctrlRemindConfig
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rntxtTERMINATEDEBT As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''radNOPAPER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radNOPAPER As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''chkNoPaper control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkNoPaper As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rntxtNOPAPER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtNOPAPER As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''radApprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radApprove As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''chkApprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkApprove As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rntxtApprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtApprove As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''cvalApprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalApprove As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''radApproveHDLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radApproveHDLD As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''chkApproveHDLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkApproveHDLD As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rntxtApproveHDLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtApproveHDLD As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''cvalApproveHDLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalApproveHDLD As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''radApproveTHHD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radApproveTHHD As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''chkApproveTHHD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkApproveTHHD As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rntxtApproveTHHD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtApproveTHHD As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''cvalApproveTHHD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalApproveTHHD As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''RadCodeBlock1 control.
