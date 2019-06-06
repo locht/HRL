@@ -4,17 +4,40 @@
     <tlk:RadPane ID="RadPane1" runat="server">
         <tlk:RadToolBar ID="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
-        <table class="table-form">
-            <tr>
-                <td>
-                    <fieldset>
+         <asp:Panel ID="radProbation" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkProbation" runat="server" Text="<%$ Translate: Nhân viên hết hạn hợp đồng thử việc%>"
+                        onclick="CheckChangeProbation(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtProbation" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="cvalProbation" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn hợp đồng thử việc. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn hợp đồng thử việc. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>
+         <asp:Panel ID="radCONTRACT" runat="server" CssClass = "Pane"> 
+            <fieldset>
                         <legend>
                             <asp:CheckBox ID="chkCONTRACT" runat="server" Text="<%$ Translate: Nhân viên hết hạn hợp đồng %>"
                                 onclick="CheckChangeContract(this)" />
                         </legend>
                         <table class="table-form">
                             <tr>
-                                <td class="lb">
+                                <td class="lb lbRemind">
                                     <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
                                 </td>
                                 <td>
@@ -30,16 +53,16 @@
                             </tr>
                         </table>
                     </fieldset>
-                </td>
-                <td>
-                    <fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radBIRTHDAY" runat="server"  CssClass = "Pane"> 
+            <fieldset>
                         <legend>
                             <asp:CheckBox ID="chkBIRTHDAY" runat="server" Text="<%$ Translate: Nhân viên sắp đến sinh nhật %>"
                                 onclick="CheckChangeBirthday(this)" />
                         </legend>
                         <table class="table-form">
                             <tr>
-                                <td class="lb">
+                                <td class="lb lbRemind">
                                     <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
                                 </td>
                                 <td>
@@ -55,129 +78,107 @@
                             </tr>
                         </table>
                     </fieldset>
-                </td>
-                <td >
-                    <fieldset>
-                        <legend>
-                            <asp:CheckBox ID="chkNoPaper" runat="server" Text="<%$ Translate: Nhân viên chưa nộp đủ giấy tờ khi tiếp nhận %>"
-                                onclick="CheckChangeNoPaper(this)" />
-                        </legend>
-                        <table class="table-form">
-                            <tr>
-                                <td class="lb">
-                                    <%# Translate("Thời gian báo sau")%>
-                                </td>
-                                <td>
-                                    <tlk:RadNumericTextBox ID="rntxtNOPAPER" runat="server" SkinID="Number">
-                                    </tlk:RadNumericTextBox>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-            </tr>
-            <tr>
-                <td style="display:none; ">
-                    <fieldset>
-                        <legend>
-                            <asp:CheckBox ID="chkVisa" runat="server" Text="<%$ Translate: Nhân viên hết hạn Visa%>"
-                                onclick="CheckChangeVisa(this)" />
-                        </legend>
-                        <table class="table-form">
-                            <tr>
-                                <td class="lb">
-                                    <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
-                                </td>
-                                <td>
-                                    <tlk:RadNumericTextBox ID="rntxtVISA" runat="server" SkinID="Number">
-                                    </tlk:RadNumericTextBox>
-                                </td>
-                                <td>
-                                    (<%# Translate("ngày")%>)
-                                    <asp:CustomValidator ID="valnmVISA" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa, hộ chiếu. %>"
-                                        ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa, hộ chiếu. %>">
-                                    </asp:CustomValidator>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-                <td style="display:none; ">
-                    <fieldset>
-                        <legend>
-                            <asp:CheckBox ID="chkWorking" runat="server" Text="<%$ Translate: Nhân viên hết hạn tờ trình %>"
-                                onclick="CheckChangeWorking(this)" />
-                        </legend>
-                        <table class="table-form">
-                            <tr>
-                                <td class="lb">
-                                    <%# Translate("Thời gian báo trước")%>
-                                </td>
-                                <td>
-                                    <tlk:RadNumericTextBox ID="rntxtWORKING" runat="server" SkinID="Number">
-                                    </tlk:RadNumericTextBox>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-                <td style="display:none; ">
-                    <fieldset>
-                        <legend>
-                            <asp:CheckBox ID="chkLabor" runat="server" Text="<%$ Translate: Hết hạn giấy phép lao động  %>"
-                                onclick="CheckChangeLabor(this)" />
-                        </legend>
-                        <table class="table-form">
-                            <tr>
-                                <td class="lb">
-                                    <%# Translate("Thời gian báo trước")%>
-                                </td>
-                                <td>
-                                    <tlk:RadNumericTextBox ID="rntxtLABOR" runat="server" SkinID="Number">
-                                    </tlk:RadNumericTextBox>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-            </tr>
-            <tr>
-                <td style="display:none; ">
-                    <fieldset>
-                        <legend>
-                            <asp:CheckBox ID="chkCertificate" runat="server" Text="<%$ Translate: Hết hạn chứng chỉ lao động  %>"
-                                onclick="CheckChangeCertificate(this)" />
-                        </legend>
-                        <table class="table-form">
-                            <tr>
-                                <td class="lb">
-                                    <%# Translate("Thời gian báo trước")%>
-                                </td>
-                                <td>
-                                    <tlk:RadNumericTextBox ID="rntxtCERTIFICATE" runat="server" SkinID="Number">
-                                    </tlk:RadNumericTextBox>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </td>
-                <td>
-                    <fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radVISA" runat="server" CssClass = "Pane">
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkVisa" runat="server" Text="<%$ Translate: Nhân viên hết hạn Visa%>"
+                        onclick="CheckChangeVisa(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtVISA" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="valnmVISA" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa, hộ chiếu. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn visa, hộ chiếu. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radWORKING" runat="server" CssClass = "Pane">
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkWorking" runat="server" Text="<%$ Translate: Nhân viên hết hạn tờ trình %>"
+                        onclick="CheckChangeWorking(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtWORKING" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radLABOR" runat="server" CssClass = "Pane">
+         <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkLabor" runat="server" Text="<%$ Translate: Nhân viên hết hạn giấy phép lao động  %>"
+                        onclick="CheckChangeLabor(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtLABOR" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radCERTIFICATE" runat="server" CssClass = "Pane">
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkCertificate" runat="server" Text="<%$ Translate: Nhân viên hết hạn chứng chỉ lao động  %>"
+                        onclick="CheckChangeCertificate(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtCERTIFICATE" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radTERMINATE" runat="server" CssClass = "Pane"> 
+            <fieldset>
                         <legend>
                             <asp:CheckBox ID="chkTerminate" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc trong tháng %>"
                                 onclick="CheckChangeTerminate(this)" />
                         </legend>
                         <table class="table-form">
                             <tr>
-                                <td class="lb">
+                                <td class="lb lbRemind">
                                     <%# Translate("Thời gian báo trước")%>
                                 </td>
                                 <td>
@@ -185,34 +186,130 @@
                                     </tlk:RadNumericTextBox>
                                 </td>
                                 <td>
+                                    (<%# Translate("ngày")%>)
                                 </td>
                             </tr>
                         </table>
                     </fieldset>
-                </td>
-                <td style="display:none; ">
-                    <fieldset>
+         </asp:Panel>
+         <asp:Panel ID="radTERMINATEDEBT" runat="server" CssClass = "Pane">
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkTerminateDebt" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc chưa bàn giao hoặc còn thiếu công nợ %>"
+                        onclick="CheckChangeTerminateDebt(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtTERMINATEDEBT" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+         </asp:Panel> 
+         <asp:Panel ID="radNOPAPER" runat="server" CssClass = "Pane"> 
+            <fieldset>
                         <legend>
-                            <asp:CheckBox ID="chkTerminateDebt" runat="server" Text="<%$ Translate: Nhân viên nghỉ việc chưa bàn giao hoặc còn thiếu công nợ %>"
-                                onclick="CheckChangeTerminateDebt(this)" />
+                            <asp:CheckBox ID="chkNoPaper" runat="server" Text="<%$ Translate: Nhân viên chưa nộp đủ giấy tờ khi tiếp nhận %>" />
                         </legend>
-                        <table class="table-form">
+                        <table class="table-form" style="visibility:hidden; ">
                             <tr>
-                                <td class="lb">
-                                    <%# Translate("Thời gian báo trước")%>
+                                <td class="lb lbRemind">
+                                    <%# Translate("Thời gian báo sau")%>
                                 </td>
                                 <td>
-                                    <tlk:RadNumericTextBox ID="rntxtTERMINATEDEBT" runat="server" SkinID="Number">
+                                    <tlk:RadNumericTextBox ID="rntxtNOPAPER" runat="server" SkinID="Number">
                                     </tlk:RadNumericTextBox>
                                 </td>
                                 <td>
+                                    (<%# Translate("ngày")%>)
                                 </td>
                             </tr>
                         </table>
                     </fieldset>
-                </td>
-            </tr>
-        </table>
+         </asp:Panel>       
+         <asp:Panel ID="radApprove" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkApprove" runat="server" Text="<%$ Translate: Nhân viên đến hạn bổ nhiệm lại chức vụ%>"
+                        onclick="CheckChangeApprove(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtApprove" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="cvalApprove" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên đến hạn bổ nhiệm lại chức vụ . %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên đến hạn bổ nhiệm lại chức vụ. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>
+        <asp:Panel ID="radApproveHDLD" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkApproveHDLD" runat="server" Text="<%$ Translate: Nhân viên đến hạn ký lại HĐLĐ%>"
+                        onclick="CheckChangeApproveHDLD(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtApproveHDLD" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="cvalApproveHDLD" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên đến hạn ký lại HĐLĐ . %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên đến hạn ký lại HĐLĐ. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel> 
+        <asp:Panel ID="radApproveTHHD" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkApproveTHHD" runat="server" Text="<%$ Translate: Nhân viên hết hạn tạm hoãn HĐ.%>"
+                        onclick="CheckChangeApproveTHHD(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtApproveTHHD" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="cvalApproveTHHD" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn tạm hoãn HĐ. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên hết hạn tạm hoãn HĐ. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel> 
     </tlk:RadPane>
 </tlk:RadSplitter>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
@@ -302,6 +399,40 @@
                 $find("<%=rntxtLABOR.ClientID %>").disable();
             }
         }
+        function CheckChangeApprove(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtApprove.ClientID %>").enable();
+                $find("<%=rntxtApprove.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtApprove.ClientID %>").clear();
+                $find("<%=rntxtApprove.ClientID %>").disable();
+            }
+        }
+        function CheckChangeApproveHDLD(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtApproveHDLD.ClientID %>").enable();
+                $find("<%=rntxtApproveHDLD.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtApproveHDLD.ClientID %>").clear();
+                $find("<%=rntxtApproveHDLD.ClientID %>").disable();
+            }
+        }
+        function CheckChangeApproveTHHD(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtApproveTHHD.ClientID %>").enable();
+                $find("<%=rntxtApproveTHHD.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtApproveTHHD.ClientID %>").clear();
+                $find("<%=rntxtApproveTHHD.ClientID %>").disable();
+            }
+        }
 
     </script>
+    <style>
+        .Pane
+        {
+            width:33%;
+            float:left
+        }
+    </style>
 </tlk:RadCodeBlock>

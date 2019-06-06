@@ -21,6 +21,8 @@ Public Class Site
     Dim probationRemind As Integer
     Dim retireRemind As Integer
 
+    Dim approveRemind As Integer
+
     Dim workingRemind As Integer
     Dim terminateRemind As Integer
     Dim terminateDebtRemind As Integer
@@ -377,6 +379,14 @@ Public Class Site
             worPermitRemind = CommonConfig.ReminderLabor
             certificateRemind = CommonConfig.ReminderCertificate
 
+            approveRemind = CommonConfig.ReminderApproveDays
+
+            If approveRemind <> 0 Then
+                dApproveRemind.Visible = True
+            Else
+                dApproveRemind.Visible = False
+            End If
+
             If probationRemind <> 0 Then
                 dProbationRemind.Visible = True
             Else
@@ -462,12 +472,18 @@ Public Class Site
                                                contractRemind.ToString & "," & _
                                                birthdayRemind.ToString & "," & _
                                                terminateRemind.ToString & "," & _
-                                               noPaperRemind.ToString
+                                               noPaperRemind.ToString & "," & _
+                                               approveRemind.ToString
                                                )
                     'For Each item In RemindList
                     '    item.REMIND_NAME = Translate(item.REMIND_NAME)
                     'Next
                 End If
+                'Nhân viên đến hạn bổ nhiệm lại chức vụ
+                Dim listApproveNVBN = From p In RemindList Where p.REMIND_TYPE = 21
+                ltrApprove.DataSource = listApproveNVBN
+                ltrApprove.DataBind()
+                lblApprove.Text = Utilities.ObjToInt(listApproveNVBN.Count)
                 'Nhân viên sắp hết hạn hợp đồng
                 Dim listApproveDMVS = From p In RemindList Where p.REMIND_TYPE = 1
                 ltrWLEO.DataSource = listApproveDMVS

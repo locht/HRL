@@ -28,6 +28,11 @@ Public Class ctrlRemindConfig
                                        ToolbarItem.Seperator, _
                                        ToolbarItem.Cancel)
             CType(Me.MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+            End If
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -183,6 +188,36 @@ Public Class ctrlRemindConfig
                 rntxtLABOR.Value = CommonConfig.ReminderLabor
             End If
 
+            If CommonConfig.ReminderApproveDays = 0 Then
+                chkApprove.Checked = False
+                rntxtApprove.Enabled = False
+                rntxtApprove.Value = Nothing
+            Else
+                chkApprove.Checked = True
+                rntxtApprove.Enabled = True
+                rntxtApprove.Value = CommonConfig.ReminderApproveDays
+            End If
+
+            If CommonConfig.ReminderApproveHDLDDays = 0 Then
+                chkApproveHDLD.Checked = False
+                rntxtApproveHDLD.Enabled = False
+                rntxtApproveHDLD.Value = Nothing
+            Else
+                chkApproveHDLD.Checked = True
+                rntxtApproveHDLD.Enabled = True
+                rntxtApproveHDLD.Value = CommonConfig.ReminderApproveHDLDDays
+            End If
+
+            If CommonConfig.ReminderApproveTHHDDays = 0 Then
+                chkApproveTHHD.Checked = False
+                rntxtApproveTHHD.Enabled = False
+                rntxtApproveTHHD.Value = Nothing
+            Else
+                chkApproveTHHD.Checked = True
+                rntxtApproveTHHD.Enabled = True
+                rntxtApproveTHHD.Value = CommonConfig.ReminderApproveTHHDDays
+            End If
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                       CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -301,6 +336,30 @@ Public Class ctrlRemindConfig
                             rntxtLABOR.Enabled = True
 
                         End If
+                        If chkApprove.Checked Then
+                            CommonConfig.ReminderApproveDays = rntxtApprove.Value
+                            rntxtApprove.Enabled = True
+                        Else
+                            CommonConfig.ReminderApproveDays = 0
+                            rntxtApprove.Enabled = False
+                        End If
+
+                        If chkApproveHDLD.Checked Then
+                            CommonConfig.ReminderApproveHDLDDays = rntxtApproveHDLD.Value
+                            rntxtApproveHDLD.Enabled = True
+                        Else
+                            CommonConfig.ReminderApproveHDLDDays = 0
+                            rntxtApproveHDLD.Enabled = False
+                        End If
+
+                        If chkApproveTHHD.Checked Then
+                            CommonConfig.ReminderApproveTHHDDays = rntxtApproveTHHD.Value
+                            rntxtApproveTHHD.Enabled = True
+                        Else
+                            CommonConfig.ReminderApproveTHHDDays = 0
+                            rntxtApproveTHHD.Enabled = False
+                        End If
+
                         CommonConfig.SaveReminderPerUser()
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
                         Common.Common.Reminder = Nothing
@@ -350,6 +409,57 @@ Public Class ctrlRemindConfig
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If chkCONTRACT.Checked And (rntxtCONTRACT.Value Is Nothing OrElse rntxtCONTRACT.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+
+    End Sub
+    Private Sub cvalApprove_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalApprove.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkApprove.Checked And (rntxtApprove.Value Is Nothing OrElse rntxtApprove.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+
+    End Sub
+    Private Sub cvalApproveHDLD_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalApproveHDLD.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkApproveHDLD.Checked And (rntxtApproveHDLD.Value Is Nothing OrElse rntxtApproveHDLD.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+
+    End Sub
+    Private Sub cvalApproveTHHD_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalApproveTHHD.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkApproveTHHD.Checked And (rntxtApproveTHHD.Value Is Nothing OrElse rntxtApproveTHHD.Value = 0) Then
                 args.IsValid = False
             Else
                 args.IsValid = True
