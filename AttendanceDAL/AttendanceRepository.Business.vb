@@ -1420,6 +1420,10 @@ Partial Public Class AttendanceRepository
                                        .TO_AM_MN = p.p.TO_AM_MN,
                                        .FROM_PM_MN = p.p.FROM_PM_MN,
                                        .TO_PM_MN = p.p.TO_PM_MN,
+                                       .FROM_HOUR_AM = "",
+                                       .TO_HOUR_AM = "",
+                                       .FROM_HOUR_PM = "",
+                                       .TO_HOUR_PM = "",
                                        .TOTAL_OT = p.p.TOTAL_OT,
                                        .OT_100 = p.p.OT_100,
                                        .OT_150 = p.p.OT_150,
@@ -1474,19 +1478,22 @@ Partial Public Class AttendanceRepository
             End If
 
             'For Each item As AT_OT_REGISTRATIONDTO In lst
-            '    Dim obj As AT_OT_REGISTRATIONDTO = lst.Where(Function(f) f.ID = item.ID).FirstOrDefault
-            '    obj.FROM_HOUR_AM = If(item.FROM_AM IsNot Nothing, item.FROM_AM.ToString + ":" + If(item.FROM_AM_MN = 30, item.FROM_AM_MN.ToString, "00"), Nothing)
-            '    obj.TO_HOUR_AM = If(item.TO_AM IsNot Nothing, item.TO_AM.ToString + ":" + If(item.TO_AM_MN = 30, item.TO_AM_MN.ToString, "00"), Nothing)
-            '    obj.FROM_HOUR_PM = If(item.FROM_PM IsNot Nothing, item.FROM_PM.ToString + ":" + If(item.FROM_PM_MN = 30, item.FROM_PM_MN.ToString, "00"), Nothing)
-            '    obj.TO_HOUR_PM = If(item.TO_PM IsNot Nothing, item.TO_PM.ToString + ":" + If(item.TO_PM_MN = 30, item.TO_PM_MN.ToString, "00"), Nothing)
+            '    item.FROM_HOUR_AM = If(item.FROM_AM IsNot Nothing, item.FROM_AM.ToString + ":" + If(item.FROM_AM_MN = 30, item.FROM_AM_MN.ToString, "00"), "")
+            '    item.TO_HOUR_AM = If(item.TO_AM IsNot Nothing, item.TO_AM.ToString + ":" + If(item.TO_AM_MN = 30, item.TO_AM_MN.ToString, "00"), "")
+            '    item.FROM_HOUR_PM = If(item.FROM_PM IsNot Nothing, item.FROM_PM.ToString + ":" + If(item.FROM_PM_MN = 30, item.FROM_PM_MN.ToString, "00"), "")
+            '    item.TO_HOUR_PM = If(item.TO_PM IsNot Nothing, item.TO_PM.ToString + ":" + If(item.TO_PM_MN = 30, item.TO_PM_MN.ToString, "00"), "")
             'Next
-            lst.ForEach(Function(f) f.FROM_HOUR_AM = If(f.FROM_AM IsNot Nothing, f.FROM_AM.ToString + ":" + If(f.FROM_AM_MN = 30, f.FROM_AM_MN.ToString, "00"), Nothing) _
-                            And f.TO_HOUR_AM = If(f.TO_AM IsNot Nothing, f.TO_AM.ToString + ":" + If(f.TO_AM_MN = 30, f.TO_AM_MN.ToString, "00"), Nothing) _
-                            And f.FROM_HOUR_PM = If(f.FROM_PM IsNot Nothing, f.FROM_PM.ToString + ":" + If(f.FROM_PM_MN = 30, f.FROM_PM_MN.ToString, "00"), Nothing) _
-                            And f.TO_HOUR_PM = If(f.TO_PM IsNot Nothing, f.TO_PM.ToString + ":" + If(f.TO_PM_MN = 30, f.TO_PM_MN.ToString, "00"), Nothing))
-            lst = lst.OrderBy(Sorts)
-            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
-            Return lst.ToList
+            Dim tempLst = lst.ToList
+            For i = 0 To tempLst.Count - 1
+                tempLst(i).FROM_HOUR_AM = If(tempLst(i).FROM_AM IsNot Nothing, tempLst(i).FROM_AM.ToString + ":" + If(tempLst(i).FROM_AM_MN = 30, tempLst(i).FROM_AM_MN.ToString, "00"), "")
+                tempLst(i).TO_HOUR_AM = If(tempLst(i).TO_AM IsNot Nothing, tempLst(i).TO_AM.ToString + ":" + If(tempLst(i).TO_AM_MN = 30, tempLst(i).TO_AM_MN.ToString, "00"), "")
+                tempLst(i).FROM_HOUR_PM = If(tempLst(i).FROM_PM IsNot Nothing, tempLst(i).FROM_PM.ToString + ":" + If(tempLst(i).FROM_PM_MN = 30, tempLst(i).FROM_PM_MN.ToString, "00"), "")
+                tempLst(i).TO_HOUR_PM = If(tempLst(i).TO_PM IsNot Nothing, tempLst(i).TO_PM.ToString + ":" + If(tempLst(i).TO_PM_MN = 30, tempLst(i).TO_PM_MN.ToString, "00"), "")
+            Next
+
+            'tempLst = tempLst.OrderBy(Sorts)
+            'tempLst = tempLst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return tempLst
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
