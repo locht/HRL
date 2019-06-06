@@ -104,9 +104,8 @@
                 <asp:Label ID="lbADJUST_MONTH_TN2" runat="server" Text="Số tháng điều chỉnh"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="txtADJUST_MONTH_TN2" runat="server">
-                    <NumberFormat DecimalDigits="1" />
-                    </tlk:RadNumericTextBox>
+                    <tlk:RadTextBox ID="txtADJUST_MONTH_TN2" runat="server" EnabledStyle-HorizontalAlign="Right">
+                    </tlk:RadTextBox>
                 </td>
             </tr>
             <tr>

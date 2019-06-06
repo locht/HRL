@@ -290,7 +290,7 @@ Partial Public Class ctrlDeclareEntitlementNBNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtADJUST_MONTH_TN2 As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtADJUST_MONTH_TN2 As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbREMARK_TN control.
