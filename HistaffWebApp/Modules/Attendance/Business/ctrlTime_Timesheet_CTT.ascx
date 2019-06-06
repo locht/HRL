@@ -77,7 +77,7 @@
                 </table>
                 <table class="table-form">
                     <tr>
-                        <td>Ghi chú: </td>
+                        <%--<td>Ghi chú: </td>
                         <td>
                             <tlk:radtextbox id="txtRed" runat="server" backcolor="Red" readonly="true" width="40px">
                             </tlk:radtextbox>
@@ -87,7 +87,7 @@
                             <tlk:radtextbox id="txtBlue" runat="server" backcolor="LightBlue" readonly="true" width="40px">
                             </tlk:radtextbox>
                             Tăng ca
-                        </td>
+                        </td>--%>
                         <%--<td>
                             <asp:RadioButton GroupName="Color" ID="chkAll" Checked="true" runat="server" />
                             <%# Translate("All")%>

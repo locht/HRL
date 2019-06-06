@@ -270,15 +270,15 @@ Public Class ctrlLeaveRegistrationByManager
 
             If isFull Then
                 If Sorts IsNot Nothing Then
-                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
+                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
                 Else
-                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
+                    Return rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
+                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
                 Else
-                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", vbNull, cboStatus.SelectedValue), txtYear.Text)
+                    Me.LeaveMasters = rep.PRS_GETLEAVE_BY_APPROVE(EmployeeID, If(cboStatus.SelectedValue = "", 5, cboStatus.SelectedValue), txtYear.Text)
                 End If
             End If
             rgMain.MasterTableView.FilterExpression = String.Empty
