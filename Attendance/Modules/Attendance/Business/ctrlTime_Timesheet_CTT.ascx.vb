@@ -16,6 +16,91 @@ Public Class ctrlTime_Timesheet_CTT
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
 #Region "Property"
+    Property dtData As DataTable
+        Get
+            If ViewState(Me.ID & "_dtData") Is Nothing Then
+                Dim dt As New DataTable
+                dt.Columns.Add("ID", GetType(String))
+                dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
+                dt.Columns.Add("EMPLOYEE_ID", GetType(String))
+                dt.Columns.Add("VN_FULLNAME", GetType(String))
+                dt.Columns.Add("TITLE_NAME", GetType(String))
+                dt.Columns.Add("ORG_ID", GetType(String))
+                dt.Columns.Add("ORG_NAME", GetType(String))
+                dt.Columns.Add("ORG_PATH", GetType(String))
+                dt.Columns.Add("STAFF_RANK_NAME", GetType(String))
+                dt.Columns.Add("D1", GetType(String))
+                dt.Columns.Add("D2", GetType(String))
+                dt.Columns.Add("D3", GetType(String))
+                dt.Columns.Add("D4", GetType(String))
+                dt.Columns.Add("D5", GetType(String))
+                dt.Columns.Add("D6", GetType(String))
+                dt.Columns.Add("D7", GetType(String))
+                dt.Columns.Add("D8", GetType(String))
+                dt.Columns.Add("D9", GetType(String))
+                dt.Columns.Add("D10", GetType(String))
+                dt.Columns.Add("D11", GetType(String))
+                dt.Columns.Add("D12", GetType(String))
+                dt.Columns.Add("D13", GetType(String))
+                dt.Columns.Add("D14", GetType(String))
+                dt.Columns.Add("D15", GetType(String))
+                dt.Columns.Add("D16", GetType(String))
+                dt.Columns.Add("D17", GetType(String))
+                dt.Columns.Add("D18", GetType(String))
+                dt.Columns.Add("D19", GetType(String))
+                dt.Columns.Add("D20", GetType(String))
+                dt.Columns.Add("D21", GetType(String))
+                dt.Columns.Add("D22", GetType(String))
+                dt.Columns.Add("D23", GetType(String))
+                dt.Columns.Add("D24", GetType(String))
+                dt.Columns.Add("D25", GetType(String))
+                dt.Columns.Add("D26", GetType(String))
+                dt.Columns.Add("D27", GetType(String))
+                dt.Columns.Add("D28", GetType(String))
+                dt.Columns.Add("D29", GetType(String))
+                dt.Columns.Add("D30", GetType(String))
+                dt.Columns.Add("D31", GetType(String))
+
+                dt.Columns.Add("D1_COLOR", GetType(String))
+                dt.Columns.Add("D2_COLOR", GetType(String))
+                dt.Columns.Add("D3_COLOR", GetType(String))
+                dt.Columns.Add("D4_COLOR", GetType(String))
+                dt.Columns.Add("D5_COLOR", GetType(String))
+                dt.Columns.Add("D6_COLOR", GetType(String))
+                dt.Columns.Add("D7_COLOR", GetType(String))
+                dt.Columns.Add("D8_COLOR", GetType(String))
+                dt.Columns.Add("D9_COLOR", GetType(String))
+                dt.Columns.Add("D10_COLOR", GetType(String))
+                dt.Columns.Add("D11_COLOR", GetType(String))
+                dt.Columns.Add("D12_COLOR", GetType(String))
+                dt.Columns.Add("D13_COLOR", GetType(String))
+                dt.Columns.Add("D14_COLOR", GetType(String))
+                dt.Columns.Add("D15_COLOR", GetType(String))
+                dt.Columns.Add("D16_COLOR", GetType(String))
+                dt.Columns.Add("D17_COLOR", GetType(String))
+                dt.Columns.Add("D18_COLOR", GetType(String))
+                dt.Columns.Add("D19_COLOR", GetType(String))
+                dt.Columns.Add("D20_COLOR", GetType(String))
+                dt.Columns.Add("D21_COLOR", GetType(String))
+                dt.Columns.Add("D22_COLOR", GetType(String))
+                dt.Columns.Add("D23_COLOR", GetType(String))
+                dt.Columns.Add("D24_COLOR", GetType(String))
+                dt.Columns.Add("D25_COLOR", GetType(String))
+                dt.Columns.Add("D26_COLOR", GetType(String))
+                dt.Columns.Add("D27_COLOR", GetType(String))
+                dt.Columns.Add("D28_COLOR", GetType(String))
+                dt.Columns.Add("D29_COLOR", GetType(String))
+                dt.Columns.Add("D30_COLOR", GetType(String))
+                dt.Columns.Add("D31_COLOR", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtData") = value
+        End Set
+    End Property
+
     Public Property TIME_TIMESHEET_DAILYDTO As List(Of AT_TIME_TIMESHEET_DAILYDTO)
         Get
             Return ViewState(Me.ID & "_TIME_TIMESHEET_DAILYDTO")
@@ -127,10 +212,10 @@ Public Class ctrlTime_Timesheet_CTT
                                                                   ToolbarIcons.Export,
                                                                   ToolbarAuthorize.Export,
                                                                   Translate("Xuất bảng công gốc")))
-            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("CALCULATE",
-                                                                  ToolbarIcons.Calculator,
-                                                                  ToolbarAuthorize.None,
-                                                                  Translate("Tổng hợp")))
+            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("CALCULATE",
+            '                                                      ToolbarIcons.Calculator,
+            '                                                      ToolbarAuthorize.None,
+            '                                                      Translate("Tổng hợp")))
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -220,91 +305,6 @@ Public Class ctrlTime_Timesheet_CTT
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-
-    Property dtData As DataTable
-        Get
-            If ViewState(Me.ID & "_dtData") Is Nothing Then
-                Dim dt As New DataTable
-                dt.Columns.Add("ID", GetType(String))
-                dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
-                dt.Columns.Add("EMPLOYEE_ID", GetType(String))
-                dt.Columns.Add("VN_FULLNAME", GetType(String))
-                dt.Columns.Add("TITLE_NAME", GetType(String))
-                dt.Columns.Add("ORG_ID", GetType(String))
-                dt.Columns.Add("ORG_NAME", GetType(String))
-                dt.Columns.Add("ORG_PATH", GetType(String))
-                dt.Columns.Add("STAFF_RANK_NAME", GetType(String))
-                dt.Columns.Add("D1", GetType(String))
-                dt.Columns.Add("D2", GetType(String))
-                dt.Columns.Add("D3", GetType(String))
-                dt.Columns.Add("D4", GetType(String))
-                dt.Columns.Add("D5", GetType(String))
-                dt.Columns.Add("D6", GetType(String))
-                dt.Columns.Add("D7", GetType(String))
-                dt.Columns.Add("D8", GetType(String))
-                dt.Columns.Add("D9", GetType(String))
-                dt.Columns.Add("D10", GetType(String))
-                dt.Columns.Add("D11", GetType(String))
-                dt.Columns.Add("D12", GetType(String))
-                dt.Columns.Add("D13", GetType(String))
-                dt.Columns.Add("D14", GetType(String))
-                dt.Columns.Add("D15", GetType(String))
-                dt.Columns.Add("D16", GetType(String))
-                dt.Columns.Add("D17", GetType(String))
-                dt.Columns.Add("D18", GetType(String))
-                dt.Columns.Add("D19", GetType(String))
-                dt.Columns.Add("D20", GetType(String))
-                dt.Columns.Add("D21", GetType(String))
-                dt.Columns.Add("D22", GetType(String))
-                dt.Columns.Add("D23", GetType(String))
-                dt.Columns.Add("D24", GetType(String))
-                dt.Columns.Add("D25", GetType(String))
-                dt.Columns.Add("D26", GetType(String))
-                dt.Columns.Add("D27", GetType(String))
-                dt.Columns.Add("D28", GetType(String))
-                dt.Columns.Add("D29", GetType(String))
-                dt.Columns.Add("D30", GetType(String))
-                dt.Columns.Add("D31", GetType(String))
-
-                dt.Columns.Add("D1_COLOR", GetType(String))
-                dt.Columns.Add("D2_COLOR", GetType(String))
-                dt.Columns.Add("D3_COLOR", GetType(String))
-                dt.Columns.Add("D4_COLOR", GetType(String))
-                dt.Columns.Add("D5_COLOR", GetType(String))
-                dt.Columns.Add("D6_COLOR", GetType(String))
-                dt.Columns.Add("D7_COLOR", GetType(String))
-                dt.Columns.Add("D8_COLOR", GetType(String))
-                dt.Columns.Add("D9_COLOR", GetType(String))
-                dt.Columns.Add("D10_COLOR", GetType(String))
-                dt.Columns.Add("D11_COLOR", GetType(String))
-                dt.Columns.Add("D12_COLOR", GetType(String))
-                dt.Columns.Add("D13_COLOR", GetType(String))
-                dt.Columns.Add("D14_COLOR", GetType(String))
-                dt.Columns.Add("D15_COLOR", GetType(String))
-                dt.Columns.Add("D16_COLOR", GetType(String))
-                dt.Columns.Add("D17_COLOR", GetType(String))
-                dt.Columns.Add("D18_COLOR", GetType(String))
-                dt.Columns.Add("D19_COLOR", GetType(String))
-                dt.Columns.Add("D20_COLOR", GetType(String))
-                dt.Columns.Add("D21_COLOR", GetType(String))
-                dt.Columns.Add("D22_COLOR", GetType(String))
-                dt.Columns.Add("D23_COLOR", GetType(String))
-                dt.Columns.Add("D24_COLOR", GetType(String))
-                dt.Columns.Add("D25_COLOR", GetType(String))
-                dt.Columns.Add("D26_COLOR", GetType(String))
-                dt.Columns.Add("D27_COLOR", GetType(String))
-                dt.Columns.Add("D28_COLOR", GetType(String))
-                dt.Columns.Add("D29_COLOR", GetType(String))
-                dt.Columns.Add("D30_COLOR", GetType(String))
-                dt.Columns.Add("D31_COLOR", GetType(String))
-                ViewState(Me.ID & "_dtData") = dt
-            End If
-            Return ViewState(Me.ID & "_dtData")
-        End Get
-        Set(ByVal value As DataTable)
-            ViewState(Me.ID & "_dtData") = value
-        End Set
-    End Property
 
 #End Region
 
@@ -444,9 +444,9 @@ Public Class ctrlTime_Timesheet_CTT
                     Else
                         is_delete = 0
                     End If
-                    If getSE_CASE_CONFIG("ctrlTime_Timesheet_CTT_case1") > 0 Then
+                    If getSE_CASE_CONFIG("ctrlTimeTimesheet_machine_case1") > 0 Then '  ctrlTime_Timesheet_CTT_case1
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
-                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTime_Timesheet_CTT_case1")
+                                                   Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, is_delete, "ctrlTimeTimesheet_machine_case1") 'ctrlTime_Timesheet_CTT_case1
                         Refresh("UpdateView")
                     Else
                         rep.Init_TimeTImesheetMachines(_param, rdtungay.SelectedDate, rdDenngay.SelectedDate,
@@ -475,17 +475,6 @@ Public Class ctrlTime_Timesheet_CTT
                         Exit Sub
                     End If
                     ctrlUpload1.Show()
-                    'Case TOOLBARTIEM_CALCULATE
-                    '    If rep.IS_PERIODSTATUS(_param) = False Then
-                    '        ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)
-                    '        Exit Sub
-                    '    End If
-                    '    If Not rdtungay.SelectedDate.HasValue Or Not rdDenngay.SelectedDate.HasValue Then
-                    '        ShowMessage(Translate("Từ ngày đến ngày chưa được chọn"), Utilities.NotifyType.Warning)
-                    '        Exit Sub
-                    '    End If
-                    '    'rep.Init_TimeTImesheetMachines(rdtungay.SelectedDate, rdDenngay.SelectedDate, Decimal.Parse(ctrlOrganization.CurrentValue))
-                    '    Refresh("UpdateView")
                 Case "EXPORT_TEMP"
                     If String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
                         ShowMessage(Translate("Kỳ công chưa được chọn"), NotifyType.Error)
@@ -499,10 +488,6 @@ Public Class ctrlTime_Timesheet_CTT
                     dtDatas = CreateDataFilter(True)
                     Session("EXPORTTIMESHEETDAILY") = dtDatas
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Time_TimeSheetCCT&PERIOD_ID=" & cboPeriod.SelectedValue & "&orgid=" & ctrlOrganization.CurrentValue & "&IS_DISSOLVE=" & IIf(ctrlOrganization.IsDissolve, "1", "0") & "')", True)
-
-                    'isLoadPopup = 1 'Chọn Org
-                    'UpdateControlState()
-                    'ctrlOrgPopup.Show()
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         Dim dtDatas As DataTable
@@ -511,12 +496,6 @@ Public Class ctrlTime_Timesheet_CTT
                             rgTimeTimesheet_cct.ExportExcel(Server, Response, dtDatas, "Time_Timesheet_CTT")
                         End If
                     End Using
-                    'Using xls As New ExcelCommon
-                    '    Dim dtDatas As DataTable
-                    '    dtDatas = CreateDataFilter(True)
-                    '    Session("EXPORTTIMESHEETDAILY") = dtDatas
-                    '    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Time_TimeSheetCCT&PERIOD_ID=" & cboPeriod.SelectedValue & "');", True)
-                    'End Using
                 Case "EXPORT_ORIGIN"
                     Dim dtData As DataTable
                     Using xls As New ExcelCommon
@@ -615,22 +594,6 @@ Public Class ctrlTime_Timesheet_CTT
                 obj.PAGE_SIZE = rgTimeTimesheet_cct.PageSize
                 obj.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue)
                 obj.IS_DISSOLVE = ctrlOrganization.IsDissolve
-                'If chkAll.Checked Then
-                '    obj.COLOR = 0
-                'End If
-                'If chkBlue.Checked Then
-                '    obj.COLOR = 1
-                'End If
-                'If chkGreen.Checked Then
-                '    obj.COLOR = 2
-                'End If
-                'If chkYellow.Checked Then
-                '    obj.COLOR = 3
-                'End If
-                'If chkRed.Checked Then
-                '    obj.COLOR = 4
-                'End If
-
             Catch ex As Exception
                 Throw ex
             End Try
@@ -814,41 +777,41 @@ Public Class ctrlTime_Timesheet_CTT
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-                Dim rowView = CType(e.Item.DataItem, DataRowView)
-                Dim dataItem As GridDataItem = e.Item
-                Dim i As Integer = 1
-                While True
-                    Dim str = "D" & i
-                    If rowView.Row.Table.Columns.Contains(str) Then
-                        If rowView.Row(str & "_COLOR") Is DBNull.Value Then
-                            i = i + 1
-                            Continue While
-                        End If
-                        If String.IsNullOrEmpty(rowView.Row(str & "_COLOR")) Then
-                            i = i + 1
-                            Continue While
-                        End If
-                        Select Case rowView.Row(str & "_COLOR")
-                            Case 1
-                                dataItem(str).BackColor = Drawing.Color.LightBlue
-                            Case 2
-                                dataItem(str).BackColor = Drawing.Color.DarkGreen
-                            Case 3
-                                dataItem(str).BackColor = Drawing.Color.Yellow
-                            Case 4
-                                dataItem(str).BackColor = Drawing.Color.Red
-                        End Select
-                    Else
-                        Exit While
-                    End If
-                    i = i + 1
-                End While
-            End If
-            If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-                Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-                datarow("ORG_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_DESC"))
-            End If
+            'If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
+            '    Dim rowView = CType(e.Item.DataItem, DataRowView)
+            '    Dim dataItem As GridDataItem = e.Item
+            '    Dim i As Integer = 1
+            '    While True
+            '        Dim str = "D" & i
+            '        If rowView.Row.Table.Columns.Contains(str) Then
+            '            If rowView.Row(str & "_COLOR") Is DBNull.Value Then
+            '                i = i + 1
+            '                Continue While
+            '            End If
+            '            If String.IsNullOrEmpty(rowView.Row(str & "_COLOR")) Then
+            '                i = i + 1
+            '                Continue While
+            '            End If
+            '            Select Case rowView.Row(str & "_COLOR")
+            '                Case 1
+            '                    dataItem(str).BackColor = Drawing.Color.LightBlue
+            '                Case 2
+            '                    dataItem(str).BackColor = Drawing.Color.DarkGreen
+            '                Case 3
+            '                    dataItem(str).BackColor = Drawing.Color.Yellow
+            '                Case 4
+            '                    dataItem(str).BackColor = Drawing.Color.Red
+            '            End Select
+            '        Else
+            '            Exit While
+            '        End If
+            '        i = i + 1
+            '    End While
+            'End If
+            'If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
+            '    Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
+            '    datarow("ORG_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_DESC"))
+            'End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -880,21 +843,6 @@ Public Class ctrlTime_Timesheet_CTT
         End Try
     End Sub
 
-    'Private Sub ctrlOrgPopup_OrganizationSelected(ByVal sender As Object, ByVal e As Common.OrganizationSelectedEventArgs) Handles ctrlOrgPopup.OrganizationSelected
-    '    Try
-    '        If String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
-    '            ShowMessage(Translate("Kỳ công chưa được chọn"), NotifyType.Error)
-    '            Exit Sub
-    '        End If
-    '        Dim dtDatas As DataTable
-    '        dtDatas = CreateDataFilter(True)
-    '        Session("EXPORTTIMESHEETDAILY") = dtDatas
-    '        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Time_TimeSheetCCT&PERIOD_ID=" & cboPeriod.SelectedValue & "&orgid=" & e.CurrentValue & "&IS_DISSOLVE=" & IIf(ctrlOrgPopup.IsDissolve, "1", "0") & "')", True)
-    '        isLoadPopup = 0
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
     ''' <summary>
     ''' Event click cancle popup import
     ''' </summary>

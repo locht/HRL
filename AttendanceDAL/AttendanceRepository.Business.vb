@@ -418,31 +418,7 @@ Partial Public Class AttendanceRepository
             Using cls As New DataAccess.NonQueryData
                 Dim Period = (From w In Context.AT_PERIOD Where w.START_DATE.Value.Year = p_fromdate.Year And w.START_DATE.Value.Month = p_fromdate.Month).FirstOrDefault
                 obj.PERIOD_ID = Period.ID
-
-                'cls.ExecuteSQL("DELETE FROM SE_EMPLOYEE_CHOSEN S WHERE UPPER(S.USING_USER) ='" + log.Username.ToUpper + "'")
-
-                'Dim dDay = p_fromdate
-                'Dim objNew As SE_EMPLOYEE_CHOSEN
-                'For Each emp As Decimal? In lstEmployee
-                '    While dDay <= p_enddate
-                '        objNew = New SE_EMPLOYEE_CHOSEN
-                '        objNew.EMPLOYEE_ID = emp
-                '        objNew.WORKINGDAY = dDay
-                '        objNew.USING_USER = log.Username.ToUpper
-                '        Context.SE_EMPLOYEE_CHOSEN.AddObject(objNew)
-                '        dDay = dDay.AddDays(1)
-                '    End While
-                'Next
                 LOG_AT(_param, log, lstEmployee, "TỔNG HỢP BẢNG CÔNG GỐC", obj, P_ORG_ID)
-
-                'cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_MACHINES",
-                '                               New With {.P_USERNAME = log.Username.ToUpper,
-                '                                         .P_ORG_ID = P_ORG_ID,
-                '                                         .P_FROMDATE = p_fromdate,
-                '                                         .P_ENDDATE = p_enddate,
-                '                                         .P_ISDISSOLVE = _param.IS_DISSOLVE})
-
-
                 If codecase = "ctrlTimeTimesheet_machine_case1" Then
                     cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.CAL_TIME_TIMESHEET_HOSE",
                                                New With {.P_USERNAME = log.Username.ToUpper,
