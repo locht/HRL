@@ -55,6 +55,25 @@ Partial Public Class AttendanceRepository
 
         End Try
     End Function
+
+    Public Function CHECK_TYPE_BREAK(ByVal type_break_id As Decimal) As DataTable
+        Try
+            Dim query = From p In Context.AT_TIME_MANUAL
+                        From f In Context.AT_FML.Where(Function(f) f.ID = p.MORNING_ID).DefaultIfEmpty
+                         From f2 In Context.AT_FML.Where(Function(a) a.ID = p.AFTERNOON_ID).DefaultIfEmpty
+                   Where p.ID = type_break_id
+
+            Dim lst = query.Select(Function(p) New AT_TIME_MANUALDTO With {
+                                       .ID = p.p.ID,
+                                       .IS_LEAVE = p.f.IS_LEAVE,
+                                       .IS_LEAVE1 = p.f2.IS_LEAVE
+                }).ToList
+            Return lst.ToTable
+        Catch ex As Exception
+
+        End Try
+
+    End Function
     Public Function GetLeaveRegistrationListByLM(ByVal _filter As AT_PORTAL_REG_DTO,
                                   Optional ByRef Total As Integer = 0,
                                   Optional ByVal PageIndex As Integer = 0,

@@ -83,6 +83,14 @@ Public Class ctrlLeaveRegistrationNewEdit
             ViewState(Me.ID & "_leaveInOutKH") = value
         End Set
     End Property
+    Property checktypebreak As DataTable
+        Get
+            Return ViewState(Me.ID & "_checktypebreak")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_checktypebreak") = value
+        End Set
+    End Property
     Property CHECKSHIFT As DataTable
         Get
             Return ViewState(Me.ID & "_CHECKSHIFT")
@@ -240,37 +248,68 @@ Public Class ctrlLeaveRegistrationNewEdit
                     If obj IsNot Nothing Then
                         'PHÉP NGOÀI CÔNG TY
                         If obj.TIME_OUTSIDE_COMPANY IsNot Nothing Then
-                            rntTotal.Text = If(obj.TIME_OUTSIDE_COMPANY = 0, 0, Decimal.Parse(obj.TIME_OUTSIDE_COMPANY).ToString())
+                            Dim a = If(obj.TIME_OUTSIDE_COMPANY = 0, 0, Decimal.Parse(obj.TIME_OUTSIDE_COMPANY)).ToString()
+                            If a.Contains(",") Then
+                                rntTotal.Text = a.Remove(a.LastIndexOf("0"))
+                            Else
+                                rntTotal.Text = a
+                            End If
                         Else
                             rntTotal.Text = Decimal.Parse(0).ToString()
                         End If
                         'phep chế độ
                         If obj.TOTAL_HAVE1 IsNot Nothing Then
-                            rntEntitlement.Text = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1).ToString())
+
+                            Dim b = If(obj.TOTAL_HAVE1 = 0, 0, Decimal.Parse(obj.TOTAL_HAVE1)).ToString()
+                            If b.Contains(",") Then
+                                rntEntitlement.Text = b.Remove(b.LastIndexOf("0"))
+                            Else
+                                rntEntitlement.Text = b
+                            End If
                         Else
                             rntEntitlement.Text = Decimal.Parse(0).ToString()
                         End If
                         'phep dã nghĩ
                         If obj.USED_DAY IsNot Nothing Then
-                            rntSeniority.Text = If(obj.USED_DAY = 0, 0, Decimal.Parse(obj.USED_DAY).ToString())
+                            Dim c As String = If(obj.USED_DAY = 0, 0, Decimal.Parse(obj.USED_DAY)).ToString()
+                            If c.Contains(",") Then
+                                rntSeniority.Text = c.Remove(c.LastIndexOf("0"))
+                            Else
+                                rntSeniority.Text = c
+                            End If
                         Else
                             rntSeniority.Text = Decimal.Parse(0).ToString()
                         End If
                         'phep tham nien
                         If obj.SENIORITYHAVE IsNot Nothing Then
-                            rntBrought.Text = If(obj.SENIORITYHAVE = 0, 0, Decimal.Parse(obj.SENIORITYHAVE).ToString())
+                            Dim d = If(obj.SENIORITYHAVE = 0, 0, Decimal.Parse(obj.SENIORITYHAVE)).ToString()
+                            If d.Contains(",") Then
+                                rntBrought.Text = d.Remove(d.LastIndexOf("0"))
+                            Else
+                                rntBrought.Text = d
+                            End If
                         Else
                             rntBrought.Text = Decimal.Parse(0).ToString()
                         End If
                         'phep nam truoc con lai
                         If obj.PREVTOTAL_HAVE IsNot Nothing Then
-                            rntTotalTaken.Text = If(obj.PREVTOTAL_HAVE = 0, 0, Decimal.Parse(obj.PREVTOTAL_HAVE).ToString())
+                            Dim e = If(obj.PREVTOTAL_HAVE = 0, 0, Decimal.Parse(obj.PREVTOTAL_HAVE)).ToString()
+                            If e.Contains(",") Then
+                                rntTotalTaken.Text = e.Remove(e.LastIndexOf("0"))
+                            Else
+                                rntTotalTaken.Text = e
+                            End If
                         Else
                             rntTotalTaken.Text = Decimal.Parse(0).ToString()
                         End If
                         'phép còn lại
                         If obj.REST_DAY IsNot Nothing Then
-                            rntBalance.Text = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY).ToString())
+                            Dim f = If(obj.REST_DAY = 0, 0, Decimal.Parse(obj.REST_DAY)).ToString()
+                            If f.Contains(",") Then
+                                rntBalance.Text = f.Remove(f.LastIndexOf("0"))
+                            Else
+                                rntBalance.Text = f
+                            End If
                         Else
                             rntBalance.Text = Decimal.Parse(0).ToString()
                         End If
@@ -377,7 +416,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                             End While
 
-                            If rntxDayRegist.Value > rntBalance.Value Then
+                            If rntxDayRegist.Value > rntBalance.Text Then
                                 ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
                                 UpdateControlState()
                                 Exit Sub
@@ -421,7 +460,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                             End Using
                             selectedFromDate = selectedFromDate.Value.AddDays(1)
                         End While
-                        If rtxtdayinkh.Value IsNot Nothing AndAlso rtxtdayoutkh.Value IsNot Nothing Then
+                        If rtxtdayinkh.Text IsNot Nothing AndAlso rtxtdayoutkh.Text IsNot Nothing Then
                             ctrlMessageBox.MessageText = Translate("Số ngày trong kế hoạch là " + rtxtdayinkh.Text + " số ngày ngoài kế hoạch là " + rtxtdayoutkh.Text + ". Bạn có muốn tiếp tục ?")
                             ctrlMessageBox.ActionName = CommonMessage.ACTION_SAVED
                             ctrlMessageBox.DataBind()
@@ -429,7 +468,20 @@ Public Class ctrlLeaveRegistrationNewEdit
                             Exit Sub
                         End If
 
-
+                        'kiem tra thuoc loại nghỉ nửa ngày hay không nếu có thì gán giá trị lại là 0.5
+                        Dim ganGiatri As Decimal = 1
+                        ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
+                        If ktra = 1 Then
+                            Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
+                            If count1 > 0 Then
+                                ganGiatri = 0.5
+                            End If
+                            Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
+                            If count2 > 0 Then
+                                ganGiatri = 0.5
+                            End If
+                        End If
+                        
                         Dim isInsert As Boolean = True
                         Dim obj As New AT_PORTAL_REG_DTO
                         Dim itemExist = New AT_PORTAL_REG_DTO
@@ -444,7 +496,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
                            .FROM_DATE = rdFromDate.SelectedDate,
                            .TO_DATE = rdToDate.SelectedDate,
-                           .NVALUE = 1,
+                           .NVALUE = ganGiatri,
                            .SVALUE = ApproveProcess,
                            .NOTE = txtNote.Text,
                            .NOTE_AT = txtNote.Text,
@@ -512,7 +564,19 @@ Public Class ctrlLeaveRegistrationNewEdit
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
             If e.ActionName = CommonMessage.ACTION_SAVED And e.ButtonID = MessageBoxButtonType.ButtonYes Then
-
+                'kiem tra thuoc loại nghỉ nửa ngày hay không nếu có thì gán giá trị lại là 0.5
+                Dim ganGiatri As Decimal = 1
+                Dim ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
+                If ktra = 1 Then
+                    Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
+                    If count1 > 0 Then
+                        ganGiatri = 0.5
+                    End If
+                    Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
+                    If count2 > 0 Then
+                        ganGiatri = 0.5
+                    End If
+                End If
                 Dim isInsert As Boolean = True
                 Dim obj As New AT_PORTAL_REG_DTO
                 Dim itemExist = New AT_PORTAL_REG_DTO
@@ -527,7 +591,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                    .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
                    .FROM_DATE = rdFromDate.SelectedDate,
                    .TO_DATE = rdToDate.SelectedDate,
-                   .NVALUE = 1,
+                   .NVALUE = ganGiatri,
                    .SVALUE = ApproveProcess,
                    .NOTE = txtNote.Text,
                    .NOTE_AT = txtNote.Text,
@@ -788,9 +852,9 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Function
     Protected Function CreateDataFilter(Optional ByVal fromDate As Date? = Nothing, Optional ByVal toDate As Date? = Nothing, Optional ByVal isFull As Boolean = False) As DataTable
         Try
-            Dim calDay As Integer = 0
+            Dim calDay As Decimal = 0
             Dim ktra As Integer
-            Dim calDay1 As Integer = 0
+            Dim calDay1 As Decimal = 0
             Using rep As New AttendanceRepository
                 If fromDate IsNot Nothing Or toDate IsNot Nothing Then
                     leaveEmpDetails = rep.GetLeaveEmpDetail(EmployeeID, fromDate.Value, toDate.Value, If(IsNumeric(hidID.Value), hidID.Value, 0) <> 0)
@@ -849,8 +913,14 @@ Public Class ctrlLeaveRegistrationNewEdit
                         If cboleaveType.SelectedValue = "" Then
                             ShowMessage(Translate("Chọn loại nghỉ"), NotifyType.Warning)
                         Else
-                            ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                            ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
                             If ktra = 1 Then
+                                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
+                                Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
+                                Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
+                                If count1 > 0 OrElse count2 > 0 Then
+                                    calDay -= 0.5
+                                End If
                                 If COUNT > 0 Then
                                     calDay1 += 1
                                 End If
@@ -873,8 +943,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                     txtDayRegist.Text = calDay.ToString
                     rntxDayRegist.Value = Decimal.Parse(calDay)
                     If ktra = 1 Then
-                        rtxtdayinkh.Value = Decimal.Parse(calDay1)
-                        rtxtdayoutkh.Value = Decimal.Parse(calDay) - Decimal.Parse(calDay1)
+                        rtxtdayinkh.Text = (Decimal.Parse(calDay1)).ToString
+                        rtxtdayoutkh.Text = (Decimal.Parse(calDay) - Decimal.Parse(calDay1)).ToString
                     Else
                         rtxtdayinkh.Text = Nothing
                         rtxtdayoutkh.Text = Nothing

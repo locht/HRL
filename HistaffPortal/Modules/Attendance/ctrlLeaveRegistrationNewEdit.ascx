@@ -64,17 +64,17 @@
             <%# Translate("Phép chế độ")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="number" runat="server" 
-                Culture="en-GB" ID="rntEntitlement" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            <tlk:RadTextBox  runat="server" 
+                ID="rntEntitlement" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Phép đã nghĩ")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="number" runat="server"
-                Culture="en-GB" ID="rntSeniority" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            <tlk:RadTextBox  runat="server"
+                ID="rntSeniority" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
     </tr>
     <tr>
@@ -82,17 +82,17 @@
             <%# Translate("Phép thâm niên")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="number" runat="server" 
-                Culture="en-GB" ID="rntBrought" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            <tlk:RadTextBox  runat="server" 
+               ID="rntBrought" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Phép trừ quy đổi từ số phút ngoài cơ quan")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="number" runat="server"
-                Culture="en-GB" ID="rntTotal" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            <tlk:RadTextBox  runat="server"
+                ID="rntTotal" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
     </tr>
     <tr>
@@ -100,17 +100,17 @@
             <%# Translate("Phép năm trước còn lại")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="number" runat="server" 
-                Culture="en-GB" ID="rntTotalTaken" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            <tlk:RadTextBox  runat="server" 
+                ID="rntTotalTaken" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Phép còn lại")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="number" runat="server"
-                Culture="en-GB" ID="rntBalance" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            <tlk:RadTextBox  runat="server"
+                ID="rntBalance" ReadOnly="true">
+            </tlk:RadTextBox>
         </td>
     </tr>
     <tr>
@@ -167,17 +167,17 @@
             <%# Translate("Số ngày trong kế hoạch")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="NUMBER" runat="server" 
+            <tlk:RadTextBox SkinID="Decimal" runat="server" 
                 Culture="en-GB" ID="rtxtdayinkh" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Số ngày ngoài kế hoạch")%>
         </td>
         <td>
-            <tlk:RadNumericTextBox SkinID="NUMBER" runat="server" 
+            <tlk:RadTextBox SkinID="Decimal" runat="server"
                 Culture="en-GB" ID="rtxtdayoutkh" ReadOnly="true">
-            </tlk:RadNumericTextBox>
+            </tlk:RadTextBox>
         </td>
     </tr>
     <tr>

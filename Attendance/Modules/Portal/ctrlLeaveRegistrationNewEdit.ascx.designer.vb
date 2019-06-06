@@ -119,7 +119,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntEntitlement As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntEntitlement As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rntSeniority control.
@@ -128,7 +128,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntSeniority As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntSeniority As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rntBrought control.
@@ -137,7 +137,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntBrought As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntBrought As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rntTotal control.
@@ -146,7 +146,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntTotal As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntTotal As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rntTotalTaken control.
@@ -155,7 +155,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntTotalTaken As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntTotalTaken As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rntBalance control.
@@ -164,7 +164,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntBalance As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntBalance As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''cboleaveType control.
@@ -227,7 +227,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtxtdayinkh As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rtxtdayinkh As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rtxtdayoutkh control.
@@ -236,7 +236,7 @@ Partial Public Class ctrlLeaveRegistrationNewEdit
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rtxtdayoutkh As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rtxtdayoutkh As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtNote control.

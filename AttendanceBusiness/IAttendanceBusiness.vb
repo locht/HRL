@@ -10,6 +10,8 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean
         <OperationContract()>
+        Function CHECK_TYPE_BREAK(ByVal type_break_id As Decimal) As DataTable
+        <OperationContract()>
         Function IMPORT_AT_SWIPE_DATA_V1(ByVal log As UserLog, ByVal DATA_IN As String, ByVal Machine_type As Decimal) As Boolean
         <OperationContract()>
         Function CHECK_CONTRACT(ByVal employee_id As Decimal) As DataTable
