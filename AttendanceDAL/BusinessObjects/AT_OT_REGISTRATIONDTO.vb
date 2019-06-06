@@ -50,4 +50,8 @@
     Public Property REGIST_DATE_FROM As Date?
     Public Property HR_REVIEW As String
     Public Property ID_REGGROUP As Decimal?
+    Public Property FROM_HOUR_AM As String
+    Public Property TO_HOUR_AM As String
+    Public Property FROM_HOUR_PM As String
+    Public Property TO_HOUR_PM As String
 End Class

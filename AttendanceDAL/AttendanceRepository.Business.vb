@@ -1388,6 +1388,18 @@ Partial Public Class AttendanceRepository
                                        .OT_TYPE_NAME = p.typeot.NAME_VN,
                                        .REGIST_DATE = p.p.REGIST_DATE,
                                        .ID_REGGROUP = p.p.ID_REGGROUP,
+                                       .FROM_AM = p.p.FROM_AM,
+                                       .TO_AM = p.p.TO_AM,
+                                       .FROM_PM = p.p.FROM_PM,
+                                       .TO_PM = p.p.TO_PM,
+                                       .FROM_AM_MN = p.p.FROM_AM_MN,
+                                       .TO_AM_MN = p.p.TO_AM_MN,
+                                       .FROM_PM_MN = p.p.FROM_PM_MN,
+                                       .TO_PM_MN = p.p.TO_PM_MN,
+                                       .FROM_HOUR_AM = "",
+                                       .TO_HOUR_AM = "",
+                                       .FROM_HOUR_PM = "",
+                                       .TO_HOUR_PM = "",
                                        .TOTAL_OT = p.p.TOTAL_OT,
                                        .OT_100 = p.p.OT_100,
                                        .OT_150 = p.p.OT_150,
@@ -1396,10 +1408,6 @@ Partial Public Class AttendanceRepository
                                        .OT_270 = p.p.OT_270,
                                        .OT_300 = p.p.OT_300,
                                        .OT_370 = p.p.OT_370,
-                                       .FROM_AM = p.p.FROM_AM,
-                                       .TO_AM = p.p.TO_AM,
-                                       .FROM_PM = p.p.FROM_PM,
-                                       .TO_PM = p.p.TO_PM,
                                        .STATUS = p.p.STATUS,
                                        .STATUS_NAME = p.status.NAME_VN,
                                        .REASON = p.p.REASON,
@@ -1410,7 +1418,6 @@ Partial Public Class AttendanceRepository
                                        .MODIFIED_LOG = p.p.MODIFIED_LOG,
                                        .MODIFIED_NAME = p.s.FULLNAME,
                                        .CREATED_DATE = p.p.CREATED_DATE})
-
 
             'If _filter.IS_TERMINATE Then
             '    lst = lst.Where(Function(f) f.WORK_STATUS = 257)
@@ -1446,10 +1453,23 @@ Partial Public Class AttendanceRepository
                 lst = lst.Where(Function(f) f.NOTE.ToLower().Contains(_filter.NOTE.ToLower()))
             End If
 
-            lst = lst.OrderBy(Sorts)
-            Total = lst.Count
-            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
-            Return lst.ToList
+            'For Each item As AT_OT_REGISTRATIONDTO In lst
+            '    item.FROM_HOUR_AM = If(item.FROM_AM IsNot Nothing, item.FROM_AM.ToString + ":" + If(item.FROM_AM_MN = 30, item.FROM_AM_MN.ToString, "00"), "")
+            '    item.TO_HOUR_AM = If(item.TO_AM IsNot Nothing, item.TO_AM.ToString + ":" + If(item.TO_AM_MN = 30, item.TO_AM_MN.ToString, "00"), "")
+            '    item.FROM_HOUR_PM = If(item.FROM_PM IsNot Nothing, item.FROM_PM.ToString + ":" + If(item.FROM_PM_MN = 30, item.FROM_PM_MN.ToString, "00"), "")
+            '    item.TO_HOUR_PM = If(item.TO_PM IsNot Nothing, item.TO_PM.ToString + ":" + If(item.TO_PM_MN = 30, item.TO_PM_MN.ToString, "00"), "")
+            'Next
+            Dim tempLst = lst.ToList
+            For i = 0 To tempLst.Count - 1
+                tempLst(i).FROM_HOUR_AM = If(tempLst(i).FROM_AM IsNot Nothing, tempLst(i).FROM_AM.ToString + ":" + If(tempLst(i).FROM_AM_MN = 30, tempLst(i).FROM_AM_MN.ToString, "00"), "")
+                tempLst(i).TO_HOUR_AM = If(tempLst(i).TO_AM IsNot Nothing, tempLst(i).TO_AM.ToString + ":" + If(tempLst(i).TO_AM_MN = 30, tempLst(i).TO_AM_MN.ToString, "00"), "")
+                tempLst(i).FROM_HOUR_PM = If(tempLst(i).FROM_PM IsNot Nothing, tempLst(i).FROM_PM.ToString + ":" + If(tempLst(i).FROM_PM_MN = 30, tempLst(i).FROM_PM_MN.ToString, "00"), "")
+                tempLst(i).TO_HOUR_PM = If(tempLst(i).TO_PM IsNot Nothing, tempLst(i).TO_PM.ToString + ":" + If(tempLst(i).TO_PM_MN = 30, tempLst(i).TO_PM_MN.ToString, "00"), "")
+            Next
+
+            'tempLst = tempLst.OrderBy(Sorts)
+            'tempLst = tempLst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return tempLst
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex
@@ -4639,7 +4659,8 @@ Partial Public Class AttendanceRepository
                                        .TIME_SENIORITY_AFTER_CHANGE = p.en.TIME_SENIORITY_AFTER_CHANGE,
                                        .SENIORITY = p.en.SENIORITY,
                                        .PREVTOTAL_HAVE = p.en.PREVTOTAL_HAVE,
-                                       .SENIORITY_EDIT = p.en.SENIORITY_EDIT})
+                                       .SENIORITY_EDIT = p.en.SENIORITY_EDIT,
+                                       .PREV_USED = p.en.PREV_USED})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

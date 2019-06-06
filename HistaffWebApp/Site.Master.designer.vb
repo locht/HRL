@@ -365,6 +365,33 @@ Partial Public Class Site
     Protected WithEvents ltrProbation As Global.System.Web.UI.WebControls.ListView
 
     '''<summary>
+    '''dApproveRemind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dApproveRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblApprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblApprove As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrApprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrApprove As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
     '''LoginView1 control.
     '''</summary>
     '''<remarks>

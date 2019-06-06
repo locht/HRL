@@ -105,6 +105,7 @@
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="txtADJUST_MONTH_TN2" runat="server">
+                    <NumberFormat DecimalDigits="1" />
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>

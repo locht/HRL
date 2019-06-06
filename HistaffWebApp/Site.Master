@@ -224,6 +224,20 @@
                                         </ItemTemplate>
                                     </asp:ListView>
                                 </div>
+                                <div id="dApproveRemind" runat="server" class='box48' data="11">
+                                    <%# Translate("Nhân viên đến hạn bổ nhiệm")%> (<asp:Label ID="lblApprove" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-11" style="display: none;">
+                                    <asp:ListView ID="ltrApprove" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoNewEdit&group=Business&ID=<%# Eval("VALUE")%>'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
                             </div>
                         </div>
                     </div>

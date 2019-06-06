@@ -511,6 +511,9 @@ Public Enum RemindConfigType
     ExpireNoPaper = 16 ' chưa nộp đủ giấy tờ khi tiếp nhận NV mới
     ExpireCertificate = 19 'hết hạn chứng chỉ lao động 
     Probation = 20 'het han hd thu viec
+    Approve = 21 ' Quyết định bổ nhiệm
+    ApproveHDLD = 22 ' Quyết định ký hợp đồng lao động
+    ApprovetTHHD = 23 ' Quyết định tạm hoãn hợp đồng
 End Enum
 
 Public Enum ToolbarItem

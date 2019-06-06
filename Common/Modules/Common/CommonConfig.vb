@@ -409,6 +409,54 @@ Public Class CommonConfig
             Return HttpContext.Current.Session("ConfigReminderDictionaryCache")
         End Get
     End Property
+    Public Shared Property ReminderApproveHDLDDays() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.ApproveHDLD, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.ApproveHDLD, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.ApproveHDLD, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.ApproveHDLD, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.ApproveHDLD, Integer), value)
+            End If
+
+        End Set
+    End Property
+    Public Shared Property ReminderApproveTHHDDays() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.ApprovetTHHD, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.ApprovetTHHD, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.ApprovetTHHD, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.ApprovetTHHD, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.ApprovetTHHD, Integer), value)
+            End If
+
+        End Set
+    End Property
+    Public Shared Property ReminderApproveDays() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.Approve, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.Approve, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.Approve, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.Approve, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.Approve, Integer), value)
+            End If
+
+        End Set
+    End Property
     Public Shared Property ReminderContractDays() As Integer
         Get
             If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.Birthday, Integer)) Then
@@ -929,6 +977,10 @@ Public Class CommonConfig
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Probation, Integer), ReminderProbation)
                 'rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireCertificate, Integer), ReminderCertificate)
                 'rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpireLabor, Integer), ReminderLabor)
+
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Approve, Integer), ReminderApproveDays)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ApproveHDLD, Integer), ReminderApproveHDLDDays)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ApprovetTHHD, Integer), ReminderApproveTHHDDays)
             End Using
 
             Return True

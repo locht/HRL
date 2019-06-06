@@ -78,4 +78,5 @@
     Public Property AL_T12 As Decimal?
     Public Property SENIORITY As String
     Public Property SENIORITY_EDIT As String
+    Public Property PREV_USED As Decimal?
 End Class
