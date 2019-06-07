@@ -424,5 +424,15 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListContract
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ApproveListContract(listID, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
     End Class
 End Namespace

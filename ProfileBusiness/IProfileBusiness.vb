@@ -2541,6 +2541,9 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetListContract(ByVal ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
 #End Region
 
     End Interface

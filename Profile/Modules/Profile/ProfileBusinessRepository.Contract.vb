@@ -507,4 +507,14 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+    Public Function ApproveListContract(ByVal listID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ApproveListContract(listID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 End Class

@@ -2,8 +2,6 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
-
-
     Public Function GetEmployeeDesciplineID(ByVal DesId As Decimal) As List(Of DisciplineEmpDTO)
         Using rep As New ProfileBusinessClient
             Try
