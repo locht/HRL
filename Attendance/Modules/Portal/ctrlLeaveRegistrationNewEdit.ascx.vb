@@ -572,6 +572,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Dim ganGiatri As Decimal = 1
                 Dim ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
                 If ktra = 1 Then
+                    Using rep As New AttendanceRepository
+                        checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
+                    End Using
                     Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
                     If count1 > 0 Then
                         ganGiatri = 0.5
