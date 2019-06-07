@@ -460,7 +460,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                             End Using
                             selectedFromDate = selectedFromDate.Value.AddDays(1)
                         End While
-                        If rtxtdayinkh.Text IsNot Nothing AndAlso rtxtdayoutkh.Text IsNot Nothing Then
+                        If rtxtdayinkh.Text <> "" AndAlso rtxtdayoutkh.Text <> "" Then
                             ctrlMessageBox.MessageText = Translate("Số ngày trong kế hoạch là " + rtxtdayinkh.Text + " số ngày ngoài kế hoạch là " + rtxtdayoutkh.Text + ". Bạn có muốn tiếp tục ?")
                             ctrlMessageBox.ActionName = CommonMessage.ACTION_SAVED
                             ctrlMessageBox.DataBind()
