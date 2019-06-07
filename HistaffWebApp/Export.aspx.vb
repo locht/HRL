@@ -521,9 +521,11 @@ Public Class Export
             lsData = rep.LOAD_PERIODByID(period)
             Dim dDay = lsData.START_DATE
             Dim row = dtvariable.NewRow
+            Dim i As Integer = 1
             While dDay <= lsData.END_DATE
-                row("D" & dDay.Value.Day) = dDay.Value
+                row("D" & i) = dDay.Value
                 dDay = dDay.Value.AddDays(1)
+                i = i + 1
             End While
             dtvariable.Rows.Add(row)
             dtvariable.TableName = "Variable"

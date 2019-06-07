@@ -14,4 +14,6 @@
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
+    Public Property IS_LEAVE As Decimal?
+    Public Property IS_LEAVE1 As Decimal?
 End Class

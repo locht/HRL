@@ -14,6 +14,15 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Public Function CHECK_TYPE_BREAK(ByVal type_break_id As Decimal) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.CHECK_TYPE_BREAK(type_break_id)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function CHECK_PERIOD_CLOSE(ByVal periodid As Integer) As Integer
         Using rep As New AttendanceBusinessClient
             Try
@@ -135,7 +144,7 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
-    Public Function ModifySetUpAttEmp(ByVal objValue As SetUpCodeAttDTO,ByRef gID As Decimal) As Boolean
+    Public Function ModifySetUpAttEmp(ByVal objValue As SetUpCodeAttDTO, ByRef gID As Decimal) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
                 Return rep.ModifySetUpAttEmp(objValue, Me.Log, gID)
@@ -242,7 +251,7 @@ Partial Class AttendanceRepository
     Public Function InsertHoliday_Hose(ByVal objHoliday As AT_HOLIDAYDTO, ByRef gID As Decimal) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
-                Return rep.InsertHoliday_Hose(objHoliday, Me.Log, gID)
+                Return rep.InsertHOLIDAY_Hose(objHoliday, Me.Log, gID)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex
@@ -2466,7 +2475,7 @@ Partial Class AttendanceRepository
     Public Function ModifyPortalRegList(ByVal obj As AT_PORTAL_REG_DTO, ByVal itemRegister As AttendanceBusiness.AT_PORTAL_REG_DTO) As Boolean
         Try
             _isAvailable = False
-        Using rep As New AttendanceBusinessClient
+            Using rep As New AttendanceBusinessClient
                 Try
                     Return rep.ModifyPortalRegList(obj, itemRegister, Me.Log)
                 Catch ex As Exception
@@ -2480,7 +2489,7 @@ Partial Class AttendanceRepository
             _isAvailable = True
         End Try
     End Function
-   
+
 #End Region
 
 End Class
