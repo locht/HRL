@@ -245,9 +245,13 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         Dim startdate As New Date
                         Dim checkMonthNB As Boolean = False
                         Dim checkMonthNP As Boolean = False
+                        Dim adjustMonthTn2 As String = ""
                         obj = New AT_DECLARE_ENTITLEMENTDTO
                         obj.EMPLOYEE_ID = Employee_id
-                        obj.ADJUST_MONTH_TN = If(IsNumeric(txtADJUST_MONTH_TN2.Text), Decimal.Parse(txtADJUST_MONTH_TN2.Text.ToString), Nothing)
+                        If txtADJUST_MONTH_TN2.Text.Contains(".") Then
+                            adjustMonthTn2 = txtADJUST_MONTH_TN2.Text.Replace(".", ",").ToString
+                        End If
+                        obj.ADJUST_MONTH_TN = If(IsNumeric(adjustMonthTn2), Decimal.Parse(adjustMonthTn2), Nothing)
                         If cboStartMonth.SelectedValue <> "" Then
                             obj.START_MONTH_TN = cboStartMonth.SelectedValue
                         End If
