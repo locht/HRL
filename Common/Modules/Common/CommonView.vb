@@ -4,6 +4,7 @@ Imports Telerik.Web.UI
 Imports WebAppLog
 Imports System.IO
 Imports System.Threading
+Imports System.Drawing
 
 Public Class CommonView
     Inherits ViewBase
@@ -339,6 +340,7 @@ Public Class CommonView
         Using rep = New CommonRepository
             vcf.ReadXml(New IO.StringReader(rep.GetConfigView(Me.ID).Rows(0)("config_data").ToString()))
         End Using
+        Dim star As String = "*"
         Try
             If vcf IsNot Nothing AndAlso vcf.Tables("control") IsNot Nothing Then
                 Dim dtCtrl As DataTable = vcf.Tables("control")
@@ -362,6 +364,11 @@ Public Class CommonView
                                 validator.Enabled = If(IsDBNull(row("Is_Validator")), True, CBool(row("Is_Validator")))
                                 validator.ErrorMessage = If(IsDBNull(row("ErrorMessage")), validator.ErrorMessage, row("ErrorMessage"))
                                 validator.ToolTip = If(IsDBNull(row("ErrorToolTip")), validator.ToolTip, row("ErrorToolTip"))
+                                If validator.Enabled Then
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text"))) + String.Format("<span style='color:red'> {0}</span>", star)
+                                Else
+                                    labelCtr.Text = If(IsDBNull(row("Label_text")), labelCtr.Text, Translate(row("Label_text")))
+                                End If
                             End If
                         Catch ex As Exception
                             Continue For
