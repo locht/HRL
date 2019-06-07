@@ -802,6 +802,8 @@ Namespace AttendanceBusiness.ServiceContracts
 
 #Region "Đăng ký OT trên portal"
         <OperationContract()>
+        Function CheckRegDateBetweenJoinAndTerDate(ByVal empId As Decimal, ByVal regDate As Date) As Boolean
+        <OperationContract()>
         Function GetOtRegistration(ByVal _filter As AT_OT_REGISTRATIONDTO,
                                          Optional ByRef Total As Integer = 0,
                                          Optional ByVal PageIndex As Integer = 0,

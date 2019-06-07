@@ -1547,6 +1547,16 @@ Namespace AttendanceBusiness.ServiceImplementations
         End Function
 #End Region
 #Region "OT"
+        Public Function CheckRegDateBetweenJoinAndTerDate(ByVal empId As Decimal, ByVal regDate As Date) As Boolean _
+            Implements IAttendanceBusiness.CheckRegDateBetweenJoinAndTerDate
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.CheckRegDateBetweenJoinAndTerDate(empId, regDate)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetOtRegistration(ByVal _filter As AT_OT_REGISTRATIONDTO,
                                          Optional ByRef Total As Integer = 0,
                                          Optional ByVal PageIndex As Integer = 0,

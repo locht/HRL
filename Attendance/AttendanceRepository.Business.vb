@@ -1535,6 +1535,16 @@ Partial Class AttendanceRepository
     End Function
 #End Region
 #Region "OT"
+    Function CheckRegDateBetweenJoinAndTerDate(ByVal empId As Decimal, ByVal regDate As Date) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Dim check = rep.CheckRegDateBetweenJoinAndTerDate(empId, regDate)
+                Return check
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
     Function GetOtRegistration(ByVal _filter As AT_OT_REGISTRATIONDTO,
                                          Optional ByRef Total As Integer = 0,
                                          Optional ByVal PageIndex As Integer = 0,

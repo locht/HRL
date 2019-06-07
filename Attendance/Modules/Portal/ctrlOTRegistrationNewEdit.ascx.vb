@@ -505,6 +505,15 @@ Public Class ctrlOTRegistrationNewEdit
                     dto.REGIST_DATE = rdRegDate.SelectedDate
                     dto.EMPLOYEE_ID = EmployeeID
                     dto.P_USER = LogHelper.CurrentUser.EMPLOYEE_ID
+                    Dim validateRegistDate = rep.CheckRegDateBetweenJoinAndTerDate(EmployeeID, rdRegDate.SelectedDate)
+                    If Not validateRegistDate Then
+                        ShowMessage(Translate("Ngày làm thêm phải sau ngày vào công ty và trước ngày nghỉ việc."), NotifyType.Warning)
+                        rdRegDate.ClearValue()
+                        txtSignCode.ClearValue()
+                        hidSignId.Value = Nothing
+                        rdRegDate.Focus()
+                        Exit Sub
+                    End If
                     Dim data = rep.GetOtRegistration(dto)
                     If data IsNot Nothing AndAlso data.Where(Function(f) f.ID <> hidID.Value).FirstOrDefault IsNot Nothing Then
                         ShowMessage(Translate("Ngày làm thêm đã được đăng ký"), NotifyType.Warning)
