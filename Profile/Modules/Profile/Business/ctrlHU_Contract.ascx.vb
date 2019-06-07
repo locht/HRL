@@ -966,7 +966,7 @@ Public Class ctrlHU_Contract
 
             For Each dr As Telerik.Web.UI.GridDataItem In rgContract.SelectedItems
                 Dim ID As New Decimal
-                If Not dr("STATUS_ID").Text.Equals("447") Then
+                If Not dr.GetDataKeyValue("STATUS_ID").Equals("447") Then
                     ID = dr.GetDataKeyValue("ID")
                     lstID.Add(ID)
                 End If

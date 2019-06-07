@@ -1568,7 +1568,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "Working"
-
+        <OperationContract()>
+        Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function GetWorking(ByVal _filter As WorkingDTO,
                                ByVal PageIndex As Integer,

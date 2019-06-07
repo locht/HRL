@@ -9,6 +9,15 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "Working"
+        Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListChangeInfoMng
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ApproveListChangeInfoMng(listID, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Function ApproveWorkings(ByVal ids As List(Of Decimal), Optional ByVal log As UserLog = Nothing) As CommandResult Implements IProfileBusiness.ApproveWorkings
             Using rep As New ProfileRepository
                 Return rep.ApproveWorkings(ids, log)

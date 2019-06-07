@@ -41982,6 +41982,9 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyByIdResponse")>  _
+        Function GetOccupationalSafetyById(ByVal Id As Integer) As ProfileBusiness.OccupationalSafetyDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertOccupationalSafetyResponse")>  _
         Function InsertOccupationalSafety(ByVal lstOccupationalSafety As ProfileBusiness.OccupationalSafetyDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -42535,6 +42538,9 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListContractResponse")>  _
         Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTerminate3bResponse")>  _
+        Function InsertTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyTerminate3bResponse")>  _
         Function ModifyTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -42787,9 +42793,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOccupationalSafety", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyResponse")>  _
         Function GetOccupationalSafety(ByVal _filter As ProfileBusiness.OccupationalSafetyDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal UserLog As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetOccupationalSafetyByIdResponse")>  _
-        Function GetOccupationalSafetyById(ByVal Id As Integer) As ProfileBusiness.OccupationalSafetyDTO
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertContract", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertContractResponse")>  _
         Function InsertContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -42834,6 +42837,9 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/DeleteWelfareMng", ReplyAction:="http://tempuri.org/IProfileBusiness/DeleteWelfareMngResponse")>  _
         Function DeleteWelfareMng(ByVal lstWelfareMng As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListChangeInfoMngResponse")>  _
+        Function ApproveListChangeInfoMng(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWorking", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWorkingResponse")>  _
         Function GetWorking(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO)
@@ -43041,9 +43047,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3bEmployeeByID", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bEmployeeByIDResponse")>  _
         Function GetTerminate3bEmployeeByID(ByVal gEmployeeID As Decimal) As ProfileBusiness.EmployeeDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertTerminate3bResponse")>  _
-        Function InsertTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandardResponse")>  _
         Function ModifyCompetencyStandard(ByVal objCompetencyStandard As ProfileBusiness.CompetencyStandardDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -43842,6 +43845,10 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetOccupationalSafetyById(ByVal Id As Integer) As ProfileBusiness.OccupationalSafetyDTO Implements ProfileBusiness.IProfileBusiness.GetOccupationalSafetyById
+            Return MyBase.Channel.GetOccupationalSafetyById(Id)
+        End Function
+        
         Public Function InsertOccupationalSafety(ByVal lstOccupationalSafety As ProfileBusiness.OccupationalSafetyDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertOccupationalSafety
             Return MyBase.Channel.InsertOccupationalSafety(lstOccupationalSafety, log)
         End Function
@@ -44100,6 +44107,10 @@ Namespace ProfileBusiness
         
         Public Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListContract
             Return MyBase.Channel.ApproveListContract(listID, log)
+        End Function
+        
+        Public Function InsertTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertTerminate3b
+            Return MyBase.Channel.InsertTerminate3b(objTerminate3b, log, gID)
         End Function
         
         Public Function ModifyTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyTerminate3b
@@ -44438,10 +44449,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetOccupationalSafety(_filter, IsDissolve, PageIndex, PageSize, Total, UserLog, Sorts)
         End Function
         
-        Public Function GetOccupationalSafetyById(ByVal Id As Integer) As ProfileBusiness.OccupationalSafetyDTO Implements ProfileBusiness.IProfileBusiness.GetOccupationalSafetyById
-            Return MyBase.Channel.GetOccupationalSafetyById(Id)
-        End Function
-        
         Public Function InsertContract(ByVal objContract As ProfileBusiness.ContractDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertContract
             Return MyBase.Channel.InsertContract(objContract, log, gID)
         End Function
@@ -44500,6 +44507,10 @@ Namespace ProfileBusiness
         
         Public Function DeleteWelfareMng(ByVal lstWelfareMng As System.Collections.Generic.List(Of ProfileBusiness.WelfareMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.DeleteWelfareMng
             Return MyBase.Channel.DeleteWelfareMng(lstWelfareMng, log)
+        End Function
+        
+        Public Function ApproveListChangeInfoMng(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListChangeInfoMng
+            Return MyBase.Channel.ApproveListChangeInfoMng(listID, log)
         End Function
         
         Public Function GetWorking(ByVal _filter As ProfileBusiness.WorkingDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.WorkingDTO) Implements ProfileBusiness.IProfileBusiness.GetWorking
@@ -44776,10 +44787,6 @@ Namespace ProfileBusiness
         
         Public Function GetTerminate3bEmployeeByID(ByVal gEmployeeID As Decimal) As ProfileBusiness.EmployeeDTO Implements ProfileBusiness.IProfileBusiness.GetTerminate3bEmployeeByID
             Return MyBase.Channel.GetTerminate3bEmployeeByID(gEmployeeID)
-        End Function
-        
-        Public Function InsertTerminate3b(ByVal objTerminate3b As ProfileBusiness.Terminate3BDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertTerminate3b
-            Return MyBase.Channel.InsertTerminate3b(objTerminate3b, log, gID)
         End Function
         
         Public Function ModifyCompetencyStandard(ByVal objCompetencyStandard As ProfileBusiness.CompetencyStandardDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCompetencyStandard
