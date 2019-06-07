@@ -382,10 +382,10 @@ Public Class ctrlOTRegistrationNewEdit
                         obj.OT_TYPE_ID = ListComboData.LIST_LIST_OT_TYPE.Where(Function(f) f.CODE = "OT").Select(Function(g) g.ID).FirstOrDefault
 
                         obj.REGIST_DATE = rdRegDate.SelectedDate
-                        If hidSignId.Value.ToString = "" Then
-                            ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
-                            Exit Sub
-                        End If
+                        'If hidSignId.Value.ToString = "" Then
+                        '    ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
                         obj.SIGN_CODE = txtSignCode.Text
                         obj.SIGN_ID = hidSignId.Value
 
