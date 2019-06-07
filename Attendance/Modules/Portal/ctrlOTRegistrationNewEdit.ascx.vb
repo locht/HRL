@@ -501,6 +501,7 @@ Public Class ctrlOTRegistrationNewEdit
         Try
             If rdRegDate.SelectedDate IsNot Nothing Then
                 Using rep As New AttendanceRepository
+                    txtSignCode.ClearValue()
                     Dim dto As New AT_OT_REGISTRATIONDTO
                     dto.REGIST_DATE = rdRegDate.SelectedDate
                     dto.EMPLOYEE_ID = EmployeeID
