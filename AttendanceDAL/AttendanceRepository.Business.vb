@@ -6114,8 +6114,18 @@ Partial Public Class AttendanceRepository
 #Region "OT"
     Public Function CheckRegDateBetweenJoinAndTerDate(ByVal empId As Decimal, ByVal regDate As Date) As Boolean
         Try
-            Dim query = Context.HU_EMPLOYEE.Any(Function(p) regDate < p.JOIN_DATE OrElse regDate >= p.TER_LAST_DATE)
-            Return query
+            Dim emp = Context.HU_EMPLOYEE.Where(Function(f) f.ID = empId).FirstOrDefault
+            If Not emp.TER_LAST_DATE Is Nothing Then
+                If regDate < emp.JOIN_DATE Or regDate >= emp.TER_LAST_DATE Then
+                    Return False
+                End If
+                Return True
+            Else
+                If regDate < emp.JOIN_DATE Then
+                    Return False
+                End If
+                Return True
+            End If
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
             Throw ex

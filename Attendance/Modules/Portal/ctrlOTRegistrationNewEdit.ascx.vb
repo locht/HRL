@@ -505,8 +505,8 @@ Public Class ctrlOTRegistrationNewEdit
                     dto.REGIST_DATE = rdRegDate.SelectedDate
                     dto.EMPLOYEE_ID = EmployeeID
                     dto.P_USER = LogHelper.CurrentUser.EMPLOYEE_ID
-                    Dim inValidRegistDate = rep.CheckRegDateBetweenJoinAndTerDate(EmployeeID, rdRegDate.SelectedDate)
-                    If inValidRegistDate Then
+                    Dim validRegistDate = rep.CheckRegDateBetweenJoinAndTerDate(EmployeeID, rdRegDate.SelectedDate)
+                    If Not validRegistDate Then
                         ShowMessage(Translate("Ngày làm thêm phải sau ngày vào công ty và trước ngày nghỉ việc."), NotifyType.Warning)
                         rdRegDate.ClearValue()
                         txtSignCode.ClearValue()
