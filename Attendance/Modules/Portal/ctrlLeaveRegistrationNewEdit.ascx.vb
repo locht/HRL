@@ -470,8 +470,8 @@ Public Class ctrlLeaveRegistrationNewEdit
 
                         'kiem tra thuoc loại nghỉ nửa ngày hay không nếu có thì gán giá trị lại là 0.5
                         Dim ganGiatri As Decimal = 1
-                        ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
-                        If ktra = 1 Then
+                        Dim ktra1 = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
+                        If ktra1 = 1 Then
                             Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
                             If count1 > 0 Then
                                 ganGiatri = 0.5
@@ -481,7 +481,11 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 ganGiatri = 0.5
                             End If
                         End If
-                        
+                        Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                        If ktra2 = 1 Then
+                            ganGiatri = 1
+                        End If
+
                         Dim isInsert As Boolean = True
                         Dim obj As New AT_PORTAL_REG_DTO
                         Dim itemExist = New AT_PORTAL_REG_DTO
@@ -577,6 +581,10 @@ Public Class ctrlLeaveRegistrationNewEdit
                         ganGiatri = 0.5
                     End If
                 End If
+                Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                If ktra2 = 1 Then
+                    ganGiatri = 1
+                End If
                 Dim isInsert As Boolean = True
                 Dim obj As New AT_PORTAL_REG_DTO
                 Dim itemExist = New AT_PORTAL_REG_DTO
@@ -609,7 +617,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                    .ID_SIGN = Decimal.Parse(cboleaveType.SelectedValue),
                    .FROM_DATE = rdFromDate.SelectedDate,
                    .TO_DATE = rdToDate.SelectedDate,
-                   .NVALUE = 1,
+                   .NVALUE = ganGiatri,
                    .SVALUE = ApproveProcess,
                    .NOTE = txtNote.Text,
                    .NOTE_AT = txtNote.Text,
@@ -915,14 +923,23 @@ Public Class ctrlLeaveRegistrationNewEdit
                         Else
                             ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
                             If ktra = 1 Then
-                                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
-                                Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
-                                Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
-                                If count1 > 0 OrElse count2 > 0 Then
-                                    calDay -= 0.5
-                                End If
-                                If COUNT > 0 Then
-                                    calDay1 += 1
+                                Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                                If ktra2 = 1 Then
+                                    If COUNT > 0 Then
+                                        calDay1 += 1
+                                    End If
+                                Else
+                                    checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
+                                    Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
+                                    Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
+                                    If count1 > 0 AndAlso count2 > 0 Then
+                                    Else
+                                        calDay -= 0.5
+                                    End If
+
+                                    If COUNT > 0 Then
+                                        calDay1 += 1
+                                    End If
                                 End If
                             End If
                         End If
