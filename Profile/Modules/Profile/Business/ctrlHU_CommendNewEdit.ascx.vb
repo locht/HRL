@@ -366,7 +366,7 @@ Public Class ctrlHU_CommendNewEdit
                     loadDatasource(txtUploadFile.Text)
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
 
-                    If Commend.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                    If Commend.STATUS_ID = ProfileCommon.COMMEND_STATUS.APPROVE_ID Then
                         RightPane.Enabled = False
                         CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     End If
@@ -436,7 +436,7 @@ Public Class ctrlHU_CommendNewEdit
                     If Page.IsValid Then
                         Dim _filter As New CommendDTO
 
-                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                        If cboStatus.SelectedValue = ProfileCommon.COMMEND_STATUS.APPROVE_ID Then
                             If txtDecisionNo.Text = "" Then
                                 ShowMessage(Translate("Vui lòng nhập số quyết định"), NotifyType.Warning)
                                 Exit Sub

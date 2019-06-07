@@ -1286,7 +1286,7 @@ Public Class ProfileRepository
         'Danh mục trạng thái khen thưởng
         If _combolistDTO.GET_COMMEND_STATUS Then
             query = (From p In Context.OT_OTHER_LIST
-                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = ProfileCommon.DECISION_STATUS.Name _
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = ProfileCommon.COMMEND_STATUS.Name _
                      And p.ACTFLG = "A"
                      Order By p.NAME_VN
                     Select New OtherListDTO With {
