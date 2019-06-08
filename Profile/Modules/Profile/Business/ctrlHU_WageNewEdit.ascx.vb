@@ -369,7 +369,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             CalculatorSalary()
-            ClearControlValue(basicSalary, Salary_Total, rnOtherSalary1, _
+            ClearControlValue(Salary_Total, rnOtherSalary1, _
                               rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
@@ -1257,7 +1257,10 @@ Public Class ctrlHU_WageNewEdit
                      Where row("ID").ToString = cbSalaryGroup.SelectedValue.ToString
                      Select row("ISHOSE")
                 If rs(0) = 0 Then
+                    SalaryInsurance.Value = rnFactorSalary.Value
                     basicSalary.Value = SalaryInsurance.Value
+                Else
+
                 End If
             End If
         Catch ex As Exception
