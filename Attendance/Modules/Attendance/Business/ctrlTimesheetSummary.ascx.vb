@@ -336,8 +336,6 @@ Public Class ctrlTimesheetSummary
                             Exit Sub
                         End If
                     End If
-                    
-                    
                 Case TOOLBARITEM_EXPORT
                     Using xls As New ExcelCommon
                         Dim dtDatas As DataTable

@@ -154,6 +154,10 @@
                                 SortExpression="ORG_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đối tượng chấm công %>" DataField="OBJECT_ATTENDANCE_NAME" UniqueName="OBJECT_ATTENDANCE_NAME"
                                 SortExpression="OBJECT_ATTENDANCE_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày tính lương %>" DataField="TOTAL_DAY_SAL" UniqueName="TOTAL_DAY_SAL"
+                                SortExpression="TOTAL_DAY_SAL" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày nghỉ không lương %>" DataField="TOTAL_DAY_NON_SAL" UniqueName="TOTAL_DAY_NON_SAL"
+                                SortExpression="TOTAL_DAY_NON_SAL" HeaderStyle-Width="200px" />
                             <tlk:GridTemplateColumn HeaderText="D1" AllowFiltering="false" Visible="false" UniqueName="D1">
                                 <HeaderStyle Width="80px" />
                                 <ItemStyle HorizontalAlign="Center" />

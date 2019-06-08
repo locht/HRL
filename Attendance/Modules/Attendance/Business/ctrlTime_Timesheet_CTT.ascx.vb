@@ -212,10 +212,10 @@ Public Class ctrlTime_Timesheet_CTT
                                                                   ToolbarIcons.Export,
                                                                   ToolbarAuthorize.Export,
                                                                   Translate("Xuất bảng công gốc")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("CALCULATE",
-            '                                                      ToolbarIcons.Calculator,
-            '                                                      ToolbarAuthorize.None,
-            '                                                      Translate("Tổng hợp")))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("CALCULATE",
+                                                                  ToolbarIcons.Calculator,
+                                                                  ToolbarAuthorize.None,
+                                                                  Translate("Tổng hợp")))
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
