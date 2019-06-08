@@ -183,6 +183,7 @@ Public Class ctrlLeaveRegistrationNewEdit
         Try
             If Not IsPostBack Then
                 Dim id As Decimal = 0
+                Dim OUTID As Decimal
                 Dim empId As Decimal = 0
                 Decimal.TryParse(Request.QueryString("id"), id)
                 Decimal.TryParse(Request.QueryString("empId"), empId)
@@ -193,13 +194,16 @@ Public Class ctrlLeaveRegistrationNewEdit
                 userType = Request.QueryString("typeUser")
                 CurrentState = CommonMessage.STATE_NORMAL
                 Dim dto As New AT_PORTAL_REG_DTO
+                Using rep As New AttendanceRepository
+                    OUTID = rep.GETIDFROMPROCESS(id)
+                End Using
                 dto.ID = hidID.Value
                 If hidID.Value = 0 Then
                     EmployeeID = LogHelper.CurrentUser.EMPLOYEE_ID
                     dto.ID_EMPLOYEE = EmployeeID
                 Else
                     EmployeeID = If(empId = 0, LogHelper.CurrentUser.EMPLOYEE_ID, empId)
-                    dto.ID_EMPLOYEE = If(empId = 0, LogHelper.CurrentUser.EMPLOYEE_ID, empId)
+                    dto.ID_EMPLOYEE = OUTID
                 End If
 
                 leaveMaster = New AT_PORTAL_REG_DTO
@@ -218,8 +222,15 @@ Public Class ctrlLeaveRegistrationNewEdit
                         End If
                     End If
                     dayholiday = rep.GetDayHoliday()
-                    CHECKSHIFT = rep.PRS_COUNT_SHIFT(EmployeeID)
-                    CHECKCONTRACT = rep.CHECK_CONTRACT(EmployeeID)
+                    If OUTID = 0 Then
+                        CHECKSHIFT = rep.PRS_COUNT_SHIFT(EmployeeID)
+                        CHECKCONTRACT = rep.CHECK_CONTRACT(EmployeeID)
+                    Else
+                        CHECKSHIFT = rep.PRS_COUNT_SHIFT(OUTID)
+                        CHECKCONTRACT = rep.CHECK_CONTRACT(OUTID)
+                    End If
+
+                 
                 End Using
                 If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
                     txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
@@ -236,7 +247,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Dim _filter As New TotalDayOffDTO
                 _filter.DATE_REGISTER = Date.Now
                 _filter.LEAVE_TYPE = 251
-                _filter.EMPLOYEE_ID = EmployeeID
+                '  _filter.EMPLOYEE_ID = EmployeeID
+                If OUTID = 0 Then
+                    _filter.EMPLOYEE_ID = EmployeeID
+                Else
+                    _filter.EMPLOYEE_ID = OUTID
+                End If
                 If check <> 0 Then
                     _filter.ID_PORTAL_REG = check
                 Else
@@ -415,12 +431,11 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 End If
                                 selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                             End While
-
-                            If rntxDayRegist.Value > rntBalance.Text Then
-                                ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
-                                UpdateControlState()
-                                Exit Sub
-                            End If
+                        End If
+                        If rntxDayRegist.Value > rntBalance.Text Then
+                            ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
                         End If
                         If txtNote.Text = "" Then
                             ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
@@ -467,7 +482,6 @@ Public Class ctrlLeaveRegistrationNewEdit
                             ctrlMessageBox.Show()
                             Exit Sub
                         End If
-
                         'kiem tra thuoc loại nghỉ nửa ngày hay không nếu có thì gán giá trị lại là 0.5
                         Dim ganGiatri As Decimal = 1
                         Dim ktra1 = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
@@ -569,9 +583,76 @@ Public Class ctrlLeaveRegistrationNewEdit
         Try
             If e.ActionName = CommonMessage.ACTION_SAVED And e.ButtonID = MessageBoxButtonType.ButtonYes Then
                 'kiem tra thuoc loại nghỉ nửa ngày hay không nếu có thì gán giá trị lại là 0.5
-                Dim ganGiatri As Decimal = 1
-                Dim ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
+                If rntxDayRegist.Value.HasValue AndAlso rntxDayRegist.Value <= 0 Then
+                    ShowMessage(Translate("Số ngày nghỉ phải > 0."), NotifyType.Warning)
+                    UpdateControlState()
+                    Exit Sub
+                End If
+                If cboleaveType.SelectedValue = "" Then
+                    ShowMessage(Translate("Chọn loại nghỉ."), NotifyType.Warning)
+                    UpdateControlState()
+                    Exit Sub
+                End If
+                Dim ktra = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                Dim selectedFromDate1 = rdFromDate.SelectedDate
+                Dim selectedToDate1 = rdToDate.SelectedDate
                 If ktra = 1 Then
+                    While selectedFromDate1.Value.Date <= selectedToDate1.Value.Date
+                        Dim checkhopdong = (From P In CHECKCONTRACT.AsEnumerable Where P("STARTDATE") <= selectedFromDate1 And P("ENDDATE") >= selectedFromDate1 Select P).ToList.Count
+                        If checkhopdong > 0 Then
+                            ShowMessage(Translate("Không được đăng ký phép năm trong thời gian thử việc"), NotifyType.Warning)
+                            UpdateControlState()
+                            Exit Sub
+                        End If
+                        selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
+                    End While
+                End If
+                If rntxDayRegist.Value > rntBalance.Text Then
+                    ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
+                    UpdateControlState()
+                    Exit Sub
+                End If
+                If txtNote.Text = "" Then
+                    ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
+                    UpdateControlState()
+                    Exit Sub
+                End If
+                If rdFromDate.SelectedDate Is Nothing Then
+                    ShowMessage(Translate("Chọn thời gian bắt đầu."), NotifyType.Warning)
+                    UpdateControlState()
+                    Exit Sub
+                End If
+                If rdToDate.SelectedDate Is Nothing Then
+                    ShowMessage(Translate("Chọn thời gian kết thúc."), NotifyType.Warning)
+                    UpdateControlState()
+                    Exit Sub
+                End If
+                Dim selectedFromDate = rdFromDate.SelectedDate
+                Dim selectedToDate = rdToDate.SelectedDate
+                While selectedFromDate.Value.Date <= selectedToDate.Value.Date
+                    Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                    If CHECK1 = 0 Then
+                        ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
+                        UpdateControlState()
+                        Exit Sub
+                    End If
+                    Using rep As New AttendanceRepository
+                        Dim periodid = rep.GetperiodID(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate)
+                        If periodid = 0 Then
+                            ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
+                        If checkKicong = 0 Then
+                            ShowMessage(Translate("Kì công đã đóng,Xin kiểm tra lại"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    End Using
+                    selectedFromDate = selectedFromDate.Value.AddDays(1)
+                End While
+                Dim ganGiatri As Decimal = 1
+                Dim ktra2 = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
+                If ktra2 = 1 Then
                     Using rep As New AttendanceRepository
                         checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
                     End Using
@@ -584,8 +665,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                         ganGiatri = 0.5
                     End If
                 End If
-                Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
-                If ktra2 = 1 Then
+                Dim ktra3 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                If ktra3 = 1 Then
                     ganGiatri = 1
                 End If
                 Dim isInsert As Boolean = True
@@ -925,6 +1006,10 @@ Public Class ctrlLeaveRegistrationNewEdit
                             ShowMessage(Translate("Chọn loại nghỉ"), NotifyType.Warning)
                         Else
                             ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
+                            Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
+                            If check > 0 Then
+                                calDay -= 1
+                            End If
                             If ktra = 1 Then
                                 Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
                                 If ktra2 = 1 Then
@@ -937,19 +1022,15 @@ Public Class ctrlLeaveRegistrationNewEdit
                                     Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
                                     If count1 > 0 AndAlso count2 > 0 Then
                                     Else
-                                        calDay -= 0.5
+                                        If check = 0 Then
+                                            calDay -= 0.5
+                                        End If
                                     End If
-
                                     If COUNT > 0 Then
                                         calDay1 += 1
                                     End If
                                 End If
                             End If
-                        End If
-
-                        Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
-                        If check > 0 Then
-                            calDay -= 1
                         End If
                     End Using
                     selectedFromDate1 = selectedFromDate1.Value.AddDays(1)

@@ -2079,6 +2079,16 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GETIDFROMPROCESS(ByVal Id As Decimal) As Decimal _
+              Implements ServiceContracts.IAttendanceBusiness.GETIDFROMPROCESS
+            Using rep As New AttendanceRepository
+                Try
+                    Return rep.GETIDFROMPROCESS(Id)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function InsertPortalRegList(ByVal obj As AT_PORTAL_REG_LIST_DTO, ByVal lstObjDetail As List(Of AT_PORTAL_REG_DTO), ByVal log As UserLog, ByRef gID As Decimal, ByRef itemExist As AT_PORTAL_REG_DTO, ByRef isOverAnnualLeave As Boolean) As Boolean _
            Implements ServiceContracts.IAttendanceBusiness.InsertPortalRegList
             Using rep As New AttendanceRepository

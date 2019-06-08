@@ -14,6 +14,17 @@ Partial Class AttendanceRepository
             End Try
         End Using
     End Function
+    Public Function GETIDFROMPROCESS(ByVal Id As Decimal) As Decimal
+        Using rep As New AttendanceBusinessClient
+            Try
+
+                Return rep.GETIDFROMPROCESS(Id)
+            Catch ex As Exception
+
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function CHECK_TYPE_BREAK(ByVal type_break_id As Decimal) As DataTable
         Using rep As New AttendanceBusinessClient
             Try

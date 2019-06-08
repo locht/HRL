@@ -6837,9 +6837,24 @@ Partial Public Class AttendanceRepository
                                                                            .WORK_HARD = p.WORK_DAY,
             .CREATED_DATE = p.CREATED_DATE
                                                                         }
+            'Dim check1
+            'Dim check2
+            'If _filter.ID_EMPLOYEE > 0 Then
+            '    check1 = query.Where(Function(f) f.ID_EMPLOYEE = _filter.ID_EMPLOYEE)
+            'End If
             If _filter.ID_EMPLOYEE > 0 Then
                 query = query.Where(Function(f) f.ID_EMPLOYEE = _filter.ID_EMPLOYEE)
             End If
+            'If check1 Is Nothing Then
+            '    query = check2
+            'End If
+            'If True Then
+            '    query = check1
+            'End If
+
+
+
+
             'If _filter.ID.HasValue AndAlso _filter.ID.Value > 0 Then
             '    query = query.Where(Function(f) f.ID = _filter.ID)
             'End If
@@ -6903,6 +6918,16 @@ Partial Public Class AttendanceRepository
              .TO_DATE = d.END_DATE
                             }
             Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
+        Finally
+            _isAvailable = True
+        End Try
+    End Function
+    Public Function GETIDFROMPROCESS(ByVal Id As Decimal) As Decimal
+        Try
+            Dim query = (From p In Context.AT_PORTAL_REG Where p.ID_REGGROUP = Id).Select(Function(F) F.ID_EMPLOYEE).FirstOrDefault()
+            Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iTime")
         Finally
