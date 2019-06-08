@@ -9,6 +9,15 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "Discipline"
+        Public Function ApproveListDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListDiscipline
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ApproveListDiscipline(listID, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function GetEmployeeDesciplineID(ByVal DesId As Decimal) As List(Of DisciplineEmpDTO) Implements ServiceContracts.IProfileBusiness.GetEmployeeDesciplineID
             Try
                 Dim rep As New ProfileRepository

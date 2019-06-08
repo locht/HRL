@@ -640,13 +640,13 @@ Partial Class ProfileRepository
         End Try
     End Function
     Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
-        Dim objContractData As HU_WORKING
+        Dim objChangeInfoMngData As HU_WORKING
         Try
             Dim item As Decimal = 0
             For idx = 0 To listID.Count - 1
                 item = listID(idx)
-                objContractData = (From p In Context.HU_WORKING Where item = p.ID).SingleOrDefault
-                objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                objChangeInfoMngData = (From p In Context.HU_WORKING Where item = p.ID).SingleOrDefault
+                objChangeInfoMngData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
             Next
             Context.SaveChanges(log)
             Return True

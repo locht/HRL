@@ -546,6 +546,8 @@ Public Class ctrlHU_Discipline
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
                         End If
                     End Using
+                Case CommonMessage.TOOLBARITEM_CREATE_BATCH
+                    BatchApproveDiscipline()
             End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -742,6 +744,48 @@ Public Class ctrlHU_Discipline
 #End Region
 
 #Region "Custom"
+    ''' <lastupdate>11/07/2017</lastupdate>
+    ''' <summary>Xử lý phê duyệt ky luat</summary>
+    ''' <remarks></remarks>
+    Private Sub BatchApproveDiscipline()
+        Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim lstID As New List(Of Decimal)
+
+        Try
+            '1. Check có rows nào được select hay không
+            If rgDiscipline Is Nothing OrElse rgDiscipline.SelectedItems.Count <= 0 Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                Exit Sub
+            End If
+
+            Dim listCon As New List(Of ContractDTO)
+
+            For Each dr As Telerik.Web.UI.GridDataItem In rgDiscipline.SelectedItems
+                Dim ID As New Decimal
+                If Not dr.GetDataKeyValue("STATUS_ID").Equals("716") Then
+                    ID = dr.GetDataKeyValue("ID")
+                    lstID.Add(ID)
+                End If
+            Next
+
+            If lstID.Count > 0 Then
+                If rep.ApproveListDiscipline(lstID) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgDiscipline.Rebind()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+            Else
+                ShowMessage("Các kỷ luật được chọn đã được phê duyệt", NotifyType.Information)
+            End If
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 11/07/2017 13:40
     ''' </lastupdate>

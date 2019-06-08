@@ -1677,6 +1677,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 #Region "Discipline"
         <OperationContract()>
+        Function ApproveListDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
+        <OperationContract()>
         Function GetEmployeeDesciplineID(ByVal DesId As Decimal) As List(Of DisciplineEmpDTO)
 
         <OperationContract()>
@@ -1797,6 +1799,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "Terminate"
+        <OperationContract()>
+        Function ApproveListTerminate(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As DataTable
 

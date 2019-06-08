@@ -405,6 +405,8 @@ Public Class ctrlHU_Terminate
                             Exit Sub
                         End If
                     End Using
+                Case CommonMessage.TOOLBARITEM_CREATE_BATCH
+                    BatchApproveTerminate()
             End Select
             UpdateControlState()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -662,7 +664,48 @@ Public Class ctrlHU_Terminate
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Function
+    ''' <lastupdate>11/07/2017</lastupdate>
+    ''' <summary>Xử lý phê duyệt nghi viec</summary>
+    ''' <remarks></remarks>
+    Private Sub BatchApproveTerminate()
+        Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim lstID As New List(Of Decimal)
 
+        Try
+            '1. Check có rows nào được select hay không
+            If rgTerminate Is Nothing OrElse rgTerminate.SelectedItems.Count <= 0 Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                Exit Sub
+            End If
+
+            Dim listCon As New List(Of ContractDTO)
+
+            For Each dr As Telerik.Web.UI.GridDataItem In rgTerminate.SelectedItems
+                Dim ID As New Decimal
+                If Not dr.GetDataKeyValue("STATUS_ID").Equals("447") Then
+                    ID = dr.GetDataKeyValue("ID")
+                    lstID.Add(ID)
+                End If
+            Next
+
+            If lstID.Count > 0 Then
+                If rep.ApproveListTerminate(lstID) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgTerminate.Rebind()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+            Else
+                ShowMessage("Các đơn nghỉ được chọn đã được phê duyệt", NotifyType.Information)
+            End If
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 End Class
