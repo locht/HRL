@@ -1,6 +1,7 @@
 ﻿Public Class AT_PORTAL_REG_DTO
     Public Property ID As Decimal
     Public Property ID_EMPLOYEE As Decimal
+    Public Property ID_EMPLOYEE1 As Decimal
     Public Property EMPLOYEE_CODE As String
     Public Property EMPLOYEE_NAME As String
     Public Property PROCESS As String

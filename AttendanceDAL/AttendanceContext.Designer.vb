@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("cd747ba8-eb69-4f92-867c-5aa9f119965a")>
+<Assembly: EdmSchemaAttribute("52976db1-448e-4351-83b0-703801639c71")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1244,6 +1244,20 @@ Public Partial Class AttendanceContext
 
     Private _HU_CONTRACT_TYPE As ObjectSet(Of HU_CONTRACT_TYPE)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property PROCESS_APPROVED_STATUS() As ObjectSet(Of PROCESS_APPROVED_STATUS)
+        Get
+            If (_PROCESS_APPROVED_STATUS Is Nothing) Then
+                _PROCESS_APPROVED_STATUS = MyBase.CreateObjectSet(Of PROCESS_APPROVED_STATUS)("PROCESS_APPROVED_STATUS")
+            End If
+            Return _PROCESS_APPROVED_STATUS
+        End Get
+    End Property
+
+    Private _PROCESS_APPROVED_STATUS As ObjectSet(Of PROCESS_APPROVED_STATUS)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -1827,6 +1841,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToHU_CONTRACT_TYPE(ByVal hU_CONTRACT_TYPE As HU_CONTRACT_TYPE)
         MyBase.AddObject("HU_CONTRACT_TYPE", hU_CONTRACT_TYPE)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the PROCESS_APPROVED_STATUS EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToPROCESS_APPROVED_STATUS(ByVal pROCESS_APPROVED_STATUS As PROCESS_APPROVED_STATUS)
+        MyBase.AddObject("PROCESS_APPROVED_STATUS", pROCESS_APPROVED_STATUS)
     End Sub
 
     #End Region
@@ -46077,6 +46098,361 @@ Public Partial Class OT_OTHER_LIST_TYPE
             End If
         End Set
     End Property
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="AttendanceModel", Name:="PROCESS_APPROVED_STATUS")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class PROCESS_APPROVED_STATUS
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new PROCESS_APPROVED_STATUS object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreatePROCESS_APPROVED_STATUS(id As Global.System.Decimal) As PROCESS_APPROVED_STATUS
+        Dim pROCESS_APPROVED_STATUS as PROCESS_APPROVED_STATUS = New PROCESS_APPROVED_STATUS
+        pROCESS_APPROVED_STATUS.ID = id
+        Return pROCESS_APPROVED_STATUS
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_ID
+        End Get
+        Set
+            OnEMPLOYEE_IDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_ID")
+            _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_ID")
+            OnEMPLOYEE_IDChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_APPROVED() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EMPLOYEE_APPROVED
+        End Get
+        Set
+            OnEMPLOYEE_APPROVEDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_APPROVED")
+            _EMPLOYEE_APPROVED = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_APPROVED")
+            OnEMPLOYEE_APPROVEDChanged()
+        End Set
+    End Property
+
+    Private _EMPLOYEE_APPROVED As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_APPROVEDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_APPROVEDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property APP_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _APP_DATE
+        End Get
+        Set
+            OnAPP_DATEChanging(value)
+            ReportPropertyChanging("APP_DATE")
+            _APP_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("APP_DATE")
+            OnAPP_DATEChanged()
+        End Set
+    End Property
+
+    Private _APP_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnAPP_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnAPP_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property APP_LEVEL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _APP_LEVEL
+        End Get
+        Set
+            OnAPP_LEVELChanging(value)
+            ReportPropertyChanging("APP_LEVEL")
+            _APP_LEVEL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("APP_LEVEL")
+            OnAPP_LEVELChanged()
+        End Set
+    End Property
+
+    Private _APP_LEVEL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnAPP_LEVELChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnAPP_LEVELChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property APP_NOTES() As Global.System.String
+        Get
+            Return _APP_NOTES
+        End Get
+        Set
+            OnAPP_NOTESChanging(value)
+            ReportPropertyChanging("APP_NOTES")
+            _APP_NOTES = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("APP_NOTES")
+            OnAPP_NOTESChanged()
+        End Set
+    End Property
+
+    Private _APP_NOTES As Global.System.String
+    Private Partial Sub OnAPP_NOTESChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnAPP_NOTESChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_BY() As Global.System.String
+        Get
+            Return _CREATED_BY
+        End Get
+        Set
+            OnCREATED_BYChanging(value)
+            ReportPropertyChanging("CREATED_BY")
+            _CREATED_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATED_BY")
+            OnCREATED_BYChanged()
+        End Set
+    End Property
+
+    Private _CREATED_BY As Global.System.String
+    Private Partial Sub OnCREATED_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _CREATED_DATE
+        End Get
+        Set
+            OnCREATED_DATEChanging(value)
+            ReportPropertyChanging("CREATED_DATE")
+            _CREATED_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CREATED_DATE")
+            OnCREATED_DATEChanged()
+        End Set
+    End Property
+
+    Private _CREATED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnCREATED_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnCREATED_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property APP_STATUS() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _APP_STATUS
+        End Get
+        Set
+            OnAPP_STATUSChanging(value)
+            ReportPropertyChanging("APP_STATUS")
+            _APP_STATUS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("APP_STATUS")
+            OnAPP_STATUSChanged()
+        End Set
+    End Property
+
+    Private _APP_STATUS As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnAPP_STATUSChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnAPP_STATUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PE_PERIOD_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PE_PERIOD_ID
+        End Get
+        Set
+            OnPE_PERIOD_IDChanging(value)
+            ReportPropertyChanging("PE_PERIOD_ID")
+            _PE_PERIOD_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PE_PERIOD_ID")
+            OnPE_PERIOD_IDChanged()
+        End Set
+    End Property
+
+    Private _PE_PERIOD_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPE_PERIOD_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPE_PERIOD_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID_REGGROUP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ID_REGGROUP
+        End Get
+        Set
+            OnID_REGGROUPChanging(value)
+            ReportPropertyChanging("ID_REGGROUP")
+            _ID_REGGROUP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ID_REGGROUP")
+            OnID_REGGROUPChanged()
+        End Set
+    End Property
+
+    Private _ID_REGGROUP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_REGGROUPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnID_REGGROUPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TEMPLATE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TEMPLATE_ID
+        End Get
+        Set
+            OnTEMPLATE_IDChanging(value)
+            ReportPropertyChanging("TEMPLATE_ID")
+            _TEMPLATE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TEMPLATE_ID")
+            OnTEMPLATE_IDChanged()
+        End Set
+    End Property
+
+    Private _TEMPLATE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTEMPLATE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTEMPLATE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PROCESS_TYPE() As Global.System.String
+        Get
+            Return _PROCESS_TYPE
+        End Get
+        Set
+            OnPROCESS_TYPEChanging(value)
+            ReportPropertyChanging("PROCESS_TYPE")
+            _PROCESS_TYPE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("PROCESS_TYPE")
+            OnPROCESS_TYPEChanged()
+        End Set
+    End Property
+
+    Private _PROCESS_TYPE As Global.System.String
+    Private Partial Sub OnPROCESS_TYPEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnPROCESS_TYPEChanged()
+    End Sub
 
     #End Region
 

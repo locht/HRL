@@ -1,209 +1,19 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 6/5/2019 2:14:47 PM
--- Generated from EDMX file: E:\Source\SOURCE_CORE\histaffhcm\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 06/07/2019 3:23:17 PM
+-- Generated from EDMX file: D:\MyProject\core1\histaffhcm-27052019\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- ALTER TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST" DROP CONSTRAINT "FK_OOLT_OOL" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_TYPE" DROP CONSTRAINT "FK_OOLG_OOLT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_HEALTH" DROP CONSTRAINT "FK_FE_HEH" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_EDUCATION" DROP CONSTRAINT "FK_HE_HEE" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_FILES" DROP CONSTRAINT "FK_HE_HEF" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO" DROP CONSTRAINT "FK_HE_HEO" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_SALARY" DROP CONSTRAINT "FK_HE_HES" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE" DROP CONSTRAINT "FK_HUEMD_HUEM" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_ORGANIZATION" DROP CONSTRAINT "FK_HU_ORG_HU_ORG" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."HU_ORG_TITLE" DROP CONSTRAINT "FK_HUTL_HUOT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_REPORT" CASCADE;
-
--- ALTER TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT" DROP CONSTRAINT "FK_SE_USER_REPORT_SE_USER" CASCADE;
-
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST";
-
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_GROUP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."OT_OTHER_LIST_TYPE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_CHOSEN_ORG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_GSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SWIPE_DATA";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ORG_PERIOD";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_CONTRACT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_EDUCATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_FILES";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_HEALTH";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_OTHER_INFO";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_SALARY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_TRAIN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_REGISTER";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_PROCESS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_SETUP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_SETUPEXT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_TEMPLATE_DTL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_APP_TEMPLATE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ORGANIZATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_WORKING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_APP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_RGT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ORG_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_WORKSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_REG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_STAFF_RANK";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_RICE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_OT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DMVS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY_GENERAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_HOLIDAY_OBJECT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LATE_COMBACKOUT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LEAVESHEET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PERIOD";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_SPECIAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SIGNDEFAULT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_MANUAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_RICE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_DAILY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_MACHINET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DATA_INOUT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_FML";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TERMINALS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ACTION_ORG_LOG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_EMPLOYEE_CV";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_MAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_TIME_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ENTITLEMENT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_EMPLOYEE_CHOSEN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_LIST_PARAM_SYSTEM";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_REGISTER_OT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_REPORT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_COMPENSATORY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_ACTION_LOG";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_DECLARE_ENTITLEMENT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_TITLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_WORK";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PROJECT_ASSIGN";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET_OT_DTL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIME_TIMESHEET_MONTHLY";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFT";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_PORTAL_REG_LIST";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_TIMESHEET";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_EMP_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SETUP_ATT_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OT_REGISTRATION";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OFFSETTING_TIMEKEEPING";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_OFFSETTING_TIMEKEEPING_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HUV_AT_PORTAL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_EMP";
-
--- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFTCYCLE_DETAIL";
-
--- DROP TABLE "AttendanceModelStoreContainer"."ATV_HOLIDAY_HOSE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_ANNUALLEAVE_PLANS";
-
--- DROP TABLE "AttendanceModelStoreContainer"."HU_CONTRACT_TYPE";
-
--- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT";
+-- DROP TABLE "HISTAFFHCM"."PROCESS_APPROVED_STATUS";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -2298,6 +2108,23 @@ CREATE TABLE "dbo"."HU_CONTRACT_TYPE" (
    "TYPE_CODE" VARCHAR2(255) NULL
 );
 
+-- Creating table 'PROCESS_APPROVED_STATUS'
+CREATE TABLE "dbo"."PROCESS_APPROVED_STATUS" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "EMPLOYEE_APPROVED" NUMBER(38,0) NULL,
+   "APP_DATE" DATE NULL,
+   "APP_LEVEL" NUMBER(38,0) NULL,
+   "APP_NOTES" NVARCHAR2(1000) NULL,
+   "CREATED_BY" NVARCHAR2(100) NULL,
+   "CREATED_DATE" DATE NULL,
+   "APP_STATUS" NUMBER(38,0) NULL,
+   "PE_PERIOD_ID" NUMBER(38,0) NULL,
+   "ID_REGGROUP" NUMBER(38,0) NULL,
+   "TEMPLATE_ID" NUMBER(38,0) NULL,
+   "PROCESS_TYPE" NVARCHAR2(100) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -2968,6 +2795,14 @@ ADD CONSTRAINT "PK_HU_ANNUALLEAVE_PLANS"
 -- Creating primary key on "ID"in table 'HU_CONTRACT_TYPE'
 ALTER TABLE "dbo"."HU_CONTRACT_TYPE"
 ADD CONSTRAINT "PK_HU_CONTRACT_TYPE"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'PROCESS_APPROVED_STATUS'
+ALTER TABLE "dbo"."PROCESS_APPROVED_STATUS"
+ADD CONSTRAINT "PK_PROCESS_APPROVED_STATUS"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

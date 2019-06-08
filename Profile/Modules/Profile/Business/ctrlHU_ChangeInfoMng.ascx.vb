@@ -320,6 +320,8 @@ Public Class ctrlHU_ChangeInfoMng
                                              dtData,
                                              Response)
                     End Using
+                Case CommonMessage.TOOLBARITEM_CREATE_BATCH
+                    BatchApproveChangeInfoMng()
             End Select
 
             UpdateControlState()
@@ -909,6 +911,48 @@ Public Class ctrlHU_ChangeInfoMng
         End Try
     End Function
 
+    ''' <lastupdate>11/07/2017</lastupdate>
+    ''' <summary>Xử lý phê duyệt quyet dinh</summary>
+    ''' <remarks></remarks>
+    Private Sub BatchApproveChangeInfoMng()
+        Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim lstID As New List(Of Decimal)
+
+        Try
+            '1. Check có rows nào được select hay không
+            If rgWorking Is Nothing OrElse rgWorking.SelectedItems.Count <= 0 Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
+                Exit Sub
+            End If
+
+            Dim listCon As New List(Of ContractDTO)
+
+            For Each dr As Telerik.Web.UI.GridDataItem In rgWorking.SelectedItems
+                Dim ID As New Decimal
+                If Not dr.GetDataKeyValue("STATUS_ID").Equals("447") Then
+                    ID = dr.GetDataKeyValue("ID")
+                    lstID.Add(ID)
+                End If
+            Next
+
+            If lstID.Count > 0 Then
+                If rep.ApproveListChangeInfoMng(lstID) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    rgWorking.Rebind()
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                End If
+            Else
+                ShowMessage("Các quyết định được chọn đã được phê duyệt", NotifyType.Information)
+            End If
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 End Class

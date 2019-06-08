@@ -638,8 +638,22 @@ Partial Class ProfileRepository
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
         End Try
-
-
+    End Function
+    Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim objChangeInfoMngData As HU_WORKING
+        Try
+            Dim item As Decimal = 0
+            For idx = 0 To listID.Count - 1
+                item = listID(idx)
+                objChangeInfoMngData = (From p In Context.HU_WORKING Where item = p.ID).SingleOrDefault
+                objChangeInfoMngData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
     End Function
     Private Class WorkingAllowView  'p.ALLOWANCE_LIST_ID, p.HU_WORKING_ID, p.AMOUNT
         Public Property ALLOWANCE_LIST_ID As Decimal?

@@ -5,6 +5,16 @@ Partial Public Class ProfileBusinessRepository
 
 
 #Region "Terminate"
+    Public Function ApproveListTerminate(ByVal listID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ApproveListTerminate(listID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As DataTable
         Using rep As New ProfileBusinessClient
             Try

@@ -9,7 +9,22 @@ Imports Oracle.DataAccess.Client
 Partial Class ProfileRepository
 
 #Region "Discipline"
-
+    Public Function ApproveListDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim objDisData As HU_DISCIPLINE
+        Try
+            Dim item As Decimal = 0
+            For idx = 0 To listID.Count - 1
+                item = listID(idx)
+                objDisData = (From p In Context.HU_DISCIPLINE Where item = p.ID).SingleOrDefault
+                objDisData.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
     Public Function GetDiscipline(ByVal _filter As DisciplineDTO,
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,

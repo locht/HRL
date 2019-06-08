@@ -8,6 +8,8 @@ Namespace AttendanceBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IAttendanceBusiness
         <OperationContract()>
+        Function GETIDFROMPROCESS(ByVal Id As Decimal) As Decimal
+        <OperationContract()>
         Function CAL_SUMMARY_DATA_INOUT(ByVal Period_id As Decimal) As Boolean
         <OperationContract()>
         Function CHECK_TYPE_BREAK(ByVal type_break_id As Decimal) As DataTable

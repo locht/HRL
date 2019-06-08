@@ -89,6 +89,7 @@
             <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.Store.ATV_HOLIDAY_HOSE" store:Type="Tables"  />
             <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="AttendanceModel.Store.HU_ANNUALLEAVE_PLANS" store:Type="Tables"  />
             <EntitySet Name="HU_CONTRACT_TYPE" EntityType="AttendanceModel.Store.HU_CONTRACT_TYPE" store:Type="Tables"  />
+            <EntitySet Name="PROCESS_APPROVED_STATUS" EntityType="AttendanceModel.Store.PROCESS_APPROVED_STATUS" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2314,6 +2315,24 @@
             <Property Name="TYPE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="TYPE_CODE" Type="varchar2" Nullable="true" MaxLength="255" />
         </EntityType>
+        <EntityType Name="PROCESS_APPROVED_STATUS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EMPLOYEE_APPROVED" Type="number" Nullable="true" Precision="38" />
+            <Property Name="APP_DATE" Type="date" Nullable="true" />
+            <Property Name="APP_LEVEL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="APP_NOTES" Type="nvarchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="100" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="APP_STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PE_PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ID_REGGROUP" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TEMPLATE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PROCESS_TYPE" Type="nvarchar2" Nullable="true" MaxLength="100" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2622,6 +2641,7 @@
           <EntitySet Name="ATV_HOLIDAY_HOSE" EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" />
           <EntitySet Name="HU_ANNUALLEAVE_PLANS" EntityType="AttendanceModel.HU_ANNUALLEAVE_PLANS" />
           <EntitySet Name="HU_CONTRACT_TYPE" EntityType="AttendanceModel.HU_CONTRACT_TYPE" />
+          <EntitySet Name="PROCESS_APPROVED_STATUS" EntityType="AttendanceModel.PROCESS_APPROVED_STATUS" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -4948,6 +4968,24 @@
           <Property Type="Decimal" Name="TYPE_ID" Precision="38" Scale="0" />
           <Property Type="String" Name="TYPE_CODE" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="PROCESS_APPROVED_STATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_APPROVED" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="APP_DATE" />
+          <Property Type="Decimal" Name="APP_LEVEL" Precision="38" Scale="0" />
+          <Property Type="String" Name="APP_NOTES" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="Decimal" Name="APP_STATUS" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="PE_PERIOD_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ID_REGGROUP" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TEMPLATE_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="PROCESS_TYPE" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7209,6 +7247,25 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="PROCESS_APPROVED_STATUS">
+            <EntityTypeMapping TypeName="AttendanceModel.PROCESS_APPROVED_STATUS">
+                <MappingFragment StoreEntitySet="PROCESS_APPROVED_STATUS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="EMPLOYEE_APPROVED" ColumnName="EMPLOYEE_APPROVED" />
+                    <ScalarProperty Name="APP_DATE" ColumnName="APP_DATE" />
+                    <ScalarProperty Name="APP_LEVEL" ColumnName="APP_LEVEL" />
+                    <ScalarProperty Name="APP_NOTES" ColumnName="APP_NOTES" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="APP_STATUS" ColumnName="APP_STATUS" />
+                    <ScalarProperty Name="PE_PERIOD_ID" ColumnName="PE_PERIOD_ID" />
+                    <ScalarProperty Name="ID_REGGROUP" ColumnName="ID_REGGROUP" />
+                    <ScalarProperty Name="TEMPLATE_ID" ColumnName="TEMPLATE_ID" />
+                    <ScalarProperty Name="PROCESS_TYPE" ColumnName="PROCESS_TYPE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -7375,6 +7432,7 @@
         <EntityTypeShape EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" Width="1.5" PointX="15.375" PointY="15.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="AttendanceModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="16.375" PointY="18.75" Height="3.9033007812499818" />
         <EntityTypeShape EntityType="AttendanceModel.HU_CONTRACT_TYPE" Width="1.5" PointX="21.375" PointY="3.75" Height="4.4802050781249818" />
+        <EntityTypeShape EntityType="AttendanceModel.PROCESS_APPROVED_STATUS" Width="1.5" PointX="18.375" PointY="1.75" Height="3.5186979166666674" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

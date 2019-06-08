@@ -1568,7 +1568,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "Working"
-
+        <OperationContract()>
+        Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function GetWorking(ByVal _filter As WorkingDTO,
                                ByVal PageIndex As Integer,
@@ -1675,6 +1676,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "Discipline"
+        <OperationContract()>
+        Function ApproveListDiscipline(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function GetEmployeeDesciplineID(ByVal DesId As Decimal) As List(Of DisciplineEmpDTO)
 
@@ -1796,6 +1799,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "Terminate"
+        <OperationContract()>
+        Function ApproveListTerminate(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As DataTable
 
@@ -2541,6 +2546,9 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetListContract(ByVal ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
 #End Region
 
     End Interface

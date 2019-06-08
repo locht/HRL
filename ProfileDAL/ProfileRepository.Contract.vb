@@ -819,6 +819,23 @@ Partial Class ProfileRepository
 
 #Region "Contract"
 
+    Public Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
+        Dim objContractData As HU_CONTRACT
+        Try
+            Dim item As Decimal = 0
+            For idx = 0 To listID.Count - 1
+                item = listID(idx)
+                objContractData = (From p In Context.HU_CONTRACT Where item = p.ID).SingleOrDefault
+                objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetContract(ByVal _filter As ContractDTO, ByVal PageIndex As Integer,
                                 ByVal PageSize As Integer,
                                 ByRef Total As Integer, ByVal _param As ParamDTO,

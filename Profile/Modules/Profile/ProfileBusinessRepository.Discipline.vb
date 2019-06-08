@@ -2,8 +2,16 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
-
-
+    Public Function ApproveListDiscipline(ByVal listID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ApproveListDiscipline(listID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetEmployeeDesciplineID(ByVal DesId As Decimal) As List(Of DisciplineEmpDTO)
         Using rep As New ProfileBusinessClient
             Try

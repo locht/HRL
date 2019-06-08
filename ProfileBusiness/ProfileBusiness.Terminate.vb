@@ -9,6 +9,15 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "Terminate"
+        Public Function ApproveListTerminate(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListTerminate
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.ApproveListTerminate(listID, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As DataTable Implements ServiceContracts.IProfileBusiness.CalculateTerminate
             Using rep As New ProfileRepository
                 Try

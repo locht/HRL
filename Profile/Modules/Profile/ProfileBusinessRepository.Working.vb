@@ -4,7 +4,16 @@ Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
 
 #Region "Working"
-
+    Public Function ApproveListChangeInfoMng(ByVal listID As List(Of Decimal)) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ApproveListChangeInfoMng(listID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GetWorking(ByVal _filter As WorkingDTO,
                                ByVal PageIndex As Integer,
                                ByVal PageSize As Integer,

@@ -20,7 +20,13 @@
         Public Shared WAIT_TERMINATE_ID As Decimal = 259
         Public Shared EMP_STATUS As Decimal = 9
     End Class
+    Public Class DISCIPLINE_STATUS
+        Public Shared Name As String = "DISCIPLINE_STATUS"
+        Public Shared TYPE_ID As Decimal = 181
+        Public Shared APPROVE_ID As Decimal = 716
+        Public Shared WAIT_APPROVE_ID As Decimal = 717
 
+    End Class
     Public Class DECISION_STATUS
         Public Shared Name As String = "DECISION_STATUS"
         Public Shared TYPE_ID As Decimal = 55
