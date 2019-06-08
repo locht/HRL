@@ -193,7 +193,7 @@ Public Class ctrlLeaveRegistrationByManager
                 todate = dr.GetDataKeyValue("TO_DATE")
                 Using rep As New AttendanceRepository
                     Dim periodid = rep.GetperiodID(ID_EMPLOYEE, fromdate, todate)
-                    Dim result = rep.PRI_PROCESS(EmployeeID, ID_EMPLOYEE, periodid, 1, "LEAVE", NOTE, ID_REGGROUP)
+                    Dim result = rep.PRI_PROCESS(EmployeeID, ID_EMPLOYEE, periodid, 1, "LEAVE", "", ID_REGGROUP)
                     If result = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Refresh("UpdateView")

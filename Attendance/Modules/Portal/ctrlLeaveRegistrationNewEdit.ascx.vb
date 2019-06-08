@@ -205,13 +205,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                     EmployeeID = If(empId = 0, LogHelper.CurrentUser.EMPLOYEE_ID, empId)
                     dto.ID_EMPLOYEE = OUTID
                 End If
-
                 leaveMaster = New AT_PORTAL_REG_DTO
                 leaveDetails = New List(Of AT_PORTAL_REG_DTO)
                 EmployeeDto = New DataTable
-
-
-
 
                 Using rep As New AttendanceRepository
                     EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing, rdFromDate.SelectedDate)
@@ -432,11 +428,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                             End While
                         End If
-                        If rntxDayRegist.Value > rntBalance.Text Then
-                            ShowMessage(Translate("Đã vượt quá số lượng phép còn lại."), NotifyType.Warning)
-                            UpdateControlState()
-                            Exit Sub
-                        End If
+                       
                         If txtNote.Text = "" Then
                             ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
                             UpdateControlState()
@@ -537,8 +529,8 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .NOTE = txtNote.Text,
                            .NOTE_AT = txtNote.Text,
                            .STATUS = 3,
-                         .DAYIN_KH = rtxtdayinkh.Text,
-                           .DAYOUT_KH = rtxtdayoutkh.Text,
+                          .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
+                           .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
                             .MODIFIED_BY = EmployeeID,
                                 .PROCESS = ApproveProcess
                        }
