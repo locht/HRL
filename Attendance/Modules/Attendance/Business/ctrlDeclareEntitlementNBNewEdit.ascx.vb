@@ -250,8 +250,11 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         obj.EMPLOYEE_ID = Employee_id
                         If txtADJUST_MONTH_TN2.Text.Contains(".") Then
                             adjustMonthTn2 = txtADJUST_MONTH_TN2.Text.Replace(".", ",").ToString
+                            obj.ADJUST_MONTH_TN = If(IsNumeric(adjustMonthTn2), Decimal.Parse(adjustMonthTn2), Nothing)
+                        Else
+                            obj.ADJUST_MONTH_TN = If(IsNumeric(txtADJUST_MONTH_TN2.Text), Decimal.Parse(txtADJUST_MONTH_TN2.Text), Nothing)
                         End If
-                        obj.ADJUST_MONTH_TN = If(IsNumeric(adjustMonthTn2), Decimal.Parse(adjustMonthTn2), Nothing)
+
                         If cboStartMonth.SelectedValue <> "" Then
                             obj.START_MONTH_TN = cboStartMonth.SelectedValue
                         End If
