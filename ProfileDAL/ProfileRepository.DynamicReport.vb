@@ -164,7 +164,7 @@ Partial Class ProfileRepository
             For Each p In lstColumn
                 If condition.Contains("[" & p.COLUMN_NAME & "]") Then
                     If p.COLUMN_TYPE.ToUpper.Contains("DATE") Then
-                        condition = condition.Replace("[" & p.COLUMN_NAME & "]", p.COLUMN_NAME)
+                        condition = condition.Replace("[" & p.COLUMN_NAME & "]", "TO_CHAR(" & p.COLUMN_NAME & ",'yyyyMMdd')")
                     Else
                         condition = condition.Replace("[" & p.COLUMN_NAME & "]", "UPPER(" & p.COLUMN_NAME & ")")
                     End If
