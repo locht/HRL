@@ -165,7 +165,7 @@ Public Class ctrlEntitlement
             Me.PERIOD = lsData
             FillRadCombobox(cboPeriod, lsData, "PERIOD_NAME", "PERIOD_ID", True)
             If lsData.Count > 0 Then
-                Dim periodid = (From d In lsData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
+                Dim periodid = (From d In lsData Where d.END_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
                 If periodid IsNot Nothing Then
                     cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
                 Else
@@ -338,19 +338,11 @@ Public Class ctrlEntitlement
                         Exit Sub
                     End If
 
+                    ctrlMessageBox.MessageText = Translate("Việc kết phép chỉ thực hiện từ ngày 31/12 hằng năm trở đi, bạn có thực sự muốn chuyển phép còn lại sang năm sau?")
+                    ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_SUBMIT
+                    ctrlMessageBox.DataBind()
+                    ctrlMessageBox.Show()
 
-                    Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
-                                                    .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue), _
-                                                    .IS_DISSOLVE = ctrlOrganization.IsDissolve}
-                    Dim lsEmployee As New List(Of Decimal?)
-
-                    If rep.AT_ENTITLEMENT_PREV_HAVE(_param, lsEmployee) Then
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
-                        Refresh("UpdateView")
-                    Else
-                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
-                        Exit Sub
-                    End If
             End Select
             ' 
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -360,6 +352,40 @@ Public Class ctrlEntitlement
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện command khi click button yes/no
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If e.ActionName = CommonMessage.TOOLBARITEM_SUBMIT And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim rep As New AttendanceRepository
+                Dim _param = New Attendance.AttendanceBusiness.ParamDTO With {.ORG_ID = ctrlOrganization.CurrentValue, _
+                                                     .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue), _
+                                                     .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+                Dim lsEmployee As New List(Of Decimal?)
+
+                If rep.AT_ENTITLEMENT_PREV_HAVE(_param, lsEmployee) Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
+                    Refresh("UpdateView")
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
+                    Exit Sub
+                End If
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Load data to grid
     ''' </summary>
@@ -611,7 +637,7 @@ Public Class ctrlEntitlement
             cboPeriod.ClearSelection()
             FillRadCombobox(cboPeriod, dtData, "PERIOD_NAME", "PERIOD_ID", True)
             If dtData.Count > 0 Then
-                Dim periodid = (From d In dtData Where d.START_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
+                Dim periodid = (From d In dtData Where d.END_DATE.Value.ToString("yyyyMM").Equals(Date.Now.ToString("yyyyMM")) Select d).FirstOrDefault
                 If periodid IsNot Nothing Then
                     cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
                 Else
