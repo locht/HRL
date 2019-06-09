@@ -3015,10 +3015,10 @@ Partial Public Class AttendanceRepository
     Public Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal) As DataTable
         Try
             Dim query = From p In Context.AT_WORKSIGN
-                        From E In Context.HU_EMPLOYEE.Where(Function(F) F.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                        Where p.EMPLOYEE_ID = employee_id
             Dim lst = query.Select(Function(p) New AT_WORKSIGNDTO With {
-                                       .ID = p.p.ID,
-                                .WORKINGDAY1 = p.p.WORKINGDAY}).ToList
+                                       .ID = p.ID,
+                                .WORKINGDAY1 = p.WORKINGDAY}).ToList
             Return lst.ToTable
 
         Catch ex As Exception
