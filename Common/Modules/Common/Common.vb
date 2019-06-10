@@ -514,6 +514,9 @@ Public Enum RemindConfigType
     Approve = 21 ' Quyết định bổ nhiệm
     ApproveHDLD = 22 ' Quyết định ký hợp đồng lao động
     ApprovetTHHD = 23 ' Quyết định tạm hoãn hợp đồng
+    Materniti = 24 ' nghỉ thai sản đi làm lại
+    Retirement = 25 ' Nhân viên đến tuổi nghỉ hưu
+    NoneSalary = 26 '  Nhân viên nghỉ không lương đi làm lại
 End Enum
 
 Public Enum ToolbarItem

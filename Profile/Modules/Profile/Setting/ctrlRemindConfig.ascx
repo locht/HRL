@@ -309,7 +309,82 @@
                     </tr>
                 </table>
             </fieldset>
+        </asp:Panel>
+          <asp:Panel ID="radMaterniti" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkMaterniti" runat="server" Text="<%$ Translate: Nhân viên nghỉ thai sản đi làm lại. %>"
+                        onclick="CheckChangeMaterniti(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtMaterniti" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="cvalMaterniti" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên nghỉ thai sản đi làm lại. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên nghỉ thai sản đi làm lại. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
         </asp:Panel> 
+        <asp:Panel ID="radRetirement" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkRetirement" runat="server" Text="<%$ Translate: Nhân viên đến tuổi nghỉ hưu. %>"
+                        onclick="CheckChangeRetirement(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtRetirement" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="cvalRetirement" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên đến tuổi nghỉ hưu. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên đến tuổi nghỉ hưu. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>   
+        <asp:Panel ID="radNoneSalary" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkNoneSalary" runat="server" Text="<%$ Translate: Nhân viên nghỉ không lương đi làm lại. %>"
+                        onclick="CheckChangeNoneSalary(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtNoneSalary" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="cvalNoneSalary" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên nghỉ không lương đi làm lại. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên nghỉ không lương đi làm lại. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>
     </tlk:RadPane>
 </tlk:RadSplitter>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
@@ -424,6 +499,33 @@
             } else {
                 $find("<%=rntxtApproveTHHD.ClientID %>").clear();
                 $find("<%=rntxtApproveTHHD.ClientID %>").disable();
+            }
+        }
+        function CheckChangeMaterniti(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtMaterniti.ClientID %>").enable();
+                $find("<%=rntxtMaterniti.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtMaterniti.ClientID %>").clear();
+                $find("<%=rntxtMaterniti.ClientID %>").disable();
+            }
+        }
+        function CheckChangeRetirement(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtRetirement.ClientID %>").enable();
+                $find("<%=rntxtRetirement.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtRetirement.ClientID %>").clear();
+                $find("<%=rntxtRetirement.ClientID %>").disable();
+            }
+        }
+        function CheckChangeNoneSalary(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtNoneSalary.ClientID %>").enable();
+                $find("<%=rntxtNoneSalary.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtNoneSalary.ClientID %>").clear();
+                $find("<%=rntxtNoneSalary.ClientID %>").disable();
             }
         }
 

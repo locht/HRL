@@ -22,6 +22,11 @@ Public Class Site
     Dim retireRemind As Integer
 
     Dim approveRemind As Integer
+    Dim approveHDLDRemind As Integer
+    Dim approveTHHDRemind As Integer
+    Dim maternitiRemind As Integer
+    Dim retirementRemind As Integer
+    Dim noneSalaryRemind As Integer
 
     Dim workingRemind As Integer
     Dim terminateRemind As Integer
@@ -380,11 +385,41 @@ Public Class Site
             certificateRemind = CommonConfig.ReminderCertificate
 
             approveRemind = CommonConfig.ReminderApproveDays
+            approveHDLDRemind = CommonConfig.ReminderApproveHDLDDays
+            approveTHHDRemind = CommonConfig.ReminderApproveTHHDDays
+            maternitiRemind = CommonConfig.ReminderMaternitiDays
+            retirementRemind = CommonConfig.ReminderRetirementDays
+            noneSalaryRemind = CommonConfig.ReminderNoneSalaryDays
 
             If approveRemind <> 0 Then
                 dApproveRemind.Visible = True
             Else
                 dApproveRemind.Visible = False
+            End If
+            If approveHDLDRemind <> 0 Then
+                dApproveHDLDRemind.Visible = True
+            Else
+                dApproveHDLDRemind.Visible = False
+            End If
+            If approveTHHDRemind <> 0 Then
+                dApproveTHHDRemind.Visible = True
+            Else
+                dApproveTHHDRemind.Visible = False
+            End If
+            If maternitiRemind <> 0 Then
+                dMaternitiRemind.Visible = True
+            Else
+                dMaternitiRemind.Visible = False
+            End If
+            If retirementRemind <> 0 Then
+                dRetirementRemind.Visible = True
+            Else
+                dRetirementRemind.Visible = False
+            End If
+            If noneSalaryRemind <> 0 Then
+                dNoneSalaryRemind.Visible = True
+            Else
+                dNoneSalaryRemind.Visible = False
             End If
 
             If probationRemind <> 0 Then
@@ -473,7 +508,12 @@ Public Class Site
                                                birthdayRemind.ToString & "," & _
                                                terminateRemind.ToString & "," & _
                                                noPaperRemind.ToString & "," & _
-                                               approveRemind.ToString
+                                               approveRemind.ToString & "," & _
+                                               approveHDLDRemind.ToString & "," & _
+                                               approveTHHDRemind.ToString & "," & _
+                                               maternitiRemind.ToString & "," & _
+                                               retirementRemind.ToString & "," & _
+                                               noneSalaryRemind.ToString
                                                )
                     'For Each item In RemindList
                     '    item.REMIND_NAME = Translate(item.REMIND_NAME)
@@ -484,6 +524,37 @@ Public Class Site
                 ltrApprove.DataSource = listApproveNVBN
                 ltrApprove.DataBind()
                 lblApprove.Text = Utilities.ObjToInt(listApproveNVBN.Count)
+
+                'Nhân viên đến hạn ký lại HDLD
+                Dim listApproveHDLD = From p In RemindList Where p.REMIND_TYPE = 22
+                ltrApproveHDLD.DataSource = listApproveHDLD
+                ltrApproveHDLD.DataBind()
+                lblApproveHDLD.Text = Utilities.ObjToInt(listApproveHDLD.Count)
+
+                'Nhân viên hết hạn tạm hoãn HD
+                Dim listApproveTHHD = From p In RemindList Where p.REMIND_TYPE = 23
+                ltrApproveTHHD.DataSource = listApproveTHHD
+                ltrApproveTHHD.DataBind()
+                lblApproveTHHD.Text = Utilities.ObjToInt(listApproveTHHD.Count)
+
+                'Nhân viên nghỉ thai sản đi làm lại
+                Dim listMaterniti = From p In RemindList Where p.REMIND_TYPE = 24
+                ltrMaterniti.DataSource = listMaterniti
+                ltrMaterniti.DataBind()
+                lblMaterniti.Text = Utilities.ObjToInt(listMaterniti.Count)
+
+                'Nhân viên đến tuổi nghỉ hưu
+                Dim listRetirement = From p In RemindList Where p.REMIND_TYPE = 25
+                ltrRetirement.DataSource = listRetirement
+                ltrRetirement.DataBind()
+                lblRetirement.Text = Utilities.ObjToInt(listRetirement.Count)
+
+                'Nhân viên nghỉ không lương đi làm lại
+                Dim listNoneSalary = From p In RemindList Where p.REMIND_TYPE = 26
+                ltrNoneSalary.DataSource = listNoneSalary
+                ltrNoneSalary.DataBind()
+                lblNoneSalary.Text = Utilities.ObjToInt(listNoneSalary.Count)
+
                 'Nhân viên sắp hết hạn hợp đồng
                 Dim listApproveDMVS = From p In RemindList Where p.REMIND_TYPE = 1
                 ltrWLEO.DataSource = listApproveDMVS

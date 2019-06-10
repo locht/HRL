@@ -392,6 +392,141 @@ Partial Public Class Site
     Protected WithEvents ltrApprove As Global.System.Web.UI.WebControls.ListView
 
     '''<summary>
+    '''dApproveHDLDRemind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dApproveHDLDRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblApproveHDLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblApproveHDLD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrApproveHDLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrApproveHDLD As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''dApproveTHHDRemind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dApproveTHHDRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblApproveTHHD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblApproveTHHD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrApproveTHHD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrApproveTHHD As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''dMaternitiRemind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dMaternitiRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblMaterniti control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMaterniti As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrMaterniti control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrMaterniti As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''dRetirementRemind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dRetirementRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblRetirement control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRetirement As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrRetirement control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrRetirement As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''dNoneSalaryRemind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dNoneSalaryRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblNoneSalary control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNoneSalary As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrNoneSalary control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrNoneSalary As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
     '''LoginView1 control.
     '''</summary>
     '''<remarks>

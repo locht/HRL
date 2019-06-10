@@ -217,6 +217,33 @@ Public Class ctrlRemindConfig
                 rntxtApproveTHHD.Enabled = True
                 rntxtApproveTHHD.Value = CommonConfig.ReminderApproveTHHDDays
             End If
+            If CommonConfig.ReminderMaternitiDays = 0 Then
+                chkMaterniti.Checked = False
+                rntxtMaterniti.Enabled = False
+                rntxtMaterniti.Value = Nothing
+            Else
+                chkMaterniti.Checked = True
+                rntxtMaterniti.Enabled = True
+                rntxtMaterniti.Value = CommonConfig.ReminderMaternitiDays
+            End If
+            If CommonConfig.ReminderRetirementDays = 0 Then
+                chkRetirement.Checked = False
+                rntxtRetirement.Enabled = False
+                rntxtRetirement.Value = Nothing
+            Else
+                chkRetirement.Checked = True
+                rntxtRetirement.Enabled = True
+                rntxtRetirement.Value = CommonConfig.ReminderRetirementDays
+            End If
+            If CommonConfig.ReminderNoneSalaryDays = 0 Then
+                chkNoneSalary.Checked = False
+                rntxtNoneSalary.Enabled = False
+                rntxtNoneSalary.Value = Nothing
+            Else
+                chkNoneSalary.Checked = True
+                rntxtNoneSalary.Enabled = True
+                rntxtNoneSalary.Value = CommonConfig.ReminderNoneSalaryDays
+            End If
 
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                       CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -359,6 +386,27 @@ Public Class ctrlRemindConfig
                             CommonConfig.ReminderApproveTHHDDays = 0
                             rntxtApproveTHHD.Enabled = False
                         End If
+                        If chkMaterniti.Checked Then
+                            CommonConfig.ReminderMaternitiDays = rntxtMaterniti.Value
+                            rntxtMaterniti.Enabled = True
+                        Else
+                            CommonConfig.ReminderMaternitiDays = 0
+                            rntxtMaterniti.Enabled = False
+                        End If
+                        If chkRetirement.Checked Then
+                            CommonConfig.ReminderRetirementDays = rntxtRetirement.Value
+                            rntxtRetirement.Enabled = True
+                        Else
+                            CommonConfig.ReminderRetirementDays = 0
+                            rntxtRetirement.Enabled = False
+                        End If
+                        If chkNoneSalary.Checked Then
+                            CommonConfig.ReminderNoneSalaryDays = rntxtNoneSalary.Value
+                            rntxtNoneSalary.Enabled = True
+                        Else
+                            CommonConfig.ReminderNoneSalaryDays = 0
+                            rntxtNoneSalary.Enabled = False
+                        End If
 
                         CommonConfig.SaveReminderPerUser()
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
@@ -471,6 +519,54 @@ Public Class ctrlRemindConfig
 
         End Try
 
+    End Sub
+    Private Sub cvalMaterniti_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalMaterniti.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkMaterniti.Checked And (rntxtMaterniti.Value Is Nothing OrElse rntxtMaterniti.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+    End Sub
+    Private Sub cvalRetirement_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalRetirement.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkRetirement.Checked And (rntxtRetirement.Value Is Nothing OrElse rntxtRetirement.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+    End Sub
+    Private Sub cvalNoneSalary_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalNoneSalary.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkNoneSalary.Checked And (rntxtNoneSalary.Value Is Nothing OrElse rntxtNoneSalary.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
     End Sub
     ''' <summary>
     ''' Validate hết hạn visa
