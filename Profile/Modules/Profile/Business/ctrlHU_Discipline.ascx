@@ -59,7 +59,7 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE" ClientDataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,STATUS_ID" ClientDataKeyNames="ID,STATUS_ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

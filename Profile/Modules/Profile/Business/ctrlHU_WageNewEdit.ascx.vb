@@ -1177,7 +1177,7 @@ Public Class ctrlHU_WageNewEdit
                 obj.SALARYINSURANCE = SalaryInsurance.Value
             End If
             If IsNumeric(rnFactorSalary.Value) Then
-                obj.FACTORSALARY = rnFactorSalary.Value
+                obj.FACTORSALARY = CDec(Val(rnFactorSalary.Text))
             End If
             obj.MUCLUONGCS = 0
             If IsNumeric(Salary_Total.Value) Then
