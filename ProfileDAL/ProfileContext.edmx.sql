@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 05/30/2019 9:07:10 AM
--- Generated from EDMX file: D:\MyProject\core1\histaffhcm-27052019\ProfileDAL\ProfileContext.edmx
+-- Date Created: 06/10/2019 11:58:42 PM
+-- Generated from EDMX file: E:\HISTAFF\histaffhcm\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -13,7 +13,7 @@
 -- Dropping existing tables
 -- --------------------------------------------------
 
--- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_WORKING";
+-- DROP TABLE "ProfileModelStoreContainer"."HUV_TERMINATE_CURRENT";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -2952,6 +2952,14 @@ CREATE TABLE "dbo"."HUV_CURRENT_WORKING" (
    "OBJECT_ATTENDANCE" NUMBER(38,0) NULL
 );
 
+-- Creating table 'HUV_TERMINATE_CURRENT'
+CREATE TABLE "dbo"."HUV_TERMINATE_CURRENT" (
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "EFFECT_DATE" DATE NULL,
+   "LAST_DATE" DATE NULL,
+   "ID" NUMBER(38,0) NOT NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -4030,6 +4038,14 @@ ADD CONSTRAINT "PK_HUV_CURRENT_CONTRACT"
 -- Creating primary key on "ID"in table 'HUV_CURRENT_WORKING'
 ALTER TABLE "dbo"."HUV_CURRENT_WORKING"
 ADD CONSTRAINT "PK_HUV_CURRENT_WORKING"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'HUV_TERMINATE_CURRENT'
+ALTER TABLE "dbo"."HUV_TERMINATE_CURRENT"
+ADD CONSTRAINT "PK_HUV_TERMINATE_CURRENT"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

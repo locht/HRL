@@ -1023,7 +1023,7 @@ Public Class ctrlHU_ContractNewEdit
                 Dim employeeId As Double = 0
                 Double.TryParse(hidEmployeeID.Value, employeeId)
                 'txtContractNo.Text = CreateDynamicContractNo(employeeId)
-                txtContractNo.Enabled = True
+                'txtContractNo.Enabled = True
                 ClearControlValue(rdStartDate, rdSignDate)
             End Using
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -29,6 +29,27 @@ Public Class ctrlPortalContract
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+    ''' <lastupdate>
+    ''' 
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Ghi đè phương thức khởi tạo dữ liệu cho các control trên trang
+    ''' Xét các trạng thái của grid rgContract
+    ''' Gọi phương thức khởi tạo 
+    ''' </summary>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If Not IsPostBack Then
+                GirdConfig(rgContract)
+            End If
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+
+    End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New ProfileBusinessRepository

@@ -3,7 +3,7 @@
 <tlk:RadGrid PageSize=50 ID="rgContract" runat="server" Height="350px" AllowFilteringByColumn="true">
     <MasterTableView DataKeyNames="ID">
         <Columns>
-            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng %>" DataField="CONTRACTTYPE_NAME"
+            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng %>" DataField="CONTRACTTYPE_NAME"
                 UniqueName="CONTRACTTYPE_NAME" SortExpression="CONTRACTTYPE_NAME" ShowFilterIcon="false"
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
@@ -41,7 +41,7 @@
                 UniqueName="SIGNER_TITLE" SortExpression="SIGNER_TITLE" ShowFilterIcon="false"
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="20%" HorizontalAlign="Center" />
-            </tlk:GridBoundColumn>
+            </tlk:GridBoundColumn>--%>
         </Columns>
     </MasterTableView>
 </tlk:RadGrid>

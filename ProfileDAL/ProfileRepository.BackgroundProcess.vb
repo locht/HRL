@@ -12,6 +12,7 @@ Partial Class ProfileRepository
 #Region "Service Auto Update Employee Information"
     Public Function CheckAndUpdateEmployeeInformation() As Boolean
         UpdateWorking()
+        UpdateTerminate()
         UpdateContract()
         Return True
     End Function
@@ -34,6 +35,33 @@ Partial Class ProfileRepository
                 ApproveWorking1(query(i))
                 ApproveWorking(query(i))
             Next
+            If query.Count > 0 Then Context.SaveChanges()
+
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+        End Try
+    End Sub
+
+    Private Sub UpdateTerminate()
+        Try
+            Dim query = (From p In Context.HUV_TERMINATE_CURRENT
+                         Select New HU_TERMINATE With {
+                             .EMPLOYEE_ID = p.EMPLOYEE_ID,
+                             .ID = p.ID,
+                             .EFFECT_DATE = p.EFFECT_DATE,
+                             .LAST_DATE = p.LAST_DATE
+                             }).ToList
+
+             For i As Integer = 0 To query.Count - 1
+                Dim item = (From p In Context.HU_EMPLOYEE Where query(i).EMPLOYEE_ID = p.ID).FirstOrDefault
+                If item IsNot Nothing Then
+                    item.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+                    item.TER_EFFECT_DATE = query(i).EFFECT_DATE
+                    item.TER_LAST_DATE = query(i).LAST_DATE
+                    item.EMP_STATUS = 6
+                End If
+            Next
+
             If query.Count > 0 Then Context.SaveChanges()
 
         Catch ex As Exception
