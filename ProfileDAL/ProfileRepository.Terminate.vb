@@ -188,6 +188,9 @@ Partial Class ProfileRepository
                                              .IDENTIFI_VIOLATE_MONEY = p.p.IDENTIFI_VIOLATE_MONEY,
                                              .MONEY_RETURN = p.p.MONEY_RETURN,
                                              .REMARK = p.p.REMARK,
+                                             .SIGN_NAME = p.p.SIGN_NAME,
+                                             .SIGN_DATE = p.p.SIGN_DATE,
+                                             .SIGN_TITLE = p.p.SIGN_TITLE,
                                              .SALARYMEDIUM_LOSS = p.p.SALARYMEDIUM_LOSS})
 
             If _filter.EMPLOYEE_CODE IsNot Nothing Then

@@ -164,7 +164,7 @@
                     <asp:Label runat ="server" ID ="lbEffectDate" Text ="Ngày thôi việc" ></asp:Label>                    
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdEffectDate" runat="server">
+                    <tlk:RadDatePicker ID="rdEffectDate" runat="server"  AutoPostBack="True">
                     </tlk:RadDatePicker>
                      <asp:RequiredFieldValidator ID="reqEffectDate" ControlToValidate="rdEffectDate" runat="server"
                         ErrorMessage="Bạn phải nhập ngày thôi việc." ToolTip="Bạn phải nhập ngày thôi việc."> </asp:RequiredFieldValidator>

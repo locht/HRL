@@ -354,7 +354,24 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
+    Protected Sub rdEffectDate_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdEffectDate.SelectedDateChanged
+        Dim item As New ContractTypeDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If rdEffectDate.SelectedDate IsNot Nothing Then
+                Dim dExpire As Date = rdEffectDate.SelectedDate
+                dExpire = dExpire.AddDays(CType(-1, Double))
+                rdLastDate.SelectedDate = dExpire
 
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+
+    End Sub
 #End Region
 
 #Region "Event"

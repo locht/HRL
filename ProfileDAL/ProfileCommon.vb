@@ -18,7 +18,7 @@
         Public Shared TERMINATE_ID As Decimal = 257
         Public Shared WORKING_ID As Decimal = 258
         Public Shared WAIT_TERMINATE_ID As Decimal = 259
-        Public Shared EMP_STATUS As Decimal = 9
+        Public Shared EMP_STATUS As Decimal = 7
     End Class
     Public Class DISCIPLINE_STATUS
         Public Shared Name As String = "DISCIPLINE_STATUS"
