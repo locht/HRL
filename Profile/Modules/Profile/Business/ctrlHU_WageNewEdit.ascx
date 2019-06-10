@@ -177,7 +177,7 @@
                     <asp:Label runat ="server" ID="lbFactorSalary" Text ="Hệ số/mức tiền"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox runat ="server" ID ="rnFactorSalary" SkinID ="Money" ReadOnly ="true">
+                    <tlk:RadNumericTextBox runat ="server" ID ="rnFactorSalary" ReadOnly ="true" SkinID="Decimal" NumberFormat-AllowRounding = "false" NumberFormat-DecimalDigits="2">
                     </tlk:RadNumericTextBox>                    
                 </td>
                 <td class="lb">
