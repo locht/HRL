@@ -647,6 +647,16 @@ Partial Class ProfileRepository
                 item = listID(idx)
                 objChangeInfoMngData = (From p In Context.HU_WORKING Where item = p.ID).SingleOrDefault
                 objChangeInfoMngData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                Dim emp = (From p In Context.HU_EMPLOYEE Where objChangeInfoMngData.EMPLOYEE_ID = p.ID).FirstOrDefault
+                If emp IsNot Nothing Then
+                    emp.TITLE_ID = objChangeInfoMngData.TITLE_ID
+                    emp.ORG_ID = objChangeInfoMngData.ORG_ID
+                    emp.STAFF_RANK_ID = objChangeInfoMngData.STAFF_RANK_ID
+                    emp.DIRECT_MANAGER = objChangeInfoMngData.DIRECT_MANAGER
+                    emp.LAST_WORKING_ID = objChangeInfoMngData.ID
+                    emp.MODIFIED_DATE = Date.Now
+                    emp.OBJECTTIMEKEEPING = objChangeInfoMngData.OBJECT_ATTENDANCE
+                End If
             Next
             Context.SaveChanges(log)
             Return True

@@ -101,6 +101,8 @@ Partial Class ProfileRepository
                 item = listID(idx)
                 objTerData = (From p In Context.HU_TERMINATE Where item = p.ID).SingleOrDefault
                 objTerData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                Dim emp As HU_EMPLOYEE = (From p In Context.HU_EMPLOYEE Where p.ID = objTerData.EMPLOYEE_ID).FirstOrDefault
+                emp.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
             Next
             Context.SaveChanges(log)
             Return True
