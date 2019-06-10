@@ -59,7 +59,7 @@
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE" ClientDataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,STATUS_ID" ClientDataKeyNames="ID,STATUS_ID">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -143,9 +143,9 @@
         function OpenNew() {
             window.open('/Default.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&FormType=0&noscroll=1', "_self")
             //            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&FormType=0&noscroll=1', "rwPopup");
-//            var pos = $("html").offset();
-//            oWindow.setSize(1020, $(window).height());
-//            oWindow.center();
+            //            var pos = $("html").offset();
+            //            oWindow.setSize(1020, $(window).height());
+            //            oWindow.center();
         }
 
         function OpenEdit() {
@@ -157,10 +157,10 @@
             var id = $find('<%= rgDiscipline.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             window.open('/Default.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&noscroll=1&FormType=1&ID=' + id, "_self")
             //            var oWindow = radopen('Dialog.aspx?mid=Profile&fid=ctrlHU_DisciplineNewEdit&group=Business&noscroll=1&FormType=1&ID=' + id, "rwPopup");
-//            var pos = $("html").offset();
-//            oWindow.setSize(1020, $(window).height());
-//            oWindow.center();
-//            return 2;
+            //            var pos = $("html").offset();
+            //            oWindow.setSize(1020, $(window).height());
+            //            oWindow.center();
+            //            return 2;
         }
 
         function clientButtonClicking(sender, args) {
