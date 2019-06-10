@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="AttendanceContext.Func.vb" />
     <Compile Include="AttendanceRepository.List.vb" />
+    <Compile Include="AttendanceRepositoryStatic.vb" />
     <Compile Include="BusinessObjects\AnnualLeaveDTO.vb" />
     <Compile Include="BusinessObjects\APPOINTMENT_DTO.vb" />
     <Compile Include="BusinessObjects\AT_HOLIDAYDTO.vb" />

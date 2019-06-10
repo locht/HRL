@@ -267,9 +267,14 @@ Public Class ctrlLeaveRegistration
                     Exit Sub
                 End If
             End Using
+            Dim outNumber As Decimal
+            Try
+                Dim IAttendance As IAttendanceBusiness = New AttendanceBusinessClient()
+                outNumber = IAttendance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
+            Catch ex As Exception
+                ShowMessage(ex.ToString, NotifyType.Error)
+            End Try
 
-
-            Dim outNumber As Decimal = AttendanceRepositoryStatic.Instance.PRI_PROCESS_APP(EmployeeID, period_id, "LEAVE", 0, sumday, sign_id, id_group)
             If outNumber = 0 Then
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
             ElseIf outNumber = 1 Then
@@ -277,7 +282,6 @@ Public Class ctrlLeaveRegistration
             Else
                 ShowMessage(Translate("Thao tác xảy ra lỗi,bạn kiểm tra lại quy trình"), NotifyType.Error)
             End If
-
             rgMain.Rebind()
         End If
         If e.ActionName = CommonMessage.TOOLBARITEM_DELETE And e.ButtonID = MessageBoxButtonType.ButtonYes Then
