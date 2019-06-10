@@ -382,12 +382,15 @@ Public Class ctrlOTRegistrationNewEdit
                         obj.OT_TYPE_ID = ListComboData.LIST_LIST_OT_TYPE.Where(Function(f) f.CODE = "OT").Select(Function(g) g.ID).FirstOrDefault
 
                         obj.REGIST_DATE = rdRegDate.SelectedDate
-                        'If hidSignId.Value.ToString = "" Then
-                        '    ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
-                        '    Exit Sub
-                        'End If
+                        If hidSignId.Value.ToString = "" Then 'chua dang ky ca
+                            lstdtHoliday = AttendanceRepositoryStatic.Instance.GetHolidayByCalenderToTable(rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+                            If lstdtHoliday.Rows.Count <= 0 Then 'Ko phai ngay le
+                                ShowMessage("Nhân viên chưa được gán ca. Vui lòng kiểm tra lại!", NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
                         obj.SIGN_CODE = txtSignCode.Text
-                        obj.SIGN_ID = hidSignId.Value
+                        obj.SIGN_ID = If(hidSignId.Value.ToString <> "", hidSignId.Value, Nothing)
 
                         obj.TOTAL_OT = ObjToDecima(hidTotal.Value, 0)
                         obj.OT_100 = ObjToDecima(hid100.Value, 0)

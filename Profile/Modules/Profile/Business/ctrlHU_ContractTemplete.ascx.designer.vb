@@ -329,6 +329,15 @@ Partial Public Class ctrlHU_ContractTemplete
     Protected WithEvents txtContract_NumAppen As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''reqContract_NumAppen control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqContract_NumAppen As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbStartDate control.
     '''</summary>
     '''<remarks>
@@ -383,6 +392,15 @@ Partial Public Class ctrlHU_ContractTemplete
     Protected WithEvents rdExpireDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''RequiredFieldValidator5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cval_EffectDate_ExpireDate control.
     '''</summary>
     '''<remarks>
@@ -410,6 +428,15 @@ Partial Public Class ctrlHU_ContractTemplete
     Protected WithEvents rdSignDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''reqSignDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqSignDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbSign control.
     '''</summary>
     '''<remarks>
@@ -435,6 +462,15 @@ Partial Public Class ctrlHU_ContractTemplete
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSign As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''RequiredFieldValidator7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbSign_Title control.
@@ -473,6 +509,15 @@ Partial Public Class ctrlHU_ContractTemplete
     Protected WithEvents txtAppend_Content As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbRemark control.
     '''</summary>
     '''<remarks>
@@ -489,6 +534,15 @@ Partial Public Class ctrlHU_ContractTemplete
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''RequiredFieldValidator6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbStatus_ID control.
@@ -597,6 +651,15 @@ Partial Public Class ctrlHU_ContractTemplete
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSalary As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''cboSalTYPE control.
