@@ -210,7 +210,11 @@ Public Class ctrlLeaveRegistrationNewEdit
                 EmployeeDto = New DataTable
 
                 Using rep As New AttendanceRepository
-                    EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing, rdFromDate.SelectedDate)
+                    If OUTID = 0 Then
+                        EmployeeDto = rep.GetEmployeeInfor(EmployeeID, Nothing, rdFromDate.SelectedDate)
+                    Else
+                        EmployeeDto = rep.GetEmployeeInfor(OUTID, Nothing, rdFromDate.SelectedDate)
+                    End If
                     If dto.ID > 0 Then
                         leaveMaster = rep.GetLeaveRegistrationById(dto)
                         If leaveMaster.ID > 0 Then
@@ -226,7 +230,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                         CHECKCONTRACT = rep.CHECK_CONTRACT(OUTID)
                     End If
 
-                 
+
                 End Using
                 If EmployeeDto IsNot Nothing AndAlso EmployeeDto.Rows.Count > 0 Then
                     txtFullName.Text = EmployeeDto.Rows(0)("FULLNAME_VN")
