@@ -917,10 +917,7 @@ Public Class ctrlHU_EmpDtlProfile
                     If Page.IsValid Then
                         Select Case CurrentState
                             Case STATE_NEW
-
                                 checkID_NO = rep.ValidateEmployee("EXIST_ID_NO", "", txtID_NO.Text)
-
-
                                 checkBank_No = rep.ValidateEmployee("EXIST_BANK_NO", "", txtBankNo.Text)
 
                                 If Not checkID_NO Then
@@ -949,16 +946,22 @@ Public Class ctrlHU_EmpDtlProfile
                                     ctrlMessageBox.DataBind()
                                     ctrlMessageBox.Show()
                                 Else
-
-                                    If Save(strEmpID, _err) Then
-                                        Page.Response.Redirect("Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=" & strEmpID & "&state=Normal&message=success", False)
-                                        Exit Sub
+                                    If hidDirectManager.Value <> "" Then
+                                        If Save(strEmpID, _err) Then
+                                            Page.Response.Redirect("Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=" & strEmpID & "&state=Normal&message=success", False)
+                                            Exit Sub
+                                        Else
+                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                            Exit Sub
+                                        End If
                                     Else
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
-                                        Exit Sub
+                                        ctrlMessageBox.MessageText = Translate("Bạn chắc chắn nhân viên này không có Quản lý trực tiếp ?")
+                                        ctrlMessageBox.MessageTitle = Translate("Thông báo")
+                                        ctrlMessageBox.ActionName = "CHECK_DIRECTMANAGER"
+                                        ctrlMessageBox.DataBind()
+                                        ctrlMessageBox.Show()
                                     End If
                                 End If
-
                             Case STATE_EDIT
 
                                 checkID_NO = rep.ValidateEmployee("EXIST_ID_NO", EmployeeInfo.EMPLOYEE_CODE, txtID_NO.Text)
@@ -983,14 +986,22 @@ Public Class ctrlHU_EmpDtlProfile
                                     ctrlMessageBox.DataBind()
                                     ctrlMessageBox.Show()
                                 Else
-                                    If Save(strEmpID, _err) Then
-                                        CurrentState = CommonMessage.STATE_NORMAL
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                    If hidDirectManager.Value <> "" Then
+                                        If Save(strEmpID, _err) Then
+                                            CurrentState = CommonMessage.STATE_NORMAL
+                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                        Else
+                                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                        End If
                                     Else
-                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                                        ctrlMessageBox.MessageText = Translate("Bạn chắc chắn nhân viên này không có Quản lý trực tiếp ?")
+                                        ctrlMessageBox.MessageTitle = Translate("Thông báo")
+                                        ctrlMessageBox.ActionName = "CHECK_DIRECTMANAGER"
+                                        ctrlMessageBox.DataBind()
+                                        ctrlMessageBox.Show()
                                     End If
+                                    
                                 End If
-
                         End Select
                     End If
                 Case TOOLBARITEM_CANCEL
@@ -1091,6 +1102,19 @@ Public Class ctrlHU_EmpDtlProfile
             Else
                 txtBankNo.Text = String.Empty
                 txtBankNo.Focus()
+            End If
+
+            If e.ActionName = "CHECK_DIRECTMANAGER" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Dim _err As String = ""
+                If Save(EmployeeID, _err) Then
+                    CurrentState = CommonMessage.STATE_NORMAL
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
+                End If
+                UpdateControlState()
+            Else
+                Exit Sub
             End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
