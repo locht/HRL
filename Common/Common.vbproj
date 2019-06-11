@@ -189,6 +189,7 @@
     <Content Include="Modules\Common\Secure\ctrlListGroupNewEdit.ascx" />
     <Content Include="Modules\Common\Secure\ctrlListUser.ascx" />
     <Content Include="Modules\Common\Secure\ctrlListUserNewEdit.ascx" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Service References\CommonBusiness\Common.CommonBusiness.AccessLog.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
