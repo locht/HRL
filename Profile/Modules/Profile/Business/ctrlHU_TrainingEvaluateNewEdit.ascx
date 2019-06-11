@@ -27,7 +27,7 @@
             <tr>
                 <td class="lb" style="width: 200px">
                     <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" SkinID="ReadOnly" runat="server" Width="130px"
@@ -74,7 +74,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbContractType" runat="server" Text="Kì đánh giá"></asp:Label>
-                     <span class="lbReq">*</span>
+                     
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboContractType" runat="server" AutoPostBack="true" CausesValidation="false">
