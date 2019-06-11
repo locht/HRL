@@ -27,7 +27,7 @@
             <tr>
                 <td class="lb"  style="width: 200px">
                     <asp:Label ID="lbEmployeeCode" runat="server" Text="Mã nhân viên"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtEmployeeCode" SkinID="ReadOnly" runat="server" Width="130px"
@@ -65,7 +65,7 @@
          
                 <td class="lb">
                     <asp:Label ID="lbStartDate" runat="server" Text="Thời gian bắt đầu"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">

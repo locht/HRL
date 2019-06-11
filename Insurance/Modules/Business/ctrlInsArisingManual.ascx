@@ -20,7 +20,7 @@
                 <table class="table-form">
                     <tr>
                         <td class="lb" style="width:100px">
-                            <asp:Label runat="server" ID="lbEMPLOYEE_ID" Text="MSNV"></asp:Label><span class="lbReq">*</span>
+                            <asp:Label runat="server" ID="lbEMPLOYEE_ID" Text="MSNV"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtEMPLOYEE_ID" ReadOnly="true" runat="server">
@@ -108,7 +108,7 @@
                             </tlk:RadComboBox>
                         </td>
                         <td class="lb" style="width:120px">
-                            <asp:Label runat="server" ID="lbINS_ARISING_TYPE_ID" Text="Loại biến động"></asp:Label><span class="lbReq">*</span>
+                            <asp:Label runat="server" ID="lbINS_ARISING_TYPE_ID" Text="Loại biến động"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadComboBox ID="ddlINS_ARISING_TYPE_ID" AutoPostBack="true" CausesValidation="false" runat="server" TabIndex="3">
@@ -153,7 +153,7 @@
                             </tlk:RadNumericTextBox>
                         </td>
                         <td class="lb" style="width:120px">
-                            <asp:Label runat="server" ID="lbEFFECTIVE_DATE" Text="Ngày hiệu lực"></asp:Label><span class="lbReq">*</span>
+                            <asp:Label runat="server" ID="lbEFFECTIVE_DATE" Text="Ngày hiệu lực"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadDatePicker runat="server" ID="txtEFFECTIVE_DATE" AutoPostBack="true" TabIndex="9">
@@ -188,7 +188,7 @@
                             </tlk:RadMonthYearPicker>
                         </td>
                         <td class="lb">
-                            <asp:Label runat="server" ID="lbDECLARE_DATE" Text="Đợt khai báo"></asp:Label><span class="lbReq">*</span>
+                            <asp:Label runat="server" ID="lbDECLARE_DATE" Text="Đợt khai báo"></asp:Label>
                         </td>
                         <td>
                             <%--<tlk:RadDatePicker runat="server" ID="txtDECLARE_DATE" AutoPostBack="true" TabIndex="13">

@@ -23,7 +23,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <asp:Label ID="lbFullName" runat="server" Text="Họ tên"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbFullName" runat="server" Text="Họ tên"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtFullName">
@@ -33,7 +33,7 @@
                     </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb" style="width: 150px">
-                    <asp:Label ID="lbRelationship" runat="server" Text="Mối quan hệ"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbRelationship" runat="server" Text="Mối quan hệ"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox runat="server" ID="cboRelationship" CausesValidation="false">
@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbBirthDate" runat="server" Text="Ngày sinh"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label ID="lbBirthDate" runat="server" Text="Ngày sinh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdBirthDate">
@@ -229,9 +229,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut(splitterID);
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut(splitterID);
+        //        }
 
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
@@ -249,9 +249,9 @@
             }
         }
 
-//        function GridCreated(sender, eventArgs) {
-//            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_RadSplitter2');
-//        }
+        //        function GridCreated(sender, eventArgs) {
+        //            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_RadSplitter2');
+        //        }
 
         function clRadDatePicker() {
             $('#ctl00_MainContent_ctrlHU_EmpDtl_ctrlHU_EmpDtlFamily_rdBirthDate_dateInput').val('');

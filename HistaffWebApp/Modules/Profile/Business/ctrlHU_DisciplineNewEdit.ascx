@@ -21,7 +21,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbEffectDate" Text="Ngày hiệu lực"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server" TabIndex="1" AutoPostBack="true">
@@ -42,7 +42,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbStatus" Text="Trạng thái"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStatus" runat="server" TabIndex="3">
@@ -58,7 +58,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDecisionNo" Text="Số quyết định"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtDecisionNo" runat="server" TabIndex="4">
@@ -73,7 +73,7 @@
                 </td>
                 <%--<td class="lb">
                     <asp:Label runat="server" ID="lbIssueDate" Text="Ngày ban hành"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdIssueDate" runat="server" TabIndex="5">
@@ -94,7 +94,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbSignerName" Text="Người ký"></asp:Label>
-                    <%--<span class="lbReq">*</span>--%>
+                    <%----%>
                 </td>
                 <td>
                    <%--<tlk:RadTextBox ID = "txtIDEmp" runat = "server" Visible="false"></tlk:RadTextBox>--%>
@@ -149,7 +149,7 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineObj" Text="Đối tượng"></asp:Label>
-                    <%--<span class="lbReq">*</span>--%>
+                    <%----%>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDisciplineObj" runat="server" AutoPostBack="True" TabIndex="11"
@@ -164,7 +164,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineLevel" Text="Cấp kỷ luật"></asp:Label>
-                    <%--<span class="lbReq">*</span>--%>
+                    <%----%>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDisciplineLevel" runat="server" TabIndex="12" CausesValidation="False">
@@ -178,7 +178,7 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbDisciplineType" Text="Hình thức"></asp:Label>
-                    <span class="lbReq">*</span>
+                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDisciplineType" runat="server" TabIndex="13" CausesValidation="False">
