@@ -245,6 +245,7 @@ Public Class ctrlPA_SalaryRank
                     'rntxtSalaryBasic.Text = ""
                     txtRemark.Text = ""
                     rntxtOrders.Text = "1"
+                    ClearControlValue(txtRank, txtRemark, rntxtOrders, cboSalaryLevel, rntxtSalaryBasic)
                     rntxtSalaryBasic.ReadOnly = False
                     txtRank.ReadOnly = False
                     txtRemark.ReadOnly = False
@@ -256,6 +257,7 @@ Public Class ctrlPA_SalaryRank
                     'rntxtSalaryBasic.Text = ""
                     txtRemark.Text = ""
                     rntxtOrders.Text = ""
+                    ClearControlValue(txtRank, txtRemark, rntxtOrders, cboSalaryLevel, rntxtSalaryBasic)
                     EnabledGridNotPostback(rgData, True)
                     rntxtSalaryBasic.ReadOnly = True
                     txtRank.ReadOnly = True

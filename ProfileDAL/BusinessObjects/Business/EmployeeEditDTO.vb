@@ -18,6 +18,7 @@
     Public Property ID_NO As String
     Public Property ID_DATE As Date?
     Public Property ID_PLACE As String
+    Public Property ID_PLACE_NAME As String
     Public Property NAV_ADDRESS As String
     Public Property NAV_PROVINCE As Decimal?
     Public Property NAV_PROVINCE_NAME As String

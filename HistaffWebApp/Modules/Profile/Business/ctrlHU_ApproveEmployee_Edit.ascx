@@ -78,6 +78,16 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Xã phường %>" DataField="NAV_WARD_NAME"
                                 UniqueName="NAV_WARD_NAME" SortExpression="NAV_WARD_NAME">
                             </tlk:GridBoundColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="ID_NO"
+                                UniqueName="ID_NO" SortExpression="ID_NO">
+                            </tlk:GridBoundColumn>                           
+                             <tlk:GridDateTimeColumn UniqueName="ID_DATE" HeaderText="<%$ Translate: Ngày cấp %>"
+                                ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="ID_DATE">
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nơi cấp %>" DataField="ID_PLACE_NAME"
+                                UniqueName="ID_PLACE_NAME" SortExpression="ID_PLACE_NAME">
+                            </tlk:GridBoundColumn>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>
