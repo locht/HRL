@@ -95,12 +95,11 @@
                     <asp:Label ID="lbContractNo" runat="server" Text="<%$ Translate: Số hợp đồng %>"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtContractNo" runat="server" Enabled="false">
+                    <tlk:RadTextBox ID="txtContractNo" runat="server">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>
-                    <span class="lbReq">*</span>
+                    <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>                
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
