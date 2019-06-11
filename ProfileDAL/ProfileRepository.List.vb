@@ -237,10 +237,16 @@ Partial Class ProfileRepository
     Public Function ActiveTitle(ByVal lstID As List(Of Decimal), ByVal sActive As String,
                                    ByVal log As UserLog) As Boolean
         Dim lstTitleData As List(Of HU_TITLE)
+        Dim lstOrgTitle As List(Of HU_ORG_TITLE)
         Try
             lstTitleData = (From p In Context.HU_TITLE Where lstID.Contains(p.ID)).ToList
             For index = 0 To lstTitleData.Count - 1
                 lstTitleData(index).ACTFLG = sActive
+                Dim id As Decimal = lstTitleData(index).ID
+                lstOrgTitle = (From p In Context.HU_ORG_TITLE Where p.TITLE_ID = id And p.ACTFLG <> sActive).ToList
+                For i = 0 To lstOrgTitle.Count - 1
+                    lstOrgTitle(i).ACTFLG = sActive
+                Next
             Next
             Context.SaveChanges(log)
             Return True
@@ -1621,8 +1627,8 @@ Partial Class ProfileRepository
         Try
             Dim query = From p In Context.HU_ORG_TITLE
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID And f.ID = filter.ORG_ID)
-                        From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID And f.ACTFLG = "A").DefaultIfEmpty
-                        From t2 In Context.HU_TITLE.Where(Function(f) f.ID = p.PARENT_ID And f.ACTFLG = "A").DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                        From t2 In Context.HU_TITLE.Where(Function(f) f.ID = p.PARENT_ID).DefaultIfEmpty
                         From group In Context.OT_OTHER_LIST.Where(Function(f) f.ID = t.TITLE_GROUP_ID).DefaultIfEmpty
                         Order By t.CODE
 
