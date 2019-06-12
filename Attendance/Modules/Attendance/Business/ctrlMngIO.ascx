@@ -15,8 +15,28 @@
             <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None" Height="35px">
                 <tlk:RadToolBar ID="tbarMainToolBar" runat="server" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="80px">
+            <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="100px">
                 <table class="table-form"  onkeydown="return (event.keyCode!=13)">
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblProgram" runat="server" Font-Size="Large" Font-Bold="true">&nbsp;</asp:Label>
+                        </td>
+                        <td style="width: 100px">
+                            <asp:Label ID="lblRequest" runat="server" Font-Size="Large" Font-Bold="true" Visible="false">&nbsp;</asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td class="lb" style="padding-right: 5px; padding-left: 20px">
+                            <%# Translate("CM_CTRLPROCESS_SCAN_TIME")%>&nbsp;
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox runat="server" ID="RadNumTB" MinValue="1" MaxValue="30" Width="50px"
+                                Value="5" MaxLength="2" AutoPostBack="true" ShowSpinButtons="True">
+                                <NumberFormat GroupSeparator="" DecimalDigits="0" />
+                            </tlk:RadNumericTextBox>
+                            <asp:Label ID="lblStatus" runat="server" Text ="..."  Font-Size="Large" CssClass="spancustomstatus"></asp:Label>
+                         </td>
+                    </tr>
                     <tr>
                         <td class="lb">
                             <%# Translate("Năm")%>
@@ -286,6 +306,9 @@
         </tlk:RadSplitter>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<asp:Timer ID="TimerRequest" runat="server" Interval="5000" Enabled="False" EnableViewState="True">
+</asp:Timer>
+<asp:HiddenField runat="server" ID="hidRequestID" Value="0" />
 <tlk:RadWindowManager ID="RadWindowManager1" runat="server">
     <Windows>
         <tlk:RadWindow runat="server" ID="rwPopup" VisibleStatusbar="false" Width="500" Height="500px"

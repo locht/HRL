@@ -104,6 +104,42 @@ Partial Public Class ctrlMngIO
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lblProgram control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblProgram As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblRequest control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblRequest As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''RadNumTB control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadNumTB As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lblStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cboYear control.
     '''</summary>
     '''<remarks>
@@ -174,6 +210,24 @@ Partial Public Class ctrlMngIO
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgMngIO As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''TimerRequest control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TimerRequest As Global.System.Web.UI.Timer
+
+    '''<summary>
+    '''hidRequestID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidRequestID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''RadWindowManager1 control.

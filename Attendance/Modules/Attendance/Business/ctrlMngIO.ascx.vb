@@ -7,6 +7,8 @@ Imports Common.CommonMessage
 Imports Attendance.AttendanceRepository
 Imports Attendance.AttendanceBusiness
 Imports WebAppLog
+Imports HistaffFrameworkPublic
+Imports System.Reflection
 
 Public Class ctrlMngIO
     Inherits Common.CommonView
@@ -38,8 +40,185 @@ Public Class ctrlMngIO
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
-
+    Public repProGram As New CommonProgramsRepository
+    Public clrConverter As New Drawing.ColorConverter
+    Public Shared lstParaValueShare As List(Of Object)
 #Region "Properties"
+
+    ''' <summary>
+    ''' Obj LoadFirstAfterCal
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property LoadFirstAfterCal As Boolean
+        Get
+            Return ViewState(Me.ID & "_LoadFirstAfterCal")
+        End Get
+        Set(ByVal value As Boolean)
+            ViewState(Me.ID & "_LoadFirstAfterCal") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Obj listParameters
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Property listParameters As DataTable
+        Get
+            Return ViewState(Me.ID & "_listParameters")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_listParameters") = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Obj lstLabelPara
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property lstLabelPara As List(Of String)
+        Get
+            Return ViewState(Me.ID & "_lstLabelPara")
+        End Get
+        Set(ByVal value As List(Of String))
+            ViewState(Me.ID & "_lstLabelPara") = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Obj lstSequence
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property lstSequence As DataTable
+        Get
+            Return ViewState(Me.ID & "_lstSequence")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_lstSequence") = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Obj lstParameter
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property lstParameter As List(Of PARAMETER_DTO)
+        Get
+            Return ViewState(Me.ID & "_lstParameter")
+        End Get
+        Set(ByVal value As List(Of PARAMETER_DTO))
+            ViewState(Me.ID & "_lstParameter") = value
+        End Set
+    End Property
+    '' <summary>
+    ''' Obj checkRunRequest
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' ThanhNT: thiết lập các property
+    ''' </remarks>' 
+    Public Property checkRunRequest As Decimal
+        Get
+            Return ViewState(Me.ID & "_checkRunRequest")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_checkRunRequest") = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Obj programID
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property programID As Decimal
+        Get
+            Return ViewState(Me.ID & "_programID")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_programID") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Obj haveOrgPara
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property haveOrgPara As Decimal
+        Get
+            Return ViewState(Me.ID & "_haveOrgPara")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_haveOrgPara") = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Obj hasError
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property hasError As Decimal
+        Get
+            Return ViewState(Me.ID & "_hasError")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_hasError") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Obj isLoadedData
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property isLoadedData As Decimal
+        Get
+            Return ViewState(Me.ID & "_isLoadedData")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_isLoadedData") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Obj isRunAfterComplete
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property isRunAfterComplete As DataTable
+        Get
+            Return ViewState(Me.ID & "_isRunAfterComplete")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_isRunAfterComplete") = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' Obj requestID
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property requestID As Decimal
+        Get
+            Return ViewState(Me.ID & "_requestID")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_requestID") = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' DATAINOUT
@@ -214,14 +393,13 @@ Public Class ctrlMngIO
     Protected Sub InitControl()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarMainToolBar
-
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Export, ToolbarItem.Calculate)
-
-            'CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
+            Dim rep As New HistaffFrameworkRepository
+            Dim obj As Object = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.READ_PROGRAM_WITH_CODE", New List(Of Object)(New Object() {"CAL_SUMMARY_DATA_INOUT", FrameworkUtilities.OUT_STRING}))
+            programID = Int32.Parse(obj(0).ToString())
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
 
@@ -474,6 +652,49 @@ Public Class ctrlMngIO
 
 #Region "Event"
 
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xử lý load lại các control sau 1 khoảng thời gian nhất định
+    ''' </summary>
+    ''' <remarks></remarks>
+    Protected Sub TimerRequest_Tick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerRequest.Tick
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            GetStatus()
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' xu ly su kien TextChanged cua control RadNumTB
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub RadNumTB_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles RadNumTB.TextChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            TimerRequest.Interval = Int32.Parse(RadNumTB.Text) * 1000
+            If requestID <> 0 Then
+                GetStatus()
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
     ''' <lastupdate>17/08/2017</lastupdate>
     ''' <summary>
     ''' Event lưa chọn to chức thay doi tren popup ctrlOrganization
@@ -491,7 +712,7 @@ Public Class ctrlMngIO
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try        
+        End Try
     End Sub
 
     ''' <lastupdate>17/08/2017</lastupdate>
@@ -538,11 +759,27 @@ Public Class ctrlMngIO
                 Case TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
                 Case TOOLBARTIEM_CALCULATE
+                    If Not CheckRunProgram() Then
+                        Exit Sub
+                    End If
+                    isLoadedData = 0
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_WAITING), Drawing.Color)
+                    lblRequest.Text = ""
+                    CurrentState = STATE_ACTIVE
+                    UpdateControlState()
+                    checkRunRequest = 1   'Clicked button calculate in toolbar  
+                    If Not checkPara() Then     'kiem tra danh sach tham so da hop le chua?
+                        Exit Sub
+                    End If
                     If IsNumeric(cboPeriod.SelectedValue) Then
-                        ctrlMessageBox.MessageText = Translate("Tổng hợp dữ liệu vào ra")
-                        ctrlMessageBox.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE
-                        ctrlMessageBox.DataBind()
-                        ctrlMessageBox.Show()
+                        lblStatus.Text = repProGram.StatusString("Running")
+                        GetAllInformationInRequestMain()
+                        TimerRequest.Enabled = True
+                        LoadFirstAfterCal = True
+                        'ctrlMessageBox.MessageText = Translate("Tổng hợp dữ liệu vào ra")
+                        'ctrlMessageBox.ActionName = CommonMessage.TOOLBARTIEM_CALCULATE
+                        'ctrlMessageBox.DataBind()
+                        'ctrlMessageBox.Show()
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOTSELECT_PERIOD), NotifyType.Warning)
                         Exit Sub
@@ -1042,6 +1279,361 @@ Public Class ctrlMngIO
         End Try
     End Sub
 
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Ham kiem tra 1 chuong + user co duoc phep chay trong he thong hay khong
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Function CheckRunProgram() As Boolean
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+
+            'Kiem tra: neu program nay chi chay 1 luc duoc 1 cai (ISOLATION_PROGRAM : 1) thi exit
+            '          neu program chay duoc dong` thoi --> kiem tra: (ISOLATION_USER : 1) bao' da~ co' user chay program nay roi
+            Dim log = UserLogHelper.GetCurrentLogUser()
+            Dim RunProgramCheck = repProGram.CheckRunProgram(99999, log.Username)
+            Select Case RunProgramCheck
+                Case 0 'duoc phep chay --> do anything
+                    Return True
+                Case 1 'khong duoc phep chay --> (program nay chi chay cung luc 1 cai')
+                    ShowMessage("Chương trình này đã được chạy trong hệ thống. " & vbNewLine & "Vui lòng kiểm tra trong danh sách chương trình đang chạy", NotifyType.Warning)
+                    Return False
+                Case 2 'khong duoc phep chay (program nay chi chay khi khac user chay )     
+                    ShowMessage("Tài khoản đang được sử dụng, vui lòng đăng nhập bằng tài khoản khác để tính lương", NotifyType.Warning)
+                    Return False
+            End Select
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Function
+
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xử lý việc ẩn hiện các control theo status
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub GetStatus()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim rep As New HistaffFrameworkRepository
+            Dim obj As Object = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.PRR_GET_STATUS_IN_REQUEST", New List(Of Object)(New Object() {requestID, FrameworkUtilities.OUT_STRING}))
+
+            Select Case obj(0).ToString
+                Case "P"
+                    lblStatus.Text = repProGram.StatusString("Pending")
+                    hidRequestID.Value = requestID
+                    lblRequest.Text = requestID
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_PENDING), Drawing.Color)
+                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = False
+                Case "R"
+                    lblStatus.Text = repProGram.StatusString("Running")
+                    hidRequestID.Value = requestID
+                    lblRequest.Text = requestID
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_RUNNING), Drawing.Color)
+                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = False
+                Case "C"
+                    lblStatus.Text = repProGram.StatusString("Complete")
+                    hidRequestID.Value = requestID
+                    lblRequest.Text = requestID
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_COMPLETE), Drawing.Color)
+                    TimerRequest.Enabled = False
+                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
+                    CurrentState = STATE_DETAIL
+                    Run()
+                Case "CW"
+                    lblStatus.Text = repProGram.StatusString("CompleteWarning")
+                    hidRequestID.Value = requestID
+                    lblRequest.Text = requestID
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_COMPLETE_WARNING), Drawing.Color)
+                    TimerRequest.Enabled = False
+                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
+                    CurrentState = STATE_DEACTIVE
+                Case "CPE" 'lỗi phần tham số truyền vào
+                    lblStatus.Text = repProGram.StatusString("ParameterError")
+                    hidRequestID.Value = requestID
+                    lblRequest.Text = requestID
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_COMPLETE_WARNING), Drawing.Color)
+                    TimerRequest.Enabled = False
+                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
+                    Dim objLog As Object = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.PRO_GET_LOG_FILE", New List(Of Object)(New Object() {requestID, FrameworkUtilities.OUT_STRING}))
+                    Dim logDoc As String = objLog(0).ToString()
+                    ShowMessage(logDoc, Framework.UI.Utilities.NotifyType.Warning)
+                    CurrentState = STATE_DEACTIVE
+                Case "E"
+                    lblStatus.Text = repProGram.StatusString("Error")
+                    hidRequestID.Value = requestID
+                    lblRequest.Text = requestID
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_ERROR), Drawing.Color)
+                    TimerRequest.Enabled = False
+                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
+                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
+                    CurrentState = STATE_DEACTIVE
+
+            End Select
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xử lý việc show ra kết quả
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub Run()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            If isRunAfterComplete(0).Item("IS_RUN_AFTER_COMPLETE") = 0 Then 'khong cho chay lien`
+                Exit Sub
+            Else 'chay lien`
+                isLoadedData = 0
+                RunResult()
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+
+    End Sub
+
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Nhận và show dữ liệu sau khi xử lý
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub RunResult()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            'get store out with program id
+            Dim rep As New HistaffFrameworkRepository
+            Dim lstParaValue As List(Of Object)
+            Dim lstlst As New List(Of List(Of Object))
+            Dim obj As Object = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.READ_PROGRAM_WITH_CODE", New List(Of Object)(New Object() {"CAL_SUMMARY_DATA_INOUT", FrameworkUtilities.OUT_STRING}))
+            programID = Int32.Parse(obj(0).ToString())
+            lstlst = FrameworkUtilities.CreateParameterList(New With {.P_PROGRAM_ID = programID, .P_STORE_OUT = FrameworkUtilities.OUT_CURSOR})
+            Dim ds = rep.ExecuteStore("PKG_HCM_SYSTEM.PRO_GET_STORE_OUT_WITH_PROGRAM", lstlst)
+
+            'rs = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.PRO_GET_STORE_OUT_WITH_PROGRAM", lstlst)
+            Dim storeOut = ds.Tables(0).Rows(0).ItemArray(0)
+            'execute program with store_out , parameter when user selection
+            lstParaValue = GetListParametersValue()
+            lstParaValueShare = lstParaValue
+            'DataSourceDS = New DataSet
+            'DataSourceDS = rep.ExecuteToDataSet(storeOut, lstParaValue)
+            'If DataSourceDS Is Nothing Then
+            '    ShowMessage(Translate("Không có dữ liệu sau khi tính toán"), NotifyType.Error)
+            'Else
+            '    DesignGrid(DataSourceDS)
+            'End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Sub
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Load các tham số được truyền lên
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function GetListParametersValue() As List(Of Object)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim rs As New List(Of Object)
+        hasError = 0
+        Dim index As Decimal = 0
+        Dim str As String = ""
+        Dim typefield As String = ""
+        Try
+            rs.Add(requestID)
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+        Return rs
+    End Function
+
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Kiểm tra các tham số truyền lên
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Function checkPara() As Boolean
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            lstParameter = New List(Of PARAMETER_DTO)
+            lstParameter = GetListParameters()
+            For index = 0 To lstSequence.Rows.Count - 1
+                If lstParameter(index).IS_REQUIRE = 1 Then
+                    If lstParameter(index).VALUE Is Nothing OrElse lstParameter(index).VALUE = "" Then
+                        ShowMessage("Điều kiện " & lstLabelPara(index).ToUpper() & " bắt buộc nhập!", NotifyType.Warning)
+                        CurrentState = STATE_NORMAL
+                        UpdateControlState()
+                        Return False
+                    End If
+                End If
+            Next
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+        Return True
+    End Function
+
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Load các tham số được truyền lên
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function GetListParameters() As List(Of PARAMETER_DTO)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        lstParameter = New List(Of PARAMETER_DTO)
+        Dim newRequest As New REQUEST_DTO
+        Dim index As Decimal = 0
+        Try
+
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+        Return lstParameter
+    End Function
+
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xử lý việc insert vào database
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub GetAllInformationInRequestMain()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim log = UserLogHelper.GetCurrentLogUser()
+            lblStatus.Text = repProGram.StatusString("Initial")
+            Dim repH As New HistaffFrameworkRepository
+            Dim newRequest As New REQUEST_DTO
+            lstParameter = New List(Of PARAMETER_DTO)
+            Dim index As Decimal = 0
+            newRequest.PROGRAM_ID = programID
+            newRequest.PHASE_CODE = "I"
+            newRequest.STATUS_CODE = "Initial"
+            newRequest.START_DATE = DateTime.Now
+            newRequest.END_DATE = DateTime.Now.AddDays(100)
+            newRequest.ACTUAL_START_DATE = DateTime.Now
+            newRequest.ACTUAL_COMPLETE_DATE = DateTime.Now.AddDays(100)
+            newRequest.CREATED_BY = log.Username
+            newRequest.CREATED_DATE = DateTime.Now
+            newRequest.MODIFIED_BY = log.Username
+            newRequest.MODIFIED_DATE = DateTime.Now
+            newRequest.CREATED_LOG = log.Ip + "-" + log.ComputerName
+            newRequest.MODIFIED_LOG = log.Ip + "-" + log.ComputerName
+
+            'Get program with programId
+            Dim lstlst As New List(Of List(Of Object))
+            lstlst = CreateParameterList(New With {.P_PROGRAM_ID = programID, .P_STORE_OUT = FrameworkUtilities.OUT_CURSOR})
+            'get all Function(Report) in system
+            Dim dt = repH.ExecuteStore("PKG_HCM_SYSTEM.READ_PROGRAM_WITH_ID", lstlst)
+
+
+            'get list parameter
+            lstParameter = GetListParameters()
+
+            'call function insert into database with request and parameters
+            requestID = New Decimal
+            requestID = (New CommonProgramsRepository).Insert_Requests(newRequest, dt, lstParameter, 1)
+            lblRequest.Text = requestID.ToString
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' hàm tạo List Parameter để chuyền vào StoreProcedure
+    ''' sử dụng: New With{.[Tên tham số trong Store1] = [Value1],
+    '''                   .[Tên tham số trong Store2] = [Value2]}
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
+    ''' <param name="parameters"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Shared Function CreateParameterList(Of T)(ByVal parameters As T) As List(Of List(Of Object))
+        Dim lstParameter As New List(Of List(Of Object))
+
+        For Each info As PropertyInfo In parameters.GetType().GetProperties()
+            Dim param As New List(Of Object)
+
+            param.Add(info.Name)
+            param.Add(info.GetValue(parameters, Nothing))
+
+            lstParameter.Add(param)
+        Next
+
+        Return lstParameter
+    End Function
 #End Region
 
 End Class
