@@ -75,6 +75,21 @@ Public Class ctrlHU_ChangeInfoNewEdit
     End Property
 
     ''' <summary>
+    ''' Obj WorkingDTO
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Property WorkingForMessage As WorkingDTO
+        Get
+            Return ViewState(Me.ID & "_WorkingForMessage")
+        End Get
+        Set(ByVal value As WorkingDTO)
+            ViewState(Me.ID & "_WorkingForMessage") = value
+        End Set
+    End Property
+
+    ''' <summary>
     ''' isLoadPopup
     ''' </summary>
     ''' <value></value>
@@ -489,7 +504,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                         'End If
 
                         With objWorking
-                            .EMPLOYEE_ID = hidEmp.Value
+                            .EMPLOYEE_ID = If(IsNumeric(hidEmp.Value), hidEmp.Value, Nothing)
 
                             If cboTitle.SelectedValue <> "" Then
                                 .TITLE_ID = cboTitle.SelectedValue
@@ -573,36 +588,55 @@ Public Class ctrlHU_ChangeInfoNewEdit
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
-                                If rep.InsertWorking1(objWorking, gID) Then
-                                    Dim str As String = "getRadWindow().close('1');"
-                                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                If hidManager.Value <> "" Then
+                                    If rep.InsertWorking1(objWorking, gID) Then
+                                        Dim str As String = "getRadWindow().close('1');"
+                                        ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
 
-                                    'Clear all input
-                                    ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
-                                                      txtTitleNameOld,
-                                    txtDecisionTypeOld,
-                                                      rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
-                                                       rdSignDate, txtSignName, txtSignTitle,
-                                                      txtOrgName, txtRemark)
-                                    cboStaffRank.Text = String.Empty
-                                    cboTitle.Text = String.Empty
-                                    cboDecisionType.Text = String.Empty
-                                    chkIsProcess.Checked = False
-                                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
+                                        'Clear all input
+                                        ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
+                                                          txtTitleNameOld,
+                                        txtDecisionTypeOld,
+                                                          rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
+                                                           rdSignDate, txtSignName, txtSignTitle,
+                                                          txtOrgName, txtRemark)
+                                        cboStaffRank.Text = String.Empty
+                                        cboTitle.Text = String.Empty
+                                        cboDecisionType.Text = String.Empty
+                                        chkIsProcess.Checked = False
+                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
+                                    Else
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    End If
                                 Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    WorkingForMessage = objWorking
+                                    ctrlMessageBox.MessageText = Translate("Bạn chắc chắn nhân viên này không có Quản lý trực tiếp ?")
+                                    ctrlMessageBox.MessageTitle = Translate("Thông báo")
+                                    ctrlMessageBox.ActionName = "CHECK_DIRECTMANAGER"
+                                    ctrlMessageBox.DataBind()
+                                    ctrlMessageBox.Show()
                                 End If
+                                
                             Case CommonMessage.STATE_EDIT
-                                objWorking.ID = Decimal.Parse(hidID.Value)
-                                If rep.ModifyWorking1(objWorking, gID) Then
-                                    'Dim str As String = "getRadWindow().close('1');"
-                                    'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                                    ''POPUPTOLINK
-                                    Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
+                                If hidManager.Value <> "" Then
+                                    objWorking.ID = Decimal.Parse(hidID.Value)
+                                    If rep.ModifyWorking1(objWorking, gID) Then
+                                        'Dim str As String = "getRadWindow().close('1');"
+                                        'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                                        ''POPUPTOLINK
+                                        Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
+                                    Else
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    End If
                                 Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    WorkingForMessage = objWorking
+                                    ctrlMessageBox.MessageText = Translate("Bạn chắc chắn nhân viên này không có Quản lý trực tiếp ?")
+                                    ctrlMessageBox.MessageTitle = Translate("Thông báo")
+                                    ctrlMessageBox.ActionName = "CHECK_DIRECTMANAGER"
+                                    ctrlMessageBox.DataBind()
+                                    ctrlMessageBox.Show()
                                 End If
                         End Select
                     End If
@@ -628,6 +662,56 @@ Public Class ctrlHU_ChangeInfoNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
+        Dim rep As New ProfileBusinessRepository
+        Dim gID As Decimal
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If e.ActionName = "CHECK_DIRECTMANAGER" And e.ButtonID = MessageBoxButtonType.ButtonYes Then
+                Select Case CurrentState
+                    Case CommonMessage.STATE_NEW
+                        If rep.InsertWorking1(WorkingForMessage, gID) Then
+                            Dim str As String = "getRadWindow().close('1');"
+                            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+
+                            'Clear all input
+                            ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
+                                              txtTitleNameOld,
+                            txtDecisionTypeOld,
+                                              rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
+                                               rdSignDate, txtSignName, txtSignTitle,
+                                              txtOrgName, txtRemark)
+                            cboStaffRank.Text = String.Empty
+                            cboTitle.Text = String.Empty
+                            cboDecisionType.Text = String.Empty
+                            chkIsProcess.Checked = False
+                            Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                        End If
+                    Case CommonMessage.STATE_EDIT
+                        WorkingForMessage.ID = Decimal.Parse(hidID.Value)
+                        If rep.ModifyWorking1(WorkingForMessage, gID) Then
+                            'Dim str As String = "getRadWindow().close('1');"
+                            'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                            ''POPUPTOLINK
+                            Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
+                        Else
+                            ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                        End If
+                End Select
+            Else
+                Exit Sub
+            End If
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
