@@ -2219,18 +2219,20 @@ Partial Public Class AttendanceRepository
     End Function
     Public Function GetEmployeeTimeKeepingID(ByVal ComId As Decimal) As List(Of AT_OFFFSETTING_EMPDTO)
         Try
-            Dim q = (From d In Context.AT_OFFSETTING_TIMEKEEPING_EMP Where d.GROUP_ID = ComId
-                    From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = d.EMPLOYEE_ID)
+            Dim q = (From d In Context.AT_OFFSETTING_TIMEKEEPING
+                     From CE In Context.ATV_OFFSETTING.Where(Function(e) e.GROUP_ID = d.ID)
+                    From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = CE.EMPLOYEE_ID)
                     From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID)
                     From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID)
+                     Where CE.GROUP_ID = ComId
                     Select New AT_OFFFSETTING_EMPDTO With {.EMPLOYEE_ID = d.EMPLOYEE_ID,
                                                   .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                   .FULLNAME_VN = e.FULLNAME_VN,
                                                   .ORG_NAME = o.NAME_VN,
                                                   .TITLE_ID = e.TITLE_ID,
-                                                  .ORG_ID = e.ORG_ID,
+                                                   .ORG_ID = e.ORG_ID,
                                                   .TITLE_NAME = t.NAME_VN}).ToList
-            Return q.Distinct.ToList()
+            Return q.ToList()
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
@@ -2261,7 +2263,7 @@ Partial Public Class AttendanceRepository
                                        .MINUTES_BT = p.p.MINUTES_BT,
                                        .REMARK = p.p.REMARK,
                                        .FROMDATE = p.p.FROMDATE,
-                                       .TODATE = p.p.FROMDATE,
+                                       .TODATE = p.p.TODATE,
                                        .CREATED_BY = p.p.CREATED_BY,
                                        .CREATED_DATE = p.p.CREATED_DATE,
                                        .CREATED_LOG = p.p.CREATED_LOG,

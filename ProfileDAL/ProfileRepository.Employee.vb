@@ -3032,6 +3032,7 @@ Partial Class ProfileRepository
 
             Dim query = (From p In Context.HU_EMPLOYEE_EDIT
                          From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                              From place_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.ID_PLACE).DefaultIfEmpty
                               From nav_pro In Context.HU_PROVINCE.Where(Function(f) f.ID = p.NAV_PROVINCE).DefaultIfEmpty
                               From nav_dis In Context.HU_DISTRICT.Where(Function(f) f.ID = p.NAV_DISTRICT).DefaultIfEmpty
                               From nav_ward In Context.HU_WARD.Where(Function(f) f.ID = p.NAV_WARD).DefaultIfEmpty
@@ -3050,6 +3051,7 @@ Partial Class ProfileRepository
                             .ID_DATE = p.ID_DATE,
                             .ID_NO = p.ID_NO,
                             .ID_PLACE = p.ID_PLACE,
+                            .ID_PLACE_NAME = place_pro.NAME_VN,
                             .MARITAL_STATUS = p.MARITAL_STATUS,
                             .MARITAL_STATUS_NAME = marital.NAME_VN,
                             .NAV_ADDRESS = p.NAV_ADDRESS,
