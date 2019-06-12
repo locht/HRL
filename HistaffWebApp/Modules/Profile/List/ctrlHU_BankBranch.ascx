@@ -47,16 +47,7 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="<%$ Translate: Mã không được chứa ký tự đặc biệt và khoảng trắng %>"
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>--%>
                 </td>
-                <%--<td class="lb">
-                    <%# Translate("Tên chi nhánh")%><span class="lbReq">*</span>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtName" runat="server">
-                    </tlk:RadTextBox>
-                    <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập tên chi nhánh %>" ToolTip="<%$ Translate: Bạn phải nhập tên chi nhánh %>">
-                    </asp:RequiredFieldValidator>
-                </td>--%>
+              
             </tr>
             <tr>
                 <td class="lb">
