@@ -14,6 +14,22 @@ Public Class ctrlLeaveRegistrationNewEdit
     Public Overrides Property MustAuthorize As Boolean = False
 
 #Region "Property"
+    Private Property orgId As Integer
+        Get
+            Return ViewState(Me.ID & "_orgId")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_orgId") = value
+        End Set
+    End Property
+    Private Property perioId As Integer
+        Get
+            Return ViewState(Me.ID & "_perioId")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_perioId") = value
+        End Set
+    End Property
     Public ReadOnly Property CurrentUser As UserDTO
         Get
             Return LogHelper.CurrentUser
@@ -408,6 +424,13 @@ Public Class ctrlLeaveRegistrationNewEdit
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
+                        perioId = AttendanceRepositoryStatic.Instance.GET_PERIOD(rdFromDate.SelectedDate.Value.FirstDateOfMonth)
+                        orgId = AttendanceRepositoryStatic.Instance.GET_ORGID(EmployeeID)
+                        Dim check = AttendanceRepositoryStatic.Instance.AT_CHECK_ORG_PERIOD_STATUS_OT(orgId, perioId)
+                        If check = 1 Then
+                            ShowMessage(Translate("Bảng công đã được đóng trước đó, vui lòng kiểm tra lại"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         If rntxDayRegist.Value.HasValue AndAlso rntxDayRegist.Value <= 0 Then
                             ShowMessage(Translate("Số ngày nghỉ phải > 0."), NotifyType.Warning)
                             UpdateControlState()
@@ -432,7 +455,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                             End While
                         End If
-                       
+
                         If txtNote.Text = "" Then
                             ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
                             UpdateControlState()

@@ -16,6 +16,14 @@ Public Class ctrlOTRegistrationNewEdit
 #Region "Property"
 
     Public Property EmployeeID As Decimal
+    Private Property orgId As Integer
+        Get
+            Return ViewState(Me.ID & "_orgId")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_orgId") = value
+        End Set
+    End Property
     Public Property EmployeeCode As String
     Protected Property EmployeeDto As DataTable
         Get
@@ -74,14 +82,20 @@ Public Class ctrlOTRegistrationNewEdit
             ViewState(Me.ID & "_userType") = value
         End Set
     End Property
-
+    Private Property perioId As Integer
+        Get
+            Return ViewState(Me.ID & "_perioId")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_perioId") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
 
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
-
             Refresh()
             UpdateControlState()
         Catch ex As Exception
@@ -288,6 +302,13 @@ Public Class ctrlOTRegistrationNewEdit
                         '    cboTypeOT.Focus()
                         '    Exit Sub
                         'End If
+                        perioId = AttendanceRepositoryStatic.Instance.GET_PERIOD(rdRegDate.SelectedDate.Value.FirstDateOfMonth)
+                        orgId = AttendanceRepositoryStatic.Instance.GET_ORGID(EmployeeID)
+                        Dim check = AttendanceRepositoryStatic.Instance.AT_CHECK_ORG_PERIOD_STATUS_OT(orgId, perioId)
+                        If check = 1 Then
+                            ShowMessage(Translate("Bảng công đã được đóng trước đó, vui lòng kiểm tra lại"), NotifyType.Warning)
+                            Exit Sub
+                        End If
                         If rntbFromAM.Value.HasValue Or rntbToAM.Value.HasValue Then
                             If Not rntbFromAM.Value.HasValue Then
                                 ShowMessage(Translate("Phải nhập từ giờ làm thêm AM."), NotifyType.Warning)
@@ -374,7 +395,7 @@ Public Class ctrlOTRegistrationNewEdit
                             Exit Sub
                         End If
                         Dim isInsert As Boolean = True
-                        
+
                         Dim obj As New AT_OT_REGISTRATIONDTO
                         obj.EMPLOYEE_ID = EmployeeID
                         obj.IS_DELETED = 0
@@ -442,6 +463,7 @@ Public Class ctrlOTRegistrationNewEdit
                             '    UpdateControlState()
                             '    Exit Sub
                             'End If
+
                             If isInsert Then
                                 rep.InsertOtRegistration(obj, hidID.Value)
                                 obj.ID = hidID.Value
@@ -462,13 +484,13 @@ Public Class ctrlOTRegistrationNewEdit
                     '    ctrlMessageBox.DataBind()
                     '    ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    If userType = "User" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
-                    ElseIf userType = "LM" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByLM")
-                    ElseIf userType = "HR" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByHR")
-                    End If
+                        If userType = "User" Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
+                        ElseIf userType = "LM" Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByLM")
+                        ElseIf userType = "HR" Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByHR")
+                        End If
             End Select
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
