@@ -18,6 +18,11 @@ Public Class ctrlHU_BankBranch
 #End Region
 
 #Region "Page"
+
+    Private Property AjaxManager As RadAjaxManager
+
+    Private Property AjaxManagerId As String
+
     ''' <lastupdate>
     ''' 28/06/2017 10:04
     ''' </lastupdate>
@@ -53,9 +58,21 @@ Public Class ctrlHU_BankBranch
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
+            AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
+            AjaxManagerId = AjaxManager.ClientID
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                ViewConfig(RadPane2)
+                GirdConfig(rgBankBranchs)
+            End If
+            rgBankBranchs.SetFilter()
+            rgBankBranchs.AllowCustomPaging = True
+            rgBankBranchs.PageSize = Common.Common.DefaultPageSize
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+       
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
