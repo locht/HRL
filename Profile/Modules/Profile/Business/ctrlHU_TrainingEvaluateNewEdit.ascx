@@ -66,19 +66,22 @@
                     <asp:Label ID="lbYear" runat="server" Text="Năm"></asp:Label>
                 </td>
                 <td>
-                 
-                    <tlk:RadNumericTextBox ID="txtYear" AutoPostBack="true" SkinID="Number" TabIndex="18" runat="server"  
-                     MaxLength="4" MinValue="1900" ShowSpinButtons="true" >
-                        <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
+                 <tlk:RadNumericTextBox ID="txtYear" AutoPostBack="true" 
+                 SkinID="Number" TabIndex="18" runat="server" MaxLength="4" MinValue="1900" ShowSpinButtons="true">
+                 <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                     </tlk:RadNumericTextBox>
+                  <asp:RequiredFieldValidator ID="reqYear" ControlToValidate="txtYear"
+                        runat="server" ErrorMessage="Bạn phải nhập năm." ToolTip="Bạn phải nhập năm."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbContractType" runat="server" Text="Kì đánh giá"></asp:Label>
+                    <asp:Label ID="lbContractType" runat="server" Text="Kỳ đánh giá"></asp:Label>
                      
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboContractType" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqContractType" ControlToValidate="cboContractType"
+                        runat="server" ErrorMessage="Bạn phải chọn kỳ đánh giá." ToolTip="Bạn phải chọn kỳ đánh giá."> </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -88,6 +91,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboRank" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqRank" ControlToValidate="cboRank"
+                        runat="server" ErrorMessage="Bạn phải chọn xếp loại." ToolTip="Bạn phải chọn xếp loại."></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbCapacity" runat="server" Text="Năng lực"></asp:Label>
@@ -95,6 +100,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboCapacity" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqCapacity" ControlToValidate="cboCapacity"
+                        runat="server" ErrorMessage="Bạn phải chọn năng lực." ToolTip="Bạn phải chọn năng lực."></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbDecisionNo" runat="server" Text="Số quyết định"></asp:Label>
@@ -102,6 +109,8 @@
                 <td>
                     <tlk:RadTextBox ID="txtDecisionNo" runat="server">
                     </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="reqDecisionNo" ControlToValidate="txtDecisionNo"
+                        runat="server" ErrorMessage="Bạn phải nhập số quyết định." ToolTip="Bạn phải nhập số quyết định."></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -111,6 +120,8 @@
                 <td>
                     <tlk:RadDatePicker ID="rdSignDate" runat="server">
                     </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="reqSignDate" ControlToValidate="rdSignDate"
+                        runat="server" ErrorMessage="Bạn phải chọn ngày ký." ToolTip="Bạn phải chọn ngày ký."></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbEffectDate" runat="server" Text="Ngày hiệu lực"></asp:Label>
@@ -118,6 +129,8 @@
                 <td>
                     <tlk:RadDatePicker ID="rdEffectDate" runat="server">
                     </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="reqEffectDate" ControlToValidate="rdEffectDate"
+                        runat="server" ErrorMessage="Bạn phải chọn ngày ký." ToolTip="Bạn phải chọn ngày ký."></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -127,6 +140,8 @@
                 <td colspan="5">
                     <tlk:RadTextBox ID="txtContent" SkinID="Textbox1023" runat="server" Width="100%">
                     </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="reqContent" ControlToValidate="txtContent"
+                        runat="server" ErrorMessage="Bạn phải nhập nội dung." ToolTip="Bạn phải nhập nội dung."></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -136,6 +151,8 @@
                 <td colspan="5">
                     <tlk:RadTextBox ID="txtLocation" SkinID="Textbox1023" runat="server" Width="100%">
                     </tlk:RadTextBox>
+                    <asp:RequiredFieldValidator ID="reqLocation" ControlToValidate="txtLocation"
+                        runat="server" ErrorMessage="Bạn phải nhập ghi chú." ToolTip="Bạn phải nhập ghi chú."></asp:RequiredFieldValidator>
                 </td>
             </tr>
         </table>

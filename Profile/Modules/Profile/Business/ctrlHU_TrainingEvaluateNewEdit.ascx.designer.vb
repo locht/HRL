@@ -230,6 +230,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     Protected WithEvents txtYear As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''reqYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqYear As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbContractType control.
     '''</summary>
     '''<remarks>
@@ -246,6 +255,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboContractType As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''reqContractType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqContractType As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbRank control.
@@ -266,6 +284,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     Protected WithEvents cboRank As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''reqRank control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqRank As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbCapacity control.
     '''</summary>
     '''<remarks>
@@ -282,6 +309,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboCapacity As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''reqCapacity control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqCapacity As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbDecisionNo control.
@@ -302,6 +338,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     Protected WithEvents txtDecisionNo As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''reqDecisionNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqDecisionNo As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbSignDate control.
     '''</summary>
     '''<remarks>
@@ -318,6 +363,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdSignDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''reqSignDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqSignDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbEffectDate control.
@@ -338,6 +392,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     Protected WithEvents rdEffectDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''reqEffectDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqEffectDate As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbContent control.
     '''</summary>
     '''<remarks>
@@ -356,6 +419,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     Protected WithEvents txtContent As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''reqContent control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqContent As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''lbtxtLocation control.
     '''</summary>
     '''<remarks>
@@ -372,6 +444,15 @@ Partial Public Class ctrlHU_TrainingEvaluateNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtLocation As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''reqLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqLocation As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''ctrlMessageBox control.
