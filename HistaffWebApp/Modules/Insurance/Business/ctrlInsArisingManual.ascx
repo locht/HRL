@@ -29,7 +29,7 @@
                                 CausesValidation="false">
                             </tlk:RadButton>
                             <asp:RequiredFieldValidator ID="reqtxtEMPLOYEE_ID" ControlToValidate="txtEMPLOYEE_ID"
-                                runat="server" Text="*" ErrorMessage="Bạn phải nhập Nhân viên."
+                                runat="server" ErrorMessage="Bạn phải nhập Nhân viên."
                                 ToolTip="Bạn phải nhập Nhân viên."></asp:RequiredFieldValidator>
                         </td>
                         <td class="lb" style="width:80px">
@@ -114,7 +114,7 @@
                             <tlk:RadComboBox ID="ddlINS_ARISING_TYPE_ID" AutoPostBack="true" CausesValidation="false" runat="server" TabIndex="3">
                             </tlk:RadComboBox>
                             <asp:RequiredFieldValidator ID="reqddlINS_ARISING_TYPE_ID" ControlToValidate="ddlINS_ARISING_TYPE_ID"
-                                runat="server" Text="*" ErrorMessage="Bạn phải nhập Loại biến động."
+                                runat="server"  ErrorMessage="Bạn phải nhập Loại biến động."
                                 ToolTip="Bạn phải nhập Loại biến động."></asp:RequiredFieldValidator>
                         </td>
                         <td>
@@ -159,7 +159,7 @@
                             <tlk:RadDatePicker runat="server" ID="txtEFFECTIVE_DATE" AutoPostBack="true" TabIndex="9">
                             </tlk:RadDatePicker>
                             <asp:RequiredFieldValidator ID="reqtxtEFFECTIVE_DATE" ControlToValidate="txtEFFECTIVE_DATE"
-                                runat="server" Text="*" ErrorMessage="Bạn phải nhập Ngày hiệu lực."
+                                runat="server" ErrorMessage="Bạn phải nhập Ngày hiệu lực."
                                 ToolTip="Bạn phải nhập Ngày hiệu lực."></asp:RequiredFieldValidator>
                         </td>
                         <td class="lb" style="width:120px">
@@ -197,7 +197,7 @@
                                    TabIndex="13" Culture="en-US" AutoPostBack="true">
                             </tlk:RadMonthYearPicker>
                             <asp:RequiredFieldValidator ID="reqtxtDECLARE_DATE" ControlToValidate="txtDECLARE_DATE"
-                                runat="server" Text="*" ErrorMessage="Bạn phải nhập Đợt khai báo."
+                                runat="server" ErrorMessage="Bạn phải nhập Đợt khai báo."
                                 ToolTip="Bạn phải nhập Đợt khai báo."></asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
