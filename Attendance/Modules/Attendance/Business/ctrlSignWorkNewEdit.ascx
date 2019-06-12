@@ -1,12 +1,15 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlWorkschedule.ascx.vb"
     Inherits="Attendance.ctrlSignWorkNewEdit" %>
 <%@ Import Namespace="Common" %>
+<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
-<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="600px" Height="100%" Orientation="Horizontal">
+<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="35px" Scrolling="None">
         <tlk:RadToolBar ID="tbarOT" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="RadPane2" runat="server" Height="40px" Scrolling="None">
+    <tlk:RadPane ID="RadPane2" runat="server" Height="80px" Scrolling="Y">
+        <asp:HiddenField ID="hidID" runat="server" />
+        <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form" onkeydown="return (event.keyCode!=13)">
             <tr>
                 <td>
@@ -17,8 +20,7 @@
                     </tlk:RadComboBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="cboSign"
                         runat="server" ErrorMessage="<%$ Translate: Bạn chưa chọn ca. %>" ToolTip="<%$ Translate: Bạn chưa chọn ca. %>"> </asp:RequiredFieldValidator>
-                     <asp:CustomValidator ID="cusCboSign" ControlToValidate="cboSign" runat="server" 
-                        ErrorMessage="<%$ Translate: Ca làm việc không tồn tại hoặc đã ngừng áp dụng. %>"
+                    <asp:CustomValidator ID="cusCboSign" ControlToValidate="cboSign" runat="server" ErrorMessage="<%$ Translate: Ca làm việc không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Ca làm việc không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
@@ -29,7 +31,8 @@
                     <tlk:RadDatePicker ID="rdFromdate" runat="server">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqFromdate" ControlToValidate="rdFromdate" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn chưa nhập từ ngày. %>" ToolTip="<%$ Translate: Bạn chưa nhập từ ngày. %>"> </asp:RequiredFieldValidator>
+                        ErrorMessage="<%$ Translate: Bạn chưa nhập từ ngày. %>" ToolTip="<%$ Translate: Bạn chưa nhập từ ngày. %>"> 
+                    </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <%# Translate("Đến ngày")%><span class="lbReq">*</span>
@@ -38,15 +41,17 @@
                     <tlk:RadDatePicker ID="rdEnddate" runat="server">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdEnddate"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập đến ngày. %>" ToolTip="<%$ Translate: Bạn chưa nhập đến ngày. %>"> </asp:RequiredFieldValidator>
+                        runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập đến ngày. %>" ToolTip="<%$ Translate: Bạn chưa nhập đến ngày. %>">
+                    </asp:RequiredFieldValidator>
                 </td>
             </tr>
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgWorkschedule" AllowPaging="false"  runat="server" Height="100%">
-            <MasterTableView AllowPaging="false" AllowCustomPaging="false" DataKeyNames="ID,EMPLOYEE_CODE" ClientDataKeyNames="ID,EMPLOYEE_CODE"
-                CommandItemDisplay="Top">
+        <tlk:RadGrid PageSize="50" ID="rgWorkschedule" AllowPaging="false" runat="server"
+            Width="100%" Height="100%">
+            <MasterTableView AllowPaging="false" AllowCustomPaging="false" DataKeyNames="ID,EMPLOYEE_CODE"
+                ClientDataKeyNames="ID,EMPLOYEE_CODE" CommandItemDisplay="Top">
                 <CommandItemStyle Height="28px" />
                 <CommandItemTemplate>
                     <div style="padding: 2px 0 0 0">
@@ -55,7 +60,7 @@
                                 CausesValidation="false" CommandName="FindEmployee">
                             </tlk:RadButton>
                         </div>
-                         <div style ="float:right">
+                        <div style="float: right">
                             <tlk:RadButton Width="100px" ID="btnDeleteEmployee" runat="server" Text="<%$ Translate: Xóa nhân viên %>"
                                 CausesValidation="false" CommandName="DeleteEmployee">
                             </tlk:RadButton>

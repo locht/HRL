@@ -59,6 +59,24 @@ Partial Public Class ctrlSignWorkNewEdit
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''hidID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hidID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''valSum control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
+
+    '''<summary>
     '''cboSign control.
     '''</summary>
     '''<remarks>
