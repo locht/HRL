@@ -431,6 +431,7 @@ Partial Class ProfileRepository
                                         .SAL_RANK_NAME = sal_rank.RANK,
                                         .COST_SUPPORT = p.COST_SUPPORT,
                                         .PERCENT_SALARY = p.PERCENT_SALARY,
+                                        .PERCENTSALARY = p.PERCENTSALARY,
                                         .SAL_TOTAL = p.SAL_TOTAL,
                                         .EMPLOYEE_3B_ID = p.EMPLOYEE_3B_ID,
                                         .WORK_STATUS = e.WORK_STATUS,
@@ -446,7 +447,9 @@ Partial Class ProfileRepository
                                         .SIGN_NAME = p.SIGN_NAME,
                                         .SIGN_TITLE = p.SIGN_TITLE,
                                         .REMARK = p.REMARK,
-                                        .DIRECT_MANAGER_NAME = direct.FULLNAME_VN
+                                        .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
+                                        .OTHERSALARY2 = p.OTHERSALARY2,
+                                        .OTHERSALARY1 = p.OTHERSALARY1
                                         }
             Dim dateNow = Date.Now.Date
             If Not _filter.IS_TER Then

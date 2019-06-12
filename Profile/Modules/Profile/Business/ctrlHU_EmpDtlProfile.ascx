@@ -629,7 +629,7 @@
                                 <table class="table-form" style="width: 99%" onkeydown="return (event.keyCode!=13)">
                                     <tr>
                                         <td class="control3">
-                                            <asp:CheckBox ID="ckDANG" Text="Đảng" runat="server" />
+                                            <asp:CheckBox ID="ckDANG" Text="Đảng" runat="server"  AutoPostBack = "true"/>
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbCHUC_VU_DANG" Text="Chức vụ"></asp:Label>
@@ -656,7 +656,7 @@
                                     <%--=================================================================================--%>
                                     <tr>
                                         <td class="control3">
-                                            <asp:CheckBox ID="ckCONG_DOAN" Text="Công đoàn" runat="server" />
+                                            <asp:CheckBox ID="ckCONG_DOAN" Text="Công đoàn" runat="server"  AutoPostBack = "true"/>
                                         </td>
                                         <td class="lb3">
                                         </td>
@@ -680,7 +680,7 @@
                                     </tr>
                                     <tr>
                                         <td class="control3">
-                                            <asp:CheckBox ID="ckBanTT_ND" Text="Ban thanh tra nhân dân" runat="server" />
+                                            <asp:CheckBox ID="ckBanTT_ND" Text="Ban thanh tra nhân dân" runat="server"  AutoPostBack = "true"/>
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbCV_BANTT" Text="Chức vụ"></asp:Label>
@@ -699,7 +699,7 @@
                                     </tr>
                                     <tr>
                                         <td class="control3">
-                                            <asp:CheckBox ID="ckNU_CONG" Text="Ban nữ công" runat="server" />
+                                            <asp:CheckBox ID="ckNU_CONG" Text="Ban nữ công" runat="server"  AutoPostBack = "true"/>
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbCV_Ban_Nu_Cong" Text="Chức vụ"></asp:Label>
@@ -744,7 +744,7 @@
                                     </tr>
                                     <tr>
                                         <td class="control3">
-                                            <asp:CheckBox ID="ckQD" Text="Quân đội" runat="server" />
+                                            <asp:CheckBox ID="ckQD" Text="Quân đội" runat="server"  AutoPostBack = "true"/>
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbNgay_Nhap_Ngu_QD" Text="Ngày nhập ngũ"></asp:Label>
@@ -770,7 +770,7 @@
                                     </tr>
                                     <tr>
                                         <td class="control3">
-                                            <asp:CheckBox ID="ckThuong_Binh" Text="Thương binh" runat="server" />
+                                            <asp:CheckBox ID="ckThuong_Binh" Text="Thương binh" runat="server"  AutoPostBack = "true"/>
                                         </td>
                                         <td class="lb3">
                                             <asp:Label runat="server" ID="lbHang_Thuong_Binh" Text="Hạng"></asp:Label>
