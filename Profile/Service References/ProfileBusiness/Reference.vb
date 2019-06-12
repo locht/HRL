@@ -33856,6 +33856,9 @@ Namespace ProfileBusiness
         Private ID_PLACEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_PLACE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MARITAL_STATUSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -34057,6 +34060,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ID_PLACEField, value) <> true) Then
                     Me.ID_PLACEField = value
                     Me.RaisePropertyChanged("ID_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_PLACE_NAME() As String
+            Get
+                Return Me.ID_PLACE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ID_PLACE_NAMEField, value) <> true) Then
+                    Me.ID_PLACE_NAMEField = value
+                    Me.RaisePropertyChanged("ID_PLACE_NAME")
                 End If
             End Set
         End Property
