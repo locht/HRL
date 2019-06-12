@@ -306,9 +306,11 @@ Public Class Export
             lsData = rep.LOAD_PERIODByID(period)
             Dim dDay = lsData.START_DATE
             Dim row = dtvariable.NewRow
+            Dim I As Integer = 1
             While dDay <= lsData.END_DATE
-                row("D" & dDay.Value.Day) = dDay.Value.ToString("dd") & "/" & dDay.Value.ToString("MM")
+                row("D" & I) = dDay.Value.ToString("dd") & "/" & dDay.Value.ToString("MM")
                 dDay = dDay.Value.AddDays(1)
+                I += 1
             End While
             dtvariable.Rows.Add(row)
             dtvariable.TableName = "Variable"
@@ -316,9 +318,10 @@ Public Class Export
             dtData = dtData.Copy
             dsData.Tables.Add(dtData)
             dsData.Tables(1).TableName = "Table"
-            ExportTemplate("Attendance\Import\Template_importTimesheet_CTT.xls", _
-                                      dsData, dtvariable, _
-                                      "Template_importTimesheet_CTT" & Format(Date.Now, "yyyyMMdd"))
+            'ExportTemplate("Attendance\Import\Template_importTimesheet_CTT.xls", _
+            '                          dsData, dtvariable, _
+            '                          "Template_importTimesheet_CTT" & Format(Date.Now, "yyyyMMdd"))
+            ExportTemplate("Attendance\Import\Template_importTimesheet_CTT.xls", dsData, dtvariable, "Template_importTimesheet_CTT" & Format(Date.Now, "yyyyMMdd"))
         Catch ex As Exception
             Throw ex
         End Try
