@@ -73,6 +73,18 @@ Public Class ctrlOTRegistration
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
                         Dim dto As New AT_OT_REGISTRATIONDTO
                         dto.ID = item.GetDataKeyValue("ID")
+                        'Kiem tra ky cong da dong hay chua
+                        Dim periodid = rep.GetperiodID(EmployeeID, dto.REGIST_DATE, dto.REGIST_DATE)
+                        If periodid = 0 Then
+                            ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                        Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
+                        If checkKicong = 0 Then
+                            ShowMessage(Translate("Kì công đã đóng. Vui lòng kiểm tra lại!"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+
                         dto.STATUS = PortalStatus.WaitingForApproval
                         dto.EMPLOYEE_ID = LogHelper.CurrentUser.EMPLOYEE_ID
                         dto.REASON = ""
@@ -85,6 +97,7 @@ Public Class ctrlOTRegistration
                         CurrentState = CommonMessage.STATE_NORMAL
                     End If
             End Select
+            rep.Dispose()
         Catch ex As Exception
 
         End Try
