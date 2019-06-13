@@ -244,8 +244,8 @@ Public Class ctrlHU_ContractNewEdit
                         If Contract.STATUS_ID IsNot Nothing Then
                             cboStatus.SelectedValue = Contract.STATUS_ID
                         End If
-                        If Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
-                            Contract.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
+                        If Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Or
+                            Contract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.NOT_APPROVE_ID Then
                             _flag = False
                             EnableControlAll_Cus(False, LeftPane)
                             btnDownload.Enabled = True
@@ -367,7 +367,7 @@ Public Class ctrlHU_ContractNewEdit
                     End If
                 Case "UNLOCK"
                     objContract.ID = Decimal.Parse(hidID.Value)
-                    objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
+                    objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.WAIT_APPROVE_ID
                     If rep.UnApproveContract(objContract, gID) Then
                         Dim str As String = "getRadWindow().close('1');"
                         ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
@@ -1009,7 +1009,9 @@ Public Class ctrlHU_ContractNewEdit
                 End If
                 hidEmployeeID.Value = item.ID.ToString
                 hidOrgCode.Value = item.ORG_CODE
-                code_timekeeping = item.OBJECTTIMEKEEPING
+                If item.OBJECTTIMEKEEPING.HasValue Then
+                    code_timekeeping = item.OBJECTTIMEKEEPING
+                End If
                 If item.DIRECT_MANAGER IsNot Nothing Then
                     direct_manager = item.DIRECT_MANAGER
                 End If
