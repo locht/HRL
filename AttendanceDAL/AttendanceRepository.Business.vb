@@ -1147,7 +1147,10 @@ Partial Public Class AttendanceRepository
                                        .MIN_IN_WORK = p.p.MIN_IN_WORK,
                                        .MIN_DEDUCT_WORK = p.p.MIN_DEDUCT_WORK,
                                        .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT,
-                                       .MIN_EARLY = p.p.MIN_EARLY})
+                                       .MIN_EARLY = p.p.MIN_EARLY,
+                                       .WORKING_KLD = p.p.WORKING_KLD,
+                                       .WORKING_TN = p.p.WORKING_TN
+                                   })
 
             'If _filter.IS_TERMINATE Then
             '    lst = lst.Where(Function(f) f.WORK_STATUS = 257)
