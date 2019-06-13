@@ -64,16 +64,14 @@
             <%# Translate("Phép chế độ")%>
         </td>
         <td>
-            <tlk:RadTextBox  runat="server" 
-                ID="rntEntitlement" ReadOnly="true">
+            <tlk:RadTextBox runat="server" ID="rntEntitlement" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Phép đã nghĩ")%>
         </td>
         <td>
-            <tlk:RadTextBox  runat="server"
-                ID="rntSeniority" ReadOnly="true">
+            <tlk:RadTextBox runat="server" ID="rntSeniority" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
     </tr>
@@ -82,16 +80,14 @@
             <%# Translate("Phép thâm niên")%>
         </td>
         <td>
-            <tlk:RadTextBox  runat="server" 
-               ID="rntBrought" ReadOnly="true">
+            <tlk:RadTextBox runat="server" ID="rntBrought" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Phép trừ quy đổi từ số phút ngoài cơ quan")%>
         </td>
         <td>
-            <tlk:RadTextBox  runat="server"
-                ID="rntTotal" ReadOnly="true">
+            <tlk:RadTextBox runat="server" ID="rntTotal" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
     </tr>
@@ -100,16 +96,14 @@
             <%# Translate("Phép năm trước còn lại")%>
         </td>
         <td>
-            <tlk:RadTextBox  runat="server" 
-                ID="rntTotalTaken" ReadOnly="true">
+            <tlk:RadTextBox runat="server" ID="rntTotalTaken" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Phép còn lại")%>
         </td>
         <td>
-            <tlk:RadTextBox  runat="server"
-                ID="rntBalance" ReadOnly="true">
+            <tlk:RadTextBox runat="server" ID="rntBalance" ReadOnly="true">
             </tlk:RadTextBox>
         </td>
     </tr>
@@ -128,7 +122,6 @@
             <tlk:RadComboBox runat="server" ID="cboleaveType" Width="250px" DataTextField="NAME_VN"
                 DataValueField="ID" AutoPostBack="TRUE">
             </tlk:RadComboBox>
-           
         </td>
         <td class="lb">
             <%# Translate("Số ngày")%>
@@ -148,7 +141,6 @@
         <td>
             <tlk:RadDatePicker runat="server" ID="rdFromDate" AutoPostBack="true">
             </tlk:RadDatePicker>
-           
         </td>
         <td class="lb">
             <%# Translate("Thời gian kết thúc nghỉ")%><span class="lbReq">*</span>
@@ -160,23 +152,25 @@
                 Type="Date" ControlToCompare="rdFromDate" Operator="GreaterThanEqual" ErrorMessage="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"
                 ToolTip="<%$ Translate: Ngày kết thúc nghỉ phải lớn hơn ngày bắt đầu nghỉ %>"></asp:CompareValidator>
         </td>
-        
+        <td>
+            <asp:CheckBox runat="server" ID="chkWorkday" Text="Ngày làm việc"  AutoPostBack="true" />
+        </td>
     </tr>
     <tr>
         <td class="lb">
             <%# Translate("Số ngày trong kế hoạch")%>
         </td>
         <td>
-            <tlk:RadTextBox SkinID="Decimal" runat="server" 
-                Culture="en-GB" ID="rtxtdayinkh" ReadOnly="true">
+            <tlk:RadTextBox SkinID="Decimal" runat="server" Culture="en-GB" ID="rtxtdayinkh"
+                ReadOnly="true">
             </tlk:RadTextBox>
         </td>
         <td class="lb">
             <%# Translate("Số ngày ngoài kế hoạch")%>
         </td>
         <td>
-            <tlk:RadTextBox SkinID="Decimal" runat="server"
-                Culture="en-GB" ID="rtxtdayoutkh" ReadOnly="true">
+            <tlk:RadTextBox SkinID="Decimal" runat="server" Culture="en-GB" ID="rtxtdayoutkh"
+                ReadOnly="true">
             </tlk:RadTextBox>
         </td>
     </tr>
