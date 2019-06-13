@@ -826,7 +826,7 @@ Partial Class ProfileRepository
             For idx = 0 To listID.Count - 1
                 item = listID(idx)
                 objContractData = (From p In Context.HU_CONTRACT Where item = p.ID).SingleOrDefault
-                objContractData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
             Next
             Context.SaveChanges(log)
             Return True
@@ -1113,7 +1113,7 @@ Partial Class ProfileRepository
             objContractData.ORG_ID = objContract.ORG_ID
             Context.HU_CONTRACT.AddObject(objContractData)
             ' Phê duyệt
-            If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+            If objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)
                 If IsFirstContract(objContract) Then
                     InsertDecision(objContract)
@@ -1141,7 +1141,7 @@ Partial Class ProfileRepository
 
     End Function
     Private Function IsFirstContract(ByVal contractDto As ContractDTO) As Boolean
-        Return Context.HU_CONTRACT.Count(Function(p) p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID And p.EMPLOYEE_ID = contractDto.EMPLOYEE_ID) = 0
+        Return Context.HU_CONTRACT.Count(Function(p) p.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID And p.EMPLOYEE_ID = contractDto.EMPLOYEE_ID) = 0
     End Function
     Private Sub InsertDecision(ByVal contractDto As ContractDTO)
         Dim recruitDecision = (From otherList In Context.OT_OTHER_LIST
@@ -1217,7 +1217,7 @@ Partial Class ProfileRepository
             objContractData.TITLE_ID = objContract.TITLE_ID
             objContractData.ORG_ID = objContract.ORG_ID
             ' Phê duyệt
-            If objContract.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+            If objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID Then
                 ApproveContract(objContract)
                 If IsFirstContract(objContract) Then
                     InsertDecision(objContract)
@@ -1279,6 +1279,7 @@ Partial Class ProfileRepository
             End If
             ' Update trạng thái Đang làm việc
             Employee.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
+
             ' update  bảo hiểm
             'Dim wokingSalary As WorkingDTO = (From w In Context.HU_WORKING
             '                                  Where w.ID = objContract.WORKING_ID
@@ -1405,7 +1406,7 @@ Partial Class ProfileRepository
                        .COST_SUPPORT = working.COST_SUPPORT}).FirstOrDefault
 
             Dim ctract = (From p In Context.HU_CONTRACT
-                          Where p.EMPLOYEE_ID = gID And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                          Where p.EMPLOYEE_ID = gID And p.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
                           Order By p.START_DATE Descending).FirstOrDefault
             If ctract IsNot Nothing Then
                 obj.CONTRACT_NO = ctract.CONTRACT_NO

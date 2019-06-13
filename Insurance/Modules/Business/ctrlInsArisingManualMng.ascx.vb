@@ -192,12 +192,49 @@ Public Class ctrlInsArisingManualMng
                         ShowMessage(Translate("Dữ liệu đang dùng không được xóa"), NotifyType.Warning)
                     End If
                 Case CommonMessage.TOOLBARITEM_EXPORT                    
-                    Call Export()
+                    'Call Export()
+                    Dim dtData As DataTable
+                    Using xls As New ExcelCommon
+                        dtData = (New InsuranceBusiness.InsuranceBusinessClient).GetInsArisingManual(Common.Common.GetUsername(), 0 _
+                                                                    , txtEMPLOYEEID_SEARCH.Text _
+                                                                    , InsCommon.getNumber(ctrlOrg.CurrentValue) _
+                                                                    , txtFROMDATE.SelectedDate _
+                                                                    , txtTODATE.SelectedDate _
+                                                                    , InsCommon.getNumber(IIf(chkSTATUS.Checked, 1, 0)) _
+                                                                    , InsCommon.getNumber(ctrlOrg.IsDissolve)
+                                                                    )
+                        If dtData.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtData.Rows.Count > 0 Then
+                            ConvertColumnType(dtData, "SI_CHK", GetType(Boolean))
+                            ConvertColumnType(dtData, "HI_CHK", GetType(Boolean))
+                            ConvertColumnType(dtData, "UI_CHK", GetType(Boolean))
+                            ConvertColumnType(dtData, "BHTNLDBNN_CHK", GetType(Boolean))
+
+                            rgGridData.ExportExcel(Server, Response, dtData, "BienDongBH")
+                            Exit Sub
+                        End If
+                    End Using
             End Select            
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
-    End Sub    
+    End Sub
+    Private Sub ConvertColumnType(ByVal dt As DataTable, ByVal columnName As String, ByVal newType As Type)
+        Using dc As DataColumn = New DataColumn(columnName & "_new", newType)
+            Dim ordinal As Integer = dt.Columns(columnName).Ordinal
+            dt.Columns.Add(dc)
+            dc.SetOrdinal(ordinal)
+
+            For Each dr As DataRow In dt.Rows
+                dr(dc.ColumnName) = Convert.ChangeType(dr(columnName), newType)
+            Next
+
+            dt.Columns.Remove(columnName)
+            dc.ColumnName = columnName
+        End Using
+    End Sub
 
     Private Sub rgGridData_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgGridData.NeedDataSource
         Call LoadDataGrid(False)
