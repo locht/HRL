@@ -16,14 +16,6 @@ Public Class ctrlOTRegistrationNewEdit
 #Region "Property"
 
     Public Property EmployeeID As Decimal
-    Private Property orgId As Integer
-        Get
-            Return ViewState(Me.ID & "_orgId")
-        End Get
-        Set(ByVal value As Integer)
-            ViewState(Me.ID & "_orgId") = value
-        End Set
-    End Property
     Public Property EmployeeCode As String
     Protected Property EmployeeDto As DataTable
         Get
@@ -80,14 +72,6 @@ Public Class ctrlOTRegistrationNewEdit
         End Get
         Set(ByVal value As String)
             ViewState(Me.ID & "_userType") = value
-        End Set
-    End Property
-    Private Property perioId As Integer
-        Get
-            Return ViewState(Me.ID & "_perioId")
-        End Get
-        Set(ByVal value As Integer)
-            ViewState(Me.ID & "_perioId") = value
         End Set
     End Property
 #End Region
@@ -302,13 +286,6 @@ Public Class ctrlOTRegistrationNewEdit
                         '    cboTypeOT.Focus()
                         '    Exit Sub
                         'End If
-                        perioId = AttendanceRepositoryStatic.Instance.GET_PERIOD(rdRegDate.SelectedDate.Value.FirstDateOfMonth)
-                        orgId = AttendanceRepositoryStatic.Instance.GET_ORGID(EmployeeID)
-                        Dim check = AttendanceRepositoryStatic.Instance.AT_CHECK_ORG_PERIOD_STATUS_OT(orgId, perioId)
-                        If check = 1 Then
-                            ShowMessage(Translate("Bảng công đã được đóng trước đó, vui lòng kiểm tra lại"), NotifyType.Warning)
-                            Exit Sub
-                        End If
                         If rntbFromAM.Value.HasValue Or rntbToAM.Value.HasValue Then
                             If Not rntbFromAM.Value.HasValue Then
                                 ShowMessage(Translate("Phải nhập từ giờ làm thêm AM."), NotifyType.Warning)
@@ -394,6 +371,18 @@ Public Class ctrlOTRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
+                        Using rep As New AttendanceRepository
+                            Dim periodid = rep.GetperiodID(EmployeeID, rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+                            If periodid = 0 Then
+                                ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                            Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
+                            If checkKicong = 0 Then
+                                ShowMessage(Translate("Kì công đã đóng. Vui lòng kiểm tra lại!"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End Using
                         Dim isInsert As Boolean = True
 
                         Dim obj As New AT_OT_REGISTRATIONDTO
