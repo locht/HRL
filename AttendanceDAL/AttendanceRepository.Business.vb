@@ -4893,7 +4893,6 @@ Partial Public Class AttendanceRepository
                                      c.WORKINGDAY = p_fromdate).FirstOrDefault
 
                         Dim shiftIDU = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
-
                         Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
@@ -4912,6 +4911,12 @@ Partial Public Class AttendanceRepository
                                 query.SHIFT_ID = objWork.SHIFT_ID
                             End If
                         End If
+
+                        Dim holidayU = (From f In Context.AT_HOLIDAY Where f.WORKINGDAY = p_fromdate Select f).FirstOrDefault
+                        If (Not holidayU Is Nothing) Then
+                            query.SHIFT_ID = Nothing
+                        End If
+
                         Context.SaveChanges(log)
                         p_fromdate = p_fromdate.AddDays(1)
                         Continue While
@@ -4937,6 +4942,12 @@ Partial Public Class AttendanceRepository
                     Else
                         objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                     End If
+
+                    Dim holiday = (From f In Context.AT_HOLIDAY Where f.WORKINGDAY = p_fromdate Select f).FirstOrDefault
+                    If (Not holiday Is Nothing) Then
+                        objWorkSignData.SHIFT_ID = Nothing
+                    End If
+
                     objWorkSignData.PERIOD_ID = objWork.PERIOD_ID
                     Context.AT_WORKSIGN.AddObject(objWorkSignData)
                     Context.SaveChanges(log)
