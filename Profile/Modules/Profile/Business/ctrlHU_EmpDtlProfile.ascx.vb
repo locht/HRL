@@ -739,10 +739,16 @@ Public Class ctrlHU_EmpDtlProfile
                     rtIdTitleConcurrent.Visible = False
                     RadPane4.Visible = False
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
+                    EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                    EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+                    EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
+                    EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+                    EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+                    EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
-                                        txtBankNo, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG, ckBanTT_ND,
-                                       txtDaHoaLieu, txtTimeID, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, rtDiem_XL_TH,
-                                       txtFirstNameVN, txtGhiChuSK, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, txtNamTN,
+                                        txtBankNo, chkSaveHistory, ckBanTT_ND,
+                                       txtDaHoaLieu, txtTimeID, rtDiem_XL_TH,
+                                       txtFirstNameVN, txtGhiChuSK, txtNamTN,
                                        txtHomePhone, txtHuyetAp, txtID_NO, chkIs_pay_bank,
                                        cboIDPlace, txtLangMark, txtLangMark2,
                                        txtLastNameVN, txtMatPhai, txtMatTrai,
@@ -767,8 +773,8 @@ Public Class ctrlHU_EmpDtlProfile
                                        rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                        rtEmpCode_OLD, rtBookNo, rtOtherName, cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
-                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
-                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                        ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                       ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                        cbQLNN, cbLLCT, cbTDTH, rtTTSucKhoe)
                     If Not Me.AllowCreate Then
                         txtFirstNameVN.ReadOnly = True
@@ -780,9 +786,15 @@ Public Class ctrlHU_EmpDtlProfile
                     rtIdTitleConcurrent.Visible = True
                     RadPane4.Visible = True
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
-                    EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory, ckDOAN_PHI, rtCHUC_VU_DANG,
-                                        txtBankNo, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG, ckBanTT_ND, rtDiem_XL_TH,
-                                       txtDaHoaLieu, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN, txtNamTN,
+                    EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                    EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+                    EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
+                    EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+                    EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+                    EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+                    EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
+                                        txtBankNo, ckBanTT_ND, rtDiem_XL_TH,
+                                       txtDaHoaLieu, txtNamTN,
                                        txtFirstNameVN, txtGhiChuSK, chkIs_pay_bank,
                                        txtHomePhone, txtHuyetAp, txtID_NO,
                                        cboIDPlace, txtLangMark, txtLangMark2, txtTimeID,
@@ -810,9 +822,9 @@ Public Class ctrlHU_EmpDtlProfile
                                        rtOpption1, rtOpption2, rtOpption3, rtOpption4, rtOpption5,
                                        rdOpption6, rdOpption7, rdOpption8, rdOpption9, rdOpption10,
                                        rtEmpCode_OLD, rtBookNo, rtOtherName,
-                                       cbGD_Chinh_Sach, cbHang_Thuong_Binh, ckThuong_Binh,
-                                       rtDV_Xuat_Ngu_QD, rdNgay_Xuat_Ngu_QD, rdNgay_Nhap_Ngu_QD, ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
-                                       rdNgay_TG_Ban_Nu_Cong, rtCV_Ban_Nu_Cong, ckNU_CONG, rdNgay_TG_BanTT, rtCV_BANTT, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
+                                       ckThuong_Binh,
+                                        ckQD, rtDV_Xuat_Ngu_CA, rdNgay_Xuat_Ngu_CA, rdNgay_Nhap_Ngu_CA,
+                                       ckNU_CONG, ckCONG_DOAN, ckCA, ckDANG, rtSkill,
                                        cbQLNN, cbLLCT, cbTDTH, rtTTSucKhoe)
                     If Not Me.AllowModify Then
                         txtFirstNameVN.ReadOnly = True
@@ -1428,9 +1440,10 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
 
             If (ckDANG.Checked) Then
-                EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
-            Else
                 EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+            Else
+                EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                ClearControlValue(rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1446,9 +1459,10 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
 
             If (ckCONG_DOAN.Checked) Then
-                EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
-            Else
                 EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+            Else
+                EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+                ClearControlValue(ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1464,9 +1478,10 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
 
             If (ckBanTT_ND.Checked) Then
-                EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
-            Else
                 EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
+            Else
+                EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
+                ClearControlValue(rtCV_BANTT, rdNgay_TG_BanTT)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1482,9 +1497,10 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
 
             If (ckNU_CONG.Checked) Then
-                EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
-            Else
                 EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+            Else
+                EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+                ClearControlValue(rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1500,9 +1516,10 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
 
             If (ckQD.Checked) Then
-                EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
-            Else
                 EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+            Else
+                EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+                ClearControlValue(rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1518,9 +1535,10 @@ Public Class ctrlHU_EmpDtlProfile
             Dim startTime As DateTime = DateTime.UtcNow
 
             If (ckThuong_Binh.Checked) Then
-                EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
-            Else
                 EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+            Else
+                EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+                ClearControlValue(cbHang_Thuong_Binh, cbGD_Chinh_Sach)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
