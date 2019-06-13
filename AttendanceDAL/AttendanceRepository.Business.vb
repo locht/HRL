@@ -2189,7 +2189,7 @@ Partial Public Class AttendanceRepository
                 objData = lst_Tem(index)
 
                 Dim dtCount As DataTable = CountTimeKeeping_Emp(objData.ID.ToString())
-                If (dtCount.Rows.Count > 0) And (dtCount.Rows(0)(0) > 1) Then
+                If (dtCount.Rows.Count > 1) Then
                     lst_Tem(index).EMPLOYEE_CODE = "Nhiều nhân viên"
                     lst_Tem(index).FULLNAME_VN = "Nhiều nhân viên"
                     lst_Tem(index).TITLE_NAME = "Nhiều nhân viên"
@@ -2207,7 +2207,7 @@ Partial Public Class AttendanceRepository
     Public Function CountTimeKeeping_Emp(ByVal group_id As String) As DataTable
         Try
             Using cls As New DataAccess.QueryData
-                Dim dtData As DataTable = cls.ExecuteSQL("SELECT COUNT(*) FROM AT_OFFSETTING_TIMEKEEPING_EMP TE WHERE TE.GROUP_ID ='" + group_id + "'")
+                Dim dtData As DataTable = cls.ExecuteSQL("SELECT COUNT(TE.EMPLOYEE_ID) FROM AT_OFFSETTING_TIMEKEEPING_EMP TE WHERE TE.GROUP_ID ='" + group_id + "' GROUP BY TE.GROUP_ID,TE.EMPLOYEE_ID")
 
                 Return dtData
             End Using
@@ -2225,7 +2225,7 @@ Partial Public Class AttendanceRepository
                     From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID)
                     From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID)
                      Where CE.GROUP_ID = ComId
-                    Select New AT_OFFFSETTING_EMPDTO With {.EMPLOYEE_ID = d.EMPLOYEE_ID,
+                    Select New AT_OFFFSETTING_EMPDTO With {.EMPLOYEE_ID = CE.EMPLOYEE_ID,
                                                   .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                   .FULLNAME_VN = e.FULLNAME_VN,
                                                   .ORG_NAME = o.NAME_VN,

@@ -45,15 +45,16 @@ Partial Class ProfileRepository
     Private Sub UpdateTerminate()
         Try
             Dim query = (From p In Context.HUV_TERMINATE_CURRENT
-                         Select New HU_TERMINATE With {
+                         Select New TerminateDTO With {
                              .EMPLOYEE_ID = p.EMPLOYEE_ID,
                              .ID = p.ID,
                              .EFFECT_DATE = p.EFFECT_DATE,
                              .LAST_DATE = p.LAST_DATE
                              }).ToList
 
-             For i As Integer = 0 To query.Count - 1
-                Dim item = (From p In Context.HU_EMPLOYEE Where query(i).EMPLOYEE_ID = p.ID).FirstOrDefault
+            For i As Integer = 0 To query.Count - 1
+                Dim empId = query(i).EMPLOYEE_ID
+                Dim item = (From p In Context.HU_EMPLOYEE Where p.ID = empId).FirstOrDefault
                 If item IsNot Nothing Then
                     item.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
                     item.TER_EFFECT_DATE = query(i).EFFECT_DATE
