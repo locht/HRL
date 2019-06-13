@@ -1679,11 +1679,12 @@ Public Class ctrlHU_EmpDtlProfile
             End Select
 
             'Lấy ảnh của nhân viên
-
-            EmployeeInfo.IMAGE_URL = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage"
             If EmployeeInfo Is Nothing Then
                 EmployeeInfo = New EmployeeDTO
             End If
+
+            EmployeeInfo.IMAGE_URL = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage"
+
             If hidID.Value.Trim = "" Then
                 EmployeeInfo.ID = 0
             Else
