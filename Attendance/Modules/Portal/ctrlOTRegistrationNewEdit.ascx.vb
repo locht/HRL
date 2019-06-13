@@ -74,14 +74,12 @@ Public Class ctrlOTRegistrationNewEdit
             ViewState(Me.ID & "_userType") = value
         End Set
     End Property
-
 #End Region
 
 #Region "Page"
 
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
-
             Refresh()
             UpdateControlState()
         Catch ex As Exception
@@ -373,8 +371,20 @@ Public Class ctrlOTRegistrationNewEdit
                             UpdateControlState()
                             Exit Sub
                         End If
+                        Using rep As New AttendanceRepository
+                            Dim periodid = rep.GetperiodID(EmployeeID, rdRegDate.SelectedDate, rdRegDate.SelectedDate)
+                            If periodid = 0 Then
+                                ShowMessage(Translate("Kiểm tra lại kì công"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                            Dim checkKicong = rep.CHECK_PERIOD_CLOSE(periodid)
+                            If checkKicong = 0 Then
+                                ShowMessage(Translate("Kì công đã đóng. Vui lòng kiểm tra lại!"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End Using
                         Dim isInsert As Boolean = True
-                        
+
                         Dim obj As New AT_OT_REGISTRATIONDTO
                         obj.EMPLOYEE_ID = EmployeeID
                         obj.IS_DELETED = 0
@@ -442,6 +452,7 @@ Public Class ctrlOTRegistrationNewEdit
                             '    UpdateControlState()
                             '    Exit Sub
                             'End If
+
                             If isInsert Then
                                 rep.InsertOtRegistration(obj, hidID.Value)
                                 obj.ID = hidID.Value
@@ -462,13 +473,13 @@ Public Class ctrlOTRegistrationNewEdit
                     '    ctrlMessageBox.DataBind()
                     '    ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
-                    If userType = "User" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
-                    ElseIf userType = "LM" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByLM")
-                    ElseIf userType = "HR" Then
-                        Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByHR")
-                    End If
+                        If userType = "User" Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistration")
+                        ElseIf userType = "LM" Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByLM")
+                        ElseIf userType = "HR" Then
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlOTRegistrationByHR")
+                        End If
             End Select
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)

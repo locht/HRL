@@ -353,6 +353,9 @@ Public Class ctrlLeaveRegistrationNewEdit
                     If leaveMaster.TO_DATE.HasValue Then
                         rdToDate.SelectedDate = leaveMaster.TO_DATE
                     End If
+                    If leaveMaster.WORK_HARD IsNot Nothing Then
+                        chkWorkday.Checked = leaveMaster.WORK_HARD
+                    End If
 
                     txtNote.Text = leaveMaster.NOTE
                     rgData.Rebind()
@@ -432,7 +435,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                                 selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                             End While
                         End If
-                       
+
                         If txtNote.Text = "" Then
                             ShowMessage(Translate("Nhập lý do nghỉ."), NotifyType.Warning)
                             UpdateControlState()
@@ -451,12 +454,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                         Dim selectedFromDate = rdFromDate.SelectedDate
                         Dim selectedToDate = rdToDate.SelectedDate
                         While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                            Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
-                            If CHECK1 = 0 Then
-                                ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
-                                UpdateControlState()
-                                Exit Sub
-                            End If
+                            'Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                            'If CHECK1 = 0 Then
+                            '    ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
+                            '    UpdateControlState()
+                            '    Exit Sub
+                            'End If
                             Using rep As New AttendanceRepository
                                 Dim periodid = rep.GetperiodID(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate)
                                 If periodid = 0 Then
@@ -518,6 +521,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                            .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
                            .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
                            .MODIFIED_BY = EmployeeID,
+                           .WORK_HARD = chkWorkday.Checked,
                                 .PROCESS = ApproveProcess
                        }
                                 AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
@@ -536,6 +540,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                           .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
                            .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
                             .MODIFIED_BY = EmployeeID,
+                              .WORK_HARD = chkWorkday.Checked,
                                 .PROCESS = ApproveProcess
                        }
                                 obj.ID = hidID.Value
@@ -626,12 +631,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                 Dim selectedFromDate = rdFromDate.SelectedDate
                 Dim selectedToDate = rdToDate.SelectedDate
                 While selectedFromDate.Value.Date <= selectedToDate.Value.Date
-                    Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
-                    If CHECK1 = 0 Then
-                        ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
-                        UpdateControlState()
-                        Exit Sub
-                    End If
+                    'Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate And P("WORKINGDAY1") >= selectedFromDate Select P).ToList.Count
+                    'If CHECK1 = 0 Then
+                    '    ShowMessage(Translate("Thời gian bạn chọn không có trong ca làm việc,bạn chọn lại."), NotifyType.Warning)
+                    '    UpdateControlState()
+                    '    Exit Sub
+                    'End If
                     Using rep As New AttendanceRepository
                         Dim periodid = rep.GetperiodID(EmployeeID, rdFromDate.SelectedDate, rdToDate.SelectedDate)
                         If periodid = 0 Then
@@ -687,6 +692,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                    .DAYIN_KH = If(rtxtdayinkh.Text = "", Nothing, rtxtdayinkh.Text),
                    .DAYOUT_KH = If(rtxtdayoutkh.Text = "", Nothing, rtxtdayoutkh.Text),
                    .MODIFIED_BY = EmployeeID,
+                      .WORK_HARD = chkWorkday.Checked,
                         .PROCESS = ApproveProcess
                }
                         AttendanceRepositoryStatic.Instance.InsertPortalRegister(itemInsert)
@@ -705,6 +711,7 @@ Public Class ctrlLeaveRegistrationNewEdit
                  .DAYIN_KH = rtxtdayinkh.Text,
                    .DAYOUT_KH = rtxtdayoutkh.Text,
                     .MODIFIED_BY = EmployeeID,
+                      .WORK_HARD = chkWorkday.Checked,
                         .PROCESS = ApproveProcess
                }
                         obj.ID = hidID.Value
@@ -1003,8 +1010,12 @@ Public Class ctrlLeaveRegistrationNewEdit
                         Else
                             ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
                             Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
-                            If check > 0 Then
-                                calDay -= 1
+                            Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate1 And P("WORKINGDAY1") >= selectedFromDate1 Select P).ToList.Count
+
+                            If Not chkWorkday.Checked Then
+                                If check > 0 Then
+                                    calDay -= 1
+                                End If
                             End If
                             If ktra = 1 Then
                                 Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
@@ -1012,14 +1023,36 @@ Public Class ctrlLeaveRegistrationNewEdit
                                     If COUNT > 0 Then
                                         calDay1 += 1
                                     End If
+                                    If Not chkWorkday.Checked Then
+                                        If CHECK1 > 0 Then
+                                            If check = 0 Then
+                                                calDay -= 1
+                                            End If
+                                        End If
+                                    End If
                                 Else
                                     checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
                                     Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
                                     Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
                                     If count1 > 0 AndAlso count2 > 0 Then
                                     Else
-                                        If check = 0 Then
-                                            calDay -= 0.5
+
+                                        If Not chkWorkday.Checked Then
+                                            If CHECK1 > 0 Then
+                                                If check = 0 Then
+                                                    calDay -= 0.5
+                                                End If
+                                            Else
+                                                calDay -= 1
+                                            End If
+                                        Else
+                                            If CHECK1 > 0 Then
+                                                If check = 0 Then
+                                                    calDay -= 0.5
+                                                End If
+                                            Else
+                                                calDay -= 1
+                                            End If
                                         End If
                                     End If
                                     If COUNT > 0 Then
@@ -1089,4 +1122,11 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Sub
 
 
+    Private Sub chkWorkday_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkWorkday.CheckedChanged
+        Try
+            CreateDataFilter()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
