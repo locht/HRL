@@ -659,7 +659,7 @@
                 }
                 allowanceTotal += allowAmount;
             }
-            salaryTotal.set_value(basicSalary + allowanceTotal);
+            //salaryTotal.set_value(basicSalary + allowanceTotal);
             //salIn.set_value(basicSalary + allowanceIns);
         }
         function OnValueChanged(sender, args) {
