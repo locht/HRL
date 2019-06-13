@@ -230,6 +230,15 @@ Partial Public Class ctrlHU_ContractNewEdit
     Protected WithEvents cboContractType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''reqContractType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqContractType As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cusContractType control.
     '''</summary>
     '''<remarks>
@@ -516,6 +525,15 @@ Partial Public Class ctrlHU_ContractNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSalary As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''reqWorking_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqWorking_ID As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbSalTYPE control.
