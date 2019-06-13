@@ -1105,6 +1105,17 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetEmployeeImage(ByVal gEmpID As Decimal, ByRef sError As String) As Byte()
 
         ''' <summary>
+        ''' Hàm lấy đường dẫn ảnh HSNV để in CV trên portal
+        ''' <creater>TUNGLD</creater>
+        ''' </summary>
+        ''' <param name="gEmpID"></param>
+        ''' <param name="isOneEmployee"></param>
+        ''' <param name="img_link"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        <OperationContract()>
+        Function GetEmployeeImage_PrintCV(ByVal gEmpID As Decimal) As String
+        ''' <summary>
         ''' Thêm mới nhân viên
         ''' </summary>
         ''' <param name="objEmp"></param>

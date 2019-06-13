@@ -315,12 +315,14 @@
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="UploadFile\NoImage.jpg" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <None Include="Word\Employee\CV_Template.doc" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.designer.vb">

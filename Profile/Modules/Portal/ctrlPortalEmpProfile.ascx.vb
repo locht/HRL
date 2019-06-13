@@ -4,11 +4,16 @@ Imports Common
 Imports Common.Common
 Imports Profile.ProfileBusiness
 Imports Telerik.Web.UI
+Imports WebAppLog
+Imports System.IO
 
 Public Class ctrlPortalEmpProfile
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     Public Overrides Property MustAuthorize As Boolean = False
+    Dim _mylog As New MyLog()
+    Dim _pathLog As String = _mylog._pathLog
+    Dim _classPath As String = "HistaffPortal\Modules\Profile\" + Me.GetType().Name.ToString()
 
 #Region "Property"
 
@@ -354,7 +359,9 @@ Public Class ctrlPortalEmpProfile
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMainToolBar
-            BuildToolbar(Me.MainToolBar, ToolbarItem.Edit)
+            BuildToolbar(Me.MainToolBar, ToolbarItem.Edit, ToolbarItem.Print)
+            CType(MainToolBar.Items(1), RadToolBarButton).Text = Translate("In lý lịch trích ngang")
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -372,6 +379,21 @@ Public Class ctrlPortalEmpProfile
     '    End Try
 
     'End Sub
+
+    Protected Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Select Case CType(e.Item, RadToolBarButton).CommandName
+                Case CommonMessage.TOOLBARITEM_PRINT
+                    Print_CV()
+            End Select
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            Throw ex
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -399,6 +421,75 @@ Public Class ctrlPortalEmpProfile
         End Try
     End Function
 
+    ''' <summary>
+    ''' Xử lý action in cv
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub Print_CV()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim dsData As DataSet
+        Dim rp As New ProfileStoreProcedure
+        Dim repP As New ProfileBusinessRepository
+        Dim reportName As String = String.Empty
+        Dim reportNameOut As String = "String.Empty"
+        Dim tempPath As String = ConfigurationManager.AppSettings("WordFileFolder")
+        Try
+            
+            dsData = rp.PRINT_CV(EmployeeID)
+
+            If dsData Is Nothing Then
+                ShowMessage("Không có dữ liệu in báo cáo", NotifyType.Warning)
+                Exit Sub
+            End If
+
+            dsData.Tables(0).Rows(0)("IMAGE") = repP.GetEmployeeImage_PrintCV(EmployeeID)
+            'If Not File.Exists(Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage\" + dsData.Tables(0).Rows(0)("IMAGE")) Then
+            '    dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\UploadFile\" + "NoImage.jpg"
+            'Else
+            '    Dim Image = dsData.Tables(0).Rows(0)("IMAGE")
+            '    Dim target As String = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage\"
+            '    dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage\" + dsData.Tables(0).Rows(0)("IMAGE")
+            'End If
+
+            dsData.Tables(0).TableName = "DT"
+            dsData.Tables(1).TableName = "DT1"
+            dsData.Tables(2).TableName = "DT2"
+            dsData.Tables(3).TableName = "DT3"
+            dsData.Tables(4).TableName = "DT4"
+            dsData.Tables(5).TableName = "DT5"
+            dsData.Tables(6).TableName = "DT6"
+            dsData.Tables(7).TableName = "DT7"
+            reportName = "Employee\CV_Template.doc"
+            reportNameOut = "CV.doc"
+            If File.Exists(System.IO.Path.Combine(Server.MapPath(tempPath), reportName)) Then
+                ExportWordMailMergeDS(System.IO.Path.Combine(Server.MapPath(tempPath), reportName),
+                                  reportNameOut,
+                                  dsData,
+                                  Response)
+            Else
+                ShowMessage("Mẫu báo cáo không tồn tại", NotifyType.Error)
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub DeleteDirectory(ByVal path As String)
+        If Directory.Exists(path) Then
+            For Each file As String In Directory.GetFiles(path)
+                Try
+                    System.IO.File.Delete(file)
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+        End If
+
+    End Sub
 #End Region
 
 End Class

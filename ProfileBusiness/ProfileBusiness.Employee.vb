@@ -38,6 +38,17 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function GetEmployeeImage_PrintCV(ByVal gEmpID As Decimal) As String _
+            Implements ServiceContracts.IProfileBusiness.GetEmployeeImage_PrintCV
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetEmployeeImage_PrintCV(gEmpID)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function InsertEmployee(ByVal objEmp As EmployeeDTO, ByVal log As UserLog, ByRef gID As Decimal, _
                                         ByRef _strEmpCode As String, _
                                         ByVal _imageBinary As Byte(), _

@@ -865,6 +865,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Terminate3BDTO" nillable="true" type="tns:Terminate3BDTO" />
+  <xs:complexType name="ArrayOfTerminate3BDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Terminate3BDTO" nillable="true" type="tns:Terminate3BDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTerminate3BDTO" nillable="true" type="tns:ArrayOfTerminate3BDTO" />
   <xs:complexType name="EmployeeDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="AUTOGENTIMESHEET" nillable="true" type="xs:decimal" />
@@ -2350,12 +2356,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfTerminateDTO" nillable="true" type="tns:ArrayOfTerminateDTO" />
-  <xs:complexType name="ArrayOfTerminate3BDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Terminate3BDTO" nillable="true" type="tns:Terminate3BDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfTerminate3BDTO" nillable="true" type="tns:ArrayOfTerminate3BDTO" />
   <xs:complexType name="CompetencyStandardDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="COMPETENCY_GROUP_ID" nillable="true" type="xs:decimal" />

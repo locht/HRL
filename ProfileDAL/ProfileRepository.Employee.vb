@@ -743,6 +743,42 @@ Partial Class ProfileRepository
     End Function
 
     ''' <summary>
+    ''' Hàm lấy đường dẫn ảnh HSNV để in CV trên portal
+    ''' <creater>TUNGLD</creater>
+    ''' </summary>
+    ''' <param name="gEmpID"></param>
+    ''' <param name="isOneEmployee"></param>
+    ''' <param name="img_link"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetEmployeeImage_PrintCV(ByVal gEmpID As Decimal,
+                                             Optional ByVal isOneEmployee As Boolean = True,
+                                             Optional ByVal img_link As String = "") As String
+        Try
+            Dim sEmployeeImage As String = ""
+            If Not isOneEmployee Then
+                sEmployeeImage = img_link
+            Else
+                sEmployeeImage = (From p In Context.HU_EMPLOYEE_CV Where p.EMPLOYEE_ID = gEmpID _
+                                  Select p.IMAGE).FirstOrDefault
+            End If
+
+            Dim _imageBinary() As Byte = Nothing
+            Dim fileDirectory = ""
+            Dim filepath = ""
+            fileDirectory = AppDomain.CurrentDomain.BaseDirectory & "EmployeeImage"
+            If sEmployeeImage IsNot Nothing AndAlso sEmployeeImage.Trim().Length > 0 Then
+                filepath = fileDirectory & "\" & sEmployeeImage
+            Else
+                filepath = fileDirectory & "\NoImage.jpg"
+            End If
+            Return filepath
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    ''' <summary>
     ''' Thêm mới nhân viên
     ''' </summary>
     ''' <param name="objEmp"></param>

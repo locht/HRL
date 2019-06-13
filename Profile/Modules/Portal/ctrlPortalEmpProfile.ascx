@@ -1190,10 +1190,19 @@
                 OpenInNewTab('Default.aspx?mid=Profile&fid=ctrlPortalEmpProfile_Edit');
                 args.set_cancel(true);
             }
+            if (args.get_item().get_commandName() == "PRINT") {
+                enableAjax = false;
+            }
         }
 
         function OpenInNewTab(url) {
             window.location.href = url;
+        }
+
+        var enableAjax = true;
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
         }
     </script>
 </tlk:RadCodeBlock>

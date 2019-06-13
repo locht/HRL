@@ -23,6 +23,12 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IProfileBusiness_ModifyLabourProtectionMng_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyLabourProtectionMng" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_ModifyLabourProtectionMng_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyLabourProtectionMngResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_DeleteLabourProtectionMng_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteLabourProtectionMng" />
   </wsdl:message>
@@ -430,6 +436,12 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_ApproveListContract_OutputMessage">
     <wsdl:part name="parameters" element="tns:ApproveListContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetTerminate3b_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminate3b" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetTerminate3b_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTerminate3bResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetTerminate3bByID_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTerminate3bByID" />
@@ -935,11 +947,11 @@
   <wsdl:message name="IProfileBusiness_InsertLabourProtectionMng_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertLabourProtectionMngResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyLabourProtectionMng_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyLabourProtectionMng" />
+  <wsdl:message name="IProfileBusiness_ValidateContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateContract" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ModifyLabourProtectionMng_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyLabourProtectionMngResponse" />
+  <wsdl:message name="IProfileBusiness_ValidateContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateContractResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_InsertContract_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertContract" />
@@ -1445,12 +1457,6 @@
   <wsdl:message name="IProfileBusiness_GetSalaryNew_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSalaryNewResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetTerminate3b_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminate3b" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetTerminate3b_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTerminate3bResponse" />
-  </wsdl:message>
   <wsdl:message name="IProfileBusiness_ModifyCompetencyStandard_InputMessage">
     <wsdl:part name="parameters" element="tns:ModifyCompetencyStandard" />
   </wsdl:message>
@@ -1558,6 +1564,12 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetEmployeeImage_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetEmployeeImage_PrintCV_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeImage_PrintCV" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetEmployeeImage_PrintCV_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeImage_PrintCVResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_InsertEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertEmployee" />
@@ -1954,12 +1966,6 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetContractByID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetContractByIDResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ValidateContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateContract" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_ValidateContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateContractResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetOrganizationByID_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrganizationByID" />
@@ -2982,6 +2988,10 @@
     <wsdl:part name="parameters" element="tns:GetOrganizationResponse" />
   </wsdl:message>
   <wsdl:portType name="IProfileBusiness">
+    <wsdl:operation name="ModifyLabourProtectionMng">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMng" message="tns:IProfileBusiness_ModifyLabourProtectionMng_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMngResponse" message="tns:IProfileBusiness_ModifyLabourProtectionMng_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteLabourProtectionMng">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionMng" message="tns:IProfileBusiness_DeleteLabourProtectionMng_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionMngResponse" message="tns:IProfileBusiness_DeleteLabourProtectionMng_OutputMessage" />
@@ -3253,6 +3263,10 @@
     <wsdl:operation name="ApproveListContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ApproveListContract" message="tns:IProfileBusiness_ApproveListContract_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ApproveListContractResponse" message="tns:IProfileBusiness_ApproveListContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminate3b">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminate3b" message="tns:IProfileBusiness_GetTerminate3b_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminate3bResponse" message="tns:IProfileBusiness_GetTerminate3b_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTerminate3bByID">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminate3bByID" message="tns:IProfileBusiness_GetTerminate3bByID_InputMessage" />
@@ -3590,9 +3604,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMng" message="tns:IProfileBusiness_InsertLabourProtectionMng_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMngResponse" message="tns:IProfileBusiness_InsertLabourProtectionMng_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ModifyLabourProtectionMng">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMng" message="tns:IProfileBusiness_ModifyLabourProtectionMng_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMngResponse" message="tns:IProfileBusiness_ModifyLabourProtectionMng_OutputMessage" />
+    <wsdl:operation name="ValidateContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateContract" message="tns:IProfileBusiness_ValidateContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateContractResponse" message="tns:IProfileBusiness_ValidateContract_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertContract" message="tns:IProfileBusiness_InsertContract_InputMessage" />
@@ -3930,10 +3944,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetSalaryNew" message="tns:IProfileBusiness_GetSalaryNew_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetSalaryNewResponse" message="tns:IProfileBusiness_GetSalaryNew_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTerminate3b">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminate3b" message="tns:IProfileBusiness_GetTerminate3b_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminate3bResponse" message="tns:IProfileBusiness_GetTerminate3b_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ModifyCompetencyStandard">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandard" message="tns:IProfileBusiness_ModifyCompetencyStandard_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandardResponse" message="tns:IProfileBusiness_ModifyCompetencyStandard_OutputMessage" />
@@ -4005,6 +4015,10 @@
     <wsdl:operation name="GetEmployeeImage">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeImage" message="tns:IProfileBusiness_GetEmployeeImage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeImageResponse" message="tns:IProfileBusiness_GetEmployeeImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeImage_PrintCV">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCV" message="tns:IProfileBusiness_GetEmployeeImage_PrintCV_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCVResponse" message="tns:IProfileBusiness_GetEmployeeImage_PrintCV_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/InsertEmployee" message="tns:IProfileBusiness_InsertEmployee_InputMessage" />
@@ -4269,10 +4283,6 @@
     <wsdl:operation name="GetContractByID">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetContractByID" message="tns:IProfileBusiness_GetContractByID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetContractByIDResponse" message="tns:IProfileBusiness_GetContractByID_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateContract" message="tns:IProfileBusiness_ValidateContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ValidateContractResponse" message="tns:IProfileBusiness_ValidateContract_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetOrganizationByID">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetOrganizationByID" message="tns:IProfileBusiness_GetOrganizationByID_InputMessage" />
@@ -4958,6 +4968,15 @@
   <wsdl:binding name="WSHttpBinding_IProfileBusiness" type="tns:IProfileBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IProfileBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ModifyLabourProtectionMng">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMng" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteLabourProtectionMng">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteLabourProtectionMng" style="document" />
       <wsdl:input>
@@ -5563,6 +5582,15 @@
     </wsdl:operation>
     <wsdl:operation name="ApproveListContract">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ApproveListContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminate3b">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTerminate3b" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6326,8 +6354,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModifyLabourProtectionMng">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMng" style="document" />
+    <wsdl:operation name="ValidateContract">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ValidateContract" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -7091,15 +7119,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTerminate3b">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTerminate3b" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ModifyCompetencyStandard">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandard" style="document" />
       <wsdl:input>
@@ -7255,6 +7274,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetEmployeeImage">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetEmployeeImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeImage_PrintCV">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetEmployeeImage_PrintCV" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -7849,15 +7877,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetContractByID">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetContractByID" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ValidateContract">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ValidateContract" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
