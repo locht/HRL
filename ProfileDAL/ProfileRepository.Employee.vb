@@ -5,6 +5,7 @@ Imports Framework.Data.System.Linq.Dynamic
 Imports Framework.Data.DataAccess
 Imports Oracle.DataAccess.Client
 Imports System.Reflection
+Imports System.Drawing
 
 Partial Class ProfileRepository
 
@@ -990,27 +991,33 @@ Partial Class ProfileRepository
             'Ghi ảnh vào thư mục
             If _imageBinary IsNot Nothing AndAlso _imageBinary.Length > 0 Then
                 Dim savepath = ""
-                savepath = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
-                If Not Directory.Exists(savepath) Then
-                    Directory.CreateDirectory(savepath)
-                End If
-                'Xóa ảnh cũ của nhân viên.
-                Dim sFile() As String = Directory.GetFiles(savepath, objEmpCVData.IMAGE)
-                For Each s In sFile
-                    File.Delete(s)
+                For _count As Integer = 0 To 1
+                    If _count = 0 Then
+                        savepath = objEmp.IMAGE_URL
+                    Else
+                        savepath = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
+                    End If
+                    If Not Directory.Exists(savepath) Then
+                        Directory.CreateDirectory(savepath)
+                    End If
+                    'Xóa ảnh cũ của nhân viên.
+                    Dim sFile() As String = Directory.GetFiles(savepath, objEmpCVData.IMAGE)
+                    For Each s In sFile
+                        File.Delete(s)
+                    Next
+                    Dim ms As New MemoryStream(_imageBinary)
+                    ' instance a filestream pointing to the
+                    ' storatge folder, use the original file name
+                    ' to name the resulting file
+
+                    Dim fs As New FileStream(savepath & "\" & objEmpCVData.IMAGE, FileMode.Create)
+                    ms.WriteTo(fs)
+
+                    ' clean up
+                    ms.Close()
+                    fs.Close()
+                    fs.Dispose()
                 Next
-                Dim ms As New MemoryStream(_imageBinary)
-                ' instance a filestream pointing to the
-                ' storatge folder, use the original file name
-                ' to name the resulting file
-
-                Dim fs As New FileStream(savepath & "\" & objEmpCVData.IMAGE, FileMode.Create)
-                ms.WriteTo(fs)
-
-                ' clean up
-                ms.Close()
-                fs.Close()
-                fs.Dispose()
             End If
             Context.SaveChanges(log)
             'Dim user = (From p In Context.SE_USER Where p.EMPLOYEE_CODE = EMPCODE).FirstOrDefault
@@ -1399,27 +1406,34 @@ Partial Class ProfileRepository
 
             If _imageBinary IsNot Nothing AndAlso _imageBinary.Length > 0 Then
                 Dim savepath = ""
-                savepath = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
-                If Not Directory.Exists(savepath) Then
-                    Directory.CreateDirectory(savepath)
-                End If
-                'Xóa ảnh cũ của nhân viên.
-                Dim sFile() As String = Directory.GetFiles(savepath, objEmpCVData.IMAGE)
-                For Each s In sFile
-                    File.Delete(s)
+                For _count As Integer = 0 To 1
+                    If _count = 0 Then
+                        savepath = objEmp.IMAGE_URL
+                    Else
+                        savepath = AppDomain.CurrentDomain.BaseDirectory & "\EmployeeImage"
+                    End If
+
+                    If Not Directory.Exists(savepath) Then
+                        Directory.CreateDirectory(savepath)
+                    End If
+                    'Xóa ảnh cũ của nhân viên.
+                    Dim sFile() As String = Directory.GetFiles(savepath, objEmpCVData.IMAGE)
+                    For Each s In sFile
+                        File.Delete(s)
+                    Next
+                    Dim ms As New MemoryStream(_imageBinary)
+                    ' instance a filestream pointing to the
+                    ' storatge folder, use the original file name
+                    ' to name the resulting file
+
+                    Dim fs As New FileStream(savepath & "\" & objEmpCVData.IMAGE, FileMode.Create)
+                    ms.WriteTo(fs)
+
+                    ' clean up
+                    ms.Close()
+                    fs.Close()
+                    fs.Dispose()
                 Next
-                Dim ms As New MemoryStream(_imageBinary)
-                ' instance a filestream pointing to the
-                ' storatge folder, use the original file name
-                ' to name the resulting file
-
-                Dim fs As New FileStream(savepath & "\" & objEmpCVData.IMAGE, FileMode.Create)
-                ms.WriteTo(fs)
-
-                ' clean up
-                ms.Close()
-                fs.Close()
-                fs.Dispose()
             End If
             Context.SaveChanges(log)
             ' Sua vao tai khoan

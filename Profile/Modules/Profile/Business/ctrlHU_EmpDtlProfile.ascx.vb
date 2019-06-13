@@ -1592,6 +1592,7 @@ Public Class ctrlHU_EmpDtlProfile
 
             'Lấy ảnh của nhân viên
 
+            EmployeeInfo.IMAGE_URL = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage"
             If EmployeeInfo Is Nothing Then
                 EmployeeInfo = New EmployeeDTO
             End If
@@ -1609,6 +1610,7 @@ Public Class ctrlHU_EmpDtlProfile
             If hidLevelManager.Value <> "" Then
                 EmployeeInfo.LEVEL_MANAGER = hidLevelManager.Value
             End If
+
             EmployeeInfo.EMPLOYEE_NAME_OTHER = rtOtherName.Text
             EmployeeInfo.EMPLOYEE_CODE_OLD = rtEmpCode_OLD.Text
             EmployeeInfo.BOOKNO = rtBookNo.Text

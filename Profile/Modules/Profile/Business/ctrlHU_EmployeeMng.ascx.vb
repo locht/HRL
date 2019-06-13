@@ -615,44 +615,45 @@ Public Class ctrlHU_EmployeeMng
                 Exit Sub
             End If
 
-            If Not File.Exists(Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\" + dsData.Tables(0).Rows(0)("IMAGE")) Then
+            If Not File.Exists(Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage\" + dsData.Tables(0).Rows(0)("IMAGE")) Then
                 dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\UploadFile\" + "NoImage.jpg"
             Else
                 'Delete file trong thu muc tam
                 DeleteDirectory(Server.MapPath("~/RadUploadTemp"))
                 DeleteDirectory(Server.MapPath("~/EmployeeImageTemp"))
 
-                Dim tempPathFile = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage"))
+                'Dim tempPathFile = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage"))
                 Dim Image = dsData.Tables(0).Rows(0)("IMAGE")
-                Dim target As String = Server.MapPath("~/RadUploadTemp")
-                If Not Directory.Exists(target) Then
-                    Directory.CreateDirectory(target)
-                End If
-                Dim file = New FileInfo(tempPathFile + "\" + Image)
+                Dim target As String = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage\"
+                'If Not Directory.Exists(target) Then
+                '    Directory.CreateDirectory(target)
+                'End If
+                'Dim file = New FileInfo(tempPathFile + "\" + Image)
 
-                Try
-                    file.CopyTo(Path.Combine(target + "\" + Image), True)
-                Catch ex As Exception
-                    ShowMessage(Translate("Bạn vui lòng xuất lại CV sau 2 phút"), Utilities.NotifyType.Warning)
-                    Exit Sub
-                End Try
+                'Try
+                '    file.CopyTo(Path.Combine(target + "\" + Image), True)
+                'Catch ex As Exception
+                '    ShowMessage(Translate("Bạn vui lòng xuất lại CV sau 2 phút"), Utilities.NotifyType.Warning)
+                '    Exit Sub
+                'End Try
 
-                file.IsReadOnly = False
+                'file.IsReadOnly = False
 
-                Dim originalImage = System.Drawing.Image.FromFile(Path.Combine(target, Image))
-                Dim thumbnail As New Bitmap(90, 120)
-                Using g As Graphics = Graphics.FromImage(DirectCast(thumbnail, System.Drawing.Image))
-                    g.DrawImage(originalImage, 0, 0, 90, 120)
-                End Using
-                Dim cfileName = Image
-                Dim fileName = System.IO.Path.Combine(Server.MapPath("~/EmployeeImageTemp"), cfileName)
-                If Not Directory.Exists(Server.MapPath("~/EmployeeImageTemp")) Then
-                    Directory.CreateDirectory(Server.MapPath("~/EmployeeImageTemp"))
-                End If
-                Dim thumbnailFileName As String = fileName
-                thumbnail.Save(thumbnailFileName)
+                'Dim originalImage = System.Drawing.Image.FromFile(Path.Combine(target, Image))
+                'Dim thumbnail As New Bitmap(90, 120)
+                'Using g As Graphics = Graphics.FromImage(DirectCast(thumbnail, System.Drawing.Image))
+                '    g.DrawImage(originalImage, 0, 0, 90, 120)
+                'End Using
+                'Dim cfileName = Image
+                'Dim fileName = System.IO.Path.Combine(target, cfileName)
+                'If Not Directory.Exists(target) Then
+                '    Directory.CreateDirectory(target)
+                'End If
+                'Dim thumbnailFileName As String = fileName
+                'thumbnail.Save(thumbnailFileName)
 
-                dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath("~/EmployeeImageTemp") + "\" + dsData.Tables(0).Rows(0)("IMAGE")
+                'dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath("~/EmployeeImageTemp") + "\" + dsData.Tables(0).Rows(0)("IMAGE")
+                dsData.Tables(0).Rows(0)("IMAGE") = Server.MapPath(ConfigurationManager.AppSettings("PathFileEmployeeImage")) + "\EmployeeImage\" + dsData.Tables(0).Rows(0)("IMAGE")
             End If
 
             dsData.Tables(0).TableName = "DT"

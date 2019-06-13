@@ -10966,6 +10966,9 @@ Namespace ProfileBusiness
         Private IMAGE_BINARYField() As Byte
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IMAGE_URLField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_HISTORYField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -11520,6 +11523,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.IMAGE_BINARYField, value) <> true) Then
                     Me.IMAGE_BINARYField = value
                     Me.RaisePropertyChanged("IMAGE_BINARY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IMAGE_URL() As String
+            Get
+                Return Me.IMAGE_URLField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IMAGE_URLField, value) <> true) Then
+                    Me.IMAGE_URLField = value
+                    Me.RaisePropertyChanged("IMAGE_URL")
                 End If
             End Set
         End Property
