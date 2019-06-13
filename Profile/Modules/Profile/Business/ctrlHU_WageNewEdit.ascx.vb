@@ -370,7 +370,7 @@ Public Class ctrlHU_WageNewEdit
             End Using
             CalculatorSalary()
             ClearControlValue(Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
         Catch ex As Exception
             Throw ex
         End Try
@@ -388,7 +388,7 @@ Public Class ctrlHU_WageNewEdit
             End Using
             CalculatorSalary()
             ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
         Catch ex As Exception
             Throw ex
         End Try
@@ -405,7 +405,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             ClearControlValue(rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
         Catch ex As Exception
             Throw ex
         End Try
@@ -920,7 +920,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             Next
             'Ngay hieu luc thay doi => load lai thang luong theo ngay hieu luc
-            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, SalaryInsurance, rnFactorSalary)
+            ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, SalaryInsurance, rnFactorSalary, rnPercentSalary)
             Dim dtData As DataTable = New DataTable()
             Using rep As New ProfileRepository
                 dtData = rep.GetSalaryGroupCombo(rdEffectDate.SelectedDate, True)
@@ -937,6 +937,13 @@ Public Class ctrlHU_WageNewEdit
         End Try
     End Sub
     Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, SalaryInsurance.TextChanged, rnPercentSalary.TextChanged
+        Try
+            CalculatorSalary()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub basicSalary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles basicSalary.TextChanged
         Try
             CalculatorSalary()
         Catch ex As Exception
@@ -1256,11 +1263,26 @@ Public Class ctrlHU_WageNewEdit
                 Dim rs = From row In dtSalaryGroup.Rows
                      Where row("ID").ToString = cbSalaryGroup.SelectedValue.ToString
                      Select row("ISHOSE")
+
+                Dim total As Decimal
                 If rs(0) = 0 Then
                     SalaryInsurance.Value = rnFactorSalary.Value
                     basicSalary.Value = SalaryInsurance.Value
+                    total = If(SalaryInsurance.Value.HasValue, SalaryInsurance.Value, 0) + _
+                            If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
+                            If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
+                            If(Allowance_Total.Value.HasValue, Allowance_Total.Value, 0)
+                    If rnPercentSalary.Value.HasValue Then
+                        total = total * rnPercentSalary.Value / 100
+                    End If
+                    Salary_Total.Value = total
                 Else
-
+                    total = If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                            If(Allowance_Total.Value.HasValue, Allowance_Total.Value, 0)
+                    If rnPercentSalary.Value.HasValue Then
+                        total = total * rnPercentSalary.Value / 100
+                    End If
+                    Salary_Total.Value = total
                 End If
             End If
         Catch ex As Exception

@@ -68,6 +68,8 @@
                 <td>
                     <tlk:RadComboBox ID="cboContractType" runat="server" AutoPostBack="true" CausesValidation="false">
                     </tlk:RadComboBox>
+                    <asp:RequiredFieldValidator ID="reqContractType" ControlToValidate="cboContractType" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>" ToolTip="<%$ Translate: Bạn phải chọn Loại hợp đồng. %>"> </asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="cusContractType" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Loại hợp đồng %>"
                         ToolTip="<%$ Translate: Bạn phải chọn Loại hợp đồng %>" ClientValidationFunction="cusContractType">
                     </asp:CustomValidator>
@@ -99,7 +101,7 @@
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>                
+                    <asp:Label ID="lbStartDate" runat="server" Text="<%$ Translate: Ngày bắt đầu %>"></asp:Label>                   
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
@@ -191,6 +193,8 @@
                     </tlk:RadTextBox>
                     <tlk:RadButton ID="btnSalary" SkinID="ButtonView" runat="server" CausesValidation="false">
                     </tlk:RadButton>
+                    <asp:RequiredFieldValidator ID="reqWorking_ID" ControlToValidate="Working_ID" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải chọn Hồ sơ lương. %>" ToolTip="<%$ Translate: Bạn phải chọn Hồ sơ lương. %>"> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbSalTYPE" runat="server" Text="<%# UI.Wage_WageGRoup %>"></asp:Label>

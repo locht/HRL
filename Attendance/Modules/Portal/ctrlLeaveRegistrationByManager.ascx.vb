@@ -193,6 +193,11 @@ Public Class ctrlLeaveRegistrationByManager
                 todate = dr.GetDataKeyValue("TO_DATE")
                 Using rep As New AttendanceRepository
                     Dim periodid = rep.GetperiodID(ID_EMPLOYEE, fromdate, todate)
+                    Dim check = rep.CHECK_PERIOD_CLOSE(periodid)
+                    If check = 0 Then
+                        ShowMessage(Translate("Kì công đã đóng,Xin kiểm tra lại"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     Dim result = rep.PRI_PROCESS(EmployeeID, ID_EMPLOYEE, periodid, 1, "LEAVE", "", ID_REGGROUP)
                     If result = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
