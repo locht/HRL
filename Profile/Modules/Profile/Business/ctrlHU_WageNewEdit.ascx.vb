@@ -1276,6 +1276,7 @@ Public Class ctrlHU_WageNewEdit
                         total = total * rnPercentSalary.Value / 100
                     End If
                     Salary_Total.Value = total
+                    basicSalary.Enabled = False
                 Else
                     total = If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
                             If(Allowance_Total.Value.HasValue, Allowance_Total.Value, 0)
@@ -1283,6 +1284,7 @@ Public Class ctrlHU_WageNewEdit
                         total = total * rnPercentSalary.Value / 100
                     End If
                     Salary_Total.Value = total
+                    basicSalary.Enabled = True
                 End If
             End If
         Catch ex As Exception
