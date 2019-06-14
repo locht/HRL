@@ -1893,6 +1893,9 @@ Namespace AttendanceBusiness
         Private CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CODE1Field As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -1989,6 +1992,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.CODEField, value) <> true) Then
                     Me.CODEField = value
                     Me.RaisePropertyChanged("CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CODE1() As String
+            Get
+                Return Me.CODE1Field
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CODE1Field, value) <> true) Then
+                    Me.CODE1Field = value
+                    Me.RaisePropertyChanged("CODE1")
                 End If
             End Set
         End Property

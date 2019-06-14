@@ -66,7 +66,8 @@ Partial Public Class AttendanceRepository
             Dim lst = query.Select(Function(p) New AT_TIME_MANUALDTO With {
                                        .ID = p.p.ID,
                                        .IS_LEAVE = p.f.IS_LEAVE,
-                                       .IS_LEAVE1 = p.f2.IS_LEAVE
+                                       .IS_LEAVE1 = p.f2.IS_LEAVE,
+                                       .CODE1 = p.f.IS_CALHOLIDAY
                 }).ToList
             Return lst.ToTable
         Catch ex As Exception
@@ -3022,17 +3023,27 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+    'Public Function CHECK_NGHI_LE(ByVal ID As Decimal) As Decimal
+    '    Try
+    '        Dim query= From p In Context.
+
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Function
+  
+
     Public Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal) As DataTable
         Try
             Dim query = From p In Context.AT_WORKSIGN
-                        Where p.EMPLOYEE_ID = employee_id
+                        From ce In Context.AT_SHIFT.Where(Function(f) f.ID = p.SHIFT_ID)
+                        Where p.EMPLOYEE_ID = employee_id And ce.CODE <> "OFF"
             Dim lst = query.Select(Function(p) New AT_WORKSIGNDTO With {
-                                       .ID = p.ID,
-                                .WORKINGDAY1 = p.WORKINGDAY}).ToList
+                                       .ID = p.p.ID,
+                                .WORKINGDAY1 = p.p.WORKINGDAY}).ToList
             Return lst.ToTable
-
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Function
     Public Function GetAT_ListShift() As DataTable
