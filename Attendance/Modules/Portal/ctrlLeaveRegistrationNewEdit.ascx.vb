@@ -1009,34 +1009,36 @@ Public Class ctrlLeaveRegistrationNewEdit
                             ShowMessage(Translate("Chọn loại nghỉ"), NotifyType.Warning)
                         Else
                             ktra = (From p In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE Where p.ID = cboleaveType.SelectedValue And (p.CODE.Contains("P"))).ToList.Count
+                            'check là lễ,check1 là ca ,CHƯA CÓ THỜI GIAN CLEAN CODE NÊN TẠM THỜI CHẠY TRƯỚC
                             Dim check = (From p In dayholiday Where p.WORKINGDAY <= selectedFromDate1 And p.WORKINGDAY >= selectedFromDate1 Select p).ToList.Count
                             Dim CHECK1 = (From P In CHECKSHIFT.AsEnumerable Where P("WORKINGDAY1") <= selectedFromDate1 And P("WORKINGDAY1") >= selectedFromDate1 Select P).ToList.Count
-
                             If Not chkWorkday.Checked Then
                                 If check > 0 Then
                                     calDay -= 1
                                 End If
                             End If
+                            'KTRA =1 THÌ LÀ KIẾM TRẢ LOẠI NGHĨ CHỨA KÍ TỰ P
                             If ktra = 1 Then
                                 Dim ktra2 = (From p In ListManual Where p.ID = cboleaveType.SelectedValue And p.CODE = "P").ToList.Count
+                                'ĐÂY LÀ LOẠI PHÉP NĂM
                                 If ktra2 = 1 Then
                                     If COUNT > 0 Then
                                         calDay1 += 1
                                     End If
                                     If Not chkWorkday.Checked Then
-                                        If CHECK1 > 0 Then
+                                        If CHECK1 = 0 Then
                                             If check = 0 Then
                                                 calDay -= 1
                                             End If
                                         End If
                                     End If
                                 Else
+                                    'ĐÂY LÀ LOẠI NGHỈ NỬA NGÀY
                                     checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
                                     Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
                                     Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
                                     If count1 > 0 AndAlso count2 > 0 Then
                                     Else
-
                                         If Not chkWorkday.Checked Then
                                             If CHECK1 > 0 Then
                                                 If check = 0 Then
@@ -1047,11 +1049,11 @@ Public Class ctrlLeaveRegistrationNewEdit
                                             End If
                                         Else
                                             If CHECK1 > 0 Then
-                                                If check = 0 Then
+                                                If check = 0 OrElse check > 0 Then
                                                     calDay -= 0.5
                                                 End If
                                             Else
-                                                calDay -= 1
+                                                calDay -= 0.5
                                             End If
                                         End If
                                     End If
@@ -1059,13 +1061,49 @@ Public Class ctrlLeaveRegistrationNewEdit
                                         calDay1 += 1
                                     End If
                                 End If
+                            Else
+                                'TRƯỜNG HỢP KHÁC PHÉP NĂM
+                                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
+                                Dim count1 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE") = -1).ToList.Count
+                                Dim count2 = (From p In checktypebreak.AsEnumerable Where p("IS_LEAVE1") = -1).ToList.Count
+                                If count1 > 0 AndAlso count2 > 0 Then
+                                    If Not chkWorkday.Checked Then
+                                        If CHECK1 = 0 Then
+                                            If check = 0 Then
+                                                calDay -= 1
+                                            End If
+                                        End If
+                                    End If
+                                Else
+                                    If count1 <> count2 Then
+                                        If Not chkWorkday.Checked Then
+                                            If CHECK1 > 0 Then
+                                                If check = 0 Then
+                                                    calDay -= 0.5
+                                                End If
+                                            Else
+                                                calDay -= 1
+                                            End If
+                                        Else
+                                            If CHECK1 > 0 Then
+                                                If check = 0 OrElse check > 0 Then
+                                                    calDay -= 0.5
+                                                End If
+                                            Else
+                                                calDay -= 0.5
+                                            End If
+                                        End If
+                                    End If
+                                End If
+                                If COUNT > 0 Then
+                                    calDay1 += 1
+                                End If
                             End If
                         End If
                     End Using
                     selectedFromDate1 = selectedFromDate1.Value.AddDays(1)
                 End While
             End If
-
             If leaveEmpDetails IsNot Nothing Then
                 txtDayRegist.Text = 0
                 rntxDayRegist.Value = 0
@@ -1115,15 +1153,26 @@ Public Class ctrlLeaveRegistrationNewEdit
 
     Private Sub cboleaveType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboleaveType.SelectedIndexChanged
         Try
+            'LẤY DỮ LIỆU DUOIS APP LÊN ĐỂ KIỂM TRA CHECK HAY K CHECK CHECKBOX NGÀY LÀM VIÊCJ
+            Using rep As New AttendanceRepository
+                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
+            End Using
+            Dim ktra = (From p In checktypebreak.AsEnumerable Where p("CODE1") = -1).ToList.Count
+            If ktra > 0 Then
+                chkWorkday.Checked = True
+            Else
+                chkWorkday.Checked = False
+            End If
             CreateDataFilter()
         Catch ex As Exception
 
         End Try
     End Sub
 
-
     Private Sub chkWorkday_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkWorkday.CheckedChanged
         Try
+          
+
             CreateDataFilter()
         Catch ex As Exception
 

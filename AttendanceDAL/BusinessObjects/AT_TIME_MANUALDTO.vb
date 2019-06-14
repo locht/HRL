@@ -1,6 +1,7 @@
 ﻿Public Class AT_TIME_MANUALDTO
     Public Property ID As Decimal
     Public Property CODE As String
+    Public Property CODE1 As String
     Public Property NAME_VN As String
     Public Property MORNING_ID As Decimal?
     Public Property MORNING_NAME As String
