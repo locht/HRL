@@ -28071,6 +28071,9 @@ Namespace AttendanceBusiness
         Private WORKING_KField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORKING_KLDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_LField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -28096,6 +28099,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_TField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORKING_TNField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKING_TSField As System.Nullable(Of Decimal)
@@ -28900,6 +28906,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORKING_KLD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORKING_KLDField
+            End Get
+            Set
+                If (Me.WORKING_KLDField.Equals(value) <> true) Then
+                    Me.WORKING_KLDField = value
+                    Me.RaisePropertyChanged("WORKING_KLD")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property WORKING_L() As System.Nullable(Of Decimal)
             Get
                 Return Me.WORKING_LField
@@ -29012,6 +29031,19 @@ Namespace AttendanceBusiness
                 If (Me.WORKING_TField.Equals(value) <> true) Then
                     Me.WORKING_TField = value
                     Me.RaisePropertyChanged("WORKING_T")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORKING_TN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORKING_TNField
+            End Get
+            Set
+                If (Me.WORKING_TNField.Equals(value) <> true) Then
+                    Me.WORKING_TNField = value
+                    Me.RaisePropertyChanged("WORKING_TN")
                 End If
             End Set
         End Property

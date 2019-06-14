@@ -762,6 +762,7 @@ Public Class ctrlSignWork
             period.PERIOD_ID = Decimal.Parse(cboPeriodId.SelectedValue)
             dtDatas = rep.LOAD_PERIODByID(period)
             Dim dtShift = rep.GetAT_SHIFT(New AT_SHIFTDTO)
+            Dim dtHoliday = rep.GetHoliday(New AT_HOLIDAYDTO)
             For Each row As DataRow In dtData.Rows
                 Dim isRow = ImportValidate.TrimRow(row)
                 If Not isRow Then
@@ -783,25 +784,29 @@ Public Class ctrlSignWork
                 For index = 1 To (dtDatas.END_DATE - dtDatas.START_DATE).Value.TotalDays + 1
                     If row("D" & index).ToString <> "" Then
                         Dim r = row("D" & index).ToString
+                        Dim workingDate As Date = dtDatas.START_DATE.Value.AddDays(index - 1)
                         Dim exists = (From p In dtShift Where p.CODE.ToUpper = r.ToUpper).FirstOrDefault
+                        Dim existsHoliday = (From p In dtHoliday Where p.WORKINGDAY = workingDate).FirstOrDefault
 
                         If exists Is Nothing Then
                             rowError("D" & index) = row("D" & index).ToString & " không tồn tại"
                             isError = True
                         Else
                             row("D" & index) = ""
-                            Dim workingDate As Date = dtDatas.START_DATE.Value.AddDays(index - 1)
                             If IsNumeric(exists.ID) Then
                                 row("D" & index) = exists.ID
-                            Else
-                                If workingDate.DayOfWeek = DayOfWeek.Sunday And exists.SUNDAY.HasValue Then
-                                    row("D" & index) = 81 ' OFF
-                                Else
-                                    row("D" & index) = exists.ID
-                                End If
+                                'Else
+                                '    If workingDate.DayOfWeek = DayOfWeek.Sunday And exists.SUNDAY.HasValue Then
+                                '        row("D" & index) = 81 ' OFF
+                                '    Else
+                                '        row("D" & index) = exists.ID
+                                '    End If
                             End If
-                            
+                            If Not existsHoliday Is Nothing Then
+                                row("D" & index) = 81
+                            End If
                         End If
+
                     Else
 
                     End If

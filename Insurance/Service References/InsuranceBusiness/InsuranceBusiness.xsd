@@ -1304,6 +1304,7 @@
         <xs:element minOccurs="0" name="si" nillable="true" type="xs:double" />
         <xs:element minOccurs="0" name="hi" nillable="true" type="xs:double" />
         <xs:element minOccurs="0" name="ui" nillable="true" type="xs:double" />
+        <xs:element minOccurs="0" name="tnld_bnn" nillable="true" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

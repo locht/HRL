@@ -1147,7 +1147,10 @@ Partial Public Class AttendanceRepository
                                        .MIN_IN_WORK = p.p.MIN_IN_WORK,
                                        .MIN_DEDUCT_WORK = p.p.MIN_DEDUCT_WORK,
                                        .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT,
-                                       .MIN_EARLY = p.p.MIN_EARLY})
+                                       .MIN_EARLY = p.p.MIN_EARLY,
+                                       .WORKING_KLD = p.p.WORKING_KLD,
+                                       .WORKING_TN = p.p.WORKING_TN
+                                   })
 
             'If _filter.IS_TERMINATE Then
             '    lst = lst.Where(Function(f) f.WORK_STATUS = 257)
@@ -4893,7 +4896,6 @@ Partial Public Class AttendanceRepository
                                      c.WORKINGDAY = p_fromdate).FirstOrDefault
 
                         Dim shiftIDU = (From f In Context.AT_SHIFT Where f.ID = objWork.SHIFT_ID Select f).FirstOrDefault
-
                         Dim shiftOffu = (From f In Context.AT_SHIFT Where f.CODE = CODE_OFF Select f).FirstOrDefault
                         If Not shiftOffu Is Nothing Then
                             If p_fromdate.DayOfWeek = DayOfWeek.Sunday And Not String.IsNullOrEmpty(shiftOffu.ID) Then
@@ -4912,6 +4914,12 @@ Partial Public Class AttendanceRepository
                                 query.SHIFT_ID = objWork.SHIFT_ID
                             End If
                         End If
+
+                        Dim holidayU = (From f In Context.AT_HOLIDAY Where f.WORKINGDAY = p_fromdate Select f).FirstOrDefault
+                        If (Not holidayU Is Nothing) Then
+                            query.SHIFT_ID = Nothing
+                        End If
+
                         Context.SaveChanges(log)
                         p_fromdate = p_fromdate.AddDays(1)
                         Continue While
@@ -4937,6 +4945,12 @@ Partial Public Class AttendanceRepository
                     Else
                         objWorkSignData.SHIFT_ID = objWork.SHIFT_ID
                     End If
+
+                    Dim holiday = (From f In Context.AT_HOLIDAY Where f.WORKINGDAY = p_fromdate Select f).FirstOrDefault
+                    If (Not holiday Is Nothing) Then
+                        objWorkSignData.SHIFT_ID = Nothing
+                    End If
+
                     objWorkSignData.PERIOD_ID = objWork.PERIOD_ID
                     Context.AT_WORKSIGN.AddObject(objWorkSignData)
                     Context.SaveChanges(log)

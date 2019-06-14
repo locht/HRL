@@ -75,4 +75,6 @@
     Public Property MIN_OUT_WORK_DEDUCT As Decimal?
     Public Property MIN_EARLY As Decimal?
     Public Property MIN_LATE_EARLY As Decimal?
+    Public Property WORKING_TN As Decimal?
+    Public Property WORKING_KLD As Decimal?
 End Class

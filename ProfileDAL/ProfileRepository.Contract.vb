@@ -1188,7 +1188,7 @@ Partial Class ProfileRepository
                                     .IS_MISSION = -1,
                                     .IS_3B = 0,
                                     .IS_PROCESS = -1,
-        .IS_WAGE = 0
+                                     .IS_WAGE = 0
                                      })
     End Sub
     Public Function ModifyContract(ByVal objContract As ContractDTO,

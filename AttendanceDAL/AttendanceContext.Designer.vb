@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("c5da1f52-fed9-4b8f-9b16-768c287d2d86")>
+<Assembly: EdmSchemaAttribute("640f0b45-e67a-4dec-882b-1dead6b7dad1")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -29480,6 +29480,56 @@ Public Partial Class AT_TIME_TIMESHEET_MONTHLY
     End Sub
 
     Private Partial Sub OnMIN_LATE_EARLYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORKING_TN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _WORKING_TN
+        End Get
+        Set
+            OnWORKING_TNChanging(value)
+            ReportPropertyChanging("WORKING_TN")
+            _WORKING_TN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORKING_TN")
+            OnWORKING_TNChanged()
+        End Set
+    End Property
+
+    Private _WORKING_TN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWORKING_TNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnWORKING_TNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORKING_KLD() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _WORKING_KLD
+        End Get
+        Set
+            OnWORKING_KLDChanging(value)
+            ReportPropertyChanging("WORKING_KLD")
+            _WORKING_KLD = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORKING_KLD")
+            OnWORKING_KLDChanged()
+        End Set
+    End Property
+
+    Private _WORKING_KLD As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWORKING_KLDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnWORKING_KLDChanged()
     End Sub
 
     #End Region

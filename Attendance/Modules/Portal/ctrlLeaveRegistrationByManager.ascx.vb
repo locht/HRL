@@ -159,7 +159,12 @@ Public Class ctrlLeaveRegistrationByManager
                     End Using
                 Case CommonMessage.TOOLBARITEM_APPROVE
                     Dim listDataCheck As New List(Of AT_PROCESS_DTO)
-                   
+                    For Each dr As Telerik.Web.UI.GridDataItem In rgMain.SelectedItems
+                        If dr.GetDataKeyValue("STATUS") <> PortalStatus.WaitingForApproval Then
+                            ShowMessage(Translate("Thao tác này chỉ thực hiện với giờ làm thêm đang chờ phê duyệt, vui lòng chọn đơn khác"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
 
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_APPROVE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
