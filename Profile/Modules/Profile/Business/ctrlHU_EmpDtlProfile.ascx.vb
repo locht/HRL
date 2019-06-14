@@ -1194,7 +1194,7 @@ Public Class ctrlHU_EmpDtlProfile
                 Else
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL) & vbNewLine & Translate(_err), Utilities.NotifyType.Error)
                 End If
-                UpdateControlState()
+                'UpdateControlState()
             Else
                 Exit Sub
             End If
@@ -1656,6 +1656,7 @@ Public Class ctrlHU_EmpDtlProfile
     Private Function Save(ByRef strEmpID As Decimal, Optional ByRef _err As String = "") As Boolean
         Dim result As Boolean
         Dim gID As Decimal
+        Dim gEmpCode As String
         Dim rep As New ProfileBusinessRepository
         Dim EmpCV As New EmployeeCVDTO
         Dim EmpEdu As New EmployeeEduDTO
@@ -1997,16 +1998,21 @@ Public Class ctrlHU_EmpDtlProfile
                                             EmpHealth)
 
             Else
-                result = rep.InsertEmployee(EmployeeInfo, gID, "", _binaryImage,
+                result = rep.InsertEmployee(EmployeeInfo, gID, gEmpCode, _binaryImage,
                                             EmpCV, _
                                             EmpEdu, _
                                             EmpHealth)
 
             End If
             strEmpID = gID
+            EmployeeInfo.ID = strEmpID
+            EmployeeInfo.EMPLOYEE_CODE = gEmpCode
+            isLoad = False
+            UpdateControlState()
+            Refresh()
             rep.Dispose()
             Return result
-
+            
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
