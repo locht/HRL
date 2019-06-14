@@ -73,6 +73,7 @@ Public Class ctrlOTRegistration
                         Dim item As GridDataItem = rgMain.SelectedItems(idx)
                         Dim dto As New AT_OT_REGISTRATIONDTO
                         dto.ID = item.GetDataKeyValue("ID")
+                        dto.REGIST_DATE = item.GetDataKeyValue("REGIST_DATE")
                         'Kiem tra ky cong da dong hay chua
                         Dim periodid = rep.GetperiodID(EmployeeID, dto.REGIST_DATE, dto.REGIST_DATE)
                         If periodid = 0 Then
