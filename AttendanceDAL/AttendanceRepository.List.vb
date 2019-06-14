@@ -276,7 +276,7 @@ Partial Public Class AttendanceRepository
             Dim dayholiday As List(Of AT_HOLIDAYDTO)
             Dim groupid As Decimal? = Nothing
             dayholiday = GetDayHoliday()
-            Dim CHECKSHIFT As DataTable = PRS_COUNT_SHIFT(itemRegister.ID_EMPLOYEE, itemRegister)
+            Dim CHECKSHIFT As DataTable = PRS_COUNT_SHIFT(itemRegister.ID_EMPLOYEE)
             Dim I As Integer = 0
             If itemRegister.PROCESS = ATConstant.GSIGNCODE_LEAVE Or itemRegister.PROCESS = ATConstant.GSIGNCODE_WLEO Then
                 DeleteRegisterLeavePortal(itemRegister.ID_EMPLOYEE, itemRegister.FROM_DATE,
@@ -3022,10 +3022,13 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
-    Public Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal, ByVal obj As AT_PORTAL_REG_DTO) As DataTable
+
+  
+
+    Public Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal) As DataTable
         Try
             Dim query = From p In Context.AT_WORKSIGN
-                        Where p.EMPLOYEE_ID = employee_id And p.WORKINGDAY >= obj.FROM_DATE And p.WORKINGDAY <= obj.TO_DATE
+                        Where p.EMPLOYEE_ID = employee_id
             Dim lst = query.Select(Function(p) New AT_WORKSIGNDTO With {
                                        .ID = p.ID,
                                 .WORKINGDAY1 = p.WORKINGDAY}).ToList
