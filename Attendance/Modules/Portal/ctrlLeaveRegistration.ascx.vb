@@ -279,8 +279,10 @@ Public Class ctrlLeaveRegistration
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
             ElseIf outNumber = 1 Then
                 ShowMessage(Translate("Quy trình phê duyệt chưa được thiết lập"), NotifyType.Success)
-            Else
+            ElseIf outNumber = 2 Then
                 ShowMessage(Translate("Thao tác xảy ra lỗi,bạn kiểm tra lại quy trình"), NotifyType.Error)
+            ElseIf outNumber = 3 Then
+                ShowMessage(Translate("Nhân viên chưa có thiết lập nhóm chức danh"), NotifyType.Error)
             End If
             rgMain.Rebind()
         End If
