@@ -917,7 +917,6 @@ Public Class ctrlLeaveRegistrationNewEdit
         End If
     End Sub
 
-
     Private Sub rgData_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgData.ItemCommand
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
@@ -935,6 +934,32 @@ Public Class ctrlLeaveRegistrationNewEdit
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub cboleaveType_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboleaveType.SelectedIndexChanged
+        Try
+            'LẤY DỮ LIỆU DUOIS APP LÊN ĐỂ KIỂM TRA CHECK HAY K CHECK CHECKBOX NGÀY LÀM VIÊCJ
+            Using rep As New AttendanceRepository
+                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
+            End Using
+            Dim ktra = (From p In checktypebreak.AsEnumerable Where p("CODE1") = -1).ToList.Count
+            If ktra > 0 Then
+                chkWorkday.Checked = True
+            Else
+                chkWorkday.Checked = False
+            End If
+            CreateDataFilter()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub chkWorkday_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkWorkday.CheckedChanged
+        Try
+            CreateDataFilter()
+        Catch ex As Exception
+
         End Try
     End Sub
 
@@ -1108,11 +1133,16 @@ Public Class ctrlLeaveRegistrationNewEdit
                 txtDayRegist.Text = 0
                 rntxDayRegist.Value = 0
                 If leaveEmpDetails IsNot Nothing Then
-                    txtDayRegist.Text = calDay.ToString
+                    If calDay >= 0 Then
+                        txtDayRegist.Text = calDay.ToString
+                    End If
+
                     rntxDayRegist.Value = Decimal.Parse(calDay)
                     If ktra = 1 Then
                         rtxtdayinkh.Text = (Decimal.Parse(calDay1)).ToString
-                        rtxtdayoutkh.Text = (Decimal.Parse(calDay) - Decimal.Parse(calDay1)).ToString
+                        If Decimal.Parse(calDay) - Decimal.Parse(calDay1) >= 0 Then
+                            rtxtdayoutkh.Text = (Decimal.Parse(calDay) - Decimal.Parse(calDay1)).ToString
+                        End If
                     Else
                         rtxtdayinkh.Text = Nothing
                         rtxtdayoutkh.Text = Nothing
@@ -1151,31 +1181,5 @@ Public Class ctrlLeaveRegistrationNewEdit
     End Function
 #End Region
 
-    Private Sub cboleaveType_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboleaveType.SelectedIndexChanged
-        Try
-            'LẤY DỮ LIỆU DUOIS APP LÊN ĐỂ KIỂM TRA CHECK HAY K CHECK CHECKBOX NGÀY LÀM VIÊCJ
-            Using rep As New AttendanceRepository
-                checktypebreak = rep.CHECK_TYPE_BREAK(cboleaveType.SelectedValue)
-            End Using
-            Dim ktra = (From p In checktypebreak.AsEnumerable Where p("CODE1") = -1).ToList.Count
-            If ktra > 0 Then
-                chkWorkday.Checked = True
-            Else
-                chkWorkday.Checked = False
-            End If
-            CreateDataFilter()
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub chkWorkday_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkWorkday.CheckedChanged
-        Try
-          
-
-            CreateDataFilter()
-        Catch ex As Exception
-
-        End Try
-    End Sub
+   
 End Class
