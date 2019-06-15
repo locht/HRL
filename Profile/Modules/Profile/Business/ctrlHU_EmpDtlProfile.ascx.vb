@@ -739,12 +739,12 @@ Public Class ctrlHU_EmpDtlProfile
                     rtIdTitleConcurrent.Visible = False
                     RadPane4.Visible = False
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
-                    EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
-                    EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
-                    EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
-                    EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
-                    EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
-                    EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+                    EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                    EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+                    EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
+                    EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+                    EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+                    EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled,
                                         txtBankNo, chkSaveHistory, ckBanTT_ND,
                                        txtDaHoaLieu, txtTimeID, rtDiem_XL_TH,
@@ -786,12 +786,12 @@ Public Class ctrlHU_EmpDtlProfile
                     rtIdTitleConcurrent.Visible = True
                     RadPane4.Visible = True
                     EnableControlAll(False, cboWorkStatus, txtEmpCODE, cboEmpStatus)
-                    EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
-                    EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
-                    EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
-                    EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
-                    EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
-                    EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+                    EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+                    EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+                    EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
+                    EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+                    EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+                    EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
                     EnableControlAll(True, lstbPaper, lstbPaperFiled, chkSaveHistory,
                                         txtBankNo, ckBanTT_ND, rtDiem_XL_TH,
                                        txtDaHoaLieu, txtNamTN,
@@ -1503,119 +1503,119 @@ Public Class ctrlHU_EmpDtlProfile
         End Try
     End Sub
 
-    Private Sub ckDANG_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckDANG.CheckedChanged
+    'Private Sub ckDANG_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckDANG.CheckedChanged
 
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
 
-            If (ckDANG.Checked) Then
-                EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
-            Else
-                EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
-                ClearControlValue(rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If (ckDANG.Checked) Then
+    '            EnableControlAll(True, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+    '        Else
+    '            EnableControlAll(False, rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+    '            ClearControlValue(rtCHUC_VU_DANG, rdNGAY_VAO_DANG_DB, rdNGAY_VAO_DANG)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
-    Private Sub ckCONG_DOAN_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckCONG_DOAN.CheckedChanged
+    'Private Sub ckCONG_DOAN_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckCONG_DOAN.CheckedChanged
 
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
 
-            If (ckCONG_DOAN.Checked) Then
-                EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
-            Else
-                EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
-                ClearControlValue(ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If (ckCONG_DOAN.Checked) Then
+    '            EnableControlAll(True, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+    '        Else
+    '            EnableControlAll(False, ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+    '            ClearControlValue(ckDOAN_PHI, rtCHUC_VU_DOAN, rdNGAY_VAO_DOAN)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
-    Private Sub ckBanTT_ND_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckBanTT_ND.CheckedChanged
+    'Private Sub ckBanTT_ND_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckBanTT_ND.CheckedChanged
 
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
 
-            If (ckBanTT_ND.Checked) Then
-                EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
-            Else
-                EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
-                ClearControlValue(rtCV_BANTT, rdNgay_TG_BanTT)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If (ckBanTT_ND.Checked) Then
+    '            EnableControlAll(True, rtCV_BANTT, rdNgay_TG_BanTT)
+    '        Else
+    '            EnableControlAll(False, rtCV_BANTT, rdNgay_TG_BanTT)
+    '            ClearControlValue(rtCV_BANTT, rdNgay_TG_BanTT)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
-    Private Sub ckNU_CONG_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckNU_CONG.CheckedChanged
+    'Private Sub ckNU_CONG_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckNU_CONG.CheckedChanged
 
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
 
-            If (ckNU_CONG.Checked) Then
-                EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
-            Else
-                EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
-                ClearControlValue(rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If (ckNU_CONG.Checked) Then
+    '            EnableControlAll(True, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+    '        Else
+    '            EnableControlAll(False, rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+    '            ClearControlValue(rtCV_Ban_Nu_Cong, rdNgay_TG_Ban_Nu_Cong)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
-    Private Sub ckQD_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckQD.CheckedChanged
+    'Private Sub ckQD_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckQD.CheckedChanged
 
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
 
-            If (ckQD.Checked) Then
-                EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
-            Else
-                EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
-                ClearControlValue(rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If (ckQD.Checked) Then
+    '            EnableControlAll(True, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+    '        Else
+    '            EnableControlAll(False, rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+    '            ClearControlValue(rdNgay_Nhap_Ngu_QD, rdNgay_Xuat_Ngu_QD, rtDV_Xuat_Ngu_QD)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
-    Private Sub ckThuong_Binh_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckThuong_Binh.CheckedChanged
+    'Private Sub ckThuong_Binh_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ckThuong_Binh.CheckedChanged
 
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
 
-            If (ckThuong_Binh.Checked) Then
-                EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
-            Else
-                EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
-                ClearControlValue(cbHang_Thuong_Binh, cbGD_Chinh_Sach)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            'DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    '        If (ckThuong_Binh.Checked) Then
+    '            EnableControlAll(True, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+    '        Else
+    '            EnableControlAll(False, cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+    '            ClearControlValue(cbHang_Thuong_Binh, cbGD_Chinh_Sach)
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        'DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
 #End Region
 

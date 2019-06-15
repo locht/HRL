@@ -934,10 +934,9 @@ Public Class ctrlHU_ContractNewEdit
         rep.GetComboList(ListComboData)
         FillDropDownList(cboContractType, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID", Common.Common.SystemLanguage, False)
         rep.Dispose()
-        cboStatus.DataSource = Status()
-        cboStatus.DataTextField = "Text"
-        cboStatus.DataValueField = "Value"
-        cboStatus.SelectedIndex = 0
+        Dim dtData As New DataTable
+        dtData = rep.GetOtherList("CONTRACT_STATUS", True)
+        FillRadCombobox(cboStatus, dtData, "NAME", "ID", True)
     End Sub
     ''' <lastupdate>
     ''' 06/07/2017 17:53
