@@ -424,6 +424,8 @@
         function OpenEditWindow() {
             var valueEmp = document.getElementById("employeeTemp").value;
             var valueDay = document.getElementById("rdDay").value;
+            var cboperiod = $find('<%=cboPeriod.ClientID %>');
+            var period_id = cboperiod.get_selectedItem().get_value();
             var valueManual = document.getElementById("ManualCode").value;
             if (document.getElementById("StatusScanColumn").value == "1" || document.getElementById("StatusScanColumn").value == "") {
                 var m = 'Bạn chọn không đúng cột cần sửa';
@@ -431,7 +433,7 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
             }
-            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlTime_TimeSheet_CCTEdit&group=Business&VIEW=TRUE&FormType=0&EMPLOYEE_ID=' + valueEmp + '&WORKINGDAY=' + valueDay + '&ManualCode=' + valueManual + '&noscroll=1', "rwPopup");
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlTime_TimeSheet_CCTEdit&group=Business&VIEW=TRUE&FormType=0&EMPLOYEE_ID=' + valueEmp + '&WORKINGDAY=' + valueDay + '&PERIOD_ID=' + period_id + '&ManualCode=' + valueManual + '&noscroll=1', "rwPopup");
             oWindow.setSize(550, 350);
             oWindow.center();
         }
@@ -491,10 +493,13 @@
                 setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 return;
             }
+            debugger;
+            var cboperiod = $find('<%=cboPeriod.ClientID %>');
+            var period_id = cboperiod.get_selectedItem().get_value();
             var valueEmp = document.getElementById("employeeTemp").value;
             var valueDay = document.getElementById("rdDay").value;
             var valueManual = document.getElementById("ManualCode").value;
-            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlTime_TimeSheet_CCTEdit&group=Business&VIEW=TRUE&FormType=0&EMPLOYEE_ID=' + valueEmp + '&WORKINGDAY=' + valueDay + '&ManualCode=' + valueManual + '&noscroll=1', "rwPopup");
+            var oWindow = radopen('Dialog.aspx?mid=Attendance&fid=ctrlTime_TimeSheet_CCTEdit&group=Business&VIEW=TRUE&FormType=0&EMPLOYEE_ID=' + valueEmp + '&WORKINGDAY=' + valueDay + '&PERIOD_ID=' + period_id + '&ManualCode=' + valueManual + '&noscroll=1', "rwPopup");
             oWindow.setSize(550, 350);
             oWindow.center();
         }
@@ -552,4 +557,3 @@
 
     </script>
 </tlk:radscriptblock>
-s

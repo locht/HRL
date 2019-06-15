@@ -860,6 +860,7 @@ Partial Public Class AttendanceRepository
                                            .P_TODATE = objLeave.END_DATE,
                                            .P_EMP_ID = objLeave.EMPLOYEE_ID,
                                            .P_MANUAL_ID = objLeave.MANUAL_ID,
+                                           .P_PERIOD_ID = objLeave.PERIOD_ID,
                                            .P_USERNAME = log.Username.ToUpper})
             End Using
             Return True

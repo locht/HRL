@@ -38,6 +38,16 @@ Public Class ctrlTime_TimeSheet_CCTEdit
             ViewState(Me.ID & "_Employee_id") = value
         End Set
     End Property
+
+    Property Period_id As Integer
+        Get
+            Return ViewState(Me.ID & "_Period_id")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_Period_id") = value
+        End Set
+    End Property
+
     Property _Value As Decimal?
         Get
             Return ViewState(Me.ID & "_Value")
@@ -253,6 +263,9 @@ Public Class ctrlTime_TimeSheet_CCTEdit
                     'End If
 
                     obj = New AT_TIME_TIMESHEET_DAILYDTO
+                    If IsNumeric(Request.Params("PERIOD_ID")) Then
+                        obj.PERIOD_ID = Request.Params("PERIOD_ID")
+                    End If
                     obj.EMPLOYEE_ID = Employee_id
                     obj.FROM_DATE = rdFromDay.SelectedDate
                     obj.END_DATE = rdToDay.SelectedDate
