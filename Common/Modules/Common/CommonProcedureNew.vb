@@ -8,7 +8,6 @@ Imports Common.CommonBusiness
 
 Public Class CommonProcedureNew
     Private rep As New HistaffFrameworkRepository
-
     Function IMPORT_APPROVE_SETUP_ORG(DocXml As String, User As UserLog) As Boolean
         Try
             Dim objects = rep.ExecuteStoreScalar("PKG_COMMON_LIST.IMPORT_APPROVE_SETUP_ORG",

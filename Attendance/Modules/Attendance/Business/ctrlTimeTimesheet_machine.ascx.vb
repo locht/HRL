@@ -9,7 +9,7 @@ Imports Attendance.AttendanceBusiness
 Imports WebAppLog
 Public Class ctrlTimeTimesheet_machine
     Inherits Common.CommonView
-
+    Private store As New CommonProcedureNew
     Public WithEvents AjaxManager As RadAjaxManager
     Public Property AjaxManagerId As String
     Dim _myLog As New MyLog()
