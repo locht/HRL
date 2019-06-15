@@ -869,7 +869,7 @@ Partial Class AttendanceRepository
         End Using
     End Function
 
-    Public Function Del_WorkSign_ByEmp(ByVal employee_id As Decimal, ByVal p_From As Date, ByVal p_to As Date) As Boolean
+    Public Function Del_WorkSign_ByEmp(ByVal employee_id As String, ByVal p_From As Date, ByVal p_to As Date) As Boolean
         Using rep As New AttendanceBusinessClient
             Try
                 Return rep.Del_WorkSign_ByEmp(employee_id, p_From, p_to)

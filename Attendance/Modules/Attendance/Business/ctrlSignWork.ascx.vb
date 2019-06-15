@@ -473,14 +473,20 @@ Public Class ctrlSignWork
                     UpdateControlState()
                 Case TOOLBARITEM_DELETE
                     If rgSignWork.SelectedItems.Count > 0 Then
+                        Dim str_id As String = ""
                         For idx = 0 To rgSignWork.SelectedItems.Count - 1
                             Dim item As GridDataItem = rgSignWork.SelectedItems(idx)
                             Dim slItem As GridDataItem
-                            Dim id As String
                             slItem = rgSignWork.SelectedItems(idx)
-                            id = slItem("ID").Text
-                            psp.CHECK_SEND_APPROVE(id)
+                            str_id = str_id + "," + slItem.GetDataKeyValue("ID").ToString()
                         Next
+                        If (str_id.Length > 0) Then
+                            Dim str_temp As String = ""
+                            str_temp = str_id.Substring(1, str_id.Length - 1)
+
+                            psp.INSERT_ID_BY_DELETE_SIGN_WORK(str_temp)
+                            Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlSignWorkDelete&group=Business&FormType=1&ID=1&periodid=" + cboPeriodId.SelectedValue)
+                        End If
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub

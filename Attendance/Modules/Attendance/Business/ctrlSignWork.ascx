@@ -318,17 +318,19 @@
                 // Nếu nhấn nút SAVE thì resize
                 // ResizeSplitter();
             } else if (item.get_commandName() == "DELETE") {
-                var bCheck = $find('<%= rgSignWork.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                }
-                else {
-                    OpenDeleteWindow();
-                    args.set_cancel(true);
-                }
+                enableAjax = false;
+//                var bCheck = $find('<%= rgSignWork.ClientID %>').get_masterTableView().get_selectedItems().length;
+//                if (bCheck == 0) {
+//                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+//                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+//                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+//                    args.set_cancel(true);
+//                }
+//                else {
+//                    OpenDeleteWindow();
+//                    args.set_cancel(true);
+                //                }
+        
             }
             else {
                 // Nếu nhấn các nút khác thì resize default
@@ -353,6 +355,7 @@
             oWindow.center();
         }
         function OpenDeleteWindow() {
+            debugger;
             var grid = $find('<%# rgSignWork.ClientID %>');
             var gridSelected = grid.get_masterTableView().get_selectedItems();
             var id = 0

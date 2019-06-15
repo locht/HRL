@@ -16,6 +16,24 @@ Partial Class AttendanceStoreProcedure
         End If
         Return dt
     End Function
+    Public Function INSERT_ID_BY_DELETE_SIGN_WORK(ByVal listID As String) As DataTable
+        Dim dt As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.INSERT_ID_SIGN_WORK_BY_DELETE", New List(Of Object)(New Object() {listID}))
+        'Return ds
+        'If ds IsNot Nothing Then
+        '    dt = ds.Tables(0)
+        'End If
+        Return dt
+    End Function
+    Public Function SELECT_ID_BY_DELETE_SIGN_WORK(ByVal Index As Integer) As DataTable
+        Dim dt As DataTable
+        Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.SELECT_ID_BY_DELETE_SIGN_WORK", New List(Of Object)(New Object() {Index}))
+
+        If ds IsNot Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
     Public Function CHECK_DELETE_SIGNWORK(ByVal listID As String) As DataTable
         Dim dt As DataTable
         Dim ds As DataSet = rep.ExecuteToDataSet("PKG_AT_ATTENDANCE_PORTAL.CHECK_DELETE_SIGNWORK", New List(Of Object)(New Object() {listID}))
