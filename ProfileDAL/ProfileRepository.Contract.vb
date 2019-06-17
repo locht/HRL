@@ -825,9 +825,9 @@ Partial Class ProfileRepository
             Dim item As Decimal = 0
             For idx = 0 To listID.Count - 1
                 item = listID(idx)
-                Dim objContractData As ContractDTO
                 Dim objContract = (From p In Context.HU_CONTRACT Where item = p.ID).FirstOrDefault
-                objContractData.ID = objContract.ID
+                Dim objContractData As New ContractDTO
+                objContractData.ID = item
                 objContractData.CONTRACT_NO = objContract.CONTRACT_NO
                 objContractData.CONTRACTTYPE_ID = objContract.CONTRACT_TYPE_ID
                 objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
@@ -849,6 +849,7 @@ Partial Class ProfileRepository
                 'objContractData.
                 If objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.WAIT_APPROVE_ID Then
                     objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
+                    objContract.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
                     ApproveContract(objContractData)
                     If IsFirstContract(objContractData) Then
                         InsertDecision(objContractData)
