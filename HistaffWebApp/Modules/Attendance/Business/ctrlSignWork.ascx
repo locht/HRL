@@ -328,18 +328,18 @@
                 // Nếu nhấn nút SAVE thì resize
                 // ResizeSplitter();
             } else if (item.get_commandName() == "DELETE") {
-            
-                var bCheck = $find('<%= rgSignWork.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 10000);
-                    args.set_cancel(true);
-                }
-                else {
-                    OpenDeleteWindow();
-                    args.set_cancel(true);
-                }
+                enableAjax = false;
+//                var bCheck = $find('<%= rgSignWork.ClientID %>').get_masterTableView().get_selectedItems().length;
+//                if (bCheck == 0) {
+//                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
+//                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
+//                    setTimeout(function () { $.noty.close(n.options.id); }, 10000);
+//                    args.set_cancel(true);
+//                }
+//                else {
+//                    OpenDeleteWindow();
+//                    args.set_cancel(true);
+//                }
             }
             else {
                 // Nếu nhấn các nút khác thì resize default
@@ -364,6 +364,7 @@
             oWindow.center(); */
         }
         function OpenDeleteWindow() {
+            debugger;
             var grid = $find('<%# rgSignWork.ClientID %>');
             var gridSelected = grid.get_masterTableView().get_selectedItems();
             var id = 0
@@ -371,6 +372,18 @@
             if (gridSelected != "") {
                 id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             }
+
+//            var grid = $find('<%= rgSignWork.ClientID %>');
+//            var masterTableView = grid.get_masterTableView();
+
+//            var selectedItems = masterTableView.get_selectedItems();
+//            var result = "";
+
+//            for (var i = 0; i < selectedItems.length; i++) {
+//                var item = selectedItems[i];
+//                alert(item.getDataKeyValue('ID'))
+//            }
+
             if (id > 0) {
                 var m;
                 var cbo = $find("<%# cboPeriodId.ClientID %>");
