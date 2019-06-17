@@ -7059,7 +7059,8 @@ Partial Public Class AttendanceRepository
     Public Function CHECK_PERIOD_CLOSE(ByVal periodid As Integer) As Integer
         Try
 
-            Dim query = (From p In Context.AT_PERIOD.Where(Function(f) f.ID = periodid)).Select(Function(f) f.STATUS).FirstOrDefault
+            Dim query = (From p In Context.AT_PERIOD.Where(Function(f) f.ID = periodid)
+                         From o In Context.AT_ORG_PERIOD.Where(Function(f) f.PERIOD_ID = p.ID)).Select(Function(f) f.o.STATUSCOLEX).FirstOrDefault
 
             Return query
         Catch ex As Exception

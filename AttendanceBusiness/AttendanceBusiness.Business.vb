@@ -210,6 +210,7 @@ Namespace AttendanceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        
         Public Function ValidateWORKSIGN(ByVal objWORKSIGN As AT_WORKSIGNDTO) As Boolean Implements ServiceContracts.IAttendanceBusiness.ValidateWORKSIGN
             Using rep As New AttendanceRepository
                 Try
@@ -256,7 +257,7 @@ Namespace AttendanceBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function Del_WorkSign_ByEmp(ByVal employee_id As Decimal, ByVal p_From As Date, ByVal p_to As Date) As Boolean Implements ServiceContracts.IAttendanceBusiness.Del_WorkSign_ByEmp
+        Public Function Del_WorkSign_ByEmp(ByVal employee_id As String, ByVal p_From As Date, ByVal p_to As Date) As Boolean Implements ServiceContracts.IAttendanceBusiness.Del_WorkSign_ByEmp
             Using rep As New AttendanceRepository
                 Try
 

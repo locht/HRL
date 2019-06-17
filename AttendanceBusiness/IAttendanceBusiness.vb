@@ -450,7 +450,7 @@ Namespace AttendanceBusiness.ServiceContracts
         <OperationContract()>
         Function GETSIGNDEFAULT(ByVal param As ParamDTO, ByVal log As UserLog) As DataTable
         <OperationContract()>
-        Function Del_WorkSign_ByEmp(ByVal employee_id As Decimal, ByVal p_From As Date, ByVal p_to As Date) As Boolean
+        Function Del_WorkSign_ByEmp(ByVal employee_id As String, ByVal p_From As Date, ByVal p_to As Date) As Boolean
 #End Region
 
 #Region "ProjectAssign"

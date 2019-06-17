@@ -4864,6 +4864,16 @@ Partial Public Class AttendanceRepository
             Throw ex
         End Try
     End Function
+
+    '' <summary>
+    ''' Sử dụng để Delete
+    ''' </summary>
+    ''' <param name="dtData"></param>
+    ''' <param name="period_id"></param>
+    ''' <param name="log"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+
     ''' <summary>
     ''' Thêm mới xếp ca làm việc
     ''' </summary>
@@ -5048,7 +5058,7 @@ Partial Public Class AttendanceRepository
     ''' <param name="p_to"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function Del_WorkSign_ByEmp(ByVal employee_id As Decimal, ByVal p_From As Date, ByVal p_to As Date) As Boolean
+    Public Function Del_WorkSign_ByEmp(ByVal employee_id As String, ByVal p_From As Date, ByVal p_to As Date) As Boolean
         Try
             Using cls As New DataAccess.QueryData
                 cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.DELETE_WORKSIGN",
@@ -5090,8 +5100,6 @@ Partial Public Class AttendanceRepository
             Throw ex
 
         End Try
-
-
     End Function
 #End Region
 
