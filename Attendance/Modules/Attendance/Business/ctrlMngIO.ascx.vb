@@ -12,6 +12,37 @@ Imports System.Reflection
 
 Public Class ctrlMngIO
     Inherits Common.CommonView
+#Region "Properties"
+
+    ''' <summary>
+    ''' Obj isLoadedPara
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property isLoadedPara As Decimal
+        Get
+            Return ViewState(Me.ID & "_isLoadedPara")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_isLoadedPara") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Obj CheckLoad
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property CheckLoad As Decimal
+        Get
+            Return ViewState(Me.ID & "_CheckLoad")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_CheckLoad") = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' ctrlOrgPopup
@@ -43,7 +74,7 @@ Public Class ctrlMngIO
     Public repProGram As New CommonProgramsRepository
     Public clrConverter As New Drawing.ColorConverter
     Public Shared lstParaValueShare As List(Of Object)
-#Region "Properties"
+
 
     ''' <summary>
     ''' Obj LoadFirstAfterCal
@@ -338,17 +369,19 @@ Public Class ctrlMngIO
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            'If Not IsPostBack Then
-            '    chkOnlyOrgSelected.Checked = False
-            'End If
+            If programID <> -1 Then
+                LoadAllParameterRequest()
+            End If
+            CheckLoad = New Decimal
+            CheckLoad = 1
+            isLoadedPara = 0
+
             ctrlOrganization.AutoPostBack = True
             ctrlOrganization.LoadDataAfterLoaded = True
             ctrlOrganization.OrganizationType = OrganizationType.OrganizationLocation
             ctrlOrganization.CheckBoxes = TreeNodeTypes.None
-
             Refresh()
             UpdateControlState()
-
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -534,7 +567,7 @@ Public Class ctrlMngIO
     Private Sub ctrlYear_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYear.SelectedIndexChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
+        Dim repS As New AttendanceStoreProcedure
         Try
             Dim dtData As List(Of AT_PERIODDTO)
             Dim rep As New AttendanceRepository
@@ -565,6 +598,18 @@ Public Class ctrlMngIO
                 End If
             End If
 
+            If Not String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                .S_ORG_ID = strOrgs,
+                                                .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                Dim btnEnable As Boolean = False
+                btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                CType(_toolbar.Items(1), RadToolBarButton).Enabled = btnEnable
+            End If
+
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -581,7 +626,7 @@ Public Class ctrlMngIO
     Private Sub cboPeriod_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboPeriod.SelectedIndexChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
+        Dim repS As New AttendanceStoreProcedure
         Try
             Dim rep As New AttendanceRepository
             Dim period As New AT_PERIODDTO
@@ -595,6 +640,17 @@ Public Class ctrlMngIO
 
                 rdtungay.SelectedDate = p.START_DATE
                 rdDenngay.SelectedDate = p.END_DATE
+
+
+                Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                .S_ORG_ID = strOrgs,
+                                                .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                Dim btnEnable As Boolean = False
+                btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                CType(_toolbar.Items(1), RadToolBarButton).Enabled = btnEnable
             End If
             rgMngIO.Rebind()
             'ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
@@ -704,9 +760,21 @@ Public Class ctrlMngIO
     ''' <remarks></remarks>
     Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrganization.SelectedNodeChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim repS As New AttendanceStoreProcedure
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
+            If Not String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                .S_ORG_ID = strOrgs,
+                                                .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                Dim btnEnable As Boolean = False
+                btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                CType(_toolbar.Items(1), RadToolBarButton).Enabled = btnEnable
+            End If
+
             rgMngIO.CurrentPageIndex = 0
             rgMngIO.Rebind()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1250,13 +1318,6 @@ Public Class ctrlMngIO
         End Try
     End Sub
 
-    'Private Sub rgMngIO_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgMngIO.ItemDataBound
-    '    If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-    '        Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-    '        datarow("ORG_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_DESC"))
-    '    End If
-    'End Sub
-
 #End Region
 
 #Region "Custom"
@@ -1290,11 +1351,10 @@ Public Class ctrlMngIO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-
             'Kiem tra: neu program nay chi chay 1 luc duoc 1 cai (ISOLATION_PROGRAM : 1) thi exit
             '          neu program chay duoc dong` thoi --> kiem tra: (ISOLATION_USER : 1) bao' da~ co' user chay program nay roi
             Dim log = UserLogHelper.GetCurrentLogUser()
-            Dim RunProgramCheck = repProGram.CheckRunProgram(99999, log.Username)
+            Dim RunProgramCheck = repProGram.CheckRunProgram(programID, log.Username)
             Select Case RunProgramCheck
                 Case 0 'duoc phep chay --> do anything
                     Return True
@@ -1332,63 +1392,39 @@ Public Class ctrlMngIO
                     lblStatus.Text = repProGram.StatusString("Pending")
                     hidRequestID.Value = requestID
                     lblRequest.Text = requestID
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_PENDING), Drawing.Color)
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
-                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_PENDING), Drawing.Color)
-                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = False
                 Case "R"
                     lblStatus.Text = repProGram.StatusString("Running")
                     hidRequestID.Value = requestID
                     lblRequest.Text = requestID
+                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_RUNNING), Drawing.Color)
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
-                    lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_RUNNING), Drawing.Color)
-                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = False
                 Case "C"
                     lblStatus.Text = repProGram.StatusString("Complete")
                     hidRequestID.Value = requestID
                     lblRequest.Text = requestID
-                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                     lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_COMPLETE), Drawing.Color)
                     TimerRequest.Enabled = False
-                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
                     CurrentState = STATE_DETAIL
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
                     Run()
                 Case "CW"
                     lblStatus.Text = repProGram.StatusString("CompleteWarning")
                     hidRequestID.Value = requestID
                     lblRequest.Text = requestID
-                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                     lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_COMPLETE_WARNING), Drawing.Color)
                     TimerRequest.Enabled = False
-                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
                     CurrentState = STATE_DEACTIVE
                 Case "CPE" 'lỗi phần tham số truyền vào
                     lblStatus.Text = repProGram.StatusString("ParameterError")
                     hidRequestID.Value = requestID
                     lblRequest.Text = requestID
-                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                     lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_COMPLETE_WARNING), Drawing.Color)
                     TimerRequest.Enabled = False
-                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
                     Dim objLog As Object = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.PRO_GET_LOG_FILE", New List(Of Object)(New Object() {requestID, FrameworkUtilities.OUT_STRING}))
                     Dim logDoc As String = objLog(0).ToString()
                     ShowMessage(logDoc, Framework.UI.Utilities.NotifyType.Warning)
@@ -1397,16 +1433,11 @@ Public Class ctrlMngIO
                     lblStatus.Text = repProGram.StatusString("Error")
                     hidRequestID.Value = requestID
                     lblRequest.Text = requestID
-                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
-                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(2), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(3), RadToolBarButton).Enabled = True
                     lblStatus.ForeColor = CType(clrConverter.ConvertFromString(CMConstant.COLOR_ERROR), Drawing.Color)
                     TimerRequest.Enabled = False
-                    CType(Me.MainToolBar.Items(4), RadToolBarButton).Enabled = False
-                    CType(Me.MainToolBar.Items(5), RadToolBarButton).Enabled = True
                     CurrentState = STATE_DEACTIVE
-
+                    CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
+                    CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                      CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1451,27 +1482,7 @@ Public Class ctrlMngIO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            'get store out with program id
-            Dim rep As New HistaffFrameworkRepository
-            Dim lstParaValue As List(Of Object)
-            Dim lstlst As New List(Of List(Of Object))
-            Dim obj As Object = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.READ_PROGRAM_WITH_CODE", New List(Of Object)(New Object() {"CAL_SUMMARY_DATA_INOUT", FrameworkUtilities.OUT_STRING}))
-            programID = Int32.Parse(obj(0).ToString())
-            lstlst = FrameworkUtilities.CreateParameterList(New With {.P_PROGRAM_ID = programID, .P_STORE_OUT = FrameworkUtilities.OUT_CURSOR})
-            Dim ds = rep.ExecuteStore("PKG_HCM_SYSTEM.PRO_GET_STORE_OUT_WITH_PROGRAM", lstlst)
-
-            'rs = rep.ExecuteStoreScalar("PKG_HCM_SYSTEM.PRO_GET_STORE_OUT_WITH_PROGRAM", lstlst)
-            Dim storeOut = ds.Tables(0).Rows(0).ItemArray(0)
-            'execute program with store_out , parameter when user selection
-            lstParaValue = GetListParametersValue()
-            lstParaValueShare = lstParaValue
-            'DataSourceDS = New DataSet
-            'DataSourceDS = rep.ExecuteToDataSet(storeOut, lstParaValue)
-            'If DataSourceDS Is Nothing Then
-            '    ShowMessage(Translate("Không có dữ liệu sau khi tính toán"), NotifyType.Error)
-            'Else
-            '    DesignGrid(DataSourceDS)
-            'End If
+            rgMngIO.Rebind()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1549,9 +1560,17 @@ Public Class ctrlMngIO
         Dim newRequest As New REQUEST_DTO
         Dim index As Decimal = 0
         Try
-
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Dim newParameter As New PARAMETER_DTO
+            Dim value As String = ""
+            newParameter.PARAMETER_NAME = "Kỳ lương"
+            newParameter.SEQUENCE = lstSequence.Rows(index)("SEQUENCE")
+            newParameter.REPORT_FIELD = ""
+            newParameter.IS_REQUIRE = 1
+            newParameter.CODE = ""
+            value = cboPeriod.SelectedValue
+            newParameter.VALUE = value
+            lstParameter.Add(newParameter)
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
@@ -1620,6 +1639,7 @@ Public Class ctrlMngIO
     ''' <param name="parameters"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
+
     Public Shared Function CreateParameterList(Of T)(ByVal parameters As T) As List(Of List(Of Object))
         Dim lstParameter As New List(Of List(Of Object))
 
@@ -1634,6 +1654,33 @@ Public Class ctrlMngIO
 
         Return lstParameter
     End Function
-#End Region
 
+    ''' <lastupdate>
+    ''' 12/07/2017 15:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Load các tham số được truyền 
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub LoadAllParameterRequest()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Dim rep As New HistaffFrameworkRepositoryBase
+            Dim index As Decimal = 0
+            listParameters = New DataTable
+            lstSequence = New DataTable
+            isRunAfterComplete = New DataTable
+            listParameters = (New CommonProgramsRepository).GetAllParameters(programID)
+            lstSequence = listParameters.DefaultView.ToTable(True, "SEQUENCE")
+            isRunAfterComplete = listParameters.DefaultView.ToTable(True, "IS_RUN_AFTER_COMPLETE")
+            'load all parameter but no value
+            
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                          CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+#End Region
 End Class

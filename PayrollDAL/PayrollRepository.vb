@@ -463,7 +463,7 @@ Public Class PayrollRepository
             End If
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iPayroll")
-            Throw ex
+            Return False
         End Try
     End Function
 
