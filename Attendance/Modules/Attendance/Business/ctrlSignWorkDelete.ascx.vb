@@ -15,7 +15,7 @@ Public Class ctrlSignWorkDelete
     Dim _classPath As String = "Attendance/Module/Attendance/Business/" + Me.GetType().Name.ToString()
 
 #Region "Property"
-    Dim emp_id As Decimal
+    Dim emp_id As String
     Dim periodid As Decimal
     ''' <lastupdate>
     ''' 17/08/2017 09:55
@@ -175,7 +175,12 @@ Public Class ctrlSignWorkDelete
                     End Using
                 End If
             End If
-            emp_id = Request.Params("ID")
+            Dim psp As New AttendanceStoreProcedure
+            Dim dt_ID As DataTable = psp.SELECT_ID_BY_DELETE_SIGN_WORK(113)
+            If (dt_ID.Rows.Count > 0) Then
+                'emp_id = Request.Params("ID")
+                emp_id = dt_ID.Rows(0)(0).ToString()
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -205,19 +210,25 @@ Public Class ctrlSignWorkDelete
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_DELETE
-                    Dim _param = New ParamDTO With {.EMPLOYEE_ID = emp_id, _
+                    Dim strArr() As String
+                    strArr = emp_id.Split(",")
+
+                    For idx = 0 To strArr.Length - 1
+                        Dim _param = New ParamDTO With {.EMPLOYEE_ID = Convert.ToDecimal(strArr(idx)), _
                                                  .FROMDATE = rdFromdate.SelectedDate, _
                                                  .ENDDATE = rdEnddate.SelectedDate}
-                    ' kiem tra ky cong da dong chua?
-                    If rep.IS_PERIODSTATUS_BY_DATE(_param) = False Then
-                        ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thêm/sửa"), NotifyType.Error)
-                        Exit Sub
-                    End If
-                    If (rdFromdate.SelectedDate > rdEnddate.SelectedDate) Then
-                        ShowMessage(Translate("Ngày kết thúc xếp ca phải lớn hơn ngày bắt đầu!"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                    If emp_id <> 0 Then
+                        ' kiem tra ky cong da dong chua?
+                        If rep.IS_PERIODSTATUS_BY_DATE(_param) = False Then
+                            ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thêm/sửa"), NotifyType.Error)
+                            Exit Sub
+                        End If
+                        If (rdFromdate.SelectedDate > rdEnddate.SelectedDate) Then
+                            ShowMessage(Translate("Ngày kết thúc xếp ca phải lớn hơn ngày bắt đầu!"), NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    Next
+                    
+                    If emp_id <> "" Then
                         If rep.Del_WorkSign_ByEmp(emp_id, rdFromdate.SelectedDate, rdEnddate.SelectedDate) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         Else

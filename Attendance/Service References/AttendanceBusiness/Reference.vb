@@ -30482,8 +30482,8 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GETSIGNDEFAULT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GETSIGNDEFAULTResponse")>  _
         Function GETSIGNDEFAULT(ByVal param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmp", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmpResponse")>  _
-        Function Del_WorkSign_ByEmp(ByVal employee_id As Decimal, ByVal p_From As Date, ByVal p_to As Date) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmp", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmpResponse")> _
+        Function Del_WorkSign_ByEmp(ByVal employee_id As String, ByVal p_From As Date, ByVal p_to As Date) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_ProjectAssign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_ProjectAssignResponse")>  _
         Function GET_ProjectAssign(ByVal param As AttendanceBusiness.AT_PROJECT_ASSIGNDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataSet
@@ -32002,7 +32002,7 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GETSIGNDEFAULT(param, log)
         End Function
         
-        Public Function Del_WorkSign_ByEmp(ByVal employee_id As Decimal, ByVal p_From As Date, ByVal p_to As Date) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Del_WorkSign_ByEmp
+        Public Function Del_WorkSign_ByEmp(ByVal employee_id As String, ByVal p_From As Date, ByVal p_to As Date) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.Del_WorkSign_ByEmp
             Return MyBase.Channel.Del_WorkSign_ByEmp(employee_id, p_From, p_to)
         End Function
         

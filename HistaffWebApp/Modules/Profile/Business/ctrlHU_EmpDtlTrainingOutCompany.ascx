@@ -14,7 +14,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <asp:Label runat="server" ID="lbTuThang" Text="Từ tháng"></asp:Label><span class="lbReq">*</span>
+                    <asp:Label runat="server" ID="lbTuThang" Text="Từ tháng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadMonthYearPicker ID="rdTuThang" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
@@ -40,7 +40,6 @@
             <tr>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbGraduateYear" Text="Năm tốt nghiệp"></asp:Label>
-                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <%--<tlk:RadNumericTextBox runat="server" ID="rntGraduateYear1" NumberFormat-DecimalDigits="0"
@@ -60,7 +59,6 @@
                 </td>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbTrainingSchool" Text="Tên trường"></asp:Label>
-                    <span class="lbReq">*</span>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox ID="txtTrainingSchool" runat="server">
