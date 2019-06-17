@@ -22,10 +22,8 @@
                             <asp:Label ID="lblProgram" runat="server" Font-Size="Large" Font-Bold="true">&nbsp;</asp:Label>
                         </td>
                         <td style="width: 100px">
-                            <asp:Label ID="lblRequest" runat="server" Font-Size="Large" Font-Bold="true" Visible="false">&nbsp;</asp:Label>
+                            <asp:Label ID="lblRequest" runat="server" Font-Size="Large" Text ="..." Font-Bold="true" Visible="false">&nbsp;</asp:Label>
                         </td>
-                    </tr>
-                    <tr>
                          <td class="lb" style="padding-right: 5px; padding-left: 20px">
                             <%# Translate("CM_CTRLPROCESS_SCAN_TIME")%>&nbsp;
                         </td>
