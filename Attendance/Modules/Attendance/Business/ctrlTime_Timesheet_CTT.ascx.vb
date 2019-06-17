@@ -318,10 +318,23 @@ Public Class ctrlTime_Timesheet_CTT
     Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrganization.SelectedNodeChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim repS As New AttendanceStoreProcedure
         Try
             If Not IsPostBack Then
                 ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
             Else
+                If Not String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                    Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                    Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                    .S_ORG_ID = strOrgs,
+                                                    .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                    .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                    Dim btnEnable As Boolean = False
+                    btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                    CType(_toolbar.Items(0), RadToolBarButton).Enabled = btnEnable
+                    CType(_toolbar.Items(3), RadToolBarButton).Enabled = btnEnable
+                End If
 
                 rgTimeTimesheet_cct.CurrentPageIndex = 0
                 rgTimeTimesheet_cct.Rebind()
@@ -453,7 +466,7 @@ Public Class ctrlTime_Timesheet_CTT
                                                    Decimal.Parse(ctrlOrganization.CurrentValue), lsEmployee, 0, "")
                         Refresh("UpdateView")
                     End If
-                    
+
                 Case TOOLBARITEM_DELETE
                     If rep.IS_PERIODSTATUS(_param) = False Then
                         ShowMessage(Translate("Kỳ công đã đóng, bạn không thể thực hiện thao tác này"), NotifyType.Error)
@@ -682,6 +695,7 @@ Public Class ctrlTime_Timesheet_CTT
         Dim period As New AT_PERIODDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim repS As New AttendanceStoreProcedure
         Try
             period.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue)
             period.YEAR = Decimal.Parse(cboYear.SelectedValue)
@@ -694,13 +708,25 @@ Public Class ctrlTime_Timesheet_CTT
                     cboPeriod.SelectedValue = periodid.PERIOD_ID.ToString()
                     rdtungay.SelectedDate = periodid.START_DATE
                     rdDenngay.SelectedDate = periodid.END_DATE
-                    rgTimeTimesheet_cct.Rebind()
                 Else
                     cboPeriod.SelectedIndex = 0
                     rdtungay.SelectedDate = CType("01/01/" & cboYear.SelectedValue.ToString(), Date)
                     rdDenngay.SelectedDate = CType("31/01/" & cboYear.SelectedValue.ToString(), Date)
-                    rgTimeTimesheet_cct.Rebind()
                 End If
+
+                If Not String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                    Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                    Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                    .S_ORG_ID = strOrgs,
+                                                    .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                    .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                    Dim btnEnable As Boolean = False
+                    btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                    CType(_toolbar.Items(0), RadToolBarButton).Enabled = btnEnable
+                    CType(_toolbar.Items(3), RadToolBarButton).Enabled = btnEnable
+                End If
+                rgTimeTimesheet_cct.Rebind()
             Else
                 ClearControlValue(rdtungay, rdDenngay)
             End If
@@ -721,6 +747,7 @@ Public Class ctrlTime_Timesheet_CTT
     Private Sub cboPeriod_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboPeriod.SelectedIndexChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        Dim repS As New AttendanceStoreProcedure
         Try
             If cboPeriod.SelectedValue <> "" Then
                 Dim p = (From o In Me.PERIOD Where o.PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue)).FirstOrDefault
@@ -742,6 +769,20 @@ Public Class ctrlTime_Timesheet_CTT
                     End If
                 End If
             End If
+
+            If Not String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                .S_ORG_ID = strOrgs,
+                                                .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                Dim btnEnable As Boolean = False
+                btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                CType(_toolbar.Items(0), RadToolBarButton).Enabled = btnEnable
+                CType(_toolbar.Items(3), RadToolBarButton).Enabled = btnEnable
+            End If
+
             rgTimeTimesheet_cct.Rebind()
             ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
             _myLog.WriteLog(_myLog._info, _classPath, method,

@@ -1365,9 +1365,8 @@ Partial Public Class AttendanceRepository
                         From typeot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OT_TYPE_ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS).DefaultIfEmpty
                         From s In Context.SE_USER.Where(Function(f) f.USERNAME = p.MODIFIED_BY).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Where p.STATUS = 1 And s.IS_APP <> 0
-            'From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
-
 
             'If _filter.IS_NB IsNot Nothing Then
             '    query = query.Where(Function(f) f.p.IS_NB = _filter.IS_NB)
