@@ -166,7 +166,7 @@ Public Class ctrlLeaveRegistrationByManager
                         End If
                     Next
 
-                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_APPROVE)
+                    ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_APPROVE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
