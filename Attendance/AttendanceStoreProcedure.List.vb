@@ -56,4 +56,28 @@ Partial Class AttendanceStoreProcedure
         Dim obj As Object = rep.ExecuteStoreScalar("PKG_AT_LIST.CHECK_VALIDATE", New List(Of Object)(New Object() {type, code, todate, fromdate, OUT_NUMBER}))
         Return Int32.Parse(obj(0).ToString())
     End Function
+
+    ''' <summary>
+    ''' Ktra Dong/Mo bang cong
+    ''' </summary>
+    ''' <param name="P_ORG_ID"></param>
+    ''' <param name="P_PERIOD_ID"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function IS_PERIODSTATUS(ByVal P_ORG_ID As String, ByVal P_PERIOD_ID As Decimal?) As Boolean
+        Dim rs As Boolean = False
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_ATTENDANCE_LIST.IS_PERIODSTATUS", New List(Of Object)(New Object() {P_ORG_ID, P_PERIOD_ID}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+            If dt.Rows.Count > 0 Then
+                rs = True
+            Else
+                rs = False
+            End If
+        Else
+            rs = False
+        End If
+        Return rs
+    End Function
 End Class

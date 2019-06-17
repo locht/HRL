@@ -534,7 +534,7 @@ Public Class ctrlMngIO
     Private Sub ctrlYear_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboYear.SelectedIndexChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
+        Dim repS As New AttendanceStoreProcedure
         Try
             Dim dtData As List(Of AT_PERIODDTO)
             Dim rep As New AttendanceRepository
@@ -565,6 +565,18 @@ Public Class ctrlMngIO
                 End If
             End If
 
+            If Not String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                .S_ORG_ID = strOrgs,
+                                                .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                Dim btnEnable As Boolean = False
+                btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                CType(_toolbar.Items(1), RadToolBarButton).Enabled = btnEnable
+            End If
+
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -581,7 +593,7 @@ Public Class ctrlMngIO
     Private Sub cboPeriod_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboPeriod.SelectedIndexChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
+        Dim repS As New AttendanceStoreProcedure
         Try
             Dim rep As New AttendanceRepository
             Dim period As New AT_PERIODDTO
@@ -595,6 +607,17 @@ Public Class ctrlMngIO
 
                 rdtungay.SelectedDate = p.START_DATE
                 rdDenngay.SelectedDate = p.END_DATE
+
+
+                Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                .S_ORG_ID = strOrgs,
+                                                .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                Dim btnEnable As Boolean = False
+                btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                CType(_toolbar.Items(1), RadToolBarButton).Enabled = btnEnable
             End If
             rgMngIO.Rebind()
             'ctrlOrganization.SetColorPeriod(cboPeriod.SelectedValue, PeriodType.AT)
@@ -704,9 +727,21 @@ Public Class ctrlMngIO
     ''' <remarks></remarks>
     Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrganization.SelectedNodeChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim repS As New AttendanceStoreProcedure
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
+            If Not String.IsNullOrEmpty(cboPeriod.SelectedValue) Then
+                Dim strOrgs As String = String.Join(",", (From row In ctrlOrganization.GetAllChild(ctrlOrganization.CurrentValue) Select row).ToArray)
+                Dim _param = New ParamDTO With {.ORG_ID = Decimal.Parse(ctrlOrganization.CurrentValue),
+                                                .S_ORG_ID = strOrgs,
+                                                .PERIOD_ID = Decimal.Parse(cboPeriod.SelectedValue),
+                                                .IS_DISSOLVE = ctrlOrganization.IsDissolve}
+
+                Dim btnEnable As Boolean = False
+                btnEnable = repS.IS_PERIODSTATUS(_param.S_ORG_ID, _param.PERIOD_ID)
+                CType(_toolbar.Items(1), RadToolBarButton).Enabled = btnEnable
+            End If
+
             rgMngIO.CurrentPageIndex = 0
             rgMngIO.Rebind()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
