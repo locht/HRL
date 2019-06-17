@@ -820,13 +820,40 @@ Partial Class ProfileRepository
 #Region "Contract"
 
     Public Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
-        Dim objContractData As HU_CONTRACT
+
         Try
             Dim item As Decimal = 0
             For idx = 0 To listID.Count - 1
                 item = listID(idx)
-                objContractData = (From p In Context.HU_CONTRACT Where item = p.ID).SingleOrDefault
-                objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
+                Dim objContractData As ContractDTO
+                Dim objContract = (From p In Context.HU_CONTRACT Where item = p.ID).FirstOrDefault
+                objContractData.ID = objContract.ID
+                objContractData.CONTRACT_NO = objContract.CONTRACT_NO
+                objContractData.CONTRACTTYPE_ID = objContract.CONTRACT_TYPE_ID
+                objContractData.EMPLOYEE_ID = objContract.EMPLOYEE_ID
+                objContractData.START_DATE = objContract.START_DATE
+                objContractData.EXPIRE_DATE = objContract.EXPIRE_DATE
+                objContractData.REMARK = objContract.REMARK
+                objContractData.SIGN_DATE = objContract.SIGN_DATE
+                objContractData.SIGN_ID = objContract.SIGN_ID
+                objContractData.SIGNER_NAME = objContract.SIGNER_NAME
+                objContractData.SIGNER_TITLE = objContract.SIGNER_TITLE
+                objContractData.WORKING_ID = objContract.WORKING_ID
+                objContractData.STATUS_ID = objContract.STATUS_ID
+                objContractData.MORNING_START = objContract.MORNING_START
+                objContractData.MORNING_STOP = objContract.MORNING_STOP
+                objContractData.AFTERNOON_START = objContract.AFTERNOON_START
+                objContractData.AFTERNOON_STOP = objContract.AFTERNOON_STOP
+                objContractData.TITLE_ID = objContract.TITLE_ID
+                objContractData.ORG_ID = objContract.ORG_ID
+                'objContractData.
+                If objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.WAIT_APPROVE_ID Then
+                    objContractData.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID
+                    ApproveContract(objContractData)
+                    If IsFirstContract(objContractData) Then
+                        InsertDecision(objContractData)
+                    End If
+                End If
             Next
             Context.SaveChanges(log)
             Return True
