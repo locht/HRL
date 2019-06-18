@@ -111,7 +111,8 @@ Public Class ctrlLeaveRegistration
     Protected Sub InitControl()
         Try
             Me.MainToolBar = tbarMainToolBar
-            BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, ToolbarItem.Submit, ToolbarItem.Export, ToolbarItem.Seperator, ToolbarItem.Delete)
+            BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit, ToolbarItem.Seperator, ToolbarItem.Submit, ToolbarItem.Export, ToolbarItem.Print, ToolbarItem.Seperator, ToolbarItem.Delete)
+            CType(MainToolBar.Items(5), RadToolBarButton).Text = "In đơn phép"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -176,6 +177,80 @@ Public Class ctrlLeaveRegistration
                             rgMain.ExportExcel(Server, Response, dtDatas, "Leave Record")
                         End If
                     End Using
+                Case CommonMessage.TOOLBARITEM_PRINT
+                    Dim filePath As String = String.Empty
+                    Dim extension As String = String.Empty
+                    Dim path As String = String.Empty
+                    Dim iError As Integer = 0
+                    Dim _IdPhep As Decimal?
+                    Dim _IdEmp As Decimal?
+                    Dim _ToDate As Date?
+
+                    If rgMain.SelectedItems.Count = 0 Then
+                        ShowMessage("Bạn chưa chọn bản ghi nào để in", NotifyType.Warning)
+                        Exit Sub
+                    ElseIf rgMain.SelectedItems.Count > 1 Then
+                        ShowMessage("Bạn chỉ được chọn 1 bản ghi để in", NotifyType.Warning)
+                        Exit Sub
+                    Else
+                        For Each dr As GridDataItem In rgMain.SelectedItems
+                            _IdPhep = Decimal.Parse(dr.GetDataKeyValue("ID").ToString)
+                            _IdEmp = Decimal.Parse(dr.GetDataKeyValue("ID_EMPLOYEE").ToString)
+                            _ToDate = Date.Parse(dr.GetDataKeyValue("TO_DATE").ToString)
+                        Next
+                    End If
+
+                    ' Get Data print DK nghi
+                    Dim table As DataTable
+                    Dim repS As New AttendanceStoreProcedure
+                    table = repS.PRINT_DONPHEP(_IdPhep, _IdEmp, _ToDate)
+
+                    If Not System.IO.Directory.Exists(AppDomain.CurrentDomain.BaseDirectory & "Files\") Then
+                        System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory & "Files\")
+                    Else
+                        Dim dir2 As String() = System.IO.Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory & "Files\")
+                        For Each f2 As String In dir2
+                            Try
+                                System.IO.File.Delete(f2)
+                            Catch ex As Exception
+                            End Try
+                        Next
+                    End If
+
+                    If Not Utilities.GetTemplateLinkFile("DonPhep", "Attendance", filePath, extension, iError) Then
+                        If (iError = 1) Then
+                            ShowMessage("Biểu mẫu không tồn tại", NotifyType.Warning)
+                            Exit Sub
+                        End If
+                    End If
+
+                    Dim fileNameOutput As String = "_DKN_" & Date.Now.ToString("yyyyMMddHHmmss")
+                    If table.Rows.Count = 1 Then   ' Export file 1 page từ 1 file mẫu
+                        fileNameOutput = table.Rows(0)("MASO_NV") & fileNameOutput
+                        Using word As New WordCommon
+                            word.ExportMailMerge(filePath, fileNameOutput, table, Response)
+                        End Using
+                    Else ' Export file nhiều page từ 1 file mẫu
+                        Dim docMutilePage As New Aspose.Words.Document()
+                        docMutilePage.RemoveAllChildren()
+                        fileNameOutput = "ALL" & fileNameOutput
+
+                        For i = 0 To table.Rows.Count - 1
+                            Dim doc As New Aspose.Words.Document(filePath)
+                            doc.MailMerge.Execute(table.Rows(i))
+                            docMutilePage.AppendDocument(doc, Aspose.Words.ImportFormatMode.KeepSourceFormatting)
+                        Next
+
+                        docMutilePage.Save(Response, fileNameOutput & extension,
+                                     Aspose.Words.ContentDisposition.Attachment,
+                                     Aspose.Words.Saving.SaveOptions.CreateSaveOptions(Aspose.Words.SaveFormat.Doc))
+                    End If
+                    'Dim table = GetDataPrintFromGrid(rgRegisterLeave)
+                    'If table.Rows.Count = 0 Then
+                    '    ShowMessage("Bạn chưa chọn bản ghi nào để in", NotifyType.Warning)
+                    '    Exit Sub
+                    'End If
+
                 Case CommonMessage.TOOLBARITEM_SUBMIT
                     Dim listDataCheck As New List(Of AT_PROCESS_DTO)
 
@@ -189,7 +264,7 @@ Public Class ctrlLeaveRegistration
 
                     Next
 
-                   
+
 
 
                     'Dim itemError As New AT_PROCESS_DTO

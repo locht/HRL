@@ -80,4 +80,17 @@ Partial Class AttendanceStoreProcedure
         End If
         Return rs
     End Function
+
+    Public Function PRINT_DONPHEP(ByVal P_ID As Decimal?, ByVal P_EMPLOYEE_ID As Decimal?, ByVal P_DATE_TIME As Date?) As DataTable
+        Dim dt As DataTable
+        Try
+            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_ATTENDANCE_BUSINESS.PRINT_DONPHEP", New List(Of Object)(New Object() {P_ID, P_EMPLOYEE_ID, P_DATE_TIME}))
+            If ds IsNot Nothing Then
+                dt = ds.Tables(0)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
+    End Function
 End Class

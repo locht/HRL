@@ -161,7 +161,9 @@
                     args.set_cancel(true);
                 }
             }
-
+            else if (args.get_item().get_commandName() == "PRINT") {
+                enableAjax = false;
+            }
             else if (args.get_item().get_commandName() == "CREATE") {
                 if ($('#<%= hidValid.ClientID %>').val() == "1") {
                     var m = '<%= Translate(CommonMessage.MESSAGE_EXIST_INFOR) %>';
