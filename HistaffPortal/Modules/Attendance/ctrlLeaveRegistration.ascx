@@ -53,31 +53,38 @@
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" ItemStyle-Width="130px">
-                                <HeaderStyle Width="130px" />
+                                UniqueName="STATUS_NAME" SortExpression="STATUS_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" ItemStyle-Width="100px">
                                 <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="EMPLOYEE_NAME"
-                                UniqueName="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME" ItemStyle-Width="140px">
-                                <HeaderStyle Width="140px" />
+                                UniqueName="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEPARTMENT"
                                 UniqueName="DEPARTMENT" SortExpression="DEPARTMENT" ItemStyle-HorizontalAlign="Center"
-                                ItemStyle-Width="200px">
-                                <HeaderStyle Width="200px" />
+                                ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="JOBTITLE"
                                 UniqueName="JOBTITLE" SortExpression="JOBTITLE" ItemStyle-HorizontalAlign="Center"
-                                ItemStyle-Width="270px">
-                                <HeaderStyle Width="270px" />
+                                ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại nghỉ %>" DataField="SIGN_NAME"
-                                UniqueName="SIGN_NAME" SortExpression="SIGN_NAME" ItemStyle-Width="130px">
-                                <HeaderStyle Width="130px" />
+                                UniqueName="SIGN_NAME" SortExpression="SIGN_NAME" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
+
+                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Ngày làm việc %>" DataField="IS_WORK_DAY" DataType="System.Boolean" FilterControlWidth="30px" 
+                               ItemStyle-Width="30px" ItemStyle-HorizontalAlign="Center"
+                               SortExpression="IS_WORK_DAY" UniqueName="IS_WORK_DAY" >
+                               <HeaderStyle Width="30px" /> 
+                            </tlk:GridCheckBoxColumn>
+
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời gian bắt đầu nghỉ phép %>"
                                 DataField="FROM_DATE" UniqueName="FROM_DATE" SortExpression="FROM_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px">
@@ -102,12 +109,12 @@
                                 <HeaderStyle Width="100px" />
                             </tlk:GridNumericColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lí do nghỉ phép %>" DataField="NOTE"
-                                UniqueName="NOTE" SortExpression="NOTE" ItemStyle-Width="200px">
-                                <HeaderStyle Width="200px" />
+                                UniqueName="NOTE" SortExpression="NOTE" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Người cập nhật %>" DataField="MODIFIED_BY"
-                                UniqueName="MODIFIED_BY" SortExpression="MODIFIED_BY" ItemStyle-Width="140px">
-                                <HeaderStyle Width="140px" />
+                                UniqueName="MODIFIED_BY" SortExpression="MODIFIED_BY" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cập nhật %>" DataField="MODIFIED_DATE"
                                 UniqueName="MODIFIED_DATE" SortExpression="MODIFIED_DATE" DataFormatString="{0:dd/MM/yyyy}"
@@ -115,8 +122,8 @@
                                 <HeaderStyle Width="100px" />
                             </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Lý do không duyệt %>" DataField="REASON"
-                                UniqueName="REASON" SortExpression="REASON" ItemStyle-Width="200px">
-                                <HeaderStyle Width="200px" />
+                                UniqueName="REASON" SortExpression="REASON" ItemStyle-Width="100px">
+                                <HeaderStyle Width="100px" />
                             </tlk:GridBoundColumn>
                         </Columns>
                     </MasterTableView>

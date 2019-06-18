@@ -99,10 +99,87 @@ Partial Class ProfileRepository
             Dim item As Decimal = 0
             For idx = 0 To listID.Count - 1
                 item = listID(idx)
-                objTerData = (From p In Context.HU_TERMINATE Where item = p.ID).SingleOrDefault
-                objTerData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
-                Dim emp As HU_EMPLOYEE = (From p In Context.HU_EMPLOYEE Where p.ID = objTerData.EMPLOYEE_ID).FirstOrDefault
-                emp.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+                Dim objTerminateData As New TerminateDTO
+                Dim objTerminate = (From p In Context.HU_TERMINATE Where p.ID = item).FirstOrDefault
+                objTerminateData.EMPLOYEE_ID = objTerminate.EMPLOYEE_ID
+                objTerminateData.IS_NOHIRE = objTerminate.IS_NOHIRE
+                objTerminateData.UPLOADFILE = objTerminate.UPLOADFILE
+                objTerminateData.FILENAME = objTerminate.FILENAME
+                objTerminateData.LAST_DATE = objTerminate.LAST_DATE
+                objTerminateData.SEND_DATE = objTerminate.SEND_DATE
+                objTerminateData.STATUS_ID = objTerminate.STATUS_ID
+                objTerminateData.TER_REASON_DETAIL = objTerminate.TER_REASON_DETAIL
+                objTerminateData.EMPLOYEE_SENIORITY = objTerminate.EMP_SENIORITY
+                objTerminateData.REMARK = objTerminate.REMARK
+                objTerminateData.MODIFIED_DATE = DateTime.Now
+                objTerminateData.MODIFIED_BY = log.Username
+                objTerminateData.MODIFIED_LOG = log.ComputerName
+
+                objTerminateData.APPROVAL_DATE = objTerminate.APPROVAL_DATE
+                objTerminateData.IDENTIFI_CARD = objTerminate.IDENTIFI_CARD
+                objTerminateData.IDENTIFI_RDATE = objTerminate.IDENTIFI_RDATE
+                objTerminateData.IDENTIFI_STATUS = objTerminate.IDENTIFI_STATUS
+                objTerminateData.IDENTIFI_MONEY = objTerminate.IDENTIFI_MONEY
+                objTerminateData.SUN_CARD = objTerminate.SUN_CARD
+                objTerminateData.SUN_RDATE = objTerminate.SUN_RDATE
+                objTerminateData.SUN_STATUS = objTerminate.SUN_STATUS
+                objTerminateData.SUN_MONEY = objTerminate.SUN_MONEY
+                objTerminateData.INSURANCE_CARD = objTerminate.INSURANCE_CARD
+                objTerminateData.INSURANCE_RDATE = objTerminate.INSURANCE_RDATE
+                objTerminateData.INSURANCE_STATUS = objTerminate.INSURANCE_STATUS
+                objTerminateData.INSURANCE_MONEY = objTerminate.INSURANCE_MONEY
+                objTerminateData.REMAINING_LEAVE = objTerminate.REMAINING_LEAVE
+                objTerminateData.PAYMENT_LEAVE = objTerminate.PAYMENT_LEAVE
+                objTerminateData.AMOUNT_VIOLATIONS = objTerminate.AMOUNT_VIOLATIONS
+                objTerminateData.AMOUNT_WRONGFUL = objTerminate.AMOUNT_WRONGFUL
+                objTerminateData.ALLOWANCE_TERMINATE = objTerminate.ALLOWANCE_TERMINATE
+                objTerminateData.TRAINING_COSTS = objTerminate.TRAINING_COSTS
+                objTerminateData.OTHER_COMPENSATION = objTerminate.OTHER_COMPENSATION
+                objTerminateData.COMPENSATORY_LEAVE = objTerminate.COMPENSATORY_LEAVE
+                objTerminateData.COMPENSATORY_PAYMENT = objTerminate.COMPENSATORY_PAYMENT
+                objTerminateData.EFFECT_DATE = objTerminate.EFFECT_DATE
+                objTerminateData.DECISION_NO = objTerminate.DECISION_NO
+                objTerminateData.SIGN_DATE = objTerminate.SIGN_DATE
+                objTerminateData.SIGN_ID = objTerminate.SIGN_ID
+                objTerminateData.SIGN_NAME = objTerminate.SIGN_NAME
+                objTerminateData.SIGN_TITLE = objTerminate.SIGN_TITLE
+
+                'bỔ XUNG THÊM TRƯỜNG
+                objTerminateData.SALARYMEDIUM = objTerminate.SALARYMEDIUM
+                objTerminateData.YEARFORALLOW = objTerminate.YEARFORALLOW
+                objTerminateData.MONEYALLOW = objTerminate.MONEYALLOW
+                objTerminateData.REMAINING_LEAVE_MONEY = objTerminate.REMAINING_LEAVE_MONEY
+                objTerminateData.IDENTIFI_VIOLATE_MONEY = objTerminate.IDENTIFI_VIOLATE_MONEY
+                objTerminateData.MONEY_RETURN = objTerminate.MONEY_RETURN
+                objTerminateData.ORG_ID = objTerminate.ORG_ID
+                objTerminateData.TITLE_ID = objTerminate.TITLE_ID
+                objTerminateData.TYPE_TERMINATE = objTerminate.TYPE_TERMINATE
+                objTerminateData.SALARYMEDIUM_LOSS = objTerminate.SALARYMEDIUM_LOSS
+                'objTerminateData.Expire_Date = objTerminate.EXPIRE_DATE
+
+
+                Dim lstAll = (From p In Context.HU_TERMINATE_REASON Where p.HU_TERMINATE_ID = objTerminate.ID).ToList
+                For Each row In lstAll
+                    Context.HU_TERMINATE_REASON.DeleteObject(row)
+                Next
+
+                If objTerminateData.lstReason IsNot Nothing Then
+                    For Each obj In objTerminateData.lstReason
+                        Dim allow As New HU_TERMINATE_REASON
+                        allow.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE_REASON.EntitySet.Name)
+                        allow.HU_TERMINATE_ID = objTerminateData.ID
+                        allow.TER_REASON_ID = obj.TER_REASON_ID
+                        allow.DENSITY = obj.DENSITY
+                        Context.HU_TERMINATE_REASON.AddObject(allow)
+                    Next
+                End If
+
+                If objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID And DateTime.Now >= objTerminate.EFFECT_DATE Then
+                    objTerminateData.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                    objTerminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
+                    ApproveTerminate(objTerminateData, log)
+                End If
+                InsertOrUpdateAssetByTerminate(objTerminateData, log)
             Next
             Context.SaveChanges(log)
             Return True

@@ -8,6 +8,11 @@
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
+                UniqueName="DECISION_NO" SortExpression="DECISION_NO" ShowFilterIcon="false"
+                AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
             <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
                 UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECT_DATE"
                 ShowFilterIcon="true ">

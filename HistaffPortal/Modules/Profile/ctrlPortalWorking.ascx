@@ -1,10 +1,15 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalWorking.ascx.vb"
     Inherits="Profile.ctrlPortalWorking" %>
-<tlk:RadGrid PageSize=50 ID="rgWorking" runat="server" Height="350px" AllowFilteringByColumn="true">
+<tlk:RadGrid PageSize=50 ID="rgWorking" runat="server" Height="350px" Width="100%" AllowFilteringByColumn="true">
     <MasterTableView DataKeyNames="ID">
         <Columns>
             <%--<tlk:GridBoundColumn HeaderText="Loại quyết định" DataField="DECISION_TYPE_NAME"
                 UniqueName="DECISION_TYPE_NAME" SortExpression="DECISION_TYPE_NAME" ShowFilterIcon="false"
+                AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
+                UniqueName="DECISION_NO" SortExpression="DECISION_NO" ShowFilterIcon="false"
                 AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
@@ -20,7 +25,7 @@
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
             </tlk:GridDateTimeColumn>
-            <tlk:GridBoundColumn HeaderText= "Chức danh" DataField="TITLE_NAME"
+            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
                 UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
@@ -50,21 +55,18 @@
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle HorizontalAlign="Center" />
             </tlk:GridBoundColumn>--%>
-          
         </Columns>
     </MasterTableView>
 </tlk:RadGrid>
-
 <%--<tlk:RadGrid PageSize=50 ID="rgMain" runat="server" AutoGenerateColumns="False" AllowPaging="True" Visible = "true"
     Height="250px" AllowSorting="True" AllowMultiRowSelection="true" Width="100%">
     <ClientSettings EnableRowHoverStyle="true">
         <Selecting AllowRowSelect="true" />
     </ClientSettings>
-    
     <MasterTableView DataKeyNames="ID" ClientDataKeyNames="NAME,EFFECT_DATE,EXPIRE_DATE"
-         Caption="<%$ Translate: Chức danh kiêm nhiệm %>"> 
+        Caption="Chức danh kiêm nhiệm">
         <Columns>
-            <tlk:GridBoundColumn DataField="ID" Visible="false" />
+             <tlk:GridBoundColumn DataField="ID" Visible="false" />
             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="NAME" UniqueName="NAME"
                 SortExpression="NAME" ItemStyle-HorizontalAlign="Center" />
             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"

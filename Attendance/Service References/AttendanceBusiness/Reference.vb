@@ -94,6 +94,9 @@ Namespace AttendanceBusiness
         Private ID_SIGNField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_WORK_DAYField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private JOBTITLEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -457,6 +460,19 @@ Namespace AttendanceBusiness
                 If (Me.ID_SIGNField.Equals(value) <> true) Then
                     Me.ID_SIGNField = value
                     Me.RaisePropertyChanged("ID_SIGN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_WORK_DAY() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_WORK_DAYField
+            End Get
+            Set
+                If (Me.IS_WORK_DAYField.Equals(value) <> true) Then
+                    Me.IS_WORK_DAYField = value
+                    Me.RaisePropertyChanged("IS_WORK_DAY")
                 End If
             End Set
         End Property
@@ -30482,7 +30498,7 @@ Namespace AttendanceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GETSIGNDEFAULT", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GETSIGNDEFAULTResponse")>  _
         Function GETSIGNDEFAULT(ByVal param As AttendanceBusiness.ParamDTO, ByVal log As Common.CommonBusiness.UserLog) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmp", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmpResponse")> _
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmp", ReplyAction:="http://tempuri.org/IAttendanceBusiness/Del_WorkSign_ByEmpResponse")>  _
         Function Del_WorkSign_ByEmp(ByVal employee_id As String, ByVal p_From As Date, ByVal p_to As Date) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_ProjectAssign", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_ProjectAssignResponse")>  _

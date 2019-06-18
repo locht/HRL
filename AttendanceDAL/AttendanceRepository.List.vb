@@ -6508,7 +6508,8 @@ Partial Public Class AttendanceRepository
                                                                .NOTE = p.NOTE,
                                                             .CREATED_DATE = p.CREATED_DATE,
                                                                .DEPARTMENT = o.NAME_VN,
-            .JOBTITLE = t.NAME_VN
+                                                               .IS_WORK_DAY = If(p.WORK_DAY = 0, False, True),
+                                                                .JOBTITLE = t.NAME_VN
                                                             }
 
             If _filter.ID_EMPLOYEE > 0 Then

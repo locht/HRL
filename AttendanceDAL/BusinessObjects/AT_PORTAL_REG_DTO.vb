@@ -51,4 +51,6 @@
     Public Property MODIFIED_BY As String
 
     Public Property MODIFIED_DATE As Date?
+
+    Public Property IS_WORK_DAY As Boolean?
 End Class

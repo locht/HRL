@@ -1456,6 +1456,13 @@
     <Content Include="ReportTemplates\Attendance\Import\TEMPLATE_QLKeHoachNghiPN.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ReportTemplates\Attendance\Report\AT012.xls" />
+    <Content Include="ReportTemplates\Attendance\Report\AT015.xls" />
+    <None Include="ReportTemplates\Attendance\Report\AT_008.xlsx" />
+    <None Include="ReportTemplates\Attendance\Report\AT_009.xlsx" />
+    <None Include="ReportTemplates\Attendance\Report\AT_010.xls" />
+    <None Include="ReportTemplates\Attendance\Report\AT_011.xls" />
+    <None Include="ReportTemplates\Attendance\Report\Dynamic.xls" />
     <None Include="TemplateDynamic\ContractSupport\5116.doc" />
     <None Include="TemplateDynamic\ContractSupport\5982.doc" />
     <None Include="TemplateDynamic\ContractSupport\6314.doc" />
