@@ -785,7 +785,7 @@ Public Class ctrlHU_ALP
         End Try
     End Function
 
-    Private Function CheckDate(ByVal value As String, ByVal result As Date) As Boolean
+    Private Function CheckDate(ByVal value As String, ByRef result As Date) As Boolean
         Dim dateCheck As Boolean
         If value = "" Or value = "&nbsp;" Then
             value = ""
