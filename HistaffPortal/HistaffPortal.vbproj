@@ -313,6 +313,7 @@
     <None Include="ReportTemplates\Common\Common.xls" />
     <None Include="Styles\fontawesome-webfont.woff" />
     <None Include="Styles\fontawesome-webfont.woff2" />
+    <Content Include="TemplateDynamic\Attendance\DonPhep.doc" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
