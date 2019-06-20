@@ -141,6 +141,8 @@
             <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.Store.HUV_CURRENT_CONTRACT" store:Type="Tables"  />
             <EntitySet Name="HUV_CURRENT_WORKING" EntityType="ProfileModel.Store.HUV_CURRENT_WORKING" store:Type="Tables"  />
             <EntitySet Name="HUV_TERMINATE_CURRENT" EntityType="ProfileModel.Store.HUV_TERMINATE_CURRENT" store:Type="Tables"  />
+            <EntitySet Name="HU_TRANSFER_TERMINATE" EntityType="ProfileModel.Store.HU_TRANSFER_TERMINATE" store:Type="Tables"  />
+            <EntitySet Name="HU_DEBT" EntityType="ProfileModel.Store.HU_DEBT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3347,6 +3349,37 @@
             <Property Name="LAST_DATE" Type="date" Nullable="true" />
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_TRANSFER_TERMINATE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="TERMINATE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_FINISH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTENT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HU_DEBT">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="DEBT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONEY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DEBT_STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="REMARK" Type="nclob" Nullable="false" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -3973,6 +4006,8 @@
           <EntitySet Name="HUV_CURRENT_CONTRACT" EntityType="ProfileModel.HUV_CURRENT_CONTRACT" />
           <EntitySet Name="HUV_CURRENT_WORKING" EntityType="ProfileModel.HUV_CURRENT_WORKING" />
           <EntitySet Name="HUV_TERMINATE_CURRENT" EntityType="ProfileModel.HUV_TERMINATE_CURRENT" />
+          <EntitySet Name="HU_TRANSFER_TERMINATE" EntityType="ProfileModel.HU_TRANSFER_TERMINATE" />
+          <EntitySet Name="HU_DEBT" EntityType="ProfileModel.HU_DEBT" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -7462,6 +7497,37 @@
           <Property Type="DateTime" Name="LAST_DATE" />
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="HU_TRANSFER_TERMINATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TERMINATE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="IS_FINISH" Nullable="true" />
+          <Property Type="Decimal" Name="CONTENT_ID" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HU_DEBT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DEBT_TYPE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="MONEY" Nullable="true" />
+          <Property Type="Decimal" Name="DEBT_STATUS" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10678,6 +10744,39 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_TRANSFER_TERMINATE">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_TRANSFER_TERMINATE)">
+                <MappingFragment StoreEntitySet="HU_TRANSFER_TERMINATE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="TERMINATE_ID" ColumnName="TERMINATE_ID" />
+                    <ScalarProperty Name="IS_FINISH" ColumnName="IS_FINISH" />
+                    <ScalarProperty Name="CONTENT_ID" ColumnName="CONTENT_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="HU_DEBT">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_DEBT)">
+                <MappingFragment StoreEntitySet="HU_DEBT">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="DEBT_TYPE_ID" ColumnName="DEBT_TYPE_ID" />
+                    <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+                    <ScalarProperty Name="DEBT_STATUS" ColumnName="DEBT_STATUS" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -11000,6 +11099,8 @@
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_CONTRACT" Width="1.5" PointX="7.375" PointY="36.25" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING" Width="1.5" PointX="34.375" PointY="21.25" Height="2.7494921874999818" />
         <EntityTypeShape EntityType="ProfileModel.HUV_TERMINATE_CURRENT" Width="1.5" PointX="35.375" PointY="25.25" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TRANSFER_TERMINATE" Width="1.5" PointX="38.25" PointY="28.625" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="1.5" PointX="41.5" PointY="28.75" Height="3.1340950520833353" />
         </Diagram>
     </Diagrams>
   </Designer>
