@@ -1,96 +1,126 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlPortalSalary.ascx.vb"
     Inherits="Profile.ctrlPortalSalary" %>
-<tlk:RadGrid PageSize="50" ID="rgSalary" runat="server" Height="300px" AllowFilteringByColumn="true" Scrolling="X">
+<tlk:RadGrid PageSize="50" ID="rgSalary" runat="server" Height="300px" AllowFilteringByColumn="true"
+    Scrolling="X">
     <MasterTableView DataKeyNames="ID,EFFECT_DATE,EMPLOYEE_ID" ClientDataKeyNames="ID,EFFECT_DATE,EMPLOYEE_ID">
         <Columns>
-            <%--<tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO"
-                UniqueName="DECISION_NO" SortExpression="DECISION_NO" ShowFilterIcon="false"
-                AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
+          <%--  <tlk:GridNumericColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE"
+                SortExpression="EMPLOYEE_CODE" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
-            </tlk:GridBoundColumn>
-            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
-                UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="100%">
-                <HeaderStyle Width="10%" HorizontalAlign="Center" />  
-            </tlk:GridDateTimeColumn>           
-            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" 
-                UniqueName="TITLE_NAME" SortExpression="TITLE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME"
+                SortExpression="EMPLOYEE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="Cấp nhân sự" DataField="STAFF_RANK_NAME"
-                UniqueName="STAFF_RANK_NAME" SortExpression="STAFF_RANK_NAME" ShowFilterIcon="false"
-                AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" FilterControlWidth="100%">
-                <HeaderStyle Width="10%" HorizontalAlign="Center" />
-            </tlk:GridBoundColumn>
-            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
+            <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
                 SortExpression="ORG_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-            <tlk:GridNumericColumn HeaderText="Lương cơ bản" DataField="SAL_BASIC"
-                UniqueName="SAL_BASIC" DataFormatString="{0:n0}" SortExpression="SAL_BASIC"
-                ShowFilterIcon="true">
+            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
+                SortExpression="TITLE_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE" UniqueName="EFFECT_DATE"
+                DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="100%">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+            </tlk:GridDateTimeColumn>
+            <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
+                DataFormatString="{0:dd/MM/yyyy}" FilterControlWidth="100%">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+            </tlk:GridDateTimeColumn>
+            <tlk:GridBoundColumn HeaderText="Nhóm lương" DataField="SAL_TYPE_NAME" UniqueName="SAL_TYPE_NAME"
+                SortExpression="SAL_TYPE_NAME" ShowFilterIcon="true">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="Biểu thuế" DataField="TAX_TABLE_Name" UniqueName="TAX_TABLE_Name"
+                SortExpression="TAX_TABLE_Name" ShowFilterIcon="true">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridBoundColumn>
+            <tlk:GridBoundColumn HeaderText="Thang lương " DataField="SAL_GROUP_NAME" UniqueName="SAL_GROUP_NAME"
+                SortExpression="SAL_GROUP_NAME" ShowFilterIcon="true">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridBoundColumn>
+            <tlk:GridNumericColumn HeaderText="Hệ số" DataField="FACTORSALARY" UniqueName="FACTORSALARY"
+                SortExpression="FACTORSALARY" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
-            <tlk:GridNumericColumn HeaderText="Lương được hưởng" DataField="PERCENTSALARY"
+            <tlk:GridNumericColumn HeaderText="Lương cơ bản" DataField="SAL_BASIC" UniqueName="SAL_BASIC"
+                DataFormatString="{0:n0}" SortExpression="SAL_BASIC" ShowFilterIcon="true">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridNumericColumn HeaderText="% Lương được hưởng" DataField="PERCENTSALARY"
                 UniqueName="PERCENTSALARY" SortExpression="PERCENTSALARY" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
-            <tlk:GridNumericColumn HeaderText="Chi phí hỗ trợ " DataField="COST_SUPPORT"
-                UniqueName="COST_SUPPORT" SortExpression="COST_SUPPORT" ShowFilterIcon="true" DataFormatString="{0:n0}">
+            <tlk:GridNumericColumn HeaderText="Thưởng hiệu quả công việc" DataField="OTHERSALARY2"
+                UniqueName="OTHERSALARY2" SortExpression="OTHERSALARY2" ShowFilterIcon="true"
+                DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
-            <tlk:GridNumericColumn HeaderText="Tổng thu nhập " DataField="SAL_TOTAL"
-                UniqueName="SAL_TOTAL" SortExpression="SAL_TOTAL" ShowFilterIcon="true" DataFormatString="{0:n0}">
+            <tlk:GridNumericColumn HeaderText="Tổng Lương" DataField="SAL_TOTAL" UniqueName="SAL_TOTAL"
+                SortExpression="SAL_TOTAL" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
-            <tlk:GridBoundColumn HeaderText="Thang lương " DataField="SAL_GROUP_NAME" UniqueName="SAL_GROUP_NAME"
-            SortExpression="SAL_GROUP_NAME" ShowFilterIcon="true">
+            <tlk:GridNumericColumn HeaderText="Chi phí hỗ trợ " DataField="COST_SUPPORT" UniqueName="COST_SUPPORT"
+                SortExpression="COST_SUPPORT" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridNumericColumn HeaderText="Trạng thái" DataField="STATUS_NAME" UniqueName="STATUS_NAME"
+                SortExpression="STATUS_NAME" ShowFilterIcon="true" DataFormatString="{0:n0}">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO" UniqueName="DECISION_NO"
+                SortExpression="DECISION_NO" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+            </tlk:GridBoundColumn>
+              <tlk:GridBoundColumn HeaderText="Cấp nhân sự" DataField="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME"
+                SortExpression="STAFF_RANK_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
+                CurrentFilterFunction="Contains" FilterControlWidth="100%">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
             <tlk:GridBoundColumn HeaderText="Ngạch lương " DataField="SAL_LEVEL_NAME" UniqueName="SAL_LEVEL_NAME"
-            SortExpression="SAL_LEVEL_NAME" ShowFilterIcon="true">
+                SortExpression="SAL_LEVEL_NAME" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridBoundColumn>
             <tlk:GridBoundColumn HeaderText="Bậc lương " DataField="SAL_RANK_NAME" UniqueName="SAL_RANK_NAME"
-            SortExpression="SAL_RANK_NAME" ShowFilterIcon="true">
+                SortExpression="SAL_RANK_NAME" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridBoundColumn>
-            <tlk:GridNumericColumn HeaderText="Hệ số lương " DataField="FACTORSALARY"
-                UniqueName="FACTORSALARY" SortExpression="FACTORSALARY" ShowFilterIcon="true" DataFormatString="{0:n0}">
+            <tlk:GridNumericColumn HeaderText="Khoản bổ sung " DataField="OTHERSALARY1" UniqueName="OTHERSALARY1"
+                SortExpression="OTHERSALARY1" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
-            <tlk:GridNumericColumn HeaderText="Khoản bổ sung " DataField="OTHERSALARY1"
-                UniqueName="OTHERSALARY1" SortExpression="OTHERSALARY1" ShowFilterIcon="true" DataFormatString="{0:n0}">
-                <HeaderStyle Width="10%" HorizontalAlign="Center" />
-                <ItemStyle HorizontalAlign="Right" />
-            </tlk:GridNumericColumn>
-            <tlk:GridNumericColumn HeaderText="Hệ số khuyến khích " DataField="OTHERSALARY2"
-                UniqueName="OTHERSALARY2" SortExpression="OTHERSALARY2" ShowFilterIcon="true" DataFormatString="{0:n0}">
-                <HeaderStyle Width="10%" HorizontalAlign="Center" />
-                <ItemStyle HorizontalAlign="Right" />
-            </tlk:GridNumericColumn>
-            <tlk:GridDateTimeColumn HeaderText="Ngày ký " DataField="SIGN_DATE"
-                UniqueName="SIGN_DATE" DataFormatString="{0:dd/MM/yyyy}" SortExpression="SIGN_DATE"
-                ShowFilterIcon="true" FilterControlWidth="100%">
+            <tlk:GridDateTimeColumn HeaderText="Ngày ký " DataField="SIGN_DATE" UniqueName="SIGN_DATE"
+                DataFormatString="{0:dd/MM/yyyy}" SortExpression="SIGN_DATE" ShowFilterIcon="true"
+                FilterControlWidth="100%">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridDateTimeColumn>
             <tlk:GridBoundColumn HeaderText="Người ký " DataField="SIGN_NAME" UniqueName="SIGN_NAME"
-            SortExpression="SIGN_NAME" ShowFilterIcon="true">
+                SortExpression="SIGN_NAME" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridBoundColumn>
             <tlk:GridBoundColumn HeaderText="Chức danh người ký " DataField="SIGN_TITLE" UniqueName="SIGN_TITLE"
-            SortExpression="SIGN_TITLE" ShowFilterIcon="true">
+                SortExpression="SIGN_TITLE" ShowFilterIcon="true">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridBoundColumn>--%>
@@ -108,9 +138,11 @@
                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
             </tlk:GridNumericColumn>
             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
-                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}"/>
+                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
+                DataFormatString="{0:dd/MM/yyyy}" />
             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hết hiệu lực %>" DataField="EXPIRE_DATE"
-                ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE" DataFormatString="{0:dd/MM/yyyy}"/>
+                ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
+                DataFormatString="{0:dd/MM/yyyy}" />
             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURRANCE"
                 SortExpression="IS_INSURRANCE" UniqueName="IS_INSURRANCE" HeaderStyle-Width="100px">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />

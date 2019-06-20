@@ -2371,11 +2371,13 @@ Partial Class ProfileRepository
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                           From sal_type In Context.PA_SALARY_TYPE.Where(Function(f) p.SAL_TYPE_ID = f.ID).DefaultIfEmpty
                         From sal_group In Context.PA_SALARY_GROUP.Where(Function(f) p.SAL_GROUP_ID = f.ID).DefaultIfEmpty
                         From sal_level In Context.PA_SALARY_LEVEL.Where(Function(f) p.SAL_LEVEL_ID = f.ID).DefaultIfEmpty
                         From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                         From deci_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DECISION_TYPE_ID).DefaultIfEmpty
+                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
                         From staffrak In Context.HU_STAFF_RANK.Where(Function(f) f.ID = p.STAFF_RANK_ID).DefaultIfEmpty
                         Where p.IS_WAGE = True And p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID
                         Order By p.EFFECT_DATE Descending
@@ -2387,6 +2389,7 @@ Partial Class ProfileRepository
                                                     .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                     .EMPLOYEE_NAME = e.FULLNAME_VN,
                                                     .ORG_NAME = o.NAME_VN,
+                                                     .SAL_TYPE_NAME = sal_type.NAME,
                                                     .ORG_DESC = o.DESCRIPTION_PATH,
                                                     .TITLE_NAME = t.NAME_VN,
                                                     .EFFECT_DATE = p.EFFECT_DATE,
@@ -2398,6 +2401,7 @@ Partial Class ProfileRepository
                                                     .SAL_BASIC = p.SAL_BASIC,
                                                     .IS_MISSION = p.IS_MISSION,
                                                     .IS_WAGE = p.IS_WAGE,
+                                                      .TAX_TABLE_Name = taxTable.NAME_VN,
                                                     .IS_PROCESS = p.IS_PROCESS,
                                                     .IS_MISSION_SHORT = p.IS_MISSION,
                                                     .IS_WAGE_SHORT = p.IS_WAGE,
