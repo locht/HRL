@@ -4,6 +4,32 @@ Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
 
 
+#Region "Debt"
+    Public Function InsertDebt(ByVal objDebt As DebtDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertDebt(objDebt, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+
+    Public Function ModifyDebt(ByVal objDebt As DebtDTO) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyDebt(objDebt, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+#End Region
+
 #Region "Terminate"
     Public Function ApproveListTerminate(ByVal listID As List(Of Decimal)) As Boolean
         Using rep As New ProfileBusinessClient

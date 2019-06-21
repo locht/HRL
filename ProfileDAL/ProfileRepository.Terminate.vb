@@ -7,6 +7,50 @@ Imports System.Reflection
 
 Partial Class ProfileRepository
 
+#Region "Debt"
+    Public Function InsertDebt(ByVal objDebt As DebtDTO,
+                                   ByVal log As UserLog) As Boolean
+        Try
+            Dim objDebtData As New HU_DEBT
+            objDebtData.ID = Utilities.GetNextSequence(Context, Context.HU_DEBT.EntitySet.Name)
+            objDebtData.DEBT_TYPE_ID = objDebt.DEBT_TYPE_ID
+            objDebtData.DEBT_STATUS = objDebt.DEBT_STATUS
+            objDebtData.MONEY = objDebt.MONEY
+            objDebtData.REMARK = objDebt.REMARK
+            objDebtData.CREATED_DATE = DateTime.Now
+            objDebtData.CREATED_BY = log.Username
+            objDebtData.CREATED_LOG = log.ComputerName
+            objDebtData.MODIFIED_DATE = DateTime.Now
+            objDebtData.MODIFIED_BY = log.Username
+            objDebtData.MODIFIED_LOG = log.ComputerName
+            Context.HU_DEBT.AddObject(objDebtData)
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function ModifyDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean
+        Dim objDebtData As New HU_DEBT With {.ID = objDebt.ID}
+        Try
+            objDebtData = (From p In Context.HU_DEBT Where p.ID = objDebtData.ID).FirstOrDefault
+            objDebtData.DEBT_TYPE_ID = objDebt.DEBT_TYPE_ID
+            objDebtData.DEBT_STATUS = objDebt.DEBT_STATUS
+            objDebtData.MONEY = objDebt.MONEY
+            objDebtData.REMARK = objDebt.REMARK
+            objDebtData.MODIFIED_DATE = DateTime.Now
+            objDebtData.MODIFIED_BY = log.Username
+            objDebtData.MODIFIED_LOG = log.ComputerName
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+#End Region
+
 #Region "Terminate"
     Public Function CalculateTerminate(ByVal EmployeeId As Decimal, ByVal TerLateDate As Date) As DataTable
         Try

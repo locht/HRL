@@ -26709,6 +26709,261 @@ Namespace ProfileBusiness
     
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="DebtDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
+     System.SerializableAttribute()>  _
+    Partial Public Class DebtDTO
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+        
+        <System.NonSerializedAttribute()>  _
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CREATED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DEBT_STATUSField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DEBT_STATUS_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DEBT_TYPE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DEBT_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_BYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFIED_LOGField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MONEYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SOMETHINGField As String
+        
+        <Global.System.ComponentModel.BrowsableAttribute(false)>  _
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_BY() As String
+            Get
+                Return Me.CREATED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_BYField, value) <> true) Then
+                    Me.CREATED_BYField = value
+                    Me.RaisePropertyChanged("CREATED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.CREATED_DATEField
+            End Get
+            Set
+                If (Me.CREATED_DATEField.Equals(value) <> true) Then
+                    Me.CREATED_DATEField = value
+                    Me.RaisePropertyChanged("CREATED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CREATED_LOG() As String
+            Get
+                Return Me.CREATED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CREATED_LOGField, value) <> true) Then
+                    Me.CREATED_LOGField = value
+                    Me.RaisePropertyChanged("CREATED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DEBT_STATUS() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DEBT_STATUSField
+            End Get
+            Set
+                If (Me.DEBT_STATUSField.Equals(value) <> true) Then
+                    Me.DEBT_STATUSField = value
+                    Me.RaisePropertyChanged("DEBT_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DEBT_STATUS_NAME() As String
+            Get
+                Return Me.DEBT_STATUS_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DEBT_STATUS_NAMEField, value) <> true) Then
+                    Me.DEBT_STATUS_NAMEField = value
+                    Me.RaisePropertyChanged("DEBT_STATUS_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DEBT_TYPE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DEBT_TYPE_IDField
+            End Get
+            Set
+                If (Me.DEBT_TYPE_IDField.Equals(value) <> true) Then
+                    Me.DEBT_TYPE_IDField = value
+                    Me.RaisePropertyChanged("DEBT_TYPE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DEBT_TYPE_NAME() As String
+            Get
+                Return Me.DEBT_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DEBT_TYPE_NAMEField, value) <> true) Then
+                    Me.DEBT_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("DEBT_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IDField
+            End Get
+            Set
+                If (Me.IDField.Equals(value) <> true) Then
+                    Me.IDField = value
+                    Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_BY() As String
+            Get
+                Return Me.MODIFIED_BYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_BYField, value) <> true) Then
+                    Me.MODIFIED_BYField = value
+                    Me.RaisePropertyChanged("MODIFIED_BY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.MODIFIED_DATEField
+            End Get
+            Set
+                If (Me.MODIFIED_DATEField.Equals(value) <> true) Then
+                    Me.MODIFIED_DATEField = value
+                    Me.RaisePropertyChanged("MODIFIED_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFIED_LOG() As String
+            Get
+                Return Me.MODIFIED_LOGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
+                    Me.MODIFIED_LOGField = value
+                    Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MONEY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MONEYField
+            End Get
+            Set
+                If (Me.MONEYField.Equals(value) <> true) Then
+                    Me.MONEYField = value
+                    Me.RaisePropertyChanged("MONEY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SOMETHING() As String
+            Get
+                Return Me.SOMETHINGField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SOMETHINGField, value) <> true) Then
+                    Me.SOMETHINGField = value
+                    Me.RaisePropertyChanged("SOMETHING")
+                End If
+            End Set
+        End Property
+        
+        Public Event PropertyChanged As System.ComponentModel.PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        
+        Protected Sub RaisePropertyChanged(ByVal propertyName As String)
+            Dim propertyChanged As System.ComponentModel.PropertyChangedEventHandler = Me.PropertyChangedEvent
+            If (Not (propertyChanged) Is Nothing) Then
+                propertyChanged(Me, New System.ComponentModel.PropertyChangedEventArgs(propertyName))
+            End If
+        End Sub
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
      System.Runtime.Serialization.DataContractAttribute(Name:="AssetMngDTO", [Namespace]:="http://schemas.datacontract.org/2004/07/ProfileDAL"),  _
      System.SerializableAttribute()>  _
     Partial Public Class AssetMngDTO
@@ -42014,6 +42269,12 @@ Namespace ProfileBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="ProfileBusiness.IProfileBusiness")>  _
     Public Interface IProfileBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngByIdResponse")>  _
+        Function GetLabourProtectionMngById(ByVal Id As Integer) As ProfileBusiness.LabourProtectionMngDTO
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMngResponse")>  _
+        Function InsertLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyLabourProtectionMngResponse")>  _
         Function ModifyLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -42072,8 +42333,8 @@ Namespace ProfileBusiness
         Function DeleteCommendList(ByVal lstDecimals As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByRef strError As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendList", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendListResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
@@ -42188,6 +42449,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
@@ -42269,8 +42531,8 @@ Namespace ProfileBusiness
         Function InsertCommendLevel(ByVal objCommendLevel As ProfileBusiness.CommendLevelDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateCommendLevel", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateCommendLevelResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.LabourProtectionMngDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.OccupationalSafetyDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.OccupationalSafetyDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.ATPeriodDTO))),  _
@@ -42385,6 +42647,7 @@ Namespace ProfileBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.CommandResult)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DisciplineSalaryDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.DisciplineSalaryDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.DebtDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of ProfileBusiness.AssetMngDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.AssetMngDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(ProfileBusiness.TerminateDTO)),  _
@@ -42578,6 +42841,12 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListContractResponse")>  _
         Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTyleNV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTyleNVResponse")>  _
+        Function GetTyleNV() As System.Data.DataTable
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryNew", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryNewResponse")>  _
+        Function GetSalaryNew(ByRef P_EMPLOYEEID As Integer) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTerminate3b", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTerminate3bResponse")>  _
         Function GetTerminate3b(ByVal _filter As ProfileBusiness.Terminate3BDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO)
@@ -42828,12 +43097,6 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngResponse")>  _
         Function GetLabourProtectionMng(ByVal _filter As ProfileBusiness.LabourProtectionMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal UserLog As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngById", ReplyAction:="http://tempuri.org/IProfileBusiness/GetLabourProtectionMngByIdResponse")>  _
-        Function GetLabourProtectionMngById(ByVal Id As Integer) As ProfileBusiness.LabourProtectionMngDTO
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMng", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertLabourProtectionMngResponse")>  _
-        Function InsertLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean
-        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ValidateContract", ReplyAction:="http://tempuri.org/IProfileBusiness/ValidateContractResponse")>  _
         Function ValidateContract(ByVal sType As String, ByVal obj As ProfileBusiness.ContractDTO) As Boolean
         
@@ -43044,6 +43307,12 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetCommendCode", ReplyAction:="http://tempuri.org/IProfileBusiness/GetCommendCodeResponse")>  _
         Function GetCommendCode(ByVal id As Decimal) As String
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDebtResponse")>  _
+        Function InsertDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyDebtResponse")>  _
+        Function ModifyDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ApproveListTerminate", ReplyAction:="http://tempuri.org/IProfileBusiness/ApproveListTerminateResponse")>  _
         Function ApproveListTerminate(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
@@ -43082,12 +43351,6 @@ Namespace ProfileBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/CheckTerminateNo", ReplyAction:="http://tempuri.org/IProfileBusiness/CheckTerminateNoResponse")>  _
         Function CheckTerminateNo(ByVal objTerminate As ProfileBusiness.TerminateDTO) As Boolean
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetTyleNV", ReplyAction:="http://tempuri.org/IProfileBusiness/GetTyleNVResponse")>  _
-        Function GetTyleNV() As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetSalaryNew", ReplyAction:="http://tempuri.org/IProfileBusiness/GetSalaryNewResponse")>  _
-        Function GetSalaryNew(ByRef P_EMPLOYEEID As Integer) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandard", ReplyAction:="http://tempuri.org/IProfileBusiness/ModifyCompetencyStandardResponse")>  _
         Function ModifyCompetencyStandard(ByVal objCompetencyStandard As ProfileBusiness.CompetencyStandardDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -43886,6 +44149,14 @@ Namespace ProfileBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function GetLabourProtectionMngById(ByVal Id As Integer) As ProfileBusiness.LabourProtectionMngDTO Implements ProfileBusiness.IProfileBusiness.GetLabourProtectionMngById
+            Return MyBase.Channel.GetLabourProtectionMngById(Id)
+        End Function
+        
+        Public Function InsertLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertLabourProtectionMng
+            Return MyBase.Channel.InsertLabourProtectionMng(lstLabourProtectionMng, log)
+        End Function
+        
         Public Function ModifyLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyLabourProtectionMng
             Return MyBase.Channel.ModifyLabourProtectionMng(lstLabourProtectionMng, log)
         End Function
@@ -44160,6 +44431,14 @@ Namespace ProfileBusiness
         
         Public Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListContract
             Return MyBase.Channel.ApproveListContract(listID, log)
+        End Function
+        
+        Public Function GetTyleNV() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetTyleNV
+            Return MyBase.Channel.GetTyleNV
+        End Function
+        
+        Public Function GetSalaryNew(ByRef P_EMPLOYEEID As Integer) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetSalaryNew
+            Return MyBase.Channel.GetSalaryNew(P_EMPLOYEEID)
         End Function
         
         Public Function GetTerminate3b(ByVal _filter As ProfileBusiness.Terminate3BDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal _param As ProfileBusiness.ParamDTO, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of ProfileBusiness.Terminate3BDTO) Implements ProfileBusiness.IProfileBusiness.GetTerminate3b
@@ -44494,14 +44773,6 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetLabourProtectionMng(_filter, IsDissolve, PageIndex, PageSize, Total, UserLog, Sorts)
         End Function
         
-        Public Function GetLabourProtectionMngById(ByVal Id As Integer) As ProfileBusiness.LabourProtectionMngDTO Implements ProfileBusiness.IProfileBusiness.GetLabourProtectionMngById
-            Return MyBase.Channel.GetLabourProtectionMngById(Id)
-        End Function
-        
-        Public Function InsertLabourProtectionMng(ByVal lstLabourProtectionMng As System.Collections.Generic.List(Of ProfileBusiness.LabourProtectionMngDTO), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertLabourProtectionMng
-            Return MyBase.Channel.InsertLabourProtectionMng(lstLabourProtectionMng, log)
-        End Function
-        
         Public Function ValidateContract(ByVal sType As String, ByVal obj As ProfileBusiness.ContractDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.ValidateContract
             Return MyBase.Channel.ValidateContract(sType, obj)
         End Function
@@ -44782,6 +45053,14 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetCommendCode(id)
         End Function
         
+        Public Function InsertDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertDebt
+            Return MyBase.Channel.InsertDebt(objDebt, log)
+        End Function
+        
+        Public Function ModifyDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyDebt
+            Return MyBase.Channel.ModifyDebt(objDebt, log)
+        End Function
+        
         Public Function ApproveListTerminate(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.ApproveListTerminate
             Return MyBase.Channel.ApproveListTerminate(listID, log)
         End Function
@@ -44832,14 +45111,6 @@ Namespace ProfileBusiness
         
         Public Function CheckTerminateNo(ByVal objTerminate As ProfileBusiness.TerminateDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.CheckTerminateNo
             Return MyBase.Channel.CheckTerminateNo(objTerminate)
-        End Function
-        
-        Public Function GetTyleNV() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetTyleNV
-            Return MyBase.Channel.GetTyleNV
-        End Function
-        
-        Public Function GetSalaryNew(ByRef P_EMPLOYEEID As Integer) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GetSalaryNew
-            Return MyBase.Channel.GetSalaryNew(P_EMPLOYEEID)
         End Function
         
         Public Function ModifyCompetencyStandard(ByVal objCompetencyStandard As ProfileBusiness.CompetencyStandardDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.ModifyCompetencyStandard

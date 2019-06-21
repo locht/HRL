@@ -8,6 +8,32 @@ Imports System.Configuration
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
+#Region "Debt"
+        Public Function InsertDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertDebt
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.InsertDebt(objDebt, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function ModifyDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyDebt
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.ModifyDebt(objDebt, log)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
+
 #Region "Terminate"
         Public Function ApproveListTerminate(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ApproveListTerminate
             Using rep As New ProfileRepository

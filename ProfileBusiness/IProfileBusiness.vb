@@ -1809,6 +1809,12 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetCommendCode(ByVal id As Decimal) As String
 #End Region
 
+#Region "Debt"
+        <OperationContract()>
+        Function InsertDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean
+        <OperationContract()>
+        Function ModifyDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean
+#End Region
 #Region "Terminate"
         <OperationContract()>
         Function ApproveListTerminate(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
