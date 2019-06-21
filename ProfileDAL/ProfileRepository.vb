@@ -1257,6 +1257,30 @@ Public Class ProfileRepository
                          }).ToList
             _combolistDTO.LIST_TYPE_NGHI = query
         End If
+        'Trang thai cong no
+        If _combolistDTO.GET_DEBT_STATUS Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "DEBT_STATUS" _
+                     And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_DEBT_STATUS = query
+        End If
+        'Danh muc loai cong no
+        If _combolistDTO.GET_DEBT_TYPE Then
+            query = (From p In Context.OT_OTHER_LIST
+                     Join q In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals q.ID Where q.CODE = "DEBT_TYPE" _
+                     And p.ACTFLG = "A"
+                     Order By p.NAME_VN
+                    Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                         .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_DEBT_TYPE = query
+        End If
         'Danh mục lý do nghỉ việc
         If _combolistDTO.GET_TER_REASON Then
             query = (From p In Context.OT_OTHER_LIST

@@ -1,5 +1,11 @@
 ﻿Public Class ComboBoxDataDTO
 
+    Public Property GET_DEBT_TYPE As Boolean
+    Public Property LIST_DEBT_TYPE As List(Of OtherListDTO)
+
+    Public Property GET_DEBT_STATUS As Boolean
+    Public Property LIST_DEBT_STATUS As List(Of OtherListDTO)
+
     Public Property GET_UNIT_LEVEL As Boolean
     Public Property LIST_UNIT_LEVEL As List(Of OtherListDTO)
 

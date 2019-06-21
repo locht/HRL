@@ -85,4 +85,13 @@
     Public Property AssetMngs As List(Of AssetMngDTO)
     Public Property CODE As String
 
+    Public Property TER_REASON As Decimal?
+    Public Property DECISION_TYPE As Decimal?
+    Public Property DECISION_TYPE_NAME As String
+    Public Property SUM_COLLECT_DEBT As Decimal?
+    Public Property AMOUNT_PAYMENT_CASH As Decimal?
+    Public Property AMOUNT_DEDUCT_FROM_SAL As Decimal?
+    Public Property PERIOD_ID As Decimal?
+    Public Property IS_ALLOW As Boolean
+    Public Property IS_REPLACE_POS As Boolean
 End Class

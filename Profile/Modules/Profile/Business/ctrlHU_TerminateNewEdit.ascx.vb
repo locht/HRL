@@ -191,7 +191,6 @@ Public Class ctrlHU_TerminateNewEdit
             CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-            FillAssetStatusCombobox()
             'Using test As New HU_WorkingClient
             '    Dim temp = test.TestMatrix()
             'End Using
@@ -199,11 +198,6 @@ Public Class ctrlHU_TerminateNewEdit
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
-    End Sub
-    Private Sub FillAssetStatusCombobox()
-        'AssetStatus.DataSource = Utilities.AssetStatus()
-        'AssetStatus.DataTextField = "Text"
-        'AssetStatus.DataValueField = "Value"
     End Sub
     ''' <summary>
     ''' Reset, Load page theo trạng thái page
@@ -490,6 +484,7 @@ Public Class ctrlHU_TerminateNewEdit
 
                         objTerminate.SALARYMEDIUM_LOSS = txtTimeAccidentIns_loss.Text
                         'txtTimeAccidentIns_loss.Text = Terminate.SALARYMEDIUM_LOSS
+                        objTerminate.IS_REPLACE_POS = cbIsReplacePos.Checked
 
 
                         lstReason = New List(Of TerminateReasonDTO)
@@ -1147,33 +1142,33 @@ Public Class ctrlHU_TerminateNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-    ''' <summary>
-    ''' Validate cval_LastDate
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Protected Sub cval_LastDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_JoinDate.ServerValidate
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            'ngày nghỉ thực tế bắt nhập khi trạng thái là phê duyệt
-            If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-                If rdLastDate.SelectedDate Is Nothing Then
-                    args.IsValid = False
-                    Exit Sub
-                End If
-            End If
+    ' ''' <summary>
+    ' ''' Validate cval_LastDate
+    ' ''' </summary>
+    ' ''' <param name="source"></param>
+    ' ''' <param name="args"></param>
+    ' ''' <remarks></remarks>
+    'Protected Sub cval_LastDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_JoinDate.ServerValidate
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        'ngày nghỉ thực tế bắt nhập khi trạng thái là phê duyệt
+    '        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+    '            If rdLastDate.SelectedDate Is Nothing Then
+    '                args.IsValid = False
+    '                Exit Sub
+    '            End If
+    '        End If
 
 
 
-            args.IsValid = True
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    '        args.IsValid = True
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <summary>
     ''' Reload, load datasource cho grid
@@ -1562,6 +1557,9 @@ Public Class ctrlHU_TerminateNewEdit
                 ListComboData.GET_TER_STATUS = True
                 ListComboData.GET_TYPE_NGHI = True
                 ListComboData.GET_TYPE_INS_STATUS = True
+                ListComboData.GET_DEBT_STATUS = True
+                ListComboData.GET_DEBT_TYPE = True
+                ListComboData.GET_DECISION_TYPE = True
                 rep.GetComboList(ListComboData)
             End If
             rep.Dispose()
@@ -1569,6 +1567,9 @@ Public Class ctrlHU_TerminateNewEdit
             FillDropDownList(cboStatus, ListComboData.LIST_TER_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboInsStatus, ListComboData.LIST_INS_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboTerReason, ListComboData.LIST_TER_REASON, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboDebtStatus, ListComboData.LIST_DEBT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboWorkingType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             cboStatus.DataSource = Status()
             cboStatus.DataTextField = "Text"
             cboStatus.DataValueField = "Value"

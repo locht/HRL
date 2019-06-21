@@ -1,5 +1,6 @@
 ﻿Public Class DebtDTO
     Public Property ID As Decimal?
+    Public Property EMPLOYEE_ID As Decimal?
     Public Property DEBT_TYPE_ID As Decimal?
     Public Property DEBT_TYPE_NAME As String
     Public Property MONEY As Decimal?

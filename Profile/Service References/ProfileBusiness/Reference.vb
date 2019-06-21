@@ -13665,6 +13665,12 @@ Namespace ProfileBusiness
         Private GET_CONTRACT_STATUSField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_DEBT_STATUSField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_DEBT_TYPEField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_DECISION_REMARKField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -13864,6 +13870,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_CONTRACT_STATUSField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_DEBT_STATUSField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_DEBT_TYPEField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_DECISION_REMARKField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
@@ -14242,6 +14254,32 @@ Namespace ProfileBusiness
                 If (Me.GET_CONTRACT_STATUSField.Equals(value) <> true) Then
                     Me.GET_CONTRACT_STATUSField = value
                     Me.RaisePropertyChanged("GET_CONTRACT_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_DEBT_STATUS() As Boolean
+            Get
+                Return Me.GET_DEBT_STATUSField
+            End Get
+            Set
+                If (Me.GET_DEBT_STATUSField.Equals(value) <> true) Then
+                    Me.GET_DEBT_STATUSField = value
+                    Me.RaisePropertyChanged("GET_DEBT_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_DEBT_TYPE() As Boolean
+            Get
+                Return Me.GET_DEBT_TYPEField
+            End Get
+            Set
+                If (Me.GET_DEBT_TYPEField.Equals(value) <> true) Then
+                    Me.GET_DEBT_TYPEField = value
+                    Me.RaisePropertyChanged("GET_DEBT_TYPE")
                 End If
             End Set
         End Property
@@ -15113,6 +15151,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_CONTRACT_STATUSField, value) <> true) Then
                     Me.LIST_CONTRACT_STATUSField = value
                     Me.RaisePropertyChanged("LIST_CONTRACT_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_DEBT_STATUS() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_DEBT_STATUSField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_DEBT_STATUSField, value) <> true) Then
+                    Me.LIST_DEBT_STATUSField = value
+                    Me.RaisePropertyChanged("LIST_DEBT_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_DEBT_TYPE() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_DEBT_TYPEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_DEBT_TYPEField, value) <> true) Then
+                    Me.LIST_DEBT_TYPEField = value
+                    Me.RaisePropertyChanged("LIST_DEBT_TYPE")
                 End If
             End Set
         End Property
@@ -26740,6 +26804,9 @@ Namespace ProfileBusiness
         Private DEBT_TYPE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -26857,6 +26924,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DEBT_TYPE_NAMEField, value) <> true) Then
                     Me.DEBT_TYPE_NAMEField = value
                     Me.RaisePropertyChanged("DEBT_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EMPLOYEE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EMPLOYEE_IDField
+            End Get
+            Set
+                If (Me.EMPLOYEE_IDField.Equals(value) <> true) Then
+                    Me.EMPLOYEE_IDField = value
+                    Me.RaisePropertyChanged("EMPLOYEE_ID")
                 End If
             End Set
         End Property
@@ -27712,6 +27792,12 @@ Namespace ProfileBusiness
         Private ALLOWANCE_TERMINATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_DEDUCT_FROM_SALField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_PAYMENT_CASHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private AMOUNT_VIOLATIONSField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27746,6 +27832,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DECISION_NOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECISION_TYPEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECISION_TYPE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EFFECT_DATEField As System.Nullable(Of Date)
@@ -27808,6 +27900,9 @@ Namespace ProfileBusiness
         Private INSURANCE_STATUSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_ALLOWField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_IMPACTField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27815,6 +27910,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_NOHIRE_SHORTField As System.Nullable(Of Short)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_REPLACE_POSField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private JOIN_DATEField As System.Nullable(Of Date)
@@ -27856,6 +27954,9 @@ Namespace ProfileBusiness
         Private PAYMENT_LEAVEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PERIOD_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMAINING_LEAVEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27895,6 +27996,9 @@ Namespace ProfileBusiness
         Private STATUS_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SUM_COLLECT_DEBTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUM_DEBTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27908,6 +28012,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUN_STATUSField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TER_REASONField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TER_REASON_DETAILField As String
@@ -27964,6 +28071,32 @@ Namespace ProfileBusiness
                 If (Me.ALLOWANCE_TERMINATEField.Equals(value) <> true) Then
                     Me.ALLOWANCE_TERMINATEField = value
                     Me.RaisePropertyChanged("ALLOWANCE_TERMINATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_DEDUCT_FROM_SAL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_DEDUCT_FROM_SALField
+            End Get
+            Set
+                If (Me.AMOUNT_DEDUCT_FROM_SALField.Equals(value) <> true) Then
+                    Me.AMOUNT_DEDUCT_FROM_SALField = value
+                    Me.RaisePropertyChanged("AMOUNT_DEDUCT_FROM_SAL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_PAYMENT_CASH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_PAYMENT_CASHField
+            End Get
+            Set
+                If (Me.AMOUNT_PAYMENT_CASHField.Equals(value) <> true) Then
+                    Me.AMOUNT_PAYMENT_CASHField = value
+                    Me.RaisePropertyChanged("AMOUNT_PAYMENT_CASH")
                 End If
             End Set
         End Property
@@ -28120,6 +28253,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.DECISION_NOField, value) <> true) Then
                     Me.DECISION_NOField = value
                     Me.RaisePropertyChanged("DECISION_NO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECISION_TYPE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DECISION_TYPEField
+            End Get
+            Set
+                If (Me.DECISION_TYPEField.Equals(value) <> true) Then
+                    Me.DECISION_TYPEField = value
+                    Me.RaisePropertyChanged("DECISION_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECISION_TYPE_NAME() As String
+            Get
+                Return Me.DECISION_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DECISION_TYPE_NAMEField, value) <> true) Then
+                    Me.DECISION_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("DECISION_TYPE_NAME")
                 End If
             End Set
         End Property
@@ -28385,6 +28544,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_ALLOW() As Boolean
+            Get
+                Return Me.IS_ALLOWField
+            End Get
+            Set
+                If (Me.IS_ALLOWField.Equals(value) <> true) Then
+                    Me.IS_ALLOWField = value
+                    Me.RaisePropertyChanged("IS_ALLOW")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_IMPACT() As Boolean
             Get
                 Return Me.IS_IMPACTField
@@ -28419,6 +28591,19 @@ Namespace ProfileBusiness
                 If (Me.IS_NOHIRE_SHORTField.Equals(value) <> true) Then
                     Me.IS_NOHIRE_SHORTField = value
                     Me.RaisePropertyChanged("IS_NOHIRE_SHORT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_REPLACE_POS() As Boolean
+            Get
+                Return Me.IS_REPLACE_POSField
+            End Get
+            Set
+                If (Me.IS_REPLACE_POSField.Equals(value) <> true) Then
+                    Me.IS_REPLACE_POSField = value
+                    Me.RaisePropertyChanged("IS_REPLACE_POS")
                 End If
             End Set
         End Property
@@ -28593,6 +28778,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PERIOD_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PERIOD_IDField
+            End Get
+            Set
+                If (Me.PERIOD_IDField.Equals(value) <> true) Then
+                    Me.PERIOD_IDField = value
+                    Me.RaisePropertyChanged("PERIOD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property REMAINING_LEAVE() As System.Nullable(Of Decimal)
             Get
                 Return Me.REMAINING_LEAVEField
@@ -28762,6 +28960,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SUM_COLLECT_DEBT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SUM_COLLECT_DEBTField
+            End Get
+            Set
+                If (Me.SUM_COLLECT_DEBTField.Equals(value) <> true) Then
+                    Me.SUM_COLLECT_DEBTField = value
+                    Me.RaisePropertyChanged("SUM_COLLECT_DEBT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SUM_DEBT() As System.Nullable(Of Decimal)
             Get
                 Return Me.SUM_DEBTField
@@ -28822,6 +29033,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SUN_STATUSField, value) <> true) Then
                     Me.SUN_STATUSField = value
                     Me.RaisePropertyChanged("SUN_STATUS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TER_REASON() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TER_REASONField
+            End Get
+            Set
+                If (Me.TER_REASONField.Equals(value) <> true) Then
+                    Me.TER_REASONField = value
+                    Me.RaisePropertyChanged("TER_REASON")
                 End If
             End Set
         End Property

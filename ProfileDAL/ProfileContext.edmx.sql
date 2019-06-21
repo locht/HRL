@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 20/06/2019 4:00:34 PM
+-- Date Created: 21/06/2019 3:54:32 PM
 -- Generated from EDMX file: E:\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -336,6 +336,10 @@
 -- DROP TABLE "ProfileModelStoreContainer"."HUV_CURRENT_WORKING";
 
 -- DROP TABLE "ProfileModelStoreContainer"."HUV_TERMINATE_CURRENT";
+
+-- DROP TABLE "ProfileModelStoreContainer"."HU_TRANSFER_TERMINATE";
+
+-- DROP TABLE "ProfileModelStoreContainer"."HU_DEBT";
 
 -- DROP TABLE "ProfileModelStoreContainer"."SE_USER_REPORT";
 
@@ -854,7 +858,15 @@ CREATE TABLE "dbo"."HU_TERMINATE" (
    "ORG_ID" NUMBER(38,0) NULL,
    "SALARYMEDIUM_LOSS" NCLOB NULL,
    "UPLOADFILE" NCLOB NULL,
-   "FILENAME" NCLOB NULL
+   "FILENAME" NCLOB NULL,
+   "DECISION_TYPE" NUMBER(38,0) NULL,
+   "SUM_COLLECT_DEBT" NUMBER(38,0) NULL,
+   "AMOUNT_PAYMENT_CASH" NUMBER(38,0) NULL,
+   "AMOUNT_DEDUCT_FROM_SAL" NUMBER(38,0) NULL,
+   "PERIOD_ID" NUMBER(38,0) NULL,
+   "IS_ALLOW" NUMBER(5,0) NULL,
+   "IS_REPLACE_POS" NUMBER(5,0) NULL,
+   "TER_REASON" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_WORKING_OLD'
@@ -3310,7 +3322,8 @@ CREATE TABLE "dbo"."HU_DEBT" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "REMARK" NCLOB NOT NULL
+   "REMARK" NCLOB NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'

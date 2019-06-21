@@ -784,6 +784,14 @@
             <Property Name="SALARYMEDIUM_LOSS" Type="nclob" Nullable="true" />
             <Property Name="UPLOADFILE" Type="nclob" Nullable="true" />
             <Property Name="FILENAME" Type="nclob" Nullable="true" />
+            <Property Name="DECISION_TYPE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SUM_COLLECT_DEBT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AMOUNT_PAYMENT_CASH" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AMOUNT_DEDUCT_FROM_SAL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="PERIOD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_ALLOW" Type="number" Nullable="true" Precision="5" />
+            <Property Name="IS_REPLACE_POS" Type="number" Nullable="true" Precision="5" />
+            <Property Name="TER_REASON" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_WORKING_OLD">
             <Key>
@@ -3379,6 +3387,7 @@
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="REMARK" Type="nclob" Nullable="false" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
@@ -4796,6 +4805,14 @@
           <Property Type="String" Name="SALARYMEDIUM_LOSS" />
           <Property Type="String" Name="UPLOADFILE" />
           <Property Type="String" Name="FILENAME" />
+          <Property Type="Decimal" Name="DECISION_TYPE" Nullable="true" />
+          <Property Type="Decimal" Name="SUM_COLLECT_DEBT" Nullable="true" />
+          <Property Type="Decimal" Name="AMOUNT_PAYMENT_CASH" Nullable="true" />
+          <Property Type="Decimal" Name="AMOUNT_DEDUCT_FROM_SAL" Nullable="true" />
+          <Property Type="Decimal" Name="PERIOD_ID" Nullable="true" />
+          <Property Type="Int16" Name="IS_ALLOW" Nullable="true" />
+          <Property Type="Int16" Name="IS_REPLACE_POS" Nullable="true" />
+          <Property Type="Decimal" Name="TER_REASON" Nullable="true" />
           </EntityType>
         <Association Name="FK_HUEMD_HUEM">
           <End Type="ProfileModel.HU_EMPLOYEE" Role="HU_EMD" Multiplicity="0..1" />
@@ -7527,6 +7544,7 @@
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="REMARK" Nullable="false" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -8081,6 +8099,14 @@
                     <ScalarProperty Name="SALARYMEDIUM_LOSS" ColumnName="SALARYMEDIUM_LOSS" />
                     <ScalarProperty Name="UPLOADFILE" ColumnName="UPLOADFILE" />
                     <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                    <ScalarProperty Name="DECISION_TYPE" ColumnName="DECISION_TYPE" />
+                    <ScalarProperty Name="SUM_COLLECT_DEBT" ColumnName="SUM_COLLECT_DEBT" />
+                    <ScalarProperty Name="AMOUNT_PAYMENT_CASH" ColumnName="AMOUNT_PAYMENT_CASH" />
+                    <ScalarProperty Name="AMOUNT_DEDUCT_FROM_SAL" ColumnName="AMOUNT_DEDUCT_FROM_SAL" />
+                    <ScalarProperty Name="PERIOD_ID" ColumnName="PERIOD_ID" />
+                    <ScalarProperty Name="IS_ALLOW" ColumnName="IS_ALLOW" />
+                    <ScalarProperty Name="IS_REPLACE_POS" ColumnName="IS_REPLACE_POS" />
+                    <ScalarProperty Name="TER_REASON" ColumnName="TER_REASON" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10774,6 +10800,7 @@
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -10816,7 +10843,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="63" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="54" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -10918,7 +10945,7 @@
           <ConnectorPoint PointX="7.708333333333333" PointY="7.7178628906250086" />
           <ConnectorPoint PointX="8.125" PointY="7.7178628906250086" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="8.125" PointY="22.625" Height="12.172262369791667" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TERMINATE" Width="1.875" PointX="8.125" PointY="22.625" Height="13.710673828125003" IsExpanded="true" />
         <AssociationConnector Association="ProfileModel.FK_HUEMD_HUEM">
           <ConnectorPoint PointX="17.878557692307691" PointY="10.297343750000001" />
           <ConnectorPoint PointX="17.878557692307691" PointY="10.547343750000001" />
@@ -11100,7 +11127,7 @@
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_WORKING" Width="1.5" PointX="34.375" PointY="21.25" Height="2.7494921874999818" />
         <EntityTypeShape EntityType="ProfileModel.HUV_TERMINATE_CURRENT" Width="1.5" PointX="35.375" PointY="25.25" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRANSFER_TERMINATE" Width="1.5" PointX="38.25" PointY="28.625" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="1.5" PointX="41.5" PointY="28.75" Height="3.1340950520833353" />
+        <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="1.5" PointX="41.5" PointY="28.75" Height="3.3263964843750031" />
         </Diagram>
     </Diagrams>
   </Designer>
