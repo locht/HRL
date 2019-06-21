@@ -5,6 +5,7 @@
     Public Property MONEY As Decimal?
     Public Property DEBT_STATUS As Decimal?
     Public Property DEBT_STATUS_NAME As String
+    Public Property SOMETHING As String
     Public Property REMARK As String
     
     Public Property CREATED_DATE As Date?

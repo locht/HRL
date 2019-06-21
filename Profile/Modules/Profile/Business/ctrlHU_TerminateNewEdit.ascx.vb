@@ -235,7 +235,7 @@ Public Class ctrlHU_TerminateNewEdit
 
                     rdSignDate.SelectedDate = Terminate.SIGN_DATE
                     rdEffectDate.SelectedDate = Terminate.EFFECT_DATE
-                    'rdLastDate.SelectedDate = Terminate.LAST_DATE
+                    rdLastDate.SelectedDate = Terminate.LAST_DATE
                     rdSendDate.SelectedDate = Terminate.SEND_DATE
                     rdSignDate.SelectedDate = Terminate.SIGN_DATE
                     cbIsNoHire.Checked = Terminate.IS_NOHIRE
@@ -248,7 +248,7 @@ Public Class ctrlHU_TerminateNewEdit
                     hidID.Value = Terminate.ID.ToString
                     FillDataByEmployeeID(Terminate.EMPLOYEE_ID)
 
-                    ' rdApprovalDate.SelectedDate = Terminate.APPROVAL_DATE
+                    'rdApprovalDate.SelectedDate = Terminate.APPROVAL_DATE
                     'chkIdenitifiCard.Checked = Utilities.ObjToDecima(Terminate.IDENTIFI_CARD, -1)
                     'rdIdentifiDate.SelectedDate = Terminate.IDENTIFI_RDATE
                     'txtIdentifiStatus.Text = Terminate.IDENTIFI_STATUS
@@ -263,18 +263,18 @@ Public Class ctrlHU_TerminateNewEdit
                     'rntxtInsuranceMoney.value = Terminate.INSURANCE_MONEY
                     'rntxtRemainingLeave.Value = Terminate.REMAINING_LEAVE
                     'rntxtPaymentLeave.Value = Terminate.PAYMENT_LEAVE
-                    
+                    rntxtAmountViolations.Value = Terminate.AMOUNT_VIOLATIONS
+                    rntxtAmountWrongful.Value = Terminate.AMOUNT_WRONGFUL
+                    rntxtAllowanceTerminate.Value = Terminate.ALLOWANCE_TERMINATE
+                    'rntxtTrainingCosts.Value = Terminate.TRAINING_COSTS
+                    'rntxtOtherCompensation.Value = Terminate.OTHER_COMPENSATION
                     'rntxtCompensatoryLeave.Value = Terminate.COMPENSATORY_LEAVE
                     'rntxtCompensatoryPayment.Value = Terminate.COMPENSATORY_PAYMENT
 
                     rntxtSalaryMedium_loss.Value = Terminate.SALARYMEDIUM
                     ' MO RA
                     txtTimeAccidentIns_loss.Text = Terminate.SALARYMEDIUM_LOSS
-                    'rntxtAmountViolations.Value = Terminate.AMOUNT_VIOLATIONS
-                    'rntxtAmountWrongful.Value = Terminate.AMOUNT_WRONGFUL
-                    rntxtAllowanceTerminate.Value = Terminate.ALLOWANCE_TERMINATE
-                    'rntxtTrainingCosts.Value = Terminate.TRAINING_COSTS
-                    'rntxtOtherCompensation.Value = Terminate.OTHER_COMPENSATION
+
                     'rntxtMoneyReturn.Value = Terminate.MONEY_RETURN
                     rntxtyearforallow_loss.Value = Terminate.YEARFORALLOW
                     'cboTYPE_TERMINATE.SelectedValue = Terminate.TYPE_TERMINATE
@@ -330,21 +330,21 @@ Public Class ctrlHU_TerminateNewEdit
 
                     rdSignDate.Enabled = False
                     rdEffectDate.Enabled = False
-                    'rdLastDate.Enabled = False
+                    rdLastDate.Enabled = False
                     rdSendDate.Enabled = False
                     rdSignDate.Enabled = False
 
                     cbIsNoHire.Enabled = False
 
 
-                    'txtContractNo.ReadOnly = True
+                    txtContractNo.ReadOnly = True
                     txtEmployeeCode.ReadOnly = True
                     txtEmployeeName.ReadOnly = True
                     txtTitleName.ReadOnly = True
                     txtOrgName.ReadOnly = True
                     rdJoinDateState.Enabled = False
-                    'rdContractEffectDate.Enabled = False
-                    'rdContractExpireDate.Enabled = False
+                    rdContractEffectDate.Enabled = False
+                    rdContractExpireDate.Enabled = False
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -362,7 +362,7 @@ Public Class ctrlHU_TerminateNewEdit
             If rdEffectDate.SelectedDate IsNot Nothing Then
                 Dim dExpire As Date = rdEffectDate.SelectedDate
                 dExpire = dExpire.AddDays(CType(-1, Double))
-                'rdLastDate.SelectedDate = dExpire
+                rdLastDate.SelectedDate = dExpire
 
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -387,8 +387,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim rep As New ProfileBusinessRepository
         Dim _filter As New TerminateDTO
         Dim dtData As New DataTable
-        Dim _objfilter As New TerminateDTO
-
+        'Dim _objfilter As New DebtsDTO
         Dim gid As Decimal
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
@@ -436,7 +435,7 @@ Public Class ctrlHU_TerminateNewEdit
                             objTerminate.UPLOADFILE = If(objTerminate.UPLOADFILE Is Nothing, "", objTerminate.UPLOADFILE)
                         End If
                         objTerminate.IS_NOHIRE = cbIsNoHire.Checked
-                        'objTerminate.LAST_DATE = rdLastDate.SelectedDate
+                        objTerminate.LAST_DATE = rdLastDate.SelectedDate
                         objTerminate.SEND_DATE = rdSendDate.SelectedDate
                         objTerminate.TER_REASON_DETAIL = txtTerReasonDetail.Text
 
@@ -470,8 +469,8 @@ Public Class ctrlHU_TerminateNewEdit
                         'objTerminate.INSURANCE_MONEY = rntxtInsuranceMoney.value
                         'objTerminate.REMAINING_LEAVE = rntxtRemainingLeave.Value
                         'objTerminate.PAYMENT_LEAVE = rntxtPaymentLeave.Value
-                        'objTerminate.AMOUNT_VIOLATIONS = rntxtAmountViolations.Value
-                        'objTerminate.AMOUNT_WRONGFUL = rntxtAmountWrongful.Value
+                        objTerminate.AMOUNT_VIOLATIONS = rntxtAmountViolations.Value
+                        objTerminate.AMOUNT_WRONGFUL = rntxtAmountWrongful.Value
                         objTerminate.ALLOWANCE_TERMINATE = rntxtAllowanceTerminate.Value
                         'objTerminate.TRAINING_COSTS = rntxtTrainingCosts.Value
                         'objTerminate.OTHER_COMPENSATION = rntxtOtherCompensation.Value
@@ -503,7 +502,7 @@ Public Class ctrlHU_TerminateNewEdit
 
                         objTerminate.lstReason = lstReason
                         Dim assetMngs = New List(Of AssetMngDTO)
-                        For Each item As GridDataItem In rgAsset.Items
+                        For Each item As GridDataItem In rgDebt.Items
                             Dim assetMng = New AssetMngDTO With {.ID = ConvertTo(item.GetDataKeyValue("ID")),
                                 .ASSET_ID = (item.GetDataKeyValue("ASSET_ID")),
                                 .ASSET_CODE = item.GetDataKeyValue("ASSET_CODE"),
@@ -877,15 +876,15 @@ Public Class ctrlHU_TerminateNewEdit
                 txtEmployeeCode.Text = item.EMPLOYEE_CODE
                 'txtDecisionNo.Text = item.EMPLOYEE_CODE.Substring(1) + " / QDTV-KSF"
                 FillDataByEmployeeID(item.ID)
-                'If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
-                '    If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
-                '        txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
-                '    Else
-                '        txtSeniority.Text = vbNullString
-                '    End If
-                'End If
+                If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
+                    If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
+                        txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
+                    Else
+                        txtSeniority.Text = vbNullString
+                    End If
+                End If
                 'rgLabourProtect.Rebind()
-                rgAsset.Rebind()
+                rgDebt.Rebind()
                 GetTerminateCalculate()
             End If
 
@@ -908,15 +907,15 @@ Public Class ctrlHU_TerminateNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim emp = rep.GetEmployeeByID(gID)
-            'txtContractNo.Text = emp.CONTRACT_NO
+            txtContractNo.Text = emp.CONTRACT_NO
             txtEmployeeCode.Text = emp.EMPLOYEE_CODE
             txtEmployeeName.Text = emp.FULLNAME_VN
             txtTitleName.Text = emp.TITLE_NAME_VN
             txtOrgName.Text = emp.ORG_NAME
             'txtStaffRankName.Text = emp.STAFF_RANK_NAME
             rdJoinDateState.SelectedDate = emp.JOIN_DATE
-            'rdContractEffectDate.SelectedDate = emp.CONTRACT_EFFECT_DATE
-            'rdContractExpireDate.SelectedDate = emp.CONTRACT_EXPIRE_DATE
+            rdContractEffectDate.SelectedDate = emp.CONTRACT_EFFECT_DATE
+            rdContractExpireDate.SelectedDate = emp.CONTRACT_EXPIRE_DATE
             'rntxtCostSupport.Value = emp.COST_SUPPORT
             'rnt.Value = emp.SAL_BASIC
 
@@ -1025,56 +1024,56 @@ Public Class ctrlHU_TerminateNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    'Protected Sub rd_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdLastDate.SelectedDateChanged, rdJoinDateState.SelectedDateChanged, rdEffectDate.SelectedDateChanged
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        If rdJoinDateState.SelectedDate IsNot Nothing Then
-    '            If rdLastDate.SelectedDate IsNot Nothing Then
-    '                If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
-    '                    txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
-    '                Else
-    '                    txtSeniority.Text = vbNullString
-    '                End If
-    '            End If
-    '            If rdEffectDate.SelectedDate IsNot Nothing Then
-    '                If rdJoinDateState.SelectedDate > rdLastDate.SelectedDate Then
-    '                    ShowMessage(Translate("Ngày thôi việc phải lớn hơn hoặc bằng ngày vào công ty"), NotifyType.Warning)
-    '                End If
-    '            End If
-    '        End If
-    '        GetTerminateCalculate()
+    Protected Sub rd_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdLastDate.SelectedDateChanged, rdJoinDateState.SelectedDateChanged, rdEffectDate.SelectedDateChanged
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If rdJoinDateState.SelectedDate IsNot Nothing Then
+                If rdLastDate.SelectedDate IsNot Nothing Then
+                    If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
+                        txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
+                    Else
+                        txtSeniority.Text = vbNullString
+                    End If
+                End If
+                If rdEffectDate.SelectedDate IsNot Nothing Then
+                    If rdJoinDateState.SelectedDate > rdLastDate.SelectedDate Then
+                        ShowMessage(Translate("Ngày thôi việc phải lớn hơn hoặc bằng ngày vào công ty"), NotifyType.Warning)
+                    End If
+                End If
+            End If
+            GetTerminateCalculate()
 
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' <summary>
     ''' Validate cval_lastdate_sendDate
     ''' </summary>
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    'Protected Sub cval_LastDate_SendDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_SendDate.ServerValidate
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        If rdLastDate.SelectedDate IsNot Nothing And rdSendDate.SelectedDate IsNot Nothing Then
-    '            If rdSendDate.SelectedDate > rdLastDate.SelectedDate Then
-    '                args.IsValid = False
-    '                Exit Sub
-    '            End If
-    '        End If
+    Protected Sub cval_LastDate_SendDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_SendDate.ServerValidate
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If rdLastDate.SelectedDate IsNot Nothing And rdSendDate.SelectedDate IsNot Nothing Then
+                If rdSendDate.SelectedDate > rdLastDate.SelectedDate Then
+                    args.IsValid = False
+                    Exit Sub
+                End If
+            End If
 
-    '        args.IsValid = True
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+            args.IsValid = True
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' <summary>
     ''' Validate cvaldpApproveDatejoinDate
     ''' </summary>
@@ -1105,24 +1104,24 @@ Public Class ctrlHU_TerminateNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    'Protected Sub cval_LastDate_JoinDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_JoinDate.ServerValidate
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
-    '            If rdLastDate.SelectedDate < rdJoinDateState.SelectedDate Then
-    '                args.IsValid = False
-    '                Exit Sub
-    '            End If
-    '        End If
+    Protected Sub cval_LastDate_JoinDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_JoinDate.ServerValidate
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
+                If rdLastDate.SelectedDate < rdJoinDateState.SelectedDate Then
+                    args.IsValid = False
+                    Exit Sub
+                End If
+            End If
 
-    '        args.IsValid = True
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+            args.IsValid = True
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' <summary>
     ''' Validate cvaldpSendDate
     ''' </summary>
@@ -1153,27 +1152,27 @@ Public Class ctrlHU_TerminateNewEdit
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    'Protected Sub cval_LastDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate.ServerValidate
-    '    Dim startTime As DateTime = DateTime.UtcNow
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        'ngày nghỉ thực tế bắt nhập khi trạng thái là phê duyệt
-    '        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
-    '            'If rdLastDate.SelectedDate Is Nothing Then
-    '            '    args.IsValid = False
-    '            '    Exit Sub
-    '            'End If
-    '        End If
+    Protected Sub cval_LastDate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cval_LastDate_JoinDate.ServerValidate
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            'ngày nghỉ thực tế bắt nhập khi trạng thái là phê duyệt
+            If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
+                If rdLastDate.SelectedDate Is Nothing Then
+                    args.IsValid = False
+                    Exit Sub
+                End If
+            End If
 
 
 
-    '        args.IsValid = True
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+            args.IsValid = True
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 
     ''' <summary>
     ''' Reload, load datasource cho grid
@@ -1207,7 +1206,7 @@ Public Class ctrlHU_TerminateNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub rgAsset_NeedDataSource(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgAsset.NeedDataSource
+    Private Sub rgDebt_NeedDataSource(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgDebt.NeedDataSource
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim lstData As List(Of AssetMngDTO)
@@ -1223,7 +1222,7 @@ Public Class ctrlHU_TerminateNewEdit
             For index = 0 To lstData.Count - 1
                 lstData(0).EMPLOYEE_CODE = index + 1
             Next
-            rgAsset.DataSource = lstData
+            rgDebt.DataSource = lstData
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1302,61 +1301,44 @@ Public Class ctrlHU_TerminateNewEdit
 
     End Sub
 
-    Private Sub RgAssets_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgAsset.ItemCommand
+    Private Sub RgDebts_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgDebt.ItemCommand
         Dim dataSource = GetAssetsSource()
         Select Case e.CommandName
-            Case "btnAddAsset"
+            Case "btnAddDebt"
                 AddAsset(dataSource)
-            Case "btnDeleteAssets"
-                DeleteAssets(dataSource, rgAsset.SelectedItems)
+            Case "btnDeleteDebts"
+                DeleteAssets(dataSource, rgDebt.SelectedItems)
         End Select
-        'ClearControlValue(txtAssetCode, AssetQuantity, txtRemark, AssetStatus, AssetAmount, AssetNote)
-        rgAsset.DataSource = dataSource
-        rgAsset.DataBind()
+        ClearControlValue(cboDebtType, rntxtDebtMoney, txtRemark, cboDebtStatus)
+        rgDebt.DataSource = dataSource
+        rgDebt.DataBind()
     End Sub
     Private Function GetAssetsSource() As List(Of AssetMngDTO)
         Dim dataSource = New List(Of AssetMngDTO)
 
-        For Each item As GridDataItem In rgAsset.Items
+        For Each item As GridDataItem In rgDebt.Items
             dataSource.Add(New AssetMngDTO With {.ID = item.GetDataKeyValue("ID"),
-                           .ASSET_CODE = item.GetDataKeyValue("ASSET_CODE"),
-                           .ASSET_VALUE = item.GetDataKeyValue("ASSET_VALUE"),
-                           .ASSET_ID = item.GetDataKeyValue("ASSET_ID"),
-                           .UNIT_PRICE = item.GetDataKeyValue("ALLOWANCE_LIST_ID"),
-                           .QUANTITY = item.GetDataKeyValue("QUANTITY"),
-                           .ASSET_NAME = item.GetDataKeyValue("ASSET_NAME"),
-                           .EMPLOYEE_ID = hidEmpID.Value,
-                           .STATUS_ID = item.GetDataKeyValue("STATUS_ID"),
-                           .REMARK = item.GetDataKeyValue("REMARK"),
-                           .ASSET_DECLARE_ID = item.GetDataKeyValue("ASSET_DECLARE_ID"),
-                           .EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE"),
-                           .EMPLOYEE_NAME = item.GetDataKeyValue("EMPLOYEE_NAME"),
-                           .STATUS_NAME = item.GetDataKeyValue("STATUS_NAME"),
-                           .ORG_ID = item.GetDataKeyValue("ORG_ID")})
+                           .ASSET_CODE = item.GetDataKeyValue("DEBT_TYPE_ID"),
+                           .ASSET_VALUE = item.GetDataKeyValue("DEBT_STATUS"),
+                           .ASSET_ID = item.GetDataKeyValue("MONEY"),
+                           .REMARK = item.GetDataKeyValue("REMARK")})
         Next
         Return dataSource
     End Function
     Private Function AddAsset(ByVal dataSource As List(Of AssetMngDTO)) As List(Of AssetMngDTO)
         Dim rowId = dataSource.Count + 1 'dung de delete row 
 
-        'dataSource.Add(New AssetMngDTO With {.ID = Nothing,
-        '               .ASSET_ID = Decimal.Parse(txtAssetCode.SelectedValue),
-        '               .ASSET_DECLARE_ID = Decimal.Parse(txtAssetCode.SelectedValue),
-        '               .ASSET_VALUE = Decimal.Parse(AssetAmount.Value),
-        '               .ASSET_NAME = txtAssetCode.Text,
-        '               .EMPLOYEE_ID = hidEmpID.Value,
-        '               .ORG_ID = hidOrgID.Value,
-        '               .QUANTITY = AssetQuantity.Value,
-        '               .REMARK = AssetNote.Text,
-        '               .STATUS_ID = GetValueFromComboBox(AssetStatus),
-        '               .EMPLOYEE_CODE = rowId,
-        '               .STATUS_NAME = AssetStatus.Text})
+        dataSource.Add(New AssetMngDTO With {.ID = Nothing,
+                       .ASSET_ID = cboDebtType.SelectedValue,
+                       .ASSET_DECLARE_ID = If(IsNumeric(rntxtDebtMoney.Value), Decimal.Parse(rntxtDebtMoney.Value), Nothing),
+                       .ASSET_VALUE = txtRemark.Text,
+                       .STATUS_ID = cboDebtStatus.SelectedValue})
         Return dataSource
     End Function
     Private Function DeleteAssets(ByVal dataSource As List(Of AssetMngDTO), ByVal selectedItems As GridItemCollection) As List(Of AssetMngDTO)
         Dim rowIDs As New List(Of String)
         For Each item As GridDataItem In selectedItems
-            rowIDs.Add(item.GetDataKeyValue("EMPLOYEE_CODE"))
+            rowIDs.Add(item.GetDataKeyValue("ID"))
         Next
         rowIDs.RemoveAll(Function(f) String.IsNullOrEmpty(f))
         If rowIDs.Count > 0 Then
@@ -1454,9 +1436,9 @@ Public Class ctrlHU_TerminateNewEdit
 
 
     'tien tro cap thoi viec
-    'Private Sub Tinh_Tien_Con_Lai_Changed(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtAllowanceTerminate.TextChanged, rntxtAmountViolations.TextChanged, rntxtOtherCompensation.TextChanged, rntxtTrainingCosts.TextChanged, rntxtAmountWrongful.TextChanged
-    '    Tinh_Tien_Con_lai()
-    'End Sub
+    Private Sub Tinh_Tien_Con_Lai_Changed(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtAllowanceTerminate.TextChanged, rntxtAmountViolations.TextChanged, rntxtAmountWrongful.TextChanged
+        Tinh_Tien_Con_lai()
+    End Sub
 
 
 #End Region
@@ -1471,18 +1453,18 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            'If hidEmpID.Value Is Nothing Or rdLastDate.SelectedDate Is Nothing Then
-            '    'rntxtRemainingLeave.ClearValue()
-            '    'rntxtPaymentLeave.ClearValue()
-            '    'rntxtCompensatoryLeave.ClearValue()
-            '    'rntxtCompensatoryPayment.ClearValue()
-            '    'rntxtAllowanceTerminate.ClearValue()
-            '    hiSalbasic.ClearValue()
-            '    Exit Sub
-            'End If
-            'Using rep As New ProfileBusinessRepository
-            '    dt = rep.CalculateTerminate(hidEmpID.Value, rdLastDate.SelectedDate)
-            'End Using
+            If hidEmpID.Value Is Nothing Or rdLastDate.SelectedDate Is Nothing Then
+                'rntxtRemainingLeave.ClearValue()
+                'rntxtPaymentLeave.ClearValue()
+                'rntxtCompensatoryLeave.ClearValue()
+                'rntxtCompensatoryPayment.ClearValue()
+                'rntxtAllowanceTerminate.ClearValue()
+                hiSalbasic.ClearValue()
+                Exit Sub
+            End If
+            Using rep As New ProfileBusinessRepository
+                dt = rep.CalculateTerminate(hidEmpID.Value, rdLastDate.SelectedDate)
+            End Using
             If dt IsNot Nothing Then
                 'Số phép năm còn lại
                 'rntxtRemainingLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("LEAVE"))
@@ -1585,6 +1567,7 @@ Public Class ctrlHU_TerminateNewEdit
             'rep.GetOtherListByType("HU_CCQD"
             FillDropDownList(cboStatus, ListComboData.LIST_TER_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboInsStatus, ListComboData.LIST_INS_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboTerReason, ListComboData.LIST_TER_REASON, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             cboStatus.DataSource = Status()
             cboStatus.DataTextField = "Text"
             cboStatus.DataValueField = "Value"
@@ -1620,14 +1603,14 @@ Public Class ctrlHU_TerminateNewEdit
                     Case 3
                         Dim empID = Request.Params("empid")
                         FillDataByEmployeeID(empID)
-                        'If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
-                        '    If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
-                        '        txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
-                        '    Else
-                        '        txtSeniority.Text = vbNullString
-                        '    End If
+                        If rdJoinDateState.SelectedDate IsNot Nothing And rdLastDate.SelectedDate IsNot Nothing Then
+                            If rdJoinDateState.SelectedDate < rdLastDate.SelectedDate Then
+                                txtSeniority.Text = CalculateSeniority(rdJoinDateState.SelectedDate, rdLastDate.SelectedDate)
+                            Else
+                                txtSeniority.Text = vbNullString
+                            End If
 
-                        'End If
+                        End If
                         hidEmpID.Value = empID
                         'rgLabourProtect.Rebind()
                         GetTerminateCalculate()
@@ -1662,10 +1645,10 @@ Public Class ctrlHU_TerminateNewEdit
     Private Sub Get_InforWorkLoss()
         Dim ins_date = psp.GET_INFOR_INS_FROMMONTH(hidEmpID.Value)
         'If ins_date <> New Date AndAlso rdLastDate.SelectedDate IsNot Nothing Then
-        'If rdLastDate.SelectedDate IsNot Nothing Then
-        '    Dim ins_thai_san = psp.GET_INS_THAI_SAN(hidEmpID.Value, rdLastDate.SelectedDate)
-        '    txtTimeAccidentIns_loss.Text = CalculateSeniority(ins_date, rdLastDate.SelectedDate)
-        'End If
+        If rdLastDate.SelectedDate IsNot Nothing Then
+            Dim ins_thai_san = psp.GET_INS_THAI_SAN(hidEmpID.Value, rdLastDate.SelectedDate)
+            txtTimeAccidentIns_loss.Text = CalculateSeniority(ins_date, rdLastDate.SelectedDate)
+        End If
     End Sub
 
     Private Sub Tinh_Tien_Con_lai()
@@ -1675,14 +1658,14 @@ Public Class ctrlHU_TerminateNewEdit
 
     Protected Sub txtAssetCode_ItemsRequested(sender As Object, e As RadComboBoxItemsRequestedEventArgs)
         Dim total = 1
-        Using rep As New ProfileBusinessClient
-            'Dim assets = rep.GetAsset(New AssetDTO With {.NAME = txtAssetCode.Text,
-            '                          .ACTFLG = ProfileCommon.ActiveStatus}, 0, 20, total, "name desc")
-            'txtAssetCode.DataTextField = "NAME"
-            'txtAssetCode.DataValueField = "ID"
-            'txtAssetCode.DataSource = assets
-            'txtAssetCode.DataBind()
-        End Using
+        'Using rep As New ProfileBusinessClient
+        '    Dim assets = rep.GetAsset(New AssetDTO With {.NAME = txtAssetCode.Text,
+        '                              .ACTFLG = ProfileCommon.ActiveStatus}, 0, 20, total, "name desc")
+        '    txtAssetCode.DataTextField = "NAME"
+        '    txtAssetCode.DataValueField = "ID"
+        '    txtAssetCode.DataSource = assets
+        '    txtAssetCode.DataBind()
+        'End Using
     End Sub
 #End Region
 

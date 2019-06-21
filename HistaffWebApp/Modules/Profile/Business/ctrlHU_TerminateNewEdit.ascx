@@ -51,8 +51,6 @@
                     <tlk:RadTextBox ID="txtOrgName" runat="server" SkinID="Readonly" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
-
-
             </tr>
             <%--<tr>
                 
@@ -112,24 +110,24 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label1" Text ="Hợp đồng hiện tại" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbContractNo" Text ="Hợp đồng hiện tại" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtCurrentContract" runat="server" ReadOnly="True" SkinID="ReadOnly">
+                    <tlk:RadTextBox ID="txtContractNo" runat="server" ReadOnly="True" SkinID="ReadOnly">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label2" Text ="Từ ngày" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbContractEffectDate" Text ="Từ ngày" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdContractFromDate" runat="server" DateInput-Enabled="False">
-                    </tlk:RadDatePicker>
+                    <tlk:RadDatePicker ID="rdContractEffectDate" runat="server" DateInput-Enabled="False">
+                    </tlk:RadDatePicker> 
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label3" Text ="Đến ngày" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbContractExpireDate" Text ="Đến ngày" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdContractToDate" runat="server" DateInput-Enabled="False">
+                    <tlk:RadDatePicker ID="rdContractExpireDate" runat="server" DateInput-Enabled="False">
                     </tlk:RadDatePicker>
                 </td>                
             </tr>
@@ -158,16 +156,23 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbEndDate" Text ="Ngày làm việc cuối cùng" ></asp:Label>                    
+                    <asp:Label runat ="server" ID ="lbLastDate" Text ="Ngày làm việc cuối cùng" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdEndDate" runat="server"  AutoPostBack="True">
+                    <tlk:RadDatePicker ID="rdLastDate" runat="server" AutoPostBack="true" DateInput-CausesValidation="false">
                     </tlk:RadDatePicker>
-                     <asp:RequiredFieldValidator ID="reqEndDate" ControlToValidate="rdEndDate" runat="server"
+                    <asp:RequiredFieldValidator ID="reqLastDate" ControlToValidate="rdLastDate" runat="server"
                         ErrorMessage="Bạn phải nhập ngày làm việc cuối cùng." ToolTip="Bạn phải nhập ngày làm việc cuối cùng."> </asp:RequiredFieldValidator>
+
+                    <asp:CustomValidator ID="cval_LastDate_SendDate" runat="server" ErrorMessage="Ngày làm việc cuối cùng phải lớn hơn ngày nộp đơn."
+                        ToolTip="Ngày làm việc cuối cùng phải lớn hơn ngày nộp đơn.">
+                    </asp:CustomValidator>
+                    <asp:CustomValidator ID="cval_LastDate_JoinDate" runat="server" ErrorMessage="Ngày làm việc cuối cùng không nhỏ hơn ngày vào công ty."
+                        ToolTip="Ngày làm việc cuối cùng không nhỏ hơn ngày vào công ty.">
+                    </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label5" Text ="Lý do nghỉ" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbTerReason" Text ="Lý do nghỉ" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboTerReason" runat="server">
@@ -185,26 +190,7 @@
                     <asp:CustomValidator ID="cvaldpApproveDateJoinDate" runat="server" ErrorMessage="<%$ Translate: Ngày phê duyệt không nhỏ hơn ngày vào công ty. %>"
                         ToolTip="<%$ Translate: Ngày phê duyệt không nhỏ hơn ngày vào công ty. %>">
                     </asp:CustomValidator>
-                </td>--%>
-                <%--
-                <td class="lb">
-                    <asp:Label runat ="server" ID ="lbLastDate" Text ="Ngày nghỉ thực tế" ></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdLastDate" runat="server" AutoPostBack="true" DateInput-CausesValidation="false">
-                    </tlk:RadDatePicker>
-                    <asp:RequiredFieldValidator ID="reqLastDate" ControlToValidate="rdLastDate" runat="server"
-                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày nghỉ thực tế. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày nghỉ thực tế. %>"> </asp:RequiredFieldValidator>
-                    <asp:RequiredFieldValidator ID="reqLastDate" ControlToValidate="rdLastDate" runat="server"
-                        ErrorMessage="Bạn phải nhập ngày nghỉ thực tế." ToolTip="Bạn phải nhập ngày nghỉ thực tế."> </asp:RequiredFieldValidator>
-
-                    <asp:CustomValidator ID="cval_LastDate_SendDate" runat="server" ErrorMessage="Ngày nghỉ thực tế phải lớn hơn ngày nộp đơn."
-                        ToolTip="Ngày nghỉ thực tế phải lớn hơn ngày nộp đơn.">
-                    </asp:CustomValidator>
-                    <asp:CustomValidator ID="cval_LastDate_JoinDate" runat="server" ErrorMessage="Ngày nghỉ thực tế không nhỏ hơn ngày vào công ty."
-                        ToolTip="Ngày nghỉ thực tế không nhỏ hơn ngày vào công ty.">
-                    </asp:CustomValidator>
-                </td>--%>
+                </td>--%>             
             </tr>
             <tr>
                 <td class="lb">
@@ -259,21 +245,21 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label6" Text ="Tên loại công nợ" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbDebtType" Text ="Tên loại công nợ" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDebtType" runat="server">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label7" Text ="Số tiền" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbDebtMoney" Text ="Số tiền" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtDebtMoney" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label8" Text ="Trạng thái" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbDebtStatus" Text ="Trạng thái" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboDebtStatus" runat="server">
@@ -291,38 +277,38 @@
             </tr>
             <tr>
                 <td colspan="6">
-                    <tlk:RadGrid PageSize="50" ID="rgAsset" runat="server" Height="250px" Width="100%" SkinID="GridNotPaging"
+                    <tlk:RadGrid PageSize="50" ID="rgDebt" runat="server" Height="250px" Width="100%" SkinID="GridNotPaging"
                         AllowMultiRowEdit="true">
-                        <MasterTableView EditMode="PopUp" DataKeyNames="ASSET_ID,ASSET_DECLARE_ID,EMPLOYEE_ID,ID,ASSET_NAME,EMPLOYEE_CODE,ASSET_VALUE,QUANTITY,STATUS_NAME,STATUS_ID,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true">
+                        <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true">
                             <CommandItemStyle Height="28px" />
                             <CommandItemTemplate>
                                 <div style="padding: 2px 0 0 0">
                                     <div style="float: left">
-                                        <tlk:RadButton ID="btnAddAsset" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/add.png" 
-                                            CommandName="btnAddAsset"
-                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Thêm %>" OnClientClicking="btnAddAssetsOnClientClicking">
+                                        <tlk:RadButton ID="btnAddDebt" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/add.png" 
+                                            CommandName="btnAddDebt"
+                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Thêm %>" OnClientClicking="btnAddDebtsOnClientClicking">
                                         </tlk:RadButton>
                                     </div>
                                     <div style="float: right">
-                                        <tlk:RadButton ID="btnDeleteAssets" runat="server"
-                                            CommandName="btnDeleteAssets"
+                                        <tlk:RadButton ID="btnDeleteDebts" runat="server"
+                                            CommandName="btnDeleteDebts"
                                             Icon-PrimaryIconUrl="~/Static/Images/Toolbar/delete.png" 
-                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Xóa %>" OnClientClicking="btnDeleteAssetsOnClientClicking">
+                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Xóa %>" OnClientClicking="btnDeleteDebtsOnClientClicking">
                                         </tlk:RadButton>
                                     </div>
                                 </div>
                             </CommandItemTemplate>
 
                             <Columns>
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên loại công nợ %>" DataField="ASSET_NAME"
-                                    SortExpression="ASSET_NAME" UniqueName="ASSET_NAME" ReadOnly="true" />
-                                <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="ASSET_VALUE"
-                                    SortExpression="ASSET_VALUE" UniqueName="ASSET_VALUE" DataFormatString="{0:n0}"
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên loại công nợ %>" DataField="DEBT_TYPE_NAME"
+                                    SortExpression="DEBT_TYPE_NAME" UniqueName="DEBT_TYPE_NAME" ReadOnly="true" />
+                                <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="MONEY"
+                                    SortExpression="MONEY" UniqueName="MONEY" DataFormatString="{0:n0}"
                                     ReadOnly="true">
                                     <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                 </tlk:GridNumericColumn>
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
-                                    SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" ReadOnly="true" />
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="DEBT_STATUS_NAME"
+                                    SortExpression="DEBT_STATUS_NAME" UniqueName="DEBT_STATUS_NAME" ReadOnly="true" />
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK"
                                     SortExpression="REMARK" UniqueName="REMARK" ReadOnly="true" />
                             </Columns>
@@ -333,55 +319,51 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label9" Text ="Tổng số tiền công nợ" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbDebtTotal" Text ="Tổng số tiền công nợ" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtDebtTotal" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label10" Text ="Số tiền thanh toán bằng tiền mặt" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbCash" Text ="Số tiền thanh toán bằng tiền mặt" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtCash" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label11" Text ="Tiền bồi thường theo lý do nghỉ việc trái pháp luật" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbAmountWrongful" Text ="Tiền bồi thường theo lý do nghỉ việc trái pháp luật" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtCompensationIllegalTer" MinValue="0" runat="server" SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rntxtAmountWrongful" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>                
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label13" Text ="Số tiền trừ vào lương" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbMoneyDeductFromSal" Text ="Số tiền trừ vào lương" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtMoneyDeductFromSal" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label14" Text ="Tháng lương" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbSalMonth" Text ="Tháng lương" ></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboSalMonth" runat="server">
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="Label12" Text ="Tiền bồi thường khi vi phạm thời gian báo trước" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbAmountViolations" Text ="Tiền bồi thường khi vi phạm thời gian báo trước" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtCompensationViolateTime" MinValue="0" runat="server" SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rntxtAmountViolations" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
             <%--<tr>
-                <td class="lb"></td>
-                <td>
-                    <asp:CheckBox ID="cbIsNoHire" runat="server" Text="Danh sách đen" />
-                </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID ="lbTYPE_TERMINATE" Text ="Loại nghỉ" ></asp:Label>
                 </td>
@@ -611,6 +593,13 @@
             </tr>
             <tr>
                 <td class="lb">
+                    <asp:Label runat ="server" ID ="lbReserveSeniority" Text ="Thâm niên bảo lưu (Tháng)" ></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="ReserveSeniority" runat="server" SkinID="Decimal">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
                     <asp:Label runat ="server" ID ="lbSalaryMedium_loss" Text ="Lương trung bình tính 6 tháng" ></asp:Label>
                 </td>
                 <td>
@@ -750,6 +739,10 @@
                 <td>
                     <asp:CheckBox ID="cbIsNoHire" runat="server" Text="Không tuyển dụng lại"/>
                 </td>
+                <td class="lb"></td>
+                <td>
+                    <asp:CheckBox ID="cbIsReplacePos" runat="server" Text="Tuyển thay thế" />
+                </td>
             </tr>
             <tr>                
                 <td class="lb">
@@ -872,11 +865,11 @@
         function rbtClicked(sender, eventArgs) {
             enableAjax = false;
         }
-        function btnDeleteAssetsOnClientClicking(sender, args) {
+        function btnDeleteDebtsOnClientClicking(sender, args) {
 
         }
-        function btnAddAssetsOnClientClicking(sender, args) {
-            var grid = $find("<%# rgAsset.ClientID%>");
+        function btnAddDebtsOnClientClicking(sender, args) {
+            var grid = $find("<%# rgDebt.ClientID%>");
             // grid.MasterTableView.isItemInserted = true;
             // grid.MasterTableView.showInsertItem();
         }
