@@ -1297,48 +1297,48 @@ Public Class ctrlHU_TerminateNewEdit
     End Sub
 
     Private Sub RgDebts_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgDebt.ItemCommand
-        Dim dataSource = GetAssetsSource()
+        Dim dataSource = GetDebtsSource()
         Select Case e.CommandName
             Case "btnAddDebt"
-                AddAsset(dataSource)
+                AddDebt(dataSource)
             Case "btnDeleteDebts"
-                DeleteAssets(dataSource, rgDebt.SelectedItems)
+                DeleteDebts(dataSource, rgDebt.SelectedItems)
         End Select
         ClearControlValue(cboDebtType, rntxtDebtMoney, txtRemark, cboDebtStatus)
         rgDebt.DataSource = dataSource
         rgDebt.DataBind()
     End Sub
-    Private Function GetAssetsSource() As List(Of AssetMngDTO)
-        Dim dataSource = New List(Of AssetMngDTO)
+    Private Function GetDebtsSource() As List(Of DebtDTO)
+        Dim dataSource = New List(Of DebtDTO)
 
         For Each item As GridDataItem In rgDebt.Items
-            dataSource.Add(New AssetMngDTO With {.ID = item.GetDataKeyValue("ID"),
-                           .ASSET_CODE = item.GetDataKeyValue("DEBT_TYPE_ID"),
-                           .ASSET_VALUE = item.GetDataKeyValue("DEBT_STATUS"),
-                           .ASSET_ID = item.GetDataKeyValue("MONEY"),
+            dataSource.Add(New DebtDTO With {.ID = item.GetDataKeyValue("ID"),
+                           .DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID"),
+                           .DEBT_STATUS = item.GetDataKeyValue("DEBT_STATUS"),
+                           .MONEY = item.GetDataKeyValue("MONEY"),
                            .REMARK = item.GetDataKeyValue("REMARK")})
         Next
         Return dataSource
     End Function
-    Private Function AddAsset(ByVal dataSource As List(Of AssetMngDTO)) As List(Of AssetMngDTO)
-        Dim rowId = dataSource.Count + 1 'dung de delete row 
+    Private Function AddDebt(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
+        Dim rowId = dataSource.Count + 1 'dung de delete row
 
-        dataSource.Add(New AssetMngDTO With {.ID = Nothing,
-                       .ASSET_ID = cboDebtType.SelectedValue,
-                       .ASSET_DECLARE_ID = If(IsNumeric(rntxtDebtMoney.Value), Decimal.Parse(rntxtDebtMoney.Value), Nothing),
-                       .ASSET_VALUE = txtRemark.Text,
-                       .STATUS_ID = cboDebtStatus.SelectedValue})
+        dataSource.Add(New DebtDTO With {.ID = Nothing,
+                       .DEBT_TYPE_ID = cboDebtType.SelectedValue,
+                       .MONEY = If(IsNumeric(rntxtDebtMoney.Value), Decimal.Parse(rntxtDebtMoney.Value), Nothing),
+                       .REMARK = txtRemark.Text,
+                       .DEBT_STATUS = cboDebtStatus.SelectedValue})
         Return dataSource
     End Function
-    Private Function DeleteAssets(ByVal dataSource As List(Of AssetMngDTO), ByVal selectedItems As GridItemCollection) As List(Of AssetMngDTO)
+    Private Function DeleteDebts(ByVal dataSource As List(Of DebtDTO), ByVal selectedItems As GridItemCollection) As List(Of DebtDTO)
         Dim rowIDs As New List(Of String)
         For Each item As GridDataItem In selectedItems
             rowIDs.Add(item.GetDataKeyValue("ID"))
         Next
         rowIDs.RemoveAll(Function(f) String.IsNullOrEmpty(f))
-        If rowIDs.Count > 0 Then
-            dataSource.RemoveAll(Function(f) rowIDs.Contains(f.EMPLOYEE_CODE))
-        End If
+        'If rowIDs.Count > 0 Then
+        '    dataSource.RemoveAll(Function(f) rowIDs.Contains(f.EMPLOYEE_CODE))
+        'End If
         Return dataSource
     End Function
 
