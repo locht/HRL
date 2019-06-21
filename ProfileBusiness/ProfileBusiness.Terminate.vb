@@ -9,6 +9,16 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "Debt"
+        Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO) Implements ServiceContracts.IProfileBusiness.GetDebt
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.GetDebt(empId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
         Public Function InsertDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertDebt
             Using rep As New ProfileRepository
                 Try

@@ -8,6 +8,28 @@ Imports System.Reflection
 Partial Class ProfileRepository
 
 #Region "Debt"
+    Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO)
+        Try
+            Dim query = (From p In Context.HU_DEBT
+                         From debt_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DEBT_TYPE_ID).DefaultIfEmpty
+                         From debt_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DEBT_STATUS).DefaultIfEmpty
+                         Where p.EMPLOYEE_ID = empId)
+            Dim sql = query.Select(Function(p) New DebtDTO With {
+                                         .ID = p.p.ID,
+                                         .EMPLOYEE_ID = p.p.EMPLOYEE_ID,
+                                         .DEBT_STATUS = p.p.DEBT_STATUS,
+                                         .DEBT_STATUS_NAME = p.debt_status.NAME_VN,
+                                         .DEBT_TYPE_ID = p.p.DEBT_TYPE_ID,
+                                         .DEBT_TYPE_NAME = p.debt_type.NAME_VN,
+                                         .MONEY = p.p.MONEY,
+                                         .REMARK = p.p.REMARK}).ToList
+
+            Return sql
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+
+        End Try
+    End Function
     Public Function InsertDebt(ByVal objDebt As DebtDTO,
                                    ByVal log As UserLog) As Boolean
         Try

@@ -5,6 +5,17 @@ Partial Public Class ProfileBusinessRepository
 
 
 #Region "Debt"
+    Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetDebt(empId)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
     Public Function InsertDebt(ByVal objDebt As DebtDTO) As Boolean
         Using rep As New ProfileBusinessClient
             Try
@@ -14,7 +25,6 @@ Partial Public Class ProfileBusinessRepository
                 Throw ex
             End Try
         End Using
-
     End Function
 
     Public Function ModifyDebt(ByVal objDebt As DebtDTO) As Boolean

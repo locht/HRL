@@ -1811,6 +1811,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 #Region "Debt"
         <OperationContract()>
+        Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO)
+        <OperationContract()>
         Function InsertDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean
         <OperationContract()>
         Function ModifyDebt(ByVal objDebt As DebtDTO, ByVal log As UserLog) As Boolean

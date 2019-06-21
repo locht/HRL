@@ -1205,19 +1205,18 @@ Public Class ctrlHU_TerminateNewEdit
     Private Sub rgDebt_NeedDataSource(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgDebt.NeedDataSource
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim lstData As List(Of AssetMngDTO)
+        Dim lstData As List(Of DebtDTO)
         Try
             Using rep As New ProfileBusinessRepository
-
                 If hidEmpID.Value <> "" Then
-                    lstData = rep.GetAssetByTerminate(hidEmpID.Value)
+                    lstData = rep.GetDebt(hidEmpID.Value)
                 Else
-                    lstData = New List(Of AssetMngDTO)
+                    lstData = New List(Of DebtDTO)
                 End If
             End Using
-            For index = 0 To lstData.Count - 1
-                lstData(0).EMPLOYEE_CODE = index + 1
-            Next
+            'For index = 0 To lstData.Count - 1
+            '    lstData(0).EMPLOYEE_CODE = index + 1
+            'Next
             rgDebt.DataSource = lstData
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
