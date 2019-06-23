@@ -382,7 +382,6 @@ Public Class ctrlHU_TerminateNewEdit
         Dim _filter As New TerminateDTO
         Dim dtData As New DataTable
         Dim _objfilter As New TerminateDTO
-        'Dim ob As New DebtDTO
         Dim gid As Decimal
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName

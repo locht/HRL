@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 21/06/2019 3:54:32 PM
+-- Date Created: 23/06/2019 8:26:49 AM
 -- Generated from EDMX file: E:\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -3307,7 +3307,8 @@ CREATE TABLE "dbo"."HU_TRANSFER_TERMINATE" (
    "CREATED_LOG" NVARCHAR2(255) NULL,
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
-   "MODIFIED_LOG" NVARCHAR2(255) NULL
+   "MODIFIED_LOG" NVARCHAR2(255) NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_DEBT'

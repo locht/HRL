@@ -21,6 +21,7 @@
     Public Property FROM_SEND_DATE As Date?
     Public Property WRITE_DATE As Date?
     Public Property lstReason As List(Of TerminateReasonDTO)
+    Public Property lstHandoverContend As List(Of HandoverContentDTO)
     Public Property TER_REASON_DETAIL As String
     Public Property LAST_DATE As Date?
     Public Property TO_LAST_DATE As Date?
