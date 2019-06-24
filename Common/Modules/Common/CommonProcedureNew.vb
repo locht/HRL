@@ -8,6 +8,21 @@ Imports Common.CommonBusiness
 
 Public Class CommonProcedureNew
     Private rep As New HistaffFrameworkRepository
+    Function GetPeriod() As DataTable
+        Dim dt As New DataTable
+        Try
+            Dim ds As DataSet = rep.ExecuteToDataSet("PKG_COMMON_LIST.GET_PERIOD", New List(Of Object)(New Object() {}))
+            If ds IsNot Nothing Then
+                If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+                    dt = ds.Tables(0)
+                End If
+            End If
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Function IMPORT_APPROVE_SETUP_ORG(DocXml As String, User As UserLog) As Boolean
         Try
             Dim objects = rep.ExecuteStoreScalar("PKG_COMMON_LIST.IMPORT_APPROVE_SETUP_ORG",

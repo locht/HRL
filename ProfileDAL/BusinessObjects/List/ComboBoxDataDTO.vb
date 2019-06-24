@@ -1,4 +1,6 @@
 ﻿Public Class ComboBoxDataDTO
+    Public Property GET_HANDOVER_CONTENT As Boolean
+    Public Property LIST_HANDOVER_CONTENT As List(Of OtherListDTO)
 
     Public Property GET_DEBT_TYPE As Boolean
     Public Property LIST_DEBT_TYPE As List(Of OtherListDTO)

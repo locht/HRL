@@ -455,13 +455,13 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents txtRemark As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''rgReason control.
+    '''rgHandoverContent control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rgReason As Global.Telerik.Web.UI.RadGrid
+    Protected WithEvents rgHandoverContent As Global.Telerik.Web.UI.RadGrid
 
     '''<summary>
     '''lbDebtType control.

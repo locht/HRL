@@ -141,7 +141,7 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            rgReason.AllowSorting = False
+            rgHandoverContent.AllowSorting = False
             InitControl()
             If Not IsPostBack Then
                 ViewConfig(RadPane2)
@@ -281,12 +281,13 @@ Public Class ctrlHU_TerminateNewEdit
                     rntxtyearforallow_loss.Value = Terminate.YEARFORALLOW
                     'cboTYPE_TERMINATE.SelectedValue = Terminate.TYPE_TERMINATE
 
-                    lstReason = Terminate.lstReason
-                    rgReason.Rebind()
-                    For Each i As GridItem In rgReason.Items
+                    'lstReason = Terminate.lstReason
+                    lstHandoverContent = Terminate.lstHandoverContent
+                    rgHandoverContent.Rebind()
+                    For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
                     Next
-                    rgReason.Rebind()
+                    rgHandoverContent.Rebind()
                     txtUploadFile.Text = Terminate.FILENAME
                     txtRemindLink.Text = If(Terminate.UPLOADFILE Is Nothing, "", Terminate.UPLOADFILE)
                     loadDatasource(txtUploadFile.Text)
@@ -300,18 +301,25 @@ Public Class ctrlHU_TerminateNewEdit
                     End If
 
                 Case "InsertView"
-                    lstReason = New List(Of TerminateReasonDTO)
-                    For Each obj In ListComboData.LIST_TER_REASON
-                        Dim objReason As New TerminateReasonDTO
-                        objReason.TER_REASON_ID = obj.ID
-                        objReason.TER_REASON_NAME = obj.NAME_VN
-                        lstReason.Add(objReason)
+                    'lstReason = New List(Of TerminateReasonDTO)
+                    'For Each obj In ListComboData.LIST_TER_REASON
+                    '    Dim objReason As New TerminateReasonDTO
+                    '    objReason.TER_REASON_ID = obj.ID
+                    '    objReason.TER_REASON_NAME = obj.NAME_VN
+                    '    lstReason.Add(objReason)
+                    'Next
+                    lstHandoverContent = New List(Of HandoverContentDTO)
+                    For Each obj In ListComboData.LIST_HANDOVER_CONTENT
+                        Dim objHandover As New HandoverContentDTO
+                        objHandover.CONTENT_ID = obj.ID
+                        objHandover.CONTENT_NAME = obj.NAME_VN
+                        lstHandoverContent.Add(objHandover)
                     Next
-                    rgReason.Rebind()
-                    For Each i As GridItem In rgReason.Items
+                    rgHandoverContent.Rebind()
+                    For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
                     Next
-                    rgReason.Rebind()
+                    rgHandoverContent.Rebind()
                     cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
                     CurrentState = CommonMessage.STATE_NEW
                 Case "NormalView"
@@ -495,7 +503,7 @@ Public Class ctrlHU_TerminateNewEdit
 
 
                         lstReason = New List(Of TerminateReasonDTO)
-                        For Each item As GridDataItem In rgReason.Items
+                        For Each item As GridDataItem In rgHandoverContent.Items
                             Dim reason = New TerminateReasonDTO
                             reason.TER_REASON_ID = item.GetDataKeyValue("TER_REASON_ID")
                             reason.TER_REASON_NAME = item.GetDataKeyValue("TER_REASON_NAME")
@@ -1267,11 +1275,11 @@ Public Class ctrlHU_TerminateNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub rgReason_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgReason.NeedDataSource
+    Private Sub rgHandoverContent_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgHandoverContent.NeedDataSource
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            CreateDataReason(lstReason)
+            CreateDataHandoverContent(lstHandoverContent)
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -1284,18 +1292,18 @@ Public Class ctrlHU_TerminateNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub rgReason_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgReason.ItemDataBound
+    Private Sub rgHandoverContent_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgHandoverContent.ItemDataBound
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            If e.Item.Edit Then
-                Dim edit = CType(e.Item, GridEditableItem)
-                Dim rntxt As RadNumericTextBox
-                rntxt = CType(edit("DENSITY").Controls(0), RadNumericTextBox)
-                rntxt.MinValue = 0
-                rntxt.MaxValue = 100
-                rntxt.Width = Unit.Percentage(100)
-            End If
+            'If e.Item.Edit Then
+            '    Dim edit = CType(e.Item, GridEditableItem)
+            '    Dim rntxt As RadNumericTextBox
+            '    rntxt = CType(edit("DENSITY").Controls(0), RadNumericTextBox)
+            '    rntxt.MinValue = 0
+            '    rntxt.MaxValue = 100
+            '    rntxt.Width = Unit.Percentage(100)
+            'End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1556,6 +1564,8 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileRepository
+        Dim store As New CommonProcedureNew
+
         Try
             If ListComboData Is Nothing Then
                 ListComboData = New ComboBoxDataDTO
@@ -1580,6 +1590,9 @@ Public Class ctrlHU_TerminateNewEdit
             cboStatus.DataTextField = "Text"
             cboStatus.DataValueField = "Value"
             cboStatus.SelectedIndex = 1
+            cboSalMonth.DataSource = store.GetPeriod()
+            cboSalMonth.DataTextField = "PERIOD_NAME"
+            cboSalMonth.DataValueField = "ID"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -1636,14 +1649,17 @@ Public Class ctrlHU_TerminateNewEdit
     ''' </summary>
     ''' <param name="lstReason"></param>
     ''' <remarks></remarks>
-    Private Sub CreateDataReason(Optional ByVal lstReason As List(Of TerminateReasonDTO) = Nothing)
+    Private Sub CreateDataHandoverContent(Optional ByVal lstHandoverContent As List(Of HandoverContentDTO) = Nothing)
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            If lstReason Is Nothing Then
-                lstReason = New List(Of TerminateReasonDTO)
+            'If lstReason Is Nothing Then
+            '    lstReason = New List(Of TerminateReasonDTO)
+            'End If
+            If lstHandoverContent Is Nothing Then
+                lstHandoverContent = New List(Of HandoverContentDTO)
             End If
-            rgReason.DataSource = lstReason
+            rgHandoverContent.DataSource = lstHandoverContent
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

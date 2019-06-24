@@ -607,6 +607,17 @@ Public Class ProfileRepository
             _combolistDTO.LIST_UNIT_LEVEL = query
         End If
 
+        If _combolistDTO.GET_HANDOVER_CONTENT Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "HANDOVER_CONTENT")
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_HANDOVER_CONTENT = query
+        End If
+
         If _combolistDTO.GET_REASON Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
                      From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "REASON")

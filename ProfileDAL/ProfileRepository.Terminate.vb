@@ -457,14 +457,21 @@ Partial Class ProfileRepository
 
             Dim ter = obj.FirstOrDefault
 
-            ter.lstReason = (From reason In Context.OT_OTHER_LIST
-                             From p In Context.HU_TERMINATE_REASON.Where(Function(f) f.TER_REASON_ID = reason.ID And
-                                                                             f.HU_TERMINATE_ID = ter.ID).DefaultIfEmpty
-                             Where reason.TYPE_ID = 51
-                             Order By reason.NAME_VN
-                             Select New TerminateReasonDTO With {.TER_REASON_ID = reason.ID,
-                                                                 .TER_REASON_NAME = reason.NAME_VN,
-                                                                 .DENSITY = p.DENSITY}).ToList
+            'ter.lstReason = (From reason In Context.OT_OTHER_LIST
+            '                 From p In Context.HU_TERMINATE_REASON.Where(Function(f) f.TER_REASON_ID = reason.ID And
+            '                                                                 f.HU_TERMINATE_ID = ter.ID).DefaultIfEmpty
+            '                 Where reason.TYPE_ID = 51
+            '                 Order By reason.NAME_VN
+            '                 Select New TerminateReasonDTO With {.TER_REASON_ID = reason.ID,
+            '                                                     .TER_REASON_NAME = reason.NAME_VN,
+            '                                                     .DENSITY = p.DENSITY}).ToList
+            ter.lstHandoverContent = (From hc In Context.OT_OTHER_LIST
+                                      From p In Context.HU_TRANSFER_TERMINATE.Where(Function(f) f.CONTENT_ID = hc.ID And f.TERMINATE_ID = ter.ID).DefaultIfEmpty
+                                      Where hc.TYPE_ID = 2270
+                                      Order By hc.NAME_VN
+                                      Select New HandoverContentDTO With {.TERMINATE_ID = p.TERMINATE_ID,
+                                                                          .CONTENT_NAME = hc.NAME_VN,
+                                                                          .IS_FINISH = p.IS_FINISH}).ToList
 
             Return ter
         Catch ex As Exception

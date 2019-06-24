@@ -220,15 +220,15 @@
             <tr>
                 <td></td>
                 <td colspan="5">
-                    <tlk:RadGrid PageSize="50" ID="rgReason" runat="server" Height="200px" Width="550px" SkinID="GridNotPaging"
+                    <tlk:RadGrid PageSize="50" ID="rgHandoverContent" runat="server" Height="200px" Width="550px" SkinID="GridNotPaging"
                         AllowMultiRowEdit="true">
-                        <MasterTableView DataKeyNames="ID,TER_REASON_ID,TER_REASON_NAME,DENSITY" ClientDataKeyNames="ID,TER_REASON_ID,TER_REASON_NAME,DENSITY"
+                        <MasterTableView DataKeyNames="ID,TERMINATE_ID,IS_FINISH,CONTENT_ID,CONTENT_NAME,EMPLOYEE_ID" ClientDataKeyNames="ID,TERMINATE_ID,IS_FINISH,CONTENT_ID,CONTENT_NAME,EMPLOYEE_ID"
                             EditMode="InPlace">
                             <Columns>
-                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung bàn giao %>" DataField="TER_REASON_NAME"
-                                    SortExpression="TER_REASON_NAME" UniqueName="TER_REASON_NAME" ReadOnly="true" />
-                                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hoàn thành %>" DataField="DENSITY"
-                                    SortExpression="DENSITY" UniqueName="DENSITY">
+                                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung bàn giao %>" DataField="CONTENT_NAME"
+                                    SortExpression="CONTENT_NAME" UniqueName="CONTENT_NAME" ReadOnly="true" />
+                                <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Hoàn thành %>" DataField="IS_FINISH"
+                                    SortExpression="IS_FINISH" UniqueName="IS_FINISH">
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </tlk:GridCheckBoxColumn>
                             </Columns>

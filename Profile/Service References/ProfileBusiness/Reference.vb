@@ -16340,6 +16340,9 @@ Namespace ProfileBusiness
         Private GET_GENDERField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_HANDOVER_CONTENTField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_HEALTH_TYPEField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -16545,6 +16548,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_GENDERField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_HANDOVER_CONTENTField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_HEALTH_TYPEField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
@@ -17059,6 +17065,19 @@ Namespace ProfileBusiness
                 If (Me.GET_GENDERField.Equals(value) <> true) Then
                     Me.GET_GENDERField = value
                     Me.RaisePropertyChanged("GET_GENDER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_HANDOVER_CONTENT() As Boolean
+            Get
+                Return Me.GET_HANDOVER_CONTENTField
+            End Get
+            Set
+                If (Me.GET_HANDOVER_CONTENTField.Equals(value) <> true) Then
+                    Me.GET_HANDOVER_CONTENTField = value
+                    Me.RaisePropertyChanged("GET_HANDOVER_CONTENT")
                 End If
             End Set
         End Property
@@ -17956,6 +17975,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_GENDERField, value) <> true) Then
                     Me.LIST_GENDERField = value
                     Me.RaisePropertyChanged("LIST_GENDER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_HANDOVER_CONTENT() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_HANDOVER_CONTENTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_HANDOVER_CONTENTField, value) <> true) Then
+                    Me.LIST_HANDOVER_CONTENTField = value
+                    Me.RaisePropertyChanged("LIST_HANDOVER_CONTENT")
                 End If
             End Set
         End Property
