@@ -1141,6 +1141,7 @@
     <Content Include="Scripts\highlight\styles\xcode.css" />
     <Content Include="Scripts\highlight\styles\xt256.css" />
     <Content Include="Scripts\highlight\styles\zenburn.css" />
+    <Content Include="Scripts\html2canvas.min.js" />
     <Content Include="Scripts\jMenu.jquery.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />

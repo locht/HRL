@@ -2,6 +2,20 @@
     Inherits="Profile.ctrlOrgChart" %>
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane2" runat="server">
+        <div id="note">
+            <div class="note-header">
+                <%--<span><%# Translate("Sơ Đồ Tổ Chức")%></span>--%>
+            </div>
+            <div class="note-comment">
+                <span>
+                    <%# Translate("Click vào dấu cộng (+), trừ (-) để điều khiển đóng, mở cơ cấu tổ chức")%></span>
+            </div>
+            <p></p>
+            <div class="note-comment">
+                <tlk:RadButton ID="btnExport" runat="server" OnClientClicked="ExportImage" Text="<%$ Translate: Xuất hình %>">
+                </tlk:RadButton>
+            </div>
+        </div>
         <div id="RestrictionZone" class="RestrictionZone">
             <tlk:RadOrgChart runat="server" ID="chartData1" Width="100%" EnableCollapsing="true"
                 Skin="Default" DataFieldID="ID" DataFieldParentID="PARENT_ID" DataTextField="ORG_NAME"
@@ -59,6 +73,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
+     <script src="../../../Scripts/html2canvas.min.js"></script>
     <script type="text/javascript">
         var scaleParamX;
         var scaleParamY;
@@ -94,5 +109,38 @@
                     org.style.WebkitTransform = "scale(" + scaleParamX + ")";
             }, 100);
         }
+
+        function DownloadPNG(canvas, filename) {
+            var lnk = document.createElement('a'), e;
+
+            lnk.download = filename;
+
+            lnk.href = canvas.toDataURL("image/png;base64");
+
+            if (document.createEvent) {
+                e = document.createEvent("MouseEvents");
+                e.initMouseEvent("click", true, true, window,
+                    0, 0, 0, 0, 0, false, false, false,
+                    false, 0, null);
+
+                lnk.dispatchEvent(e);
+            } else if (lnk.fireEvent) {
+                lnk.fireEvent("onclick");
+            }
+        }
+        function ExportImage(sender, args) {
+            var ro = document.querySelector("div.rocViewPort")
+            ro.style.visibility = "visible"
+
+            var useWidth = ro.offsetWidth
+            var useHeight = ro.offsetHeight
+
+            html2canvas(ro, {
+                width: useWidth,
+                height: useHeight
+            }).then(canvas => {
+                DownloadPNG(canvas, 'OrgChart.png')
+            });
+            }
     </script>
 </tlk:RadCodeBlock>

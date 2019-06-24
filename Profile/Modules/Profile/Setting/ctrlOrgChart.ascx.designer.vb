@@ -32,6 +32,15 @@ Partial Public Class ctrlOrgChart
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''btnExport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExport As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''chartData1 control.
     '''</summary>
     '''<remarks>
