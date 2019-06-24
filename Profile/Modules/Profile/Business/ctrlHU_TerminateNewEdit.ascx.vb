@@ -293,8 +293,8 @@ Public Class ctrlHU_TerminateNewEdit
                     loadDatasource(txtUploadFile.Text)
                     FileOldName = If(FileOldName = "", txtUpload.Text, FileOldName)
                     ' phê duyệt và ko phê duyêt
-                    If Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Or
-                        Terminate.STATUS_ID = ProfileCommon.DECISION_STATUS.NOT_APPROVE_ID Then
+                    If Terminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Or
+                        Terminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, RadPane2)
                         btnDownload.Enabled = True
                         MainToolBar.Items(0).Enabled = False
@@ -320,7 +320,7 @@ Public Class ctrlHU_TerminateNewEdit
                         i.Edit = True
                     Next
                     rgHandoverContent.Rebind()
-                    cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID
+                    cboStatus.SelectedValue = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID
                     CurrentState = CommonMessage.STATE_NEW
                 Case "NormalView"
 
@@ -409,12 +409,18 @@ Public Class ctrlHU_TerminateNewEdit
                                 Exit Sub
                             End If
                         End If
-                        If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
-                            'If txtDecisionNo.Text = "" Then
-                            '    ShowMessage(Translate("Bạn phải nhập số quyết định"), NotifyType.Warning)
-                            '    Exit Sub
-                            'End If
+                        If cboStatus.SelectedValue = ProfileCommon.OT_TER_STATUS.APPROVE_ID Then
+                            If txtUpload.Text.Trim = "" Then
+                                ShowMessage(Translate("Bạn phải chọn tập tin đính kèm"), NotifyType.Warning)
+                                Exit Sub
+                            End If
                         End If
+                        'If cboStatus.SelectedValue = ProfileCommon.DECISION_STATUS.WAIT_APPROVE_ID Then
+                        'If txtDecisionNo.Text = "" Then
+                        '    ShowMessage(Translate("Bạn phải nhập số quyết định"), NotifyType.Warning)
+                        '    Exit Sub
+                        'End If
+                        'End If
 
                         _objfilter.DECISION_NO = txtDecisionNo.Text
                         If CurrentState = Common.CommonMessage.STATE_EDIT Then
@@ -1334,13 +1340,30 @@ Public Class ctrlHU_TerminateNewEdit
         Select Case e.CommandName
             Case "btnAddDebt"
                 AddDebt(dataSource)
+                CalculateDebtTotal()
             Case "btnDeleteDebts"
                 DeleteDebts(dataSource, rgDebt.SelectedItems)
+                CalculateDebtTotal()
         End Select
         ClearControlValue(cboDebtType, rntxtDebtMoney, txtRemark, cboDebtStatus)
         rgDebt.DataSource = dataSource
         rgDebt.DataBind()
     End Sub
+
+    Private Sub CalculateDebtTotal()
+        Dim debtTotal As Decimal = 0
+        Dim debtTotalCollect As Decimal = 0
+        For Each item As GridDataItem In rgDebt.Items
+            debtTotal += If(IsNumeric(item.GetDataKeyValue("MONEY")), Decimal.Parse(item.GetDataKeyValue("MONEY")), 0)
+            Dim status = item.GetDataKeyValue("DEBT_STATUS")
+            If status = ProfileCommon.DEBT_STATUS.NOT_COMPLETE_ID Then
+                debtTotalCollect += If(IsNumeric(item.GetDataKeyValue("MONEY")), Decimal.Parse(item.GetDataKeyValue("MONEY")), 0)
+            End If
+        Next
+        rntxtDebtTotal.Value = debtTotal
+        rntxtDebtTotalCollect.Value = debtTotalCollect
+    End Sub
+
     Private Function GetDebtsSource() As List(Of DebtDTO)
         Dim dataSource = New List(Of DebtDTO)
 
@@ -1374,6 +1397,20 @@ Public Class ctrlHU_TerminateNewEdit
         'End If
         Return dataSource
     End Function
+
+    Private Sub rntxtCash_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtCash.TextChanged
+        Try
+            Dim moneyDeductFromSal As Decimal = 0
+            Dim debtTotalCollect = rntxtDebtTotalCollect.Value
+            Dim cash = rntxtCash.Value
+            If IsNumeric(debtTotalCollect) AndAlso debtTotalCollect > 0 Then
+                moneyDeductFromSal = debtTotalCollect - If(IsNumeric(cash), cash, 0)
+            End If
+            rntxtMoneyDeductFromSal.Value = moneyDeductFromSal
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     ''' <summary>
     ''' Event Click checkbox Tra the BHYT
@@ -1502,6 +1539,7 @@ Public Class ctrlHU_TerminateNewEdit
                 'rntxtCompensatoryLeave.Value = Utilities.ObjToDecima(dt.Rows(0)("COMP_LEAVE"))
                 'tiền thanh toán nghỉ bù
                 'rntxtCompensatoryPayment.Value = Utilities.ObjToDecima(dt.Rows(0)("MONEY_COMP_LEAVE"))
+
                 'trợ cấp thôi việc
                 rntxtAllowanceTerminate.Value = Utilities.ObjToDecima(dt.Rows(0)("SUPPORT_TERMINATE"))
                 'Bổ xung lương trùng bình 6 tháng

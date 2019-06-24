@@ -17,7 +17,7 @@
         Public Shared TERMINATE As String = "TERMINATE"
         Public Shared TERMINATE_ID As Decimal = 257
         Public Shared WORKING_ID As Decimal = 258
-        Public Shared WAIT_TERMINATE_ID As Decimal = 259
+        Public Shared WAIT_TERMINATE_ID As Decimal = 256
         Public Shared EMP_STATUS As Decimal = 7
     End Class
     Public Class DISCIPLINE_STATUS
@@ -25,6 +25,13 @@
         Public Shared TYPE_ID As Decimal = 181
         Public Shared APPROVE_ID As Decimal = 716
         Public Shared WAIT_APPROVE_ID As Decimal = 717
+
+    End Class
+    Public Class DEBT_STATUS
+        Public Shared Name As String = "DEBT_STATUS"
+        Public Shared TYPE_ID As Decimal = 2271
+        Public Shared COMPLETE_ID As Decimal = 7064
+        Public Shared NOT_COMPLETE_ID As Decimal = 7065
 
     End Class
     Public Class DECISION_STATUS

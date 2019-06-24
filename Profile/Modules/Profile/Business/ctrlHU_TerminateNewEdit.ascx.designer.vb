@@ -563,6 +563,24 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents rntxtDebtTotal As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''lbDebtTotalCollect control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDebtTotalCollect As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rntxtDebtTotalCollect control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtDebtTotalCollect As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''lbCash control.
     '''</summary>
     '''<remarks>
