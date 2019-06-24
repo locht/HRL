@@ -428,7 +428,7 @@ Public Class ctrlHU_TerminateNewEdit
                         End If
                         If Not String.IsNullOrWhiteSpace(txtDecisionNo.Text) Then
                             If Not rep.CheckTerminateNo(_objfilter) Then
-                                ShowMessage(Translate("Số quyết định đã tồn tại. Thao tác thực không thành công"), NotifyType.Warning)
+                                ShowMessage(Translate("Số quyết định đã tồn tại. Thao tác thực hiện không thành công"), NotifyType.Warning)
                                 Exit Sub
                             End If
                         End If
@@ -505,19 +505,14 @@ Public Class ctrlHU_TerminateNewEdit
 
                         objTerminate.SALARYMEDIUM_LOSS = txtTimeAccidentIns_loss.Text
                         'txtTimeAccidentIns_loss.Text = Terminate.SALARYMEDIUM_LOSS
+                        objTerminate.TER_REASON = cboTerReason.SelectedValue
+                        objTerminate.DECISION_TYPE = cboWorkingType.SelectedValue
+                        objTerminate.SUM_COLLECT_DEBT = rntxtDebtTotalCollect.Value
+                        objTerminate.AMOUNT_PAYMENT_CASH = rntxtCash.Value
+                        objTerminate.AMOUNT_DEDUCT_FROM_SAL = rntxtMoneyDeductFromSal.Value
+                        objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
+                        objTerminate.IS_ALLOW = cbIsAllowForTer.Checked
                         objTerminate.IS_REPLACE_POS = cbIsReplacePos.Checked
-
-
-                        'lstReason = New List(Of TerminateReasonDTO)
-                        'For Each item As GridDataItem In rgHandoverContent.Items
-                        '    Dim reason = New TerminateReasonDTO
-                        '    reason.TER_REASON_ID = item.GetDataKeyValue("TER_REASON_ID")
-                        '    reason.TER_REASON_NAME = item.GetDataKeyValue("TER_REASON_NAME")
-                        '    reason.DENSITY = CType(item("DENSITY").Controls(0), RadNumericTextBox).Value
-                        '    lstReason.Add(reason)
-                        'Next
-
-                        'objTerminate.lstReason = lstReason
                         lstHandoverContent = New List(Of HandoverContentDTO)
                         For Each item As GridDataItem In rgHandoverContent.Items
                             Dim handover As New HandoverContentDTO
@@ -527,22 +522,6 @@ Public Class ctrlHU_TerminateNewEdit
                             lstHandoverContent.Add(handover)
                         Next
                         objTerminate.lstHandoverContent = lstHandoverContent
-                        'Dim assetMngs = New List(Of AssetMngDTO)
-                        'For Each item As GridDataItem In rgDebt.Items
-                        '    Dim assetMng = New AssetMngDTO With {.ID = ConvertTo(item.GetDataKeyValue("ID")),
-                        '        .ASSET_ID = (item.GetDataKeyValue("ASSET_ID")),
-                        '        .ASSET_CODE = item.GetDataKeyValue("ASSET_CODE"),
-                        '        .ASSET_DECLARE_ID = ConvertTo(item.GetDataKeyValue("ASSET_DECLARE_ID")),
-                        '        .ASSET_VALUE = ConvertTo(item.GetDataKeyValue("ASSET_VALUE")),
-                        '        .EMPLOYEE_ID = ConvertTo(item.GetDataKeyValue("EMPLOYEE_ID")),
-                        '        .ORG_ID = ConvertTo(item.GetDataKeyValue("ORG_ID")),
-                        '        .QUANTITY = ConvertTo(item.GetDataKeyValue("QUANTITY")),
-                        '        .REMARK = item.GetDataKeyValue("REMARK"),
-                        '        .STATUS_ID = ConvertTo(item.GetDataKeyValue("STATUS_ID"))
-                        '        }
-                        '    assetMngs.Add(assetMng)
-                        'Next
-                        'objTerminate.AssetMngs = assetMngs
                         Dim debts As New List(Of DebtDTO)
                         For Each row As GridDataItem In rgDebt.Items
                             Dim debt As New DebtDTO With {.ID = ConvertTo(row.GetDataKeyValue("ID")), _
@@ -552,7 +531,7 @@ Public Class ctrlHU_TerminateNewEdit
                                                           .DEBT_TYPE_ID = row.GetDataKeyValue("DEBT_TYPE_ID")}
                             debts.Add(debt)
                         Next
-                        'objTerminate.lstDebts = detbs
+                        objTerminate.lstDebts = debts
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTerminate(objTerminate, gid) Then
@@ -1641,10 +1620,7 @@ Public Class ctrlHU_TerminateNewEdit
             FillDropDownList(cboDebtStatus, ListComboData.LIST_DEBT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboWorkingType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            cboStatus.DataSource = Status()
-            cboStatus.DataTextField = "Text"
-            cboStatus.DataValueField = "Value"
-            cboStatus.SelectedIndex = 1
+            cboStatus.SelectedValue = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID
             cboSalMonth.DataSource = rep.GetCurrentPeriod()
             cboSalMonth.DataTextField = "PERIOD_NAME"
             cboSalMonth.DataValueField = "ID"

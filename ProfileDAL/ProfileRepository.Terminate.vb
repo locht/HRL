@@ -252,7 +252,7 @@ Partial Class ProfileRepository
                     Next
                 End If
 
-                If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID And DateTime.Now >= objTerminate.EFFECT_DATE Then
+                If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID Then
                     objTerminateData.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID
                     objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID
                     ApproveTerminate(objTerminateData, log)
@@ -605,20 +605,16 @@ Partial Class ProfileRepository
             objTerminateData.TYPE_TERMINATE = objTerminate.TYPE_TERMINATE
             'objTerminateData.Expire_Date = objTerminate.EXPIRE_DATE
             objTerminateData.SALARYMEDIUM_LOSS = objTerminate.SALARYMEDIUM_LOSS
-
+            objTerminateData.TER_REASON = objTerminate.TER_REASON
+            objTerminateData.DECISION_TYPE = objTerminate.DECISION_TYPE
+            objTerminateData.SUM_COLLECT_DEBT = objTerminate.SUM_COLLECT_DEBT
+            objTerminateData.AMOUNT_PAYMENT_CASH = objTerminate.AMOUNT_PAYMENT_CASH
+            objTerminateData.AMOUNT_DEDUCT_FROM_SAL = objTerminate.AMOUNT_DEDUCT_FROM_SAL
+            objTerminateData.PERIOD_ID = objTerminate.PERIOD_ID
+            objTerminateData.IS_ALLOW = objTerminate.IS_ALLOW
+            objTerminateData.IS_REPLACE_POS = objTerminate.IS_REPLACE_POS
             Context.HU_TERMINATE.AddObject(objTerminateData)
 
-
-            'If objTerminate.lstReason IsNot Nothing Then
-            '    For Each item In objTerminate.lstReason
-            '        Dim allow As New HU_TERMINATE_REASON
-            '        allow.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE_REASON.EntitySet.Name)
-            '        allow.HU_TERMINATE_ID = objTerminateData.ID
-            '        allow.TER_REASON_ID = item.TER_REASON_ID
-            '        allow.DENSITY = item.DENSITY
-            '        Context.HU_TERMINATE_REASON.AddObject(allow)
-            '    Next
-            'End If
             If objTerminate.lstHandoverContent IsNot Nothing Then
                 For Each item In objTerminate.lstHandoverContent
                     Dim handover As New HU_TRANSFER_TERMINATE
@@ -631,12 +627,12 @@ Partial Class ProfileRepository
             End If
 
             Context.SaveChanges(log)
-            If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID And DateTime.Now >= objTerminate.EFFECT_DATE Then
+            If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Then
                 ApproveTerminate(objTerminate, log)
             Else
                 ApproveTerminate_Customer(objTerminate, log)
             End If
-            'InsertOrUpdateAssetByTerminate(objTerminate, log)
+
             InsertOrUpdateDebtByTerminate(objTerminate, log)
             gID = objTerminateData.ID
             Return True
@@ -772,27 +768,20 @@ Partial Class ProfileRepository
             objTerminateData.TYPE_TERMINATE = objTerminate.TYPE_TERMINATE
             objTerminateData.SALARYMEDIUM_LOSS = objTerminate.SALARYMEDIUM_LOSS
             'objTerminateData.Expire_Date = objTerminate.EXPIRE_DATE
+            objTerminateData.TER_REASON = objTerminate.TER_REASON
+            objTerminateData.DECISION_TYPE = objTerminate.DECISION_TYPE
+            objTerminateData.SUM_COLLECT_DEBT = objTerminate.SUM_COLLECT_DEBT
+            objTerminateData.AMOUNT_PAYMENT_CASH = objTerminate.AMOUNT_PAYMENT_CASH
+            objTerminateData.AMOUNT_DEDUCT_FROM_SAL = objTerminate.AMOUNT_DEDUCT_FROM_SAL
+            objTerminateData.PERIOD_ID = objTerminate.PERIOD_ID
+            objTerminateData.IS_ALLOW = objTerminate.IS_ALLOW
+            objTerminateData.IS_REPLACE_POS = objTerminate.IS_REPLACE_POS
 
-
-            'Dim lstAll = (From p In Context.HU_TERMINATE_REASON Where p.HU_TERMINATE_ID = objTerminate.ID).ToList
-            'For Each item In lstAll
-            '    Context.HU_TERMINATE_REASON.DeleteObject(item)
-            'Next
             Dim lstHandover = (From p In Context.HU_TRANSFER_TERMINATE Where p.TERMINATE_ID = objTerminate.ID).ToList
             For Each item In lstHandover
                 Context.HU_TRANSFER_TERMINATE.DeleteObject(item)
             Next
 
-            'If objTerminate.lstReason IsNot Nothing Then
-            '    For Each item In objTerminate.lstReason
-            '        Dim allow As New HU_TERMINATE_REASON
-            '        allow.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE_REASON.EntitySet.Name)
-            '        allow.HU_TERMINATE_ID = objTerminate.ID
-            '        allow.TER_REASON_ID = item.TER_REASON_ID
-            '        allow.DENSITY = item.DENSITY
-            '        Context.HU_TERMINATE_REASON.AddObject(allow)
-            '    Next
-            'End If
             If objTerminate.lstHandoverContent IsNot Nothing Then
                 For Each item In objTerminate.lstHandoverContent
                     Dim handover As New HU_TRANSFER_TERMINATE
@@ -805,7 +794,7 @@ Partial Class ProfileRepository
             End If
 
             Context.SaveChanges(log)
-            If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID And objTerminate.EFFECT_DATE <= DateTime.Now Then
+            If objTerminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.APPROVE_ID Then
                 ApproveTerminate(objTerminate, log)
                 'AutoGenInsChangeByTerminate(objTerminate.EMPLOYEE_ID,
                 '                            objTerminate.ORG_ID,
@@ -816,7 +805,6 @@ Partial Class ProfileRepository
             End If
 
             gID = objTerminateData.ID
-            'InsertOrUpdateAssetByTerminate(objTerminate, log)
             InsertOrUpdateDebtByTerminate(objTerminate, log)
             Return True
         Catch ex As Exception
@@ -856,7 +844,11 @@ Partial Class ProfileRepository
         Dim objEmployeeData As HU_EMPLOYEE
         Try
             objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
-            objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            If objTerminate.EFFECT_DATE <= DateTime.Now Then
+                objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            Else
+                objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WAIT_TERMINATE_ID
+            End If
             objEmployeeData.TER_EFFECT_DATE = objTerminate.EFFECT_DATE
             objEmployeeData.TER_LAST_DATE = objTerminate.LAST_DATE
             If log IsNot Nothing Then
@@ -876,7 +868,11 @@ Partial Class ProfileRepository
         Try
             objEmployeeData = (From p In Context.HU_EMPLOYEE Where objTerminate.EMPLOYEE_ID = p.ID).FirstOrDefault
             objEmployeeData.EMP_STATUS = ProfileCommon.OT_WORK_STATUS.EMP_STATUS
-            objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WORKING_ID
+            If objTerminate.EFFECT_DATE <= DateTime.Now Then
+                objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID
+            Else
+                objEmployeeData.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.WAIT_TERMINATE_ID
+            End If
             If log IsNot Nothing Then
                 Context.SaveChanges(log)
             Else
