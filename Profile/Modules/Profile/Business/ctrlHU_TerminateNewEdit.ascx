@@ -333,10 +333,10 @@
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbCash" Text ="Số tiền thanh toán bằng tiền mặt" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbCash" Text ="Số tiền thanh toán bằng tiền mặt"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtCash" MinValue="0" runat="server" SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rntxtCash" MinValue="0" runat="server" SkinID="Money" AutoPostBack="true">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
