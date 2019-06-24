@@ -24,6 +24,14 @@ Public Class ctrlHU_TerminateNewEdit
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 #Region "Property"
 
+    Property lstHandoverContent As List(Of HandoverContentDTO)
+        Get
+            Return ViewState(Me.ID & "_lstHandoverContent")
+        End Get
+        Set(ByVal value As List(Of HandoverContentDTO))
+            ViewState(Me.ID & "_lstHandoverContent") = value
+        End Set
+    End Property
     Property lstReason As List(Of TerminateReasonDTO)
         Get
             Return ViewState(Me.ID & "_lstReason")

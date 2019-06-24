@@ -10313,7 +10313,7 @@ Namespace ProfileBusiness
         Private YEARFORALLOWField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private lstHandoverContendField As System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO)
+        Private lstHandoverContentField As System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private lstReasonField As System.Collections.Generic.List(Of ProfileBusiness.TerminateReasonDTO)
@@ -11460,14 +11460,14 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property lstHandoverContend() As System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO)
+        Public Property lstHandoverContent() As System.Collections.Generic.List(Of ProfileBusiness.HandoverContentDTO)
             Get
-                Return Me.lstHandoverContendField
+                Return Me.lstHandoverContentField
             End Get
             Set
-                If (Object.ReferenceEquals(Me.lstHandoverContendField, value) <> true) Then
-                    Me.lstHandoverContendField = value
-                    Me.RaisePropertyChanged("lstHandoverContend")
+                If (Object.ReferenceEquals(Me.lstHandoverContentField, value) <> true) Then
+                    Me.lstHandoverContentField = value
+                    Me.RaisePropertyChanged("lstHandoverContent")
                 End If
             End Set
         End Property
