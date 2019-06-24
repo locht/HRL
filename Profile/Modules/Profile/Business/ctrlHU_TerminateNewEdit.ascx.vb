@@ -1319,14 +1319,13 @@ Public Class ctrlHU_TerminateNewEdit
         Select Case e.CommandName
             Case "btnAddDebt"
                 AddDebt(dataSource)
-                CalculateDebtTotal()
             Case "btnDeleteDebts"
                 DeleteDebts(dataSource, rgDebt.SelectedItems)
-                CalculateDebtTotal()
         End Select
-        ClearControlValue(cboDebtType, rntxtDebtMoney, txtRemark, cboDebtStatus)
+        ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
         rgDebt.DataSource = dataSource
         rgDebt.DataBind()
+        CalculateDebtTotal()
     End Sub
 
     Private Sub CalculateDebtTotal()
@@ -1349,32 +1348,44 @@ Public Class ctrlHU_TerminateNewEdit
         For Each item As GridDataItem In rgDebt.Items
             dataSource.Add(New DebtDTO With {.ID = item.GetDataKeyValue("ID"),
                            .DEBT_TYPE_ID = item.GetDataKeyValue("DEBT_TYPE_ID"),
+                           .DEBT_TYPE_NAME = item.GetDataKeyValue("DEBT_TYPE_NAME"),
                            .DEBT_STATUS = item.GetDataKeyValue("DEBT_STATUS"),
+                           .DEBT_STATUS_NAME = item.GetDataKeyValue("DEBT_STATUS_NAME"),
                            .MONEY = item.GetDataKeyValue("MONEY"),
                            .REMARK = item.GetDataKeyValue("REMARK")})
         Next
         Return dataSource
     End Function
     Private Function AddDebt(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
-        Dim rowId = dataSource.Count + 1 'dung de delete row
+        Try
+            Dim rowId = dataSource.Count + 1 'dung de delete row
 
-        dataSource.Add(New DebtDTO With {.ID = Nothing,
-                       .DEBT_TYPE_ID = cboDebtType.SelectedValue,
-                       .MONEY = If(IsNumeric(rntxtDebtMoney.Value), Decimal.Parse(rntxtDebtMoney.Value), Nothing),
-                       .REMARK = txtRemark.Text,
-                       .DEBT_STATUS = cboDebtStatus.SelectedValue})
-        Return dataSource
+            dataSource.Add(New DebtDTO With {.ID = Nothing,
+                           .DEBT_TYPE_ID = cboDebtType.SelectedValue,
+                           .DEBT_TYPE_NAME = cboDebtType.Text,
+                           .MONEY = If(IsNumeric(rntxtDebtMoney.Value), Decimal.Parse(rntxtDebtMoney.Value), Nothing),
+                           .REMARK = txtDebtNote.Text,
+                           .DEBT_STATUS = cboDebtStatus.SelectedValue,
+                           .DEBT_STATUS_NAME = cboDebtStatus.Text})
+            Return dataSource
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
     Private Function DeleteDebts(ByVal dataSource As List(Of DebtDTO), ByVal selectedItems As GridItemCollection) As List(Of DebtDTO)
-        Dim rowIDs As New List(Of String)
-        For Each item As GridDataItem In selectedItems
-            rowIDs.Add(item.GetDataKeyValue("ID"))
-        Next
-        rowIDs.RemoveAll(Function(f) String.IsNullOrEmpty(f))
-        'If rowIDs.Count > 0 Then
-        '    dataSource.RemoveAll(Function(f) rowIDs.Contains(f.EMPLOYEE_CODE))
-        'End If
-        Return dataSource
+        Try
+            Dim rowIDs As New List(Of String)
+            For Each item As GridDataItem In selectedItems
+                rowIDs.Add(item.GetDataKeyValue("ID"))
+            Next
+            rowIDs.RemoveAll(Function(f) String.IsNullOrEmpty(f))
+            If rowIDs.Count > 0 Then
+                dataSource.RemoveAll(Function(f) rowIDs.Contains(f.ID))
+            End If
+            Return dataSource
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
     Private Sub rntxtCash_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtCash.TextChanged

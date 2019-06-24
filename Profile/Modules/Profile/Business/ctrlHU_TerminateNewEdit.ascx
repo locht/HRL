@@ -271,7 +271,7 @@
                     <asp:Label runat ="server" ID ="lbDebtNote" Text ="Ghi chú" ></asp:Label>
                 </td>
                 <td colspan="5">
-                    <tlk:RadTextBox ID="DebtNote" runat="server" SkinID="TextBox1023" Width="100%">
+                    <tlk:RadTextBox ID="txtDebtNote" runat="server" SkinID="TextBox1023" Width="100%">
                     </tlk:RadTextBox>
                 </td>
             </tr>
@@ -279,7 +279,7 @@
                 <td colspan="6">
                     <tlk:RadGrid PageSize="50" ID="rgDebt" runat="server" Height="250px" Width="100%" SkinID="GridNotPaging"
                         AllowMultiRowEdit="true">
-                        <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true">
+                        <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" ClientDataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true">
                             <CommandItemStyle Height="28px" />
                             <CommandItemTemplate>
                                 <div style="padding: 2px 0 0 0">

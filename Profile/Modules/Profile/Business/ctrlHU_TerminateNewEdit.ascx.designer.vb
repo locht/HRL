@@ -527,13 +527,13 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents lbDebtNote As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''DebtNote control.
+    '''txtDebtNote control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DebtNote As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtDebtNote As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''rgDebt control.
