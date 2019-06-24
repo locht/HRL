@@ -502,33 +502,51 @@ Public Class ctrlHU_TerminateNewEdit
                         objTerminate.IS_REPLACE_POS = cbIsReplacePos.Checked
 
 
-                        lstReason = New List(Of TerminateReasonDTO)
+                        'lstReason = New List(Of TerminateReasonDTO)
+                        'For Each item As GridDataItem In rgHandoverContent.Items
+                        '    Dim reason = New TerminateReasonDTO
+                        '    reason.TER_REASON_ID = item.GetDataKeyValue("TER_REASON_ID")
+                        '    reason.TER_REASON_NAME = item.GetDataKeyValue("TER_REASON_NAME")
+                        '    reason.DENSITY = CType(item("DENSITY").Controls(0), RadNumericTextBox).Value
+                        '    lstReason.Add(reason)
+                        'Next
+
+                        'objTerminate.lstReason = lstReason
+                        lstHandoverContent = New List(Of HandoverContentDTO)
                         For Each item As GridDataItem In rgHandoverContent.Items
-                            Dim reason = New TerminateReasonDTO
-                            reason.TER_REASON_ID = item.GetDataKeyValue("TER_REASON_ID")
-                            reason.TER_REASON_NAME = item.GetDataKeyValue("TER_REASON_NAME")
-                            reason.DENSITY = CType(item("DENSITY").Controls(0), RadNumericTextBox).Value
-                            lstReason.Add(reason)
+                            Dim handover As New HandoverContentDTO
+                            handover.CONTENT_ID = item.GetDataKeyValue("CONTENT_ID")
+                            handover.CONTENT_NAME = item.GetDataKeyValue("CONTENT_NAME")
+                            handover.IS_FINISH = item.GetDataKeyValue("IS_FINISH")
+                            lstHandoverContent.Add(handover)
                         Next
-
-                        objTerminate.lstReason = lstReason
-                        Dim assetMngs = New List(Of AssetMngDTO)
-                        For Each item As GridDataItem In rgDebt.Items
-                            Dim assetMng = New AssetMngDTO With {.ID = ConvertTo(item.GetDataKeyValue("ID")),
-                                .ASSET_ID = (item.GetDataKeyValue("ASSET_ID")),
-                                .ASSET_CODE = item.GetDataKeyValue("ASSET_CODE"),
-                                .ASSET_DECLARE_ID = ConvertTo(item.GetDataKeyValue("ASSET_DECLARE_ID")),
-                                .ASSET_VALUE = ConvertTo(item.GetDataKeyValue("ASSET_VALUE")),
-                                .EMPLOYEE_ID = ConvertTo(item.GetDataKeyValue("EMPLOYEE_ID")),
-                                .ORG_ID = ConvertTo(item.GetDataKeyValue("ORG_ID")),
-                                .QUANTITY = ConvertTo(item.GetDataKeyValue("QUANTITY")),
-                                .REMARK = item.GetDataKeyValue("REMARK"),
-                                .STATUS_ID = ConvertTo(item.GetDataKeyValue("STATUS_ID"))
-                                }
-                            assetMngs.Add(assetMng)
+                        objTerminate.lstHandoverContent = lstHandoverContent
+                        'Dim assetMngs = New List(Of AssetMngDTO)
+                        'For Each item As GridDataItem In rgDebt.Items
+                        '    Dim assetMng = New AssetMngDTO With {.ID = ConvertTo(item.GetDataKeyValue("ID")),
+                        '        .ASSET_ID = (item.GetDataKeyValue("ASSET_ID")),
+                        '        .ASSET_CODE = item.GetDataKeyValue("ASSET_CODE"),
+                        '        .ASSET_DECLARE_ID = ConvertTo(item.GetDataKeyValue("ASSET_DECLARE_ID")),
+                        '        .ASSET_VALUE = ConvertTo(item.GetDataKeyValue("ASSET_VALUE")),
+                        '        .EMPLOYEE_ID = ConvertTo(item.GetDataKeyValue("EMPLOYEE_ID")),
+                        '        .ORG_ID = ConvertTo(item.GetDataKeyValue("ORG_ID")),
+                        '        .QUANTITY = ConvertTo(item.GetDataKeyValue("QUANTITY")),
+                        '        .REMARK = item.GetDataKeyValue("REMARK"),
+                        '        .STATUS_ID = ConvertTo(item.GetDataKeyValue("STATUS_ID"))
+                        '        }
+                        '    assetMngs.Add(assetMng)
+                        'Next
+                        'objTerminate.AssetMngs = assetMngs
+                        Dim debts As New List(Of DebtDTO)
+                        For Each row As GridDataItem In rgDebt.Items
+                            Dim debt As New DebtDTO With {.ID = ConvertTo(row.GetDataKeyValue("ID")), _
+                                                          .MONEY = row.GetDataKeyValue("MONEY"), _
+                                                          .REMARK = row.GetDataKeyValue("REMARK"), _
+                                                          .DEBT_STATUS = row.GetDataKeyValue("DEBT_STATUS"), _
+                                                          .DEBT_TYPE_ID = row.GetDataKeyValue("DEBT_TYPE_ID")}
+                            debts.Add(debt)
                         Next
-                        objTerminate.AssetMngs = assetMngs
-
+                        'objTerminate.lstDebts = detbs
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 If rep.InsertTerminate(objTerminate, gid) Then
@@ -1564,7 +1582,6 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim rep As New ProfileRepository
-        Dim store As New CommonProcedureNew
 
         Try
             If ListComboData Is Nothing Then
@@ -1576,10 +1593,10 @@ Public Class ctrlHU_TerminateNewEdit
                 ListComboData.GET_DEBT_STATUS = True
                 ListComboData.GET_DEBT_TYPE = True
                 ListComboData.GET_DECISION_TYPE = True
+                ListComboData.GET_HANDOVER_CONTENT = True
                 rep.GetComboList(ListComboData)
             End If
             rep.Dispose()
-            'rep.GetOtherListByType("HU_CCQD"
             FillDropDownList(cboStatus, ListComboData.LIST_TER_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboInsStatus, ListComboData.LIST_INS_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboTerReason, ListComboData.LIST_TER_REASON, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
@@ -1590,7 +1607,7 @@ Public Class ctrlHU_TerminateNewEdit
             cboStatus.DataTextField = "Text"
             cboStatus.DataValueField = "Value"
             cboStatus.SelectedIndex = 1
-            cboSalMonth.DataSource = store.GetPeriod()
+            cboSalMonth.DataSource = rep.GetCurrentPeriod()
             cboSalMonth.DataTextField = "PERIOD_NAME"
             cboSalMonth.DataValueField = "ID"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

@@ -7,7 +7,18 @@ Imports System.Configuration
 
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
+#Region "Other"
+        Public Function GetCurrentPeriod() As DataTable Implements ServiceContracts.IProfileBusiness.GetCurrentPeriod
+            Using rep As New ProfileRepository
+                Try
 
+                    Return rep.GetCurrentPeriod()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+#End Region
 #Region "Debt"
         Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO) Implements ServiceContracts.IProfileBusiness.GetDebt
             Using rep As New ProfileRepository

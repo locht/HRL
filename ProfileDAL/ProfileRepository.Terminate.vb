@@ -7,6 +7,18 @@ Imports System.Reflection
 
 Partial Class ProfileRepository
 
+#Region "Other"
+    Public Function GetCurrentPeriod() As DataTable
+        Try
+            Dim query = (From p In Context.AT_PERIOD
+                        Where p.YEAR = DateTime.Now.Year
+                        Select New With {.ID = p.ID, .PERIOD_NAME = p.PERIOD_NAME}).ToList.ToTable
+            Return query
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 #Region "Debt"
     Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO)
         Try
@@ -597,14 +609,24 @@ Partial Class ProfileRepository
             Context.HU_TERMINATE.AddObject(objTerminateData)
 
 
-            If objTerminate.lstReason IsNot Nothing Then
-                For Each item In objTerminate.lstReason
-                    Dim allow As New HU_TERMINATE_REASON
-                    allow.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE_REASON.EntitySet.Name)
-                    allow.HU_TERMINATE_ID = objTerminateData.ID
-                    allow.TER_REASON_ID = item.TER_REASON_ID
-                    allow.DENSITY = item.DENSITY
-                    Context.HU_TERMINATE_REASON.AddObject(allow)
+            'If objTerminate.lstReason IsNot Nothing Then
+            '    For Each item In objTerminate.lstReason
+            '        Dim allow As New HU_TERMINATE_REASON
+            '        allow.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE_REASON.EntitySet.Name)
+            '        allow.HU_TERMINATE_ID = objTerminateData.ID
+            '        allow.TER_REASON_ID = item.TER_REASON_ID
+            '        allow.DENSITY = item.DENSITY
+            '        Context.HU_TERMINATE_REASON.AddObject(allow)
+            '    Next
+            'End If
+            If objTerminate.lstHandoverContent IsNot Nothing Then
+                For Each item In objTerminate.lstHandoverContent
+                    Dim handover As New HU_TRANSFER_TERMINATE
+                    handover.ID = Utilities.GetNextSequence(Context, Context.HU_TRANSFER_TERMINATE.EntitySet.Name)
+                    handover.TERMINATE_ID = objTerminateData.ID
+                    handover.IS_FINISH = item.IS_FINISH
+                    handover.CONTENT_ID = item.CONTENT_ID
+                    Context.HU_TRANSFER_TERMINATE.AddObject(handover)
                 Next
             End If
 
@@ -614,7 +636,8 @@ Partial Class ProfileRepository
             Else
                 ApproveTerminate_Customer(objTerminate, log)
             End If
-            InsertOrUpdateAssetByTerminate(objTerminate, log)
+            'InsertOrUpdateAssetByTerminate(objTerminate, log)
+            InsertOrUpdateDebtByTerminate(objTerminate, log)
             gID = objTerminateData.ID
             Return True
         Catch ex As Exception
@@ -623,6 +646,40 @@ Partial Class ProfileRepository
         End Try
 
     End Function
+
+    Public Sub InsertOrUpdateDebtByTerminate(ByVal terminate As TerminateDTO, ByVal log As UserLog)
+        If terminate Is Nothing Then
+            Exit Sub
+        End If
+        Dim existedDebts = (From debt In Context.HU_DEBT
+                             Where debt.EMPLOYEE_ID = terminate.EMPLOYEE_ID
+                             Select debt).ToList
+        For Each debt As HU_DEBT In existedDebts
+            Context.HU_DEBT.DeleteObject(debt)
+        Next
+
+        If terminate.lstDebts IsNot Nothing AndAlso terminate.lstDebts.Any Then
+            For Each debt As DebtDTO In terminate.lstDebts
+                Dim item As New HU_DEBT With
+                {
+                    .ID = Utilities.GetNextSequence(Context, Context.HU_DEBT.EntitySet.Name),
+                    .DEBT_TYPE_ID = debt.DEBT_TYPE_ID,
+                    .DEBT_STATUS = debt.DEBT_STATUS,
+                    .MONEY = debt.MONEY,
+                    .EMPLOYEE_ID = terminate.EMPLOYEE_ID,
+                    .REMARK = debt.REMARK,
+                    .CREATED_BY = log.Username,
+                    .CREATED_DATE = DateTime.Now,
+                    .CREATED_LOG = log.ComputerName,
+                    .MODIFIED_DATE = DateTime.Now,
+                    .MODIFIED_BY = log.Username,
+                    .MODIFIED_LOG = log.ComputerName
+                }
+                Context.HU_DEBT.AddObject(item)
+            Next
+        End If
+        Context.SaveChanges(log)
+    End Sub
 
     Public Sub InsertOrUpdateAssetByTerminate(ByVal terminate As TerminateDTO, ByVal log As UserLog)
         If terminate Is Nothing Then
@@ -717,19 +774,33 @@ Partial Class ProfileRepository
             'objTerminateData.Expire_Date = objTerminate.EXPIRE_DATE
 
 
-            Dim lstAll = (From p In Context.HU_TERMINATE_REASON Where p.HU_TERMINATE_ID = objTerminate.ID).ToList
-            For Each item In lstAll
-                Context.HU_TERMINATE_REASON.DeleteObject(item)
+            'Dim lstAll = (From p In Context.HU_TERMINATE_REASON Where p.HU_TERMINATE_ID = objTerminate.ID).ToList
+            'For Each item In lstAll
+            '    Context.HU_TERMINATE_REASON.DeleteObject(item)
+            'Next
+            Dim lstHandover = (From p In Context.HU_TRANSFER_TERMINATE Where p.TERMINATE_ID = objTerminate.ID).ToList
+            For Each item In lstHandover
+                Context.HU_TRANSFER_TERMINATE.DeleteObject(item)
             Next
 
-            If objTerminate.lstReason IsNot Nothing Then
-                For Each item In objTerminate.lstReason
-                    Dim allow As New HU_TERMINATE_REASON
-                    allow.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE_REASON.EntitySet.Name)
-                    allow.HU_TERMINATE_ID = objTerminate.ID
-                    allow.TER_REASON_ID = item.TER_REASON_ID
-                    allow.DENSITY = item.DENSITY
-                    Context.HU_TERMINATE_REASON.AddObject(allow)
+            'If objTerminate.lstReason IsNot Nothing Then
+            '    For Each item In objTerminate.lstReason
+            '        Dim allow As New HU_TERMINATE_REASON
+            '        allow.ID = Utilities.GetNextSequence(Context, Context.HU_TERMINATE_REASON.EntitySet.Name)
+            '        allow.HU_TERMINATE_ID = objTerminate.ID
+            '        allow.TER_REASON_ID = item.TER_REASON_ID
+            '        allow.DENSITY = item.DENSITY
+            '        Context.HU_TERMINATE_REASON.AddObject(allow)
+            '    Next
+            'End If
+            If objTerminate.lstHandoverContent IsNot Nothing Then
+                For Each item In objTerminate.lstHandoverContent
+                    Dim handover As New HU_TRANSFER_TERMINATE
+                    handover.ID = Utilities.GetNextSequence(Context, Context.HU_TRANSFER_TERMINATE.EntitySet.Name)
+                    handover.TERMINATE_ID = objTerminateData.ID
+                    handover.IS_FINISH = item.IS_FINISH
+                    handover.CONTENT_ID = item.CONTENT_ID
+                    Context.HU_TRANSFER_TERMINATE.AddObject(handover)
                 Next
             End If
 
@@ -745,7 +816,8 @@ Partial Class ProfileRepository
             End If
 
             gID = objTerminateData.ID
-            InsertOrUpdateAssetByTerminate(objTerminate, log)
+            'InsertOrUpdateAssetByTerminate(objTerminate, log)
+            InsertOrUpdateDebtByTerminate(objTerminate, log)
             Return True
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")

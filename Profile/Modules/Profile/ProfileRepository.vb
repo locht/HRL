@@ -23,6 +23,18 @@ Partial Public Class ProfileRepository
         End Try
     End Function
 #End Region
+#Region "Other"
+    Public Function GetCurrentPeriod() As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetCurrentPeriod()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 #Region "Common"
 
     Public Function GetOtherList(ByVal sType As String, Optional ByVal isBlank As Boolean = False) As DataTable

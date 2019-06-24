@@ -856,7 +856,7 @@
         }
 
         function btnDeleteReasonClick(sender, args) {
-            var bCheck = $find('<%# rgReason.ClientID %>').get_masterTableView().get_selectedItems().length;
+            var bCheck = $find('<%# rgHandoverContent.ClientID %>').get_masterTableView().get_selectedItems().length;
             if (bCheck == 0) {
                 args.set_cancel(true);
             }
