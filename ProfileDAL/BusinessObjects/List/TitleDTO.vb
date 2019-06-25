@@ -22,4 +22,14 @@
     Public Property LEVEL_TITLE_NAME As String
     Public Property DRIVE_INFOR_CHECK As Boolean
     Public Property OVT_CHECK As Boolean
+
+    Public Property HURTFUL As Decimal?
+    Public Property HURTFUL_CHECK As Boolean
+    Public Property SPEC_HURFUL As Decimal?
+    Public Property SPEC_HURFUL_CHECK As Boolean
+    Public Property ORG_ID As Decimal?
+    Public Property ORG_ID_NAME As String
+    Public Property ORG_TYPE As Decimal?
+    Public Property ORG_TYPE_NAME As String
+    Public Property FILENAME As String
 End Class

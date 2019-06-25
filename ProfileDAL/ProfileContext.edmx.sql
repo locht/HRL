@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 23/06/2019 8:26:49 AM
--- Generated from EDMX file: E:\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 25-Jun-19 9:55:19 AM
+-- Generated from EDMX file: E:\PROJECT\MyTNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2269,7 +2269,12 @@ CREATE TABLE "dbo"."HU_TITLE" (
    "WORK_INVOLVE_ID" NUMBER(38,0) NULL,
    "OVT" NUMBER(38,0) NULL,
    "UPLOAD_FILE" NVARCHAR2(255) NULL,
-   "LEVEL_ID" NUMBER(38,0) NULL
+   "LEVEL_ID" NUMBER(38,0) NULL,
+   "HURTFUL" NUMBER(38,0) NULL,
+   "SPEC_HURFUL" NUMBER(38,0) NULL,
+   "ORG_ID" NUMBER(38,0) NULL,
+   "ORG_TYPE" NUMBER(38,0) NULL,
+   "FILENAME" NCLOB NULL
 );
 
 -- Creating table 'PA_PAYMENTSOURCES'

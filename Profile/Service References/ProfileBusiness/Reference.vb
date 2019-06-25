@@ -9674,6 +9674,15 @@ Namespace ProfileBusiness
         Private DRIVE_INFOR_CHECKField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILENAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HURTFULField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HURTFUL_CHECKField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9698,6 +9707,18 @@ Namespace ProfileBusiness
         Private NAME_VNField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_ID_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_TYPEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private OVTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -9705,6 +9726,12 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SPEC_HURFULField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SPEC_HURFUL_CHECKField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_GROUP_IDField As System.Nullable(Of Decimal)
@@ -9823,6 +9850,45 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILENAME() As String
+            Get
+                Return Me.FILENAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILENAMEField, value) <> true) Then
+                    Me.FILENAMEField = value
+                    Me.RaisePropertyChanged("FILENAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HURTFUL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.HURTFULField
+            End Get
+            Set
+                If (Me.HURTFULField.Equals(value) <> true) Then
+                    Me.HURTFULField = value
+                    Me.RaisePropertyChanged("HURTFUL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HURTFUL_CHECK() As Boolean
+            Get
+                Return Me.HURTFUL_CHECKField
+            End Get
+            Set
+                If (Me.HURTFUL_CHECKField.Equals(value) <> true) Then
+                    Me.HURTFUL_CHECKField = value
+                    Me.RaisePropertyChanged("HURTFUL_CHECK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ID() As Decimal
             Get
                 Return Me.IDField
@@ -9927,6 +9993,58 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID_NAME() As String
+            Get
+                Return Me.ORG_ID_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_ID_NAMEField, value) <> true) Then
+                    Me.ORG_ID_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_ID_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_TYPE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_TYPEField
+            End Get
+            Set
+                If (Me.ORG_TYPEField.Equals(value) <> true) Then
+                    Me.ORG_TYPEField = value
+                    Me.RaisePropertyChanged("ORG_TYPE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_TYPE_NAME() As String
+            Get
+                Return Me.ORG_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_TYPE_NAMEField, value) <> true) Then
+                    Me.ORG_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_TYPE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property OVT() As System.Nullable(Of Decimal)
             Get
                 Return Me.OVTField
@@ -9961,6 +10079,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SPEC_HURFUL() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SPEC_HURFULField
+            End Get
+            Set
+                If (Me.SPEC_HURFULField.Equals(value) <> true) Then
+                    Me.SPEC_HURFULField = value
+                    Me.RaisePropertyChanged("SPEC_HURFUL")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SPEC_HURFUL_CHECK() As Boolean
+            Get
+                Return Me.SPEC_HURFUL_CHECKField
+            End Get
+            Set
+                If (Me.SPEC_HURFUL_CHECKField.Equals(value) <> true) Then
+                    Me.SPEC_HURFUL_CHECKField = value
+                    Me.RaisePropertyChanged("SPEC_HURFUL_CHECK")
                 End If
             End Set
         End Property

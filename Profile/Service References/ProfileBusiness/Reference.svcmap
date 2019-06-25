@@ -55,11 +55,11 @@
     <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="e1f1bef9-07a7-4ddf-b9c2-4727f7029004" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
     <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="cb726ddd-6c43-40d1-be09-4e10347d26ad" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
     <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="6392a914-fd8f-4c7d-9309-5be1c832d482" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="ProfileDAL1.xsd" MetadataType="Schema" ID="067f9929-d7a3-4104-91df-92e3f4e50c91" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="f3bd78f8-71f9-49a0-9077-4628a4b61f81" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
     <MetadataFile FileName="Framework.Data1.xsd" MetadataType="Schema" ID="1d3a4615-434c-4644-894e-0f64c357b51f" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
+    <MetadataFile FileName="ProfileDAL1.xsd" MetadataType="Schema" ID="067f9929-d7a3-4104-91df-92e3f4e50c91" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
     <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="0b3e0a24-8e00-41ef-a8fd-3441420ce013" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
     <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="69b012d8-b92a-49f1-a562-ad313308a1a3" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="f3bd78f8-71f9-49a0-9077-4628a4b61f81" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
     <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="d13a4ce3-3061-438b-870f-0aff2325aacb" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
   </Metadata>
   <Extensions>
