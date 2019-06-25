@@ -1350,6 +1350,8 @@ Public Class ctrlHU_TerminateNewEdit
         Select Case e.CommandName
             Case "btnAddDebt"
                 AddDebt(dataSource)
+            Case "btnEditDebt"
+                EditDebt(dataSource, rgDebt.SelectedItems)
             Case "btnDeleteDebts"
                 DeleteDebts(dataSource, rgDebt.SelectedItems)
         End Select
@@ -1386,6 +1388,15 @@ Public Class ctrlHU_TerminateNewEdit
                            .REMARK = item.GetDataKeyValue("REMARK")})
         Next
         Return dataSource
+    End Function
+
+    Private Function EditDebt(ByVal dataSource As List(Of DebtDTO), ByVal selectedItems As GridItemCollection) As List(Of DebtDTO)
+        Try
+            'rgDebt.SelectedItems("DEBT_STATUS") = cboDebtStatus.SelectedValue
+            Return (dataSource)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
     Private Function AddDebt(ByVal dataSource As List(Of DebtDTO)) As List(Of DebtDTO)
         Try
@@ -1748,18 +1759,6 @@ Public Class ctrlHU_TerminateNewEdit
     Private Sub Tinh_Tien_Con_lai()
         'Dim tempValue = IIf(rntxtPaymentLeave.Value Is Nothing, 0, rntxtPaymentLeave.Value) + IIf(rntxtAllowanceTerminate.Value Is Nothing, 0, rntxtAllowanceTerminate.Value) - IIf(rntxtAmountViolations.Value Is Nothing, 0, rntxtAmountViolations.Value) - IIf(rntxtAmountWrongful.Value Is Nothing, 0, rntxtAmountWrongful.Value) - IIf(rntxtTrainingCosts.Value Is Nothing, 0, rntxtTrainingCosts.Value) - IIf(rntxtOtherCompensation.Value Is Nothing, 0, rntxtOtherCompensation.Value)
         'rntxtMoneyReturn.Value = IIf(tempValue > 0, tempValue, Nothing)
-    End Sub
-
-    Protected Sub txtAssetCode_ItemsRequested(sender As Object, e As RadComboBoxItemsRequestedEventArgs)
-        Dim total = 1
-        'Using rep As New ProfileBusinessClient
-        '    Dim assets = rep.GetAsset(New AssetDTO With {.NAME = txtAssetCode.Text,
-        '                              .ACTFLG = ProfileCommon.ActiveStatus}, 0, 20, total, "name desc")
-        '    txtAssetCode.DataTextField = "NAME"
-        '    txtAssetCode.DataValueField = "ID"
-        '    txtAssetCode.DataSource = assets
-        '    txtAssetCode.DataBind()
-        'End Using
     End Sub
 #End Region
 

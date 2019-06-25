@@ -279,7 +279,7 @@
                 <td colspan="6">
                     <tlk:RadGrid PageSize="50" ID="rgDebt" runat="server" Height="250px" Width="100%" SkinID="GridNotPaging"
                         AllowMultiRowEdit="true">
-                        <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" ClientDataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true">
+                        <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" ClientDataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true" OnSelectedIndexChanged="rgDebt_SelectedIndexChanged">
                             <CommandItemStyle Height="28px" />
                             <CommandItemTemplate>
                                 <div style="padding: 2px 0 0 0">
@@ -289,6 +289,12 @@
                                             CausesValidation="false" Width="70px" Text="<%$ Translate: Thêm %>" OnClientClicking="btnAddDebtsOnClientClicking">
                                         </tlk:RadButton>
                                     </div>
+                                    <%--<div style="float: left">
+                                        <tlk:RadButton ID="btnEditDebt" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/edit.png" 
+                                            CommandName="btnEditDebt"
+                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Sửa %>" OnClientClicking="btnEditDebtsOnClientClicking">
+                                        </tlk:RadButton>
+                                    </div>--%>
                                     <div style="float: right">
                                         <tlk:RadButton ID="btnDeleteDebts" runat="server"
                                             CommandName="btnDeleteDebts"
@@ -693,7 +699,9 @@
             // grid.MasterTableView.isItemInserted = true;
             // grid.MasterTableView.showInsertItem();
         }
+        function btnAddDebtsOnClientClicking(sender, args) {
 
+        }
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);

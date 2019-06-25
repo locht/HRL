@@ -289,6 +289,12 @@
                                             CausesValidation="false" Width="70px" Text="<%$ Translate: Thêm %>" OnClientClicking="btnAddDebtsOnClientClicking">
                                         </tlk:RadButton>
                                     </div>
+                                    <%--<div style="float: left">
+                                        <tlk:RadButton ID="btnEditDebt" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/edit.png" 
+                                            CommandName="btnEditDebt"
+                                            CausesValidation="false" Width="70px" Text="<%$ Translate: Sửa %>" OnClientClicking="btnEditDebtsOnClientClicking">
+                                        </tlk:RadButton>
+                                    </div>--%>
                                     <div style="float: right">
                                         <tlk:RadButton ID="btnDeleteDebts" runat="server"
                                             CommandName="btnDeleteDebts"
@@ -693,7 +699,9 @@
             // grid.MasterTableView.isItemInserted = true;
             // grid.MasterTableView.showInsertItem();
         }
+        function btnAddDebtsOnClientClicking(sender, args) {
 
+        }
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
