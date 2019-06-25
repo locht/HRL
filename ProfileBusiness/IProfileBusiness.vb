@@ -9,6 +9,28 @@ Namespace ProfileBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetOrgsTree() As List(Of OrganizationDTO)
+#Region "Location"
+        <OperationContract()>
+        Function GetLocationID(ByVal ID As Decimal) As LocationDTO
+
+        <OperationContract()>
+        Function GetLocation(ByVal sACT As String, ByVal lstOrgID As List(Of Decimal)) As List(Of LocationDTO)
+
+        <OperationContract()>
+        Function InsertLocation(ByVal objLocation As LocationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ModifyLocation(ByVal objLocation As LocationDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+
+        <OperationContract()>
+        Function ActiveLocation(ByVal lstLocation As List(Of LocationDTO), ByVal sActive As String, ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function ActiveLocationID(ByVal lstLocation As LocationDTO, ByVal sActive As String, ByVal log As UserLog) As Boolean
+
+        <OperationContract()>
+        Function DeleteLocationID(ByVal lstlocation As Decimal, ByVal log As UserLog) As Boolean
+#End Region
 
 #Region "ngach, bac, thang luong"
         <OperationContract()>
