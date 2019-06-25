@@ -43959,7 +43959,7 @@ Namespace ProfileBusiness
         Function GetCommendCode(ByVal id As Decimal) As String
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/GetDebtResponse")>  _
-        Function GetDebt(ByVal empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.DebtDTO)
+        Function GetDebt(ByVal empId As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer) As System.Collections.Generic.List(Of ProfileBusiness.DebtDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertDebt", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertDebtResponse")>  _
         Function InsertDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean
@@ -45712,8 +45712,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetCommendCode(id)
         End Function
         
-        Public Function GetDebt(ByVal empId As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.DebtDTO) Implements ProfileBusiness.IProfileBusiness.GetDebt
-            Return MyBase.Channel.GetDebt(empId)
+        Public Function GetDebt(ByVal empId As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer) As System.Collections.Generic.List(Of ProfileBusiness.DebtDTO) Implements ProfileBusiness.IProfileBusiness.GetDebt
+            Return MyBase.Channel.GetDebt(empId, PageIndex, PageSize, Total)
         End Function
         
         Public Function InsertDebt(ByVal objDebt As ProfileBusiness.DebtDTO, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertDebt
