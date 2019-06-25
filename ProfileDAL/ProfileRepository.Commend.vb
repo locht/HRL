@@ -568,6 +568,7 @@ Partial Class ProfileRepository
                 objDataEmp.HU_COMMEND_ID = objCommend.ID
                 objDataEmp.HU_EMPLOYEE_ID = obj.HU_EMPLOYEE_ID
                 objDataEmp.MONEY = obj.MONEY
+                objDataEmp.COMMEND_PAY = obj.COMMEND_PAY
                 objDataEmp.ORG_ID = obj.ORG_ID
                 objDataEmp.TITLE_ID = obj.TITLE_ID
                 Context.HU_COMMEND_EMP.AddObject(objDataEmp)
@@ -588,6 +589,7 @@ Partial Class ProfileRepository
                 'objDataOrg.ID = rep.AutoGenID("HU_COMMEND_ORG")
                 objDataOrg.HU_COMMEND_ID = objCommend.ID
                 objDataOrg.MONEY = obj.MONEY
+                objDataOrg.COMMEND_PAY = obj.COMMEND_PAY
                 objDataOrg.ORG_ID = obj.ORG_ID
                 Context.HU_COMMEND_ORG.AddObject(objDataOrg)
             Next

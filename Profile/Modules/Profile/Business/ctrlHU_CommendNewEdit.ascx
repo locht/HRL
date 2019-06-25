@@ -377,6 +377,20 @@
                         ReadOnly="true" SortExpression="FULLNAME" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
                         ReadOnly="true" SortExpression="ORG_NAME" />
+                                            
+                    <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="150px" UniqueName ="COMMEND_PAY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadComboBox Width ="145px" runat="server" ID="cbCommend_Pay" AutoPostBack ="true"></tlk:RadComboBox>                                       
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+
+                     <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="70px" UniqueName ="MONEY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadNumericTextBox SkinID="ReadonlyDecimal" DataFormatString="{0:N2}" Width ="60px" runat="server" ID="rnMONEY" AutoPostBack ="true" ></tlk:RadNumericTextBox>                                             
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+                    
+
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />
@@ -415,7 +429,20 @@
                      <tlk:GridBoundColumn DataField="ID" Visible="false" />
                      <tlk:GridBoundColumn DataField="ORG_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
-                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />  
+                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />
+                    
+                    <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="150px" UniqueName ="COMMEND_PAY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadComboBox Width ="145px" runat="server" ID="cbCommend_PayORG" AutoPostBack ="true"></tlk:RadComboBox>                                       
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+
+                     <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="70px" UniqueName ="MONEY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadNumericTextBox SkinID="ReadonlyDecimal" DataFormatString="{0:N2}" Width ="60px" runat="server" ID="rnMONEY_ORG" AutoPostBack ="true" ></tlk:RadNumericTextBox>                                             
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />

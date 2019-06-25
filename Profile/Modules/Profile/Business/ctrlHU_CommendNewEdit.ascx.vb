@@ -944,7 +944,35 @@ Public Class ctrlHU_CommendNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            e.Item.Edit = True
+            Dim dtData As New DataTable
+            Try
+                If e.Item.Edit Then
+                    Dim rep As New ProfileRepository
+                    Dim edit = CType(e.Item, GridEditableItem)
+                    Dim item As GridDataItem = CType(e.Item, GridDataItem)
+
+                    Dim cbCommend_Pay As New RadComboBox
+                    cbCommend_Pay = CType(edit.FindControl("cbCommend_Pay"), RadComboBox)
+
+                    FillDropDownList(cbCommend_Pay, ListComboData.LIST_COMMEND_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
+
+                    'hinh thức khen thưởng
+                    Dim listCommend As DataTable
+                    listCommend = psp.Get_Commend_Formality(True, cboCommendObj.SelectedValue)
+                    If cbCommend_Pay IsNot Nothing Then
+                        FillRadCombobox(cbCommend_Pay, listCommend, "NAME", "ID", False)
+                    End If
+
+                    'SetDataToGrid(edit)
+                    cbCommend_Pay.Dispose()
+                    rep.Dispose()
+                    edit.Dispose()
+                    item.Dispose()
+                End If
+                If dtData IsNot Nothing Then dtData.Dispose()
+            Catch ex As Exception
+                DisplayException(Me.ViewName, Me.ID, ex)
+            End Try
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

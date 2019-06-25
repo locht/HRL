@@ -686,7 +686,6 @@ Public Class ctrlHU_DisciplineNewEdit
                     employee.TITLE_NAME = emp.TITLE_NAME
                     Employee_Discipline.Add(employee)
                 Next
-<<<<<<< HEAD
 
                 Dim intMoney As Decimal = 0
                 Dim intAmountToPaid As Decimal = 0
@@ -701,8 +700,6 @@ Public Class ctrlHU_DisciplineNewEdit
                     Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoney
                 Next
 
-=======
->>>>>>> 8711382c3bd88071251c0550245d26c1538c4406
                 rgEmployee.Rebind()
                 For Each i As GridItem In rgEmployee.Items
                     i.Edit = True
@@ -1406,7 +1403,6 @@ Public Class ctrlHU_DisciplineNewEdit
             rntxtMoney.Text = String.Empty
         End If
     End Sub
-<<<<<<< HEAD
 
     Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rdAmountPaidCash.TextChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -1460,8 +1456,6 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
     End Sub
 
-=======
->>>>>>> 8711382c3bd88071251c0550245d26c1538c4406
 #End Region
     Private Sub ZipFiles(ByVal path As String)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()

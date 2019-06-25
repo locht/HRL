@@ -371,12 +371,25 @@
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE"
+                    <tlk:GridBoundColumn HeaderText="MSNV" DataField="EMPLOYEE_CODE" HeaderStyle-Width="100px"
                         ReadOnly="true" UniqueName="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE" />
-                    <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="FULLNAME" UniqueName="FULLNAME"
+                    <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="FULLNAME" UniqueName="FULLNAME" HeaderStyle-Width="200px"
                         ReadOnly="true" SortExpression="FULLNAME" />
-                    <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME"
+                    <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME" UniqueName="ORG_NAME" HeaderStyle-Width="200px"
                         ReadOnly="true" SortExpression="ORG_NAME" />
+                    
+                     <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="200px" UniqueName ="COMMEND_PAY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadComboBox Width ="200px" runat="server" ID="cbCommend_Pay" AutoPostBack ="true"></tlk:RadComboBox>                                       
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+
+                     <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="200px" UniqueName ="MONEY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadNumericTextBox SkinID="Decimal" DataFormatString="{0:N2}" Width ="200px" runat="server" ID="rnMONEY" AutoPostBack ="true" ></tlk:RadNumericTextBox>                                             
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />
@@ -415,7 +428,19 @@
                      <tlk:GridBoundColumn DataField="ID" Visible="false" />
                      <tlk:GridBoundColumn DataField="ORG_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="Phòng ban" DataField="ORG_NAME"
-                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />  
+                        ReadOnly="true" UniqueName="ORG_NAME" SortExpression="ORG_NAME" />                     
+
+                     <tlk:GridTemplateColumn HeaderText="Hình thức trả thưởng" HeaderStyle-Width="150px" UniqueName ="COMMEND_PAY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadComboBox Width ="145px" runat="server" ID="cbCommend_PayORG" AutoPostBack ="true"></tlk:RadComboBox>                                       
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+
+                     <tlk:GridTemplateColumn HeaderText="Mức thưởng" HeaderStyle-Width="70px" UniqueName ="MONEY" ColumnGroupName ="WorkingNEW">
+                        <EditItemTemplate>
+                            <tlk:RadNumericTextBox SkinID="ReadonlyDecimal" DataFormatString="{0:N2}" Width ="60px" runat="server" ID="rnMONEY_ORG" AutoPostBack ="true" ></tlk:RadNumericTextBox>                                             
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />

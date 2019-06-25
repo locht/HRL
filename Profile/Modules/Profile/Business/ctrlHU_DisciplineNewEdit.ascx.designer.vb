@@ -410,15 +410,6 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents lbDisciplineObj As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Label4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''cboDisciplineObj control.
     '''</summary>
     '''<remarks>
