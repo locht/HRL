@@ -487,9 +487,9 @@ Public Class ctrlHU_DisciplineNewEdit
                             o.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")
                             'o.MONEY = CType(i("MONEY").Controls(0), RadNumericTextBox).Value
                             'o.INDEMNIFY_MONEY = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
-                            Dim money As String = CType(i("MONEY").Controls(0), TextBox).Text.Trim
-                            o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
-                            Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), TextBox).Text.Trim
+                            'Dim money As String = CType(i("MONEY").Controls(0), TextBox).Text.Trim
+                            'o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
+                            Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
                             o.INDEMNIFY_MONEY = If(iden_money <> "", Decimal.Parse(iden_money), Nothing)
                             lstDisciplineEmp.Add(o)
                         Next
@@ -726,8 +726,8 @@ Public Class ctrlHU_DisciplineNewEdit
                     Employee_Discipline.Add(employee)
                 Next
 
-                Dim intMoney = 0
-                Dim intAmountToPaid = 0
+                Dim intMoney As Decimal = 0
+                Dim intAmountToPaid As Decimal = 0
                 If (Employee_Discipline.Count > 0) Then
                     If rnAmountToPaid.Value IsNot Nothing Then
                         intAmountToPaid += rnAmountToPaid.Value
@@ -1090,6 +1090,20 @@ Public Class ctrlHU_DisciplineNewEdit
                                  q.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")).FirstOrDefault
                         Employee_Discipline.Remove(s)
                     Next
+
+                    Dim intMoney As Decimal = 0
+                    Dim intAmountToPaid As Decimal = 0
+                    If (Employee_Discipline.Count > 0) Then
+                        If rnAmountToPaid.Value IsNot Nothing Then
+                            intAmountToPaid += rnAmountToPaid.Value
+                        End If
+                        intMoney = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+                    End If
+
+                    For index = 0 To Employee_Discipline.Count - 1
+                        Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoney
+                    Next
+
                     rgEmployee.Rebind()
             End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1113,11 +1127,13 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             If e.Item.Edit Then
                 Dim edit = CType(e.Item, GridEditableItem)
-                Dim rntxt As RadNumericTextBox
-                rntxt = CType(edit("MONEY").Controls(0), RadNumericTextBox)
-                rntxt.Width = Unit.Percentage(100)
-                rntxt = CType(edit("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
-                rntxt.Width = Unit.Percentage(100)
+                Dim rntxt As TextBox
+
+                'rntxt = CType(edit("MONEY").Controls(0), RadNumericTextBox)
+                'rntxt.Width = Unit.Percentage(100)        
+                Dim arntxt = CType(rgEmployee.Columns.FindByUniqueName("INDEMNIFY_MONEY"), GridNumericColumn)
+                arntxt.DataFormatString = "{0:#,##0.##}"
+
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             End If
         Catch ex As Exception
@@ -1288,7 +1304,7 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Dim totalMoney = 0
             If rntxtIndemnifyMoney.Value IsNot Nothing Then
-                totalMoney += rntxtIndemnifyMoney.Value
+                totalMoney += rnAmountToPaid.Value
             End If
             Dim TotalMoneyEmp As Decimal = 0
             For Each i As GridDataItem In rgEmployee.Items
@@ -1432,8 +1448,8 @@ Public Class ctrlHU_DisciplineNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
 
-            Dim intMoney = 0
-            Dim intAmountPaidCash = 0
+            Dim intMoney As Decimal = 0
+            Dim intAmountPaidCash As Decimal = 0
             Dim totalMoney = 0
             If rntxtMoney.Value IsNot Nothing Then
                 intMoney += rntxtMoney.Value
@@ -1456,8 +1472,8 @@ Public Class ctrlHU_DisciplineNewEdit
         Try
             Dim startTime As DateTime = DateTime.UtcNow
 
-            Dim totalMoney = 0
-            Dim totalAmountToPaid = 0
+            Dim totalMoney As Decimal = 0
+            Dim totalAmountToPaid As Decimal = 0
 
             If rnAmountSalaryMonth.Value IsNot Nothing Then
                 totalMoney += rnAmountSalaryMonth.Value
