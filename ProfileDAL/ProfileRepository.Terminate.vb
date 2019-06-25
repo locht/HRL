@@ -20,7 +20,7 @@ Partial Class ProfileRepository
     End Function
 #End Region
 #Region "Debt"
-    Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO)
+    Public Function GetDebt(ByVal empId As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer) As List(Of DebtDTO)
         Try
             Dim query = (From p In Context.HU_DEBT
                          From debt_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.DEBT_TYPE_ID).DefaultIfEmpty
@@ -35,7 +35,7 @@ Partial Class ProfileRepository
                                          .DEBT_TYPE_NAME = p.debt_type.NAME_VN,
                                          .MONEY = p.p.MONEY,
                                          .REMARK = p.p.REMARK}).ToList
-
+            sql = sql.Skip(PageIndex * PageSize).Take(Total)
             Return sql
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -348,7 +348,9 @@ Partial Class ProfileRepository
                                              .SIGN_NAME = p.p.SIGN_NAME,
                                              .SIGN_DATE = p.p.SIGN_DATE,
                                              .SIGN_TITLE = p.p.SIGN_TITLE,
-                                             .SALARYMEDIUM_LOSS = p.p.SALARYMEDIUM_LOSS})
+                                             .SALARYMEDIUM_LOSS = p.p.SALARYMEDIUM_LOSS,
+                                             .FILENAME = p.p.FILENAME,
+                                             .UPLOADFILE = p.p.UPLOADFILE})
 
             If _filter.EMPLOYEE_CODE IsNot Nothing Then
                 terminate = terminate.Where(Function(p) p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
@@ -465,25 +467,38 @@ Partial Class ProfileRepository
                                              .MONEY_RETURN = p.p.MONEY_RETURN,
                                              .TYPE_TERMINATE = p.p.TYPE_TERMINATE,
                                              .WORK_STATUS = p.e.WORK_STATUS,
-                                             .SALARYMEDIUM_LOSS = p.p.SALARYMEDIUM_LOSS})
+                                             .SALARYMEDIUM_LOSS = p.p.SALARYMEDIUM_LOSS,
+                                             .TER_REASON = p.p.TER_REASON,
+                                             .SUM_DEBT = p.p.SUM_DEBT,
+                                             .SUM_COLLECT_DEBT = p.p.SUM_COLLECT_DEBT,
+                                             .AMOUNT_PAYMENT_CASH = p.p.AMOUNT_PAYMENT_CASH,
+                                             .AMOUNT_DEDUCT_FROM_SAL = p.p.AMOUNT_DEDUCT_FROM_SAL,
+                                             .PERIOD_ID = p.p.PERIOD_ID,
+                                             .DECISION_TYPE = p.p.DECISION_TYPE,
+                                             .IS_ALLOW = p.p.IS_ALLOW,
+                                             .IS_REPLACE_POS = p.p.IS_REPLACE_POS})
 
             Dim ter = obj.FirstOrDefault
 
-            'ter.lstReason = (From reason In Context.OT_OTHER_LIST
-            '                 From p In Context.HU_TERMINATE_REASON.Where(Function(f) f.TER_REASON_ID = reason.ID And
-            '                                                                 f.HU_TERMINATE_ID = ter.ID).DefaultIfEmpty
-            '                 Where reason.TYPE_ID = 51
-            '                 Order By reason.NAME_VN
-            '                 Select New TerminateReasonDTO With {.TER_REASON_ID = reason.ID,
-            '                                                     .TER_REASON_NAME = reason.NAME_VN,
-            '                                                     .DENSITY = p.DENSITY}).ToList
-            ter.lstHandoverContent = (From hc In Context.OT_OTHER_LIST
-                                      From p In Context.HU_TRANSFER_TERMINATE.Where(Function(f) f.CONTENT_ID = hc.ID And f.TERMINATE_ID = ter.ID).DefaultIfEmpty
-                                      Where hc.TYPE_ID = 2270
-                                      Order By hc.NAME_VN
-                                      Select New HandoverContentDTO With {.TERMINATE_ID = p.TERMINATE_ID,
-                                                                          .CONTENT_NAME = hc.NAME_VN,
-                                                                          .IS_FINISH = p.IS_FINISH}).ToList
+            'ter.lstDebts = (From p In Context.HU_DEBT
+            '                From t In Context.HU_TERMINATE.Where(Function(f) f.EMPLOYEE_ID = p.EMPLOYEE_ID)
+            '                Select New DebtDTO With)
+
+            'ter.lstHandoverContent = (From hc In Context.OT_OTHER_LIST
+            '                          From p In Context.HU_TRANSFER_TERMINATE.Where(Function(f) f.CONTENT_ID = hc.ID And f.TERMINATE_ID = ter.ID).DefaultIfEmpty
+            '                          Where hc.TYPE_ID = 2270
+            '                          Order By hc.NAME_VN
+            '                          Select New HandoverContentDTO With {.TERMINATE_ID = p.TERMINATE_ID,
+            '                                                              .CONTENT_NAME = hc.NAME_VN,
+            '                                                              .IS_FINISH = p.IS_FINISH}).ToList
+            ter.lstHandoverContent = (From tr In Context.HU_TRANSFER_TERMINATE
+                                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = tr.CONTENT_ID).DefaultIfEmpty
+                                        Where tr.TERMINATE_ID = ter.ID
+                                        Order By ot.NAME_VN
+                                        Select New HandoverContentDTO With {.TERMINATE_ID = tr.TERMINATE_ID,
+                                                                            .CONTENT_ID = tr.CONTENT_ID,
+                                                                            .CONTENT_NAME = ot.NAME_VN,
+                                                                            .IS_FINISH = tr.IS_FINISH}).ToList
 
             Return ter
         Catch ex As Exception
@@ -619,7 +634,7 @@ Partial Class ProfileRepository
                 For Each item In objTerminate.lstHandoverContent
                     Dim handover As New HU_TRANSFER_TERMINATE
                     handover.ID = Utilities.GetNextSequence(Context, Context.HU_TRANSFER_TERMINATE.EntitySet.Name)
-                    handover.TERMINATE_ID = objTerminateData.ID
+                    handover.TERMINATE_ID = objTerminate.ID
                     handover.IS_FINISH = item.IS_FINISH
                     handover.CONTENT_ID = item.CONTENT_ID
                     Context.HU_TRANSFER_TERMINATE.AddObject(handover)
@@ -786,7 +801,7 @@ Partial Class ProfileRepository
                 For Each item In objTerminate.lstHandoverContent
                     Dim handover As New HU_TRANSFER_TERMINATE
                     handover.ID = Utilities.GetNextSequence(Context, Context.HU_TRANSFER_TERMINATE.EntitySet.Name)
-                    handover.TERMINATE_ID = objTerminateData.ID
+                    handover.TERMINATE_ID = objTerminate.ID
                     handover.IS_FINISH = item.IS_FINISH
                     handover.CONTENT_ID = item.CONTENT_ID
                     Context.HU_TRANSFER_TERMINATE.AddObject(handover)

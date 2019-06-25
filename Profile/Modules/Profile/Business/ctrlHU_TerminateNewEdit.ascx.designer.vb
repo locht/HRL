@@ -815,31 +815,31 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents cbIsReplacePos As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''lbWorkingType control.
+    '''lbDecisionType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbWorkingType As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbDecisionType As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cboWorkingType control.
+    '''cboDecisionType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboWorkingType As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboDecisionType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''reqWorkingType control.
+    '''reqDecisionType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents reqWorkingType As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents reqDecisionType As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbDecisionNo control.
