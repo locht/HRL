@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("909c900b-933f-4a4d-a2ad-9476fd9b15a4")>
+<Assembly: EdmSchemaAttribute("39347865-aa54-4915-acdf-c844ac52ce70")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -44668,6 +44668,131 @@ Public Partial Class HU_TITLE
     End Sub
 
     Private Partial Sub OnLEVEL_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property HURTFUL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _HURTFUL
+        End Get
+        Set
+            OnHURTFULChanging(value)
+            ReportPropertyChanging("HURTFUL")
+            _HURTFUL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("HURTFUL")
+            OnHURTFULChanged()
+        End Set
+    End Property
+
+    Private _HURTFUL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnHURTFULChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnHURTFULChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SPEC_HURFUL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SPEC_HURFUL
+        End Get
+        Set
+            OnSPEC_HURFULChanging(value)
+            ReportPropertyChanging("SPEC_HURFUL")
+            _SPEC_HURFUL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SPEC_HURFUL")
+            OnSPEC_HURFULChanged()
+        End Set
+    End Property
+
+    Private _SPEC_HURFUL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSPEC_HURFULChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSPEC_HURFULChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_TYPE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_TYPE
+        End Get
+        Set
+            OnORG_TYPEChanging(value)
+            ReportPropertyChanging("ORG_TYPE")
+            _ORG_TYPE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_TYPE")
+            OnORG_TYPEChanged()
+        End Set
+    End Property
+
+    Private _ORG_TYPE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_TYPEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_TYPEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILENAME() As Global.System.String
+        Get
+            Return _FILENAME
+        End Get
+        Set
+            OnFILENAMEChanging(value)
+            ReportPropertyChanging("FILENAME")
+            _FILENAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILENAME")
+            OnFILENAMEChanged()
+        End Set
+    End Property
+
+    Private _FILENAME As Global.System.String
+    Private Partial Sub OnFILENAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILENAMEChanged()
     End Sub
 
     #End Region

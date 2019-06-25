@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_Title.ascx.vb"
     Inherits="Profile.ctrlHU_Title" %>
-    <%@ Import Namespace = "Common" %>
+<%@ Import Namespace="Common" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Height="180px" Scrolling="None">
+    <tlk:RadPane ID="RadPane1" runat="server" Height="230px" Scrolling="None">
         <tlk:RadToolBar ID="tbarMain" runat="server" />
         <asp:ValidationSummary ID="valSum" runat="server" />
         <table class="table-form">
@@ -17,10 +17,27 @@
                     <asp:CustomValidator ID="cusTitleGroup" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Nhóm chức danh %>"
                         ToolTip="<%$ Translate: Bạn phải chọn Nhóm chức danh %>" ClientValidationFunction="cusTitleGroup">
                     </asp:CustomValidator>
-                     <asp:CustomValidator ID="cvalTitleGroup" ControlToValidate="cboTitleGroup" runat="server"
+                    <asp:CustomValidator ID="cvalTitleGroup" ControlToValidate="cboTitleGroup" runat="server"
                         ErrorMessage="<%$ Translate: Nhóm chức danh không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Nhóm chức danh không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("Tên công ty")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboOrgLevel" runat="server">
+                    </tlk:RadComboBox>
+                    <asp:CustomValidator ID="cusOrgLevel" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn Tên công ty %>"
+                        ToolTip="<%$ Translate: Bạn phải chọn Tên công ty %>" ClientValidationFunction="cusOrgLevel">
+                    </asp:CustomValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("Loại tổ chức")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboOrgType" runat="server">
+                    </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>
@@ -53,42 +70,81 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="<%$ Translate: Thông tin nhập liệu có chứa mã html %>"
                         ControlToValidate="txtNameVN" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
+                <td class="lb">
+                    <asp:CheckBox ID="ckDH" runat="server" Text="<%$ Translate: Độc hại %>" />
+                </td>
+                <td>
+                    <asp:CheckBox ID="ckSpecDH" runat="server" Text="<%$ Translate: Đặc biệt độc hại %>" />
+                    <asp:CheckBox ID="ckOVT" runat="server" Text="<%$ Translate: Tính OVT %>" />
+                </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Mô tả công việc")%>
+                    <asp:Label runat="server" ID="lbUploadFile" Text="Tập tin đính kèm"></asp:Label>
                 </td>
-                <td colspan="3">
+                <td>
+                    <tlk:RadTextBox ID="txtUpload" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
+                    <tlk:RadTextBox ID="txtUploadFile" runat="server" Visible="false">
+                    </tlk:RadTextBox>
+                    <tlk:RadButton runat="server" ID="btnUploadFile" SkinID="ButtonView" CausesValidation="false"
+                        TabIndex="3" />
+                    <tlk:RadButton ID="btnDownload" runat="server" Text="Tải xuống" CausesValidation="false"
+                        OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                    </tlk:RadButton>
+                </td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Ghi chú")%>
+                </td>
+                <td colspan="5">
                     <tlk:RadTextBox ID="txtRemark" runat="server" SkinID="Textbox1023" Height="70" Width="100%">
                     </tlk:RadTextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="<%$ Translate: Thông tin nhập liệu có chứa mã html %>"
                         ControlToValidate="txtRemark" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
+                <td style="visibility: hidden">
+                    <tlk:RadTextBox ID="txtRemindLink" runat="server">
+                    </tlk:RadTextBox>
+                </td>
             </tr>
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize=50 ID="rgMain" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-            Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
+        <tlk:RadGrid PageSize="50" ID="rgMain" runat="server" AutoGenerateColumns="False"
+            AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã chức danh %>" DataField="CODE" HeaderStyle-Width="100px"
-                        UniqueName="CODE" SortExpression="CODE" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã chức danh %>" DataField="CODE"
+                        HeaderStyle-Width="100px" UniqueName="CODE" SortExpression="CODE" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên công ty %>" DataField="ORG_ID_NAME"
+                        HeaderStyle-Width="100px" UniqueName="ORG_ID_NAME" SortExpression="ORG_ID_NAME" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại tổ chức %>" DataField="ORG_TYPE_NAME"
+                        HeaderStyle-Width="100px" UniqueName="ORG_TYPE_NAME" SortExpression="ORG_TYPE_NAME" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên chức danh %>" DataField="NAME_VN"
                         UniqueName="NAME_VN" SortExpression="NAME_VN" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm chức danh %>" DataField="TITLE_GROUP_NAME"
                         UniqueName="TITLE_GROUP_NAME" SortExpression="TITLE_GROUP_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả công việc %>" DataField="REMARK" UniqueName="REMARK"
-                        SortExpression="REMARK" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả công việc %>" DataField="REMARK"
+                        UniqueName="REMARK" SortExpression="REMARK" />
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Độc hại %>" DataField="HURTFUL_CHECK"
+                        UniqueName="HURTFUL_CHECK" SortExpression="HURTFUL_CHECK" AllowFiltering="false" />
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đặc biệt độc hại %>" DataField="SPEC_HURFUL_CHECK"
+                        UniqueName="SPEC_HURFUL_CHECK" SortExpression="SPEC_HURFUL_CHECK" AllowFiltering="false" />
+                    <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Tính OVT %>" DataField="OVT_CHECK" UniqueName="OVT_CHECK"
+                        SortExpression="OVT_CHECK" AllowFiltering="false" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tài liệu đính kèm %>" DataField="FILENAME"
+                        HeaderStyle-Width="100px" UniqueName="FILENAME" SortExpression="FILENAME" />
                 </Columns>
             </MasterTableView>
             <ClientSettings EnableRowHoverStyle="true">
@@ -98,6 +154,7 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
@@ -168,6 +225,15 @@
         function cusTitleGroup(oSrc, args) {
             var cbo = $find("<%# cboTitleGroup.ClientID %>");
             args.IsValid = (cbo.get_value().length != 0);
+        }
+
+        function cusOrgLevel(oSrc, args) {
+            var cbo = $find("<%# cboOrgLevel.ClientID %>");
+            args.IsValid = (cbo.get_value().length != 0);
+        }
+
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
         }
     </script>
 </tlk:RadCodeBlock>

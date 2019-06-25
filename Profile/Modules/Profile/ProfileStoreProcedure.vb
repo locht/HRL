@@ -315,4 +315,35 @@
 
 #End Region
 
+#Region "Organization"
+
+    ''' <summary>
+    ''' Lấy danh sách Sơ đồ tổ chức có cấp Công ty
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GET_ORGID_COMPANY_LEVEL() As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_ORGID_COMPANY_LEVEL", New List(Of Object)(New Object() {}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
+    ''' <summary>
+    ''' Lấy danh sách Loại tổ chức
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GET_ORG_TYPE() As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_ORG_TYPE", New List(Of Object)(New Object() {}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+#End Region
+
 End Class

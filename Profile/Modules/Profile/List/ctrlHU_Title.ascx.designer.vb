@@ -77,6 +77,33 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents cvalTitleGroup As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''cboOrgLevel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboOrgLevel As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cusOrgLevel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cusOrgLevel As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''cboOrgType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboOrgType As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''txtCode control.
     '''</summary>
     '''<remarks>
@@ -140,6 +167,78 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''ckDH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckDH As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckSpecDH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckSpecDH As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckOVT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckOVT As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lbUploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbUploadFile As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUpload As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtUploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUploadFile As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnUploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUploadFile As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''btnDownload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''txtRemark control.
     '''</summary>
     '''<remarks>
@@ -158,6 +257,15 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents RegularExpressionValidator3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
+    '''txtRemindLink control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRemindLink As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''RadPane2 control.
     '''</summary>
     '''<remarks>
@@ -174,6 +282,15 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgMain As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''ctrlUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
 
     '''<summary>
     '''ctrlMessageBox control.

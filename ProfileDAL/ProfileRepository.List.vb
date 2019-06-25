@@ -81,6 +81,8 @@ Partial Class ProfileRepository
         Try
             Dim query = From p In Context.HU_TITLE
                         From group In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TITLE_GROUP_ID).DefaultIfEmpty
+                        From orgLv In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From orgType In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.ORG_TYPE).DefaultIfEmpty
                         Select New TitleDTO With {
                                    .ID = p.ID,
                                    .CODE = p.CODE,
@@ -90,7 +92,16 @@ Partial Class ProfileRepository
                                    .CREATED_DATE = p.CREATED_DATE,
                                    .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
                                    .TITLE_GROUP_ID = p.TITLE_GROUP_ID,
-                                   .TITLE_GROUP_NAME = group.NAME_VN}
+                                   .TITLE_GROUP_NAME = group.NAME_VN,
+                                   .ORG_ID = p.ORG_ID,
+                                   .ORG_ID_NAME = orgLv.NAME_VN,
+                                   .ORG_TYPE = p.ORG_TYPE,
+                                   .ORG_TYPE_NAME = orgType.NAME_VN,
+                                   .HURTFUL_CHECK = If(p.HURTFUL = -1, True, False),
+                                   .OVT_CHECK = If(p.OVT = -1, True, False),
+                                   .SPEC_HURFUL_CHECK = If(p.SPEC_HURFUL = -1, True, False),
+                                   .UPLOAD_FILE = p.UPLOAD_FILE,
+                                   .FILENAME = p.FILENAME}
 
             Dim lst = query
 
@@ -169,6 +180,13 @@ Partial Class ProfileRepository
             objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.REMARK = objTitle.REMARK
             objTitleData.TITLE_GROUP_ID = objTitle.TITLE_GROUP_ID
+            objTitleData.HURTFUL = objTitle.HURTFUL
+            objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            objTitleData.OVT = objTitle.OVT
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.ORG_TYPE = objTitle.ORG_TYPE
+            objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
+            objTitleData.FILENAME = objTitle.FILENAME
             Context.HU_TITLE.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -224,6 +242,13 @@ Partial Class ProfileRepository
             objTitleData.NAME_VN = objTitle.NAME_VN
             objTitleData.REMARK = objTitle.REMARK
             objTitleData.TITLE_GROUP_ID = objTitle.TITLE_GROUP_ID
+            objTitleData.HURTFUL = objTitle.HURTFUL
+            objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            objTitleData.OVT = objTitle.OVT
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.ORG_TYPE = objTitle.ORG_TYPE
+            objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
+            objTitleData.FILENAME = objTitle.FILENAME
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True
