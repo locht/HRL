@@ -34,9 +34,10 @@ Partial Class ProfileRepository
                                          .DEBT_TYPE_ID = p.p.DEBT_TYPE_ID,
                                          .DEBT_TYPE_NAME = p.debt_type.NAME_VN,
                                          .MONEY = p.p.MONEY,
-                                         .REMARK = p.p.REMARK}).ToList
+                                         .REMARK = p.p.REMARK})
+            sql = sql.OrderBy(Function(f) f.DEBT_TYPE_ID)
             sql = sql.Skip(PageIndex * PageSize).Take(Total)
-            Return sql
+            Return sql.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
 
