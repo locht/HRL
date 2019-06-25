@@ -752,13 +752,13 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents lbReserveSeniority As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''ReserveSeniority control.
+    '''rntxtReserveSeniority control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ReserveSeniority As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents rntxtReserveSeniority As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbSalaryMedium_loss control.

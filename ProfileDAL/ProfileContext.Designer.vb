@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("39347865-aa54-4915-acdf-c844ac52ce70")>
+<Assembly: EdmSchemaAttribute("1910d52b-2161-48e8-a928-a81deefaca31")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -42978,6 +42978,31 @@ Public Partial Class HU_TERMINATE
     End Sub
 
     Private Partial Sub OnTER_REASONChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REVERSE_SENIORITY() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _REVERSE_SENIORITY
+        End Get
+        Set
+            OnREVERSE_SENIORITYChanging(value)
+            ReportPropertyChanging("REVERSE_SENIORITY")
+            _REVERSE_SENIORITY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("REVERSE_SENIORITY")
+            OnREVERSE_SENIORITYChanged()
+        End Set
+    End Property
+
+    Private _REVERSE_SENIORITY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnREVERSE_SENIORITYChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnREVERSE_SENIORITYChanged()
     End Sub
 
     #End Region

@@ -476,7 +476,8 @@ Partial Class ProfileRepository
                                              .PERIOD_ID = p.p.PERIOD_ID,
                                              .DECISION_TYPE = p.p.DECISION_TYPE,
                                              .IS_ALLOW = p.p.IS_ALLOW,
-                                             .IS_REPLACE_POS = p.p.IS_REPLACE_POS})
+                                             .IS_REPLACE_POS = p.p.IS_REPLACE_POS,
+                                             .REVERSE_SENIORITY = p.p.REVERSE_SENIORITY})
 
             Dim ter = obj.FirstOrDefault
 
@@ -628,6 +629,7 @@ Partial Class ProfileRepository
             objTerminateData.PERIOD_ID = objTerminate.PERIOD_ID
             objTerminateData.IS_ALLOW = objTerminate.IS_ALLOW
             objTerminateData.IS_REPLACE_POS = objTerminate.IS_REPLACE_POS
+            objTerminateData.REVERSE_SENIORITY = objTerminate.REVERSE_SENIORITY
             Context.HU_TERMINATE.AddObject(objTerminateData)
 
             If objTerminate.lstHandoverContent IsNot Nothing Then
@@ -791,7 +793,7 @@ Partial Class ProfileRepository
             objTerminateData.PERIOD_ID = objTerminate.PERIOD_ID
             objTerminateData.IS_ALLOW = objTerminate.IS_ALLOW
             objTerminateData.IS_REPLACE_POS = objTerminate.IS_REPLACE_POS
-
+            objTerminateData.REVERSE_SENIORITY = objTerminate.REVERSE_SENIORITY
             Dim lstHandover = (From p In Context.HU_TRANSFER_TERMINATE Where p.TERMINATE_ID = objTerminate.ID).ToList
             For Each item In lstHandover
                 Context.HU_TRANSFER_TERMINATE.DeleteObject(item)

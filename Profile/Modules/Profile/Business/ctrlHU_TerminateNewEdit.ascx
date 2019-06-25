@@ -416,7 +416,7 @@
                     <asp:Label runat ="server" ID ="lbReserveSeniority" Text ="Thâm niên bảo lưu (Tháng)" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="ReserveSeniority" runat="server" SkinID="Decimal">
+                    <tlk:RadNumericTextBox ID="rntxtReserveSeniority" runat="server" SkinID="Decimal">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">

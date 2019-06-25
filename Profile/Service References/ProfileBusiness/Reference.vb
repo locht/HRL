@@ -10373,6 +10373,9 @@ Namespace ProfileBusiness
         Private REMARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REVERSE_SENIORITYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SALARYMEDIUMField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -11238,6 +11241,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REVERSE_SENIORITY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.REVERSE_SENIORITYField
+            End Get
+            Set
+                If (Me.REVERSE_SENIORITYField.Equals(value) <> true) Then
+                    Me.REVERSE_SENIORITYField = value
+                    Me.RaisePropertyChanged("REVERSE_SENIORITY")
                 End If
             End Set
         End Property

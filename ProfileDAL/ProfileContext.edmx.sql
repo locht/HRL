@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 25-Jun-19 9:55:19 AM
--- Generated from EDMX file: E:\PROJECT\MyTNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 25/06/2019 2:27:37 PM
+-- Generated from EDMX file: E:\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -866,7 +866,8 @@ CREATE TABLE "dbo"."HU_TERMINATE" (
    "PERIOD_ID" NUMBER(38,0) NULL,
    "IS_ALLOW" NUMBER(5,0) NULL,
    "IS_REPLACE_POS" NUMBER(5,0) NULL,
-   "TER_REASON" NUMBER(38,0) NULL
+   "TER_REASON" NUMBER(38,0) NULL,
+   "REVERSE_SENIORITY" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_WORKING_OLD'

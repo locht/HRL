@@ -298,7 +298,7 @@ Public Class ctrlHU_TerminateNewEdit
                     cbIsReplacePos.Checked = Terminate.IS_REPLACE_POS
 
                     lstHandoverContent = Terminate.lstHandoverContent
-
+                    rntxtReserveSeniority.Value = Terminate.REVERSE_SENIORITY
                     rgHandoverContent.Rebind()
                     For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
@@ -542,6 +542,7 @@ Public Class ctrlHU_TerminateNewEdit
                         objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
                         objTerminate.IS_ALLOW = cbIsAllowForTer.Checked
                         objTerminate.IS_REPLACE_POS = cbIsReplacePos.Checked
+                        objTerminate.REVERSE_SENIORITY = rntxtReserveSeniority.Value
                         lstHandoverContent = New List(Of HandoverContentDTO)
                         For Each item As GridDataItem In rgHandoverContent.Items
                             Dim handover As New HandoverContentDTO
