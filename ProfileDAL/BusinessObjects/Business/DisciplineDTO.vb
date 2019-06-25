@@ -40,6 +40,22 @@
     Public Property YEAR_PERIOD As Decimal?
     Public Property INDEMNIFY_MONEY As Decimal?
     Public Property PERFORM_TIME As String
+
+    Public Property DEL_DISCIPLINE_DATE As Date?
+    Public Property NOTE_DISCIPLINE As String
+    Public Property DISCIPLINE_REASON_DETAIL As String
+    Public Property VIOLATION_DATE As Date?
+    Public Property DECTECT_VIOLATION_DATE As Date?
+    Public Property EXPLAIN As String
+    Public Property RERARK_DISCIPLINE As String
+    Public Property PAIDMONEY As Decimal?
+    Public Property AMOUNT_PAID_CASH As Decimal?
+    Public Property AMOUNT_TO_PAID As Decimal?
+    Public Property AMOUNT_SAL_MONTH As Decimal?
+    Public Property AMOUNT_IN_MONTH As Decimal?
+    Public Property AMOUNT_DEDUCT_AMOUNT As Decimal?
+    Public Property NO_DISCIPLINE As String
+
     Public Property DISCIPLINE_EMP As List(Of DisciplineEmpDTO)
 
     Public Property NO As String

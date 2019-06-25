@@ -130,7 +130,22 @@ Partial Class ProfileRepository
                                                                        .STATUS_NAME = d.ot.NAME_VN,
                                                                        .STATUS_CODE = d.ot.CODE,
                                                                        .STATUS_ID = d.d.STATUS_ID,
-                                                                       .PERFORM_TIME = d.d.PERFORM_TIME})
+                                                                       .PERFORM_TIME = d.d.PERFORM_TIME,
+                                                                       .DEL_DISCIPLINE_DATE = d.d.DEL_DISCIPLINE_DATE,
+                                                                       .NOTE_DISCIPLINE = d.d.NOTE_DISCIPLINE,
+                                                                       .DISCIPLINE_REASON_DETAIL = d.d.DISCIPLINE_REASON_DETAIL,
+                                                                       .VIOLATION_DATE = d.d.VIOLATION_DATE,
+                                                                       .DECTECT_VIOLATION_DATE = d.d.DECTECT_VIOLATION_DATE,
+                                                                       .EXPLAIN = d.d.EXPLAIN,
+                                                                       .RERARK_DISCIPLINE = d.d.RERARK_DISCIPLINE,
+                                                                       .PAIDMONEY = d.d.PAIDMONEY,
+                                                                       .AMOUNT_PAID_CASH = d.d.AMOUNT_PAID_CASH,
+                                                                       .AMOUNT_TO_PAID = d.d.AMOUNT_TO_PAID,
+                                                                       .AMOUNT_SAL_MONTH = d.d.AMOUNT_SAL_MONTH,
+                                                                       .AMOUNT_IN_MONTH = d.d.AMOUNT_IN_MONTH,
+                                                                       .AMOUNT_DEDUCT_AMOUNT = d.d.AMOUNT_DEDUCT_AMOUNT,
+                                                                       .NO_DISCIPLINE = d.d.NO_DISCIPLINE
+                                                                   })
 
 
             lst = lst.OrderBy(Sorts)
@@ -207,7 +222,21 @@ Partial Class ProfileRepository
                                                                        .SIGN_DATE = p.p.SIGN_DATE,
                                                                        .SIGNER_NAME = p.p.SIGNER_NAME,
                                                                        .SIGNER_TITLE = p.p.SIGNER_TITLE,
-                                                                       .PERFORM_TIME = p.p.PERFORM_TIME
+                                                                       .PERFORM_TIME = p.p.PERFORM_TIME,
+                                                                       .DEL_DISCIPLINE_DATE = p.p.DEL_DISCIPLINE_DATE,
+                                                                       .NOTE_DISCIPLINE = p.p.NOTE_DISCIPLINE,
+                                                                       .DISCIPLINE_REASON_DETAIL = p.p.DISCIPLINE_REASON_DETAIL,
+                                                                       .VIOLATION_DATE = p.p.VIOLATION_DATE,
+                                                                       .DECTECT_VIOLATION_DATE = p.p.DECTECT_VIOLATION_DATE,
+                                                                       .EXPLAIN = p.p.EXPLAIN,
+                                                                       .RERARK_DISCIPLINE = p.p.RERARK_DISCIPLINE,
+                                                                       .PAIDMONEY = p.p.PAIDMONEY,
+                                                                       .AMOUNT_PAID_CASH = p.p.AMOUNT_PAID_CASH,
+                                                                       .AMOUNT_TO_PAID = p.p.AMOUNT_TO_PAID,
+                                                                       .AMOUNT_SAL_MONTH = p.p.AMOUNT_SAL_MONTH,
+                                                                       .AMOUNT_IN_MONTH = p.p.AMOUNT_IN_MONTH,
+                                                                       .AMOUNT_DEDUCT_AMOUNT = p.p.AMOUNT_DEDUCT_AMOUNT,
+                                                                       .NO_DISCIPLINE = p.p.NO_DISCIPLINE
                                                                       })
             ''Logger.LogInfo(obj)
             Return obj.SingleOrDefault
@@ -249,6 +278,22 @@ Partial Class ProfileRepository
             objDisciplineData.SIGNER_NAME = objDiscipline.SIGNER_NAME
             objDisciplineData.SIGNER_TITLE = objDiscipline.SIGNER_TITLE
             objDisciplineData.PERFORM_TIME = objDiscipline.PERFORM_TIME
+
+            objDisciplineData.DEL_DISCIPLINE_DATE = objDiscipline.DEL_DISCIPLINE_DATE
+            objDisciplineData.NOTE_DISCIPLINE = objDiscipline.NOTE_DISCIPLINE
+            objDisciplineData.DISCIPLINE_REASON_DETAIL = objDiscipline.DISCIPLINE_REASON_DETAIL
+            objDisciplineData.VIOLATION_DATE = objDiscipline.VIOLATION_DATE
+            objDisciplineData.DECTECT_VIOLATION_DATE = objDiscipline.DECTECT_VIOLATION_DATE
+            objDisciplineData.EXPLAIN = objDiscipline.EXPLAIN
+            objDisciplineData.RERARK_DISCIPLINE = objDiscipline.RERARK_DISCIPLINE
+            objDisciplineData.PAIDMONEY = objDiscipline.PAIDMONEY
+            objDisciplineData.AMOUNT_PAID_CASH = objDiscipline.AMOUNT_PAID_CASH
+            objDisciplineData.AMOUNT_TO_PAID = objDiscipline.AMOUNT_TO_PAID
+            objDisciplineData.AMOUNT_SAL_MONTH = objDiscipline.AMOUNT_SAL_MONTH
+            objDisciplineData.AMOUNT_IN_MONTH = objDiscipline.AMOUNT_IN_MONTH
+            objDisciplineData.AMOUNT_DEDUCT_AMOUNT = objDiscipline.AMOUNT_DEDUCT_AMOUNT
+            objDisciplineData.NO_DISCIPLINE = objDiscipline.NO_DISCIPLINE
+
             Context.HU_DISCIPLINE.AddObject(objDisciplineData)
 
             'thêm danh sách nhân viên kỷ luật.
@@ -440,6 +485,22 @@ Partial Class ProfileRepository
             objDisciplineData.SIGNER_NAME = objDiscipline.SIGNER_NAME
             objDisciplineData.SIGNER_TITLE = objDiscipline.SIGNER_TITLE
             objDisciplineData.PERFORM_TIME = objDiscipline.PERFORM_TIME
+
+            objDisciplineData.DEL_DISCIPLINE_DATE = objDiscipline.DEL_DISCIPLINE_DATE
+            objDisciplineData.NOTE_DISCIPLINE = objDiscipline.NOTE_DISCIPLINE
+            objDisciplineData.DISCIPLINE_REASON_DETAIL = objDiscipline.DISCIPLINE_REASON_DETAIL
+            objDisciplineData.VIOLATION_DATE = objDiscipline.VIOLATION_DATE
+            objDisciplineData.DECTECT_VIOLATION_DATE = objDiscipline.DECTECT_VIOLATION_DATE
+            objDisciplineData.EXPLAIN = objDiscipline.EXPLAIN
+            objDisciplineData.RERARK_DISCIPLINE = objDiscipline.RERARK_DISCIPLINE
+            objDisciplineData.PAIDMONEY = objDiscipline.PAIDMONEY
+            objDisciplineData.AMOUNT_PAID_CASH = objDiscipline.AMOUNT_PAID_CASH
+            objDisciplineData.AMOUNT_TO_PAID = objDiscipline.AMOUNT_TO_PAID
+            objDisciplineData.AMOUNT_SAL_MONTH = objDiscipline.AMOUNT_SAL_MONTH
+            objDisciplineData.AMOUNT_IN_MONTH = objDiscipline.AMOUNT_IN_MONTH
+            objDisciplineData.AMOUNT_DEDUCT_AMOUNT = objDiscipline.AMOUNT_DEDUCT_AMOUNT
+            objDisciplineData.NO_DISCIPLINE = objDiscipline.NO_DISCIPLINE
+
             'objDisciplineData.PAY_DATE = objDiscipline.PAY_DAT            
 
             'Xóa danh sách nhân viên kỷ luật cũ

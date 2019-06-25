@@ -239,58 +239,13 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents rdSignDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''lbSignerName control.
+    '''Label1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbSignerName As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtSignerName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSignerName As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''reqSignerName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents reqSignerName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''lbSignerTitle control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbSignerTitle As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtSignerTitle control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSignerTitle As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''lbUpload control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbUpload As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtUpload control.
@@ -329,6 +284,60 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''lbSignerName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSignerName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSignerName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSignerName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''btnFindSinger control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnFindSinger As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''reqSignerName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqSignerName As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''lbSignerTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbSignerTitle As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSignerTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSignerTitle As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtDecisionName control.
     '''</summary>
     '''<remarks>
@@ -336,6 +345,42 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtDecisionName As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbDelDiscipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDelDiscipline As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdDelDisciplineDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDelDisciplineDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbNoteDiscipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNoteDiscipline As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNoteDiscipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNoteDiscipline As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtRemindLink control.
@@ -363,6 +408,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbDisciplineObj As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboDisciplineObj control.
@@ -399,6 +453,24 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbDisciplineLevel As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbDecisionNo_Discipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDecisionNo_Discipline As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDecisionNo_Discipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDecisionNo_Discipline As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''cboDisciplineLevel control.
@@ -462,6 +534,141 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalDisciplineType As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''lbDisciplineReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDisciplineReason As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboDisciplineReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboDisciplineReason As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''reqDisciplineReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqDisciplineReason As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''cvalDisciplineReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalDisciplineReason As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''lbDisciplineReasonDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDisciplineReasonDetail As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDisciplineReasonDetail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDisciplineReasonDetail As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbViolationDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbViolationDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdViolationDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdViolationDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbDetectViolationDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbDetectViolationDate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rdDetectViolationDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdDetectViolationDate As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''lbExplain control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbExplain As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtExplain control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtExplain As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbRemarkDiscipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemarkDiscipline As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtRemarkDiscipline control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRemarkDiscipline As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''lbCompensationInfo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCompensationInfo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''chkPhatTien control.
@@ -536,13 +743,13 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents cvalIndemnifyTotal As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
-    '''lbPaidInMoeny control.
+    '''lbPaidIMoeny control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbPaidInMoeny As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbPaidIMoeny As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''PaidInMoeny control.
@@ -554,40 +761,76 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents PaidInMoeny As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''lbDisciplineReason control.
+    '''rnPaidIMoeny control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbDisciplineReason As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents rnPaidIMoeny As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''cboDisciplineReason control.
+    '''lbAmountPaidCash control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboDisciplineReason As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents lbAmountPaidCash As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''reqDisciplineReason control.
+    '''rdAmountPaidCash control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents reqDisciplineReason As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents rdAmountPaidCash As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''cvalDisciplineReason control.
+    '''lbAmountToPaid control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cvalDisciplineReason As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents lbAmountToPaid As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rnAmountToPaid control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnAmountToPaid As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbAmountSalaryMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAmountSalaryMonth As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rnAmountSalaryMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnAmountSalaryMonth As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''cvalAmountSalaryMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvalAmountSalaryMonth As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lbRemark control.
@@ -617,24 +860,6 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents chkDeductFromSalary As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''lbYear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''nmYear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents nmYear As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
     '''lbPeriod control.
     '''</summary>
     '''<remarks>
@@ -662,6 +887,42 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents cvalPeriod As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbAmountInMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAmountInMonth As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''nmYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents nmYear As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rnAmountInMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnAmountInMonth As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''lbPerformDiscipline control.
     '''</summary>
     '''<remarks>
@@ -671,6 +932,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     Protected WithEvents lbPerformDiscipline As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbAmountDeductedMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbAmountDeductedMonth As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtPerformDiscipline control.
     '''</summary>
     '''<remarks>
@@ -678,6 +948,15 @@ Partial Public Class ctrlHU_DisciplineNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPerformDiscipline As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rnAmountDeductedMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rnAmountDeductedMonth As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''PanelEmployee control.

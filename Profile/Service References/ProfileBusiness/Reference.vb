@@ -24902,6 +24902,21 @@ Namespace ProfileBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_DEDUCT_AMOUNTField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_IN_MONTHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_PAID_CASHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_SAL_MONTHField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AMOUNT_TO_PAIDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -24917,7 +24932,13 @@ Namespace ProfileBusiness
         Private DECISION_NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DECTECT_VIOLATION_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DEDUCT_FROM_SALARYField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DEL_DISCIPLINE_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DISCIPLINE_DATEField As System.Nullable(Of Date)
@@ -24942,6 +24963,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DISCIPLINE_REASONField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DISCIPLINE_REASON_DETAILField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private DISCIPLINE_REASON_NAMEField As String
@@ -24972,6 +24996,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPIRE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPLAINField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FILENAMEField As String
@@ -25007,6 +25034,12 @@ Namespace ProfileBusiness
         Private NOField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOTE_DISCIPLINEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NO_DISCIPLINEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ORG_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -25022,6 +25055,9 @@ Namespace ProfileBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PAIDMONEYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PERFORM_TIMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -25029,6 +25065,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RERARK_DISCIPLINEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGNER_NAMEField As String
@@ -25067,6 +25106,9 @@ Namespace ProfileBusiness
         Private UPLOADFILEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private VIOLATION_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private YEAR_PERIODField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -25079,6 +25121,71 @@ Namespace ProfileBusiness
             End Get
             Set
                 Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_DEDUCT_AMOUNT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_DEDUCT_AMOUNTField
+            End Get
+            Set
+                If (Me.AMOUNT_DEDUCT_AMOUNTField.Equals(value) <> true) Then
+                    Me.AMOUNT_DEDUCT_AMOUNTField = value
+                    Me.RaisePropertyChanged("AMOUNT_DEDUCT_AMOUNT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_IN_MONTH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_IN_MONTHField
+            End Get
+            Set
+                If (Me.AMOUNT_IN_MONTHField.Equals(value) <> true) Then
+                    Me.AMOUNT_IN_MONTHField = value
+                    Me.RaisePropertyChanged("AMOUNT_IN_MONTH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_PAID_CASH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_PAID_CASHField
+            End Get
+            Set
+                If (Me.AMOUNT_PAID_CASHField.Equals(value) <> true) Then
+                    Me.AMOUNT_PAID_CASHField = value
+                    Me.RaisePropertyChanged("AMOUNT_PAID_CASH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_SAL_MONTH() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_SAL_MONTHField
+            End Get
+            Set
+                If (Me.AMOUNT_SAL_MONTHField.Equals(value) <> true) Then
+                    Me.AMOUNT_SAL_MONTHField = value
+                    Me.RaisePropertyChanged("AMOUNT_SAL_MONTH")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AMOUNT_TO_PAID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AMOUNT_TO_PAIDField
+            End Get
+            Set
+                If (Me.AMOUNT_TO_PAIDField.Equals(value) <> true) Then
+                    Me.AMOUNT_TO_PAIDField = value
+                    Me.RaisePropertyChanged("AMOUNT_TO_PAID")
+                End If
             End Set
         End Property
         
@@ -25148,6 +25255,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DECTECT_VIOLATION_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.DECTECT_VIOLATION_DATEField
+            End Get
+            Set
+                If (Me.DECTECT_VIOLATION_DATEField.Equals(value) <> true) Then
+                    Me.DECTECT_VIOLATION_DATEField = value
+                    Me.RaisePropertyChanged("DECTECT_VIOLATION_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property DEDUCT_FROM_SALARY() As Boolean
             Get
                 Return Me.DEDUCT_FROM_SALARYField
@@ -25156,6 +25276,19 @@ Namespace ProfileBusiness
                 If (Me.DEDUCT_FROM_SALARYField.Equals(value) <> true) Then
                     Me.DEDUCT_FROM_SALARYField = value
                     Me.RaisePropertyChanged("DEDUCT_FROM_SALARY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DEL_DISCIPLINE_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.DEL_DISCIPLINE_DATEField
+            End Get
+            Set
+                If (Me.DEL_DISCIPLINE_DATEField.Equals(value) <> true) Then
+                    Me.DEL_DISCIPLINE_DATEField = value
+                    Me.RaisePropertyChanged("DEL_DISCIPLINE_DATE")
                 End If
             End Set
         End Property
@@ -25260,6 +25393,19 @@ Namespace ProfileBusiness
                 If (Me.DISCIPLINE_REASONField.Equals(value) <> true) Then
                     Me.DISCIPLINE_REASONField = value
                     Me.RaisePropertyChanged("DISCIPLINE_REASON")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DISCIPLINE_REASON_DETAIL() As String
+            Get
+                Return Me.DISCIPLINE_REASON_DETAILField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.DISCIPLINE_REASON_DETAILField, value) <> true) Then
+                    Me.DISCIPLINE_REASON_DETAILField = value
+                    Me.RaisePropertyChanged("DISCIPLINE_REASON_DETAIL")
                 End If
             End Set
         End Property
@@ -25390,6 +25536,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPLAIN() As String
+            Get
+                Return Me.EXPLAINField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.EXPLAINField, value) <> true) Then
+                    Me.EXPLAINField = value
+                    Me.RaisePropertyChanged("EXPLAIN")
                 End If
             End Set
         End Property
@@ -25538,6 +25697,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOTE_DISCIPLINE() As String
+            Get
+                Return Me.NOTE_DISCIPLINEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NOTE_DISCIPLINEField, value) <> true) Then
+                    Me.NOTE_DISCIPLINEField = value
+                    Me.RaisePropertyChanged("NOTE_DISCIPLINE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NO_DISCIPLINE() As String
+            Get
+                Return Me.NO_DISCIPLINEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NO_DISCIPLINEField, value) <> true) Then
+                    Me.NO_DISCIPLINEField = value
+                    Me.RaisePropertyChanged("NO_DISCIPLINE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ORG_CODE() As String
             Get
                 Return Me.ORG_CODEField
@@ -25603,6 +25788,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PAIDMONEY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PAIDMONEYField
+            End Get
+            Set
+                If (Me.PAIDMONEYField.Equals(value) <> true) Then
+                    Me.PAIDMONEYField = value
+                    Me.RaisePropertyChanged("PAIDMONEY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property PERFORM_TIME() As String
             Get
                 Return Me.PERFORM_TIMEField
@@ -25637,6 +25835,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
                     Me.REMARKField = value
                     Me.RaisePropertyChanged("REMARK")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RERARK_DISCIPLINE() As String
+            Get
+                Return Me.RERARK_DISCIPLINEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.RERARK_DISCIPLINEField, value) <> true) Then
+                    Me.RERARK_DISCIPLINEField = value
+                    Me.RaisePropertyChanged("RERARK_DISCIPLINE")
                 End If
             End Set
         End Property
@@ -25793,6 +26004,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.UPLOADFILEField, value) <> true) Then
                     Me.UPLOADFILEField = value
                     Me.RaisePropertyChanged("UPLOADFILE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property VIOLATION_DATE() As System.Nullable(Of Date)
+            Get
+                Return Me.VIOLATION_DATEField
+            End Get
+            Set
+                If (Me.VIOLATION_DATEField.Equals(value) <> true) Then
+                    Me.VIOLATION_DATEField = value
+                    Me.RaisePropertyChanged("VIOLATION_DATE")
                 End If
             End Set
         End Property
