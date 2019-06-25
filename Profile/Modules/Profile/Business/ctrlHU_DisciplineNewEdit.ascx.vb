@@ -287,6 +287,22 @@ Public Class ctrlHU_DisciplineNewEdit
                     cboDisciplineObj.SelectedValue = Discipline.DISCIPLINE_OBJ.ToString
                     cboDisciplineType.SelectedValue = Discipline.DISCIPLINE_TYPE.ToString
                     cboDisciplineReason.SelectedValue = Discipline.DISCIPLINE_REASON.ToString
+
+                    rdDelDisciplineDate.SelectedDate = Discipline.DEL_DISCIPLINE_DATE
+                    txtNoteDiscipline.Text = Discipline.NOTE_DISCIPLINE
+                    txtDisciplineReasonDetail.Text = Discipline.DISCIPLINE_REASON_DETAIL
+                    rdViolationDate.SelectedDate = Discipline.VIOLATION_DATE
+                    rdDetectViolationDate.SelectedDate = Discipline.DECTECT_VIOLATION_DATE
+                    txtExplain.Text = Discipline.EXPLAIN
+                    txtRemarkDiscipline.Text = Discipline.RERARK_DISCIPLINE
+                    rnPaidIMoeny.Value = Discipline.PAIDMONEY
+                    rdAmountPaidCash.Value = Discipline.AMOUNT_PAID_CASH
+                    rnAmountToPaid.Value = Discipline.AMOUNT_TO_PAID
+                    rnAmountSalaryMonth.Value = Discipline.AMOUNT_SAL_MONTH
+                    rnAmountInMonth.Value = Discipline.AMOUNT_IN_MONTH
+                    rnAmountDeductedMonth.Value = Discipline.AMOUNT_DEDUCT_AMOUNT
+                    txtDecisionNo_Discipline.Text = Discipline.NO_DISCIPLINE
+
                     rntxtMoney.Value = Discipline.MONEY
                     hidID.Value = Discipline.ID.ToString
                     txtUploadFile.Text = Discipline.FILENAME
@@ -302,9 +318,10 @@ Public Class ctrlHU_DisciplineNewEdit
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
                         PanelEmployee.Enabled = False
                         EnableControlAll_Cus(False, RadPane2)
+                        EnableControlAll(True, rnAmountToPaid, rnAmountSalaryMonth, rnAmountInMonth, rnAmountDeductedMonth)
                         btnDownload.Enabled = True
                         CurrentState = CommonMessage.STATE_NORMAL
-                        CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                        'CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     End If
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -448,6 +465,22 @@ Public Class ctrlHU_DisciplineNewEdit
                         objDiscipline.NAME = txtDecisionName.Text.Trim
                         objDiscipline.NO = txtDecisionNo.Text.Trim
                         objDiscipline.PERFORM_TIME = txtPerformDiscipline.Text.Trim
+
+                        objDiscipline.DEL_DISCIPLINE_DATE = rdDelDisciplineDate.SelectedDate
+                        objDiscipline.NOTE_DISCIPLINE = txtNoteDiscipline.Text
+                        objDiscipline.DISCIPLINE_REASON_DETAIL = txtDisciplineReasonDetail.Text
+                        objDiscipline.VIOLATION_DATE = rdViolationDate.SelectedDate
+                        objDiscipline.DECTECT_VIOLATION_DATE = rdDetectViolationDate.SelectedDate
+                        objDiscipline.EXPLAIN = txtExplain.Text
+                        objDiscipline.RERARK_DISCIPLINE = txtRemarkDiscipline.Text
+                        objDiscipline.PAIDMONEY = rnPaidIMoeny.Value
+                        objDiscipline.AMOUNT_PAID_CASH = rdAmountPaidCash.Value
+                        objDiscipline.AMOUNT_TO_PAID = rnAmountToPaid.Value
+                        objDiscipline.AMOUNT_SAL_MONTH = rnAmountSalaryMonth.Value
+                        objDiscipline.AMOUNT_IN_MONTH = rnAmountInMonth.Value
+                        objDiscipline.AMOUNT_DEDUCT_AMOUNT = rnAmountDeductedMonth.Value
+                        objDiscipline.NO_DISCIPLINE = txtDecisionNo_Discipline.Text
+
                         objDiscipline.SIGNER_TITLE = txtSignerTitle.Text
                         For Each i As GridDataItem In rgEmployee.Items
                             Dim o As New DisciplineEmpDTO
@@ -632,29 +665,29 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
 
     End Sub
-    ' ''' <lastupdate>
-    ' ''' 11/07/2017 13:40
-    ' ''' </lastupdate>
-    ' ''' <summary>
-    ' ''' Xu ly su kien click khi click vao btnFindSigner
-    ' ''' </summary>
-    ' ''' <param name="sender"></param>
-    ' ''' <param name="e"></param>
-    ' ''' <remarks></remarks>
-    'Protected Sub btnFindSinger_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindSinger.Click
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        isLoadPopup = 3
-    '        UpdateControlState()
-    '        ctrlFindSigner.MustHaveContract = False
-    '        ctrlFindSigner.Show()
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+    ''' <lastupdate>
+    ''' 11/07/2017 13:40
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien click khi click vao btnFindSigner
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Protected Sub btnFindSinger_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindSinger.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            isLoadPopup = 3
+            UpdateControlState()
+            ctrlFindSigner.MustHaveContract = False
+            ctrlFindSigner.Show()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' 11/07/2017 13:40
     ''' </lastupdate>
     ''' <summary>
@@ -684,6 +717,12 @@ Public Class ctrlHU_DisciplineNewEdit
                     employee.FULLNAME = emp.FULLNAME_VN
                     employee.ORG_NAME = emp.ORG_NAME
                     employee.TITLE_NAME = emp.TITLE_NAME
+
+                    Dim checkEmployeeCode As DisciplineEmpDTO = Employee_Discipline.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    If (Not checkEmployeeCode Is Nothing) Then
+                        Continue For
+                    End If
+
                     Employee_Discipline.Add(employee)
                 Next
 
@@ -1367,7 +1406,7 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
 
     End Sub
-    
+
     ''' <summary>
     ''' cusStatus server validate
     ''' </summary>
@@ -1421,7 +1460,7 @@ Public Class ctrlHU_DisciplineNewEdit
 
             totalMoney = Utilities.ObjToDecima(intMoney - intAmountPaidCash)
             rnAmountToPaid.Value = totalMoney
-      
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1449,7 +1488,7 @@ Public Class ctrlHU_DisciplineNewEdit
             Else
                 args.IsValid = True
             End If
-         
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -1667,7 +1706,7 @@ Public Class ctrlHU_DisciplineNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-   
+
     ''' <lastupdate>
     ''' 11/07/2017 13:40
     ''' </lastupdate>
@@ -1702,6 +1741,4 @@ Public Class ctrlHU_DisciplineNewEdit
     End Sub
 
 #End Region
-
-
 End Class

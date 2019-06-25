@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 06/26/2019 12:55:29 AM
+-- Date Created: 06/26/2019 2:14:32 AM
 -- Generated from EDMX file: E:\HISTAFF\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -777,7 +777,21 @@ CREATE TABLE "dbo"."HU_DISCIPLINE" (
    "DISCIPLINE_REASON" NUMBER(38,0) NULL,
    "UPLOADFILE" NCLOB NULL,
    "FILENAME" NCLOB NULL,
-   "PERFORM_TIME" NCLOB NULL
+   "PERFORM_TIME" NCLOB NULL,
+   "DEL_DISCIPLINE_DATE" DATE NULL,
+   "NOTE_DISCIPLINE" NCLOB NULL,
+   "DISCIPLINE_REASON_DETAIL" NCLOB NULL,
+   "VIOLATION_DATE" DATE NULL,
+   "DECTECT_VIOLATION_DATE" DATE NULL,
+   "EXPLAIN" NCLOB NULL,
+   "RERARK_DISCIPLINE" NCLOB NULL,
+   "PAIDMONEY" NUMBER(38,0) NULL,
+   "AMOUNT_PAID_CASH" NUMBER(38,0) NULL,
+   "AMOUNT_TO_PAID" NUMBER(38,0) NULL,
+   "AMOUNT_SAL_MONTH" NUMBER(38,0) NULL,
+   "AMOUNT_IN_MONTH" NUMBER(38,0) NULL,
+   "AMOUNT_DEDUCT_AMOUNT" NUMBER(38,0) NULL,
+   "NO_DISCIPLINE" NCLOB NULL
 );
 
 -- Creating table 'HU_WORKING_BEFORE'
