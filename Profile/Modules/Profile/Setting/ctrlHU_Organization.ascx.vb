@@ -827,6 +827,7 @@ Public Class ctrlHU_Organization
                     lstFile.Items.Clear()
                     txtNameVN.ReadOnly = True
                     txtNameVN.CausesValidation = False
+                    txtNameEN.ReadOnly = True
                     txtCode.CausesValidation = False
                     txtCode.ReadOnly = True
                     txtREMARK.ReadOnly = True
