@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26/06/2019 2:05:13 PM
--- Generated from EDMX file: E:\Công nghệ\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 26-Jun-19 4:52:46 PM
+-- Generated from EDMX file: E:\PROJECT\MyTNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3384,7 +3384,14 @@ CREATE TABLE "dbo"."HU_LOCATION" (
    "LOCATION_VN_NAME" NVARCHAR2(255) NULL,
    "LOCATION_EN_NAME" NVARCHAR2(255) NULL,
    "BUSINESS_REG_DATE" DATE NULL,
-   "BANK_BRANCH_ID" NUMBER(38,0) NULL
+   "BANK_BRANCH_ID" NUMBER(38,0) NULL,
+   "PROVINCE_ID" NUMBER(38,0) NULL,
+   "DISTRICT_ID" NUMBER(38,0) NULL,
+   "WARD_ID" NUMBER(38,0) NULL,
+   "IS_SIGN_CONTRACT" NUMBER(38,0) NULL,
+   "FILE_LOGO" NVARCHAR2(500) NULL,
+   "FILE_HEADER" NVARCHAR2(500) NULL,
+   "FILE_FOOTER" NVARCHAR2(500) NULL
 );
 
 -- Creating table 'SE_USER_REPORT'

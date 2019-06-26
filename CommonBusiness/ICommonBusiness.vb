@@ -558,6 +558,9 @@ Namespace CommonBusiness.ServiceContracts
 
         <OperationContract()>
         Function GetEmployeeToPopupFind_EmployeeID(ByVal _empId As List(Of Decimal)) As List(Of EmployeePopupFindDTO)
+
+        <OperationContract()>
+        Function GetEmployeeID(ByVal _empId As Decimal) As EmployeePopupFindDTO
 #End Region
 
 #Region "Title"

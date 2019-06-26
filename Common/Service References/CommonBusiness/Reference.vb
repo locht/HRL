@@ -8165,6 +8165,9 @@ Namespace CommonBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="CommonBusiness.ICommonBusiness")>  _
     Public Interface ICommonBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetClassification", ReplyAction:="http://tempuri.org/ICommonBusiness/GetClassificationResponse")>  _
+        Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetLearningLevel", ReplyAction:="http://tempuri.org/ICommonBusiness/GetLearningLevelResponse")>  _
         Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
         
@@ -8828,6 +8831,9 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind_EmployeeID", ReplyAction:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind_EmployeeIDResponse")>  _
         Function GetEmployeeToPopupFind_EmployeeID(ByVal _empId As System.Collections.Generic.List(Of Decimal)) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetEmployeeID", ReplyAction:="http://tempuri.org/ICommonBusiness/GetEmployeeIDResponse")>  _
+        Function GetEmployeeID(ByVal _empId As Decimal) As CommonBusiness.EmployeePopupFindDTO
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetTitle", ReplyAction:="http://tempuri.org/ICommonBusiness/GetTitleResponse")>  _
         Function GetTitle(ByVal Filter As CommonBusiness.TitleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of CommonBusiness.TitleDTO)
         
@@ -8866,9 +8872,6 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetPeriodByYear", ReplyAction:="http://tempuri.org/ICommonBusiness/GetPeriodByYearResponse")>  _
         Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetClassification", ReplyAction:="http://tempuri.org/ICommonBusiness/GetClassificationResponse")>  _
-        Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -8901,6 +8904,10 @@ Namespace CommonBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetClassification
+            Return MyBase.Channel.GetClassification(isBlank)
+        End Function
         
         Public Function GetLearningLevel(ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetLearningLevel
             Return MyBase.Channel.GetLearningLevel(sLang, isBlank)
@@ -9490,6 +9497,10 @@ Namespace CommonBusiness
             Return MyBase.Channel.GetEmployeeToPopupFind_EmployeeID(_empId)
         End Function
         
+        Public Function GetEmployeeID(ByVal _empId As Decimal) As CommonBusiness.EmployeePopupFindDTO Implements CommonBusiness.ICommonBusiness.GetEmployeeID
+            Return MyBase.Channel.GetEmployeeID(_empId)
+        End Function
+        
         Public Function GetTitle(ByVal Filter As CommonBusiness.TitleDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of CommonBusiness.TitleDTO) Implements CommonBusiness.ICommonBusiness.GetTitle
             Return MyBase.Channel.GetTitle(Filter, PageIndex, PageSize, Total, Sorts)
         End Function
@@ -9540,10 +9551,6 @@ Namespace CommonBusiness
         
         Public Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetPeriodByYear
             Return MyBase.Channel.GetPeriodByYear(isBlank, year)
-        End Function
-        
-        Public Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetClassification
-            Return MyBase.Channel.GetClassification(isBlank)
         End Function
     End Class
 End Namespace

@@ -830,6 +830,16 @@ Partial Public Class CommonRepository
 
     End Function
 
+    Public Function GetEmployeeID(ByVal _empId As Decimal) As EmployeePopupFindDTO
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetEmployeeID(_empId)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 
 #Region "Title"

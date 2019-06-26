@@ -761,6 +761,16 @@ Namespace CommonBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function GetEmployeeID(ByVal _empId As Decimal) As EmployeePopupFindDTO Implements ServiceContracts.ICommonBusiness.GetEmployeeID
+            Using rep As New CommonRepository
+                Try
+                    Return rep.GetEmployeeID(_empId)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "Title"

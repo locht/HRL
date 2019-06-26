@@ -212,6 +212,15 @@ Partial Public Class ctrlLocation
     Protected WithEvents txtFax As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''ckIsSignContract control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckIsSignContract As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''txtAddress_Emp control.
     '''</summary>
     '''<remarks>
@@ -237,6 +246,33 @@ Partial Public Class ctrlLocation
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtWebsite As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cboProvince control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboProvince As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboDistrict control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboDistrict As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cboWard control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboWard As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''txtAccountNumber control.

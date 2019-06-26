@@ -38540,4 +38540,284 @@ Xin cám ơn!
       <string>Có lỗi trong quá trình import. Lưu file lỗi chi tiết</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN ĐẾN HẠN BỔ NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Nhân viên đến hạn bổ nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN ĐẾN HẠN KÝ LẠI HĐLĐ</string>
+    </Key>
+    <Value>
+      <string>Nhân viên đến hạn ký lại HĐLĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN HẾT HẠN TẠM HOÃN HĐ</string>
+    </Key>
+    <Value>
+      <string>Nhân viên hết hạn tạm hoãn HĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN NGHỈ THAI SẢN ĐI LÀM LẠI</string>
+    </Key>
+    <Value>
+      <string>Nhân viên nghỉ thai sản đi làm lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN ĐẾN TUỔI NGHỈ HƯU</string>
+    </Key>
+    <Value>
+      <string>Nhân viên đến tuổi nghỉ hưu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN NGHỈ KHÔNG LƯƠNG ĐI LÀM LẠI</string>
+    </Key>
+    <Value>
+      <string>Nhân viên nghỉ không lương đi làm lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN SƠ ĐỒ TỔ CHỨC.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn sơ đồ tổ chức.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TÀI KHOẢN ĐÃ TỒN TẠI</string>
+    </Key>
+    <Value>
+      <string>Số tài khoản đã tồn tại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLID</string>
+    </Key>
+    <Value>
+      <string>CTRLLOCATION_LBLID</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLOCATIONVI</string>
+    </Key>
+    <Value>
+      <string>Tên tiếng việt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLOCATIONEN</string>
+    </Key>
+    <Value>
+      <string>Tên tiếng anh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLADDRESS</string>
+    </Key>
+    <Value>
+      <string>Địa chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLPHONE</string>
+    </Key>
+    <Value>
+      <string>Điện thoại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLOCATIONVN</string>
+    </Key>
+    <Value>
+      <string>Tên tiếng việt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLOCATIONSHORT</string>
+    </Key>
+    <Value>
+      <string>Tên viết tắt</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLFAX</string>
+    </Key>
+    <Value>
+      <string>Fax</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLADDRESSEMP</string>
+    </Key>
+    <Value>
+      <string>Địa điểm làm việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLOFFICEPLACE</string>
+    </Key>
+    <Value>
+      <string>Nơi làm Hợp đồng/Quyết định</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLWEBSITE</string>
+    </Key>
+    <Value>
+      <string>Website</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLACCOUNTNUMBER</string>
+    </Key>
+    <Value>
+      <string>Số tài khoản</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLBANKID</string>
+    </Key>
+    <Value>
+      <string>Ngân hàng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLBANK_BRANCH_ID</string>
+    </Key>
+    <Value>
+      <string>Chi nhánh ngân hàng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLTAXCODE</string>
+    </Key>
+    <Value>
+      <string>Mã số thuế</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLTAXDATE</string>
+    </Key>
+    <Value>
+      <string>Ngày cấp MST</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLTAXPLACE</string>
+    </Key>
+    <Value>
+      <string>Nơi cấp MST</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLAWAGENT</string>
+    </Key>
+    <Value>
+      <string>Người đại diện pháp luật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLAWAGENTTITLE</string>
+    </Key>
+    <Value>
+      <string>Chức danh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLLAWAGENTNATIONALITY</string>
+    </Key>
+    <Value>
+      <string>Quốc tịch</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLSIGNUPAGENT</string>
+    </Key>
+    <Value>
+      <string>Người đại diện ký HĐLĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLSIGNUPAGENTTITLE</string>
+    </Key>
+    <Value>
+      <string>Chức danh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLSIGNUPAGENTNATIONALITY</string>
+    </Key>
+    <Value>
+      <string>Quốc tịch</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLNUMBERBUSINESS</string>
+    </Key>
+    <Value>
+      <string>Số giấy phép kinh doanh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLNAMEBUSINESS</string>
+    </Key>
+    <Value>
+      <string>Tên đăng ký giấy phép kinh doanh</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLREGISTERDATE</string>
+    </Key>
+    <Value>
+      <string>Ngày đăng ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLLOCATION_LBLNOTE</string>
+    </Key>
+    <Value>
+      <string>Ghi chú</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

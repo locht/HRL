@@ -96,6 +96,7 @@ Public Class ctrlLocation
 #End Region
 
 #Region "Page"
+
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
             Me.ctrlMessageBox.Listener = Me
@@ -134,14 +135,17 @@ Public Class ctrlLocation
                 Case CommonMessage.STATE_NORMAL
                     'CleanControl()
                     PaneMain.Enabled = False
+                    PaneGrid.Enabled = True
                     'rgLocation.Rebind()
                 Case CommonMessage.STATE_EDIT
                     PaneMain.Enabled = True
+                    PaneGrid.Enabled = False
                 Case CommonMessage.STATE_NEW
                     If isLoadPopup = 0 Then
                         'CleanControl()
                         PaneMain.Enabled = True
                     End If
+                    PaneGrid.Enabled = False
                 Case CommonMessage.STATE_DELETE
                 Case CommonMessage.STATE_DETAIL
                 Case CommonMessage.STATE_DEACTIVE
@@ -206,6 +210,10 @@ Public Class ctrlLocation
                 ComboData = ListComboData
             End If
 
+            'Provide
+            Dim dtPlace = rep.GetProvinceList(True)
+            FillRadCombobox(cboProvince, dtPlace, "NAME", "ID")
+
             FillDropDownList(cbBank, ListComboData.LIST_BANK, "NAME", "ID", Common.Common.SystemLanguage, True, cbBank.SelectedValue)
         Catch ex As Exception
             Throw ex
@@ -214,6 +222,7 @@ Public Class ctrlLocation
 #End Region
     
 #Region "Event"
+
     Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
         Dim objLocationFunction As New LocationDTO
         Dim gID As Decimal
@@ -307,7 +316,7 @@ Public Class ctrlLocation
                         objLocationFunction.TAX_CODE = txtTaxCode.Text
 
                         objLocationFunction.TAX_DATE = rdpTaxDate.SelectedDate
-                    
+
                         If hfLawAgent.Value IsNot Nothing And hfLawAgent.Value <> "" Then
                             objLocationFunction.EMP_LAW_ID = hfLawAgent.Value
                         End If
@@ -322,40 +331,40 @@ Public Class ctrlLocation
                         objLocationFunction.NOTE = txtNote.Text
 
 
-                    Select Case CurrentState
-                        Case CommonMessage.STATE_NEW
-                            'insert vao db
-                            If rep.InsertLocation(objLocationFunction, gID) Then
-                                IDSelect = gID
-                                CurrentState = CommonMessage.STATE_NORMAL
-                                CleanControl()
-                                Refresh("InsertView")
-                            Else
-                                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                        Select Case CurrentState
+                            Case CommonMessage.STATE_NEW
+                                'insert vao db
+                                If rep.InsertLocation(objLocationFunction, gID) Then
+                                    IDSelect = gID
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    CleanControl()
+                                    Refresh("InsertView")
+                                Else
+                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                                 UpdateControlState()
                                 '  CurrentState = CommonMessage.STATE_NEW
-                        Case CommonMessage.STATE_EDIT
-                            objLocationFunction.ID = hfID.Value
-                            'update vao db
-                            If rep.ModifyLocation(objLocationFunction, gID) Then
-                                IDSelect = objLocationFunction.ID
-                                CurrentState = CommonMessage.STATE_NORMAL
-                                Refresh("UpdateView")
-                            Else
-                                CurrentState = CommonMessage.STATE_EDIT
-                            End If
-                    End Select
+                            Case CommonMessage.STATE_EDIT
+                                objLocationFunction.ID = hfID.Value
+                                'update vao db
+                                If rep.ModifyLocation(objLocationFunction, gID) Then
+                                    IDSelect = objLocationFunction.ID
+                                    CurrentState = CommonMessage.STATE_NORMAL
+                                    Refresh("UpdateView")
+                                Else
+                                    CurrentState = CommonMessage.STATE_EDIT
+                                End If
+                        End Select
 
-                    'Hiển thị thông báo và Refresh control
-                    If result = 1 Then
-                        Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
-                        CurrentState = CommonMessage.STATE_NORMAL
-                    Else
-                        Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                    End If
+                        'Hiển thị thông báo và Refresh control
+                        If result = 1 Then
+                            Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                            CurrentState = CommonMessage.STATE_NORMAL
+                        Else
+                            Me.ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                        End If
 
-                    UpdatePage()
+                        UpdatePage()
                     End If
                 Case CommonMessage.TOOLBARITEM_DELETE
                     If rgLocation.SelectedItems.Count = 0 Then
@@ -373,8 +382,9 @@ Public Class ctrlLocation
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
                     isLoadPopup = 0
+                    Refresh("Cancel")
                     UpdatePage()
-                    Exit Sub
+                    'Exit Sub
             End Select
 
         Catch ex As Exception
@@ -446,7 +456,7 @@ Public Class ctrlLocation
 
     Private Sub rgLocation_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgLocation.SelectedIndexChanged
         Dim rep As New ProfileRepository
-        If CurrentState <> CommonMessage.STATE_EDIT Then
+        If CurrentState <> CommonMessage.STATE_EDIT AndAlso CurrentState <> CommonMessage.STATE_NEW Then
             If rgLocation.SelectedItems.Count > 0 Then
                 CleanControl()
                 Dim slItem As GridDataItem
@@ -468,12 +478,14 @@ Public Class ctrlLocation
                     txtAccountNumber.Text = dt.ACCOUNT_NUMBER
                     OldBankID = dt.ACCOUNT_NUMBER
                     txtLocationShort.Text = dt.LOCATION_SHORT_NAME
+
                     cbBank.ClearSelection()
                     If dt.BANK_ID IsNot Nothing Then
                         cbBank.SelectedValue = dt.BANK_ID
                         hfBank.Value = dt.BANK_ID
-                        'FillRadCombobox(cboRank_Banch, rep.Get_Bank_Branch(1, hfBank.Value), "NAME", "ID")
+                        FillRadCombobox(cboRank_Banch, rep.GetBankBranchByBankID(hfBank.Value), "NAME", "ID")
                     End If
+
                     cboRank_Banch.ClearSelection()
                     cboRank_Banch.Text = ""
                     If dt.BANK_BRANCH_ID IsNot Nothing And cbBank.SelectedValue <> "" Then
@@ -488,6 +500,31 @@ Public Class ctrlLocation
                         ClearControlValue(txtLawAgentId, txtLawAgentNationality, txtLawAgentTitle, hfLawAgent)
                     End If
 
+                    cboProvince.ClearSelection()
+                    If dt.PROVINCE_ID IsNot Nothing Then
+                        cboProvince.SelectedValue = dt.PROVINCE_ID
+                        FillRadCombobox(cboDistrict, rep.GetDistrictList(dt.PROVINCE_ID), "NAME", "ID")
+                    End If
+
+                    cboDistrict.ClearSelection()
+                    cboDistrict.Text = ""
+                    If dt.DISTRICT_ID IsNot Nothing Then
+                        cboDistrict.SelectedValue = dt.DISTRICT_ID
+                        FillRadCombobox(cboWard, rep.GetWardList(dt.DISTRICT_ID), "NAME", "ID")
+                    End If
+
+                    cboWard.ClearSelection()
+                    cboWard.Text = ""
+                    If dt.WARD_ID IsNot Nothing Then
+                        cboDistrict.SelectedValue = dt.WARD_ID
+                    End If
+
+                    If dt.IS_SIGN_CONTRACT Is Nothing Or dt.IS_SIGN_CONTRACT = 0 Then
+                        ckIsSignContract.Checked = False
+                    Else
+                        ckIsSignContract.Checked = True
+                    End If
+
                     If dt.EMP_SIGNCONTRACT_ID IsNot Nothing Then
                         LoadEmpInfor(2, dt.EMP_SIGNCONTRACT_ID, dt)
                     Else
@@ -500,12 +537,14 @@ Public Class ctrlLocation
 
                     rdRegisterDate.SelectedDate = dt.BUSINESS_REG_DATE
                     txtNote.Text = dt.NOTE
+
+
+
                     'gan vao bien cuc bo
                     Location = dt
                 End If
             End If
         End If
-        
     End Sub
 
     Protected Sub btnLawAgentId_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnLawAgentId.Click
@@ -530,7 +569,7 @@ Public Class ctrlLocation
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-    
+
     Private Sub ctrlFindEmployeeContract_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployee_Contract.EmployeeSelected
         Try
             Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
@@ -557,6 +596,7 @@ Public Class ctrlLocation
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
     Private Sub ctrlFindEmployee_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployee.EmployeeSelected
         Try
             Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
@@ -576,7 +616,7 @@ Public Class ctrlLocation
                 txtLawAgentTitle.Text = item.TITLE_NAME
                 txtLawAgentNationality.Text = nation
                 hfLawAgent.Value = item.ID
-              
+
             End If
 
             isLoadPopup = 0
@@ -596,10 +636,73 @@ Public Class ctrlLocation
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
+
+    Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) Handles cboProvince.ItemsRequested, cboDistrict.ItemsRequested, cboWard.ItemsRequested
+        Dim startTime As DateTime = DateTime.UtcNow
+        Using rep As New ProfileRepository
+            Try
+                Dim dtData As DataTable
+                Dim sText As String = e.Text
+                Dim dValue As Decimal
+
+                Select Case sender.ID
+                    Case cboProvince.ID
+                        dtData = rep.GetProvinceList(True)
+                    Case cboDistrict.ID
+                        dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                        dtData = rep.GetDistrictList(dValue, True)
+                    Case cboWard.ID
+                        dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                        dtData = rep.GetWardList(dValue, True)
+                End Select
+                If sText <> "" Then
+                    Dim dtExist = (From p In dtData
+                                   Where p("NAME") IsNot DBNull.Value AndAlso
+                                  p("NAME").ToString.ToUpper = sText.ToUpper)
+
+                    'If dtExist.Count = 0 Then
+                    Dim dtFilter = (From p In dtData
+                                    Where p("NAME") IsNot DBNull.Value AndAlso
+                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+
+                    If dtFilter.Count > 0 Then
+                        dtData = dtFilter.CopyToDataTable
+                    Else
+                        dtData = dtData.Clone
+                    End If
+
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+                    sender.Items.Clear()
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        sender.Items.Add(radItem)
+                    Next
+                Else
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+                    sender.Items.Clear()
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        sender.Items.Add(radItem)
+                    Next
+                End If
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Sub
+
 #End Region
 
 #Region "Custom"
-    'Định nghĩa ToolBar
+
+    ''' <summary>
+    ''' Định nghĩa ToolBar
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub InitToolBar()
         Try            
             rgLocation.SetFilter()
@@ -626,7 +729,10 @@ Public Class ctrlLocation
         End Try
     End Sub
 
-    'Định nghĩa Property cho tất cả Control
+    ''' <summary>
+    ''' Định nghĩa Property cho tất cả Control
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub InitProperty()
         Try
             isLoadPopup = 0
@@ -730,32 +836,24 @@ Public Class ctrlLocation
         End Try
     End Sub
 
-    'load datasource cho cbo bank branch
+    ''' <summary>
+    ''' Load datasource cho cbo bank branch
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub cbBank_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbBank.SelectedIndexChanged
         Dim rep As New ProfileRepository
-        Dim bankData As New DataTable
         Try
             If cbBank.SelectedValue <> "" Then
                 hfBank.Value = Double.Parse(cbBank.SelectedValue)
-                'bankData = rep.Get_Bank_Branch(1, hfBank.Value)
-                'FillRadCombobox(cboRank_Banch, bankData, "NAME", "ID")
+                Dim bankData = rep.GetBankBranchByBankID(hfBank.Value)
+                FillRadCombobox(cboRank_Banch, bankData, "NAME", "ID")
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
-     
-
     End Sub
-
-    'store load danh sach bank brank
-    'Public Function Get_Bank_Branch() As DataTable
-    '    Dim dt As New DataTable
-    '    Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_COMMON_LIST.GET_HU_BANK_BRANCH", New List(Of Object)(New Object() {1, hfBank.Value}))
-    '    If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
-    '        dt = ds.Tables(0)
-    '    End If
-    '    Return dt
-    'End Function
 
     Private Sub cboRank_Banch_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRank_Banch.SelectedIndexChanged
         If cboRank_Banch.SelectedValue <> "" Then
@@ -793,36 +891,42 @@ Public Class ctrlLocation
         End Try
     End Sub
 
-    'load thong tin nguoi dang ky HDLD va nguoi dai dien phap luat (dai dien phap luat la 1, HDlD la 2)
+    ''' <summary>
+    ''' Load thong tin nguoi dang ky HDLD va nguoi dai dien phap luat (dai dien phap luat la 1, HDlD la 2)
+    ''' </summary>
+    ''' <param name="index"></param>
+    ''' <param name="emp_id"></param>
+    ''' <param name="location"></param>
+    ''' <remarks></remarks>
     Private Sub LoadEmpInfor(ByVal index As Integer, ByVal emp_id As Integer, ByVal location As LocationDTO)
         Dim rep_emp As New CommonRepository
         Dim get_nation As DataTable
         Dim nation As String
         Try
             If index = 1 Then
-                'Dim emp_law = rep_emp.GetEmployeeID(location.EMP_LAW_ID)
-                'If emp_law IsNot Nothing Then
-                '    hfLawAgent.Value = emp_law.ID
-                '    txtLawAgentId.Text = emp_law.FULLNAME_VN
-                '    txtLawAgentTitle.Text = emp_law.TITLE_NAME
-                '    get_nation = psp.EmployeeCV_GetInfo(emp_law.EMPLOYEE_ID)
-                '    If get_nation IsNot Nothing And get_nation.Rows.Count > 0 Then
-                '        nation = get_nation.Rows(0)("NATION_NAME_VN").ToString()
-                '        txtLawAgentNationality.Text = nation
-                '    End If
-                'End If
+                Dim emp_law = rep_emp.GetEmployeeID(location.EMP_LAW_ID)
+                If emp_law IsNot Nothing Then
+                    hfLawAgent.Value = emp_law.ID
+                    txtLawAgentId.Text = emp_law.FULLNAME_VN
+                    txtLawAgentTitle.Text = emp_law.TITLE_NAME
+                    get_nation = psp.EmployeeCV_GetInfo(emp_law.EMPLOYEE_ID)
+                    If get_nation IsNot Nothing And get_nation.Rows.Count > 0 Then
+                        nation = get_nation.Rows(0)("NATION_NAME_VN").ToString()
+                        txtLawAgentNationality.Text = nation
+                    End If
+                End If
             Else
-                'Dim emp_sign = rep_emp.GetEmployeeID(emp_id)
-                'If emp_sign IsNot Nothing Then
-                '    hfSignUpAgent.Value = emp_sign.ID
-                '    txtSignupAgent.Text = emp_sign.FULLNAME_VN
-                '    txtSignupAgentTitle.Text = emp_sign.TITLE_NAME
-                '    get_nation = psp.EmployeeCV_GetInfo(emp_sign.EMPLOYEE_ID)
-                '    If get_nation IsNot Nothing And get_nation.Rows.Count > 0 Then
-                '        nation = get_nation.Rows(0)("NATION_NAME_VN").ToString()
-                '        txtSigupAgentNationality.Text = nation
-                '    End If
-                'End If
+                Dim emp_sign = rep_emp.GetEmployeeID(emp_id)
+                If emp_sign IsNot Nothing Then
+                    hfSignUpAgent.Value = emp_sign.ID
+                    txtSignupAgent.Text = emp_sign.FULLNAME_VN
+                    txtSignupAgentTitle.Text = emp_sign.TITLE_NAME
+                    get_nation = psp.EmployeeCV_GetInfo(emp_sign.EMPLOYEE_ID)
+                    If get_nation IsNot Nothing And get_nation.Rows.Count > 0 Then
+                        nation = get_nation.Rows(0)("NATION_NAME_VN").ToString()
+                        txtSigupAgentNationality.Text = nation
+                    End If
+                End If
             End If
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)

@@ -5340,30 +5340,38 @@ Partial Class ProfileRepository
             query = (From p In Context.HU_LOCATION
                      Where p.ID = ID
                      Select New LocationDTO With {.ID = p.ID,
-                                                 .CODE = p.CODE,
-                                                    .ORG_ID = p.ORG_ID,
-                                                   .ADDRESS = p.ADDRESS,
-                                                   .CONTRACT_PLACE = p.CONTRACT_PLACE,
-                                                     .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
-                                                 .LOCATION_SHORT_NAME = p.LOCATION_SHORT_NAME,
-                                               .WORK_ADDRESS = p.WORK_ADDRESS,
-                                                 .PHONE = p.PHONE,
-                                                 .FAX = p.FAX,
-                                                 .WEBSITE = p.WEBSITE,
-                                                .ACCOUNT_NUMBER = p.ACCOUNT_NUMBER,
-                                                 .BANK_ID = p.BANK_ID,
-                                                 .TAX_CODE = p.TAX_CODE,
-                                                 .TAX_DATE = p.TAX_DATE,
-                                                 .TAX_PLACE = p.TAX_PLACE,
-                                                 .EMP_LAW_ID = p.EMP_LAW_ID,
-                                                 .EMP_SIGNCONTRACT_ID = p.EMP_SIGNCONTRACT_ID,
-                                                 .BUSINESS_NAME = p.BUSINESS_NAME,
-                                                 .BUSINESS_NUMBER = p.BUSINESS_NUMBER,
-                                                 .NOTE = p.NOTE,
-                                                 .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
-                                                 .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
-                                                 .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
-                                                 .BANK_BRANCH_ID = p.BANK_BRANCH_ID}).SingleOrDefault
+                                                  .CODE = p.CODE,
+                                                  .ORG_ID = p.ORG_ID,
+                                                  .ADDRESS = p.ADDRESS,
+                                                  .CONTRACT_PLACE = p.CONTRACT_PLACE,
+                                                  .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
+                                                  .LOCATION_SHORT_NAME = p.LOCATION_SHORT_NAME,
+                                                  .WORK_ADDRESS = p.WORK_ADDRESS,
+                                                  .PHONE = p.PHONE,
+                                                  .FAX = p.FAX,
+                                                  .WEBSITE = p.WEBSITE,
+                                                  .ACCOUNT_NUMBER = p.ACCOUNT_NUMBER,
+                                                  .BANK_ID = p.BANK_ID,
+                                                  .TAX_CODE = p.TAX_CODE,
+                                                  .TAX_DATE = p.TAX_DATE,
+                                                  .TAX_PLACE = p.TAX_PLACE,
+                                                  .EMP_LAW_ID = p.EMP_LAW_ID,
+                                                  .EMP_SIGNCONTRACT_ID = p.EMP_SIGNCONTRACT_ID,
+                                                  .BUSINESS_NAME = p.BUSINESS_NAME,
+                                                  .BUSINESS_NUMBER = p.BUSINESS_NUMBER,
+                                                  .NOTE = p.NOTE,
+                                                  .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
+                                                  .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
+                                                  .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
+                                                  .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                                                  .PROVINCE_ID = p.PROVINCE_ID,
+                                                  .DISTRICT_ID = p.DISTRICT_ID,
+                                                  .WARD_ID = p.WARD_ID,
+                                                  .IS_SIGN_CONTRACT = p.IS_SIGN_CONTRACT,
+                                                  .FILE_LOGO = p.FILE_LOGO,
+                                                  .FILE_HEADER = p.FILE_HEADER,
+                                                  .FILE_FOOTER = p.FILE_FOOTER
+                                                  }).SingleOrDefault
             Return query
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -5379,30 +5387,37 @@ Partial Class ProfileRepository
                 query = (From p In Context.HU_LOCATION.Where(Function(x) lstOrgID.Contains(x.ORG_ID))
                           Where p.LOCATION_VN_NAME IsNot Nothing
                          Select New LocationDTO With {.ID = p.ID,
-                                                     .CODE = p.CODE,
-                                                    .ORG_ID = p.ORG_ID,
+                                                      .CODE = p.CODE,
+                                                      .ORG_ID = p.ORG_ID,
                                                       .ADDRESS = p.ADDRESS,
                                                       .CONTRACT_PLACE = p.CONTRACT_PLACE,
                                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
-                                                     .LOCATION_SHORT_NAME = p.LOCATION_SHORT_NAME,
-                                                   .WORK_ADDRESS = p.WORK_ADDRESS,
-                                                     .PHONE = p.PHONE,
-                                                     .FAX = p.FAX,
-                                                     .WEBSITE = p.WEBSITE,
-                                                    .ACCOUNT_NUMBER = p.ACCOUNT_NUMBER,
-                                                     .BANK_ID = p.BANK_ID,
-                                                     .TAX_CODE = p.TAX_CODE,
-                                                     .TAX_DATE = p.TAX_DATE,
-                                                     .TAX_PLACE = p.TAX_PLACE,
-                                                     .EMP_LAW_ID = p.EMP_LAW_ID,
-                                                     .EMP_SIGNCONTRACT_ID = p.EMP_SIGNCONTRACT_ID,
-                                                     .BUSINESS_NAME = p.BUSINESS_NAME,
-                                                     .BUSINESS_NUMBER = p.BUSINESS_NUMBER,
-                                                     .NOTE = p.NOTE,
-                                                     .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
-                                                     .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
-                                                     .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
-                                                     .BANK_BRANCH_ID = p.BANK_BRANCH_ID})
+                                                      .LOCATION_SHORT_NAME = p.LOCATION_SHORT_NAME,
+                                                      .WORK_ADDRESS = p.WORK_ADDRESS,
+                                                      .PHONE = p.PHONE,
+                                                      .FAX = p.FAX,
+                                                      .WEBSITE = p.WEBSITE,
+                                                      .ACCOUNT_NUMBER = p.ACCOUNT_NUMBER,
+                                                      .BANK_ID = p.BANK_ID,
+                                                      .TAX_CODE = p.TAX_CODE,
+                                                      .TAX_DATE = p.TAX_DATE,
+                                                      .TAX_PLACE = p.TAX_PLACE,
+                                                      .EMP_LAW_ID = p.EMP_LAW_ID,
+                                                      .EMP_SIGNCONTRACT_ID = p.EMP_SIGNCONTRACT_ID,
+                                                      .BUSINESS_NAME = p.BUSINESS_NAME,
+                                                      .BUSINESS_NUMBER = p.BUSINESS_NUMBER,
+                                                      .NOTE = p.NOTE,
+                                                      .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
+                                                      .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
+                                                      .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
+                                                      .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                                                      .PROVINCE_ID = p.PROVINCE_ID,
+                                                      .DISTRICT_ID = p.DISTRICT_ID,
+                                                      .WARD_ID = p.WARD_ID,
+                                                      .IS_SIGN_CONTRACT = p.IS_SIGN_CONTRACT,
+                                                      .FILE_LOGO = p.FILE_LOGO,
+                                                      .FILE_HEADER = p.FILE_HEADER,
+                                                      .FILE_FOOTER = p.FILE_FOOTER})
             Else
                 query = (From p In Context.HU_LOCATION.Where(Function(x) lstOrgID.Contains(x.ORG_ID))
                          Where p.ACTFLG = sACT AndAlso p.LOCATION_VN_NAME IsNot Nothing
@@ -5430,7 +5445,14 @@ Partial Class ProfileRepository
                                                      .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
                                                      .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
                                                      .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
-                                                     .BANK_BRANCH_ID = p.BANK_BRANCH_ID})
+                                                     .BANK_BRANCH_ID = p.BANK_BRANCH_ID,
+                                                      .PROVINCE_ID = p.PROVINCE_ID,
+                                                      .DISTRICT_ID = p.DISTRICT_ID,
+                                                      .WARD_ID = p.WARD_ID,
+                                                      .IS_SIGN_CONTRACT = p.IS_SIGN_CONTRACT,
+                                                      .FILE_LOGO = p.FILE_LOGO,
+                                                      .FILE_HEADER = p.FILE_HEADER,
+                                                      .FILE_FOOTER = p.FILE_FOOTER})
             End If
 
             Return query.ToList
@@ -5471,6 +5493,13 @@ Partial Class ProfileRepository
             objLocationData.LOCATION_VN_NAME = objLocation.LOCATION_VN_NAME
             objLocationData.BUSINESS_REG_DATE = objLocation.BUSINESS_REG_DATE
             objLocationData.BANK_BRANCH_ID = objLocation.BANK_BRANCH_ID
+            objLocationData.PROVINCE_ID = objLocation.PROVINCE_ID
+            objLocationData.DISTRICT_ID = objLocation.DISTRICT_ID
+            objLocationData.WARD_ID = objLocation.WARD_ID
+            objLocationData.IS_SIGN_CONTRACT = objLocation.IS_SIGN_CONTRACT
+            objLocationData.FILE_LOGO = objLocation.FILE_LOGO
+            objLocationData.FILE_HEADER = objLocation.FILE_HEADER
+            objLocationData.FILE_FOOTER = objLocation.FILE_FOOTER
             Context.HU_LOCATION.AddObject(objLocationData)
             Context.SaveChanges(log)
             gID = objLocationData.ID
@@ -5511,6 +5540,13 @@ Partial Class ProfileRepository
             objLocationData.LOCATION_VN_NAME = objLocation.LOCATION_VN_NAME
             objLocationData.BUSINESS_REG_DATE = objLocation.BUSINESS_REG_DATE
             objLocationData.BANK_BRANCH_ID = objLocation.BANK_BRANCH_ID
+            objLocationData.PROVINCE_ID = objLocation.PROVINCE_ID
+            objLocationData.DISTRICT_ID = objLocation.DISTRICT_ID
+            objLocationData.WARD_ID = objLocation.WARD_ID
+            objLocationData.IS_SIGN_CONTRACT = objLocation.IS_SIGN_CONTRACT
+            objLocationData.FILE_LOGO = objLocation.FILE_LOGO
+            objLocationData.FILE_HEADER = objLocation.FILE_HEADER
+            objLocationData.FILE_FOOTER = objLocation.FILE_FOOTER
             Context.SaveChanges(log)
             gID = objLocationData.ID
             Return True

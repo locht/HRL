@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("86b1c7ff-0ae6-49ad-8080-e36b7bae4a8d")>
+<Assembly: EdmSchemaAttribute("68666b09-af44-4a81-94f6-6f31babddd75")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -35784,6 +35784,181 @@ Public Partial Class HU_LOCATION
     End Sub
 
     Private Partial Sub OnBANK_BRANCH_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property PROVINCE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _PROVINCE_ID
+        End Get
+        Set
+            OnPROVINCE_IDChanging(value)
+            ReportPropertyChanging("PROVINCE_ID")
+            _PROVINCE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("PROVINCE_ID")
+            OnPROVINCE_IDChanged()
+        End Set
+    End Property
+
+    Private _PROVINCE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnPROVINCE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnPROVINCE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property DISTRICT_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _DISTRICT_ID
+        End Get
+        Set
+            OnDISTRICT_IDChanging(value)
+            ReportPropertyChanging("DISTRICT_ID")
+            _DISTRICT_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("DISTRICT_ID")
+            OnDISTRICT_IDChanged()
+        End Set
+    End Property
+
+    Private _DISTRICT_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnDISTRICT_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnDISTRICT_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WARD_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _WARD_ID
+        End Get
+        Set
+            OnWARD_IDChanging(value)
+            ReportPropertyChanging("WARD_ID")
+            _WARD_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WARD_ID")
+            OnWARD_IDChanged()
+        End Set
+    End Property
+
+    Private _WARD_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWARD_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnWARD_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_SIGN_CONTRACT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_SIGN_CONTRACT
+        End Get
+        Set
+            OnIS_SIGN_CONTRACTChanging(value)
+            ReportPropertyChanging("IS_SIGN_CONTRACT")
+            _IS_SIGN_CONTRACT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_SIGN_CONTRACT")
+            OnIS_SIGN_CONTRACTChanged()
+        End Set
+    End Property
+
+    Private _IS_SIGN_CONTRACT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_SIGN_CONTRACTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_SIGN_CONTRACTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_LOGO() As Global.System.String
+        Get
+            Return _FILE_LOGO
+        End Get
+        Set
+            OnFILE_LOGOChanging(value)
+            ReportPropertyChanging("FILE_LOGO")
+            _FILE_LOGO = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILE_LOGO")
+            OnFILE_LOGOChanged()
+        End Set
+    End Property
+
+    Private _FILE_LOGO As Global.System.String
+    Private Partial Sub OnFILE_LOGOChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILE_LOGOChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_HEADER() As Global.System.String
+        Get
+            Return _FILE_HEADER
+        End Get
+        Set
+            OnFILE_HEADERChanging(value)
+            ReportPropertyChanging("FILE_HEADER")
+            _FILE_HEADER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILE_HEADER")
+            OnFILE_HEADERChanged()
+        End Set
+    End Property
+
+    Private _FILE_HEADER As Global.System.String
+    Private Partial Sub OnFILE_HEADERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILE_HEADERChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property FILE_FOOTER() As Global.System.String
+        Get
+            Return _FILE_FOOTER
+        End Get
+        Set
+            OnFILE_FOOTERChanging(value)
+            ReportPropertyChanging("FILE_FOOTER")
+            _FILE_FOOTER = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("FILE_FOOTER")
+            OnFILE_FOOTERChanged()
+        End Set
+    End Property
+
+    Private _FILE_FOOTER As Global.System.String
+    Private Partial Sub OnFILE_FOOTERChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnFILE_FOOTERChanged()
     End Sub
 
     #End Region

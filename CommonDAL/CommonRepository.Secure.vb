@@ -2337,6 +2337,30 @@ Partial Public Class CommonRepository
         Return result.ToList
     End Function
 
+    Public Function GetEmployeeID(ByVal _empId As Decimal) As EmployeePopupFindDTO
+        Dim result = (From p In Context.HU_EMPLOYEE
+                      From cv In Context.HU_EMPLOYEE_CV.Where(Function(cv) cv.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                      From s In Context.HU_STAFF_RANK.Where(Function(s) s.ID = p.STAFF_RANK_ID).DefaultIfEmpty
+                      Order By p.EMPLOYEE_CODE
+                      Where p.ID = _empId
+                      Select New EmployeePopupFindDTO With {
+                          .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
+                          .ID = p.ID,
+                          .EMPLOYEE_ID = p.ID,
+                          .JOIN_DATE = p.JOIN_DATE,
+                          .FULLNAME_VN = p.FULLNAME_VN,
+                          .ORG_ID = p.ORG_ID,
+                          .ORG_NAME = p.HU_ORGANIZATION.NAME_VN,
+                          .ORG_DESC = p.HU_ORGANIZATION.DESCRIPTION_PATH,
+                          .TITLE_ID = p.TITLE_ID,
+                          .TITLE_NAME = p.HU_TITLE.NAME_VN,
+                          .BIRTH_DATE = cv.BIRTH_DATE,
+                          .BIRTH_PLACE = cv.BIRTH_PLACE,
+                          .STAFF_RANK_ID = p.STAFF_RANK_ID,
+                          .STAFF_RANK_NAME = s.NAME}).SingleOrDefault
+
+        Return result
+    End Function
 #End Region
 
 #Region "Title"

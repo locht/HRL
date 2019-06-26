@@ -43127,6 +43127,9 @@ Namespace ProfileBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private DISTRICT_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EMP_LAW_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -43136,7 +43139,19 @@ Namespace ProfileBusiness
         Private FAXField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_FOOTERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_HEADERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private FILE_LOGOField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_SIGN_CONTRACTField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LOCATION_EN_NAMEField As String
@@ -43166,6 +43181,9 @@ Namespace ProfileBusiness
         Private PHONEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private PROVINCE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TAX_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -43173,6 +43191,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TAX_PLACEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WARD_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WEBSITEField As String
@@ -43360,6 +43381,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property DISTRICT_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.DISTRICT_IDField
+            End Get
+            Set
+                If (Me.DISTRICT_IDField.Equals(value) <> true) Then
+                    Me.DISTRICT_IDField = value
+                    Me.RaisePropertyChanged("DISTRICT_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property EMP_LAW_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.EMP_LAW_IDField
@@ -43399,6 +43433,45 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_FOOTER() As String
+            Get
+                Return Me.FILE_FOOTERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_FOOTERField, value) <> true) Then
+                    Me.FILE_FOOTERField = value
+                    Me.RaisePropertyChanged("FILE_FOOTER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_HEADER() As String
+            Get
+                Return Me.FILE_HEADERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_HEADERField, value) <> true) Then
+                    Me.FILE_HEADERField = value
+                    Me.RaisePropertyChanged("FILE_HEADER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property FILE_LOGO() As String
+            Get
+                Return Me.FILE_LOGOField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.FILE_LOGOField, value) <> true) Then
+                    Me.FILE_LOGOField = value
+                    Me.RaisePropertyChanged("FILE_LOGO")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ID() As Decimal
             Get
                 Return Me.IDField
@@ -43407,6 +43480,19 @@ Namespace ProfileBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_SIGN_CONTRACT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.IS_SIGN_CONTRACTField
+            End Get
+            Set
+                If (Me.IS_SIGN_CONTRACTField.Equals(value) <> true) Then
+                    Me.IS_SIGN_CONTRACTField = value
+                    Me.RaisePropertyChanged("IS_SIGN_CONTRACT")
                 End If
             End Set
         End Property
@@ -43529,6 +43615,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PROVINCE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.PROVINCE_IDField
+            End Get
+            Set
+                If (Me.PROVINCE_IDField.Equals(value) <> true) Then
+                    Me.PROVINCE_IDField = value
+                    Me.RaisePropertyChanged("PROVINCE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TAX_CODE() As String
             Get
                 Return Me.TAX_CODEField
@@ -43563,6 +43662,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TAX_PLACEField, value) <> true) Then
                     Me.TAX_PLACEField = value
                     Me.RaisePropertyChanged("TAX_PLACE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WARD_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WARD_IDField
+            End Get
+            Set
+                If (Me.WARD_IDField.Equals(value) <> true) Then
+                    Me.WARD_IDField = value
+                    Me.RaisePropertyChanged("WARD_ID")
                 End If
             End Set
         End Property

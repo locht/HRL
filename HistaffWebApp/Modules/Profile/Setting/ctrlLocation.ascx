@@ -65,6 +65,12 @@
                     <td>
                         <tlk:RadTextBox runat="server" ID="txtFax" />
                     </td>
+                    <td class="lb" style="width: 100px">
+                        <%# Translate("CTRLLOCATION_ISSIGNCONTRACT")%>
+                    </td>
+                    <td>
+                        <asp:CheckBox runat="server" ID="ckIsSignContract" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="lb" style="width: 100px">
@@ -84,6 +90,32 @@
                     </td>
                     <td>
                         <tlk:RadTextBox runat="server" ID="txtWebsite" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lb">
+                        <%# Translate("CTRLLOCATION_PROVINCE")%>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox runat="server" SkinID="LoadDemand" ID="cboProvince" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                            OnClientItemsRequesting="OnClientItemsRequesting">
+                        </tlk:RadComboBox>
+                    </td>
+                    <td class="lb">
+                        <%# Translate("CTRLLOCATION_DISTRICT")%>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox runat="server" SkinID="LoadDemand" ID="cboDistrict" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                            OnClientItemsRequesting="OnClientItemsRequesting">
+                        </tlk:RadComboBox>
+                    </td>
+                    <td class="lb">
+                        <%# Translate("CTRLLOCATION_WARD")%>
+                    </td>
+                    <td>
+                        <tlk:RadComboBox runat="server" SkinID="LoadDemand" ID="cboWard" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                            OnClientItemsRequesting="OnClientItemsRequesting">
+                        </tlk:RadComboBox>
                     </td>
                 </tr>
                 <tr>
@@ -136,20 +168,20 @@
                         <%# Translate("CTRLLOCATION_LBLLAWAGENT")%>
                     </td>
                     <td>
-                        <tlk:RadTextBox runat="server" ID="txtLawAgentId" ReadOnly="true" />
+                        <tlk:RadTextBox runat="server" SkinID="readonly" ID="txtLawAgentId" ReadOnly="true" />
                         <tlk:RadButton runat="server" ID="btnLawAgentId" SkinID="ButtonView" CausesValidation="false" />
                     </td>
                     <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLLAWAGENTTITLE")%>
                     </td>
                     <td>
-                        <tlk:RadTextBox runat="server" ID="txtLawAgentTitle" />
+                        <tlk:RadTextBox runat="server" SkinID="readonly" ID="txtLawAgentTitle" ReadOnly="true" />
                     </td>
                     <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLLAWAGENTNATIONALITY")%>
                     </td>
                     <td>
-                        <tlk:RadTextBox runat="server" ID="txtLawAgentNationality" ReadOnly="true" />
+                        <tlk:RadTextBox runat="server" SkinID="readonly" ID="txtLawAgentNationality" ReadOnly="true" />
                     </td>
                 </tr>
                 <tr>
@@ -157,20 +189,20 @@
                         <%# Translate("CTRLLOCATION_LBLSIGNUPAGENT")%>
                     </td>
                     <td>
-                        <tlk:RadTextBox runat="server" ID="txtSignupAgent" ReadOnly="true" />
+                        <tlk:RadTextBox runat="server" SkinID="readonly" ID="txtSignupAgent" ReadOnly="true" />
                         <tlk:RadButton runat="server" ID="btnSignupAgent" SkinID="ButtonView" CausesValidation="false" />
                     </td>
                     <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLSIGNUPAGENTTITLE")%>
                     </td>
                     <td>
-                        <tlk:RadTextBox runat="server" ID="txtSignupAgentTitle" />
+                        <tlk:RadTextBox runat="server" SkinID="readonly" ID="txtSignupAgentTitle" ReadOnly="true" />
                     </td>
                     <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLSIGNUPAGENTNATIONALITY")%>
                     </td>
                     <td>
-                        <tlk:RadTextBox runat="server" ID="txtSigupAgentNationality" />
+                        <tlk:RadTextBox runat="server" SkinID="readonly" ID="txtSigupAgentNationality" ReadOnly="true" />
                     </td>
                 </tr>
                 <tr>
@@ -266,6 +298,7 @@
 <asp:PlaceHolder ID="FindOrganization" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
+
         var enableAjax = true;
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
@@ -273,9 +306,57 @@
                 enableAjax = false;
             }
         }
+
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
+        }
+
+        function OnClientItemsRequesting(sender, eventArgs) {
+            var id = sender.get_id();
+            var cbo;
+            var value;
+            switch (id) {
+                case '<%= cboDistrict.ClientID %>':
+                    cbo = $find('<%= cboProvince.ClientID %>');
+                    value = cbo.get_value();
+                    break;
+                case '<%= cboWard.ClientID %>':
+                    cbo = $find('<%= cboDistrict.ClientID %>');
+                    value = cbo.get_value();
+                    break;
+                default:
+                    break;
+            }
+            if (!value) {
+                value = 0;
+            }
+            var context = eventArgs.get_context();
+            context["valueCustom"] = value;
+            context["value"] = sender.get_value();
+        }
+
+        function OnClientSelectedIndexChanged(sender, eventArgs) {
+            var id = sender.get_id();
+            var cbo;
+            switch (id) {
+                case '<%= cboProvince.ClientID %>':
+                    cbo = $find('<%= cboDistrict.ClientID %>');
+                    clearSelectRadcombo(cbo);
+                    cbo = $find('<%= cboWard.ClientID %>');
+                    clearSelectRadcombo(cbo);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function clearSelectRadcombo(cbo) {
+            if (cbo) {
+                cbo.clearItems();
+                cbo.clearSelection();
+                cbo.set_text('');
+            }
         }
     </script>
 </tlk:RadCodeBlock>

@@ -32,4 +32,12 @@
     Public Property BUSINESS_REG_DATE As Date?
     Public Property BANK_BRANCH_ID As Decimal?
 
+    Public Property PROVINCE_ID As Decimal?
+    Public Property DISTRICT_ID As Decimal?
+    Public Property WARD_ID As Decimal?
+    Public Property IS_SIGN_CONTRACT As Decimal?
+    Public Property FILE_LOGO As String
+    Public Property FILE_HEADER As String
+    Public Property FILE_FOOTER As String
+
 End Class
