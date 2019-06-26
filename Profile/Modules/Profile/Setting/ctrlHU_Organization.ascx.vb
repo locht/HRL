@@ -837,6 +837,11 @@ Public Class ctrlHU_Organization
                     chkOrgChart.Enabled = False
                     btnDownloadFile.Enabled = False
                     btnUploadFile.Enabled = False
+                    rtNUMBER_BUSINESS.ReadOnly = True
+                    rdDATE_BUSINESS.Enabled = False
+                    rdFOUNDATION_DATE.Enabled = False
+                    rdEffectDate.Enabled = False
+                    rdDicision_Date.Enabled = False
                     'txtFax.ReadOnly = True
                     'txtMobile.ReadOnly = True
                     'txtProvinceName.ReadOnly = True

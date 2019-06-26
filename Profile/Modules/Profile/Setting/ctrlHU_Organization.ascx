@@ -54,8 +54,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                  <asp:Label ID="lbParent_Name" runat="server" Text="Đơn vị cha"></asp:Label>
-             <span class="lbReq">*</span>
+                  <asp:Label ID="lbParent_Name" runat="server" Text="Đơn vị cha"></asp:Label>             
                 </td>
                 <td colspan="3">
                     <tlk:radtextbox id="txtParent_Name" runat="server" readonly="true" width="100%">
@@ -64,8 +63,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                   <asp:Label ID="lbNameVN" runat="server" Text="Tên đơn vị (VN)"></asp:Label>
-                   <span class="lbReq">*</span>
+                   <asp:Label ID="lbNameVN" runat="server" Text="Tên đơn vị (VN)"></asp:Label>                   
                 </td>
                 <td colspan="3">
                     <tlk:radtextbox id="txtNameVN" runat="server" width="100%">
@@ -101,7 +99,7 @@
                 <td class="lb">
                    <asp:Label ID="lbUNIT_LEVEL" runat="server" Text="Bậc đơn vị"></asp:Label>
                 </td>
-                <td colspan ="3">
+                <td colspan ="2">
                     <tlk:RadComboBox  id="cbUNIT_LEVEL" runat="server" width="100%">
                     </tlk:RadComboBox>
                 </td>
@@ -163,7 +161,6 @@
             <tr>
                 <td class="lb">
                    <asp:Label ID="lbNUMBER_BUSINESS" runat="server" Text="Giấy phép ĐKKD (Mã số thuế)"></asp:Label>
-                    <span class="lbReq"></span>
                 </td>
                 <td>
                     <tlk:radtextbox id="rtNUMBER_BUSINESS" runat="server" skinid="Textbox50">
@@ -178,14 +175,13 @@
                     </tlk:RadDatePicker>
                 </td>
             </tr>
-           
             <tr>
                 <td class="lb">
                     <asp:Label ID="lbADDRESS" runat="server" Text="Địa chỉ"></asp:Label>
                   <span class="lbReq"></span>
                 </td>
                 <td colspan="3">
-                    <tlk:radtextbox id="rtADDRESS" runat="server" skinid="Textbox9999"  width="100%">
+                    <tlk:radtextbox id="rtADDRESS" runat="server"  width="100%">
                     </tlk:radtextbox>
                 </td>
             </tr>
