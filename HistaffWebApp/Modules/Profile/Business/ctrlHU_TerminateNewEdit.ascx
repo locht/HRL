@@ -279,7 +279,7 @@
                 <td colspan="6">
                     <tlk:RadGrid PageSize="50" ID="rgDebt" runat="server" Height="250px" Width="100%" SkinID="GridNotPaging"
                         AllowMultiRowEdit="true">
-                        <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" ClientDataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true" OnSelectedIndexChanged="rgDebt_SelectedIndexChanged">
+                        <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" ClientDataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true">
                             <CommandItemStyle Height="28px" />
                             <CommandItemTemplate>
                                 <div style="padding: 2px 0 0 0">
@@ -358,7 +358,7 @@
                     <asp:Label runat ="server" ID ="lbMoneyDeductFromSal" Text ="Số tiền trừ vào lương" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtMoneyDeductFromSal" MinValue="0" runat="server" SkinID="Money">
+                    <tlk:RadNumericTextBox ID="rntxtMoneyDeductFromSal" MinValue="0" runat="server" SkinID="Money" ReadOnly="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -422,7 +422,7 @@
                     <asp:Label runat ="server" ID ="lbReserveSeniority" Text ="Thâm niên bảo lưu (Tháng)" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="ReserveSeniority" runat="server" SkinID="Decimal">
+                    <tlk:RadNumericTextBox ID="rntxtReserveSeniority" runat="server" SkinID="Decimal">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -572,12 +572,12 @@
             </tr>
             <tr>                
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbWorkingType" Text ="Loại quyết định" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbDecisionType" Text ="Loại quyết định" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboWorkingType" runat="server">
+                    <tlk:RadComboBox ID="cboDecisionType" runat="server">
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqWorkingType" ControlToValidate="cboWorkingType" runat="server"
+                    <asp:RequiredFieldValidator ID="reqDecisionType" ControlToValidate="cboDecisionType" runat="server"
                         ErrorMessage="Bạn phải chọn loại quyết định." ToolTip="Bạn phải chọn loại quyết định."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
@@ -636,7 +636,7 @@
                     <asp:Label runat ="server" ID ="lbSignerTitle" Text ="Chức danh người phê duyệt" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtSignerTitle" runat="server">
+                    <tlk:RadTextBox ID="txtSignerTitle" runat="server" ReadOnly="true">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">

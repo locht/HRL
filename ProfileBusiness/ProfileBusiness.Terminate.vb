@@ -20,11 +20,10 @@ Namespace ProfileBusiness.ServiceImplementations
         End Function
 #End Region
 #Region "Debt"
-        Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO) Implements ServiceContracts.IProfileBusiness.GetDebt
+        Public Function GetDebt(ByVal empId As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer) As List(Of DebtDTO) Implements ServiceContracts.IProfileBusiness.GetDebt
             Using rep As New ProfileRepository
                 Try
-
-                    Return rep.GetDebt(empId)
+                    Return rep.GetDebt(empId, PageIndex, PageSize, Total)
                 Catch ex As Exception
                     Throw ex
                 End Try

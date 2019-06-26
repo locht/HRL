@@ -95,5 +95,6 @@
     Public Property PERIOD_ID As Decimal?
     Public Property IS_ALLOW As Boolean
     Public Property IS_REPLACE_POS As Boolean
+    Public Property REVERSE_SENIORITY As Decimal?
     Public Property lstDebts As List(Of DebtDTO)
 End Class
