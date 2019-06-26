@@ -1533,6 +1533,7 @@
             <Property Name="IS_AUTO" Type="number" Nullable="true" Precision="38" />
             <Property Name="CHILD_OLD_FROM" Type="number" Nullable="true" Precision="38" />
             <Property Name="CHILD_OLD_TO" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_WELFARE_LIST_GW">
             <Key>
@@ -5720,6 +5721,7 @@
           <Property Type="Decimal" Name="IS_AUTO" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="CHILD_OLD_FROM" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="CHILD_OLD_TO" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="HU_WELFARE_LIST_GW">
           <Key>
@@ -8995,6 +8997,7 @@
                     <ScalarProperty Name="IS_AUTO" ColumnName="IS_AUTO" />
                     <ScalarProperty Name="CHILD_OLD_FROM" ColumnName="CHILD_OLD_FROM" />
                     <ScalarProperty Name="CHILD_OLD_TO" ColumnName="CHILD_OLD_TO" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11023,7 +11026,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="71" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="70" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -11211,7 +11214,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE_EMP" Width="3.375" PointX="18.75" PointY="15.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_STAFF_RANK" Width="4.125" PointX="19.75" PointY="0.875" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISCIPLINE_SALARY" Width="1.5" PointX="19.75" PointY="8.875" Height="0.39999999999999147" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST" Width="1.5" PointX="19.75" PointY="9.75" Height="0.39999999999999147" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST" Width="1.5" PointX="19.75" PointY="9.75" Height="0.39999999999999147" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST_GW" Width="1.5" PointX="12.75" PointY="19.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="14.875" PointY="23.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="0.4" IsExpanded="false" />

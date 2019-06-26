@@ -7,17 +7,46 @@ Imports WebAppLog
 
 Public Class ctrlHU_WelfareList
     Inherits Common.CommonView
-
+    Dim orgid As Integer
+    Dim lstOrganization As List(Of OrganizationDTO)
+    Dim orgItem As OrganizationDTO
+    Dim Code As String
+    Dim Year As String = Date.Now.Year.ToString
+    Dim rep As New ProfileRepository
     Dim _myLog As New MyLog()
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Profile/Module/Profile/List/" + Me.GetType().Name.ToString()
 
 #Region "Property"
- 
+    Property Organization As OrganizationDTO
+        Get
+            Return ViewState(Me.ID & "_Organization")
+        End Get
+        Set(ByVal value As OrganizationDTO)
+            ViewState(Me.ID & "_Organization") = value
+        End Set
+    End Property
+
+    Public Property Organizations As List(Of OrganizationDTO)
+        Get
+            Return ViewState(Me.ID & "_Organizations")
+        End Get
+        Set(ByVal value As List(Of OrganizationDTO))
+            ViewState(Me.ID & "_Organizations") = value
+        End Set
+    End Property
+    Property SelectOrgFunction As String
+        Get
+            Return ViewState(Me.ID & "_SelectOrgFunction")
+        End Get
+        Set(ByVal value As String)
+            ViewState(Me.ID & "_SelectOrgFunction") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
-
+    Dim org_id As String
     ''' <lastupdate>
     ''' 30/06/2017 11:18
     ''' </lastupdate>
@@ -45,6 +74,39 @@ Public Class ctrlHU_WelfareList
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
 
+    End Sub
+    ''' <summary>
+    ''' Hiển thị thông tin trên trang
+    ''' </summary>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
+        'Edit by: ChienNV 
+        'Trước khi Load thì kiểm tra PostBack
+        If Not IsPostBack Then
+            Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+            Try
+                lstOrganization = rep.GetOrganization()
+                Me.Organizations = lstOrganization
+                org_id = Request.QueryString("id")
+                If org_id IsNot String.Empty Then
+                    SelectOrgFunction = org_id
+                End If
+                Dim startTime As DateTime = DateTime.UtcNow
+                ctrlOrg.AutoPostBack = True
+                ctrlOrg.LoadDataAfterLoaded = True
+                ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
+                ctrlOrg.CheckBoxes = TreeNodeTypes.None
+                rgWelfareList.SetFilter()
+                Refresh()
+                _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Catch ex As Exception
+                'DisplayException(Me.ViewName, Me.ID, ex)
+                _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            End Try
+        Else
+            Exit Sub
+        End If
     End Sub
 
     ''' <lastupdate>
@@ -130,6 +192,7 @@ Public Class ctrlHU_WelfareList
         Dim _filter As New WelfareListDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            _filter.ORG_ID = ctrlOrg.CurrentValue
             Dim startTime As DateTime = DateTime.UtcNow
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgWelfareList, _filter)
@@ -180,7 +243,7 @@ Public Class ctrlHU_WelfareList
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
-                    txtCode.Text = rep.AutoGenCode("PL", "HU_WELFARE_LIST", "CODE")
+                    'txtCode.Text = rep.AutoGenCode("PL", "HU_WELFARE_LIST", "CODE")
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgWelfareList, True)
                     EnableControlAll(False, txtCode, txtName, nmSENIORITY, nmCHILD_OLD_FROM,
@@ -288,7 +351,37 @@ Public Class ctrlHU_WelfareList
 #End Region
 
 #Region "Event"
-
+    ''' <summary>
+    ''' Xử lý sự kiện SelectedNodeChanged
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        
+        Try
+            Select Case CurrentState
+                Case CommonMessage.STATE_NEW
+                    If ctrlOrg.CurrentValue IsNot Nothing Then
+                        orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+                    Else
+                        ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+                    Code = orgItem.CODE & "_" & Year & "_"
+                    txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+            End Select
+            CreateDataFilter(False)
+            Dim startTime As DateTime = DateTime.UtcNow
+            rgWelfareList.CurrentPageIndex = 0
+            rgWelfareList.Rebind()
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 30/06/2017 15:33
     ''' </lastupdate>
@@ -314,6 +407,15 @@ Public Class ctrlHU_WelfareList
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     chkIS_AUTO.Checked = Nothing
                     rgWelfareList.Rebind()
+                    If ctrlOrg.CurrentValue IsNot Nothing Then
+                        orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+                    Else
+                        ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+                    Code = orgItem.CODE & "_" & Year & "_"
+                    txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgWelfareList.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
@@ -415,6 +517,7 @@ Public Class ctrlHU_WelfareList
                         objWelfareList.START_DATE = dpSTART_DATE.SelectedDate
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
                         objWelfareList.IS_AUTO = chkIS_AUTO.Checked
+                        objWelfareList.ORG_ID = ctrlOrg.CurrentValue
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objWelfareList.ACTFLG = "A"

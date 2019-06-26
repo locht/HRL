@@ -687,7 +687,8 @@ Partial Class ProfileRepository
                                        .END_DATE = p.END_DATE,
                                        .IS_AUTO = p.IS_AUTO,
                                        .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
-                                       .CREATED_DATE = p.CREATED_DATE})
+                                       .CREATED_DATE = p.CREATED_DATE,
+                                       .ORG_ID = p.ORG_ID})
 
             If _filter.CODE <> "" Then
                 lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
@@ -721,6 +722,9 @@ Partial Class ProfileRepository
             End If
             If _filter.ACTFLG <> "" Then
                 lst = lst.Where(Function(p) p.ACTFLG.ToUpper.Contains(_filter.ACTFLG.ToUpper))
+            End If
+            If _filter.ORG_ID <> 0 Then
+                lst = lst.Where(Function(p) p.ORG_ID = _filter.ORG_ID)
             End If
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
@@ -756,6 +760,7 @@ Partial Class ProfileRepository
             objWelfareListData.END_DATE = objWelfareList.END_DATE
             objWelfareListData.IS_AUTO = objWelfareList.IS_AUTO
             objWelfareListData.ACTFLG = objWelfareList.ACTFLG
+            objWelfareListData.ORG_ID = objWelfareList.ORG_ID
             Context.HU_WELFARE_LIST.AddObject(objWelfareListData)
             Context.SaveChanges(log)
             gID = objWelfareListData.ID

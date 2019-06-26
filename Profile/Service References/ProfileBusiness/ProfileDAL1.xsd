@@ -989,6 +989,7 @@
       <xs:element minOccurs="0" name="REMAINING_LEAVE" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="REMAINING_LEAVE_MONEY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REVERSE_SENIORITY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="SALARYMEDIUM" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="SALARYMEDIUM_LOSS" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SEND_DATE" nillable="true" type="xs:dateTime" />
@@ -1690,6 +1691,7 @@
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MONEY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="SENIORITY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="START_DATE" nillable="true" type="xs:dateTime" />
     </xs:sequence>

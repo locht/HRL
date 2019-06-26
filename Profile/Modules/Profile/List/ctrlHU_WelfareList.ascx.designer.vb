@@ -23,6 +23,24 @@ Partial Public Class ctrlHU_WelfareList
     Protected WithEvents RadSplitter3 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
+    '''LeftPane control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LeftPane As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''ctrlOrg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlOrg As Global.Common.ctrlOrganization
+
+    '''<summary>
     '''RadPane3 control.
     '''</summary>
     '''<remarks>
@@ -32,13 +50,13 @@ Partial Public Class ctrlHU_WelfareList
     Protected WithEvents RadPane3 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
-    '''tbarWelfareLists control.
+    '''RadSplitter1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbarWelfareLists As Global.Telerik.Web.UI.RadToolBar
+    Protected WithEvents RadSplitter1 As Global.Telerik.Web.UI.RadSplitter
 
     '''<summary>
     '''RadPane1 control.
@@ -48,6 +66,15 @@ Partial Public Class ctrlHU_WelfareList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadPane1 As Global.Telerik.Web.UI.RadPane
+
+    '''<summary>
+    '''tbarWelfareLists control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbarWelfareLists As Global.Telerik.Web.UI.RadToolBar
 
     '''<summary>
     '''valSum control.

@@ -19,5 +19,6 @@
     Public Property CREATED_LOG As String
     Public Property MODIFIED_DATE As Date?
     Public Property MODIFIED_BY As String
-    Public Property MODIFIED_LOG As String    
+    Public Property MODIFIED_LOG As String
+    Public Property ORG_ID As Decimal?
 End Class
