@@ -287,6 +287,22 @@ Public Class ctrlHU_DisciplineNewEdit
                     cboDisciplineObj.SelectedValue = Discipline.DISCIPLINE_OBJ.ToString
                     cboDisciplineType.SelectedValue = Discipline.DISCIPLINE_TYPE.ToString
                     cboDisciplineReason.SelectedValue = Discipline.DISCIPLINE_REASON.ToString
+
+                    rdDelDisciplineDate.SelectedDate = Discipline.DEL_DISCIPLINE_DATE
+                    txtNoteDiscipline.Text = Discipline.NOTE_DISCIPLINE
+                    txtDisciplineReasonDetail.Text = Discipline.DISCIPLINE_REASON_DETAIL
+                    rdViolationDate.SelectedDate = Discipline.VIOLATION_DATE
+                    rdDetectViolationDate.SelectedDate = Discipline.DECTECT_VIOLATION_DATE
+                    txtExplain.Text = Discipline.EXPLAIN
+                    txtRemarkDiscipline.Text = Discipline.RERARK_DISCIPLINE
+                    rnPaidIMoeny.Value = Discipline.PAIDMONEY
+                    rdAmountPaidCash.Value = Discipline.AMOUNT_PAID_CASH
+                    rnAmountToPaid.Value = Discipline.AMOUNT_TO_PAID
+                    rnAmountSalaryMonth.Value = Discipline.AMOUNT_SAL_MONTH
+                    rnAmountInMonth.Value = Discipline.AMOUNT_IN_MONTH
+                    rnAmountDeductedMonth.Value = Discipline.AMOUNT_DEDUCT_AMOUNT
+                    txtDecisionNo_Discipline.Text = Discipline.NO_DISCIPLINE
+
                     rntxtMoney.Value = Discipline.MONEY
                     hidID.Value = Discipline.ID.ToString
                     txtUploadFile.Text = Discipline.FILENAME
@@ -302,9 +318,10 @@ Public Class ctrlHU_DisciplineNewEdit
                     If Discipline.STATUS_ID = ProfileCommon.DISCIPLINE_STATUS.APPROVE_ID Then
                         PanelEmployee.Enabled = False
                         EnableControlAll_Cus(False, RadPane2)
+                        EnableControlAll(True, rnAmountToPaid, rnAmountSalaryMonth, rnAmountInMonth, rnAmountDeductedMonth)
                         btnDownload.Enabled = True
                         CurrentState = CommonMessage.STATE_NORMAL
-                        CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
+                        'CType(MainToolBar.Items(0), RadToolBarButton).Enabled = False
                     End If
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -448,15 +465,31 @@ Public Class ctrlHU_DisciplineNewEdit
                         objDiscipline.NAME = txtDecisionName.Text.Trim
                         objDiscipline.NO = txtDecisionNo.Text.Trim
                         objDiscipline.PERFORM_TIME = txtPerformDiscipline.Text.Trim
+
+                        objDiscipline.DEL_DISCIPLINE_DATE = rdDelDisciplineDate.SelectedDate
+                        objDiscipline.NOTE_DISCIPLINE = txtNoteDiscipline.Text
+                        objDiscipline.DISCIPLINE_REASON_DETAIL = txtDisciplineReasonDetail.Text
+                        objDiscipline.VIOLATION_DATE = rdViolationDate.SelectedDate
+                        objDiscipline.DECTECT_VIOLATION_DATE = rdDetectViolationDate.SelectedDate
+                        objDiscipline.EXPLAIN = txtExplain.Text
+                        objDiscipline.RERARK_DISCIPLINE = txtRemarkDiscipline.Text
+                        objDiscipline.PAIDMONEY = rnPaidIMoeny.Value
+                        objDiscipline.AMOUNT_PAID_CASH = rdAmountPaidCash.Value
+                        objDiscipline.AMOUNT_TO_PAID = rnAmountToPaid.Value
+                        objDiscipline.AMOUNT_SAL_MONTH = rnAmountSalaryMonth.Value
+                        objDiscipline.AMOUNT_IN_MONTH = rnAmountInMonth.Value
+                        objDiscipline.AMOUNT_DEDUCT_AMOUNT = rnAmountDeductedMonth.Value
+                        objDiscipline.NO_DISCIPLINE = txtDecisionNo_Discipline.Text
+
                         objDiscipline.SIGNER_TITLE = txtSignerTitle.Text
                         For Each i As GridDataItem In rgEmployee.Items
                             Dim o As New DisciplineEmpDTO
                             o.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")
                             'o.MONEY = CType(i("MONEY").Controls(0), RadNumericTextBox).Value
                             'o.INDEMNIFY_MONEY = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
-                            Dim money As String = CType(i("MONEY").Controls(0), TextBox).Text.Trim
-                            o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
-                            Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), TextBox).Text.Trim
+                            'Dim money As String = CType(i("MONEY").Controls(0), TextBox).Text.Trim
+                            'o.MONEY = If(money <> "", Decimal.Parse(money), Nothing)
+                            Dim iden_money As String = CType(i("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox).Value
                             o.INDEMNIFY_MONEY = If(iden_money <> "", Decimal.Parse(iden_money), Nothing)
                             lstDisciplineEmp.Add(o)
                         Next
@@ -632,29 +665,29 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
 
     End Sub
-    ' ''' <lastupdate>
-    ' ''' 11/07/2017 13:40
-    ' ''' </lastupdate>
-    ' ''' <summary>
-    ' ''' Xu ly su kien click khi click vao btnFindSigner
-    ' ''' </summary>
-    ' ''' <param name="sender"></param>
-    ' ''' <param name="e"></param>
-    ' ''' <remarks></remarks>
-    'Protected Sub btnFindSinger_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindSinger.Click
-    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-    '    Try
-    '        Dim startTime As DateTime = DateTime.UtcNow
-    '        isLoadPopup = 3
-    '        UpdateControlState()
-    '        ctrlFindSigner.MustHaveContract = False
-    '        ctrlFindSigner.Show()
-    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-    '    End Try
-    'End Sub
+    ''' <lastupdate>
+    ''' 11/07/2017 13:40
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien click khi click vao btnFindSigner
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Protected Sub btnFindSinger_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFindSinger.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            isLoadPopup = 3
+            UpdateControlState()
+            ctrlFindSigner.MustHaveContract = False
+            ctrlFindSigner.Show()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' 11/07/2017 13:40
     ''' </lastupdate>
     ''' <summary>
@@ -684,8 +717,28 @@ Public Class ctrlHU_DisciplineNewEdit
                     employee.FULLNAME = emp.FULLNAME_VN
                     employee.ORG_NAME = emp.ORG_NAME
                     employee.TITLE_NAME = emp.TITLE_NAME
+
+                    Dim checkEmployeeCode As DisciplineEmpDTO = Employee_Discipline.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
+                    If (Not checkEmployeeCode Is Nothing) Then
+                        Continue For
+                    End If
+
                     Employee_Discipline.Add(employee)
                 Next
+
+                Dim intMoney As Decimal = 0
+                Dim intAmountToPaid As Decimal = 0
+                If (Employee_Discipline.Count > 0) Then
+                    If rnAmountToPaid.Value IsNot Nothing Then
+                        intAmountToPaid += rnAmountToPaid.Value
+                    End If
+                    intMoney = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+                End If
+
+                For index = 0 To Employee_Discipline.Count - 1
+                    Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoney
+                Next
+
                 rgEmployee.Rebind()
                 For Each i As GridItem In rgEmployee.Items
                     i.Edit = True
@@ -1037,6 +1090,20 @@ Public Class ctrlHU_DisciplineNewEdit
                                  q.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")).FirstOrDefault
                         Employee_Discipline.Remove(s)
                     Next
+
+                    Dim intMoney As Decimal = 0
+                    Dim intAmountToPaid As Decimal = 0
+                    If (Employee_Discipline.Count > 0) Then
+                        If rnAmountToPaid.Value IsNot Nothing Then
+                            intAmountToPaid += rnAmountToPaid.Value
+                        End If
+                        intMoney = Utilities.ObjToDecima(intAmountToPaid / Employee_Discipline.Count)
+                    End If
+
+                    For index = 0 To Employee_Discipline.Count - 1
+                        Employee_Discipline.Item(index).INDEMNIFY_MONEY = intMoney
+                    Next
+
                     rgEmployee.Rebind()
             End Select
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -1060,11 +1127,13 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             If e.Item.Edit Then
                 Dim edit = CType(e.Item, GridEditableItem)
-                Dim rntxt As RadNumericTextBox
-                rntxt = CType(edit("MONEY").Controls(0), RadNumericTextBox)
-                rntxt.Width = Unit.Percentage(100)
-                rntxt = CType(edit("INDEMNIFY_MONEY").Controls(0), RadNumericTextBox)
-                rntxt.Width = Unit.Percentage(100)
+                Dim rntxt As TextBox
+
+                'rntxt = CType(edit("MONEY").Controls(0), RadNumericTextBox)
+                'rntxt.Width = Unit.Percentage(100)        
+                Dim arntxt = CType(rgEmployee.Columns.FindByUniqueName("INDEMNIFY_MONEY"), GridNumericColumn)
+                arntxt.DataFormatString = "{0:#,##0.##}"
+
                 _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             End If
         Catch ex As Exception
@@ -1235,7 +1304,7 @@ Public Class ctrlHU_DisciplineNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Dim totalMoney = 0
             If rntxtIndemnifyMoney.Value IsNot Nothing Then
-                totalMoney += rntxtIndemnifyMoney.Value
+                totalMoney += rnAmountToPaid.Value
             End If
             Dim TotalMoneyEmp As Decimal = 0
             For Each i As GridDataItem In rgEmployee.Items
@@ -1337,7 +1406,7 @@ Public Class ctrlHU_DisciplineNewEdit
         End Try
 
     End Sub
-    
+
     ''' <summary>
     ''' cusStatus server validate
     ''' </summary>
@@ -1373,6 +1442,59 @@ Public Class ctrlHU_DisciplineNewEdit
             rntxtMoney.Text = String.Empty
         End If
     End Sub
+
+    Private Sub rntxtMoney_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtMoney.TextChanged, rdAmountPaidCash.TextChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+
+            Dim intMoney As Decimal = 0
+            Dim intAmountPaidCash As Decimal = 0
+            Dim totalMoney = 0
+            If rntxtMoney.Value IsNot Nothing Then
+                intMoney += rntxtMoney.Value
+            End If
+            If rdAmountPaidCash.Value IsNot Nothing Then
+                intAmountPaidCash += rdAmountPaidCash.Value
+            End If
+
+            totalMoney = Utilities.ObjToDecima(intMoney - intAmountPaidCash)
+            rnAmountToPaid.Value = totalMoney
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub cvalAmountSalaryMonth_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalAmountSalaryMonth.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+
+            Dim totalMoney As Decimal = 0
+            Dim totalAmountToPaid As Decimal = 0
+
+            If rnAmountSalaryMonth.Value IsNot Nothing Then
+                totalMoney += rnAmountSalaryMonth.Value
+            End If
+
+            If rnAmountToPaid.Value IsNot Nothing Then
+                totalAmountToPaid += rnAmountToPaid.Value
+            End If
+
+            If (totalMoney > totalAmountToPaid) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
 #End Region
     Private Sub ZipFiles(ByVal path As String)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -1584,7 +1706,7 @@ Public Class ctrlHU_DisciplineNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-   
+
     ''' <lastupdate>
     ''' 11/07/2017 13:40
     ''' </lastupdate>
@@ -1619,6 +1741,4 @@ Public Class ctrlHU_DisciplineNewEdit
     End Sub
 
 #End Region
-
-
 End Class

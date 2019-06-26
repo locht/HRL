@@ -752,13 +752,13 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents lbReserveSeniority As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''rntxtReserveSeniority control.
+    '''ReserveSeniority control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rntxtReserveSeniority As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents ReserveSeniority As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbSalaryMedium_loss control.
@@ -815,31 +815,31 @@ Partial Public Class ctrlHU_TerminateNewEdit
     Protected WithEvents cbIsReplacePos As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''lbDecisionType control.
+    '''lbWorkingType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbDecisionType As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbWorkingType As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''cboDecisionType control.
+    '''cboWorkingType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboDecisionType As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboWorkingType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''reqDecisionType control.
+    '''reqWorkingType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents reqDecisionType As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents reqWorkingType As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''lbDecisionNo control.

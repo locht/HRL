@@ -132,7 +132,6 @@
     <Compile Include="BusinessObjects\List\PA_SALARY_TYPEDTO.vb" />
     <Compile Include="BusinessObjects\Setting\CompetencyCourseDTO.vb" />
     <Compile Include="BusinessObjects\Setting\AttachFilesDTO.vb" />
-    <Compile Include="BusinessObjects\Setting\LocationDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrganizationTreeDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrganizationVerticalDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrgChartDTO.vb" />
@@ -176,10 +175,10 @@
     <Compile Include="BusinessObjects\Dynamic\DynamicReportClass.vb" />
     <Compile Include="BusinessObjects\Dynamic\RptDynamicColumnDTO.vb" />
     <Compile Include="BusinessObjects\Dynamic\RptDynamicDTO.vb" />
-    <Compile Include="BusinessObjects\Setting\Report\SEARCH_DTO.vb" />
+    <Compile Include="BusinessObjects\Report\SEARCH_DTO.vb" />
     <Compile Include="BusinessObjects\List\WelfareListDTO.vb" />
     <Compile Include="BusinessObjects\List\AllowanceListDTO.vb" />
-    <Compile Include="BusinessObjects\Setting\Report\Se_ReportDTO.vb" />
+    <Compile Include="BusinessObjects\Report\Se_ReportDTO.vb" />
     <Compile Include="BusinessObjects\Setting\ConfigDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrganizationPathDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrgTilteDTO.vb" />

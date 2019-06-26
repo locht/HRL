@@ -684,13 +684,9 @@ Public Class ctrlHU_Terminate
 
             For Each dr As Telerik.Web.UI.GridDataItem In rgTerminate.SelectedItems
                 Dim ID As New Decimal
-                If Not dr.GetDataKeyValue("STATUS_ID").Equals("262") Then
-                    If dr.GetDataKeyValue("FILENAME").ToString <> "" Then
-                        ID = dr.GetDataKeyValue("ID")
-                        lstID.Add(ID)
-                    Else
-                        ShowMessage(Translate("Vui lòng cập nhật tập tin đính kèm của nhân viên có mã " + dr.GetDataKeyValue("EMPLOYEE_CODE")), NotifyType.Warning)
-                    End If
+                If Not dr.GetDataKeyValue("STATUS_ID").Equals("447") Then
+                    ID = dr.GetDataKeyValue("ID")
+                    lstID.Add(ID)
                 End If
             Next
 

@@ -5,10 +5,10 @@ Partial Public Class ProfileBusinessRepository
 
 
 #Region "Debt"
-    Public Function GetDebt(ByVal empId As Decimal, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Total As Integer) As List(Of DebtDTO)
+    Public Function GetDebt(ByVal empId As Decimal) As List(Of DebtDTO)
         Using rep As New ProfileBusinessClient
             Try
-                Return rep.GetDebt(empId, PageIndex, PageSize, Total)
+                Return rep.GetDebt(empId)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

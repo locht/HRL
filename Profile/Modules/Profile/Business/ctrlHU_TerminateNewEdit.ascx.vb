@@ -279,26 +279,10 @@ Public Class ctrlHU_TerminateNewEdit
 
                     'rntxtMoneyReturn.Value = Terminate.MONEY_RETURN
                     rntxtyearforallow_loss.Value = Terminate.YEARFORALLOW
+                    'cboTYPE_TERMINATE.SelectedValue = Terminate.TYPE_TERMINATE
 
-                    If Terminate.TER_REASON.HasValue Then
-                        cboTerReason.SelectedValue = Terminate.TER_REASON
-                    End If
-                    rntxtDebtTotal.Value = Terminate.SUM_DEBT
-                    rntxtDebtTotalCollect.Value = Terminate.SUM_COLLECT_DEBT
-                    rntxtCash.Value = Terminate.AMOUNT_PAYMENT_CASH
-                    rntxtMoneyDeductFromSal.Value = Terminate.AMOUNT_DEDUCT_FROM_SAL
-                    cboSalMonth.SelectedValue = Terminate.PERIOD_ID
-                    If Terminate.INSURANCE_STATUS <> "" Then
-                        cboInsStatus.SelectedValue = Terminate.INSURANCE_STATUS
-                    End If
-                    If Terminate.DECISION_TYPE.HasValue Then
-                        cboDecisionType.SelectedValue = Terminate.DECISION_TYPE
-                    End If
-                    cbIsAllowForTer.Checked = Terminate.IS_ALLOW
-                    cbIsReplacePos.Checked = Terminate.IS_REPLACE_POS
-
+                    'lstReason = Terminate.lstReason
                     lstHandoverContent = Terminate.lstHandoverContent
-                    rntxtReserveSeniority.Value = Terminate.REVERSE_SENIORITY
                     rgHandoverContent.Rebind()
                     For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
@@ -313,9 +297,7 @@ Public Class ctrlHU_TerminateNewEdit
                         Terminate.STATUS_ID = ProfileCommon.OT_TER_STATUS.NOT_APPROVE_ID Then
                         EnableControlAll_Cus(False, RadPane2)
                         btnDownload.Enabled = True
-                        rgHandoverContent.Enabled = True
-                        rntxtCash.ReadOnly = False
-                        MainToolBar.Items(0).Enabled = True
+                        MainToolBar.Items(0).Enabled = False
                     End If
 
                 Case "InsertView"
@@ -363,7 +345,7 @@ Public Class ctrlHU_TerminateNewEdit
                     rdSignDate.Enabled = False
 
                     cbIsNoHire.Enabled = False
-                    rntxtCash.ReadOnly = False
+
 
                     txtContractNo.ReadOnly = True
                     txtEmployeeCode.ReadOnly = True
@@ -373,13 +355,6 @@ Public Class ctrlHU_TerminateNewEdit
                     rdJoinDateState.Enabled = False
                     rdContractEffectDate.Enabled = False
                     rdContractExpireDate.Enabled = False
-
-                    cbIsReplacePos.Enabled = False
-                    cbIsAllowForTer.Enabled = False
-                    cboInsStatus.Enabled = False
-                    cboSalMonth.Enabled = False
-                    cboTerReason.Enabled = False
-                    cboDecisionType.Enabled = False
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -530,26 +505,20 @@ Public Class ctrlHU_TerminateNewEdit
 
                         objTerminate.SALARYMEDIUM_LOSS = txtTimeAccidentIns_loss.Text
                         'txtTimeAccidentIns_loss.Text = Terminate.SALARYMEDIUM_LOSS
-                        If cboTerReason.Text <> "" Then
-                            objTerminate.TER_REASON = cboTerReason.SelectedValue
-                        End If
-                        objTerminate.INSURANCE_STATUS = cboInsStatus.SelectedValue.ToString
-                        objTerminate.DECISION_TYPE = cboDecisionType.SelectedValue
-                        objTerminate.SUM_DEBT = rntxtDebtTotal.Value
+                        objTerminate.TER_REASON = cboTerReason.SelectedValue
+                        objTerminate.DECISION_TYPE = cboWorkingType.SelectedValue
                         objTerminate.SUM_COLLECT_DEBT = rntxtDebtTotalCollect.Value
                         objTerminate.AMOUNT_PAYMENT_CASH = rntxtCash.Value
                         objTerminate.AMOUNT_DEDUCT_FROM_SAL = rntxtMoneyDeductFromSal.Value
                         objTerminate.PERIOD_ID = cboSalMonth.SelectedValue
                         objTerminate.IS_ALLOW = cbIsAllowForTer.Checked
                         objTerminate.IS_REPLACE_POS = cbIsReplacePos.Checked
-                        objTerminate.REVERSE_SENIORITY = rntxtReserveSeniority.Value
                         lstHandoverContent = New List(Of HandoverContentDTO)
                         For Each item As GridDataItem In rgHandoverContent.Items
                             Dim handover As New HandoverContentDTO
                             handover.CONTENT_ID = item.GetDataKeyValue("CONTENT_ID")
                             handover.CONTENT_NAME = item.GetDataKeyValue("CONTENT_NAME")
-                            Dim chk As CheckBox = CType(item("IS_FINISH").Controls(0), CheckBox)
-                            handover.IS_FINISH = chk.Checked
+                            handover.IS_FINISH = item.GetDataKeyValue("IS_FINISH")
                             lstHandoverContent.Add(handover)
                         Next
                         objTerminate.lstHandoverContent = lstHandoverContent
@@ -573,10 +542,10 @@ Public Class ctrlHU_TerminateNewEdit
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
                             Case CommonMessage.STATE_EDIT
-                                'If hidWorkStatus.Value = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
-                                '    ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), NotifyType.Warning)
-                                '    Exit Sub
-                                'End If
+                                If hidWorkStatus.Value = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
+                                    ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), NotifyType.Warning)
+                                    Exit Sub
+                                End If
 
                                 objTerminate.ID = Decimal.Parse(hidID.Value)
                                 objTerminate.DECISION_ID = Decimal.Parse(hidDecisionID.Value)
@@ -1260,7 +1229,7 @@ Public Class ctrlHU_TerminateNewEdit
         Try
             Using rep As New ProfileBusinessRepository
                 If hidEmpID.Value <> "" Then
-                    lstData = rep.GetDebt(hidEmpID.Value, rgDebt.CurrentPageIndex, rgDebt.PageSize, 10)
+                    lstData = rep.GetDebt(hidEmpID.Value)
                 Else
                     lstData = New List(Of DebtDTO)
                 End If
@@ -1674,7 +1643,7 @@ Public Class ctrlHU_TerminateNewEdit
             FillDropDownList(cboTerReason, ListComboData.LIST_TER_REASON, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtStatus, ListComboData.LIST_DEBT_STATUS, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             FillDropDownList(cboDebtType, ListComboData.LIST_DEBT_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
-            FillDropDownList(cboDecisionType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
+            FillDropDownList(cboWorkingType, ListComboData.LIST_DECISION_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True)
             cboStatus.SelectedValue = ProfileCommon.OT_TER_STATUS.WAIT_APPROVE_ID
             cboSalMonth.DataSource = rep.GetCurrentPeriod()
             cboSalMonth.DataTextField = "PERIOD_NAME"
@@ -1739,6 +1708,9 @@ Public Class ctrlHU_TerminateNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
+            'If lstReason Is Nothing Then
+            '    lstReason = New List(Of TerminateReasonDTO)
+            'End If
             If lstHandoverContent Is Nothing Then
                 lstHandoverContent = New List(Of HandoverContentDTO)
             End If

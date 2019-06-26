@@ -282,7 +282,6 @@
     <None Include="My Project\DataSources\Common.CommonBusiness.UserLog.datasource" />
     <None Include="My Project\DataSources\System.Data.DataSet.datasource" />
     <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
-    <Content Include="Modules\Profile\Setting\ctrlLocation.ascx" />
     <Content Include="packages.config" />
     <None Include="Service References\ProfileBusiness\Arrays.xsd">
       <SubType>Designer</SubType>
@@ -1445,13 +1444,6 @@
     </Compile>
     <Compile Include="Modules\Profile\Setting\ctrlHU_OrgTitleNewEdit.ascx.vb">
       <DependentUpon>ctrlHU_OrgTitleNewEdit.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Modules\Profile\Setting\ctrlLocation.ascx.designer.vb">
-      <DependentUpon>ctrlLocation.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Profile\Setting\ctrlLocation.ascx.vb">
-      <DependentUpon>ctrlLocation.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Shared\ctrlFindEmployeeImportPopup.ascx.designer.vb">

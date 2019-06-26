@@ -358,7 +358,7 @@
                     <asp:Label runat ="server" ID ="lbMoneyDeductFromSal" Text ="Số tiền trừ vào lương" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtMoneyDeductFromSal" MinValue="0" runat="server" SkinID="Money" ReadOnly="true">
+                    <tlk:RadNumericTextBox ID="rntxtMoneyDeductFromSal" MinValue="0" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -422,7 +422,7 @@
                     <asp:Label runat ="server" ID ="lbReserveSeniority" Text ="Thâm niên bảo lưu (Tháng)" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="rntxtReserveSeniority" runat="server" SkinID="Decimal">
+                    <tlk:RadNumericTextBox ID="ReserveSeniority" runat="server" SkinID="Decimal">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -572,12 +572,12 @@
             </tr>
             <tr>                
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbDecisionType" Text ="Loại quyết định" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbWorkingType" Text ="Loại quyết định" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboDecisionType" runat="server">
+                    <tlk:RadComboBox ID="cboWorkingType" runat="server">
                     </tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="reqDecisionType" ControlToValidate="cboDecisionType" runat="server"
+                    <asp:RequiredFieldValidator ID="reqWorkingType" ControlToValidate="cboWorkingType" runat="server"
                         ErrorMessage="Bạn phải chọn loại quyết định." ToolTip="Bạn phải chọn loại quyết định."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
@@ -636,7 +636,7 @@
                     <asp:Label runat ="server" ID ="lbSignerTitle" Text ="Chức danh người phê duyệt" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtSignerTitle" runat="server" ReadOnly="true">
+                    <tlk:RadTextBox ID="txtSignerTitle" runat="server">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">

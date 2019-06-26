@@ -5,7 +5,6 @@ Imports Common
 Imports Telerik.Web.UI
 Imports WebAppLog
 Imports System.IO
-Imports Ionic.Crc
 
 Public Class ctrlHU_Title
     Inherits Common.CommonView
@@ -33,36 +32,6 @@ Public Class ctrlHU_Title
 
         Set(ByVal value As Decimal)
             ViewState(Me.ID & "_IDSelect") = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' Down_File
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Property Down_File As String
-        Get
-            Return ViewState(Me.ID & "_Down_File")
-        End Get
-        Set(ByVal value As String)
-            ViewState(Me.ID & "_Down_File") = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' FileOldName
-    ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Property FileOldName As String
-        Get
-            Return ViewState(Me.ID & "_FileOldName")
-        End Get
-        Set(ByVal value As String)
-            ViewState(Me.ID & "_FileOldName") = value
         End Set
     End Property
 
@@ -141,7 +110,7 @@ Public Class ctrlHU_Title
     ''' <param name="Message"></param>
     ''' <remarks></remarks>
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()        
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New ProfileRepository
 
@@ -153,18 +122,17 @@ Public Class ctrlHU_Title
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.CurrentPageIndex = 0
                         rgMain.MasterTableView.SortExpressions.Clear()
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
-                        CurrentState = CommonMessage.STATE_NORMAL
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup)
+                        CurrentState = CommonMessage.STATE_NORMAL                        
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
                 End Select
             End If
             rep.Dispose()
@@ -232,17 +200,17 @@ Public Class ctrlHU_Title
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, btnDownload, btnUploadFile)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark)
                     Refresh("Cancel")
 
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, btnDownload, btnUploadFile)
+                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark)
 
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboTitleGroup, True)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, btnDownload, btnUploadFile)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark)
 
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
@@ -310,7 +278,7 @@ Public Class ctrlHU_Title
     Public Overrides Sub BindData()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-        Dim repS As New ProfileStoreProcedure
+
         Try
             Dim dtData As DataTable
             Using rep As New ProfileRepository
@@ -318,26 +286,12 @@ Public Class ctrlHU_Title
                 FillRadCombobox(cboTitleGroup, dtData, "NAME", "ID")
             End Using
 
-            Dim dtOrgLevel As DataTable
-            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
-            FillRadCombobox(cboOrgLevel, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
-
-            Dim dtOrgType As DataTable
-            dtOrgType = repS.GET_ORG_TYPE()
-            FillRadCombobox(cboOrgType, dtOrgType, "TYPE_NAME_VN", "ORG_ID_TYPE", True)
-
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtNameVN)
             dic.Add("REMARK", txtRemark)
             dic.Add("TITLE_GROUP_ID", cboTitleGroup)
-            dic.Add("ORG_ID", cboOrgLevel)
-            dic.Add("ORG_TYPE", cboOrgType)
-            dic.Add("HURTFUL_CHECK", ckDH)
-            dic.Add("SPEC_HURFUL_CHECK", ckSpecDH)
-            dic.Add("OVT_CHECK", ckOVT)
-            dic.Add("FILENAME", txtUpload)
-            dic.Add("UPLOAD_FILE", txtRemindLink)
+
             Utilities.OnClientRowSelectedChanged(rgMain, dic)
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -457,27 +411,6 @@ Public Class ctrlHU_Title
                             objTitle.TITLE_GROUP_ID = cboTitleGroup.SelectedValue
                         End If
 
-                        If cboOrgLevel.SelectedValue <> "" Then
-                            objTitle.ORG_ID = cboOrgLevel.SelectedValue
-                        End If
-
-                        If cboOrgType.SelectedValue <> "" Then
-                            objTitle.ORG_TYPE = cboOrgType.SelectedValue
-                        End If
-
-                        objTitle.HURTFUL = If(ckDH.Checked = True, -1, 0)
-                        objTitle.SPEC_HURFUL = If(ckSpecDH.Checked = True, -1, 0)
-                        objTitle.OVT = If(ckOVT.Checked = True, -1, 0)
-
-                        'Attach File
-                        objTitle.FILENAME = txtUpload.Text.Trim
-                        objTitle.UPLOAD_FILE = If(Down_File Is Nothing, "", Down_File)
-                        If objTitle.UPLOAD_FILE = "" Then
-                            objTitle.UPLOAD_FILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
-                        Else
-                            objTitle.UPLOAD_FILE = If(objTitle.UPLOAD_FILE Is Nothing, "", objTitle.UPLOAD_FILE)
-                        End If
-
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objTitle.ACTFLG = "A"
@@ -576,7 +509,6 @@ Public Class ctrlHU_Title
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
     ''' <lastupdate>24/07/2017</lastupdate>
     ''' <summary>Check sự kiện validate cho combobox tồn tại hoặc ngừng áp dụng</summary>
     ''' <param name="source"></param>
@@ -646,108 +578,6 @@ Public Class ctrlHU_Title
         End Try
     End Sub
 
-    ''' <summary>Xử lý sự kiện khi click btn UploadFile</summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnUploadFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
-        Try
-            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
-            ctrlUpload1.Show()
-
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    ''' <summary>Xử lý sự kiện khi click [OK] xác nhận sẽ Upload file</summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-
-        Try
-            txtUploadFile.Text = ""
-            Dim listExtension = New List(Of String)
-            listExtension.Add(".xls")
-            listExtension.Add(".xlsx")
-            listExtension.Add(".txt")
-            listExtension.Add(".ctr")
-            listExtension.Add(".doc")
-            listExtension.Add(".docx")
-            listExtension.Add(".xml")
-            listExtension.Add(".png")
-            listExtension.Add(".jpg")
-            listExtension.Add(".bitmap")
-            listExtension.Add(".jpeg")
-            listExtension.Add(".pdf")
-            Dim fileName As String
-
-            Dim strPath As String = Server.MapPath("~/AttachFile/Profile/ctrlHU_Title/")
-            If ctrlUpload1.UploadedFiles.Count >= 1 Then
-                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
-                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
-                    Dim str_Filename = Guid.NewGuid.ToString() + "\"
-                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
-                        System.IO.Directory.CreateDirectory(strPath + str_Filename)
-                        strPath = strPath + str_Filename
-                        fileName = System.IO.Path.Combine(strPath, file.FileName)
-                        file.SaveAs(fileName, True)
-                        txtUploadFile.Text = file.FileName
-                        Down_File = str_Filename
-                    Else
-                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS, XLSX, TXT, CTR, DOC, DOCX, XML, PNG, JPG, BITMAP, JPEG, PDF"), NotifyType.Warning)
-                        Exit Sub
-                    End If
-                Next
-                loadDatasource(txtUploadFile.Text)
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    ''' <summary>
-    ''' Xử lý sự kiện khi click btnDownload
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnDownload_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnDownload.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim bCheck As Boolean = False
-        Try
-            If txtUpload.Text <> "" Then
-                Dim strPath_Down As String
-                If FileOldName = txtUpload.Text.Trim Or FileOldName Is Nothing Then
-                    If txtRemindLink.Text IsNot Nothing Then
-                        If txtRemindLink.Text <> "" Then
-                            strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlHU_Title/" + txtRemindLink.Text)
-                            ZipFiles(strPath_Down)
-                        End If
-                    End If
-                Else
-                    If Down_File <> "" Then
-                        strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlHU_Title/" + Down_File)
-                        ZipFiles(strPath_Down)
-                    End If
-                End If
-            End If
-
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
 #End Region
 
 #Region "Custom"
@@ -761,97 +591,6 @@ Public Class ctrlHU_Title
 
         Try
             ChangeToolbarState()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    Private Sub ZipFiles(ByVal path As String)
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-
-        Try
-            Dim crc As New CRC32()
-            'Dim pathZip As String = AppDomain.CurrentDomain.BaseDirectory & "Zip\"
-            'Dim fileNameZip As String = "ThongTinKhenThuong.zip"
-            Dim fileNameZip As String = txtUpload.Text.Trim
-
-            'If Not Directory.Exists(pathZip) Then
-            '    Directory.CreateDirectory(pathZip)
-            'Else
-            '    For Each deleteFile In Directory.GetFiles(pathZip, "*.*", SearchOption.TopDirectoryOnly)
-            '        File.Delete(deleteFile)
-            '    Next
-            'End If
-
-            'Dim s As New ZipOutputStream(File.Create(pathZip & fileNameZip))
-            's.SetLevel(0)
-            '' 0 - store only to 9 - means best compression
-            'For i As Integer = 0 To Directory.GetFiles(path).Length - 1
-            '    ' Must use a relative path here so that files show up in the Windows Zip File Viewer
-            '    ' .. hence the use of Path.GetFileName(...)
-            '    Dim fileName As String = System.IO.Path.GetFileName(Directory.GetFiles(path)(i))
-
-            '    Dim entry As New ZipEntry(fileName)
-            '    entry.DateTime = DateTime.Now
-
-            '    ' Read in the 
-            '    Using fs As FileStream = File.Open(Directory.GetFiles(path)(i), FileMode.Open)
-            '        Dim buffer As Byte() = New Byte(fs.Length - 1) {}
-            '        fs.Read(buffer, 0, buffer.Length)
-            '        entry.Size = fs.Length
-            '        fs.Close()
-            '        crc.Reset()
-            '        crc.Update(buffer)
-            '        entry.Crc = crc.Value
-            '        s.PutNextEntry(entry)
-            '        s.Write(buffer, 0, buffer.Length)
-            '    End Using
-            'Next
-            's.Finish()
-            's.Close()
-
-            'Using FileStream = File.Open(path & fileNameZip, FileMode.Open)
-            '    Dim buffer As Byte() = New Byte(FileStream.Length - 1) {}
-            '    FileStream.Read(buffer, 0, buffer.Length)
-            '    Dim rEx As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9_\-\.]+")
-            '    Response.Clear()
-            '    Response.AddHeader("Content-Disposition", "attachment; filename=" + rEx.Replace(fileNameZip, "_"))
-            '    Response.AddHeader("Content-Length", FileStream.Length.ToString())
-            '    Response.ContentType = "application/octet-stream"
-            '    Response.BinaryWrite(buffer)
-            '    FileStream.Close()
-            'End Using
-
-            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
-            Response.Clear()
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
-            Response.AddHeader("Content-Length", file.Length.ToString())
-            'Response.ContentType = "application/octet-stream"
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
-            Response.WriteFile(file.FullName)
-            Response.End()
-
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            HttpContext.Current.Trace.Warn(ex.ToString())
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    Private Sub loadDatasource(ByVal strUpload As String)
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If strUpload <> "" Then
-                txtUploadFile.Text = strUpload
-                FileOldName = txtUpload.Text
-                txtUpload.Text = strUpload
-            Else
-                strUpload = String.Empty
-            End If
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")

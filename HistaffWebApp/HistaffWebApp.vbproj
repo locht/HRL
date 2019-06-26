@@ -561,7 +561,6 @@
     <Content Include="Modules\Profile\List\ctrlHU_Ward.ascx" />
     <Content Include="Modules\Profile\Report\ctrlHU_ReportList.ascx" />
     <Content Include="Modules\Profile\Setting\ctrlHU_WelfareList.ascx" />
-    <Content Include="Modules\Profile\Setting\ctrlLocation.ascx" />
     <Content Include="Modules\Profile\Setting\ctrlPA_SalaryGroup.ascx" />
     <Content Include="Modules\Performance\QuickLaunch-en-US.xml" />
     <Content Include="Modules\Performance\Menu-en-US.xml">
@@ -1691,7 +1690,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="AttachFile\Profile\ctrlHU_Title\" />
     <Folder Include="Excel\Trainning\" />
     <Folder Include="Modules\Organize\Report\" />
     <Folder Include="Modules\Organize\Setting\" />
