@@ -1412,6 +1412,9 @@ Public Class ctrlHU_TerminateNewEdit
                 ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
                 rgDebt.DataSource = dataSource
         End Select
+        If rgDebt.DataSource Is Nothing Then
+            rgDebt.DataSource = dataSource
+        End If
         rgDebt.DataBind()
         CalculateDebtTotal()
     End Sub
