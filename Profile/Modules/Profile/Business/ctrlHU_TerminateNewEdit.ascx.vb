@@ -23,7 +23,21 @@ Public Class ctrlHU_TerminateNewEdit
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 #Region "Property"
+    ''' <summary>
+    ''' IDDetailSelecting
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property IDDebtSelecting As Decimal?
+        Get
+            Return ViewState(Me.ID & "_IDDebtSelecting")
+        End Get
 
+        Set(ByVal value As Decimal?)
+            ViewState(Me.ID & "_IDDebtSelecting") = value
+        End Set
+    End Property
     Property lstHandoverContent As List(Of HandoverContentDTO)
         Get
             Return ViewState(Me.ID & "_lstHandoverContent")
@@ -581,13 +595,33 @@ Public Class ctrlHU_TerminateNewEdit
 
     End Sub
 
-    Private Sub rgDebt_SelectedIndexChanged()
-        ''' <summary>
-        ''' Event Yes/No trên Message popup hỏi áp dụng, ngừng áp dụng
-        ''' </summary>
-        ''' <param name="sender"></param>
-        ''' <param name="e"></param>
-        ''' <remarks></remarks>
+    Private Sub rgDebt_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgDebt.SelectedIndexChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            IDDebtSelecting = Decimal.Parse(CType(rgDebt.SelectedItems(0), GridDataItem).GetDataKeyValue("ID").ToString)
+            Dim datasource = GetDebtsSource()
+            Dim itemSelected = datasource.Find(Function(f) f.ID = IDDebtSelecting)
+            If itemSelected IsNot Nothing Then
+                cboDebtType.SelectedValue = itemSelected.DEBT_TYPE_ID
+                rntxtDebtMoney.Value = itemSelected.MONEY
+                cboDebtStatus.SelectedValue = itemSelected.DEBT_STATUS
+                txtDebtNote.Text = itemSelected.REMARK
+            End If
+            rgDebt.Rebind()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            'DisplayException(Me.ViewName, Me.ID, ex)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+    ''' <summary>
+    ''' Event Yes/No trên Message popup hỏi áp dụng, ngừng áp dụng
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim rep As New ProfileBusinessRepository
         Dim gID As Decimal
@@ -1507,7 +1541,6 @@ Public Class ctrlHU_TerminateNewEdit
     Private Sub Tinh_Tien_Con_Lai_Changed(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtAllowanceTerminate.TextChanged, rntxtAmountViolations.TextChanged, rntxtAmountWrongful.TextChanged
         Tinh_Tien_Con_lai()
     End Sub
-
 
 #End Region
 
