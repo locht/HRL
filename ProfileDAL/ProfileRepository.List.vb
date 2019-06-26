@@ -81,6 +81,8 @@ Partial Class ProfileRepository
         Try
             Dim query = From p In Context.HU_TITLE
                         From group In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TITLE_GROUP_ID).DefaultIfEmpty
+                        From orgLv In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From orgType In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.ORG_TYPE).DefaultIfEmpty
                         Select New TitleDTO With {
                                    .ID = p.ID,
                                    .CODE = p.CODE,
@@ -90,7 +92,16 @@ Partial Class ProfileRepository
                                    .CREATED_DATE = p.CREATED_DATE,
                                    .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
                                    .TITLE_GROUP_ID = p.TITLE_GROUP_ID,
-                                   .TITLE_GROUP_NAME = group.NAME_VN}
+                                   .TITLE_GROUP_NAME = group.NAME_VN,
+                                   .ORG_ID = p.ORG_ID,
+                                   .ORG_ID_NAME = orgLv.NAME_VN,
+                                   .ORG_TYPE = p.ORG_TYPE,
+                                   .ORG_TYPE_NAME = orgType.NAME_VN,
+                                   .HURTFUL_CHECK = If(p.HURTFUL = -1, True, False),
+                                   .OVT_CHECK = If(p.OVT = -1, True, False),
+                                   .SPEC_HURFUL_CHECK = If(p.SPEC_HURFUL = -1, True, False),
+                                   .UPLOAD_FILE = p.UPLOAD_FILE,
+                                   .FILENAME = p.FILENAME}
 
             Dim lst = query
 
@@ -169,6 +180,13 @@ Partial Class ProfileRepository
             objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.REMARK = objTitle.REMARK
             objTitleData.TITLE_GROUP_ID = objTitle.TITLE_GROUP_ID
+            objTitleData.HURTFUL = objTitle.HURTFUL
+            objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            objTitleData.OVT = objTitle.OVT
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.ORG_TYPE = objTitle.ORG_TYPE
+            objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
+            objTitleData.FILENAME = objTitle.FILENAME
             Context.HU_TITLE.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -224,6 +242,13 @@ Partial Class ProfileRepository
             objTitleData.NAME_VN = objTitle.NAME_VN
             objTitleData.REMARK = objTitle.REMARK
             objTitleData.TITLE_GROUP_ID = objTitle.TITLE_GROUP_ID
+            objTitleData.HURTFUL = objTitle.HURTFUL
+            objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            objTitleData.OVT = objTitle.OVT
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.ORG_TYPE = objTitle.ORG_TYPE
+            objTitleData.UPLOAD_FILE = objTitle.UPLOAD_FILE
+            objTitleData.FILENAME = objTitle.FILENAME
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True
@@ -5300,6 +5325,247 @@ Partial Class ProfileRepository
             Return dtData.Tables(0)
         End Using
         Return Nothing
+    End Function
+#End Region
+
+#Region "Location"
+    Public Function GetLocationID(ByVal ID As Decimal) As LocationDTO
+        Dim query As LocationDTO
+        Try
+            query = (From p In Context.HU_LOCATION
+                     Where p.ID = ID
+                     Select New LocationDTO With {.ID = p.ID,
+                                                 .CODE = p.CODE,
+                                                    .ORG_ID = p.ORG_ID,
+                                                   .ADDRESS = p.ADDRESS,
+                                                   .CONTRACT_PLACE = p.CONTRACT_PLACE,
+                                                     .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
+                                                 .LOCATION_SHORT_NAME = p.LOCATION_SHORT_NAME,
+                                               .WORK_ADDRESS = p.WORK_ADDRESS,
+                                                 .PHONE = p.PHONE,
+                                                 .FAX = p.FAX,
+                                                 .WEBSITE = p.WEBSITE,
+                                                .ACCOUNT_NUMBER = p.ACCOUNT_NUMBER,
+                                                 .BANK_ID = p.BANK_ID,
+                                                 .TAX_CODE = p.TAX_CODE,
+                                                 .TAX_DATE = p.TAX_DATE,
+                                                 .TAX_PLACE = p.TAX_PLACE,
+                                                 .EMP_LAW_ID = p.EMP_LAW_ID,
+                                                 .EMP_SIGNCONTRACT_ID = p.EMP_SIGNCONTRACT_ID,
+                                                 .BUSINESS_NAME = p.BUSINESS_NAME,
+                                                 .BUSINESS_NUMBER = p.BUSINESS_NUMBER,
+                                                 .NOTE = p.NOTE,
+                                                 .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
+                                                 .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
+                                                 .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
+                                                 .BANK_BRANCH_ID = p.BANK_BRANCH_ID}).SingleOrDefault
+            Return query
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function GetLocation(ByVal sACT As String, ByVal lstOrgID As List(Of Decimal)) As List(Of LocationDTO)
+        Dim query As ObjectQuery(Of LocationDTO)
+        Try
+            If sACT = "" Then
+                query = (From p In Context.HU_LOCATION.Where(Function(x) lstOrgID.Contains(x.ORG_ID))
+                          Where p.LOCATION_VN_NAME IsNot Nothing
+                         Select New LocationDTO With {.ID = p.ID,
+                                                     .CODE = p.CODE,
+                                                    .ORG_ID = p.ORG_ID,
+                                                      .ADDRESS = p.ADDRESS,
+                                                      .CONTRACT_PLACE = p.CONTRACT_PLACE,
+                                                      .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
+                                                     .LOCATION_SHORT_NAME = p.LOCATION_SHORT_NAME,
+                                                   .WORK_ADDRESS = p.WORK_ADDRESS,
+                                                     .PHONE = p.PHONE,
+                                                     .FAX = p.FAX,
+                                                     .WEBSITE = p.WEBSITE,
+                                                    .ACCOUNT_NUMBER = p.ACCOUNT_NUMBER,
+                                                     .BANK_ID = p.BANK_ID,
+                                                     .TAX_CODE = p.TAX_CODE,
+                                                     .TAX_DATE = p.TAX_DATE,
+                                                     .TAX_PLACE = p.TAX_PLACE,
+                                                     .EMP_LAW_ID = p.EMP_LAW_ID,
+                                                     .EMP_SIGNCONTRACT_ID = p.EMP_SIGNCONTRACT_ID,
+                                                     .BUSINESS_NAME = p.BUSINESS_NAME,
+                                                     .BUSINESS_NUMBER = p.BUSINESS_NUMBER,
+                                                     .NOTE = p.NOTE,
+                                                     .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
+                                                     .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
+                                                     .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
+                                                     .BANK_BRANCH_ID = p.BANK_BRANCH_ID})
+            Else
+                query = (From p In Context.HU_LOCATION.Where(Function(x) lstOrgID.Contains(x.ORG_ID))
+                         Where p.ACTFLG = sACT AndAlso p.LOCATION_VN_NAME IsNot Nothing
+                         Select New LocationDTO With {.ID = p.ID,
+                                                     .CODE = p.CODE,
+                                                    .ORG_ID = p.ORG_ID,
+                                                      .ADDRESS = p.ADDRESS,
+                                                      .CONTRACT_PLACE = p.CONTRACT_PLACE,
+                                                      .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
+                                                     .LOCATION_SHORT_NAME = p.LOCATION_SHORT_NAME,
+                                                   .WORK_ADDRESS = p.WORK_ADDRESS,
+                                                     .PHONE = p.PHONE,
+                                                     .FAX = p.FAX,
+                                                     .WEBSITE = p.WEBSITE,
+                                                    .ACCOUNT_NUMBER = p.ACCOUNT_NUMBER,
+                                                     .BANK_ID = p.BANK_ID,
+                                                     .TAX_CODE = p.TAX_CODE,
+                                                     .TAX_DATE = p.TAX_DATE,
+                                                     .TAX_PLACE = p.TAX_PLACE,
+                                                     .EMP_LAW_ID = p.EMP_LAW_ID,
+                                                     .EMP_SIGNCONTRACT_ID = p.EMP_SIGNCONTRACT_ID,
+                                                     .BUSINESS_NAME = p.BUSINESS_NAME,
+                                                     .BUSINESS_NUMBER = p.BUSINESS_NUMBER,
+                                                     .NOTE = p.NOTE,
+                                                     .LOCATION_EN_NAME = p.LOCATION_EN_NAME,
+                                                     .LOCATION_VN_NAME = p.LOCATION_VN_NAME,
+                                                     .BUSINESS_REG_DATE = p.BUSINESS_REG_DATE,
+                                                     .BANK_BRANCH_ID = p.BANK_BRANCH_ID})
+            End If
+
+            Return query.ToList
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+
+    End Function
+
+    Public Function InsertLocation(ByVal objLocation As LocationDTO,
+                                   ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objLocationData As New HU_LOCATION
+        Try
+            objLocationData.ID = Utilities.GetNextSequence(Context, Context.HU_LOCATION.EntitySet.Name)
+            ' objLocationData.CODE = objLocation.CODE
+            objLocationData.ORG_ID = objLocation.ORG_ID
+            objLocationData.ADDRESS = objLocation.ADDRESS
+            objLocationData.CONTRACT_PLACE = objLocation.CONTRACT_PLACE
+            objLocationData.LOCATION_SHORT_NAME = objLocation.LOCATION_SHORT_NAME
+            objLocationData.WORK_ADDRESS = objLocation.WORK_ADDRESS
+            objLocationData.PHONE = objLocation.PHONE
+            objLocationData.FAX = objLocation.FAX
+            objLocationData.WEBSITE = objLocation.WEBSITE
+            objLocationData.ACCOUNT_NUMBER = objLocation.ACCOUNT_NUMBER
+            objLocationData.BANK_ID = objLocation.BANK_ID
+            objLocationData.TAX_CODE = objLocation.TAX_CODE
+            objLocationData.ACTFLG = objLocation.ACTFLG
+            objLocationData.TAX_DATE = objLocation.TAX_DATE
+            objLocationData.TAX_PLACE = objLocation.TAX_PLACE
+            objLocationData.EMP_LAW_ID = objLocation.EMP_LAW_ID
+            objLocationData.EMP_SIGNCONTRACT_ID = objLocation.EMP_SIGNCONTRACT_ID
+            objLocationData.BUSINESS_NAME = objLocation.BUSINESS_NAME
+            objLocationData.BUSINESS_NUMBER = objLocation.BUSINESS_NUMBER
+            objLocationData.NOTE = objLocation.NOTE
+            objLocationData.LOCATION_EN_NAME = objLocation.LOCATION_EN_NAME
+            objLocationData.LOCATION_VN_NAME = objLocation.LOCATION_VN_NAME
+            objLocationData.BUSINESS_REG_DATE = objLocation.BUSINESS_REG_DATE
+            objLocationData.BANK_BRANCH_ID = objLocation.BANK_BRANCH_ID
+            Context.HU_LOCATION.AddObject(objLocationData)
+            Context.SaveChanges(log)
+            gID = objLocationData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function ModifyLocation(ByVal objLocation As LocationDTO,
+                                  ByVal log As UserLog, ByRef gID As Decimal) As Boolean
+        Dim objLocationData As New HU_LOCATION With {.ID = objLocation.ID}
+
+        Try
+            Context.HU_LOCATION.Attach(objLocationData)
+            ' objLocationData.CODE = objLocation.CODE
+            objLocationData.ORG_ID = objLocation.ORG_ID
+            objLocationData.ADDRESS = objLocation.ADDRESS
+            objLocationData.CONTRACT_PLACE = objLocation.CONTRACT_PLACE
+            objLocationData.LOCATION_SHORT_NAME = objLocation.LOCATION_SHORT_NAME
+            objLocationData.WORK_ADDRESS = objLocation.WORK_ADDRESS
+            objLocationData.PHONE = objLocation.PHONE
+            objLocationData.FAX = objLocation.FAX
+            objLocationData.WEBSITE = objLocation.WEBSITE
+            objLocationData.ACCOUNT_NUMBER = objLocation.ACCOUNT_NUMBER
+            objLocationData.BANK_ID = objLocation.BANK_ID
+            objLocationData.TAX_CODE = objLocation.TAX_CODE
+            objLocationData.TAX_DATE = objLocation.TAX_DATE
+            objLocationData.TAX_PLACE = objLocation.TAX_PLACE
+            objLocationData.EMP_LAW_ID = objLocation.EMP_LAW_ID
+            objLocationData.EMP_SIGNCONTRACT_ID = objLocation.EMP_SIGNCONTRACT_ID
+            objLocationData.BUSINESS_NAME = objLocation.BUSINESS_NAME
+            objLocationData.BUSINESS_NUMBER = objLocation.BUSINESS_NUMBER
+            objLocationData.NOTE = objLocation.NOTE
+            objLocationData.LOCATION_EN_NAME = objLocation.LOCATION_EN_NAME
+            objLocationData.LOCATION_VN_NAME = objLocation.LOCATION_VN_NAME
+            objLocationData.BUSINESS_REG_DATE = objLocation.BUSINESS_REG_DATE
+            objLocationData.BANK_BRANCH_ID = objLocation.BANK_BRANCH_ID
+            Context.SaveChanges(log)
+            gID = objLocationData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ActiveLocation(ByVal lstLocation As List(Of LocationDTO), ByVal sActive As String,
+                                   ByVal log As UserLog) As Boolean
+        Dim lstLocationData As List(Of HU_LOCATION)
+        Dim lstIDLocation As List(Of Decimal) = (From p In lstLocation.ToList Select p.ID).ToList
+        lstLocationData = (From p In Context.HU_LOCATION Where lstIDLocation.Contains(p.ID)).ToList
+        For index = 0 To lstLocationData.Count - 1
+            lstLocationData(index).ACTFLG = sActive
+            lstLocationData(index).MODIFIED_DATE = DateTime.Now
+            lstLocationData(index).MODIFIED_BY = log.Username
+            lstLocationData(index).MODIFIED_LOG = log.ComputerName
+        Next
+        Context.SaveChanges(log)
+        Return True
+    End Function
+
+    Public Function ActiveLocationID(ByVal lstLocation As LocationDTO, ByVal sActive As String,
+                                   ByVal log As UserLog) As Boolean
+        Dim location As HU_LOCATION
+        Try
+            location = (From p In Context.HU_LOCATION Where p.ID = lstLocation.ID).SingleOrDefault()
+            If location IsNot Nothing Then
+                location.ACTFLG = sActive
+                location.MODIFIED_DATE = DateTime.Now
+                location.MODIFIED_BY = log.Username
+                location.MODIFIED_LOG = log.ComputerName
+                Context.SaveChanges(log)
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function DeleteLocationID(ByVal lstlocation As Decimal,
+                                  ByVal log As UserLog) As Boolean
+        Dim location As HU_LOCATION
+        Try
+            location = (From p In Context.HU_LOCATION Where p.ID = lstlocation).SingleOrDefault()
+            If location IsNot Nothing Then
+                Context.HU_LOCATION.DeleteObject(location)
+                Context.SaveChanges(log)
+                Return True
+            End If
+            Return False
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
     End Function
 #End Region
 

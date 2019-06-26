@@ -132,6 +132,7 @@
     <Compile Include="BusinessObjects\List\PA_SALARY_TYPEDTO.vb" />
     <Compile Include="BusinessObjects\Setting\CompetencyCourseDTO.vb" />
     <Compile Include="BusinessObjects\Setting\AttachFilesDTO.vb" />
+    <Compile Include="BusinessObjects\Setting\LocationDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrganizationTreeDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrganizationVerticalDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrgChartDTO.vb" />

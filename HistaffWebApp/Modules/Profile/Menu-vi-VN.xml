@@ -38,6 +38,7 @@
       <Group>
         <Item Value="ctrlHU_WelfareList" Text="Phúc lợi" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_WelfareList&amp;group=Setting" CheckPermission="true" CausesValidation="False"/>
         <Item Value="ctrlRemindConfig" Text="Số ngày nhắc nhở" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlRemindConfig&amp;group=Setting" CheckPermission="true" CausesValidation="False"/>
+        <Item Value="ctrlLocation" Text="Thông tin đơn vị" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlLocation&amp;group=Setting" CheckPermission="true" CausesValidation="False"/>
       </Group>
     </Item>
 

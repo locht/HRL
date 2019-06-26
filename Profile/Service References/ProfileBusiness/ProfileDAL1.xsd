@@ -1,14 +1,116 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ProfileDAL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ProfileDAL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfLabourProtectionMngDTO">
+  <xs:complexType name="ArrayOfEmployeeDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="LabourProtectionMngDTO" nillable="true" type="tns:LabourProtectionMngDTO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmployeeDTO" nillable="true" type="tns:EmployeeDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfLabourProtectionMngDTO" nillable="true" type="tns:ArrayOfLabourProtectionMngDTO" />
+  <xs:element name="ArrayOfEmployeeDTO" nillable="true" type="tns:ArrayOfEmployeeDTO" />
+  <xs:complexType name="EmployeeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AUTOGENTIMESHEET" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BIRTH_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BOOKNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTRACT_EFFECT_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CONTRACT_EXPIRE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CONTRACT_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CONTRACT_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTRACT_TYPE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CONTRACT_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COST_SUPPORT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DIRECT_MANAGER" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DIRECT_MANAGER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EFFECT_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EMPLOYEE_3B_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_CODE_OLD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EMPLOYEE_NAME_OTHER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMP_STATUS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EMP_STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FIRST_NAME_EN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FIRST_NAME_VN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FROM_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FULLNAME_EN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FULLNAME_VN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GHI_CHU_SUC_KHOE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IMAGE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IMAGE_BINARY" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="IMAGE_URL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IS_HISTORY" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_TER" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ITIME_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JOIN_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="JOIN_DATE_STATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LAST_NAME_EN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LAST_NAME_VN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LAST_WORKING_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LEVEL_MANAGER" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LEVEL_MANAGER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MOBILE_PHONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MustHaveContract" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NHOM_MAU" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OBJECTTIMEKEEPING" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OBJECTTIMEKEEPING_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PARENT_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PA_OBJECT_SALARY_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PA_OBJECT_SALARY_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SAL_BASIC" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="STAFF_RANK_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="STAFF_RANK_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TER_EFFECT_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TITLE_GROUP_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TITLE_GROUP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TITLE_NAME_EN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TITLE_NAME_VN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WORK_EMAIL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WORK_STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstPaper" nillable="true" type="q1:ArrayOfdecimal" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstPaperFiled" nillable="true" type="q2:ArrayOfdecimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeDTO" nillable="true" type="tns:EmployeeDTO" />
+  <xs:complexType name="LabourProtectionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SDESC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UNIT_PRICE" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LabourProtectionDTO" nillable="true" type="tns:LabourProtectionDTO" />
+  <xs:complexType name="ArrayOfLabourProtectionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LabourProtectionDTO" nillable="true" type="tns:LabourProtectionDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLabourProtectionDTO" nillable="true" type="tns:ArrayOfLabourProtectionDTO" />
   <xs:complexType name="LabourProtectionMngDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
@@ -44,6 +146,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LabourProtectionMngDTO" nillable="true" type="tns:LabourProtectionMngDTO" />
+  <xs:complexType name="ArrayOfLabourProtectionMngDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LabourProtectionMngDTO" nillable="true" type="tns:LabourProtectionMngDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLabourProtectionMngDTO" nillable="true" type="tns:ArrayOfLabourProtectionMngDTO" />
   <xs:complexType name="OccupationalSafetyDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
@@ -328,7 +436,7 @@
       <xs:element minOccurs="0" name="LEVEL_NUMBER_ASS_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LEVEL_NUMBER_STANDARD" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="LEVEL_NUMBER_STANDARD_NAME" nillable="true" type="xs:string" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="LST_COMPETENCY_ID" nillable="true" type="q1:ArrayOfNullableOfdecimal" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="LST_COMPETENCY_ID" nillable="true" type="q3:ArrayOfNullableOfdecimal" />
       <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
@@ -619,7 +727,7 @@
       <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q2:ArrayOfdecimal" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q4:ArrayOfdecimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PERCENT_SALARY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
@@ -712,7 +820,7 @@
       <xs:element minOccurs="0" name="IS_TER" type="xs:boolean" />
       <xs:element minOccurs="0" name="IS_WAGE" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="IS_WAGE_SHORT" nillable="true" type="xs:short" />
-      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Ids" nillable="true" type="q3:ArrayOfdecimal" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Ids" nillable="true" type="q5:ArrayOfdecimal" />
       <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
@@ -792,6 +900,9 @@
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DRIVE_INFOR" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="DRIVE_INFOR_CHECK" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FILENAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HURTFUL" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="HURTFUL_CHECK" type="xs:boolean" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="LEVEL_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="LEVEL_TITLE_NAME" nillable="true" type="xs:string" />
@@ -800,9 +911,15 @@
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NAME_EN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NAME_VN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_TYPE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_TYPE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OVT" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="OVT_CHECK" type="xs:boolean" />
       <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPEC_HURFUL" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SPEC_HURFUL_CHECK" type="xs:boolean" />
       <xs:element minOccurs="0" name="TITLE_GROUP_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TITLE_GROUP_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UPLOAD_FILE" nillable="true" type="xs:string" />
@@ -811,6 +928,233 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TitleDTO" nillable="true" type="tns:TitleDTO" />
+  <xs:complexType name="TerminateDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALLOWANCE_TERMINATE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_DEDUCT_FROM_SAL" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_PAYMENT_CASH" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_VIOLATIONS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_WRONGFUL" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="APPROVAL_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AssetMngs" nillable="true" type="tns:ArrayOfAssetMngDTO" />
+      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COMPENSATORY_LEAVE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COMPENSATORY_PAYMENT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DECISION_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DECISION_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DECISION_TYPE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DECISION_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EFFECT_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_SENIORITY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FILENAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FROM_LAST_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FROM_SEND_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IDENTIFI_CARD" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IDENTIFI_MONEY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IDENTIFI_RDATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IDENTIFI_STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDENTIFI_VIOLATE_MONEY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="INSURANCE_CARD" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="INSURANCE_MONEY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="INSURANCE_RDATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="INSURANCE_STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IS_ALLOW" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_IMPACT" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_NOHIRE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_NOHIRE_SHORT" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="IS_REPLACE_POS" type="xs:boolean" />
+      <xs:element minOccurs="0" name="JOIN_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LAST_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MONEYALLOW" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MONEY_RETURN" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ABBR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OTHER_COMPENSATION" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PAYMENT_LEAVE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PERIOD_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="REMAINING_LEAVE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="REMAINING_LEAVE_MONEY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SALARYMEDIUM" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SALARYMEDIUM_LOSS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SEND_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SIGN_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SIGN_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SIGN_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIGN_TITLE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUM_COLLECT_DEBT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SUM_DEBT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SUN_CARD" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SUN_MONEY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SUN_RDATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SUN_STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TER_REASON" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TER_REASON_DETAIL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TO_LAST_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TO_SEND_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TRAINING_COSTS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TYPE_TERMINATE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WRITE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="YEARFORALLOW" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="lstDebts" nillable="true" type="tns:ArrayOfDebtDTO" />
+      <xs:element minOccurs="0" name="lstHandoverContent" nillable="true" type="tns:ArrayOfHandoverContentDTO" />
+      <xs:element minOccurs="0" name="lstReason" nillable="true" type="tns:ArrayOfTerminateReasonDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TerminateDTO" nillable="true" type="tns:TerminateDTO" />
+  <xs:complexType name="ArrayOfAssetMngDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AssetMngDTO" nillable="true" type="tns:AssetMngDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAssetMngDTO" nillable="true" type="tns:ArrayOfAssetMngDTO" />
+  <xs:complexType name="AssetMngDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ASSET_BARCODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSET_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSET_DECLARE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ASSET_GROUP_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSET_GROUP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSET_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ASSET_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSET_SERIAL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ASSET_VALUE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DATE_USE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DEPOSITS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DEPRECIATE" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="DESC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FROM_DATE_SEARCH" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ISSUE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IS_TERMINATE" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q6:ArrayOfdecimal" />
+      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_RECEIVE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_TRANFER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QUANTITY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RETURN_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="STAFF_RANK_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TER_LAST_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TO_DATE_SEARCH" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UNIT_PRICE" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="param" nillable="true" type="tns:ParamDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AssetMngDTO" nillable="true" type="tns:AssetMngDTO" />
+  <xs:complexType name="ArrayOfDebtDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DebtDTO" nillable="true" type="tns:DebtDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDebtDTO" nillable="true" type="tns:ArrayOfDebtDTO" />
+  <xs:complexType name="DebtDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEBT_STATUS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DEBT_STATUS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEBT_TYPE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DEBT_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MONEY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DebtDTO" nillable="true" type="tns:DebtDTO" />
+  <xs:complexType name="ArrayOfHandoverContentDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HandoverContentDTO" nillable="true" type="tns:HandoverContentDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHandoverContentDTO" nillable="true" type="tns:ArrayOfHandoverContentDTO" />
+  <xs:complexType name="HandoverContentDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CONTENT_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CONTENT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IS_FINISH" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TERMINATE_ID" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HandoverContentDTO" nillable="true" type="tns:HandoverContentDTO" />
+  <xs:complexType name="ArrayOfTerminateReasonDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TerminateReasonDTO" nillable="true" type="tns:TerminateReasonDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTerminateReasonDTO" nillable="true" type="tns:ArrayOfTerminateReasonDTO" />
+  <xs:complexType name="TerminateReasonDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DENSITY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="HU_TERMINATE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TER_REASON_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TER_REASON_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TerminateReasonDTO" nillable="true" type="tns:TerminateReasonDTO" />
+  <xs:complexType name="ArrayOfTerminateDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TerminateDTO" nillable="true" type="tns:TerminateDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTerminateDTO" nillable="true" type="tns:ArrayOfTerminateDTO" />
   <xs:complexType name="Terminate3BDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="COMPENSATORY_LEAVE" nillable="true" type="xs:decimal" />
@@ -871,85 +1215,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfTerminate3BDTO" nillable="true" type="tns:ArrayOfTerminate3BDTO" />
-  <xs:complexType name="EmployeeDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AUTOGENTIMESHEET" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="BIRTH_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="BOOKNO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CONTRACT_EFFECT_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CONTRACT_EXPIRE_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CONTRACT_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="CONTRACT_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CONTRACT_TYPE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="CONTRACT_TYPE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="COST_SUPPORT" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DIRECT_MANAGER" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="DIRECT_MANAGER_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EFFECT_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="EMPLOYEE_3B_ID" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_CODE_OLD" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="EMPLOYEE_NAME_OTHER" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMP_STATUS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="EMP_STATUS_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FIRST_NAME_EN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FIRST_NAME_VN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FROM_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FULLNAME_EN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FULLNAME_VN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GHI_CHU_SUC_KHOE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ID_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IMAGE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IMAGE_BINARY" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="IMAGE_URL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IS_HISTORY" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IS_TER" type="xs:boolean" />
-      <xs:element minOccurs="0" name="ITIME_ID" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="JOIN_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="JOIN_DATE_STATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="LAST_NAME_EN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="LAST_NAME_VN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="LAST_WORKING_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="LEVEL_MANAGER" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="LEVEL_MANAGER_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MOBILE_PHONE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MustHaveContract" type="xs:boolean" />
-      <xs:element minOccurs="0" name="NHOM_MAU" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="OBJECTTIMEKEEPING" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="OBJECTTIMEKEEPING_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PARENT_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="PA_OBJECT_SALARY_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="PA_OBJECT_SALARY_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SAL_BASIC" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="STAFF_RANK_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="STAFF_RANK_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TER_EFFECT_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TITLE_GROUP_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TITLE_GROUP_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TITLE_NAME_EN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TITLE_NAME_VN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="WORK_EMAIL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="WORK_STATUS_NAME" nillable="true" type="xs:string" />
-      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstPaper" nillable="true" type="q4:ArrayOfdecimal" />
-      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstPaperFiled" nillable="true" type="q5:ArrayOfdecimal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="EmployeeDTO" nillable="true" type="tns:EmployeeDTO" />
   <xs:complexType name="HuFileDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
@@ -1095,6 +1360,8 @@
       <xs:element minOccurs="0" name="GET_COMPUTER_LEVEL" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_CONTRACTTYPE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_CONTRACT_STATUS" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GET_DEBT_STATUS" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GET_DEBT_TYPE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_DECISION_REMARK" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_DECISION_STATUS" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_DECISION_TYPE" type="xs:boolean" />
@@ -1106,6 +1373,7 @@
       <xs:element minOccurs="0" name="GET_DISTRICT" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_EVALUATE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_GENDER" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GET_HANDOVER_CONTENT" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_HEALTH_TYPE" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_INDUSTRY" type="xs:boolean" />
       <xs:element minOccurs="0" name="GET_LABOURPROTECTION" type="xs:boolean" />
@@ -1162,6 +1430,8 @@
       <xs:element minOccurs="0" name="LIST_COMPUTER_LEVEL" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_CONTRACTTYPE" nillable="true" type="tns:ArrayOfContractTypeDTO" />
       <xs:element minOccurs="0" name="LIST_CONTRACT_STATUS" nillable="true" type="tns:ArrayOfOtherListDTO" />
+      <xs:element minOccurs="0" name="LIST_DEBT_STATUS" nillable="true" type="tns:ArrayOfOtherListDTO" />
+      <xs:element minOccurs="0" name="LIST_DEBT_TYPE" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_DECISION_REMARK" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_DECISION_STATUS" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_DECISION_TYPE" nillable="true" type="tns:ArrayOfOtherListDTO" />
@@ -1173,6 +1443,7 @@
       <xs:element minOccurs="0" name="LIST_DISTRICT" nillable="true" type="tns:ArrayOfDistrictDTO" />
       <xs:element minOccurs="0" name="LIST_EVALUATE" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_GENDER" nillable="true" type="tns:ArrayOfOtherListDTO" />
+      <xs:element minOccurs="0" name="LIST_HANDOVER_CONTENT" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_HEALTH_TYPE" nillable="true" type="tns:ArrayOfOtherListDTO" />
       <xs:element minOccurs="0" name="LIST_INDUSTRY" nillable="true" type="tns:ArrayOfIndustryDTO" />
       <xs:element minOccurs="0" name="LIST_INS_STATUS" nillable="true" type="tns:ArrayOfOtherListDTO" />
@@ -1316,29 +1587,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="IndustryDTO" nillable="true" type="tns:IndustryDTO" />
-  <xs:complexType name="ArrayOfLabourProtectionDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="LabourProtectionDTO" nillable="true" type="tns:LabourProtectionDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfLabourProtectionDTO" nillable="true" type="tns:ArrayOfLabourProtectionDTO" />
-  <xs:complexType name="LabourProtectionDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SDESC" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UNIT_PRICE" nillable="true" type="xs:decimal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="LabourProtectionDTO" nillable="true" type="tns:LabourProtectionDTO" />
   <xs:complexType name="ArrayOfNationDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="NationDTO" nillable="true" type="tns:NationDTO" />
@@ -1597,7 +1845,7 @@
       <xs:element minOccurs="0" name="NAME_TAXION" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
-      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q6:ArrayOfdecimal" />
+      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q7:ArrayOfdecimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PARAM" nillable="true" type="tns:ParamDTO" />
       <xs:element minOccurs="0" name="PERIOD_ID" nillable="true" type="xs:decimal" />
@@ -1671,7 +1919,7 @@
       <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
-      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q7:ArrayOfdecimal" />
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q8:ArrayOfdecimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PERIOD_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="PERIOD_NAME" nillable="true" type="xs:string" />
@@ -1707,6 +1955,8 @@
   <xs:element name="ArrayOfCommendEmpDTO" nillable="true" type="tns:ArrayOfCommendEmpDTO" />
   <xs:complexType name="CommendEmpDTO">
     <xs:sequence>
+      <xs:element minOccurs="0" name="COMMEND_PAY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COMMEND_PAY_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
@@ -1735,6 +1985,8 @@
   <xs:element name="ArrayOfCommendOrgDTO" nillable="true" type="tns:ArrayOfCommendOrgDTO" />
   <xs:complexType name="CommendOrgDTO">
     <xs:sequence>
+      <xs:element minOccurs="0" name="COMMEND_PAY" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COMMEND_PAY_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
@@ -1786,12 +2038,19 @@
   <xs:element name="ArrayOfDisciplineDTO" nillable="true" type="tns:ArrayOfDisciplineDTO" />
   <xs:complexType name="DisciplineDTO">
     <xs:sequence>
+      <xs:element minOccurs="0" name="AMOUNT_DEDUCT_AMOUNT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_IN_MONTH" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_PAID_CASH" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_SAL_MONTH" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AMOUNT_TO_PAID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DECISION_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="DECISION_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DECTECT_VIOLATION_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DEDUCT_FROM_SALARY" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DEL_DISCIPLINE_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DISCIPLINE_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DISCIPLINE_EMP" nillable="true" type="tns:ArrayOfDisciplineEmpDTO" />
       <xs:element minOccurs="0" name="DISCIPLINE_LEVEL" nillable="true" type="xs:decimal" />
@@ -1800,6 +2059,7 @@
       <xs:element minOccurs="0" name="DISCIPLINE_OBJ_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DISCIPLINE_OBJ_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DISCIPLINE_REASON" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DISCIPLINE_REASON_DETAIL" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DISCIPLINE_REASON_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DISCIPLINE_TYPE" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="DISCIPLINE_TYPE_NAME" nillable="true" type="xs:string" />
@@ -1810,6 +2070,7 @@
       <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EXPLAIN" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FILENAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
       <xs:element minOccurs="0" name="INDEMNIFY_MONEY" nillable="true" type="xs:decimal" />
@@ -1821,14 +2082,18 @@
       <xs:element minOccurs="0" name="MONEY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOTE_DISCIPLINE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NO_DISCIPLINE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
-      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q8:ArrayOfdecimal" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q9:ArrayOfdecimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PAIDMONEY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="PERFORM_TIME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PERIOD_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RERARK_DISCIPLINE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SIGNER_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SIGNER_TITLE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SIGN_DATE" nillable="true" type="xs:dateTime" />
@@ -1841,6 +2106,7 @@
       <xs:element minOccurs="0" name="TYPE_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TYPE_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VIOLATION_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="YEAR_PERIOD" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="param" nillable="true" type="tns:ParamDTO" />
     </xs:sequence>
@@ -2013,7 +2279,7 @@
       <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
-      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q9:ArrayOfdecimal" />
+      <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q10:ArrayOfdecimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PROGRAM_TRAINING" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
@@ -2088,12 +2354,52 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HuConditionColDTO" nillable="true" type="tns:HuConditionColDTO" />
-  <xs:complexType name="ArrayOfEmployeeDTO">
+  <xs:complexType name="TrainningForeignDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmployeeDTO" nillable="true" type="tns:EmployeeDTO" />
+      <xs:element minOccurs="0" name="CONTENT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DECISION_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMPLOYEE_ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FROM_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IS_TER" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LOCATION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
+      <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q11:ArrayOfdecimal" />
+      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIGNER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIGNER_TITLE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIGN_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SIGN_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="START_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TRAINNING_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TRAINNING_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WORKING_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Working" nillable="true" type="tns:WorkingDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfEmployeeDTO" nillable="true" type="tns:ArrayOfEmployeeDTO" />
+  <xs:element name="TrainningForeignDTO" nillable="true" type="tns:TrainningForeignDTO" />
+  <xs:complexType name="ArrayOfTrainningForeignDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrainningForeignDTO" nillable="true" type="tns:TrainningForeignDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrainningForeignDTO" nillable="true" type="tns:ArrayOfTrainningForeignDTO" />
   <xs:complexType name="HUAllowanceDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
@@ -2152,7 +2458,7 @@
   <xs:element name="ArrayOfHUAllowanceDTO" nillable="true" type="tns:ArrayOfHUAllowanceDTO" />
   <xs:complexType name="CommandResult">
     <xs:sequence>
-      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="Exception" nillable="true" type="q10:Exception" />
+      <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="Exception" nillable="true" type="q12:Exception" />
       <xs:element minOccurs="0" name="Status" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -2188,174 +2494,30 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfDisciplineSalaryDTO" nillable="true" type="tns:ArrayOfDisciplineSalaryDTO" />
-  <xs:complexType name="ArrayOfAssetMngDTO">
+  <xs:complexType name="CompetencyBuildDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="AssetMngDTO" nillable="true" type="tns:AssetMngDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfAssetMngDTO" nillable="true" type="tns:ArrayOfAssetMngDTO" />
-  <xs:complexType name="AssetMngDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ASSET_BARCODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ASSET_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ASSET_DECLARE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ASSET_GROUP_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ASSET_GROUP_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ASSET_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ASSET_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ASSET_SERIAL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ASSET_VALUE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COMPETENCY_GROUP_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COMPETENCY_GROUP_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COMPETENCY_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COMPETENCY_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DATE_USE" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="DEPOSITS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="DEPRECIATE" nillable="true" type="xs:double" />
-      <xs:element minOccurs="0" name="DESC" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FROM_DATE_SEARCH" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ISSUE_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="IS_TERMINATE" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
-      <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q11:ArrayOfdecimal" />
-      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_RECEIVE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_TRANFER" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="QUANTITY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="RETURN_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="STAFF_RANK_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="STATUS_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="STATUS_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TER_LAST_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TO_DATE_SEARCH" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="UNIT_PRICE" nillable="true" type="xs:double" />
-      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="param" nillable="true" type="tns:ParamDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="AssetMngDTO" nillable="true" type="tns:AssetMngDTO" />
-  <xs:complexType name="TerminateDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ALLOWANCE_TERMINATE" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="AMOUNT_VIOLATIONS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="AMOUNT_WRONGFUL" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="APPROVAL_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="AssetMngs" nillable="true" type="tns:ArrayOfAssetMngDTO" />
-      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="COMPENSATORY_LEAVE" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="COMPENSATORY_PAYMENT" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DECISION_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="DECISION_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EFFECT_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_SENIORITY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FILENAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FROM_LAST_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FROM_SEND_DATE" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="IDENTIFI_CARD" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="IDENTIFI_MONEY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="IDENTIFI_RDATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="IDENTIFI_STATUS" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IDENTIFI_VIOLATE_MONEY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ID_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="INSURANCE_CARD" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="INSURANCE_MONEY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="INSURANCE_RDATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="INSURANCE_STATUS" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IS_IMPACT" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IS_NOHIRE" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IS_NOHIRE_SHORT" nillable="true" type="xs:short" />
-      <xs:element minOccurs="0" name="JOIN_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="LAST_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LEVEL_NUMBER" nillable="true" type="xs:short" />
       <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MONEYALLOW" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="MONEY_RETURN" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ABBR" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="OTHER_COMPENSATION" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="PAYMENT_LEAVE" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="REMAINING_LEAVE" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="REMAINING_LEAVE_MONEY" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SALARYMEDIUM" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="SALARYMEDIUM_LOSS" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SEND_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="SIGN_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="SIGN_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="SIGN_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SIGN_TITLE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="STATUS_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="STATUS_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="STATUS_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SUM_DEBT" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="SUN_CARD" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="SUN_MONEY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="SUN_RDATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="SUN_STATUS" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TER_REASON_DETAIL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TO_LAST_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TO_SEND_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TRAINING_COSTS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TYPE_TERMINATE" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="UPLOADFILE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="WRITE_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="YEARFORALLOW" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="lstReason" nillable="true" type="tns:ArrayOfTerminateReasonDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="TerminateDTO" nillable="true" type="tns:TerminateDTO" />
-  <xs:complexType name="ArrayOfTerminateReasonDTO">
+  <xs:element name="CompetencyBuildDTO" nillable="true" type="tns:CompetencyBuildDTO" />
+  <xs:complexType name="ArrayOfCompetencyBuildDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TerminateReasonDTO" nillable="true" type="tns:TerminateReasonDTO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompetencyBuildDTO" nillable="true" type="tns:CompetencyBuildDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfTerminateReasonDTO" nillable="true" type="tns:ArrayOfTerminateReasonDTO" />
-  <xs:complexType name="TerminateReasonDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DENSITY" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="EMPLOYEE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="HU_TERMINATE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TER_REASON_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TER_REASON_NAME" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="TerminateReasonDTO" nillable="true" type="tns:TerminateReasonDTO" />
-  <xs:complexType name="ArrayOfTerminateDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TerminateDTO" nillable="true" type="tns:TerminateDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfTerminateDTO" nillable="true" type="tns:ArrayOfTerminateDTO" />
+  <xs:element name="ArrayOfCompetencyBuildDTO" nillable="true" type="tns:ArrayOfCompetencyBuildDTO" />
   <xs:complexType name="CompetencyStandardDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="COMPETENCY_GROUP_ID" nillable="true" type="xs:decimal" />
@@ -2376,6 +2538,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CompetencyStandardDTO" nillable="true" type="tns:CompetencyStandardDTO" />
+  <xs:complexType name="ArrayOfCompetencyStandardDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompetencyStandardDTO" nillable="true" type="tns:CompetencyStandardDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompetencyStandardDTO" nillable="true" type="tns:ArrayOfCompetencyStandardDTO" />
   <xs:complexType name="CompetencyAppendixDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
@@ -3005,7 +3173,7 @@
       <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
-      <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q12:ArrayOfdecimal" />
+      <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q13:ArrayOfdecimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RANK_ID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="RANK_NAME" nillable="true" type="xs:string" />
@@ -3024,52 +3192,62 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TrainningEvaluateDTO" nillable="true" type="tns:TrainningEvaluateDTO" />
-  <xs:complexType name="TrainningForeignDTO">
+  <xs:complexType name="OrganizationTreeDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" name="CONTENT" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DECISION_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EMPLOYEE_ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="EMPLOYEE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EXPIRE_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FROM_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="IS_TER" type="xs:boolean" />
-      <xs:element minOccurs="0" name="LOCATION" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_DESC" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_ID" type="xs:decimal" />
-      <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ORG_IDS" nillable="true" type="q13:ArrayOfdecimal" />
+      <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COST_CENTER_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DATE_BUSINESS" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DESCRIPTION_PATH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DISSOLVE_DATE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NAME_VN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUMBER_BUSINESS" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORD_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_CODE9" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID1" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID2" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID3" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID4" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID5" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID6" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID7" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID8" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ORG_ID9" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SIGNER_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SIGNER_TITLE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SIGN_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="SIGN_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="START_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TITLE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TITLE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TO_DATE" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TRAINNING_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="TRAINNING_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="WORKING_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="WORK_STATUS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="Working" nillable="true" type="tns:WorkingDTO" />
+      <xs:element minOccurs="0" name="ORG_NAME1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_NAME9" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_PATH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PARENT_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PIT_NO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROVINCE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REPRESENTATIVE_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="REPRESENTATIVE_NAME" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="TrainningForeignDTO" nillable="true" type="tns:TrainningForeignDTO" />
-  <xs:complexType name="ArrayOfTrainningForeignDTO">
+  <xs:element name="OrganizationTreeDTO" nillable="true" type="tns:OrganizationTreeDTO" />
+  <xs:complexType name="ArrayOfOrganizationDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrainningForeignDTO" nillable="true" type="tns:TrainningForeignDTO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrganizationDTO" nillable="true" type="tns:OrganizationDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfTrainningForeignDTO" nillable="true" type="tns:ArrayOfTrainningForeignDTO" />
+  <xs:element name="ArrayOfOrganizationDTO" nillable="true" type="tns:ArrayOfOrganizationDTO" />
   <xs:complexType name="OrganizationDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
@@ -3132,12 +3310,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="OrganizationPathDTO" nillable="true" type="tns:OrganizationPathDTO" />
-  <xs:complexType name="ArrayOfOrganizationDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrganizationDTO" nillable="true" type="tns:OrganizationDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfOrganizationDTO" nillable="true" type="tns:ArrayOfOrganizationDTO" />
   <xs:complexType name="OrgTitleDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
@@ -3294,36 +3466,48 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfCompetencyDTO" nillable="true" type="tns:ArrayOfCompetencyDTO" />
-  <xs:complexType name="CompetencyBuildDTO">
+  <xs:complexType name="LocationDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" name="COMPETENCY_GROUP_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="COMPETENCY_GROUP_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="COMPETENCY_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="COMPETENCY_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ACCOUNT_NUMBER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BANK_BRANCH_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BANK_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BUSINESS_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BUSINESS_NUMBER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BUSINESS_REG_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTRACT_PLACE" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CREATED_DATE" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CREATED_LOG" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMP_LAW_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EMP_SIGNCONTRACT_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FAX" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:decimal" />
-      <xs:element minOccurs="0" name="LEVEL_NUMBER" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="LOCATION_EN_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LOCATION_SHORT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LOCATION_VN_NAME" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MODIFIED_BY" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MODIFIED_DATE" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MODIFIED_LOG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOTE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORG_ID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PHONE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TAX_CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TAX_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TAX_PLACE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WEBSITE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WORK_ADDRESS" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="CompetencyBuildDTO" nillable="true" type="tns:CompetencyBuildDTO" />
-  <xs:complexType name="ArrayOfCompetencyBuildDTO">
+  <xs:element name="LocationDTO" nillable="true" type="tns:LocationDTO" />
+  <xs:complexType name="ArrayOfLocationDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompetencyBuildDTO" nillable="true" type="tns:CompetencyBuildDTO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LocationDTO" nillable="true" type="tns:LocationDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfCompetencyBuildDTO" nillable="true" type="tns:ArrayOfCompetencyBuildDTO" />
-  <xs:complexType name="ArrayOfCompetencyStandardDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompetencyStandardDTO" nillable="true" type="tns:CompetencyStandardDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCompetencyStandardDTO" nillable="true" type="tns:ArrayOfCompetencyStandardDTO" />
+  <xs:element name="ArrayOfLocationDTO" nillable="true" type="tns:ArrayOfLocationDTO" />
   <xs:simpleType name="ProfileCommon.TABLE_NAME">
     <xs:restriction base="xs:string">
       <xs:enumeration value="HU_TITLE">
@@ -3456,54 +3640,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MergeFieldDTO" nillable="true" type="tns:MergeFieldDTO" />
-  <xs:complexType name="OrganizationTreeDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ACTFLG" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="COST_CENTER_CODE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DATE_BUSINESS" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DESCRIPTION_PATH" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DISSOLVE_DATE" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="NAME_VN" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="NUMBER_BUSINESS" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORD_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE1" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE2" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE3" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE4" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE5" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE6" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE7" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE8" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_CODE9" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_ID1" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID2" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID3" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID4" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID5" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID6" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID7" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID8" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_ID9" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ORG_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME1" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME2" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME3" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME4" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME5" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME6" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME7" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME8" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_NAME9" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ORG_PATH" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PARENT_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="PIT_NO" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PROVINCE_NAME" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="REPRESENTATIVE_ID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="REPRESENTATIVE_NAME" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="OrganizationTreeDTO" nillable="true" type="tns:OrganizationTreeDTO" />
 </xs:schema>
