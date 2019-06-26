@@ -611,12 +611,14 @@ Public Class ctrlHU_TerminateNewEdit
         End Try
 
     End Sub
-    ''' <summary>
-    ''' Event Yes/No trên Message popup hỏi áp dụng, ngừng áp dụng
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
+
+    Private Sub rgDebt_SelectedIndexChanged()
+        ''' <summary>
+        ''' Event Yes/No trên Message popup hỏi áp dụng, ngừng áp dụng
+        ''' </summary>
+        ''' <param name="sender"></param>
+        ''' <param name="e"></param>
+        ''' <remarks></remarks>
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Dim rep As New ProfileBusinessRepository
         Dim gID As Decimal
