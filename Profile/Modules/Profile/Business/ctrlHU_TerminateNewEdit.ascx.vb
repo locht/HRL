@@ -46,14 +46,22 @@ Public Class ctrlHU_TerminateNewEdit
             ViewState(Me.ID & "_lstHandoverContent") = value
         End Set
     End Property
-    Property lstReason As List(Of TerminateReasonDTO)
+    Property lstDebtForEdit As List(Of DebtDTO)
         Get
-            Return ViewState(Me.ID & "_lstReason")
+            Return ViewState(Me.ID & "_lstDebtForEdit")
         End Get
-        Set(ByVal value As List(Of TerminateReasonDTO))
-            ViewState(Me.ID & "_lstReason") = value
+        Set(ByVal value As List(Of DebtDTO))
+            ViewState(Me.ID & "_lstDebtForEdit") = value
         End Set
     End Property
+    'Property lstReason As List(Of TerminateReasonDTO)
+    '    Get
+    '        Return ViewState(Me.ID & "_lstReason")
+    '    End Get
+    '    Set(ByVal value As List(Of TerminateReasonDTO))
+    '        ViewState(Me.ID & "_lstReason") = value
+    '    End Set
+    'End Property
 
     Property Terminate As TerminateDTO
         Get
@@ -313,6 +321,12 @@ Public Class ctrlHU_TerminateNewEdit
 
                     lstHandoverContent = Terminate.lstHandoverContent
                     rntxtReserveSeniority.Value = Terminate.REVERSE_SENIORITY
+                    rgDebt.Rebind()
+                    For Each i As GridItem In rgDebt.Items
+                        i.Edit = True
+                    Next
+                    rgDebt.Rebind()
+                    rgHandoverContent.Rebind()
                     For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
                     Next
@@ -330,17 +344,11 @@ Public Class ctrlHU_TerminateNewEdit
                         rntxtCash.ReadOnly = False
                         rgDebt.Enabled = True
                         rgHandoverContent.Enabled = True
+                        EnableRadCombo(cboDebtStatus, True)
                         MainToolBar.Items(0).Enabled = True
                     End If
 
                 Case "InsertView"
-                    'lstReason = New List(Of TerminateReasonDTO)
-                    'For Each obj In ListComboData.LIST_TER_REASON
-                    '    Dim objReason As New TerminateReasonDTO
-                    '    objReason.TER_REASON_ID = obj.ID
-                    '    objReason.TER_REASON_NAME = obj.NAME_VN
-                    '    lstReason.Add(objReason)
-                    'Next
                     lstHandoverContent = New List(Of HandoverContentDTO)
                     For Each obj In ListComboData.LIST_HANDOVER_CONTENT
                         Dim objHandover As New HandoverContentDTO
@@ -348,6 +356,11 @@ Public Class ctrlHU_TerminateNewEdit
                         objHandover.CONTENT_NAME = obj.NAME_VN
                         lstHandoverContent.Add(objHandover)
                     Next
+                    rgDebt.Rebind()
+                    For Each i As GridItem In rgDebt.Items
+                        i.Edit = True
+                    Next
+                    rgDebt.Rebind()
                     rgHandoverContent.Rebind()
                     For Each i As GridItem In rgHandoverContent.Items
                         i.Edit = True
@@ -641,7 +654,9 @@ Public Class ctrlHU_TerminateNewEdit
                 cboDebtStatus.SelectedValue = itemSelected.DEBT_STATUS
                 txtDebtNote.Text = itemSelected.REMARK
             End If
-            rgDebt.Rebind()
+            lstDebtForEdit = datasource
+
+            'rgDebt.DataBind()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -1387,13 +1402,16 @@ Public Class ctrlHU_TerminateNewEdit
         Select Case e.CommandName
             Case "btnAddDebt"
                 AddDebt(dataSource)
+                ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
+                rgDebt.DataSource = dataSource
             Case "btnEditDebt"
-                EditDebt(dataSource, rgDebt.SelectedItems)
+                EditDebt(lstDebtForEdit, IDDebtSelecting)
+                rgDebt.DataSource = lstDebtForEdit
             Case "btnDeleteDebts"
                 DeleteDebts(dataSource, rgDebt.SelectedItems)
+                ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
+                rgDebt.DataSource = dataSource
         End Select
-        ClearControlValue(cboDebtType, rntxtDebtMoney, txtDebtNote, cboDebtStatus)
-        rgDebt.DataSource = dataSource
         rgDebt.DataBind()
         CalculateDebtTotal()
     End Sub
@@ -1427,10 +1445,14 @@ Public Class ctrlHU_TerminateNewEdit
         Return dataSource
     End Function
 
-    Private Function EditDebt(ByVal dataSource As List(Of DebtDTO), ByVal selectedItems As GridItemCollection) As List(Of DebtDTO)
+    Private Function EditDebt(ByVal dataSource As List(Of DebtDTO), ByVal ID As Decimal) As List(Of DebtDTO)
         Try
-            'rgDebt.SelectedItems("DEBT_STATUS") = cboDebtStatus.SelectedValue
-            Return (dataSource)
+            Dim status = dataSource.Find(Function(f) f.ID = ID).DEBT_STATUS
+            If status = ProfileCommon.DEBT_STATUS.NOT_COMPLETE_ID Then
+                dataSource.Where(Function(f) f.ID = ID).FirstOrDefault().DEBT_STATUS = cboDebtStatus.SelectedValue
+                dataSource.Where(Function(f) f.ID = ID).FirstOrDefault().DEBT_STATUS_NAME = cboDebtStatus.Text
+            End If
+            Return dataSource
         Catch ex As Exception
             Throw ex
         End Try

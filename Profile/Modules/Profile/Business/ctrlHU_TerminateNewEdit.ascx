@@ -278,7 +278,10 @@
             <tr>
                 <td colspan="6">
                     <tlk:RadGrid PageSize="50" ID="rgDebt" runat="server" Height="250px" Width="100%" SkinID="GridNotPaging"
-                        AllowMultiRowEdit="true">
+                        AllowMultiRowEdit="true" AllowMultiRowSelection="false">
+                        <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="True">
+                        <Selecting AllowRowSelect="true" />
+                    </ClientSettings>
                         <MasterTableView EditMode="PopUp" DataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" ClientDataKeyNames="DEBT_TYPE_ID,DEBT_TYPE_NAME,MONEY,ID,DEBT_STATUS,DEBT_STATUS_NAME,REMARK" CommandItemDisplay="Top" AllowAutomaticInserts="true">
                             <CommandItemStyle Height="28px" />
                             <CommandItemTemplate>
@@ -289,12 +292,12 @@
                                             CausesValidation="false" Width="70px" Text="<%$ Translate: Thêm %>" OnClientClicking="btnAddDebtsOnClientClicking">
                                         </tlk:RadButton>
                                     </div>
-                                    <%--<div style="float: left">
+                                    <div style="float: left">
                                         <tlk:RadButton ID="btnEditDebt" runat="server" Icon-PrimaryIconUrl="~/Static/Images/Toolbar/edit.png" 
                                             CommandName="btnEditDebt"
                                             CausesValidation="false" Width="70px" Text="<%$ Translate: Sửa %>" OnClientClicking="btnEditDebtsOnClientClicking">
                                         </tlk:RadButton>
-                                    </div>--%>
+                                    </div>
                                     <div style="float: right">
                                         <tlk:RadButton ID="btnDeleteDebts" runat="server"
                                             CommandName="btnDeleteDebts"
@@ -306,6 +309,9 @@
                             </CommandItemTemplate>
 
                             <Columns>
+                                <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                                    HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
+                                </tlk:GridClientSelectColumn>--%>
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên loại công nợ %>" DataField="DEBT_TYPE_NAME"
                                     SortExpression="DEBT_TYPE_NAME" UniqueName="DEBT_TYPE_NAME" ReadOnly="true" />
                                 <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền %>" DataField="MONEY"
@@ -699,7 +705,7 @@
             // grid.MasterTableView.isItemInserted = true;
             // grid.MasterTableView.showInsertItem();
         }
-        function btnAddDebtsOnClientClicking(sender, args) {
+        function btnEditDebtsOnClientClicking(sender, args) {
 
         }
         var enableAjax = true;
