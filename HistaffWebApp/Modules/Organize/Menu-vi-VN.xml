@@ -2,8 +2,7 @@
 <Menu>
   <Group>
     <Item Text="Nghiệp vụ"  PostBack="False">
-      <Group>
-        <Item Value="ctrlHU_Organization" Text="Sơ đồ tổ chức" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlHU_Organization&amp;group=Business" CheckPermission="true" CausesValidation="False"/>
+      <Group>        
         <Item Value="ctrlOrgChart" Text="Xem Org-Chart của tổ chức" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlOrgChart&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Title" Text="Quản lý chức danh" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlHU_Title&amp;group=Business" CheckPermission="true" CausesValidation="False"/>
         <Item Value="ctrlHU_OrgTitle" Text="Thiết lập chức danh theo đơn vị" PostBack="True" NavigateUrl="Default.aspx?mid=Organize&amp;fid=ctrlHU_OrgTitle&amp;group=Business" CheckPermission="true" CausesValidation="False" />
