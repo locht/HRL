@@ -2475,5 +2475,57 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 #End Region
+#Region "danh mục người ký"
+        Public Function GET_HU_SIGNER() As DataTable Implements ServiceContracts.IProfileBusiness.GET_HU_SIGNER
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.GET_HU_SIGNER()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        'them ng ki
+        Public Function INSERT_HU_SIGNER(ByVal PA As SignerDTO) As Boolean Implements ServiceContracts.IProfileBusiness.INSERT_HU_SIGNER
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.INSERT_HU_SIGNER(PA)
+            Catch ex As Exception
+
+            End Try
+        End Function
+        'CHECK TON TAI HAY CHUA 
+        Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal Implements ServiceContracts.IProfileBusiness.CHECK_EXIT
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.CHECK_EXIT(P_ID, idemp)
+            Catch ex As Exception
+
+            End Try
+        End Function
+        Public Function UPDATE_HU_SIGNER(ByVal PA As SignerDTO) As Boolean Implements ServiceContracts.IProfileBusiness.UPDATE_HU_SIGNER
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.UPDATE_HU_SIGNER(PA)
+            Catch ex As Exception
+
+            End Try
+        End Function
+        Public Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal) Implements ServiceContracts.IProfileBusiness.DeactiveAndActiveSigner
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.DeactiveAndActiveSigner(lstID, sActive)
+            Catch ex As Exception
+
+            End Try
+        End Function
+        Public Function DeleteSigner(ByVal lstID As String) Implements ServiceContracts.IProfileBusiness.DeleteSigner
+            Try
+                Dim rep As New ProfileRepository
+                Return rep.DeleteSigner(lstID)
+            Catch ex As Exception
+
+            End Try
+        End Function
+#End Region
     End Class
 End Namespace

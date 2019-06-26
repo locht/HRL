@@ -38540,4 +38540,116 @@ Xin cám ơn!
       <string>Có lỗi trong quá trình import. Lưu file lỗi chi tiết</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN ĐẾN HẠN BỔ NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Nhân viên đến hạn bổ nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN ĐẾN HẠN KÝ LẠI HĐLĐ</string>
+    </Key>
+    <Value>
+      <string>Nhân viên đến hạn ký lại HĐLĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN HẾT HẠN TẠM HOÃN HĐ</string>
+    </Key>
+    <Value>
+      <string>Nhân viên hết hạn tạm hoãn HĐ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN NGHỈ THAI SẢN ĐI LÀM LẠI</string>
+    </Key>
+    <Value>
+      <string>Nhân viên nghỉ thai sản đi làm lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN ĐẾN TUỔI NGHỈ HƯU</string>
+    </Key>
+    <Value>
+      <string>Nhân viên đến tuổi nghỉ hưu</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN NGHỈ KHÔNG LƯƠNG ĐI LÀM LẠI</string>
+    </Key>
+    <Value>
+      <string>Nhân viên nghỉ không lương đi làm lại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_SIGNER</string>
+    </Key>
+    <Value>
+      <string>ctrlHU_Signer</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP TÊN LOẠI QUYẾT ĐỊNH</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập tên loại quyết định</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ NGƯỜI KÝ</string>
+    </Key>
+    <Value>
+      <string>Mã người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN NGƯỜI KÝ</string>
+    </Key>
+    <Value>
+      <string>Tên người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC VỊ NGƯỜI KÝ</string>
+    </Key>
+    <Value>
+      <string>Chức vị người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SIGNER_CODE</string>
+    </Key>
+    <Value>
+      <string>Mã người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NAME</string>
+    </Key>
+    <Value>
+      <string>Tên người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>STATUS_NAME</string>
+    </Key>
+    <Value>
+      <string>Trạng thái</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
