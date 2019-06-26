@@ -246,6 +246,7 @@
     <Content Include="Modules\Profile\List\ctrlHU_CommendFormula.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_CommendLevel.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Commend_List.ascx" />
+    <Content Include="Modules\Profile\List\ctrlHU_Signer.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_TitleConcurrent.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Ward.ascx" />
     <Content Include="Modules\Profile\Report\ctrlHU_ReportList.ascx" />
@@ -1188,6 +1189,13 @@
     <Compile Include="Modules\Profile\List\ctrlHU_Commend_List.ascx.vb">
       <DependentUpon>ctrlHU_Commend_List.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\List\ctrlHU_Signer.ascx.designer.vb">
+      <DependentUpon>ctrlHU_Signer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\List\ctrlHU_Signer.ascx.vb">
+      <DependentUpon>ctrlHU_Signer.ascx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\ProfileBusinessRepository.Contract.vb" />
     <Compile Include="Modules\Profile\ProfileBusinessRepository.Commend.vb" />

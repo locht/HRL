@@ -557,6 +557,7 @@
     <Content Include="Modules\Profile\List\ctrlHU_CommendLevel.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Commend_List.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_LabourProtection.ascx" />
+    <Content Include="Modules\Profile\List\ctrlHU_Signer.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_TitleConcurrent.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Ward.ascx" />
     <Content Include="Modules\Profile\Report\ctrlHU_ReportList.ascx" />

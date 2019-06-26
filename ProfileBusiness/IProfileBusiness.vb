@@ -2595,7 +2595,21 @@ Namespace ProfileBusiness.ServiceContracts
         <OperationContract()>
         Function ApproveListContract(ByVal listID As List(Of Decimal), ByVal log As UserLog) As Boolean
 #End Region
+#Region "Danh mục người ký"
+        <OperationContract()>
+        Function GET_HU_SIGNER() As DataTable
+        <OperationContract()>
+        Function INSERT_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
+        <OperationContract()>
+        Function UPDATE_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
+        <OperationContract()>
+        Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+        <OperationContract()>
+        Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal)
+        <OperationContract()>
+        Function DeleteSigner(ByVal lstID As String)
 
+#End Region
     End Interface
 
 End Namespace

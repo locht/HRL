@@ -5610,4 +5610,107 @@ Partial Class ProfileRepository
     End Function
 #End Region
 
+#Region " danh mục người ký"
+    'load dữ liệu
+    Public Function GET_HU_SIGNER() As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_HU_SIGNER",
+                                                             New With {.P_CUR = cls.OUT_CURSOR})
+                Return dtData
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    'thêm người ký
+    Public Function INSERT_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.INSERT_HU_SIGNER", New With {
+                                                                                                 PA.NAME,
+                                                                                                 PA.SIGNER_CODE,
+                                                                                                 PA.TITLE_NAME,
+                                                                                                PA.REMARK,
+                                                                                                  PA.CREATED_BY,
+                                                                                                PA.CREATED_LOG,
+                                                                                                 .P_OUT = cls.OUT_NUMBER})
+                Return True
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    ' update dữ liệu 
+
+    Public Function UPDATE_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.UPDATE_HU_SIGNER", New With {
+                                                                                            PA.ID,
+                                                                                            PA.NAME,
+                                                                                            PA.SIGNER_CODE,
+                                                                                            PA.TITLE_NAME,
+                                                                                            PA.REMARK,
+                                                                                            PA.CREATED_BY,
+                                                                                            PA.CREATED_LOG,
+                                                                                            .P_OUT = cls.OUT_NUMBER})
+                Return True
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Function
+    'CHECK DL DA TON TAI HAY CHUA
+    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Boolean
+        Try
+
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.CHECK_EXIT", New With {
+                                                                                    P_ID,
+                                                                                    idemp,
+                                                                                  .P_OUT = cls.OUT_CURSOR})
+                If Decimal.Parse(dtData(0)("CHECK1").ToString) > 0 Then
+                    Return True
+                Else
+                    Return False
+                End If
+
+
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    'XOA
+    Public Function DeleteSigner(ByVal lstID As String)
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.DELETE_SIGNER", New With {
+                                                                                    lstID
+                                                                                 })
+                Return True
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+    'AP DUNG HOAC NGUNG AP DUNG
+    Public Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal)
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.DeactiveAndActiveSigner", New With {
+                                                                                    lstID,
+                                                                                    sActive
+                                                                                 })
+                Return True
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return True
+    End Function
+#End Region
 End Class

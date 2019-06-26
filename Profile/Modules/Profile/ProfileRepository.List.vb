@@ -2110,4 +2110,66 @@ Partial Public Class ProfileRepository
     End Function
 
 #End Region
+#Region "danh mục người ký"
+    Public Function GET_HU_SIGNER() As DataTable
+        Dim dt As New DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                dt = rep.GET_HU_SIGNER()
+                Return rep.GET_HU_SIGNER()
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    ''THÊM
+    Public Function INSERT_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.INSERT_HU_SIGNER(PA)
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Function
+    ''SỬA
+    Public Function UPDATE_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.UPDATE_HU_SIGNER(PA)
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Function
+
+    Public Function CHECK_EXIT(ByVal P_ID As String, ByVal idemp As Decimal) As Decimal
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.CHECK_EXIT(P_ID, idemp)
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function DeactiveAndActiveSigner(ByVal lstID As String, ByVal sActive As Decimal)
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.DeactiveAndActiveSigner(lstID, sActive)
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Public Function DeleteSigner(ByVal lstID As String)
+        Try
+            Using rep As New ProfileBusinessClient
+                Return rep.DeleteSigner(lstID)
+            End Using
+        Catch ex As Exception
+
+        End Try
+    End Function
+#End Region
 End Class
