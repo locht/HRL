@@ -192,7 +192,7 @@
                         <asp:Label ID="lbAllowance_Total" runat="server" Text="Tổng phụ cấp"></asp:Label>
                  </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="Allowance_Total" runat="server" Enabled="False" 
+                    <tlk:RadNumericTextBox ID="cboAllowance_Total" runat="server" Enabled="False" 
                         SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
