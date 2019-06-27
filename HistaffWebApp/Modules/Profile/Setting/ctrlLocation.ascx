@@ -28,10 +28,10 @@
                         <%# Translate("CTRLLOCATION_LBLLOCATIONVN")%><span class="lbReq">*</span>
                     </td>
                     <td colspan="3">
-                        <tlk:RadTextBox runat="server" ID="txtLocationVN" Width ="92%" ReadOnly = "true" />
+                        <tlk:RadTextBox runat="server" ID="txtLocationVN" Width="92%" ReadOnly="true" />
                         <tlk:RadButton runat="server" ID="btnFindOrg" SkinID="ButtonView" CausesValidation="false" />
-                        <asp:RequiredFieldValidator ID="reqSDTC" ControlToValidate="txtLocationVN"
-                        runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn sơ đồ tổ chức. %>" ToolTip="<%$ Translate: Bạn phải chọn sơ đồ tổ chức. %>"> </asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="reqSDTC" ControlToValidate="txtLocationVN" runat="server"
+                            ErrorMessage="<%$ Translate: Bạn phải chọn sơ đồ tổ chức. %>" ToolTip="<%$ Translate: Bạn phải chọn sơ đồ tổ chức. %>"> </asp:RequiredFieldValidator>
                     </td>
                     <td class="lb" style="width: 100px">
                         <%# Translate("CTRLLOCATION_LBLLOCATIONEN")%>
@@ -50,8 +50,8 @@
                     <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLADDRESS")%>
                     </td>
-                    <td colspan ="3">
-                        <tlk:RadTextBox runat="server" ID="txtAddress" Width ="98%" />
+                    <td colspan="3">
+                        <tlk:RadTextBox runat="server" ID="txtAddress" Width="98%" />
                     </td>
                     <td class="lb" style="width: 100px">
                         <%# Translate("CTRLLOCATION_LBLPHONE")%>
@@ -64,12 +64,6 @@
                     </td>
                     <td>
                         <tlk:RadTextBox runat="server" ID="txtFax" />
-                    </td>
-                    <td class="lb" style="width: 100px">
-                        <%# Translate("CTRLLOCATION_ISSIGNCONTRACT")%>
-                    </td>
-                    <td>
-                        <asp:CheckBox runat="server" ID="ckIsSignContract" />
                     </td>
                 </tr>
                 <tr>
@@ -90,6 +84,13 @@
                     </td>
                     <td>
                         <tlk:RadTextBox runat="server" ID="txtWebsite" />
+                    </td>
+                    
+                    <td class="lb" style="width: 100px">
+                        <%# Translate("CTRLLOCATION_ISSIGNCONTRACT")%>
+                    </td>
+                    <td>
+                        <asp:CheckBox runat="server" ID="ckIsSignContract" />
                     </td>
                 </tr>
                 <tr>
@@ -117,6 +118,18 @@
                             OnClientItemsRequesting="OnClientItemsRequesting">
                         </tlk:RadComboBox>
                     </td>
+                    <td class="lb">
+                        <asp:Label runat="server" ID="lbUploadFile_LG" Text="<%$ Translate: CTRLLOCATION_LBLOGO %>"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtUpload_LG" ReadOnly="true" runat="server">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton runat="server" ID="btnUploadFile_LG" SkinID="ButtonView" CausesValidation="false"
+                            TabIndex="3" />
+                        <tlk:RadButton ID="btnDownload_LG" runat="server" Text="Tải xuống" CausesValidation="false"
+                            OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                        </tlk:RadButton>
+                    </td>
                 </tr>
                 <tr>
                     <td class="lb">
@@ -141,6 +154,18 @@
                         <tlk:RadComboBox ID="cboRank_Banch" runat="server" CausesValidation="false">
                         </tlk:RadComboBox>
                     </td>
+                    <td class="lb">
+                        <asp:Label runat="server" ID="lbUploadFile_HD" Text="<%$ Translate: CTRLLOCATION_LBHD %>"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtUpload_HD" ReadOnly="true" runat="server">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton runat="server" ID="btnUploadFile_HD" SkinID="ButtonView" CausesValidation="false"
+                            TabIndex="3" />
+                        <tlk:RadButton ID="btnDownload_HD" runat="server" Text="Tải xuống" CausesValidation="false"
+                            OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                        </tlk:RadButton>
+                    </td>
                 </tr>
                 <tr>
                     <td class="lb">
@@ -161,7 +186,20 @@
                     </td>
                     <td>
                         <tlk:RadTextBox runat="server" ID="txtTaxPlace" />
-                    </td>                   
+                    </td>
+                    
+                    <td class="lb">
+                        <asp:Label runat="server" ID="lbUploadFile_FT" Text="<%$ Translate: CTRLLOCATION_LBFT %>"></asp:Label>
+                    </td>
+                    <td>
+                        <tlk:RadTextBox ID="txtUpload_FT" ReadOnly="true" runat="server">
+                        </tlk:RadTextBox>
+                        <tlk:RadButton runat="server" ID="btnUploadFile_FT" SkinID="ButtonView" CausesValidation="false"
+                            TabIndex="3" />
+                        <tlk:RadButton ID="btnDownload_FT" runat="server" Text="Tải xuống" CausesValidation="false"
+                            OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                        </tlk:RadButton>
+                    </td>
                 </tr>
                 <tr>
                     <td class="lb">
@@ -227,11 +265,11 @@
                     </td>
                 </tr>
                 <tr>
-                     <td class="lb">
+                    <td class="lb">
                         <%# Translate("CTRLLOCATION_LBLNOTE")%>
                     </td>
-                    <td colspan ="7">
-                        <tlk:RadTextBox runat="server" ID="txtNote" Width ="100%" TextMode="MultiLine" />
+                    <td colspan="7">
+                        <tlk:RadTextBox runat="server" ID="txtNote" Width="100%" TextMode="MultiLine" />
                     </td>
                 </tr>
             </table>
@@ -293,6 +331,7 @@
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindEmployee_Contract" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="FindOrganization" runat="server"></asp:PlaceHolder>
@@ -357,6 +396,10 @@
                 cbo.clearSelection();
                 cbo.set_text('');
             }
+        }
+
+        function rbtClicked(sender, eventArgs) {
+            enableAjax = false;
         }
     </script>
 </tlk:RadCodeBlock>
