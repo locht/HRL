@@ -31,7 +31,6 @@
                         <td>
                             <tlk:RadDatePicker ID="rdExpireDate" runat="server">
                             </tlk:RadDatePicker>
-                            
                         </td>
                         <td>
                         </td>
@@ -51,43 +50,61 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
-                        <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
-                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                          <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" />
-                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME"
-                                SortExpression="EMPLOYEE_NAME" UniqueName="EMPLOYEE_NAME" />
-                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME"
-                                SortExpression="ORG_NAME" UniqueName="ORG_NAME" />                            
-                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME"
-                                SortExpression="TITLE_NAME" UniqueName="TITLE_NAME" />                          
-                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE"
-                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE"
-                                DataFormatString="{0:dd/MM/yyyy}" />
-                            <tlk:GridBoundColumn HeaderText="" DataField="SAL_TYPE_NAME" SortExpression="SAL_TYPE_NAME" UniqueName="SAL_TYPE_NAME" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="TAX_TABLE_Name" SortExpression="TAX_TABLE_Name" UniqueName="TAX_TABLE_Name"/>
-                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_BASIC" SortExpression="SAL_BASIC" UniqueName="SAL_BASIC" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="ResponsibilityAllowances"
-                                SortExpression="ResponsibilityAllowances" UniqueName="ResponsibilityAllowances" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="WorkAllowances"
-                                SortExpression="WorkAllowances" UniqueName="WorkAllowances" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="AttendanceAllowances"
-                                SortExpression="AttendanceAllowances" UniqueName="AttendanceAllowances" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="HousingAllowances"
-                                SortExpression="HousingAllowances" UniqueName="HousingAllowances" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="CarRentalAllowances" SortExpression="CarRentalAllowances" UniqueName="CarRentalAllowances" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_INS" SortExpression="SAL_INS" UniqueName="SAL_INS" DataFormatString="{0:n0}" />
-                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_TOTAL" SortExpression="SAL_TOTAL" UniqueName="SAL_TOTAL" DataFormatString="{0:n0}" />
-
-                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME" SortExpression="STATUS_NAME" UniqueName="STATUS_NAME" />
-                            <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC" SortExpression="ORG_DESC" Visible="false" />--%>
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE"
+                                UniqueName="EMPLOYEE_CODE" />
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="EMPLOYEE_NAME" SortExpression="EMPLOYEE_NAME"
+                                UniqueName="EMPLOYEE_NAME" />
+                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                                UniqueName="ORG_NAME" />
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" SortExpression="TITLE_NAME"
+                                UniqueName="TITLE_NAME" />
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="EFFECT_DATE" UniqueName="EFFECT_DATE" DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EXPIRE_DATE" ItemStyle-HorizontalAlign="Center"
+                                SortExpression="EXPIRE_DATE" UniqueName="EXPIRE_DATE" DataFormatString="{0:dd/MM/yyyy}" />
+                            <tlk:GridBoundColumn HeaderText="Nhóm lương" DataField="SAL_TYPE_NAME" SortExpression="SAL_TYPE_NAME"
+                                UniqueName="SAL_TYPE_NAME" />
+                            <tlk:GridNumericColumn HeaderText="Biểu thuế" DataField="TAX_TABLE_Name" SortExpression="TAX_TABLE_Name"
+                                UniqueName="TAX_TABLE_Name" />
+                            <tlk:GridBoundColumn HeaderText="Thang lương " DataField="SAL_GROUP_NAME" UniqueName="SAL_GROUP_NAME"
+                                SortExpression="SAL_GROUP_NAME" ShowFilterIcon="true" />
+                            <tlk:GridNumericColumn HeaderText="Hệ số" DataField="FACTORSALARY" UniqueName="FACTORSALARY"
+                                SortExpression="FACTORSALARY" ShowFilterIcon="true" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="Lương cơ bản" DataField="SAL_BASIC" SortExpression="SAL_BASIC"
+                                UniqueName="SAL_BASIC" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="% Lương được hưởng" DataField="PERCENTSALARY"
+                                UniqueName="PERCENTSALARY" SortExpression="PERCENTSALARY" ShowFilterIcon="true" />
+                            <tlk:GridNumericColumn HeaderText="Thưởng hiệu quả công việc" DataField="OTHERSALARY2"
+                                UniqueName="OTHERSALARY2" SortExpression="OTHERSALARY2" ShowFilterIcon="true"
+                                DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="Tổng Lương" DataField="SAL_TOTAL" UniqueName="SAL_TOTAL"
+                                SortExpression="SAL_TOTAL" ShowFilterIcon="true" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="Chi phí hỗ trợ " DataField="COST_SUPPORT" UniqueName="COST_SUPPORT"
+                                SortExpression="COST_SUPPORT" ShowFilterIcon="true" DataFormatString="{0:n0}" />
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_NAME" SortExpression="STATUS_NAME"
+                                UniqueName="STATUS_NAME" />
+                            <tlk:GridNumericColumn HeaderText="" DataField="ResponsibilityAllowances" SortExpression="ResponsibilityAllowances"
+                                UniqueName="ResponsibilityAllowances" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="" DataField="WorkAllowances" SortExpression="WorkAllowances"
+                                UniqueName="WorkAllowances" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="" DataField="AttendanceAllowances" SortExpression="AttendanceAllowances"
+                                UniqueName="AttendanceAllowances" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="" DataField="HousingAllowances" SortExpression="HousingAllowances"
+                                UniqueName="HousingAllowances" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="" DataField="CarRentalAllowances" SortExpression="CarRentalAllowances"
+                                UniqueName="CarRentalAllowances" DataFormatString="{0:n0}" />
+                            <tlk:GridNumericColumn HeaderText="" DataField="SAL_INS" SortExpression="SAL_INS"
+                                UniqueName="SAL_INS" DataFormatString="{0:n0}" />
+                            <tlk:GridBoundColumn HeaderText="ORG_DESC" DataField="ORG_DESC" UniqueName="ORG_DESC"
+                                SortExpression="ORG_DESC" Visible="false" />--%>
                         </Columns>
                         <HeaderStyle Width="120px" />
                     </MasterTableView>
@@ -121,9 +138,6 @@
             }
         }
 
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_WageMng_RadSplitter3');
-        }
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {

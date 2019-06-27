@@ -432,7 +432,7 @@ Partial Class ProfileRepository
                                         .COST_SUPPORT = p.COST_SUPPORT,
                                         .PERCENT_SALARY = p.PERCENT_SALARY,
                                         .PERCENTSALARY = p.PERCENTSALARY,
-                                        .SAL_TOTAL = p.SAL_TOTAL,
+                                        .SAL_TOTAL = p.SAL_TOTAL + If((From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum Is Nothing, 0, (From a In Context.HU_WORKING_ALLOW.Where(Function(f) f.HU_WORKING_ID = p.ID) Select a.AMOUNT).Sum),
                                         .EMPLOYEE_3B_ID = p.EMPLOYEE_3B_ID,
                                         .WORK_STATUS = e.WORK_STATUS,
                                         .TER_EFFECT_DATE = e.TER_EFFECT_DATE,
