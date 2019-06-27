@@ -269,7 +269,7 @@ Public Class ctrlHU_WageNewEdit
                         SalaryInsurance.Text = Working.SAL_INS
                     End If
                     If Working.ALLOWANCE_TOTAL IsNot Nothing Then
-                        Allowance_Total.Text = Working.ALLOWANCE_TOTAL
+                        cboAllowance_Total.Text = Working.ALLOWANCE_TOTAL
                     End If
                     If Working.SAL_TOTAL IsNot Nothing Then
                         Salary_Total.Text = Working.SAL_TOTAL
@@ -697,7 +697,7 @@ Public Class ctrlHU_WageNewEdit
                                                 .IS_INSURANCE = CType(dtData.Rows(i)("IS_INSURANCE"), Boolean)})
                         Next
                     Case cboSalTYPE.ID
-                        ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, rnFactorSalary, SalaryInsurance, Allowance_Total, basicSalary,
+                        ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, rnFactorSalary, SalaryInsurance, cboAllowance_Total, basicSalary,
                               Salary_Total, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
                         If e.Context("valueCustom") Is Nothing Then
                             dateValue = Date.Now
@@ -847,7 +847,7 @@ Public Class ctrlHU_WageNewEdit
                     End If
                     allow1.EXPIRE_DATE = rdAllowExpireDate.SelectedDate
                     lstAllow.Add(allow1)
-                    Allowance_Total.Value = If(Allowance_Total.Value Is Nothing, 0, Allowance_Total.Value) + allow1.AMOUNT
+                    cboAllowance_Total.Value = If(cboAllowance_Total.Value Is Nothing, 0, cboAllowance_Total.Value) + allow1.AMOUNT
                     ClearControlValue(cboAllowance, rntxtAmount, chkIsInsurrance, rdAllowExpireDate)
                     CalculatorSalary()
                     rgAllow.Rebind()
@@ -871,7 +871,7 @@ Public Class ctrlHU_WageNewEdit
                             lstAllow.Add(allow)
                         End If
                     Next
-                    ClearControlValue(Allowance_Total)
+                    ClearControlValue(cboAllowance_Total)
                     CalculatorSalary()
                     rgAllow.Rebind()
             End Select
@@ -1064,7 +1064,7 @@ Public Class ctrlHU_WageNewEdit
                     ShowMessage(Translate("Nhân viên trạng thái nghỉ việc. Không được phép chỉnh sửa thông tin."), Utilities.NotifyType.Warning)
                     Exit Sub
                 End If
-                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rnFactorSalary, SalaryInsurance, Allowance_Total, basicSalary,
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, cboTaxTable, cboSalTYPE, rnFactorSalary, SalaryInsurance, cboAllowance_Total, basicSalary,
                               Salary_Total, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
                 rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
                 rgAllow.Rebind()
@@ -1193,8 +1193,8 @@ Public Class ctrlHU_WageNewEdit
             If IsNumeric(basicSalary.Value) Then
                 obj.BASICSALARY = basicSalary.Value
             End If
-            If IsNumeric(Allowance_Total.Value) Then
-                obj.ALLOWANCE_TOTAL = Allowance_Total.Value
+            If IsNumeric(cboAllowance_Total.Value) Then
+                obj.ALLOWANCE_TOTAL = cboAllowance_Total.Value
             End If
             If IsNumeric(rnPercentSalary.Value) Then
                 obj.PERCENT_SALARY = rnPercentSalary.Value
@@ -1271,7 +1271,7 @@ Public Class ctrlHU_WageNewEdit
                     total = If(SalaryInsurance.Value.HasValue, SalaryInsurance.Value, 0) + _
                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
                             If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
-                            If(Allowance_Total.Value.HasValue, Allowance_Total.Value, 0)
+                            If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
                     If rnPercentSalary.Value.HasValue Then
                         total = total * rnPercentSalary.Value / 100
                     End If
@@ -1279,7 +1279,7 @@ Public Class ctrlHU_WageNewEdit
                     basicSalary.Enabled = False
                 Else
                     total = If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                            If(Allowance_Total.Value.HasValue, Allowance_Total.Value, 0)
+                            If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
                     If rnPercentSalary.Value.HasValue Then
                         total = total * rnPercentSalary.Value / 100
                     End If

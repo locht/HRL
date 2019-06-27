@@ -86,6 +86,15 @@ Partial Public Class ctrlPortalFamily_Edit
     Protected WithEvents cvalRelationship As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''chkIs_Owner control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIs_Owner As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''rdBirthDate control.
     '''</summary>
     '''<remarks>
@@ -111,6 +120,24 @@ Partial Public Class ctrlPortalFamily_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cvalIDNO As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
+    '''txtHouseCertificate_Num control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHouseCertificate_Num As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''txtHouseCertificate_Code control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHouseCertificate_Code As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''txtCareer control.
@@ -147,6 +174,69 @@ Partial Public Class ctrlPortalFamily_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAdress As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cbPROVINCE_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbPROVINCE_ID As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cbDISTRICT_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbDISTRICT_ID As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cbWARD_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbWARD_ID As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''txtTempAdress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTempAdress As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''cbTempPROVINCE_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbTempPROVINCE_ID As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cbTempDISTRICT_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbTempDISTRICT_ID As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''cbTempWARD_ID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbTempWARD_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''rdDeductReg control.
@@ -201,6 +291,15 @@ Partial Public Class ctrlPortalFamily_Edit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents compareDeductTo_DeductFrom As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''chkIs_Pass control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIs_Pass As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''txtRemark control.

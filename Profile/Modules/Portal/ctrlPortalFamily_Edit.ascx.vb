@@ -71,6 +71,8 @@ Public Class ctrlPortalFamily_Edit
                 If ComboBoxDataDTO IsNot Nothing Then
                     FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
                     FillDropDownList(cboNguyenQuan, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNguyenQuan.SelectedValue)
+                    FillDropDownList(cbPROVINCE_ID, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbPROVINCE_ID.SelectedValue)
+                    FillDropDownList(cbTempPROVINCE_ID, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbTempPROVINCE_ID.SelectedValue)
                 End If
 
             End Using
@@ -406,6 +408,17 @@ Public Class ctrlPortalFamily_Edit
     Protected Sub chkIsDeduct_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIsDeduct.CheckedChanged
         rdDeductFrom.Enabled = chkIsDeduct.Checked
         rdDeductTo.Enabled = chkIsDeduct.Checked
+    End Sub
+
+    Protected Sub chkIsOwner_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Owner.CheckedChanged
+        txtHouseCertificate_Num.ReadOnly = chkIs_Owner.Checked
+        txtHouseCertificate_Code.ReadOnly = chkIs_Owner.Checked
+    End Sub
+
+    Protected Sub chkIs_Pass_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Pass.CheckedChanged
+        If chkIs_Pass.Checked Then
+            chkIsDeduct.Checked = False
+        End If
     End Sub
 
     Private Sub cvalRelationship_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalRelationship.ServerValidate

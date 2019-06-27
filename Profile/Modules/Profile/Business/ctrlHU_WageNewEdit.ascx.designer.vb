@@ -473,13 +473,13 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents lbAllowance_Total As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Allowance_Total control.
+    '''cboAllowance_Total control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Allowance_Total As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents cboAllowance_Total As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbbasicSalary control.

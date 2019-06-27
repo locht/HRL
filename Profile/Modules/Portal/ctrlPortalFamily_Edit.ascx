@@ -28,6 +28,11 @@
                     ToolTip="<%$ Translate: Bạn phải chọn Mối quan hệ %>">
                 </asp:CustomValidator>
             </td>
+            <td class="lb">
+            </td>
+            <td>
+                <asp:CheckBox runat="server" ID="chkIs_Owner" AutoPostBack="true" Text="<%$ Translate : Là chủ hộ %>" />
+            </td>
         </tr>
         <tr>
             <td class="lb">
@@ -50,6 +55,20 @@
                 <asp:CustomValidator ID="cvalIDNO" runat="server" ErrorMessage="<%$ Translate: Số CMND không được phép trùng %>"
                     ToolTip="<%$ Translate: Số CMND không được phép trùng %>">
                 </asp:CustomValidator>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb">
+                <%# Translate("Số hộ khẩu")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" />
+            </td>
+            <td class="lb">
+                <%# Translate("Mã hộ gia đình")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" />
             </td>
         </tr>
         <tr>
@@ -79,11 +98,69 @@
         </tr>
         <tr>
             <td class="lb">
-                <%# Translate("Địa chỉ thường chú")%>
+                <%# Translate("Địa chỉ thường trú")%>
             </td>
             <td>
                 <tlk:RadTextBox runat="server" ID="txtAdress" />
             </td>
+            <td class="lb">
+                <%# Translate("Tỉnh/Thành phố")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbPROVINCE_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Quận/Huyện")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbDISTRICT_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Xã/Phường")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                </tlk:RadComboBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb">
+                <%# Translate("Địa chỉ tạm trú")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtTempAdress" />
+            </td>
+            <td class="lb">
+                <%# Translate("Tỉnh/Thành phố")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbTempPROVINCE_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Quận/Huyện")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbTempDISTRICT_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Xã/Phường")%>
+            </td>
+            <td>
+                <tlk:RadComboBox runat="server" ID="cbTempWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                </tlk:RadComboBox>
+            </td>
+        </tr>
+        <tr>
             <td class="lb">
                 <%# Translate("Ngày đăng ký giảm trừ")%>
             </td>
@@ -91,8 +168,6 @@
                 <tlk:RadDatePicker runat="server" ID="rdDeductReg">
                 </tlk:RadDatePicker>
             </td>
-        </tr>
-        <tr>
             <td class="lb">
             </td>
             <td>
@@ -126,6 +201,11 @@
                     Type="Date">
                 </asp:CompareValidator>
             </td>
+            <td class="lb">
+            </td>
+            <td>
+                <asp:CheckBox runat="server" ID="chkIs_Pass" AutoPostBack="true" Text="<%$ Translate : Đã mất  %>" />
+            </td>
         </tr>
         <tr>
             <td class="lb">
@@ -137,13 +217,12 @@
         </tr>
     </table>
     <tlk:RadGrid PageSize="50" ID="rgFamilyEdit" runat="server" Height="250px" Width="99%">
-        <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
+          <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
         <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
             ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
-            
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                     HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
