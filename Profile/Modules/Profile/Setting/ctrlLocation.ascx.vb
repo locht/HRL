@@ -6,6 +6,8 @@ Imports Telerik.Web.UI
 Imports Common.CommonBusiness
 Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
+Imports WebAppLog
+Imports Ionic.Crc
 
 Public Class ctrlLocation
     Inherits Common.CommonView
@@ -18,6 +20,14 @@ Public Class ctrlLocation
     Dim log As UserLog = LogHelper.GetUserLog
     Private hfr As New HistaffFrameworkRepository
 
+    ''' <creator>HongDX</creator>
+    ''' <lastupdate>21/06/2017</lastupdate>
+    ''' <summary>Write Log</summary>
+    ''' <remarks>_mylog, _pathLog, _classPath</remarks>
+    Dim _mylog As New MyLog()
+    Dim _pathLog As String = _mylog._pathLog
+    Dim _classPath As String = "Profile\Modules\Profile\List" + Me.GetType().Name.ToString()
+
 #Region "Property"
     Property IDSelect As Decimal
         Get
@@ -27,6 +37,7 @@ Public Class ctrlLocation
             ViewState(Me.ID & "_IDSelect") = value
         End Set
     End Property
+
     Property Location As LocationDTO
         Get
             Return ViewState(Me.ID & "_Location")
@@ -35,6 +46,7 @@ Public Class ctrlLocation
             ViewState(Me.ID & "_Location") = value
         End Set
     End Property
+
     Property Locations As List(Of LocationDTO)
         Get
             Return ViewState(Me.ID & "_Locations")
@@ -43,6 +55,7 @@ Public Class ctrlLocation
             ViewState(Me.ID & "_Locations") = value
         End Set
     End Property
+
     Property isLoadPopup As Integer
         Get
             Return ViewState(Me.ID & "_isLoadPopup")
@@ -51,6 +64,7 @@ Public Class ctrlLocation
             ViewState(Me.ID & "_isLoadPopup") = value
         End Set
     End Property
+
     Property ItemList As List(Of Decimal)
         Get
             Return PageViewState(Me.ID & "_ItemList")
@@ -77,6 +91,7 @@ Public Class ctrlLocation
             ViewState(Me.ID & "_ComboData") = value
         End Set
     End Property
+
     Property dtData As DataTable
         Get
             Return ViewState(Me.ID & "_dtData")
@@ -85,12 +100,31 @@ Public Class ctrlLocation
             ViewState(Me.ID & "_dtData") = value
         End Set
     End Property
+
     Property OldBankID As String
         Get
             Return ViewState(Me.ID & "_OldBankID")
         End Get
         Set(ByVal value As String)
             ViewState(Me.ID & "_OldBankID") = value
+        End Set
+    End Property
+
+    Property IsUpload As Decimal
+        Get
+            Return ViewState(Me.ID & "_IsUpload")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_IsUpload") = value
+        End Set
+    End Property
+
+    Property ActiveLocations As List(Of LocationDTO)
+        Get
+            Return ViewState(Me.ID & "_ActiveLocations")
+        End Get
+        Set(value As List(Of LocationDTO))
+            ViewState(Me.ID & "_ActiveLocations") = value
         End Set
     End Property
 #End Region
@@ -220,7 +254,7 @@ Public Class ctrlLocation
         End Try
     End Sub
 #End Region
-    
+
 #Region "Event"
 
     Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
@@ -252,7 +286,7 @@ Public Class ctrlLocation
                         Exit Sub
                     End If
 
-                    ItemList = RepareDataForAction()
+                    ActiveLocations = RepareDataForAction()
 
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_ACTIVE)
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_ACTIVE
@@ -265,7 +299,7 @@ Public Class ctrlLocation
                         Exit Sub
                     End If
 
-                    ItemList = RepareDataForAction()
+                    ActiveLocations = RepareDataForAction()
 
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DEACTIVE)
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_DEACTIVE
@@ -330,6 +364,14 @@ Public Class ctrlLocation
                         objLocationFunction.ACTFLG = "A"
                         objLocationFunction.NOTE = txtNote.Text
 
+                        objLocationFunction.IS_SIGN_CONTRACT = If(ckIsSignContract.Checked = True, 1, 0)
+                        objLocationFunction.PROVINCE_ID = If(cboProvince.SelectedValue <> "", Decimal.Parse(cboProvince.SelectedValue), 0)
+                        objLocationFunction.DISTRICT_ID = If(cboDistrict.SelectedValue <> "", Decimal.Parse(cboDistrict.SelectedValue), 0)
+                        objLocationFunction.WARD_ID = If(cboWard.SelectedValue <> "", Decimal.Parse(cboWard.SelectedValue), 0)
+
+                        objLocationFunction.FILE_LOGO = txtUpload_LG.Text.Trim
+                        objLocationFunction.FILE_HEADER = txtUpload_HD.Text.Trim
+                        objLocationFunction.FILE_FOOTER = txtUpload_FT.Text.Trim
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -372,8 +414,6 @@ Public Class ctrlLocation
                         Exit Sub
                     End If
 
-                    ItemList = RepareDataForAction()
-
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()
@@ -398,21 +438,23 @@ Public Class ctrlLocation
         Dim idList As String = String.Empty
         Try
             If e.ButtonID = MessageBoxButtonType.ButtonYes Then
-                For Each dr As Decimal In ItemList
-                    idList &= IIf(idList = vbNullString, dr, "," & dr)
-                Next
+                'For Each dr As Decimal In ItemList
+                '    idList &= IIf(idList = vbNullString, dr, "," & dr)
+                'Next
                 Select Case e.ActionName
                     Case CommonMessage.ACTION_ACTIVE
-                        result = rep.ActiveLocationID(Location, "A")
+                        result = rep.ActiveLocation(ActiveLocations, "A")
                     Case CommonMessage.ACTION_DEACTIVE
-                        result = rep.ActiveLocationID(Location, "I")
+                        result = rep.ActiveLocation(ActiveLocations, "I")
                     Case CommonMessage.TOOLBARITEM_DELETE
                         result = rep.DeleteLocationID(Location.ID)
                         'Case CommonMessage.TOOLBARITEM_DELETE
                         '    result = psp.Location_Delete(idList)
                 End Select
 
-                ItemList = Nothing
+                ActiveLocations = Nothing
+
+                'ItemList = Nothing
 
                 If result Then
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
@@ -483,7 +525,7 @@ Public Class ctrlLocation
                     If dt.BANK_ID IsNot Nothing Then
                         cbBank.SelectedValue = dt.BANK_ID
                         hfBank.Value = dt.BANK_ID
-                        FillRadCombobox(cboRank_Banch, rep.GetBankBranchByBankID(hfBank.Value), "NAME", "ID")
+                        FillRadCombobox(cboRank_Banch, rep.GetBankBranchByBankID(hfBank.Value), "NAME", "ID", True)
                     End If
 
                     cboRank_Banch.ClearSelection()
@@ -503,14 +545,14 @@ Public Class ctrlLocation
                     cboProvince.ClearSelection()
                     If dt.PROVINCE_ID IsNot Nothing Then
                         cboProvince.SelectedValue = dt.PROVINCE_ID
-                        FillRadCombobox(cboDistrict, rep.GetDistrictList(dt.PROVINCE_ID), "NAME", "ID")
+                        FillRadCombobox(cboDistrict, rep.GetDistrictList(dt.PROVINCE_ID, True), "NAME", "ID")
                     End If
 
                     cboDistrict.ClearSelection()
                     cboDistrict.Text = ""
                     If dt.DISTRICT_ID IsNot Nothing Then
                         cboDistrict.SelectedValue = dt.DISTRICT_ID
-                        FillRadCombobox(cboWard, rep.GetWardList(dt.DISTRICT_ID), "NAME", "ID")
+                        FillRadCombobox(cboWard, rep.GetWardList(dt.DISTRICT_ID, True), "NAME", "ID")
                     End If
 
                     cboWard.ClearSelection()
@@ -524,6 +566,10 @@ Public Class ctrlLocation
                     Else
                         ckIsSignContract.Checked = True
                     End If
+
+                    txtUpload_LG.Text = dt.FILE_LOGO
+                    txtUpload_HD.Text = dt.FILE_HEADER
+                    txtUpload_FT.Text = dt.FILE_FOOTER
 
                     If dt.EMP_SIGNCONTRACT_ID IsNot Nothing Then
                         LoadEmpInfor(2, dt.EMP_SIGNCONTRACT_ID, dt)
@@ -541,7 +587,7 @@ Public Class ctrlLocation
 
 
                     'gan vao bien cuc bo
-                    Location = dt
+                    'Location = dt
                 End If
             End If
         End If
@@ -656,9 +702,9 @@ Public Class ctrlLocation
                         dtData = rep.GetWardList(dValue, True)
                 End Select
                 If sText <> "" Then
-                    Dim dtExist = (From p In dtData
-                                   Where p("NAME") IsNot DBNull.Value AndAlso
-                                  p("NAME").ToString.ToUpper = sText.ToUpper)
+                    'Dim dtExist = (From p In dtData
+                    '               Where p("NAME") IsNot DBNull.Value AndAlso
+                    '              p("NAME").ToString.ToUpper = sText.ToUpper)
 
                     'If dtExist.Count = 0 Then
                     Dim dtFilter = (From p In dtData
@@ -695,6 +741,176 @@ Public Class ctrlLocation
         End Using
     End Sub
 
+    ''' <summary>
+    ''' Xử lý sự kiện khi click upload file LOGO
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnUploadFile_LG_Click(sender As Object, e As System.EventArgs) Handles btnUploadFile_LG.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            IsUpload = 0
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
+            ctrlUpload1.Show()
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện khi click upload file HEADER
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnUploadFile_HD_Click(sender As Object, e As System.EventArgs) Handles btnUploadFile_HD.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            IsUpload = 1
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
+            ctrlUpload1.Show()
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện khi click upload file FOOTER
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnUploadFile_FT_Click(sender As Object, e As System.EventArgs) Handles btnUploadFile_FT.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            IsUpload = 2
+            ctrlUpload1.AllowedExtensions = "xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,pdf"
+            ctrlUpload1.Show()
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <summary>Xử lý sự kiện khi click [OK] xác nhận sẽ Upload file</summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".txt")
+            listExtension.Add(".ctr")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".xml")
+            listExtension.Add(".png")
+            listExtension.Add(".jpg")
+            listExtension.Add(".bitmap")
+            listExtension.Add(".jpeg")
+            listExtension.Add(".pdf")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/AttachFile/Profile/ctrlLocation/")
+            If ctrlUpload1.UploadedFiles.Count >= 1 Then
+                For i = 0 To ctrlUpload1.UploadedFiles.Count - 1
+                    Dim file As UploadedFile = ctrlUpload1.UploadedFiles(i)
+                    If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                        System.IO.Directory.CreateDirectory(strPath)
+                        fileName = System.IO.Path.Combine(strPath, file.FileName)
+                        file.SaveAs(fileName, True)
+                        If IsUpload = 0 Then
+                            txtUpload_LG.Text = file.FileName
+                        ElseIf IsUpload = 1 Then
+                            txtUpload_HD.Text = file.FileName
+                        Else
+                            txtUpload_FT.Text = file.FileName
+                        End If
+                    Else
+                        ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file XLS, XLSX, TXT, CTR, DOC, DOCX, XML, PNG, JPG, BITMAP, JPEG, PDF"), NotifyType.Warning)
+                        Exit Sub
+                    End If
+                Next
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện click btn Tải LOGO
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnDownload_LG_Click(sender As Object, e As System.EventArgs) Handles btnDownload_LG.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim strPath_Down As String
+        Try
+            If txtUpload_LG.Text <> "" Then
+                strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlLocation/" + txtUpload_LG.Text.Trim)
+                ZipFiles(strPath_Down, 0)
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện click btn Tải HEADER
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnDownload_HD_Click(sender As Object, e As System.EventArgs) Handles btnDownload_HD.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim strPath_Down As String
+        Try
+            If txtUpload_HD.Text <> "" Then
+                strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlLocation/" + txtUpload_HD.Text.Trim)
+                ZipFiles(strPath_Down, 1)
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Xử lý sự kiện click btn Tải FOOTER
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnDownload_FT_Click(sender As Object, e As System.EventArgs) Handles btnDownload_FT.Click
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim strPath_Down As String
+        Try
+            If txtUpload_FT.Text <> "" Then
+                strPath_Down = Server.MapPath("~/AttachFile/Profile/ctrlLocation/" + txtUpload_FT.Text.Trim)
+                ZipFiles(strPath_Down, 2)
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -704,7 +920,7 @@ Public Class ctrlLocation
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub InitToolBar()
-        Try            
+        Try
             rgLocation.SetFilter()
 
             If Not IsPostBack Then
@@ -743,17 +959,19 @@ Public Class ctrlLocation
             rgLocation.PageSize = 10
             rgLocation.ClientSettings.EnablePostBackOnRowClick = True
             rgLocation.MasterTableView.FilterExpression = ""
-            
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
     'Lấy danh sách Select cho sự kiện
-    Protected Function RepareDataForAction() As List(Of Decimal)
-        Dim lst As New List(Of Decimal)
+    Protected Function RepareDataForAction() As List(Of LocationDTO)
+        Dim lst As New List(Of LocationDTO)
         For Each dr As GridDataItem In rgLocation.SelectedItems
-            lst.Add(Decimal.Parse(dr("ID").Text))
+            Dim item As New LocationDTO
+            item.ID = Decimal.Parse(dr("ID").Text)
+            lst.Add(item)
         Next
         Return lst
     End Function
@@ -848,7 +1066,7 @@ Public Class ctrlLocation
             If cbBank.SelectedValue <> "" Then
                 hfBank.Value = Double.Parse(cbBank.SelectedValue)
                 Dim bankData = rep.GetBankBranchByBankID(hfBank.Value)
-                FillRadCombobox(cboRank_Banch, bankData, "NAME", "ID")
+                FillRadCombobox(cboRank_Banch, bankData, "NAME", "ID", True)
             End If
         Catch ex As Exception
             Throw ex
@@ -930,6 +1148,38 @@ Public Class ctrlLocation
             End If
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub ZipFiles(ByVal path As String, ByVal order As Decimal?)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+
+        Try
+            Dim crc As New CRC32()
+            Dim fileNameZip As String
+
+            If order = 0 Then
+                fileNameZip = txtUpload_LG.Text.Trim
+            ElseIf order = 1 Then
+                fileNameZip = txtUpload_HD.Text.Trim
+            Else
+                fileNameZip = txtUpload_FT.Text.Trim
+            End If
+
+            Dim file As System.IO.FileInfo = New System.IO.FileInfo(path & fileNameZip)
+            Response.Clear()
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name)
+            Response.AddHeader("Content-Length", file.Length.ToString())
+            'Response.ContentType = "application/octet-stream"
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document "
+            Response.WriteFile(file.FullName)
+            Response.End()
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            HttpContext.Current.Trace.Warn(ex.ToString())
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 #End Region

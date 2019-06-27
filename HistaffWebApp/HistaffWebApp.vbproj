@@ -1692,6 +1692,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="AttachFile\Profile\ctrlHU_Title\" />
+    <Folder Include="AttachFile\Profile\ctrlLocation\" />
     <Folder Include="Excel\Trainning\" />
     <Folder Include="Modules\Organize\Report\" />
     <Folder Include="Modules\Organize\Setting\" />

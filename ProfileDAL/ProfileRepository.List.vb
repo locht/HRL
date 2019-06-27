@@ -70,6 +70,7 @@ Partial Class ProfileRepository
     End Function
 
 #End Region
+
 #Region "Title"
 
     Public Function GetTitle(ByVal _filter As TitleDTO,
