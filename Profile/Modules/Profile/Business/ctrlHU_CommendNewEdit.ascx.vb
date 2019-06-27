@@ -164,6 +164,15 @@ Public Class ctrlHU_CommendNewEdit
         End Set
     End Property
 
+    Public Property bsSource As DataTable
+        Get
+            Return PageViewState(Me.ID & "_bsSource")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_bsSource") = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' FormType
     ''' </summary>
@@ -373,6 +382,14 @@ Public Class ctrlHU_CommendNewEdit
 
                     'dien dữ lieu vao lưới ( nhan vien hoac phòng ban )
                     FilldataGridView(cboCommendObj.SelectedIndex)
+                    rgEmployee.Rebind()
+                    rgOrg.Rebind()
+                    For Each i As GridItem In rgEmployee.Items
+                        i.Edit = True
+                    Next
+                    For Each i As GridItem In rgOrg.Items
+                        i.Edit = True
+                    Next
 
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
@@ -550,17 +567,27 @@ Public Class ctrlHU_CommendNewEdit
 
                         'kiem tra neu doi tuong cá nhan hay tap the
                         If cboCommendObj.SelectedIndex = 0 Then
+
+                            Dim ValidGrid As Tuple(Of Boolean, String)
+                            ValidGrid = ValidateGrid_Emp()
+                            If ValidateGrid_Emp.Item1 = False Then
+                                ShowMessage(ValidateGrid_Emp.Item2, NotifyType.Warning)
+                                Exit Sub
+                            End If
+
                             Dim TotalMoney As Decimal = 0
-
-                            For Each i As GridDataItem In rgEmployee.SelectedItems
-                                Dim o As New CommendEmpDTO
-                                o.HU_EMPLOYEE_ID = i.GetDataKeyValue("HU_EMPLOYEE_ID")
-                                o.MONEY = rntxtMoney.Value
-                                o.ORG_ID = i.GetDataKeyValue("ORG_ID")
-                                o.TITLE_ID = i.GetDataKeyValue("TITLE_ID")
-                                lstCommendEmp.Add(o)
+                            Dim dtrgEmployee As DataTable = GetDataFromGrid(rgEmployee)
+                            For Each row As DataRow In dtrgEmployee.Rows
+                                If row("cbStatus") = 1 Then
+                                    Dim o As New CommendEmpDTO
+                                    o.HU_EMPLOYEE_ID = row("HU_EMPLOYEE_ID")
+                                    o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
+                                    o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
+                                    o.ORG_ID = If(row("ORG_ID") <> "", Decimal.Parse(row("ORG_ID")), Nothing)
+                                    o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
+                                    lstCommendEmp.Add(o)
+                                End If
                             Next
-
                             If lstCommendEmp.Count = 0 Then
                                 ShowMessage(Translate("Vui lòng chọn nhân viên trước khi lưu"), NotifyType.Warning)
                                 Exit Sub
@@ -568,17 +595,28 @@ Public Class ctrlHU_CommendNewEdit
 
                             objCommend.COMMEND_EMP = lstCommendEmp
                         Else
-                            For Each i As GridDataItem In rgOrg.SelectedItems
-                                Dim o As New CommendOrgDTO
-                                o.MONEY = rntxtMoney.Value
-                                o.ORG_ID = i.GetDataKeyValue("ORG_ID")
-                                lstOrg.Add(o)
+                            Dim ValidGrid2 As Tuple(Of Boolean, String)
+                            ValidGrid2 = ValidateGrid_Org()
+                            If ValidateGrid_Org.Item1 = False Then
+                                ShowMessage(ValidateGrid_Org.Item2, NotifyType.Warning)
+                                Exit Sub
+                            End If
+
+                            Dim dtrgOrg As DataTable = GetDataFromGrid(rgOrg)
+                            For Each row As DataRow In dtrgOrg.Rows
+                                If row("cbStatus") = 1 Then
+                                    Dim o As New CommendOrgDTO
+                                    o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
+                                    o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
+                                    o.ORG_ID = row("ORG_ID")
+                                    lstOrg.Add(o)
+                                End If
                             Next
 
-                            'If lstOrg.Count = 0 Then
-                            '    ShowMessage(Translate("Vui lòng chọn phòng ban trước khi lưu"), NotifyType.Warning)
-                            '    Exit Sub
-                            'End If
+                            If lstOrg.Count = 0 Then
+                                ShowMessage(Translate("Vui lòng chọn phòng ban trước khi lưu"), NotifyType.Warning)
+                                Exit Sub
+                            End If
 
                             objCommend.LIST_COMMEND_ORG = lstOrg
                         End If
@@ -954,16 +992,14 @@ Public Class ctrlHU_CommendNewEdit
                     Dim cbCommend_Pay As New RadComboBox
                     cbCommend_Pay = CType(edit.FindControl("cbCommend_Pay"), RadComboBox)
 
-                    FillDropDownList(cbCommend_Pay, ListComboData.LIST_COMMEND_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
-
                     'hinh thức khen thưởng
-                    Dim listCommend As DataTable
-                    listCommend = psp.Get_Commend_Formality(True, cboCommendObj.SelectedValue)
+                    Dim payData As DataTable
+                    payData = rep.GetOtherList("COMMEND_PAY", True)
                     If cbCommend_Pay IsNot Nothing Then
-                        FillRadCombobox(cbCommend_Pay, listCommend, "NAME", "ID", False)
+                        FillRadCombobox(cbCommend_Pay, payData, "NAME", "ID", False)
                     End If
 
-                    'SetDataToGrid(edit)
+                    SetDataToGrid(edit)
                     cbCommend_Pay.Dispose()
                     rep.Dispose()
                     edit.Dispose()
@@ -1210,6 +1246,50 @@ Public Class ctrlHU_CommendNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    ''' <lastupdate>11/07/2017</lastupdate>
+    ''' <summary>Xử lý sự kiện set properties cho row cua grid Employee</summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub rgOrg_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgOrg.ItemDataBound
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            Dim dtData As New DataTable
+            Try
+                If e.Item.Edit Then
+                    Dim rep As New ProfileRepository
+                    Dim edit = CType(e.Item, GridEditableItem)
+                    Dim item As GridDataItem = CType(e.Item, GridDataItem)
+
+                    Dim cbCommend_Pay As New RadComboBox
+                    cbCommend_Pay = CType(edit.FindControl("cbCommend_PayORG"), RadComboBox)
+
+                    'hinh thức khen thưởng
+                    Dim payData As DataTable
+                    payData = rep.GetOtherList("COMMEND_PAY", True)
+                    If cbCommend_Pay IsNot Nothing Then
+                        FillRadCombobox(cbCommend_Pay, payData, "NAME", "ID", False)
+                    End If
+
+                    SetDataToGrid_Org(edit)
+                    cbCommend_Pay.Dispose()
+                    rep.Dispose()
+                    edit.Dispose()
+                    item.Dispose()
+                End If
+                If dtData IsNot Nothing Then dtData.Dispose()
+            Catch ex As Exception
+                DisplayException(Me.ViewName, Me.ID, ex)
+            End Try
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+
 
     ''' <lastupdate>11/07/2017</lastupdate>
     ''' <summary>Load dữ liệu cho grid ORG</summary>
@@ -1259,7 +1339,10 @@ Public Class ctrlHU_CommendNewEdit
             Next
 
             rgOrg.Rebind()
-
+            For Each i As GridItem In rgOrg.Items
+                i.Edit = True
+            Next
+            rgOrg.Rebind()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -2325,6 +2408,201 @@ Public Class ctrlHU_CommendNewEdit
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Function ValidateGrid_Emp() As Tuple(Of Boolean, String)
+        Dim flag As Boolean = True
+        Dim msgError As String = "Bạn chưa nhập đầy đủ thông tin. Vui lòng xem vị trí tô màu đỏ và gợi nhắc ở lưới."
+        Try
+            For Each items In rgEmployee.Items
+                Dim cbGroupSalary = CType(items.FindControl("cbCommend_Pay"), RadComboBox)
+                If IsNumeric(cbGroupSalary.SelectedValue) = False Then
+                    cbGroupSalary.BackColor = System.Drawing.Color.Red
+                    cbGroupSalary.ErrorMessage = "Bạn phải chọn hình thức khen thưởng"
+                    flag = False
+                End If
+                Dim txtMoney = CType(items.FindControl("rnMONEY"), RadNumericTextBox)
+                If IsNumeric(txtMoney.Value) = False Then
+                    txtMoney.BackColor = System.Drawing.Color.Red
+                    txtMoney.ToolTip = "Bạn phải nhập mức thưởng"
+                    flag = False
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+        Dim Tuple As New Tuple(Of Boolean, String)(flag, msgError)
+        Return Tuple
+    End Function
+    Private Function ValidateGrid_Org() As Tuple(Of Boolean, String)
+        Dim flag As Boolean = True
+        Dim msgError As String = "Bạn chưa nhập đầy đủ thông tin. Vui lòng xem vị trí tô màu đỏ và gợi nhắc ở lưới."
+        Try
+            For Each items In rgOrg.Items
+                Dim cbGroupSalary = CType(items.FindControl("cbCommend_PayORG"), RadComboBox)
+                If IsNumeric(cbGroupSalary.SelectedValue) = False Then
+                    cbGroupSalary.BackColor = System.Drawing.Color.Red
+                    cbGroupSalary.ErrorMessage = "Bạn phải chọn hình thức khen thưởng"
+                    flag = False
+                End If
+
+                Dim txtMoney = CType(items.FindControl("rnMONEY_ORG"), RadNumericTextBox)
+                If IsNumeric(txtMoney.Value) = False Then
+                    txtMoney.BackColor = System.Drawing.Color.Red
+                    txtMoney.ToolTip = "Bạn phải nhập mức thưởng"
+                    flag = False
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+        Dim Tuple As New Tuple(Of Boolean, String)(flag, msgError)
+        Return Tuple
+    End Function
+    Private Function GetDataFromGrid(ByVal gr As RadGrid) As DataTable
+        Dim bsSource As DataTable
+        Try
+            bsSource = New DataTable()
+            For Each Col As GridColumn In gr.Columns
+                Dim DataColumn As DataColumn = New DataColumn(Col.UniqueName)
+                bsSource.Columns.Add(DataColumn)
+            Next
+            'coppy data to grid
+            For Each Item As GridDataItem In gr.EditItems
+                If Item.Display = False Then Continue For
+                Dim Dr As DataRow = bsSource.NewRow()
+                For Each col As GridColumn In gr.Columns
+                    Try
+                        If col.UniqueName = "cbStatus" Then
+                            If Item.Selected = True Then
+                                Dr(col.UniqueName) = 1
+                            Else
+                                Dr(col.UniqueName) = 0
+                            End If
+                            Continue For
+                        End If
+                        If InStr(",COMMEND_PAY,MONEY,", "," + col.UniqueName + ",") > 0 Then
+                            Select Case Item(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
+                                Case "cb"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadComboBox).SelectedValue
+                                Case "rn"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "rt"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadTextBox).Text.Trim
+                                Case "rd"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadDatePicker).SelectedDate
+                            End Select
+                        Else
+                            Dr(col.UniqueName) = Item.GetDataKeyValue(col.UniqueName)
+                        End If
+                    Catch ex As Exception
+                        Continue For
+                    End Try
+                Next
+                bsSource.Rows.Add(Dr)
+            Next
+            bsSource.AcceptChanges()
+            Return bsSource
+        Catch ex As Exception
+        End Try
+    End Function
+
+    Private Sub SetDataToGrid(ByVal EditItem As GridEditableItem)
+        Dim rep As New ProfileRepository
+
+        If Employee_Commend Is Nothing OrElse Employee_Commend.Count = 0 Then Exit Sub
+
+        'Ngạch lương
+        Dim cbCommend_Pay As New RadComboBox
+        cbCommend_Pay = CType(EditItem.FindControl("cbCommend_Pay"), RadComboBox)
+       
+        Try
+            For Each col As GridColumn In rgEmployee.Columns
+
+                Dim dtData As DataTable = New DataTable()
+                Dim employee_id = EditItem.GetDataKeyValue("HU_EMPLOYEE_ID")
+                Dim comment_id = EditItem.GetDataKeyValue("HU_COMMEND_ID")
+                Dim rowData As CommendEmpDTO = Employee_Commend.Find(Function(p) p.HU_COMMEND_ID = comment_id And p.HU_EMPLOYEE_ID = employee_id)
+                Try
+                    If IsNumeric(rowData.COMMEND_PAY) Then
+                        dtData = rep.GetOtherList("COMMEND_PAY", True)
+                        FillRadCombobox(cbCommend_Pay, dtData, "NAME", "ID")
+                    End If
+                Catch ex As Exception
+                End Try
+                Try
+                    If InStr(",COMMEND_PAY,MONEY,", "," + col.UniqueName + ",") > 0 Then
+                        Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
+                            Case "cb"
+                                CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadComboBox).ClearSelection()
+                                CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadComboBox).SelectedValue = rowData.COMMEND_PAY
+                            Case "rn"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData.MONEY.ToString()
+                        End Select
+                    Else
+                        Continue For
+                    End If
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+            cbCommend_Pay.Dispose()
+
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub SetDataToGrid_Org(ByVal EditItem As GridEditableItem)
+        Dim rep As New ProfileRepository
+
+        If List_Org Is Nothing OrElse List_Org.Count = 0 Then Exit Sub
+
+        'Ngạch lương
+        Dim cbCommend_Pay As New RadComboBox
+        cbCommend_Pay = CType(EditItem.FindControl("cbCommend_PayORG"), RadComboBox)
+
+        Try
+            For Each col As GridColumn In rgOrg.Columns
+
+                Dim dtData As DataTable = New DataTable()
+                Dim org_id = EditItem.GetDataKeyValue("ORG_ID")
+                Dim comment_id = IDSelect
+                Dim rowData As CommendOrgDTO = List_Org.Find(Function(p) p.HU_COMMEND_ID = comment_id And p.ORG_ID = org_id)
+                Try
+                    If IsNumeric(rowData.COMMEND_PAY) Then
+                        dtData = rep.GetOtherList("COMMEND_PAY", True)
+                        FillRadCombobox(cbCommend_Pay, dtData, "NAME", "ID")
+                    End If
+                Catch ex As Exception
+                End Try
+                Try
+                    If InStr(",COMMEND_PAY,MONEY,", "," + col.UniqueName + ",") > 0 Then
+                        Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
+                            Case "cb"
+                                CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadComboBox).ClearSelection()
+                                CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadComboBox).SelectedValue = rowData.COMMEND_PAY
+                            Case "rn"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData.MONEY.ToString()
+                        End Select
+                    Else
+                        Continue For
+                    End If
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+            cbCommend_Pay.Dispose()
+
+        Catch ex As Exception
         End Try
     End Sub
 #End Region

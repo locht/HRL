@@ -309,9 +309,12 @@ Partial Class ProfileRepository
                                                   .HU_COMMEND_ID = d.HU_COMMEND_ID,
                                                   .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                                                   .FULLNAME = e.FULLNAME_VN,
+                                                  .ORG_ID = d.ORG_ID,
                                                   .ORG_NAME = o.NAME_VN,
+                                                  .TITLE_ID = d.TITLE_ID,
                                                   .TITLE_NAME = t.NAME_VN,
-                                                   .MONEY = d.MONEY}).ToList
+                                                  .MONEY = d.MONEY,
+                                                  .COMMEND_PAY = d.COMMEND_PAY}).ToList
             Return q
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -328,7 +331,8 @@ Partial Class ProfileRepository
                                                   .HU_COMMEND_ID = d.HU_COMMEND_ID,
                                                    .ORG_ID = d.ORG_ID,
                                                   .ORG_NAME = o.NAME_VN,
-                                                   .MONEY = d.MONEY}).ToList
+                                                   .MONEY = d.MONEY,
+                                                   .COMMEND_PAY = d.COMMEND_PAY}).ToList
             Return q
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")

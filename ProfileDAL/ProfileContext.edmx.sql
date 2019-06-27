@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26-Jun-19 4:52:46 PM
--- Generated from EDMX file: E:\PROJECT\MyTNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 06/27/2019 2:25:16 PM
+-- Generated from EDMX file: E:\HISTAFF\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -2161,7 +2161,7 @@ CREATE TABLE "dbo"."HU_COMMEND_ORG" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "COMMEND_PAY" NUMBER(38,0) NOT NULL
+   "COMMEND_PAY" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_COMMEND_LIST'
@@ -2241,7 +2241,7 @@ CREATE TABLE "dbo"."HU_COMMEND_EMP" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "COMMEND_PAY" NUMBER(38,0) NOT NULL
+   "COMMEND_PAY" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_TITLE1'

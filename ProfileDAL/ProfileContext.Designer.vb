@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("68666b09-af44-4a81-94f6-6f31babddd75")>
+<Assembly: EdmSchemaAttribute("dce10e50-ae22-43b7-9958-7dd131e591a7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -9717,12 +9717,10 @@ Public Partial Class HU_COMMEND_EMP
     ''' </summary>
     ''' <param name="hU_COMMEND_ID">Initial value of the HU_COMMEND_ID property.</param>
     ''' <param name="hU_EMPLOYEE_ID">Initial value of the HU_EMPLOYEE_ID property.</param>
-    ''' <param name="cOMMEND_PAY">Initial value of the COMMEND_PAY property.</param>
-    Public Shared Function CreateHU_COMMEND_EMP(hU_COMMEND_ID As Global.System.Decimal, hU_EMPLOYEE_ID As Global.System.Decimal, cOMMEND_PAY As Global.System.Decimal) As HU_COMMEND_EMP
+    Public Shared Function CreateHU_COMMEND_EMP(hU_COMMEND_ID As Global.System.Decimal, hU_EMPLOYEE_ID As Global.System.Decimal) As HU_COMMEND_EMP
         Dim hU_COMMEND_EMP as HU_COMMEND_EMP = New HU_COMMEND_EMP
         hU_COMMEND_EMP.HU_COMMEND_ID = hU_COMMEND_ID
         hU_COMMEND_EMP.HU_EMPLOYEE_ID = hU_EMPLOYEE_ID
-        hU_COMMEND_EMP.COMMEND_PAY = cOMMEND_PAY
         Return hU_COMMEND_EMP
     End Function
 
@@ -10012,9 +10010,9 @@ Public Partial Class HU_COMMEND_EMP
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property COMMEND_PAY() As Global.System.Decimal
+    Public Property COMMEND_PAY() As Nullable(Of Global.System.Decimal)
         Get
             Return _COMMEND_PAY
         End Get
@@ -10027,8 +10025,8 @@ Public Partial Class HU_COMMEND_EMP
         End Set
     End Property
 
-    Private _COMMEND_PAY As Global.System.Decimal
-    Private Partial Sub OnCOMMEND_PAYChanging(value As Global.System.Decimal)
+    Private _COMMEND_PAY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCOMMEND_PAYChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnCOMMEND_PAYChanged()
@@ -11219,13 +11217,11 @@ Public Partial Class HU_COMMEND_ORG
     ''' <param name="id">Initial value of the ID property.</param>
     ''' <param name="hU_COMMEND_ID">Initial value of the HU_COMMEND_ID property.</param>
     ''' <param name="oRG_ID">Initial value of the ORG_ID property.</param>
-    ''' <param name="cOMMEND_PAY">Initial value of the COMMEND_PAY property.</param>
-    Public Shared Function CreateHU_COMMEND_ORG(id As Global.System.Decimal, hU_COMMEND_ID As Global.System.Decimal, oRG_ID As Global.System.Decimal, cOMMEND_PAY As Global.System.Decimal) As HU_COMMEND_ORG
+    Public Shared Function CreateHU_COMMEND_ORG(id As Global.System.Decimal, hU_COMMEND_ID As Global.System.Decimal, oRG_ID As Global.System.Decimal) As HU_COMMEND_ORG
         Dim hU_COMMEND_ORG as HU_COMMEND_ORG = New HU_COMMEND_ORG
         hU_COMMEND_ORG.ID = id
         hU_COMMEND_ORG.HU_COMMEND_ID = hU_COMMEND_ID
         hU_COMMEND_ORG.ORG_ID = oRG_ID
-        hU_COMMEND_ORG.COMMEND_PAY = cOMMEND_PAY
         Return hU_COMMEND_ORG
     End Function
 
@@ -11488,9 +11484,9 @@ Public Partial Class HU_COMMEND_ORG
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property COMMEND_PAY() As Global.System.Decimal
+    Public Property COMMEND_PAY() As Nullable(Of Global.System.Decimal)
         Get
             Return _COMMEND_PAY
         End Get
@@ -11503,8 +11499,8 @@ Public Partial Class HU_COMMEND_ORG
         End Set
     End Property
 
-    Private _COMMEND_PAY As Global.System.Decimal
-    Private Partial Sub OnCOMMEND_PAYChanging(value As Global.System.Decimal)
+    Private _COMMEND_PAY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCOMMEND_PAYChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnCOMMEND_PAYChanged()
