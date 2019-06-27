@@ -46,6 +46,7 @@
     <Item Text="Danh mục" PostBack="False">
       <Group>
         <Item Value="ctrlHU_ContractType" Text="Loại hợp đồng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ContractType&amp;group=List" CheckPermission="true" CausesValidation="False"/>
+        <Item Value="ctrlHU_Signer" Text="Danh mục người ký" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Signer&amp;group=List" CheckPermission="true"/>
         <Item Value="ctrlHU_AllowanceList" Text="Danh mục phụ cấp" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_AllowanceList&amp;group=List" CheckPermission="true" CausesValidation="False"/>
         <Item Value="ctrlHU_StaffRank" Text="Danh mục bậc nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_StaffRank&amp;group=List" CheckPermission="true" CausesValidation="False"/>
         <Item Value="ctrlHU_Place" Text="Tỉnh thành" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Place&amp;group=List&amp;tab=Nation" CheckPermission="true" CausesValidation="False"/>
