@@ -62,13 +62,13 @@
                 <%# Translate("Số hộ khẩu")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" />
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" AutoPostBack="true" ReadOnly="true" />
             </td>
             <td class="lb">
                 <%# Translate("Mã hộ gia đình")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" />
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" AutoPostBack="true" ReadOnly="true" />
             </td>
         </tr>
         <tr>
@@ -382,7 +382,79 @@
 
             }
 
-           
+            var enableAjax = true;
+            function onRequestStart(sender, eventArgs) {
+                eventArgs.set_enableAjax(enableAjax);
+                enableAjax = true;
+            }
+
+            function OnClientSelectedIndexChanged(sender, eventArgs) {
+                var id = sender.get_id();
+                var cbo;
+                switch (id) {
+                    case '<%= cbPROVINCE_ID.ClientID %>':
+                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
+                        clearSelectRadcombo(cbo);
+                        cbo = $find('<%= cbWARD_ID.ClientID %>');
+                        clearSelectRadcombo(cbo);
+                        break;
+                    case '<%= cbTempPROVINCE_ID.ClientID %>':
+                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
+                        clearSelectRadcombo(cbo);
+                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
+                        clearSelectRadcombo(cbo);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            function clearSelectRadcombo(cbo) {
+                if (cbo) {
+                    cbo.clearItems();
+                    cbo.clearSelection();
+                    cbo.set_text('');
+                }
+            }
+            function clearSelectRadtextbox(cbo) {
+                if (cbo) {
+                    cbo.clear();
+                }
+            }
+
+            function OnClientItemsRequesting(sender, eventArgs) {
+                var id = sender.get_id();
+                var cbo;
+                var value;
+                switch (id) {
+                    case '<%= cbDISTRICT_ID.ClientID %>':
+                        cbo = $find('<%= cbPROVINCE_ID.ClientID %>');
+                        value = cbo.get_value();
+                        break;
+                    case '<%= cbWARD_ID.ClientID %>':
+                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
+                        value = cbo.get_value();
+                        break;
+                    case '<%= cbTempDISTRICT_ID.ClientID %>':
+                        cbo = $find('<%= cbTempPROVINCE_ID.ClientID %>');
+                        value = cbo.get_value();
+                        break;
+                    case '<%= cbTempWARD_ID.ClientID %>':
+                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
+                        value = cbo.get_value();
+                        break;
+                    default:
+                        break;
+                }
+
+                if (!value) {
+                    value = 0;
+                }
+                var context = eventArgs.get_context();
+                context["valueCustom"] = value;
+                context["value"] = sender.get_value();
+
+            }
         </script>
     </tlk:RadCodeBlock>
 </div>

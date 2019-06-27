@@ -44,6 +44,7 @@ Public Class ctrlPortalFamily_Edit
                          ToolbarItem.Save, ToolbarItem.Cancel, ToolbarItem.Seperator,
                          ToolbarItem.Submit)
             CType(Me.MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -125,7 +126,9 @@ Public Class ctrlPortalFamily_Edit
                 Case CommonMessage.STATE_NORMAL
                     EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
+                                     chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -134,9 +137,11 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamily, True)
                     EnabledGridNotPostback(rgFamilyEdit, True)
                 Case CommonMessage.STATE_NEW
-                    EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
+                    EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
+                                     chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -145,9 +150,11 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamily, False)
                     EnabledGridNotPostback(rgFamilyEdit, False)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
+                    EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle)
+                                     chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
+                                     chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -411,8 +418,20 @@ Public Class ctrlPortalFamily_Edit
     End Sub
 
     Protected Sub chkIsOwner_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Owner.CheckedChanged
-        txtHouseCertificate_Num.ReadOnly = chkIs_Owner.Checked
-        txtHouseCertificate_Code.ReadOnly = chkIs_Owner.Checked
+        Try
+            If CurrentState = CommonMessage.STATE_NEW Then
+                If chkIs_Owner.Checked Then
+                    txtHouseCertificate_Num.ReadOnly = False
+                    txtHouseCertificate_Code.ReadOnly = False
+                Else
+                    txtHouseCertificate_Num.ReadOnly = True
+                    txtHouseCertificate_Code.ReadOnly = True
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+        
     End Sub
 
     Protected Sub chkIs_Pass_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Pass.CheckedChanged
