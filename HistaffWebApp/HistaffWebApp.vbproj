@@ -457,6 +457,8 @@
     <Content Include="Modules\Planning\Business\ctrlRC_Manning.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALP.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_Concurrently.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_ConcurrentlyNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpInfomations.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_TrainingEvaluateNewEdit.ascx" />
