@@ -2610,6 +2610,36 @@ Namespace ProfileBusiness.ServiceContracts
         Function DeleteSigner(ByVal lstID As String)
 
 #End Region
+
+#Region "QL kiêm nhiệm"
+        <OperationContract()>
+        Function GET_LIST_CONCURRENTLY(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
+
+        <OperationContract()>
+        Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+
+        <OperationContract()>
+        Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+
+        <OperationContract()>
+        Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function GET_TITLE_ORG(ByVal P_ID As Decimal) As DataTable
+
+        <OperationContract()>
+        Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
+                                       ByVal P_ORG_ID As Decimal,
+                                       ByVal P_TITLE As Decimal,
+                                       ByVal P_DATE As Date) As Boolean
+#End Region
     End Interface
 
 End Namespace

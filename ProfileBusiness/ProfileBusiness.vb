@@ -825,5 +825,89 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
             End Using
         End Function
 #End Region
+
+        Public Function GET_LIST_CONCURRENTLY(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO) Implements ServiceContracts.IProfileBusiness.GET_LIST_CONCURRENTLY
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, log, Sorts)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GET_CONCURRENTLY_BY_ID
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GET_CONCURRENTLY_BY_ID(P_ID)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean Implements ServiceContracts.IProfileBusiness.INSERT_CONCURRENTLY
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.INSERT_CONCURRENTLY(concurrently)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean Implements ServiceContracts.IProfileBusiness.UPDATE_CONCURRENTLY
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.UPDATE_CONCURRENTLY(concurrently)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GET_CONCURRENTLY_BY_EMP
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GET_CONCURRENTLY_BY_EMP(P_ID)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function GET_TITLE_ORG(ByVal P_ID As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GET_TITLE_ORG
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.GET_TITLE_ORG(P_ID)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
+                                       ByVal P_ORG_ID As Decimal,
+                                       ByVal P_TITLE As Decimal,
+                                       ByVal P_DATE As Date) As Boolean Implements ServiceContracts.IProfileBusiness.INSERT_EMPLOYEE_KN
+            Using rep As New ProfileRepository
+                Try
+                    Dim lst = rep.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE)
+                    Return lst
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
     End Class
 End Namespace
