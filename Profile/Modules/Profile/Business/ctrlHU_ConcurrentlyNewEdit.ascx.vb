@@ -1157,7 +1157,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             result = rep.INSERT_CONCURRENTLY(CON)
         End If
 
-        If cboStatus.SelectedValue = 1 And chkIsChuyen.Checked = True Then
+        If cboStatus.SelectedValue = "1" And chkIsChuyen.Checked = True Then
             rep.INSERT_EMPLOYEE_KN(txtEmpCode.Text, hidOrgCOn.Value, cboTITLE_CON.SelectedValue, rdEFFECT_DATE_CON.SelectedDate)
         End If
 
