@@ -2786,4 +2786,254 @@ Public Class ProfileRepository
         End Try
     End Function
 #End Region
+
+    Public Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.GET_CONCURRENTLY_BY_ID",
+                                           New With {.P_ID = P_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.INSERT_CONCURRENTLY",
+                                           New With {.P_EMPLOYEE_ID = concurrently.EMPLOYEE_ID,
+                                                     .P_ORG_ID = concurrently.ORG_ID,
+                                                     .P_TITLE_ID = concurrently.TITLE_ID,
+                                                     .P_ORG_CON = concurrently.ORG_CON,
+                                                     .P_TITLE_CON = concurrently.TITLE_CON,
+                                                     .P_EFFECT_DATE_CON = concurrently.EFFECT_DATE_CON,
+                                                     .P_EXPIRE_DATE_CON = concurrently.EXPIRE_DATE_CON,
+                                                     .P_ALLOW_MONEY = concurrently.ALLOW_MONEY,
+                                                     .P_CON_NO = concurrently.CON_NO,
+                                                     .P_STATUS = concurrently.STATUS,
+                                                     .P_SIGN_DATE = concurrently.SIGN_DATE,
+                                                     .P_SIGN_ID = concurrently.SIGN_ID,
+                                                     .P_SIGN_ID_2 = concurrently.SIGN_ID_2,
+                                                     .P_REMARK = concurrently.REMARK,
+                                                     .P_CON_NO_STOP = concurrently.CON_NO_STOP,
+                                                     .P_SIGN_DATE_STOP = concurrently.SIGN_DATE_STOP,
+                                                     .P_EFFECT_DATE_STOP = concurrently.EFFECT_DATE_STOP,
+                                                     .P_STATUS_STOP = concurrently.STATUS_STOP,
+                                                     .P_SIGN_ID_STOP = concurrently.SIGN_ID_STOP,
+                                                     .P_SIGN_ID_STOP_2 = concurrently.SIGN_ID_STOP_2,
+                                                     .P_REMARK_STOP = concurrently.REMARK_STOP,
+                                                     .P_CONCURENTLY_TYPE = concurrently.CONCURENTLY_TYPE,
+                                                     .P_CONCURENTLY_POSITION = concurrently.CONCURENTLY_POSITION,
+                                                     .P_CONCURENTLY_TYPE_CANCEL = concurrently.CONCURENTLY_TYPE_CANCEL,
+                                                     .P_CREATED_BY = concurrently.CREATED_BY,
+                                                     .P_CREATED_LOG = concurrently.CREATED_LOG,
+                                                     .P_IS_ALLOW = concurrently.IS_ALLOW,
+                                                     .P_FILE_BYTE = concurrently.FILE_BYTE,
+                                                     .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
+                                                     .P_IS_CHUYEN = concurrently.IS_CHUYEN,
+                                                     .P_OUT = cls.OUT_NUMBER})
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_CONCURRENTLY",
+                                           New With {.P_ID = concurrently.ID,
+                                                     .P_EMPLOYEE_ID = concurrently.EMPLOYEE_ID,
+                                                     .P_ORG_ID = concurrently.ORG_ID,
+                                                     .P_TITLE_ID = concurrently.TITLE_ID,
+                                                     .P_ORG_CON = concurrently.ORG_CON,
+                                                     .P_TITLE_CON = concurrently.TITLE_CON,
+                                                     .P_EFFECT_DATE_CON = concurrently.EFFECT_DATE_CON,
+                                                     .P_EXPIRE_DATE_CON = concurrently.EXPIRE_DATE_CON,
+                                                     .P_ALLOW_MONEY = concurrently.ALLOW_MONEY,
+                                                     .P_CON_NO = concurrently.CON_NO,
+                                                     .P_STATUS = concurrently.STATUS,
+                                                     .P_SIGN_DATE = concurrently.SIGN_DATE,
+                                                     .P_SIGN_ID = concurrently.SIGN_ID,
+                                                     .P_SIGN_ID_2 = concurrently.SIGN_ID_2,
+                                                     .P_REMARK = concurrently.REMARK,
+                                                     .P_CON_NO_STOP = concurrently.CON_NO_STOP,
+                                                     .P_SIGN_DATE_STOP = concurrently.SIGN_DATE_STOP,
+                                                     .P_EFFECT_DATE_STOP = concurrently.EFFECT_DATE_STOP,
+                                                     .P_STATUS_STOP = concurrently.STATUS_STOP,
+                                                     .P_SIGN_ID_STOP = concurrently.SIGN_ID_STOP,
+                                                     .P_SIGN_ID_STOP_2 = concurrently.SIGN_ID_STOP_2,
+                                                     .P_REMARK_STOP = concurrently.REMARK_STOP,
+                                                     .P_CONCURENTLY_TYPE = concurrently.CONCURENTLY_TYPE,
+                                                     .P_CONCURENTLY_POSITION = concurrently.CONCURENTLY_POSITION,
+                                                     .P_CONCURENTLY_TYPE_CANCEL = concurrently.CONCURENTLY_TYPE_CANCEL,
+                                                     .P_CREATED_BY = concurrently.CREATED_BY,
+                                                     .P_CREATED_LOG = concurrently.CREATED_LOG,
+                                                     .P_IS_ALLOW = concurrently.IS_ALLOW,
+                                                     .P_FILE_BYTE = concurrently.FILE_BYTE,
+                                                     .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
+                                                     .P_IS_CHUYEN = concurrently.IS_CHUYEN,
+                                                     .P_OUT = cls.OUT_NUMBER})
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+
+    Public Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.GET_CONCURRENTLY_BY_EMP",
+                                           New With {.P_EMPID = P_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GET_TITLE_ORG(ByVal P_ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.GET_TITLE_ORG",
+                                           New With {.P_ORGID = P_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+
+    Public Function GET_LIST_CONCURRENTLY(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        ByVal log As UserLog,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
+
+        Try
+            Dim listCommend As New List(Of Temp_ConcurrentlyDTO)
+
+            ' lấy toàn bộ dữ liệu theo Org
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _filter.ORG_ID,
+                                           .P_ISDISSOLVE = _filter.IS_DISSOLVE})
+            End Using
+
+            ' Lấy toàn bộ dữ liệu theo employee
+            Dim queryEmp = From p In Context.HU_CONCURRENTLY
+                           From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID)
+                           From cv In Context.HU_EMPLOYEE_CV.Where(Function(cv) e.ID = cv.EMPLOYEE_ID)
+                           From org In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
+                           From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = e.ORG_ID).DefaultIfEmpty
+                           From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
+                           From tc In Context.HU_TITLE.Where(Function(tc) tc.ID = p.TITLE_CON).DefaultIfEmpty
+                           From org_con In Context.HU_ORGANIZATION.Where(Function(org_con) org_con.ID = p.ORG_CON).DefaultIfEmpty
+                           From sign In Context.HU_EMPLOYEE.Where(Function(sign) sign.ID = p.SIGN_ID).DefaultIfEmpty
+                           From sign_title In Context.HU_TITLE.Where(Function(sign_title) sign_title.ID = sign.TITLE_ID).DefaultIfEmpty
+                           From sign_stop In Context.HU_EMPLOYEE.Where(Function(sign_stop) sign_stop.ID = p.SIGN_ID_STOP).DefaultIfEmpty
+                           From sign_stop_title In Context.HU_TITLE.Where(Function(sign_stop_title) sign_stop_title.ID = sign_stop.TITLE_ID).DefaultIfEmpty
+                           From sign2 In Context.HU_EMPLOYEE.Where(Function(sign2) sign2.ID = p.SIGN_ID_2).DefaultIfEmpty
+                           From sign_title2 In Context.HU_TITLE.Where(Function(sign_title2) sign_title2.ID = sign2.TITLE_ID).DefaultIfEmpty
+
+            If Not _filter.IS_TERMINATE Then
+                queryEmp = queryEmp.Where(Function(p) p.e.WORK_STATUS <> 257 Or (p.e.WORK_STATUS = 257 And p.e.TER_LAST_DATE >= Date.Now) Or p.e.WORK_STATUS Is Nothing)
+            End If
+            If _filter.EMPLOYEE_CODE IsNot Nothing AndAlso _filter.EMPLOYEE_CODE <> "" Then
+                queryEmp = queryEmp.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper) _
+                                        Or p.e.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            If _filter.FULLNAME_VN IsNot Nothing Then
+                queryEmp = queryEmp.Where(Function(p) p.e.FULLNAME_VN.ToUpper.Contains(_filter.FULLNAME_VN.ToUpper))
+            End If
+            If _filter.TITLE_CON_NAME IsNot Nothing Then
+                queryEmp = queryEmp.Where(Function(p) p.tc.NAME_VN.ToUpper.Contains(_filter.TITLE_CON_NAME.ToUpper))
+            End If
+            If _filter.ORG_CON_NAME IsNot Nothing Then
+                queryEmp = queryEmp.Where(Function(p) p.org_con.NAME_VN.ToUpper.Contains(_filter.ORG_CON_NAME.ToUpper))
+            End If
+            If _filter.ALLOW_MONEY_NUMBER IsNot Nothing Then
+                queryEmp = queryEmp.Where(Function(p) p.p.ALLOW_MONEY = _filter.ALLOW_MONEY_NUMBER)
+            End If
+
+            ' danh sách thông tin khen thưởng nhân viên
+            Dim lstEmp = queryEmp.Select(Function(p) New Temp_ConcurrentlyDTO With {
+                                                       .ID = p.p.ID,
+                                                       .CBSTATUS = Nothing,
+                                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                                       .FULLNAME_VN = p.e.FULLNAME_VN,
+                                                       .ORG_CON_NAME = p.org_con.NAME_VN,
+                                                       .ORG_CON = p.p.ORG_CON,
+                                                       .TITLE_CON = p.p.TITLE_CON,
+                                                       .TITLE_CON_NAME = p.tc.NAME_VN,
+                                                       .ALLOW_MONEY_NUMBER = p.p.ALLOW_MONEY,
+                                                       .EFFECT_DATE_CON = p.p.EFFECT_DATE_CON,
+                                                       .EXPIRE_DATE_CON = p.p.EXPIRE_DATE_CON,
+                                                       .STATUS_NAME = If(p.p.STATUS = 1, "Đã phê duyệt", "Chưa phê duyệt"),
+                                                       .EFFECT_DATE_STOP = p.p.EFFECT_DATE_STOP,
+                                                       .STATUS_STOP_NAME = If(p.p.STATUS_STOP = 1, "Đã phê duyệt", "Chưa phê duyệt"),
+                                                       .ORG_ID_DESC = p.org_con.DESCRIPTION_PATH,
+                                                       .STATUS = p.p.STATUS,
+                                                       .CREATED_DATE = p.p.CREATED_DATE,
+                                                       .SIGN_NAME = p.sign.FULLNAME_VN,
+                                                       .SIGN_TITLE_NAME = p.sign_title.NAME_VN,
+                                                       .SIGN_NAME2 = p.sign2.FULLNAME_VN,
+                                                       .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN
+                                                       })
+
+            lstEmp = lstEmp.OrderBy(Sorts)
+            Total = lstEmp.Count
+            lstEmp = lstEmp.Skip(PageIndex * PageSize).Take(PageSize)
+
+
+
+            listCommend = lstEmp.ToList()
+
+            Return listCommend
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
+                                       ByVal P_ORG_ID As Decimal,
+                                       ByVal P_TITLE As Decimal,
+                                       ByVal P_DATE As Date) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.INSERT_EMPLOYEE_KN",
+                                           New With {.P_EMPLOYEE_CODE = P_EMPLOYEE_CODE,
+                                                     .P_ORG_ID = P_ORG_ID,
+                                                     .P_TITLE = P_TITLE,
+                                                     .P_DATE = P_DATE
+                                                     })
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 End Class
