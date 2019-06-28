@@ -634,4 +634,134 @@ Partial Public Class ProfileBusinessRepository
     End Function
 #End Region
 
+    Public Function GET_LIST_CONCURRENTLY(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
+        Dim lstCommend As List(Of Temp_ConcurrentlyDTO)
+
+        Using rep As New ProfileBusinessClient
+            Try
+                lstCommend = rep.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, Me.Log, Sorts)
+                Return lstCommend
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GET_LIST_CONCURRENTLY(ByVal _filter As Temp_ConcurrentlyDTO,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_LIST_CONCURRENTLY(_filter, 0, Integer.MaxValue, 0, Me.Log, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.GET_CONCURRENTLY_BY_ID(P_ID)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Dim dtdata As Boolean
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.INSERT_CONCURRENTLY(concurrently)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Dim dtdata As Boolean
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.UPDATE_CONCURRENTLY(concurrently)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.GET_CONCURRENTLY_BY_EMP(P_ID)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function GET_TITLE_ORG(ByVal P_ID As Decimal) As DataTable
+        Dim dtdata As DataTable
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.GET_TITLE_ORG(P_ID)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
+                                       ByVal P_ORG_ID As Decimal,
+                                       ByVal P_TITLE As Decimal,
+                                       ByVal P_DATE As Date) As Boolean
+        Dim dtdata As Boolean
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
 End Class
