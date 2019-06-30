@@ -6567,6 +6567,9 @@ Namespace CommonBusiness
         Private NAME_VNField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_ID_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private REMARKField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -6724,6 +6727,19 @@ Namespace CommonBusiness
                 If (Object.ReferenceEquals(Me.NAME_VNField, value) <> true) Then
                     Me.NAME_VNField = value
                     Me.RaisePropertyChanged("NAME_VN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID_NAME() As String
+            Get
+                Return Me.ORG_ID_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ORG_ID_NAMEField, value) <> true) Then
+                    Me.ORG_ID_NAMEField = value
+                    Me.RaisePropertyChanged("ORG_ID_NAME")
                 End If
             End Set
         End Property

@@ -18,6 +18,9 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã chức danh %>" DataField="CODE"
                         SortExpression="CODE" UniqueName="CODE" ShowFilterIcon="false" FilterControlWidth="95%"
                         AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên công ty %>" DataField="ORG_ID_NAME"
+                        SortExpression="ORG_ID_NAME" UniqueName="ORG_ID_NAME" ShowFilterIcon="false" FilterControlWidth="95%"
+                        AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên chức danh %>" DataField="NAME_VN"
                         SortExpression="NAME_VN" UniqueName="NAME_VN" ShowFilterIcon="false" FilterControlWidth="95%"
                         AutoPostBackOnFilter="true" CurrentFilterFunction="Contains" />

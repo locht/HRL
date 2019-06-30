@@ -2373,6 +2373,7 @@ Partial Public Class CommonRepository
         Try
             Dim query = From p In Context.HU_TITLE
                         From group In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TITLE_GROUP_ID).DefaultIfEmpty
+                        From orgLv In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         Where p.ACTFLG = "A"
 
             Dim lst = query.Select(Function(p) New TitleDTO With {
@@ -2384,7 +2385,8 @@ Partial Public Class CommonRepository
                                   .TITLE_GROUP_ID = p.p.TITLE_GROUP_ID,
                                   .TITLE_GROUP_NAME = p.group.NAME_VN,
                                   .CREATED_DATE = p.p.CREATED_DATE,
-                                  .ACTFLG = p.p.ACTFLG})
+                                  .ACTFLG = p.p.ACTFLG,
+                                  .ORG_ID_NAME = p.orgLv.NAME_VN})
 
             If _filter.CODE <> "" Then
                 lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))

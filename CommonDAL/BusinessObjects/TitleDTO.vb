@@ -5,6 +5,7 @@
     Public Property NAME_VN As String
     Public Property TITLE_GROUP_ID As Decimal?
     Public Property TITLE_GROUP_NAME As String
+    Public Property ORG_ID_NAME As String
     Public Property REMARK As String
     Public Property ACTFLG As String
     Public Property CREATED_DATE As Date

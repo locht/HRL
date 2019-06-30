@@ -423,6 +423,7 @@
             <Property Name="NAME_VN" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="ACTFLG" Type="nvarchar2" Nullable="false" DefaultValue="A" MaxLength="1" />
             <Property Name="TITLE_GROUP_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_APP_PROCESS">
             <Key>
@@ -1509,6 +1510,7 @@
           <Property Type="String" Name="NAME_VN" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ACTFLG" Nullable="false" DefaultValue="A" MaxLength="1" FixedLength="false" />
           <Property Type="Decimal" Name="TITLE_GROUP_ID" Nullable="false" />
+          <Property Type="Decimal" Name="ORG_ID" />
         </EntityType>
         <Association Name="HU_TITLEHU_EMPLOYEE">
           <End Type="CommonModel.HU_TITLE" Role="HU_TITLE" Multiplicity="1" />
@@ -2159,6 +2161,7 @@
                     <ScalarProperty Name="NAME_VN" ColumnName="NAME_VN" />
                     <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
                     <ScalarProperty Name="TITLE_GROUP_ID" ColumnName="TITLE_GROUP_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -2559,16 +2562,17 @@
         <EntityTypeShape EntityType="CommonModel.OT_OTHER_LIST_GROUP" Width="2" PointX="7.75" PointY="3.125" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.OT_OTHER_LIST_TYPE" Width="2" PointX="10.5" PointY="3.125" Height="0.40000000000000036" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_OOLG_OOLT">
-          <ConnectorPoint PointX="8.75" PointY="3.5250000000000004" />
-          <ConnectorPoint PointX="8.75" PointY="4.8936979166666656" />
-          <ConnectorPoint PointX="12.875" PointY="4.8936979166666656" />
+          <ConnectorPoint PointX="7.75" PointY="3.325" />
+          <ConnectorPoint PointX="7.5" PointY="3.325" />
+          <ConnectorPoint PointX="7.5" PointY="5.27830078125" />
+          <ConnectorPoint PointX="9.4264701902519548" PointY="5.2783007812499987" />
+          <ConnectorPoint PointX="9.5931368569186226" PointY="5.27830078125" />
+          <ConnectorPoint PointX="12.875" PointY="5.27830078125" />
           <ConnectorPoint PointX="12.875" PointY="3.325" />
           <ConnectorPoint PointX="12.5" PointY="3.325" />
         </AssociationConnector>
         <AssociationConnector Association="CommonModel.FK_OOLT_OOL">
           <ConnectorPoint PointX="12.5" PointY="3.325" />
-          <ConnectorPoint PointX="12.916666666666666" PointY="3.3249999999999997" />
-          <ConnectorPoint PointX="13.083333333333334" PointY="3.325" />
           <ConnectorPoint PointX="13.25" PointY="3.325" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_REPORT" Width="1.5" PointX="4.875" PointY="5.25" Height="0.39999999999999858" IsExpanded="false" />
@@ -2609,17 +2613,10 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_MAIL" PointX="0.75" PointY="6.125" Width="1.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_REMINDER" Width="1.5" PointX="4.75" PointY="1.125" Height="0.39999999999999991" IsExpanded="false" />
-        <EntityTypeShape EntityType="CommonModel.HU_TITLE" Width="1.5" PointX="7.75" PointY="1.125" Height="0.40000000000000036" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.HU_TITLE" Width="1.5" PointX="7.75" PointY="1.125" Height="3.9033007812499996" IsExpanded="true" />
         <AssociationConnector Association="CommonModel.HU_TITLEHU_EMPLOYEE">
-          <ConnectorPoint PointX="8.5" PointY="1.125" />
-          <ConnectorPoint PointX="8.5" PointY="0.875" />
-          <ConnectorPoint PointX="14.125" PointY="0.875" />
-          <ConnectorPoint PointX="14.125" PointY="2.875" />
-          <ConnectorPoint PointX="13" PointY="2.875" />
-          <ConnectorPoint PointX="13" PointY="5.375" />
-          <ConnectorPoint PointX="13.5" PointY="5.375" />
-          <ConnectorPoint PointX="13.5" PointY="5.9499999999999993" />
-          <ConnectorPoint PointX="13.125" PointY="5.9499999999999993" />
+          <ConnectorPoint PointX="9.25" PointY="5.02830078125" />
+          <ConnectorPoint PointX="10" PointY="5.75" />
         </AssociationConnector>
         <EntityTypeShape EntityType="CommonModel.SE_APP_PROCESS" Width="1.5" PointX="6.75" PointY="8.125" Height="0.40000000000000213" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_APP_SETUP" Width="2.25" PointX="13.125" PointY="7" Height="5.2494108072916656" IsExpanded="true" />
