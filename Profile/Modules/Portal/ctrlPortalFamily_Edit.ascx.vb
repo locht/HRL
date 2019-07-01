@@ -551,7 +551,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID", True)
+                FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID", False)
             End If
         End Using
     End Sub
@@ -562,7 +562,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetWardList(cbDISTRICT_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbWARD_ID, dt, "NAME", "ID", True)
+                FillRadCombobox(cbWARD_ID, dt, "NAME", "ID", False)
             End If
         End Using
     End Sub
@@ -574,7 +574,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID", True)
+                FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID", False)
             End If
         End Using
     End Sub
@@ -585,7 +585,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID", True)
+                FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID", False)
             End If
         End Using
     End Sub

@@ -405,30 +405,30 @@
             function OnClientSelectedIndexChanged(sender, eventArgs) {
                 var id = sender.get_id();
                 var cbo;
-                switch (id) {
-                    case '<%= cbPROVINCE_ID.ClientID %>':
-                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        cbo = $find('<%= cbWARD_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        break;
-                    case '<%= cbDISTRICT_ID.ClientID %>':
-                        cbo = $find('<%= cbWARD_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        break;
-                    case '<%= cbTempPROVINCE_ID.ClientID %>':
-                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        break;
-                    case '<%= cbTempDISTRICT_ID.ClientID %>':
-                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        break;
-                    default:
-                        break;
-                }
+                //                switch (id) {
+                //                    case '<%= cbPROVINCE_ID.ClientID %>':
+                //                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        cbo = $find('<%= cbWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    case '<%= cbDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    case '<%= cbTempPROVINCE_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    case '<%= cbTempDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    default:
+                //                        break;
+                //                }
             }
 
             function clearSelectRadcombo(cbo) {
@@ -445,36 +445,36 @@
             }
 
             function OnClientItemsRequesting(sender, eventArgs) {
-                var id = sender.get_id();
-                var cbo;
-                var value;
-                switch (id) {
-                    case '<%= cbDISTRICT_ID.ClientID %>':
-                        cbo = $find('<%= cbPROVINCE_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    case '<%= cbWARD_ID.ClientID %>':
-                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    case '<%= cbTempDISTRICT_ID.ClientID %>':
-                        cbo = $find('<%= cbTempPROVINCE_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    case '<%= cbTempWARD_ID.ClientID %>':
-                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    default:
-                        break;
-                }
+                //                var id = sender.get_id();
+                //                var cbo;
+                //                var value;
+                //                switch (id) {
+                //                    case '<%= cbDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbPROVINCE_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    case '<%= cbWARD_ID.ClientID %>':
+                //                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    case '<%= cbTempDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempPROVINCE_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    case '<%= cbTempWARD_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    default:
+                //                        break;
+                //                }
 
-                if (!value) {
-                    value = 0;
-                }
-                var context = eventArgs.get_context();
-                context["valueCustom"] = value;
-                context["value"] = sender.get_value();
+                //                if (!value) {
+                //                    value = 0;
+                //                }
+                //                var context = eventArgs.get_context();
+                //                context["valueCustom"] = value;
+                //                context["value"] = sender.get_value();
 
             }
         </script>
