@@ -107,6 +107,7 @@ Public Class ctrlHU_EmpDtlFamily
                          ToolbarItem.Cancel,
                          ToolbarItem.Delete)
             CType(Me.MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -116,7 +117,7 @@ Public Class ctrlHU_EmpDtlFamily
         Try
             Me.CurrentPlaceHolder = Me.ViewName
             ctrlEmpBasicInfo.SetProperty("CurrentPlaceHolder", Me.CurrentPlaceHolder)
-
+           
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -129,14 +130,26 @@ Public Class ctrlHU_EmpDtlFamily
                     ComboBoxDataDTO = New ComboBoxDataDTO
                     ComboBoxDataDTO.GET_RELATION = True
                     ComboBoxDataDTO.GET_PROVINCE = True
+                    ComboBoxDataDTO.GET_DISTRICT = True
+                    'ComboBoxDataDTO.GET_W
                     rep.GetComboList(ComboBoxDataDTO)
                 End If
-                
+
                 If ComboBoxDataDTO IsNot Nothing Then
                     FillDropDownList(cboRelationship, ComboBoxDataDTO.LIST_RELATION, "NAME", "ID", Common.Common.SystemLanguage, True, cboRelationship.SelectedValue)
                     FillDropDownList(cboNguyenQuan, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboNguyenQuan.SelectedValue)
+                    FillDropDownList(cboProvince_City1, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboProvince_City1.SelectedValue)
+                    'FillDropDownList(cboDistrict1, ComboBoxDataDTO.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboDistrict1.SelectedValue)
+                    ''FillDropDownList(cboCommune1, ComboBoxDataDTO.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboCommune1.SelectedValue)
+                    FillDropDownList(cboProvince_City2, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboProvince_City2.SelectedValue)
+                    'FillDropDownList(cboDistrict2, ComboBoxDataDTO.LIST_DISTRICT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboDistrict2.SelectedValue)
+                    'FillDropDownList(cboCommune1, ComboBoxDataDTO.LIST_NATION, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboCommune1.SelectedValue)
                 End If
-
+                'Dim dtPlace
+                'dtPlace = rep.GetProvinceList(True)
+                ''FillRadCombobox(cboProvince_City1, dtPlace, "NAME", "ID")
+                'FillRadCombobox(cboProvince_City2, dtPlace, "NAME", "ID")
+               
             End Using
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -199,8 +212,10 @@ Public Class ctrlHU_EmpDtlFamily
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
-                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
-                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle)
+                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
+                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
+                                                         txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
                                     rgFamily.Rebind()
                                     ExcuteScript("Clear", "clRadDatePicker()")
                                 Else
@@ -210,8 +225,10 @@ Public Class ctrlHU_EmpDtlFamily
                                 If Execute() Then
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                                     CurrentState = CommonMessage.STATE_NORMAL
-                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
-                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle)
+                                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
+                                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
+                                                         txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
                                     rgFamily.Rebind()
                                     ExcuteScript("Clear", "clRadDatePicker()")
                                 Else
@@ -305,15 +322,13 @@ Public Class ctrlHU_EmpDtlFamily
         Try
             If rgFamily.SelectedItems.Count = 0 Then Exit Sub
             'Lưu vào viewStates để giữ những item được select phục vụ cho phương thức delete.
-            SelectedItem = New List(Of Decimal)
+            Dim itemSelected = New List(Of Decimal)
             For Each dr As Telerik.Web.UI.GridDataItem In rgFamily.SelectedItems
-                SelectedItem.Add(dr.GetDataKeyValue("ID"))
+                itemSelected.Add(dr.GetDataKeyValue("ID"))
             Next
-
             'Dim item As GridDataItem = rgFamily.SelectedItems(0)
             Dim item = CType(rgFamily.SelectedItems(rgFamily.SelectedItems.Count - 1), GridDataItem)
             hidFamilyID.Value = item.GetDataKeyValue("ID")
-            txtAdress.Text = item.GetDataKeyValue("ADDRESS")
             txtIDNO.Text = item.GetDataKeyValue("ID_NO")
             txtFullName.Text = item.GetDataKeyValue("FULLNAME")
             txtRemark.Text = item.GetDataKeyValue("REMARK")
@@ -327,6 +342,63 @@ Public Class ctrlHU_EmpDtlFamily
             cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
             txtCareer.Text = item.GetDataKeyValue("CAREER")
             txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
+
+            txtAdress1.Text = item.GetDataKeyValue("ADDRESS")
+            txtAdress_TT.Text = item.GetDataKeyValue("ADDRESS_TT")
+            txtMaHoGiaDinh.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+            txtSoHoKhau.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
+            txtHamlet1.Text = item.GetDataKeyValue("AD_VILLAGE")
+            chkHousehold.Checked = item.GetDataKeyValue("IS_OWNER")
+            chkDaMat.Checked = item.GetDataKeyValue("IS_PASS")
+
+            
+
+            Using rep As New ProfileRepository
+                If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
+                    Dim dt As DataTable = rep.GetProvinceList(False)
+                    FillRadCombobox(cboProvince_City1, dt, "NAME", "ID")
+                    cboProvince_City1.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+                    cboProvince_City1.Text = item.GetDataKeyValue("AD_PROVINCE_NAME")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
+                    Dim dt As DataTable = rep.GetProvinceList(False)
+                    FillRadCombobox(cboProvince_City2, dt, "NAME", "ID")
+                    cboProvince_City2.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+                    cboProvince_City2.Text = item.GetDataKeyValue("TT_PROVINCE_NAME")
+                End If
+                If cboProvince_City1.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetDistrictList(cboProvince_City1.SelectedValue, False)
+                    FillRadCombobox(cboDistrict1, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
+                    cboDistrict1.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                    cboDistrict1.Text = item.GetDataKeyValue("AD_DISTRICT_NAME")
+                End If
+                If cboDistrict1.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetWardList(cboDistrict1.SelectedValue, False)
+                    FillRadCombobox(cboCommune1, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
+                    cboCommune1.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                    cboCommune1.Text = item.GetDataKeyValue("AD_WARD_NAME")
+                End If
+                If cboProvince_City2.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetDistrictList(cboProvince_City2.SelectedValue, False)
+                    FillRadCombobox(cboDistrict2, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
+                    cboDistrict2.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                    cboDistrict2.Text = item.GetDataKeyValue("TT_DISTRICT_NAME")
+                End If
+                If cboDistrict2.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetWardList(cboDistrict2.SelectedValue, False)
+                    FillRadCombobox(cboCommune2, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
+                    cboCommune2.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                    cboCommune2.Text = item.GetDataKeyValue("TT_WARD_NAME")
+                End If
+            End Using
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -365,8 +437,10 @@ Public Class ctrlHU_EmpDtlFamily
                     CurrentState = CommonMessage.STATE_NORMAL
                     UpdateControlState()
                     ExcuteScript("Clear", "clRadDatePicker()")
-                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress,
-                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle)
+                    ClearControlValue(txtFullName, cboNguyenQuan, cboRelationship, rdBirthDate, txtIDNO, txtAdress1, txtAdress_TT,
+                                        chkIsDeduct, rdDeductReg, rdDeductFrom, rdDeductTo, txtRemark, txtTax, txtCareer, txtTitle,
+                                           txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
                 Else
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                 End If
@@ -378,12 +452,133 @@ Public Class ctrlHU_EmpDtlFamily
 
     End Sub
 
-    Protected Sub chkIsDeduct_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIsDeduct.CheckedChanged
-        rdDeductFrom.Enabled = chkIsDeduct.Checked
-        rdDeductTo.Enabled = chkIsDeduct.Checked
+
+    Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
+ Handles cboProvince_City1.ItemsRequested, cboDistrict1.ItemsRequested, cboCommune1.ItemsRequested,
+        cboProvince_City2.ItemsRequested, cboDistrict2.ItemsRequested, cboCommune2.ItemsRequested
+
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Using rep As New ProfileRepository
+                Dim dtData As DataTable
+                Dim sText As String = e.Text
+                Dim dValue As Decimal
+                Dim sSelectValue As String = IIf(e.Context("value") IsNot Nothing, e.Context("value"), "")
+                Select Case sender.ID
+                    Case cboProvince_City1.ID, cboProvince_City2.ID
+                        dtData = rep.GetProvinceList(True)
+                    Case cboDistrict1.ID, cboDistrict2.ID
+                        dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                        dtData = rep.GetDistrictList(dValue, True)
+                    Case cboCommune1.ID, cboCommune2.ID
+                        dValue = IIf(e.Context("valueCustom") IsNot Nothing, e.Context("valueCustom"), 0)
+                        dtData = rep.GetWardList(dValue, True)
+                End Select
+                If sText <> "" Then
+                    Dim dtExist = (From p In dtData
+                                   Where p("NAME") IsNot DBNull.Value AndAlso
+                                  p("NAME").ToString.ToUpper = sText.ToUpper)
+
+                    'If dtExist.Count = 0 Then
+                    Dim dtFilter = (From p In dtData
+                                    Where p("NAME") IsNot DBNull.Value AndAlso
+                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+
+                    If dtFilter.Count > 0 Then
+                        dtData = dtFilter.CopyToDataTable
+                    Else
+                        dtData = dtData.Clone
+                    End If
+
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+                    sender.Items.Clear()
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        'Select Case sender.ID
+                        '    Case cboTitle.ID
+                        '        radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                        'End Select
+                        sender.Items.Add(radItem)
+                    Next
+                    'Else
+
+                    '    Dim itemOffset As Integer = e.NumberOfItems
+                    '    Dim endOffset As Integer = dtData.Rows.Count
+                    '    e.EndOfItems = True
+                    '    sender.Items.Clear()
+                    '    For i As Integer = itemOffset To endOffset - 1
+                    '        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                    '        Select Case sender.ID
+                    '            Case cboTitle.ID
+                    '                radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                    '        End Select
+                    '        sender.Items.Add(radItem)
+                    '    Next
+                    'End If
+                Else
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+                    sender.Items.Clear()
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        'Select Case sender.ID
+                        '    Case cboTitle.ID
+                        '        radItem.Attributes("GROUP_NAME") = dtData.Rows(i)("GROUP_NAME").ToString()
+                        'End Select
+                        sender.Items.Add(radItem)
+                    Next
+                End If
+            End Using
+
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Private Sub chkHousehold_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkHousehold.CheckedChanged
+        If chkHousehold.Checked Then
+            txtMaHoGiaDinh.Enabled = True
+            txtSoHoKhau.Enabled = True
+        Else
+            txtMaHoGiaDinh.Enabled = False
+            txtSoHoKhau.Enabled = False
+        End If
     End Sub
 
+    Private Sub chkIsDeduct_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkIsDeduct.CheckedChanged
+        If chkIsDeduct.Checked Then
+            rdDeductFrom.Enabled = True
+            rdDeductTo.Enabled = True
+            rdDeductReg.Enabled = True
+            txtTax.Enabled = True
+        Else
+            rdDeductReg.Enabled = False
+            rdDeductFrom.Enabled = False
+            rdDeductTo.Enabled = False
+            txtTax.Enabled = True
+        End If
+    End Sub
 
+    Private Sub chkDaMat_CheckedChanged(sender As Object, e As System.EventArgs) Handles chkDaMat.CheckedChanged
+        If chkDaMat.Checked Then
+            chkIsDeduct.Enabled = False
+            rdDeductReg.Enabled = False
+            rdDeductFrom.Enabled = False
+            rdDeductTo.Enabled = False
+            txtTax.Enabled = False
+            txtTax.ClearValue()
+            rdDeductFrom.ClearValue()
+            rdDeductTo.ClearValue()
+            chkIsDeduct.ClearValue()
+            rdDeductReg.ClearValue()
+        Else
+            chkIsDeduct.Enabled = True
+
+        End If
+    End Sub
 #End Region
 
 #Region "Custom"
@@ -394,7 +589,6 @@ Public Class ctrlHU_EmpDtlFamily
             objFamily.EMPLOYEE_ID = EmployeeInfo.ID
             objFamily.BIRTH_DATE = rdBirthDate.SelectedDate
             objFamily.DEDUCT_REG = rdDeductReg.SelectedDate
-            objFamily.ADDRESS = txtAdress.Text.Trim()
             objFamily.TAXTATION = txtTax.Text
             objFamily.DEDUCT_FROM = rdDeductFrom.SelectedDate()
             objFamily.DEDUCT_TO = rdDeductTo.SelectedDate()
@@ -404,11 +598,38 @@ Public Class ctrlHU_EmpDtlFamily
             objFamily.REMARK = txtRemark.Text.Trim()
             objFamily.CAREER = txtCareer.Text.Trim()
             objFamily.TITLE_NAME = txtTitle.Text.Trim()
+            objFamily.AD_VILLAGE = txtHamlet1.Text.Trim()
+            objFamily.CERTIFICATE_CODE = txtMaHoGiaDinh.Text
+            objFamily.CERTIFICATE_NUM = txtSoHoKhau.Text
+            objFamily.IS_OWNER = chkHousehold.Checked
+            objFamily.IS_PASS = chkDaMat.Checked
+            objFamily.ADDRESS = txtAdress1.Text
+            objFamily.ADDRESS_TT = txtAdress_TT.Text
+
             If cboRelationship.SelectedValue <> "" Then
                 objFamily.RELATION_ID = Decimal.Parse(cboRelationship.SelectedValue)
             End If
             If cboNguyenQuan.SelectedValue <> "" Then
                 objFamily.PROVINCE_ID = Decimal.Parse(cboNguyenQuan.SelectedValue)
+            End If
+
+            If cboProvince_City1.SelectedValue <> "" Then
+                objFamily.AD_PROVINCE_ID = Decimal.Parse(cboProvince_City1.SelectedValue)
+            End If
+            If cboDistrict1.SelectedValue <> "" Then
+                objFamily.AD_DISTRICT_ID = Decimal.Parse(cboDistrict1.SelectedValue)
+            End If
+            If cboCommune1.SelectedValue <> "" Then
+                objFamily.AD_WARD_ID = Decimal.Parse(cboCommune1.SelectedValue)
+            End If
+            If cboProvince_City2.SelectedValue <> "" Then
+                objFamily.TT_PROVINCE_ID = Decimal.Parse(cboProvince_City2.SelectedValue)
+            End If
+            If cboDistrict2.SelectedValue <> "" Then
+                objFamily.TT_DISTRICT_ID = Decimal.Parse(cboDistrict2.SelectedValue)
+            End If
+            If cboCommune2.SelectedValue <> "" Then
+                objFamily.TT_WARD_ID = Decimal.Parse(cboCommune2.SelectedValue)
             End If
             Dim gID As Decimal
             If hidFamilyID.Value = "" Then
@@ -429,6 +650,7 @@ Public Class ctrlHU_EmpDtlFamily
                 End If
 
             End If
+
             rep.Dispose()
             IDSelect = gID
             Return True
@@ -471,9 +693,10 @@ Public Class ctrlHU_EmpDtlFamily
     End Sub
 
     Private Sub SetStatusControl(ByVal sTrangThai As Boolean)
-        txtAdress.ReadOnly = Not sTrangThai
+        txtAdress1.ReadOnly = Not sTrangThai
+        txtAdress_TT.ReadOnly = Not sTrangThai
         txtRemark.ReadOnly = Not sTrangThai
-        txtTax.ReadOnly = Not sTrangThai
+        'txtTax.ReadOnly = Not sTrangThai
         txtIDNO.ReadOnly = Not sTrangThai
         txtFullName.ReadOnly = Not sTrangThai
         chkIsDeduct.Enabled = sTrangThai
@@ -482,21 +705,27 @@ Public Class ctrlHU_EmpDtlFamily
         Utilities.ReadOnlyRadComBo(cboRelationship, Not sTrangThai)
         Utilities.ReadOnlyRadComBo(cboNguyenQuan, Not sTrangThai)
         Utilities.EnableRadDatePicker(rdBirthDate, sTrangThai)
-        Utilities.EnableRadDatePicker(rdDeductReg, sTrangThai)
-        If chkIsDeduct.Checked AndAlso chkIsDeduct.Enabled Then
-            rdDeductFrom.Enabled = True
-            rdDeductTo.Enabled = True
-        Else
-            rdDeductFrom.Enabled = False
-            rdDeductTo.Enabled = False
-        End If
+        'Utilities.EnableRadDatePicker(rdDeductReg, sTrangThai)
+        chkHousehold.Enabled = sTrangThai
+        chkDaMat.Enabled = sTrangThai
+        Utilities.ReadOnlyRadComBo(cboProvince_City1, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cboDistrict1, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cboCommune1, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cboProvince_City2, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cboDistrict2, Not sTrangThai)
+        Utilities.ReadOnlyRadComBo(cboCommune2, Not sTrangThai)
+
+
+        txtHamlet1.ReadOnly = Not sTrangThai
         SetStatusToolBar()
     End Sub
 
     Private Sub ResetControlValue()
-        ClearControlValue(txtFullName, txtAdress, txtAdress, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle,
+        ClearControlValue(txtFullName, txtAdress1, txtAdress_TT, txtIDNO, txtRemark, txtTax, txtCareer, txtTitle,
                           hidFamilyID, chkIsDeduct, cboNguyenQuan, cboRelationship,
-                          rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo)
+                          rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                                         txtSoHoKhau, txtMaHoGiaDinh, cboProvince_City1, cboDistrict1, cboCommune1,
+                                                          cboProvince_City2, cboDistrict2, cboCommune2, txtHamlet1, chkHousehold, chkDaMat)
         rgFamily.SelectedIndexes.Clear()
     End Sub
 
@@ -512,4 +741,5 @@ Public Class ctrlHU_EmpDtlFamily
     End Function
 #End Region
 
+   
 End Class

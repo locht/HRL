@@ -16,13 +16,61 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ProfileDAL" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Framework.Data" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IProfileBusiness_DeleteSigner_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSigner" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeleteSigner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSignerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_LIST_CONCURRENTLY_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_LIST_CONCURRENTLY" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_LIST_CONCURRENTLY_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_LIST_CONCURRENTLYResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_CONCURRENTLY_BY_ID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_CONCURRENTLY_BY_ID" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_CONCURRENTLY_BY_ID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_CONCURRENTLY_BY_IDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_INSERT_CONCURRENTLY_InputMessage">
+    <wsdl:part name="parameters" element="tns:INSERT_CONCURRENTLY" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_INSERT_CONCURRENTLY_OutputMessage">
+    <wsdl:part name="parameters" element="tns:INSERT_CONCURRENTLYResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_UPDATE_CONCURRENTLY_InputMessage">
+    <wsdl:part name="parameters" element="tns:UPDATE_CONCURRENTLY" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_UPDATE_CONCURRENTLY_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UPDATE_CONCURRENTLYResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_CONCURRENTLY_BY_EMP_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_CONCURRENTLY_BY_EMP" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_CONCURRENTLY_BY_EMP_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_CONCURRENTLY_BY_EMPResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_TITLE_ORG_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_TITLE_ORG" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_TITLE_ORG_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_TITLE_ORGResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_INSERT_EMPLOYEE_KN_InputMessage">
+    <wsdl:part name="parameters" element="tns:INSERT_EMPLOYEE_KN" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_INSERT_EMPLOYEE_KN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:INSERT_EMPLOYEE_KNResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetOrgFromUsername_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrgFromUsername" />
   </wsdl:message>
@@ -502,6 +550,36 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_ApproveListContract_OutputMessage">
     <wsdl:part name="parameters" element="tns:ApproveListContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_HU_SIGNER_InputMessage">
+    <wsdl:part name="parameters" element="tns:GET_HU_SIGNER" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GET_HU_SIGNER_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GET_HU_SIGNERResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_INSERT_HU_SIGNER_InputMessage">
+    <wsdl:part name="parameters" element="tns:INSERT_HU_SIGNER" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_INSERT_HU_SIGNER_OutputMessage">
+    <wsdl:part name="parameters" element="tns:INSERT_HU_SIGNERResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_UPDATE_HU_SIGNER_InputMessage">
+    <wsdl:part name="parameters" element="tns:UPDATE_HU_SIGNER" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_UPDATE_HU_SIGNER_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UPDATE_HU_SIGNERResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_CHECK_EXIT_InputMessage">
+    <wsdl:part name="parameters" element="tns:CHECK_EXIT" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_CHECK_EXIT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CHECK_EXITResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeactiveAndActiveSigner_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeactiveAndActiveSigner" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeactiveAndActiveSigner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeactiveAndActiveSignerResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetTerminate_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTerminate" />
@@ -3054,6 +3132,38 @@
     <wsdl:part name="parameters" element="tns:GetRelationshipListResponse" />
   </wsdl:message>
   <wsdl:portType name="IProfileBusiness">
+    <wsdl:operation name="DeleteSigner">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteSigner" message="tns:IProfileBusiness_DeleteSigner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteSignerResponse" message="tns:IProfileBusiness_DeleteSigner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_LIST_CONCURRENTLY">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY" message="tns:IProfileBusiness_GET_LIST_CONCURRENTLY_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLYResponse" message="tns:IProfileBusiness_GET_LIST_CONCURRENTLY_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_CONCURRENTLY_BY_ID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_ID" message="tns:IProfileBusiness_GET_CONCURRENTLY_BY_ID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_IDResponse" message="tns:IProfileBusiness_GET_CONCURRENTLY_BY_ID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_CONCURRENTLY">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLY" message="tns:IProfileBusiness_INSERT_CONCURRENTLY_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLYResponse" message="tns:IProfileBusiness_INSERT_CONCURRENTLY_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_CONCURRENTLY">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLY" message="tns:IProfileBusiness_UPDATE_CONCURRENTLY_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLYResponse" message="tns:IProfileBusiness_UPDATE_CONCURRENTLY_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_CONCURRENTLY_BY_EMP">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMP" message="tns:IProfileBusiness_GET_CONCURRENTLY_BY_EMP_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMPResponse" message="tns:IProfileBusiness_GET_CONCURRENTLY_BY_EMP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_TITLE_ORG">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GET_TITLE_ORG" message="tns:IProfileBusiness_GET_TITLE_ORG_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GET_TITLE_ORGResponse" message="tns:IProfileBusiness_GET_TITLE_ORG_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_EMPLOYEE_KN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KN" message="tns:IProfileBusiness_INSERT_EMPLOYEE_KN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KNResponse" message="tns:IProfileBusiness_INSERT_EMPLOYEE_KN_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetOrgFromUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetOrgFromUsername" message="tns:IProfileBusiness_GetOrgFromUsername_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetOrgFromUsernameResponse" message="tns:IProfileBusiness_GetOrgFromUsername_OutputMessage" />
@@ -3373,6 +3483,26 @@
     <wsdl:operation name="ApproveListContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/ApproveListContract" message="tns:IProfileBusiness_ApproveListContract_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/ApproveListContractResponse" message="tns:IProfileBusiness_ApproveListContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GET_HU_SIGNER">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GET_HU_SIGNER" message="tns:IProfileBusiness_GET_HU_SIGNER_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GET_HU_SIGNERResponse" message="tns:IProfileBusiness_GET_HU_SIGNER_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_HU_SIGNER">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNER" message="tns:IProfileBusiness_INSERT_HU_SIGNER_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNERResponse" message="tns:IProfileBusiness_INSERT_HU_SIGNER_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_HU_SIGNER">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/UPDATE_HU_SIGNER" message="tns:IProfileBusiness_UPDATE_HU_SIGNER_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/UPDATE_HU_SIGNERResponse" message="tns:IProfileBusiness_UPDATE_HU_SIGNER_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CHECK_EXIT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/CHECK_EXIT" message="tns:IProfileBusiness_CHECK_EXIT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/CHECK_EXITResponse" message="tns:IProfileBusiness_CHECK_EXIT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeactiveAndActiveSigner">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner" message="tns:IProfileBusiness_DeactiveAndActiveSigner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSignerResponse" message="tns:IProfileBusiness_DeactiveAndActiveSigner_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTerminate">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminate" message="tns:IProfileBusiness_GetTerminate_InputMessage" />
@@ -5078,6 +5208,78 @@
   <wsdl:binding name="WSHttpBinding_IProfileBusiness" type="tns:IProfileBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IProfileBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteSigner">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteSigner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_LIST_CONCURRENTLY">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_CONCURRENTLY_BY_ID">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_ID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_CONCURRENTLY">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLY" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_CONCURRENTLY">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLY" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_CONCURRENTLY_BY_EMP">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_TITLE_ORG">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GET_TITLE_ORG" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_EMPLOYEE_KN">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetOrgFromUsername">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetOrgFromUsername" style="document" />
       <wsdl:input>
@@ -5791,6 +5993,51 @@
     </wsdl:operation>
     <wsdl:operation name="ApproveListContract">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/ApproveListContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GET_HU_SIGNER">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GET_HU_SIGNER" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_HU_SIGNER">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNER" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_HU_SIGNER">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/UPDATE_HU_SIGNER" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CHECK_EXIT">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/CHECK_EXIT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactiveAndActiveSigner">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
