@@ -30,6 +30,18 @@ Partial Class ProfileRepository
             objFamilyData.DEDUCT_TO = objFamily.DEDUCT_TO
             objFamilyData.REMARK = objFamily.REMARK
             objFamilyData.ADDRESS = objFamily.ADDRESS
+            objFamilyData.ADDRESS_TT = objFamily.ADDRESS_TT
+            objFamilyData.AD_DISTRICT_ID = objFamily.AD_DISTRICT_ID
+            objFamilyData.AD_PROVINCE_ID = objFamily.AD_PROVINCE_ID
+            objFamilyData.AD_VILLAGE = objFamily.AD_VILLAGE
+            objFamilyData.AD_WARD_ID = objFamily.AD_WARD_ID
+            objFamilyData.TT_DISTRICT_ID = objFamily.TT_DISTRICT_ID
+            objFamilyData.TT_PROVINCE_ID = objFamily.TT_PROVINCE_ID
+            objFamilyData.TT_WARD_ID = objFamily.TT_WARD_ID
+            objFamilyData.IS_OWNER = objFamily.IS_OWNER
+            objFamilyData.IS_PASS = objFamily.IS_PASS
+            objFamilyData.CERTIFICATE_CODE = objFamily.CERTIFICATE_CODE
+            objFamilyData.CERTIFICATE_NUM = objFamily.CERTIFICATE_NUM
             Context.HU_FAMILY.AddObject(objFamilyData)
             Context.SaveChanges(log)
             gID = objFamilyData.ID
@@ -61,6 +73,18 @@ Partial Class ProfileRepository
             objFamilyData.DEDUCT_TO = objFamily.DEDUCT_TO
             objFamilyData.REMARK = objFamily.REMARK
             objFamilyData.ADDRESS = objFamily.ADDRESS
+            objFamilyData.ADDRESS_TT = objFamily.ADDRESS_TT
+            objFamilyData.AD_DISTRICT_ID = objFamily.AD_DISTRICT_ID
+            objFamilyData.AD_PROVINCE_ID = objFamily.AD_PROVINCE_ID
+            objFamilyData.AD_VILLAGE = objFamily.AD_VILLAGE
+            objFamilyData.AD_WARD_ID = objFamily.AD_WARD_ID
+            objFamilyData.TT_DISTRICT_ID = objFamily.TT_DISTRICT_ID
+            objFamilyData.TT_PROVINCE_ID = objFamily.TT_PROVINCE_ID
+            objFamilyData.TT_WARD_ID = objFamily.TT_WARD_ID
+            objFamilyData.IS_OWNER = objFamily.IS_OWNER
+            objFamilyData.IS_PASS = objFamily.IS_PASS
+            objFamilyData.CERTIFICATE_CODE = objFamily.CERTIFICATE_CODE
+            objFamilyData.CERTIFICATE_NUM = objFamily.CERTIFICATE_NUM
             Context.SaveChanges(log)
             gID = objFamilyData.ID
             Return True
@@ -79,9 +103,22 @@ Partial Class ProfileRepository
                      From p_g In gGroup.DefaultIfEmpty
                      Group Join n In Context.HU_PROVINCE On p.PROVINCE_ID Equals n.ID Into nGroup = Group
                      From n_g In nGroup.DefaultIfEmpty
+                     Group Join pv In Context.HU_PROVINCE On p.AD_PROVINCE_ID Equals pv.ID Into pvGroup = Group
+                     From pv_g In pvGroup.DefaultIfEmpty
+                    Group Join d In Context.HU_DISTRICT On p.AD_DISTRICT_ID Equals d.ID Into dGroup = Group
+                     From d_g In dGroup.DefaultIfEmpty
+                    Group Join w In Context.HU_WARD On p.AD_WARD_ID Equals w.ID Into wGroup = Group
+                     From w_g In wGroup.DefaultIfEmpty
+                      Group Join pvT In Context.HU_PROVINCE On p.TT_PROVINCE_ID Equals pvT.ID Into pvTGroup = Group
+                     From pvT_g In pvTGroup.DefaultIfEmpty
+                    Group Join dT In Context.HU_DISTRICT On p.TT_DISTRICT_ID Equals dT.ID Into dTGroup = Group
+                     From dT_g In dTGroup.DefaultIfEmpty
+                    Group Join wT In Context.HU_WARD On p.TT_WARD_ID Equals wT.ID Into wTGroup = Group
+                     From wT_g In wTGroup.DefaultIfEmpty
                    Select New FamilyDTO With {
                     .ID = p.ID,
                     .ADDRESS = p.ADDRESS,
+                    .ADDRESS_TT = p.ADDRESS_TT,
                     .EMPLOYEE_ID = p.EMPLOYEE_ID,
                     .FULLNAME = p.FULLNAME,
                     .RELATION_ID = p.RELATION_ID,
@@ -97,7 +134,24 @@ Partial Class ProfileRepository
                     .IS_DEDUCT = p.IS_DEDUCT,
                     .DEDUCT_FROM = p.DEDUCT_FROM,
                     .DEDUCT_TO = p.DEDUCT_TO,
-                    .REMARK = p.REMARK})
+                    .REMARK = p.REMARK,
+                    .AD_DISTRICT_ID = p.AD_DISTRICT_ID,
+                    .AD_DISTRICT_NAME = d_g.NAME_VN,
+                    .AD_PROVINCE_ID = p.AD_PROVINCE_ID,
+                    .AD_PROVINCE_NAME = pv_g.NAME_VN,
+                    .AD_VILLAGE = p.AD_VILLAGE,
+                    .AD_WARD_ID = p.AD_WARD_ID,
+                    .AD_WARD_NAME = w_g.NAME_EN,
+                    .TT_DISTRICT_ID = p.TT_DISTRICT_ID,
+                     .TT_DISTRICT_NAME = dT_g.NAME_VN,
+                    .TT_PROVINCE_ID = p.TT_PROVINCE_ID,
+                    .TT_PROVINCE_NAME = pvT_g.NAME_VN,
+                    .TT_WARD_ID = p.TT_WARD_ID,
+                    .TT_WARD_NAME = wT_g.NAME_EN,
+                    .IS_OWNER = p.IS_OWNER,
+                    .IS_PASS = p.IS_PASS,
+                    .CERTIFICATE_CODE = p.CERTIFICATE_CODE,
+                    .CERTIFICATE_NUM = p.CERTIFICATE_NUM})
             If _filter.EMPLOYEE_ID <> 0 Then
                 query = query.Where(Function(p) p.EMPLOYEE_ID = _filter.EMPLOYEE_ID)
             End If
@@ -131,10 +185,33 @@ Partial Class ProfileRepository
             If _filter.ADDRESS <> "" Then
                 query = query.Where(Function(p) p.ADDRESS.ToLower().Contains(_filter.ADDRESS.ToLower))
             End If
+            If _filter.ADDRESS_TT <> "" Then
+                query = query.Where(Function(p) p.ADDRESS_TT.ToLower().Contains(_filter.ADDRESS_TT.ToLower))
+            End If
             If _filter.REMARK <> "" Then
                 query = query.Where(Function(p) p.REMARK.ToLower().Contains(_filter.REMARK.ToLower))
             End If
-
+            If _filter.AD_DISTRICT_NAME <> "" Then
+                query = query.Where(Function(p) p.AD_DISTRICT_NAME.ToLower().Contains(_filter.AD_DISTRICT_NAME.ToLower))
+            End If
+            If _filter.AD_PROVINCE_NAME <> "" Then
+                query = query.Where(Function(p) p.AD_PROVINCE_NAME.ToLower().Contains(_filter.AD_PROVINCE_NAME.ToLower))
+            End If
+            If _filter.AD_VILLAGE <> "" Then
+                query = query.Where(Function(p) p.AD_VILLAGE.ToLower().Contains(_filter.AD_VILLAGE.ToLower))
+            End If
+            If _filter.AD_WARD_NAME <> "" Then
+                query = query.Where(Function(p) p.AD_WARD_NAME.ToLower().Contains(_filter.AD_WARD_NAME.ToLower))
+            End If
+            If _filter.TT_DISTRICT_NAME <> "" Then
+                query = query.Where(Function(p) p.TT_DISTRICT_NAME.ToLower().Contains(_filter.TT_DISTRICT_NAME.ToLower))
+            End If
+            If _filter.TT_PROVINCE_NAME <> "" Then
+                query = query.Where(Function(p) p.TT_PROVINCE_NAME.ToLower().Contains(_filter.TT_PROVINCE_NAME.ToLower))
+            End If
+            If _filter.TT_WARD_NAME <> "" Then
+                query = query.Where(Function(p) p.TT_WARD_NAME.ToLower().Contains(_filter.TT_WARD_NAME.ToLower))
+            End If
             Return query.ToList
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
