@@ -179,7 +179,7 @@ Public Class ctrlPortalFamily_Edit
                     CurrentState = CommonMessage.STATE_NEW
                     ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     UpdateControlState()
@@ -219,6 +219,7 @@ Public Class ctrlPortalFamily_Edit
                         If cbTempWARD_ID.SelectedValue <> "" Then
                             obj.TT_WARD_ID = Decimal.Parse(cbTempWARD_ID.SelectedValue)
                         End If
+                        obj.AD_VILLAGE = txtAD_Village.Text.Trim
                         obj.IS_OWNER = chkIs_Owner.Checked
                         obj.IS_PASS = chkIs_Pass.Checked
                         obj.REMARK = txtRemark.Text.Trim
@@ -291,6 +292,7 @@ Public Class ctrlPortalFamily_Edit
                         cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
                         cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
                         cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                        txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
                         cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
                         cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
                         cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
@@ -304,7 +306,7 @@ Public Class ctrlPortalFamily_Edit
                     Else
                         ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     End If
@@ -410,6 +412,7 @@ Public Class ctrlPortalFamily_Edit
                 cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
                 cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
                 cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
                 cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
                 cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
                 cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
@@ -453,6 +456,7 @@ Public Class ctrlPortalFamily_Edit
                 cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
                 cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
                 cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
                 cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
                 cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
                 cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
@@ -493,6 +497,9 @@ Public Class ctrlPortalFamily_Edit
     Protected Sub chkIs_Pass_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Pass.CheckedChanged
         If chkIs_Pass.Checked Then
             chkIsDeduct.Checked = False
+            chkIsDeduct.Enabled = False
+        Else
+            chkIsDeduct.Enabled = True
         End If
     End Sub
 
@@ -587,7 +594,7 @@ Public Class ctrlPortalFamily_Edit
         Try
             ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
@@ -614,6 +621,7 @@ Public Class ctrlPortalFamily_Edit
             cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
             cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
             cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+            txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
             cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
             cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
             cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
@@ -635,14 +643,14 @@ Public Class ctrlPortalFamily_Edit
             If rgFamily.SelectedItems.Count = 0 Then
                 ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Exit Sub
             End If
             ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
                                       chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
-                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtCareer, txtTitle,
                                       chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
                                       cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
             CurrentState = CommonMessage.STATE_NORMAL
@@ -668,6 +676,7 @@ Public Class ctrlPortalFamily_Edit
             cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
             cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
             cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+            txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
             cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
             cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
             cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")

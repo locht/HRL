@@ -216,6 +216,7 @@ Partial Class ProfileRepository
             objFamilyEditData.AD_PROVINCE_ID = objFamilyEdit.AD_PROVINCE_ID
             objFamilyEditData.AD_DISTRICT_ID = objFamilyEdit.AD_DISTRICT_ID
             objFamilyEditData.AD_WARD_ID = objFamilyEdit.AD_WARD_ID
+            objFamilyEditData.AD_VILLAGE = objFamilyEdit.AD_VILLAGE
             objFamilyEditData.TT_PROVINCE_ID = objFamilyEdit.TT_PROVINCE_ID
             objFamilyEditData.TT_DISTRICT_ID = objFamilyEdit.TT_DISTRICT_ID
             objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
@@ -260,6 +261,7 @@ Partial Class ProfileRepository
             objFamilyEditData.AD_PROVINCE_ID = objFamilyEdit.AD_PROVINCE_ID
             objFamilyEditData.AD_DISTRICT_ID = objFamilyEdit.AD_DISTRICT_ID
             objFamilyEditData.AD_WARD_ID = objFamilyEdit.AD_WARD_ID
+            objFamilyEditData.AD_VILLAGE = objFamilyEdit.AD_VILLAGE
             objFamilyEditData.TT_PROVINCE_ID = objFamilyEdit.TT_PROVINCE_ID
             objFamilyEditData.TT_DISTRICT_ID = objFamilyEdit.TT_DISTRICT_ID
             objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
@@ -306,6 +308,7 @@ Partial Class ProfileRepository
                          .AD_PROVINCE_ID = p.AD_PROVINCE_ID,
                          .AD_DISTRICT_ID = p.AD_DISTRICT_ID,
                          .AD_WARD_ID = p.AD_WARD_ID,
+                         .AD_VILLAGE = p.AD_VILLAGE,
                          .TT_PROVINCE_ID = p.TT_PROVINCE_ID,
                          .TT_DISTRICT_ID = p.TT_DISTRICT_ID,
                          .TT_WARD_ID = p.TT_WARD_ID,
