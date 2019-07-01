@@ -210,6 +210,17 @@ Partial Class ProfileRepository
             objFamilyEditData.CAREER = objFamilyEdit.CAREER
             objFamilyEditData.TITLE_NAME = objFamilyEdit.TITLE_NAME
             objFamilyEditData.PROVINCE_ID = objFamilyEdit.PROVINCE_ID
+            objFamilyEditData.CERTIFICATE_CODE = objFamilyEdit.CERTIFICATE_CODE
+            objFamilyEditData.CERTIFICATE_NUM = objFamilyEdit.CERTIFICATE_NUM
+            objFamilyEditData.ADDRESS_TT = objFamilyEdit.ADDRESS_TT
+            objFamilyEditData.AD_PROVINCE_ID = objFamilyEdit.AD_PROVINCE_ID
+            objFamilyEditData.AD_DISTRICT_ID = objFamilyEdit.AD_DISTRICT_ID
+            objFamilyEditData.AD_WARD_ID = objFamilyEdit.AD_WARD_ID
+            objFamilyEditData.TT_PROVINCE_ID = objFamilyEdit.TT_PROVINCE_ID
+            objFamilyEditData.TT_DISTRICT_ID = objFamilyEdit.TT_DISTRICT_ID
+            objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
+            objFamilyEditData.IS_OWNER = objFamilyEdit.IS_OWNER
+            objFamilyEditData.IS_PASS = objFamilyEdit.IS_PASS
             Context.HU_FAMILY_EDIT.AddObject(objFamilyEditData)
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
@@ -243,6 +254,17 @@ Partial Class ProfileRepository
             objFamilyEditData.CAREER = objFamilyEdit.CAREER
             objFamilyEditData.TITLE_NAME = objFamilyEdit.TITLE_NAME
             objFamilyEditData.PROVINCE_ID = objFamilyEdit.PROVINCE_ID
+            objFamilyEditData.CERTIFICATE_CODE = objFamilyEdit.CERTIFICATE_CODE
+            objFamilyEditData.CERTIFICATE_NUM = objFamilyEdit.CERTIFICATE_NUM
+            objFamilyEditData.ADDRESS_TT = objFamilyEdit.ADDRESS_TT
+            objFamilyEditData.AD_PROVINCE_ID = objFamilyEdit.AD_PROVINCE_ID
+            objFamilyEditData.AD_DISTRICT_ID = objFamilyEdit.AD_DISTRICT_ID
+            objFamilyEditData.AD_WARD_ID = objFamilyEdit.AD_WARD_ID
+            objFamilyEditData.TT_PROVINCE_ID = objFamilyEdit.TT_PROVINCE_ID
+            objFamilyEditData.TT_DISTRICT_ID = objFamilyEdit.TT_DISTRICT_ID
+            objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
+            objFamilyEditData.IS_OWNER = objFamilyEdit.IS_OWNER
+            objFamilyEditData.IS_PASS = objFamilyEdit.IS_PASS
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
             Return True

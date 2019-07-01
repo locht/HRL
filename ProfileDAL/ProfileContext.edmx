@@ -1616,6 +1616,18 @@
             <Property Name="PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="TITLE_NAME" Type="nclob" Nullable="true" />
             <Property Name="CAREER" Type="nclob" Nullable="true" />
+            <Property Name="ADDRESS_TT" Type="nclob" Nullable="true" />
+            <Property Name="CERTIFICATE_CODE" Type="nclob" Nullable="true" />
+            <Property Name="CERTIFICATE_NUM" Type="nclob" Nullable="true" />
+            <Property Name="IS_OWNER" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AD_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AD_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AD_WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TT_PROVINCE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TT_DISTRICT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="TT_WARD_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_PASS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="AD_VILLAGE" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDIT">
             <Key>
@@ -5872,6 +5884,18 @@
           <Property Type="Decimal" Name="PROVINCE_ID" Nullable="true" />
           <Property Type="String" Name="TITLE_NAME" Nullable="true" />
           <Property Type="String" Name="CAREER" Nullable="true" />
+          <Property Type="String" Name="ADDRESS_TT" Nullable="true" />
+          <Property Type="String" Name="CERTIFICATE_CODE" Nullable="true" />
+          <Property Type="String" Name="CERTIFICATE_NUM" Nullable="true" />
+          <Property Type="Decimal" Name="IS_OWNER" Nullable="true" />
+          <Property Type="Decimal" Name="AD_PROVINCE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="AD_DISTRICT_ID" Nullable="true" />
+          <Property Type="Decimal" Name="AD_WARD_ID" Nullable="true" />
+          <Property Type="Decimal" Name="TT_PROVINCE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="TT_DISTRICT_ID" Nullable="true" />
+          <Property Type="Decimal" Name="TT_WARD_ID" Nullable="true" />
+          <Property Type="Decimal" Name="IS_PASS" Nullable="true" />
+          <Property Type="String" Name="AD_VILLAGE" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_EMPLOYEE_EDIT">
           <Key>
@@ -9218,6 +9242,18 @@
                     <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
                     <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
                     <ScalarProperty Name="CAREER" ColumnName="CAREER" />
+                    <ScalarProperty Name="ADDRESS_TT" ColumnName="ADDRESS_TT" />
+                    <ScalarProperty Name="CERTIFICATE_CODE" ColumnName="CERTIFICATE_CODE" />
+                    <ScalarProperty Name="CERTIFICATE_NUM" ColumnName="CERTIFICATE_NUM" />
+                    <ScalarProperty Name="IS_OWNER" ColumnName="IS_OWNER" />
+                    <ScalarProperty Name="AD_PROVINCE_ID" ColumnName="AD_PROVINCE_ID" />
+                    <ScalarProperty Name="AD_DISTRICT_ID" ColumnName="AD_DISTRICT_ID" />
+                    <ScalarProperty Name="AD_WARD_ID" ColumnName="AD_WARD_ID" />
+                    <ScalarProperty Name="TT_PROVINCE_ID" ColumnName="TT_PROVINCE_ID" />
+                    <ScalarProperty Name="TT_DISTRICT_ID" ColumnName="TT_DISTRICT_ID" />
+                    <ScalarProperty Name="TT_WARD_ID" ColumnName="TT_WARD_ID" />
+                    <ScalarProperty Name="IS_PASS" ColumnName="IS_PASS" />
+                    <ScalarProperty Name="AD_VILLAGE" ColumnName="AD_VILLAGE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11446,7 +11482,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST" Width="1.5" PointX="19.75" PointY="9.75" Height="0.4" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_LIST_GW" Width="1.5" PointX="12.75" PointY="19.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ASSET_MNG" Width="1.5" PointX="14.875" PointY="23.625" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_FAMILY_EDIT" Width="2.125" PointX="16.625" PointY="16.375" Height="8.3262337239583353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDIT" Width="1.5" PointX="18.75" PointY="19.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_PRO_TRAIN_OUT_COMPANY_EDIT" Width="2.875" PointX="2.375" PointY="31.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WORKING_BEFORE_EDIT" Width="2.125" PointX="23.125" PointY="0.5" Height="0.4" IsExpanded="false" />
