@@ -29,6 +29,13 @@
     Public Property REMARK As String
     Public Property AD_VILLAGE As String
 
+    Public Property AD_PROVINCE_NAME As String
+    Public Property AD_DISTRICT_NAME As String
+    Public Property AD_WARD_NAME As String
+    Public Property TT_PROVINCE_NAME As String
+    Public Property TT_DISTRICT_NAME As String
+    Public Property TT_WARD_NAME As String
+
     Public Property CREATED_DATE As Date?
     Public Property CREATED_BY As String
     Public Property CREATED_LOG As String
