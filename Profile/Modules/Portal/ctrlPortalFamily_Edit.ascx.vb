@@ -201,12 +201,24 @@ Public Class ctrlPortalFamily_Edit
                         obj.ADDRESS_TT = txtTempAdress.Text.Trim
                         obj.CERTIFICATE_NUM = txtHouseCertificate_Num.Text.Trim
                         obj.CERTIFICATE_CODE = txtHouseCertificate_Code.Text.Trim
-                        obj.AD_PROVINCE_ID = cbPROVINCE_ID.SelectedValue
-                        obj.AD_DISTRICT_ID = cbDISTRICT_ID.SelectedValue
-                        obj.AD_WARD_ID = cbWARD_ID.SelectedValue
-                        obj.TT_PROVINCE_ID = cbTempPROVINCE_ID.SelectedValue
-                        obj.TT_DISTRICT_ID = cbTempDISTRICT_ID.SelectedValue
-                        obj.TT_WARD_ID = cbTempWARD_ID.SelectedValue
+                        If cbPROVINCE_ID.SelectedValue <> "" Then
+                            obj.AD_PROVINCE_ID = Decimal.Parse(cbPROVINCE_ID.SelectedValue)
+                        End If
+                        If cbDISTRICT_ID.SelectedValue <> "" Then
+                            obj.AD_DISTRICT_ID = Decimal.Parse(cbDISTRICT_ID.SelectedValue)
+                        End If
+                        If cbWARD_ID.SelectedValue <> "" Then
+                            obj.AD_WARD_ID = Decimal.Parse(cbWARD_ID.SelectedValue)
+                        End If
+                        If cbTempPROVINCE_ID.SelectedValue <> "" Then
+                            obj.TT_PROVINCE_ID = Decimal.Parse(cbTempPROVINCE_ID.SelectedValue)
+                        End If
+                        If cbTempDISTRICT_ID.SelectedValue <> "" Then
+                            obj.TT_DISTRICT_ID = Decimal.Parse(cbTempDISTRICT_ID.SelectedValue)
+                        End If
+                        If cbTempWARD_ID.SelectedValue <> "" Then
+                            obj.TT_WARD_ID = Decimal.Parse(cbTempWARD_ID.SelectedValue)
+                        End If
                         obj.IS_OWNER = chkIs_Owner.Checked
                         obj.IS_PASS = chkIs_Pass.Checked
                         obj.REMARK = txtRemark.Text.Trim
@@ -273,6 +285,17 @@ Public Class ctrlPortalFamily_Edit
                         txtCareer.Text = item.GetDataKeyValue("CAREER")
                         txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
                         cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+                        txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+                        txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
+                        txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
+                        cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+                        cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                        cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                        cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+                        cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                        cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                        chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
+                        chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
                         If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                             hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
                         End If
@@ -381,6 +404,17 @@ Public Class ctrlPortalFamily_Edit
                 txtCareer.Text = item.GetDataKeyValue("CAREER")
                 txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
                 cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+                txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+                txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
+                txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
+                cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+                cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+                cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
+                chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
                 If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                     hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
                 End If
@@ -413,6 +447,17 @@ Public Class ctrlPortalFamily_Edit
                 txtCareer.Text = item.GetDataKeyValue("CAREER")
                 txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
                 cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+                txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+                txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
+                txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
+                cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+                cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+                cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
+                chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
                 hidID.Value = ""
                 chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -563,6 +608,17 @@ Public Class ctrlPortalFamily_Edit
             txtCareer.Text = item.GetDataKeyValue("CAREER")
             txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
             cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+            txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+            txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
+            txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
+            cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+            cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+            cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+            cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+            cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+            cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+            chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
+            chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
             If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                 hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
             End If
@@ -606,6 +662,17 @@ Public Class ctrlPortalFamily_Edit
             txtCareer.Text = item.GetDataKeyValue("CAREER")
             txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
             cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
+            txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
+            txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
+            txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
+            cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+            cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+            cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+            cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+            cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+            cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+            chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
+            chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
             hidFamilyID.Value = item.GetDataKeyValue("ID")
             hidID.Value = ""
             chkIsDeduct_CheckedChanged(Nothing, Nothing)
