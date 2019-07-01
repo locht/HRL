@@ -22,11 +22,17 @@
     Public Property ADDRESS As String
     Public Property ADDRESS_TT As String
     Public Property AD_PROVINCE_ID As Decimal?
+    Public Property AD_PROVINCE_NAME As String
     Public Property AD_DISTRICT_ID As Decimal?
+    Public Property AD_DISTRICT_NAME As String
     Public Property AD_WARD_ID As Decimal?
+    Public Property AD_WARD_NAME As String
     Public Property TT_PROVINCE_ID As Decimal?
+    Public Property TT_PROVINCE_NAME As String
     Public Property TT_DISTRICT_ID As Decimal?
+    Public Property TT_DISTRICT_NAME As String
     Public Property TT_WARD_ID As Decimal?
+    Public Property TT_WARD_NAME As String
     Public Property CERTIFICATE_CODE As String
     Public Property CERTIFICATE_NUM As String
     Public Property IS_PASS As Boolean

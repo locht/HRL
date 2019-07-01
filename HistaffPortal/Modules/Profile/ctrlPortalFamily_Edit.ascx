@@ -107,16 +107,20 @@
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbPROVINCE_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>
+            </td>            
+        </tr>
+        <tr>
             <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbDISTRICT_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
@@ -124,8 +128,14 @@
             </td>
             <td>
                 <tlk:RadComboBox runat="server" ID="cbWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                    OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Thôn/Ấp")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtAD_Village" />
             </td>
         </tr>
         <tr>
@@ -139,16 +149,20 @@
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempPROVINCE_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbTempPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>
+            </td>            
+        </tr>
+        <tr>
             <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempDISTRICT_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbTempDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
@@ -156,7 +170,7 @@
             </td>
             <td>
                 <tlk:RadComboBox runat="server" ID="cbTempWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                    OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
             </td>
         </tr>
@@ -398,9 +412,17 @@
                         cbo = $find('<%= cbWARD_ID.ClientID %>');
                         clearSelectRadcombo(cbo);
                         break;
+                    case '<%= cbDISTRICT_ID.ClientID %>':
+                        cbo = $find('<%= cbWARD_ID.ClientID %>');
+                        clearSelectRadcombo(cbo);
+                        break;
                     case '<%= cbTempPROVINCE_ID.ClientID %>':
                         cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
                         clearSelectRadcombo(cbo);
+                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
+                        clearSelectRadcombo(cbo);
+                        break;
+                    case '<%= cbTempDISTRICT_ID.ClientID %>':
                         cbo = $find('<%= cbTempWARD_ID.ClientID %>');
                         clearSelectRadcombo(cbo);
                         break;

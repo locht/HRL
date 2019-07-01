@@ -12,7 +12,6 @@ Public Class ctrlPortalFamily_Edit
 #Region "Property"
 
     Public Property EmployeeID As Decimal
-
 #End Region
 
 #Region "Page"
@@ -51,12 +50,10 @@ Public Class ctrlPortalFamily_Edit
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim rep As New ProfileBusinessRepository
         Try
             If Not IsPostBack Then
                 CurrentState = CommonMessage.STATE_NORMAL
             End If
-
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -75,7 +72,6 @@ Public Class ctrlPortalFamily_Edit
                     FillDropDownList(cbPROVINCE_ID, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbPROVINCE_ID.SelectedValue)
                     FillDropDownList(cbTempPROVINCE_ID, ComboBoxDataDTO.LIST_PROVINCE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cbTempPROVINCE_ID.SelectedValue)
                 End If
-
             End Using
 
             Dim dic As New Dictionary(Of String, Control)
@@ -125,10 +121,10 @@ Public Class ctrlPortalFamily_Edit
             Select Case CurrentState
                 Case CommonMessage.STATE_NORMAL
                     EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
                                      chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
-                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
+                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -137,11 +133,11 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamily, True)
                     EnabledGridNotPostback(rgFamilyEdit, True)
                 Case CommonMessage.STATE_NEW
-                    EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                    EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
+                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
-                                     chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
-                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
+                                     chkIs_Owner, chkIs_Pass,
+                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -150,11 +146,11 @@ Public Class ctrlPortalFamily_Edit
                     EnabledGridNotPostback(rgFamily, False)
                     EnabledGridNotPostback(rgFamilyEdit, False)
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(False, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                    EnableControlAll(True, txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
+                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo, txtAD_Village,
                                      chkIsDeduct, cboRelationship, cboNguyenQuan, txtCareer, txtTitle,
                                      chkIs_Owner, chkIs_Pass, txtHouseCertificate_Code, txtHouseCertificate_Num,
-                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
+                                     cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, txtAdress, txtTempAdress, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
                     If Not chkIsDeduct.Checked Then
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
@@ -181,9 +177,11 @@ Public Class ctrlPortalFamily_Edit
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan)
+                    ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                      chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
+                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
@@ -200,7 +198,18 @@ Public Class ctrlPortalFamily_Edit
                         obj.FULLNAME = txtFullName.Text.Trim()
                         obj.ID_NO = txtIDNO.Text.Trim()
                         obj.IS_DEDUCT = chkIsDeduct.Checked
-                        obj.REMARK = txtRemark.Text.Trim()
+                        obj.ADDRESS_TT = txtTempAdress.Text.Trim
+                        obj.CERTIFICATE_NUM = txtHouseCertificate_Num.Text.Trim
+                        obj.CERTIFICATE_CODE = txtHouseCertificate_Code.Text.Trim
+                        obj.AD_PROVINCE_ID = cbPROVINCE_ID.SelectedValue
+                        obj.AD_DISTRICT_ID = cbDISTRICT_ID.SelectedValue
+                        obj.AD_WARD_ID = cbWARD_ID.SelectedValue
+                        obj.TT_PROVINCE_ID = cbTempPROVINCE_ID.SelectedValue
+                        obj.TT_DISTRICT_ID = cbTempDISTRICT_ID.SelectedValue
+                        obj.TT_WARD_ID = cbTempWARD_ID.SelectedValue
+                        obj.IS_OWNER = chkIs_Owner.Checked
+                        obj.IS_PASS = chkIs_Pass.Checked
+                        obj.REMARK = txtRemark.Text.Trim
                         If cboRelationship.SelectedValue <> "" Then
                             obj.RELATION_ID = Decimal.Parse(cboRelationship.SelectedValue)
                         End If
@@ -270,9 +279,11 @@ Public Class ctrlPortalFamily_Edit
                         hidID.Value = item.GetDataKeyValue("ID")
                         chkIsDeduct_CheckedChanged(Nothing, Nothing)
                     Else
-                        ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark, txtTax,
-                                     rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                     chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan)
+                        ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                      chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
+                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                     End If
 
 
@@ -481,12 +492,59 @@ Public Class ctrlPortalFamily_Edit
 
 #End Region
 
+    Private Sub cbPROVINCE_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbPROVINCE_ID.SelectedIndexChanged
+        Dim dt As New DataTable
+        Using repNS As New ProfileRepository
+            If IsNumeric(cbPROVINCE_ID.SelectedValue) Then
+                dt = repNS.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
+            End If
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID", True)
+            End If
+        End Using
+    End Sub
+    Private Sub cbDISTRICT_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbDISTRICT_ID.SelectedIndexChanged
+        Dim dt As New DataTable
+        Using repNS As New ProfileRepository
+            If IsNumeric(cbDISTRICT_ID.SelectedValue) Then
+                dt = repNS.GetWardList(cbDISTRICT_ID.SelectedValue, False)
+            End If
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                FillRadCombobox(cbWARD_ID, dt, "NAME", "ID", True)
+            End If
+        End Using
+    End Sub
+
+    Private Sub cbTempPROVINCE_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbTempPROVINCE_ID.SelectedIndexChanged
+        Dim dt As New DataTable
+        Using repNS As New ProfileRepository
+            If IsNumeric(cbTempPROVINCE_ID.SelectedValue) Then
+                dt = repNS.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
+            End If
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID", True)
+            End If
+        End Using
+    End Sub
+    Private Sub cbTempDISTRICT_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cbTempDISTRICT_ID.SelectedIndexChanged
+        Dim dt As New DataTable
+        Using repNS As New ProfileRepository
+            If IsNumeric(cbTempDISTRICT_ID.SelectedValue) Then
+                dt = repNS.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
+            End If
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID", True)
+            End If
+        End Using
+    End Sub
+
     Protected Sub rgFamilyEdit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgFamilyEdit.SelectedIndexChanged
         Try
-            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtTax,
-                                txtCareer, txtTitle, cboNguyenQuan,
-                                txtAdress, txtRemark, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                chkIsDeduct, hidFamilyID, hidID)
+            ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                      chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
+                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
 
             Dim item = CType(rgFamilyEdit.SelectedItems(rgFamilyEdit.SelectedItems.Count - 1), GridDataItem)
             CurrentState = CommonMessage.STATE_NORMAL
@@ -519,15 +577,18 @@ Public Class ctrlPortalFamily_Edit
     Private Sub rgFamily_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rgFamily.SelectedIndexChanged
         Try
             If rgFamily.SelectedItems.Count = 0 Then
-                ClearControlValue(txtAdress, txtFullName, txtIDNO, txtRemark,
-                                 rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                 chkIsDeduct, hidFamilyID, hidID)
+                ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                      chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
+                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
                 Exit Sub
             End If
-            ClearControlValue(txtFullName, cboRelationship, rdBirthDate, txtIDNO, txtTax,
-                                txtCareer, txtTitle, cboNguyenQuan,
-                                txtAdress, txtRemark, rdDeductFrom, rdDeductReg, rdDeductTo,
-                                chkIsDeduct, hidFamilyID, hidID)
+            ClearControlValue(txtAdress, txtTempAdress, txtAD_Village, txtHouseCertificate_Code, txtHouseCertificate_Num,
+                                      chkIs_Owner, chkIs_Pass, txtFullName, txtIDNO, txtRemark, txtTax,
+                                      rdBirthDate, rdDeductFrom, rdDeductReg, rdDeductTo,
+                                      chkIsDeduct, hidFamilyID, hidID, cboRelationship, cboNguyenQuan,
+                                      cbPROVINCE_ID, cbDISTRICT_ID, cbWARD_ID, cbTempPROVINCE_ID, cbTempDISTRICT_ID, cbTempWARD_ID)
             CurrentState = CommonMessage.STATE_NORMAL
             Dim item = CType(rgFamily.SelectedItems(rgFamily.SelectedItems.Count - 1), GridDataItem)
             hidFamilyID.Value = item.GetDataKeyValue("ID")
