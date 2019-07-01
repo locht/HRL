@@ -21,5 +21,6 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property ORG_ID As Decimal?
+    Public Property ID_NAME As Decimal?
     Public Property param As ParamDTO
 End Class

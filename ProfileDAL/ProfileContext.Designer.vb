@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("5c9a2015-1dda-4c19-9577-e8001e99c504")>
+<Assembly: EdmSchemaAttribute("978a1219-bb69-4da0-a6e1-f5e108f1dafa")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -51368,6 +51368,31 @@ Public Partial Class HU_WELFARE_LIST
     End Sub
 
     Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ID_NAME() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ID_NAME
+        End Get
+        Set
+            OnID_NAMEChanging(value)
+            ReportPropertyChanging("ID_NAME")
+            _ID_NAME = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ID_NAME")
+            OnID_NAMEChanged()
+        End Set
+    End Property
+
+    Private _ID_NAME As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_NAMEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnID_NAMEChanged()
     End Sub
 
     #End Region

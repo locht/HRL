@@ -22213,6 +22213,9 @@ Namespace ProfileBusiness
         Private IDField As Decimal
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ID_NAMEField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_AUTOField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -22238,6 +22241,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private paramField As ProfileBusiness.ParamDTO
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
@@ -22419,6 +22425,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ID_NAME() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ID_NAMEField
+            End Get
+            Set
+                If (Me.ID_NAMEField.Equals(value) <> true) Then
+                    Me.ID_NAMEField = value
+                    Me.RaisePropertyChanged("ID_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_AUTO() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_AUTOField
@@ -22531,6 +22550,19 @@ Namespace ProfileBusiness
                 If (Me.START_DATEField.Equals(value) <> true) Then
                     Me.START_DATEField = value
                     Me.RaisePropertyChanged("START_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property param() As ProfileBusiness.ParamDTO
+            Get
+                Return Me.paramField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.paramField, value) <> true) Then
+                    Me.paramField = value
+                    Me.RaisePropertyChanged("param")
                 End If
             End Set
         End Property
@@ -47698,7 +47730,7 @@ Namespace ProfileBusiness
         Function DeleteContractType(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareListResponse")>  _
-        Function GetWelfareList(ByVal _filter As ProfileBusiness.WelfareListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO)
+        Function GetWelfareList(ByVal _filter As ProfileBusiness.WelfareListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/InsertWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/InsertWelfareListResponse")>  _
         Function InsertWelfareList(ByVal objWelfareList As ProfileBusiness.WelfareListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
@@ -49787,8 +49819,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.DeleteContractType(lstID, log)
         End Function
         
-        Public Function GetWelfareList(ByVal _filter As ProfileBusiness.WelfareListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO) Implements ProfileBusiness.IProfileBusiness.GetWelfareList
-            Return MyBase.Channel.GetWelfareList(_filter, PageIndex, PageSize, Total, Sorts)
+        Public Function GetWelfareList(ByVal _filter As ProfileBusiness.WelfareListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO) Implements ProfileBusiness.IProfileBusiness.GetWelfareList
+            Return MyBase.Channel.GetWelfareList(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
         
         Public Function InsertWelfareList(ByVal objWelfareList As ProfileBusiness.WelfareListDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.InsertWelfareList
