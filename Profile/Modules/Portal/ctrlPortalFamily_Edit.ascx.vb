@@ -409,13 +409,43 @@ Public Class ctrlPortalFamily_Edit
                 txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
                 txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
                 txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
-                cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
-                cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
-                cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
                 txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
-                cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
-                cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
-                cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
+                    cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
+                    cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+                End If
+                Using rep As New ProfileRepository
+                    If cbPROVINCE_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
+                        FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
+                        cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                    End If
+                    If cbDISTRICT_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetWardList(cbDISTRICT_ID.SelectedValue, False)
+                        FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
+                        cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                    End If
+                    If cbTempPROVINCE_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
+                        cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                    End If
+                    If cbTempDISTRICT_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
+                        cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                    End If
+                End Using
                 chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
                 chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
                 If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
@@ -453,13 +483,43 @@ Public Class ctrlPortalFamily_Edit
                 txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
                 txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
                 txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
-                cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
-                cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
-                cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
                 txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
-                cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
-                cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
-                cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
+                    cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
+                    cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+                End If
+                Using rep As New ProfileRepository
+                    If cbPROVINCE_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
+                        FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
+                        cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                    End If
+                    If cbDISTRICT_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetWardList(cbDISTRICT_ID.SelectedValue, False)
+                        FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
+                        cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                    End If
+                    If cbTempPROVINCE_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
+                        cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                    End If
+                    If cbTempDISTRICT_ID.SelectedValue <> "" Then
+                        Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
+                        FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
+                    End If
+                    If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
+                        cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                    End If
+                End Using
                 chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
                 chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
                 hidFamilyID.Value = item.GetDataKeyValue("ID")
@@ -551,7 +611,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID", False)
+                FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
             End If
         End Using
     End Sub
@@ -562,7 +622,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetWardList(cbDISTRICT_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbWARD_ID, dt, "NAME", "ID", False)
+                FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
             End If
         End Using
     End Sub
@@ -574,7 +634,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID", False)
+                FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
             End If
         End Using
     End Sub
@@ -585,7 +645,7 @@ Public Class ctrlPortalFamily_Edit
                 dt = repNS.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
             End If
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID", False)
+                FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
             End If
         End Using
     End Sub
@@ -618,13 +678,43 @@ Public Class ctrlPortalFamily_Edit
             txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
             txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
             txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
-            cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
-            cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
-            cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+            If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
+                cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
+            End If
+            If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
+                cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
+            End If
+            Using rep As New ProfileRepository
+                If cbPROVINCE_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
+                    FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
+                    cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                End If
+                If cbDISTRICT_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetWardList(cbDISTRICT_ID.SelectedValue, False)
+                    FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
+                    cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                End If
+                If cbTempPROVINCE_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
+                    cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                End If
+                If cbTempDISTRICT_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
+                    cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                End If
+            End Using
             txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
-            cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
-            cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
-            cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
             chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
             chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
             If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
@@ -673,13 +763,37 @@ Public Class ctrlPortalFamily_Edit
             txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
             txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
             txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
-            cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
-            cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
-            cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
             txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
-            cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
-            cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
-            cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+            Using rep As New ProfileRepository
+                If cbPROVINCE_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
+                    FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
+                    cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
+                End If
+                If cbDISTRICT_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetWardList(cbDISTRICT_ID.SelectedValue, False)
+                    FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
+                    cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
+                End If
+                If cbTempPROVINCE_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
+                    cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
+                End If
+                If cbTempDISTRICT_ID.SelectedValue <> "" Then
+                    Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
+                    FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
+                End If
+                If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
+                    cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
+                End If
+            End Using
             chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
             chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
             hidFamilyID.Value = item.GetDataKeyValue("ID")
