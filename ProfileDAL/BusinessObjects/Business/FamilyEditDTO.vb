@@ -20,7 +20,25 @@
     Public Property DEDUCT_FROM As Date?
     Public Property DEDUCT_TO As Date?
     Public Property ADDRESS As String
+    Public Property ADDRESS_TT As String
+    Public Property AD_PROVINCE_ID As Decimal?
+    Public Property AD_PROVINCE_NAME As String
+    Public Property AD_DISTRICT_ID As Decimal?
+    Public Property AD_DISTRICT_NAME As String
+    Public Property AD_WARD_ID As Decimal?
+    Public Property AD_WARD_NAME As String
+    Public Property TT_PROVINCE_ID As Decimal?
+    Public Property TT_PROVINCE_NAME As String
+    Public Property TT_DISTRICT_ID As Decimal?
+    Public Property TT_DISTRICT_NAME As String
+    Public Property TT_WARD_ID As Decimal?
+    Public Property TT_WARD_NAME As String
+    Public Property CERTIFICATE_CODE As String
+    Public Property CERTIFICATE_NUM As String
+    Public Property IS_PASS As Boolean
+    Public Property IS_OWNER As Boolean
     Public Property REMARK As String
+    Public Property AD_VILLAGE As String
     Public Property TITLE_ID As Decimal? 'CHUC DANH
     Public Property TITLE_NAME As String
 

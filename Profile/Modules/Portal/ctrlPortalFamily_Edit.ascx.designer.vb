@@ -203,6 +203,15 @@ Partial Public Class ctrlPortalFamily_Edit
     Protected WithEvents cbWARD_ID As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''txtAD_Village control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAD_Village As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''txtTempAdress control.
     '''</summary>
     '''<remarks>

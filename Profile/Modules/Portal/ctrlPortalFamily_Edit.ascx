@@ -107,16 +107,20 @@
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbPROVINCE_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>
+            </td>            
+        </tr>
+        <tr>
             <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbDISTRICT_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
@@ -124,8 +128,14 @@
             </td>
             <td>
                 <tlk:RadComboBox runat="server" ID="cbWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                    OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
+            </td>
+            <td class="lb">
+                <%# Translate("Thôn/Ấp")%>
+            </td>
+            <td>
+                <tlk:RadTextBox runat="server" ID="txtAD_Village" />
             </td>
         </tr>
         <tr>
@@ -139,16 +149,20 @@
                 <%# Translate("Tỉnh/Thành phố")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempPROVINCE_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbTempPROVINCE_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
-            </td>
+            </td>            
+        </tr>
+        <tr>
             <td class="lb">
                 <%# Translate("Quận/Huyện")%>
             </td>
             <td>
-                <tlk:RadComboBox runat="server" ID="cbTempDISTRICT_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                <tlk:RadComboBox runat="server" ID="cbTempDISTRICT_ID" SkinID="LoadDemand" AutoPostBack="true" 
+                            CausesValidation="false" OnClientItemsRequesting="OnClientItemsRequesting" 
+                            OnClientSelectedIndexChanged="OnClientSelectedIndexChanged">
                 </tlk:RadComboBox>
             </td>
             <td class="lb">
@@ -156,7 +170,7 @@
             </td>
             <td>
                 <tlk:RadComboBox runat="server" ID="cbTempWARD_ID" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                    OnClientItemsRequesting="OnClientItemsRequesting" EnabledLoadOnDemand="True">
+                    OnClientItemsRequesting="OnClientItemsRequesting">
                 </tlk:RadComboBox>
             </td>
         </tr>
@@ -220,8 +234,8 @@
           <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID"
+        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,FK_PKEY,STATUS,REASON_UNAPROVE,TAXTATION,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
             Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
@@ -306,8 +320,8 @@
           <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION"
-            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION"
+        <MasterTableView DataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
+            ClientDataKeyNames="ID,ID_NO,FULLNAME,RELATION_ID,IS_DEDUCT,DEDUCT_FROM,DEDUCT_TO,ADDRESS,BIRTH_DATE,REMARK,DEDUCT_REG,CAREER,TITLE_NAME,PROVINCE_NAME,PROVINCE_ID,TAXTATION,CERTIFICATE_NUM,CERTIFICATE_CODE,ADDRESS_TT,AD_PROVINCE_ID,AD_DISTRICT_ID,AD_WARD_ID,AD_VILLAGE,TT_PROVINCE_ID,TT_DISTRICT_ID,TT_WARD_ID,IS_OWNER,IS_PASS"
             Caption="<%$ Translate: Thông tin hiện tại %>">
             <Columns>
                 <tlk:GridButtonColumn HeaderText="" Text="Sửa" CommandName="EditRow">
@@ -391,22 +405,30 @@
             function OnClientSelectedIndexChanged(sender, eventArgs) {
                 var id = sender.get_id();
                 var cbo;
-                switch (id) {
-                    case '<%= cbPROVINCE_ID.ClientID %>':
-                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        cbo = $find('<%= cbWARD_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        break;
-                    case '<%= cbTempPROVINCE_ID.ClientID %>':
-                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
-                        clearSelectRadcombo(cbo);
-                        break;
-                    default:
-                        break;
-                }
+                //                switch (id) {
+                //                    case '<%= cbPROVINCE_ID.ClientID %>':
+                //                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        cbo = $find('<%= cbWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    case '<%= cbDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    case '<%= cbTempPROVINCE_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    case '<%= cbTempDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempWARD_ID.ClientID %>');
+                //                        clearSelectRadcombo(cbo);
+                //                        break;
+                //                    default:
+                //                        break;
+                //                }
             }
 
             function clearSelectRadcombo(cbo) {
@@ -423,36 +445,36 @@
             }
 
             function OnClientItemsRequesting(sender, eventArgs) {
-                var id = sender.get_id();
-                var cbo;
-                var value;
-                switch (id) {
-                    case '<%= cbDISTRICT_ID.ClientID %>':
-                        cbo = $find('<%= cbPROVINCE_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    case '<%= cbWARD_ID.ClientID %>':
-                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    case '<%= cbTempDISTRICT_ID.ClientID %>':
-                        cbo = $find('<%= cbTempPROVINCE_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    case '<%= cbTempWARD_ID.ClientID %>':
-                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
-                        value = cbo.get_value();
-                        break;
-                    default:
-                        break;
-                }
+                //                var id = sender.get_id();
+                //                var cbo;
+                //                var value;
+                //                switch (id) {
+                //                    case '<%= cbDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbPROVINCE_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    case '<%= cbWARD_ID.ClientID %>':
+                //                        cbo = $find('<%= cbDISTRICT_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    case '<%= cbTempDISTRICT_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempPROVINCE_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    case '<%= cbTempWARD_ID.ClientID %>':
+                //                        cbo = $find('<%= cbTempDISTRICT_ID.ClientID %>');
+                //                        value = cbo.get_value();
+                //                        break;
+                //                    default:
+                //                        break;
+                //                }
 
-                if (!value) {
-                    value = 0;
-                }
-                var context = eventArgs.get_context();
-                context["valueCustom"] = value;
-                context["value"] = sender.get_value();
+                //                if (!value) {
+                //                    value = 0;
+                //                }
+                //                var context = eventArgs.get_context();
+                //                context["valueCustom"] = value;
+                //                context["value"] = sender.get_value();
 
             }
         </script>

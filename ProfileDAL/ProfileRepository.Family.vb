@@ -287,6 +287,18 @@ Partial Class ProfileRepository
             objFamilyEditData.CAREER = objFamilyEdit.CAREER
             objFamilyEditData.TITLE_NAME = objFamilyEdit.TITLE_NAME
             objFamilyEditData.PROVINCE_ID = objFamilyEdit.PROVINCE_ID
+            objFamilyEditData.CERTIFICATE_CODE = objFamilyEdit.CERTIFICATE_CODE
+            objFamilyEditData.CERTIFICATE_NUM = objFamilyEdit.CERTIFICATE_NUM
+            objFamilyEditData.ADDRESS_TT = objFamilyEdit.ADDRESS_TT
+            objFamilyEditData.AD_PROVINCE_ID = objFamilyEdit.AD_PROVINCE_ID
+            objFamilyEditData.AD_DISTRICT_ID = objFamilyEdit.AD_DISTRICT_ID
+            objFamilyEditData.AD_WARD_ID = objFamilyEdit.AD_WARD_ID
+            objFamilyEditData.AD_VILLAGE = objFamilyEdit.AD_VILLAGE
+            objFamilyEditData.TT_PROVINCE_ID = objFamilyEdit.TT_PROVINCE_ID
+            objFamilyEditData.TT_DISTRICT_ID = objFamilyEdit.TT_DISTRICT_ID
+            objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
+            objFamilyEditData.IS_OWNER = objFamilyEdit.IS_OWNER
+            objFamilyEditData.IS_PASS = objFamilyEdit.IS_PASS
             Context.HU_FAMILY_EDIT.AddObject(objFamilyEditData)
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
@@ -320,6 +332,18 @@ Partial Class ProfileRepository
             objFamilyEditData.CAREER = objFamilyEdit.CAREER
             objFamilyEditData.TITLE_NAME = objFamilyEdit.TITLE_NAME
             objFamilyEditData.PROVINCE_ID = objFamilyEdit.PROVINCE_ID
+            objFamilyEditData.CERTIFICATE_CODE = objFamilyEdit.CERTIFICATE_CODE
+            objFamilyEditData.CERTIFICATE_NUM = objFamilyEdit.CERTIFICATE_NUM
+            objFamilyEditData.ADDRESS_TT = objFamilyEdit.ADDRESS_TT
+            objFamilyEditData.AD_PROVINCE_ID = objFamilyEdit.AD_PROVINCE_ID
+            objFamilyEditData.AD_DISTRICT_ID = objFamilyEdit.AD_DISTRICT_ID
+            objFamilyEditData.AD_WARD_ID = objFamilyEdit.AD_WARD_ID
+            objFamilyEditData.AD_VILLAGE = objFamilyEdit.AD_VILLAGE
+            objFamilyEditData.TT_PROVINCE_ID = objFamilyEdit.TT_PROVINCE_ID
+            objFamilyEditData.TT_DISTRICT_ID = objFamilyEdit.TT_DISTRICT_ID
+            objFamilyEditData.TT_WARD_ID = objFamilyEdit.TT_WARD_ID
+            objFamilyEditData.IS_OWNER = objFamilyEdit.IS_OWNER
+            objFamilyEditData.IS_PASS = objFamilyEdit.IS_PASS
             Context.SaveChanges(log)
             gID = objFamilyEditData.ID
             Return True
@@ -355,6 +379,18 @@ Partial Class ProfileRepository
                          .DEDUCT_FROM = p.DEDUCT_FROM,
                          .DEDUCT_TO = p.DEDUCT_TO,
                          .REMARK = p.REMARK,
+                         .CERTIFICATE_NUM = p.CERTIFICATE_NUM,
+                         .CERTIFICATE_CODE = p.CERTIFICATE_CODE,
+                         .ADDRESS_TT = p.ADDRESS_TT,
+                         .AD_PROVINCE_ID = p.AD_PROVINCE_ID,
+                         .AD_DISTRICT_ID = p.AD_DISTRICT_ID,
+                         .AD_WARD_ID = p.AD_WARD_ID,
+                         .AD_VILLAGE = p.AD_VILLAGE,
+                         .TT_PROVINCE_ID = p.TT_PROVINCE_ID,
+                         .TT_DISTRICT_ID = p.TT_DISTRICT_ID,
+                         .TT_WARD_ID = p.TT_WARD_ID,
+                         .IS_OWNER = p.IS_OWNER,
+                         .IS_PASS = p.IS_PASS,
                          .REASON_UNAPROVE = p.REASON_UNAPROVE,
                          .FK_PKEY = p.FK_PKEY,
                          .TITLE_NAME = p.TITLE_NAME,

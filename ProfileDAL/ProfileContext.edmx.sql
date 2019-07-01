@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 01/07/2019 11:41:29 AM
--- Generated from EDMX file: E:\Công nghệ\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 01/07/2019 1:43:28 PM
+-- Generated from EDMX file: E:\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1641,7 +1641,19 @@ CREATE TABLE "dbo"."HU_FAMILY_EDIT" (
    "TAXTATION" NCLOB NULL,
    "PROVINCE_ID" NUMBER(38,0) NULL,
    "TITLE_NAME" NCLOB NULL,
-   "CAREER" NCLOB NULL
+   "CAREER" NCLOB NULL,
+   "ADDRESS_TT" NCLOB NULL,
+   "CERTIFICATE_CODE" NCLOB NULL,
+   "CERTIFICATE_NUM" NCLOB NULL,
+   "IS_OWNER" NUMBER(38,0) NULL,
+   "AD_PROVINCE_ID" NUMBER(38,0) NULL,
+   "AD_DISTRICT_ID" NUMBER(38,0) NULL,
+   "AD_WARD_ID" NUMBER(38,0) NULL,
+   "TT_PROVINCE_ID" NUMBER(38,0) NULL,
+   "TT_DISTRICT_ID" NUMBER(38,0) NULL,
+   "TT_WARD_ID" NUMBER(38,0) NULL,
+   "IS_PASS" NUMBER(38,0) NULL,
+   "AD_VILLAGE" NCLOB NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_EDIT'

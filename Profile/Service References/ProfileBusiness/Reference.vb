@@ -38142,10 +38142,40 @@ Namespace ProfileBusiness
         Private ADDRESSField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ADDRESS_TTField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AD_DISTRICT_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AD_DISTRICT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AD_PROVINCE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AD_PROVINCE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AD_VILLAGEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AD_WARD_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private AD_WARD_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BIRTH_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CAREERField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CERTIFICATE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CERTIFICATE_NUMField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
@@ -38190,6 +38220,12 @@ Namespace ProfileBusiness
         Private IS_DEDUCTField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_OWNERField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_PASSField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -38231,6 +38267,24 @@ Namespace ProfileBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TT_DISTRICT_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TT_DISTRICT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TT_PROVINCE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TT_PROVINCE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TT_WARD_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TT_WARD_NAMEField As String
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -38250,6 +38304,110 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ADDRESSField, value) <> true) Then
                     Me.ADDRESSField = value
                     Me.RaisePropertyChanged("ADDRESS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ADDRESS_TT() As String
+            Get
+                Return Me.ADDRESS_TTField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.ADDRESS_TTField, value) <> true) Then
+                    Me.ADDRESS_TTField = value
+                    Me.RaisePropertyChanged("ADDRESS_TT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AD_DISTRICT_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AD_DISTRICT_IDField
+            End Get
+            Set
+                If (Me.AD_DISTRICT_IDField.Equals(value) <> true) Then
+                    Me.AD_DISTRICT_IDField = value
+                    Me.RaisePropertyChanged("AD_DISTRICT_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AD_DISTRICT_NAME() As String
+            Get
+                Return Me.AD_DISTRICT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.AD_DISTRICT_NAMEField, value) <> true) Then
+                    Me.AD_DISTRICT_NAMEField = value
+                    Me.RaisePropertyChanged("AD_DISTRICT_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AD_PROVINCE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AD_PROVINCE_IDField
+            End Get
+            Set
+                If (Me.AD_PROVINCE_IDField.Equals(value) <> true) Then
+                    Me.AD_PROVINCE_IDField = value
+                    Me.RaisePropertyChanged("AD_PROVINCE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AD_PROVINCE_NAME() As String
+            Get
+                Return Me.AD_PROVINCE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.AD_PROVINCE_NAMEField, value) <> true) Then
+                    Me.AD_PROVINCE_NAMEField = value
+                    Me.RaisePropertyChanged("AD_PROVINCE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AD_VILLAGE() As String
+            Get
+                Return Me.AD_VILLAGEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.AD_VILLAGEField, value) <> true) Then
+                    Me.AD_VILLAGEField = value
+                    Me.RaisePropertyChanged("AD_VILLAGE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AD_WARD_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.AD_WARD_IDField
+            End Get
+            Set
+                If (Me.AD_WARD_IDField.Equals(value) <> true) Then
+                    Me.AD_WARD_IDField = value
+                    Me.RaisePropertyChanged("AD_WARD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property AD_WARD_NAME() As String
+            Get
+                Return Me.AD_WARD_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.AD_WARD_NAMEField, value) <> true) Then
+                    Me.AD_WARD_NAMEField = value
+                    Me.RaisePropertyChanged("AD_WARD_NAME")
                 End If
             End Set
         End Property
@@ -38276,6 +38434,32 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.CAREERField, value) <> true) Then
                     Me.CAREERField = value
                     Me.RaisePropertyChanged("CAREER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CERTIFICATE_CODE() As String
+            Get
+                Return Me.CERTIFICATE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CERTIFICATE_CODEField, value) <> true) Then
+                    Me.CERTIFICATE_CODEField = value
+                    Me.RaisePropertyChanged("CERTIFICATE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CERTIFICATE_NUM() As String
+            Get
+                Return Me.CERTIFICATE_NUMField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CERTIFICATE_NUMField, value) <> true) Then
+                    Me.CERTIFICATE_NUMField = value
+                    Me.RaisePropertyChanged("CERTIFICATE_NUM")
                 End If
             End Set
         End Property
@@ -38463,6 +38647,32 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_OWNER() As Boolean
+            Get
+                Return Me.IS_OWNERField
+            End Get
+            Set
+                If (Me.IS_OWNERField.Equals(value) <> true) Then
+                    Me.IS_OWNERField = value
+                    Me.RaisePropertyChanged("IS_OWNER")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_PASS() As Boolean
+            Get
+                Return Me.IS_PASSField
+            End Get
+            Set
+                If (Me.IS_PASSField.Equals(value) <> true) Then
+                    Me.IS_PASSField = value
+                    Me.RaisePropertyChanged("IS_PASS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property MODIFIED_BY() As String
             Get
                 Return Me.MODIFIED_BYField
@@ -38640,6 +38850,84 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TT_DISTRICT_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TT_DISTRICT_IDField
+            End Get
+            Set
+                If (Me.TT_DISTRICT_IDField.Equals(value) <> true) Then
+                    Me.TT_DISTRICT_IDField = value
+                    Me.RaisePropertyChanged("TT_DISTRICT_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TT_DISTRICT_NAME() As String
+            Get
+                Return Me.TT_DISTRICT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TT_DISTRICT_NAMEField, value) <> true) Then
+                    Me.TT_DISTRICT_NAMEField = value
+                    Me.RaisePropertyChanged("TT_DISTRICT_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TT_PROVINCE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TT_PROVINCE_IDField
+            End Get
+            Set
+                If (Me.TT_PROVINCE_IDField.Equals(value) <> true) Then
+                    Me.TT_PROVINCE_IDField = value
+                    Me.RaisePropertyChanged("TT_PROVINCE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TT_PROVINCE_NAME() As String
+            Get
+                Return Me.TT_PROVINCE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TT_PROVINCE_NAMEField, value) <> true) Then
+                    Me.TT_PROVINCE_NAMEField = value
+                    Me.RaisePropertyChanged("TT_PROVINCE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TT_WARD_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TT_WARD_IDField
+            End Get
+            Set
+                If (Me.TT_WARD_IDField.Equals(value) <> true) Then
+                    Me.TT_WARD_IDField = value
+                    Me.RaisePropertyChanged("TT_WARD_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TT_WARD_NAME() As String
+            Get
+                Return Me.TT_WARD_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TT_WARD_NAMEField, value) <> true) Then
+                    Me.TT_WARD_NAMEField = value
+                    Me.RaisePropertyChanged("TT_WARD_NAME")
                 End If
             End Set
         End Property
