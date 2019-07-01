@@ -290,6 +290,7 @@ Namespace ProfileBusiness.ServiceContracts
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
+                                        Optional ByVal log As UserLog = Nothing,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of WelfareListDTO)
 
         <OperationContract()>

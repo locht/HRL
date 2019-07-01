@@ -666,30 +666,39 @@ Partial Class ProfileRepository
     Public Function GetWelfareList(ByVal _filter As WelfareListDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
+                                        Optional ByVal log As UserLog = Nothing,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of WelfareListDTO)
 
         Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = log.Username,
+                                           .P_ORGID = _filter.param.ORG_ID,
+                                           .P_ISDISSOLVE = _filter.param.IS_DISSOLVE})
+            End Using
 
             Dim query = From p In Context.HU_WELFARE_LIST
+                        From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = p.ORG_ID)
+                        From org In Context.SE_CHOSEN_ORG.Where(Function(org) org.ORG_ID = o.ID And
+                                                                    org.USERNAME = log.Username.ToUpper)
 
             Dim lst = query.Select(Function(p) New WelfareListDTO With {
-                                       .ID = p.ID,
-                                       .CODE = p.CODE,
-                                       .NAME = p.NAME,
-                                       .CONTRACT_TYPE = p.CONTRACT_TYPE,
-                                       .CONTRACT_TYPE_NAME = p.CONTRACT_TYPE_NAME,
-                                       .GENDER = p.GENDER,
-                                       .GENDER_NAME = p.GENDER_NAME,
-                                       .SENIORITY = p.SENIORITY,
-                                       .CHILD_OLD_FROM = p.CHILD_OLD_FROM,
-                                       .CHILD_OLD_TO = p.CHILD_OLD_TO,
-                                       .MONEY = p.MONEY,
-                                       .START_DATE = p.START_DATE,
-                                       .END_DATE = p.END_DATE,
-                                       .IS_AUTO = p.IS_AUTO,
-                                       .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
-                                       .CREATED_DATE = p.CREATED_DATE,
-                                       .ORG_ID = p.ORG_ID})
+                                       .ID = p.p.ID,
+                                       .CODE = p.p.CODE,
+                                       .NAME = p.p.NAME,
+                                       .CONTRACT_TYPE = p.p.CONTRACT_TYPE,
+                                       .CONTRACT_TYPE_NAME = p.p.CONTRACT_TYPE_NAME,
+                                       .GENDER = p.p.GENDER,
+                                       .GENDER_NAME = p.p.GENDER_NAME,
+                                       .SENIORITY = p.p.SENIORITY,
+                                       .CHILD_OLD_FROM = p.p.CHILD_OLD_FROM,
+                                       .CHILD_OLD_TO = p.p.CHILD_OLD_TO,
+                                       .MONEY = p.p.MONEY,
+                                       .START_DATE = p.p.START_DATE,
+                                       .END_DATE = p.p.END_DATE,
+                                       .IS_AUTO = p.p.IS_AUTO,
+                                       .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
+                                       .CREATED_DATE = p.p.CREATED_DATE})
 
             If _filter.CODE <> "" Then
                 lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
@@ -727,6 +736,7 @@ Partial Class ProfileRepository
             If _filter.ORG_ID <> 0 Then
                 lst = lst.Where(Function(p) p.ORG_ID = _filter.ORG_ID)
             End If
+            
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)

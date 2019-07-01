@@ -124,7 +124,7 @@
                         <td class="lb"></td>
                         <td>
                             <tlk:RadButton ID="chkIS_AUTO" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton" ValidateRequestMode="Disabled"
-                                ValidationGroup="a" runat="server" Text="Tự động áp dụng.">
+                                ValidationGroup="a" runat="server" Text="Tự động áp dụng." Visible =" false">
                             </tlk:RadButton>
                         </td>
                     </tr>

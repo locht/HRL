@@ -181,6 +181,15 @@
         End If
         Return dt
     End Function
+    Public Function CHECK_WELFARE(ByVal Name As String, ByVal org_id As Decimal, ByVal sdate As Date) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.CHECK_WELFARE", New List(Of Object)(New Object() {Name, org_id, sdate}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+
 #Region "Commend"
     Public Function Get_Commend_Period(ByVal isBlank As Boolean, ByVal year As Decimal) As DataTable
         Dim dt As New DataTable

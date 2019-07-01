@@ -529,7 +529,7 @@ Partial Public Class ProfileRepository
 
         Using rep As New ProfileBusinessClient
             Try
-                lstWelfareList = rep.GetWelfareList(_filter, PageIndex, PageSize, Total, Sorts)
+                lstWelfareList = rep.GetWelfareList(_filter, PageIndex, PageSize, Total, Me.Log, Sorts)
                 Return lstWelfareList
             Catch ex As Exception
                 rep.Abort()
@@ -546,7 +546,7 @@ Partial Public Class ProfileRepository
 
         Using rep As New ProfileBusinessClient
             Try
-                lstWelfareList = rep.GetWelfareList(_filter, 0, Integer.MaxValue, 0, Sorts)
+                lstWelfareList = rep.GetWelfareList(_filter, 0, Integer.MaxValue, 0, Me.Log, Sorts)
                 Return lstWelfareList
             Catch ex As Exception
                 rep.Abort()

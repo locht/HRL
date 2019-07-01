@@ -93,6 +93,7 @@ Public Class ctrlHU_WelfareList
                     SelectOrgFunction = org_id
                 End If
                 Dim startTime As DateTime = DateTime.UtcNow
+                dpSTART_DATE.AutoPostBack = True
                 ctrlOrg.AutoPostBack = True
                 ctrlOrg.LoadDataAfterLoaded = True
                 ctrlOrg.OrganizationType = OrganizationType.OrganizationLocation
@@ -190,9 +191,15 @@ Public Class ctrlHU_WelfareList
     Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
         Dim rep As New ProfileRepository
         Dim _filter As New WelfareListDTO
+        _filter.param = New ParamDTO
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            _filter.ORG_ID = ctrlOrg.CurrentValue
+            If ctrlOrg.CurrentValue IsNot Nothing Then
+                _filter.param.ORG_ID = Utilities.ObjToDecima(ctrlOrg.CurrentValue)
+            Else
+                _filter.ORG_ID = 46
+            End If
+            _filter.param.IS_DISSOLVE = ctrlOrg.IsDissolve
             Dim startTime As DateTime = DateTime.UtcNow
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgWelfareList, _filter)
@@ -382,6 +389,25 @@ Public Class ctrlHU_WelfareList
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    Private Sub dpSTART_DATE_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dpSTART_DATE.SelectedDateChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim Datecheck As DateTime
+            Datecheck = dpSTART_DATE.SelectedDate.ToString
+            Year = Datecheck.Year.ToString
+            If ctrlOrg.CurrentValue IsNot Nothing Then
+                orgid = Decimal.Parse(ctrlOrg.CurrentValue)
+            Else
+                ShowMessage("Chưa chọn phòng ban?", NotifyType.Warning)
+                Exit Sub
+            End If
+            orgItem = (From p In Organizations Where p.ID = orgid).SingleOrDefault
+            Code = orgItem.CODE & "_" & Year & "_"
+            txtCode.Text = rep.AutoGenCode(Code, "HU_WELFARE_LIST", "CODE")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 30/06/2017 15:33
     ''' </lastupdate>
@@ -396,6 +422,8 @@ Public Class ctrlHU_WelfareList
         Dim objWelfareList As New WelfareListDTO
         Dim gID As Decimal
         Dim rep As New ProfileRepository
+        Dim procedure As New ProfileStoreProcedure
+        Dim dt As New DataTable
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
@@ -518,6 +546,11 @@ Public Class ctrlHU_WelfareList
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
                         objWelfareList.IS_AUTO = chkIS_AUTO.Checked
                         objWelfareList.ORG_ID = ctrlOrg.CurrentValue
+                        dt = procedure.CHECK_WELFARE(txtName.Text, ctrlOrg.CurrentValue, dpSTART_DATE.SelectedDate)
+                        If Not dt Is Nothing AndAlso dt.Rows.Count > 0 Then
+                            ShowMessage("Phúc lợi của phòng ban này đang trùng ngày hiệu lực", NotifyType.Error)
+                            Exit Sub
+                        End If
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objWelfareList.ACTFLG = "A"

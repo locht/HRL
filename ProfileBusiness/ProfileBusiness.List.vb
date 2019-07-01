@@ -336,11 +336,12 @@ Namespace ProfileBusiness.ServiceImplementations
                                         ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
+                                        Optional ByVal log As UserLog = Nothing,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of WelfareListDTO) Implements ServiceContracts.IProfileBusiness.GetWelfareList
             Using rep As New ProfileRepository
                 Try
 
-                    Dim lst = rep.GetWelfareList(_filter, PageIndex, PageSize, Total, Sorts)
+                    Dim lst = rep.GetWelfareList(_filter, PageIndex, PageSize, Total, log, Sorts)
                     Return lst
                 Catch ex As Exception
 
