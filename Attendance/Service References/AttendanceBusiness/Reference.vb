@@ -8902,6 +8902,9 @@ Namespace AttendanceBusiness
         Private NOTEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private ORG_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private PENALIZEAField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8915,6 +8918,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SATURDAY_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_DAYField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUNDAYField As System.Nullable(Of Decimal)
@@ -9235,6 +9241,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property ORG_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.ORG_IDField
+            End Get
+            Set
+                If (Me.ORG_IDField.Equals(value) <> true) Then
+                    Me.ORG_IDField = value
+                    Me.RaisePropertyChanged("ORG_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property PENALIZEA() As System.Nullable(Of Decimal)
             Get
                 Return Me.PENALIZEAField
@@ -9295,6 +9314,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.SATURDAY_NAMEField, value) <> true) Then
                     Me.SATURDAY_NAMEField = value
                     Me.RaisePropertyChanged("SATURDAY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_DAY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SHIFT_DAYField
+            End Get
+            Set
+                If (Me.SHIFT_DAYField.Equals(value) <> true) Then
+                    Me.SHIFT_DAYField = value
+                    Me.RaisePropertyChanged("SHIFT_DAY")
                 End If
             End Set
         End Property

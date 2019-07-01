@@ -62,13 +62,13 @@
                 <%# Translate("Số hộ khẩu")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" AutoPostBack="true" ReadOnly="true" />
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Num" ReadOnly="true" />
             </td>
             <td class="lb">
                 <%# Translate("Mã hộ gia đình")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" AutoPostBack="true" ReadOnly="true" />
+                <tlk:RadTextBox runat="server" ID="txtHouseCertificate_Code" ReadOnly="true" />
             </td>
         </tr>
         <tr>

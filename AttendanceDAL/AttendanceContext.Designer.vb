@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("640f0b45-e67a-4dec-882b-1dead6b7dad1")>
+<Assembly: EdmSchemaAttribute("4b6f09d7-99b3-42fa-8d86-4a91b4d07452")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -20553,10 +20553,14 @@ Public Partial Class AT_SHIFT
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
     ''' <param name="cODE">Initial value of the CODE property.</param>
-    Public Shared Function CreateAT_SHIFT(id As Global.System.Decimal, cODE As Global.System.String) As AT_SHIFT
+    ''' <param name="oRG_ID">Initial value of the ORG_ID property.</param>
+    ''' <param name="sHIFT_DAY">Initial value of the SHIFT_DAY property.</param>
+    Public Shared Function CreateAT_SHIFT(id As Global.System.Decimal, cODE As Global.System.String, oRG_ID As Global.System.Decimal, sHIFT_DAY As Global.System.Decimal) As AT_SHIFT
         Dim aT_SHIFT as AT_SHIFT = New AT_SHIFT
         aT_SHIFT.ID = id
         aT_SHIFT.CODE = cODE
+        aT_SHIFT.ORG_ID = oRG_ID
+        aT_SHIFT.SHIFT_DAY = sHIFT_DAY
         Return aT_SHIFT
     End Function
 
@@ -21164,6 +21168,56 @@ Public Partial Class AT_SHIFT
     End Sub
 
     Private Partial Sub OnMINHOURSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Global.System.Decimal
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Global.System.Decimal
+    Private Partial Sub OnORG_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property SHIFT_DAY() As Global.System.Decimal
+        Get
+            Return _SHIFT_DAY
+        End Get
+        Set
+            OnSHIFT_DAYChanging(value)
+            ReportPropertyChanging("SHIFT_DAY")
+            _SHIFT_DAY = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SHIFT_DAY")
+            OnSHIFT_DAYChanged()
+        End Set
+    End Property
+
+    Private _SHIFT_DAY As Global.System.Decimal
+    Private Partial Sub OnSHIFT_DAYChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnSHIFT_DAYChanged()
     End Sub
 
     #End Region
