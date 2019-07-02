@@ -158,22 +158,22 @@ Partial Public Class ctrlHU_WelfareList
     Protected WithEvents lbName As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtName control.
+    '''cboName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtName As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents cboName As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''reqName control.
+    '''cusName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents reqName As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents cusName As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
     '''lstbGender control.

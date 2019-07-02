@@ -49,18 +49,18 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9999/ProfileBusiness.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="e1f1bef9-07a7-4ddf-b9c2-4727f7029004" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="cb726ddd-6c43-40d1-be09-4e10347d26ad" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="6392a914-fd8f-4c7d-9309-5be1c832d482" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="ProfileDAL1.xsd" MetadataType="Schema" ID="067f9929-d7a3-4104-91df-92e3f4e50c91" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="f3bd78f8-71f9-49a0-9077-4628a4b61f81" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="Framework.Data1.xsd" MetadataType="Schema" ID="1d3a4615-434c-4644-894e-0f64c357b51f" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="0b3e0a24-8e00-41ef-a8fd-3441420ce013" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="69b012d8-b92a-49f1-a562-ad313308a1a3" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
-    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="d13a4ce3-3061-438b-870f-0aff2325aacb" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="14b776fe-47c0-4369-a245-b6847513a037" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="b3dcf8e5-420e-49ec-8437-01f59845d972" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="9ebc1847-2d25-41ce-bf9c-bcbe006aa0fa" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="ProfileDAL1.xsd" MetadataType="Schema" ID="23e3f7b5-d3ea-4be3-979e-859bca358ee5" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="Framework.Data1.xsd" MetadataType="Schema" ID="37c018a3-8be3-43ec-ab14-4852490f56ef" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="System.Data1.xsd" MetadataType="Schema" ID="089bdbdc-94f6-4833-82d3-fe7b33f3d2a6" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="c4fc765d-30d7-4401-a93a-564aaab53b41" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="13df2f81-55a2-4e90-9685-09c8acde5797" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="b6b84b29-3217-47b9-a33c-43f98e4a5648" SourceId="1" SourceUrl="http://localhost:9999/ProfileBusiness.svc/mex/mex/mex/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
