@@ -137,6 +137,10 @@ Public Class ctrlSwipeDataDownload
             Dim startTime As DateTime = DateTime.UtcNow
             log = LogHelper.GetUserLog
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rglSwipeDataDownload)
+            End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                            CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
