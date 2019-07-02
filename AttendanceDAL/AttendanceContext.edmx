@@ -91,6 +91,7 @@
             <EntitySet Name="HU_CONTRACT_TYPE" EntityType="AttendanceModel.Store.HU_CONTRACT_TYPE" store:Type="Tables"  />
             <EntitySet Name="PROCESS_APPROVED_STATUS" EntityType="AttendanceModel.Store.PROCESS_APPROVED_STATUS" store:Type="Tables"  />
             <EntitySet Name="ATV_OFFSETTING" EntityType="AttendanceModel.Store.ATV_OFFSETTING" store:Type="Tables"  />
+            <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="AttendanceModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -2348,6 +2349,14 @@
             <Property Name="TO_DATE" Type="date" Nullable="true" />
             <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="SE_USER_ORG_ACCESS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="USER_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="false" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2658,6 +2667,7 @@
           <EntitySet Name="HU_CONTRACT_TYPE" EntityType="AttendanceModel.HU_CONTRACT_TYPE" />
           <EntitySet Name="PROCESS_APPROVED_STATUS" EntityType="AttendanceModel.PROCESS_APPROVED_STATUS" />
           <EntitySet Name="ATV_OFFSETTING" EntityType="AttendanceModel.ATV_OFFSETTING" />
+          <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="AttendanceModel.SE_USER_ORG_ACCESS" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -5016,6 +5026,14 @@
           <Property Type="DateTime" Name="TO_DATE" />
           <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="SE_USER_ORG_ACCESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="USER_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7311,6 +7329,15 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="SE_USER_ORG_ACCESS">
+            <EntityTypeMapping TypeName="AttendanceModel.SE_USER_ORG_ACCESS">
+                <MappingFragment StoreEntitySet="SE_USER_ORG_ACCESS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -7479,6 +7506,7 @@
         <EntityTypeShape EntityType="AttendanceModel.HU_CONTRACT_TYPE" Width="1.5" PointX="21.375" PointY="3.75" Height="4.4802050781249818" />
         <EntityTypeShape EntityType="AttendanceModel.PROCESS_APPROVED_STATUS" Width="1.5" PointX="18.375" PointY="1.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="AttendanceModel.ATV_OFFSETTING" Width="2.375" PointX="20.375" PointY="0.75" Height="1.9802864583333331" />
+        <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="10.625" PointY="23.125" Height="1.5956835937499818" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
