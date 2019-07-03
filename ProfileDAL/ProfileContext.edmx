@@ -145,6 +145,8 @@
             <EntitySet Name="HU_DEBT" EntityType="ProfileModel.Store.HU_DEBT" store:Type="Tables"  />
             <EntitySet Name="HU_LOCATION" EntityType="ProfileModel.Store.HU_LOCATION" store:Type="Tables"  />
             <EntitySet Name="HU_CONCURRENTLY" EntityType="ProfileModel.Store.HU_CONCURRENTLY" store:Type="Tables"  />
+            <EntitySet Name="HU_CERTIFICATE" EntityType="ProfileModel.Store.HU_CERTIFICATE" store:Type="Tables"  />
+            <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.Store.HU_CERTIFICATE_EDIT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3531,6 +3533,69 @@
             <Property Name="FILE_BYTE1" Type="nvarchar2" Nullable="true" MaxLength="1000" />
             <Property Name="IS_CHUYEN" Type="number" Nullable="true" Precision="5" />
         </EntityType>
+        <EntityType Name="HU_CERTIFICATE">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="FIELD_TRAIN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROM_DATE" Type="date" Nullable="true" />
+            <Property Name="TO_DATE" Type="date" Nullable="true" />
+            <Property Name="SCHOOL_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MAJOR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LEVEL_TRAIN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MARK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTENT_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="TYPE_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="CODE_CETIFICATE" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="EFFECT_FROM" Type="date" Nullable="true" />
+            <Property Name="EFFECT_TO" Type="date" Nullable="true" />
+            <Property Name="CLASSIFICATION" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RENEW" Type="number" Nullable="true" Precision="38" />
+            <Property Name="UPLOAD_FILE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FILE_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="HU_CERTIFICATE_EDIT">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="FIELD_TRAIN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FROM_DATE" Type="date" Nullable="true" />
+            <Property Name="TO_DATE" Type="date" Nullable="true" />
+            <Property Name="SCHOOL_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MAJOR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LEVEL_TRAIN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MARK" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTENT_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="TYPE_TRAIN" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="CODE_CETIFICATE" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="EFFECT_FROM" Type="date" Nullable="true" />
+            <Property Name="EFFECT_TO" Type="date" Nullable="true" />
+            <Property Name="CLASSIFICATION" Type="nvarchar2" Nullable="true" MaxLength="500" />
+            <Property Name="YEAR" Type="number" Nullable="true" Precision="38" />
+            <Property Name="RENEW" Type="number" Nullable="true" Precision="38" />
+            <Property Name="UPLOAD_FILE" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FILE_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="FK_PKEY" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4161,6 +4226,8 @@
           <EntitySet Name="HU_DEBT" EntityType="ProfileModel.HU_DEBT" />
           <EntitySet Name="HU_LOCATION" EntityType="ProfileModel.HU_LOCATION" />
           <EntitySet Name="HU_CONCURRENTLY" EntityType="ProfileModel.HU_CONCURRENTLY" />
+          <EntitySet Name="HU_CERTIFICATE" EntityType="ProfileModel.HU_CERTIFICATE" />
+          <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.HU_CERTIFICATE_EDIT" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -7830,6 +7897,69 @@
           <Property Type="String" Name="FILE_BYTE1" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="Int16" Name="IS_CHUYEN" />
         </EntityType>
+        <EntityType Name="HU_CERTIFICATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FIELD_TRAIN" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="FROM_DATE" />
+          <Property Type="DateTime" Name="TO_DATE" />
+          <Property Type="String" Name="SCHOOL_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MAJOR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LEVEL_TRAIN" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MARK" Precision="38" Scale="0" />
+          <Property Type="String" Name="CONTENT_TRAIN" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TYPE_TRAIN" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_CETIFICATE" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="EFFECT_FROM" />
+          <Property Type="DateTime" Name="EFFECT_TO" />
+          <Property Type="String" Name="CLASSIFICATION" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="RENEW" Precision="38" Scale="0" />
+          <Property Type="String" Name="UPLOAD_FILE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FILE_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="HU_CERTIFICATE_EDIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FIELD_TRAIN" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="FROM_DATE" />
+          <Property Type="DateTime" Name="TO_DATE" />
+          <Property Type="String" Name="SCHOOL_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MAJOR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LEVEL_TRAIN" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MARK" Precision="38" Scale="0" />
+          <Property Type="String" Name="CONTENT_TRAIN" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TYPE_TRAIN" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODE_CETIFICATE" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="EFFECT_FROM" />
+          <Property Type="DateTime" Name="EFFECT_TO" />
+          <Property Type="String" Name="CLASSIFICATION" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="YEAR" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="RENEW" Precision="38" Scale="0" />
+          <Property Type="String" Name="UPLOAD_FILE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FILE_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="FK_PKEY" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11230,6 +11360,71 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_CERTIFICATE">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_CERTIFICATE)">
+                <MappingFragment StoreEntitySet="HU_CERTIFICATE">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="FIELD_TRAIN" ColumnName="FIELD_TRAIN" />
+                    <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+                    <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+                    <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+                    <ScalarProperty Name="MAJOR" ColumnName="MAJOR" />
+                    <ScalarProperty Name="LEVEL_TRAIN" ColumnName="LEVEL_TRAIN" />
+                    <ScalarProperty Name="MARK" ColumnName="MARK" />
+                    <ScalarProperty Name="CONTENT_TRAIN" ColumnName="CONTENT_TRAIN" />
+                    <ScalarProperty Name="TYPE_TRAIN" ColumnName="TYPE_TRAIN" />
+                    <ScalarProperty Name="CODE_CETIFICATE" ColumnName="CODE_CETIFICATE" />
+                    <ScalarProperty Name="EFFECT_FROM" ColumnName="EFFECT_FROM" />
+                    <ScalarProperty Name="EFFECT_TO" ColumnName="EFFECT_TO" />
+                    <ScalarProperty Name="CLASSIFICATION" ColumnName="CLASSIFICATION" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="RENEW" ColumnName="RENEW" />
+                    <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
+                    <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="HU_CERTIFICATE_EDIT">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_CERTIFICATE_EDIT)">
+                <MappingFragment StoreEntitySet="HU_CERTIFICATE_EDIT">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="FIELD_TRAIN" ColumnName="FIELD_TRAIN" />
+                    <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+                    <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+                    <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+                    <ScalarProperty Name="MAJOR" ColumnName="MAJOR" />
+                    <ScalarProperty Name="LEVEL_TRAIN" ColumnName="LEVEL_TRAIN" />
+                    <ScalarProperty Name="MARK" ColumnName="MARK" />
+                    <ScalarProperty Name="CONTENT_TRAIN" ColumnName="CONTENT_TRAIN" />
+                    <ScalarProperty Name="TYPE_TRAIN" ColumnName="TYPE_TRAIN" />
+                    <ScalarProperty Name="CODE_CETIFICATE" ColumnName="CODE_CETIFICATE" />
+                    <ScalarProperty Name="EFFECT_FROM" ColumnName="EFFECT_FROM" />
+                    <ScalarProperty Name="EFFECT_TO" ColumnName="EFFECT_TO" />
+                    <ScalarProperty Name="CLASSIFICATION" ColumnName="CLASSIFICATION" />
+                    <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                    <ScalarProperty Name="RENEW" ColumnName="RENEW" />
+                    <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
+                    <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -11580,6 +11775,8 @@
         <EntityTypeShape EntityType="ProfileModel.HU_DEBT" Width="1.5" PointX="41.5" PointY="28.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="19.375" PointY="28" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.5" PointX="17.375" PointY="29.75" Height="9.0954394531249818" />
+        <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE" Width="1.5" PointX="19.375" PointY="30.375" Height="6.018616536458353" />
+        <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="1.5" PointX="9.375" PointY="31.375" Height="6.2109179687499818" />
         </Diagram>
     </Diagrams>
   </Designer>
