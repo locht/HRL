@@ -840,7 +840,7 @@ Implements ServiceContracts.IProfileBusiness.GetHU_DataDynamicContractAppendix
                 End Try
             End Using
         End Function
-        Function GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+        Public Function GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
                                         ByVal log As UserLog,
