@@ -596,6 +596,40 @@ Public Class ProfileRepository
     ''' 
     Public Function GetComboList(ByRef _combolistDTO As ComboBoxDataDTO) As Boolean
         Dim query
+        'TRINH DO
+        If _combolistDTO.GET_LEVEL_TRAIN Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "LEARNING_LEVEL")
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_LEVEL_TRAIN = query
+        End If
+        'CHUYEN NGANH
+        If _combolistDTO.GET_MAJOR_TRAIN Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "MAJOR")
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_MAJOR_TRAIN = query
+        End If
+        'LINH VUC DAO TAO
+        If _combolistDTO.GET_FIELD_TRAIN Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "TR_TRAIN_FIELD")
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_FIELD_TRAIN = query
+        End If
+
         If _combolistDTO.GET_UNIT_LEVEL Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
                      From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "UNIT_LEVEL")

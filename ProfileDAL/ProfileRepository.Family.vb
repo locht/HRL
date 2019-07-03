@@ -7,7 +7,125 @@ Imports Oracle.DataAccess.Client
 Imports System.Reflection
 
 Partial Class ProfileRepository
+#Region "HU_CERTIFICATE_edit"
+    Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO)
+        Dim query As ObjectQuery(Of CETIFICATE_EDITDTO)
+        Try
+            query = (From p In Context.HU_CERTIFICATE_EDIT
+                     From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                     From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FIELD_TRAIN).DefaultIfEmpty
+                     From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MAJOR).DefaultIfEmpty
+                     From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_TRAIN).DefaultIfEmpty
+                     Select New CETIFICATE_EDITDTO With {
+                         .ID = p.ID,
+                         .FIELD = p.FIELD_TRAIN,
+                         .FIELD_NAME = ot.NAME_VN,
+                         .FROM_DATE = p.FROM_DATE,
+                         .TO_DATE = p.TO_DATE,
+                         .SCHOOL_NAME = p.SCHOOL_NAME,
+                         .MAJOR = p.MAJOR,
+                         .MAJOR_NAME = ot1.NAME_VN,
+                         .LEVEL = p.LEVEL_TRAIN,
+                         .FK_PKEY = p.FK_PKEY,
+                         .LEVEL_NAME = ot2.NAME_VN,
+                         .MARK = p.MARK,
+                         .CONTENT_NAME = p.CONTENT_TRAIN,
+                         .TYPE_NAME = p.TYPE_TRAIN,
+                         .CODE_CERTIFICATE = p.CODE_CETIFICATE,
+                         .EFFECT_FROM = p.EFFECT_FROM,
+                         .EFFECT_TO = p.EFFECT_TO,
+                         .CLASSIFICATION = p.CLASSIFICATION,
+                         .YEAR = p.YEAR,
+                         .REMARK = p.REMARK,
+                         .RENEW = p.RENEW,
+                         .UPLOAD = p.UPLOAD_FILE,
+                         .FILENAME = p.FILE_NAME,
+                          .STATUS = p.STATUS,
+                         .STATUS_NAME = If(p.STATUS = 0, "Chưa gửi duyệt",
+                                           If(p.STATUS = 1, "Chờ phê duyệt",
+                                              If(p.STATUS = 2, "Phê duyệt",
+                                                 If(p.STATUS = 3, "Không phê duyệt", ""))))})
+            Return query.ToList
+        Catch ex As Exception
 
+        End Try
+    End Function
+    Public Function InsertCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                             ByVal log As UserLog,
+                                             ByRef gID As Decimal) As Boolean
+        Try
+
+            Dim objCertificatetData As New HU_CERTIFICATE_EDIT
+            objCertificatetData.ID = Utilities.GetNextSequence(Context, Context.HU_CERTIFICATE_EDIT.EntitySet.Name)
+            objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
+            objCertificatetData.FIELD_TRAIN = objCertificateEdit.FIELD
+            objCertificatetData.FROM_DATE = objCertificateEdit.FROM_DATE
+            objCertificatetData.TO_DATE = objCertificateEdit.TO_DATE
+            objCertificatetData.SCHOOL_NAME = objCertificateEdit.SCHOOL_NAME
+            objCertificatetData.MAJOR = objCertificateEdit.MAJOR
+            objCertificatetData.LEVEL_TRAIN = objCertificateEdit.LEVEL
+            objCertificatetData.MARK = objCertificateEdit.MARK
+            objCertificatetData.CONTENT_TRAIN = objCertificateEdit.CONTENT_NAME
+            objCertificatetData.TYPE_TRAIN = objCertificateEdit.TYPE_NAME
+            objCertificatetData.CODE_CETIFICATE = objCertificateEdit.CODE_CERTIFICATE
+            objCertificatetData.EFFECT_FROM = objCertificateEdit.EFFECT_FROM
+            objCertificatetData.STATUS = 0
+            objCertificatetData.EFFECT_TO = objCertificateEdit.EFFECT_TO
+            objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
+            objCertificatetData.CLASSIFICATION = objCertificateEdit.CLASSIFICATION
+            objCertificatetData.YEAR = objCertificateEdit.YEAR
+            objCertificatetData.RENEW = objCertificateEdit.RENEW
+            objCertificatetData.REMARK = objCertificateEdit.REMARK
+            Context.HU_CERTIFICATE_EDIT.AddObject(objCertificatetData)
+            Context.SaveChanges(log)
+            gID = objCertificatetData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+#End Region
+#Region "HU_CERTIFICATE"
+    'get dl bang hu_certificate
+    Public Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO)
+        Dim query As ObjectQuery(Of CETIFICATEDTO)
+        Try
+            query = (From p In Context.HU_CERTIFICATE
+                     From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID).DefaultIfEmpty
+                     From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.FIELD_TRAIN).DefaultIfEmpty
+                     From ot1 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MAJOR).DefaultIfEmpty
+                     From ot2 In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEVEL_TRAIN).DefaultIfEmpty
+                     Select New CETIFICATEDTO With {
+                         .ID = p.ID,
+                         .FIELD = p.FIELD_TRAIN,
+                         .FIELD_NAME = ot.NAME_VN,
+                         .FROM_DATE = p.FROM_DATE,
+                         .TO_DATE = p.TO_DATE,
+                         .SCHOOL_NAME = p.SCHOOL_NAME,
+                         .MAJOR = p.MAJOR,
+                         .MAJOR_NAME = ot1.NAME_VN,
+                         .LEVEL = p.LEVEL_TRAIN,
+                         .LEVEL_NAME = ot2.NAME_VN,
+                         .MARK = p.MARK,
+                         .CONTENT_NAME = p.CONTENT_TRAIN,
+                         .TYPE_NAME = p.TYPE_TRAIN,
+                         .CODE_CERTIFICATE = p.CODE_CETIFICATE,
+                         .EFFECT_FROM = p.EFFECT_FROM,
+                         .EFFECT_TO = p.EFFECT_TO,
+                         .CLASSIFICATION = p.CLASSIFICATION,
+                         .YEAR = p.YEAR,
+                         .REMARK = p.REMARK,
+                         .RENEW = p.RENEW,
+                         .UPLOAD = p.UPLOAD_FILE,
+                         .FILENAME = p.FILE_NAME
+                         })
+            Return query.ToList
+        Catch ex As Exception
+
+        End Try
+    End Function
+#End Region
 #Region "Family"
 
     Public Function InsertEmployeeFamily(ByVal objFamily As FamilyDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -94,6 +212,7 @@ Partial Class ProfileRepository
         End Try
 
     End Function
+
 
     Public Function GetEmployeeFamily(ByVal _filter As FamilyDTO) As List(Of FamilyDTO)
         Dim query As ObjectQuery(Of FamilyDTO)
