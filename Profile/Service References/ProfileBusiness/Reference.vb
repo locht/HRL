@@ -29277,6 +29277,9 @@ Namespace ProfileBusiness
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_RENEWEDField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -29516,6 +29519,19 @@ Namespace ProfileBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_RENEWED() As Boolean
+            Get
+                Return Me.IS_RENEWEDField
+            End Get
+            Set
+                If (Me.IS_RENEWEDField.Equals(value) <> true) Then
+                    Me.IS_RENEWEDField = value
+                    Me.RaisePropertyChanged("IS_RENEWED")
                 End If
             End Set
         End Property
