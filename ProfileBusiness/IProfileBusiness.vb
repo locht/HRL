@@ -7,6 +7,8 @@ Namespace ProfileBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IProfileBusiness
 
+
+
         <OperationContract()>
         Function GetOrgsTree() As List(Of OrganizationDTO)
 
@@ -1944,6 +1946,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 
 #Region "IPORTAL - Quá trình đào tạo trước khi vào công ty"
+        <OperationContract()>
+        Function GetCertificateType() As List(Of OtherListDTO)
         <OperationContract()>
         Function GetProcessTrainingEdit(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT) As List(Of HU_PRO_TRAIN_OUT_COMPANYDTOEDIT)
 

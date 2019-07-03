@@ -1,4 +1,7 @@
 ﻿Public Class ComboBoxDataDTO
+    Public Property GET_CERTIFICATE_TYPE As Boolean
+    Public Property LIST_CERTIFICATE_TYPE As List(Of OtherListDTO)
+
     Public Property GET_HANDOVER_CONTENT As Boolean
     Public Property LIST_HANDOVER_CONTENT As List(Of OtherListDTO)
 

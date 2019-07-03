@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbGraduateYear" Text="Năm tốt nghiệp"></asp:Label>
+                    <asp:Label runat="server" ID="lbGraduateYear" Text="Năm tốt nghiệp"></asp:Label>                  
                 </td>
                 <td>
                     <%--<tlk:RadNumericTextBox runat="server" ID="rntGraduateYear1" NumberFormat-DecimalDigits="0"
@@ -94,10 +94,27 @@
                 <td class="lb">
                     <asp:Label runat="server" ID="lbBangCap" Text="Bằng cấp/Chứng chỉ"></asp:Label>
                 </td>
-                <td>
+             <%--   <td>
                     <tlk:RadTextBox ID="txtBangCap" SkinID="Textbox250" runat="server">
+                       
                     </tlk:RadTextBox>
+                </td>--%>
+                <td>
+                     <tlk:RadComboBox ID="cboRemark" runat="server" Width="160px" AutoPostBack="true" CausesValidation="false">
+                     <%-- <Items>
+                            <tlk:RadComboBoxItem Text="" Value="0" />
+                            <tlk:RadComboBoxItem Text="Bằng cấp" Value="1" />
+                            <tlk:RadComboBoxItem Text="Chứng chỉ" Value="2" />
+                          
+                        </Items>--%>
+                     </tlk:RadComboBox>
                 </td>
+                <td >
+                    <asp:Label runat="server" ID="Label3" Text="Cần gia hạn"></asp:Label>
+                </td>
+                 <td >
+                    <asp:CheckBox ID="chkTerminate" runat="server" />
+                 </td>
             </tr>
             <tr>                
                 <td class="lb">
@@ -113,21 +130,33 @@
                 <td>
                     <tlk:RadDatePicker ID="rdReceiveDegree" runat="server">
                     </tlk:RadDatePicker>
+
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label runat="server" ID="lbFrom" Text="Ngày hiệu lực chứng chỉ"></asp:Label>
+                    <asp:Label runat="server"  ID="lbFrom" Text="Ngày hiệu lực chứng chỉ"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdFrom" runat="server">
+                    <tlk:RadDatePicker ID="rdFrom" AutoPostBack="true" runat="server">
                     </tlk:RadDatePicker>
+                      <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdFrom"
+                        runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>--%>
                 </td>
+               <%--   <td>
+                    <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
+                    </tlk:RadDatePicker>
+                    <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
+                        ErrorMessage="<%$ Translate: Bạn phải nhập ngày hiệu lực chứng chỉ. %>" ToolTip="<%$ Translate: Bạn phải nhập ngày hiệu lực chứng chỉ. %>"> </asp:RequiredFieldValidator>
+                   <asp:CustomValidator ID="CompareStartDate" runat="server" ErrorMessage="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>"
+                        ToolTip="<%$ Translate: Ngày bắt đầu phải lớn hơn ngày kết thúc gần nhất %>">
+                    </asp:CustomValidator>
+                </td>--%>
                 <td class="lb">
                     <asp:Label runat="server" ID="lbTo" Text="Ngày hết hiệu lực chứng chỉ"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdTo" runat="server">
+                    <tlk:RadDatePicker ID="rdTo" AutoPostBack="true" runat="server">
                     </tlk:RadDatePicker>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
                         ErrorMessage="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
@@ -154,6 +183,41 @@
                     </tlk:RadButton>
                 </td>
             </tr>
+
+           <%-- <tr>
+                 <td class="lb">
+                    <asp:Label runat="server" ID="Label2" Text="Loại chứng chỉ"></asp:Label>
+                </td>
+                <td class="lb">
+                     <tlk:RadComboBox ID="cboRemark" runat="server"  Width="160px" ></tlk:RadComboBox>
+                </td>
+          
+                <td class="lb">
+                    <asp:Label runat="server" ID="Label3" Text="Có gia hạn"></asp:Label>
+                </td>
+                 <td >
+                    <asp:CheckBox ID="chkTerminate" runat="server" />
+                 </td>
+        
+                  <td class="lb">
+                    <asp:Label runat="server" ID="Label1" Text="File đính kèm"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtRemark2" ReadOnly="true" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+                <td colspan="3">
+                    <tlk:RadButton runat="server" ID="btnUploadFile2" SkinID="ButtonView" CausesValidation="false"
+                        TabIndex="3" />
+                    <tlk:RadTextBox ID="txtUploadFile2" runat="server" Visible="false">
+                    </tlk:RadTextBox>
+                </td>
+                  <td>
+                    <tlk:RadButton runat="server" ID="RadButton2" Text="Tải xuống"
+                        CausesValidation="false" OnClientClicked="rbtClicked" TabIndex="3" EnableViewState="false">
+                    </tlk:RadButton>
+                </td>
+            </tr>--%>
             <tr style="visibility:hidden">
                 <td class="lb">
                     <tlk:RadTextBox ID="txtRemindLink" runat="server">
@@ -165,7 +229,8 @@
     <tlk:RadPane runat="server" ID="RadPane4" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgEmployeeTrain" runat="server" AllowMultiRowSelection="true" Height="100%"
             AllowFilteringByColumn="true">
-            <MasterTableView DataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME" ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME">
+            <MasterTableView DataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED" 
+            ClientDataKeyNames="ID, FROM_DATE,TO_DATE, YEAR_GRA, NAME_SHOOLS, FORM_TRAIN_ID, SPECIALIZED_TRAIN, TYPE_TRAIN_ID, RESULT_TRAIN, CERTIFICATE, RECEIVE_DEGREE_DATE, EFFECTIVE_DATE_FROM, EFFECTIVE_DATE_TO,UPLOAD_FILE,FILE_NAME,IS_RENEWED">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>

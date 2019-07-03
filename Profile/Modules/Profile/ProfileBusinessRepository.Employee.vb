@@ -570,7 +570,18 @@ Partial Public Class ProfileBusinessRepository
 
 
 #Region "IPORFILE - Quá trình đào tạo ngoài công ty"
+    
+    Public Function GetCertificateType() As List(Of OtherListDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetCertificateType()
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+    End Function
     Public Function InsertProcessTrainingEdit(ByVal objFamilyEdit As HU_PRO_TRAIN_OUT_COMPANYDTOEDIT, ByRef gID As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try

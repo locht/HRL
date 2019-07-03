@@ -749,4 +749,9 @@ Partial Public Class ProfileRepository
 
 
 #End Region
+
+    Function GetOT_OTHER_LIST(p1 As Boolean) As Object
+        Throw New NotImplementedException
+    End Function
+
 End Class

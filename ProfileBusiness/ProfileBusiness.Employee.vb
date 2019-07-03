@@ -556,6 +556,16 @@ Implements ServiceContracts.IProfileBusiness.GetCompetencyEmployee
                 End Try
             End Using
         End Function
+        Public Function GetCertificateType() As List(Of OtherListDTO) _
+            Implements ServiceContracts.IProfileBusiness.GetCertificateType
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetCertificateType()
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "EmployeeEdit"

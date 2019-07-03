@@ -2777,7 +2777,7 @@ Partial Class ProfileRepository
 
 #End Region
 
-#Region "Quản lý chứng chỉ bổ sung"  '' quá trình đào tạo ngoài công ty 
+#Region "quá trình đào tạo ngoài công ty "
     Public Function GetProcessTraining(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTO,
                                 Optional ByRef PageIndex As Integer = 0,
                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -2916,6 +2916,22 @@ Partial Class ProfileRepository
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             ' Utility.WriteExceptionLog(ex, Me.ToString() & ".DeleteCostCenter")
+            Throw ex
+        End Try
+    End Function
+    Public Function GetCertificateType() As List(Of OtherListDTO)
+        Try
+            Dim query As List(Of OtherListDTO)
+            query = (From p In Context.OT_OTHER_LIST
+                     From r In Context.OT_OTHER_LIST_TYPE.Where(Function(f) f.ID = p.TYPE_ID).DefaultIfEmpty
+            Where (r.CODE = "CERTIFICATE_TYPE" And p.ACTFLG = "A")
+                     Order By p.ID
+                     Select New OtherListDTO With {
+                     .ID = p.ID,
+                     .NAME_VN = p.NAME_VN}).ToList
+            Return query
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
             Throw ex
         End Try
     End Function

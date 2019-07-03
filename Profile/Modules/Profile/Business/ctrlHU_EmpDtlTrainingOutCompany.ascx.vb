@@ -87,6 +87,9 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 #End Region
 
 #Region "Page"
+
+    Private Property ListComboData As ComboBoxDataDTO
+
     Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
         Try
             ctrlEmpBasicInfo.SetProperty("EmployeeInfo", EmployeeInfo)
@@ -184,12 +187,10 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Dim obj As New HU_PRO_TRAIN_OUT_COMPANYDTO
         Try
             SetValueObjectByRadGrid(rgEmployeeTrain, obj)
-
             Dim rep As New ProfileBusinessRepository
             Dim objEmployeeTrain As New HU_PRO_TRAIN_OUT_COMPANYDTO
             objEmployeeTrain.EMPLOYEE_ID = If(EmployeeInfo Is Nothing, Nothing, EmployeeInfo.ID)
-
-            Me.EmployeeTrain = rep.GetProcessTraining(objEmployeeTrain)
+            Me.EmployeeTrain = rep.GetProcessTraining(objEmployeeTrain)   
             rep.Dispose()
             rgEmployeeTrain.DataSource = Me.EmployeeTrain
         Catch ex As Exception
@@ -214,13 +215,14 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     txtRemark.Text = ""
                     txtTrainingSchool.Text = ""
                     txtRemark.Text = ""
-                    txtBangCap.Text = ""
+                    cboRemark.SelectedValue = ""
                     txtChuyenNganh.Text = ""
                     txtKetQua.Text = ""
                     rdFrom.SelectedDate = Nothing
                     rdTo.SelectedDate = Nothing
                     rdReceiveDegree.SelectedDate = Nothing
-                    EnableControlAll(True, rdToiThang, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
+                    chkTerminate.Checked = False
+                    EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
                     Select Case checkCRUD
@@ -243,19 +245,20 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     txtRemark.Text = ""
                     txtTrainingSchool.Text = ""
                     cboTrainingForm.SelectedValue = ""
-                    txtBangCap.Text = ""
+                    cboRemark.SelectedValue = ""
                     txtChuyenNganh.Text = ""
                     txtKetQua.Text = ""
                     rdFrom.SelectedDate = Nothing
                     rdTo.SelectedDate = Nothing
                     cboTrainingType.SelectedValue = ""
                     rdReceiveDegree.SelectedDate = Nothing
+                    chkTerminate.Checked = False
                     EnabledGridNotPostback(rgEmployeeTrain, True)
-                    EnableControlAll(False, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
+                    EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, True)
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, txtBangCap, txtChuyenNganh, txtKetQua, txtTrainingSchool, rdFrom, rdTo, cboTrainingType, rdReceiveDegree)
+                    EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_DELETE
                     Dim rep As New ProfileBusinessRepository
@@ -291,13 +294,14 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         dic.Add("FORM_TRAIN_ID", cboTrainingForm)
         dic.Add("SPECIALIZED_TRAIN", txtChuyenNganh)
         dic.Add("RESULT_TRAIN", txtKetQua)
-        dic.Add("CERTIFICATE", txtBangCap)
+        dic.Add("CERTIFICATE", cboRemark)
         dic.Add("EFFECTIVE_DATE_FROM", rdFrom)
         dic.Add("EFFECTIVE_DATE_TO", rdTo)
         dic.Add("UPLOAD_FILE", txtUploadFile)
         dic.Add("FILE_NAME", txtRemark)
         dic.Add("TYPE_TRAIN_ID", cboTrainingType)
         dic.Add("RECEIVE_DEGREE_DATE", rdReceiveDegree)
+        dic.Add("IS_RENEWED", chkTerminate)
 
         Utilities.OnClientRowSelectedChanged(rgEmployeeTrain, dic)
 
@@ -311,16 +315,25 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             comboBoxDataDTO.GET_LEARNING_LEVEL = True
             comboBoxDataDTO.GET_MAJOR = True
             comboBoxDataDTO.GET_MARK_EDU = True
-            comboBoxDataDTO.GET_TRAINING_TYPE = True
+            comboBoxDataDTO.GET_CERTIFICATE_TYPE = True
             rep.GetComboList(comboBoxDataDTO)
             If comboBoxDataDTO IsNot Nothing Then
                 FillDropDownList(cboTrainingForm, comboBoxDataDTO.LIST_TRAINING_FORM, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingForm.SelectedValue)
                 FillDropDownList(cboTrainingType, comboBoxDataDTO.LIST_TRAINING_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboTrainingType.SelectedValue)
+                FillDropDownList(cboRemark, comboBoxDataDTO.LIST_CERTIFICATE_TYPE, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboRemark.SelectedValue)
             End If
+            'cboRemark.SelectedValue = 0
+            'Using profileBusiness As New ProfileBusinessRepository
+            '    Dim cbo
+            '    cbo = profileBusiness.GetCertificateType()
+            '    FillDropDownList(cboRemark, cbo, "NAME_VN", "ID")
+            'End Using
+            
             rep.Dispose()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
+
 
     End Sub
 
@@ -409,14 +422,19 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         Else
                             objTrain.TYPE_TRAIN_ID = cboTrainingType.SelectedValue
                         End If
+                        If cboRemark.SelectedValue = "" Then
+                            objTrain.CERTIFICATE = Nothing
+                        Else
+                            objTrain.CERTIFICATE = cboRemark.SelectedValue
+                        End If
                         objTrain.RECEIVE_DEGREE_DATE = rdReceiveDegree.SelectedDate
                         objTrain.YEAR_GRA = rntGraduateYear.Value
                         objTrain.SPECIALIZED_TRAIN = txtChuyenNganh.Text.Trim
                         objTrain.RESULT_TRAIN = txtKetQua.Text.Trim
-                        objTrain.CERTIFICATE = txtBangCap.Text.Trim
                         objTrain.EFFECTIVE_DATE_FROM = rdFrom.SelectedDate
                         objTrain.EFFECTIVE_DATE_TO = rdTo.SelectedDate
                         objTrain.FILE_NAME = txtRemark.Text.Trim
+                        objTrain.IS_RENEWED = chkTerminate.Checked
                         If Down_File = Nothing Then
                             objTrain.UPLOAD_FILE = If(txtRemindLink.Text Is Nothing, "", txtRemindLink.Text)
                         Else
@@ -757,6 +775,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     '    End Try
 
     'End Sub
+
 #End Region
 
 #Region "Custom"
@@ -784,12 +803,51 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             txtChuyenNganh.Text = dataItem.GetDataKeyValue("SPECIALIZED_TRAIN")
             cboTrainingType.SelectedValue = dataItem.GetDataKeyValue("TYPE_TRAIN_ID")
             txtKetQua.Text = dataItem.GetDataKeyValue("RESULT_TRAIN")
-            txtBangCap.Text = dataItem.GetDataKeyValue("CERTIFICATE")
+            cboRemark.SelectedValue = dataItem.GetDataKeyValue("CERTIFICATE")
             rdReceiveDegree.SelectedDate = dataItem.GetDataKeyValue("RECEIVE_DEGREE_DATE")
             rdFrom.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_FROM")
             rdTo.SelectedDate = dataItem.GetDataKeyValue("EFFECTIVE_DATE_TO")
             txtRemindLink.Text = dataItem.GetDataKeyValue("UPLOAD_FILE")
             txtRemark.Text = dataItem.GetDataKeyValue("FILE_NAME")
+            chkTerminate.Checked = dataItem.GetDataKeyValue("IS_RENEWED")
         End If
+    End Sub
+    ' ''' Phương thức xử lý việc load dữ liệu cho các combobox
+    ' ''' </summary>
+    ' ''' <remarks></remarks>
+    'Private Sub GetDataCombo()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim rep As New ProfileRepository
+    '    Try
+    '        ListComboData = New ComboBoxDataDTO
+    '        ListComboData.GET_WELFARE = True
+    '        rep.GetComboList(ListComboData)
+    '        rep.Dispose()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        Throw ex
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
+
+
+    Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If cboRemark.SelectedValue = 7086 Then
+                rdFrom.Enabled = True
+                rdTo.Enabled = True
+            Else
+                rdFrom.Enabled = False
+                rdTo.Enabled = False
+                rdFrom.ClearValue()
+                rdTo.ClearValue()
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
     End Sub
 End Class

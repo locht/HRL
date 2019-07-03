@@ -23,6 +23,12 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IProfileBusiness_DeactiveAndActiveSigner_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeactiveAndActiveSigner" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_DeactiveAndActiveSigner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeactiveAndActiveSignerResponse" />
+  </wsdl:message>
   <wsdl:message name="IProfileBusiness_DeleteSigner_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteSigner" />
   </wsdl:message>
@@ -70,6 +76,12 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_INSERT_EMPLOYEE_KN_OutputMessage">
     <wsdl:part name="parameters" element="tns:INSERT_EMPLOYEE_KNResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetStatisticSeniority_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticSeniority" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetStatisticSeniority_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticSeniorityResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetOrgFromUsername_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrgFromUsername" />
@@ -575,12 +587,6 @@
   <wsdl:message name="IProfileBusiness_CHECK_EXIT_OutputMessage">
     <wsdl:part name="parameters" element="tns:CHECK_EXITResponse" />
   </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeactiveAndActiveSigner_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeactiveAndActiveSigner" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_DeactiveAndActiveSigner_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeactiveAndActiveSignerResponse" />
-  </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetTerminate_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTerminate" />
   </wsdl:message>
@@ -742,6 +748,12 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_TestEmployeeFileDTO_OutputMessage">
     <wsdl:part name="parameters" element="tns:TestEmployeeFileDTOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetCertificateType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCertificateType" />
+  </wsdl:message>
+  <wsdl:message name="IProfileBusiness_GetCertificateType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCertificateTypeResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetProcessTrainingEdit_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProcessTrainingEdit" />
@@ -1084,12 +1096,6 @@
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetCompanyNewInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCompanyNewInfoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetStatisticSeniority_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetStatisticSeniority" />
-  </wsdl:message>
-  <wsdl:message name="IProfileBusiness_GetStatisticSeniority_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetStatisticSeniorityResponse" />
   </wsdl:message>
   <wsdl:message name="IProfileBusiness_GetTrainingForeign_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTrainingForeign" />
@@ -3132,6 +3138,10 @@
     <wsdl:part name="parameters" element="tns:GetRelationshipListResponse" />
   </wsdl:message>
   <wsdl:portType name="IProfileBusiness">
+    <wsdl:operation name="DeactiveAndActiveSigner">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner" message="tns:IProfileBusiness_DeactiveAndActiveSigner_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSignerResponse" message="tns:IProfileBusiness_DeactiveAndActiveSigner_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteSigner">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteSigner" message="tns:IProfileBusiness_DeleteSigner_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeleteSignerResponse" message="tns:IProfileBusiness_DeleteSigner_OutputMessage" />
@@ -3163,6 +3173,10 @@
     <wsdl:operation name="INSERT_EMPLOYEE_KN">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KN" message="tns:IProfileBusiness_INSERT_EMPLOYEE_KN_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KNResponse" message="tns:IProfileBusiness_INSERT_EMPLOYEE_KN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatisticSeniority">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticSeniority" message="tns:IProfileBusiness_GetStatisticSeniority_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticSeniorityResponse" message="tns:IProfileBusiness_GetStatisticSeniority_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetOrgFromUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetOrgFromUsername" message="tns:IProfileBusiness_GetOrgFromUsername_InputMessage" />
@@ -3500,10 +3514,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/CHECK_EXIT" message="tns:IProfileBusiness_CHECK_EXIT_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/CHECK_EXITResponse" message="tns:IProfileBusiness_CHECK_EXIT_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeactiveAndActiveSigner">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner" message="tns:IProfileBusiness_DeactiveAndActiveSigner_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSignerResponse" message="tns:IProfileBusiness_DeactiveAndActiveSigner_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetTerminate">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminate" message="tns:IProfileBusiness_GetTerminate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetTerminateResponse" message="tns:IProfileBusiness_GetTerminate_OutputMessage" />
@@ -3611,6 +3621,10 @@
     <wsdl:operation name="TestEmployeeFileDTO">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTO" message="tns:IProfileBusiness_TestEmployeeFileDTO_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTOResponse" message="tns:IProfileBusiness_TestEmployeeFileDTO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetCertificateType" message="tns:IProfileBusiness_GetCertificateType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetCertificateTypeResponse" message="tns:IProfileBusiness_GetCertificateType_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetProcessTrainingEdit">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetProcessTrainingEdit" message="tns:IProfileBusiness_GetProcessTrainingEdit_InputMessage" />
@@ -3839,10 +3853,6 @@
     <wsdl:operation name="GetCompanyNewInfo">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetCompanyNewInfo" message="tns:IProfileBusiness_GetCompanyNewInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetCompanyNewInfoResponse" message="tns:IProfileBusiness_GetCompanyNewInfo_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetStatisticSeniority">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticSeniority" message="tns:IProfileBusiness_GetStatisticSeniority_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProfileBusiness/GetStatisticSeniorityResponse" message="tns:IProfileBusiness_GetStatisticSeniority_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTrainingForeign">
       <wsdl:input wsaw:Action="http://tempuri.org/IProfileBusiness/GetTrainingForeign" message="tns:IProfileBusiness_GetTrainingForeign_InputMessage" />
@@ -5208,6 +5218,15 @@
   <wsdl:binding name="WSHttpBinding_IProfileBusiness" type="tns:IProfileBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IProfileBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeactiveAndActiveSigner">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteSigner">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeleteSigner" style="document" />
       <wsdl:input>
@@ -5273,6 +5292,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_EMPLOYEE_KN">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatisticSeniority">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetStatisticSeniority" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6036,15 +6064,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeactiveAndActiveSigner">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/DeactiveAndActiveSigner" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetTerminate">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetTerminate" style="document" />
       <wsdl:input>
@@ -6281,6 +6300,15 @@
     </wsdl:operation>
     <wsdl:operation name="TestEmployeeFileDTO">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/TestEmployeeFileDTO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateType">
+      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetCertificateType" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6794,15 +6822,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetCompanyNewInfo">
       <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetCompanyNewInfo" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetStatisticSeniority">
-      <soap12:operation soapAction="http://tempuri.org/IProfileBusiness/GetStatisticSeniority" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
