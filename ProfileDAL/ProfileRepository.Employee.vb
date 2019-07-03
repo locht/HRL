@@ -2925,7 +2925,49 @@ Partial Class ProfileRepository
 
     Public Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String)
         Try
-
+            Dim dic As New Dictionary(Of String, String)
+            For Each empEdit As EmployeeEditDTO In lstEmpEdit
+                Dim colNames As String = String.Empty
+                Dim empCV = Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = empEdit.EMPLOYEE_ID).FirstOrDefault
+                If empEdit.ID_NO <> empCV.ID_NO Then
+                    colNames = "ID_NO"
+                End If
+                If empEdit.ID_DATE <> empCV.ID_DATE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "ID_DATE", "ID_DATE")
+                End If
+                If empEdit.ID_PLACE <> empCV.ID_PLACE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "ID_PLACE", "ID_PLACE")
+                End If
+                If empEdit.MARITAL_STATUS <> empCV.MARITAL_STATUS Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "MARITAL_STATUS", "MARITAL_STATUS")
+                End If
+                If empEdit.PER_ADDRESS <> empCV.PER_ADDRESS Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_ADDRESS", "PER_ADDRESS")
+                End If
+                If empEdit.PER_PROVINCE <> empCV.PER_PROVINCE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_PROVINCE", "PER_PROVINCE")
+                End If
+                If empEdit.PER_DISTRICT <> empCV.PER_DISTRICT Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_DISTRICT", "PER_DISTRICT")
+                End If
+                If empEdit.PER_WARD <> empCV.PER_WARD Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_WARD", "PER_WARD")
+                End If
+                If empEdit.NAV_ADDRESS <> empCV.NAV_ADDRESS Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_ADDRESS", "NAV_ADDRESS")
+                End If
+                If empEdit.NAV_PROVINCE <> empCV.NAV_PROVINCE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_PROVINCE", "NAV_PROVINCE")
+                End If
+                If empEdit.NAV_DISTRICT <> empCV.NAV_DISTRICT Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_DISTRICT", "NAV_DISTRICT")
+                End If
+                If empEdit.NAV_WARD <> empCV.NAV_WARD Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_WARD", "NAV_WARD")
+                End If
+                dic.Add(empEdit.ID.ToString, colNames)
+            Next
+            Return dic
         Catch ex As Exception
             Throw ex
         End Try
