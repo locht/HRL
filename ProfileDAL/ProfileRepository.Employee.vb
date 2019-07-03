@@ -2920,6 +2920,14 @@ Partial Class ProfileRepository
 
 #Region "EmployeeEdit"
 
+    Public Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String)
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function InsertEmployeeEdit(ByVal objEmployeeEdit As EmployeeEditDTO,
                                              ByVal log As UserLog,
                                              ByRef gID As Decimal) As Boolean

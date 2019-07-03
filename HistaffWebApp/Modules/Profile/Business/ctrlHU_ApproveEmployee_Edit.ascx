@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlHU_ApproveEmployee_Edit.ascx.vb"
     Inherits="Profile.ctrlHU_ApproveEmployee_Edit" %>
 <%@ Import Namespace="Common" %>
-<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="250px" Scrolling="None">
         <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
@@ -13,14 +12,14 @@
             <tlk:RadPane ID="RadPane3" runat="server" Height="35px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarWorkings" runat="server" OnClientButtonClicking="clientButtonClicking" />
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane1" runat="server" Height="55px" Scrolling="None">
+            <tlk:RadPane ID="RadPane1" runat="server" Height="80px" Scrolling="None">
                 <table class="table-form">
                     <tr>
                         <td class="lb">
                             <%# Translate("Lý do không phê duyệt")%>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtRemark" SkinID="Textbox1023" runat="server" Width="100%" Height = "37px" MaxLength="250">
+                            <tlk:RadTextBox ID="txtRemark" SkinID="Textbox1023" runat="server" Width="100%" MaxLength="250">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
@@ -37,10 +36,8 @@
                 <tlk:RadGrid PageSize=50 ID="rgData" runat="server" Height="100%">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
-                        <ClientEvents OnGridCreated="GridCreated" />
-                        <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID,STATUS" ClientDataKeyNames="ID,STATUS">
+                    <MasterTableView DataKeyNames="ID,STATUS,EMPLOYEE_CODE,EMPLOYEE_NAME,MARITAL_STATUS_NAME,PER_ADDRESS,PER_PROVINCE_NAME,PER_DISTRICT_NAME,PER_WARD_NAME,NAV_ADDRESS,NAV_PROVINCE_NAME,NAV_DISTRICT_NAME,NAV_WARD_NAME,ID_NO,ID_DATE,ID_PLACE_NAME" ClientDataKeyNames="ID,STATUS,EMPLOYEE_CODE,EMPLOYEE_NAME,MARITAL_STATUS_NAME,PER_ADDRESS,PER_PROVINCE_NAME,PER_DISTRICT_NAME,PER_WARD_NAME,NAV_ADDRESS,NAV_PROVINCE_NAME,NAV_DISTRICT_NAME,NAV_WARD_NAME,ID_NO,ID_DATE,ID_PLACE_NAME">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -80,8 +77,8 @@
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số CMND %>" DataField="ID_NO"
                                 UniqueName="ID_NO" SortExpression="ID_NO">
-                            </tlk:GridBoundColumn>                           
-                             <tlk:GridDateTimeColumn UniqueName="ID_DATE" HeaderText="<%$ Translate: Ngày cấp %>"
+                            </tlk:GridBoundColumn>
+                            <tlk:GridDateTimeColumn UniqueName="ID_DATE" HeaderText="<%$ Translate: Ngày cấp %>"
                                 ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="ID_DATE">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </tlk:GridDateTimeColumn>
@@ -99,22 +96,6 @@
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
-        function ValidateFilter(sender, eventArgs) {
-            var params = eventArgs.get_commandArgument() + '';
-            if (params.indexOf("|") > 0) {
-                var s = eventArgs.get_commandArgument().split("|");
-                if (s.length > 1) {
-                    var val = s[1];
-                    if (validateHTMLText(val) || validateSQLText(val)) {
-                        eventArgs.set_cancel(true);
-                    }
-                }
-            }
-        }
-
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_ApproveEmployee_Edit_RadSplitter1');
-        }
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
@@ -123,7 +104,7 @@
         }
 
         function clientButtonClicking(sender, args) {
-            
+
         }
 
 
