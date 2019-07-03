@@ -46252,6 +46252,10 @@ Namespace ProfileBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLYResponse")>  _
         Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODERespons"& _ 
+            "e")>  _
+        Function GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal EMPLOYEE_CODE As String, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_ID", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_IDResponse")>  _
         Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As System.Data.DataTable
         
@@ -48220,6 +48224,10 @@ Namespace ProfileBusiness
         
         Public Function GET_LIST_CONCURRENTLY(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY
             Return MyBase.Channel.GET_LIST_CONCURRENTLY(_filter, PageIndex, PageSize, Total, log, Sorts)
+        End Function
+        
+        Public Function GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(ByVal _filter As ProfileBusiness.Temp_ConcurrentlyDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal EMPLOYEE_CODE As String, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.Temp_ConcurrentlyDTO) Implements ProfileBusiness.IProfileBusiness.GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE
+            Return MyBase.Channel.GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(_filter, PageIndex, PageSize, Total, log, EMPLOYEE_CODE, Sorts)
         End Function
         
         Public Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_CONCURRENTLY_BY_ID
