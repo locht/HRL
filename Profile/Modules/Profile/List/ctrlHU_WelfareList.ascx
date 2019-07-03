@@ -42,11 +42,12 @@
                             <asp:Label ID="lbName" runat="server" Text="Tên chế độ phúc lợi"></asp:Label>
                         </td>
                         <td>
-                            <tlk:RadTextBox ID="txtName" MaxLength="255" runat="server">
-                            </tlk:RadTextBox>
-                            <asp:RequiredFieldValidator ID="reqName" ControlToValidate="txtName" runat="server"
-                                CausesValidation="false" ErrorMessage="Bạn phải nhập tên chế độ phúc lợi."
-                                ToolTip="Bạn phải nhập tên chế độ phúc lợi."></asp:RequiredFieldValidator>
+                            <tlk:RadComboBox ID="cboName" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                              OnClientItemsRequesting="OnClientItemsRequesting">
+                            </tlk:RadComboBox>
+                            <asp:CustomValidator ID="cusName" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi. %>"
+                              ToolTip="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi.%>" ClientValidationFunction="cusName">
+                            </asp:CustomValidator>
                         </td>
                         <td rowspan="5" style="vertical-align: top;">
                             <tlk:RadListBox ID="lstbGender" CheckBoxes="true" runat="server" Height="60px" Width="100px"
@@ -137,7 +138,7 @@
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,CONTRACT_TYPE_NAME,CONTRACT_TYPE,GENDER,SENIORITY,MONEY,START_DATE,END_DATE,IS_AUTO,CHILD_OLD_FROM,CHILD_OLD_TO">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,CONTRACT_TYPE_NAME,CONTRACT_TYPE,GENDER,SENIORITY,MONEY,START_DATE,END_DATE,IS_AUTO,CHILD_OLD_FROM,CHILD_OLD_TO,ID_NAME">
                         <Columns>
                             <%--<tlk:GridClientSelectColumn uniquename="cbStatus" headertext="CheckBox" headerstyle-horizontalalign="center"
                         headerstyle-width="30px" itemstyle-horizontalalign="center">
@@ -251,7 +252,43 @@ function onRequestStart(sender, eventArgs) {
     eventArgs.set_enableAjax(enableAjax);
     enableAjax = true;
 }
+function OnClientSelectedIndexChanged(sender, eventArgs) {
+    var id = sender.get_id();
+    var cbo;
+    switch (id) {
+        case '<%= cboName.ClientID%>':
+            cbo = $find('<%= cboName.ClientID%>');
+            clearSelectRadcombo(cbo);
+            break;
+        default:
+            break;
+    }
+}
+function OnClientItemsRequesting(sender, eventArgs) {
+    var id = sender.get_id();
+    var cbo;
+    var value;
+    switch (id) {
+        case '<%= cboName.ClientID%>':
+                    cbo = $find('<%= cboName.ClientID%>');
+                    value = cbo.get_value();
+                    break;
+                default:
+                    break;
+            }
 
+            if (!value) {
+                value = 0;
+            }
+            var context = eventArgs.get_context();
+            context["valueCustom"] = value;
+            context["value"] = sender.get_value();
+
+        }
+        function cusName(oSrc, args) {
+            var cbo = $find("<%# cboName.ClientID%>");
+            args.IsValid = (cbo.get_value().length != 0);
+        }
 
     </script>
 </tlk:RadCodeBlock>

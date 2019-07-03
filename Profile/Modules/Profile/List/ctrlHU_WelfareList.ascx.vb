@@ -246,21 +246,21 @@ Public Class ctrlHU_WelfareList
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgWelfareList, False)
-                    EnableControlAll(True, txtCode, txtName, nmSENIORITY, nmCHILD_OLD_FROM,
+                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
                     'txtCode.Text = rep.AutoGenCode("PL", "HU_WELFARE_LIST", "CODE")
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgWelfareList, True)
-                    EnableControlAll(False, txtCode, txtName, nmSENIORITY, nmCHILD_OLD_FROM,
+                    EnableControlAll(False, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgWelfareList, False)
-                    EnableControlAll(True, txtCode, txtName, nmSENIORITY, nmCHILD_OLD_FROM,
+                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
 
@@ -333,7 +333,6 @@ Public Class ctrlHU_WelfareList
             GetDataCombo()
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
-            dic.Add("NAME", txtName)
             dic.Add("GENDER", lstbGender)
             dic.Add("CONTRACT_TYPE", lstCONTRACT_TYPE)
             dic.Add("SENIORITY", nmSENIORITY)
@@ -343,6 +342,7 @@ Public Class ctrlHU_WelfareList
             dic.Add("IS_AUTO", chkIS_AUTO)
             dic.Add("START_DATE", dpSTART_DATE)
             dic.Add("END_DATE", dpEND_DATE)
+            dic.Add("ID_NAME", cboName)
             'dic.Add("IS_AUTO", chkIS_AUTO)
             'dic.Add("CHILD_OLD_FROM", nmCHILD_OLD_FROM)
             'dic.Add("CHILD_OLD_TO", nmCHILD_OLD_TO)
@@ -364,9 +364,23 @@ Public Class ctrlHU_WelfareList
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
+    Private Sub rgWelfareList_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rgWelfareList.SelectedIndexChanged
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            Dim dic As New Dictionary(Of String, Control)
+            GetDataCombo()
+            dic.Add("ID_NAME", cboName)
+            Utilities.OnClientRowSelectedChanged(rgWelfareList, dic)
+            Dim startTime As DateTime = DateTime.UtcNow
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
     Private Sub ctrlOrganization_SelectedNodeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlOrg.SelectedNodeChanged
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        
+
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
@@ -430,7 +444,7 @@ Public Class ctrlHU_WelfareList
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, txtName, nmSENIORITY,
+                    ClearControlValue(txtCode, cboName, nmSENIORITY,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     chkIS_AUTO.Checked = Nothing
@@ -525,7 +539,10 @@ Public Class ctrlHU_WelfareList
                         End Try
 
                         objWelfareList.CODE = txtCode.Text
-                        objWelfareList.NAME = txtName.Text
+                        objWelfareList.NAME = cboName.Text
+                        If cboName.SelectedValue <> "" Then
+                            objWelfareList.ID_NAME = Decimal.Parse(cboName.SelectedValue)
+                        End If
                         If strGenderID.Count > 0 Then
                             objWelfareList.GENDER = strGenderID.Aggregate(Function(cur, [next]) cur & "," & [next])
                             objWelfareList.GENDER_NAME = strGenderName.Aggregate(Function(cur, [next]) cur & "," & [next])
@@ -546,7 +563,7 @@ Public Class ctrlHU_WelfareList
                         objWelfareList.END_DATE = dpEND_DATE.SelectedDate
                         objWelfareList.IS_AUTO = chkIS_AUTO.Checked
                         objWelfareList.ORG_ID = ctrlOrg.CurrentValue
-                        dt = procedure.CHECK_WELFARE(txtName.Text, ctrlOrg.CurrentValue, dpSTART_DATE.SelectedDate)
+                        dt = procedure.CHECK_WELFARE(cboName.Text, ctrlOrg.CurrentValue, dpSTART_DATE.SelectedDate)
                         If Not dt Is Nothing AndAlso dt.Rows.Count > 0 Then
                             ShowMessage("Phúc lợi của phòng ban này đang trùng ngày hiệu lực", NotifyType.Error)
                             Exit Sub
@@ -558,7 +575,7 @@ Public Class ctrlHU_WelfareList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("InsertView")
                                     'SelectedItemDataGridByKey(rgWelfareList, gID)
-                                    ClearControlValue(txtCode, txtName, nmSENIORITY,
+                                    ClearControlValue(txtCode, cboName, nmSENIORITY,
                                        nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                        dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                                 Else
@@ -570,7 +587,7 @@ Public Class ctrlHU_WelfareList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("UpdateView")
                                     'SelectedItemDataGridByKey(rgWelfareList, gID, , rgWelfareList.CurrentPageIndex)
-                                    ClearControlValue(txtCode, txtName, nmSENIORITY,
+                                    ClearControlValue(txtCode, cboName, nmSENIORITY,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                                 Else
@@ -585,7 +602,7 @@ Public Class ctrlHU_WelfareList
                     rgWelfareList.Rebind()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtCode, txtName, nmSENIORITY, nmMONEY,
+                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmMONEY,
                                       lstbGender, lstCONTRACT_TYPE, dpSTART_DATE,
                                       dpEND_DATE, chkIS_AUTO)
                     chkIS_AUTO.Checked = Nothing
@@ -600,6 +617,57 @@ Public Class ctrlHU_WelfareList
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Protected Sub cboCommon_ItemsRequested(ByVal sender As Object, ByVal e As RadComboBoxItemsRequestedEventArgs) _
+        Handles cboName.ItemsRequested
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Using rep As New ProfileRepository
+                Dim dtData As DataTable
+                Dim sText As String = e.Text
+                Dim dValue As Decimal
+                Dim sSelectValue As String = IIf(e.Context("value") IsNot Nothing, e.Context("value"), "")
+                Select Case sender.ID
+                    Case cboName.ID
+                        dtData = rep.GetOtherList("WELFARE", True)
+                End Select
+                If sText <> "" Then
+                    Dim dtExist = (From p In dtData
+                                   Where p("NAME") IsNot DBNull.Value AndAlso
+                                  p("NAME").ToString.ToUpper = sText.ToUpper)
+                    Dim dtFilter = (From p In dtData
+                                    Where p("NAME") IsNot DBNull.Value AndAlso
+                              p("NAME").ToString.ToUpper.Contains(sText.ToUpper))
+
+                    If dtFilter.Count > 0 Then
+                        dtData = dtFilter.CopyToDataTable
+                    Else
+                        dtData = dtData.Clone
+                    End If
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+                    sender.Items.Clear()
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        sender.Items.Add(radItem)
+                    Next
+                Else
+                    Dim itemOffset As Integer = e.NumberOfItems
+                    Dim endOffset As Integer = Math.Min(itemOffset + sender.ItemsPerRequest, dtData.Rows.Count)
+                    e.EndOfItems = endOffset = dtData.Rows.Count
+                    sender.Items.Clear()
+                    For i As Integer = itemOffset To endOffset - 1
+                        Dim radItem As RadComboBoxItem = New RadComboBoxItem(dtData.Rows(i)("NAME").ToString(), dtData.Rows(i)("ID").ToString())
+                        sender.Items.Add(radItem)
+                    Next
+                End If
+            End Using
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
 
@@ -634,7 +702,7 @@ Public Class ctrlHU_WelfareList
                 UpdateControlState()
             End If
             rgWelfareList.Rebind()
-            ClearControlValue(txtCode, txtName, nmSENIORITY,
+            ClearControlValue(txtCode, cboName, nmSENIORITY,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
             chkIS_AUTO.Checked = Nothing
@@ -795,6 +863,8 @@ Public Class ctrlHU_WelfareList
             rep.Dispose()
             FillCheckBoxList(lstbGender, ListComboData.LIST_GENDER, "NAME_VN", "ID")
             FillCheckBoxList(lstCONTRACT_TYPE, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID")
+            Dim dtData = rep.GetOtherList("WELFARE", False)
+            FillRadCombobox(cboName, dtData, "NAME", "ID", False)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

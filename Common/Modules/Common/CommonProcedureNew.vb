@@ -9,6 +9,16 @@ Imports Common.CommonBusiness
 Public Class CommonProcedureNew
     Private rep As New HistaffFrameworkRepository
 
+    Function GET_VALUE_PA_PAYMENT(ByVal code As String) As Decimal
+        Try
+            Dim obj = rep.ExecuteStoreScalar("PKG_COMMON_LIST.GET_VALUE_PA_PAYMENT",
+                                                New List(Of Object)(New Object() {code, OUT_NUMBER}))
+            Return Decimal.Parse(obj(0).ToString)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Function IMPORT_APPROVE_SETUP_ORG(DocXml As String, User As UserLog) As Boolean
         Try
             Dim objects = rep.ExecuteStoreScalar("PKG_COMMON_LIST.IMPORT_APPROVE_SETUP_ORG",

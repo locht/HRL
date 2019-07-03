@@ -15,13 +15,15 @@ Public Class ctrlHU_WageNewEdit
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
     Public Overrides Property MustAuthorize As Boolean = False
-
+    Private commonStore As New CommonProcedureNew
     'Content: Write log time and error
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
+    Dim _lttv1 As Decimal
+    Dim _tyLeThuViec As Decimal
+    Dim _tyLeChinhThuc As Decimal
 #Region "Property"
-
     Dim lstAllow As New List(Of WorkingAllowanceDTO)
     Property dtSalaryGroup As DataTable
         Get
@@ -83,6 +85,8 @@ Public Class ctrlHU_WageNewEdit
             GetParams()
             Refresh()
             UpdateControlState()
+            'lay gia tri cac variable mac dinh
+            LoadValueConst()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -369,8 +373,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             CalculatorSalary()
-            ClearControlValue(Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
+            ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -388,7 +391,7 @@ Public Class ctrlHU_WageNewEdit
             End Using
             CalculatorSalary()
             ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -405,7 +408,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             ClearControlValue(rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -640,7 +643,7 @@ Public Class ctrlHU_WageNewEdit
             FillData(empID)
             isLoadPopup = 0
             ClearControlValue(cbSalaryLevel, rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5, rnPercentSalary)
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -938,6 +941,20 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub rnOtherSalary1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rnOtherSalary1.TextChanged, rnOtherSalary2.TextChanged, SalaryInsurance.TextChanged, rnPercentSalary.TextChanged
         Try
+            Select Case cboSalTYPE.Text
+                Case "Thử việc"
+                    If IsNumeric(rnPercentSalary.Value) AndAlso rnPercentSalary.Value < 85 Then
+                        rnPercentSalary.Value = 85
+                        ShowMessage(Translate("Giá trị nhập không đúng qui định, vui lòng kiểm tra lại"), NotifyType.Alert)
+                        Exit Sub
+                    End If
+                Case "Chính thức"
+                    If IsNumeric(rnPercentSalary.Value) AndAlso rnPercentSalary.Value < 100 Then
+                        rnPercentSalary.Value = 100
+                        ShowMessage(Translate("Giá trị nhập không đúng qui định, vui lòng kiểm tra lại"), NotifyType.Alert)
+                        Exit Sub
+                    End If
+            End Select
             CalculatorSalary()
         Catch ex As Exception
             Throw ex
@@ -988,7 +1005,6 @@ Public Class ctrlHU_WageNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    'rnPercentSalary.Value = 100
                     EnableControlAll(True, btnFindEmployee, chkIsInsurrance, SalaryInsurance)
                 Case CommonMessage.STATE_EDIT
                     EnableControlAll(False, btnFindEmployee, chkIsInsurrance)
@@ -1107,7 +1123,7 @@ Public Class ctrlHU_WageNewEdit
                     'txtStaffRank.Text = obj.STAFF_RANK_NAME
                 Else
                     hidStaffRank.Value = ""
-                    '  txtStaffRank.Text = vbNullString
+                    'txtStaffRank.Text = vbNullString
                 End If
                 SalaryInsurance.Text = obj.SAL_INS
             End Using
@@ -1252,12 +1268,13 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub BidingDataToControls(ByVal dtdata As DataTable)
         Try
-            If IsNumeric(dtdata(0)("SALARYINSURANCE")) Then
-                SalaryInsurance.Value = dtdata(0)("SALARYINSURANCE").ToString
-            End If
-            If IsNumeric(dtdata(0)("TOTALSALARY")) Then
-                Salary_Total.Value = dtdata(0)("TOTALSALARY").ToString
-            End If
+
+            'If IsNumeric(dtdata(0)("SALARYINSURANCE")) Then
+            '    SalaryInsurance.Value = dtdata(0)("SALARYINSURANCE").ToString
+            'End If
+            'If IsNumeric(dtdata(0)("TOTALSALARY")) Then
+            '    Salary_Total.Value = dtdata(0)("TOTALSALARY").ToString
+            'End If
             'kiem tra check IS_HOSE'
             If cbSalaryGroup.SelectedValue.ToString <> "" Then
                 Dim rs = From row In dtSalaryGroup.Rows
@@ -1265,10 +1282,16 @@ Public Class ctrlHU_WageNewEdit
                      Select row("ISHOSE")
 
                 Dim total As Decimal
+                Dim basicSal As Decimal = 0
+                If IsNumeric(rnFactorSalary.Value) Then
+                    basicSal = rnFactorSalary.Value * _lttv1
+                    basicSalary.Value = basicSal
+                End If
+
                 If rs(0) = 0 Then
-                    SalaryInsurance.Value = rnFactorSalary.Value
-                    basicSalary.Value = SalaryInsurance.Value
-                    total = If(SalaryInsurance.Value.HasValue, SalaryInsurance.Value, 0) + _
+                    'SalaryInsurance.Value = rnFactorSalary.Value
+                    'basicSalary.Value = SalaryInsurance.Value
+                    total = If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
                             If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
                             If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
@@ -1286,6 +1309,25 @@ Public Class ctrlHU_WageNewEdit
                     Salary_Total.Value = total
                     basicSalary.Enabled = True
                 End If
+                
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub LoadValueConst()
+        Try
+            Dim lttv1 = commonStore.GET_VALUE_PA_PAYMENT("LTT_V1")
+            Dim tyLeThuViec = commonStore.GET_VALUE_PA_PAYMENT("TyLeThuViec")
+            Dim tyLeChinhThuc = commonStore.GET_VALUE_PA_PAYMENT("TyLeChinhThuc")
+            If IsNumeric(lttv1) Then
+                _lttv1 = lttv1
+            End If
+            If IsNumeric(tyLeThuViec) Then
+                _tyLeThuViec = tyLeThuViec
+            End If
+            If IsNumeric(tyLeChinhThuc) Then
+                _tyLeChinhThuc = tyLeChinhThuc
             End If
         Catch ex As Exception
             Throw ex
@@ -1311,7 +1353,6 @@ Public Class ctrlHU_WageNewEdit
     End Function
 
     Protected Sub cboSalTYPE_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboSalTYPE.SelectedIndexChanged
-        ' Dim salaryType As New PA_SALARY_TYPEDTO
         Dim taxTables As New List(Of OtherListDTO)
         If String.IsNullOrWhiteSpace(cboSalTYPE.SelectedValue) Then
             Exit Sub
@@ -1319,7 +1360,12 @@ Public Class ctrlHU_WageNewEdit
         Using rep As New ProfileRepository
             taxTables = rep.GetOtherList(OtherTypes.TaxTable).ToList(Of OtherListDTO)()
         End Using
-
+        Select Case cboSalTYPE.Text
+            Case "Thử việc"
+                rnPercentSalary.Value = _tyLeThuViec
+            Case "Chính thức"
+                rnPercentSalary.Value = _tyLeChinhThuc
+        End Select
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
         Dim taxTable = taxTables.FirstOrDefault(Function(f) f.CODE = code)

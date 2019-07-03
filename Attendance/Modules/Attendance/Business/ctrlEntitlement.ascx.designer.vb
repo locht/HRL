@@ -104,6 +104,15 @@ Partial Public Class ctrlEntitlement
     Protected WithEvents RadPane2 As Global.Telerik.Web.UI.RadPane
 
     '''<summary>
+    '''lbYear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbYear As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cboYear control.
     '''</summary>
     '''<remarks>
@@ -111,6 +120,15 @@ Partial Public Class ctrlEntitlement
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboYear As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbPeriod control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPeriod As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''cboPeriod control.

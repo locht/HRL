@@ -31,7 +31,7 @@
                     </tlk:RadDatePicker>
                 </td>
                 <td>
-                    <tlk:RadButton ID="btnSearchEmp" runat="server" Text="<%$ Translate: Tìm kiếm %>">
+                    <tlk:RadButton ID="btnSearchEmp" runat="server" Text="Tìm kiếm">
                     </tlk:RadButton>
                 </td>
             </tr>
@@ -45,8 +45,7 @@
             </ClientSettings>
             <MasterTableView DataKeyNames="ITIME_ID" ClientDataKeyNames="VALTIME,ITIME_ID">
                 <Columns>
-                    
-                    <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE"
+                    <%--<tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" SortExpression="EMPLOYEE_CODE"
                         UniqueName="EMPLOYEE_CODE">
                         <HeaderStyle HorizontalAlign="Center" Width="200px" />
                     </tlk:GridBoundColumn>
@@ -66,17 +65,17 @@
                         UniqueName="ITIME_ID_S">
                         <HeaderStyle HorizontalAlign="Center" Width="200px" />
                     </tlk:GridBoundColumn>
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày quẹt thẻ %>" DataField="WORKINGDAY"
+                    <tlk:GridDateTimeColumn HeaderText="Ngày quẹt thẻ" DataField="WORKINGDAY"
                         SortExpression="WORKINGDAY" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}"
                         UniqueName="WORKINGDAY">
                         <HeaderStyle Width="200px" />
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridDateTimeColumn AllowFiltering="false" HeaderText="<%$ Translate:Thời gian quẹt thẻ %>"
+                    <tlk:GridDateTimeColumn AllowFiltering="false" HeaderText="Thời gian quẹt thẻ"
                         DataField="VALTIME" UniqueName="VALTIME" DataFormatString="{0:HH:mm}" DataType="System.DateTime"
                         PickerType="TimePicker" SortExpression="VALTIME">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
-                    </tlk:GridDateTimeColumn>
+                    </tlk:GridDateTimeColumn>--%>
                 </Columns>
             </MasterTableView>
         </tlk:RadGrid>

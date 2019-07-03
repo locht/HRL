@@ -88,8 +88,12 @@ Public Class ctrlHU_WageMng
             Common.Common.BuildToolbar(Me.MainToolBar,
                                        ToolbarItem.Create, ToolbarItem.Edit,
                                        ToolbarItem.Export, ToolbarItem.ApproveBatch,
+                                       ToolbarItem.Next, ToolbarItem.Import,
                                        ToolbarItem.Delete)
             CType(MainToolBar.Items(3), RadToolBarButton).Text = UI.Approve
+            CType(Me.MainToolBar.Items(4), RadToolBarButton).Text = Translate("Xuất file mẫu")
+            CType(Me.MainToolBar.Items(4), RadToolBarButton).ImageUrl = CType(Me.MainToolBar.Items(2), RadToolBarButton).ImageUrl
+            CType(Me.MainToolBar.Items(5), RadToolBarButton).Text = Translate("Nhập file mẫu")
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
             'rgWorking.MasterTableView.GetColumn("SAL_TYPE_NAME").HeaderText = UI.Wage_WageGRoup
