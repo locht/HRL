@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("52c3e0be-5e07-4e61-9ea4-001bd7918739")>
+<Assembly: EdmSchemaAttribute("051e86d1-1ff1-4524-ab14-006bb05e5466")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -41893,6 +41893,31 @@ Public Partial Class HU_PRO_TRAIN_OUT_COMPANY
     End Sub
 
     Private Partial Sub OnRECEIVE_DEGREE_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_RENEWED() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_RENEWED
+        End Get
+        Set
+            OnIS_RENEWEDChanging(value)
+            ReportPropertyChanging("IS_RENEWED")
+            _IS_RENEWED = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_RENEWED")
+            OnIS_RENEWEDChanged()
+        End Set
+    End Property
+
+    Private _IS_RENEWED As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_RENEWEDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_RENEWEDChanged()
     End Sub
 
     #End Region
