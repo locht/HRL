@@ -196,6 +196,11 @@
     <Compile Include="BusinessObjects\List\NewEmployeeDTO.vb" />
     <Compile Include="BusinessObjects\Setting\OrganizationDTO.vb" />
     <Compile Include="BusinessObjects\List\ProvinceDTO.vb" />
+    <Compile Include="ProfileContext.Designer.vb">
+      <DependentUpon>ProfileContext.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="ProfileRepository.Business.vb" />
     <Compile Include="ProfileRepository.Setting.vb" />
     <Compile Include="ProfileRepositoryIntegrated.vb" />
@@ -230,11 +235,6 @@
     </Compile>
     <Compile Include="ProfileCommon.vb" />
     <Compile Include="ProfileContext.vb" />
-    <Compile Include="ProfileContext.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProfileContext.edmx</DependentUpon>
-    </Compile>
     <Compile Include="ProfileDashboardRepository.vb" />
     <Compile Include="ProfileRepository.DynamicReport.vb" />
     <Compile Include="ProfileRepository.BackgroundProcess.vb" />
@@ -265,10 +265,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <EntityDeploy Include="ProfileContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProfileContext.Designer.vb</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Data\Framework.Data.vbproj">
@@ -276,7 +272,12 @@
       <Name>Framework.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="ProfileContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProfileContext.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="ProfileContext.edmx.sql" />
   </ItemGroup>

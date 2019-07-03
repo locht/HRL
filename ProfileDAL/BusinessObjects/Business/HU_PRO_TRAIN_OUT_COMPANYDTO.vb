@@ -27,4 +27,5 @@
     Public Property FORM_TRAIN_ID As Decimal?
     Public Property FORM_TRAIN_NAME As String
     Public Property RECEIVE_DEGREE_DATE As Date?
+    Public Property IS_RENEWED As Boolean
 End Class

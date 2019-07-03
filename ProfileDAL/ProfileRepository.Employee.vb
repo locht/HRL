@@ -2777,7 +2777,7 @@ Partial Class ProfileRepository
 
 #End Region
 
-#Region "Quá trình đào tạo ngoài vào công ty"
+#Region "Quản lý chứng chỉ bổ sung"  '' quá trình đào tạo ngoài công ty 
     Public Function GetProcessTraining(ByVal _filter As HU_PRO_TRAIN_OUT_COMPANYDTO,
                                 Optional ByRef PageIndex As Integer = 0,
                                   Optional ByVal PageSize As Integer = Integer.MaxValue,
@@ -2825,7 +2825,8 @@ Partial Class ProfileRepository
                                        .CREATED_LOG = p.p.CREATED_LOG,
                                        .MODIFIED_BY = p.p.MODIFIED_BY,
                                        .MODIFIED_DATE = p.p.MODIFIED_DATE,
-                                       .MODIFIED_LOG = p.p.MODIFIED_LOG})
+                                       .MODIFIED_LOG = p.p.MODIFIED_LOG,
+                                       .IS_RENEWED = p.p.IS_RENEWED})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -2858,6 +2859,7 @@ Partial Class ProfileRepository
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
             objTitleData.TYPE_TRAIN_ID = objTitle.TYPE_TRAIN_ID
             objTitleData.RECEIVE_DEGREE_DATE = objTitle.RECEIVE_DEGREE_DATE
+            objTitleData.IS_RENEWED = objTitle.IS_RENEWED
             Context.HU_PRO_TRAIN_OUT_COMPANY.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -2890,6 +2892,7 @@ Partial Class ProfileRepository
             objTitleData.EMPLOYEE_ID = objTitle.EMPLOYEE_ID
             objTitleData.TYPE_TRAIN_ID = objTitle.TYPE_TRAIN_ID
             objTitleData.RECEIVE_DEGREE_DATE = objTitle.RECEIVE_DEGREE_DATE
+            objTitleData.IS_RENEWED = objTitle.IS_RENEWED
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True
