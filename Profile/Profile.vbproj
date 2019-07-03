@@ -151,6 +151,7 @@
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReport.ascx" />
     <Content Include="Modules\Competency\Report\ctrlHU_Competency_RadarReportGaps.ascx" />
     <Content Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx" />
+    <Content Include="Modules\Portal\ctrlInfoCertificate.ascx" />
     <Content Include="Modules\Portal\ctrlPortalEmpDtlTrainingEvaluate.ascx" />
     <Content Include="Modules\Portal\ctrlPortalConcurrently.ascx" />
     <Content Include="Modules\Portal\ctrlPortalTrainingOutCompany.ascx" />
@@ -530,6 +531,13 @@
     </Compile>
     <Compile Include="Modules\Competency\Setting\ctrlHU_CompetencyCourse.ascx.vb">
       <DependentUpon>ctrlHU_CompetencyCourse.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlInfoCertificate.ascx.designer.vb">
+      <DependentUpon>ctrlInfoCertificate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Portal\ctrlInfoCertificate.ascx.vb">
+      <DependentUpon>ctrlInfoCertificate.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Portal\ctrlPortalEmpDtlTrainingEvaluate.ascx.designer.vb">
