@@ -211,6 +211,7 @@ Public Class ctrlControlsNewEdit
                     dtGrid.Columns.Add("Orderby", GetType(Integer))
                     dtGrid.Columns.Add("DataType", GetType(String))
                     For Each item_Grid As GridDataItem In rgListGrid.EditItems
+                        Try
                         Dim rw_new As DataRow = dtGrid.NewRow
                         Dim edit = CType(item_Grid, GridEditableItem)
                         rw_new("ID") = CType(edit("ID").Controls(0), TextBox).Text
@@ -227,7 +228,10 @@ Public Class ctrlControlsNewEdit
                             ShowMessage(Translate("Nhập sai định dạng. Vui lòng nhập lại !"), NotifyType.Warning)
                             Exit Sub
                         End If
-                        dtGrid.Rows.Add(rw_new)
+                            dtGrid.Rows.Add(rw_new)
+                        Catch ex As Exception
+                            Throw ex
+                        End Try
                     Next
 
                     'Add DtTable into DtSet
@@ -243,7 +247,7 @@ Public Class ctrlControlsNewEdit
                         ShowMessage(Translate("Chỉnh sửa thành công !"), NotifyType.Success)
                         Threading.Thread.Sleep(3000)
                         IDSelect = ""
-                        Response.Redirect("/Default.aspx?mid=Common&fid=ctrlControlsManage&group=Secure")
+                        ' Response.Redirect("/Default.aspx?mid=Common&fid=ctrlControlsManage&group=Secure")
                     End If
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
