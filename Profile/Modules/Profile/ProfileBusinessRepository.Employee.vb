@@ -463,7 +463,17 @@ Partial Public Class ProfileBusinessRepository
 #End Region
 
 #Region "EmployeeEdit"
+    Public Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetChangedCVList(lstEmpEdit)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
 
+    End Function
     Public Function InsertEmployeeEdit(ByVal objEmployeeEdit As EmployeeEditDTO, ByRef gID As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
             Try

@@ -1269,6 +1269,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "EmployeeEdit"
+        <OperationContract()>
+        Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String)
 
         <OperationContract()>
         Function InsertEmployeeEdit(ByVal objEmployeeEdit As EmployeeEditDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
