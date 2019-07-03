@@ -16,7 +16,14 @@ Public Class ctrlHU_ApproveEmployee_Edit
     Dim _pathLog As String = _mylog._pathLog
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 #Region "Property"
-
+    Property lstEmpEdit As List(Of EmployeeEditDTO)
+        Get
+            Return ViewState(Me.ID & "_lstEmpEdit")
+        End Get
+        Set(value As List(Of EmployeeEditDTO))
+            ViewState(Me.ID & "_lstEmpEdit") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -88,10 +95,33 @@ Public Class ctrlHU_ApproveEmployee_Edit
             If Not IsPostBack Then
                 CurrentState = CommonMessage.STATE_NORMAL
             End If
+            
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub rgData_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgData.ItemDataBound
+        Try
+            Using rep As New ProfileBusinessRepository
+                Dim dic As Dictionary(Of String, String) = rep.GetChangedCVList(lstEmpEdit)
+                For Each i As GridDataItem In rgData.Items
+                    Dim colNames As String = dic(i.GetDataKeyValue("ID"))
+                    If colNames <> "" Then
+                        If colNames.Contains(",") Then
+                            For Each colName As String In colNames.Split(",")
+                                i(colName).ForeColor = Drawing.Color.Red
+                            Next
+                        Else
+                            i(colNames).ForeColor = Drawing.Color.Red
+                        End If
+                    End If
+                Next
+            End Using
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
     ''' <summary>
@@ -105,6 +135,7 @@ Public Class ctrlHU_ApproveEmployee_Edit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             CreateDataFilter()
+            
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -285,13 +316,14 @@ Public Class ctrlHU_ApproveEmployee_Edit
                 End If
             Else
                 If Sorts IsNot Nothing Then
-                    rgData.DataSource = rep.GetApproveEmployeeEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param, Sorts)
+                    Me.lstEmpEdit = rep.GetApproveEmployeeEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param, Sorts)
                 Else
-                    rgData.DataSource = rep.GetApproveEmployeeEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
+                    Me.lstEmpEdit = rep.GetApproveEmployeeEdit(_filter, rgData.CurrentPageIndex, rgData.PageSize, MaximumRows, _param)
                 End If
-                rep.Dispose()
+                rgData.DataSource = Me.lstEmpEdit
                 rgData.VirtualItemCount = MaximumRows
             End If
+            'rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             Throw ex
@@ -299,6 +331,11 @@ Public Class ctrlHU_ApproveEmployee_Edit
         End Try
     End Function
 
+    'Private Sub rgData_ItemDataBound(ByVal sender As Object, ByVal e As GridItemEventArgs)
+    '    If e.Item Then
+
+    '    End If
+    'End Sub
 #End Region
 
 End Class

@@ -83,6 +83,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\Business\CETIFICATEDTO.vb" />
+    <Compile Include="BusinessObjects\Business\CETIFICATE_EDITDTO.vb" />
     <Compile Include="BusinessObjects\Business\CommandResult.vb" />
     <Compile Include="BusinessObjects\Business\Temp_ConcurrentlyDTO.vb" />
     <Compile Include="BusinessObjects\Business\TransferTerminateDTO.vb" />

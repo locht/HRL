@@ -1271,6 +1271,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 
 #Region "EmployeeEdit"
+        <OperationContract()>
+        Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String)
 
         <OperationContract()>
         Function InsertEmployeeEdit(ByVal objEmployeeEdit As EmployeeEditDTO, ByVal log As UserLog, ByRef gID As Decimal) As Boolean
@@ -2623,7 +2625,13 @@ Namespace ProfileBusiness.ServiceContracts
                                         ByRef Total As Integer,
                                         ByVal log As UserLog,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
-
+        <OperationContract()>
+        Function GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        ByVal log As UserLog,
+                                        ByVal EMPLOYEE_CODE As String,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
         <OperationContract()>
         Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
 

@@ -2939,6 +2939,56 @@ Partial Class ProfileRepository
 
 #Region "EmployeeEdit"
 
+    Public Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String)
+        Try
+            Dim dic As New Dictionary(Of String, String)
+            For Each empEdit As EmployeeEditDTO In lstEmpEdit
+                Dim colNames As String = String.Empty
+                Dim empCV = Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = empEdit.EMPLOYEE_ID).FirstOrDefault
+                If empEdit.ID_NO <> empCV.ID_NO Then
+                    colNames = "ID_NO"
+                End If
+                If empEdit.ID_DATE <> empCV.ID_DATE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "ID_DATE", "ID_DATE")
+                End If
+                If empEdit.ID_PLACE <> empCV.ID_PLACE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "ID_PLACE_NAME", "ID_PLACE_NAME")
+                End If
+                If empEdit.MARITAL_STATUS <> empCV.MARITAL_STATUS Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "MARITAL_STATUS", "MARITAL_STATUS")
+                End If
+                If empEdit.PER_ADDRESS <> empCV.PER_ADDRESS Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_ADDRESS", "PER_ADDRESS")
+                End If
+                If empEdit.PER_PROVINCE <> empCV.PER_PROVINCE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_PROVINCE_NAME", "PER_PROVINCE_NAME")
+                End If
+                If empEdit.PER_DISTRICT <> empCV.PER_DISTRICT Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_DISTRICT_NAME", "PER_DISTRICT_NAME")
+                End If
+                If empEdit.PER_WARD <> empCV.PER_WARD Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_WARD_NAME", "PER_WARD_NAME")
+                End If
+                If empEdit.NAV_ADDRESS <> empCV.NAV_ADDRESS Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_ADDRESS", "NAV_ADDRESS")
+                End If
+                If empEdit.NAV_PROVINCE <> empCV.NAV_PROVINCE Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_PROVINCE_NAME", "NAV_PROVINCE_NAME")
+                End If
+                If empEdit.NAV_DISTRICT <> empCV.NAV_DISTRICT Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_DISTRICT_NAME", "NAV_DISTRICT_NAME")
+                End If
+                If empEdit.NAV_WARD <> empCV.NAV_WARD Then
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_WARD_NAME", "NAV_WARD_NAME")
+                End If
+                dic.Add(empEdit.ID.ToString, colNames)
+            Next
+            Return dic
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function InsertEmployeeEdit(ByVal objEmployeeEdit As EmployeeEditDTO,
                                              ByVal log As UserLog,
                                              ByRef gID As Decimal) As Boolean

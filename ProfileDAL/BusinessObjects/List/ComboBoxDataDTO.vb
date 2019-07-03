@@ -285,4 +285,15 @@
     'Danh sách NANG LUC
     Public Property GET_CAPACITY As Boolean
     Public Property LIST_CAPACITY As List(Of OtherListDTO)
+
+    'LĨNH VỰC ĐÀO TẠO
+    Public Property GET_FIELD_TRAIN As Boolean
+    Public Property LIST_FIELD_TRAIN As List(Of OtherListDTO)
+    'CHUYEN NGANH
+    Public Property GET_MAJOR_TRAIN As Boolean
+    Public Property LIST_MAJOR_TRAIN As List(Of OtherListDTO)
+    'TRINH DO
+    Public Property GET_LEVEL_TRAIN As Boolean
+    Public Property LIST_LEVEL_TRAIN As List(Of OtherListDTO)
+
 End Class

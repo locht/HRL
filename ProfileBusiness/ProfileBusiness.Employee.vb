@@ -569,6 +569,16 @@ Implements ServiceContracts.IProfileBusiness.GetCompetencyEmployee
 #End Region
 
 #Region "EmployeeEdit"
+        Public Function GetChangedCVList(ByVal lstEmpEdit As List(Of EmployeeEditDTO)) As Dictionary(Of String, String) _
+            Implements ServiceContracts.IProfileBusiness.GetChangedCVList
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetChangedCVList(lstEmpEdit)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
         Public Function GetEmployeeEditByID(ByVal _filter As EmployeeEditDTO) As EmployeeEditDTO _
             Implements ServiceContracts.IProfileBusiness.GetEmployeeEditByID
