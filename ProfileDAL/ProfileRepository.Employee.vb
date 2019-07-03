@@ -2936,7 +2936,7 @@ Partial Class ProfileRepository
                     colNames = If(colNames <> String.Empty, colNames + "," + "ID_DATE", "ID_DATE")
                 End If
                 If empEdit.ID_PLACE <> empCV.ID_PLACE Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "ID_PLACE", "ID_PLACE")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "ID_PLACE_NAME", "ID_PLACE_NAME")
                 End If
                 If empEdit.MARITAL_STATUS <> empCV.MARITAL_STATUS Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "MARITAL_STATUS", "MARITAL_STATUS")
@@ -2945,25 +2945,25 @@ Partial Class ProfileRepository
                     colNames = If(colNames <> String.Empty, colNames + "," + "PER_ADDRESS", "PER_ADDRESS")
                 End If
                 If empEdit.PER_PROVINCE <> empCV.PER_PROVINCE Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_PROVINCE", "PER_PROVINCE")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_PROVINCE_NAME", "PER_PROVINCE_NAME")
                 End If
                 If empEdit.PER_DISTRICT <> empCV.PER_DISTRICT Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_DISTRICT", "PER_DISTRICT")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_DISTRICT_NAME", "PER_DISTRICT_NAME")
                 End If
                 If empEdit.PER_WARD <> empCV.PER_WARD Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_WARD", "PER_WARD")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "PER_WARD_NAME", "PER_WARD_NAME")
                 End If
                 If empEdit.NAV_ADDRESS <> empCV.NAV_ADDRESS Then
                     colNames = If(colNames <> String.Empty, colNames + "," + "NAV_ADDRESS", "NAV_ADDRESS")
                 End If
                 If empEdit.NAV_PROVINCE <> empCV.NAV_PROVINCE Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_PROVINCE", "NAV_PROVINCE")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_PROVINCE_NAME", "NAV_PROVINCE_NAME")
                 End If
                 If empEdit.NAV_DISTRICT <> empCV.NAV_DISTRICT Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_DISTRICT", "NAV_DISTRICT")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_DISTRICT_NAME", "NAV_DISTRICT_NAME")
                 End If
                 If empEdit.NAV_WARD <> empCV.NAV_WARD Then
-                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_WARD", "NAV_WARD")
+                    colNames = If(colNames <> String.Empty, colNames + "," + "NAV_WARD_NAME", "NAV_WARD_NAME")
                 End If
                 dic.Add(empEdit.ID.ToString, colNames)
             Next
