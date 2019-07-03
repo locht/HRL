@@ -7,7 +7,29 @@ Imports System.Configuration
 
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
+#Region "HU_CERTIFICATE_EDIT"
+        Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO) Implements ServiceContracts.IProfileBusiness.GetCertificateEdit
 
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.GetCertificateEdit(_filter)
+                End Using
+            Catch ex As Exception
+
+            End Try
+        End Function
+#End Region
+#Region "HU_CERTIFICATE"
+        Public Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO) Implements ServiceContracts.IProfileBusiness.GetCertificate
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.GetCertificate(_filter)
+                End Using
+            Catch ex As Exception
+
+            End Try
+        End Function
+#End Region
 #Region "EmployeeFamily"
         Public Function GetEmployeeFamily(ByVal _filter As FamilyDTO) As List(Of FamilyDTO) _
             Implements ServiceContracts.IProfileBusiness.GetEmployeeFamily

@@ -3,7 +3,28 @@
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
 
-
+    Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetCertificateEdit(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#Region "HU_CERTIFICATE"
+    Public Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetCertificate(_filter)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+#End Region
 #Region "Family -Quan hệ nhân thân"
     Public Function InsertEmployeeFamily(ByVal objFamily As FamilyDTO, ByRef gID As Decimal) As Boolean
         Using rep As New ProfileBusinessClient
