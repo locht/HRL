@@ -7,6 +7,14 @@ Namespace ProfileBusiness.ServiceContracts
     <ServiceContract()>
     Public Interface IProfileBusiness
 
+#Region " hu_certificateedit"
+        <OperationContract()>
+        Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO)
+#End Region
+#Region "hu_certificate"
+        <OperationContract()>
+        Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO)
+#End Region
 
 
         <OperationContract()>
