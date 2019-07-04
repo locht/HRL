@@ -74,6 +74,8 @@ Partial Class ProfileRepository
             objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
             objCertificatetData.CLASSIFICATION = objCertificateEdit.CLASSIFICATION
             objCertificatetData.YEAR = objCertificateEdit.YEAR
+            objCertificatetData.FILE_NAME = objCertificateEdit.FILENAME
+            objCertificatetData.UPLOAD_FILE = objCertificateEdit.UPLOAD
             objCertificatetData.RENEW = objCertificateEdit.RENEW
             objCertificatetData.REMARK = objCertificateEdit.REMARK
             Context.HU_CERTIFICATE_EDIT.AddObject(objCertificatetData)
@@ -85,8 +87,72 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function ModifyCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                             ByVal log As UserLog,
+                                             ByRef gID As Decimal) As Boolean
+        Dim objCertificatetData As New HU_CERTIFICATE_EDIT With {.ID = objCertificateEdit.ID}
+        Try
+            objCertificatetData = (From p In Context.HU_CERTIFICATE_EDIT Where p.ID = objCertificateEdit.ID).FirstOrDefault
+            objCertificatetData.EMPLOYEE_ID = objCertificateEdit.EMPLOYEE_ID
+            objCertificatetData.FIELD_TRAIN = objCertificateEdit.FIELD
+            objCertificatetData.FROM_DATE = objCertificateEdit.FROM_DATE
+            objCertificatetData.TO_DATE = objCertificateEdit.TO_DATE
+            objCertificatetData.SCHOOL_NAME = objCertificateEdit.SCHOOL_NAME
+            objCertificatetData.MAJOR = objCertificateEdit.MAJOR
+            objCertificatetData.LEVEL_TRAIN = objCertificateEdit.LEVEL
+            objCertificatetData.MARK = objCertificateEdit.MARK
+            objCertificatetData.CONTENT_TRAIN = objCertificateEdit.CONTENT_NAME
+            objCertificatetData.TYPE_TRAIN = objCertificateEdit.TYPE_NAME
+            objCertificatetData.CODE_CETIFICATE = objCertificateEdit.CODE_CERTIFICATE
+            objCertificatetData.EFFECT_FROM = objCertificateEdit.EFFECT_FROM
+            objCertificatetData.STATUS = 0
+            objCertificatetData.EFFECT_TO = objCertificateEdit.EFFECT_TO
+            objCertificatetData.FK_PKEY = objCertificateEdit.FK_PKEY
+            objCertificatetData.CLASSIFICATION = objCertificateEdit.CLASSIFICATION
+            objCertificatetData.YEAR = objCertificateEdit.YEAR
+            objCertificatetData.FILE_NAME = objCertificateEdit.FILENAME
+            objCertificatetData.UPLOAD_FILE = objCertificateEdit.UPLOAD
+            objCertificatetData.RENEW = objCertificateEdit.RENEW
+            objCertificatetData.REMARK = objCertificateEdit.REMARK
+            Context.SaveChanges(log)
+            gID = objCertificatetData.ID
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As CETIFICATE_EDITDTO
+        Try
+            Dim query = (From p In Context.HU_CERTIFICATE_EDIT
+                         Where p.STATUS <> 2 And p.FK_PKEY = pk_key
+                         Select New CETIFICATE_EDITDTO With {
+                             .ID = p.ID,
+                             .STATUS = p.STATUS}).FirstOrDefault
+
+            Return query
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 #End Region
 #Region "HU_CERTIFICATE"
+    Public Function SendCertificateEdit(ByVal lstID As List(Of Decimal),
+                                           ByVal log As UserLog) As Boolean
+        Try
+            Dim lstObj = (From p In Context.HU_CERTIFICATE_EDIT Where lstID.Contains(p.ID)).ToList
+            For Each item In lstObj
+                item.STATUS = 1
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+
+    End Function
     'get dl bang hu_certificate
     Public Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO)
         Dim query As ObjectQuery(Of CETIFICATEDTO)

@@ -119,7 +119,7 @@ Partial Public Class ctrlInfoCertificate
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtMark As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtMark As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtContentTrain control.
@@ -200,7 +200,7 @@ Partial Public Class ctrlInfoCertificate
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtYear As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtYear As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''is_Renew control.
@@ -248,6 +248,15 @@ Partial Public Class ctrlInfoCertificate
     Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''txtRemindLink control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRemindLink As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''rgCetificateEdit control.
     '''</summary>
     '''<remarks>
@@ -264,6 +273,15 @@ Partial Public Class ctrlInfoCertificate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rgCetificate As Global.Telerik.Web.UI.RadGrid
+
+    '''<summary>
+    '''ctrlUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload1 As Global.Common.ctrlUpload
 
     '''<summary>
     '''RadCodeBlock1 control.

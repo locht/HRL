@@ -8,6 +8,16 @@ Imports System.Configuration
 Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 #Region "HU_CERTIFICATE_EDIT"
+        Public Function SendCertificateEdit(ByVal lstID As List(Of Decimal),
+                                          ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.SendCertificateEdit
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.SendCertificateEdit(lstID, log)
+                End Using
+            Catch ex As Exception
+
+            End Try
+        End Function
         Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO) Implements ServiceContracts.IProfileBusiness.GetCertificateEdit
 
             Try
@@ -16,6 +26,40 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Using
             Catch ex As Exception
 
+            End Try
+        End Function
+        Public Function InsertCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                            ByVal log As UserLog,
+                                            ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.InsertCertificateEdit
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.InsertCertificateEdit(objCertificateEdit, log, gID)
+                End Using
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Function ModifyCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                             ByVal log As UserLog,
+                                             ByRef gID As Decimal) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyCertificateEdit
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.ModifyCertificateEdit(objCertificateEdit, log, gID)
+                End Using
+
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As CETIFICATE_EDITDTO Implements ServiceContracts.IProfileBusiness.CheckExistCertificateEdit
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.CheckExistCertificateEdit(pk_key)
+                End Using
+
+            Catch ex As Exception
+                Throw ex
             End Try
         End Function
 #End Region

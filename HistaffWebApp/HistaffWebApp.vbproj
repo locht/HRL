@@ -1417,7 +1417,7 @@
     <Content Include="Static\logo_default.png" />
     <Content Include="Styles\about.css" />
     <Content Include="Styles\Config.jquery.css" />
-    <Content Include="Styles\ImgConfig.jquery.css" />
+    <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />
     <Content Include="Styles\img\icon.png" />

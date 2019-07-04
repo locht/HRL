@@ -2,6 +2,55 @@
 
 Partial Public Class ProfileBusinessRepository
     Inherits ProfileRepositoryBase
+#Region "hu_certificate_edit"
+    Public Function SendCertificateEdit(ByVal lstID As List(Of Decimal)
+                                          ) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.SendCertificateEdit(lstID, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As CETIFICATE_EDITDTO
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.CheckExistCertificateEdit(pk_key)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
+    Public Function ModifyCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                          ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.ModifyCertificateEdit(objCertificateEdit, Me.Log, gID)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+
+        End Using
+
+    End Function
+    Function InsertCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                            ByRef gID As Decimal) As Boolean
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.InsertCertificateEdit(objCertificateEdit, Me.Log, gID)
+
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO)
         Using rep As New ProfileBusinessClient
@@ -13,6 +62,7 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+#End Region
 #Region "HU_CERTIFICATE"
     Public Function GetCertificate(ByVal _filter As CETIFICATEDTO) As List(Of CETIFICATEDTO)
         Using rep As New ProfileBusinessClient

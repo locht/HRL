@@ -71,8 +71,8 @@
                 <%# Translate("Điểm số")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtMark">
-                </tlk:RadTextBox>
+                <tlk:RadNumericTextBox runat="server" ID="txtMark">
+                </tlk:RadNumericTextBox>
             </td>
         </tr>
         <tr>
@@ -136,13 +136,13 @@
                 <%# Translate("Năm tốt nghiệp")%>
             </td>
             <td>
-                <tlk:RadTextBox runat="server" ID="txtYear">
-                </tlk:RadTextBox>
+                <tlk:RadNumericTextBox runat="server" ID="txtYear">
+                </tlk:RadNumericTextBox>
             </td>
             <td class="lb">
             </td>
             <td>
-                <asp:CheckBox runat="server" ID="is_Renew"  Text="<%$ Translate : Có gia hạn %>" />
+                <asp:CheckBox runat="server" ID="is_Renew" Text="<%$ Translate : Có gia hạn %>" />
             </td>
         </tr>
         <tr>
@@ -167,12 +167,20 @@
                 </tlk:RadButton>
             </td>
         </tr>
+        <tr style="visibility: hidden">
+            <td class="lb">
+                <tlk:RadTextBox ID="txtRemindLink" runat="server">
+                </tlk:RadTextBox>
+            </td>
+        </tr>
     </table>
     <tlk:RadGrid PageSize="50" ID="rgCetificateEdit" runat="server" Height="250px" Width="99%">
         <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true" />
         </ClientSettings>
-        <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID" Caption="<%$ Translate: Thông tin chỉnh sửa %>">
+        <MasterTableView DataKeyNames="ID,EMPLOYEE_ID,FIELD,FIELD_NAME,FROM_DATE,TO_DATE,SCHOOL_NAME,MAJOR,MAJOR_NAME,LEVEL,LEVEL_NAME,MARK,CONTENT_NAME,TYPE_NAME,CODE_CERTIFICATE,EFFECT_FROM,EFFECT_TO,CLASSIFICATION,YEAR,FK_PKEY,RENEW,REMARK,FILENAME,UPLOAD,STATUS"
+            ClientDataKeyNames="ID,EMPLOYEE_ID,FIELD,FIELD_NAME,FROM_DATE,TO_DATE,SCHOOL_NAME,MAJOR,MAJOR_NAME,LEVEL,LEVEL_NAME,MARK,CONTENT_NAME,TYPE_NAME,CODE_CERTIFICATE,EFFECT_FROM,EFFECT_TO,CLASSIFICATION,YEAR,FK_PKEY,RENEW,REMARK,FILENAME,UPLOAD,STATUS"
+            Caption="<%$ Translate: Thông tin chỉnh sửa %>">
             <Columns>
                 <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                     HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -181,68 +189,72 @@
                     <HeaderStyle Width="60px" />
                     <ItemStyle Font-Underline="true" Wrap="false" Width="60px" ForeColor="Blue" />
                 </tlk:GridButtonColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField=""
-                    UniqueName="" SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Lĩnh vực đào tạo %>" DataField="FIELD_NAME"
+                    UniqueName="FIELD_NAME" SortExpression="FIELD_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Thời gian đào tạo từ tháng %>"
-                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="">
+                <tlk:GridDateTimeColumn UniqueName="FROM_DATE" HeaderText="<%$ Translate: Thời gian đào tạo từ tháng %>"
+                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="FROM_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Đến tháng %>" ReadOnly="True"
-                    DataFormatString="{0:dd/MM/yyyy}" DataField="">
+                <tlk:GridDateTimeColumn UniqueName="TO_DATE" HeaderText="<%$ Translate: Đến tháng %>"
+                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="TO_DATE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên trường %>" DataField="" UniqueName=""
-                    SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên trường %>" DataField="SCHOOL_NAME"
+                    UniqueName="SCHOOL_NAME" SortExpression="SCHOOL_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Chuyên ngành %>" DataField="" UniqueName=""
-                    SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Chuyên ngành %>" DataField="MAJOR_NAME"
+                    UniqueName="MAJOR_NAME" SortExpression="MAJOR_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Trình độ %>" DataField="" UniqueName=""
-                    SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Trình độ %>" DataField="LEVEL_NAME"
+                    UniqueName="LEVEL_NAME" SortExpression="LEVEL_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Điểm số %>" DataField="" UniqueName=""
-                    SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Điểm số %>" DataField="MARK" UniqueName="MARK"
+                    SortExpression="MARK">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung đào tạo %>" DataField=""
-                    UniqueName="" SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Nội dung đào tạo %>" DataField="CONTENT_NAME"
+                    UniqueName="CONTENT_NAME" SortExpression="CONTENT_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hình đào tạo %>" DataField=""
-                    UniqueName="" SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hình đào tạo %>" DataField="TYPE_NAME"
+                    UniqueName="TYPE_NAME" SortExpression="TYPE_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã số chứng chỉ %>" DataField=""
-                    UniqueName="" SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã số chứng chỉ %>" DataField="CODE_CERTIFICATE"
+                    UniqueName="CODE_CERTIFICATE" SortExpression="CODE_CERTIFICATE">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Hiệu lực chứng chỉ từ %>"
-                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="">
+                <tlk:GridDateTimeColumn UniqueName="EFFECT_FROM" HeaderText="<%$ Translate: Hiệu lực chứng chỉ từ %>"
+                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="EFFECT_FROM">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridDateTimeColumn UniqueName="" HeaderText="<%$ Translate: Hiệu lực chứng chỉ đến %>"
-                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="">
+                <tlk:GridDateTimeColumn UniqueName="EFFECT_TO" HeaderText="<%$ Translate: Hiệu lực chứng chỉ đến %>"
+                    ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}" DataField="EFFECT_TO">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridDateTimeColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Xếp loại tốt nghiệp %>" DataField=""
-                    UniqueName="" SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Xếp loại tốt nghiệp %>" DataField="CLASSIFICATION"
+                    UniqueName="CLASSIFICATION" SortExpression="CLASSIFICATION">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm tốt nghiệp %>" DataField="" UniqueName=""
-                    SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Năm tốt nghiệp %>" DataField="YEAR"
+                    UniqueName="YEAR" SortExpression="YEAR">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tệp tin %>" DataField="" UniqueName=""
-                    SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tệp tin %>" DataField="FILENAME" UniqueName="FILENAME"
+                    SortExpression="FILENAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="" UniqueName=""
-                    SortExpression="">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"
+                    SortExpression="REMARK">
+                    <HeaderStyle HorizontalAlign="Center" />
+                </tlk:GridBoundColumn>
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="STATUS_NAME"
+                    UniqueName="STATUS_NAME" SortExpression="STATUS_NAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
             </Columns>
@@ -326,6 +338,7 @@
             </Columns>
         </MasterTableView>
     </tlk:RadGrid>
+    <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
     <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
         <script type="text/javascript">
             function clientButtonClicking(sender, args) {

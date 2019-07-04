@@ -10,6 +10,19 @@ Namespace ProfileBusiness.ServiceContracts
 #Region " hu_certificateedit"
         <OperationContract()>
         Function GetCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO) As List(Of CETIFICATE_EDITDTO)
+        <OperationContract()>
+        Function InsertCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                            ByVal log As UserLog,
+                                            ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function ModifyCertificateEdit(ByVal objCertificateEdit As CETIFICATE_EDITDTO,
+                                            ByVal log As UserLog,
+                                            ByRef gID As Decimal) As Boolean
+        <OperationContract()>
+        Function CheckExistCertificateEdit(ByVal pk_key As Decimal) As CETIFICATE_EDITDTO
+        <OperationContract()>
+        Function SendCertificateEdit(ByVal lstID As List(Of Decimal),
+                                          ByVal log As UserLog) As Boolean
 #End Region
 #Region "hu_certificate"
         <OperationContract()>
