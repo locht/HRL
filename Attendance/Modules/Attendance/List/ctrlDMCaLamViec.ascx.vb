@@ -648,7 +648,6 @@ Public Class ctrlDMCaLamViec
                         objShift.SATURDAY = ValueCaThu7
                         objShift.HOURS_START = rdHours_Start.SelectedDate
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
-                        objShift = rdHours_Start.SelectedDate
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
                         objShift.HOURS_START = rdHours_Start.SelectedDate
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
