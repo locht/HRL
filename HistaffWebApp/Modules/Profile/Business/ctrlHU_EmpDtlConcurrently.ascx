@@ -28,37 +28,19 @@
                             <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EXPIRE_DATE_CON"  HeaderStyle-Width="150px"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE_CON" UniqueName="EXPIRE_DATE_CON"
                                 DataFormatString="{0:dd/MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="Người ký 1" DataField="SIGN_NAME"
                                 SortExpression="SIGN_NAME" UniqueName="SIGN_NAME" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="Người ký 2" DataField="SIGN_TITLE_NAME"
+                            <tlk:GridBoundColumn HeaderText="Người ký 2" DataField="SIGN_NAME2"
                                 SortExpression="SIGN_NAME2" UniqueName="SIGN_NAME2" HeaderStyle-Width="120px" />  
-                            </tlk:GridDateTimeColumn>
                             <tlk:GridBoundColumn HeaderText="Phụ cấp kiêm nhiệm" DataField="ALLOW_MONEY_NUMBER"  HeaderStyle-Width="150px"
                                 SortExpression="ALLOW_MONEY_NUMBER" UniqueName="ALLOW_MONEY_NUMBER" DataFormatString="{0:N0}" />
                             <tlk:GridDateTimeColumn HeaderText="Ngày thôi kiêm nhiệm" DataField="EFFECT_DATE_STOP"  HeaderStyle-Width="150px"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE_STOP" UniqueName="EFFECT_DATE_STOP"
                                 DataFormatString="{0:dd/MM/yyyy}">
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="Người ký 2" DataField="SIGN_TITLE_NAME"
-                                SortExpression="SIGN_NAME2" UniqueName="SIGN_NAME2" HeaderStyle-Width="120px" />  
-                            </tlk:GridDateTimeColumn>
-                            <!--
-                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
-                                HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
-                            </tlk:GridClientSelectColumn>
-                            
-                            <tlk:GridBoundColumn HeaderText="Chức danh người ký 1" DataField="SIGN_NAME"
-                                SortExpression="SIGN_TITLE_NAME" UniqueName="SIGN_TITLE_NAME" HeaderStyle-Width="120px" />
-                            
-                            <tlk:GridBoundColumn HeaderText="Chức danh người ký 2" DataField="SIGN_TITLE_NAME2"
-                                SortExpression="SIGN_TITLE_NAME2" UniqueName="SIGN_TITLE_NAME2" HeaderStyle-Width="120px" />
-                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_CON_NAME"
-                                SortExpression="ORG_CON_NAME" UniqueName="ORG_CON_NAME" HeaderStyle-Width="200px" />  
-                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_CON_NAME"
-                                SortExpression="TITLE_CON_NAME" UniqueName="TITLE_CON_NAME"  HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_CON_NAME"
-                                SortExpression="STATUS_CON_NAME" UniqueName="STATUS_CON_NAME" />
-                            -->
+                            <tlk:GridBoundColumn HeaderText="Người ký quyết định thôi kiêm nhiệm" DataField="SIGN_NAME_STOP"
+                                SortExpression="SIGN_NAME_STOP" UniqueName="SIGN_NAME_STOP" HeaderStyle-Width="120px" />  
                         </Columns>
                     </MasterTableView>
         </tlk:RadGrid>

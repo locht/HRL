@@ -86,7 +86,9 @@ Public Class ctrlHU_EmpDtl
                 item.Selected = True
             End If
             CurrentView = Me.Register(ViewName, "Profile", ViewName, "Business")
-
+            If CurrentView Is Nothing Then
+                Throw New NullReferenceException("Error when Register view")
+            End If
             phProfile.Controls.Add(CurrentView)
 
             If ViewImage Is Nothing Then ViewImage = Me.Register("ctrlImageUpload", "Profile", "ctrlImageUpload", "Business")
