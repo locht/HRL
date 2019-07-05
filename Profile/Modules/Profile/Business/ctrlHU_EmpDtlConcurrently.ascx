@@ -10,32 +10,49 @@
     <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgGrid" runat="server" AllowFilteringByColumn="true"
             Height="100%">
-            <MasterTableView DataKeyNames="ID">
-                <Columns>
-                   <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
-                        HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
-                    </tlk:GridClientSelectColumn>
-                    <tlk:GridBoundColumn DataField="ID" Visible="false" />
-                    <tlk:GridBoundColumn DataField="ORG_ID" Visible="false" />
-                    <tlk:GridBoundColumn DataField="ORG_NAME" Visible="false" />
-                    <tlk:GridBoundColumn DataField="TITLE_ID" Visible="false" />
-                    <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" UniqueName="ORG_NAME"
-                        SortExpression="ORG_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Chức danh" DataField="NAME" UniqueName="NAME" SortExpression="NAME" />
-                    <tlk:GridBoundColumn HeaderText="Số quyết định" DataField="DECISION_NO" UniqueName="DECISION_NO"
-                        SortExpression="DECISION_NO" />
-                    <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE" UniqueName="EFFECT_DATE"
-                        SortExpression="EFFECT_DATE" />
-                    <tlk:GridDateTimeColumn HeaderText="Ngày hết hiệu lực" DataField="EXPIRE_DATE" UniqueName="EXPIRE_DATE"
-                        SortExpression="EXPIRE_DATE" />
-                    <tlk:GridDateTimeColumn HeaderText="Ghi chú" DataField="NOTE" UniqueName="NOTE" SortExpression="NOTE" />--%>
-                </Columns>
-            </MasterTableView>
-            <ClientSettings>
-                <Selecting AllowRowSelect="True" />
-                <%--<ClientEvents OnGridCreated="GridCreated" />--%>
-                <ClientEvents OnCommand="ValidateFilter" />
-            </ClientSettings>
+            <ClientSettings EnableRowHoverStyle="true">
+                        <Selecting AllowRowSelect="true" />
+                        <ClientEvents OnRowDblClick="gridRowDblClick" />
+                    </ClientSettings>
+                    <MasterTableView DataKeyNames="ID,STATUS,EXPIRE_DATE_CON" ClientDataKeyNames="ID,EMPLOYEE_ID,STATUS,EXPIRE_DATE_CON,ORG_ID_DESC,ORG_CON,TITLE_CON">
+                        <Columns>
+                            <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                                HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
+                            </tlk:GridClientSelectColumn>
+                            <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                            <tlk:GridBoundColumn DataField="EMPLOYEE_ID" Visible="false" />
+                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
+                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="Tên nhân viên" DataField="FULLNAME_VN"
+                                SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_CON_NAME"
+                                SortExpression="ORG_CON_NAME" UniqueName="ORG_CON_NAME" HeaderStyle-Width="200px" />  
+                            <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_CON_NAME"
+                                SortExpression="TITLE_CON_NAME" UniqueName="TITLE_CON_NAME"  HeaderStyle-Width="150px" />
+                            <tlk:GridBoundColumn HeaderText="Phụ cấp kiêm nhiệm" DataField="ALLOW_MONEY_NUMBER"  HeaderStyle-Width="150px"
+                                SortExpression="ALLOW_MONEY_NUMBER" UniqueName="ALLOW_MONEY_NUMBER" DataFormatString="{0:N0}" />
+                            <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE_CON"  HeaderStyle-Width="150px"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE_CON" UniqueName="EFFECT_DATE_CON"
+                                DataFormatString="{0:dd/MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+                            <tlk:GridDateTimeColumn HeaderText="Ngày kết thúc" DataField="EXPIRE_DATE_CON"  HeaderStyle-Width="150px"
+                                ItemStyle-HorizontalAlign="Center" SortExpression="EXPIRE_DATE_CON" UniqueName="EXPIRE_DATE_CON"
+                                DataFormatString="{0:dd/MM/yyyy}">
+                            </tlk:GridDateTimeColumn>
+
+                             <tlk:GridBoundColumn HeaderText="Người ký 1" DataField="SIGN_NAME"
+                                SortExpression="SIGN_NAME" UniqueName="SIGN_NAME" HeaderStyle-Width="120px" />
+                            <tlk:GridBoundColumn HeaderText="Chức danh người ký 1" DataField="SIGN_NAME"
+                                SortExpression="SIGN_TITLE_NAME" UniqueName="SIGN_TITLE_NAME" HeaderStyle-Width="120px" />
+                            <tlk:GridBoundColumn HeaderText="Người ký 2" DataField="SIGN_TITLE_NAME"
+                                SortExpression="SIGN_NAME2" UniqueName="SIGN_NAME2" HeaderStyle-Width="120px" />  
+                            <tlk:GridBoundColumn HeaderText="Chức danh người ký 2" DataField="SIGN_TITLE_NAME2"
+                                SortExpression="SIGN_TITLE_NAME2" UniqueName="SIGN_TITLE_NAME2" HeaderStyle-Width="120px" />
+
+                            <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="STATUS_CON_NAME"
+                                SortExpression="STATUS_CON_NAME" UniqueName="STATUS_CON_NAME" />
+                        </Columns>
+                    </MasterTableView>
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>

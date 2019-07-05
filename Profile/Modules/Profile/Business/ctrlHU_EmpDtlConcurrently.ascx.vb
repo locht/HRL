@@ -2,13 +2,24 @@
 Imports Framework.UI.Utilities
 Imports Common
 Imports Profile.ProfileBusiness
+Imports Common.CommonBusiness
 Imports Telerik.Web.UI
 Public Class ctrlHU_EmpDtlConcurrently
     Inherits CommonView
     Protected WithEvents ViewItem As ViewBase
     Public Overrides Property MustAuthorize As Boolean = False
+    Dim log As New UserLog
 
 #Region "Property"
+    Public Property Concurrently As List(Of Temp_ConcurrentlyDTO)
+        Get
+            Return ViewState(Me.ID & "_Concurrently")
+        End Get
+
+        Set(ByVal value As List(Of Temp_ConcurrentlyDTO))
+            ViewState(Me.ID & "_Concurrently") = value
+        End Set
+    End Property
     Public Property GridList As List(Of TitleConcurrentDTO)
         Get
             Return PageViewState(Me.ID & "_GridList")
@@ -19,11 +30,11 @@ Public Class ctrlHU_EmpDtlConcurrently
     End Property
     Public Property EmployeeID As Decimal
     'Thông tin cơ bản của nhân viên.
-    Property EmployeeInfo As EmployeeDTO
+    Property EmployeeInfo As ProfileBusiness.EmployeeDTO
         Get
             Return PageViewState(Me.ID & "_EmployeeInfo")
         End Get
-        Set(ByVal value As EmployeeDTO)
+        Set(ByVal value As ProfileBusiness.EmployeeDTO)
             PageViewState(Me.ID & "_EmployeeInfo") = value
         End Set
     End Property
@@ -53,7 +64,7 @@ Public Class ctrlHU_EmpDtlConcurrently
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Try
             If Not IsPostBack Then
-                GirdConfig(rgGrid)
+                'GirdConfig(rgGrid)
             End If
             rgGrid.SetFilter()
         Catch ex As Exception
@@ -64,20 +75,20 @@ Public Class ctrlHU_EmpDtlConcurrently
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
         Dim rep As New ProfileBusinessRepository
         Try
-            If EmployeeInfo IsNot Nothing Then
-                EmployeeID = EmployeeInfo.ID
-                GridList = rep.GetConcurrentlyProccess(EmployeeID)
-            End If
-
-            'Đưa dữ liệu vào Grid
-            If Me.GridList IsNot Nothing Then
-                rgGrid.DataSource = Me.GridList
-                rgGrid.DataBind()
+            Dim _filter As New Temp_ConcurrentlyDTO
+            SetValueObjectByRadGrid(rgGrid, _filter)
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+            Dim MaximumRows As Integer
+            Dim Sorts As String = rgGrid.MasterTableView.SortExpressions.GetSortString()
+            If Sorts IsNot Nothing Then
+                Me.Concurrently = rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, rgGrid.CurrentPageIndex, rgGrid.PageSize, MaximumRows, EmployeeInfo.EMPLOYEE_CODE, Sorts)
             Else
-                rgGrid.DataSource = New List(Of TitleConcurrentDTO)
-                rgGrid.DataBind()
+                Me.Concurrently = rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, rgGrid.CurrentPageIndex, rgGrid.PageSize, MaximumRows, EmployeeInfo.EMPLOYEE_CODE)
             End If
             rep.Dispose()
+            rgGrid.VirtualItemCount = MaximumRows
+            rgGrid.DataSource = Me.Concurrently
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -88,12 +99,7 @@ Public Class ctrlHU_EmpDtlConcurrently
 
     Private Sub rgGrid_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgGrid.NeedDataSource
         Try
-            If IsPostBack Then Exit Sub
-
-            Dim rep As New ProfileBusinessRepository
-            GridList = rep.GetConcurrentlyProccess(EmployeeID)
-            rgGrid.DataSource = GridList
-            rep.Dispose()
+            'CreateDataFilter(False)
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try

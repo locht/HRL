@@ -664,7 +664,31 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
-
+    Public Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer,
+                                        ByVal EMPLOYEE_ID As Decimal,
+                                        Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, PageIndex, PageSize, Total, Me.Log, EMPLOYEE_ID, Sorts)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As Temp_ConcurrentlyDTO,
+                               ByVal EMPLOYEE_ID As Decimal,
+                               Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, 0, Integer.MaxValue, 0, Me.Log, EMPLOYEE_ID, Sorts)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
         Dim dtdata As DataTable
 
