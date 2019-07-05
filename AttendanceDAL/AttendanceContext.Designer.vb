@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d1fe9a80-729c-4ae4-93da-88c074ae0a7f")>
+<Assembly: EdmSchemaAttribute("a0dc4a06-f096-4ea9-ae2c-8568a0c1b1f8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -1037,20 +1037,6 @@ Public Partial Class AttendanceContext
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    Public ReadOnly Property AT_SHIFT() As ObjectSet(Of AT_SHIFT)
-        Get
-            If (_AT_SHIFT Is Nothing) Then
-                _AT_SHIFT = MyBase.CreateObjectSet(Of AT_SHIFT)("AT_SHIFT")
-            End If
-            Return _AT_SHIFT
-        End Get
-    End Property
-
-    Private _AT_SHIFT As ObjectSet(Of AT_SHIFT)
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
     Public ReadOnly Property AT_PORTAL_REG_LIST() As ObjectSet(Of AT_PORTAL_REG_LIST)
         Get
             If (_AT_PORTAL_REG_LIST Is Nothing) Then
@@ -1285,6 +1271,20 @@ Public Partial Class AttendanceContext
     End Property
 
     Private _SE_USER_ORG_ACCESS As ObjectSet(Of SE_USER_ORG_ACCESS)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property AT_SHIFT() As ObjectSet(Of AT_SHIFT)
+        Get
+            If (_AT_SHIFT Is Nothing) Then
+                _AT_SHIFT = MyBase.CreateObjectSet(Of AT_SHIFT)("AT_SHIFT")
+            End If
+            Return _AT_SHIFT
+        End Get
+    End Property
+
+    Private _AT_SHIFT As ObjectSet(Of AT_SHIFT)
 
     #End Region
 
@@ -1767,13 +1767,6 @@ Public Partial Class AttendanceContext
     End Sub
 
     ''' <summary>
-    ''' Deprecated Method for adding a new object to the AT_SHIFT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
-    ''' </summary>
-    Public Sub AddToAT_SHIFT(ByVal aT_SHIFT As AT_SHIFT)
-        MyBase.AddObject("AT_SHIFT", aT_SHIFT)
-    End Sub
-
-    ''' <summary>
     ''' Deprecated Method for adding a new object to the AT_PORTAL_REG_LIST EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
     ''' </summary>
     Public Sub AddToAT_PORTAL_REG_LIST(ByVal aT_PORTAL_REG_LIST As AT_PORTAL_REG_LIST)
@@ -1890,6 +1883,13 @@ Public Partial Class AttendanceContext
     ''' </summary>
     Public Sub AddToSE_USER_ORG_ACCESS(ByVal sE_USER_ORG_ACCESS As SE_USER_ORG_ACCESS)
         MyBase.AddObject("SE_USER_ORG_ACCESS", sE_USER_ORG_ACCESS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the AT_SHIFT EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToAT_SHIFT(ByVal aT_SHIFT As AT_SHIFT)
+        MyBase.AddObject("AT_SHIFT", aT_SHIFT)
     End Sub
 
     #End Region
@@ -20574,14 +20574,10 @@ Public Partial Class AT_SHIFT
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
     ''' <param name="cODE">Initial value of the CODE property.</param>
-    ''' <param name="oRG_ID">Initial value of the ORG_ID property.</param>
-    ''' <param name="sHIFT_DAY">Initial value of the SHIFT_DAY property.</param>
-    Public Shared Function CreateAT_SHIFT(id As Global.System.Decimal, cODE As Global.System.String, oRG_ID As Global.System.Decimal, sHIFT_DAY As Global.System.Decimal) As AT_SHIFT
+    Public Shared Function CreateAT_SHIFT(id As Global.System.Decimal, cODE As Global.System.String) As AT_SHIFT
         Dim aT_SHIFT as AT_SHIFT = New AT_SHIFT
         aT_SHIFT.ID = id
         aT_SHIFT.CODE = cODE
-        aT_SHIFT.ORG_ID = oRG_ID
-        aT_SHIFT.SHIFT_DAY = sHIFT_DAY
         Return aT_SHIFT
     End Function
 
@@ -20796,24 +20792,24 @@ Public Partial Class AT_SHIFT
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property BREAKS_FORM() As Nullable(Of Global.System.DateTime)
+    Public Property HOURS_STAR_CHECKIN() As Nullable(Of Global.System.DateTime)
         Get
-            Return _BREAKS_FORM
+            Return _HOURS_STAR_CHECKIN
         End Get
         Set
-            OnBREAKS_FORMChanging(value)
-            ReportPropertyChanging("BREAKS_FORM")
-            _BREAKS_FORM = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("BREAKS_FORM")
-            OnBREAKS_FORMChanged()
+            OnHOURS_STAR_CHECKINChanging(value)
+            ReportPropertyChanging("HOURS_STAR_CHECKIN")
+            _HOURS_STAR_CHECKIN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("HOURS_STAR_CHECKIN")
+            OnHOURS_STAR_CHECKINChanged()
         End Set
     End Property
 
-    Private _BREAKS_FORM As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnBREAKS_FORMChanging(value As Nullable(Of Global.System.DateTime))
+    Private _HOURS_STAR_CHECKIN As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnHOURS_STAR_CHECKINChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
-    Private Partial Sub OnBREAKS_FORMChanged()
+    Private Partial Sub OnHOURS_STAR_CHECKINChanged()
     End Sub
 
     ''' <summary>
@@ -20821,24 +20817,24 @@ Public Partial Class AT_SHIFT
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property BREAKS_TO() As Nullable(Of Global.System.DateTime)
+    Public Property HOURS_STAR_CHECKOUT() As Nullable(Of Global.System.DateTime)
         Get
-            Return _BREAKS_TO
+            Return _HOURS_STAR_CHECKOUT
         End Get
         Set
-            OnBREAKS_TOChanging(value)
-            ReportPropertyChanging("BREAKS_TO")
-            _BREAKS_TO = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("BREAKS_TO")
-            OnBREAKS_TOChanged()
+            OnHOURS_STAR_CHECKOUTChanging(value)
+            ReportPropertyChanging("HOURS_STAR_CHECKOUT")
+            _HOURS_STAR_CHECKOUT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("HOURS_STAR_CHECKOUT")
+            OnHOURS_STAR_CHECKOUTChanged()
         End Set
     End Property
 
-    Private _BREAKS_TO As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnBREAKS_TOChanging(value As Nullable(Of Global.System.DateTime))
+    Private _HOURS_STAR_CHECKOUT As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnHOURS_STAR_CHECKOUTChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
-    Private Partial Sub OnBREAKS_TOChanged()
+    Private Partial Sub OnHOURS_STAR_CHECKOUTChanged()
     End Sub
 
     ''' <summary>
@@ -20989,31 +20985,6 @@ Public Partial Class AT_SHIFT
     End Sub
 
     Private Partial Sub OnMODIFIED_DATEChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property MODIFIED_BY() As Global.System.String
-        Get
-            Return _MODIFIED_BY
-        End Get
-        Set
-            OnMODIFIED_BYChanging(value)
-            ReportPropertyChanging("MODIFIED_BY")
-            _MODIFIED_BY = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("MODIFIED_BY")
-            OnMODIFIED_BYChanged()
-        End Set
-    End Property
-
-    Private _MODIFIED_BY As Global.System.String
-    Private Partial Sub OnMODIFIED_BYChanging(value As Global.System.String)
-    End Sub
-
-    Private Partial Sub OnMODIFIED_BYChanged()
     End Sub
 
     ''' <summary>
@@ -21194,9 +21165,184 @@ Public Partial Class AT_SHIFT
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ORG_ID() As Global.System.Decimal
+    Public Property LATE_MINUTES() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _LATE_MINUTES
+        End Get
+        Set
+            OnLATE_MINUTESChanging(value)
+            ReportPropertyChanging("LATE_MINUTES")
+            _LATE_MINUTES = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LATE_MINUTES")
+            OnLATE_MINUTESChanged()
+        End Set
+    End Property
+
+    Private _LATE_MINUTES As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnLATE_MINUTESChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnLATE_MINUTESChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property WORK_HOUR() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _WORK_HOUR
+        End Get
+        Set
+            OnWORK_HOURChanging(value)
+            ReportPropertyChanging("WORK_HOUR")
+            _WORK_HOUR = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WORK_HOUR")
+            OnWORK_HOURChanged()
+        End Set
+    End Property
+
+    Private _WORK_HOUR As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWORK_HOURChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnWORK_HOURChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property START_MID_HOURS() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _START_MID_HOURS
+        End Get
+        Set
+            OnSTART_MID_HOURSChanging(value)
+            ReportPropertyChanging("START_MID_HOURS")
+            _START_MID_HOURS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("START_MID_HOURS")
+            OnSTART_MID_HOURSChanged()
+        End Set
+    End Property
+
+    Private _START_MID_HOURS As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnSTART_MID_HOURSChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnSTART_MID_HOURSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property END_MID_HOURS() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _END_MID_HOURS
+        End Get
+        Set
+            OnEND_MID_HOURSChanging(value)
+            ReportPropertyChanging("END_MID_HOURS")
+            _END_MID_HOURS = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("END_MID_HOURS")
+            OnEND_MID_HOURSChanged()
+        End Set
+    End Property
+
+    Private _END_MID_HOURS As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnEND_MID_HOURSChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnEND_MID_HOURSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property AT_SIGN_CODE() As Global.System.String
+        Get
+            Return _AT_SIGN_CODE
+        End Get
+        Set
+            OnAT_SIGN_CODEChanging(value)
+            ReportPropertyChanging("AT_SIGN_CODE")
+            _AT_SIGN_CODE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("AT_SIGN_CODE")
+            OnAT_SIGN_CODEChanged()
+        End Set
+    End Property
+
+    Private _AT_SIGN_CODE As Global.System.String
+    Private Partial Sub OnAT_SIGN_CODEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnAT_SIGN_CODEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OT_START() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _OT_START
+        End Get
+        Set
+            OnOT_STARTChanging(value)
+            ReportPropertyChanging("OT_START")
+            _OT_START = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OT_START")
+            OnOT_STARTChanged()
+        End Set
+    End Property
+
+    Private _OT_START As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnOT_STARTChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnOT_STARTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property OT_END() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _OT_END
+        End Get
+        Set
+            OnOT_ENDChanging(value)
+            ReportPropertyChanging("OT_END")
+            _OT_END = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("OT_END")
+            OnOT_ENDChanged()
+        End Set
+    End Property
+
+    Private _OT_END As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnOT_ENDChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnOT_ENDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _ORG_ID
         End Get
@@ -21209,8 +21355,8 @@ Public Partial Class AT_SHIFT
         End Set
     End Property
 
-    Private _ORG_ID As Global.System.Decimal
-    Private Partial Sub OnORG_IDChanging(value As Global.System.Decimal)
+    Private _ORG_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnORG_IDChanged()
@@ -21219,9 +21365,9 @@ Public Partial Class AT_SHIFT
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property SHIFT_DAY() As Global.System.Decimal
+    Public Property SHIFT_DAY() As Nullable(Of Global.System.Decimal)
         Get
             Return _SHIFT_DAY
         End Get
@@ -21234,11 +21380,111 @@ Public Partial Class AT_SHIFT
         End Set
     End Property
 
-    Private _SHIFT_DAY As Global.System.Decimal
-    Private Partial Sub OnSHIFT_DAYChanging(value As Global.System.Decimal)
+    Private _SHIFT_DAY As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSHIFT_DAYChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnSHIFT_DAYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_BY() As Global.System.String
+        Get
+            Return _MODIFIED_BY
+        End Get
+        Set
+            OnMODIFIED_BYChanging(value)
+            ReportPropertyChanging("MODIFIED_BY")
+            _MODIFIED_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MODIFIED_BY")
+            OnMODIFIED_BYChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_BY As Global.System.String
+    Private Partial Sub OnMODIFIED_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMODIFIED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HOURS_STOP() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HOURS_STOP
+        End Get
+        Set
+            OnIS_HOURS_STOPChanging(value)
+            ReportPropertyChanging("IS_HOURS_STOP")
+            _IS_HOURS_STOP = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HOURS_STOP")
+            OnIS_HOURS_STOPChanged()
+        End Set
+    End Property
+
+    Private _IS_HOURS_STOP As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HOURS_STOPChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HOURS_STOPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_HOURS_CHECKOUT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_HOURS_CHECKOUT
+        End Get
+        Set
+            OnIS_HOURS_CHECKOUTChanging(value)
+            ReportPropertyChanging("IS_HOURS_CHECKOUT")
+            _IS_HOURS_CHECKOUT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_HOURS_CHECKOUT")
+            OnIS_HOURS_CHECKOUTChanged()
+        End Set
+    End Property
+
+    Private _IS_HOURS_CHECKOUT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_HOURS_CHECKOUTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_HOURS_CHECKOUTChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_MID_END() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _IS_MID_END
+        End Get
+        Set
+            OnIS_MID_ENDChanging(value)
+            ReportPropertyChanging("IS_MID_END")
+            _IS_MID_END = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_MID_END")
+            OnIS_MID_ENDChanged()
+        End Set
+    End Property
+
+    Private _IS_MID_END As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnIS_MID_ENDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnIS_MID_ENDChanged()
     End Sub
 
     #End Region
