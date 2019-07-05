@@ -3062,11 +3062,11 @@ Public Class ProfileRepository
         End Try
     End Function
 
-    Public Function GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+    Public Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
                                         ByVal log As UserLog,
-                                        ByVal EMPLOYEE_CODE As String,
+                                        ByVal EMPLOYEE_ID As Decimal,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
 
         Try
@@ -3079,7 +3079,6 @@ Public Class ProfileRepository
                                            .P_ORGID = _filter.ORG_ID,
                                            .P_ISDISSOLVE = _filter.IS_DISSOLVE})
             End Using
-
             ' Lấy toàn bộ dữ liệu theo employee
             Dim queryEmp = From p In Context.HU_CONCURRENTLY
                            From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID)
@@ -3095,7 +3094,7 @@ Public Class ProfileRepository
                            From sign_stop_title In Context.HU_TITLE.Where(Function(sign_stop_title) sign_stop_title.ID = sign_stop.TITLE_ID).DefaultIfEmpty
                            From sign2 In Context.HU_EMPLOYEE.Where(Function(sign2) sign2.ID = p.SIGN_ID_2).DefaultIfEmpty
                            From sign_title2 In Context.HU_TITLE.Where(Function(sign_title2) sign_title2.ID = sign2.TITLE_ID).DefaultIfEmpty
-                           Where e.EMPLOYEE_CODE = EMPLOYEE_CODE
+                           Where p.EMPLOYEE_ID = EMPLOYEE_ID
 
             If Not _filter.IS_TERMINATE Then
                 queryEmp = queryEmp.Where(Function(p) p.e.WORK_STATUS <> 257 Or (p.e.WORK_STATUS = 257 And p.e.TER_LAST_DATE >= Date.Now) Or p.e.WORK_STATUS Is Nothing)
@@ -3139,7 +3138,8 @@ Public Class ProfileRepository
                                                        .SIGN_NAME = p.sign.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME = p.sign_title.NAME_VN,
                                                        .SIGN_NAME2 = p.sign2.FULLNAME_VN,
-                                                       .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN
+                                                       .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN,
+                                                       .SIGN_TITLE_NAME_STOP = p.sign_stop.FULLNAME_VN
                                                        })
 
             lstEmp = lstEmp.OrderBy(Sorts)

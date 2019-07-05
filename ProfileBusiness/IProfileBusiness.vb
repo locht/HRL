@@ -2647,11 +2647,11 @@ Namespace ProfileBusiness.ServiceContracts
                                         ByVal log As UserLog,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
         <OperationContract()>
-        Function GET_LIST_CONCURRENTLY_BY_EMPLOYEE_CODE(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
+        Function GET_LIST_CONCURRENTLY_BY_ID(ByVal _filter As Temp_ConcurrentlyDTO, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
                                         ByVal log As UserLog,
-                                        ByVal EMPLOYEE_CODE As String,
+                                        ByVal EMPLOYEE_ID As Decimal,
                                         Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of Temp_ConcurrentlyDTO)
         <OperationContract()>
         Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
