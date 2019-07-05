@@ -1582,6 +1582,12 @@ Partial Public Class AttendanceRepository
                                  Optional ByRef Total As Integer = 0,
                                     Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SHIFTDTO)
         Try
+            Dim userNameID As Decimal = _filter.SHIFT_DAY
+            Dim lstOrgID = New List(Of Decimal)
+            lstOrgID = (From p In Context.SE_USER_ORG_ACCESS
+                From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+                Where p.USER_ID = userNameID
+                Select p.ORG_ID).ToList
 
             Dim query = From p In Context.AT_SHIFT
                         From t1 In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.SATURDAY).DefaultIfEmpty
@@ -1607,13 +1613,22 @@ Partial Public Class AttendanceRepository
                                        .SUNDAY_NAME = p.t2.NAME,
                                        .HOURS_START = p.p.HOURS_START,
                                        .HOURS_STOP = p.p.HOURS_STOP,
-                                       .BREAKS_FORM = p.p.BREAKS_FORM,
-                                       .BREAKS_TO = p.p.BREAKS_TO,
+                                       .HOURS_STAR_CHECKIN = p.p.HOURS_STAR_CHECKIN,
+                                       .HOURS_STAR_CHECKOUT = p.p.HOURS_STAR_CHECKOUT,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
                                        .NOTE = p.p.NOTE,
                                        .IS_NOON = p.p.IS_NOON,
                                        .MINHOUSER = p.p.MINHOURS,
+                                       .ORG_ID = p.p.ORG_ID,
+                                       .SHIFT_DAY = p.p.SHIFT_DAY,
+                                       .IS_HOURS_STOP = p.p.IS_HOURS_STOP,
+                                       .IS_MID_END = p.p.IS_MID_END,
+                                       .IS_HOURS_CHECKOUT = p.p.IS_HOURS_CHECKOUT,
                                        .CREATED_DATE = p.p.CREATED_DATE})
+            'hoavv add 3rc
+            If lstOrgID.Count > 0 And userNameID <> 1 Then
+                lst = lst.Where(Function(f) (lstOrgID.Contains(f.ORG_ID) Or f.ORG_ID = -1))
+            End If
 
             If Not String.IsNullOrEmpty(_filter.CODE) Then
                 lst = lst.Where(Function(f) f.CODE.ToLower().Contains(_filter.CODE.ToLower()))
@@ -1654,11 +1669,11 @@ Partial Public Class AttendanceRepository
             If _filter.HOURS_STOP.HasValue Then
                 lst = lst.Where(Function(f) f.HOURS_STOP = _filter.HOURS_STOP)
             End If
-            If _filter.BREAKS_FORM.HasValue Then
-                lst = lst.Where(Function(f) f.BREAKS_FORM = _filter.BREAKS_FORM)
+            If _filter.HOURS_STAR_CHECKIN.HasValue Then
+                lst = lst.Where(Function(f) f.HOURS_STAR_CHECKIN = _filter.HOURS_STAR_CHECKIN)
             End If
-            If _filter.BREAKS_TO.HasValue Then
-                lst = lst.Where(Function(f) f.BREAKS_TO = _filter.BREAKS_TO)
+            If _filter.HOURS_STAR_CHECKOUT.HasValue Then
+                lst = lst.Where(Function(f) f.HOURS_STAR_CHECKOUT = _filter.HOURS_STAR_CHECKOUT)
             End If
             If _filter.MINHOUSER > 0 Then
                 lst = lst.Where(Function(f) f.MINHOUSER = _filter.MINHOUSER)
@@ -1691,8 +1706,8 @@ Partial Public Class AttendanceRepository
             objTitleData.MANUAL_ID = objTitle.MANUAL_ID
             objTitleData.HOURS_START = objTitle.HOURS_START
             objTitleData.HOURS_STOP = objTitle.HOURS_STOP
-            objTitleData.BREAKS_FORM = objTitle.BREAKS_FORM
-            objTitleData.BREAKS_TO = objTitle.BREAKS_TO
+            objTitleData.HOURS_STAR_CHECKIN = objTitle.HOURS_STAR_CHECKIN
+            objTitleData.HOURS_STAR_CHECKOUT = objTitle.HOURS_STAR_CHECKOUT
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.IS_NOON = objTitle.IS_NOON
             objTitleData.ACTFLG = objTitle.ACTFLG
@@ -1702,6 +1717,13 @@ Partial Public Class AttendanceRepository
             'objTitleData.MODIFIED_BY = objTitle.MODIFIED_BY
             'objTitleData.MODIFIED_DATE = objTitle.MODIFIED_DATE
             'objTitleData.MODIFIED_LOG = objTitle.MODIFIED_LOG
+            'hoaivv add
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.SHIFT_DAY = objTitle.SHIFT_DAY
+            objTitleData.IS_HOURS_STOP = objTitle.IS_HOURS_STOP
+            objTitleData.IS_MID_END = objTitle.IS_MID_END
+            objTitleData.IS_HOURS_CHECKOUT = objTitle.IS_HOURS_CHECKOUT
+            'end
             objTitleData.MINHOURS = objTitle.MINHOUSER
             Context.AT_SHIFT.AddObject(objTitleData)
             Context.SaveChanges(log)
@@ -1763,8 +1785,8 @@ Partial Public Class AttendanceRepository
             objTitleData.MANUAL_ID = objTitle.MANUAL_ID
             objTitleData.HOURS_START = objTitle.HOURS_START
             objTitleData.HOURS_STOP = objTitle.HOURS_STOP
-            objTitleData.BREAKS_FORM = objTitle.BREAKS_FORM
-            objTitleData.BREAKS_TO = objTitle.BREAKS_TO
+            objTitleData.HOURS_STAR_CHECKIN = objTitle.HOURS_STAR_CHECKIN
+            objTitleData.HOURS_STAR_CHECKOUT = objTitle.HOURS_STAR_CHECKOUT
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.IS_NOON = objTitle.IS_NOON
             'objTitleData.CREATED_BY = objTitle.CREATED_BY
@@ -1773,6 +1795,13 @@ Partial Public Class AttendanceRepository
             'objTitleData.MODIFIED_BY = objTitle.MODIFIED_BY
             'objTitleData.MODIFIED_DATE = objTitle.MODIFIED_DATE
             'objTitleData.MODIFIED_LOG = objTitle.MODIFIED_LOG
+            'hoaivv add
+            objTitleData.ORG_ID = objTitle.ORG_ID
+            objTitleData.SHIFT_DAY = objTitle.SHIFT_DAY
+            objTitleData.IS_HOURS_STOP = objTitle.IS_HOURS_STOP
+            objTitleData.IS_MID_END = objTitle.IS_MID_END
+            objTitleData.IS_HOURS_CHECKOUT = objTitle.IS_HOURS_CHECKOUT
+            'end
             objTitleData.MINHOURS = objTitle.MINHOUSER
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -3031,7 +3060,7 @@ Partial Public Class AttendanceRepository
 
     '    End Try
     'End Function
-  
+
 
     Public Function PRS_COUNT_SHIFT(ByVal employee_id As Decimal) As DataTable
         Try
@@ -3064,8 +3093,8 @@ Partial Public Class AttendanceRepository
                                        .SUNDAY_NAME = p.t2.NAME,
                                        .HOURS_START = p.p.HOURS_START,
                                        .HOURS_STOP = p.p.HOURS_STOP,
-                                       .BREAKS_FORM = p.p.BREAKS_FORM,
-                                       .BREAKS_TO = p.p.BREAKS_TO,
+                                       .HOURS_STAR_CHECKIN = p.p.HOURS_STAR_CHECKIN,
+                                       .HOURS_STAR_CHECKOUT = p.p.HOURS_STAR_CHECKOUT,
                                        .NOTE = p.p.NOTE}).ToList
             Return lst.ToTable
         Catch ex As Exception

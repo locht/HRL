@@ -4,6 +4,7 @@ Imports Attendance.AttendanceBusiness
 Imports Common
 Imports Telerik.Web.UI
 Imports WebAppLog
+Imports Profile
 
 Public Class ctrlDMCaLamViec
     Inherits Common.CommonView
@@ -114,7 +115,7 @@ Public Class ctrlDMCaLamViec
         Dim startTime As DateTime = DateTime.UtcNow
 
         Try
-            UpdateControlState()            
+            UpdateControlState()
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -237,7 +238,9 @@ Public Class ctrlDMCaLamViec
             Dim MaximumRows As Integer
             SetValueObjectByRadGrid(rgDanhMuc, obj)
             Dim Sorts As String = rgDanhMuc.MasterTableView.SortExpressions.GetSortString()
-
+            'hoaivv add 2 rc
+            Dim user = LogHelper.CurrentUser
+            obj.SHIFT_DAY = user.ID
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.AT_SHIFT = rep.GetAT_SHIFT(obj, rgDanhMuc.CurrentPageIndex, rgDanhMuc.PageSize, MaximumRows, "CREATED_DATE desc")
@@ -278,8 +281,10 @@ Public Class ctrlDMCaLamViec
                     txtNameVN.Text = ""
                     txtNote.Text = ""
                     cboMaCong.SelectedIndex = 0
-                    cboSunDay.SelectedIndex = 0
-                    cboSaturday.SelectedIndex = 0
+                    cboCongTy.SelectedIndex = -1
+                    cboNgayCongCa.SelectedIndex = 1
+                    'cboSunDay.SelectedIndex = 0
+                    'cboSaturday.SelectedIndex = 0
                     'cbkISNOON.Checked = False
                     rdHours_Start.SelectedDate = Nothing
                     rdHours_Stop.SelectedDate = Nothing
@@ -287,11 +292,13 @@ Public Class ctrlDMCaLamViec
                     'rdBREAKS_to.SelectedDate = Nothing
 
                     'cbkISNOON.Enabled = True
-                    cboSunDay.Enabled = True
-                    cboSaturday.Enabled = True
+                    'cboSunDay.Enabled = True
+                    'cboSaturday.Enabled = True
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
                     cboMaCong.Enabled = True
+                    cboNgayCongCa.Enabled = True
+                    cboCongTy.Enabled = True
                     rdHours_Start.Enabled = True
                     rdHours_Stop.Enabled = True
                     'rdBREAKS_FORM.Enabled = True
@@ -304,38 +311,44 @@ Public Class ctrlDMCaLamViec
                 Case CommonMessage.STATE_NORMAL
                     txtNameVN.Text = ""
                     cboMaCong.SelectedIndex = 0
+                    cboCongTy.SelectedIndex = -1
+                    cboNgayCongCa.SelectedIndex = 1
                     rdHours_Start.SelectedDate = Nothing
                     rdHours_Stop.SelectedDate = Nothing
                     'rdBREAKS_FORM.SelectedDate = Nothing
                     'rdBREAKS_to.SelectedDate = Nothing
                     'cbkISNOON.Checked = False
-                    cboSunDay.SelectedIndex = 0
-                    cboSaturday.ClearValue()
+                    'cboSunDay.SelectedIndex = 0
+                    'cboSaturday.ClearValue()
                     txtNote.Text = ""
                     txtCode.Text = ""
 
                     'cbkISNOON.Enabled = False
-                    cboSunDay.Enabled = False
-                    cboSaturday.Enabled = False
+                    'cboSunDay.Enabled = False
+                    'cboSaturday.Enabled = False
                     txtCode.Enabled = False
                     txtNameVN.Enabled = False
                     cboMaCong.Enabled = False
+                    cboCongTy.Enabled = False
+                    cboNgayCongCa.Enabled = False
                     rdHours_Start.Enabled = False
                     rdHours_Stop.Enabled = False
                     'rdBREAKS_FORM.Enabled = False
                     'rdBREAKS_to.Enabled = False
                     txtNote.Enabled = False
                     'rntxtMinHours.Enabled = False
-                    cboSunDay.SelectedIndex = 0
+                    'cboSunDay.SelectedIndex = 0
                     EnabledGridNotPostback(rgDanhMuc, True)
 
                 Case CommonMessage.STATE_EDIT
                     txtCode.Enabled = True
                     txtNameVN.Enabled = True
                     'cbkISNOON.Enabled = True
-                    cboSunDay.Enabled = True
-                    cboSaturday.Enabled = True
+                    'cboSunDay.Enabled = True
+                    'cboSaturday.Enabled = True
                     cboMaCong.Enabled = True
+                    cboCongTy.Enabled = True
+                    cboNgayCongCa.Enabled = True
                     rdHours_Start.Enabled = True
                     rdHours_Stop.Enabled = True
                     'rdBREAKS_FORM.Enabled = True
@@ -354,8 +367,7 @@ Public Class ctrlDMCaLamViec
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop,
-                                               cboSunDay, cboSaturday, txtNote)
+                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -370,8 +382,7 @@ Public Class ctrlDMCaLamViec
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop,
-                                                cboSunDay, cboSaturday, txtNote)
+                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -383,7 +394,7 @@ Public Class ctrlDMCaLamViec
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
                     If rep.DeleteAT_SHIFT(lstDeletes) Then
-                        Refresh("UpdateView")                        
+                        Refresh("UpdateView")
                         UpdateControlState()
 
                         'ListComboData = New ComboBoxDataDTO
@@ -424,14 +435,15 @@ Public Class ctrlDMCaLamViec
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtNameVN)
-            dic.Add("SUNDAY", cboSunDay)
-            dic.Add("SATURDAY", cboSaturday)
+           
             dic.Add("MANUAL_ID", cboMaCong)
             'dic.Add("HOURS_START", rdHours_Start)
             'dic.Add("HOURS_STOP", rdHours_Stop)
             dic.Add("NOTE", txtNote)
-            Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
+            dic.Add("ORG_ID", cboCongTy)
+            dic.Add("SHIFT_DAY", cboNgayCongCa)
 
+            Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
@@ -445,6 +457,7 @@ Public Class ctrlDMCaLamViec
     ''' <remarks></remarks>
     Private Sub GetDataCombo()
         Dim rep As New AttendanceRepository
+        Dim repS As New ProfileStoreProcedure
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
 
@@ -457,9 +470,34 @@ Public Class ctrlDMCaLamViec
                 rep.GetComboboxData(ListComboData)
             End If
 
-            FillDropDownList(cboSaturday, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSaturday.SelectedValue)
-            FillDropDownList(cboSunDay, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSunDay.SelectedValue)
+            'FillDropDownList(cboSaturday, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSaturday.SelectedValue)
+            'FillDropDownList(cboSunDay, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSunDay.SelectedValue)
 
+            'hoaivv
+            Dim dtOrgLevel As DataTable
+            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
+            Dim dr As DataRow = dtOrgLevel.NewRow
+            dr("ORG_ID") = "-1"
+            dr("ORG_NAME_VN") = "Dùng  Chung"
+            dtOrgLevel.Rows.Add(dr)
+
+            dtOrgLevel.DefaultView.Sort = "ORG_ID ASC"
+            FillRadCombobox(cboCongTy, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
+
+
+            Dim item1 As New RadComboBoxItem()
+            item1.Text = "0.5"
+            item1.Value = 0.5
+            cboNgayCongCa.Items.Add(item1)
+            Dim item2 As New RadComboBoxItem()
+            item2.Text = "1"
+            item2.Value = 1
+            cboNgayCongCa.Items.Add(item2)
+            Dim item3 As New RadComboBoxItem()
+            item3.Text = "1.5"
+            item3.Value = 1.5
+            cboNgayCongCa.Items.Add(item3)
+            'end
             Dim dtData As DataTable
             dtData = rep.GetAT_TIME_MANUALBINCOMBO()
             FillRadCombobox(cboMaCong, dtData, "NAME", "ID")
@@ -487,8 +525,8 @@ Public Class ctrlDMCaLamViec
             ListComboData.GET_LIST_SHIFT_SUNDAY = True
             rep.GetComboboxData(ListComboData)
 
-            FillDropDownList(cboSaturday, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSaturday.SelectedValue)
-            FillDropDownList(cboSunDay, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSunDay.SelectedValue)
+            'FillDropDownList(cboSaturday, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSaturday.SelectedValue)
+            'FillDropDownList(cboSunDay, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSunDay.SelectedValue)
 
             Dim dtData As DataTable
             dtData = rep.GetAT_TIME_MANUALBINCOMBO()
@@ -593,12 +631,12 @@ Public Class ctrlDMCaLamViec
                             objShift.MANUAL_ID = cboMaCong.SelectedValue
                         End If
 
-                        If Not String.IsNullOrEmpty(cboSunDay.SelectedValue) Then
-                            ValueKieuCongCN = cboSunDay.SelectedValue
-                        End If
-                        If Not String.IsNullOrEmpty(cboSaturday.SelectedValue) Then
-                            ValueCaThu7 = cboSaturday.SelectedValue
-                        End If
+                        'If Not String.IsNullOrEmpty(cboSunDay.SelectedValue) Then
+                        '    ValueKieuCongCN = cboSunDay.SelectedValue
+                        'End If
+                        'If Not String.IsNullOrEmpty(cboSaturday.SelectedValue) Then
+                        '    ValueCaThu7 = cboSaturday.SelectedValue
+                        'End If
 
                         'If ValueKieuCongCN <> 0 Then
                         '    objShift.SUNDAY = ValueKieuCongCN
@@ -610,7 +648,15 @@ Public Class ctrlDMCaLamViec
                         objShift.SATURDAY = ValueCaThu7
                         objShift.HOURS_START = rdHours_Start.SelectedDate
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
+                        objShift = rdHours_Start.SelectedDate
+                        objShift.HOURS_STOP = rdHours_Stop.SelectedDate
+                        objShift.HOURS_START = rdHours_Start.SelectedDate
+                        objShift.HOURS_STOP = rdHours_Stop.SelectedDate
                         objShift.NOTE = txtNote.Text.Trim
+                        'hoaivv
+                        objShift.ORG_ID = cboCongTy.SelectedValue
+                        Dim strValue As Double = Double.Parse(cboNgayCongCa.SelectedValue)
+                        objShift.SHIFT_DAY = Convert.ToDecimal(cboNgayCongCa.SelectedValue)
 
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
@@ -622,8 +668,7 @@ Public Class ctrlDMCaLamViec
                                     Refresh("InsertView")
                                     UpdateControlState()
                                     'ReloadCombobox()
-                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop,
-                                                cboSunDay, cboSaturday, txtNote)
+                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
 
@@ -659,8 +704,7 @@ Public Class ctrlDMCaLamViec
                                     IDSelect = objShift.ID
                                     Refresh("UpdateView")
                                     UpdateControlState()
-                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop,
-                                                cboSunDay, cboSaturday, txtNote)
+                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop,txtNote)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -845,82 +889,7 @@ Public Class ctrlDMCaLamViec
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
-    Private Sub cvalSunday_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalSunday.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim rep As New AttendanceRepository
-
-        Try
-            ValueKieuCongCN = cboSunDay.SelectedValue
-            ListComboData = New ComboBoxDataDTO
-            Dim dto As New AT_TIME_MANUALDTO
-            Dim list As New List(Of AT_TIME_MANUALDTO)
-
-            dto.ID = Convert.ToDecimal(cboSunDay.SelectedValue)
-            list.Add(dto)
-
-            ListComboData.GET_LIST_SHIFT_SUNDAY = True
-            ListComboData.LIST_LIST_SHIFT_SUNDAY = list
-
-            If rep.ValidateCombobox(ListComboData) Then
-                args.IsValid = True
-            Else
-                args.IsValid = False
-                cboSunDay.ClearSelection()
-                rep.GetComboboxData(ListComboData)
-                FillDropDownList(cboSunDay, ListComboData.LIST_LIST_SHIFT_SUNDAY, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSunDay.SelectedValue)
-                cboSunDay.SelectedIndex = 0
-            End If
-
-            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    ''' <lastupdate>14/08/2017</lastupdate>
-    ''' <summary>
-    ''' Kiem tra gia tri dang đươc chọn cua combox CA THỨ BẢY có tồn tại hoặc bị ngừng ap dụng hay không? 
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Private Sub cvalSaturday_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalSaturday.ServerValidate
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim rep As New AttendanceRepository
-
-        Try
-            ValueCaThu7 = cboSaturday.SelectedValue
-            ListComboData = New ComboBoxDataDTO
-            Dim dto As New AT_SHIFTDTO
-            Dim list As New List(Of AT_SHIFTDTO)
-
-            dto.ID = Convert.ToDecimal(cboSaturday.SelectedValue)
-            list.Add(dto)
-
-            ListComboData.GET_LIST_SHIFT = True
-            ListComboData.LIST_LIST_SHIFT = list
-
-            args.IsValid = rep.ValidateCombobox(ListComboData)
-
-            If rep.ValidateCombobox(ListComboData) Then
-                args.IsValid = True
-            Else
-                args.IsValid = False
-
-                cboSaturday.ClearSelection()
-                rep.GetComboboxData(ListComboData)
-                FillDropDownList(cboSaturday, ListComboData.LIST_LIST_SHIFT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSaturday.SelectedValue)
-                cboSaturday.SelectedIndex = 0
-            End If
-
-            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
+ 
     Protected Sub rgDanhMuc_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgDanhMuc.SelectedIndexChanged
         Dim item As GridDataItem
 
@@ -928,9 +897,11 @@ Public Class ctrlDMCaLamViec
             item = CType(rgDanhMuc.SelectedItems(0), GridDataItem)
             IDSelect = item.GetDataKeyValue("ID").ToString
             Dim AT_SHIFT1 = (From p In AT_SHIFT Where p.ID = Decimal.Parse(IDSelect)).SingleOrDefault
-            
+
             rdHours_Start.SelectedDate = AT_SHIFT1.HOURS_START
             rdHours_Stop.SelectedDate = AT_SHIFT1.HOURS_STOP
+            cboNgayCongCa.SelectedValue = AT_SHIFT1.SHIFT_DAY
+            cboNgayCongCa.Text = AT_SHIFT1.SHIFT_DAY
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

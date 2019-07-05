@@ -18,8 +18,10 @@
     Public Property SUNDAY_NAME As String
     Public Property HOURS_START As Date?
     Public Property HOURS_STOP As Date?
-    Public Property BREAKS_FORM As Date?
-    Public Property BREAKS_TO As Date?
+    Public Property HOURS_STAR_CHECKIN As Date?
+    Public Property HOURS_STAR_CHECKOUT As Date?
+    Public Property START_MID_HOURS As Date?
+    Public Property END_MID_HOURS As Date?
     Public Property NOTE As String
     Public Property ACTFLG As String
     Public Property IS_NOON As Boolean?
@@ -30,4 +32,11 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property MINHOUSER As Decimal?
+    'hoaivv add 01/07/2019
+    Public Property ORG_ID As Decimal?
+    Public Property SHIFT_DAY As Decimal?
+    Public Property IS_HOURS_STOP As Boolean?
+    Public Property IS_MID_END As Boolean?
+    Public Property IS_HOURS_CHECKOUT As Boolean?
+
 End Class

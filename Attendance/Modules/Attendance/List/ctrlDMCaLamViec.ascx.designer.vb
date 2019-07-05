@@ -122,6 +122,15 @@ Partial Public Class ctrlDMCaLamViec
     Protected WithEvents cvalMaCong As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''cboCongTy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCongTy As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
     '''rdHours_Start control.
     '''</summary>
     '''<remarks>
@@ -149,40 +158,94 @@ Partial Public Class ctrlDMCaLamViec
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
-    '''cboSunDay control.
+    '''chkIS_HOURS_STOP control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboSunDay As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents chkIS_HOURS_STOP As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''cvalSunday control.
+    '''cboNgayCongCa control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cvalSunday As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents cboNgayCongCa As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cboSaturday control.
+    '''rdSTART_MID_HOURS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboSaturday As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents rdSTART_MID_HOURS As Global.Telerik.Web.UI.RadTimePicker
 
     '''<summary>
-    '''cvalSaturday control.
+    '''rdEND_MID_HOURS control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cvalSaturday As Global.System.Web.UI.WebControls.CustomValidator
+    Protected WithEvents rdEND_MID_HOURS As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
+    '''CompareValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator2 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''chkIS_MID_END control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIS_MID_END As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rdHOURS_STAR_CHECKIN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdHOURS_STAR_CHECKIN As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
+    '''rdHOURS_STAR_CHECKOUT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdHOURS_STAR_CHECKOUT As Global.Telerik.Web.UI.RadTimePicker
+
+    '''<summary>
+    '''CompareValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CompareValidator3 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''chkIS_HOURS_CHECKOUT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIS_HOURS_CHECKOUT As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''txtNote control.

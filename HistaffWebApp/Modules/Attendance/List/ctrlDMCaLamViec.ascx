@@ -4,18 +4,16 @@
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
     @media screen and (-webkit-min-device-pixel-ratio:0) {
-        #ctl00_MainContent_ctrlDMCaLamViec_txtNote
-        {       
+        #ctl00_MainContent_ctrlDMCaLamViec_txtNote {
             height: 58px;
-        } 
+        }
     }
-    
+
     #ctl00_MainContent_ctrlDMCaLamViec_cboMaCong_DropDown .rcbWidth,
     #ctl00_MainContent_ctrlDMCaLamViec_cboSunDay_DropDown .rcbWidth,
-    #ctl00_MainContent_ctrlDMCaLamViec_cboSaturday_DropDown .rcbWidth
-    {
-        width : 178px !important;
-    }   
+    #ctl00_MainContent_ctrlDMCaLamViec_cboSaturday_DropDown .rcbWidth {
+        width: 178px !important;
+    }
 </style>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
     <tlk:RadPane ID="RadPane1" runat="server" Height="235px" Scrolling="None">
@@ -58,6 +56,14 @@
                         ToolTip="<%$ Translate: Mã công không tồn tại hoặc đã ngừng áp dụng. %>">
                     </asp:CustomValidator>
                 </td>
+                 <td class="lb">
+                    <%# Translate("Công ty")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboCongTy" runat="server" Width="180px">
+                    </tlk:RadComboBox>
+                   
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -76,40 +82,93 @@
                     <tlk:RadTimePicker runat="server" ID="rdHours_Stop">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare ="rdHours_Start" 
-                    ControlToValidate ="rdHours_Stop" Operator ="GreaterThan" 
-                    ErrorMessage = "<%$ Translate: Thiết lập giờ cho ca làm việc không hợp lệ %>"
-                    ToolTip="<%$ Translate: Thiết lập giờ cho ca làm việc không hợp lệ %>">
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="rdHours_Start"
+                        ControlToValidate="rdHours_Stop" Operator="GreaterThan"
+                        ErrorMessage="<%$ Translate: Thiết lập giờ cho ca làm việc không hợp lệ %>"
+                        ToolTip="<%$ Translate: Thiết lập giờ cho ca làm việc không hợp lệ %>">
                     </asp:CompareValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Kiểu công chủ nhật")%>
+                    <asp:CheckBox ID="chkIS_HOURS_STOP" runat="server" />
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboSunDay" runat="server" Width="180px"></tlk:RadComboBox>
-                    <asp:CustomValidator ID="cvalSunday" ControlToValidate="cboSunDay" runat="server" Enabled="false"
-                        ErrorMessage="<%$ Translate: Kiểu công chủ nhật không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Kiểu công chủ nhật không tồn tại hoặc đã ngừng áp dụng. %>">
-                    </asp:CustomValidator>
+                    <%# Translate("Qua ngày hôm sau")%>
+                </td>
+                <td class="lb">
+                    <%# Translate("Ngày công ca")%>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboNgayCongCa" runat="server" Width="180px">
+                    </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Kiểu công thứ bẩy")%>
+                    <%# Translate("Bắt đầu nghỉ giữa ca")%>
                 </td>
-                <td colspan="5">
-                    <tlk:RadComboBox ID="cboSaturday" runat="server" Width="180px"></tlk:RadComboBox>
-                    <asp:CustomValidator ID="cvalSaturday" ControlToValidate="cboSaturday" runat="server" Enabled="false"
-                        ErrorMessage="<%$ Translate: Kiểu công thứ bẩy không tồn tại hoặc đã ngừng áp dụng. %>"
-                        ToolTip="<%$ Translate: Kiểu công thứ bẩy không tồn tại hoặc đã ngừng áp dụng. %>">
-                    </asp:CustomValidator>
+                <td>
+                    <tlk:RadTimePicker runat="server" ID="rdSTART_MID_HOURS">
+                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
+                    </tlk:RadTimePicker>
+
                 </td>
+                <td class="lb">
+                    <%# Translate("Kết thúc nghỉ giữa ca")%>
+                </td>
+                <td>
+                    <tlk:RadTimePicker runat="server" ID="rdEND_MID_HOURS">
+                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
+                    </tlk:RadTimePicker>
+                    <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="rdSTART_MID_HOURS"
+                        ControlToValidate="rdEND_MID_HOURS" Operator="GreaterThan"
+                        ErrorMessage="<%$ Translate: Thiết lập giờ nghỉ giữa ca không hợp lệ %>"
+                        ToolTip="<%$ Translate: Thiết lập giờ nghỉ giữa ca không hợp lệ %>">
+                    </asp:CompareValidator>
+                </td>
+                <td class="lb">
+                    <asp:CheckBox ID="chkIS_MID_END" runat="server" />
+                </td>
+                <td>
+                    <%# Translate("Qua ngày hôm sau")%>
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td class="lb">
+                    <%# Translate("Bắt đầu nhận quẹt thẻ")%>
+                </td>
+                <td>
+                    <tlk:RadTimePicker runat="server" ID="rdHOURS_STAR_CHECKIN">
+                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
+                    </tlk:RadTimePicker>
+
+                </td>
+                <td class="lb">
+                    <%# Translate("Kết thúc nhận quẹt thẻ")%>
+                </td>
+                <td>
+                    <tlk:RadTimePicker runat="server" ID="rdHOURS_STAR_CHECKOUT">
+                        <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
+                    </tlk:RadTimePicker>
+                    <asp:CompareValidator ID="CompareValidator3" runat="server" ControlToCompare="rdHOURS_STAR_CHECKIN"
+                        ControlToValidate="rdHOURS_STAR_CHECKOUT" Operator="GreaterThan"
+                        ErrorMessage="<%$ Translate: Thiết lập giờ quẹt thẻ không hợp lệ %>"
+                        ToolTip="<%$ Translate: Thiết lập giờ quẹt thẻ không hợp lệ %>">
+                    </asp:CompareValidator>
+                </td>
+                <td class="lb">
+                    <asp:CheckBox ID="chkIS_HOURS_CHECKOUT" runat="server" />
+                </td>
+                <td>
+                    <%# Translate("Qua ngày hôm sau")%>
+                </td>
+                <td colspan="2"></td>
             </tr>
             <tr>
                 <td class="lb">
                     <%# Translate("Mô tả")%>
                 </td>
-                <td colspan="5">
+                <td colspan="7">
                     <tlk:RadTextBox ID="txtNote" runat="server" SkinID="Textbox1023" Width="100%">
                     </tlk:RadTextBox>
                 </td>
@@ -118,12 +177,12 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid PageSize="50" ID="rgDanhMuc" runat="server" AutoGenerateColumns="False"
-            AllowPaging="True" Height="100%" AllowSorting="True" 
+            AllowPaging="True" Height="100%" AllowSorting="True"
             AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,MANUAL_NAME,MANUAL_ID,HOURS_START,HOURS_STOP,BREAKS_FORM,BREAKS_TO,NOTE,SUNDAY,IS_NOON,SATURDAY,MINHOUSER ">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,MANUAL_NAME,MANUAL_ID,HOURS_START,HOURS_STOP,BREAKS_FORM,BREAKS_TO,NOTE,SUNDAY,IS_NOON,SATURDAY,MINHOUSER,ORG_ID,SHIFT_DAY ">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -138,6 +197,10 @@
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công %>" DataField="MANUAL_CODE"
                         UniqueName="MANUAL_CODE" SortExpression="MANUAL_CODE" HeaderStyle-Width="100px" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_ID"
+                        UniqueName="ORG_ID" SortExpression="ORG_ID" HeaderStyle-Width="200px" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày công ca %>" DataField="SHIFT_DAY"
+                        UniqueName="SHIFT_DAY" SortExpression="SHIFT_DAY" DataFormatString="{0:C}" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả mã công %>" DataField="MANUAL_NAME"
                         UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" HeaderStyle-Width="200px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã kiểu công chủ nhật %>" DataField="SUNDAY_CODE"
@@ -163,14 +226,14 @@
                 <HeaderStyle Width="100px" />
             </MasterTableView>
             <ClientSettings EnableRowHoverStyle="true" EnablePostBackOnRowClick="true">
-                        <Selecting AllowRowSelect="True" />
-                        <ClientEvents OnGridCreated="GridCreated" />
-                        <ClientEvents OnCommand="ValidateFilter" />
+                <Selecting AllowRowSelect="True" />
+                <ClientEvents OnGridCreated="GridCreated" />
+                <ClientEvents OnCommand="ValidateFilter" />
             </ClientSettings>
         </tlk:RadGrid>
     </tlk:RadPane>
 </tlk:RadSplitter>
-<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var splitterID = 'ctl00_MainContent_ctrlDMCaLamViec_RadSplitter3';
@@ -196,7 +259,7 @@
         function GridCreated(sender, eventArgs) {
             registerOnfocusOut(splitterID);
         }
-                       
+
         function OnClientButtonClicking(sender, args) {
             var item = args.get_item();
             if (args.get_item().get_commandName() == "EXPORT") {
@@ -211,7 +274,7 @@
                     return;
                 }
                 enableAjax = false;
-            } 
+            }
 
             if (args.get_item().get_commandName() == "SAVE") {
                 // Nếu nhấn nút SAVE thì resize
@@ -219,7 +282,7 @@
                     ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgDanhMuc', 0, 0, 7);
                 else
                     ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
-            } 
+            }
         }
 
         function onRequestStart(sender, eventArgs) {

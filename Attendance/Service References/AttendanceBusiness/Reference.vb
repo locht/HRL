@@ -8842,12 +8842,6 @@ Namespace AttendanceBusiness
         Private APPLY_LAW_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BREAKS_FORMField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private BREAKS_TOField As System.Nullable(Of Date)
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -8860,13 +8854,31 @@ Namespace AttendanceBusiness
         Private CREATED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_MID_HOURSField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HOURS_STARTField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HOURS_STAR_CHECKINField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HOURS_STAR_CHECKOUTField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HOURS_STOPField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HOURS_CHECKOUTField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HOURS_STOPField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_MID_ENDField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_NOONField As System.Nullable(Of Boolean)
@@ -8921,6 +8933,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SHIFT_DAYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_MID_HOURSField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SUNDAYField As System.Nullable(Of Decimal)
@@ -8981,32 +8996,6 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BREAKS_FORM() As System.Nullable(Of Date)
-            Get
-                Return Me.BREAKS_FORMField
-            End Get
-            Set
-                If (Me.BREAKS_FORMField.Equals(value) <> true) Then
-                    Me.BREAKS_FORMField = value
-                    Me.RaisePropertyChanged("BREAKS_FORM")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property BREAKS_TO() As System.Nullable(Of Date)
-            Get
-                Return Me.BREAKS_TOField
-            End Get
-            Set
-                If (Me.BREAKS_TOField.Equals(value) <> true) Then
-                    Me.BREAKS_TOField = value
-                    Me.RaisePropertyChanged("BREAKS_TO")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property CODE() As String
             Get
                 Return Me.CODEField
@@ -9059,6 +9048,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_MID_HOURS() As System.Nullable(Of Date)
+            Get
+                Return Me.END_MID_HOURSField
+            End Get
+            Set
+                If (Me.END_MID_HOURSField.Equals(value) <> true) Then
+                    Me.END_MID_HOURSField = value
+                    Me.RaisePropertyChanged("END_MID_HOURS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property HOURS_START() As System.Nullable(Of Date)
             Get
                 Return Me.HOURS_STARTField
@@ -9067,6 +9069,32 @@ Namespace AttendanceBusiness
                 If (Me.HOURS_STARTField.Equals(value) <> true) Then
                     Me.HOURS_STARTField = value
                     Me.RaisePropertyChanged("HOURS_START")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HOURS_STAR_CHECKIN() As System.Nullable(Of Date)
+            Get
+                Return Me.HOURS_STAR_CHECKINField
+            End Get
+            Set
+                If (Me.HOURS_STAR_CHECKINField.Equals(value) <> true) Then
+                    Me.HOURS_STAR_CHECKINField = value
+                    Me.RaisePropertyChanged("HOURS_STAR_CHECKIN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HOURS_STAR_CHECKOUT() As System.Nullable(Of Date)
+            Get
+                Return Me.HOURS_STAR_CHECKOUTField
+            End Get
+            Set
+                If (Me.HOURS_STAR_CHECKOUTField.Equals(value) <> true) Then
+                    Me.HOURS_STAR_CHECKOUTField = value
+                    Me.RaisePropertyChanged("HOURS_STAR_CHECKOUT")
                 End If
             End Set
         End Property
@@ -9093,6 +9121,45 @@ Namespace AttendanceBusiness
                 If (Me.IDField.Equals(value) <> true) Then
                     Me.IDField = value
                     Me.RaisePropertyChanged("ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HOURS_CHECKOUT() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_HOURS_CHECKOUTField
+            End Get
+            Set
+                If (Me.IS_HOURS_CHECKOUTField.Equals(value) <> true) Then
+                    Me.IS_HOURS_CHECKOUTField = value
+                    Me.RaisePropertyChanged("IS_HOURS_CHECKOUT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HOURS_STOP() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_HOURS_STOPField
+            End Get
+            Set
+                If (Me.IS_HOURS_STOPField.Equals(value) <> true) Then
+                    Me.IS_HOURS_STOPField = value
+                    Me.RaisePropertyChanged("IS_HOURS_STOP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_MID_END() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_MID_ENDField
+            End Get
+            Set
+                If (Me.IS_MID_ENDField.Equals(value) <> true) Then
+                    Me.IS_MID_ENDField = value
+                    Me.RaisePropertyChanged("IS_MID_END")
                 End If
             End Set
         End Property
@@ -9327,6 +9394,19 @@ Namespace AttendanceBusiness
                 If (Me.SHIFT_DAYField.Equals(value) <> true) Then
                     Me.SHIFT_DAYField = value
                     Me.RaisePropertyChanged("SHIFT_DAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_MID_HOURS() As System.Nullable(Of Date)
+            Get
+                Return Me.START_MID_HOURSField
+            End Get
+            Set
+                If (Me.START_MID_HOURSField.Equals(value) <> true) Then
+                    Me.START_MID_HOURSField = value
+                    Me.RaisePropertyChanged("START_MID_HOURS")
                 End If
             End Set
         End Property
