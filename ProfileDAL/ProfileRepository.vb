@@ -3139,7 +3139,7 @@ Public Class ProfileRepository
                                                        .SIGN_TITLE_NAME = p.sign_title.NAME_VN,
                                                        .SIGN_NAME2 = p.sign2.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN,
-                                                       .SIGN_TITLE_NAME_STOP = p.sign_stop.FULLNAME_VN
+                                                       .SIGN_NAME_STOP = p.sign_stop.FULLNAME_VN
                                                        })
 
             lstEmp = lstEmp.OrderBy(Sorts)

@@ -3623,13 +3623,13 @@ Namespace ProfileBusiness
         Private SIGN_NAME2Field As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SIGN_NAME_STOPField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_TITLE_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SIGN_TITLE_NAME2Field As String
-        
-        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private SIGN_TITLE_NAME_STOPField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_DATEField As System.Nullable(Of Date)
@@ -4296,6 +4296,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SIGN_NAME_STOP() As String
+            Get
+                Return Me.SIGN_NAME_STOPField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SIGN_NAME_STOPField, value) <> true) Then
+                    Me.SIGN_NAME_STOPField = value
+                    Me.RaisePropertyChanged("SIGN_NAME_STOP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SIGN_TITLE_NAME() As String
             Get
                 Return Me.SIGN_TITLE_NAMEField
@@ -4317,19 +4330,6 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.SIGN_TITLE_NAME2Field, value) <> true) Then
                     Me.SIGN_TITLE_NAME2Field = value
                     Me.RaisePropertyChanged("SIGN_TITLE_NAME2")
-                End If
-            End Set
-        End Property
-        
-        <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property SIGN_TITLE_NAME_STOP() As String
-            Get
-                Return Me.SIGN_TITLE_NAME_STOPField
-            End Get
-            Set
-                If (Object.ReferenceEquals(Me.SIGN_TITLE_NAME_STOPField, value) <> true) Then
-                    Me.SIGN_TITLE_NAME_STOPField = value
-                    Me.RaisePropertyChanged("SIGN_TITLE_NAME_STOP")
                 End If
             End Set
         End Property
