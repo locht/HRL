@@ -39,6 +39,16 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Function GetSalaryLevelComboNotByGroup(ByVal isBlank As Boolean) As DataTable Implements ServiceContracts.IProfileBusiness.GetSalaryLevelComboNotByGroup
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetSalaryLevelComboNotByGroup(isBlank)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "Danh muc"

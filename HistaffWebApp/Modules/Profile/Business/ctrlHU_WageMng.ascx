@@ -13,7 +13,7 @@
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane3" runat="server" Height="35px" Scrolling="None">
-                <tlk:RadToolBar ID="tbarWorkings" runat="server" OnClientButtonClicking="clientButtonClicking" />
+                <tlk:RadToolBar ID="tbarWorkings" runat="server" OnClientButtonClicking="OnClientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane1" runat="server" Height="50px" Scrolling="None">
                 <table class="table-form">
@@ -54,7 +54,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
                         <Columns>
-                          <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                           <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
@@ -64,6 +64,18 @@
                                 UniqueName="EMPLOYEE_NAME" />
                             <tlk:GridBoundColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
                                 UniqueName="ORG_NAME" />
+                            <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="ORG_NAME" SortExpression="ORG_NAME"
+                                UniqueName="ORG_NAME">
+                                <HeaderStyle Width="200px" />
+                                <ItemTemplate>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ORG_NAME") %>'>
+                                    </asp:Label>
+                                    <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
+                                        RelativeTo="Element" Position="BottomCenter">
+                                        <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
+                                    </tlk:RadToolTip>
+                                </ItemTemplate>
+                            </tlk:GridTemplateColumn>
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" SortExpression="TITLE_NAME"
                                 UniqueName="TITLE_NAME" />
                             <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE" ItemStyle-HorizontalAlign="Center"
@@ -180,7 +192,7 @@
             return 0;
         }
 
-        function clientButtonClicking(sender, args) {
+        function OnClientButtonClicking(sender, args) {
             var m;
             if (args.get_item().get_commandName() == 'CREATE') {
                 OpenWage();
@@ -198,6 +210,9 @@
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == "EXPORT") {
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             }
         }

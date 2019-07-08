@@ -36,6 +36,16 @@ Partial Public Class ProfileRepository
             End Try
         End Using
     End Function
+    Function GetSalaryLevelComboNotByGroup(ByVal isBlank As Boolean) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetSalaryLevelComboNotByGroup(isBlank)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
 #End Region
 #Region "List"
 

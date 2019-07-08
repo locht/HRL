@@ -6,6 +6,8 @@ Imports Telerik.Web.UI
 Imports System.IO
 Imports HistaffWebAppResources.My.Resources
 Imports WebAppLog
+Imports Aspose.Cells
+
 Public Class ctrlHU_WageMng
     Inherits Common.CommonView
 
@@ -287,6 +289,29 @@ Public Class ctrlHU_WageMng
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_APPROVE_BATCH
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
+                Case CommonMessage.TOOLBARITEM_NEXT
+                    Dim db As New ProfileRepository
+                    Dim ds As DataSet = New DataSet
+                    Dim salaryType = (From p In db.GetSalaryTypeList(Date.Now, False)
+                                      Select New With {.NAME = p.Item("NAME"), .ID = p.Item("ID")}).ToList.ToTable
+                    salaryType.TableName = "SALARY_TYPE"
+                    Dim taxQuery = (From p In db.GetOtherList(OtherTypes.TaxTable)
+                                    Select New With {.ID = p.Item("NAME"), .NAME = p.Item("ID")}).ToList
+                    Dim taxTable = taxQuery.ToTable
+                    taxTable.TableName = "TAX_TABLE"
+                    Dim salaryGroupQuery = (From p In db.GetSalaryGroupCombo(Date.Now, False)
+                                    Select New With {.ID = p.Item("NAME"), .NAME = p.Item("ID")}).ToList
+                    Dim salaryGroup = salaryGroupQuery.ToTable
+                    salaryGroup.TableName = "SALARY_GROUP"
+                    Dim dtDanhMucNgach = FillDataToDataTable(salaryGroup, "DANHMUCNGACH")
+                    Dim salaryLevel = db.GetSalaryLevelComboNotByGroup(False)
+                    Dim dtDanhMucBac = FillDataToDataTable(salaryLevel, "DANHMUCBAC")
+                    ds.Tables.Add(salaryType)
+                    ds.Tables.Add(taxTable)
+                    ds.Tables.Add(salaryGroup)
+                    ds.Tables.Add(dtDanhMucNgach)
+                    ds.Tables.Add(dtDanhMucBac)
+                    ExportExcelTemplate(Server.MapPath("~/ReportTemplates/Payroll/Business/TEMP_IMPORT_HOSOLUONG.xlsx"), "Template import hồ sơ lương", ds, Response)
             End Select
 
             UpdateControlState()
@@ -501,6 +526,96 @@ Public Class ctrlHU_WageMng
         End Try
     End Function
 
+    Private Function ExportExcelTemplate(ByVal filePath As String, ByVal fileName As String,
+                                        ByVal dsData As DataSet,
+                                        ByVal Response As System.Web.HttpResponse,
+                                        Optional ByRef _error As String = "",
+                                        Optional ByVal type As ExportType = ExportType.Excel) As Boolean
+        Dim designer As WorkbookDesigner
+        Try
+            If Not File.Exists(filePath) Then
+                _error = 1
+                Return False
+            End If
+            If dsData Is Nothing OrElse (dsData IsNot Nothing AndAlso dsData.Tables.Count = 0) Then
+                _error = 2
+                Return False
+            End If
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            Dim danhMucChung As Worksheet = designer.Workbook.Worksheets(1)
+            danhMucChung.Cells.ImportDataTable(dsData.Tables("SALARY_TYPE"), False, 1, 0)
+            danhMucChung.Cells.ImportDataTable(dsData.Tables("TAX_TABLE"), False, 1, 2, False)
+            danhMucChung.Cells.ImportDataTable(dsData.Tables("SALARY_GROUP"), False, 1, 4, False)
+            Dim danhMucNgach As Worksheet = designer.Workbook.Worksheets(2)
+            danhMucNgach.Cells.ImportDataTable(dsData.Tables("DANHMUCNGACH"), False, 0, 0)
+            Dim danhMucBac As Worksheet = designer.Workbook.Worksheets(3)
+            danhMucBac.Cells.ImportDataTable(dsData.Tables("DANHMUCBAC"), False, 0, 0)
+            designer.SetDataSource(dsData)
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            With designer.Workbook
+                .CalculateFormula()
+                Select Case type
+                    Case ExportType.Excel
+                        .Save(Response, fileName & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+                    Case ExportType.Pdf
+                        .Save(Response, fileName & ".pdf", ContentDisposition.Attachment, New OoxmlSaveOptions(FileFormatType.Pdf))
+                End Select
+            End With
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Private Function FillDataToDataTable(ByVal dt As DataTable, ByVal tableName As String) As DataTable
+        Try
+            Dim db As New ProfileRepository
+            Dim dtDanhMuc As New DataTable
+            dtDanhMuc.TableName = tableName
+            Dim colCountRank As Integer = 2
+            For Each row As DataRow In dt.Rows
+                Dim rowCountRank As Integer = 1
+                dtDanhMuc.Columns.Add(row("NAME"))
+                dtDanhMuc.Columns.Add(row("ID"))
+                If dtDanhMuc.Rows.Count > 0 Then
+                    dtDanhMuc.Rows(0)(colCountRank) = row("NAME")
+                    dtDanhMuc.Rows(0)(colCountRank + 1) = row("ID")
+                    Dim dtChild = If(tableName = "DANHMUCBAC", db.GetSalaryRankCombo(row("ID"), False), db.GetSalaryLevelCombo(row("ID"), False))
+                    For Each rowLevel As DataRow In dtChild.Rows
+                        If dtDanhMuc.Rows.Count > rowCountRank Then
+                            dtDanhMuc.Rows(rowCountRank)(colCountRank) = rowLevel("NAME")
+                            dtDanhMuc.Rows(rowCountRank)(colCountRank + 1) = rowLevel("ID")
+                        Else
+                            dtDanhMuc.Rows.Add()
+                            dtDanhMuc.Rows(rowCountRank)(colCountRank) = rowLevel("NAME")
+                            dtDanhMuc.Rows(rowCountRank)(colCountRank + 1) = rowLevel("ID")
+                        End If
+                        rowCountRank += 1
+                    Next
+                    colCountRank += 2
+                Else
+                    dtDanhMuc.Rows.Add(row("NAME"), row("ID"))
+                    Dim dtChild = If(tableName = "DANHMUCBAC", db.GetSalaryRankCombo(row("ID"), False), db.GetSalaryLevelCombo(row("ID"), False))
+                    For Each rowLevel As DataRow In dtChild.Rows
+                        If dtDanhMuc.Rows.Count > rowCountRank Then
+                            dtDanhMuc.Rows(rowCountRank)(0) = rowLevel("NAME")
+                            dtDanhMuc.Rows(rowCountRank)(1) = rowLevel("ID")
+                        Else
+                            dtDanhMuc.Rows.Add()
+                            dtDanhMuc.Rows(rowCountRank)(0) = rowLevel("NAME")
+                            dtDanhMuc.Rows(rowCountRank)(1) = rowLevel("ID")
+                        End If
+                        rowCountRank += 1
+                    Next
+                End If
+            Next
+            Return dtDanhMuc
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 #Region "Utility"
     Public Function GetUiResx(ByVal input) As String

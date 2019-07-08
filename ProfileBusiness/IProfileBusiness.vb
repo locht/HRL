@@ -40,6 +40,8 @@ Namespace ProfileBusiness.ServiceContracts
         Function GetSalaryRankCombo(ByVal SalaryLevel As Decimal, ByVal isBlank As Boolean) As DataTable
         <OperationContract()>
         Function GetSalaryLevelCombo(ByVal SalaryGroup As Decimal, ByVal isBlank As Boolean) As DataTable
+        <OperationContract()>
+        Function GetSalaryLevelComboNotByGroup(ByVal isBlank As Boolean) As DataTable
 #End Region
         <OperationContract()>
         Function Calculator_Salary(ByVal data_in As String) As DataTable
