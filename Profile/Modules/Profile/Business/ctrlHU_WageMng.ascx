@@ -13,7 +13,7 @@
     <tlk:RadPane ID="MainPane" runat="server" Scrolling="None">
         <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane3" runat="server" Height="35px" Scrolling="None">
-                <tlk:RadToolBar ID="tbarWorkings" runat="server" OnClientButtonClicking="clientButtonClicking" />
+                <tlk:RadToolBar ID="tbarWorkings" runat="server" OnClientButtonClicking="OnClientButtonClicking" />
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane1" runat="server" Height="50px" Scrolling="None">
                 <table class="table-form">
@@ -192,7 +192,7 @@
             return 0;
         }
 
-        function clientButtonClicking(sender, args) {
+        function OnClientButtonClicking(sender, args) {
             var m;
             if (args.get_item().get_commandName() == 'CREATE') {
                 OpenWage();
@@ -210,6 +210,9 @@
                 enableAjax = false;
             }
             if (args.get_item().get_commandName() == "EXPORT") {
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == "NEXT") {
                 enableAjax = false;
             }
         }
