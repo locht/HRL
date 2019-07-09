@@ -435,14 +435,16 @@ Public Class ctrlDMCaLamViec
             Dim dic As New Dictionary(Of String, Control)
             dic.Add("CODE", txtCode)
             dic.Add("NAME_VN", txtNameVN)
-           
+
             dic.Add("MANUAL_ID", cboMaCong)
             'dic.Add("HOURS_START", rdHours_Start)
             'dic.Add("HOURS_STOP", rdHours_Stop)
             dic.Add("NOTE", txtNote)
             dic.Add("ORG_ID", cboCongTy)
             dic.Add("SHIFT_DAY", cboNgayCongCa)
-
+            dic.Add("IS_HOURS_STOP", chkIS_HOURS_STOP)
+            dic.Add("IS_HOURS_CHECKOUT", chkIS_HOURS_CHECKOUT)
+            dic.Add("IS_MID_END", chkIS_MID_END)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -485,18 +487,31 @@ Public Class ctrlDMCaLamViec
             FillRadCombobox(cboCongTy, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
 
 
-            Dim item1 As New RadComboBoxItem()
-            item1.Text = "0.5"
-            item1.Value = 0.5
-            cboNgayCongCa.Items.Add(item1)
-            Dim item2 As New RadComboBoxItem()
-            item2.Text = "1"
-            item2.Value = 1
-            cboNgayCongCa.Items.Add(item2)
-            Dim item3 As New RadComboBoxItem()
-            item3.Text = "1.5"
-            item3.Value = 1.5
-            cboNgayCongCa.Items.Add(item3)
+            'Dim item1 As New RadComboBoxItem()
+            'item1.Text = "0.5"
+            'item1.Value = 0.5
+            'cboNgayCongCa.Items.Add(item1)
+            'Dim item2 As New RadComboBoxItem()
+            'item2.Text = "1"
+            'item2.Value = 1.0
+            'cboNgayCongCa.Items.Add(item2)
+            'Dim item3 As New RadComboBoxItem()
+            'item3.Text = "1.5"
+            'item3.Value = 1.5
+            'cboNgayCongCa.Items.Add(item3)
+
+            Dim table As New DataTable
+
+            ' Create four typed columns in the DataTable.
+            table.Columns.Add("ID", GetType(Double))
+            table.Columns.Add("NAME", GetType(String))
+            
+
+            ' Add five rows with those columns filled in the DataTable.
+            table.Rows.Add(0.5, "0.5")
+            table.Rows.Add(1, "1")
+            table.Rows.Add(1.5, "1.5")
+            FillRadCombobox(cboNgayCongCa, table, "NAME", "ID")
             'end
             Dim dtData As DataTable
             dtData = rep.GetAT_TIME_MANUALBINCOMBO()
@@ -644,17 +659,20 @@ Public Class ctrlDMCaLamViec
                         'If ValueCaThu7 <> 0 Then
                         '    objShift.SATURDAY = ValueCaThu7
                         'End If
-                        objShift.SUNDAY = ValueKieuCongCN
-                        objShift.SATURDAY = ValueCaThu7
+                        'objShift.SUNDAY = ValueKieuCongCN
+                        'objShift.SATURDAY = ValueCaThu7
                         objShift.HOURS_START = rdHours_Start.SelectedDate
                         objShift.HOURS_STOP = rdHours_Stop.SelectedDate
-                        objShift.HOURS_STOP = rdHours_Stop.SelectedDate
-                        objShift.HOURS_START = rdHours_Start.SelectedDate
-                        objShift.HOURS_STOP = rdHours_Stop.SelectedDate
+                        objShift.START_MID_HOURS = rdSTART_MID_HOURS.SelectedDate
+                        objShift.END_MID_HOURS = rdEND_MID_HOURS.SelectedDate
+                        objShift.HOURS_STAR_CHECKIN = rdHOURS_STAR_CHECKIN.SelectedDate
+                        objShift.HOURS_STAR_CHECKOUT = rdHOURS_STAR_CHECKOUT.SelectedDate
+                        objShift.IS_HOURS_STOP = chkIS_HOURS_STOP.Checked
+                        objShift.IS_MID_END = chkIS_MID_END.Checked
+                        objShift.IS_HOURS_CHECKOUT = chkIS_HOURS_CHECKOUT.Checked
                         objShift.NOTE = txtNote.Text.Trim
                         'hoaivv
                         objShift.ORG_ID = cboCongTy.SelectedValue
-                        Dim strValue As Double = Double.Parse(cboNgayCongCa.SelectedValue)
                         objShift.SHIFT_DAY = Convert.ToDecimal(cboNgayCongCa.SelectedValue)
 
                         Select Case CurrentState
@@ -703,7 +721,7 @@ Public Class ctrlDMCaLamViec
                                     IDSelect = objShift.ID
                                     Refresh("UpdateView")
                                     UpdateControlState()
-                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop,txtNote)
+                                    ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote)
                                 Else
                                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                 End If
@@ -888,7 +906,7 @@ Public Class ctrlDMCaLamViec
     ''' <param name="source"></param>
     ''' <param name="args"></param>
     ''' <remarks></remarks>
- 
+
     Protected Sub rgDanhMuc_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgDanhMuc.SelectedIndexChanged
         Dim item As GridDataItem
 
@@ -896,11 +914,14 @@ Public Class ctrlDMCaLamViec
             item = CType(rgDanhMuc.SelectedItems(0), GridDataItem)
             IDSelect = item.GetDataKeyValue("ID").ToString
             Dim AT_SHIFT1 = (From p In AT_SHIFT Where p.ID = Decimal.Parse(IDSelect)).SingleOrDefault
-
+            Dim value As String = Replace(AT_SHIFT1.SHIFT_DAY.ToString(), ",", ".")
+            cboNgayCongCa.SelectedValue = value
             rdHours_Start.SelectedDate = AT_SHIFT1.HOURS_START
             rdHours_Stop.SelectedDate = AT_SHIFT1.HOURS_STOP
-            cboNgayCongCa.SelectedValue = AT_SHIFT1.SHIFT_DAY
-            cboNgayCongCa.Text = AT_SHIFT1.SHIFT_DAY
+            rdSTART_MID_HOURS.SelectedDate = AT_SHIFT1.START_MID_HOURS
+            rdEND_MID_HOURS.SelectedDate = AT_SHIFT1.END_MID_HOURS
+            rdHOURS_STAR_CHECKIN.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKIN
+            rdHOURS_STAR_CHECKOUT.SelectedDate = AT_SHIFT1.HOURS_STAR_CHECKOUT
 
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

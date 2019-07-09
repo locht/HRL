@@ -1583,6 +1583,7 @@ Partial Public Class AttendanceRepository
                                     Optional ByVal Sorts As String = "CREATED_DATE desc") As List(Of AT_SHIFTDTO)
         Try
             Dim userNameID As Decimal = _filter.SHIFT_DAY
+            Dim check As String = "Dùng chung"
             Dim lstOrgID = New List(Of Decimal)
             lstOrgID = (From p In Context.SE_USER_ORG_ACCESS
                 From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
@@ -1590,8 +1591,8 @@ Partial Public Class AttendanceRepository
                 Select p.ORG_ID).ToList
 
             Dim query = From p In Context.AT_SHIFT
-                        From t1 In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.SATURDAY).DefaultIfEmpty
-                        From t2 In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.SUNDAY).DefaultIfEmpty
+                        Group Join g In Context.HU_ORGANIZATION On p.ORG_ID Equals g.ID Into g_olg = Group
+                        From olg In g_olg.DefaultIfEmpty
                         From Dsvm In Context.AT_DMVS.Where(Function(f) f.ID = p.PENALIZEA).DefaultIfEmpty
                         From mn In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty()
 
@@ -1606,16 +1607,15 @@ Partial Public Class AttendanceRepository
                                        .PENALIZEA = p.p.PENALIZEA,
                                        .PENALIZEA_NAME = p.Dsvm.NAME_VN,
                                        .SATURDAY = p.p.SATURDAY,
-                                       .SATURDAY_CODE = p.t1.CODE,
-                                       .SATURDAY_NAME = p.t1.NAME,
                                        .SUNDAY = p.p.SUNDAY,
-                                       .SUNDAY_CODE = p.t2.CODE,
-                                       .SUNDAY_NAME = p.t2.NAME,
                                        .HOURS_START = p.p.HOURS_START,
                                        .HOURS_STOP = p.p.HOURS_STOP,
+                                       .START_MID_HOURS = p.p.START_MID_HOURS,
+                                       .END_MID_HOURS = p.p.END_MID_HOURS,
                                        .HOURS_STAR_CHECKIN = p.p.HOURS_STAR_CHECKIN,
                                        .HOURS_STAR_CHECKOUT = p.p.HOURS_STAR_CHECKOUT,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng áp dụng"),
+                                       .ORG_NAME = If(p.p.ORG_ID = -1, check, p.olg.NAME_VN),
                                        .NOTE = p.p.NOTE,
                                        .IS_NOON = p.p.IS_NOON,
                                        .MINHOUSER = p.p.MINHOURS,
@@ -1624,7 +1624,9 @@ Partial Public Class AttendanceRepository
                                        .IS_HOURS_STOP = p.p.IS_HOURS_STOP,
                                        .IS_MID_END = p.p.IS_MID_END,
                                        .IS_HOURS_CHECKOUT = p.p.IS_HOURS_CHECKOUT,
-                                       .CREATED_DATE = p.p.CREATED_DATE})
+                                       .CREATED_DATE = p.p.CREATED_DATE}).AsQueryable
+
+            '.ORG_NAME = If(p.p.ORG_ID.Value = -1, "Dùng chung", p.o.NAME_EN),
             'hoavv add 3rc
             If lstOrgID.Count > 0 And userNameID <> 1 Then
                 lst = lst.Where(Function(f) (lstOrgID.Contains(f.ORG_ID) Or f.ORG_ID = -1))
@@ -1706,6 +1708,8 @@ Partial Public Class AttendanceRepository
             objTitleData.MANUAL_ID = objTitle.MANUAL_ID
             objTitleData.HOURS_START = objTitle.HOURS_START
             objTitleData.HOURS_STOP = objTitle.HOURS_STOP
+            objTitleData.END_MID_HOURS = objTitle.END_MID_HOURS
+            objTitleData.START_MID_HOURS = objTitle.START_MID_HOURS
             objTitleData.HOURS_STAR_CHECKIN = objTitle.HOURS_STAR_CHECKIN
             objTitleData.HOURS_STAR_CHECKOUT = objTitle.HOURS_STAR_CHECKOUT
             objTitleData.NOTE = objTitle.NOTE
@@ -1785,6 +1789,8 @@ Partial Public Class AttendanceRepository
             objTitleData.MANUAL_ID = objTitle.MANUAL_ID
             objTitleData.HOURS_START = objTitle.HOURS_START
             objTitleData.HOURS_STOP = objTitle.HOURS_STOP
+            objTitleData.END_MID_HOURS = objTitle.END_MID_HOURS
+            objTitleData.START_MID_HOURS = objTitle.START_MID_HOURS
             objTitleData.HOURS_STAR_CHECKIN = objTitle.HOURS_STAR_CHECKIN
             objTitleData.HOURS_STAR_CHECKOUT = objTitle.HOURS_STAR_CHECKOUT
             objTitleData.NOTE = objTitle.NOTE

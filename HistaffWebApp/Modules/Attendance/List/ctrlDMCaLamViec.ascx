@@ -110,6 +110,8 @@
                     <tlk:RadTimePicker runat="server" ID="rdSTART_MID_HOURS">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdSTART_MID_HOURS"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tên ca làm việc. %>"></asp:RequiredFieldValidator>
 
                 </td>
                 <td class="lb">
@@ -119,6 +121,9 @@
                     <tlk:RadTimePicker runat="server" ID="rdEND_MID_HOURS">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdEND_MID_HOURS"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tên ca làm việc. %>"></asp:RequiredFieldValidator>
+
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="rdSTART_MID_HOURS"
                         ControlToValidate="rdEND_MID_HOURS" Operator="GreaterThan"
                         ErrorMessage="<%$ Translate: Thiết lập giờ nghỉ giữa ca không hợp lệ %>"
@@ -182,7 +187,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,MANUAL_NAME,MANUAL_ID,HOURS_START,HOURS_STOP,BREAKS_FORM,BREAKS_TO,NOTE,SUNDAY,IS_NOON,SATURDAY,MINHOUSER,ORG_ID,SHIFT_DAY ">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,MANUAL_NAME,MANUAL_ID,HOURS_START,HOURS_STOP,NOTE,SUNDAY,IS_NOON,SATURDAY,MINHOUSER,ORG_ID,SHIFT_DAY,START_MID_HOURS,END_MID_HOURS,HOURS_STAR_CHECKIN,HOURS_STAR_CHECKOUT,IS_HOURS_STOP,IS_HOURS_CHECKOUT,IS_MID_END,ORG_NAME">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -197,10 +202,10 @@
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã công %>" DataField="MANUAL_CODE"
                         UniqueName="MANUAL_CODE" SortExpression="MANUAL_CODE" HeaderStyle-Width="100px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_ID"
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Công ty %>" DataField="ORG_NAME"
                         UniqueName="ORG_ID" SortExpression="ORG_ID" HeaderStyle-Width="200px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày công ca %>" DataField="SHIFT_DAY"
-                        UniqueName="SHIFT_DAY" SortExpression="SHIFT_DAY" DataFormatString="{0:C}" />
+                        UniqueName="SHIFT_DAY" SortExpression="SHIFT_DAY" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả mã công %>" DataField="MANUAL_NAME"
                         UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" HeaderStyle-Width="200px" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã kiểu công chủ nhật %>" DataField="SUNDAY_CODE"

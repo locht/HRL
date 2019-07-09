@@ -34,7 +34,9 @@
     Public Property MINHOUSER As Decimal?
     'hoaivv add 01/07/2019
     Public Property ORG_ID As Decimal?
-    Public Property SHIFT_DAY As Decimal?
+    Public Property ORG_NAME As String
+    
+    Public Property SHIFT_DAY As Double?
     Public Property IS_HOURS_STOP As Boolean?
     Public Property IS_MID_END As Boolean?
     Public Property IS_HOURS_CHECKOUT As Boolean?
