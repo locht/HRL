@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 07/03/2019 5:14:06 PM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 07/09/2019 1:13:46 AM
+-- Generated from EDMX file: E:\HISTAFF\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -508,7 +508,8 @@ CREATE TABLE "dbo"."HU_EMPLOYEE" (
    "EMP_STATUS" NUMBER(38,0) NULL,
    "BOOK_NO" NCLOB NULL,
    "EMPLOYEE_NAME_OTHER" NCLOB NULL,
-   "OBJECTTIMEKEEPING" NUMBER(38,0) NULL
+   "OBJECTTIMEKEEPING" NUMBER(38,0) NULL,
+   "OBJECT_LABOR" NUMBER(38,0) NULL
 );
 
 -- Creating table 'OT_OTHER_LIST_TYPE'
@@ -642,7 +643,16 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_CV" (
    "GD_CHINH_SACH" NUMBER(38,0) NULL,
    "NGAY_VAO_DANG_DB" DATE NULL,
    "BANTT" NUMBER(5,0) NULL,
-   "WORKPLACE_NAME" NCLOB NULL
+   "WORKPLACE_NAME" NCLOB NULL,
+   "PROVINCEEMP_BRITH" NUMBER(38,0) NULL,
+   "DISTRICTEMP_BRITH" NUMBER(38,0) NULL,
+   "WARDEMP_BRITH" NUMBER(38,0) NULL,
+   "OBJECT_INS" NUMBER(38,0) NULL,
+   "IS_CHUHO" NUMBER(5,0) NULL,
+   "NO_HOUSEHOLDS" NCLOB NULL,
+   "CODE_HOUSEHOLDS" NCLOB NULL,
+   "RELATION_PER_CTR" NUMBER(38,0) NULL,
+   "ADDRESS_PER_CTR" NCLOB NULL
 );
 
 -- Creating table 'HU_EMPLOYEE_HEALTH'
@@ -696,7 +706,11 @@ CREATE TABLE "dbo"."HU_EMPLOYEE_EDUCATION" (
    "DIEM_XLTH" NCLOB NULL,
    "LANGUAGE2" NUMBER(38,0) NULL,
    "LANGUAGE_LEVEL2" NUMBER(38,0) NULL,
-   "LANGUAGE_MARK2" NCLOB NULL
+   "LANGUAGE_MARK2" NCLOB NULL,
+   "NOTE_TDTH1" NCLOB NULL,
+   "TDTH2" NUMBER(38,0) NULL,
+   "DIEM_XLTH2" NCLOB NULL,
+   "NOTE_TDTH2" NCLOB NULL
 );
 
 -- Creating table 'HU_CONTRACT'
@@ -1420,7 +1434,8 @@ CREATE TABLE "dbo"."INS_INFORMATION" (
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "DAYPAYMENTCOMPANY" DATE NULL,
-   "NOTE_SO" NVARCHAR2(1000) NULL
+   "NOTE_SO" NVARCHAR2(1000) NULL,
+   "SOCIAL_NUMBER" NCLOB NULL
 );
 
 -- Creating table 'HU_CONDITION_COL'
