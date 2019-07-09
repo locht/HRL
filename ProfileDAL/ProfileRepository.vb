@@ -3094,6 +3094,8 @@ Public Class ProfileRepository
                            From sign_stop_title In Context.HU_TITLE.Where(Function(sign_stop_title) sign_stop_title.ID = sign_stop.TITLE_ID).DefaultIfEmpty
                            From sign2 In Context.HU_EMPLOYEE.Where(Function(sign2) sign2.ID = p.SIGN_ID_2).DefaultIfEmpty
                            From sign_title2 In Context.HU_TITLE.Where(Function(sign_title2) sign_title2.ID = sign2.TITLE_ID).DefaultIfEmpty
+                           From sign_stop2 In Context.HU_EMPLOYEE.Where(Function(sign_stop2) sign_stop2.ID = p.SIGN_ID_STOP_2).DefaultIfEmpty
+                           From sign_stop_title2 In Context.HU_TITLE.Where(Function(sign_stop_title2) sign_stop_title2.ID = sign_stop2.TITLE_ID).DefaultIfEmpty
                            Where p.EMPLOYEE_ID = EMPLOYEE_ID
 
             If Not _filter.IS_TERMINATE Then
@@ -3139,7 +3141,10 @@ Public Class ProfileRepository
                                                        .SIGN_TITLE_NAME = p.sign_title.NAME_VN,
                                                        .SIGN_NAME2 = p.sign2.FULLNAME_VN,
                                                        .SIGN_TITLE_NAME2 = p.sign_title2.NAME_VN,
-                                                       .SIGN_NAME_STOP = p.sign_stop.FULLNAME_VN
+                                                       .SIGN_NAME_STOP = p.sign_stop.FULLNAME_VN,
+                                                       .SIGN_TITLE_NAME_STOP = p.sign_stop_title.NAME_VN,
+                                                       .SIGN_NAME_STOP2 = p.sign_stop2.FULLNAME_VN,
+                                                       .SIGN_TITLE_NAME_STOP2 = p.sign_stop_title2.NAME_VN
                                                        })
 
             lstEmp = lstEmp.OrderBy(Sorts)

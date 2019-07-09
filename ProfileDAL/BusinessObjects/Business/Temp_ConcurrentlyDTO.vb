@@ -61,4 +61,7 @@
     Public Property SIGN_NAME2 As String
     Public Property SIGN_TITLE_NAME2 As String
     Public Property SIGN_NAME_STOP As String
+    Public Property SIGN_TITLE_NAME_STOP As String
+    Public Property SIGN_NAME_STOP2 As String
+    Public Property SIGN_TITLE_NAME_STOP2 As String
 End Class
