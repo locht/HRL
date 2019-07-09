@@ -272,9 +272,14 @@
                 </td>
                 <td>
                     <tlk:RadTextBox id="txtManagerOld" readonly="true" runat="server"></tlk:RadTextBox>
+                </td>               
+                <td class="lbInfo">
+                    <asp:Label runat="server" ID="lbObjectLaborOld" Text="Đối tượng lao động"></asp:Label>
                 </td>
-                <td class="lb"></td>
-                <td class="borderRight"></td>
+                <td class="borderRight">
+                    <tlk:RadTextBox ID="txtObjectLaborOld" runat="server" SkinID="Readonly" ReadOnly="true">
+                    </tlk:RadTextBox>                 
+                </td>
                 <td class="lb">
                     <asp:Label ID="lbManagerNew" runat="server" Text="Quản lý trực tiếp"></asp:Label>
                 </td>
@@ -283,8 +288,14 @@
                     <tlk:RadButton runat="server" ID="btnFindDirect" SkinID="ButtonView" CausesValidation="false">
                     </tlk:RadButton>
                 </td>
-                <td class="lb"></td>
-                <td></td>
+                <td class="lbInfo">
+                    <asp:Label runat="server" ID="lbObjectLaborNew" Text="Đối tượng lao động"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat="server" ID="cboObjectLaborNew" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                        OnClientItemsRequesting="OnClientItemsRequesting">
+                    </tlk:RadComboBox>
+                </td>
             </tr>
             <tr>
                 <td colspan="4" class="borderRight">

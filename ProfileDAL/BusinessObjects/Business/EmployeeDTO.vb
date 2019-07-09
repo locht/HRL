@@ -84,4 +84,7 @@
     Public Property EMPLOYEE_NAME_OTHER As String
     Public Property OBJECTTIMEKEEPING As Decimal?
     Public Property OBJECTTIMEKEEPING_NAME As String
+
+    Public Property OBJECT_LABOR As Decimal?
+    Public Property OBJECT_LABOR_NAME As String
 End Class

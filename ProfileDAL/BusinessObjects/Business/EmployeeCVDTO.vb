@@ -123,5 +123,20 @@
     Public Property SKILL As String
     Public Property NGAY_VAO_DANG_DB As Date?
     Public Property BANTT As Boolean?
+
+    Public Property PROVINCEEMP_BRITH As Decimal?
+    Public Property PROVINCEEMP_BRITH_NAME As String
+    Public Property DISTRICTEMP_BRITH As Decimal?
+    Public Property DISTRICTEMP_BRITH_NAME As String
+    Public Property WARDEMP_BRITH As Decimal?
+    Public Property WARDEMP_BRITH_NAME As String
+    Public Property OBJECT_INS As Decimal?
+    Public Property OBJECT_INS_NAME As String
+    Public Property IS_CHUHO As Boolean?
+    Public Property NO_HOUSEHOLDS As String
+    Public Property CODE_HOUSEHOLDS As String
+    Public Property RELATION_PER_CTR As Decimal?
+    Public Property RELATION_PER_CTR_NAME As String
+    Public Property ADDRESS_PER_CTR As String
    
 End Class

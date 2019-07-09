@@ -653,6 +653,24 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     Protected WithEvents txtManagerOld As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''lbObjectLaborOld control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbObjectLaborOld As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtObjectLaborOld control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtObjectLaborOld As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbManagerNew control.
     '''</summary>
     '''<remarks>
@@ -678,6 +696,24 @@ Partial Public Class ctrlHU_ChangeInfoNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnFindDirect As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbObjectLaborNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbObjectLaborNew As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboObjectLaborNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboObjectLaborNew As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''chkIsProcess control.

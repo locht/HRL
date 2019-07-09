@@ -194,6 +194,12 @@ Public Class ctrlHU_ChangeInfoNewEdit
             If dtData IsNot Nothing AndAlso dtData.Rows.Count > 0 Then
                 cbOBJECT_ATTENDANCE.SelectedValue = dtData.Rows(0)("ID")
             End If
+
+            Using rep As New ProfileRepository
+                dtData = rep.GetOtherList("OBJECT_LABOR")
+            End Using
+            FillRadCombobox(cboObjectLaborNew, dtData, "NAME", "ID")
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -262,6 +268,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                 rdFILING_DATE_OLD.SelectedDate = If(IsDate(Working.FILING_DATE), Working.FILING_DATE, Nothing)
                             End If
                             txtDecisionTypeOld.Text = .DECISION_TYPE_NAME
+                            txtObjectLaborOld.Text = .OBJECT_LABORNAME
                             rdEffectDateOld.SelectedDate = .EFFECT_DATE
                             rdExpireDateOld.SelectedDate = .EXPIRE_DATE
                             txtStaffRankOld.Text = .STAFF_RANK_NAME
@@ -330,6 +337,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
                     If Working.DECISION_TYPE_ID IsNot Nothing Then
                         cboDecisionType.SelectedValue = Working.DECISION_TYPE_ID
                         cboDecisionType.Text = Working.DECISION_TYPE_NAME
+                    End If
+                    If Working.OBJECT_LABOR IsNot Nothing Then
+                        cboObjectLaborNew.SelectedValue = Working.OBJECT_LABOR
+                        cboObjectLaborNew.Text = Working.OBJECT_LABORNAME
                     End If
 
                     If Working.STAFF_RANK_ID IsNot Nothing Then
@@ -478,6 +489,11 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             cboDecisionType.Focus()
                             Exit Sub
                         End If
+                        If cboObjectLaborNew.SelectedValue = "" Then
+                            ShowMessage(Translate("Bạn phải chọn loại lao động"), NotifyType.Warning)
+                            cboObjectLaborNew.Focus()
+                            Exit Sub
+                        End If
 
                         'If cboStaffRank.SelectedValue = "" Then
                         '    ShowMessage(Translate("Bạn phải chọn cấp nhân sự"), NotifyType.Warning)
@@ -521,6 +537,9 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             .EXPIRE_DATE = rdExpireDate.SelectedDate
                             If cboDecisionType.SelectedValue <> "" Then
                                 .DECISION_TYPE_ID = cboDecisionType.SelectedValue
+                            End If
+                            If cboObjectLaborNew.SelectedValue <> "" Then
+                                .OBJECT_LABOR = cboObjectLaborNew.SelectedValue
                             End If
 
                             ' .DECISION_NO = txtDecisionNo.Text
@@ -597,13 +616,14 @@ Public Class ctrlHU_ChangeInfoNewEdit
                                         'Clear all input
                                         ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
                                                           txtTitleNameOld,
-                                        txtDecisionTypeOld,
+                                        txtDecisionTypeOld, txtObjectLaborOld,
                                                           rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
                                                            rdSignDate, txtSignName, txtSignTitle,
                                                           txtOrgName, txtRemark)
                                         cboStaffRank.Text = String.Empty
                                         cboTitle.Text = String.Empty
                                         cboDecisionType.Text = String.Empty
+                                        cboObjectLaborNew.Text = String.Empty
                                         chkIsProcess.Checked = False
                                         Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
                                     Else
@@ -682,13 +702,14 @@ Public Class ctrlHU_ChangeInfoNewEdit
                             'Clear all input
                             ClearControlValue(txtEmployeeCode, txtEmployeeName, txtStaffRankOld, txtOrgNameOld,
                                               txtTitleNameOld,
-                            txtDecisionTypeOld,
+                            txtDecisionTypeOld, txtObjectLaborOld,
                                               rdEffectDateOld, rdExpireDateOld, rdEffectDate, rdExpireDate,
                                                rdSignDate, txtSignName, txtSignTitle,
                                               txtOrgName, txtRemark)
                             cboStaffRank.Text = String.Empty
                             cboTitle.Text = String.Empty
                             cboDecisionType.Text = String.Empty
+                            cboObjectLaborNew.Text = String.Empty
                             chkIsProcess.Checked = False
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_ChangeInfoMng&group=Business")
                         Else
@@ -1431,6 +1452,7 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 txtDecisionold.Text = obj.DECISION_NO
                 'txtDecision.Text = obj.DECISION_NO
                 txtDecisionTypeOld.Text = obj.DECISION_TYPE_NAME
+                txtObjectLaborOld.Text = obj.OBJECT_LABORNAME
                 txtOrgNameOld.Text = obj.ORG_NAME
                 rdEffectDateOld.SelectedDate = obj.EFFECT_DATE
                 rdExpireDateOld.SelectedDate = obj.EXPIRE_DATE
@@ -1465,6 +1487,10 @@ Public Class ctrlHU_ChangeInfoNewEdit
                 If obj.DECISION_TYPE_ID IsNot Nothing Then
                     cboDecisionType.SelectedValue = obj.DECISION_TYPE_ID
                     cboDecisionType.Text = obj.DECISION_TYPE_NAME
+                End If
+                If obj.OBJECT_LABOR IsNot Nothing Then
+                    cboObjectLaborNew.SelectedValue = obj.OBJECT_LABOR
+                    cboObjectLaborNew.Text = obj.OBJECT_LABORNAME
                 End If
                 If IsNumeric(obj.OBJECT_ATTENDANCE) Then
                     cbOBJECT_ATTENDANCE.SelectedValue = obj.OBJECT_ATTENDANCE

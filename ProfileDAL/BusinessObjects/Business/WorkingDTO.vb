@@ -52,6 +52,10 @@
     Public Property DECISION_TYPE_NAME As String
     Public Property DECISION_TYPE_NAME_OLD As String
 
+    Public Property OBJECT_LABOR As Decimal?
+    Public Property OBJECT_LABORNAME As String
+    Public Property OBJECT_LABORNAME_OLD As String
+
     Public Property DECISION_NO As String
     Public Property DECISION_NO_OLD As String
 
