@@ -895,6 +895,8 @@ Partial Class ProfileRepository
                         From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
                         From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
                         From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
+                        From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR And
+                                                                        f.TYPE_ID = 6963).DefaultIfEmpty
                         Where p.ID = _filter.ID
                         Select New WorkingDTO With {
                              .ID = p.ID,
@@ -905,6 +907,8 @@ Partial Class ProfileRepository
                              .DECISION_NO = p.DECISION_NO,
                              .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                              .DECISION_TYPE_NAME = deci_type.NAME_VN,
+                             .OBJECT_LABOR = p.OBJECT_LABOR,
+                             .OBJECT_LABORNAME = objectLabor.NAME_VN,
                              .EFFECT_DATE = p.EFFECT_DATE,
                              .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                              .EMPLOYEE_ID = e.ID,
@@ -957,7 +961,7 @@ Partial Class ProfileRepository
                              .OTHERSALARY2 = p.OTHERSALARY2,
                              .OTHERSALARY3 = p.OTHERSALARY3,
                              .OTHERSALARY4 = p.OTHERSALARY4,
-                             .OTHERSALARY5 = p.OTHERSALARY5
+            .OTHERSALARY5 = p.OTHERSALARY5
                          }
 
             Dim working = query.FirstOrDefault
@@ -998,6 +1002,8 @@ Partial Class ProfileRepository
                                    From sal_rank In Context.PA_SALARY_RANK.Where(Function(f) p.SAL_RANK_ID = f.ID).DefaultIfEmpty
                                    From taxTable In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TAX_TABLE_ID).DefaultIfEmpty
                 From OBJ_ATT In Context.OT_OTHER_LIST.Where(Function(F) F.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
+                From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_LABOR And
+                                                                        f.TYPE_ID = 6963).DefaultIfEmpty
                 Where (p.ID = query_old.ID)
                                    Select New WorkingDTO With {
                                        .ID = p.ID,
@@ -1007,6 +1013,8 @@ Partial Class ProfileRepository
                                        .OBJECT_ATTENDANCE_NAME = OBJ_ATT.NAME_VN,
                                        .DECISION_TYPE_ID = p.DECISION_TYPE_ID,
                                        .DECISION_TYPE_NAME = deci_type.NAME_VN,
+                                       .OBJECT_LABOR = p.OBJECT_LABOR,
+                                       .OBJECT_LABORNAME = objectLabor.NAME_VN,
                                        .EFFECT_DATE = p.EFFECT_DATE,
                                        .EXPIRE_DATE = p.EXPIRE_DATE,
                                        .ORG_ID = p.ORG_ID,
@@ -1073,6 +1081,8 @@ Partial Class ProfileRepository
                             From filecontract In Context.HU_FILECONTRACT.Where(Function(f) f.EMP_ID = e.ID).DefaultIfEmpty
                             From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                             From direct In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.DIRECT_MANAGER).DefaultIfEmpty
+                            From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_LABOR And
+                                                                        f.TYPE_ID = 6963).DefaultIfEmpty
                             Where e.ID = _filter.EMPLOYEE_ID And p.ID = workingOLD.ID
                             Order By p.EFFECT_DATE Descending
                             Select New WorkingDTO With {
@@ -1122,7 +1132,10 @@ Partial Class ProfileRepository
                                  .FILING_DATE = p.FILING_DATE,
                                 .TAX_TABLE_Name = taxTable.NAME_VN,
                                  .DIRECT_MANAGER = p.DIRECT_MANAGER,
-                                 .DIRECT_MANAGER_NAME = direct.FULLNAME_VN}
+                                 .DIRECT_MANAGER_NAME = direct.FULLNAME_VN,
+                                 .OBJECT_LABOR = e.OBJECT_LABOR,
+                                 .OBJECT_LABORNAME = objectLabor.NAME_VN
+                                 }
 
                 Dim working = query.First()
                 Dim allowListIds = New Integer() {1, 2, 3, 4, 5}
@@ -1218,6 +1231,7 @@ Partial Class ProfileRepository
             objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
             objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
             objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
+            objWorkingData.OBJECT_LABOR = objWorking.OBJECT_LABOR
             Context.HU_WORKING.AddObject(objWorkingData)
 
             ' nếu phê duyệt
@@ -1484,6 +1498,7 @@ Partial Class ProfileRepository
             objWorkingData.OTHERSALARY3 = objWorking.OTHERSALARY3
             objWorkingData.OTHERSALARY4 = objWorking.OTHERSALARY4
             objWorkingData.OTHERSALARY5 = objWorking.OTHERSALARY5
+            objWorkingData.OBJECT_LABOR = objWorking.OBJECT_LABOR
             If objWorking.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID Then
                 ApproveWorking1(objWorking)
             End If
@@ -1829,6 +1844,7 @@ Partial Class ProfileRepository
                 item.LAST_WORKING_ID = objWorking.ID
                 item.MODIFIED_DATE = Date.Now
                 item.OBJECTTIMEKEEPING = objWorking.OBJECT_ATTENDANCE
+                item.OBJECT_LABOR = objWorking.OBJECT_LABOR
             End If
 
             Return True

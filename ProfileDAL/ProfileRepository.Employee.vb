@@ -610,6 +610,7 @@ Partial Class ProfileRepository
                      From c In Context.HU_CONTRACT.Where(Function(c) c.ID = e.CONTRACT_ID).DefaultIfEmpty
                      From org In Context.HU_ORGANIZATION.Where(Function(t) t.ID = e.ORG_ID).DefaultIfEmpty
                      From t In Context.HU_CONTRACT_TYPE.Where(Function(t) t.ID = c.CONTRACT_TYPE_ID).DefaultIfEmpty
+                     From ins_info In Context.INS_INFORMATION.Where(Function(f) f.EMPLOYEE_ID = e.ID).DefaultIfEmpty
                      From ce In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECTTIMEKEEPING).DefaultIfEmpty
                      From titlegroup In Context.OT_OTHER_LIST.Where(Function(f) f.ID = title.TITLE_GROUP_ID And
                                                                         f.TYPE_ID = 2000).DefaultIfEmpty
@@ -617,7 +618,9 @@ Partial Class ProfileRepository
                                                                         f.TYPE_ID = 59).DefaultIfEmpty
                      From empstatus In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.EMP_STATUS And
                                                                         f.TYPE_ID = 2235).DefaultIfEmpty
-                     Where e.ID = empID
+                     From objectLabor In Context.OT_OTHER_LIST.Where(Function(f) f.ID = e.OBJECT_LABOR And
+                                                                        f.TYPE_ID = 6963).DefaultIfEmpty
+                Where (e.ID = empID)
                      Select New EmployeeDTO With {
                          .ID = e.ID,
                          .FIRST_NAME_EN = e.FIRST_NAME_EN,
@@ -630,7 +633,7 @@ Partial Class ProfileRepository
                          .FULLNAME_VN = e.FULLNAME_VN,
                          .EMPLOYEE_CODE = e.EMPLOYEE_CODE,
                          .EMPLOYEE_CODE_OLD = e.EMPLOYEE_CODE_OLD,
-                         .BOOKNO = e.BOOK_NO,
+                         .BOOKNO = ins_info.SOCIAL_NUMBER,
                          .EMPLOYEE_NAME_OTHER = e.EMPLOYEE_NAME_OTHER,
                          .IMAGE = e.HU_EMPLOYEE_CV.IMAGE,
                          .TITLE_ID = e.TITLE_ID,
@@ -661,7 +664,9 @@ Partial Class ProfileRepository
                          .STAFF_RANK_ID = e.STAFF_RANK_ID,
                          .STAFF_RANK_NAME = staffRank.NAME,
                          .ITIME_ID = e.ITIME_ID,
-                .TER_EFFECT_DATE = e.TER_EFFECT_DATE
+                         .TER_EFFECT_DATE = e.TER_EFFECT_DATE,
+                         .OBJECT_LABOR = e.OBJECT_LABOR,
+                         .OBJECT_LABOR_NAME = objectLabor.NAME_VN
                      }).FirstOrDefault
                 WriteExceptionLog(Nothing, "Getmployee1", "iProfile")
                 Dim emp As New EmployeeDTO
@@ -674,7 +679,7 @@ Partial Class ProfileRepository
                     emp.lstPaperFiled = (From p In Context.HU_EMPLOYEE_PAPER_FILED
                                          Where p.EMPLOYEE_ID = emp.ID
                                          Select p.HU_PAPER_ID.Value).ToList
-                End If
+                    End If
                 Return emp
             Catch ex As Exception
                 WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -837,6 +842,7 @@ Partial Class ProfileRepository
             objEmpData.ITIME_ID = objEmp.ITIME_ID
             objEmpData.OBJECTTIMEKEEPING = objEmp.OBJECTTIMEKEEPING
             objEmpData.PA_OBJECT_SALARY_ID = 1
+            objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
             Context.HU_EMPLOYEE.AddObject(objEmpData)
             'End Thông tin insert vào bảng HU_EMPLOYEE.
 
@@ -965,6 +971,16 @@ Partial Class ProfileRepository
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
                 objEmpCVData.WORKPLACE_NAME = objEmpCV.WORKPLACE_NAME
+
+                objEmpCVData.PROVINCEEMP_BRITH = objEmpCV.PROVINCEEMP_BRITH
+                objEmpCVData.DISTRICTEMP_BRITH = objEmpCV.DISTRICTEMP_BRITH
+                objEmpCVData.WARDEMP_BRITH = objEmpCV.WARDEMP_BRITH
+                objEmpCVData.OBJECT_INS = objEmpCV.OBJECT_INS
+                objEmpCVData.IS_CHUHO = objEmpCV.IS_CHUHO
+                objEmpCVData.NO_HOUSEHOLDS = objEmpCV.NO_HOUSEHOLDS
+                objEmpCVData.CODE_HOUSEHOLDS = objEmpCV.CODE_HOUSEHOLDS
+                objEmpCVData.RELATION_PER_CTR = objEmpCV.RELATION_PER_CTR
+                objEmpCVData.ADDRESS_PER_CTR = objEmpCV.ADDRESS_PER_CTR
                 '-----------------------------------------------
 
                 Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -991,10 +1007,15 @@ Partial Class ProfileRepository
                 objEmpEduData.LLCT = objEmpEdu.LLCT
                 objEmpEduData.TDTH = objEmpEdu.TDTH
                 objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
+                objEmpEduData.NOTE_TDTH1 = objEmpEdu.NOTE_TDTH1
 
                 objEmpEduData.LANGUAGE2 = objEmpEdu.LANGUAGE2
                 objEmpEduData.LANGUAGE_LEVEL2 = objEmpEdu.LANGUAGE_LEVEL2
                 objEmpEduData.LANGUAGE_MARK2 = objEmpEdu.LANGUAGE_MARK2
+
+                objEmpEduData.TDTH2 = objEmpEdu.TDTH2
+                objEmpEduData.DIEM_XLTH2 = objEmpEdu.DIEM_XLTH2
+                objEmpEduData.NOTE_TDTH2 = objEmpEdu.NOTE_TDTH2
 
                 Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
             End If
@@ -1225,6 +1246,9 @@ Partial Class ProfileRepository
             objEmpData.STAFF_RANK_ID = objEmp.STAFF_RANK_ID
             objEmpData.ITIME_ID = objEmp.ITIME_ID
             objEmpData.PA_OBJECT_SALARY_ID = 1 'objEmp.PA_OBJECT_SALARY_ID
+
+            objEmpData.OBJECT_LABOR = objEmp.OBJECT_LABOR
+
             Dim lstPaperDelete = (From p In Context.HU_EMPLOYEE_PAPER Where p.EMPLOYEE_ID = objEmpData.ID).ToList
             For Each item In lstPaperDelete
                 Context.HU_EMPLOYEE_PAPER.DeleteObject(item)
@@ -1365,6 +1389,17 @@ Partial Class ProfileRepository
                 objEmpCVData.NGAY_VAO_DOAN = objEmpCV.NGAY_VAO_DOAN
                 objEmpCVData.GD_CHINH_SACH = objEmpCV.GD_CHINH_SACH
                 objEmpCVData.WORKPLACE_NAME = objEmpCV.WORKPLACE_NAME
+
+                objEmpCVData.PROVINCEEMP_BRITH = objEmpCV.PROVINCEEMP_BRITH
+                objEmpCVData.DISTRICTEMP_BRITH = objEmpCV.DISTRICTEMP_BRITH
+                objEmpCVData.WARDEMP_BRITH = objEmpCV.WARDEMP_BRITH
+                objEmpCVData.OBJECT_INS = objEmpCV.OBJECT_INS
+                objEmpCVData.IS_CHUHO = objEmpCV.IS_CHUHO
+                objEmpCVData.NO_HOUSEHOLDS = objEmpCV.NO_HOUSEHOLDS
+                objEmpCVData.CODE_HOUSEHOLDS = objEmpCV.CODE_HOUSEHOLDS
+                objEmpCVData.RELATION_PER_CTR = objEmpCV.RELATION_PER_CTR
+                objEmpCVData.ADDRESS_PER_CTR = objEmpCV.ADDRESS_PER_CTR
+
                 '------------------------------------------------
                 If bUpdateCV = False Then
                     Context.HU_EMPLOYEE_CV.AddObject(objEmpCVData)
@@ -1398,10 +1433,16 @@ Partial Class ProfileRepository
                 objEmpEduData.LLCT = objEmpEdu.LLCT
                 objEmpEduData.TDTH = objEmpEdu.TDTH
                 objEmpEduData.DIEM_XLTH = objEmpEdu.DIEM_XLTH
+                objEmpEduData.NOTE_TDTH1 = objEmpEdu.NOTE_TDTH1
 
                 objEmpEduData.LANGUAGE2 = objEmpEdu.LANGUAGE2
                 objEmpEduData.LANGUAGE_LEVEL2 = objEmpEdu.LANGUAGE_LEVEL2
                 objEmpEduData.LANGUAGE_MARK2 = objEmpEdu.LANGUAGE_MARK2
+
+                objEmpEduData.TDTH2 = objEmpEdu.TDTH2
+                objEmpEduData.DIEM_XLTH2 = objEmpEdu.DIEM_XLTH2
+                objEmpEduData.NOTE_TDTH2 = objEmpEdu.NOTE_TDTH2
+
                 If bUpdateEdu = False Then
                     Context.HU_EMPLOYEE_EDUCATION.AddObject(objEmpEduData)
                 End If
@@ -1629,9 +1670,14 @@ Partial Class ProfileRepository
                      From nguyenquan In Context.HU_PROVINCE.Where(Function(f) f.ID = cv.PROVINCENQ_ID).DefaultIfEmpty
                      From thuongbinh In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.HANG_THUONG_BINH).DefaultIfEmpty
                      From gdchinhsach In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GD_CHINH_SACH).DefaultIfEmpty
-                    From bir_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
+                     From bir_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_ID = f.ID).DefaultIfEmpty
                      From bir_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_ID = f.ID).DefaultIfEmpty
                      From bir_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_ID = f.ID).DefaultIfEmpty
+                     From relation_per In Context.HU_RELATIONSHIP_LIST.Where(Function(f) cv.RELATION_PER_CTR = f.ID).DefaultIfEmpty
+                     From objectIns In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.OBJECT_INS And f.TYPE_ID = 6894).DefaultIfEmpty
+                      From ks_pro In Context.HU_PROVINCE.Where(Function(f) cv.PROVINCEEMP_BRITH = f.ID).DefaultIfEmpty
+                     From ks_dis In Context.HU_DISTRICT.Where(Function(f) cv.DISTRICTEMP_BRITH = f.ID).DefaultIfEmpty
+                     From ks_ward In Context.HU_WARD.Where(Function(f) cv.WARDEMP_BRITH = f.ID).DefaultIfEmpty
             Where (cv.EMPLOYEE_ID = sEmployeeID)
                      Select New EmployeeCVDTO With {
                          .EMPLOYEE_ID = cv.EMPLOYEE_ID,
@@ -1742,7 +1788,22 @@ Partial Class ProfileRepository
                          .PROVINCENQ_ID = cv.PROVINCENQ_ID,
                          .PROVINCENQ_NAME = nguyenquan.NAME_VN,
                          .BANK_NO = cv.BANK_NO,
-                         .IS_PAY_BANK = cv.IS_PAY_BANK}).FirstOrDefault
+                         .IS_PAY_BANK = cv.IS_PAY_BANK,
+                         .PROVINCEEMP_BRITH = cv.PROVINCEEMP_BRITH,
+                         .PROVINCEEMP_BRITH_NAME = ks_pro.NAME_VN,
+                         .DISTRICTEMP_BRITH = cv.DISTRICTEMP_BRITH,
+                         .DISTRICTEMP_BRITH_NAME = ks_dis.NAME_VN,
+                         .WARDEMP_BRITH = cv.WARDEMP_BRITH,
+                         .WARDEMP_BRITH_NAME = ks_ward.NAME_VN,
+                         .OBJECT_INS = cv.OBJECT_INS,
+                         .OBJECT_INS_NAME = objectIns.NAME_VN,
+                         .IS_CHUHO = CType(cv.IS_CHUHO, Boolean),
+                         .NO_HOUSEHOLDS = cv.NO_HOUSEHOLDS,
+                         .CODE_HOUSEHOLDS = cv.CODE_HOUSEHOLDS,
+                         .RELATION_PER_CTR = cv.RELATION_PER_CTR,
+                         .RELATION_PER_CTR_NAME = relation_per.NAME,
+                         .ADDRESS_PER_CTR = cv.ADDRESS_PER_CTR
+                         }).FirstOrDefault
             empEdu = (From edu In Context.HU_EMPLOYEE_EDUCATION
                      From a In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.ACADEMY).DefaultIfEmpty
                      From m In Context.OT_OTHER_LIST.Where(Function(f) f.ID = edu.MAJOR).DefaultIfEmpty
@@ -1777,7 +1838,11 @@ Partial Class ProfileRepository
                          .LLCT = edu.LLCT,
                          .TDTH = edu.TDTH,
                          .DIEM_XLTH = edu.DIEM_XLTH,
-                         .GRADUATION_YEAR = edu.GRADUATION_YEAR}).FirstOrDefault
+                         .GRADUATION_YEAR = edu.GRADUATION_YEAR,
+                         .NOTE_TDTH1 = edu.NOTE_TDTH1,
+                         .TDTH2 = edu.TDTH2,
+                         .DIEM_XLTH2 = edu.DIEM_XLTH2,
+                         .NOTE_TDTH2 = edu.NOTE_TDTH2}).FirstOrDefault
 
             empHealth = (From e In Context.HU_EMPLOYEE_HEALTH
                          Where e.EMPLOYEE_ID = sEmployeeID

@@ -1356,42 +1356,13 @@
             </Key>
             <Property Name="ID" Type="number" Nullable="false" Precision="38" />
             <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
-            <Property Name="INSCENTERKEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="SALARY" Type="number" Nullable="true" Precision="38" />
-            <Property Name="POSITIONNAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
-            <Property Name="ORGNAME" Type="nvarchar2" Nullable="true" MaxLength="1000" />
-            <Property Name="SOFROM" Type="date" Nullable="true" />
-            <Property Name="SOTO" Type="date" Nullable="true" />
-            <Property Name="SOBOOKNO" Type="nvarchar2" Nullable="true" MaxLength="100" />
-            <Property Name="SOPRVDBOOKDAY" Type="date" Nullable="true" />
-            <Property Name="SOWHRPRVBOOK" Type="nvarchar2" Nullable="true" MaxLength="1000" />
-            <Property Name="SOPRVDBOOKSTATUS" Type="number" Nullable="true" Precision="38" />
-            <Property Name="HEFROM" Type="date" Nullable="true" />
-            <Property Name="HETO" Type="date" Nullable="true" />
-            <Property Name="HECARDNO" Type="nvarchar2" Nullable="true" MaxLength="100" />
-            <Property Name="HEPRVDCARDDAY" Type="date" Nullable="true" />
-            <Property Name="HEWHRPRVCARD" Type="nvarchar2" Nullable="true" MaxLength="1000" />
-            <Property Name="HEPRVDCARDSTATUS" Type="number" Nullable="true" Precision="38" />
-            <Property Name="HEWHRREGISKEY" Type="nvarchar2" Nullable="true" MaxLength="100" />
-            <Property Name="HECARDEFFFROM" Type="date" Nullable="true" />
-            <Property Name="HECARDEFFTO" Type="date" Nullable="true" />
-            <Property Name="UEFROM" Type="date" Nullable="true" />
-            <Property Name="UETO" Type="date" Nullable="true" />
-            <Property Name="SO" Type="number" Nullable="true" Precision="38" />
-            <Property Name="HE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="UE" Type="number" Nullable="true" Precision="38" />
-            <Property Name="REGISTER" Type="number" Nullable="true" Precision="38" />
-            <Property Name="CONTRACTNO" Type="nvarchar2" Nullable="true" MaxLength="100" />
-            <Property Name="SENIORITY" Type="number" Nullable="true" Precision="38" />
-            <Property Name="ORD_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
             <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="DAYPAYMENTCOMPANY" Type="date" Nullable="true" />
-            <Property Name="NOTE_SO" Type="nvarchar2" Nullable="true" MaxLength="1000" />
             <Property Name="SOCIAL_NUMBER" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_CONDITION_COL">
@@ -2727,6 +2698,7 @@
             <Property Name="OTHERSALARY3" Type="number" Nullable="true" Precision="38" />
             <Property Name="OTHERSALARY4" Type="number" Nullable="true" Precision="38" />
             <Property Name="OTHERSALARY5" Type="number" Nullable="true" Precision="38" />
+            <Property Name="OBJECT_LABOR" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
             <Key>
@@ -5706,42 +5678,13 @@
           </Key>
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="INSCENTERKEY" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="SALARY" Precision="38" Scale="0" />
-          <Property Type="String" Name="POSITIONNAME" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ORGNAME" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="SOFROM" />
-          <Property Type="DateTime" Name="SOTO" />
-          <Property Type="String" Name="SOBOOKNO" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="SOPRVDBOOKDAY" />
-          <Property Type="String" Name="SOWHRPRVBOOK" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="SOPRVDBOOKSTATUS" Precision="38" Scale="0" />
-          <Property Type="DateTime" Name="HEFROM" />
-          <Property Type="DateTime" Name="HETO" />
-          <Property Type="String" Name="HECARDNO" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="HEPRVDCARDDAY" />
-          <Property Type="String" Name="HEWHRPRVCARD" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="HEPRVDCARDSTATUS" Precision="38" Scale="0" />
-          <Property Type="String" Name="HEWHRREGISKEY" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="HECARDEFFFROM" />
-          <Property Type="DateTime" Name="HECARDEFFTO" />
-          <Property Type="DateTime" Name="UEFROM" />
-          <Property Type="DateTime" Name="UETO" />
-          <Property Type="Decimal" Name="SO" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="HE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="UE" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="REGISTER" Precision="38" Scale="0" />
-          <Property Type="String" Name="CONTRACTNO" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="SENIORITY" Precision="38" Scale="0" />
-          <Property Type="Decimal" Name="ORD_ID" Precision="38" Scale="0" />
           <Property Type="DateTime" Name="CREATED_DATE" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="MODIFIED_DATE" />
           <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DAYPAYMENTCOMPANY" />
-          <Property Type="String" Name="NOTE_SO" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SOCIAL_NUMBER" />
         </EntityType>
         <EntityType Name="HU_CONDITION_COL">
@@ -7086,6 +7029,7 @@
           <Property Type="Decimal" Name="OTHERSALARY3" />
           <Property Type="Decimal" Name="OTHERSALARY4" />
           <Property Type="Decimal" Name="OTHERSALARY5" />
+          <Property Type="Decimal" Name="OBJECT_LABOR" />
         </EntityType>
         <EntityType Name="PA_SALARY_TYPE">
           <Key>
@@ -9133,42 +9077,13 @@
                 <MappingFragment StoreEntitySet="INS_INFORMATION">
                     <ScalarProperty Name="ID" ColumnName="ID" />
                     <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
-                    <ScalarProperty Name="INSCENTERKEY" ColumnName="INSCENTERKEY" />
                     <ScalarProperty Name="SALARY" ColumnName="SALARY" />
-                    <ScalarProperty Name="POSITIONNAME" ColumnName="POSITIONNAME" />
-                    <ScalarProperty Name="ORGNAME" ColumnName="ORGNAME" />
-                    <ScalarProperty Name="SOFROM" ColumnName="SOFROM" />
-                    <ScalarProperty Name="SOTO" ColumnName="SOTO" />
-                    <ScalarProperty Name="SOBOOKNO" ColumnName="SOBOOKNO" />
-                    <ScalarProperty Name="SOPRVDBOOKDAY" ColumnName="SOPRVDBOOKDAY" />
-                    <ScalarProperty Name="SOWHRPRVBOOK" ColumnName="SOWHRPRVBOOK" />
-                    <ScalarProperty Name="SOPRVDBOOKSTATUS" ColumnName="SOPRVDBOOKSTATUS" />
-                    <ScalarProperty Name="HEFROM" ColumnName="HEFROM" />
-                    <ScalarProperty Name="HETO" ColumnName="HETO" />
-                    <ScalarProperty Name="HECARDNO" ColumnName="HECARDNO" />
-                    <ScalarProperty Name="HEPRVDCARDDAY" ColumnName="HEPRVDCARDDAY" />
-                    <ScalarProperty Name="HEWHRPRVCARD" ColumnName="HEWHRPRVCARD" />
-                    <ScalarProperty Name="HEPRVDCARDSTATUS" ColumnName="HEPRVDCARDSTATUS" />
-                    <ScalarProperty Name="HEWHRREGISKEY" ColumnName="HEWHRREGISKEY" />
-                    <ScalarProperty Name="HECARDEFFFROM" ColumnName="HECARDEFFFROM" />
-                    <ScalarProperty Name="HECARDEFFTO" ColumnName="HECARDEFFTO" />
-                    <ScalarProperty Name="UEFROM" ColumnName="UEFROM" />
-                    <ScalarProperty Name="UETO" ColumnName="UETO" />
-                    <ScalarProperty Name="SO" ColumnName="SO" />
-                    <ScalarProperty Name="HE" ColumnName="HE" />
-                    <ScalarProperty Name="UE" ColumnName="UE" />
-                    <ScalarProperty Name="REGISTER" ColumnName="REGISTER" />
-                    <ScalarProperty Name="CONTRACTNO" ColumnName="CONTRACTNO" />
-                    <ScalarProperty Name="SENIORITY" ColumnName="SENIORITY" />
-                    <ScalarProperty Name="ORD_ID" ColumnName="ORD_ID" />
                     <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
                     <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
                     <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
                     <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                     <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
-                    <ScalarProperty Name="DAYPAYMENTCOMPANY" ColumnName="DAYPAYMENTCOMPANY" />
-                    <ScalarProperty Name="NOTE_SO" ColumnName="NOTE_SO" />
                     <ScalarProperty Name="SOCIAL_NUMBER" ColumnName="SOCIAL_NUMBER" />
                 </MappingFragment>
             </EntityTypeMapping>
@@ -10562,6 +10477,7 @@
                     <ScalarProperty Name="OTHERSALARY3" ColumnName="OTHERSALARY3" />
                     <ScalarProperty Name="OTHERSALARY4" ColumnName="OTHERSALARY4" />
                     <ScalarProperty Name="OTHERSALARY5" ColumnName="OTHERSALARY5" />
+                    <ScalarProperty Name="OBJECT_LABOR" ColumnName="OBJECT_LABOR" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11512,7 +11428,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="95" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="59" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -11533,10 +11449,10 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.OT_OTHER_LIST" Width="1.75" PointX="5.75" PointY="4.75" Height="0.40000000000000568" IsExpanded="false" />
         <AssociationConnector Association="ProfileModel.FK_OOL_HA">
-          <ConnectorPoint PointX="6.625" PointY="5.1500000000000057" />
-          <ConnectorPoint PointX="6.625" PointY="7.2" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="7.1999999999999993" />
-          <ConnectorPoint PointX="8.0520833333333339" PointY="7.2" />
+          <ConnectorPoint PointX="6.5937475" PointY="5.1500000000000057" />
+          <ConnectorPoint PointX="6.5937475" PointY="7.2" />
+          <ConnectorPoint PointX="7.7736528461538477" PointY="7.1999999999999993" />
+          <ConnectorPoint PointX="8.0520833333333321" PointY="7.2" />
           <ConnectorPoint PointX="8.25" PointY="7.2" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE" Width="2.125" PointX="17.125" PointY="0.625" Height="9.8646451822916656" IsExpanded="true" />
@@ -11590,25 +11506,27 @@
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCO_HUDC">
           <ConnectorPoint PointX="7.5" PointY="5.1500000000000057" />
+          <ConnectorPoint PointX="7.5837803517658831" PointY="5.2337803517658879" />
+          <ConnectorPoint PointX="7.7016314819636404" PointY="5.3516314819636461" />
           <ConnectorPoint PointX="7.875" PointY="5.5250000000000057" />
           <ConnectorPoint PointX="7.875" PointY="7.75" />
           <ConnectorPoint PointX="7.7111528461538477" PointY="7.75" />
           <ConnectorPoint PointX="8.0861528461538477" PointY="8.125" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCT_HUDC">
-          <ConnectorPoint PointX="7.5" PointY="5.1401528461538515" />
-          <ConnectorPoint PointX="7.96875" PointY="5.6089028461538515" />
+          <ConnectorPoint PointX="7.5" PointY="5.1303066923076974" />
+          <ConnectorPoint PointX="7.96875" PointY="5.5990566923076974" />
           <ConnectorPoint PointX="7.96875" PointY="7.625" />
           <ConnectorPoint PointX="7.958333333333333" PointY="7.6249999999999991" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="7.625" />
+          <ConnectorPoint PointX="7.7736528461538468" PointY="7.625" />
           <ConnectorPoint PointX="7.5" PointY="7.625" />
           <ConnectorPoint PointX="8" PointY="8.125" />
         </AssociationConnector>
         <AssociationConnector Association="ProfileModel.FK_OTDCL_HUDC">
           <ConnectorPoint PointX="7.5" PointY="5.1303066923076974" />
-          <ConnectorPoint PointX="7.90625" PointY="5.5365566923076974" />
-          <ConnectorPoint PointX="7.90625" PointY="7.8125" />
-          <ConnectorPoint PointX="7.8569861794871807" PointY="7.8124999999999991" />
+          <ConnectorPoint PointX="7.8569861794871807" PointY="5.5365566923076974" />
+          <ConnectorPoint PointX="7.8569861794871807" PointY="7.8125" />
+          <ConnectorPoint PointX="7.770833333333333" PointY="7.8124999999999991" />
           <ConnectorPoint PointX="7.604166666666667" PointY="7.8125" />
           <ConnectorPoint PointX="7.6013461538461531" PointY="7.8125" />
           <ConnectorPoint PointX="8" PointY="8.2111538461538469" />
@@ -11648,8 +11566,8 @@
           <ConnectorPoint PointX="7.375" PointY="9.2" />
           <ConnectorPoint PointX="7.375" PointY="8.285" />
           <ConnectorPoint PointX="8.25" PointY="8.285" />
-          <ConnectorPoint PointX="8.25" PointY="8.4993294270833335" />
-          <ConnectorPoint PointX="11.875" PointY="8.4993294270833335" />
+          <ConnectorPoint PointX="8.25" PointY="8.4993294270833353" />
+          <ConnectorPoint PointX="11.875" PointY="8.4993294270833353" />
           <ConnectorPoint PointX="11.875" PointY="9.2" />
           <ConnectorPoint PointX="11.5" PointY="9.2" />
         </AssociationConnector>
@@ -11690,7 +11608,7 @@
         <EntityTypeShape EntityType="ProfileModel.AT_PERIOD" Width="1.5" PointX="9.75" PointY="16.875" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.INS_CHANGE" Width="1.5" PointX="11.75" PointY="16.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.INS_CHANGE_TYPE" Width="1.5" PointX="19.75" PointY="7.125" Height="0.40000000000000568" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.INS_INFORMATION" Width="1.5" PointX="22.875" PointY="6.625" Height="8.5185351562500014" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProfileModel.INS_INFORMATION" Width="2.25" PointX="30" PointY="3.875" Height="2.9417936197916656" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_CONDITION_COL" Width="3.75" PointX="17.75" PointY="17.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DYNAMIC_CONDITION" Width="3.375" PointX="0.75" PointY="18.875" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_WARD" Width="1.5" PointX="20" PointY="2.25" Height="0.39999999999999147" IsExpanded="false" />
@@ -11755,7 +11673,7 @@
         <EntityTypeShape EntityType="ProfileModel.TR_REQUEST_EMPLOYEE" Width="1.5" PointX="27.375" PointY="18.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ALLOWANCE_LIST" Width="1.5" PointX="27.375" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMPETENCY_COURSE" Width="2.375" PointX="27.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WORKING" Width="2.5" PointX="4.625" PointY="12.625" Height="11.210755208333332" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.PA_SALARY_TYPE" Width="1.5" PointX="28.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE_CONCURRENT" Width="2.25" PointX="29.375" PointY="0.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ORG_TITLE" Width="1.5" PointX="4.375" PointY="0.75" Height="0.4" IsExpanded="false" />
@@ -11766,7 +11684,7 @@
           <ConnectorPoint PointX="6.3720769230769232" PointY="30.4" />
           <ConnectorPoint PointX="6.3720769230769232" PointY="30.15" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProfileModel.HU_TALENT_POOL" Width="1.5" PointX="29.375" PointY="10.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TALENT_POOL" Width="1.5" PointX="26.375" PointY="8" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_CV1" Width="1.5" PointX="0.75" PointY="30.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION1" Width="1.5" PointX="29.75" PointY="15.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_EMPLOYEE_EDUCATION2" Width="1.5" PointX="30.375" PointY="23.75" Height="0.4" IsExpanded="false" />
