@@ -281,16 +281,20 @@ Public Class ctrlDMCaLamViec
                     txtNameVN.Text = ""
                     txtNote.Text = ""
                     cboMaCong.SelectedIndex = 0
-                    cboCongTy.SelectedIndex = -1
+                    cboCongTy.SelectedIndex = Nothing
                     cboNgayCongCa.SelectedIndex = 1
                     'cboSunDay.SelectedIndex = 0
                     'cboSaturday.SelectedIndex = 0
                     'cbkISNOON.Checked = False
                     rdHours_Start.SelectedDate = Nothing
                     rdHours_Stop.SelectedDate = Nothing
-                    'rdBREAKS_FORM.SelectedDate = Nothing
-                    'rdBREAKS_to.SelectedDate = Nothing
-
+                    rdEND_MID_HOURS.SelectedDate = Nothing
+                    rdSTART_MID_HOURS.SelectedDate = Nothing
+                    rdHOURS_STAR_CHECKIN.SelectedDate = Nothing
+                    rdHOURS_STAR_CHECKOUT.SelectedDate = Nothing
+                    chkIS_MID_END.Checked = Nothing
+                    chkIS_HOURS_STOP.Checked = Nothing
+                    chkIS_HOURS_CHECKOUT.Checked = Nothing
                     'cbkISNOON.Enabled = True
                     'cboSunDay.Enabled = True
                     'cboSaturday.Enabled = True
@@ -301,8 +305,13 @@ Public Class ctrlDMCaLamViec
                     cboCongTy.Enabled = True
                     rdHours_Start.Enabled = True
                     rdHours_Stop.Enabled = True
-                    'rdBREAKS_FORM.Enabled = True
-                    'rdBREAKS_to.Enabled = True
+                    rdEND_MID_HOURS.Enabled = True
+                    rdSTART_MID_HOURS.Enabled = True
+                    rdHOURS_STAR_CHECKIN.Enabled = True
+                    rdHOURS_STAR_CHECKOUT.Enabled = True
+                    chkIS_MID_END.Enabled = True
+                    chkIS_HOURS_STOP.Enabled = True
+                    chkIS_HOURS_CHECKOUT.Enabled = True
                     txtNote.Enabled = True
                     'rntxtMinHours.Enabled = True
                     rgDanhMuc.Rebind()
@@ -311,14 +320,17 @@ Public Class ctrlDMCaLamViec
                 Case CommonMessage.STATE_NORMAL
                     txtNameVN.Text = ""
                     cboMaCong.SelectedIndex = 0
-                    cboCongTy.SelectedIndex = -1
+                    cboCongTy.SelectedIndex = Nothing
                     cboNgayCongCa.SelectedIndex = 1
                     rdHours_Start.SelectedDate = Nothing
                     rdHours_Stop.SelectedDate = Nothing
-                    'rdBREAKS_FORM.SelectedDate = Nothing
-                    'rdBREAKS_to.SelectedDate = Nothing
-                    'cbkISNOON.Checked = False
-                    'cboSunDay.SelectedIndex = 0
+                    rdEND_MID_HOURS.SelectedDate = Nothing
+                    rdSTART_MID_HOURS.SelectedDate = Nothing
+                    rdHOURS_STAR_CHECKIN.SelectedDate = Nothing
+                    rdHOURS_STAR_CHECKOUT.SelectedDate = Nothing
+                    chkIS_MID_END.Checked = Nothing
+                    chkIS_HOURS_STOP.Checked = Nothing
+                    chkIS_HOURS_CHECKOUT.Checked = Nothing
                     'cboSaturday.ClearValue()
                     txtNote.Text = ""
                     txtCode.Text = ""
@@ -333,8 +345,13 @@ Public Class ctrlDMCaLamViec
                     cboNgayCongCa.Enabled = False
                     rdHours_Start.Enabled = False
                     rdHours_Stop.Enabled = False
-                    'rdBREAKS_FORM.Enabled = False
-                    'rdBREAKS_to.Enabled = False
+                    rdEND_MID_HOURS.Enabled = False
+                    rdSTART_MID_HOURS.Enabled = False
+                    rdHOURS_STAR_CHECKIN.Enabled = False
+                    rdHOURS_STAR_CHECKOUT.Enabled = False
+                    chkIS_MID_END.Enabled = False
+                    chkIS_HOURS_STOP.Enabled = False
+                    chkIS_HOURS_CHECKOUT.Enabled = False
                     txtNote.Enabled = False
                     'rntxtMinHours.Enabled = False
                     'cboSunDay.SelectedIndex = 0
@@ -351,8 +368,13 @@ Public Class ctrlDMCaLamViec
                     cboNgayCongCa.Enabled = True
                     rdHours_Start.Enabled = True
                     rdHours_Stop.Enabled = True
-                    'rdBREAKS_FORM.Enabled = True
-                    'rdBREAKS_to.Enabled = True
+                    rdEND_MID_HOURS.Enabled = True
+                    rdSTART_MID_HOURS.Enabled = True
+                    rdHOURS_STAR_CHECKIN.Enabled = True
+                    rdHOURS_STAR_CHECKOUT.Enabled = True
+                    chkIS_MID_END.Enabled = True
+                    chkIS_HOURS_STOP.Enabled = True
+                    chkIS_HOURS_CHECKOUT.Enabled = True
                     txtNote.Enabled = True
                     'rntxtMinHours.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
@@ -367,7 +389,7 @@ Public Class ctrlDMCaLamViec
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa)
+                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa, rdEND_MID_HOURS, rdSTART_MID_HOURS, rdHOURS_STAR_CHECKIN, rdHOURS_STAR_CHECKOUT, chkIS_MID_END, chkIS_HOURS_STOP, chkIS_HOURS_CHECKOUT)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
@@ -382,7 +404,7 @@ Public Class ctrlDMCaLamViec
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa)
+                        ClearControlValue(txtCode, txtNameVN, cboMaCong, rdHours_Start, rdHours_Stop, txtNote, cboCongTy, cboNgayCongCa, rdEND_MID_HOURS, rdSTART_MID_HOURS, rdHOURS_STAR_CHECKIN, rdHOURS_STAR_CHECKOUT, chkIS_MID_END, chkIS_HOURS_STOP, chkIS_HOURS_CHECKOUT)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
