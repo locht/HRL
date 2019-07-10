@@ -48,13 +48,13 @@ Public Class ctrlHU_EmpDtlWorking
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
-        Try
-            If Not IsPostBack Then
-                GirdConfig(rgGrid)
-            End If
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
+        'Try
+        '    If Not IsPostBack Then
+        '        GirdConfig(rgGrid)
+        '    End If
+        'Catch ex As Exception
+        '    DisplayException(Me.ViewName, Me.ID, ex)
+        'End Try
 
     End Sub
     ''' <summary>
@@ -80,8 +80,8 @@ Public Class ctrlHU_EmpDtlWorking
     ''' <remarks></remarks>
     Private Sub rgGrid_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgGrid.ItemDataBound
         If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-            Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-            datarow("ORG_NAME").ToolTip = Utilities.DrawTreeByString(datarow("ORG_DESC").Text)
+            'Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
+            'DataRow("ORG_NAME").ToolTip = Utilities.DrawTreeByString(datarow("ORG_DESC").Text)
         End If
     End Sub
     ''' <summary>
@@ -92,10 +92,11 @@ Public Class ctrlHU_EmpDtlWorking
     ''' <remarks></remarks>
     Private Sub rgGrid_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgGrid.NeedDataSource
         Try
-            Dim rep As New ProfileBusinessRepository
-            Dim lst = rep.GetWorkingProccess(If(EmployeeInfo Is Nothing, Nothing, EmployeeInfo.ID))
-            rgGrid.DataSource = lst
-            rep.Dispose()
+            'Dim rep As New ProfileBusinessRepository
+            'Dim lst = rep.GetWorkingProccess(If(EmployeeInfo Is Nothing, Nothing, EmployeeInfo.ID))
+            Dim rep1 As New ProfileStoreProcedure
+            rgGrid.DataSource = rep1.get_current_work_history(EmployeeInfo.ID)
+            'rep.Dispose()
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try
