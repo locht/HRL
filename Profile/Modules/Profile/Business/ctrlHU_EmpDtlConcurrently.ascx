@@ -17,10 +17,6 @@
                         <Columns>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" />
                             <tlk:GridBoundColumn DataField="EMPLOYEE_ID" Visible="false" />
-                            <tlk:GridBoundColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE"
-                                SortExpression="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="Họ tên nhân viên" DataField="FULLNAME_VN"
-                                SortExpression="FULLNAME_VN" UniqueName="FULLNAME_VN" HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="Đơn vị kiêm nhiệm" DataField="ORG_CON_NAME"
                                 SortExpression="ORG_CON_NAME" UniqueName="ORG_CON_NAME" HeaderStyle-Width="150px" />
                             <tlk:GridBoundColumn HeaderText="Chức danh kiêm nhiệm" DataField="TITLE_CON_NAME"
