@@ -44,7 +44,7 @@ Public Class ctrlPortalWorking
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If Not IsPostBack Then
-                GirdConfig(rgWorking)
+                'GirdConfig(rgWorking)
             End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -53,28 +53,32 @@ Public Class ctrlPortalWorking
     End Sub
 
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim rep As New ProfileBusinessRepository
+        'Dim rep As New ProfileBusinessRepository
         Try
-            rgWorking.SetFilter()
-            SetValueObjectByRadGrid(rgWorking, New WorkingDTO)
+            Dim rep1 As New ProfileStoreProcedure
+            rgWorking.DataSource = rep1.get_current_work_history(EmployeeID)
+            'rgWorking.SetFilter()
+            'SetValueObjectByRadGrid(rgWorking, New WorkingDTO)
 
-            If Not IsPostBack Then
-                GridList = rep.GetWorkingProccess(EmployeeID)
-                CurrentState = CommonMessage.STATE_NORMAL
-            Else
-                If Message = CommonMessage.ACTION_SAVED Then
-                    GridList = rep.GetWorkingProccess(EmployeeID)
-                End If
-            End If
+            'If Not IsPostBack Then
+            '    GridList = rep.GetWorkingProccess(EmployeeID)
+            '    CurrentState = CommonMessage.STATE_NORMAL
+            'Else
+            '    If Message = CommonMessage.ACTION_SAVED Then
+            '        GridList = rep.GetWorkingProccess(EmployeeID)
+            '    End If
+            'End If
 
-            'Đưa dữ liệu vào Grid
-            If Me.GridList IsNot Nothing Then
-                rgWorking.DataSource = Me.GridList
-                rgWorking.DataBind()
-            Else
-                rgWorking.DataSource = New List(Of WorkingDTO)
-                rgWorking.DataBind()
-            End If
+            ''Đưa dữ liệu vào Grid
+            'If Me.GridList IsNot Nothing Then
+            '    rgWorking.DataSource = Me.GridList
+            '    rgWorking.DataBind()
+            'Else
+            '    rgWorking.DataSource = New List(Of WorkingDTO)
+            '    rgWorking.DataBind()
+            'End If
+
+
 
             '' chức danh kiêm nhiệm
             'Dim re As New ProfileRepository
@@ -105,9 +109,12 @@ Public Class ctrlPortalWorking
         Try
             If IsPostBack Then Exit Sub
 
-            Dim rep As New ProfileBusinessRepository
-            GridList = rep.GetWorkingProccess(EmployeeID)
-            rgWorking.DataSource = GridList
+            Dim rep1 As New ProfileStoreProcedure
+            rgWorking.DataSource = rep1.get_current_work_history(EmployeeID)
+
+            'Dim rep As New ProfileBusinessRepository
+            'GridList = rep.GetWorkingProccess(EmployeeID)
+            'rgWorking.DataSource = GridList
 
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
