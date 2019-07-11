@@ -5,7 +5,7 @@
     <tlk:RadPane ID="RadPane1" runat="server" Height="30px" Scrolling="None">
         <tlk:RadToolBar ID="rtbMain" runat="server" />
     </tlk:RadPane>
-    <tlk:RadPane ID="MainPanel" runat="server"  Scrolling="None" Height="220px">
+    <tlk:RadPane ID="MainPanel" runat="server"  Scrolling="None" Height="150px">
         <asp:Panel ID="pnlEdit" runat="server" Visible="true">
             <fieldset >
                 <legend accesskey="I">
@@ -18,7 +18,7 @@
                         <td>
                             <tlk:RadTextBox ID="txtCode"  runat="server">
                             </tlk:RadTextBox>
-                             <tlk:RadButton EnableEmbeddedSkins="false" ID="btnFindEmp" runat="server" SkinID="ButtonView"
+                             <tlk:RadButton ID="btnFindEmp" runat="server" SkinID="ButtonView"
                                 CausesValidation="false">
                             </tlk:RadButton>
                             <asp:RequiredFieldValidator ID="reqNAME_EN" ControlToValidate="txtNAME_EN" runat="server"
@@ -36,7 +36,7 @@
                     </tr>
                      <tr>
                       <td class="lb">
-                            <%# Translate("Chức vị người ký")%><span class="lbReq">*</span>
+                            <%# Translate("Chức vụ người ký")%><span class="lbReq">*</span>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtNAME_EN" MaxLength="255" runat="server" Width="300px">
