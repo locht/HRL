@@ -835,13 +835,21 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        rdFrom.SelectedDate = Nothing
+        rdTo.SelectedDate = Nothing
         Try
             If cboRemark.SelectedValue = 7086 Then
-                rdFrom.Enabled = True
-                rdTo.Enabled = True
+                EnableControlAll(True, rdFrom, rdTo)
+                RequiredFieldValidator3.Visible = True
+                CompareValidator1.Visible = True
+
+                RequiredFieldValidator4.Visible = True
+
             Else
-                rdFrom.Enabled = False
-                rdTo.Enabled = False
+                EnableControlAll(False, rdFrom, rdTo)
+                RequiredFieldValidator3.Visible = False
+                CompareValidator1.Visible = False
+                RequiredFieldValidator4.Visible = False
                 rdFrom.ClearValue()
                 rdTo.ClearValue()
             End If

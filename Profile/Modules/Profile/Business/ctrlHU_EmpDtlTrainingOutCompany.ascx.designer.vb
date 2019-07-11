@@ -365,6 +365,15 @@ Partial Public Class ctrlHU_EmpDtlTrainingOutCompany
     Protected WithEvents rdTo As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''CompareValidator1 control.
     '''</summary>
     '''<remarks>
