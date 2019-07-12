@@ -101,7 +101,7 @@
                 </td>--%>
                 <td>
                      <tlk:RadComboBox ID="cboRemark" runat="server" Width="160px" AutoPostBack="true" CausesValidation="false">
-                     <%-- <Items>
+                   <%--   <Items>
                             <tlk:RadComboBoxItem Text="" Value="0" />
                             <tlk:RadComboBoxItem Text="Bằng cấp" Value="1" />
                             <tlk:RadComboBoxItem Text="Chứng chỉ" Value="2" />

@@ -234,7 +234,7 @@
                             </tr>
                         </table>
                     </fieldset>
-         </asp:Panel>       
+         </asp:Panel>
          <asp:Panel ID="radApprove" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
@@ -284,11 +284,11 @@
                     </tr>
                 </table>
             </fieldset>
-        </asp:Panel> 
+        </asp:Panel>
         <asp:Panel ID="radApproveTHHD" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
-                    <asp:CheckBox ID="chkApproveTHHD" runat="server" Text="<%$ Translate: Nhân viên hết hạn tạm hoãn HĐ.%>"
+                    <asp:CheckBox ID="chkApproveTHHD" runat="server" Text="<%$ Translate: Nhân viên hết hạn tạm hoãn HĐ. %>"
                         onclick="CheckChangeApproveTHHD(this)" />
                 </legend>
                 <table class="table-form">
@@ -309,8 +309,8 @@
                     </tr>
                 </table>
             </fieldset>
-        </asp:Panel>
-          <asp:Panel ID="radMaterniti" runat="server" CssClass = "Pane"> 
+        </asp:Panel>   
+        <asp:Panel ID="radMaterniti" runat="server" CssClass = "Pane"> 
             <fieldset>
                 <legend>
                     <asp:CheckBox ID="chkMaterniti" runat="server" Text="<%$ Translate: Nhân viên nghỉ thai sản đi làm lại. %>"
@@ -385,6 +385,34 @@
                 </table>
             </fieldset>
         </asp:Panel>
+
+
+            <%--------------------------------------%>
+           <asp:Panel ID="radExpiredCertificate" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkExpiredCertificate" runat="server" Text="<%$ Translate: Nhân viên sắp hết hạn chứng chỉ. %>"
+                        onclick="CheckChangExpiredCertificate(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtExpiredCertificate" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên sắp hết hạn chứng chỉ. %>"
+                                ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên sắp hết hạn chứng chỉ. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>
     </tlk:RadPane>
 </tlk:RadSplitter>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
@@ -445,15 +473,26 @@
                 $find("<%=rntxtTERMINATEDEBT.ClientID %>").disable();
             }
         }
-//        function CheckChangeNoPaper(chk) {
-//            if (chk.checked) {
-//                $find("<%=rntxtNOPAPER.ClientID %>").enable();
-//                $find("<%=rntxtNOPAPER.ClientID %>").focus();
-//            } else {
-//                $find("<%=rntxtNOPAPER.ClientID %>").clear();
-//                $find("<%=rntxtNOPAPER.ClientID %>").disable();
-//            }
-//        }
+
+        //        function CheckChangeNoPaper(chk) {
+        //            if (chk.checked) {
+        //                $find("<%=rntxtNOPAPER.ClientID %>").enable();
+        //                $find("<%=rntxtNOPAPER.ClientID %>").focus();
+        //            } else {
+        //                $find("<%=rntxtNOPAPER.ClientID %>").clear();
+        //                $find("<%=rntxtNOPAPER.ClientID %>").disable();
+        //            }
+        //        }
+
+        function CheckChangeProbation(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtProbation.ClientID %>").enable();
+                $find("<%=rntxtProbation.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtProbation.ClientID %>").clear();
+                $find("<%=rntxtProbation.ClientID %>").disable();
+            }
+        }
 
         function CheckChangeCertificate(chk) {
             if (chk.checked) {
@@ -474,6 +513,7 @@
                 $find("<%=rntxtLABOR.ClientID %>").disable();
             }
         }
+
         function CheckChangeApprove(chk) {
             if (chk.checked) {
                 $find("<%=rntxtApprove.ClientID %>").enable();
@@ -492,6 +532,7 @@
                 $find("<%=rntxtApproveHDLD.ClientID %>").disable();
             }
         }
+
         function CheckChangeApproveTHHD(chk) {
             if (chk.checked) {
                 $find("<%=rntxtApproveTHHD.ClientID %>").enable();
@@ -528,6 +569,15 @@
                 $find("<%=rntxtNoneSalary.ClientID %>").disable();
             }
         }
+        function CheckChangExpiredCertificate(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtExpiredCertificate.ClientID %>").enable();
+                $find("<%=rntxtExpiredCertificate.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtExpiredCertificate.ClientID %>").clear();
+                $find("<%=rntxtExpiredCertificate.ClientID %>").disable();
+            }
+        } 
 
     </script>
     <style>

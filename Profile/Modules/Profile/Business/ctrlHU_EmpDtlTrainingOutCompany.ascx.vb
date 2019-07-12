@@ -838,13 +838,11 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         rdFrom.SelectedDate = Nothing
         rdTo.SelectedDate = Nothing
         Try
-            If cboRemark.SelectedValue = 7086 Then
+            If cboRemark.SelectedItem.ToString = "Chứng chỉ" Then
                 EnableControlAll(True, rdFrom, rdTo)
                 RequiredFieldValidator3.Visible = True
                 CompareValidator1.Visible = True
-
                 RequiredFieldValidator4.Visible = True
-
             Else
                 EnableControlAll(False, rdFrom, rdTo)
                 RequiredFieldValidator3.Visible = False
@@ -853,6 +851,13 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 rdFrom.ClearValue()
                 rdTo.ClearValue()
             End If
+            If cboRemark.SelectedValue = 7086 Then
+                EnableControlAll(True, rdFrom, rdTo)
+                RequiredFieldValidator3.Visible = True
+                CompareValidator1.Visible = True
+                RequiredFieldValidator4.Visible = True
+            End If
+
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
