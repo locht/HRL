@@ -67,21 +67,24 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Giờ bắt đầu")%>
+                    <%# Translate("Giờ bắt đầu")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTimePicker runat="server" ID="rdHours_Start">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
-
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="rdHours_Start"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giờ bắt đầu. %>"></asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <%# Translate("Giờ kết thúc")%>
+                    <%# Translate("Giờ kết thúc")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTimePicker runat="server" ID="rdHours_Stop">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="rdHours_Stop"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giờ kết thúc. %>"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="rdHours_Start"
                         ControlToValidate="rdHours_Stop" Operator="GreaterThan"
                         ErrorMessage="<%$ Translate: Thiết lập giờ cho ca làm việc không hợp lệ %>"
@@ -104,25 +107,25 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Bắt đầu nghỉ giữa ca")%>
+                    <%# Translate("Bắt đầu nghỉ giữa ca")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTimePicker runat="server" ID="rdSTART_MID_HOURS">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdSTART_MID_HOURS"
-                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tên ca làm việc. %>"></asp:RequiredFieldValidator>
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giờ bắt đầu nghỉ giữa ca. %>"></asp:RequiredFieldValidator>
 
                 </td>
                 <td class="lb">
-                    <%# Translate("Kết thúc nghỉ giữa ca")%>
+                    <%# Translate("Kết thúc nghỉ giữa ca")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTimePicker runat="server" ID="rdEND_MID_HOURS">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdEND_MID_HOURS"
-                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tên ca làm việc. %>"></asp:RequiredFieldValidator>
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giờ kết thúc nghỉ giữa ca. %>"></asp:RequiredFieldValidator>
 
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="rdSTART_MID_HOURS"
                         ControlToValidate="rdEND_MID_HOURS" Operator="GreaterThan"
@@ -140,21 +143,27 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Bắt đầu nhận quẹt thẻ")%>
+                    <%# Translate("Bắt đầu nhận quẹt thẻ")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTimePicker runat="server" ID="rdHOURS_STAR_CHECKIN">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="rdHOURS_STAR_CHECKIN"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giờ bắt đầu nhận quẹt thẻ. %>"></asp:RequiredFieldValidator>
 
                 </td>
                 <td class="lb">
-                    <%# Translate("Kết thúc nhận quẹt thẻ")%>
+                    <%# Translate("Kết thúc nhận quẹt thẻ")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadTimePicker runat="server" ID="rdHOURS_STAR_CHECKOUT">
                         <DateInput DateFormat="hh:mm tt" DisplayDateFormat="hh:mm tt"></DateInput>
                     </tlk:RadTimePicker>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="rdHOURS_STAR_CHECKOUT"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập giờ kết thúc nhận quẹt thẻ. %>">
+                    </asp:RequiredFieldValidator>
+
                     <asp:CompareValidator ID="CompareValidator3" runat="server" ControlToCompare="rdHOURS_STAR_CHECKIN"
                         ControlToValidate="rdHOURS_STAR_CHECKOUT" Operator="GreaterThan"
                         ErrorMessage="<%$ Translate: Thiết lập giờ quẹt thẻ không hợp lệ %>"
