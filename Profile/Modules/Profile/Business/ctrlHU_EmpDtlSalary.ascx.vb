@@ -75,25 +75,27 @@ Public Class ctrlHU_EmpDtlSalary
 
     Private Sub rgGrid_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgGrid.ItemDataBound
         If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
-            Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
-            datarow("ORG_NAME").ToolTip = Utilities.DrawTreeByString(datarow("ORG_DESC").Text)
+            'Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
+            'DataRow("ORG_NAME").ToolTip = Utilities.DrawTreeByString(datarow("ORG_DESC").Text)
         End If
     End Sub
 
     Private Sub rgGrid_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgGrid.NeedDataSource
         Try
-            Dim rep As New ProfileBusinessRepository
-            Dim _param = New ParamDTO With {.ORG_ID = 1,
-                                               .IS_DISSOLVE = True}
+            'Dim rep As New ProfileBusinessRepository
+            'Dim _param = New ParamDTO With {.ORG_ID = 1,
+            '.IS_DISSOLVE = True}
             'If (EmployeeID <> 0) Then
             '    rgSalary.DataSource = rep.GetWorking(New WorkingDTO With {.EMPLOYEE_ID = EmployeeID,
             '                                                          .STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID,
             '                                                          .IS_WAGE = -1}, _param, "EFFECT_DATE desc")
-            GridList = rep.GetWorking(New WorkingDTO With {.EMPLOYEE_ID = EmployeeID,
-                                                                      .STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID,
-                                                                      .IS_WAGE = -1}, _param, "EFFECT_DATE desc")
-            rgGrid.DataSource = GridList
-            rep.Dispose()
+            'GridList = rep.GetWorking(New WorkingDTO With {.EMPLOYEE_ID = EmployeeID,
+            '                                                          .STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID,
+            '                                                          .IS_WAGE = -1}, _param, "EFFECT_DATE desc")
+            'rgGrid.DataSource = GridList
+            'rep.Dispose()
+            Dim rep1 As New ProfileStoreProcedure
+            rgGrid.DataSource = rep1.GET_CURRENT_SALARY_HISTORY(EmployeeInfo.ID)
         Catch ex As Exception
             Me.DisplayException(Me.ViewName, Me.ID, ex)
         End Try

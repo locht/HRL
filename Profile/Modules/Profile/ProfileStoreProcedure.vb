@@ -98,7 +98,15 @@
 
     Public Function get_current_work_history(ByVal p_empid As Decimal) As DataTable
         Dim dt As New DataTable
-        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.get_current_work_history", New List(Of Object)(New Object() {p_empid}))
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_CURRENT_WORK_HISTORY", New List(Of Object)(New Object() {p_empid}))
+        If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
+            dt = ds.Tables(0)
+        End If
+        Return dt
+    End Function
+    Public Function GET_CURRENT_SALARY_HISTORY(ByVal p_empid As Decimal) As DataTable
+        Dim dt As New DataTable
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_HU_IPROFILE.GET_CURRENT_SALARY_HISTORY", New List(Of Object)(New Object() {p_empid}))
         If Not ds Is Nothing Or Not ds.Tables(0) Is Nothing Then
             dt = ds.Tables(0)
         End If
