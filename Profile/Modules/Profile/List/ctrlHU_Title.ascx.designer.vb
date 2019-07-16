@@ -50,6 +50,15 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents valSum As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
+    '''lbTitleGroup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbTitleGroup As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cboTitleGroup control.
     '''</summary>
     '''<remarks>
@@ -77,6 +86,15 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents cvalTitleGroup As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbOrgLevel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOrgLevel As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cboOrgLevel control.
     '''</summary>
     '''<remarks>
@@ -95,6 +113,15 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents cusOrgLevel As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''lbOrgType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbOrgType As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''cboOrgType control.
     '''</summary>
     '''<remarks>
@@ -102,6 +129,15 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboOrgType As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''lbCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbCode As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtCode control.
@@ -138,6 +174,15 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''lbNameVN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbNameVN As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtNameVN control.
@@ -237,6 +282,15 @@ Partial Public Class ctrlHU_Title
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnDownload As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''lbRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbRemark As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtRemark control.
