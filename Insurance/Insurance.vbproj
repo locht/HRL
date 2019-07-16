@@ -66,7 +66,6 @@
     <Reference Include="Aspose.Words, Version=10.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\ref\Aspose.Words.dll</HintPath>
     </Reference>
-    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\ref\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -176,6 +175,20 @@
     </Compile>
     <Compile Include="Modules\Business\ctrlInsInformationsMng.ascx.vb">
       <DependentUpon>ctrlInsInformationsMng.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Business\ctrlInsMaternityDetail.ascx.designer.vb">
+      <DependentUpon>ctrlInsMaternityDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Business\ctrlInsMaternityDetail.ascx.vb">
+      <DependentUpon>ctrlInsMaternityDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Business\ctrlInsMaternityMng.ascx.designer.vb">
+      <DependentUpon>ctrlInsMaternityMng.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Business\ctrlInsMaternityMng.ascx.vb">
+      <DependentUpon>ctrlInsMaternityMng.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Business\ctrlInsModifyInfor.ascx.designer.vb">
@@ -304,6 +317,7 @@
       <DependentUpon>ctrlInsManagerSunCare.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\Business\Store_Insurance_Business.vb" />
     <Compile Include="Modules\Dashboard\ctrlDashboardSixCell.ascx.designer.vb">
       <DependentUpon>ctrlDashboardSixCell.ascx</DependentUpon>
     </Compile>
@@ -410,6 +424,7 @@
       <DependentUpon>ctrlInsListRegimes.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Modules\List\Store_Insurance_List.vb" />
     <Compile Include="Modules\Report\ctrlINS_ReportList.ascx.designer.vb">
       <DependentUpon>ctrlINS_ReportList.ascx</DependentUpon>
     </Compile>
@@ -469,6 +484,8 @@
     <Content Include="Modules\Business\ctrlInsHealthImport.ascx" />
     <Content Include="Modules\Business\ctrlInsInformations.ascx" />
     <Content Include="Modules\Business\ctrlInsInformationsMng.ascx" />
+    <Content Include="Modules\Business\ctrlInsMaternityDetail.ascx" />
+    <Content Include="Modules\Business\ctrlInsMaternityMng.ascx" />
     <Content Include="Modules\Business\ctrlInsModifyInfor.ascx" />
     <Content Include="Modules\Business\ctrlInsRegimes.ascx" />
     <Content Include="Modules\Business\ctrlInsRegimesMng.ascx" />
@@ -631,6 +648,10 @@
     <ProjectReference Include="..\Framework\Framework.UI.vbproj">
       <Project>{514CC57F-03AA-4D18-9BF2-3F7B66F6AD9B}</Project>
       <Name>Framework.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HistaffFrameworkPublic\HistaffFrameworkPublic.vbproj">
+      <Project>{5d0cffd8-3ef0-4584-818f-3f165bd8de0c}</Project>
+      <Name>HistaffFrameworkPublic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Profile\Profile.vbproj">
       <Project>{B8148AB7-8752-487B-ABA0-DDA56B917E35}</Project>

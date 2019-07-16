@@ -146,4 +146,8 @@ Public Class CommonProcedureNew
         End Try
     End Sub
 
+    Public Function DELETE_DATA_BY_TABLE(ByVal table_name As String, ByVal strID As String, ByVal modify_by As String, ByVal modify_log As String) As Integer
+        Dim obj As Object = rep.ExecuteStoreScalar("PKG_COMMON_LIST.DELETE_DATA_BY_TABLE", New List(Of Object)(New Object() {table_name, strID, modify_by, modify_log, OUT_NUMBER}))
+        Return Integer.Parse(obj(0).ToString())
+    End Function
 End Class
