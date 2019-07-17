@@ -53,8 +53,6 @@
                     <tlk:RadTextBox ID="txtEmpName" SkinID="ReadOnly" runat="server" Width="100%">
                     </tlk:RadTextBox>
                 </td>
-            </tr>
-            <tr>
                 <td class="lb">
                     <%# Translate("Đơn vị")%>
                 </td>
@@ -72,17 +70,37 @@
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Ca mặc định")%><span class="lbReq">*</span>
+                    <%# Translate("Ca mặc định T2-T6")%><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboSign" runat="server"></tlk:RadComboBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="cboSign"
+                    <asp:RequiredFieldValidator ID="reqSign" ControlToValidate="cboSign"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải chọn ca mặc định. %>" 
                         ToolTip="<%$ Translate: Bạn phải chọn ca mặc định. %>"></asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="cvalSign" runat="server" ControlToValidate="cboSign"
                         ErrorMessage="<%$ Translate: Ca mặc định không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Ca mặc định không tồn tại hoặc đã ngừng áp dụng. %>" >
                     </asp:CustomValidator>
+                </td>
+
+                 <td class="lb">
+                    <%# Translate("Ca T7")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboSignSat" runat="server"></tlk:RadComboBox>
+                     <asp:RequiredFieldValidator ID="reqSignSat" ControlToValidate="cboSignSat"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải chọn ca này %>" 
+                        ToolTip="<%$ Translate: Bạn phải chọn ca này. %>"></asp:RequiredFieldValidator>
+                </td>
+
+                 <td class="lb">
+                    <%# Translate("Ca CN")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboSignSun" runat="server"></tlk:RadComboBox>
+                     <asp:RequiredFieldValidator ID="reqSignSun" ControlToValidate="cboSignSun"
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải chọn ca này %>" 
+                        ToolTip="<%$ Translate: Bạn phải chọn ca này. %>"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -126,7 +144,8 @@
         <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
             <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
                 <tlk:RadGrid PageSize=50 ID="rgWorkschedule" runat="server" Height="100%">
-                    <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,TITLE_ID,TITLE_NAME,ORG_ID,ORG_NAME,EFFECT_DATE_FROM,EFFECT_DATE_TO,SINGDEFAULE,NOTE">
+                    <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_CODE,EMPLOYEE_NAME,
+                        TITLE_ID,TITLE_NAME,ORG_ID,ORG_NAME,EFFECT_DATE_FROM,EFFECT_DATE_TO,SINGDEFAULE,NOTE,SING_SAT,SING_SUN">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
@@ -160,8 +179,13 @@
                                 </tlk:RadToolTip>
                             </ItemTemplate>
                             </tlk:GridTemplateColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ca mặc định%>" DataField="SINGDEFAULF_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ca T2-T6%>" DataField="SINGDEFAULF_NAME"
                                 UniqueName="SINGDEFAULF_NAME" SortExpression="SINGDEFAULF_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ca  T7%>" DataField="SING_SAT_NAME"
+                                UniqueName="SING_SAT_NAME" SortExpression="SING_SAT_NAME" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ca CN%>" DataField="SING_SUN_NAME"
+                                UniqueName="SING_SUN_NAME" SortExpression="SING_SUN_NAME" />
+
                             <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực từ %>" DataField="EFFECT_DATE_FROM"
                                 UniqueName="EFFECT_DATE_FROM" DataFormatString="{0:dd/MM/yyyy}" SortExpression="EFFECT_DATE_FROM">
                                 <HeaderStyle Width="120px" />

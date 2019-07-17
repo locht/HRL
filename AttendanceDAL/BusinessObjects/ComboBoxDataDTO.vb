@@ -1,5 +1,5 @@
 ﻿Public Class ComboBoxDataDTO
-
+    Public Property USER As String
     Public Property GET_LIST_OFFTIME_TYPE As Boolean
     Public Property LIST_LIST_OFFTIME As List(Of OT_OTHERLIST_DTO)
 
