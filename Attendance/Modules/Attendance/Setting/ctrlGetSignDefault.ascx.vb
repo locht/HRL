@@ -153,6 +153,10 @@ Public Class ctrlGetSignDefault
                 dt.Columns.Add("EFFECT_DATE_TO", GetType(String))
                 dt.Columns.Add("SHIFT_ID", GetType(String))
                 dt.Columns.Add("SHIFT_NAME", GetType(String))
+                dt.Columns.Add("SHIFT_SAT_ID", GetType(String))
+                dt.Columns.Add("SHIFT_SAT_NAME", GetType(String))
+                dt.Columns.Add("SHIFT_SUN_ID", GetType(String))
+                dt.Columns.Add("SHIFT_SUN_NAME", GetType(String))
                 dt.Columns.Add("NOTE", GetType(String))
                 ViewState(Me.ID & "_dtData") = dt
             End If
@@ -846,6 +850,8 @@ Public Class ctrlGetSignDefault
                     objSIGN.EFFECT_DATE_FROM = ToDate(dr("EFFECT_DATE_FROM"))
                     objSIGN.EFFECT_DATE_TO = ToDate(dr("EFFECT_DATE_TO"))
                     objSIGN.SINGDEFAULE = CInt(dr("SHIFT_ID"))
+                    objSIGN.SING_SAT = CInt(dr("SHIFT_SAT_ID"))
+                    objSIGN.SING_SUN = CInt(dr("SHIFT_SUN_ID"))
                     objSIGN.EMPLOYEE_ID = CInt(dr("EMPLOYEE_ID"))
                     'objSIGN.TITLE_ID = CInt(dr("TITLE_ID"))
                     'objSIGN.ORG_ID = CInt(dr("ORG_ID"))
@@ -901,6 +907,8 @@ Public Class ctrlGetSignDefault
                 ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
                 sError = "Ca mặc định"
                 ImportValidate.IsValidList("SHIFT_NAME", "SHIFT_ID", row, rowError, isError, sError)
+                ImportValidate.IsValidList("SHIFT_SAT_NAME", "SHIFT_SAT_ID", row, rowError, isError, sError)
+                ImportValidate.IsValidList("SHIFT_SUN_NAME", "SHIFT_SUN_ID", row, rowError, isError, sError)
                 sError = "Ngày hiệu lực không được để trống"
                 ImportValidate.IsValidDate("EFFECT_DATE_FROM", row, rowError, isError, sError)
                 sError = "Ngày hết hiệu lực không được để trống"
