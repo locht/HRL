@@ -12,7 +12,7 @@
                     <asp:Label runat ="server" ID ="lbTitleGroup" Text ="Nhóm chức danh" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboTitleGroup" runat="server">
+                    <tlk:RadComboBox ID="cboTitleGroup" runat="server" AutoPostBack ="true" CausesValidation="false">
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusTitleGroup" runat="server" ErrorMessage="Bạn phải chọn Nhóm chức danh"
                         ToolTip="Bạn phải chọn Nhóm chức danh" ClientValidationFunction="cusTitleGroup">
@@ -26,7 +26,7 @@
                     <asp:Label runat ="server" ID ="lbOrgLevel" Text ="Tên công ty" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadComboBox ID="cboOrgLevel" runat="server">
+                    <tlk:RadComboBox ID="cboOrgLevel" runat="server" AutoPostBack ="true" >
                     </tlk:RadComboBox>
                     <asp:CustomValidator ID="cusOrgLevel" runat="server" ErrorMessage="Bạn phải chọn Tên công ty"
                         ToolTip="Bạn phải chọn Tên công ty" ClientValidationFunction="cusOrgLevel">
@@ -45,7 +45,7 @@
                     <asp:Label runat ="server" ID ="lbCode" Text ="Mã chức danh" ></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Readonly" ReadOnly="true">
+                    <tlk:RadTextBox ID="txtCode" runat="server" SkinID="Readonly" ReadOnly="true" AutoPostBack ="true" >
                     </tlk:RadTextBox>
                     <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
                         ErrorMessage="Bạn phải nhập Mã chức danh" ToolTip="Bạn phải nhập Mã chức danh">
