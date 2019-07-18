@@ -79,7 +79,7 @@ Namespace AttendanceBusiness.ServiceContracts
         Function GetProjectWorkList(ByVal isBlank As Boolean) As DataTable
 
         <OperationContract()>
-        Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO) As Boolean
+        Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO, Optional ByVal strUser As String = "ADMIN") As Boolean
 
         <OperationContract()>
         Function GET_AT_PORTAL_REG(ByVal P_ID As Decimal, ByVal P_EMPLOYEE As Decimal, ByVal P_DATE_TIME As Date) As DataTable

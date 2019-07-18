@@ -80,10 +80,11 @@ Public Class AttendanceRepository
     End Function
 
 
-    Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO) As Boolean
+    Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO, Optional ByVal strUser As String = "ADMIN") As Boolean
         Using rep As New AttendanceBusinessClient
             Try
-                Return rep.GetComboboxData(cbxData)
+                'cbxData.USER = Me.Log.Username
+                Return rep.GetComboboxData(cbxData, Me.Log.Username)
             Catch ex As Exception
                 rep.Abort()
                 Throw ex

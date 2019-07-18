@@ -18,6 +18,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
     Dim _pathLog As String = _myLog._pathLog
     Dim _classPath As String = "Attendance/Module/Attendance/Setting/" + Me.GetType().Name.ToString()
     Dim _result As Boolean = False
+    Dim log As New Common.CommonBusiness.UserLog
 #Region "Property"
 
     Property Employee_BT As List(Of AT_OFFFSETTING_EMPDTO)
@@ -106,6 +107,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
+        log = LogHelper.GetUserLog
         Try
             SetGridFilter(rgEmployee)
             AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
@@ -173,7 +175,7 @@ Public Class ctrlOffSettingTimeKeepingNewEdit
             Dim rep As New AttendanceBusinessClient
             ListComboData = New ComboBoxDataDTO
             ListComboData.GET_LIST_OFFTIME_TYPE = True
-            rep.GetComboboxData(ListComboData)
+            rep.GetComboboxData(ListComboData, log.Username)
             FillDropDownList(cboTypeBT, ListComboData.LIST_LIST_OFFTIME, "NAME_VN", "ID", Common.Common.SystemLanguage, False)
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")

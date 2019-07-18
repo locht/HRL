@@ -4,6 +4,12 @@
     Public Property EMPLOYEE_CODE As String
     Public Property EMPLOYEE_NAME As String
     Public Property TITLE_ID As Decimal?
+
+    Public Property SING_SAT As Decimal?
+    Public Property SING_SUN As Decimal?
+    Public Property SING_SAT_NAME As String
+    Public Property SING_SUN_NAME As String
+
     Public Property TITLE_NAME As String
     Public Property ORG_ID As Decimal?
     Public Property ORG_DESC As String
