@@ -69,7 +69,7 @@ Namespace AttendanceBusiness.ServiceImplementations
             Implements IAttendanceBusiness.GetComboboxData
             Using rep As New AttendanceRepository
                 Try
-                    Return rep.GetComboboxData(cbxData)
+                    Return rep.GetComboboxData(cbxData, strUser)
                 Catch ex As Exception
                     Throw ex
                 End Try
