@@ -5083,7 +5083,6 @@ Partial Public Class AttendanceRepository
     ''' <remarks></remarks>
     Public Function GETSIGNDEFAULT(ByVal param As ParamDTO, ByVal log As UserLog) As DataTable
         Try
-
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_ATTENDANCE_BUSINESS.GETSIGNDEFAULT",
                                                New With {.P_USERNAME = log.Username.ToUpper,
