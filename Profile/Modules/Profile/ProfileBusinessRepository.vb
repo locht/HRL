@@ -788,4 +788,19 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
+    Public Function GetHoSoLuongImport() As DataSet
+        Dim dsdata As DataSet
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dsdata = rep.GetHoSoLuongImport()
+                Return dsdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
 End Class
