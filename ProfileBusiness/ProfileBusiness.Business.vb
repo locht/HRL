@@ -30,7 +30,15 @@ Namespace ProfileBusiness.ServiceImplementations
                 Throw
             End Try
         End Function
-
 #End Region
+        Public Function GetHoSoLuongImport() As DataSet Implements ServiceContracts.IProfileBusiness.GetHoSoLuongImport
+            Try
+                Using rep As New ProfileRepository
+                    Return rep.GetHoSoLuongImport()
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
     End Class
 End Namespace

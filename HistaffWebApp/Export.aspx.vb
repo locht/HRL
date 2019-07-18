@@ -115,6 +115,8 @@ Public Class Export
                         Template_ImportSalary_FundMapping()
                     Case "HU_ANNUALLEAVE_PLANS_ERROR"
                         HU_ANNUALLEAVE_PLANS_ERROR()
+                    Case "Template_ImportHoSoLuong"
+                        Template_ImportHoSoLuong()
                 End Select
             Catch ex As Exception
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
@@ -125,7 +127,29 @@ Public Class Export
 #End Region
 
 #Region "Process"
+    Private Sub Template_ImportHoSoLuong()
+        Dim rep As New Profile.ProfileBusinessRepository
+        'Dim param As New Profile.ProfileBusiness.ParamDTO
+        Try
+            'Dim is_disolve = Request.Params("IS_DISSOLVE")
+            'Dim org_id = Decimal.Parse(Request.Params("ORG_ID"))
+            'param.ORG_ID = org_id
+            'param.IS_DISSOLVE = is_disolve
+            Dim dsData As DataSet = rep.GetHoSoLuongImport()
+            dsData.Tables(0).TableName = "Table"
+            dsData.Tables(1).TableName = "Table1"
+            dsData.Tables(2).TableName = "Table2"
+            dsData.Tables(3).TableName = "Table3"
+            dsData.Tables(4).TableName = "Table4"
+            dsData.Tables(5).TableName = "Table5"
+            rep.Dispose()
+            ExportTemplate("Payroll/Business/TEMP_IMPORT_HOSOLUONG.xlsx",
+                                      dsData, Nothing, "Template_HoSoLuong_" & Format(Date.Now, "yyyyMMdd"))
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     'Private Sub TR_ASSESSMENT_RESULT()
     '    Try
     '        Dim rep As New Training.TrainingRepository

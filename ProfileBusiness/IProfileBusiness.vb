@@ -45,7 +45,8 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
         <OperationContract()>
         Function Calculator_Salary(ByVal data_in As String) As DataTable
-
+        <OperationContract()>
+        Function GetHoSoLuongImport() As DataSet
 #Region "Location"
         <OperationContract()>
         Function GetLocationID(ByVal ID As Decimal) As LocationDTO
