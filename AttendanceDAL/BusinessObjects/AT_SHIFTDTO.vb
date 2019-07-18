@@ -40,5 +40,8 @@
     Public Property IS_HOURS_STOP As Boolean?
     Public Property IS_MID_END As Boolean?
     Public Property IS_HOURS_CHECKOUT As Boolean?
+    Public Property IS_HOURS_STOP_NAME As String
+    Public Property IS_MID_END_NAME As String
+    Public Property IS_HOURS_CHECKOUT_NAME As String
 
 End Class

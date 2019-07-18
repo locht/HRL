@@ -8875,10 +8875,19 @@ Namespace AttendanceBusiness
         Private IS_HOURS_CHECKOUTField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HOURS_CHECKOUT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_HOURS_STOPField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_HOURS_STOP_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_MID_ENDField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_MID_END_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_NOONField As System.Nullable(Of Boolean)
@@ -8935,7 +8944,7 @@ Namespace AttendanceBusiness
         Private SATURDAY_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private SHIFT_DAYField As System.Nullable(Of Decimal)
+        Private SHIFT_DAYField As System.Nullable(Of Double)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private START_MID_HOURSField As System.Nullable(Of Date)
@@ -9142,6 +9151,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HOURS_CHECKOUT_NAME() As String
+            Get
+                Return Me.IS_HOURS_CHECKOUT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_HOURS_CHECKOUT_NAMEField, value) <> true) Then
+                    Me.IS_HOURS_CHECKOUT_NAMEField = value
+                    Me.RaisePropertyChanged("IS_HOURS_CHECKOUT_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_HOURS_STOP() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_HOURS_STOPField
@@ -9155,6 +9177,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_HOURS_STOP_NAME() As String
+            Get
+                Return Me.IS_HOURS_STOP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_HOURS_STOP_NAMEField, value) <> true) Then
+                    Me.IS_HOURS_STOP_NAMEField = value
+                    Me.RaisePropertyChanged("IS_HOURS_STOP_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property IS_MID_END() As System.Nullable(Of Boolean)
             Get
                 Return Me.IS_MID_ENDField
@@ -9163,6 +9198,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_MID_ENDField.Equals(value) <> true) Then
                     Me.IS_MID_ENDField = value
                     Me.RaisePropertyChanged("IS_MID_END")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_MID_END_NAME() As String
+            Get
+                Return Me.IS_MID_END_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.IS_MID_END_NAMEField, value) <> true) Then
+                    Me.IS_MID_END_NAMEField = value
+                    Me.RaisePropertyChanged("IS_MID_END_NAME")
                 End If
             End Set
         End Property
@@ -9402,7 +9450,7 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property SHIFT_DAY() As System.Nullable(Of Decimal)
+        Public Property SHIFT_DAY() As System.Nullable(Of Double)
             Get
                 Return Me.SHIFT_DAYField
             End Get
