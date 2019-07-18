@@ -153,6 +153,10 @@ Public Class ctrlGetSignDefault
                 dt.Columns.Add("EFFECT_DATE_TO", GetType(String))
                 dt.Columns.Add("SHIFT_ID", GetType(String))
                 dt.Columns.Add("SHIFT_NAME", GetType(String))
+                dt.Columns.Add("SHIFT_SAT_ID", GetType(String))
+                dt.Columns.Add("SHIFT_SAT_NAME", GetType(String))
+                dt.Columns.Add("SHIFT_SUN_ID", GetType(String))
+                dt.Columns.Add("SHIFT_SUN_NAME", GetType(String))
                 dt.Columns.Add("NOTE", GetType(String))
                 ViewState(Me.ID & "_dtData") = dt
             End If
@@ -193,50 +197,7 @@ Public Class ctrlGetSignDefault
         End Set
     End Property
 
-    '    Public Property CostCenters As List(Of CostCenterDTO)
-    '        Get
-    '            Return ViewState(Me.ID & "_CostCenters")
-    '        End Get
-    '        Set(ByVal value As List(Of CostCenterDTO))
-    '            ViewState(Me.ID & "_CostCenters") = value
-    '        End Set
-    '    End Property
 
-    '    Property ActiveCostCenters As List(Of CostCenterDTO)
-    '        Get
-    '            Return ViewState(Me.ID & "_ActiveCostCenters")
-    '        End Get
-    '        Set(ByVal value As List(Of CostCenterDTO))
-    '            ViewState(Me.ID & "_ActiveCostCenters") = value
-    '        End Set
-    '    End Property
-
-    '    Property DeleteCostCenters As List(Of CostCenterDTO)
-    '        Get
-    '            Return ViewState(Me.ID & "_DeleteCostCenters")
-    '        End Get
-    '        Set(ByVal value As List(Of CostCenterDTO))
-    '            ViewState(Me.ID & "_DeleteCostCenters") = value
-    '        End Set
-    '    End Property
-
-    '    Public Overrides Sub ViewLoad(ByVal e As System.EventArgs)
-    '        Try
-    '            Refresh()
-    '            UpdateControlState()
-    '        Catch ex As Exception
-    '            DisplayException(Me.ViewName, Me.ID, ex)
-    '        End Try
-    '    End Sub
-
-    '    Property IDSelect As Decimal
-    '        Get
-    '            Return ViewState(Me.ID & "_IDSelect")
-    '        End Get
-    '        Set(ByVal value As Decimal)
-    '            ViewState(Me.ID & "_IDSelect") = value
-    '        End Set
-    '    End Property
 #End Region
 
 #Region "Page"
@@ -418,18 +379,16 @@ Public Class ctrlGetSignDefault
                         phFindEmployee.Controls.Add(ctrlFindEmployeePopup)
                         ctrlFindEmployeePopup.MultiSelect = False
                     End If
-
                 Case 2
                     phPopup.Controls.Clear()
                     ctrlOrgPopup = Me.Register("ctrlOrgPopup", "Common", "ctrlFindOrgPopup")
                     phPopup.Controls.Add(ctrlOrgPopup)
                     Exit Sub
             End Select
-
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    ClearControlValue(txtEmpCode, txtEmpName, txtOrg, txtTitle, txtNote, rdFromDate, rdToDate, cboSign)
-                    EnableControlAll(True, txtNote, rdFromDate, rdToDate, cboSign)
+                    ClearControlValue(txtEmpCode, txtEmpName, txtOrg, txtTitle, txtNote, rdFromDate, rdToDate, cboSign, cboSignSat, cboSignSun)
+                    EnableControlAll(True, txtNote, rdFromDate, rdToDate, cboSign, cboSignSat, cboSignSun)
                     EnableControlAll(False, txtEmpCode, txtEmpName, txtOrg, txtTitle)
                     btnChooseEmployee.Enabled = True
                     cboSign.SelectedIndex = 0
@@ -437,16 +396,14 @@ Public Class ctrlGetSignDefault
                     EnabledGridNotPostback(rgWorkschedule, False)
                 Case CommonMessage.STATE_NORMAL
                     btnChooseEmployee.Enabled = False
-                    ClearControlValue(txtEmpCode, txtEmpName, txtOrg, rdToDate, txtTitle, txtNote, rdFromDate, cboSign)
-                    EnableControlAll(False, txtNote, rdFromDate, rdToDate, cboSign, txtEmpCode, txtEmpName, txtOrg, txtTitle)
+                    ClearControlValue(txtEmpCode, txtEmpName, txtOrg, rdToDate, txtTitle, txtNote, rdFromDate, cboSign, cboSignSat, cboSignSun)
+                    EnableControlAll(False, txtNote, rdFromDate, rdToDate, cboSign, txtEmpCode, txtEmpName, txtOrg, txtTitle, cboSignSat, cboSignSun)
                     EnabledGridNotPostback(rgWorkschedule, True)
-
                 Case CommonMessage.STATE_EDIT
                     btnChooseEmployee.Enabled = True
-                    EnableControlAll(True, rdFromDate, rdToDate, txtNote, cboSign)
+                    EnableControlAll(True, rdFromDate, rdToDate, txtNote, cboSign, cboSignSat, cboSignSun)
                     EnableControlAll(False, txtEmpCode, txtEmpName, txtOrg, txtTitle)
                     EnabledGridNotPostback(rgWorkschedule, False)
-
                 Case CommonMessage.STATE_DEACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgWorkschedule.SelectedItems.Count - 1
@@ -462,7 +419,6 @@ Public Class ctrlGetSignDefault
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgWorkschedule.SelectedItems.Count - 1
@@ -478,7 +434,6 @@ Public Class ctrlGetSignDefault
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
                     For idx = 0 To rgWorkschedule.SelectedItems.Count - 1
@@ -515,7 +470,6 @@ Public Class ctrlGetSignDefault
     Public Overrides Sub BindData()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
-
         Try
             GetDataCombo()
             Dim dic As New Dictionary(Of String, Control)
@@ -528,11 +482,12 @@ Public Class ctrlGetSignDefault
             dic.Add("EMPLOYEE_NAME", txtEmpName)
             dic.Add("TITLE_NAME", txtTitle)
             dic.Add("SINGDEFAULE", cboSign)
+            dic.Add("SING_SUN", cboSignSun)
+            dic.Add("SING_SAT", cboSignSat)
             dic.Add("EFFECT_DATE_FROM", rdFromDate)
             dic.Add("EFFECT_DATE_TO", rdToDate)
             dic.Add("NOTE", txtNote)
             Utilities.OnClientRowSelectedChanged(rgWorkschedule, dic)
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -654,54 +609,60 @@ Public Class ctrlGetSignDefault
                         If ValueSign <> 0 Then
                             objSIGN.SINGDEFAULE = ValueSign
                         End If
+                        If IsNumeric(cboSignSat.SelectedValue) Then
+                            objSIGN.SING_SAT = cboSignSat.SelectedValue
+                        End If
+                        If IsNumeric(cboSignSun.SelectedValue) Then
+                            objSIGN.SING_SUN = cboSignSun.SelectedValue
+                        End If
                         objSIGN.NOTE = txtNote.Text.Trim
-                        Select Case CurrentState
-                            Case CommonMessage.STATE_NEW
-                                objSIGN.EMPLOYEE_ID = InsertSetUp(0).EMPLOYEE_ID
-                                objSIGN.TITLE_ID = InsertSetUp(0).TITLE_ID
-                                objSIGN.ORG_ID = InsertSetUp(0).ORG_ID
-                                objSIGN.ACTFLG = "A"
-                                If rep.InsertAT_SIGNDEFAULT(objSIGN, gID) Then
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    IDSelect = gID
-                                    Refresh("InsertView")
-                                    UpdateControlState()
-                                    ClearControlValue(txtEmpCode, txtEmpName, txtOrg, txtTitle, cboSign, rdFromDate, rdToDate, txtNote)
-                                    rgWorkschedule.Rebind()
-                                    ExcuteScript("Clear", "clRadDatePicker()")
-                                Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                                End If
-                            Case CommonMessage.STATE_EDIT
-                                Dim cmRep As New CommonRepository
-                                Dim lstID As New List(Of Decimal)
+                            Select Case CurrentState
+                                Case CommonMessage.STATE_NEW
+                                    objSIGN.EMPLOYEE_ID = InsertSetUp(0).EMPLOYEE_ID
+                                    objSIGN.TITLE_ID = InsertSetUp(0).TITLE_ID
+                                    objSIGN.ORG_ID = InsertSetUp(0).ORG_ID
+                                    objSIGN.ACTFLG = "A"
+                                    If rep.InsertAT_SIGNDEFAULT(objSIGN, gID) Then
+                                        CurrentState = CommonMessage.STATE_NORMAL
+                                        IDSelect = gID
+                                        Refresh("InsertView")
+                                        UpdateControlState()
+                                        ClearControlValue(txtEmpCode, txtEmpName, txtOrg, txtTitle, cboSign, rdFromDate, rdToDate, txtNote)
+                                        rgWorkschedule.Rebind()
+                                        ExcuteScript("Clear", "clRadDatePicker()")
+                                    Else
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    End If
+                                Case CommonMessage.STATE_EDIT
+                                    Dim cmRep As New CommonRepository
+                                    Dim lstID As New List(Of Decimal)
 
-                                lstID.Add(Convert.ToDecimal(hidID.Value))
+                                    lstID.Add(Convert.ToDecimal(hidID.Value))
 
-                                If cmRep.CheckExistIDTable(lstID, "AT_SIGNDEFAULT", "ID") Then
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Warning)
-                                    Exit Sub
-                                End If
+                                    If cmRep.CheckExistIDTable(lstID, "AT_SIGNDEFAULT", "ID") Then
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Warning)
+                                        Exit Sub
+                                    End If
 
-                                objSIGN.EMPLOYEE_ID = hidEmpID.Value
-                                objSIGN.TITLE_ID = hidTitleID.Value
-                                objSIGN.ORG_ID = hidOrgID.Value
-                                objSIGN.ID = hidID.Value
-                                'objSIGN.ID = rgWorkschedule.SelectedValue
-                                If rep.ModifyAT_SIGNDEFAULT(objSIGN, rgWorkschedule.SelectedValue) Then
-                                    CurrentState = CommonMessage.STATE_NORMAL
-                                    IDSelect = objSIGN.ID
-                                    Refresh("UpdateView")
-                                    UpdateControlState()
-                                    ClearControlValue(txtEmpCode, txtEmpName, txtOrg, txtTitle, cboSign, rdFromDate, rdToDate, txtNote)
-                                    rgWorkschedule.Rebind()
-                                    ExcuteScript("Clear", "clRadDatePicker()")
-                                Else
-                                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                                End If
-                        End Select
-                    Else
-                        ExcuteScript("Resize", "setDefaultSize()")
+                                    objSIGN.EMPLOYEE_ID = hidEmpID.Value
+                                    objSIGN.TITLE_ID = hidTitleID.Value
+                                    objSIGN.ORG_ID = hidOrgID.Value
+                                    objSIGN.ID = hidID.Value
+                                    'objSIGN.ID = rgWorkschedule.SelectedValue
+                                    If rep.ModifyAT_SIGNDEFAULT(objSIGN, rgWorkschedule.SelectedValue) Then
+                                        CurrentState = CommonMessage.STATE_NORMAL
+                                        IDSelect = objSIGN.ID
+                                        Refresh("UpdateView")
+                                        UpdateControlState()
+                                        ClearControlValue(txtEmpCode, txtEmpName, txtOrg, txtTitle, cboSign, rdFromDate, rdToDate, txtNote)
+                                        rgWorkschedule.Rebind()
+                                        ExcuteScript("Clear", "clRadDatePicker()")
+                                    Else
+                                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                                    End If
+                            End Select
+                        Else
+                            ExcuteScript("Resize", "setDefaultSize()")
                     End If
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
@@ -889,6 +850,8 @@ Public Class ctrlGetSignDefault
                     objSIGN.EFFECT_DATE_FROM = ToDate(dr("EFFECT_DATE_FROM"))
                     objSIGN.EFFECT_DATE_TO = ToDate(dr("EFFECT_DATE_TO"))
                     objSIGN.SINGDEFAULE = CInt(dr("SHIFT_ID"))
+                    objSIGN.SING_SAT = CInt(dr("SHIFT_SAT_ID"))
+                    objSIGN.SING_SUN = CInt(dr("SHIFT_SUN_ID"))
                     objSIGN.EMPLOYEE_ID = CInt(dr("EMPLOYEE_ID"))
                     'objSIGN.TITLE_ID = CInt(dr("TITLE_ID"))
                     'objSIGN.ORG_ID = CInt(dr("ORG_ID"))
@@ -944,6 +907,8 @@ Public Class ctrlGetSignDefault
                 ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
                 sError = "Ca mặc định"
                 ImportValidate.IsValidList("SHIFT_NAME", "SHIFT_ID", row, rowError, isError, sError)
+                ImportValidate.IsValidList("SHIFT_SAT_NAME", "SHIFT_SAT_ID", row, rowError, isError, sError)
+                ImportValidate.IsValidList("SHIFT_SUN_NAME", "SHIFT_SUN_ID", row, rowError, isError, sError)
                 sError = "Ngày hiệu lực không được để trống"
                 ImportValidate.IsValidDate("EFFECT_DATE_FROM", row, rowError, isError, sError)
                 sError = "Ngày hết hiệu lực không được để trống"
@@ -1073,8 +1038,9 @@ Public Class ctrlGetSignDefault
                 ListComboData.GET_LIST_SHIFT = True
                 rep.GetComboboxData(ListComboData)
             End If
-
             FillDropDownList(cboSign, ListComboData.LIST_LIST_SHIFT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSign.SelectedValue)
+            FillDropDownList(cboSignSat, ListComboData.LIST_LIST_SHIFT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSignSat.SelectedValue)
+            FillDropDownList(cboSignSun, ListComboData.LIST_LIST_SHIFT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSignSun.SelectedValue)
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -1181,15 +1147,12 @@ Public Class ctrlGetSignDefault
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New AttendanceRepository
         Dim _validate As New AT_SIGNDEFAULTDTO
-
         Try
             _validate.ID = rgWorkschedule.SelectedValue
             _validate.EMPLOYEE_ID = hidEmpID.Value
             _validate.EFFECT_DATE_FROM = rdFromDate.SelectedDate
             _validate.EFFECT_DATE_TO = rdToDate.SelectedDate
-
             args.IsValid = rep.ValidateAT_SIGNDEFAULT(_validate)
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             'DisplayException(Me.ViewName, Me.ID, ex)
@@ -1207,21 +1170,16 @@ Public Class ctrlGetSignDefault
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim rep As New AttendanceRepository
-
         Try
             ValueSign = cboSign.SelectedValue
             ListComboData = New ComboBoxDataDTO
             Dim dto As New AT_SHIFTDTO
             Dim list As New List(Of AT_SHIFTDTO)
-
             dto.ID = Convert.ToDecimal(cboSign.SelectedValue)
             list.Add(dto)
-
             ListComboData.GET_LIST_SHIFT = True
             ListComboData.LIST_LIST_SHIFT = list
-
             args.IsValid = rep.ValidateCombobox(ListComboData)
-
             If rep.ValidateCombobox(ListComboData) Then
                 args.IsValid = True
             Else
@@ -1231,11 +1189,18 @@ Public Class ctrlGetSignDefault
                 FillDropDownList(cboSign, ListComboData.LIST_LIST_SHIFT, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboSign.SelectedValue)
                 cboSign.SelectedIndex = 0
             End If
-
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
             'DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+    Private Sub rgWorkschedule_SelectedIndexChanged(sender As Object, e As EventArgs) Handles rgWorkschedule.SelectedIndexChanged
+        Try
+
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 

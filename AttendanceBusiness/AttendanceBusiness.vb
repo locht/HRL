@@ -65,11 +65,11 @@ Namespace AttendanceBusiness.ServiceImplementations
 
 
 
-        Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO) As Boolean _
+        Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO, Optional ByVal strUser As String = "ADMIN") As Boolean _
             Implements IAttendanceBusiness.GetComboboxData
             Using rep As New AttendanceRepository
                 Try
-                    Return rep.GetComboboxData(cbxData)
+                    Return rep.GetComboboxData(cbxData, strUser)
                 Catch ex As Exception
                     Throw ex
                 End Try

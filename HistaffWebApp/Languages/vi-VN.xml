@@ -38876,4 +38876,180 @@ Xin cám ơn!
       <string>Phường/xã</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_SIGNER</string>
+    </Key>
+    <Value>
+      <string>Danh mục người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP TÊN LOẠI QUYẾT ĐỊNH</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập tên loại quyết định</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ NGƯỜI KÝ</string>
+    </Key>
+    <Value>
+      <string>Mã người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TÊN NGƯỜI KÝ</string>
+    </Key>
+    <Value>
+      <string>Tên người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC VỊ NGƯỜI KÝ</string>
+    </Key>
+    <Value>
+      <string>Chức vị người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SIGNER_CODE</string>
+    </Key>
+    <Value>
+      <string>Mã người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NAME</string>
+    </Key>
+    <Value>
+      <string>Họ tên</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>STATUS_NAME</string>
+    </Key>
+    <Value>
+      <string>Tình trạng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC VỤ NGƯỜI KÝ</string>
+    </Key>
+    <Value>
+      <string>Chức vụ người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>EMPLOYEE_ID</string>
+    </Key>
+    <Value>
+      <string>EMPLOYEE_ID</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>STATUS_CODE</string>
+    </Key>
+    <Value>
+      <string>STATUS_CODE</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ORG_DESC</string>
+    </Key>
+    <Value>
+      <string>ORG_DESC</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHÔNG THỂ CHỈNH SỬA NHIỀU DÒNG CÙNG LÚC</string>
+    </Key>
+    <Value>
+      <string>Không thể chỉnh sửa nhiều dòng cùng lúc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN LOẠI HỢP ĐỒNG.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Loại hợp đồng.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TẢI XUỐNG</string>
+    </Key>
+    <Value>
+      <string>Tải xuống</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỌN HỒ SƠ LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Chọn Hồ Sơ Lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN HỒ SƠ LƯƠNG.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Hồ sơ lương.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>UI.WAGE_WAGEGROUP</string>
+    </Key>
+    <Value>
+      <string>UI.Wage_WageGRoup</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>UI.WAGE_TAXTABLE</string>
+    </Key>
+    <Value>
+      <string>UI.Wage_TaxTable</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>UI.WAGE_BASICSALARY</string>
+    </Key>
+    <Value>
+      <string>UI.Wage_BasicSalary</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>UI.WAGE_SAL_INS</string>
+    </Key>
+    <Value>
+      <string>UI.Wage_Sal_Ins</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>UI.WAGE_ALLOWANCE_TOTAL</string>
+    </Key>
+    <Value>
+      <string>UI.Wage_Allowance_total</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

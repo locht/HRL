@@ -2994,6 +2994,8 @@ Partial Public Class AttendanceRepository
             Dim query = From p In Context.AT_SIGNDEFAULT
                         From e In Context.HU_EMPLOYEE.Where(Function(F) F.ID = p.EMPLOYEE_ID)
                         From SH In Context.AT_SHIFT.Where(Function(F) F.ID = p.SINGDEFAULE).DefaultIfEmpty
+                        From SH_SAT In Context.AT_SHIFT.Where(Function(F) F.ID = p.SING_SAT).DefaultIfEmpty
+                        From SH_SUN In Context.AT_SHIFT.Where(Function(F) F.ID = p.SING_SUN).DefaultIfEmpty
                         From ORG In Context.HU_ORGANIZATION.Where(Function(F) F.ID = e.ORG_ID).DefaultIfEmpty
                         From s In Context.SE_CHOSEN_ORG.Where(Function(f) f.ORG_ID = ORG.ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         From TI In Context.HU_TITLE.Where(Function(F) F.ID = e.TITLE_ID).DefaultIfEmpty
@@ -3012,6 +3014,10 @@ Partial Public Class AttendanceRepository
                                        .EFFECT_DATE_TO = p.p.EFFECT_DATE_TO,
                                        .SINGDEFAULE = p.p.SINGDEFAULE,
                                        .SINGDEFAULF_NAME = p.SH.CODE,
+                                       .SING_SAT = p.p.SING_SAT,
+                                       .SING_SAT_NAME = p.SH_SAT.CODE,
+                                       .SING_SUN = p.p.SING_SUN,
+                                       .SING_SUN_NAME = p.SH_SUN.CODE,
                                        .NOTE = p.p.NOTE,
                                        .ACTFLG = If(p.p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
                                        .CREATED_DATE = p.p.CREATED_DATE,
@@ -3183,12 +3189,8 @@ Partial Public Class AttendanceRepository
             objTitleData.SINGDEFAULE = objTitle.SINGDEFAULE
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.ACTFLG = objTitle.ACTFLG
-            'objTitleData.CREATED_BY = objTitle.CREATED_BY
-            'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
-            'objTitleData.CREATED_LOG = objTitle.CREATED_LOG
-            'objTitleData.MODIFIED_BY = objTitle.MODIFIED_BY
-            'objTitleData.MODIFIED_DATE = objTitle.MODIFIED_DATE
-            'objTitleData.MODIFIED_LOG = objTitle.MODIFIED_LOG
+            objTitleData.SING_SUN = objTitle.SING_SUN
+            objTitleData.SING_SAT = objTitle.SING_SAT
             Context.AT_SIGNDEFAULT.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -3210,12 +3212,8 @@ Partial Public Class AttendanceRepository
             objTitleData.EFFECT_DATE_TO = objTitle.EFFECT_DATE_TO
             objTitleData.SINGDEFAULE = objTitle.SINGDEFAULE
             objTitleData.NOTE = objTitle.NOTE
-            'objTitleData.CREATED_BY = objTitle.CREATED_BY
-            'objTitleData.CREATED_DATE = objTitle.CREATED_DATE
-            'objTitleData.CREATED_LOG = objTitle.CREATED_LOG
-            'objTitleData.MODIFIED_BY = objTitle.MODIFIED_BY
-            'objTitleData.MODIFIED_DATE = objTitle.MODIFIED_DATE
-            'objTitleData.MODIFIED_LOG = objTitle.MODIFIED_LOG
+             objTitleData.SING_SUN = objTitle.SING_SUN
+            objTitleData.SING_SAT = objTitle.SING_SAT
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

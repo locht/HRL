@@ -9667,6 +9667,9 @@ Namespace AttendanceBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_LIST_TYPE_OTField As System.Collections.Generic.List(Of AttendanceBusiness.OT_OTHERLIST_DTO)
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private USERField As String
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -10245,6 +10248,19 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.LIST_LIST_TYPE_OTField, value) <> true) Then
                     Me.LIST_LIST_TYPE_OTField = value
                     Me.RaisePropertyChanged("LIST_LIST_TYPE_OT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property USER() As String
+            Get
+                Return Me.USERField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.USERField, value) <> true) Then
+                    Me.USERField = value
+                    Me.RaisePropertyChanged("USER")
                 End If
             End Set
         End Property
@@ -12117,6 +12133,18 @@ Namespace AttendanceBusiness
         Private SINGDEFAULF_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SING_SATField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SING_SAT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SING_SUNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SING_SUN_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -12388,6 +12416,58 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.SINGDEFAULF_NAMEField, value) <> true) Then
                     Me.SINGDEFAULF_NAMEField = value
                     Me.RaisePropertyChanged("SINGDEFAULF_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SING_SAT() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SING_SATField
+            End Get
+            Set
+                If (Me.SING_SATField.Equals(value) <> true) Then
+                    Me.SING_SATField = value
+                    Me.RaisePropertyChanged("SING_SAT")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SING_SAT_NAME() As String
+            Get
+                Return Me.SING_SAT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SING_SAT_NAMEField, value) <> true) Then
+                    Me.SING_SAT_NAMEField = value
+                    Me.RaisePropertyChanged("SING_SAT_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SING_SUN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SING_SUNField
+            End Get
+            Set
+                If (Me.SING_SUNField.Equals(value) <> true) Then
+                    Me.SING_SUNField = value
+                    Me.RaisePropertyChanged("SING_SUN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SING_SUN_NAME() As String
+            Get
+                Return Me.SING_SUN_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SING_SUN_NAMEField, value) <> true) Then
+                    Me.SING_SUN_NAMEField = value
+                    Me.RaisePropertyChanged("SING_SUN_NAME")
                 End If
             End Set
         End Property
@@ -30975,7 +31055,7 @@ Namespace AttendanceBusiness
         Function GetProjectWorkList(ByVal isBlank As Boolean) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GetComboboxDataResponse")>  _
-        Function GetComboboxData(ByRef cbxData As AttendanceBusiness.ComboBoxDataDTO) As Boolean
+        Function GetComboboxData(ByRef cbxData As AttendanceBusiness.ComboBoxDataDTO, ByVal strUser As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IAttendanceBusiness/GET_AT_PORTAL_REG", ReplyAction:="http://tempuri.org/IAttendanceBusiness/GET_AT_PORTAL_REGResponse")>  _
         Function GET_AT_PORTAL_REG(ByVal P_ID As Decimal, ByVal P_EMPLOYEE As Decimal, ByVal P_DATE_TIME As Date) As System.Data.DataTable
@@ -32442,8 +32522,8 @@ Namespace AttendanceBusiness
             Return MyBase.Channel.GetProjectWorkList(isBlank)
         End Function
         
-        Public Function GetComboboxData(ByRef cbxData As AttendanceBusiness.ComboBoxDataDTO) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.GetComboboxData
-            Return MyBase.Channel.GetComboboxData(cbxData)
+        Public Function GetComboboxData(ByRef cbxData As AttendanceBusiness.ComboBoxDataDTO, ByVal strUser As String) As Boolean Implements AttendanceBusiness.IAttendanceBusiness.GetComboboxData
+            Return MyBase.Channel.GetComboboxData(cbxData, strUser)
         End Function
         
         Public Function GET_AT_PORTAL_REG(ByVal P_ID As Decimal, ByVal P_EMPLOYEE As Decimal, ByVal P_DATE_TIME As Date) As System.Data.DataTable Implements AttendanceBusiness.IAttendanceBusiness.GET_AT_PORTAL_REG

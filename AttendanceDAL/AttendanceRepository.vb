@@ -103,12 +103,12 @@ Partial Public Class AttendanceRepository
 
 
 
-    Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO) As Boolean
+    Public Function GetComboboxData(ByRef cbxData As ComboBoxDataDTO, Optional ByVal strUSER As String = "ADMIN") As Boolean
         Try
             If cbxData.GET_LIST_TIME_RECORDER Then
                 cbxData.LIST_LIST_TIME_RECORDER = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "TIME_RECORDER" Order By p.CREATED_DATE Descending
-                        Select New OT_OTHERLIST_DTO With {
+                                                   Where p.ACTFLG = "A" And t.CODE = "TIME_RECORDER" Order By p.CREATED_DATE Descending
+                                                   Select New OT_OTHERLIST_DTO With {
                             .ID = p.ID,
                             .CODE = p.CODE,
                             .NAME_EN = p.NAME_EN,
@@ -119,7 +119,7 @@ Partial Public Class AttendanceRepository
             If cbxData.GET_LIST_OFFTIME_TYPE Then
                 cbxData.LIST_LIST_OFFTIME = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
                                              Where p.ACTFLG = "A" And t.CODE = "OFFSETTING_TIMEKEEPING" Order By p.CREATED_DATE Descending
-                         Select New OT_OTHERLIST_DTO With {
+                                             Select New OT_OTHERLIST_DTO With {
                              .ID = p.ID,
                              .CODE = p.CODE,
                              .NAME_EN = p.NAME_EN,
@@ -129,8 +129,8 @@ Partial Public Class AttendanceRepository
             'Danh sach Loai may TERMINAL_TYPE
             If cbxData.GET_LIST_TERMINAL_TYPE Then
                 cbxData.LIST_LIST_TYPETERMINAL = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                             Where p.ACTFLG = "A" And t.CODE = "TERMINAL_TYPE" Order By p.CREATED_DATE Descending
-                         Select New OT_OTHERLIST_DTO With {
+                                                  Where p.ACTFLG = "A" And t.CODE = "TERMINAL_TYPE" Order By p.CREATED_DATE Descending
+                                                  Select New OT_OTHERLIST_DTO With {
                              .ID = p.ID,
                              .CODE = p.CODE,
                              .NAME_EN = p.NAME_EN,
@@ -140,8 +140,8 @@ Partial Public Class AttendanceRepository
             'Danh sách các đối tượng cư trú
             If cbxData.GET_LIST_TYPEPUNISH Then
                 cbxData.LIST_LIST_TYPEPUNISH = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                             Where p.ACTFLG = "A" And t.CODE = "TYPE_PUNISH" Order By p.CREATED_DATE Descending
-                         Select New OT_OTHERLIST_DTO With {
+                                                Where p.ACTFLG = "A" And t.CODE = "TYPE_PUNISH" Order By p.CREATED_DATE Descending
+                                                Select New OT_OTHERLIST_DTO With {
                              .ID = p.ID,
                              .CODE = p.CODE,
                              .NAME_EN = p.NAME_EN,
@@ -150,8 +150,8 @@ Partial Public Class AttendanceRepository
             End If
             If cbxData.GET_LIST_TYPESHIFT Then
                 cbxData.LIST_LIST_TYPESHIFT = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "TYPE_SHIFT" Order By p.CREATED_DATE Descending
-                        Select New OT_OTHERLIST_DTO With {
+                                               Where p.ACTFLG = "A" And t.CODE = "TYPE_SHIFT" Order By p.CREATED_DATE Descending
+                                               Select New OT_OTHERLIST_DTO With {
                             .ID = p.ID,
                             .CODE = p.CODE,
                             .NAME_EN = p.NAME_EN,
@@ -181,23 +181,26 @@ Partial Public Class AttendanceRepository
                                                    .NAME_VN = p.NAME_VN}).ToList
             End If
             If cbxData.GET_LIST_SHIFT Then
-                cbxData.LIST_LIST_SHIFT = (From p In Context.AT_SHIFT Where p.ACTFLG = "A" Order By p.NAME_VN Descending
-                                               Select New AT_SHIFTDTO With {
-                                                   .ID = p.ID,
-                                                   .CODE = p.CODE,
-                                                   .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
+                Dim UserID = (From u In Context.SE_USER Where u.USERNAME = strUSER Select u.ID).FirstOrDefault
+                Dim lstOrg = (From p In Context.SE_USER_ORG_ACCESS Where p.USER_ID = UserID Select p.ORG_ID).ToList().Distinct.ToList()
+                cbxData.LIST_LIST_SHIFT = (From p In Context.AT_SHIFT
+                                           Where p.ACTFLG = "A" And (lstOrg.Contains(p.ORG_ID) Or strUSER = "ADMIN") Order By p.NAME_VN Descending
+                                           Select New AT_SHIFTDTO With {
+                                               .ID = p.ID,
+                                               .CODE = p.CODE,
+                                               .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList.Distinct.ToList()
             End If
             If cbxData.GET_LIST_SIGN Then
                 cbxData.LIST_LIST_SIGN = (From p In Context.AT_FML Where p.ACTFLG = "A" Order By p.NAME_VN Descending
-                                               Select New AT_FMLDTO With {
+                                          Select New AT_FMLDTO With {
                                                    .ID = p.ID,
                                                    .CODE = p.CODE,
                                                    .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
             End If
             If cbxData.GET_LIST_TYPEEMPLOYEE Then
                 cbxData.LIST_LIST_TYPEEMPLOYEE = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "TYPE_EMPLOYEE" Order By p.CREATED_DATE Descending
-                        Select New OT_OTHERLIST_DTO With {
+                                                  Where p.ACTFLG = "A" And t.CODE = "TYPE_EMPLOYEE" Order By p.CREATED_DATE Descending
+                                                  Select New OT_OTHERLIST_DTO With {
                             .ID = p.ID,
                             .CODE = p.CODE,
                             .NAME_EN = p.NAME_EN,
@@ -206,15 +209,15 @@ Partial Public Class AttendanceRepository
             End If
             If cbxData.GET_LIST_TYPEE_FML Then
                 cbxData.LIST_LIST_TYPE_FML = (From p In Context.AT_FML Where p.ACTFLG = "A" Order By p.NAME_VN Descending
-                                               Select New AT_FMLDTO With {
+                                              Select New AT_FMLDTO With {
                                                    .ID = p.ID,
                                                    .CODE = p.CODE,
                                                    .NAME_VN = "[" & p.CODE & "] " & p.NAME_VN}).ToList
             End If
             If cbxData.GET_LIST_REST_DAY Then
                 cbxData.LIST_LIST_REST_DAY = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                             Where p.ACTFLG = "A" And t.CODE = "AT_TIMELEAVE" Order By p.CREATED_DATE Descending
-                         Select New OT_OTHERLIST_DTO With {
+                                              Where p.ACTFLG = "A" And t.CODE = "AT_TIMELEAVE" Order By p.CREATED_DATE Descending
+                                              Select New OT_OTHERLIST_DTO With {
                              .ID = p.ID,
                              .CODE = p.CODE,
                              .NAME_EN = p.NAME_EN,
@@ -223,8 +226,8 @@ Partial Public Class AttendanceRepository
             End If
             If cbxData.GET_LIST_TYPE_DMVS Then
                 cbxData.LIST_LIST_TYPE_DMVS = (From p In Context.AT_TIME_MANUAL
-                                                Where p.ACTFLG = "A" And p.CODE = "RDT" Or p.CODE = "RVS" Order By p.NAME Descending
-                         Select New OT_OTHERLIST_DTO With {
+                                               Where p.ACTFLG = "A" And p.CODE = "RDT" Or p.CODE = "RVS" Order By p.NAME Descending
+                                               Select New OT_OTHERLIST_DTO With {
                              .ID = p.ID,
                              .CODE = p.CODE,
                              .NAME_VN = p.NAME}).ToList
@@ -232,10 +235,10 @@ Partial Public Class AttendanceRepository
 
             If cbxData.GET_LIST_TYPE_MANUAL_LEAVE Then
                 cbxData.LIST_LIST_TYPE_MANUAL_LEAVE = (From p In Context.AT_TIME_MANUAL
-                                                 From F In Context.AT_FML.Where(Function(f) f.ID = p.MORNING_ID).DefaultIfEmpty
-                                                 From F2 In Context.AT_FML.Where(Function(f2) f2.ID = p.AFTERNOON_ID).DefaultIfEmpty
-                                                 Where p.ACTFLG = "A" And (F.IS_LEAVE = -1 Or F2.IS_LEAVE = -1) Order By p.NAME Descending
-                                               Select New AT_TIME_MANUALDTO With {
+                                                       From F In Context.AT_FML.Where(Function(f) f.ID = p.MORNING_ID).DefaultIfEmpty
+                                                       From F2 In Context.AT_FML.Where(Function(f2) f2.ID = p.AFTERNOON_ID).DefaultIfEmpty
+                                                       Where p.ACTFLG = "A" And (F.IS_LEAVE = -1 Or F2.IS_LEAVE = -1) Order By p.NAME Descending
+                                                       Select New AT_TIME_MANUALDTO With {
                                                    .ID = p.ID,
                                                    .CODE = p.CODE,
                                                    .MORNING_ID = p.MORNING_ID,
@@ -244,7 +247,7 @@ Partial Public Class AttendanceRepository
             End If
             If cbxData.GET_LIST_TYPE_MANUAL Then
                 cbxData.LIST_LIST_TYPE_MANUAL = (From p In Context.AT_TIME_MANUAL Where p.ACTFLG = "A" And p.CODE <> "RVS" And p.CODE <> "RDT" Order By p.NAME Descending
-                                               Select New AT_TIME_MANUALDTO With {
+                                                 Select New AT_TIME_MANUALDTO With {
                                                    .ID = p.ID,
                                                    .CODE = p.CODE,
                                                    .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
@@ -252,7 +255,7 @@ Partial Public Class AttendanceRepository
 
             If cbxData.GET_LIST_SHIFT_SUNDAY Then
                 cbxData.LIST_LIST_SHIFT_SUNDAY = (From p In Context.AT_TIME_MANUAL Where p.ACTFLG = "A" Order By p.NAME Descending
-                                               Select New AT_TIME_MANUALDTO With {
+                                                  Select New AT_TIME_MANUALDTO With {
                                                    .ID = p.ID,
                                                    .CODE = p.CODE,
                                                    .NAME_VN = "[" & p.CODE & "] " & p.NAME}).ToList
@@ -260,15 +263,15 @@ Partial Public Class AttendanceRepository
             ' danh mục cấp nhân sự
             If cbxData.GET_LIST_STAFF_RANK Then
                 cbxData.LIST_LIST_STAFF_RANK = (From p In Context.HU_STAFF_RANK Where p.ACTFLG = "A" Order By p.NAME Descending
-                                               Select New HU_STAFF_RANKDTO With {
+                                                Select New HU_STAFF_RANKDTO With {
                                                    .ID = p.ID,
                                                    .CODE = p.CODE,
                                                    .NAME = p.NAME}).ToList
             End If
             If cbxData.GET_LIST_HS_OT Then
                 cbxData.LIST_LIST_HS_OT = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "HS_OT" Order By p.ID Descending
-                                            Select New OT_OTHERLIST_DTO With {
+                                           Where p.ACTFLG = "A" And t.CODE = "HS_OT" Order By p.ID Descending
+                                           Select New OT_OTHERLIST_DTO With {
                                                 .ID = p.ID,
                                                 .CODE = p.CODE,
                                                 .NAME_EN = p.NAME_EN,
@@ -277,8 +280,8 @@ Partial Public Class AttendanceRepository
             End If
             If cbxData.GET_LIST_TYPE_OT Then
                 cbxData.LIST_LIST_TYPE_OT = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                            Where p.ACTFLG = "A" And t.CODE = "TYPE_OT" Order By p.ID Descending
-                                            Select New OT_OTHERLIST_DTO With {
+                                             Where p.ACTFLG = "A" And t.CODE = "TYPE_OT" Order By p.ID Descending
+                                             Select New OT_OTHERLIST_DTO With {
                                                 .ID = p.ID,
                                                 .CODE = p.CODE,
                                                 .NAME_EN = p.NAME_EN,
@@ -288,8 +291,8 @@ Partial Public Class AttendanceRepository
 
             If cbxData.GET_LIST_TIME_SHIFT Then
                 cbxData.LIST_LIST_TIME_SHIFT = (From p In Context.OT_OTHER_LIST Join t In Context.OT_OTHER_LIST_TYPE On p.TYPE_ID Equals t.ID
-                                             Where p.ACTFLG = "A" And t.CODE = "TIME_SHIFT" Order By p.CREATED_DATE Descending
-                         Select New OT_OTHERLIST_DTO With {
+                                                Where p.ACTFLG = "A" And t.CODE = "TIME_SHIFT" Order By p.CREATED_DATE Descending
+                                                Select New OT_OTHERLIST_DTO With {
                              .ID = p.ID,
                              .CODE = p.CODE,
                              .NAME_EN = p.NAME_EN,

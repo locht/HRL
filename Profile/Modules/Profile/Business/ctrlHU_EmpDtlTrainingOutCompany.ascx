@@ -137,13 +137,13 @@
                 <td class="lb">
                     <asp:Label runat="server"  ID="lbFrom" Text="Ngày hiệu lực chứng chỉ"></asp:Label>
                 </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdFrom" AutoPostBack="true" runat="server">
+                <td >
+                    <tlk:RadDatePicker ID="rdFrom" AutoPostBack="true" runat="server" Enabled="false">
                     </tlk:RadDatePicker>
-                      <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdFrom"
-                        runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>--%>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="rdFrom" 
+                        runat="server" ErrorMessage="Bạn phải nhập ngày hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>
                 </td>
-               <%--   <td>
+                 <%-- <td> 
                     <tlk:RadDatePicker ID="rdStartDate" runat="server" AutoPostBack="True">
                     </tlk:RadDatePicker>
                     <asp:RequiredFieldValidator ID="reqStartDate" ControlToValidate="rdStartDate" runat="server"
@@ -156,8 +156,10 @@
                     <asp:Label runat="server" ID="lbTo" Text="Ngày hết hiệu lực chứng chỉ"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadDatePicker ID="rdTo" AutoPostBack="true" runat="server">
+                    <tlk:RadDatePicker ID="rdTo" AutoPostBack="true" runat="server" Enabled="false">
                     </tlk:RadDatePicker>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rdTo" 
+                        runat="server" ErrorMessage="Bạn phải nhập ngày hết hiệu lực chứng chỉ." ToolTip="Bạn phải nhập ngày hết hiệu lực chứng chỉ."> </asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
                         ErrorMessage="Ngày hiệu lực chứng chỉ phải nhỏ hơn ngày hết hiệu lực chứng chỉ"
                         Type="Date" Operator="GreaterThan" ControlToCompare="rdFrom" ControlToValidate="rdTo"></asp:CompareValidator>

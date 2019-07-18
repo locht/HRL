@@ -300,6 +300,8 @@
     <Content Include="Modules\Insurance\Business\ctrlInsHealthImport.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsInformations.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsInformationsMng.ascx" />
+    <Content Include="Modules\Insurance\Business\ctrlInsMaternityDetail.ascx" />
+    <Content Include="Modules\Insurance\Business\ctrlInsMaternityMng.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsModifyInfor.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsRegimes.ascx" />
     <Content Include="Modules\Insurance\Business\ctrlInsRegimesMng.ascx" />
@@ -1417,6 +1419,7 @@
     <Content Include="Static\logo_default.png" />
     <Content Include="Styles\about.css" />
     <Content Include="Styles\Config.jquery.css" />
+    <Content Include="ReportTemplates\Insurance\Business\InsMaternityMng.xlsx" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />

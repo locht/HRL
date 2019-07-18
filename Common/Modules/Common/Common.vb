@@ -517,6 +517,7 @@ Public Enum RemindConfigType
     Materniti = 24 ' nghỉ thai sản đi làm lại
     Retirement = 25 ' Nhân viên đến tuổi nghỉ hưu
     NoneSalary = 26 '  Nhân viên nghỉ không lương đi làm lại
+    ExpiredCertificate = 27 ' Nhân viên sắp hết hạn chứng chỉ
 End Enum
 
 Public Enum ToolbarItem

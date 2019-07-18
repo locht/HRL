@@ -9,6 +9,7 @@
         <Item Value="ctrlInsTotalSalary" Text="Tổng quỹ lương" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsTotalSalary&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlInsRegimesMng" Text="Quản lý thông tin hưởng chế độ" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsRegimesMng&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlInsModifyInfor" Text="Điều chỉnh hồ sơ BHXH" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsModifyInfor&amp;group=Business" CheckPermission="true"/>
+        <Item Value="ctrlInsMaternityMng" Text="Quản lý thai sản" PostBack="True" NavigateUrl="Default.aspx?mid=Insurance&amp;fid=ctrlInsMaternityMng&amp;group=Business" CheckPermission="true"/>
       </Group>
     </Item>
     

@@ -74,6 +74,12 @@ Public Class ctrlHU_EmpDtlWorkingBefore
             rgGrid.SetFilter()
             rgGrid.AllowCustomPaging = True
             InitControl()
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                ViewConfig(RadPane2)
+                ViewConfig(RadPane3)
+                GirdConfig(rgGrid)
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try

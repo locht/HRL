@@ -101,7 +101,10 @@ Public Class ctrlHU_Title
         Try
             rgMain.AllowCustomPaging = True
             InitControl()
-
+            If Not IsPostBack Then
+                ViewConfig(RadPane1)
+                GirdConfig(rgMain)
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
@@ -164,7 +167,7 @@ Public Class ctrlHU_Title
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
+                        ClearControlValue(txtNameVN, txtRemark, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
                 End Select
             End If
             rep.Dispose()
@@ -349,6 +352,31 @@ Public Class ctrlHU_Title
 #End Region
 
 #Region "Event"
+    Private Sub cboTitleGroup_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cboTitleGroup.SelectedIndexChanged, cboOrgLevel.SelectedIndexChanged
+        Dim rep As New ProfileRepository
+        Dim repS As New ProfileStoreProcedure
+        Dim dtData As New DataTable()
+        Dim dtOrgLevel As New DataTable()
+        Try
+            Dim ORG_CODE As String = String.Empty
+            Dim TITLE_GROUP As String = String.Empty
+            If IsNumeric(cboOrgLevel.SelectedValue) Then
+                dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
+                ORG_CODE = dtOrgLevel.Select("ORG_ID='" + cboOrgLevel.SelectedValue + "'")(0)("ORG_CODE").ToString
+            End If
+            If IsNumeric(cboTitleGroup.SelectedValue) Then
+                dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
+                TITLE_GROUP = dtData.Select("ID='" + cboTitleGroup.SelectedValue + "'")(0)("CODE").ToString
+            End If
+            txtCode.Text = rep.AutoGenCode(ORG_CODE + TITLE_GROUP, "HU_TITLE", "CODE")
+        Catch ex As Exception
+            Throw ex
+        Finally
+            dtData.Dispose()
+            dtOrgLevel.Dispose()
+            rep.Dispose()
+        End Try
+    End Sub
 
     ''' <lastupdate>24/07/2017</lastupdate>
     ''' <summary> 

@@ -45,14 +45,14 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Ngày vào")%>
+                    <%# Translate("Từ tháng/năm")%>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdJoinDate" runat="server">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                    <%# Translate("Ngày nghỉ")%>
+                    <%# Translate("Đến tháng/năm")%>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEndDate" runat="server">
@@ -100,12 +100,14 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane4" runat="server" Scrolling="None">
         <tlk:RadGrid PageSize=50 ID="rgGrid" runat="server" AllowMultiRowSelection="true" Height="100%">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON">
+            <MasterTableView DataKeyNames="ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON"
+             ClientDataKeyNames="ID,COMPANY_NAME,JOIN_DATE,END_DATE,COMPANY_ADDRESS,TELEPHONE,SALARY,TITLE_NAME,LEVEL_NAME,TER_REASON">
                 <NoRecordsTemplate>
                     Không có bản ghi nào
                 </NoRecordsTemplate>
                 <Columns>
-                    <tlk:GridClientSelectColumn>
+       
+                   <%-- <tlk:GridClientSelectColumn>
                         <HeaderStyle Width="40px" />
                         <ItemStyle HorizontalAlign="Center" />
                     </tlk:GridClientSelectColumn>
@@ -115,10 +117,10 @@
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Số điện thoại %>" DataField="TELEPHONE"
                         UniqueName="TELEPHONE">
                     </tlk:GridBoundColumn>
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày vào %>" DataField="JOIN_DATE"
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Từ tháng/năm %>" DataField="JOIN_DATE"
                         UniqueName="JOIN_DATE">
                     </tlk:GridDateTimeColumn>
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày nghỉ %>" DataField="END_DATE"
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Đến tháng/năm %>" DataField="END_DATE"
                         UniqueName="END_DATE">
                     </tlk:GridDateTimeColumn>
                     <tlk:GridNumericColumn DataField="SALARY" HeaderText="<%$ Translate: Mức lương %>"
@@ -134,7 +136,7 @@
                         UniqueName="TER_REASON">
                     </tlk:GridBoundColumn>
                     <tlk:GridBoundColumn DataField="ID" HeaderText="ID" UniqueName="ID" Visible="False">
-                    </tlk:GridBoundColumn>
+                    </tlk:GridBoundColumn>--%>
                 </Columns>
                 <HeaderStyle Width="120px" />
             </MasterTableView>

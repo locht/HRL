@@ -4,7 +4,7 @@
     Scrolling="X">
     <MasterTableView DataKeyNames="ID,EFFECT_DATE,EMPLOYEE_ID" ClientDataKeyNames="ID,EFFECT_DATE,EMPLOYEE_ID">
         <Columns>
-          <%--  <tlk:GridNumericColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE"
+            <%--   <tlk:GridNumericColumn HeaderText="Mã nhân viên" DataField="EMPLOYEE_CODE" UniqueName="EMPLOYEE_CODE"
                 SortExpression="EMPLOYEE_CODE" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
@@ -62,8 +62,8 @@
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
-            <tlk:GridNumericColumn HeaderText="Thưởng hiệu quả công việc" DataField="OTHERSALARY2"
-                UniqueName="OTHERSALARY2" SortExpression="OTHERSALARY2" ShowFilterIcon="true"
+            <tlk:GridNumericColumn HeaderText="Thưởng hiệu quả công việc" DataField=""
+                UniqueName="" SortExpression="" ShowFilterIcon="true"
                 DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
@@ -79,6 +79,31 @@
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
+            <tlk:GridNumericColumn HeaderText="OTHERSALARY1" DataField="OTHERSALARY1" UniqueName="OTHERSALARY1"
+                SortExpression="OTHERSALARY1" ShowFilterIcon="true" DataFormatString="{0:n0}">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridNumericColumn HeaderText="OTHERSALARY2" DataField="OTHERSALARY2" UniqueName="OTHERSALARY2"
+                SortExpression="OTHERSALARY2" ShowFilterIcon="true" DataFormatString="{0:n0}">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridNumericColumn HeaderText="OTHERSALARY3" DataField="OTHERSALARY3" UniqueName="OTHERSALARY3"
+                SortExpression="OTHERSALARY3" ShowFilterIcon="true" DataFormatString="{0:n0}">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridNumericColumn HeaderText="OTHERSALARY4" DataField="OTHERSALARY4" UniqueName="OTHERSALARY4"
+                SortExpression="OTHERSALARY4" ShowFilterIcon="true" DataFormatString="{0:n0}">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
+            <tlk:GridNumericColumn HeaderText="OTHERSALARY5" DataField="OTHERSALARY5" UniqueName="OTHERSALARY5"
+                SortExpression="OTHERSALARY5" ShowFilterIcon="true" DataFormatString="{0:n0}">
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
+            </tlk:GridNumericColumn>
             <tlk:GridNumericColumn HeaderText="Trạng thái" DataField="STATUS_NAME" UniqueName="STATUS_NAME"
                 SortExpression="STATUS_NAME" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
@@ -89,7 +114,7 @@
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
             </tlk:GridBoundColumn>
-             <tlk:GridBoundColumn HeaderText="Cấp nhân sự" DataField="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME"
+            <tlk:GridBoundColumn HeaderText="Cấp nhân sự" DataField="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME"
                 SortExpression="STAFF_RANK_NAME" ShowFilterIcon="false" AutoPostBackOnFilter="true"
                 CurrentFilterFunction="Contains" FilterControlWidth="100%">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
@@ -104,8 +129,8 @@
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridBoundColumn>
-            <tlk:GridNumericColumn HeaderText="Khoản bổ sung" DataField="OTHERSALARY1" UniqueName="OTHERSALARY1"
-                SortExpression="OTHERSALARY1" ShowFilterIcon="true" DataFormatString="{0:n0}">
+            <tlk:GridNumericColumn HeaderText="Khoản bổ sung" DataField="" UniqueName=""
+                SortExpression="" ShowFilterIcon="true" DataFormatString="{0:n0}">
                 <HeaderStyle Width="10%" HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Right" />
             </tlk:GridNumericColumn>
