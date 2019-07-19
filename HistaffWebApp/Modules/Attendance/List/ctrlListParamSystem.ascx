@@ -37,6 +37,12 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="rdEffect_date_to_NB"
                         runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập ngày hết hạn nghỉ bù. %>"></asp:RequiredFieldValidator>
                 </td>
+                <td class="lb">
+                    <asp:Label ID="lbOrg_id" runat ="server" Text ="Công ty"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox runat ="server" ID ="cbOrg_id" ></tlk:RadComboBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -52,6 +58,12 @@
                 <td>
                     <tlk:RadDatePicker runat="server" ID="rdTO_LEAVE_YEAR">
                     </tlk:RadDatePicker>
+                </td>
+                <td class="lb">
+                    
+                </td>
+                <td>
+                    <asp:CheckBox runat ="server" Text ="Không hết hạn phép cũ năm trước" ID ="ckNoEffect_date"/>
                 </td>
             </tr>
             <tr>
@@ -119,12 +131,16 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,EFFECT_DATE_FROM,EFFECT_DATE_TO_NB,TO_LEAVE_YEAR,RANK_PAY_OT_NAME,HOUR_CAL_OT,HOUR_MAX_OT,CREATE_BY_SHOW,CREATE_DATE_SHOW,ACTFLG,NOTE,YEAR_P,YEAR_TN,DAY_TN">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,EFFECT_DATE_FROM,EFFECT_DATE_TO_NB,
+                TO_LEAVE_YEAR,RANK_PAY_OT_NAME,HOUR_CAL_OT,HOUR_MAX_OT,CREATE_BY_SHOW,CREATE_DATE_SHOW,ACTFLG,
+                NOTE,YEAR_P,YEAR_TN,DAY_TN,ORG_ID,NO_EFFECT_ENT">
                 <Columns>
                     <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                     </tlk:GridClientSelectColumn>
                     <tlk:GridBoundColumn DataField="ID" Visible="false" />
+                     <tlk:GridBoundColumn HeaderText="Công ty" DataField="ORG_NAME"
+                        UniqueName="ORG_NAME" SortExpression="ORG_NAME" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE_FROM"
                         UniqueName="EFFECT_DATE_FROM" SortExpression="EFFECT_DATE_FROM" DataFormatString="{0:dd/MM/yyyy}">
                         <HeaderStyle Width="120px" />
@@ -163,6 +179,8 @@
                         <HeaderStyle Width="200px" />
                         <ItemStyle Width="200px" />
                     </tlk:GridBoundColumn>
+                    <tlk:GridCheckBoxColumn HeaderText="Không hết hạn phép cũ năm trước" DataField="NO_EFFECT_ENT"
+                        UniqueName="NO_EFFECT_ENT" SortExpression="NO_EFFECT_ENT"> </tlk:GridCheckBoxColumn>
                 </Columns>
                 <HeaderStyle Width="100px" />
             </MasterTableView>

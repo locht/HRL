@@ -24,4 +24,7 @@
     Public Property YEAR_P As Decimal?
     Public Property YEAR_TN As Decimal?
     Public Property DAY_TN As Decimal?
+    Public Property ORG_ID As Decimal?
+    Public Property ORG_NAME As String
+    Public Property NO_EFFECT_ENT As Boolean?
 End Class

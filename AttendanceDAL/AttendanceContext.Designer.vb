@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("4052279a-23d0-4255-b296-0fb384365fc2")>
+<Assembly: EdmSchemaAttribute("fbfb6912-ff81-4e9c-b607-af9d8aa11a76")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -12963,6 +12963,56 @@ Public Partial Class AT_LIST_PARAM_SYSTEM
     End Sub
 
     Private Partial Sub OnDAY_TNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property NO_EFFECT_ENT() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _NO_EFFECT_ENT
+        End Get
+        Set
+            OnNO_EFFECT_ENTChanging(value)
+            ReportPropertyChanging("NO_EFFECT_ENT")
+            _NO_EFFECT_ENT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("NO_EFFECT_ENT")
+            OnNO_EFFECT_ENTChanged()
+        End Set
+    End Property
+
+    Private _NO_EFFECT_ENT As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnNO_EFFECT_ENTChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnNO_EFFECT_ENTChanged()
     End Sub
 
     #End Region

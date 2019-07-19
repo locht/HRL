@@ -1577,6 +1577,8 @@
             <Property Name="YEAR_P" Type="number" Nullable="true" Precision="38" />
             <Property Name="YEAR_TN" Type="number" Nullable="true" Precision="38" />
             <Property Name="DAY_TN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NO_EFFECT_ENT" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_REGISTER_OT">
             <Key>
@@ -4260,6 +4262,8 @@
           <Property Type="Decimal" Name="YEAR_P" />
           <Property Type="Decimal" Name="YEAR_TN" />
           <Property Type="Decimal" Name="DAY_TN" />
+          <Property Type="Decimal" Name="ORG_ID" />
+          <Property Type="Decimal" Name="NO_EFFECT_ENT" />
         </EntityType>
         <EntityType Name="AT_REGISTER_OT">
           <Key>
@@ -6549,6 +6553,8 @@
                     <ScalarProperty Name="YEAR_P" ColumnName="YEAR_P" />
                     <ScalarProperty Name="YEAR_TN" ColumnName="YEAR_TN" />
                     <ScalarProperty Name="DAY_TN" ColumnName="DAY_TN" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="NO_EFFECT_ENT" ColumnName="NO_EFFECT_ENT" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7433,15 +7439,15 @@
           <ConnectorPoint PointX="3.75" PointY="3.3250000000000028" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEE" >
-          <ConnectorPoint PointX="1.42382671875" PointY="3.125" />
-          <ConnectorPoint PointX="1.42382671875" PointY="2.2000000001862645" />
-          <ConnectorPoint PointX="2.1598325260416664" PointY="2.2000000001862641" />
-          <ConnectorPoint PointX="2.3264991927083334" PointY="2.2000000001862645" />
+          <ConnectorPoint PointX="1.8125" PointY="3.125" />
+          <ConnectorPoint PointX="1.8125" PointY="2.2000000001862645" />
+          <ConnectorPoint PointX="2.3541691666666664" PointY="2.2000000001862641" />
+          <ConnectorPoint PointX="2.5208358333333334" PointY="2.2000000001862645" />
           <ConnectorPoint PointX="3.75" PointY="2.2000000001862645" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEF" >
-          <ConnectorPoint PointX="2.243165859375" PointY="3.125" />
-          <ConnectorPoint PointX="2.243165859375" PointY="1.3250000000000002" />
+          <ConnectorPoint PointX="2.4375025" PointY="3.125" />
+          <ConnectorPoint PointX="2.4375025" PointY="1.3250000000000002" />
           <ConnectorPoint PointX="6.625" PointY="1.3250000000000002" />
         </AssociationConnector>
         <AssociationConnector Association="AttendanceModel.FK_HE_HEO" >
@@ -7467,8 +7473,8 @@
         <EntityTypeShape EntityType="AttendanceModel.HU_ORGANIZATION" Width="3.375" PointX="6.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <AssociationConnector Association="AttendanceModel.FK_HU_ORG_HU_ORG" >
           <ConnectorPoint PointX="7.773769230769231" PointY="0.89999999999999858" />
-          <ConnectorPoint PointX="7.773769230769231" PointY="1.1499999999999986" />
-          <ConnectorPoint PointX="8.8768846153846148" PointY="1.1499999999999986" />
+          <ConnectorPoint PointX="7.773769230769231" PointY="1.1500000000000021" />
+          <ConnectorPoint PointX="8.8768846153846148" PointY="1.1500000000000021" />
           <ConnectorPoint PointX="8.8768846153846148" PointY="0.89999999999999858" />
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.HU_WORKING" Width="1.5" PointX="0.625" PointY="11.5" Height="0.39999999999999858" IsExpanded="false" />
@@ -7507,7 +7513,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_TIME_EMP" Width="1.5" PointX="13" PointY="15.25" Height="0.40000000000000568" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ENTITLEMENT" Width="3" PointX="0.5" PointY="15" Height="19.095113932291667" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.SE_EMPLOYEE_CHOSEN" Width="1.5" PointX="15.625" PointY="6.5" Height="0.40000000000000568" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_LIST_PARAM_SYSTEM" Width="1.875" PointX="16.625" PointY="0.5" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_LIST_PARAM_SYSTEM" Width="1.875" PointX="16.625" PointY="0.5" Height="6.0186165364583326" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_REGISTER_OT" Width="1.5" PointX="4" PointY="18.375" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.SE_USER" Width="1.5" PointX="9.875" PointY="2.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.SE_REPORT" Width="1.5" PointX="7.625" PointY="2.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7534,7 +7540,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" Width="3.25" PointX="23.75" PointY="13.75" Height="3.5186979166666674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.HUV_AT_PORTAL" Width="1.5" PointX="23.75" PointY="18.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE" Width="1.5" PointX="5.1826480241411588" PointY="26.960923237242234" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" Width="1.5" PointX="6.3377412587114339" PointY="0.53933958734354914" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" Width="1.5" PointX="6.375" PointY="0.5" IsExpanded="false" Height="0.4" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_DETAIL" Width="1.5" PointX="11.998932212590674" PointY="2.4056456398245158" />
         <EntityTypeShape EntityType="AttendanceModel.ATV_HOLIDAY_HOSE" Width="1.5" PointX="15.375" PointY="15.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="AttendanceModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="16.375" PointY="18.75" Height="3.9033007812499818" />

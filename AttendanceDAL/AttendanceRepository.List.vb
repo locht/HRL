@@ -5396,6 +5396,7 @@ Partial Public Class AttendanceRepository
 
             Dim query = From p In Context.AT_LIST_PARAM_SYSTEM
                         From i In Context.HU_STAFF_RANK.Where(Function(F) F.ID = p.RANK_PAY_OT).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
 
             Dim lst = query.Select(Function(p) New AT_LISTPARAM_SYSTEAMDTO With {
                                        .ID = p.p.ID,
@@ -5422,7 +5423,10 @@ Partial Public Class AttendanceRepository
                                        .MODIFIED_LOG = p.p.MODIFIED_LOG,
                                        .YEAR_P = p.p.YEAR_P,
                                        .YEAR_TN = p.p.YEAR_TN,
-                                       .DAY_TN = p.p.DAY_TN})
+                                       .DAY_TN = p.p.DAY_TN,
+                                       .ORG_ID = If(p.p.ORG_ID Is Nothing, -1, p.p.ORG_ID),
+                                       .ORG_NAME = p.o.NAME_VN,
+                                       .NO_EFFECT_ENT = If(p.p.NO_EFFECT_ENT Is Nothing, False, CBool(p.p.NO_EFFECT_ENT))})
 
             If Not String.IsNullOrEmpty(_filter.CODE) Then
                 lst = lst.Where(Function(f) f.CODE.ToLower().Contains(_filter.CODE.ToLower()))
@@ -5521,6 +5525,8 @@ Partial Public Class AttendanceRepository
             objTitleData.YEAR_P = objData.YEAR_P
             objTitleData.YEAR_TN = objData.YEAR_TN
             objTitleData.DAY_TN = objData.DAY_TN
+            objTitleData.ORG_ID = objData.ORG_ID
+            objTitleData.NO_EFFECT_ENT = objData.NO_EFFECT_ENT
             Context.AT_LIST_PARAM_SYSTEM.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -5592,6 +5598,8 @@ Partial Public Class AttendanceRepository
             objTitleData.YEAR_P = objData.YEAR_P
             objTitleData.YEAR_TN = objData.YEAR_TN
             objTitleData.DAY_TN = objData.DAY_TN
+            objTitleData.ORG_ID = objData.ORG_ID
+            objTitleData.NO_EFFECT_ENT = objData.NO_EFFECT_ENT
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

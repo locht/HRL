@@ -106,12 +106,12 @@ Public Class ctrlListParamSystem
             Me.ctrlMessageBox.Listener = Me
             Me.MainToolBar = tbarCostCenters
 
-            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create,
+            Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Create, ToolbarItem.Edit,
                                        ToolbarItem.Save, ToolbarItem.Cancel,
                                        ToolbarItem.Delete, ToolbarItem.Active,
                                        ToolbarItem.Deactive, ToolbarItem.Export)
 
-            CType(MainToolBar.Items(1), RadToolBarButton).CausesValidation = True
+            CType(MainToolBar.Items(2), RadToolBarButton).CausesValidation = True
             Refresh("")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
@@ -224,55 +224,48 @@ Public Class ctrlListParamSystem
         Try
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
-                    ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE)
-                    EnableControlAll(True, rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE)
+                    ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE, cbOrg_id, ckNoEffect_date)
+                    EnableControlAll(True, rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE, cbOrg_id, ckNoEffect_date)
                     EnabledGridNotPostback(rgDanhMuc, False)
-
                 Case CommonMessage.STATE_NORMAL
-                    ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE)
-                    EnableControlAll(False, rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE)
+                    ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE, cbOrg_id, ckNoEffect_date)
+                    EnableControlAll(False, rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE, cbOrg_id, ckNoEffect_date)
                     EnabledGridNotPostback(rgDanhMuc, True)
 
                 Case CommonMessage.STATE_EDIT
-                    EnableControlAll(True, rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE)
+                    EnableControlAll(True, rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE, cbOrg_id, ckNoEffect_date)
                     EnabledGridNotPostback(rgDanhMuc, False)
 
                 Case CommonMessage.STATE_DEACTIVE
                     Dim lstDeletes As New List(Of Decimal)
-
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-
                     If rep.ActiveListParamItime(lstDeletes, "I") Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
                         ExcuteScript("Clear", "clRadDatePicker()")
-                        ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE)
+                        ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE, cbOrg_id, ckNoEffect_date)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-
                 Case CommonMessage.STATE_ACTIVE
                     Dim lstDeletes As New List(Of Decimal)
-
                     For idx = 0 To rgDanhMuc.SelectedItems.Count - 1
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-
                     If rep.ActiveListParamItime(lstDeletes, "A") Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         CurrentState = CommonMessage.STATE_NORMAL
                         rgDanhMuc.Rebind()
                         ExcuteScript("Clear", "clRadDatePicker()")
-                        ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE)
+                        ClearControlValue(rdEFFECT_DATE_FROM, rdEffect_date_to_NB, rdTO_LEAVE_YEAR, cboRANK_PAY_OT, nmHOUR_CAL_OT, nmHOUR_MAX_OT, txtNOTE, cbOrg_id, ckNoEffect_date)
                     Else
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                     End If
-
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
 
@@ -280,7 +273,6 @@ Public Class ctrlListParamSystem
                         Dim item As GridDataItem = rgDanhMuc.SelectedItems(idx)
                         lstDeletes.Add(item.GetDataKeyValue("ID"))
                     Next
-
                     If rep.DeleteListParamItime(lstDeletes) Then
                         Refresh("UpdateView")
                         UpdateControlState()
@@ -352,21 +344,23 @@ Public Class ctrlListParamSystem
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
                     UpdateControlState()
-
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgDanhMuc.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
+
+                    If rgDanhMuc.SelectedItems.Count > 1 Then
+                        ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW), NotifyType.Warning)
+                        Exit Sub
+                    End If
                     CurrentState = CommonMessage.STATE_EDIT
                     UpdateControlState()
-
                 Case CommonMessage.TOOLBARITEM_ACTIVE
                     If rgDanhMuc.SelectedItems.Count = 0 Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW), NotifyType.Warning)
                         Exit Sub
                     End If
-
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_ACTIVE)
                     ctrlMessageBox.ActionName = CommonMessage.ACTION_ACTIVE
                     ctrlMessageBox.DataBind()
@@ -398,6 +392,7 @@ Public Class ctrlListParamSystem
                     If Page.IsValid Then
                         objData.CODE = ""
                         objData.NAME = ""
+
                         objData.EFFECT_DATE_FROM = rdEFFECT_DATE_FROM.SelectedDate
                         objData.EFFECT_DATE_TO_NB = rdEffect_date_to_NB.SelectedDate
                         objData.TO_LEAVE_YEAR = rdTO_LEAVE_YEAR.SelectedDate
@@ -406,6 +401,11 @@ Public Class ctrlListParamSystem
                         Else
                             objData.RANK_PAY_OT = Utilities.ObjToInt(cboRANK_PAY_OT.SelectedValue)
                         End If
+                        If IsNumeric(cbOrg_id.SelectedValue) Then
+                            objData.ORG_ID = cbOrg_id.SelectedValue
+                        End If
+                        objData.NO_EFFECT_ENT = CType(ckNoEffect_date.Checked, Boolean)
+
                         objData.HOUR_CAL_OT = Utilities.ObjToInt(nmHOUR_CAL_OT.Value)
                         objData.HOUR_MAX_OT = Utilities.ObjToInt(nmHOUR_MAX_OT.Value)
                         objData.CREATE_BY_SHOW = Common.Common.GetUsername
@@ -414,7 +414,10 @@ Public Class ctrlListParamSystem
                         objData.YEAR_P = rdYear.Value
                         objData.YEAR_TN = rdYearTN.Value
                         objData.DAY_TN = rdDayTN.Value
-
+                        If IsNumeric(cbOrg_id.SelectedValue) Then
+                            objData.ORG_ID = cbOrg_id.SelectedValue
+                        End If
+                        objData.NO_EFFECT_ENT = ckNoEffect_date.Checked
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW
                                 objData.ACTFLG = "A"
@@ -634,6 +637,8 @@ Public Class ctrlListParamSystem
     ''' <remarks></remarks>
     Private Sub GetDataCombo()
         Dim rep As New AttendanceRepository
+        Dim dtOrgLevel As DataTable = New DataTable()
+        Dim repS As New Profile.ProfileStoreProcedure
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Dim startTime As DateTime = DateTime.UtcNow
         Try
@@ -642,13 +647,22 @@ Public Class ctrlListParamSystem
                 ListComboData.GET_LIST_STAFF_RANK = True
                 rep.GetComboboxData(ListComboData)
             End If
-
             FillDropDownList(cboRANK_PAY_OT, ListComboData.LIST_LIST_STAFF_RANK, "NAME", "ID", Common.Common.SystemLanguage, True, cboRANK_PAY_OT.SelectedValue)
-
+            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
+            Dim dr As DataRow = dtOrgLevel.NewRow
+            dr("ORG_ID") = "-1"
+            dr("ORG_NAME_VN") = "Dùng  Chung"
+            dtOrgLevel.Rows.Add(dr)
+            dtOrgLevel.DefaultView.Sort = "ORG_ID ASC"
+            FillRadCombobox(cbOrg_id, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
             'Throw ex
+        Finally
+            rep.Dispose()
+            dtOrgLevel.Dispose()
+            startTime = Nothing
         End Try
     End Sub
 
@@ -657,7 +671,7 @@ Public Class ctrlListParamSystem
 
         Dim item = CType(rgDanhMuc.SelectedItems(0), GridDataItem)
         Dim ID = item.GetDataKeyValue("ID").ToString
-        Dim At_ListParamSystem1 = (From p In At_ListParamSystem Where p.ID = Decimal.Parse(ID)).SingleOrDefault
+        Dim At_ListParamSystem1 = (From p In At_ListParamSystem Where p.ID = Decimal.Parse(ID)).FirstOrDefault
 
         rdYear.Value = At_ListParamSystem1.YEAR_P
         rdYearTN.Value = At_ListParamSystem1.YEAR_TN
@@ -667,7 +681,10 @@ Public Class ctrlListParamSystem
         nmHOUR_CAL_OT.Value = At_ListParamSystem1.HOUR_CAL_OT
         nmHOUR_MAX_OT.Value = At_ListParamSystem1.HOUR_MAX_OT
         txtNOTE.Text = At_ListParamSystem1.NOTE
-
+        If IsNumeric(At_ListParamSystem1.ORG_ID) Then
+            cbOrg_id.SelectedValue = At_ListParamSystem1.ORG_ID
+        End If
+        ckNoEffect_date.Checked = CBool(At_ListParamSystem1.NO_EFFECT_ENT)
     End Sub
 
 
