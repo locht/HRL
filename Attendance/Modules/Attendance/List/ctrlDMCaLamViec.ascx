@@ -217,19 +217,29 @@
                         UniqueName="SHIFT_DAY" SortExpression="SHIFT_DAY" />
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Mô tả mã công %>" DataField="MANUAL_NAME"
                         UniqueName="MANUAL_NAME" SortExpression="MANUAL_NAME" HeaderStyle-Width="200px" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã kiểu công chủ nhật %>" DataField="SUNDAY_CODE"
-                        UniqueName="SUNDAY_CODE" SortExpression="SUNDAY_CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công chủ nhật %>" DataField="SUNDAY_NAME"
-                        UniqueName="SUNDAY_NAME" SortExpression="SUNDAY_NAME" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã kiểu công thứ bẩy %>" DataField="SATURDAY_CODE"
-                        UniqueName="SATURDAY_CODE" SortExpression="SATURDAY_CODE" />
-                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Kiểu công thứ bẩy %>" DataField="SATURDAY_NAME"
-                        UniqueName="SATURDAY_NAME" SortExpression="SATURDAY_NAME" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Giờ bắt đầu %>" AllowFiltering="false"
-                        DataField="HOURS_START" DataFormatString="{0:HH:mm}" UniqueName="HOURS_START"
-                        SortExpression="HOURS_START" />
-                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Giờ kết thúc %>" AllowFiltering="false"
-                        DataField="HOURS_STOP" DataFormatString="{0:HH:mm}" UniqueName="HOURS_STOP" SortExpression="HOURS_STOP" />
+
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Giờ bắt đầu %>" DataField="HOURS_START"
+                        UniqueName="HOURS_START" DataFormatString="{0:HH:mm}" SortExpression="HOURS_START" />
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Giờ kết thúc %>" DataField="HOURS_STOP"
+                        UniqueName="HOURS_STOP" DataFormatString="{0:HH:mm}" SortExpression="HOURS_STOP" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Qua ngày hôm sau %>" DataField="IS_HOURS_STOP_NAME"
+                        UniqueName="IS_HOURS_STOP_NAME" SortExpression="IS_HOURS_STOP_NAME" HeaderStyle-Width="100px" />
+
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Bắt đầu nghỉ giữa ca %>" DataField="START_MID_HOURS"
+                        UniqueName="START_MID_HOURS" DataFormatString="{0:HH:mm}" SortExpression="START_MID_HOURS" />
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Kết thúc nghỉ giữa ca %>" DataField="END_MID_HOURS"
+                        UniqueName="END_MID_HOURS" DataFormatString="{0:HH:mm}" SortExpression="END_MID_HOURS" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Qua ngày hôm sau %>" DataField="IS_MID_END_NAME"
+                        UniqueName="IS_MID_END_NAME" SortExpression="IS_MID_END_NAME" HeaderStyle-Width="100px" />
+
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Bắt đầu nhận quyẹt thẻ %>" DataField="HOURS_STAR_CHECKIN"
+                        UniqueName="HOURS_STAR_CHECKIN" DataFormatString="{0:HH:mm}" SortExpression="HOURS_STAR_CHECKIN" />
+                    <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Kết thúc nhận quyẹt thẻ %>" DataField="HOURS_STAR_CHECKOUT"
+                        UniqueName="HOURS_STAR_CHECKOUT" DataFormatString="{0:HH:mm}" SortExpression="HOURS_STAR_CHECKOUT" />
+                    <tlk:GridBoundColumn HeaderText="<%$ Translate: Qua ngày hôm sau %>" DataField="IS_HOURS_CHECKOUT_NAME"
+                        UniqueName="IS_HOURS_CHECKOUT_NAME" SortExpression="IS_HOURS_CHECKOUT_NAME" HeaderStyle-Width="100px" />
+
+                    
                     <tlk:GridBoundColumn HeaderText="<%$ Translate: Trạng thái %>" DataField="ACTFLG"
                         UniqueName="ACTFLG" SortExpression="ACTFLG">
                         <HeaderStyle Width="100px" />

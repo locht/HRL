@@ -1624,6 +1624,9 @@ Partial Public Class AttendanceRepository
                                        .IS_HOURS_STOP = p.p.IS_HOURS_STOP,
                                        .IS_MID_END = p.p.IS_MID_END,
                                        .IS_HOURS_CHECKOUT = p.p.IS_HOURS_CHECKOUT,
+                                       .IS_HOURS_STOP_NAME = If(p.p.IS_HOURS_STOP = 0, "Không áp dụng", "Áp dụng"),
+                                       .IS_MID_END_NAME = If(p.p.IS_MID_END = 0, "Không áp dụng", "Áp dụng"),
+                                       .IS_HOURS_CHECKOUT_NAME = If(p.p.IS_HOURS_CHECKOUT = 0, "Không áp dụng", "Áp dụng"),
                                        .CREATED_DATE = p.p.CREATED_DATE}).AsQueryable
 
             '.ORG_NAME = If(p.p.ORG_ID.Value = -1, "Dùng chung", p.o.NAME_EN),
