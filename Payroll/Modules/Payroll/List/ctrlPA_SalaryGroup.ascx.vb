@@ -207,16 +207,16 @@ Public Class ctrlPA_SalaryGroup
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgData, False)
-                    EnableControlAll(True, txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                    EnableControlAll(True, txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                     txtCode.ReadOnly = False
                     txtCode.Focus()
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgData, True)
-                    EnableControlAll(False, txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                    EnableControlAll(False, txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                     txtCode.ReadOnly = True
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgData, False)
-                    EnableControlAll(True, txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                    EnableControlAll(True, txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                     txtCode.ReadOnly = True
                     txtName.Focus()
                 Case CommonMessage.STATE_DELETE
@@ -230,7 +230,7 @@ Public Class ctrlPA_SalaryGroup
                             Refresh("UpdateView")
                             UpdateControlState()
                             rgData.Rebind()
-                            ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                            ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                         Else
                             CurrentState = CommonMessage.STATE_NORMAL
                             ShowMessage(Translate(CommonMessage.MESSAGE_IS_USING), NotifyType.Error)
@@ -247,7 +247,7 @@ Public Class ctrlPA_SalaryGroup
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgData.Rebind()
-                            ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                            ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                         End If
@@ -263,7 +263,7 @@ Public Class ctrlPA_SalaryGroup
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             CurrentState = CommonMessage.STATE_NORMAL
                             rgData.Rebind()
-                            ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                            ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Warning)
                         End If
@@ -296,7 +296,6 @@ Public Class ctrlPA_SalaryGroup
             dic.Add("REMARK", txtRemark)
             dic.Add("IS_COEFFICIENT", cbIS_COEFFICIENT)
             dic.Add("IS_INCENTIVE", cbIS_INCENTIVE)
-            dic.Add("ISHOSE", cbISHOSE)
             dic.Add("ORDERS", rntxtOrders)
             Utilities.OnClientRowSelectedChanged(rgData, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -380,7 +379,6 @@ Public Class ctrlPA_SalaryGroup
                         objSalaryGroup.REMARK = txtRemark.Text.Trim
                         objSalaryGroup.IS_COEFFICIENT = If(cbIS_COEFFICIENT.Checked, 1, 0)
                         objSalaryGroup.IS_INCENTIVE = If(cbIS_INCENTIVE.Checked, 1, 0)
-                        objSalaryGroup.ISHOSE = If(cbISHOSE.Checked, 1, 0)
                         objSalaryGroup.ORDERS = If(rntxtOrders.Text = "", 1, Decimal.Parse(rntxtOrders.Text))
                         Using rep As New PayrollRepository
                             Select Case CurrentState
@@ -393,7 +391,7 @@ Public Class ctrlPA_SalaryGroup
                                         Refresh("InsertView")
                                         UpdateControlState()
                                         rgData.Rebind()
-                                        ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                                        ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                                     Else
                                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                     End If
@@ -405,7 +403,7 @@ Public Class ctrlPA_SalaryGroup
                                     If repCheck.CheckExistIDTable(lstCheck, "PA_SALARY_GROUP", "ID") Then
                                         ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
                                         CurrentState = CommonMessage.STATE_NORMAL
-                                        ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                                        ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                                         UpdateControlState()
                                         rgData.Rebind()
                                         Exit Sub
@@ -416,7 +414,7 @@ Public Class ctrlPA_SalaryGroup
                                         Refresh("UpdateView")
                                         UpdateControlState()
                                         rgData.Rebind()
-                                        ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                                        ClearControlValue(txtCode, txtName, rdEffectDate, txtRemark, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
                                     Else
                                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                                     End If
@@ -445,7 +443,7 @@ Public Class ctrlPA_SalaryGroup
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbISHOSE, cbIS_COEFFICIENT, rntxtOrders)
+                    ClearControlValue(txtCode, txtName, txtRemark, rdEffectDate, cbIS_INCENTIVE, cbIS_COEFFICIENT, rntxtOrders)
             End Select
             UpdateControlState()
             _myLog.WriteLog(_myLog._info, _classPath, method,

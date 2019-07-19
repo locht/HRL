@@ -1916,6 +1916,17 @@ Partial Class ProfileRepository
         End Try
     End Function
 
+    Public Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
+        Dim empID As Decimal = 0D
+        Try
+            empID = (From p In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE.ToLower = emp_code.ToLower) Select p.ID).FirstOrDefault
+            Dim query = (From p In Context.HU_WORKING.Where(Function(f) f.EMPLOYEE_ID = empID And f.EFFECT_DATE >= effect_date And f.IS_MISSION = -1 And f.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID))
+            Return query.Count = 0
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetAllowanceByDate(ByVal _filter As WorkingAllowanceDTO) As List(Of WorkingAllowanceDTO)
 
         Try

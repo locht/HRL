@@ -245,6 +245,19 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
+        Public Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean _
+            Implements ServiceContracts.IProfileBusiness.ValEffectdateByEmpCode
+            Using rep As New ProfileRepository
+                Try
+
+                    Return rep.ValEffectdateByEmpCode(emp_code, effect_date)
+                Catch ex As Exception
+
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
         Public Function GetAllowanceByDate(ByVal _filter As WorkingAllowanceDTO) As List(Of WorkingAllowanceDTO) _
             Implements ServiceContracts.IProfileBusiness.GetAllowanceByDate
             Using rep As New ProfileRepository

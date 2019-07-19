@@ -1268,48 +1268,24 @@ Public Class ctrlHU_WageNewEdit
     End Sub
     Private Sub BidingDataToControls(ByVal dtdata As DataTable)
         Try
-
-            'If IsNumeric(dtdata(0)("SALARYINSURANCE")) Then
-            '    SalaryInsurance.Value = dtdata(0)("SALARYINSURANCE").ToString
-            'End If
-            'If IsNumeric(dtdata(0)("TOTALSALARY")) Then
-            '    Salary_Total.Value = dtdata(0)("TOTALSALARY").ToString
-            'End If
-            'kiem tra check IS_HOSE'
             If cbSalaryGroup.SelectedValue.ToString <> "" Then
-                Dim rs = From row In dtSalaryGroup.Rows
-                     Where row("ID").ToString = cbSalaryGroup.SelectedValue.ToString
-                     Select row("ISHOSE")
-
                 Dim total As Decimal
                 Dim basicSal As Decimal = 0
                 If IsNumeric(rnFactorSalary.Value) Then
                     basicSal = rnFactorSalary.Value * _lttv1
                     basicSalary.Value = basicSal
                 End If
-
-                If rs(0) = 0 Then
-                    'SalaryInsurance.Value = rnFactorSalary.Value
-                    'basicSalary.Value = SalaryInsurance.Value
-                    total = If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
+                If rnPercentSalary.Value.HasValue Then
+                    total = basicSal * rnPercentSalary.Value / 100 + _
                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
                             If(rnOtherSalary2.Value.HasValue, rnOtherSalary2.Value, 0) + _
+                            If(rnOtherSalary3.Value.HasValue, rnOtherSalary3.Value, 0) + _
+                            If(rnOtherSalary4.Value.HasValue, rnOtherSalary4.Value, 0) + _
+                            If(rnOtherSalary5.Value.HasValue, rnOtherSalary5.Value, 0) + _
                             If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
-                    If rnPercentSalary.Value.HasValue Then
-                        total = total * rnPercentSalary.Value / 100
-                    End If
-                    Salary_Total.Value = total
-                    basicSalary.Enabled = False
-                Else
-                    total = If(basicSalary.Value.HasValue, basicSalary.Value, 0) + _
-                            If(cboAllowance_Total.Value.HasValue, cboAllowance_Total.Value, 0)
-                    If rnPercentSalary.Value.HasValue Then
-                        total = total * rnPercentSalary.Value / 100
-                    End If
-                    Salary_Total.Value = total
-                    basicSalary.Enabled = True
                 End If
-                
+                Salary_Total.Value = total
+                basicSalary.Enabled = False
             End If
         Catch ex As Exception
             Throw ex

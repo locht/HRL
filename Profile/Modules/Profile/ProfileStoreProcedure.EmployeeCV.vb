@@ -7,6 +7,12 @@ Imports HistaffFrameworkPublic
 Imports HistaffFrameworkPublic.FrameworkUtilities
 
 Partial Class ProfileStoreProcedure
+    Public Function Import_HoSoLuong(ByVal P_USER As String, ByVal P_DOCXML As String) As Boolean
+        Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.IMPORT_HOSOLUONG", New List(Of Object)(New Object() {P_USER, P_DOCXML}))
+        If ds IsNot Nothing AndAlso ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+            Return CBool(ds.Tables(0)(0)(0))
+        End If
+    End Function
     Public Function EmployeeCV_GetInfo(ByVal employeeId As Int32) As DataTable
         Dim dt As New DataTable
         Dim ds As DataSet = hfr.ExecuteToDataSet("PKG_PROFILE.READ_EMPLOYEE_CV", New List(Of Object)(New Object() {employeeId}))

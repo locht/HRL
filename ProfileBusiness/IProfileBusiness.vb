@@ -1699,6 +1699,9 @@ Namespace ProfileBusiness.ServiceContracts
         Function ValidateWorking(ByVal sType As String, ByVal obj As WorkingDTO) As Boolean
 
         <OperationContract()>
+        Function ValEffectdateByEmpCode(ByVal emp_code As String, ByVal effect_date As Date) As Boolean
+
+        <OperationContract()>
         Function GetLastWorkingSalary(ByVal _filter As WorkingDTO) As WorkingDTO
 
         <OperationContract()>

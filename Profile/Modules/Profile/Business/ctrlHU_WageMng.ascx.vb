@@ -17,6 +17,62 @@ Public Class ctrlHU_WageMng
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
     'Private ReadOnly RestClient As IServerDataRestClient = New ServerDataRestClient()
 #Region "Property"
+    ''' <summary>
+    ''' dtData
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Property dtData As DataTable
+        Get
+            If ViewState(Me.ID & "_dtData") Is Nothing Then
+                Dim dt As New DataTable("DATA")
+                dt.Columns.Add("STT", GetType(String))
+                dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
+                dt.Columns.Add("FULLNAME_VN", GetType(String))
+                dt.Columns.Add("EFFECT_DATE", GetType(String))
+                dt.Columns.Add("SAL_TYPE_NAME", GetType(String))
+                dt.Columns.Add("TAX_NAME", GetType(String))
+                dt.Columns.Add("SAL_GROUP_NAME", GetType(String))
+                dt.Columns.Add("SAL_LEVEL_NAME", GetType(String))
+                dt.Columns.Add("SAL_RANK_NAME", GetType(String))
+                dt.Columns.Add("FACTORSALARY", GetType(String))
+                dt.Columns.Add("SAL_BASIC", GetType(String))
+                dt.Columns.Add("PERCENTSALARY", GetType(String))
+                dt.Columns.Add("OTHERSALARY1", GetType(String))
+                dt.Columns.Add("OTHERSALARY2", GetType(String))
+                dt.Columns.Add("OTHERSALARY3", GetType(String))
+                dt.Columns.Add("OTHERSALARY4", GetType(String))
+                dt.Columns.Add("OTHERSALARY5", GetType(String))
+                dt.Columns.Add("LTT_V1", GetType(String))
+                dt.Columns.Add("SAL_TYPE_ID", GetType(String))
+                dt.Columns.Add("TAX_ID", GetType(String))
+                dt.Columns.Add("SAL_GROUP_ID", GetType(String))
+                dt.Columns.Add("SAL_LEVEL_ID", GetType(String))
+                dt.Columns.Add("SAL_RANK_ID", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtData") = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' dtDataImportEmployee
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Property dtDataImportWorking As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtDataImportWorking")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtDataImportWorking") = value
+        End Set
+    End Property
 
     Property ListComboData As ComboBoxDataDTO
         Get
@@ -68,6 +124,7 @@ Public Class ctrlHU_WageMng
             rgWorking.SetFilter()
             rgWorking.AllowCustomPaging = True
             InitControl()
+            ctrlUpload1.isMultiple = False
             If Not IsPostBack Then
                 ViewConfig(RadPane1)
                 GirdConfig(rgWorking)
@@ -290,7 +347,9 @@ Public Class ctrlHU_WageMng
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_NEXT
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportHoSoLuong')", True)
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportHoSoLuong');", True)
+                Case CommonMessage.TOOLBARITEM_IMPORT
+                    ctrlUpload1.Show()
             End Select
 
             UpdateControlState()
@@ -396,10 +455,222 @@ Public Class ctrlHU_WageMng
     '    End Try
 
     'End Sub
+    ''' <lastupdate>17/08/2017</lastupdate>
+    ''' <summary>
+    ''' Event xu ly upload file khi click button [OK] o popup ctrlUpload
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim fileName As String
+        Dim dsDataPrepare As New DataSet
+        Dim workbook As Aspose.Cells.Workbook
+        Dim worksheet As Aspose.Cells.Worksheet
 
+        Try
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+
+            For Each file As UploadedFile In ctrlUpload1.UploadedFiles
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xlsx")
+                file.SaveAs(fileName, True)
+                workbook = New Aspose.Cells.Workbook(fileName)
+                worksheet = workbook.Worksheets(0)
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(0, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+            Next
+            dtData = dtData.Clone()
+            TableMapping(dsDataPrepare.Tables(0))
+            For Each rows As DataRow In dsDataPrepare.Tables(0).Select("EMPLOYEE_CODE<>'""'").CopyToDataTable.Rows
+                If IsDBNull(rows("EMPLOYEE_CODE")) OrElse rows("EMPLOYEE_CODE") = "" Then Continue For
+                Dim newRow As DataRow = dtData.NewRow
+                newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+                newRow("FULLNAME_VN") = rows("FULLNAME_VN")
+                newRow("EFFECT_DATE") = rows("EFFECT_DATE")
+                newRow("SAL_TYPE_NAME") = rows("SAL_TYPE_NAME")
+                newRow("TAX_NAME") = rows("TAX_NAME")
+                newRow("SAL_GROUP_NAME") = rows("SAL_GROUP_NAME")
+                newRow("SAL_LEVEL_NAME") = rows("SAL_LEVEL_NAME")
+                newRow("SAL_RANK_NAME") = rows("SAL_RANK_NAME")
+                newRow("FACTORSALARY") = If(IsNumeric(rows("FACTORSALARY")), Decimal.Parse(rows("FACTORSALARY")), 0)
+                newRow("SAL_BASIC") = If(IsNumeric(rows("SAL_BASIC")), Decimal.Parse(rows("SAL_BASIC")), 0)
+                newRow("PERCENTSALARY") = If(IsNumeric(rows("PERCENTSALARY")), Decimal.Parse(rows("PERCENTSALARY")), 0)
+                newRow("OTHERSALARY1") = If(IsNumeric(rows("OTHERSALARY1")), Decimal.Parse(rows("OTHERSALARY1")), 0)
+                newRow("OTHERSALARY2") = If(IsNumeric(rows("OTHERSALARY2")), Decimal.Parse(rows("OTHERSALARY2")), 0)
+                newRow("OTHERSALARY3") = If(IsNumeric(rows("OTHERSALARY3")), Decimal.Parse(rows("OTHERSALARY3")), 0)
+                newRow("OTHERSALARY4") = If(IsNumeric(rows("OTHERSALARY4")), Decimal.Parse(rows("OTHERSALARY4")), 0)
+                newRow("OTHERSALARY5") = If(IsNumeric(rows("OTHERSALARY5")), Decimal.Parse(rows("OTHERSALARY5")), 0)
+                newRow("LTT_V1") = If(IsNumeric(rows("LTT_V1")), Decimal.Parse(rows("LTT_V1")), 0)
+                newRow("SAL_TYPE_ID") = If(IsNumeric(rows("SAL_TYPE_ID")), rows("SAL_TYPE_ID"), 0)
+                newRow("TAX_ID") = If(IsNumeric(rows("TAX_ID")), rows("TAX_ID"), 0)
+                newRow("SAL_GROUP_ID") = If(IsNumeric(rows("SAL_GROUP_ID")), rows("SAL_GROUP_ID"), 0)
+                newRow("SAL_LEVEL_ID") = If(IsNumeric(rows("SAL_LEVEL_ID")), rows("SAL_LEVEL_ID"), 0)
+                newRow("SAL_RANK_ID") = If(IsNumeric(rows("SAL_RANK_ID")), rows("SAL_RANK_ID"), 0)
+                dtData.Rows.Add(newRow)
+            Next
+            dtData.TableName = "DATA"
+            If loadToGrid() Then
+                Dim sw As New StringWriter()
+                Dim DocXml As String = String.Empty
+                dtData.WriteXml(sw, False)
+                DocXml = sw.ToString
+                Dim sp As New ProfileStoreProcedure()
+                If sp.Import_HoSoLuong(LogHelper.GetUserLog().Username.ToUpper, DocXml) Then
+                    ShowMessage(Translate("Import thành công"), NotifyType.Success)
+                Else
+                    ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+                End If
+                'End edit;
+                rgWorking.Rebind()
+            End If
+
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
 #End Region
 
 #Region "Custom"
+    ''' <lastupdate>17/08/2017</lastupdate>
+    ''' <summary>
+    ''' Check data khi upload
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function loadToGrid() As Boolean
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim dtError As New DataTable("ERROR")
+        Try
+            If dtData.Rows.Count = 0 Then
+                ShowMessage(Translate(CommonMessage.MESSAGE_NOT_ROW), NotifyType.Warning)
+                Return False
+            End If
+            Dim rowError As DataRow
+            Dim isError As Boolean = False
+            Dim sError As String = String.Empty
+            dtDataImportWorking = dtData.Clone
+            dtError = dtData.Clone
+            Dim iRow = 1
+            Dim _filter As New WorkingDTO
+            Dim rep As New ProfileBusinessRepository
+            Dim IBusiness As IProfileBusiness = New ProfileBusinessClient()
+            For Each row As DataRow In dtData.Rows
+                rowError = dtError.NewRow
+                isError = False
+                sError = "Chưa nhập mã nhân viên"
+                ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
+                If row("EFFECT_DATE") Is DBNull.Value OrElse row("EFFECT_DATE") = "" Then
+                    sError = "Chưa nhập ngày hiệu lực"
+                    ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
+                Else
+                    Try
+                        If IBusiness.ValEffectdateByEmpCode(row("EMPLOYEE_CODE"), ToDate(row("EFFECT_DATE"))) = False Then
+                            sError = "Tồn tại hồ sơ lương trùng hoặc lớn hơn ngày hiệu lực"
+                            ImportValidate.IsValidTime("EFFECT_DATE", row, rowError, isError, sError)
+                        End If
+                    Catch ex As Exception
+                        GoTo VALIDATE
+                    End Try
+                End If
+VALIDATE:
+                If row("FACTORSALARY") Is DBNull.Value OrElse row("FACTORSALARY") = "" Then
+                    sError = "Chưa nhập hệ số/mức tiền"
+                    ImportValidate.IsValidTime("FACTORSALARY", row, rowError, isError, sError)
+                End If
+                If row("PERCENTSALARY") Is DBNull.Value OrElse row("PERCENTSALARY") = "" Then
+                    sError = "Chưa nhập % hưởng lương"
+                    ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
+                End If
+                If row("SAL_TYPE_ID") Is DBNull.Value OrElse row("SAL_TYPE_ID") = "" Then
+                    sError = "Chưa nhập nhóm lương"
+                    ImportValidate.IsValidTime("SAL_TYPE_ID", row, rowError, isError, sError)
+                End If
+                If row("TAX_ID") Is DBNull.Value OrElse row("TAX_ID") = "" Then
+                    sError = "Chưa nhập biểu thuế"
+                    ImportValidate.IsValidTime("TAX_ID", row, rowError, isError, sError)
+                End If
+                If Not row("PERCENTSALARY") Is DBNull.Value OrElse Not row("PERCENTSALARY") = "" Then
+                    If row("SAL_TYPE_NAME").ToString = "Thử việc" Then
+                        If IsNumeric(row("PERCENTSALARY")) AndAlso Integer.Parse(row("PERCENTSALARY")) < 85 Or Integer.Parse(row("PERCENTSALARY")) > 100 Then
+                            sError = "Giá trị nhập không đúng quy định"
+                            ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
+                        End If
+                    End If
+                    If row("SAL_TYPE_NAME").ToString = "Chính thức" Then
+                        If IsNumeric(row("PERCENTSALARY")) AndAlso Integer.Parse(row("PERCENTSALARY")) < 100 Or Integer.Parse(row("PERCENTSALARY")) > 100 Then
+                            sError = "Giá trị nhập không đúng quy định"
+                            ImportValidate.IsValidTime("PERCENTSALARY", row, rowError, isError, sError)
+                        End If
+                    End If
+                End If
+                If isError Then
+                    rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
+                    If rowError("EMPLOYEE_CODE").ToString = "" Then
+                        rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
+                    End If
+                    dtError.Rows.Add(rowError)
+                Else
+                    dtDataImportWorking.ImportRow(row)
+                End If
+                iRow = iRow + 1
+            Next
+            If dtError.Rows.Count > 0 Then
+                dtError.TableName = "DATA"
+                ' gộp các lỗi vào 1 cột ghi chú 
+                Dim dtErrorGroup As New DataTable
+                Dim RowErrorGroup As DataRow
+                dtErrorGroup.Columns.Add("STT")
+                dtErrorGroup.Columns.Add("NOTE")
+                For j As Integer = 0 To dtError.Rows.Count - 1
+                    Dim strNote As String = String.Empty
+                    RowErrorGroup = dtErrorGroup.NewRow
+                    For k As Integer = 1 To dtError.Columns.Count - 1
+                        If Not dtError.Rows(j)(k) Is DBNull.Value Then
+                            strNote &= dtError.Rows(j)(k) & "\"
+                        End If
+                    Next
+                    RowErrorGroup("STT") = dtError.Rows(j)("EMPLOYEE_CODE")
+                    RowErrorGroup("NOTE") = strNote
+                    dtErrorGroup.Rows.Add(RowErrorGroup)
+                Next
+                dtErrorGroup.TableName = "DATA"
+                Session("EXPORTREPORT") = dtErrorGroup
+                rep.Dispose()
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_importIO_error');", True)
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+            End If
+            If isError OrElse (dtError IsNot Nothing AndAlso dtError.Rows.Count > 0) Then
+                Return False
+            Else
+                Return True
+            End If
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Function
+    Private Sub TableMapping(ByVal dtdata As DataTable)
+        Dim row As DataRow = dtdata.Rows(0)
+        Dim index As Integer = 0
+        For Each cols As DataColumn In dtdata.Columns
+            Try
+                cols.ColumnName = row(index)
+                index += 1
+                If index > row.ItemArray.Length - 1 Then Exit For
+            Catch ex As Exception
+                Exit For
+            End Try
+        Next
+        dtdata.Rows(0).Delete()
+        dtdata.AcceptChanges()
+    End Sub
     ''' <summary>
     ''' Thiet lap lai trang thai control
     ''' process event xoa du lieu
@@ -502,49 +773,6 @@ Public Class ctrlHU_WageMng
         Catch ex As Exception
             Throw ex
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Function
-
-    Private Function ExportExcelTemplate(ByVal filePath As String, ByVal fileName As String,
-                                        ByVal dsData As DataSet,
-                                        ByVal Response As System.Web.HttpResponse,
-                                        Optional ByRef _error As String = "",
-                                        Optional ByVal type As ExportType = ExportType.Excel) As Boolean
-        Dim designer As WorkbookDesigner
-        Try
-            If Not File.Exists(filePath) Then
-                _error = 1
-                Return False
-            End If
-            If dsData Is Nothing OrElse (dsData IsNot Nothing AndAlso dsData.Tables.Count = 0) Then
-                _error = 2
-                Return False
-            End If
-            designer = New WorkbookDesigner
-            designer.Open(filePath)
-            Dim danhMucChung As Worksheet = designer.Workbook.Worksheets(1)
-            danhMucChung.Cells.ImportDataTable(dsData.Tables("SALARY_TYPE"), False, 1, 0)
-            danhMucChung.Cells.ImportDataTable(dsData.Tables("TAX_TABLE"), False, 1, 2, False)
-            danhMucChung.Cells.ImportDataTable(dsData.Tables("SALARY_GROUP"), False, 1, 4, False)
-            Dim danhMucNgach As Worksheet = designer.Workbook.Worksheets(2)
-            danhMucNgach.Cells.ImportDataTable(dsData.Tables("DANHMUCNGACH"), False, 0, 0)
-            Dim danhMucBac As Worksheet = designer.Workbook.Worksheets(3)
-            danhMucBac.Cells.ImportDataTable(dsData.Tables("DANHMUCBAC"), False, 0, 0)
-            designer.SetDataSource(dsData)
-            designer.Process()
-            designer.Workbook.CalculateFormula()
-            With designer.Workbook
-                .CalculateFormula()
-                Select Case type
-                    Case ExportType.Excel
-                        .Save(Response, fileName & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
-                    Case ExportType.Pdf
-                        .Save(Response, fileName & ".pdf", ContentDisposition.Attachment, New OoxmlSaveOptions(FileFormatType.Pdf))
-                End Select
-            End With
-            Return True
-        Catch ex As Exception
-            Throw ex
         End Try
     End Function
 #End Region

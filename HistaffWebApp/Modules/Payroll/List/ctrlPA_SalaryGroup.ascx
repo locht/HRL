@@ -56,16 +56,6 @@
                         </tlk:RadButton>
                     </div>
                 </td>
-                <td class="lb">
-                    <asp:Label runat ="server"  ID="lbISHOSE" Text ="Thang lương quản lý (Hose)" ></asp:Label>
-                </td>
-                <td>
-                    <div style="margin: -4px; margin-top: 1px">
-                        <tlk:RadButton ID="cbISHOSE" ToggleType="CheckBox" ButtonType="ToggleButton"
-                            Text="" runat="server" AutoPostBack="false" CausesValidation="false">
-                        </tlk:RadButton>
-                    </div>
-                </td>
             </tr>
             <tr>
                 <td class="lb">
@@ -103,7 +93,7 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" Height="100%">
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,EFFECT_DATE,REMARK,IS_COEFFICIENT,IS_INCENTIVE,ORDERS,ISHOSE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME,EFFECT_DATE,REMARK,IS_COEFFICIENT,IS_INCENTIVE,ORDERS">
                 <Columns>
                    <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -119,9 +109,7 @@
                         <ItemStyle HorizontalAlign="Center" />
                     </tlk:GridDateTimeColumn>                    
                     <tlk:GridCheckBoxColumn HeaderText="Theo hệ số" DataField="IS_COEFFICIENT"
-                        AllowFiltering="false"  SortExpression="IS_COEFFICIENT" UniqueName="IS_COEFFICIENT" />                        
-                    <tlk:GridCheckBoxColumn HeaderText="Thang lương quản lý (Hose)" DataField="ISHOSE"
-                        AllowFiltering="false"  SortExpression="ISHOSE" UniqueName="ISHOSE" />                   
+                        AllowFiltering="false"  SortExpression="IS_COEFFICIENT" UniqueName="IS_COEFFICIENT" />                 
                     <tlk:GridCheckBoxColumn HeaderText="Bảng thưởng HQCV" DataField="IS_INCENTIVE"
                         AllowFiltering="false"  SortExpression="IS_INCENTIVE" UniqueName="IS_INCENTIVE" />
                     <tlk:GridNumericColumn HeaderText="Thứ tự" DataField="ORDERS" SortExpression="ORDERS"
