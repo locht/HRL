@@ -373,6 +373,7 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             CalculatorSalary()
+            basicSalary.AutoPostBack = True
             ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
@@ -1342,6 +1343,7 @@ Public Class ctrlHU_WageNewEdit
             Case "Chính thức"
                 rnPercentSalary.Value = _tyLeChinhThuc
         End Select
+        ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
         Dim taxTable = taxTables.FirstOrDefault(Function(f) f.CODE = code)
