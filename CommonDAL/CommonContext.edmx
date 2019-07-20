@@ -38,6 +38,7 @@
             <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.Store.SE_VIEW_CONFIG" store:Type="Tables"  />
             <EntitySet Name="AT_TIME_MANUAL" EntityType="CommonModel.Store.AT_TIME_MANUAL" store:Type="Tables"  />
             <EntitySet Name="SE_CASE_CONFIG" EntityType="CommonModel.Store.SE_CASE_CONFIG" store:Type="Tables"  />
+            <EntitySet Name="HU_SIGNER" EntityType="CommonModel.Store.HU_SIGNER" store:Type="Tables"  />
             <EntitySet Name="SE_GRP_SE_USR" EntityType="CommonModel.Store.SE_GRP_SE_USR" store:Type="Tables"  />
             <EntitySet Name="SE_GROUP_REPORT" EntityType="CommonModel.Store.SE_GROUP_REPORT" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="CommonModel.Store.SE_USER_REPORT" store:Type="Tables"  />
@@ -721,6 +722,24 @@
             <Property Name="DESCRIPTIONS" Type="nclob" Nullable="true" />
             <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_SIGNER">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LEVEL" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="TITLE_NAME" Type="nvarchar2" Nullable="true" MaxLength="50" />
+            <Property Name="REMARK" Type="date" Nullable="true" />
+            <Property Name="ACTFLG" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="1023" />
+            <Property Name="MODIFIED_BY" Type="nclob" Nullable="true" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nclob" Nullable="false" />
+            <Property Name="SIGNER_CODE" Type="nclob" Nullable="false" />
+        </EntityType>
         <EntityType Name="SE_GRP_SE_USR">
             <Key>
                 <PropertyRef Name="SE_GROUPS_ID" />
@@ -1046,6 +1065,7 @@
           <EntitySet Name="SE_VIEW_CONFIG" EntityType="CommonModel.SE_VIEW_CONFIG" />
           <EntitySet Name="AT_TIME_MANUAL" EntityType="CommonModel.AT_TIME_MANUAL" />
           <EntitySet Name="SE_CASE_CONFIG" EntityType="CommonModel.SE_CASE_CONFIG" />
+          <EntitySet Name="HU_SIGNER" EntityType="CommonModel.HU_SIGNER" />
           </EntityContainer>
         <EntityType Name="SE_GROUP">
           <Key>
@@ -1824,6 +1844,24 @@
           <Property Type="String" Name="DESCRIPTIONS" Nullable="true" />
           <Property Type="Decimal" Name="STATUS" Nullable="true" />
         </EntityType>
+        <EntityType Name="HU_SIGNER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LEVEL" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TITLE_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="REMARK" />
+          <Property Type="Decimal" Name="ACTFLG" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_BY" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="true" />
+          <Property Type="String" Name="MODIFIED_LOG" Nullable="false" />
+          <Property Type="String" Name="SIGNER_CODE" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2475,6 +2513,25 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_SIGNER">
+            <EntityTypeMapping TypeName="IsTypeOf(CommonModel.HU_SIGNER)">
+                <MappingFragment StoreEntitySet="HU_SIGNER">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+                    <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="SIGNER_CODE" ColumnName="SIGNER_CODE" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_GRP_SE_USR" TypeName="CommonModel.SE_GRP_SE_USR" StoreEntitySet="SE_GRP_SE_USR">
             <EndProperty Name="SE_GROUP">
                 <ScalarProperty Name="ID" ColumnName="SE_GROUPS_ID" />
@@ -2562,14 +2619,8 @@
         <EntityTypeShape EntityType="CommonModel.OT_OTHER_LIST_GROUP" Width="2" PointX="7.75" PointY="3.125" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.OT_OTHER_LIST_TYPE" Width="2" PointX="10.5" PointY="3.125" Height="0.40000000000000036" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.FK_OOLG_OOLT">
-          <ConnectorPoint PointX="7.75" PointY="3.325" />
-          <ConnectorPoint PointX="7.5" PointY="3.325" />
-          <ConnectorPoint PointX="7.5" PointY="5.27830078125" />
-          <ConnectorPoint PointX="9.4264701902519548" PointY="5.2783007812499987" />
-          <ConnectorPoint PointX="9.5931368569186226" PointY="5.27830078125" />
-          <ConnectorPoint PointX="12.875" PointY="5.27830078125" />
-          <ConnectorPoint PointX="12.875" PointY="3.325" />
-          <ConnectorPoint PointX="12.5" PointY="3.325" />
+          <ConnectorPoint PointX="9.75" PointY="3.325" />
+          <ConnectorPoint PointX="10.5" PointY="3.325" />
         </AssociationConnector>
         <AssociationConnector Association="CommonModel.FK_OOLT_OOL">
           <ConnectorPoint PointX="12.5" PointY="3.325" />
@@ -2626,7 +2677,7 @@
         <EntityTypeShape EntityType="CommonModel.HU_WORKING" Width="1.875" PointX="10.75" PointY="7.125" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.SE_CHOSEN_ORG" Width="1.5" PointX="10.75" PointY="9.125" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.HU_EMPLOYEE_CV" Width="2.125" PointX="10.75" PointY="11.125" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="CommonModel.HU_STAFF_RANK" Width="2.125" PointX="11.75" PointY="1.125" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="CommonModel.HU_STAFF_RANK" Width="2.125" PointX="11.75" PointY="1.125" Height="2.9417936197916665" IsExpanded="true" />
         <EntityTypeShape EntityType="CommonModel.SE_LDAP" Width="1.5" PointX="0.75" PointY="12.125" Height="0.4" IsExpanded="false" />
         <AssociationConnector Association="CommonModel.SE_USER_REPORT">
           <ConnectorPoint PointX="5.4375" PointY="5.6499999999999986" />
@@ -2638,6 +2689,7 @@
         <EntityTypeShape EntityType="CommonModel.SE_VIEW_CONFIG" Width="1.75" PointX="5" PointY="12.125" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="CommonModel.AT_TIME_MANUAL" Width="1.5" PointX="2.1209831322175372" PointY="27.635870275849417" />
         <EntityTypeShape EntityType="CommonModel.SE_CASE_CONFIG" Width="1.5" PointX="3.25" PointY="13.125" Height="1.7879850260416657" />
+        <EntityTypeShape EntityType="CommonModel.HU_SIGNER" Width="1.5" PointX="15.125" PointY="4.25" Height="3.5186979166666656" />
         </Diagram>
     </Diagrams>
   </Designer>

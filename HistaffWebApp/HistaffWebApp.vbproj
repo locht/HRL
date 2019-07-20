@@ -236,6 +236,7 @@
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveSetupOrg.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplate.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplateAddEdit.ascx" />
+    <Content Include="Modules\Common\ctrlFindEmployeeSignPopupDialog.ascx" />
     <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
     <Content Include="Modules\Common\ctrlCheckData.ascx" />
     <Content Include="Modules\Common\ctrlDashboard.ascx" />

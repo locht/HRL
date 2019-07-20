@@ -8181,6 +8181,9 @@ Namespace CommonBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="CommonBusiness.ICommonBusiness")>  _
     Public Interface ICommonBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetPeriodByYear", ReplyAction:="http://tempuri.org/ICommonBusiness/GetPeriodByYearResponse")>  _
+        Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetClassification", ReplyAction:="http://tempuri.org/ICommonBusiness/GetClassificationResponse")>  _
         Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable
         
@@ -8838,6 +8841,9 @@ Namespace CommonBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/UpdateUserReport", ReplyAction:="http://tempuri.org/ICommonBusiness/UpdateUserReportResponse")>  _
         Function UpdateUserReport(ByVal _UserID As Decimal, ByVal _lstReport As System.Collections.Generic.List(Of CommonBusiness.UserReportDTO)) As Boolean
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetEmployeeSignToPopupFind", ReplyAction:="http://tempuri.org/ICommonBusiness/GetEmployeeSignToPopupFindResponse")>  _
+        Function GetEmployeeSignToPopupFind(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO)
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFind", ReplyAction:="http://tempuri.org/ICommonBusiness/GetEmployeeToPopupFindResponse")>  _
         Function GetEmployeeToPopupFind(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO)
         
@@ -8885,9 +8891,6 @@ Namespace CommonBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetPeriodYear", ReplyAction:="http://tempuri.org/ICommonBusiness/GetPeriodYearResponse")>  _
         Function GetPeriodYear(ByVal isBlank As Boolean) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/ICommonBusiness/GetPeriodByYear", ReplyAction:="http://tempuri.org/ICommonBusiness/GetPeriodByYearResponse")>  _
-        Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -8920,6 +8923,10 @@ Namespace CommonBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetPeriodByYear
+            Return MyBase.Channel.GetPeriodByYear(isBlank, year)
+        End Function
         
         Public Function GetClassification(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetClassification
             Return MyBase.Channel.GetClassification(isBlank)
@@ -9501,6 +9508,10 @@ Namespace CommonBusiness
             Return MyBase.Channel.UpdateUserReport(_UserID, _lstReport)
         End Function
         
+        Public Function GetEmployeeSignToPopupFind(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO) Implements CommonBusiness.ICommonBusiness.GetEmployeeSignToPopupFind
+            Return MyBase.Channel.GetEmployeeSignToPopupFind(_filter, PageIndex, PageSize, Total, Sorts, log, _param)
+        End Function
+        
         Public Function GetEmployeeToPopupFind(ByVal _filter As CommonBusiness.EmployeePopupFindListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As CommonBusiness.UserLog, ByVal _param As CommonBusiness.ParamDTO) As System.Collections.Generic.List(Of CommonBusiness.EmployeePopupFindListDTO) Implements CommonBusiness.ICommonBusiness.GetEmployeeToPopupFind
             Return MyBase.Channel.GetEmployeeToPopupFind(_filter, PageIndex, PageSize, Total, Sorts, log, _param)
         End Function
@@ -9563,10 +9574,6 @@ Namespace CommonBusiness
         
         Public Function GetPeriodYear(ByVal isBlank As Boolean) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetPeriodYear
             Return MyBase.Channel.GetPeriodYear(isBlank)
-        End Function
-        
-        Public Function GetPeriodByYear(ByVal isBlank As Boolean, ByVal year As Decimal) As System.Data.DataTable Implements CommonBusiness.ICommonBusiness.GetPeriodByYear
-            Return MyBase.Channel.GetPeriodByYear(isBlank, year)
         End Function
     End Class
 End Namespace

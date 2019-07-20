@@ -276,20 +276,35 @@ Public Class ctrlFindEmployeePopup
 
     Public Sub Show()
         Dim script As String
-        script = "var oWnd = $find('" & popupId & "');"
-        script &= "oWnd.add_close(" & Me.ClientID & "_OnClientClose);"
-        script &= "oWnd.setUrl('Dialog.aspx?mid=Common&fid=ctrlFindEmployeePopupDialog&noscroll=1&" & _
-            "MultiSelect=" & MultiSelect & _
-            "&CurrentValue=" & CurrentValue & _
-            "&MustHaveContract=" & MustHaveContract & _
-            "&IsHideTerminate=" & IsHideTerminate & _
-            "&LoadAllOrganization=" & If(LoadAllOrganization, "1", "0") & _
-            "&IsOnlyWorkingWithoutTer=" & If(IsOnlyWorkingWithoutTer, "1", "0") & _
-            "&IS_3B=" & IS_3B & _
-            "');"
-        script &= "oWnd.show();"
-        ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", script, True)
-
+        If Me.ClientID.Contains("ctrlFindSigner") Then
+            script = "var oWnd = $find('" & popupId & "');"
+            script &= "oWnd.add_close(" & Me.ClientID & "_OnClientClose);"
+            script &= "oWnd.setUrl('Dialog.aspx?mid=Common&fid=ctrlFindEmployeeSignPopupDialog&noscroll=1&" & _
+                "MultiSelect=" & MultiSelect & _
+                "&CurrentValue=" & CurrentValue & _
+                "&MustHaveContract=" & MustHaveContract & _
+                "&IsHideTerminate=" & IsHideTerminate & _
+                "&LoadAllOrganization=" & If(LoadAllOrganization, "1", "0") & _
+                "&IsOnlyWorkingWithoutTer=" & If(IsOnlyWorkingWithoutTer, "1", "0") & _
+                "&IS_3B=" & IS_3B & _
+                "');"
+            script &= "oWnd.show();"
+            ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", script, True)
+        Else
+            script = "var oWnd = $find('" & popupId & "');"
+            script &= "oWnd.add_close(" & Me.ClientID & "_OnClientClose);"
+            script &= "oWnd.setUrl('Dialog.aspx?mid=Common&fid=ctrlFindEmployeePopupDialog&noscroll=1&" & _
+                "MultiSelect=" & MultiSelect & _
+                "&CurrentValue=" & CurrentValue & _
+                "&MustHaveContract=" & MustHaveContract & _
+                "&IsHideTerminate=" & IsHideTerminate & _
+                "&LoadAllOrganization=" & If(LoadAllOrganization, "1", "0") & _
+                "&IsOnlyWorkingWithoutTer=" & If(IsOnlyWorkingWithoutTer, "1", "0") & _
+                "&IS_3B=" & IS_3B & _
+                "');"
+            script &= "oWnd.show();"
+            ScriptManager.RegisterStartupScript(Page, Page.GetType, "UserPopup", script, True)
+        End If
     End Sub
 
     Public Sub Close()

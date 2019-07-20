@@ -9,7 +9,7 @@ Imports Ionic.Zip
 Public Class ctrlHU_ContractNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
-    Protected WithEvents ctrlFindSignPopup As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSalaryPopup As ctrlFindSalaryPopup
     Public Overrides Property MustAuthorize As Boolean = False
 
@@ -432,8 +432,8 @@ Public Class ctrlHU_ContractNewEdit
             isLoadPopup = 2
             UpdateControlState()
             'LoadPopup(2)
-            ctrlFindSignPopup.MustHaveContract = True
-            ctrlFindSignPopup.Show()
+            ctrlFindSigner.MustHaveContract = True
+            ctrlFindSigner.Show()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -479,7 +479,7 @@ Public Class ctrlHU_ContractNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub ctrlFind_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
-        Handles ctrlFindSignPopup.CancelClicked,
+        Handles ctrlFindSigner.CancelClicked,
         ctrlFindEmployeePopup.CancelClicked,
         ctrlFindSalaryPopup.CancelClicked
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -496,18 +496,18 @@ Public Class ctrlHU_ContractNewEdit
     ''' 06/07/2017 17:51
     ''' </lastupdate>
     ''' <summary>
-    ''' Xu ly su kien selected cua control ctrlFindSignPopup_Employee
+    ''' Xu ly su kien selected cua control ctrlFindSigner_Employee
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub ctrlFindSignPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSignPopup.EmployeeSelected
+    Private Sub ctrlFindSignPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         'Dim rep As New ProfileBusinessRepository
         Dim startTime As DateTime = DateTime.UtcNow
         Try
-            lstCommonEmployee = CType(ctrlFindSignPopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            lstCommonEmployee = CType(ctrlFindSigner.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
                 hidSign.Value = item.ID.ToString
@@ -1116,12 +1116,12 @@ Public Class ctrlHU_ContractNewEdit
                     ctrlFindEmployeePopup.MustHaveContract = False
                 End If
             Case 2
-                If Not FindSigner.Controls.Contains(ctrlFindSignPopup) Then
-                    ctrlFindSignPopup = Me.Register("ctrlFindSignPopup", "Common", "ctrlFindEmployeePopup")
-                    FindSigner.Controls.Add(ctrlFindSignPopup)
-                    ctrlFindSignPopup.MultiSelect = False
-                    ctrlFindSignPopup.MustHaveContract = True
-                    ctrlFindSignPopup.LoadAllOrganization = True
+                If Not FindSigner.Controls.Contains(ctrlFindSigner) Then
+                    ctrlFindSigner = Me.Register("ctrlFindSignPopup", "Common", "ctrlFindEmployeePopup")
+                    FindSigner.Controls.Add(ctrlFindSigner)
+                    ctrlFindSigner.MultiSelect = False
+                    ctrlFindSigner.MustHaveContract = True
+                    ctrlFindSigner.LoadAllOrganization = True
                 End If
 
             Case 3

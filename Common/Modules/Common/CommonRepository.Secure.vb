@@ -783,6 +783,22 @@ Partial Public Class CommonRepository
 #End Region
 
 #Region "Employee"
+    Public Function GetEmployeeSignToPopupFind(ByVal _filter As EmployeePopupFindListDTO,
+                                           ByVal PageIndex As Integer,
+                                           ByVal PageSize As Integer,
+                                           ByRef Total As Integer,
+                                           Optional ByVal Sorts As String = "EMPLOYEE_CODE asc",
+                                           Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO)
+        Using rep As New CommonBusinessClient
+            Try
+                Return rep.GetEmployeeSignToPopupFind(_filter, PageIndex, PageSize, Total, Sorts, Log, _param)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function GetEmployeeToPopupFind(_filter As EmployeePopupFindListDTO,
                                             ByVal PageIndex As Integer,

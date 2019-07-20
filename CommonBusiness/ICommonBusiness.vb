@@ -539,6 +539,15 @@ Namespace CommonBusiness.ServiceContracts
 
 #Region "Employee"
         <OperationContract()>
+        Function GetEmployeeSignToPopupFind(ByVal _filter As EmployeePopupFindListDTO,
+                                            ByVal PageIndex As Integer,
+                                            ByVal PageSize As Integer,
+                                            ByRef Total As Integer,
+                                            Optional ByVal Sorts As String = "EMPLOYEE_CODE asc",
+                                            Optional ByVal log As UserLog = Nothing,
+                                            Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO)
+
+        <OperationContract()>
         Function GetEmployeeToPopupFind(ByVal _filter As EmployeePopupFindListDTO,
                                             ByVal PageIndex As Integer,
                                             ByVal PageSize As Integer,

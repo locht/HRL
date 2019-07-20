@@ -25,7 +25,7 @@ Public Class ctrlHU_ContractTemplete
     Private psp As New ProfileStoreProcedure()
     Dim dtFile As New DataTable
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
-    Protected WithEvents ctrlFindSignPopup As ctrlFindEmployeePopup
+    Protected WithEvents ctrlFindSigner As ctrlFindEmployeePopup
     Protected WithEvents ctrlFindSalaryPopup As ctrlFindSalaryPopup
     Private Property EmpCode As EmployeeDTO
     ' Protected WithEvents ctrlLiquidate As ctrlContract_Liquidate
@@ -501,19 +501,19 @@ Public Class ctrlHU_ContractTemplete
         Try
             isLoadPopup = 2
             UpdateControlState()
-            ctrlFindSignPopup.Show()
+            ctrlFindSigner.Show()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
-    Private Sub ctrlFindSignPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSignPopup.EmployeeSelected
+    Private Sub ctrlFindSignPopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindSigner.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         'Dim rep As New ProfileRepository
         'Dim repOrg As New ProfileRepository
         'Dim title As TitleDTO
         Try
-            lstCommonEmployee = CType(ctrlFindSignPopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            lstCommonEmployee = CType(ctrlFindSigner.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
             If lstCommonEmployee.Count <> 0 Then
                 Dim item = lstCommonEmployee(0)
                 hidSign.Value = item.ID
@@ -539,7 +539,7 @@ Public Class ctrlHU_ContractTemplete
     End Sub
 
     Private Sub ctrlFind_CancelClick(ByVal sender As Object, ByVal e As System.EventArgs) _
-      Handles ctrlFindSignPopup.CancelClicked,
+      Handles ctrlFindSigner.CancelClicked,
       ctrlFindEmployeePopup.CancelClicked,
       ctrlFindSalaryPopup.CancelClicked
         isLoadPopup = 0
@@ -1023,12 +1023,12 @@ Public Class ctrlHU_ContractTemplete
                         ctrlFindEmployeePopup.MultiSelect = False
                     End If
                 Case 2
-                    If Not FindSigner.Controls.Contains(ctrlFindSignPopup) Then
-                        ctrlFindSignPopup = Me.Register("ctrlFindSignPopup", "Common", "ctrlFindEmployeePopup")
-                        FindSigner.Controls.Add(ctrlFindSignPopup)
-                        ctrlFindSignPopup.MultiSelect = False
-                        ctrlFindSignPopup.MustHaveContract = False
-                        ctrlFindSignPopup.LoadAllOrganization = True
+                    If Not FindSigner.Controls.Contains(ctrlFindSigner) Then
+                        ctrlFindSigner = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
+                        FindSigner.Controls.Add(ctrlFindSigner)
+                        ctrlFindSigner.MultiSelect = False
+                        ctrlFindSigner.MustHaveContract = False
+                        ctrlFindSigner.LoadAllOrganization = True
                     End If
                 Case 3
                     If Not FindSalary.Controls.Contains(ctrlFindSalaryPopup) Then

@@ -140,6 +140,7 @@
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplate.ascx" />
     <Content Include="Modules\Common\ApproveProcess\ctrlApproveTemplateAddEdit.ascx" />
     <Content Include="Modules\Common\ctrlCommon_Reject.ascx" />
+    <Content Include="Modules\Common\ctrlFindEmployeeSignPopupDialog.ascx" />
     <Content Include="Modules\Common\ctrlUploadWithTeamplate.ascx" />
     <Content Include="Modules\Common\ctrlDynamicControl.ascx" />
     <Content Include="Modules\Common\ctrlCheckData.ascx" />
@@ -443,6 +444,13 @@
     </Compile>
     <Compile Include="Modules\Common\ctrlCommon_Reject.ascx.vb">
       <DependentUpon>ctrlCommon_Reject.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlFindEmployeeSignPopupDialog.ascx.designer.vb">
+      <DependentUpon>ctrlFindEmployeeSignPopupDialog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\ctrlFindEmployeeSignPopupDialog.ascx.vb">
+      <DependentUpon>ctrlFindEmployeeSignPopupDialog.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Common\ctrlUploadWithTeamplate.ascx.designer.vb">

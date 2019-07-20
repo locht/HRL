@@ -2152,6 +2152,75 @@ Partial Public Class CommonRepository
 #End Region
 
 #Region "Employee"
+    Public Function GetEmployeeSignToPopupFind(_filter As EmployeePopupFindListDTO,
+                                            ByVal PageIndex As Integer,
+                                            ByVal PageSize As Integer,
+                                            ByRef Total As Integer,
+                                            Optional ByVal Sorts As String = "EMPLOYEE_CODE asc",
+                                            Optional ByVal log As UserLog = Nothing,
+                                            Optional ByVal _param As ParamDTO = Nothing) As List(Of EmployeePopupFindListDTO)
+
+        Try
+            Dim userName As String
+            Using cls As New DataAccess.QueryData
+                userName = log.Username
+                If _filter.LoadAllOrganization Then
+                    userName = "ADMIN"
+                End If
+                cls.ExecuteStore("PKG_COMMON_LIST.INSERT_CHOSEN_ORG",
+                                 New With {.P_USERNAME = userName,
+                                           .P_ORGID = _param.ORG_ID,
+                                           .P_ISDISSOLVE = _param.IS_DISSOLVE})
+            End Using
+
+
+            Dim query = From sign In Context.HU_SIGNER.Where(Function(f) f.ACTFLG = 1)
+                        From p In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = sign.SIGNER_CODE).DefaultIfEmpty
+                        From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
+                        From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
+                        From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = userName)
+                        From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
+
+
+            If _filter.MustHaveContract Then
+                query = query.Where(Function(f) f.p.JOIN_DATE.HasValue)
+            End If
+            Dim dateNow As Date? = Date.Now.Date
+
+            If _filter.IS_TER Then
+                query = query.Where(Function(f) f.p.WORK_STATUS = -1 And f.p.TER_EFFECT_DATE IsNot Nothing)
+            Else
+                query = query.Where(Function(f) f.p.WORK_STATUS Is Nothing Or (f.p.WORK_STATUS IsNot Nothing And _
+                                         (f.p.WORK_STATUS <> -1 Or (f.p.WORK_STATUS = -1 And f.p.TER_EFFECT_DATE > dateNow))))
+            End If
+
+            If _filter.EMPLOYEE_CODE <> "" Then
+                query = query.Where(Function(f) f.p.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper) Or _
+                                        f.p.FULLNAME_VN.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
+            End If
+            Dim lst = query.Select(Function(f) New EmployeePopupFindListDTO With {
+                            .EMPLOYEE_CODE = f.sign.SIGNER_CODE,
+                            .ID = f.p.ID,
+                            .EMPLOYEE_ID = f.p.ID,
+                            .FULLNAME_VN = f.p.FULLNAME_VN,
+                            .JOIN_DATE = f.p.JOIN_DATE,
+                            .ORG_NAME = f.o.NAME_VN,
+                            .ORG_DESC = f.o.DESCRIPTION_PATH,
+                            .GENDER = f.gender.NAME_VN,
+                            .TITLE_NAME = f.t.NAME_VN})
+
+            lst = lst.OrderBy(Sorts)
+            Total = lst.Count
+            lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
+            Return lst.ToList
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
 
     Public Function GetEmployeeToPopupFind(_filter As EmployeePopupFindListDTO,
                                             ByVal PageIndex As Integer,
