@@ -168,7 +168,23 @@ Public Class ctrlInsInformationsMng
                     Response.Redirect("Default.aspx?mid=Insurance&fid=ctrlInsHealthImport&group=Business")
 
                 Case CommonMessage.TOOLBARITEM_EXPORT
-                    Call Export()
+                    Using xls As New ExcelCommon
+                        Dim dtDataExport As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GetInsInfomation(Common.Common.GetUsername(), InsCommon.getNumber(0) _
+                                                                   , txtEMPLOYEEID_SEARCH.Text _
+                                                                   , InsCommon.getNumber(ctrlOrg.CurrentValue) _
+                                                                   , InsCommon.getNumber(IIf(chkSTATUS.Checked, 1, 0)) _
+                                                                   , InsCommon.getNumber(IIf(ctrlOrg.IsDissolve, 1, 0))
+                                                                   )
+                        If dtDataExport.Rows.Count = 0 Then
+                            ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                            Exit Sub
+                        ElseIf dtDataExport.Rows.Count > 0 Then
+                            rgGridData.ExportExcel(Server, Response, dtDataExport, "DsBaoHiem")
+                            Exit Sub
+                        End If
+                    End Using
+
+                    'Call Export()
             End Select
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)

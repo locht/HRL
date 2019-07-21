@@ -149,6 +149,10 @@
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: UNEMP_REGISTER_MONTH %>" DataField="UNEMP_REGISTER_MONTH"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" UniqueName="UNEMP_REGISTER_MONTH" SortExpression="UNEMP_REGISTER_MONTH" Visible="false"/>    
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTNLD_BNN(Từ tháng) %>" DataField="BHTNLD_BNN_FROM_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="BHTNLD_BNN_FROM_MONTH" SortExpression="BHTNLD_BNN_FROM_MONTH" 
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="100px"/>
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: BHTNLD_BNN(Đến tháng) %>" DataField="BHTNLD_BNN_TO_MONTH" DataFormatString="{0:MM/yyyy}" UniqueName="BHTNLD_BNN_TO_MONTH" SortExpression="BHTNLD_BNN_TO_MONTH" 
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="EqualTo" AutoPostBackOnFilter="true" HeaderStyle-Width="110px"/>
                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: BHXH %>" DataField="SI_CHK" DataType="System.Boolean" FilterControlWidth="20px"   
                                 SortExpression="SI_CHK" UniqueName="SI_CHK" >
                                 <HeaderStyle HorizontalAlign="Center" Width="50px"/>
@@ -160,7 +164,11 @@
                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: BHTN %>" DataField="UI_CHK" DataType="System.Boolean" FilterControlWidth="20px"   
                                 SortExpression="UI_CHK" UniqueName="UI_CHK" >
                                 <HeaderStyle HorizontalAlign="Center" Width="50px"/>
-                            </tlk:GridCheckBoxColumn>                                                       
+                            </tlk:GridCheckBoxColumn>
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: BHTNLD_BNN %>" DataField="BHTNLD_BNN_CHK" DataType="System.Boolean" FilterControlWidth="20px"   
+                                SortExpression="BHTNLD_BNN_CHK" UniqueName="BHTNLD_BNN_CHK" >
+                                <HeaderStyle HorizontalAlign="Center" Width="70px"/>
+                            </tlk:GridCheckBoxColumn>                                                        
                         </Columns>
                     </MasterTableView>
                 </tlk:RadGrid>
@@ -226,7 +234,7 @@
 
         function gridRowDblClick(sender, args) {
             OpenEdit(1); //view
-            //args.set_cancel(true);
+            args.set_cancel(true);
         }
 
         function popupclose(sender, args) {
