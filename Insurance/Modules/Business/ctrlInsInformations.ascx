@@ -142,6 +142,9 @@
                             <tlk:RadButton ID="chkUI" AutoPostBack="false" Text='<%# Translate("BHTN")%>' ToggleType="CheckBox"
                                 TabIndex="5" ButtonType="ToggleButton" runat="server">
                             </tlk:RadButton>
+                             <tlk:RadButton ID="chkBHTNLD_BNN" AutoPostBack="false" Text='<%# Translate("BHTNLD_BNN")%>' ToggleType="CheckBox"
+                                TabIndex="5" ButtonType="ToggleButton" runat="server">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
@@ -342,14 +345,18 @@
                             </tlk:RadDatePicker>
                         </td>
                         <td class="lb">
+                             <%# Translate("Đã đóng bảo hiểm đủ 5 năm")%>
                         </td>
                         <td>
+                            <tlk:RadButton ID="chkIS_HI_FIVE_YEAR" AutoPostBack="false" ToggleType="CheckBox"
+                                TabIndex="5" ButtonType="ToggleButton" runat="server">
+                            </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
             </fieldset>
         </div>
-        <div style="float: left; margin-left: 400px; margin-top: 10px">
+        <div style="float: left; margin-left: 30px">
             <fieldset style="width: auto; height: auto">
                 <legend>
                     <%# Translate("BẢO HIỂM THẤT NGHIỆP")%>
@@ -369,6 +376,33 @@
                         </td>
                         <td>
                             <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="txtUNEMP_TO_MONTH" Culture="en-US"
+                                TabIndex="28">
+                            </tlk:RadMonthYearPicker>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div style="float: right; margin-right:207px">
+            <fieldset style="width: auto; height: auto">
+                <legend>
+                    <%# Translate("BHTNLD-BNN")%>
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb">
+                            <%# Translate("Từ tháng")%>
+                        </td>
+                        <td>
+                            <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="txtBHTNLD_BNN_FROM_MONTH" Culture="en-US"
+                                TabIndex="27">
+                            </tlk:RadMonthYearPicker>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Đến tháng")%>
+                        </td>
+                        <td>
+                            <tlk:RadMonthYearPicker DateInput-DisplayDateFormat="MM/yyyy" runat="server" ID="txtBHTNLD_BNN_TO_MONTH" Culture="en-US"
                                 TabIndex="28">
                             </tlk:RadMonthYearPicker>
                         </td>

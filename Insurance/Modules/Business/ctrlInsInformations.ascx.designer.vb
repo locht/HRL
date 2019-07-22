@@ -239,6 +239,15 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents chkUI As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
+    '''chkBHTNLD_BNN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkBHTNLD_BNN As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''txtSI_FROM_MONTH control.
     '''</summary>
     '''<remarks>
@@ -428,6 +437,15 @@ Partial Public Class ctrlInsInformations
     Protected WithEvents txtHEALTH_RETURN_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''chkIS_HI_FIVE_YEAR control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIS_HI_FIVE_YEAR As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''txtUNEMP_FROM_MONTH control.
     '''</summary>
     '''<remarks>
@@ -444,6 +462,24 @@ Partial Public Class ctrlInsInformations
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtUNEMP_TO_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
+
+    '''<summary>
+    '''txtBHTNLD_BNN_FROM_MONTH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtBHTNLD_BNN_FROM_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
+
+    '''<summary>
+    '''txtBHTNLD_BNN_TO_MONTH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtBHTNLD_BNN_TO_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
 
     '''<summary>
     '''FindEmployee control.

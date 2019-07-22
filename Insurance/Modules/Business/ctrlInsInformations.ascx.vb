@@ -151,6 +151,11 @@ Public Class ctrlInsInformations
                     chkSI.Enabled = False
                     chkUI.Enabled = False
                     txtSALARY.Enabled = False
+
+                    chkBHTNLD_BNN.Enabled = False
+                    chkIS_HI_FIVE_YEAR.Enabled = False
+                    txtBHTNLD_BNN_FROM_MONTH.Enabled = False
+                    txtBHTNLD_BNN_TO_MONTH.Enabled = False
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
                     CType(Me.MainToolBar.Items(0), RadToolBarButton).Enabled = True
                     CType(Me.MainToolBar.Items(1), RadToolBarButton).Enabled = True
@@ -190,6 +195,11 @@ Public Class ctrlInsInformations
                     chkSI.Enabled = True
                     chkUI.Enabled = True
                     txtSALARY.Enabled = False
+
+                    chkBHTNLD_BNN.Enabled = True
+                    chkIS_HI_FIVE_YEAR.Enabled = True
+                    txtBHTNLD_BNN_FROM_MONTH.Enabled = True
+                    txtBHTNLD_BNN_TO_MONTH.Enabled = True
                 Case "Nothing"
             End Select
         Catch ex As Exception
@@ -275,6 +285,11 @@ Public Class ctrlInsInformations
             chkHI.Checked = True
             chkUI.Checked = True
 
+            chkBHTNLD_BNN.Checked = True
+            chkIS_HI_FIVE_YEAR.Checked = False
+            txtBHTNLD_BNN_FROM_MONTH.SelectedDate = Nothing
+            txtBHTNLD_BNN_TO_MONTH.SelectedDate = Nothing
+
         Catch ex As Exception
         End Try
     End Sub
@@ -290,7 +305,7 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(txtEMPID.Text) _
                                                     , InsCommon.getString(txtINSORG.Text) _
                                                     , InsCommon.getNumber(txtSENIORITY_INSURANCE.Text) _
-                                                    , InsCommon.getNumber(txtSENIORITY_INSURANCE_COMPANY.Text) _
+                                                    , txtSENIORITY_INSURANCE_COMPANY.Text _
                                                     , txtSOCIAL_NUMBER.Text _
                                                     , InsCommon.getNumber(ddlSOCIAL_STATUS.SelectedValue) _
                                                     , txtSOCIAL_SUBMIT_DATE.SelectedDate _
@@ -318,7 +333,11 @@ Public Class ctrlInsInformations
                                                     , txtHI_TO_MONTH.SelectedDate _
                                                     , InsCommon.getNumber(IIf(chkSI.Checked, 1, 0)) _
                                                     , InsCommon.getNumber(IIf(chkHI.Checked, 1, 0)) _
-                                                    , InsCommon.getNumber(IIf(chkUI.Checked, 1, 0))
+                                                    , InsCommon.getNumber(IIf(chkUI.Checked, 1, 0)) _
+                                                    , InsCommon.getNumber(IIf(chkBHTNLD_BNN.Checked, 1, 0)) _
+                                                    , InsCommon.getNumber(IIf(chkIS_HI_FIVE_YEAR.Checked, 1, 0)) _
+                                                    , txtBHTNLD_BNN_FROM_MONTH.SelectedDate _
+                                                    , txtBHTNLD_BNN_TO_MONTH.SelectedDate _
                                                     ) Then
                         Refresh("InsertView")
                         'Common.Common.OrganizationLocationDataSession = Nothing
@@ -335,7 +354,7 @@ Public Class ctrlInsInformations
                                                     , InsCommon.getNumber(txtEMPID.Text) _
                                                     , InsCommon.getString(txtINSORG.Text) _
                                                     , InsCommon.getNumber(txtSENIORITY_INSURANCE.Text) _
-                                                    , InsCommon.getNumber(txtSENIORITY_INSURANCE_COMPANY.Text) _
+                                                    , txtSENIORITY_INSURANCE_COMPANY.Text _
                                                     , txtSOCIAL_NUMBER.Text _
                                                     , InsCommon.getNumber(ddlSOCIAL_STATUS.SelectedValue) _
                                                     , txtSOCIAL_SUBMIT_DATE.SelectedDate _
@@ -363,7 +382,11 @@ Public Class ctrlInsInformations
                                                     , txtHI_TO_MONTH.SelectedDate _
                                                     , InsCommon.getNumber(IIf(chkSI.Checked, 1, 0)) _
                                                     , InsCommon.getNumber(IIf(chkHI.Checked, 1, 0)) _
-                                                    , InsCommon.getNumber(IIf(chkUI.Checked, 1, 0))
+                                                    , InsCommon.getNumber(IIf(chkUI.Checked, 1, 0)) _
+                                                    , InsCommon.getNumber(IIf(chkBHTNLD_BNN.Checked, 1, 0)) _
+                                                    , InsCommon.getNumber(IIf(chkIS_HI_FIVE_YEAR.Checked, 1, 0)) _
+                                                    , txtBHTNLD_BNN_FROM_MONTH.SelectedDate _
+                                                    , txtBHTNLD_BNN_TO_MONTH.SelectedDate _
                                                     ) Then
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"
@@ -502,6 +525,11 @@ Public Class ctrlInsInformations
                 InsCommon.SetDate(txtSI_TO_MONTH, lstSource.Rows(0)("SI_TO_MONTH"))
                 InsCommon.SetDate(txtHI_FROM_MONTH, lstSource.Rows(0)("HI_FROM_MONTH"))
                 InsCommon.SetDate(txtHI_TO_MONTH, lstSource.Rows(0)("HI_TO_MONTH"))
+
+                InsCommon.SetNumber(chkBHTNLD_BNN, lstSource.Rows(0)("BHTNLD_BNN"))
+                InsCommon.SetDate(txtBHTNLD_BNN_FROM_MONTH, lstSource.Rows(0)("BHTNLD_BNN_FROM_MONTH"))
+                InsCommon.SetDate(txtBHTNLD_BNN_TO_MONTH, lstSource.Rows(0)("BHTNLD_BNN_TO_MONTH"))
+                InsCommon.SetNumber(chkIS_HI_FIVE_YEAR, lstSource.Rows(0)("IS_HI_FIVE_YEAR"))
 
             End If
         Catch ex As Exception
