@@ -5662,6 +5662,7 @@ Partial Class ProfileRepository
                                                                                                  PA.SIGNER_CODE,
                                                                                                  PA.TITLE_NAME,
                                                                                                 PA.REMARK,
+                                                                                                 PA.ORG_ID,
                                                                                                   PA.CREATED_BY,
                                                                                                 PA.CREATED_LOG,
                                                                                                  .P_OUT = cls.OUT_NUMBER})
@@ -5682,6 +5683,7 @@ Partial Class ProfileRepository
                                                                                             PA.SIGNER_CODE,
                                                                                             PA.TITLE_NAME,
                                                                                             PA.REMARK,
+                                                                                            PA.ORG_ID,
                                                                                             PA.CREATED_BY,
                                                                                             PA.CREATED_LOG,
                                                                                             .P_OUT = cls.OUT_NUMBER})

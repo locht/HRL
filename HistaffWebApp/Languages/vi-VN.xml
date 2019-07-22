@@ -39316,4 +39316,20 @@ Xin cám ơn!
       <string>Bậc nhân sự</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN CÔNG TY</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn công ty</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>COMPANY_NAME</string>
+    </Key>
+    <Value>
+      <string>Công ty</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
