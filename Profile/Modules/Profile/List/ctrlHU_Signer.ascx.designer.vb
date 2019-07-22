@@ -122,6 +122,24 @@ Partial Public Class ctrlHU_Signer
     Protected WithEvents txtNAME_EN As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''cboCompany control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboCompany As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtRemark control.
     '''</summary>
     '''<remarks>

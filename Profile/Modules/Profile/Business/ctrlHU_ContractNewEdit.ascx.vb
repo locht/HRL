@@ -1117,7 +1117,7 @@ Public Class ctrlHU_ContractNewEdit
                 End If
             Case 2
                 If Not FindSigner.Controls.Contains(ctrlFindSigner) Then
-                    ctrlFindSigner = Me.Register("ctrlFindSignPopup", "Common", "ctrlFindEmployeePopup")
+                    ctrlFindSigner = Me.Register("ctrlFindSigner", "Common", "ctrlFindEmployeePopup")
                     FindSigner.Controls.Add(ctrlFindSigner)
                     ctrlFindSigner.MultiSelect = False
                     ctrlFindSigner.MustHaveContract = True

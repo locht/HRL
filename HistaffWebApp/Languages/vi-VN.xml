@@ -39052,4 +39052,284 @@ Xin cám ơn!
       <string>UI.Wage_Allowance_total</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>CTRLFINDEMPLOYEESIGNPOPUPDIALOG</string>
+    </Key>
+    <Value>
+      <string>Chọn người ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>APPROVE_BATCH</string>
+    </Key>
+    <Value>
+      <string>APPROVE_BATCH</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BIỂU THUẾ</string>
+    </Key>
+    <Value>
+      <string>Biểu thuế</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>% LƯƠNG ĐƯỢC HƯỞNG</string>
+    </Key>
+    <Value>
+      <string>% Lương được hưởng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BIỂU MẪU HỖ TRỢ KHÔNG TỒN TẠI HOẶC ĐÃ NGỪNG ÁP DỤNG.</string>
+    </Key>
+    <Value>
+      <string>Biểu mẫu hỗ trợ không tồn tại hoặc đã ngừng áp dụng.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SĐTC</string>
+    </Key>
+    <Value>
+      <string>SĐTC</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG CHẤM CÔNG</string>
+    </Key>
+    <Value>
+      <string>Đối tượng chấm công</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ CŨ</string>
+    </Key>
+    <Value>
+      <string>Đơn vị cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG CHẤM CÔNG CŨ</string>
+    </Key>
+    <Value>
+      <string>Đối tượng chấm công cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY NỘP ĐƠN CŨ</string>
+    </Key>
+    <Value>
+      <string>Ngày nộp đơn cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LOẠI QUYẾT ĐỊNH CŨ</string>
+    </Key>
+    <Value>
+      <string>Loại quyết định cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY BẮT ĐẦU HIỆU LỰC CŨ</string>
+    </Key>
+    <Value>
+      <string>Ngày bắt đầu hiệu lực cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HẾT HIỆU LỰC CŨ</string>
+    </Key>
+    <Value>
+      <string>Ngày hết hiệu lực cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ QUYẾT ĐỊNH CŨ</string>
+    </Key>
+    <Value>
+      <string>Số quyết định cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KÝ CŨ</string>
+    </Key>
+    <Value>
+      <string>Ngày ký cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI KÝ CŨ</string>
+    </Key>
+    <Value>
+      <string>Người ký cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>GHI CHÚ CŨ</string>
+    </Key>
+    <Value>
+      <string>Ghi chú cũ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LÝ DO KỶ LUẬT</string>
+    </Key>
+    <Value>
+      <string>Lý do kỷ luật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG GIÁ TRỊ THIỆT HẠI</string>
+    </Key>
+    <Value>
+      <string>Tổng giá trị thiệt hại</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THỜI GIAN THI HÀNH KỶ LUẬT</string>
+    </Key>
+    <Value>
+      <string>Thời gian thi hành kỷ luật</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGẠCH LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Ngạch lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MỨC LƯƠNG ĐÓNG BẢO HIỂM</string>
+    </Key>
+    <Value>
+      <string>Mức lương đóng bảo hiểm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG PHỤ CẤP</string>
+    </Key>
+    <Value>
+      <string>Tổng phụ cấp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>%HƯỞNG LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>%Hưởng lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TỔNG MỨC LƯƠNG</string>
+    </Key>
+    <Value>
+      <string>Tổng mức lương</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>PHỤ CẤP KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Phụ cấp kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LƯƠNG KHÁC 3</string>
+    </Key>
+    <Value>
+      <string>Lương khác 3</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LƯƠNG KHÁC 4</string>
+    </Key>
+    <Value>
+      <string>Lương khác 4</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LƯƠNG KHÁC 5</string>
+    </Key>
+    <Value>
+      <string>Lương khác 5</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐỐI TƯỢNG SALE COMMISION</string>
+    </Key>
+    <Value>
+      <string>Đối tượng Sale Commision</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>HÀNH VI VI PHẠM</string>
+    </Key>
+    <Value>
+      <string>Hành vi vi phạm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ TIỀN PHẢI NỘP</string>
+    </Key>
+    <Value>
+      <string>Số tiền phải nộp</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẬC NHÂN SỰ</string>
+    </Key>
+    <Value>
+      <string>Bậc nhân sự</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN CÔNG TY</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn công ty</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>COMPANY_NAME</string>
+    </Key>
+    <Value>
+      <string>Công ty</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

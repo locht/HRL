@@ -18,7 +18,7 @@
                         <td>
                             <tlk:RadTextBox ID="txtCode"  runat="server">
                             </tlk:RadTextBox>
-                             <tlk:RadButton ID="btnFindEmp" runat="server" SkinID="ButtonView"
+                             <tlk:RadButton  ID="btnFindEmp" runat="server" SkinID="ButtonView"
                                 CausesValidation="false">
                             </tlk:RadButton>
                             <asp:RequiredFieldValidator ID="reqNAME_EN" ControlToValidate="txtNAME_EN" runat="server"
@@ -26,25 +26,32 @@
                             </asp:RequiredFieldValidator>
                         </td>
                         <td class="lb">
-                            <%# Translate("Tên người ký")%><span class="lbReq">*</span>
+                            <%# Translate("Tên người ký")%>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtTYPE_NAME" MaxLength="255" runat="server" Width="300px">
                             </tlk:RadTextBox>
-                        </td>
-                       
+                        </td>                       
                     </tr>
                      <tr>
-                      <td class="lb">
+                        <td class="lb">
                             <%# Translate("Chức vụ người ký")%><span class="lbReq">*</span>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtNAME_EN" MaxLength="255" runat="server" Width="300px">
-                            </tlk:RadTextBox>
-                            
+                            </tlk:RadTextBox>                            
                         </td>
-                    </tr>
-                   
+                        <td class="lb">
+                            <%# Translate("Công ty")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cboCompany" runat="server" Width="300px">
+                            </tlk:RadComboBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="cboCompany" runat="server"
+                                ErrorMessage="<%$ Translate: Bạn phải chọn công ty %>" ToolTip="<%$ Translate: Bạn phải chọn công ty %>">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>                   
                     <tr>
                         <td class="lb">
                             <%# Translate("Ghi chú")%>
@@ -52,8 +59,7 @@
                         <td>
                             <tlk:RadTextBox ID="txtRemark" MaxLength="255" runat="server" Width="100%">
                             </tlk:RadTextBox>
-                        </td>
-                       
+                        </td>                       
                     </tr>
                 </table>
                
@@ -66,7 +72,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME">
+            <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,COMPANY_NAME">
                 <Columns>
                 </Columns>
             </MasterTableView>

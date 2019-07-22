@@ -14,6 +14,14 @@ Public Class ctrlHU_Signer
     Dim cons_com As New Contant_Common
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
 #Region "Property"
+    Property IDSelect As Decimal
+        Get
+            Return ViewState(Me.ID & "_IDSelect")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_IDSelect") = value
+        End Set
+    End Property
     Property isLoadPopup As Integer
         Get
             Return ViewState(Me.ID & "_isLoadPopup")
@@ -100,15 +108,6 @@ Public Class ctrlHU_Signer
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-
-    Property IDSelect As Decimal
-        Get
-            Return ViewState(Me.ID & "_IDSelect")
-        End Get
-        Set(ByVal value As Decimal)
-            ViewState(Me.ID & "_IDSelect") = value
-        End Set
-    End Property
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         SetGridFilter(rgData)
@@ -266,6 +265,7 @@ Public Class ctrlHU_Signer
         dic.Add("SIGNER_CODE", txtCode)
         dic.Add("NAME", txtTYPE_NAME)
         dic.Add("TITLE_NAME", txtNAME_EN)
+        dic.Add("ORG_ID", cboCompany)
         'dic.Add("TYPE1_ID", cbTYPE1)
         'dic.Add("TYPE2_ID", cbTYPE2)
         'dic.Add("TYPE3_ID", cbTYPE3)
@@ -318,7 +318,6 @@ Public Class ctrlHU_Signer
                     CurrentState = CommonMessage.STATE_NEW
                     psp.ResetControlValue(MainPanel)
                     IDSelect = 0
-
                     rgData.Rebind()
                 Case CommonMessage.TOOLBARITEM_EDIT
                     If rgData.SelectedItems.Count = 0 Then
@@ -386,10 +385,7 @@ Public Class ctrlHU_Signer
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    txtCode.Text = ""
-                    txtTYPE_NAME.Text = ""
-                    txtNAME_EN.Text = ""
-                    txtRemark.Text = ""
+                    ClearControlValue(cboCompany, txtCode, txtTYPE_NAME, txtNAME_EN, txtRemark)
                     rgData.Rebind()
             End Select
             UpdateControlState()
@@ -413,6 +409,7 @@ Public Class ctrlHU_Signer
                 Next
                 If lst.ToString <> "" Then
                     rep.DeleteSigner(lst)
+                    ClearControlValue(cboCompany, txtCode, txtNAME_EN, txtRemark, txtTYPE_NAME)
                     CurrentState = CommonMessage.STATE_NORMAL
                     ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                 Else
@@ -554,7 +551,7 @@ Public Class ctrlHU_Signer
         log = LogHelper.GetUserLog
         PA.ID = IDSelect
         PA.SIGNER_CODE = txtCode.Text
-
+        PA.ORG_ID = cboCompany.SelectedValue
 
         PA.TITLE_NAME = txtNAME_EN.Text
         PA.NAME = txtTYPE_NAME.Text
@@ -596,6 +593,20 @@ Public Class ctrlHU_Signer
     End Sub
 
     Private Sub GetDataComboBox()
+        Dim repS As New ProfileStoreProcedure
+        Try
+            Dim dtOrgLevel As DataTable
+            dtOrgLevel = repS.GET_ORGID_COMPANY_LEVEL()
+            Dim dr As DataRow = dtOrgLevel.NewRow
+            dr("ORG_ID") = "-1"
+            dr("ORG_NAME_VN") = "Dùng chung"
+            dtOrgLevel.Rows.Add(dr)
+
+            dtOrgLevel.DefaultView.Sort = "ORG_ID ASC"
+            FillRadCombobox(cboCompany, dtOrgLevel, "ORG_NAME_VN", "ORG_ID", True)
+        Catch ex As Exception
+            Throw ex
+        End Try
         'Dim dtData As New DataTable
 
         'dtData = com.GET_COMBOBOX(cons.OT_OTHER_LIST, "CODE", "NAME_VN", " AND TYPE_CODE='" + cons.ALLOW_TYPE + "' ", "NAME_VN", True)
