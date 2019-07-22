@@ -1511,7 +1511,7 @@ Partial Public Class InsuranceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(eo) eo.ID = e.ORG_ID)
                         From p In Context.HU_TITLE.Where(Function(ep) ep.ID = e.TITLE_ID)
                         From r In Context.HU_STAFF_RANK.Where(Function(f) e.STAFF_RANK_ID = f.ID).DefaultIfEmpty
-                        From ot In Context.INS_COST_FOLLOW_LEVER.Where(Function(f) f.ID = s.LEVEL_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = s.LEVEL_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Where e.FULLNAME_VN.EndsWith(Fillter) Or e.FULLNAME_VN.StartsWith(Fillter) Or e.FULLNAME_VN.Contains(Fillter) Or e.FULLNAME_VN = Fillter Or Fillter = ""
             Dim lst = query.Select(Function(f) New INS_SUN_CARE_DTO With {
@@ -1527,7 +1527,7 @@ Partial Public Class InsuranceRepository
                                        .START_DATE = f.s.START_DATE,
                                        .END_DATE = f.s.END_DATE,
                                        .LEVEL_ID = f.s.LEVEL_ID,
-                                       .LEVEL_NAME = f.ot.COST_NAME,
+                                       .LEVEL_NAME = f.ot.NAME_VN,
                                        .COST = f.s.COST,
                                        .THOIDIEMHUONG = f.s.THOIDIEMHUONG,
                                        .NOTE = f.s.NOTE,
@@ -1603,7 +1603,7 @@ Partial Public Class InsuranceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(eo) eo.ID = e.ORG_ID)
                         From p In Context.HU_TITLE.Where(Function(ep) ep.ID = e.TITLE_ID)
                         From r In Context.HU_STAFF_RANK.Where(Function(f) e.STAFF_RANK_ID = f.ID).DefaultIfEmpty
-                        From ot In Context.INS_COST_FOLLOW_LEVER.Where(Function(f) f.ID = s.LEVEL_ID).DefaultIfEmpty
+                        From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = s.LEVEL_ID).DefaultIfEmpty
                         Where (s.ID = _id)
 
             Dim lst = query.Select(Function(f) New INS_SUN_CARE_DTO With {
@@ -1619,7 +1619,7 @@ Partial Public Class InsuranceRepository
                                         .START_DATE = f.s.START_DATE,
                                         .END_DATE = f.s.END_DATE,
                                         .LEVEL_ID = f.s.LEVEL_ID,
-                                        .LEVEL_NAME = f.ot.COST_NAME,
+                                        .LEVEL_NAME = f.ot.NAME_VN,
                                         .COST = f.s.COST,
                                         .THOIDIEMHUONG = f.s.THOIDIEMHUONG,
                                         .NOTE = f.s.NOTE,
