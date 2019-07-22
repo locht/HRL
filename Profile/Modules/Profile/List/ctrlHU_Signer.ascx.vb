@@ -343,9 +343,11 @@ Public Class ctrlHU_Signer
                     ctrlMessageBox.Show()
 
                 Case CommonMessage.TOOLBARITEM_EXPORT
+                    Dim filter As New SignerDTO
+                    filter.USER_ID = LogHelper.CurrentUser.ID
                     Dim dtData As DataTable
                     Using xls As New ExcelCommon
-                        dtData = rep.GET_HU_SIGNER()
+                        dtData = rep.GET_HU_SIGNER(filter)
                         If dtData.Rows.Count > 0 Then
                             rgData.ExportExcel(Server, Response, dtData, "danh sach")
                         Else
@@ -433,8 +435,11 @@ Public Class ctrlHU_Signer
 
     Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgData.NeedDataSource
         Try
+            Dim filter As New SignerDTO
+
+            filter.USER_ID = LogHelper.CurrentUser.ID
             Dim rep As New ProfileRepository
-            dtData = rep.GET_HU_SIGNER()
+            'dtData = rep.GET_HU_SIGNER(filter)
             If Not IsPostBack Then
                 DesignGrid(dtData)
             End If

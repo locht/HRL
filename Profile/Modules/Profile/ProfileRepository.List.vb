@@ -2121,12 +2121,10 @@ Partial Public Class ProfileRepository
 
 #End Region
 #Region "danh mục người ký"
-    Public Function GET_HU_SIGNER() As DataTable
-        Dim dt As New DataTable
+    Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable
         Using rep As New ProfileBusinessClient
             Try
-                dt = rep.GET_HU_SIGNER()
-                Return rep.GET_HU_SIGNER()
+                Return rep.GET_HU_SIGNER(_filter)
             Catch ex As Exception
                 Throw ex
             End Try

@@ -5642,13 +5642,17 @@ Partial Class ProfileRepository
 
 #Region " danh mục người ký"
     'load dữ liệu
-    Public Function GET_HU_SIGNER() As DataTable
+    Public Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable
         Try
-            Using cls As New DataAccess.QueryData
-                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_HU_SIGNER",
-                                                             New With {.P_CUR = cls.OUT_CURSOR})
-                Return dtData
-            End Using
+            Dim userNameID = _filter.USER_ID
+            Dim check As String = "Dùng chung"
+            Dim lstOrgID = New List(Of Decimal)
+            'lstOrgID = (From p In Context.SE_USER_ORG_ACCESS
+            '    From o In Context.HU_ORGANIZATION.Where(Function(f) p.ORG_ID = f.ID)
+            '    Where p.USER_ID = userNameID
+            '    Select p.ORG_ID).ToList
+            Dim query = From p In Context.HU_SIGNER
+
         Catch ex As Exception
             Throw ex
         End Try

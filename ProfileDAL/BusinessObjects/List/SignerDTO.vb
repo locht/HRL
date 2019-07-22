@@ -24,4 +24,5 @@
     Public Property ORG_ID As Decimal?
 
     Public Property ORG_NAME As String
+    Public Property USER_ID As Decimal?
 End Class

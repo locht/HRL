@@ -2631,7 +2631,7 @@ Namespace ProfileBusiness.ServiceContracts
 #End Region
 #Region "Danh mục người ký"
         <OperationContract()>
-        Function GET_HU_SIGNER() As DataTable
+        Function GET_HU_SIGNER(ByVal _filter As SignerDTO) As DataTable
         <OperationContract()>
         Function INSERT_HU_SIGNER(ByVal PA As SignerDTO) As Boolean
         <OperationContract()>

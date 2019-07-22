@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("6be0d8e9-2119-4eb5-ace8-d5d4f2e600b5")>
+<Assembly: EdmSchemaAttribute("da678407-b360-4915-804b-6e3dfa9b590f")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -70201,21 +70201,21 @@ Public Partial Class SE_USER_ORG_ACCESS
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property USER_ID() As Global.System.String
+    Public Property USER_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _USER_ID
         End Get
         Set
             OnUSER_IDChanging(value)
             ReportPropertyChanging("USER_ID")
-            _USER_ID = StructuralObject.SetValidValue(value, true)
+            _USER_ID = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("USER_ID")
             OnUSER_IDChanged()
         End Set
     End Property
 
-    Private _USER_ID As Global.System.String
-    Private Partial Sub OnUSER_IDChanging(value As Global.System.String)
+    Private _USER_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnUSER_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnUSER_IDChanged()

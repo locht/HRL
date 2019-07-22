@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 22/07/2019 2:44:27 PM
+-- Date Created: 22/07/2019 2:55:16 PM
 -- Generated from EDMX file: E:\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -348,6 +348,10 @@
 -- DROP TABLE "ProfileModelStoreContainer"."HU_CERTIFICATE";
 
 -- DROP TABLE "ProfileModelStoreContainer"."HU_CERTIFICATE_EDIT";
+
+-- DROP TABLE "ProfileModelStoreContainer"."HU_SIGNER";
+
+-- DROP TABLE "ProfileModelStoreContainer"."SE_USER_ORG_ACCESS";
 
 -- DROP TABLE "ProfileModelStoreContainer"."SE_USER_REPORT";
 
@@ -3542,7 +3546,7 @@ CREATE TABLE "dbo"."HU_SIGNER" (
 -- Creating table 'SE_USER_ORG_ACCESS'
 CREATE TABLE "dbo"."SE_USER_ORG_ACCESS" (
    "ID" NUMBER(38,0) NOT NULL,
-   "USER_ID" NVARCHAR2(255) NULL,
+   "USER_ID" NUMBER(38,0) NULL,
    "ORG_ID" NUMBER(38,0) NULL
 );
 

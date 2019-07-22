@@ -4903,6 +4903,9 @@ Namespace ProfileBusiness
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
         
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private USER_IDField As System.Nullable(Of Decimal)
+        
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
@@ -5195,6 +5198,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property USER_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.USER_IDField
+            End Get
+            Set
+                If (Me.USER_IDField.Equals(value) <> true) Then
+                    Me.USER_IDField = value
+                    Me.RaisePropertyChanged("USER_ID")
                 End If
             End Set
         End Property
@@ -47354,7 +47370,7 @@ Namespace ProfileBusiness
         Function ApproveListContract(ByVal listID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_HU_SIGNERResponse")>  _
-        Function GET_HU_SIGNER() As System.Data.DataTable
+        Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNER", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_HU_SIGNERResponse")>  _
         Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean
@@ -49753,8 +49769,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.ApproveListContract(listID, log)
         End Function
         
-        Public Function GET_HU_SIGNER() As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
-            Return MyBase.Channel.GET_HU_SIGNER
+        Public Function GET_HU_SIGNER(ByVal _filter As ProfileBusiness.SignerDTO) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_HU_SIGNER
+            Return MyBase.Channel.GET_HU_SIGNER(_filter)
         End Function
         
         Public Function INSERT_HU_SIGNER(ByVal PA As ProfileBusiness.SignerDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_HU_SIGNER
