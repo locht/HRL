@@ -18,14 +18,14 @@
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Thời điểm hưởng từ")%>
+                            <%# Translate("Ngày cấp từ")%>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFrom" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td align="left">
-                            <%# Translate("Thời điểm hưởng tới")%>
+                            <%# Translate("Ngày cấp tới")%>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdTo" runat="server">
@@ -72,7 +72,7 @@
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự%>" DataField="STAFF_RANK_NAME"
                                 SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời điểm hưởng %>" DataField="THOIDIEMHUONG"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="THOIDIEMHUONG"
                                 DataFormatString="{0:dd/MM/yyyy}" SortExpression="THOIDIEMHUONG" UniqueName="THOIDIEMHUONG">
                                 <HeaderStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
@@ -84,12 +84,12 @@
                                 DataFormatString="{0:dd/MM/yyyy}" SortExpression="END_DATE" UniqueName="END_DATE">
                                 <HeaderStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm hưởng bảo hiểm %>" DataField="LEVEL_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị cung cấp BH %>" DataField="LEVEL_NAME"
                                 SortExpression="LEVEL_NAME" UniqueName="LEVEL_NAME" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức chi phí %>" DataField="COST"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Chi phí %>" DataField="COST"
                                 SortExpression="COST" DataFormatString="{0:n0}" UniqueName="COST" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
-                                UniqueName="NOTE" />
+                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
+                                UniqueName="NOTE" />--%>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>

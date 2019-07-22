@@ -10461,939 +10461,939 @@ Namespace InsuranceBusiness
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsInfomationResponse")>  _
         Function GetInsInfomation(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal org_id As System.Nullable(Of Double), ByVal isTer As System.Nullable(Of Double), ByVal isDISSOLVE As System.Nullable(Of Double)) As System.Data.DataTable
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomationResponse")> _
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsInfomationResponse")>  _
         Function UpdateInsInfomation( _
-                    ByVal username As String, _
-                    ByVal id As System.Nullable(Of Double), _
-                    ByVal employee_id As System.Nullable(Of Double), _
-                    ByVal ins_org_name As String, _
-                    ByVal seniority_insurance As System.Nullable(Of Double), _
-                    ByVal seniority_insurance_company As String, _
-                    ByVal social_number As String, _
-                    ByVal social_status As System.Nullable(Of Double), _
-                    ByVal social_submit_date As System.Nullable(Of Date), _
-                    ByVal social_submit As String, _
-                    ByVal social_grant_date As System.Nullable(Of Date), _
-                    ByVal social_save_number As String, _
-                    ByVal social_deliver_date As System.Nullable(Of Date), _
-                    ByVal social_return_date As System.Nullable(Of Date), _
-                    ByVal social_receiver As String, _
-                    ByVal social_note As String, _
-                    ByVal health_number As String, _
-                    ByVal health_status As System.Nullable(Of Double), _
-                    ByVal health_effect_from_date As System.Nullable(Of Date), _
-                    ByVal health_effect_to_date As System.Nullable(Of Date), _
-                    ByVal health_area_ins_id As System.Nullable(Of Double), _
-                    ByVal health_receive_date As System.Nullable(Of Date), _
-                    ByVal health_receiver As String, _
-                    ByVal health_return_date As System.Nullable(Of Date), _
-                    ByVal unemp_from_month As System.Nullable(Of Date), _
-                    ByVal unemp_to_month As System.Nullable(Of Date), _
-                    ByVal unemp_register_month As System.Nullable(Of Date), _
-                    ByVal si_from_month As System.Nullable(Of Date), _
-                    ByVal si_to_month As System.Nullable(Of Date), _
-                    ByVal hi_from_month As System.Nullable(Of Date), _
-                    ByVal hi_to_month As System.Nullable(Of Date), _
-                    ByVal si As System.Nullable(Of Double), _
-                    ByVal hi As System.Nullable(Of Double), _
-                    ByVal ui As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn As System.Nullable(Of Double), _
-                    ByVal is_hi_five_year As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn_from As System.Nullable(Of Date), _
+                    ByVal username As String,  _
+                    ByVal id As System.Nullable(Of Double),  _
+                    ByVal employee_id As System.Nullable(Of Double),  _
+                    ByVal ins_org_name As String,  _
+                    ByVal seniority_insurance As System.Nullable(Of Double),  _
+                    ByVal seniority_insurance_company As String,  _
+                    ByVal social_number As String,  _
+                    ByVal social_status As System.Nullable(Of Double),  _
+                    ByVal social_submit_date As System.Nullable(Of Date),  _
+                    ByVal social_submit As String,  _
+                    ByVal social_grant_date As System.Nullable(Of Date),  _
+                    ByVal social_save_number As String,  _
+                    ByVal social_deliver_date As System.Nullable(Of Date),  _
+                    ByVal social_return_date As System.Nullable(Of Date),  _
+                    ByVal social_receiver As String,  _
+                    ByVal social_note As String,  _
+                    ByVal health_number As String,  _
+                    ByVal health_status As System.Nullable(Of Double),  _
+                    ByVal health_effect_from_date As System.Nullable(Of Date),  _
+                    ByVal health_effect_to_date As System.Nullable(Of Date),  _
+                    ByVal health_area_ins_id As System.Nullable(Of Double),  _
+                    ByVal health_receive_date As System.Nullable(Of Date),  _
+                    ByVal health_receiver As String,  _
+                    ByVal health_return_date As System.Nullable(Of Date),  _
+                    ByVal unemp_from_month As System.Nullable(Of Date),  _
+                    ByVal unemp_to_month As System.Nullable(Of Date),  _
+                    ByVal unemp_register_month As System.Nullable(Of Date),  _
+                    ByVal si_from_month As System.Nullable(Of Date),  _
+                    ByVal si_to_month As System.Nullable(Of Date),  _
+                    ByVal hi_from_month As System.Nullable(Of Date),  _
+                    ByVal hi_to_month As System.Nullable(Of Date),  _
+                    ByVal si As System.Nullable(Of Double),  _
+                    ByVal hi As System.Nullable(Of Double),  _
+                    ByVal ui As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn As System.Nullable(Of Double),  _
+                    ByVal is_hi_five_year As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn_from As System.Nullable(Of Date),  _
                     ByVal bhtnld_bnn_to As System.Nullable(Of Date)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsInfomationResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsInfomation", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsInfomationResponse")>  _
         Function DeleteInsInfomation(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsArisingManual", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsArisingManualResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsArisingManual", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsArisingManualResponse")>  _
         Function GetInsArisingManual(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal org_id As System.Nullable(Of Double), ByVal from_date As System.Nullable(Of Date), ByVal to_date As System.Nullable(Of Date), ByVal isTer As System.Nullable(Of Double), ByVal isDISSOLVE As System.Nullable(Of Double)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsArisingManual", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsArisingManualResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsArisingManual", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsArisingManualResponse")>  _
         Function UpdateInsArisingManual( _
-                    ByVal username As String, _
-                    ByVal id As System.Nullable(Of Double), _
-                    ByVal employee_id As System.Nullable(Of Double), _
-                    ByVal ins_org_id As System.Nullable(Of Double), _
-                    ByVal ins_arising_type_id As System.Nullable(Of Double), _
-                    ByVal salary_pre_period As System.Nullable(Of Double), _
-                    ByVal salary_now_period As System.Nullable(Of Double), _
-                    ByVal from_health_ins_card As System.Nullable(Of Double), _
-                    ByVal effective_date As System.Nullable(Of Date), _
-                    ByVal expire_date As System.Nullable(Of Date), _
-                    ByVal declare_date As System.Nullable(Of Date), _
-                    ByVal arising_from_month As System.Nullable(Of Date), _
-                    ByVal arising_to_month As System.Nullable(Of Date), _
-                    ByVal note As String, _
-                    ByVal social_note As String, _
-                    ByVal health_number As String, _
-                    ByVal health_status As System.Nullable(Of Double), _
-                    ByVal health_effect_from_date As System.Nullable(Of Date), _
-                    ByVal health_effect_to_date As System.Nullable(Of Date), _
-                    ByVal health_area_ins_id As System.Nullable(Of Double), _
-                    ByVal health_receive_date As System.Nullable(Of Date), _
-                    ByVal health_receiver As String, _
-                    ByVal health_return_date As System.Nullable(Of Date), _
-                    ByVal unemp_from_moth As System.Nullable(Of Date), _
-                    ByVal unemp_to_month As System.Nullable(Of Date), _
-                    ByVal unemp_register_month As System.Nullable(Of Date), _
-                    ByVal r_from As System.Nullable(Of Date), _
-                    ByVal o_from As System.Nullable(Of Date), _
-                    ByVal r_to As System.Nullable(Of Date), _
-                    ByVal o_to As System.Nullable(Of Date), _
-                    ByVal r_si As System.Nullable(Of Double), _
-                    ByVal o_si As System.Nullable(Of Double), _
-                    ByVal r_hi As System.Nullable(Of Double), _
-                    ByVal o_hi As System.Nullable(Of Double), _
-                    ByVal r_ui As System.Nullable(Of Double), _
-                    ByVal o_ui As System.Nullable(Of Double), _
-                    ByVal a_from As System.Nullable(Of Date), _
-                    ByVal a_to As System.Nullable(Of Date), _
-                    ByVal a_si As System.Nullable(Of Double), _
-                    ByVal a_hi As System.Nullable(Of Double), _
-                    ByVal a_ui As System.Nullable(Of Double), _
-                    ByVal si As System.Nullable(Of Double), _
-                    ByVal hi As System.Nullable(Of Double), _
-                    ByVal ui As System.Nullable(Of Double), _
+                    ByVal username As String,  _
+                    ByVal id As System.Nullable(Of Double),  _
+                    ByVal employee_id As System.Nullable(Of Double),  _
+                    ByVal ins_org_id As System.Nullable(Of Double),  _
+                    ByVal ins_arising_type_id As System.Nullable(Of Double),  _
+                    ByVal salary_pre_period As System.Nullable(Of Double),  _
+                    ByVal salary_now_period As System.Nullable(Of Double),  _
+                    ByVal from_health_ins_card As System.Nullable(Of Double),  _
+                    ByVal effective_date As System.Nullable(Of Date),  _
+                    ByVal expire_date As System.Nullable(Of Date),  _
+                    ByVal declare_date As System.Nullable(Of Date),  _
+                    ByVal arising_from_month As System.Nullable(Of Date),  _
+                    ByVal arising_to_month As System.Nullable(Of Date),  _
+                    ByVal note As String,  _
+                    ByVal social_note As String,  _
+                    ByVal health_number As String,  _
+                    ByVal health_status As System.Nullable(Of Double),  _
+                    ByVal health_effect_from_date As System.Nullable(Of Date),  _
+                    ByVal health_effect_to_date As System.Nullable(Of Date),  _
+                    ByVal health_area_ins_id As System.Nullable(Of Double),  _
+                    ByVal health_receive_date As System.Nullable(Of Date),  _
+                    ByVal health_receiver As String,  _
+                    ByVal health_return_date As System.Nullable(Of Date),  _
+                    ByVal unemp_from_moth As System.Nullable(Of Date),  _
+                    ByVal unemp_to_month As System.Nullable(Of Date),  _
+                    ByVal unemp_register_month As System.Nullable(Of Date),  _
+                    ByVal r_from As System.Nullable(Of Date),  _
+                    ByVal o_from As System.Nullable(Of Date),  _
+                    ByVal r_to As System.Nullable(Of Date),  _
+                    ByVal o_to As System.Nullable(Of Date),  _
+                    ByVal r_si As System.Nullable(Of Double),  _
+                    ByVal o_si As System.Nullable(Of Double),  _
+                    ByVal r_hi As System.Nullable(Of Double),  _
+                    ByVal o_hi As System.Nullable(Of Double),  _
+                    ByVal r_ui As System.Nullable(Of Double),  _
+                    ByVal o_ui As System.Nullable(Of Double),  _
+                    ByVal a_from As System.Nullable(Of Date),  _
+                    ByVal a_to As System.Nullable(Of Date),  _
+                    ByVal a_si As System.Nullable(Of Double),  _
+                    ByVal a_hi As System.Nullable(Of Double),  _
+                    ByVal a_ui As System.Nullable(Of Double),  _
+                    ByVal si As System.Nullable(Of Double),  _
+                    ByVal hi As System.Nullable(Of Double),  _
+                    ByVal ui As System.Nullable(Of Double),  _
                     ByVal tnld_bnn As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsArisingManual", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsArisingManualResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsArisingManual", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsArisingManualResponse")>  _
         Function DeleteInsArisingManual(ByVal username As String, ByVal lstid As String) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsAraisingAuto", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsAraisingAutoResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsAraisingAuto", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsAraisingAutoResponse")>  _
         Function InsAraisingAuto(ByVal username As String, ByVal empid As System.Nullable(Of Double), ByVal ins_arising_type As System.Nullable(Of Double), ByVal effective_date As System.Nullable(Of Date), ByVal declare_date As System.Nullable(Of Date), ByVal hi_date As System.Nullable(Of Date)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsAraisingAuto2", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsAraisingAuto2Response")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsAraisingAuto2", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsAraisingAuto2Response")>  _
         Function InsAraisingAuto2(ByVal username As String, ByVal empid As System.Nullable(Of Double), ByVal ins_arising_type As System.Nullable(Of Double), ByVal effective_date As System.Nullable(Of Date), ByVal declare_date As System.Nullable(Of Date), ByVal hi_date As System.Nullable(Of Date), ByVal truythu As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsRegimesResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsRegimesResponse")>  _
         Function GetInsRegimes(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal regime_id As System.Nullable(Of Double), ByVal pay_form As System.Nullable(Of Double), ByVal employee_id As String, ByVal org_id As System.Nullable(Of Double), ByVal from_date As System.Nullable(Of Date), ByVal to_date As System.Nullable(Of Date), ByVal isTer As System.Nullable(Of Double)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsRegimesResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsRegimesResponse")>  _
         Function UpdateInsRegimes( _
-                    ByVal username As String, _
-                    ByVal id As System.Nullable(Of Double), _
-                    ByVal employee_id As System.Nullable(Of Double), _
-                    ByVal regime_id As System.Nullable(Of Double), _
-                    ByVal pay_form As System.Nullable(Of Double), _
-                    ByVal from_date As System.Nullable(Of Date), _
-                    ByVal to_date As System.Nullable(Of Date), _
-                    ByVal day_calculator As System.Nullable(Of Double), _
-                    ByVal born_date As System.Nullable(Of Date), _
-                    ByVal name_children As String, _
-                    ByVal children_no As System.Nullable(Of Double), _
-                    ByVal accumulate_day As System.Nullable(Of Double), _
-                    ByVal subsidy_salary As System.Nullable(Of Double), _
-                    ByVal subsidy As System.Nullable(Of Double), _
-                    ByVal subsidy_amount As System.Nullable(Of Double), _
-                    ByVal payroll_date As System.Nullable(Of Date), _
-                    ByVal declare_date As System.Nullable(Of Date), _
-                    ByVal condition As String, _
-                    ByVal ins_pay_amount As System.Nullable(Of Double), _
-                    ByVal pay_approve_date As System.Nullable(Of Date), _
-                    ByVal approv_day_num As System.Nullable(Of Double), _
-                    ByVal note As String, _
-                    ByVal money_advance As System.Nullable(Of Double), _
-                    ByVal off_together As System.Nullable(Of Double), _
+                    ByVal username As String,  _
+                    ByVal id As System.Nullable(Of Double),  _
+                    ByVal employee_id As System.Nullable(Of Double),  _
+                    ByVal regime_id As System.Nullable(Of Double),  _
+                    ByVal pay_form As System.Nullable(Of Double),  _
+                    ByVal from_date As System.Nullable(Of Date),  _
+                    ByVal to_date As System.Nullable(Of Date),  _
+                    ByVal day_calculator As System.Nullable(Of Double),  _
+                    ByVal born_date As System.Nullable(Of Date),  _
+                    ByVal name_children As String,  _
+                    ByVal children_no As System.Nullable(Of Double),  _
+                    ByVal accumulate_day As System.Nullable(Of Double),  _
+                    ByVal subsidy_salary As System.Nullable(Of Double),  _
+                    ByVal subsidy As System.Nullable(Of Double),  _
+                    ByVal subsidy_amount As System.Nullable(Of Double),  _
+                    ByVal payroll_date As System.Nullable(Of Date),  _
+                    ByVal declare_date As System.Nullable(Of Date),  _
+                    ByVal condition As String,  _
+                    ByVal ins_pay_amount As System.Nullable(Of Double),  _
+                    ByVal pay_approve_date As System.Nullable(Of Date),  _
+                    ByVal approv_day_num As System.Nullable(Of Double),  _
+                    ByVal note As String,  _
+                    ByVal money_advance As System.Nullable(Of Double),  _
+                    ByVal off_together As System.Nullable(Of Double),  _
                     ByVal off_in_house As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimesResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimesResponse")>  _
         Function DeleteInsRegimes(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsRegimes_cal", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsRegimes_calResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsRegimes_cal", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsRegimes_calResponse")>  _
         Function GetInsRegimes_cal(ByVal employee_id As System.Nullable(Of Double), ByVal regime_id As System.Nullable(Of Double), ByVal from_date As System.Nullable(Of Date), ByVal to_date As System.Nullable(Of Date), ByVal dayCal As Double) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsModifier", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsModifierResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsModifier", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsModifierResponse")>  _
         Function GetInsModifier(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal org_id As System.Nullable(Of Double), ByVal ins_modifier_type_id As System.Nullable(Of Double), ByVal from_date As System.Nullable(Of Date), ByVal to_date As System.Nullable(Of Date), ByVal isTer As System.Nullable(Of Double)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsModifier", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsModifierResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsModifier", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsModifierResponse")>  _
         Function UpdateInsModifier( _
-                    ByVal username As String, _
-                    ByVal id As System.Nullable(Of Double), _
-                    ByVal employee_id As System.Nullable(Of Double), _
-                    ByVal ins_modifier_type_id As System.Nullable(Of Double), _
-                    ByVal reason As String, _
-                    ByVal old_info As String, _
-                    ByVal new_info As String, _
-                    ByVal modifier_date As System.Nullable(Of Date), _
-                    ByVal note As String, _
-                    ByVal isUpdate As String, _
-                    ByVal birth_date As System.Nullable(Of Date), _
-                    ByVal areaid As System.Nullable(Of Double), _
-                    ByVal id_date As System.Nullable(Of Date), _
-                    ByVal id_place As System.Nullable(Of Double), _
-                    ByVal birth_place As System.Nullable(Of Double), _
-                    ByVal per_address As String, _
-                    ByVal per_coun As System.Nullable(Of Double), _
-                    ByVal per_prov As System.Nullable(Of Double), _
-                    ByVal per_dist As System.Nullable(Of Double), _
-                    ByVal per_ward As System.Nullable(Of Double), _
-                    ByVal con_address As String, _
-                    ByVal con_coun As System.Nullable(Of Double), _
-                    ByVal con_prov As System.Nullable(Of Double), _
-                    ByVal con_dist As System.Nullable(Of Double), _
+                    ByVal username As String,  _
+                    ByVal id As System.Nullable(Of Double),  _
+                    ByVal employee_id As System.Nullable(Of Double),  _
+                    ByVal ins_modifier_type_id As System.Nullable(Of Double),  _
+                    ByVal reason As String,  _
+                    ByVal old_info As String,  _
+                    ByVal new_info As String,  _
+                    ByVal modifier_date As System.Nullable(Of Date),  _
+                    ByVal note As String,  _
+                    ByVal isUpdate As String,  _
+                    ByVal birth_date As System.Nullable(Of Date),  _
+                    ByVal areaid As System.Nullable(Of Double),  _
+                    ByVal id_date As System.Nullable(Of Date),  _
+                    ByVal id_place As System.Nullable(Of Double),  _
+                    ByVal birth_place As System.Nullable(Of Double),  _
+                    ByVal per_address As String,  _
+                    ByVal per_coun As System.Nullable(Of Double),  _
+                    ByVal per_prov As System.Nullable(Of Double),  _
+                    ByVal per_dist As System.Nullable(Of Double),  _
+                    ByVal per_ward As System.Nullable(Of Double),  _
+                    ByVal con_address As String,  _
+                    ByVal con_coun As System.Nullable(Of Double),  _
+                    ByVal con_prov As System.Nullable(Of Double),  _
+                    ByVal con_dist As System.Nullable(Of Double),  _
                     ByVal con_ward As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsModifier", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsModifierResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsModifier", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsModifierResponse")>  _
         Function DeleteInsModifier(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CheckInvalidArising", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CheckInvalidArisingResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CheckInvalidArising", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CheckInvalidArisingResponse")>  _
         Function CheckInvalidArising(ByVal ins_Org_Id As Decimal) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryResponse")>  _
         Function GetInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryPeriod", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryPeriodResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryPeriod", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalaryPeriodResponse")>  _
         Function GetInsTotalSalaryPeriod(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary_Summary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary_SummaryResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary_Summary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsTotalSalary_SummaryResponse")>  _
         Function GetInsTotalSalary_Summary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String, ByVal isPre As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalaryResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalaryResponse")>  _
         Function CalInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalaryBatch", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalaryBatchResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalaryBatch", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CalInsTotalSalaryBatchResponse")>  _
         Function CalInsTotalSalaryBatch(ByVal username As String, ByVal fromdate As Date, ByVal todate As Date, ByVal ins_org_id As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/LockInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/LockInsTotalSalaryResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/LockInsTotalSalary", ReplyAction:="http://tempuri.org/IInsuranceBusiness/LockInsTotalSalaryResponse")>  _
         Function LockInsTotalSalary(ByVal username As String, ByVal year As System.Nullable(Of Double), ByVal month As System.Nullable(Of Double), ByVal ins_org_id As System.Nullable(Of Double), ByVal period As String) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetListDataImportHelth", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetListDataImportHelthResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetListDataImportHelth", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetListDataImportHelthResponse")>  _
         Function GetListDataImportHelth(ByVal id As System.Nullable(Of Double)) As System.Data.DataSet
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportResponse")>  _
         Function GetInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportCheckOrg", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportCheckOrgResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportCheckOrg", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthImportCheckOrgResponse")>  _
         Function GetInsHealthImportCheckOrg(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As String, ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImportResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthImportResponse")>  _
         Function UpdateInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal insurance_id As System.Nullable(Of Double), ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImportResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthImportResponse")>  _
         Function DeleteInsHealthImport(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImportResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImport", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateHealthImportResponse")>  _
         Function UpdateHealthImport(ByVal username As String, ByVal employee_id As String, ByVal ins_org_name As String, ByVal seniority_insurance As String, ByVal social_number As String, ByVal social_status As String, ByVal social_grant_date As String, ByVal social_save_number As String, ByVal health_number As String, ByVal health_status As String, ByVal health_effect_from_date As String, ByVal health_effect_to_date As String, ByVal health_receive_date As String, ByVal health_receiver As String, ByVal health_area_ins As String) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExtResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExtResponse")>  _
         Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExtResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExtResponse")>  _
         Function UpdateInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExtResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExtResponse")>  _
         Function DeleteInsHealthExt(ByVal username As String, ByVal id As String) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetComboboxDataResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetComboboxDataResponse")>  _
         Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetOtherListResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetOtherList", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetOtherListResponse")>  _
         Function GetOtherList(ByVal sType As String, ByVal sLang As String, ByVal isBlank As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListChangeTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListChangeTypeResponse")>  _
         Function GetInsListChangeType() As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListWhereHealth", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListWhereHealthResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListWhereHealth", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListWhereHealthResponse")>  _
         Function GetInsListWhereHealth() As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListEntitledTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListEntitledTypeResponse")>  _
         Function GetInsListEntitledType() As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListMasterlist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListMasterlistResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListMasterlist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListMasterlistResponse")>  _
         Function GetInsListMasterlist(ByVal username As String, ByVal type As String, ByVal id As String, ByVal sval1 As String, ByVal sval2 As String, ByVal nval1 As System.Nullable(Of Double), ByVal nval2 As System.Nullable(Of Double), ByVal dval1 As System.Nullable(Of Date), ByVal dval2 As System.Nullable(Of Date), ByVal status As System.Nullable(Of Double)) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsListMasterlist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsListMasterlistResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsListMasterlist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsListMasterlistResponse")>  _
         Function UpdateInsListMasterlist(ByVal username As String, ByVal type As String, ByVal id As String, ByVal name As String, ByVal sval1 As String, ByVal sval2 As String, ByVal sval3 As String, ByVal nval1 As System.Nullable(Of Double), ByVal nval2 As System.Nullable(Of Double), ByVal nval3 As System.Nullable(Of Double), ByVal dval1 As System.Nullable(Of Date), ByVal dval2 As System.Nullable(Of Date), ByVal dval3 As System.Nullable(Of Date), ByVal idx As System.Nullable(Of Double), ByVal status As System.Nullable(Of Double)) As Double
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsListMasterlist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsListMasterlistResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsListMasterlist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsListMasterlistResponse")>  _
         Function DeleteInsListMasterlist(ByVal id As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetCheckExist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetCheckExistResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetCheckExist", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetCheckExistResponse")>  _
         Function GetCheckExist(ByVal table As String, ByVal id As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateStatusForList", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateStatusForListResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateStatusForList", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateStatusForListResponse")>  _
         Function UpdateStatusForList(ByVal username As String, ByVal code As String, ByVal lstId As String, ByVal status As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListInsuranceResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsListInsuranceResponse")>  _
         Function GetInsListInsurance(ByVal Is_Full As Boolean) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsListInsuranceResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsListInsuranceResponse")>  _
         Function UpdateInsListInsurance(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal code As String, ByVal name As String, ByVal address As String, ByVal phone_number As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsListInsuranceResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsListInsurance", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsListInsuranceResponse")>  _
         Function DeleteInsListInsurance(ByVal id As System.Nullable(Of Double)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREHEALTHResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREHEALTHResponse")>  _
         Function GetINS_WHEREHEALTH(ByVal _filter As InsuranceBusiness.INS_WHEREHEALTHDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREEXPORT", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREEXPORTResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREEXPORT", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_WHEREEXPORTResponse")>  _
         Function GetINS_WHEREEXPORT() As System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetStatuSo", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetStatuSoResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetStatuSo", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetStatuSoResponse")>  _
         Function GetStatuSo() As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetStatuHE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetStatuHEResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetStatuHE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetStatuHEResponse")>  _
         Function GetStatuHE() As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetHU_PROVINCE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetHU_PROVINCEResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetHU_PROVINCE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetHU_PROVINCEResponse")>  _
         Function GetHU_PROVINCE(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetHU_DISTRICT", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetHU_DISTRICTResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetHU_DISTRICT", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetHU_DISTRICTResponse")>  _
         Function GetHU_DISTRICT(ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_WHEREHEALTHResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_WHEREHEALTHResponse")>  _
         Function InsertINS_WHEREHEALTH(ByVal objDMVS As InsuranceBusiness.INS_WHEREHEALTHDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateINS_WHEREHEALTHResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateINS_WHEREHEALTHResponse")>  _
         Function ValidateINS_WHEREHEALTH(ByVal objDMVS As InsuranceBusiness.INS_WHEREHEALTHDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_WHEREHEALTHResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_WHEREHEALTHResponse")>  _
         Function ModifyINS_WHEREHEALTH(ByVal objDMVS As InsuranceBusiness.INS_WHEREHEALTHDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_WHEREHEALTHResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_WHEREHEALTHResponse")>  _
         Function ActiveINS_WHEREHEALTH(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_WHEREHEALTHResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_WHEREHEALTH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_WHEREHEALTHResponse")>  _
         Function DeleteINS_WHEREHEALTH(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetDistrictByIDPro", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetDistrictByIDProResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetDistrictByIDPro", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetDistrictByIDProResponse")>  _
         Function GetDistrictByIDPro(ByVal province_ID As Decimal) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEntitledTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEntitledTypeResponse")>  _
         Function GetEntitledType(ByVal _filter As InsuranceBusiness.INS_ENTITLED_TYPE_DTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_ENTITLED_TYPE_DTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertEntitledTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertEntitledTypeResponse")>  _
         Function InsertEntitledType(ByVal objTitle As InsuranceBusiness.INS_ENTITLED_TYPE_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyEntitledTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyEntitledTypeResponse")>  _
         Function ModifyEntitledType(ByVal objTitle As InsuranceBusiness.INS_ENTITLED_TYPE_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateRegimeManager", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateRegimeManagerResponse"), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REMIGE_MANAGER_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.InsuranceCommonTABLE_NAME)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsRateDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsRateDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsCeilingDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsCeilingDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ComboBoxDataDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.ContractTypeDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ContractTypeDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.OT_OTHERLIST_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.OT_OTHERLIST_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGE_TYPEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGE_TYPEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_DISTRICTDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_DISTRICTDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_REGIMESDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_REGIMESDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_WHEREHEALTHDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_PROVINCEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_PROVINCEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_STAFF_RANKDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_STAFF_RANKDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_TitleDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_TitleDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REGION_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REGION_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ENTITLED_TYPE_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ENTITLED_TYPE_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ARISINGDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFOOLDDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateRegimeManager", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateRegimeManagerResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REMIGE_MANAGER_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.InsuranceCommonTABLE_NAME)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsRateDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsRateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsCeilingDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsCeilingDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.ContractTypeDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ContractTypeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.OT_OTHERLIST_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.OT_OTHERLIST_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGE_TYPEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGE_TYPEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_DISTRICTDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_DISTRICTDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_REGIMESDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_REGIMESDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_WHEREHEALTHDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_PROVINCEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_PROVINCEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_STAFF_RANKDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_STAFF_RANKDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_TitleDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_TitleDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REGION_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REGION_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ENTITLED_TYPE_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ENTITLED_TYPE_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ARISINGDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFOOLDDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
         Function ValidateRegimeManager(ByVal _validate As InsuranceBusiness.INS_REMIGE_MANAGER_DTO) As Object
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateGroupRegime", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateGroupRegimeResponse"), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REMIGE_MANAGER_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.InsuranceCommonTABLE_NAME)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsRateDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsRateDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsCeilingDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsCeilingDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ComboBoxDataDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.ContractTypeDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ContractTypeDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.OT_OTHERLIST_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.OT_OTHERLIST_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGE_TYPEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGE_TYPEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_DISTRICTDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_DISTRICTDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_REGIMESDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_REGIMESDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_WHEREHEALTHDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_PROVINCEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_PROVINCEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_STAFF_RANKDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_STAFF_RANKDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_TitleDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_TitleDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REGION_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REGION_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ENTITLED_TYPE_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ENTITLED_TYPE_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ARISINGDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFOOLDDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateGroupRegime", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateGroupRegimeResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REMIGE_MANAGER_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.InsuranceCommonTABLE_NAME)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsRateDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsRateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsCeilingDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsCeilingDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.ContractTypeDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ContractTypeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.OT_OTHERLIST_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.OT_OTHERLIST_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGE_TYPEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGE_TYPEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_DISTRICTDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_DISTRICTDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_REGIMESDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_REGIMESDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_WHEREHEALTHDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_PROVINCEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_PROVINCEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_STAFF_RANKDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_STAFF_RANKDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_TitleDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_TitleDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REGION_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REGION_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ENTITLED_TYPE_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ENTITLED_TYPE_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ARISINGDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFOOLDDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
         Function ValidateGroupRegime(ByVal _validate As InsuranceBusiness.INS_GROUP_REGIMESDTO) As Object
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateEntitledTypeResponse"), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REMIGE_MANAGER_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.InsuranceCommonTABLE_NAME)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsRateDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsRateDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsCeilingDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsCeilingDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ComboBoxDataDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.ContractTypeDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ContractTypeDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.OT_OTHERLIST_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.OT_OTHERLIST_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGE_TYPEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGE_TYPEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_DISTRICTDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_DISTRICTDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_REGIMESDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_REGIMESDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_WHEREHEALTHDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_PROVINCEDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_PROVINCEDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_STAFF_RANKDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_STAFF_RANKDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_TitleDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_TitleDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REGION_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REGION_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ENTITLED_TYPE_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ENTITLED_TYPE_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ARISINGDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFOOLDDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))), _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateEntitledTypeResponse"),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REMIGE_MANAGER_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFORMATIONDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_SUN_CAREDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.PARAMDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.Se_ReportDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.InsuranceCommonTABLE_NAME)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsRateDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsRateDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsCeilingDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.StatisticInsCeilingDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ComboBoxDataDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.ContractTypeDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.ContractTypeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.OT_OTHERLIST_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.OT_OTHERLIST_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGE_TYPEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGE_TYPEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_DISTRICTDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_DISTRICTDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_REGIMESDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_GROUP_REGIMESDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_WHEREHEALTHDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_WHEREHEALTHDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_PROVINCEDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_PROVINCEDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_STAFF_RANKDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_STAFF_RANKDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.HU_TitleDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.HU_TitleDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_REGION_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_REGION_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ENTITLED_TYPE_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ENTITLED_TYPE_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_ARISINGDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_INFOOLDDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
         Function ValidateEntitledType(ByVal _validate As InsuranceBusiness.INS_ENTITLED_TYPE_DTO) As Object
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/Validate_KhamThai", ReplyAction:="http://tempuri.org/IInsuranceBusiness/Validate_KhamThaiResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/Validate_KhamThai", ReplyAction:="http://tempuri.org/IInsuranceBusiness/Validate_KhamThaiResponse")>  _
         Function Validate_KhamThai(ByVal _validate As InsuranceBusiness.INS_REMIGE_MANAGER_DTO) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveEntitledTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveEntitledTypeResponse")>  _
         Function ActiveEntitledType(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteEntitledTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteEntitledTypeResponse")>  _
         Function DeleteEntitledType(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsChangeTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsChangeTypeResponse")>  _
         Function GetInsChangeType(ByVal _filter As InsuranceBusiness.INS_CHANGE_TYPEDTO, ByRef PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGE_TYPEDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertInsChangeTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertInsChangeTypeResponse")>  _
         Function InsertInsChangeType(ByVal objInsChangeType As InsuranceBusiness.INS_CHANGE_TYPEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateInsChangeTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateInsChangeTypeResponse")>  _
         Function ValidateInsChangeType(ByVal objInsChangeType As InsuranceBusiness.INS_CHANGE_TYPEDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyInsChangeTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyInsChangeTypeResponse")>  _
         Function ModifyInsChangeType(ByVal objInsChangeType As InsuranceBusiness.INS_CHANGE_TYPEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveInsChangeTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveInsChangeTypeResponse")>  _
         Function ActiveInsChangeType(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsChangeTypeResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsChangeType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsChangeTypeResponse")>  _
         Function DeleteInsChangeType(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_REGIONResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_REGIONResponse")>  _
         Function GetINS_REGION(ByVal _filter As InsuranceBusiness.INS_REGION_DTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_REGION_DTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGIONResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGIONResponse")>  _
         Function InsertINS_REGION(ByVal objDMVS As InsuranceBusiness.INS_REGION_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateINS_REGIONResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateINS_REGIONResponse")>  _
         Function ValidateINS_REGION(ByVal objDMVS As InsuranceBusiness.INS_REGION_DTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGIONResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGIONResponse")>  _
         Function ModifyINS_REGION(ByVal objDMVS As InsuranceBusiness.INS_REGION_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGIONResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGIONResponse")>  _
         Function ActiveINS_REGION(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGIONResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGION", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGIONResponse")>  _
         Function DeleteINS_REGION(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_COST_FOLLOW_LEVERResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_COST_FOLLOW_LEVERResponse")>  _
         Function GetINS_COST_FOLLOW_LEVER(ByVal _filter As InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_COST_FOLLOW_LEVERResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_COST_FOLLOW_LEVERResponse")>  _
         Function InsertINS_COST_FOLLOW_LEVER(ByVal objDMVS As InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateINS_COST_FOLLOW_LEVERResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateINS_COST_FOLLOW_LEVERResponse")>  _
         Function ValidateINS_COST_FOLLOW_LEVER(ByVal objDMVS As InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_COST_FOLLOW_LEVERResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_COST_FOLLOW_LEVERResponse")>  _
         Function ModifyINS_COST_FOLLOW_LEVER(ByVal objDMVS As InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_COST_FOLLOW_LEVERResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_COST_FOLLOW_LEVERResponse")>  _
         Function ActiveINS_COST_FOLLOW_LEVER(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_COST_FOLLOW_LEVERResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_COST_FOLLOW_LEVER", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_COST_FOLLOW_LEVERResponse")>  _
         Function DeleteINS_COST_FOLLOW_LEVER(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_REGIMESResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_REGIMESResponse")>  _
         Function GetINS_REGIMES(ByVal _filter As InsuranceBusiness.INS_GROUP_REGIMESDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_REGIMESDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGIMESResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_REGIMESResponse")>  _
         Function InsertINS_REGIMES(ByVal objDMVS As InsuranceBusiness.INS_GROUP_REGIMESDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGIMESResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_REGIMESResponse")>  _
         Function ModifyINS_REGIMES(ByVal objDMVS As InsuranceBusiness.INS_GROUP_REGIMESDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGIMESResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveINS_REGIMESResponse")>  _
         Function ActiveINS_REGIMES(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As String) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGIMESResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGIMES", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_REGIMESResponse")>  _
         Function DeleteINS_REGIMES(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISING", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISINGResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISING", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISINGResponse")>  _
         Function GetINS_ARISING(ByVal _filter As InsuranceBusiness.INS_ARISINGDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISINGyById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISINGyByIdResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISINGyById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_ARISINGyByIdResponse")>  _
         Function GetINS_ARISINGyById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_ARISINGDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_ARISING", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_ARISINGResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_ARISING", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_ARISINGResponse")>  _
         Function ModifyINS_ARISING(ByVal objLeave As InsuranceBusiness.INS_ARISINGDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_ARISING", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_ARISINGResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_ARISING", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_ARISINGResponse")>  _
         Function InsertINS_ARISING(ByVal objLeave As System.Collections.Generic.List(Of InsuranceBusiness.INS_ARISINGDTO), ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetSpecifiedObjectsResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetSpecifiedObjectsResponse")>  _
         Function GetSpecifiedObjects(ByVal _filter As InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertSpecifiedObjectsResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertSpecifiedObjectsResponse")>  _
         Function InsertSpecifiedObjects(ByVal objTitle As InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifySpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifySpecifiedObjectsResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifySpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifySpecifiedObjectsResponse")>  _
         Function ModifySpecifiedObjects(ByVal objTitle As InsuranceBusiness.INS_SPECIFIED_OBJECTS_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveSpecifiedObjectsResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ActiveSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ActiveSpecifiedObjectsResponse")>  _
         Function ActiveSpecifiedObjects(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteSpecifiedObjectsResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteSpecifiedObjects", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteSpecifiedObjectsResponse")>  _
         Function DeleteSpecifiedObjects(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLDResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLDResponse")>  _
         Function GetINS_INFOOLD(ByVal _filter As InsuranceBusiness.INS_INFOOLDDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLDById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLDByIdResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLDById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOOLDByIdResponse")>  _
         Function GetINS_INFOOLDById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_INFOOLDDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFOOLDResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFOOLDResponse")>  _
         Function InsertINS_INFOOLD(ByVal objLeave As InsuranceBusiness.INS_INFOOLDDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFOOLDResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFOOLDResponse")>  _
         Function ModifyINS_INFOOLD(ByVal objLeave As InsuranceBusiness.INS_INFOOLDDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFOOLDResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFOOLD", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFOOLDResponse")>  _
         Function DeleteINS_INFOOLD(ByVal lstID As System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEmployeeById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEmployeeByIdResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEmployeeById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEmployeeByIdResponse")>  _
         Function GetEmployeeById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.EmployeeDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEmployeeByIdProcess", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEmployeeByIdProcessResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEmployeeByIdProcess", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEmployeeByIdProcessResponse")>  _
         Function GetEmployeeByIdProcess(ByRef P_EMPLOYEEID As Integer) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOResponse")>  _
         Function GetINS_INFO(ByVal _filter As InsuranceBusiness.INS_INFORMATIONDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOByIdResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_INFOByIdResponse")>  _
         Function GetINS_INFOById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_INFORMATIONDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFOResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_INFOResponse")>  _
         Function InsertINS_INFO(ByVal objIns_info As InsuranceBusiness.INS_INFORMATIONDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFOResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_INFOResponse")>  _
         Function ModifyINS_INFO(ByVal objIns_info As InsuranceBusiness.INS_INFORMATIONDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFOResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFO", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteINS_INFOResponse")>  _
         Function DeleteINS_INFO(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInfoPrint", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInfoPrintResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInfoPrint", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInfoPrintResponse")>  _
         Function GetInfoPrint(ByVal LISTID As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetLuongBH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetLuongBHResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetLuongBH", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetLuongBHResponse")>  _
         Function GetLuongBH(ByVal p_EMPLOYEE_ID As Integer) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEmployeeID", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEmployeeIDResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetEmployeeID", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetEmployeeIDResponse")>  _
         Function GetEmployeeID(ByVal p_EMPLOYEE_ID As String) As System.Data.DataTable
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetAllowanceTotalByDate", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetAllowanceTotalByDateResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetAllowanceTotalByDate", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetAllowanceTotalByDateResponse")>  _
         Function GetAllowanceTotalByDate(ByVal employeeID As Decimal) As System.Nullable(Of Decimal)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEResponse")>  _
         Function GetINS_CHANGE(ByVal _filter As InsuranceBusiness.INS_CHANGEDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO)
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEById", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetINS_CHANGEByIdResponse")>  _
         Function GetINS_CHANGEById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_CHANGEDTO
-
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGEResponse")> _
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/InsertINS_CHANGEResponse")>  _
         Function InsertINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
     End Interface
-
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
+    
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
     Public Interface IInsuranceBusinessChannel
         Inherits InsuranceBusiness.IInsuranceBusiness, System.ServiceModel.IClientChannel
     End Interface
-
-    <System.Diagnostics.DebuggerStepThroughAttribute(), _
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")> _
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
     Partial Public Class InsuranceBusinessClient
         Inherits System.ServiceModel.ClientBase(Of InsuranceBusiness.IInsuranceBusiness)
         Implements InsuranceBusiness.IInsuranceBusiness
-
+        
         Public Sub New()
-            MyBase.New()
+            MyBase.New
         End Sub
-
+        
         Public Sub New(ByVal endpointConfigurationName As String)
             MyBase.New(endpointConfigurationName)
         End Sub
-
+        
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As String)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-
+        
         Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(endpointConfigurationName, remoteAddress)
         End Sub
-
+        
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
-
+        
         Public Function ModifyINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ModifyINS_CHANGE
             Return MyBase.Channel.ModifyINS_CHANGE(objLeave, log, gID)
         End Function
-
+        
         Public Function DeleteINS_CHANGE(ByVal lstID As System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.DeleteINS_CHANGE
             Return MyBase.Channel.DeleteINS_CHANGE(lstID)
         End Function
-
+        
         Public Function GetTiLeDong() As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetTiLeDong
             Return MyBase.Channel.GetTiLeDong
         End Function
-
+        
         Public Function GETLUONGBIENDONG(ByRef P_EMPLOYEEID As Integer) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GETLUONGBIENDONG
             Return MyBase.Channel.GETLUONGBIENDONG(P_EMPLOYEEID)
         End Function
-
+        
         Public Function GetSunCare(ByVal _filter As InsuranceBusiness.INS_SUN_CARE_DTO, ByVal OrgId As Integer, ByVal Fillter As String, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_SUN_CARE_DTO) Implements InsuranceBusiness.IInsuranceBusiness.GetSunCare
             Return MyBase.Channel.GetSunCare(_filter, OrgId, Fillter, PageIndex, PageSize, Total, Sorts, log)
         End Function
-
+        
         Public Function GetSunCareById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_SUN_CARE_DTO Implements InsuranceBusiness.IInsuranceBusiness.GetSunCareById
             Return MyBase.Channel.GetSunCareById(_id)
         End Function
-
+        
         Public Function GetLevelImport() As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetLevelImport
             Return MyBase.Channel.GetLevelImport
         End Function
-
+        
         Public Function GetIns_Cost_LeverByID(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_COST_FOLLOW_LEVERDTO Implements InsuranceBusiness.IInsuranceBusiness.GetIns_Cost_LeverByID
             Return MyBase.Channel.GetIns_Cost_LeverByID(_id)
         End Function
-
+        
         Public Function InsertSunCare(ByVal objTitle As InsuranceBusiness.INS_SUN_CARE_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.InsertSunCare
             Return MyBase.Channel.InsertSunCare(objTitle, log, gID)
         End Function
-
+        
         Public Function ModifySunCare(ByVal objTitle As InsuranceBusiness.INS_SUN_CARE_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ModifySunCare
             Return MyBase.Channel.ModifySunCare(objTitle, log, gID)
         End Function
-
+        
         Public Function ActiveSunCare(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal log As Common.CommonBusiness.UserLog, ByVal bActive As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ActiveSunCare
             Return MyBase.Channel.ActiveSunCare(lstID, log, bActive)
         End Function
-
+        
         Public Function DeleteSunCare(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.DeleteSunCare
             Return MyBase.Channel.DeleteSunCare(lstID)
         End Function
-
+        
         Public Function GetRegimeManager(ByVal _filter As InsuranceBusiness.INS_REMIGE_MANAGER_DTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EntiledID As Integer, ByVal Fillter As String, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO) Implements InsuranceBusiness.IInsuranceBusiness.GetRegimeManager
             Return MyBase.Channel.GetRegimeManager(_filter, PageIndex, PageSize, Total, OrgId, IsDissolve, EntiledID, Fillter, log, Sorts)
         End Function
-
+        
         Public Function GetRegimeManagerByID(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_REMIGE_MANAGER_DTO Implements InsuranceBusiness.IInsuranceBusiness.GetRegimeManagerByID
             Return MyBase.Channel.GetRegimeManagerByID(_id)
         End Function
-
+        
         Public Function GetInfoInsByEmpID(ByVal employee_id As Integer) As InsuranceBusiness.INS_INFORMATIONDTO Implements InsuranceBusiness.IInsuranceBusiness.GetInfoInsByEmpID
             Return MyBase.Channel.GetInfoInsByEmpID(employee_id)
         End Function
-
+        
         Public Function GetLuyKe(ByVal P_TUNGAY As Date, ByVal P_DENNGAY As Date, ByRef P_EMPLOYEEID As Integer, ByVal P_ENTITLED_ID As Integer) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetLuyKe
             Return MyBase.Channel.GetLuyKe(P_TUNGAY, P_DENNGAY, P_EMPLOYEEID, P_ENTITLED_ID)
         End Function
-
+        
         Public Function CALCULATOR_DAY(ByVal P_TUNGAY As Date, ByVal P_DENNGAY As Date) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.CALCULATOR_DAY
             Return MyBase.Channel.CALCULATOR_DAY(P_TUNGAY, P_DENNGAY)
         End Function
-
+        
         Public Function GetMaxDayByID(ByVal P_ENTITLED_ID As Integer) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetMaxDayByID
             Return MyBase.Channel.GetMaxDayByID(P_ENTITLED_ID)
         End Function
-
+        
         Public Function InsertRegimeManager(ByVal objTitle As InsuranceBusiness.INS_REMIGE_MANAGER_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.InsertRegimeManager
             Return MyBase.Channel.InsertRegimeManager(objTitle, log, gID)
         End Function
-
+        
         Public Function ModifyRegimeManager(ByVal objTitle As InsuranceBusiness.INS_REMIGE_MANAGER_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ModifyRegimeManager
             Return MyBase.Channel.ModifyRegimeManager(objTitle, log, gID)
         End Function
-
+        
         Public Function DeleteRegimeManager(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.DeleteRegimeManager
             Return MyBase.Channel.DeleteRegimeManager(lstID)
         End Function
-
+        
         Public Function ObjectPayInsurrance(ByVal lstID As System.Collections.Generic.List(Of String), ByVal objName As String) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ObjectPayInsurrance
             Return MyBase.Channel.ObjectPayInsurrance(lstID, objName)
         End Function
-
+        
         Public Function GetTienHuong(ByVal P_NUMOFF As Integer, ByVal P_ATHOME As Integer, ByRef P_EMPLOYEEID As Integer, ByVal P_INSENTILEDKEY As Integer, ByVal P_SALARY_ADJACENT As Decimal, ByVal P_FROMDATE As Date, ByVal P_SOCON As Integer) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetTienHuong
             Return MyBase.Channel.GetTienHuong(P_NUMOFF, P_ATHOME, P_EMPLOYEEID, P_INSENTILEDKEY, P_SALARY_ADJACENT, P_FROMDATE, P_SOCON)
         End Function
-
+        
         Public Function GetGroup_SunCare(ByVal _filter As InsuranceBusiness.INS_GROUP_SUN_CAREDTO, ByVal _param As InsuranceBusiness.PARAMDTO, ByRef Total As Integer, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByVal Sorts As String, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.INS_GROUP_SUN_CAREDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetGroup_SunCare
             Return MyBase.Channel.GetGroup_SunCare(_filter, _param, Total, PageIndex, PageSize, Sorts, log)
         End Function
-
+        
         Public Function GetGroup_SunCareById(ByVal _id As System.Nullable(Of Decimal)) As InsuranceBusiness.INS_GROUP_SUN_CAREDTO Implements InsuranceBusiness.IInsuranceBusiness.GetGroup_SunCareById
             Return MyBase.Channel.GetGroup_SunCareById(_id)
         End Function
-
+        
         Public Function InsertGroup_SunCare(ByVal objIns_info As InsuranceBusiness.INS_GROUP_SUN_CAREDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.InsertGroup_SunCare
             Return MyBase.Channel.InsertGroup_SunCare(objIns_info, log, gID)
         End Function
-
+        
         Public Function ModifyGroup_SunCare(ByVal objIns_info As InsuranceBusiness.INS_GROUP_SUN_CAREDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ModifyGroup_SunCare
             Return MyBase.Channel.ModifyGroup_SunCare(objIns_info, log, gID)
         End Function
-
+        
         Public Function DeleteGroup_SunCare(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.DeleteGroup_SunCare
             Return MyBase.Channel.DeleteGroup_SunCare(lstID)
         End Function
-
+        
         Public Function GetReportList() As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetReportList
             Return MyBase.Channel.GetReportList
         End Function
-
+        
         Public Function GetReportById(ByVal _filter As InsuranceBusiness.Se_ReportDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.Se_ReportDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetReportById
             Return MyBase.Channel.GetReportById(_filter, PageIndex, PageSize, Total, log, Sorts)
         End Function
-
+        
         Public Function GetD02Tang(ByVal p_MONTH As Decimal, ByVal p_YEAR As Decimal, ByVal p_Username As String, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetD02Tang
             Return MyBase.Channel.GetD02Tang(p_MONTH, p_YEAR, p_Username, p_Org_ID)
         End Function
-
+        
         Public Function GetD02Giam(ByVal p_MONTH As Decimal, ByVal p_YEAR As Decimal, ByVal p_Username As String, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetD02Giam
             Return MyBase.Channel.GetD02Giam(p_MONTH, p_YEAR, p_Username, p_Org_ID)
         End Function
-
+        
         Public Function GetC70_HD(ByVal p_MONTH As Decimal, ByVal p_YEAR As Decimal, ByVal p_Username As String, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetC70_HD
             Return MyBase.Channel.GetC70_HD(p_MONTH, p_YEAR, p_Username, p_Org_ID)
         End Function
-
+        
         Public Function GetQuyLuongBH(ByVal p_MONTH As Decimal, ByVal p_YEAR As Decimal, ByVal p_Username As String, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetQuyLuongBH
             Return MyBase.Channel.GetQuyLuongBH(p_MONTH, p_YEAR, p_Username, p_Org_ID)
         End Function
-
+        
         Public Function GetDsBHSunCare(ByVal p_Tungay As Date, ByVal p_Toingay As Date, ByVal p_Username As String, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetDsBHSunCare
             Return MyBase.Channel.GetDsBHSunCare(p_Tungay, p_Toingay, p_Username, p_Org_ID)
         End Function
-
+        
         Public Function GetDsDieuChinhSunCare(ByVal p_Tungay As Date, ByVal p_Toingay As Date, ByVal p_Username As String, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetDsDieuChinhSunCare
             Return MyBase.Channel.GetDsDieuChinhSunCare(p_Tungay, p_Toingay, p_Username, p_Org_ID)
         End Function
-
+        
         Public Function GetChiPhiSunCare(ByVal p_Tungay As Date, ByVal p_Toingay As Date, ByVal p_Username As String, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetChiPhiSunCare
             Return MyBase.Channel.GetChiPhiSunCare(p_Tungay, p_Toingay, p_Username, p_Org_ID)
         End Function
-
+        
         Public Function GetOrgInfo(ByVal p_Tungay As Date, ByVal p_Toingay As Date, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetOrgInfo
             Return MyBase.Channel.GetOrgInfo(p_Tungay, p_Toingay, p_Org_ID)
         End Function
-
+        
         Public Function GetOrgInfoMONTH(ByVal p_MONTH As Decimal, ByVal p_YEAR As Decimal, ByVal p_Org_ID As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetOrgInfoMONTH
             Return MyBase.Channel.GetOrgInfoMONTH(p_MONTH, p_YEAR, p_Org_ID)
         End Function
-
+        
         Public Function AutoGenCode(ByVal firstChar As String, ByVal tableName As String, ByVal colName As String) As String Implements InsuranceBusiness.IInsuranceBusiness.AutoGenCode
             Return MyBase.Channel.AutoGenCode(firstChar, tableName, colName)
         End Function
-
+        
         Public Function CheckExistInDatabase(ByVal lstID As System.Collections.Generic.List(Of Decimal), ByVal table As InsuranceBusiness.InsuranceCommonTABLE_NAME) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.CheckExistInDatabase
             Return MyBase.Channel.CheckExistInDatabase(lstID, table)
         End Function
-
+        
         Public Function GetStatisticInsPayFund(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetStatisticInsPayFund
             Return MyBase.Channel.GetStatisticInsPayFund(_year, _month, log)
         End Function
-
+        
         Public Function GetStatisticInsPayFundDetail(ByVal _year As Integer, ByVal _month As Integer, ByVal log As Common.CommonBusiness.UserLog) As System.Collections.Generic.List(Of InsuranceBusiness.StatisticDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetStatisticInsPayFundDetail
             Return MyBase.Channel.GetStatisticInsPayFundDetail(_year, _month, log)
         End Function
-
+        
         Public Function GetStatisticInsRate(ByVal _locationId As Integer) As System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsRateDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetStatisticInsRate
             Return MyBase.Channel.GetStatisticInsRate(_locationId)
         End Function
-
+        
         Public Function GetStatisticInsCeiling(ByVal _locationId As Integer) As System.Collections.Generic.List(Of InsuranceBusiness.StatisticInsCeilingDTO) Implements InsuranceBusiness.IInsuranceBusiness.GetStatisticInsCeiling
             Return MyBase.Channel.GetStatisticInsCeiling(_locationId)
         End Function
-
+        
         Public Function ValidateCombobox(ByVal cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ValidateCombobox
             Return MyBase.Channel.ValidateCombobox(cbxData)
         End Function
-
+        
         Public Function GetEmpInfo(ByVal code As Decimal, ByVal org As String) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetEmpInfo
             Return MyBase.Channel.GetEmpInfo(code, org)
         End Function
-
+        
         Public Function Check_Exist_Emp_Ins(ByVal strEmpId As String) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.Check_Exist_Emp_Ins
             Return MyBase.Channel.Check_Exist_Emp_Ins(strEmpId)
         End Function
-
+        
         Public Function Check_Arising_Type(ByVal arising_Type As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.Check_Arising_Type
             Return MyBase.Channel.Check_Arising_Type(arising_Type)
         End Function
-
+        
         Public Function CheckDayCalculate(ByVal idRegime As Decimal, ByVal dayCal As Decimal) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.CheckDayCalculate
             Return MyBase.Channel.CheckDayCalculate(idRegime, dayCal)
         End Function
-
+        
         Public Function GetInsArising(ByVal username As String, ByVal fromdate As System.Nullable(Of Date), ByVal todate As System.Nullable(Of Date), ByVal arising_type_id As System.Nullable(Of Double), ByVal org_id As String, ByVal insurance_id As System.Nullable(Of Double)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsArising
             Return MyBase.Channel.GetInsArising(username, fromdate, todate, arising_type_id, org_id, insurance_id)
         End Function
-
+        
         Public Function UpdateInsArising(ByVal username As String, ByVal effect_date As System.Nullable(Of Date), ByVal id As Double, ByVal empid As Double, ByVal arising_type_id As Double) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsArising
             Return MyBase.Channel.UpdateInsArising(username, effect_date, id, empid, arising_type_id)
         End Function
-
+        
         Public Function UpdateInsArisingNote(ByVal username As String, ByVal id As Decimal, ByVal note As String) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsArisingNote
             Return MyBase.Channel.UpdateInsArisingNote(username, id, note)
         End Function
-
+        
         Public Function DeleteInsArising(ByVal username As String, ByVal id As Double) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsArising
             Return MyBase.Channel.DeleteInsArising(username, id)
         End Function
-
+        
         Public Function GetInsInfomation(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal org_id As System.Nullable(Of Double), ByVal isTer As System.Nullable(Of Double), ByVal isDISSOLVE As System.Nullable(Of Double)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsInfomation
             Return MyBase.Channel.GetInsInfomation(username, id, employee_id, org_id, isTer, isDISSOLVE)
         End Function
-
+        
         Public Function UpdateInsInfomation( _
-                    ByVal username As String, _
-                    ByVal id As System.Nullable(Of Double), _
-                    ByVal employee_id As System.Nullable(Of Double), _
-                    ByVal ins_org_name As String, _
-                    ByVal seniority_insurance As System.Nullable(Of Double), _
-                    ByVal seniority_insurance_company As String, _
-                    ByVal social_number As String, _
-                    ByVal social_status As System.Nullable(Of Double), _
-                    ByVal social_submit_date As System.Nullable(Of Date), _
-                    ByVal social_submit As String, _
-                    ByVal social_grant_date As System.Nullable(Of Date), _
-                    ByVal social_save_number As String, _
-                    ByVal social_deliver_date As System.Nullable(Of Date), _
-                    ByVal social_return_date As System.Nullable(Of Date), _
-                    ByVal social_receiver As String, _
-                    ByVal social_note As String, _
-                    ByVal health_number As String, _
-                    ByVal health_status As System.Nullable(Of Double), _
-                    ByVal health_effect_from_date As System.Nullable(Of Date), _
-                    ByVal health_effect_to_date As System.Nullable(Of Date), _
-                    ByVal health_area_ins_id As System.Nullable(Of Double), _
-                    ByVal health_receive_date As System.Nullable(Of Date), _
-                    ByVal health_receiver As String, _
-                    ByVal health_return_date As System.Nullable(Of Date), _
-                    ByVal unemp_from_month As System.Nullable(Of Date), _
-                    ByVal unemp_to_month As System.Nullable(Of Date), _
-                    ByVal unemp_register_month As System.Nullable(Of Date), _
-                    ByVal si_from_month As System.Nullable(Of Date), _
-                    ByVal si_to_month As System.Nullable(Of Date), _
-                    ByVal hi_from_month As System.Nullable(Of Date), _
-                    ByVal hi_to_month As System.Nullable(Of Date), _
-                    ByVal si As System.Nullable(Of Double), _
-                    ByVal hi As System.Nullable(Of Double), _
-                    ByVal ui As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn As System.Nullable(Of Double), _
-                    ByVal is_hi_five_year As System.Nullable(Of Double), _
-                    ByVal bhtnld_bnn_from As System.Nullable(Of Date), _
+                    ByVal username As String,  _
+                    ByVal id As System.Nullable(Of Double),  _
+                    ByVal employee_id As System.Nullable(Of Double),  _
+                    ByVal ins_org_name As String,  _
+                    ByVal seniority_insurance As System.Nullable(Of Double),  _
+                    ByVal seniority_insurance_company As String,  _
+                    ByVal social_number As String,  _
+                    ByVal social_status As System.Nullable(Of Double),  _
+                    ByVal social_submit_date As System.Nullable(Of Date),  _
+                    ByVal social_submit As String,  _
+                    ByVal social_grant_date As System.Nullable(Of Date),  _
+                    ByVal social_save_number As String,  _
+                    ByVal social_deliver_date As System.Nullable(Of Date),  _
+                    ByVal social_return_date As System.Nullable(Of Date),  _
+                    ByVal social_receiver As String,  _
+                    ByVal social_note As String,  _
+                    ByVal health_number As String,  _
+                    ByVal health_status As System.Nullable(Of Double),  _
+                    ByVal health_effect_from_date As System.Nullable(Of Date),  _
+                    ByVal health_effect_to_date As System.Nullable(Of Date),  _
+                    ByVal health_area_ins_id As System.Nullable(Of Double),  _
+                    ByVal health_receive_date As System.Nullable(Of Date),  _
+                    ByVal health_receiver As String,  _
+                    ByVal health_return_date As System.Nullable(Of Date),  _
+                    ByVal unemp_from_month As System.Nullable(Of Date),  _
+                    ByVal unemp_to_month As System.Nullable(Of Date),  _
+                    ByVal unemp_register_month As System.Nullable(Of Date),  _
+                    ByVal si_from_month As System.Nullable(Of Date),  _
+                    ByVal si_to_month As System.Nullable(Of Date),  _
+                    ByVal hi_from_month As System.Nullable(Of Date),  _
+                    ByVal hi_to_month As System.Nullable(Of Date),  _
+                    ByVal si As System.Nullable(Of Double),  _
+                    ByVal hi As System.Nullable(Of Double),  _
+                    ByVal ui As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn As System.Nullable(Of Double),  _
+                    ByVal is_hi_five_year As System.Nullable(Of Double),  _
+                    ByVal bhtnld_bnn_from As System.Nullable(Of Date),  _
                     ByVal bhtnld_bnn_to As System.Nullable(Of Date)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsInfomation
             Return MyBase.Channel.UpdateInsInfomation(username, id, employee_id, ins_org_name, seniority_insurance, seniority_insurance_company, social_number, social_status, social_submit_date, social_submit, social_grant_date, social_save_number, social_deliver_date, social_return_date, social_receiver, social_note, health_number, health_status, health_effect_from_date, health_effect_to_date, health_area_ins_id, health_receive_date, health_receiver, health_return_date, unemp_from_month, unemp_to_month, unemp_register_month, si_from_month, si_to_month, hi_from_month, hi_to_month, si, hi, ui, bhtnld_bnn, is_hi_five_year, bhtnld_bnn_from, bhtnld_bnn_to)
         End Function

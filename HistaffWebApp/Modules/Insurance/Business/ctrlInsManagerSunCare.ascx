@@ -1,8 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlInsManagerSunCare.ascx.vb"
     Inherits="Insurance.ctrlInsManagerSunCare" %>
 <%@ Import Namespace="Common" %>
-
-<link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="260px" Scrolling="None">
@@ -20,14 +18,14 @@
                 <table class="table-form" onkeydown="return (event.keyCode!=13)">
                     <tr>
                         <td class="lb">
-                            <%# Translate("Thời điểm hưởng từ")%>
+                            <%# Translate("Ngày cấp từ")%>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdFrom" runat="server">
                             </tlk:RadDatePicker>
                         </td>
                         <td align="left">
-                            <%# Translate("Thời điểm hưởng tới")%>
+                            <%# Translate("Ngày cấp tới")%>
                         </td>
                         <td>
                             <tlk:RadDatePicker ID="rdTo" runat="server">
@@ -37,7 +35,7 @@
                             <asp:CheckBox ID="chkChecknghiViec" runat="server" Text="<%$ Translate: Liệt kê cả nhân viên nghỉ việc %>" />
                         </td>
                         <td>
-                            <tlk:RadButton ID="btnSearch" Text="<%$ Translate: Tìm%>" runat="server" ToolTip="" SkinID="ButtonFind">
+                            <tlk:RadButton ID="btnSearch" Text="Tìm kiếm" runat="server" ToolTip="" SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
                     </tr>
@@ -49,8 +47,6 @@
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
-                        <ClientEvents OnGridCreated="GridCreated" />
-                        <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID">
                         <Columns>
@@ -76,7 +72,7 @@
                             </tlk:GridBoundColumn>
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Cấp nhân sự%>" DataField="STAFF_RANK_NAME"
                                 SortExpression="STAFF_RANK_NAME" UniqueName="STAFF_RANK_NAME" />
-                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Thời điểm hưởng %>" DataField="THOIDIEMHUONG"
+                            <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày cấp %>" DataField="THOIDIEMHUONG"
                                 DataFormatString="{0:dd/MM/yyyy}" SortExpression="THOIDIEMHUONG" UniqueName="THOIDIEMHUONG">
                                 <HeaderStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
@@ -88,12 +84,12 @@
                                 DataFormatString="{0:dd/MM/yyyy}" SortExpression="END_DATE" UniqueName="END_DATE">
                                 <HeaderStyle Width="120px" />
                             </tlk:GridDateTimeColumn>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Nhóm hưởng bảo hiểm %>" DataField="LEVEL_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Đơn vị cung cấp BH %>" DataField="LEVEL_NAME"
                                 SortExpression="LEVEL_NAME" UniqueName="LEVEL_NAME" />
-                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức chi phí %>" DataField="COST"
+                            <tlk:GridNumericColumn HeaderText="<%$ Translate: Chi phí %>" DataField="COST"
                                 SortExpression="COST" DataFormatString="{0:n0}" UniqueName="COST" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
-                                UniqueName="NOTE" />
+                           <%-- <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="NOTE" SortExpression="NOTE"
+                                UniqueName="NOTE" />--%>
                         </Columns>
                         <HeaderStyle Width="100px" />
                     </MasterTableView>
@@ -114,37 +110,17 @@
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
-
         var enableAjax = true;
         var oldSize = 0;
-
-        function ValidateFilter(sender, eventArgs) {
-            var params = eventArgs.get_commandArgument() + '';
-            if (params.indexOf("|") > 0) {
-                var s = eventArgs.get_commandArgument().split("|");
-                if (s.length > 1) {
-                    var val = s[1];
-                    if (validateHTMLText(val) || validateSQLText(val)) {
-                        eventArgs.set_cancel(true);
-                    }
-                }
-            }
-        }
-
-        function GridCreated(sender, eventArgs) {
-            registerOnfocusOut('ctl00_MainContent_ctrlInsManagerSunCare_RadSplitter1');
-        }
-
         function gridRowDblClick(sender, eventArgs) {
             OpenEditWindow("Normal");
         }
 
         function OpenInsertWindow() {
-            window.open('/Default.aspx?mid=Insurance&fid=ctrlInsManagerSunCareNewEdit&group=Business&FormType=0', "_self"); /*
+            var oWindow = radopen('Dialog.aspx?mid=Insurance&fid=ctrlInsManagerSunCareNewEdit&group=Business&FormType=0&noscroll=1', "rwPopup");
             oWindow.setSize(800, 500);
-            oWindow.center(); */
+            oWindow.center();
         }
-
         function OpenEditWindow() {
             var grid = $find('<%# rgData.ClientID %>');
             var gridSelected = grid.get_masterTableView().get_selectedItems();
@@ -154,29 +130,26 @@
                 id = grid.get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
             }
             if (id > 0) {
-                window.open('/Default.aspx?mid=Insurance&fid=ctrlInsManagerSunCareNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '', "_self"); /*
+                var oWindow = radopen('Dialog.aspx?mid=Insurance&fid=ctrlInsManagerSunCareNewEdit&group=Business&VIEW=TRUE&FormType=0&ID=' + id + '&noscroll=1', "rwPopup");
                 oWindow.setSize(800, 500);
-                oWindow.center(); */
+                oWindow.center();
             }
         }
-
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
-
         function OnClientClose(sender, args) {
             var m;
             var arg = args.get_argument();
             if (arg == '1') {
                 m = '<%# Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS) %>';
                 var n = noty({ text: m, dismissQueue: true, type: 'success' });
-                setTimeout(function () { $.noty.close(n.options.id); }, 10000);
+                setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                 $find("<%= rgData.ClientID %>").get_masterTableView().rebind();
             }
             $get("<%# btnSearch.ClientId %>").click();
         }
-
         function OnClientButtonClicking(sender, args) {
             if (args.get_item().get_commandName() == 'CREATE') {
                 OpenInsertWindow();
@@ -188,39 +161,18 @@
                     var n = noty({ text: m, dismissQueue: true, type: 'warning' });
                     setTimeout(function () { $.noty.close(n.options.id); }, 5000);
                     args.set_cancel(true);
-                } else if (bCheck > 1) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                } else {
+                }
+                else {
                     OpenEditWindow();
                     args.set_cancel(true);
                 }
-            } else if (args.get_item().get_commandName() == 'EXPORT') {
-                var rows = $find('<%= rgData.ClientID %>').get_masterTableView().get_dataItems().length;
-                if (rows == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                    return;
-                }
+            } if (args.get_item().get_commandName() == 'EXPORT') {
                 enableAjax = false;
-            } else if (args.get_item().get_commandName() == 'DELETE') {
-                var bCheck = $find('<%= rgData.ClientID %>').get_masterTableView().get_selectedItems().length;
-                if (bCheck == 0) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
-                    args.set_cancel(true);
-                }
             }
-        }
-
-        function OpenInNewTab(url) {
-            var win = window.open(url, '_blank');
-            win.focus();
-        }
+    }
+    function OpenInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
     </script>
 </tlk:RadScriptBlock>

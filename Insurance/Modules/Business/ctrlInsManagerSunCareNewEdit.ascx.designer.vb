@@ -212,15 +212,6 @@ Partial Public Class ctrlInsManagerSunCareNewEdit
     Protected WithEvents cboLEVEL As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''cvalLEVEL control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cvalLEVEL As Global.System.Web.UI.WebControls.CustomValidator
-
-    '''<summary>
     '''nmCOST control.
     '''</summary>
     '''<remarks>

@@ -344,10 +344,18 @@ Public Class ctrlInsManagerSunCareNewEdit
                             gID = Utilities.ObjToDecima(hidID.Value)
                             rep.InsertSunCare(objData, gID)
                         End If
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
+                        rdThoiDiem.Enabled = False
+                        dpSTART_DATE.Enabled = False
+                        dpEND_DATE.Enabled = False
+                        cboLEVEL.Enabled = False
+                        nmCOST.Enabled = False
+
+
                         'Dim str As String = "getRadWindow().close('1');"
                         'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                        ''POPUPTOLINK
-                        Response.Redirect("/Default.aspx?mid=Insurance&fid=ctrlInsManagerSunCare&group=Business")
+                        'POPUPTOLINK
+                        '' Response.Redirect("/Default.aspx?mid=Insurance&fid=ctrlInsManagerSunCare&group=Business")
                     End If
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     ''POPUPTOLINK_CANCEL
@@ -370,27 +378,27 @@ Public Class ctrlInsManagerSunCareNewEdit
     ''' <param name="args"></param>
     ''' <param name="source"></param>
     ''' <remarks></remarks>
-    Private Sub cvalLEVER_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalLEVEL.ServerValidate
-        Dim rep As New InsuranceRepository
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If cboLEVEL.SelectedValue <> "" Then
-                Dim _validate As New INS_COST_FOLLOW_LEVERDTO
-                _validate.ID = cboLEVEL.SelectedValue
-                _validate.ACTFLG = "A"
-                args.IsValid = rep.ValidateINS_COST_FOLLOW_LEVER(_validate)
-                If Not args.IsValid Then
-                    GetDataCombo()
-                End If
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method,
-                                                      CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-            DisplayException(Me.ViewName, Me.ID, ex)
-        End Try
-    End Sub
+    'Private Sub cvalLEVER_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalLEVEL.ServerValidate
+    '    Dim rep As New InsuranceRepository
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        Dim startTime As DateTime = DateTime.UtcNow
+    '        If cboLEVEL.SelectedValue <> "" Then
+    '            Dim _validate As New INS_COST_FOLLOW_LEVERDTO
+    '            _validate.ID = cboLEVEL.SelectedValue
+    '            _validate.ACTFLG = "A"
+    '            args.IsValid = rep.ValidateINS_COST_FOLLOW_LEVER(_validate)
+    '            If Not args.IsValid Then
+    '                GetDataCombo()
+    '            End If
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method,
+    '                                                  CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>
     ''' 06/09/2017 14:00
@@ -406,10 +414,10 @@ Public Class ctrlInsManagerSunCareNewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             If ListComboData Is Nothing Then
                 ListComboData = New ComboBoxDataDTO
-                ListComboData.GET_LIST_COST_LEVER = True
+                ListComboData.GET_LIST_ORG_ID_INS = True
                 rep.GetComboboxData(ListComboData)
             End If
-            FillDropDownList(cboLEVEL, ListComboData.LIST_LIST_COST_LEVER, "COST_NAME", "ID", Common.Common.SystemLanguage, True, cboLEVEL.SelectedValue)
+            FillDropDownList(cboLEVEL, ListComboData.LIST_LIST_ORG_ID_INS, "NAME_VN", "ID", Common.Common.SystemLanguage, True, cboLEVEL.SelectedValue)
             _mylog.WriteLog(_mylog._info, _classPath, method,
                                               CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

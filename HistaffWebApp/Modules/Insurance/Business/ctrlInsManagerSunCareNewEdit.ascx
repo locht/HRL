@@ -65,7 +65,7 @@
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Thời điểm hưởng")%>
+                    <%# Translate("Ngày cấp")%>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdThoiDiem" runat="server" DateInput-DateFormat="dd/MM/yyyy">
@@ -93,24 +93,24 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Nhóm hưởng bảo hiểm")%>
+                    <%# Translate("Đơn vị cung cấp BH")%>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboLEVEL" AutoPostBack="true" runat="server" CausesValidation="false">
                     </tlk:RadComboBox>
-                    <asp:CustomValidator ID="cvalLEVEL" ControlToValidate="cboLEVEL" runat="server" ErrorMessage="<%$ Translate: Nhóm hưởng không tồn tại hoặc đã ngừng áp dụng. %>"
+                   <%-- <asp:CustomValidator ID="cvalLEVEL" ControlToValidate="cboLEVEL" runat="server" ErrorMessage="<%$ Translate: Nhóm hưởng không tồn tại hoặc đã ngừng áp dụng. %>"
                         ToolTip="<%$ Translate: Nhóm hưởng không tồn tại hoặc đã ngừng áp dụng. %>">
-                    </asp:CustomValidator>
+                    </asp:CustomValidator>--%>
                 </td>
                 <td class="lb">
-                    <%# Translate("Mức chi phí")%>
+                    <%# Translate("Chi phí")%>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="nmCOST" SkinID="ReadOnly" Enabled="false" runat="server">
+                    <tlk:RadNumericTextBox ID="nmCOST" runat="server">
                     </tlk:RadNumericTextBox>
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none">
                 <td class="lb">
                     <%# Translate("Ghi chú")%>
                 </td>
@@ -138,10 +138,10 @@
             return null;
         }
         function clientButtonClicking(sender, args) {
-//            if (args.get_item().get_commandName() == 'CANCEL') {
-//                getRadWindow().close(null);
-//                args.set_cancel(true);
-//            }
+            if (args.get_item().get_commandName() == 'CANCEL') {
+                getRadWindow().close(null);
+                args.set_cancel(true);
+            }
         }
         
     </script>
