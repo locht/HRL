@@ -147,6 +147,8 @@
             <EntitySet Name="HU_CONCURRENTLY" EntityType="ProfileModel.Store.HU_CONCURRENTLY" store:Type="Tables"  />
             <EntitySet Name="HU_CERTIFICATE" EntityType="ProfileModel.Store.HU_CERTIFICATE" store:Type="Tables"  />
             <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.Store.HU_CERTIFICATE_EDIT" store:Type="Tables"  />
+            <EntitySet Name="HU_SIGNER" EntityType="ProfileModel.Store.HU_SIGNER" store:Type="Tables"  />
+            <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3584,6 +3586,33 @@
             <Property Name="FK_PKEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_SIGNER">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="LEVEL_NAME" Type="nvarchar2" Nullable="true" MaxLength="1" />
+            <Property Name="TITLE_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="REMARK" Type="nclob" Nullable="true" />
+            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_LOG" Type="nclob" Nullable="true" />
+            <Property Name="SIGNER_CODE" Type="nclob" Nullable="true" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
+        <EntityType Name="SE_USER_ORG_ACCESS">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="USER_ID" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4216,6 +4245,8 @@
           <EntitySet Name="HU_CONCURRENTLY" EntityType="ProfileModel.HU_CONCURRENTLY" />
           <EntitySet Name="HU_CERTIFICATE" EntityType="ProfileModel.HU_CERTIFICATE" />
           <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.HU_CERTIFICATE_EDIT" />
+          <EntitySet Name="HU_SIGNER" EntityType="ProfileModel.HU_SIGNER" />
+          <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.SE_USER_ORG_ACCESS" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -7936,6 +7967,33 @@
           <Property Type="Decimal" Name="FK_PKEY" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="STATUS" />
         </EntityType>
+        <EntityType Name="HU_SIGNER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LEVEL_NAME" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TITLE_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REMARK" />
+          <Property Type="String" Name="ACTFLG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" Nullable="true" />
+          <Property Type="String" Name="MODIFIED_LOG" />
+          <Property Type="String" Name="SIGNER_CODE" />
+          <Property Type="Decimal" Name="ORG_ID" Nullable="true" />
+        </EntityType>
+        <EntityType Name="SE_USER_ORG_ACCESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="USER_ID" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ORG_ID" Nullable="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11389,6 +11447,35 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_SIGNER">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_SIGNER)">
+                <MappingFragment StoreEntitySet="HU_SIGNER">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NAME" ColumnName="NAME" />
+                    <ScalarProperty Name="LEVEL_NAME" ColumnName="LEVEL_NAME" />
+                    <ScalarProperty Name="TITLE_NAME" ColumnName="TITLE_NAME" />
+                    <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                    <ScalarProperty Name="ACTFLG" ColumnName="ACTFLG" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="SIGNER_CODE" ColumnName="SIGNER_CODE" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="SE_USER_ORG_ACCESS">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.SE_USER_ORG_ACCESS)">
+                <MappingFragment StoreEntitySet="SE_USER_ORG_ACCESS">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -11428,7 +11515,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="59" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="77" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -11708,7 +11795,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGMANAGE" Width="3.125" PointX="33.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_TRAININGEVALUATE" Width="1.5" PointX="33.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.PE_PERIOD" Width="1.5" PointX="33.375" PointY="33.125" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_LIST" Width="1.5" PointX="34.375" PointY="0.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_LIST" Width="1.5" PointX="34.375" PointY="0.75" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_RELATIONSHIP_GROUP" Width="2.375" PointX="34.375" PointY="11.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_ANNUALLEAVE_PLANS" Width="1.5" PointX="34.375" PointY="15.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HUV_CURRENT_CONTRACT" Width="1.5" PointX="7.375" PointY="36.25" Height="0.4" IsExpanded="false" />
@@ -11720,6 +11807,8 @@
         <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.5" PointX="17.375" PointY="29.75" Height="9.0954394531249818" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE" Width="1.5" PointX="19.375" PointY="30.375" Height="6.018616536458353" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="2.125" PointX="9.375" PointY="31.375" Height="6.4032194010416674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="3.7109993489583335" />
+        <EntityTypeShape EntityType="ProfileModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="33.5" PointY="7" Height="1.5956835937499996" />
         </Diagram>
     </Diagrams>
   </Designer>
