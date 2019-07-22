@@ -392,6 +392,8 @@ Public Class ctrlHU_WelfareList
                         If item.TITLE_GROUP_ID IsNot Nothing Then
                             cbGroupTitle.Text = item.TITLE_GROUP_NAME
                             cbGroupTitle.SelectedValue = item.TITLE_GROUP_ID
+                        Else
+                            cbGroupTitle.Text = " "
                         End If
                         dpSTART_DATE.SelectedDate = item.START_DATE
                         dpEND_DATE.SelectedDate = item.END_DATE
@@ -402,6 +404,8 @@ Public Class ctrlHU_WelfareList
                         If item2.ID_NAME IsNot Nothing Then
                             cboName.Text = item2.NAME
                             cboName.SelectedValue = item2.ID_NAME
+                        Else
+                            cboName.Text = " "
                         End If
                     End If
                 End If
