@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 22/07/2019 2:55:16 PM
--- Generated from EDMX file: E:\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 07/22/2019 3:25:02 PM
+-- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1571,7 +1571,8 @@ CREATE TABLE "dbo"."HU_WELFARE_LIST" (
    "CHILD_OLD_FROM" NUMBER(38,0) NULL,
    "CHILD_OLD_TO" NUMBER(38,0) NULL,
    "ORG_ID" NUMBER(38,0) NULL,
-   "ID_NAME" NUMBER(38,0) NULL
+   "ID_NAME" NUMBER(38,0) NULL,
+   "TITLE_GROUP_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_WELFARE_LIST_GW'

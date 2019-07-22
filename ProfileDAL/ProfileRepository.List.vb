@@ -695,6 +695,7 @@ Partial Class ProfileRepository
 
             Dim query = From p In Context.HU_WELFARE_LIST
                         From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = p.ORG_ID)
+                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TITLE_GROUP_ID).DefaultIfEmpty
                         From org In Context.SE_CHOSEN_ORG.Where(Function(org) org.ORG_ID = o.ID And
                                                                     org.USERNAME = log.Username.ToUpper)
 
@@ -705,6 +706,8 @@ Partial Class ProfileRepository
                                        .CONTRACT_TYPE = p.p.CONTRACT_TYPE,
                                        .CONTRACT_TYPE_NAME = p.p.CONTRACT_TYPE_NAME,
                                        .GENDER = p.p.GENDER,
+                                       .TITLE_GROUP_ID = p.p.TITLE_GROUP_ID,
+                                       .TITLE_GROUP_NAME = p.ot.NAME_VN,
                                        .GENDER_NAME = p.p.GENDER_NAME,
                                        .SENIORITY = p.p.SENIORITY,
                                        .CHILD_OLD_FROM = p.p.CHILD_OLD_FROM,
@@ -753,7 +756,7 @@ Partial Class ProfileRepository
             If _filter.ORG_ID <> 0 Then
                 lst = lst.Where(Function(p) p.ORG_ID = _filter.ORG_ID)
             End If
-            
+
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -779,6 +782,7 @@ Partial Class ProfileRepository
             objWelfareListData.CONTRACT_TYPE = objWelfareList.CONTRACT_TYPE
             objWelfareListData.CONTRACT_TYPE_NAME = objWelfareList.CONTRACT_TYPE_NAME
             objWelfareListData.GENDER = objWelfareList.GENDER
+            objWelfareListData.TITLE_GROUP_ID = objWelfareList.TITLE_GROUP_ID
             objWelfareListData.GENDER_NAME = objWelfareList.GENDER_NAME
             objWelfareListData.SENIORITY = objWelfareList.SENIORITY
             objWelfareListData.CHILD_OLD_FROM = objWelfareList.CHILD_OLD_FROM
@@ -865,6 +869,7 @@ Partial Class ProfileRepository
             objWelfareListData.CHILD_OLD_FROM = objWelfareList.CHILD_OLD_FROM
             objWelfareListData.CHILD_OLD_TO = objWelfareList.CHILD_OLD_TO
             objWelfareListData.MONEY = objWelfareList.MONEY
+            objWelfareListData.TITLE_GROUP_ID = objWelfareList.TITLE_GROUP_ID
             objWelfareListData.START_DATE = objWelfareList.START_DATE
             objWelfareListData.END_DATE = objWelfareList.END_DATE
             objWelfareListData.IS_AUTO = objWelfareList.IS_AUTO

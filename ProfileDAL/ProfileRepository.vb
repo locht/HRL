@@ -596,6 +596,18 @@ Public Class ProfileRepository
     ''' 
     Public Function GetComboList(ByRef _combolistDTO As ComboBoxDataDTO) As Boolean
         Dim query
+
+        'NHOM CHUC DANH
+        If _combolistDTO.GET_TITLE_GROUP Then
+            query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
+                     From t In Context.OT_OTHER_LIST_TYPE.Where(Function(t) t.ID = p.TYPE_ID And t.CODE = "HU_TITLE_GROUP")
+                     Order By p.NAME_VN
+                     Select New OtherListDTO With {
+                        .ID = p.ID,
+                        .NAME_VN = p.NAME_VN,
+                        .NAME_EN = p.NAME_EN}).ToList
+            _combolistDTO.LIST_TITLE_GROUP = query
+        End If
         'TRINH DO
         If _combolistDTO.GET_LEVEL_TRAIN Then
             query = (From p In Context.OT_OTHER_LIST Where p.ACTFLG = "A" Order By p.NAME_VN.ToUpper
@@ -2603,7 +2615,7 @@ Public Class ProfileRepository
         Try
             Dim query = (From p In Context.HU_CONTRACT
                          Where p.EMPLOYEE_ID = empID AndAlso _
-                         p.STATUS_ID = ProfileCommon.DECISION_STATUS.APPROVE_ID AndAlso p.CONTRACT_NO IsNot Nothing
+                         p.STATUS_ID = ProfileCommon.OT_CONTRACT_STATUS.APPROVE_ID AndAlso p.CONTRACT_NO IsNot Nothing
                          Select New ContractDTO With {.ID = p.ID,
                                                       .EMPLOYEE_ID = p.EMPLOYEE_ID,
                                                       .CONTRACT_NO = p.CONTRACT_NO,

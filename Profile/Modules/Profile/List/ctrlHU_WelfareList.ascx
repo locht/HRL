@@ -4,16 +4,17 @@
 <%@ Import Namespace="Common" %>
 <tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%">
     <tlk:RadPane ID="LeftPane" runat="server" MinWidth="200" Width="260px" Scrolling="None">
-        <common:ctrlorganization id="ctrlOrg" runat="server"  />
+        <Common:ctrlOrganization ID="ctrlOrg" runat="server" />
     </tlk:RadPane>
     <tlk:RadPane runat="server" ID="RadPane3">
         <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
-            <tlk:RadPane ID="RadPane1" runat="server" Height="205px" Scrolling="None">
+            <tlk:RadPane ID="RadPane1" runat="server" Height="215px" Scrolling="None">
                 <tlk:RadToolBar ID="tbarWelfareLists" runat="server" />
                 <asp:ValidationSummary ID="valSum" runat="server" />
                 <table class="table-form">
                     <tr>
-                        <td colspan="4"></td>
+                        <td colspan="4">
+                        </td>
                         <td>
                             <asp:Label ID="lbGender" runat="server" Text="Giới tính"></asp:Label>
                         </td>
@@ -29,8 +30,7 @@
                             <tlk:RadTextBox ID="txtCode" SkinID="ReadOnly" runat="server">
                             </tlk:RadTextBox>
                             <asp:RequiredFieldValidator ID="reqCode" ControlToValidate="txtCode" runat="server"
-                                CausesValidation="false" ErrorMessage="Bạn phải nhập mã chế độ phúc lợi."
-                                ToolTip="Bạn phải nhập mã chế độ phúc lợi.">
+                                CausesValidation="false" ErrorMessage="Bạn phải nhập mã chế độ phúc lợi." ToolTip="Bạn phải nhập mã chế độ phúc lợi.">
                             </asp:RequiredFieldValidator>
                             <asp:CustomValidator ID="cvalCode" ControlToValidate="txtCode" runat="server" ErrorMessage="Mã chế độ phúc lợi đã tồn tại."
                                 ToolTip="Mã chế độ phúc lợi đã tồn tại.">
@@ -43,10 +43,10 @@
                         </td>
                         <td>
                             <tlk:RadComboBox ID="cboName" runat="server" SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
-                              OnClientItemsRequesting="OnClientItemsRequesting">
+                                OnClientItemsRequesting="OnClientItemsRequesting">
                             </tlk:RadComboBox>
                             <asp:CustomValidator ID="cusName" runat="server" ErrorMessage="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi. %>"
-                              ToolTip="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi.%>" ClientValidationFunction="cusName">
+                                ToolTip="<%$ Translate: Bạn phải chọn tên chế độ phúc lợi.%>" ClientValidationFunction="cusName">
                             </asp:CustomValidator>
                         </td>
                         <td rowspan="5" style="vertical-align: top;">
@@ -58,8 +58,7 @@
                             <tlk:RadListBox ID="lstCONTRACT_TYPE" CheckBoxes="true" runat="server" Height="135px"
                                 Width="290px">
                             </tlk:RadListBox>
-                            <asp:CustomValidator ID="cvalContractType" runat="server"
-                                ErrorMessage="Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng."
+                            <asp:CustomValidator ID="cvalContractType" runat="server" ErrorMessage="Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng."
                                 ToolTip="Loại hợp đồng không tồn tại hoặc đã ngừng áp dụng.">
                             </asp:CustomValidator>
                         </td>
@@ -117,28 +116,41 @@
                             <tlk:RadDatePicker runat="server" ID="dpEND_DATE">
                             </tlk:RadDatePicker>
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ToolTip="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
-                                ErrorMessage="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực."
-                                Type="Date" Operator="GreaterThan" ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>
+                                ErrorMessage="Ngày hết hiệu lực phải lớn hơn ngày hiệu lực." Type="Date" Operator="GreaterThan"
+                                ControlToCompare="dpSTART_DATE" ControlToValidate="dpEND_DATE"></asp:CompareValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td class="lb"></td>
+                        <td class="lb">
+                            <asp:Label ID="lbGroupTitle" runat="server" Text="Nhóm chức danh"></asp:Label>
+                        </td>
                         <td>
-                            <tlk:RadButton ID="chkIS_AUTO" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton" ValidateRequestMode="Disabled"
-                                ValidationGroup="a" runat="server" Text="Tự động áp dụng." Visible = "false">
+                            <tlk:RadComboBox runat="server" ID="cbGroupTitle"  SkinID="LoadDemand" OnClientSelectedIndexChanged="OnClientSelectedIndexChanged"
+                                OnClientItemsRequesting="OnClientItemsRequesting">
+                            </tlk:RadComboBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lb">
+                        </td>
+                        <td>
+                            <tlk:RadButton ID="chkIS_AUTO" AutoPostBack="false" ToggleType="CheckBox" ButtonType="ToggleButton"
+                                ValidateRequestMode="Disabled" ValidationGroup="a" runat="server" Text="Tự động áp dụng."
+                                Visible="false">
                             </tlk:RadButton>
                         </td>
                     </tr>
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize="50" ID="rgWelfareList" runat="server" AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
+                <tlk:RadGrid PageSize="50" ID="rgWelfareList" runat="server" AllowPaging="True" Height="100%"
+                    AllowSorting="True" AllowMultiRowSelection="true">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,CONTRACT_TYPE_NAME,CONTRACT_TYPE,GENDER,SENIORITY,MONEY,START_DATE,END_DATE,IS_AUTO,CHILD_OLD_FROM,CHILD_OLD_TO,ID_NAME">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,CODE,NAME,CONTRACT_TYPE_NAME,CONTRACT_TYPE,GENDER,SENIORITY,MONEY,START_DATE,END_DATE,IS_AUTO,CHILD_OLD_FROM,CHILD_OLD_TO,ID_NAME,TITLE_GROUP_ID">
                         <Columns>
                             <%--<tlk:GridClientSelectColumn uniquename="cbStatus" headertext="CheckBox" headerstyle-horizontalalign="center"
                         headerstyle-width="30px" itemstyle-horizontalalign="center">
@@ -178,10 +190,8 @@
             </tlk:RadPane>
         </tlk:RadSplitter>
     </tlk:RadPane>
-
-
 </tlk:RadSplitter>
-<common:ctrlmessagebox id="ctrlMessageBox" runat="server" />
+<Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 
@@ -241,35 +251,35 @@
                 // Nếu nhấn các nút khác thì resize default
                 ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
             }
-}
-function OnClientItemSelectedIndexChanging(sender, args) {
-    var item = args.get_item();
-    item.set_checked(!item.get_checked());
-    args.set_cancel(true);
-}
+        }
+        function OnClientItemSelectedIndexChanging(sender, args) {
+            var item = args.get_item();
+            item.set_checked(!item.get_checked());
+            args.set_cancel(true);
+        }
 
-function onRequestStart(sender, eventArgs) {
-    eventArgs.set_enableAjax(enableAjax);
-    enableAjax = true;
-}
-function OnClientSelectedIndexChanged(sender, eventArgs) {
-    var id = sender.get_id();
-    var cbo;
-    switch (id) {
-        case '<%= cboName.ClientID%>':
-            cbo = $find('<%= cboName.ClientID%>');
-            clearSelectRadcombo(cbo);
-            break;
-        default:
-            break;
-    }
-}
-function OnClientItemsRequesting(sender, eventArgs) {
-    var id = sender.get_id();
-    var cbo;
-    var value;
-    switch (id) {
-        case '<%= cboName.ClientID%>':
+        function onRequestStart(sender, eventArgs) {
+            eventArgs.set_enableAjax(enableAjax);
+            enableAjax = true;
+        }
+        function OnClientSelectedIndexChanged(sender, eventArgs) {
+            var id = sender.get_id();
+            var cbo;
+            switch (id) {
+                case '<%= cboName.ClientID%>':
+                    cbo = $find('<%= cboName.ClientID%>');
+                    clearSelectRadcombo(cbo);
+                    break;
+                default:
+                    break;
+            }
+        }
+        function OnClientItemsRequesting(sender, eventArgs) {
+            var id = sender.get_id();
+            var cbo;
+            var value;
+            switch (id) {
+                case '<%= cboName.ClientID%>':
                     cbo = $find('<%= cboName.ClientID%>');
                     value = cbo.get_value();
                     break;

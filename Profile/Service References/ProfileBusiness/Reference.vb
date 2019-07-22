@@ -18942,6 +18942,9 @@ Namespace ProfileBusiness
         Private GET_TITLEField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GET_TITLE_GROUPField As Boolean
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GET_TITLE_LEVELField As Boolean
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -19165,6 +19168,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TITLEField As System.Collections.Generic.List(Of ProfileBusiness.TitleDTO)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private LIST_TITLE_GROUPField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private LIST_TITLE_LEVELField As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
@@ -19961,6 +19967,19 @@ Namespace ProfileBusiness
                 If (Me.GET_TITLEField.Equals(value) <> true) Then
                     Me.GET_TITLEField = value
                     Me.RaisePropertyChanged("GET_TITLE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GET_TITLE_GROUP() As Boolean
+            Get
+                Return Me.GET_TITLE_GROUPField
+            End Get
+            Set
+                If (Me.GET_TITLE_GROUPField.Equals(value) <> true) Then
+                    Me.GET_TITLE_GROUPField = value
+                    Me.RaisePropertyChanged("GET_TITLE_GROUP")
                 End If
             End Set
         End Property
@@ -20936,6 +20955,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.LIST_TITLEField, value) <> true) Then
                     Me.LIST_TITLEField = value
                     Me.RaisePropertyChanged("LIST_TITLE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property LIST_TITLE_GROUP() As System.Collections.Generic.List(Of ProfileBusiness.OtherListDTO)
+            Get
+                Return Me.LIST_TITLE_GROUPField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.LIST_TITLE_GROUPField, value) <> true) Then
+                    Me.LIST_TITLE_GROUPField = value
+                    Me.RaisePropertyChanged("LIST_TITLE_GROUP")
                 End If
             End Set
         End Property
@@ -22864,6 +22896,12 @@ Namespace ProfileBusiness
         Private START_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_GROUP_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TITLE_GROUP_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private paramField As ProfileBusiness.ParamDTO
         
         <Global.System.ComponentModel.BrowsableAttribute(false)>  _
@@ -23171,6 +23209,32 @@ Namespace ProfileBusiness
                 If (Me.START_DATEField.Equals(value) <> true) Then
                     Me.START_DATEField = value
                     Me.RaisePropertyChanged("START_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_GROUP_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TITLE_GROUP_IDField
+            End Get
+            Set
+                If (Me.TITLE_GROUP_IDField.Equals(value) <> true) Then
+                    Me.TITLE_GROUP_IDField = value
+                    Me.RaisePropertyChanged("TITLE_GROUP_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TITLE_GROUP_NAME() As String
+            Get
+                Return Me.TITLE_GROUP_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.TITLE_GROUP_NAMEField, value) <> true) Then
+                    Me.TITLE_GROUP_NAMEField = value
+                    Me.RaisePropertyChanged("TITLE_GROUP_NAME")
                 End If
             End Set
         End Property

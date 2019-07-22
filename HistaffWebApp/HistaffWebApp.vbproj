@@ -565,6 +565,7 @@
     <Content Include="Modules\Profile\List\ctrlHU_Signer.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_TitleConcurrent.ascx" />
     <Content Include="Modules\Profile\List\ctrlHU_Ward.ascx" />
+    <Content Include="Modules\Profile\List\ctrlHU_WelfareList.ascx" />
     <Content Include="Modules\Profile\Report\ctrlHU_ReportList.ascx" />
     <Content Include="Modules\Profile\Setting\ctrlHU_WelfareList.ascx" />
     <Content Include="Modules\Profile\Setting\ctrlLocation.ascx" />

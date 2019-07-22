@@ -296,4 +296,8 @@
     Public Property GET_LEVEL_TRAIN As Boolean
     Public Property LIST_LEVEL_TRAIN As List(Of OtherListDTO)
 
+    'nhom chức danh
+    Public Property GET_TITLE_GROUP As Boolean
+    Public Property LIST_TITLE_GROUP As List(Of OtherListDTO)
+
 End Class

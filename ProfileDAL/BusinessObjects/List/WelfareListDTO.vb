@@ -23,4 +23,6 @@
     Public Property ORG_ID As Decimal?
     Public Property ID_NAME As Decimal?
     Public Property param As ParamDTO
+    Public Property TITLE_GROUP_ID As Decimal?
+    Public Property TITLE_GROUP_NAME As String
 End Class

@@ -43,6 +43,15 @@ Public Class ctrlHU_WelfareList
             ViewState(Me.ID & "_SelectOrgFunction") = value
         End Set
     End Property
+
+    Property WelfareLists As List(Of WelfareListDTO)
+        Get
+            Return ViewState(Me.ID & "_WelfareLists")
+        End Get
+        Set(ByVal value As List(Of WelfareListDTO))
+            ViewState(Me.ID & "_WelfareLists") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -211,7 +220,7 @@ Public Class ctrlHU_WelfareList
                     Return rep.GetWelfareList(_filter).ToTable()
                 End If
             Else
-                Dim WelfareLists As List(Of WelfareListDTO)
+                'Dim WelfareLists As List(Of WelfareListDTO)
                 If Sorts IsNot Nothing Then
                     WelfareLists = rep.GetWelfareList(_filter, rgWelfareList.CurrentPageIndex, rgWelfareList.PageSize, MaximumRows, Sorts)
                 Else
@@ -246,21 +255,21 @@ Public Class ctrlHU_WelfareList
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgWelfareList, False)
-                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM,
+                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
                     'txtCode.Text = rep.AutoGenCode("PL", "HU_WELFARE_LIST", "CODE")
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgWelfareList, True)
-                    EnableControlAll(False, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM,
+                    EnableControlAll(False, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     txtCode.ReadOnly = True
                 Case CommonMessage.STATE_EDIT
 
                     EnabledGridNotPostback(rgWelfareList, False)
-                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM,
+                    EnableControlAll(True, txtCode, cboName, nmSENIORITY, nmCHILD_OLD_FROM, cbGroupTitle,
                                      nmCHILD_OLD_TO, nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                      dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
 
@@ -342,7 +351,8 @@ Public Class ctrlHU_WelfareList
             dic.Add("IS_AUTO", chkIS_AUTO)
             dic.Add("START_DATE", dpSTART_DATE)
             dic.Add("END_DATE", dpEND_DATE)
-            dic.Add("ID_NAME", cboName)
+            'dic.Add("ID_NAME", cboName)
+            'dic.Add("TITLE_GROUP_ID", cbGroupTitle)
             'dic.Add("IS_AUTO", chkIS_AUTO)
             'dic.Add("CHILD_OLD_FROM", nmCHILD_OLD_FROM)
             'dic.Add("CHILD_OLD_TO", nmCHILD_OLD_TO)
@@ -368,10 +378,34 @@ Public Class ctrlHU_WelfareList
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            Dim dic As New Dictionary(Of String, Control)
-            GetDataCombo()
-            dic.Add("ID_NAME", cboName)
-            Utilities.OnClientRowSelectedChanged(rgWelfareList, dic)
+            'Dim dic As New Dictionary(Of String, Control)
+            'GetDataCombo()
+            'dic.Add("ID_NAME", cboName)
+            'dic.Add("TITLE_GROUP_ID", cbGroupTitle)
+            'Utilities.OnClientRowSelectedChanged(rgWelfareList, dic)
+            If rgWelfareList.SelectedItems.Count Then
+                Dim slItem As GridDataItem
+                slItem = rgWelfareList.SelectedItems(0)
+                If slItem.GetDataKeyValue("ID").ToString <> "" Then
+                    Dim item = (From p In WelfareLists Where p.ID = Decimal.Parse(slItem.GetDataKeyValue("ID").ToString) Select p).FirstOrDefault
+                    If item IsNot Nothing Then
+                        If item.TITLE_GROUP_ID IsNot Nothing Then
+                            cbGroupTitle.Text = item.TITLE_GROUP_NAME
+                            cbGroupTitle.SelectedValue = item.TITLE_GROUP_ID
+                        End If
+                        dpSTART_DATE.SelectedDate = item.START_DATE
+                        dpEND_DATE.SelectedDate = item.END_DATE
+                    End If
+                  
+                    Dim item2 = (From p In WelfareLists Where p.ID = Decimal.Parse(slItem.GetDataKeyValue("ID").ToString) Select p).FirstOrDefault
+                    If item2 IsNot Nothing Then
+                        If item2.ID_NAME IsNot Nothing Then
+                            cboName.Text = item2.NAME
+                            cboName.SelectedValue = item2.ID_NAME
+                        End If
+                    End If
+                End If
+            End If
             Dim startTime As DateTime = DateTime.UtcNow
             _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -444,7 +478,7 @@ Public Class ctrlHU_WelfareList
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
                     CurrentState = CommonMessage.STATE_NEW
-                    ClearControlValue(txtCode, cboName, nmSENIORITY,
+                    ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                     chkIS_AUTO.Checked = Nothing
@@ -543,6 +577,10 @@ Public Class ctrlHU_WelfareList
                         If cboName.SelectedValue <> "" Then
                             objWelfareList.ID_NAME = Decimal.Parse(cboName.SelectedValue)
                         End If
+                        If cbGroupTitle.SelectedValue <> "" Then
+                            objWelfareList.TITLE_GROUP_ID = cbGroupTitle.SelectedValue
+                        End If
+
                         If strGenderID.Count > 0 Then
                             objWelfareList.GENDER = strGenderID.Aggregate(Function(cur, [next]) cur & "," & [next])
                             objWelfareList.GENDER_NAME = strGenderName.Aggregate(Function(cur, [next]) cur & "," & [next])
@@ -575,7 +613,7 @@ Public Class ctrlHU_WelfareList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("InsertView")
                                     'SelectedItemDataGridByKey(rgWelfareList, gID)
-                                    ClearControlValue(txtCode, cboName, nmSENIORITY,
+                                    ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
                                        nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                        dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                                 Else
@@ -587,7 +625,7 @@ Public Class ctrlHU_WelfareList
                                     CurrentState = CommonMessage.STATE_NORMAL
                                     Refresh("UpdateView")
                                     'SelectedItemDataGridByKey(rgWelfareList, gID, , rgWelfareList.CurrentPageIndex)
-                                    ClearControlValue(txtCode, cboName, nmSENIORITY,
+                                    ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
                                 Else
@@ -602,7 +640,7 @@ Public Class ctrlHU_WelfareList
                     rgWelfareList.Rebind()
                 Case CommonMessage.TOOLBARITEM_CANCEL
                     CurrentState = CommonMessage.STATE_NORMAL
-                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmMONEY,
+                    ClearControlValue(txtCode, cboName, nmSENIORITY, nmMONEY, cbGroupTitle,
                                       lstbGender, lstCONTRACT_TYPE, dpSTART_DATE,
                                       dpEND_DATE, chkIS_AUTO)
                     chkIS_AUTO.Checked = Nothing
@@ -702,7 +740,7 @@ Public Class ctrlHU_WelfareList
                 UpdateControlState()
             End If
             rgWelfareList.Rebind()
-            ClearControlValue(txtCode, cboName, nmSENIORITY,
+            ClearControlValue(txtCode, cboName, nmSENIORITY, cbGroupTitle,
                                       nmMONEY, lstbGender, lstCONTRACT_TYPE,
                                       dpSTART_DATE, dpEND_DATE, chkIS_AUTO)
             chkIS_AUTO.Checked = Nothing
@@ -859,12 +897,15 @@ Public Class ctrlHU_WelfareList
             Dim startTime As DateTime = DateTime.UtcNow
             ListComboData.GET_GENDER = True
             ListComboData.GET_CONTRACTTYPE = True
+            ListComboData.GET_TITLE_GROUP = True
             rep.GetComboList(ListComboData)
             rep.Dispose()
             FillCheckBoxList(lstbGender, ListComboData.LIST_GENDER, "NAME_VN", "ID")
             FillCheckBoxList(lstCONTRACT_TYPE, ListComboData.LIST_CONTRACTTYPE, "NAME", "ID")
+            FillRadCombobox(cbGroupTitle, ListComboData.LIST_TITLE_GROUP, "NAME_VN", "ID", True)
             Dim dtData = rep.GetOtherList("WELFARE", False)
-            FillRadCombobox(cboName, dtData, "NAME", "ID", False)
+            FillRadCombobox(cboName, dtData, "NAME", "ID", True)
+            
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
