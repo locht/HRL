@@ -1514,6 +1514,7 @@ Partial Public Class InsuranceRepository
                         From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = s.LEVEL_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Where e.FULLNAME_VN.EndsWith(Fillter) Or e.FULLNAME_VN.StartsWith(Fillter) Or e.FULLNAME_VN.Contains(Fillter) Or e.FULLNAME_VN = Fillter Or Fillter = ""
+                        Order By e.EMPLOYEE_CODE Ascending, s.START_DATE Ascending
             Dim lst = query.Select(Function(f) New INS_SUN_CARE_DTO With {
                                        .ID = f.s.ID,
                                        .EMPLOYEE_ID = f.s.EMPLOYEE_ID,
@@ -1727,12 +1728,11 @@ Partial Public Class InsuranceRepository
     Public Function GetLevelImport() As DataTable
         Try
 
-            Dim query = From p In Context.INS_COST_FOLLOW_LEVER
-                        Where p.ACTFLG = "A" Order By p.COST_NAME
-            Dim lst = query.Select(Function(p) New INS_COST_FOLLOW_LEVERDTO With {
+            Dim query = From p In Context.OT_OTHER_LIST
+                        Where p.TYPE_CODE = "ORG_INS" Order By p.NAME_VN
+            Dim lst = query.Select(Function(p) New OT_OTHERLIST_DTO With {
                                        .ID = p.ID,
-                                       .COST_MONEY = p.COST_MONEY,
-                                       .COST_NAME = p.COST_NAME}).ToList
+                                       .NAME_VN = p.NAME_VN}).ToList
             Return lst.ToTable
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
