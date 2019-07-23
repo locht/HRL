@@ -2184,7 +2184,6 @@ Partial Public Class CommonRepository
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = userName)
                         From te In Context.HU_TERMINATE.Where(Function(f) p.ID = f.EMPLOYEE_ID).DefaultIfEmpty
 
-
             If _filter.MustHaveContract Then
                 query = query.Where(Function(f) f.p.JOIN_DATE.HasValue)
             End If
