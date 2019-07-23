@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3e39e75a-d79b-47e4-8f1a-75fb0ab5b18c")>
+<Assembly: EdmSchemaAttribute("ad3bddc4-ef9c-47a8-820b-1cfe89e390ff")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -54546,12 +54546,10 @@ Public Partial Class HU_WELFARE_MNG_EMP
     ''' <summary>
     ''' Create a new HU_WELFARE_MNG_EMP object.
     ''' </summary>
-    ''' <param name="wELFARE_ID">Initial value of the WELFARE_ID property.</param>
-    ''' <param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
-    Public Shared Function CreateHU_WELFARE_MNG_EMP(wELFARE_ID As Global.System.Decimal, eMPLOYEE_ID As Global.System.Decimal) As HU_WELFARE_MNG_EMP
+    ''' <param name="id">Initial value of the ID property.</param>
+    Public Shared Function CreateHU_WELFARE_MNG_EMP(id As Global.System.Decimal) As HU_WELFARE_MNG_EMP
         Dim hU_WELFARE_MNG_EMP as HU_WELFARE_MNG_EMP = New HU_WELFARE_MNG_EMP
-        hU_WELFARE_MNG_EMP.WELFARE_ID = wELFARE_ID
-        hU_WELFARE_MNG_EMP.EMPLOYEE_ID = eMPLOYEE_ID
+        hU_WELFARE_MNG_EMP.ID = id
         Return hU_WELFARE_MNG_EMP
     End Function
 
@@ -54562,25 +54560,23 @@ Public Partial Class HU_WELFARE_MNG_EMP
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property WELFARE_ID() As Global.System.Decimal
+    Public Property WELFARE_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _WELFARE_ID
         End Get
         Set
-            If (_WELFARE_ID <> Value) Then
-                OnWELFARE_IDChanging(value)
-                ReportPropertyChanging("WELFARE_ID")
-                _WELFARE_ID = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("WELFARE_ID")
-                OnWELFARE_IDChanged()
-            End If
+            OnWELFARE_IDChanging(value)
+            ReportPropertyChanging("WELFARE_ID")
+            _WELFARE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("WELFARE_ID")
+            OnWELFARE_IDChanged()
         End Set
     End Property
 
-    Private _WELFARE_ID As Global.System.Decimal
-    Private Partial Sub OnWELFARE_IDChanging(value As Global.System.Decimal)
+    Private _WELFARE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnWELFARE_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnWELFARE_IDChanged()
@@ -54589,25 +54585,23 @@ Public Partial Class HU_WELFARE_MNG_EMP
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property EMPLOYEE_ID() As Global.System.Decimal
+    Public Property EMPLOYEE_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _EMPLOYEE_ID
         End Get
         Set
-            If (_EMPLOYEE_ID <> Value) Then
-                OnEMPLOYEE_IDChanging(value)
-                ReportPropertyChanging("EMPLOYEE_ID")
-                _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("EMPLOYEE_ID")
-                OnEMPLOYEE_IDChanged()
-            End If
+            OnEMPLOYEE_IDChanging(value)
+            ReportPropertyChanging("EMPLOYEE_ID")
+            _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EMPLOYEE_ID")
+            OnEMPLOYEE_IDChanged()
         End Set
     End Property
 
-    Private _EMPLOYEE_ID As Global.System.Decimal
-    Private Partial Sub OnEMPLOYEE_IDChanging(value As Global.System.Decimal)
+    Private _EMPLOYEE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEMPLOYEE_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnEMPLOYEE_IDChanged()
@@ -54986,6 +54980,33 @@ Public Partial Class HU_WELFARE_MNG_EMP
     End Sub
 
     Private Partial Sub OnGROUP_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ID() As Global.System.Decimal
+        Get
+            Return _ID
+        End Get
+        Set
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _ID As Global.System.Decimal
+    Private Partial Sub OnIDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnIDChanged()
     End Sub
 
     #End Region
