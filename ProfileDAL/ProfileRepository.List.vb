@@ -5674,7 +5674,9 @@ Partial Class ProfileRepository
             If lstOrgID.Count > 0 And userNameID <> 1 Then
                 lst = lst.Where(Function(f) (lstOrgID.Contains(f.ORG_ID) Or f.ORG_ID = -1))
             End If
-            Return lst.ToList.ToTable()
+            Dim view As DataView = New DataView(lst.ToList.ToTable())
+            Dim dt As DataTable = view.ToTable(True, "ID", "SIGNER_CODE", "NAME", "TITLE_NAME", "ORG_NAME", "ACTFLG", "REMARK", "ORG_ID")
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try

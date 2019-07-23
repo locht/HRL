@@ -1907,7 +1907,7 @@
       <string>ORG_NAME</string>
     </Key>
     <Value>
-      <string>Tên đơn vị</string>
+      <string>Công ty</string>
     </Value>
   </Item>
   <Item>
@@ -39330,6 +39330,14 @@ Xin cám ơn!
     </Key>
     <Value>
       <string>Công ty</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ACTFLG</string>
+    </Key>
+    <Value>
+      <string>Trạng thái</string>
     </Value>
   </Item>
 </SerializableDictionaryOfStringString>
