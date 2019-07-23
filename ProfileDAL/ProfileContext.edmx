@@ -149,6 +149,7 @@
             <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.Store.HU_CERTIFICATE_EDIT" store:Type="Tables"  />
             <EntitySet Name="HU_SIGNER" EntityType="ProfileModel.Store.HU_SIGNER" store:Type="Tables"  />
             <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables"  />
+            <EntitySet Name="HU_WELFARE_MNG_EMP" EntityType="ProfileModel.Store.HU_WELFARE_MNG_EMP" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="ProfileModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_HUN_HUP" Association="ProfileModel.Store.FK_HU_NAT_HU_PRO">
                 <End Role="HU_NATION" EntitySet="HU_NATION" />
@@ -3614,6 +3615,29 @@
             <Property Name="USER_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="HU_WELFARE_MNG_EMP">
+            <Key>
+                <PropertyRef Name="WELFARE_ID" />
+                <PropertyRef Name="EMPLOYEE_ID" />
+            </Key>
+            <Property Name="WELFARE_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="TITLE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="GENDER_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CONTRACT_TYPE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SENIORITY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TOTAL_CHILD" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONEY_PL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="MONEY_TOTAL" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="GROUP_ID" Type="number" Nullable="true" Precision="38" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -4248,6 +4272,7 @@
           <EntitySet Name="HU_CERTIFICATE_EDIT" EntityType="ProfileModel.HU_CERTIFICATE_EDIT" />
           <EntitySet Name="HU_SIGNER" EntityType="ProfileModel.HU_SIGNER" />
           <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="ProfileModel.SE_USER_ORG_ACCESS" />
+          <EntitySet Name="HU_WELFARE_MNG_EMP" EntityType="ProfileModel.HU_WELFARE_MNG_EMP" />
         </EntityContainer>
         <EntityType Name="HU_PROVINCE">
           <Key>
@@ -7996,6 +8021,29 @@
           <Property Type="Decimal" Name="USER_ID" Nullable="true" />
           <Property Type="Decimal" Name="ORG_ID" Nullable="true" />
         </EntityType>
+        <EntityType Name="HU_WELFARE_MNG_EMP">
+          <Key>
+            <PropertyRef Name="WELFARE_ID" />
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Type="Decimal" Name="WELFARE_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TITLE_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ORG_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="GENDER_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CONTRACT_TYPE" Precision="38" Scale="0" />
+          <Property Type="String" Name="SENIORITY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="TOTAL_CHILD" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MONEY_PL" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MONEY_TOTAL" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="GROUP_ID" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11479,6 +11527,29 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="HU_WELFARE_MNG_EMP">
+            <EntityTypeMapping TypeName="IsTypeOf(ProfileModel.HU_WELFARE_MNG_EMP)">
+                <MappingFragment StoreEntitySet="HU_WELFARE_MNG_EMP">
+                    <ScalarProperty Name="WELFARE_ID" ColumnName="WELFARE_ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="TITLE_ID" ColumnName="TITLE_ID" />
+                    <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+                    <ScalarProperty Name="GENDER_ID" ColumnName="GENDER_ID" />
+                    <ScalarProperty Name="CONTRACT_TYPE" ColumnName="CONTRACT_TYPE" />
+                    <ScalarProperty Name="SENIORITY" ColumnName="SENIORITY" />
+                    <ScalarProperty Name="TOTAL_CHILD" ColumnName="TOTAL_CHILD" />
+                    <ScalarProperty Name="MONEY_PL" ColumnName="MONEY_PL" />
+                    <ScalarProperty Name="MONEY_TOTAL" ColumnName="MONEY_TOTAL" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                    <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="ProfileModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -11812,6 +11883,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="2.125" PointX="9.375" PointY="31.375" Height="6.4032194010416674" />
         <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="3.7109993489583335" />
         <EntityTypeShape EntityType="ProfileModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="33.5" PointY="7" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG_EMP" Width="1.5" PointX="7.375" PointY="26.25" Height="4.287903645833353" />
         </Diagram>
     </Diagrams>
   </Designer>

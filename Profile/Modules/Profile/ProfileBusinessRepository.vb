@@ -417,7 +417,16 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
-
+    Public Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetlistWelfareEMP(Id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
     Public Function ModifyWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO)) As Boolean
         Using rep As New ProfileBusinessClient
             Try

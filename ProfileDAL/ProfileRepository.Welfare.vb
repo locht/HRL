@@ -43,6 +43,7 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WELFARE_MNG
+                        From plst In Context.HU_WELFARE_LIST.Where(Function(f) f.ID = p.WELFARE_ID)
                         From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID)
                         From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID)
@@ -100,6 +101,7 @@ Partial Class ProfileRepository
                                        .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                        .EXPIRE_DATE = p.p.EXPIRE_DATE,
                                        .MONEY = p.p.MONEY,
+                                       .MONEY_PL = p.plst.MONEY,
                                        .ORG_ID = p.o.ID,
                                        .ORG_NAME = p.o.NAME_VN,
                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
@@ -119,9 +121,40 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
+        Try
+            Dim query = From p In Context.HU_WELFARE_MNG
+                        From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID).DefaultIfEmpty
+                        From cttype In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = ce.CONTRACT_TYPE).DefaultIfEmpty
+                      From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = ce.EMPLOYEE_ID).DefaultIfEmpty
+                      From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
+                      From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.GENDER_ID).DefaultIfEmpty
+                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = ce.ORG_ID)
+                      From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
+                      From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
+                      Where p.ID = Id
+                   Order By p.EMPLOYEE_ID
+
+            Dim lst = query.Select(Function(p) New Welfatemng_empDTO With {
+                                      .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                      .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                      .TITLE_NAME = p.t.NAME_VN,
+                                      .ORG_NAME = p.o.NAME_VN,
+                                      .TOTAL_CHILD = p.ce.TOTAL_CHILD,
+                                      .MONEY_TOTAL = p.ce.MONEY_TOTAL,
+                                      .MONEY_PL = p.ce.MONEY_PL,
+                                      .GENDER_NAME = p.gender.NAME_VN,
+                                      .CONTRACT_TYPE = p.ce.CONTRACT_TYPE,
+                                      .CONTRACT_NAME = p.cttype.NAME,
+                                      .SENIORITY = p.ce.SENIORITY
+                                      })
+            Return lst.ToList
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetWelfareMngById(ByVal Id As Integer
                                         ) As WelfareMngDTO
-
         Try
             Dim query = From p In Context.HU_WELFARE_MNG
                         From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID).DefaultIfEmpty

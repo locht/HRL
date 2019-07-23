@@ -527,6 +527,33 @@ Partial Public Class Site
     Protected WithEvents ltrNoneSalary As Global.System.Web.UI.WebControls.ListView
 
     '''<summary>
+    '''dExpiredCertificateRemind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dExpiredCertificateRemind As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lbExpiredCertificate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbExpiredCertificate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrExpiredCertificate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrExpiredCertificate As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
     '''LoginView1 control.
     '''</summary>
     '''<remarks>

@@ -310,6 +310,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 
 #Region "WelfareList"
+        <OperationContract()>
+        Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
 
         <OperationContract()>
         Function GetWelfareList(ByVal _filter As WelfareListDTO,

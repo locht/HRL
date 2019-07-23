@@ -2459,6 +2459,9 @@ Partial Public Class CommonRepository
             If _filter.CODE <> "" Then
                 lst = lst.Where(Function(p) p.CODE.ToUpper.Contains(_filter.CODE.ToUpper))
             End If
+            If _filter.ORG_ID_NAME <> "" Then
+                lst = lst.Where(Function(p) p.ORG_ID_NAME.ToUpper.Contains(_filter.ORG_ID_NAME.ToUpper))
+            End If
             If _filter.NAME_EN <> "" Then
                 lst = lst.Where(Function(p) p.NAME_EN.ToUpper.Contains(_filter.NAME_EN.ToUpper))
             End If
