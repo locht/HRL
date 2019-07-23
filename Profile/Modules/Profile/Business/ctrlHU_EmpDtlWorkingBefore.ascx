@@ -17,7 +17,8 @@
         <table class="table-form">
             <tr>
                 <td class="lb" style="width: 130px">
-                    <%# Translate("Tên công ty") %><span class="lbReq">*</span>
+                  <%--  <%# Translate("Tên công ty") %><span class="lbReq">*</span>--%>
+                  <asp:Label runat="server" ID="lbCompanyName" Text="Tên công ty"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtCompanyName">
@@ -26,8 +27,9 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập tên công ty %>" ToolTip="<%$ Translate: Bạn phải nhập tên công ty  %>">
                     </asp:RequiredFieldValidator>
                 </td>
-                <td class="lb" style="width: 150px">
-                    <%# Translate("Số điện thoại")%>
+                <td class="lb" style="width: 150px" >
+                   <%-- <%# ID="txt" Translate("Số điện thoại")%>--%>
+                        <asp:Label runat="server" ID="lbsdt" Text="Số điện thoại"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTelephone">
@@ -36,7 +38,8 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Địa chỉ công ty") %>
+                <%--    <%# Translate("Địa chỉ công ty") %>--%>
+                <asp:Label runat="server" ID="lbCompanyAddress" Text="Địa chỉ công ty"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtCompanyAddress" Width="100%">
@@ -45,14 +48,16 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Từ tháng/năm")%>
+                   <%-- <%# Translate("Từ tháng/năm")%>--%>
+                       <asp:Label runat="server" ID="lbJoinDate" Text="Từ tháng/năm"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdJoinDate" runat="server">
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                    <%# Translate("Đến tháng/năm")%>
+                  <%--  <%# Translate("Đến tháng/năm")%>--%>
+                    <asp:Label runat="server" ID="lbEndDate" Text="Đến tháng/năm"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadDatePicker ID="rdEndDate" runat="server">
@@ -64,7 +69,8 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Mức lương")%>
+                    <%--<%# Translate("Mức lương")%>--%>
+                      <asp:Label runat="server" ID="lbSalary" Text="Mức lương"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox runat="server" ID="txtSalary" MinValue="0" MaxLength="9" NumberFormat-DecimalDigits="0">
@@ -73,14 +79,16 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Chức danh")%>
+                 <%--   <%# Translate("Chức danh")%>--%>
+                   <asp:Label runat="server" ID="lbTitleName" Text="Chức danh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtTitleName">
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
-                    <%# Translate("Cấp bậc")%>
+                   <%-- <%# Translate("Cấp bậc")%>--%>
+                      <asp:Label runat="server" ID="lbLevelName" Text="Cấp bậc"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox runat="server" ID="txtLevelName">
@@ -89,7 +97,8 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%# Translate("Lý do nghỉ việc") %>
+                   <%-- <%# Translate("Lý do nghỉ việc") %>--%>
+                    <asp:Label runat="server" ID="lbTerReason" Text="Lý do nghỉ việc"></asp:Label>
                 </td>
                 <td colspan="3">
                     <tlk:RadTextBox runat="server" ID="txtTerReason" SkinID="Textbox1023" Width="100%">

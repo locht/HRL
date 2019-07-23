@@ -190,7 +190,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             Dim rep As New ProfileBusinessRepository
             Dim objEmployeeTrain As New HU_PRO_TRAIN_OUT_COMPANYDTO
             objEmployeeTrain.EMPLOYEE_ID = If(EmployeeInfo Is Nothing, Nothing, EmployeeInfo.ID)
-            Me.EmployeeTrain = rep.GetProcessTraining(objEmployeeTrain)   
+            Me.EmployeeTrain = rep.GetProcessTraining(objEmployeeTrain)
             rep.Dispose()
             rgEmployeeTrain.DataSource = Me.EmployeeTrain
         Catch ex As Exception
@@ -205,54 +205,54 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 Case CommonMessage.STATE_NEW
 
                     EnabledGridNotPostback(rgEmployeeTrain, False)
-                    If checkClickUpload <> 1 Then
-                        rdToiThang.SelectedDate = Nothing
-                        rdTuThang.SelectedDate = Nothing
-                        cboTrainingForm.SelectedValue = ""
-                        cboTrainingType.SelectedValue = ""
-                    End If
-                    rntGraduateYear.Text = ""
-                    txtRemark.Text = ""
-                    txtTrainingSchool.Text = ""
-                    txtRemark.Text = ""
-                    cboRemark.SelectedValue = ""
-                    txtChuyenNganh.Text = ""
-                    txtKetQua.Text = ""
-                    rdFrom.SelectedDate = Nothing
-                    rdTo.SelectedDate = Nothing
-                    rdReceiveDegree.SelectedDate = Nothing
-                    chkTerminate.Checked = False
+                    'If checkClickUpload <> 1 Then
+                    '    rdToiThang.SelectedDate = Nothing
+                    '    rdTuThang.SelectedDate = Nothing
+                    '    cboTrainingForm.SelectedValue = ""
+                    '    cboTrainingType.SelectedValue = ""
+                    'End If
+                    'rntGraduateYear.Text = ""
+                    'txtRemark.Text = ""
+                    'txtTrainingSchool.Text = ""
+                    'txtRemark.Text = ""
+                    'cboRemark.SelectedValue = ""
+                    'txtChuyenNganh.Text = ""
+                    'txtKetQua.Text = ""
+                    'rdFrom.SelectedDate = Nothing
+                    'rdTo.SelectedDate = Nothing
+                    'rdReceiveDegree.SelectedDate = Nothing
+                    'chkTerminate.Checked = False
                     EnableControlAll(True, rdToiThang, cboRemark, rdTuThang, rntGraduateYear, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, False)
                 Case CommonMessage.STATE_NORMAL
-                    Select Case checkCRUD
-                        'Insert
-                        Case 1
-                            rdToiThang.SelectedDate = Nothing
-                            rdTuThang.SelectedDate = Nothing
-                            'Edit
-                        Case 2
-                            'Save
-                        Case 3
-                            rdToiThang.SelectedDate = Nothing
-                            rdTuThang.SelectedDate = Nothing
-                            'Delete
-                        Case 4
-                            rdToiThang.SelectedDate = Nothing
-                            rdTuThang.SelectedDate = Nothing
-                    End Select
-                    rntGraduateYear.Text = ""
-                    txtRemark.Text = ""
-                    txtTrainingSchool.Text = ""
-                    cboTrainingForm.SelectedValue = ""
-                    cboRemark.SelectedValue = ""
-                    txtChuyenNganh.Text = ""
-                    txtKetQua.Text = ""
-                    rdFrom.SelectedDate = Nothing
-                    rdTo.SelectedDate = Nothing
-                    cboTrainingType.SelectedValue = ""
-                    rdReceiveDegree.SelectedDate = Nothing
-                    chkTerminate.Checked = False
+                    'Select Case checkCRUD
+                    '    'Insert
+                    '    Case 1
+                    '        rdToiThang.SelectedDate = Nothing
+                    '        rdTuThang.SelectedDate = Nothing
+                    '        'Edit
+                    '    Case 2
+                    '        'Save
+                    '    Case 3
+                    '        rdToiThang.SelectedDate = Nothing
+                    '        rdTuThang.SelectedDate = Nothing
+                    '        'Delete
+                    '    Case 4
+                    '        rdToiThang.SelectedDate = Nothing
+                    '        rdTuThang.SelectedDate = Nothing
+                    'End Select
+                    'rntGraduateYear.Text = ""
+                    'txtRemark.Text = ""
+                    'txtTrainingSchool.Text = ""
+                    'cboTrainingForm.SelectedValue = ""
+                    'cboRemark.SelectedValue = ""
+                    'txtChuyenNganh.Text = ""
+                    'txtKetQua.Text = ""
+                    'rdFrom.SelectedDate = Nothing
+                    'rdTo.SelectedDate = Nothing
+                    'cboTrainingType.SelectedValue = ""
+                    'rdReceiveDegree.SelectedDate = Nothing
+                    'chkTerminate.Checked = False
                     EnabledGridNotPostback(rgEmployeeTrain, True)
                     EnableControlAll(False, rdTuThang, cboRemark, rdToiThang, rntGraduateYear, rdFrom, rdTo, txtRemark, cboTrainingForm, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, True)
@@ -260,6 +260,12 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     EnabledGridNotPostback(rgEmployeeTrain, False)
                     EnableControlAll(True, rdTuThang, rdToiThang, rntGraduateYear, txtRemark, cboTrainingForm, cboRemark, txtChuyenNganh, txtKetQua, txtTrainingSchool, cboTrainingType, rdReceiveDegree, chkTerminate)
                     EnabledGrid(rgEmployeeTrain, False)
+                    If cboRemark.SelectedValue = 7086 Then
+                        EnableControlAll(True, rdFrom, rdTo)
+                        RequiredFieldValidator3.Visible = True
+                        CompareValidator1.Visible = True
+                        RequiredFieldValidator4.Visible = True
+                    End If
                 Case CommonMessage.STATE_DELETE
                     Dim rep As New ProfileBusinessRepository
                     Dim lstDeletes As New List(Of Decimal)
@@ -328,7 +334,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             '    cbo = profileBusiness.GetCertificateType()
             '    FillDropDownList(cboRemark, cbo, "NAME_VN", "ID")
             'End Using
-            
+
             rep.Dispose()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -347,6 +353,9 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
         Try
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_CREATE
+                    ClearControlValue(rdToiThang, rdTuThang, cboTrainingForm, cboTrainingType, rntGraduateYear, txtRemark, txtTrainingSchool,
+                                    cboRemark, txtChuyenNganh, txtKetQua, rdFrom, rdTo, rdReceiveDegree)
+                    chkTerminate.Checked = False
                     checkCRUD = 1
                     If EmployeeInfo.WORK_STATUS Is Nothing Or
                         (EmployeeInfo.WORK_STATUS IsNot Nothing AndAlso
@@ -408,6 +417,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                     checkCRUD = 3
                     If Page.IsValid Then
                         Dim rep As New ProfileBusinessRepository
+                        'EnableControlAll(False, rdFrom, rdTo)
                         objTrain.EMPLOYEE_ID = EmployeeInfo.ID
                         objTrain.FROM_DATE = rdTuThang.SelectedDate
                         objTrain.TO_DATE = rdToiThang.SelectedDate
@@ -483,6 +493,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                         End Select
                     Else
                         ExcuteScript("Resize", "ResizeSplitter()")
+
                     End If
 
                 Case CommonMessage.TOOLBARITEM_CANCEL
@@ -793,7 +804,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
 #End Region
 
     Protected Sub rgData_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles rgEmployeeTrain.SelectedIndexChanged
-        Dim dataItem = TryCast(rgEmployeeTrain.SelectedItems(0), GridDataItem)
+        Dim dataItem = CType(rgEmployeeTrain.SelectedItems(0), GridDataItem)
         If dataItem IsNot Nothing Then
             rdTuThang.SelectedDate = dataItem.GetDataKeyValue("FROM_DATE")
             rdToiThang.SelectedDate = dataItem.GetDataKeyValue("TO_DATE")
@@ -810,6 +821,7 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
             txtRemindLink.Text = dataItem.GetDataKeyValue("UPLOAD_FILE")
             txtRemark.Text = dataItem.GetDataKeyValue("FILE_NAME")
             chkTerminate.Checked = dataItem.GetDataKeyValue("IS_RENEWED")
+            EnableControlAll(False, rdFrom, rdTo)
         End If
     End Sub
     ' ''' Phương thức xử lý việc load dữ liệu cho các combobox
@@ -830,15 +842,13 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
     '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
     '    End Try
     'End Sub
-
-
     Protected Sub cboRemark_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboRemark.SelectedIndexChanged
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         rdFrom.SelectedDate = Nothing
         rdTo.SelectedDate = Nothing
         Try
-            If cboRemark.SelectedItem.ToString = "Chứng chỉ" Then
+            If cboRemark.SelectedItem.Text = "Chứng chỉ" Then
                 EnableControlAll(True, rdFrom, rdTo)
                 RequiredFieldValidator3.Visible = True
                 CompareValidator1.Visible = True
@@ -851,16 +861,14 @@ Public Class ctrlHU_EmpDtlTrainingOutCompany
                 rdFrom.ClearValue()
                 rdTo.ClearValue()
             End If
-            If cboRemark.SelectedValue = 7086 Then
-                EnableControlAll(True, rdFrom, rdTo)
-                RequiredFieldValidator3.Visible = True
-                CompareValidator1.Visible = True
-                RequiredFieldValidator4.Visible = True
-            End If
 
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
+    End Sub
+
+    Private Sub rdFrom_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdFrom.SelectedDateChanged
+        cboRemark.SelectedValue = 7086
     End Sub
 End Class
