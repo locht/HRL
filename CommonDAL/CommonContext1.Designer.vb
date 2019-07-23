@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("13661758-6c7f-492c-8939-912af1f893e2")>
+<Assembly: EdmSchemaAttribute("56f535ed-a54b-4f55-a36a-cb83a20d1225")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -1872,21 +1872,21 @@ Public Partial Class HU_EMPLOYEE
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ITIME_ID() As Nullable(Of Global.System.Decimal)
+    Public Property ITIME_ID() As Global.System.String
         Get
             Return _ITIME_ID
         End Get
         Set
             OnITIME_IDChanging(value)
             ReportPropertyChanging("ITIME_ID")
-            _ITIME_ID = StructuralObject.SetValidValue(value)
+            _ITIME_ID = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("ITIME_ID")
             OnITIME_IDChanged()
         End Set
     End Property
 
-    Private _ITIME_ID As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnITIME_IDChanging(value As Nullable(Of Global.System.Decimal))
+    Private _ITIME_ID As Global.System.String
+    Private Partial Sub OnITIME_IDChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnITIME_IDChanged()
@@ -3018,21 +3018,21 @@ Public Partial Class HU_EMPLOYEE_CV
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ID_PLACE() As Global.System.String
+    Public Property ID_PLACE() As Nullable(Of Global.System.Decimal)
         Get
             Return _ID_PLACE
         End Get
         Set
             OnID_PLACEChanging(value)
             ReportPropertyChanging("ID_PLACE")
-            _ID_PLACE = StructuralObject.SetValidValue(value, true)
+            _ID_PLACE = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("ID_PLACE")
             OnID_PLACEChanged()
         End Set
     End Property
 
-    Private _ID_PLACE As Global.System.String
-    Private Partial Sub OnID_PLACEChanging(value As Global.System.String)
+    Private _ID_PLACE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnID_PLACEChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnID_PLACEChanged()
@@ -3383,7 +3383,6 @@ Public Partial Class HU_ORGANIZATION
     ''' <param name="id">Initial value of the ID property.</param>
     ''' <param name="cODE">Initial value of the CODE property.</param>
     ''' <param name="nAME_VN">Initial value of the NAME_VN property.</param>
-    ''' <param name="fOUNDATION_DATE">Initial value of the FOUNDATION_DATE property.</param>
     ''' <param name="cREATED_DATE">Initial value of the CREATED_DATE property.</param>
     ''' <param name="cREATED_BY">Initial value of the CREATED_BY property.</param>
     ''' <param name="cREATED_LOG">Initial value of the CREATED_LOG property.</param>
@@ -3391,12 +3390,11 @@ Public Partial Class HU_ORGANIZATION
     ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
     ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
     ''' <param name="rEPRESENTATIVE_ID">Initial value of the REPRESENTATIVE_ID property.</param>
-    Public Shared Function CreateHU_ORGANIZATION(id As Global.System.Decimal, cODE As Global.System.String, nAME_VN As Global.System.String, fOUNDATION_DATE As Global.System.DateTime, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, rEPRESENTATIVE_ID As Global.System.Decimal) As HU_ORGANIZATION
+    Public Shared Function CreateHU_ORGANIZATION(id As Global.System.Decimal, cODE As Global.System.String, nAME_VN As Global.System.String, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, rEPRESENTATIVE_ID As Global.System.Decimal) As HU_ORGANIZATION
         Dim hU_ORGANIZATION as HU_ORGANIZATION = New HU_ORGANIZATION
         hU_ORGANIZATION.ID = id
         hU_ORGANIZATION.CODE = cODE
         hU_ORGANIZATION.NAME_VN = nAME_VN
-        hU_ORGANIZATION.FOUNDATION_DATE = fOUNDATION_DATE
         hU_ORGANIZATION.CREATED_DATE = cREATED_DATE
         hU_ORGANIZATION.CREATED_BY = cREATED_BY
         hU_ORGANIZATION.CREATED_LOG = cREATED_LOG
@@ -3566,9 +3564,9 @@ Public Partial Class HU_ORGANIZATION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property FOUNDATION_DATE() As Global.System.DateTime
+    Public Property FOUNDATION_DATE() As Nullable(Of Global.System.DateTime)
         Get
             Return _FOUNDATION_DATE
         End Get
@@ -3581,8 +3579,8 @@ Public Partial Class HU_ORGANIZATION
         End Set
     End Property
 
-    Private _FOUNDATION_DATE As Global.System.DateTime
-    Private Partial Sub OnFOUNDATION_DATEChanging(value As Global.System.DateTime)
+    Private _FOUNDATION_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnFOUNDATION_DATEChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnFOUNDATION_DATEChanged()
@@ -4027,12 +4025,10 @@ Public Partial Class HU_SIGNER
     ''' Create a new HU_SIGNER object.
     ''' </summary>
     ''' <param name="id">Initial value of the ID property.</param>
-    ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
     ''' <param name="sIGNER_CODE">Initial value of the SIGNER_CODE property.</param>
-    Public Shared Function CreateHU_SIGNER(id As Global.System.Decimal, mODIFIED_LOG As Global.System.String, sIGNER_CODE As Global.System.String) As HU_SIGNER
+    Public Shared Function CreateHU_SIGNER(id As Global.System.Decimal, sIGNER_CODE As Global.System.String) As HU_SIGNER
         Dim hU_SIGNER as HU_SIGNER = New HU_SIGNER
         hU_SIGNER.ID = id
-        hU_SIGNER.MODIFIED_LOG = mODIFIED_LOG
         hU_SIGNER.SIGNER_CODE = sIGNER_CODE
         Return hU_SIGNER
     End Function
@@ -4098,24 +4094,24 @@ Public Partial Class HU_SIGNER
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property LEVEL() As Global.System.String
+    Public Property LEVEL_NAME() As Global.System.String
         Get
-            Return _LEVEL
+            Return _LEVEL_NAME
         End Get
         Set
-            OnLEVELChanging(value)
-            ReportPropertyChanging("LEVEL")
-            _LEVEL = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("LEVEL")
-            OnLEVELChanged()
+            OnLEVEL_NAMEChanging(value)
+            ReportPropertyChanging("LEVEL_NAME")
+            _LEVEL_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("LEVEL_NAME")
+            OnLEVEL_NAMEChanged()
         End Set
     End Property
 
-    Private _LEVEL As Global.System.String
-    Private Partial Sub OnLEVELChanging(value As Global.System.String)
+    Private _LEVEL_NAME As Global.System.String
+    Private Partial Sub OnLEVEL_NAMEChanging(value As Global.System.String)
     End Sub
 
-    Private Partial Sub OnLEVELChanged()
+    Private Partial Sub OnLEVEL_NAMEChanged()
     End Sub
 
     ''' <summary>
@@ -4148,21 +4144,21 @@ Public Partial Class HU_SIGNER
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property REMARK() As Nullable(Of Global.System.DateTime)
+    Public Property REMARK() As Global.System.String
         Get
             Return _REMARK
         End Get
         Set
             OnREMARKChanging(value)
             ReportPropertyChanging("REMARK")
-            _REMARK = StructuralObject.SetValidValue(value)
+            _REMARK = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("REMARK")
             OnREMARKChanged()
         End Set
     End Property
 
-    Private _REMARK As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnREMARKChanging(value As Nullable(Of Global.System.DateTime))
+    Private _REMARK As Global.System.String
+    Private Partial Sub OnREMARKChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnREMARKChanged()
@@ -4223,21 +4219,21 @@ Public Partial Class HU_SIGNER
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CREATED_BY() As Nullable(Of Global.System.DateTime)
+    Public Property CREATED_BY() As Global.System.String
         Get
             Return _CREATED_BY
         End Get
         Set
             OnCREATED_BYChanging(value)
             ReportPropertyChanging("CREATED_BY")
-            _CREATED_BY = StructuralObject.SetValidValue(value)
+            _CREATED_BY = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CREATED_BY")
             OnCREATED_BYChanged()
         End Set
     End Property
 
-    Private _CREATED_BY As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnCREATED_BYChanging(value As Nullable(Of Global.System.DateTime))
+    Private _CREATED_BY As Global.System.String
+    Private Partial Sub OnCREATED_BYChanging(value As Global.System.String)
     End Sub
 
     Private Partial Sub OnCREATED_BYChanged()
@@ -4321,7 +4317,7 @@ Public Partial Class HU_SIGNER
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property MODIFIED_LOG() As Global.System.String
         Get
@@ -4330,7 +4326,7 @@ Public Partial Class HU_SIGNER
         Set
             OnMODIFIED_LOGChanging(value)
             ReportPropertyChanging("MODIFIED_LOG")
-            _MODIFIED_LOG = StructuralObject.SetValidValue(value, false)
+            _MODIFIED_LOG = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("MODIFIED_LOG")
             OnMODIFIED_LOGChanged()
         End Set
@@ -4366,6 +4362,31 @@ Public Partial Class HU_SIGNER
     End Sub
 
     Private Partial Sub OnSIGNER_CODEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
     End Sub
 
     #End Region
@@ -5827,10 +5848,8 @@ Public Partial Class HU_TITLE
     ''' <param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
     ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
     ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
-    ''' <param name="cODE">Initial value of the CODE property.</param>
     ''' <param name="nAME_VN">Initial value of the NAME_VN property.</param>
-    ''' <param name="tITLE_GROUP_ID">Initial value of the TITLE_GROUP_ID property.</param>
-    Public Shared Function CreateHU_TITLE(id As Global.System.Decimal, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, cODE As Global.System.String, nAME_VN As Global.System.String, tITLE_GROUP_ID As Global.System.Decimal) As HU_TITLE
+    Public Shared Function CreateHU_TITLE(id As Global.System.Decimal, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, nAME_VN As Global.System.String) As HU_TITLE
         Dim hU_TITLE as HU_TITLE = New HU_TITLE
         hU_TITLE.ID = id
         hU_TITLE.CREATED_DATE = cREATED_DATE
@@ -5839,9 +5858,7 @@ Public Partial Class HU_TITLE
         hU_TITLE.MODIFIED_DATE = mODIFIED_DATE
         hU_TITLE.MODIFIED_BY = mODIFIED_BY
         hU_TITLE.MODIFIED_LOG = mODIFIED_LOG
-        hU_TITLE.CODE = cODE
         hU_TITLE.NAME_VN = nAME_VN
-        hU_TITLE.TITLE_GROUP_ID = tITLE_GROUP_ID
         Return hU_TITLE
     End Function
 
@@ -6054,7 +6071,7 @@ Public Partial Class HU_TITLE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
     Public Property CODE() As Global.System.String
         Get
@@ -6063,7 +6080,7 @@ Public Partial Class HU_TITLE
         Set
             OnCODEChanging(value)
             ReportPropertyChanging("CODE")
-            _CODE = StructuralObject.SetValidValue(value, false)
+            _CODE = StructuralObject.SetValidValue(value, true)
             ReportPropertyChanged("CODE")
             OnCODEChanged()
         End Set
@@ -6154,9 +6171,9 @@ Public Partial Class HU_TITLE
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property TITLE_GROUP_ID() As Global.System.Decimal
+    Public Property TITLE_GROUP_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _TITLE_GROUP_ID
         End Get
@@ -6169,8 +6186,8 @@ Public Partial Class HU_TITLE
         End Set
     End Property
 
-    Private _TITLE_GROUP_ID As Global.System.Decimal
-    Private Partial Sub OnTITLE_GROUP_IDChanging(value As Global.System.Decimal)
+    Private _TITLE_GROUP_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTITLE_GROUP_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnTITLE_GROUP_IDChanged()

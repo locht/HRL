@@ -2162,6 +2162,7 @@ Partial Public Class CommonRepository
 
         Try
             Dim userName As String
+            Dim common As String = "Dùng chung"
             Using cls As New DataAccess.QueryData
                 userName = log.Username
                 If _filter.LoadAllOrganization Then
@@ -2173,11 +2174,10 @@ Partial Public Class CommonRepository
                                            .P_ISDISSOLVE = _param.IS_DISSOLVE})
             End Using
 
-
             Dim query = From sign In Context.HU_SIGNER.Where(Function(f) f.ACTFLG = 1)
                         From p In Context.HU_EMPLOYEE.Where(Function(f) f.EMPLOYEE_CODE = sign.SIGNER_CODE).DefaultIfEmpty
                         From cv In Context.HU_EMPLOYEE_CV.Where(Function(f) f.EMPLOYEE_ID = p.ID).DefaultIfEmpty
-                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
+                        From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = sign.ORG_ID).DefaultIfEmpty
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
                         From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = cv.GENDER And f.TYPE_ID = 34).DefaultIfEmpty
                         From work_status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.WORK_STATUS And f.TYPE_ID = 59).DefaultIfEmpty
@@ -2207,7 +2207,7 @@ Partial Public Class CommonRepository
                             .EMPLOYEE_ID = f.p.ID,
                             .FULLNAME_VN = f.p.FULLNAME_VN,
                             .JOIN_DATE = f.p.JOIN_DATE,
-                            .ORG_NAME = f.o.NAME_VN,
+                            .ORG_NAME = If(f.sign.ORG_ID = -1, common, f.o.NAME_VN),
                             .ORG_DESC = f.o.DESCRIPTION_PATH,
                             .GENDER = f.gender.NAME_VN,
                             .TITLE_NAME = f.t.NAME_VN})
