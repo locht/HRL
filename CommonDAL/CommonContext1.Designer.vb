@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("56f535ed-a54b-4f55-a36a-cb83a20d1225")>
+<Assembly: EdmSchemaAttribute("06e2814c-e1f4-4cf3-b9a6-2d3309f96988")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("CommonModel", "SE_GRP_SE_USR", "SE_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_GROUP), "SE_USER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_USER))>
 <Assembly: EdmRelationshipAttribute("CommonModel", "FK_SM_SF", "SE_MODULE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(SE_MODULE), "SE_FUNCTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(SE_FUNCTION), True)>
@@ -3389,8 +3389,7 @@ Public Partial Class HU_ORGANIZATION
     ''' <param name="mODIFIED_DATE">Initial value of the MODIFIED_DATE property.</param>
     ''' <param name="mODIFIED_BY">Initial value of the MODIFIED_BY property.</param>
     ''' <param name="mODIFIED_LOG">Initial value of the MODIFIED_LOG property.</param>
-    ''' <param name="rEPRESENTATIVE_ID">Initial value of the REPRESENTATIVE_ID property.</param>
-    Public Shared Function CreateHU_ORGANIZATION(id As Global.System.Decimal, cODE As Global.System.String, nAME_VN As Global.System.String, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String, rEPRESENTATIVE_ID As Global.System.Decimal) As HU_ORGANIZATION
+    Public Shared Function CreateHU_ORGANIZATION(id As Global.System.Decimal, cODE As Global.System.String, nAME_VN As Global.System.String, cREATED_DATE As Global.System.DateTime, cREATED_BY As Global.System.String, cREATED_LOG As Global.System.String, mODIFIED_DATE As Global.System.DateTime, mODIFIED_BY As Global.System.String, mODIFIED_LOG As Global.System.String) As HU_ORGANIZATION
         Dim hU_ORGANIZATION as HU_ORGANIZATION = New HU_ORGANIZATION
         hU_ORGANIZATION.ID = id
         hU_ORGANIZATION.CODE = cODE
@@ -3401,7 +3400,6 @@ Public Partial Class HU_ORGANIZATION
         hU_ORGANIZATION.MODIFIED_DATE = mODIFIED_DATE
         hU_ORGANIZATION.MODIFIED_BY = mODIFIED_BY
         hU_ORGANIZATION.MODIFIED_LOG = mODIFIED_LOG
-        hU_ORGANIZATION.REPRESENTATIVE_ID = rEPRESENTATIVE_ID
         Return hU_ORGANIZATION
     End Function
 
@@ -3889,9 +3887,9 @@ Public Partial Class HU_ORGANIZATION
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property REPRESENTATIVE_ID() As Global.System.Decimal
+    Public Property REPRESENTATIVE_ID() As Nullable(Of Global.System.Decimal)
         Get
             Return _REPRESENTATIVE_ID
         End Get
@@ -3904,8 +3902,8 @@ Public Partial Class HU_ORGANIZATION
         End Set
     End Property
 
-    Private _REPRESENTATIVE_ID As Global.System.Decimal
-    Private Partial Sub OnREPRESENTATIVE_IDChanging(value As Global.System.Decimal)
+    Private _REPRESENTATIVE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnREPRESENTATIVE_IDChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnREPRESENTATIVE_IDChanged()

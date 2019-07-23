@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 23/07/2019 11:29:40 AM
+-- Date Created: 23/07/2019 11:52:45 AM
 -- Generated from EDMX file: E:\TNG-New\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
@@ -293,7 +293,7 @@ CREATE TABLE "dbo"."HU_ORGANIZATION" (
    "MODIFIED_LOG" NVARCHAR2(255) NOT NULL,
    "ADDRESS" NVARCHAR2(1023) NULL,
    "FAX" NVARCHAR2(255) NULL,
-   "REPRESENTATIVE_ID" NUMBER(38,0) NOT NULL,
+   "REPRESENTATIVE_ID" NUMBER(38,0) NULL,
    "ORD_NO" NUMBER(38,0) NULL
 );
 

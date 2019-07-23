@@ -290,7 +290,7 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="false" MaxLength="255" />
             <Property Name="ADDRESS" Type="nvarchar2" Nullable="true" MaxLength="1023" />
             <Property Name="FAX" Type="nvarchar2" Nullable="true" MaxLength="255" />
-            <Property Name="REPRESENTATIVE_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="REPRESENTATIVE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="ORD_NO" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="SE_FUNCTION_GROUP">
@@ -1357,7 +1357,7 @@
           <Property Type="String" Name="MODIFIED_LOG" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="1023" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="FAX" Nullable="true" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="REPRESENTATIVE_ID" Nullable="false" />
+          <Property Type="Decimal" Name="REPRESENTATIVE_ID" Nullable="true" />
           <Property Type="Decimal" Name="ORD_NO" Nullable="true" />
         </EntityType>
         <Association Name="FK_HU_ORG_HU_ORG">
