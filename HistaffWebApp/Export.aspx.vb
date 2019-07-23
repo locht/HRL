@@ -45,6 +45,8 @@ Public Class Export
                         Template_ImportDMVS_error()
                     Case "Template_ImportOT_error"
                         Template_ImportOT_error()
+                    Case "Template_GiaiTrinhNgayCong_error"
+                        Template_GiaiTrinhNgayCong_error()
                     Case "Template_DeclareOT_error"
                         Template_DeclareOT_error()
                     Case "Template_ImportSalary"
@@ -760,7 +762,17 @@ Public Class Export
             Throw ex
         End Try
     End Sub
-
+    'Template_GiaiTrinhNgayCong_error
+    Private Sub Template_GiaiTrinhNgayCong_error()
+        Try
+            Dim dtData = Session("EXPORTREPORT")
+            ExportTemplate("Attendance\Import\Template_GiaiTrinhNgayCong_error.xlsx", _
+                                      dtData, Nothing, _
+                                      "Template_GiaiTrinhNgayCong_error" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Private Sub Template_ImportSalary()
         Try
             Dim dtColName = Session("IMPORTSALARY_COLNAME")

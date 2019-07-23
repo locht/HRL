@@ -516,7 +516,6 @@ Public Class ctrlTimeTimesheet_machine
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
-
         Dim fileName As String
         Dim dsDataPrepare As New DataSet
         Dim workbook As Aspose.Cells.Workbook
@@ -559,13 +558,36 @@ Public Class ctrlTimeTimesheet_machine
             Next
             If loadToGrid(dtDataHeader) = False Then
             Else
-                'If saveGrid() Then
-                '    Refresh("InsertView")
-                '    CurrentState = CommonMessage.STATE_NORMAL
-                '    UpdateControlState()
-                'Else
-                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                'End If
+                Dim lstobjUdp As New List(Of AT_TIME_TIMESHEET_MACHINETDTO)
+                Dim objUdp As AT_TIME_TIMESHEET_MACHINETDTO
+                For Each row As DataRow In dtData.Rows
+                    objUdp = New AT_TIME_TIMESHEET_MACHINETDTO
+                    objUdp.EMPLOYEE_CODE = row("EMPLOYEE_CODE")
+                    Dim working_day As Date
+                    Dim strdate = row("WORKINGDAY").ToString.Split("/")
+                    Dim strDateTimeIn = row("TIMEIN_REALITY").ToString().Split(":")
+                    Dim strDateTimeOut = row("TIMEOUT_REALITY").ToString().Split(":")
+                    If strdate.Length <> 3 Then Continue For
+                    working_day = New Date(CDec(strdate(2)), CDec(strdate(1)), CDec(strdate(0)))
+                    objUdp.WORKINGDAY = working_day
+                    If strDateTimeIn.Length = 2 Then
+                        objUdp.TIMEIN_REALITY = New Date(CDec(strdate(2)), CDec(strdate(1)), CDec(strdate(0)), CDec(strDateTimeIn(0)), CDec(strDateTimeIn(1)), 0)
+                    End If
+                    If strDateTimeOut.Length = 2 Then
+                        objUdp.TIMEOUT_REALITY = New Date(CDec(strdate(2)), CDec(strdate(1)), CDec(strdate(0)), CDec(strDateTimeOut(0)), CDec(strDateTimeOut(1)), 0)
+                    End If
+                    objUdp.NOTE = row("NOTE")
+                    lstobjUdp.Add(objUdp)
+                Next
+                Using rep As New AttendanceRepository
+                    If rep.Upd_TimeTImesheetMachines(lstobjUdp) Then
+                        Refresh("InsertView")
+                        CurrentState = CommonMessage.STATE_NORMAL
+                        UpdateControlState()
+                    Else
+                        ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                    End If
+                End Using
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                          CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -623,7 +645,7 @@ Public Class ctrlTimeTimesheet_machine
                 dsData.Tables.Add(dtError)
                 dsData.Tables.Add(dtDataHeader)
                 Session("EXPORTREPORT") = dsData
-                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportShift_error')", True)
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_GiaiTrinhNgayCong_error')", True)
                 ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
                 Return False
             End If

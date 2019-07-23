@@ -1422,6 +1422,8 @@
     <Content Include="Styles\about.css" />
     <Content Include="Styles\Config.jquery.css" />
     <Content Include="ReportTemplates\Insurance\Business\InsMaternityMng.xlsx" />
+    <Content Include="ReportTemplates\Attendance\Import\Template_GiaiTrinhNgayCong.xlsx" />
+    <Content Include="ReportTemplates\Attendance\Import\Template_GiaiTrinhNgayCong_error.xlsx" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />

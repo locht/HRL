@@ -405,6 +405,24 @@ Partial Public Class AttendanceRepository
 #End Region
 
 #Region "Cham cong may"
+    Public Function Upd_TimeTImesheetMachines(ByVal lstObj As List(Of AT_TIME_TIMESHEET_MACHINETDTO), Optional ByVal log As UserLog = Nothing) As Boolean
+        Try
+            For Each obj In lstObj
+                Dim emp_id = (From e In Context.HU_EMPLOYEE Where e.EMPLOYEE_CODE = obj.EMPLOYEE_CODE Select e.ID).FirstOrDefault
+                Dim LstobjData = (From p In Context.AT_TIME_TIMESHEET_MACHINET Where p.EMPLOYEE_ID = emp_id And p.WORKINGDAY = obj.WORKINGDAY Select p)
+                If LstobjData Is Nothing Then Continue For
+                For Each objdata In LstobjData
+                    objdata.TIMEIN_REALITY = obj.TIMEIN_REALITY
+                    objdata.TIMEOUT_REALITY = obj.TIMEOUT_REALITY
+                    objdata.NOTE = obj.NOTE
+                Next
+            Next
+            Context.SaveChanges(log)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
     Public Function Init_TimeTImesheetMachines(ByVal _param As ParamDTO,
                                                ByVal log As UserLog,
                                                ByVal p_fromdate As Date,

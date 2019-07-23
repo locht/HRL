@@ -35,6 +35,8 @@ Namespace AttendanceBusiness.ServiceContracts
                                      Optional ByVal PageIndex As Integer = 0,
                                      Optional ByVal PageSize As Integer = Integer.MaxValue,
                                      Optional ByVal Sorts As String = "CREATED_DATE desc", Optional ByVal log As UserLog = Nothing) As List(Of AT_PORTAL_REG_DTO)
+        <OperationContract()>
+        Function Upd_TimeTImesheetMachines(ByVal LstObj As List(Of AT_TIME_TIMESHEET_MACHINETDTO), Optional ByVal log As UserLog = Nothing) As Boolean
 #Region "CONFIG TEMPLATE"
         <OperationContract()>
         Function GET_CONFIG_TEMPLATE(ByVal MACHINE_TYPE As Decimal?) As DataSet

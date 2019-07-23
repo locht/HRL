@@ -5,7 +5,15 @@ Imports Common.CommonBusiness
 Partial Class AttendanceRepository
 
 #Region "Truonghq - Business"
-
+    Function Upd_TimeTImesheetMachines(ByVal lstObj As List(Of AT_TIME_TIMESHEET_MACHINETDTO)) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.Upd_TimeTImesheetMachines(lstObj, Me.Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
 #Region "quan ly vao ra"
     Function GetDataInout(ByVal _filter As AT_DATAINOUTDTO,
                                       ByVal _param As Attendance.AttendanceBusiness.ParamDTO,

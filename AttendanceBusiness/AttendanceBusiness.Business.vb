@@ -7,7 +7,19 @@ Imports LinqKit
 ' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
 Namespace AttendanceBusiness.ServiceImplementations
     Partial Public Class AttendanceBusiness
-
+        Function Upd_TimeTImesheetMachines(ByVal LstObj As List(Of AT_TIME_TIMESHEET_MACHINETDTO), Optional ByVal log As UserLog = Nothing) As Boolean Implements IAttendanceBusiness.Upd_TimeTImesheetMachines
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.Upd_TimeTImesheetMachines(LstObj, log)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Return False
+            End Try
+        End Function
 #Region "Quan ly vao ra"
         Function GetDataInout(ByVal _filter As AT_DATAINOUTDTO,
                                       ByVal _param As ParamDTO,
