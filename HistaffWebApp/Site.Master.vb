@@ -27,6 +27,7 @@ Public Class Site
     Dim maternitiRemind As Integer
     Dim retirementRemind As Integer
     Dim noneSalaryRemind As Integer
+    Dim noneExpiredCertificateRemind As Integer
 
     Dim workingRemind As Integer
     Dim terminateRemind As Integer
@@ -390,6 +391,7 @@ Public Class Site
             maternitiRemind = CommonConfig.ReminderMaternitiDays
             retirementRemind = CommonConfig.ReminderRetirementDays
             noneSalaryRemind = CommonConfig.ReminderNoneSalaryDays
+            noneExpiredCertificateRemind = CommonConfig.ReminderExpiredCertificate
 
             If approveRemind <> 0 Then
                 dApproveRemind.Visible = True
@@ -420,6 +422,11 @@ Public Class Site
                 dNoneSalaryRemind.Visible = True
             Else
                 dNoneSalaryRemind.Visible = False
+            End If
+            If noneExpiredCertificateRemind <> 0 Then
+                dExpiredCertificateRemind.Visible = True
+            Else
+                dExpiredCertificateRemind.Visible = False
             End If
 
             If probationRemind <> 0 Then
@@ -513,7 +520,8 @@ Public Class Site
                                                approveTHHDRemind.ToString & "," & _
                                                maternitiRemind.ToString & "," & _
                                                retirementRemind.ToString & "," & _
-                                               noneSalaryRemind.ToString
+                                               noneSalaryRemind.ToString & "," & _
+                                               noneExpiredCertificateRemind.ToString
                                                )
                     'For Each item In RemindList
                     '    item.REMIND_NAME = Translate(item.REMIND_NAME)
@@ -554,6 +562,12 @@ Public Class Site
                 ltrNoneSalary.DataSource = listNoneSalary
                 ltrNoneSalary.DataBind()
                 lblNoneSalary.Text = Utilities.ObjToInt(listNoneSalary.Count)
+
+                'Nhân viên sắp hết hạn chứng chỉ
+                Dim listExpiredCertificate = From p In RemindList Where p.REMIND_TYPE = 27
+                ltrExpiredCertificate.DataSource = listExpiredCertificate
+                ltrExpiredCertificate.DataBind()
+                lbExpiredCertificate.Text = Utilities.ObjToInt(listExpiredCertificate.Count)
 
                 'Nhân viên sắp hết hạn hợp đồng
                 Dim listApproveDMVS = From p In RemindList Where p.REMIND_TYPE = 1

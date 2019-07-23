@@ -572,6 +572,42 @@ Partial Public Class ctrlRemindConfig
     Protected WithEvents cvalNoneSalary As Global.System.Web.UI.WebControls.CustomValidator
 
     '''<summary>
+    '''radExpiredCertificate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents radExpiredCertificate As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''chkExpiredCertificate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkExpiredCertificate As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rntxtExpiredCertificate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rntxtExpiredCertificate As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''cvaExpiredCertificate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvaExpiredCertificate As Global.System.Web.UI.WebControls.CustomValidator
+
+    '''<summary>
     '''RadCodeBlock1 control.
     '''</summary>
     '''<remarks>
