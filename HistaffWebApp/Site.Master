@@ -308,6 +308,20 @@
                                         </ItemTemplate>
                                     </asp:ListView>
                                 </div>
+                                <div id="dExpiredCertificateRemind" runat="server" class='box48' data="17">
+                                    <%# Translate("Nhân viên sắp hết hạn chứng chỉ")%> (<asp:Label ID="lbExpiredCertificate" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-17" style="display: none;">
+                                    <asp:ListView ID="ltrExpiredCertificate" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&Place=ctrlHU_EmpDtlTrainingOutCompany&state=Normal'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
                             </div>
                         </div>
                     </div>

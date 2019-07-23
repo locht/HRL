@@ -3596,7 +3596,7 @@
             <Property Name="LEVEL_NAME" Type="nvarchar2" Nullable="true" MaxLength="1" />
             <Property Name="TITLE_NAME" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="REMARK" Type="nclob" Nullable="true" />
-            <Property Name="ACTFLG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ACTFLG" Type="number" Nullable="true" Precision="38" />
             <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="CREATED_DATE" Type="date" Nullable="true" />
             <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
@@ -7978,7 +7978,7 @@
           <Property Type="String" Name="LEVEL_NAME" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TITLE_NAME" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="REMARK" />
-          <Property Type="String" Name="ACTFLG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ACTFLG" Nullable="true" />
           <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CREATED_DATE" Nullable="true" />
           <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />

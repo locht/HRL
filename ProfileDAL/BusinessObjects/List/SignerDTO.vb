@@ -2,7 +2,7 @@
     Public Property ID As Decimal
     Public Property NAME As String
     Public Property REMARK As String
-    Public Property ACTFLG As Decimal?
+    Public Property ACTFLG As String
     Public Property IS_LOCAL As Boolean
     Public Property LEVEL_NAME As String
     Public Property TITLE_NAME As String

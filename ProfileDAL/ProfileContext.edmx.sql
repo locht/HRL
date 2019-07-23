@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 07/22/2019 3:25:02 PM
--- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
+-- Date Created: 23/07/2019 8:46:58 AM
+-- Generated from EDMX file: E:\TNG-New\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3533,7 +3533,7 @@ CREATE TABLE "dbo"."HU_SIGNER" (
    "LEVEL_NAME" NVARCHAR2(1) NULL,
    "TITLE_NAME" NVARCHAR2(255) NULL,
    "REMARK" NCLOB NULL,
-   "ACTFLG" NVARCHAR2(255) NULL,
+   "ACTFLG" NUMBER(38,0) NULL,
    "CREATED_BY" NVARCHAR2(255) NULL,
    "CREATED_DATE" DATE NULL,
    "CREATED_LOG" NVARCHAR2(255) NULL,

@@ -386,7 +386,6 @@
             </fieldset>
         </asp:Panel>
 
-
             <%--------------------------------------%>
            <asp:Panel ID="radExpiredCertificate" runat="server" CssClass = "Pane"> 
             <fieldset>
@@ -405,14 +404,14 @@
                         </td>
                         <td>
                             (<%# Translate("ngày")%>)
-                            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên sắp hết hạn chứng chỉ. %>"
+                            <asp:CustomValidator ID="cvaExpiredCertificate" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên sắp hết hạn chứng chỉ. %>"
                                 ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên sắp hết hạn chứng chỉ. %>">
                             </asp:CustomValidator>
                         </td>
                     </tr>
                 </table>
             </fieldset>
-        </asp:Panel>
+        </asp:Panel>        
     </tlk:RadPane>
 </tlk:RadSplitter>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
@@ -568,7 +567,7 @@
                 $find("<%=rntxtNoneSalary.ClientID %>").clear();
                 $find("<%=rntxtNoneSalary.ClientID %>").disable();
             }
-        }
+        }       
         function CheckChangExpiredCertificate(chk) {
             if (chk.checked) {
                 $find("<%=rntxtExpiredCertificate.ClientID %>").enable();

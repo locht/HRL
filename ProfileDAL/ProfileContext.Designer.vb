@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("be10d0d8-8d3d-4363-b282-ece49675ad04")>
+<Assembly: EdmSchemaAttribute("21a84f31-0dd6-47fc-8682-6e9e57db1f2e")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -45717,21 +45717,21 @@ Public Partial Class HU_SIGNER
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property ACTFLG() As Global.System.String
+    Public Property ACTFLG() As Nullable(Of Global.System.Decimal)
         Get
             Return _ACTFLG
         End Get
         Set
             OnACTFLGChanging(value)
             ReportPropertyChanging("ACTFLG")
-            _ACTFLG = StructuralObject.SetValidValue(value, true)
+            _ACTFLG = StructuralObject.SetValidValue(value)
             ReportPropertyChanged("ACTFLG")
             OnACTFLGChanged()
         End Set
     End Property
 
-    Private _ACTFLG As Global.System.String
-    Private Partial Sub OnACTFLGChanging(value As Global.System.String)
+    Private _ACTFLG As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnACTFLGChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
     Private Partial Sub OnACTFLGChanged()

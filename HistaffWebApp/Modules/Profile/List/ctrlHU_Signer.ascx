@@ -68,11 +68,11 @@
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgData" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-            Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
+            Height="100%" AllowSorting="True" AllowMultiRowSelection="true" AllowFilteringByColumn="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,COMPANY_NAME">
+            <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,ORG_NAME">
                 <Columns>
                 </Columns>
             </MasterTableView>
