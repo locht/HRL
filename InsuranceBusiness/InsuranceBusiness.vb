@@ -325,7 +325,7 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , ByVal employee_id As Double? _
                                             , ByVal ins_org_name As String _
                                             , ByVal seniority_insurance As Double? _
-                                            , ByVal seniority_insurance_company As Double? _
+                                            , ByVal seniority_insurance_company As String _
                                             , ByVal social_number As String _
                                             , ByVal social_status As Double? _
                                             , ByVal social_submit_date As Date? _
@@ -353,7 +353,11 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , ByVal hi_to_month As Date? _
                                             , ByVal si As Double? _
                                             , ByVal hi As Double? _
-                                            , ByVal ui As Double?
+                                            , ByVal ui As Double? _
+                                            , ByVal bhtnld_bnn As Double? _
+                                            , ByVal is_hi_five_year As Double? _
+                                            , ByVal bhtnld_bnn_from As Date? _
+                                            , ByVal bhtnld_bnn_to As Date?
                                             ) As Boolean _
                  Implements ServiceContracts.IInsuranceBusiness.UpdateInsInfomation
             Try
@@ -362,7 +366,7 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , .P_EMPLOYEE_ID = IIf(employee_id Is Nothing, System.DBNull.Value, employee_id) _
                                             , .P_INS_ORG_NAME = IIf(ins_org_name Is Nothing, System.DBNull.Value, ins_org_name) _
                                             , .P_SENIORITY_INSURANCE = IIf(seniority_insurance Is Nothing, System.DBNull.Value, seniority_insurance) _
-                                            , .P_SENIORITY_INSURANCE_COMPANY = IIf(seniority_insurance_company Is Nothing, System.DBNull.Value, seniority_insurance_company) _
+                                            , .P_SENIORITY_INSURANCE_COMPANY = IIf(seniority_insurance_company Is Nothing, Nothing, seniority_insurance_company) _
                                             , .P_SOCIAL_NUMBER = IIf(social_number Is Nothing, System.DBNull.Value, social_number) _
                                             , .P_SOCIAL_STATUS = IIf(social_status Is Nothing, System.DBNull.Value, social_status) _
                                             , .P_SOCIAL_SUBMIT_DATE = IIf(social_submit_date Is Nothing, System.DBNull.Value, social_submit_date) _
@@ -390,7 +394,11 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , .P_HI_TO_MONTH = IIf(hi_to_month Is Nothing, System.DBNull.Value, hi_to_month) _
                                             , .P_SI = IIf(si Is Nothing, System.DBNull.Value, si) _
                                             , .P_HI = IIf(hi Is Nothing, System.DBNull.Value, hi) _
-                                            , .P_UI = IIf(ui Is Nothing, System.DBNull.Value, ui)
+                                            , .P_UI = IIf(ui Is Nothing, System.DBNull.Value, ui) _
+                                            , .P_BHTNLD_BNN = IIf(bhtnld_bnn Is Nothing, System.DBNull.Value, ui) _
+                                            , .P_IS_HI_FIVE_YEAR = IIf(is_hi_five_year Is Nothing, System.DBNull.Value, ui) _
+                                            , .P_BHTNLD_BNN_FROM_MONTH = IIf(bhtnld_bnn_from Is Nothing, System.DBNull.Value, bhtnld_bnn_from) _
+                                            , .P_BHTNLD_BNN_TO_MONTH = IIf(bhtnld_bnn_to Is Nothing, System.DBNull.Value, bhtnld_bnn_to) _
                                             })
 
                 Return 1
@@ -638,7 +646,8 @@ Namespace InsuranceBusiness.ServiceImplementations
                                         , ByVal note As String _
                                         , ByVal money_advance As Double? _
                                         , ByVal off_together As Double? _
-                                        , ByVal off_in_house As Double?) As Double _
+                                        , ByVal off_in_house As Double? _
+                                        , ByVal regimes_sal As Double?) As Double _
                  Implements ServiceContracts.IInsuranceBusiness.UpdateInsRegimes
             Try
                 Dim rep As New DataAccess.QueryData
@@ -665,7 +674,8 @@ Namespace InsuranceBusiness.ServiceImplementations
                                         , .P_NOTE = IIf(note Is Nothing, System.DBNull.Value, note) _
                                         , .P_MONEY_ADVANCE = IIf(money_advance Is Nothing, System.DBNull.Value, money_advance) _
                                         , .P_OFF_TOGETHER = IIf(off_together Is Nothing, System.DBNull.Value, off_together) _
-                                        , .P_OFF_IN_HOUSE = IIf(off_in_house Is Nothing, System.DBNull.Value, off_in_house)})
+                                        , .P_OFF_IN_HOUSE = IIf(off_in_house Is Nothing, System.DBNull.Value, off_in_house) _
+                                        , .P_REGIMES_SAL = IIf(regimes_sal Is Nothing, System.DBNull.Value, regimes_sal)})
 
                 Return 1
             Catch ex As Exception
@@ -1151,6 +1161,20 @@ Namespace InsuranceBusiness.ServiceImplementations
 
         End Function
 
+#End Region
+
+#Region "Chế độ bảo hiểm"
+        Public Function GET_MLTTC(ByVal p_date As Date) As DataTable _
+   Implements ServiceContracts.IInsuranceBusiness.GET_MLTTC
+            Try
+                Dim rep As New DataAccess.QueryData
+                Dim objS As Object = rep.ExecuteStore("PKG_INS_BUSINESS.GET_MLTTC", New With {.P_DATE = p_date, .P_CUR = OUT_CURSOR})
+
+                Return objS
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        End Function
 #End Region
     End Class
 End Namespace

@@ -516,7 +516,7 @@ Namespace InsuranceBusiness.ServiceContracts
                                     , ByVal employee_id As Double? _
                                     , ByVal ins_org_name As String _
                                     , ByVal seniority_insurance As Double? _
-                                    , ByVal seniority_insurance_company As Double? _
+                                    , ByVal seniority_insurance_company As String _
                                     , ByVal social_number As String _
                                     , ByVal social_status As Double? _
                                     , ByVal social_submit_date As Date? _
@@ -544,7 +544,11 @@ Namespace InsuranceBusiness.ServiceContracts
                                     , ByVal hi_to_month As Date? _
                                     , ByVal si As Double? _
                                     , ByVal hi As Double? _
-                                    , ByVal ui As Double?
+                                    , ByVal ui As Double? _
+                                    , ByVal bhtnld_bnn As Double? _
+                                    , ByVal is_hi_five_year As Double? _
+                                    , ByVal bhtnld_bnn_from As Date? _
+                                    , ByVal bhtnld_bnn_to As Date?
                                     ) As Boolean
         <OperationContract()>
         Function DeleteInsInfomation(ByVal username As String, ByVal id As Double?) As Boolean
@@ -648,7 +652,8 @@ Namespace InsuranceBusiness.ServiceContracts
                                 , ByVal note As String _
                                 , ByVal money_advance As Double? _
                                 , ByVal off_together As Double? _
-                                , ByVal off_in_house As Double?) As Double
+                                , ByVal off_in_house As Double? _
+                                , ByVal regimes_sal As Double?) As Double
         <OperationContract()>
         Function DeleteInsRegimes(ByVal username As String, ByVal id As Double?) As Double
         <OperationContract()>
@@ -803,6 +808,9 @@ Namespace InsuranceBusiness.ServiceContracts
                                     , ByVal health_to_date As Date?) As Double
         <OperationContract()>
         Function DeleteInsHealthExt(ByVal username As String, ByVal id As String) As Double
+
+        <OperationContract()>
+        Function GET_MLTTC(ByVal p_date As Date) As DataTable
 #End Region
     End Interface
 End Namespace

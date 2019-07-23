@@ -61,6 +61,24 @@ Public Class ctrlInsRegimes
         End Set
     End Property
 
+    Private Property RateCal As Decimal
+        Get
+            Return ViewState(Me.ID & "_RateCal")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_RateCal") = value
+        End Set
+    End Property
+
+    Private Property LoaiCal As Decimal
+        Get
+            Return ViewState(Me.ID & "_LoaiCal")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_LoaiCal") = value
+        End Set
+    End Property
+
     'Private Property ListSign As List(Of SIGN_DTO)
     '    Get
     '        Return PageViewState(Me.ID & "_ListSign")
@@ -171,6 +189,7 @@ Public Class ctrlInsRegimes
                     txtPAY_APPROVE_DATE.Enabled = False
                     txtAPPROV_DAY_NUM.Enabled = False
                     txtNOTE.Enabled = False
+                    txtRegimes.Enabled = False
 
                     txtDoB.Enabled = False
                 Case CommonMessage.STATE_NEW, CommonMessage.STATE_EDIT
@@ -200,6 +219,7 @@ Public Class ctrlInsRegimes
                     txtNOTE.Enabled = True
 
                     txtDoB.Enabled = False
+                    txtRegimes.Enabled = True
                 Case CommonMessage.STATE_DELETE
 
                 Case "Nothing"
@@ -317,6 +337,7 @@ Public Class ctrlInsRegimes
             txtPAY_APPROVE_DATE.SelectedDate = Nothing
             txtAPPROV_DAY_NUM.Text = ""
             txtNOTE.Text = ""
+            txtRegimes.Value = Nothing
 
         Catch ex As Exception
         End Try
@@ -350,7 +371,8 @@ Public Class ctrlInsRegimes
                                                                         , txtNOTE.Text _
                                                                         , InsCommon.getNumber(txtSUBSIDY_MODIFY.Text) _
                                                                         , InsCommon.getNumber(txtOFF_TOGETHER.Text) _
-                                                                        , InsCommon.getNumber(txtOFF_IN_HOUSE.Text)) Then
+                                                                        , InsCommon.getNumber(txtOFF_IN_HOUSE.Text) _
+                                                                        , InsCommon.getNumber(txtRegimes.Value)) Then
                         Refresh("InsertView")
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"
@@ -382,7 +404,8 @@ Public Class ctrlInsRegimes
                                                                         , txtNOTE.Text _
                                                                         , InsCommon.getNumber(txtSUBSIDY_MODIFY.Text) _
                                                                         , InsCommon.getNumber(txtOFF_TOGETHER.Text) _
-                                                                        , InsCommon.getNumber(txtOFF_IN_HOUSE.Text)) Then
+                                                                        , InsCommon.getNumber(txtOFF_IN_HOUSE.Text) _
+                                                                        , InsCommon.getNumber(txtRegimes.Value)) Then
                         Refresh("UpdateView")
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"
@@ -410,16 +433,45 @@ Public Class ctrlInsRegimes
         Try
             LoadAutoData()            
             ValidateDayCalculate()
+            LoadSalaryRegimes()
         Catch ex As Exception
 
         End Try
 
     End Sub
 
+    Private Sub txtCHILDREN_NO_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCHILDREN_NO.TextChanged
+        Try
+            LoadSalaryRegimes()
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub txtDECLARE_DATE_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles txtDECLARE_DATE.SelectedDateChanged
+        Try
+            LoadSalaryRegimes()
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub LoadSalaryRegimes()
+        If txtCHILDREN_NO.Text <> "" AndAlso txtDECLARE_DATE.SelectedDate IsNot Nothing Then
+            Dim dt As DataTable = (New InsuranceBusiness.InsuranceBusinessClient).GET_MLTTC(txtDECLARE_DATE.SelectedDate)
+
+            txtSUBSIDY.Value = Int(txtCHILDREN_NO.Value * Decimal.Parse(dt(0)("VALUE")) + txtRegimes.Value)
+            txtSUBSIDY_MODIFY.Value = txtSUBSIDY.Value
+        End If
+    End Sub
+
     Private Sub txtTO_DATE_SelectedDateChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles txtTO_DATE.SelectedDateChanged
         Try
             LoadAutoData()
             ValidateDayCalculate()
+            LoadSalaryRegimes()
         Catch ex As Exception
 
         End Try
@@ -429,6 +481,7 @@ Public Class ctrlInsRegimes
         Try
             LoadAutoData()
             ValidateDayCalculate()
+            LoadSalaryRegimes()
         Catch ex As Exception
 
         End Try
@@ -446,8 +499,23 @@ Public Class ctrlInsRegimes
                         InsCommon.SetNumber(txtACCUMULATE_DAY, lstSource.Rows(0)("ACCUMULATE_DAY"))'Số ngày lũy kế
                     End If
                     InsCommon.SetNumber(txtSUBSIDY_SALARY, lstSource.Rows(0)("SUBSIDY_SALARY")) 'Tiền lương trợ cấp
-                    InsCommon.SetNumber(txtSUBSIDY, lstSource.Rows(0)("SUBSIDY")) 'Tiền trợ cấp
-                    InsCommon.SetNumber(txtSUBSIDY_MODIFY, lstSource.Rows(0)("SUBSIDY")) 'Tiền trợ cấp chỉnh sửa
+                    'InsCommon.SetNumber(txtSUBSIDY, lstSource.Rows(0)("SUBSIDY")) 'Tiền trợ cấp
+                    'InsCommon.SetNumber(txtSUBSIDY_MODIFY, lstSource.Rows(0)("SUBSIDY")) 'Tiền trợ cấp chỉnh sửa
+
+                    LoaiCal = Integer.Parse(lstSource.Rows(0)("LOAI_CAL"))
+                    RateCal = Decimal.Parse(lstSource.Rows(0)("RATE_CAL"))
+                    If LoaiCal = 1 Then
+                        txtRegimes.Value = If(txtSUBSIDY_SALARY.Value Is Nothing, 0, txtSUBSIDY_SALARY.Value) * (RateCal / 100) * txtDAY_CALCULATOR.Value / 24
+                    Else
+                        Dim month As Decimal
+                        Dim du As Double
+                        If txtDAY_CALCULATOR.Value IsNot Nothing Then
+                            Month = Int(txtDAY_CALCULATOR.Value / 30)
+                            du = txtDAY_CALCULATOR.Value Mod 30.0
+                        End If
+
+                        txtRegimes.Value = If(txtSUBSIDY_SALARY.Value Is Nothing, 0, txtSUBSIDY_SALARY.Value) * (RateCal / 100) * month + If(txtSUBSIDY_SALARY.Value Is Nothing, 0, txtSUBSIDY_SALARY.Value) * (RateCal / 100) * du / 24
+                    End If
                 End If
             End If
 
@@ -503,6 +571,8 @@ Public Class ctrlInsRegimes
                 InsCommon.SetNumber(txtSUBSIDY_SALARY, lstSource.Rows(0)("SUBSIDY_SALARY"))
                 InsCommon.SetNumber(txtSUBSIDY, lstSource.Rows(0)("SUBSIDY"))
                 InsCommon.SetNumber(txtSUBSIDY_MODIFY, lstSource.Rows(0)("SUBSIDY_MODIFY"))
+
+                InsCommon.SetNumber(txtRegimes, lstSource.Rows(0)("REGIMES_SAL"))
 
 
                 InsCommon.SetDate(txtPAYROLL_DATE, lstSource.Rows(0)("PAYROLL_DATE"))
@@ -666,5 +736,6 @@ Public Class ctrlInsRegimes
     Private Sub txtDAY_CALCULATOR_TextChanged(sender As Object, e As System.EventArgs) Handles txtDAY_CALCULATOR.TextChanged
         LoadAutoData(txtDAY_CALCULATOR.Value)
         ValidateDayCalculate()
+        LoadSalaryRegimes()
     End Sub
 End Class

@@ -139,14 +139,14 @@ Public Class ctrlInsManagerSunCare
                                        ToolbarItem.Edit,
                                        ToolbarItem.Delete,
                                        ToolbarItem.Export)
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
-            '                                                       ToolbarIcons.Export,
-            '                                                       ToolbarAuthorize.Export,
-            '                                                       Translate("Xuất file mẫu")))
-            'Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP",
-            '                                                         ToolbarIcons.Import,
-            '                                                         ToolbarAuthorize.Import,
-            '                                                         Translate("Nhập file mẫu")))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
+                                                                   ToolbarIcons.Export,
+                                                                   ToolbarAuthorize.Export,
+                                                                   Translate("Xuất file mẫu")))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP",
+                                                                     ToolbarIcons.Import,
+                                                                     ToolbarAuthorize.Import,
+                                                                     Translate("Nhập file mẫu")))
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method,
