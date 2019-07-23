@@ -175,13 +175,13 @@ Public Class ctrlHU_WelfareMngNewEdit
                     UpdateControlState()
                     ctrlFindEmployeePopup.Show()
                 Case "DeleteEmployee"
-                    'For Each i As GridDataItem In rgEmployee.SelectedItems
-                    '    Dim s = (From q In Employee_BT Where
-                    '             q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
-                    '    Employee_BT.Remove(s)
-                    'Next
+                    For Each i As GridDataItem In rgEmployee.SelectedItems
+                        Dim s = (From q In Employee_PL Where
+                                 q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
+                        Employee_PL.Remove(s)
+                    Next
                     '_result = False
-                    'rgEmployee.Rebind()
+                    rgEmployee.Rebind()
             End Select
         Catch ex As Exception
 
@@ -222,35 +222,25 @@ Public Class ctrlHU_WelfareMngNewEdit
         Dim startTime As DateTime = DateTime.UtcNow
         Try
             lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            'If lstCommonEmployee.Count <> 0 Then
-            '    If Employee_BT Is Nothing Then
-            '        Employee_BT = New List(Of AT_OFFFSETTING_EMPDTO)
-            '    End If
-            '    For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
-            '        Dim employee As New AT_OFFFSETTING_EMPDTO
-            '        employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
-            '        employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
-            '        employee.ID = emp.ID
-            '        Employee_id = emp.ID
-            '        employee.FULLNAME_VN = emp.FULLNAME_VN
-            '        employee.ORG_NAME = emp.ORG_NAME
-            '        employee.TITLE_NAME = emp.TITLE_NAME
-            '        employee.ORG_ID = emp.ORG_ID
-            '        employee.TITLE_ID = emp.TITLE_ID
-            '        'If cboCommendObj.SelectedIndex = 0 Then
-            '        '    txtDecisionNo.Text = employee.EMPLOYEE_CODE + " / KT / " + Date.Now.ToString("MMyy")
-            '        'End If
-
-            '        Dim checkEmployeeCode As AT_OFFFSETTING_EMPDTO = Employee_BT.Find(Function(p) p.EMPLOYEE_CODE = emp.EMPLOYEE_CODE)
-            '        If (Not checkEmployeeCode Is Nothing) Then
-            '            Continue For
-            '        End If
-
-            '        Employee_BT.Add(employee)
-            '    Next
-            '    _result = False
-            '    rgEmployee.Rebind()
-            'End If
+            If lstCommonEmployee.Count <> 0 Then
+                If Employee_PL Is Nothing Then
+                    Employee_PL = New List(Of Welfatemng_empDTO)
+                End If
+                For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
+                    Dim employee As New Welfatemng_empDTO
+                    employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
+                    employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
+                    employee.ID = emp.ID
+                    employee.EMPLOYEE_NAME = emp.FULLNAME_VN
+                    employee.ORG_NAME = emp.ORG_NAME
+                    employee.TITLE_NAME = emp.TITLE_NAME
+                    employee.ORG_ID = emp.ORG_ID
+                    employee.TITLE_ID = emp.TITLE_ID
+                    Employee_PL.Add(employee)
+                Next
+                '_result = False
+                rgEmployee.Rebind()
+            End If
             _mylog.WriteLog(_mylog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -356,6 +346,7 @@ Public Class ctrlHU_WelfareMngNewEdit
         Try
             Dim objdata As WelfareMngDTO
             Dim objList As New List(Of WelfareMngDTO)
+            Dim lstemp As New List(Of Welfatemng_empDTO)
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     objdata = New WelfareMngDTO
@@ -363,16 +354,30 @@ Public Class ctrlHU_WelfareMngNewEdit
                     'objdata.EMPLOYEE_ID = hidIDEmp.Value
                     objdata.EFFECT_DATE = dpEFFECT_DATE.SelectedDate
                     objdata.SDESC = txtSDESC.Text
-
-
-                    objList.Add(objdata)
+                    For Each item In Employee_PL
+                        Dim o As New Welfatemng_empDTO
+                        o.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        o.EMPLOYEE_CODE = item.EMPLOYEE_CODE
+                        o.GENDER_ID = item.GENDER_ID
+                        o.TITLE_ID = item.TITLE_ID
+                        o.ORG_ID = item.ORG_ID
+                        o.TOTAL_CHILD = item.TOTAL_CHILD
+                        o.MONEY_TOTAL = item.MONEY_TOTAL
+                        o.MONEY_PL = item.MONEY_PL
+                        o.CONTRACT_TYPE = item.CONTRACT_TYPE
+                        o.WELFARE_ID = cboWELFARE_ID.SelectedValue
+                        o.SENIORITY = item.SENIORITY
+                        objdata.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        lstemp.Add(o)
+                    Next
+                    objdata.LST_WELFATE_EMP = lstemp
+                    'objList.Add(objdata)
                     If CurrentState = CommonMessage.STATE_NEW Then
                         Dim rep As New ProfileBusinessRepository
-                        If rep.InsertWelfareMng(objList) Then
+                        If rep.InsertWelfareMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMng&group=Business")
-
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                         End If
@@ -386,7 +391,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
                             Exit Sub
                         End If
-                        If rep.ModifyWelfareMng(objList) Then
+                        If rep.ModifyWelfareMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMng&group=Business")
@@ -587,11 +592,9 @@ Public Class ctrlHU_WelfareMngNewEdit
                 'txtTITLE.Text = WelfareMng.TITLE_NAME
                 'txtEMPLOYEE.Text = WelfareMng.EMPLOYEE_NAME
                 'txtORG.Text = WelfareMng.ORG_NAME
-
                 If Utilities.ObjToInt(WelfareMng.WELFARE_ID) > 0 Then
                     cboWELFARE_ID.SelectedValue = WelfareMng.WELFARE_ID
                 End If
-
                 dpEFFECT_DATE.SelectedDate = WelfareMng.EFFECT_DATE
                 txtSDESC.Text = WelfareMng.SDESC
                 cboWELFARE_ID.AutoPostBack = True
@@ -618,7 +621,9 @@ Public Class ctrlHU_WelfareMngNewEdit
 
             Else
                 CurrentState = CommonMessage.STATE_NEW
-                Employee_PL = New List(Of Welfatemng_empDTO)
+                If Not IsPostBack Then
+                    Employee_PL = New List(Of Welfatemng_empDTO)
+                End If
             End If
             rgEmployee.VirtualItemCount = Employee_PL.Count
             rgEmployee.DataSource = Employee_PL

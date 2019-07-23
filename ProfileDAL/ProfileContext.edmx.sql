@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 07/23/2019 11:41:59 AM
+-- Date Created: 07/23/2019 3:34:28 PM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -3213,8 +3213,8 @@ CREATE TABLE "dbo"."SE_USER_ORG_ACCESS" (
 
 -- Creating table 'HU_WELFARE_MNG_EMP'
 CREATE TABLE "dbo"."HU_WELFARE_MNG_EMP" (
-   "WELFARE_ID" NUMBER(38,0) NOT NULL,
-   "EMPLOYEE_ID" NUMBER(38,0) NOT NULL,
+   "WELFARE_ID" NUMBER(38,0) NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
    "TITLE_ID" NUMBER(38,0) NULL,
    "ORG_ID" NUMBER(38,0) NULL,
    "GENDER_ID" NUMBER(38,0) NULL,
@@ -3229,7 +3229,8 @@ CREATE TABLE "dbo"."HU_WELFARE_MNG_EMP" (
    "MODIFIED_DATE" DATE NULL,
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
-   "GROUP_ID" NUMBER(38,0) NULL
+   "GROUP_ID" NUMBER(38,0) NULL,
+   "ID" NUMBER(38,0) NOT NULL
 );
 
 -- Creating table 'SE_USER_REPORT'
@@ -4387,10 +4388,10 @@ ADD CONSTRAINT "PK_SE_USER_ORG_ACCESS"
    VALIDATE;
 
 
--- Creating primary key on "WELFARE_ID", "EMPLOYEE_ID"in table 'HU_WELFARE_MNG_EMP'
+-- Creating primary key on "ID"in table 'HU_WELFARE_MNG_EMP'
 ALTER TABLE "dbo"."HU_WELFARE_MNG_EMP"
 ADD CONSTRAINT "PK_HU_WELFARE_MNG_EMP"
-   PRIMARY KEY ("WELFARE_ID", "EMPLOYEE_ID" )
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 

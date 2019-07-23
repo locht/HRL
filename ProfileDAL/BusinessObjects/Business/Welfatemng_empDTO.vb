@@ -1,4 +1,5 @@
 ﻿Public Class Welfatemng_empDTO
+    Public Property ID As Decimal?
     Public Property WELFARE_ID As Decimal?
     Public Property WELFARE_NAME As String
     Public Property EMPLOYEE_ID As Decimal?

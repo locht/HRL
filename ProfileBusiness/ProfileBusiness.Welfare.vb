@@ -74,7 +74,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function InsertWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertWelfareMng
+        Public Function InsertWelfareMng(ByVal lstWelfareMng As WelfareMngDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertWelfareMng
             Using rep As New ProfileRepository
                 Try
 
@@ -86,7 +86,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function ModifyWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyWelfareMng
+        Public Function ModifyWelfareMng(ByVal lstWelfareMng As WelfareMngDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyWelfareMng
             Using rep As New ProfileRepository
                 Try
 

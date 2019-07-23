@@ -52,7 +52,7 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME" ReadOnly="true"
                                 UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày thanh toán %>" DataField="EFFECT_DATE"
-                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="250px" />
+                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="150px"  DataFormatString="{0:dd/MM/yyyy}"  />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"

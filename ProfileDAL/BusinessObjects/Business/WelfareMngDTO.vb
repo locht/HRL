@@ -30,7 +30,7 @@
     Public Property NAME_PERIOD As String
     Public Property PARAM As ParamDTO
     Public Property IS_TER As Boolean
-
+    Public Property LST_WELFATE_EMP As List(Of Welfatemng_empDTO)
     Public Property WORK_STATUS As Decimal?
     Public Property TER_LAST_DATE As Date?
 End Class

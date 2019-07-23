@@ -293,13 +293,13 @@ Partial Public Class ctrlInsRegimes
     Protected WithEvents txtNAME_CHILDREN As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
-    '''txtCHILDREN_NO control.
+    '''txtMONEY_ADVANCE control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtCHILDREN_NO As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtMONEY_ADVANCE As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtACCUMULATE_DAY control.
@@ -311,13 +311,22 @@ Partial Public Class ctrlInsRegimes
     Protected WithEvents txtACCUMULATE_DAY As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''txtMONEY_ADVANCE control.
+    '''txtCHILDREN_NO control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtMONEY_ADVANCE As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents txtCHILDREN_NO As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtRegimes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRegimes As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtSUBSIDY control.
@@ -338,6 +347,33 @@ Partial Public Class ctrlInsRegimes
     Protected WithEvents txtSUBSIDY_MODIFY As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''txtSUBSIDY_TEMP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSUBSIDY_TEMP As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtDECLARE_DATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDECLARE_DATE As Global.Telerik.Web.UI.RadDatePicker
+
+    '''<summary>
+    '''reqtxtDECLARE_DATE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reqtxtDECLARE_DATE As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtPAYROLL_DATE control.
     '''</summary>
     '''<remarks>
@@ -354,15 +390,6 @@ Partial Public Class ctrlInsRegimes
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtCONDITION As Global.Telerik.Web.UI.RadTextBox
-
-    '''<summary>
-    '''txtDECLARE_DATE control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDECLARE_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
     '''txtNOTE control.
