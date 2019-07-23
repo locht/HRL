@@ -143,9 +143,13 @@
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>                                                        
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số ngày lũy kế %>" DataFormatString="{0:N0}" DataField="ACCUMULATE_DAY" UniqueName="ACCUMULATE_DAY" SortExpression="ACCUMULATE_DAY"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tiền lương tính hưởng %>" DataFormatString="{0:N0}" DataField="SUBSIDY_SALARY" UniqueName="SUBSIDY_SALARY" SortExpression="SUBSIDY_SALARY"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tiền lương tính hưởng BHXH %>" DataFormatString="{0:N0}" DataField="SUBSIDY_SALARY" UniqueName="SUBSIDY_SALARY" SortExpression="SUBSIDY_SALARY"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px"/>
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tiền trợ cấp %>" DataFormatString="{0:N0}" DataField="SUBSIDY_AMOUNT" UniqueName="SUBSIDY_AMOUNT" SortExpression="SUBSIDY_AMOUNT"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số tiền hưởng theo chế độ %>" DataFormatString="{0:N0}" DataField="REGIMES_SAL" UniqueName="REGIMES_SAL" SortExpression="REGIMES_SAL"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số tiền trợ cấp được hưởng %>" DataFormatString="{0:N0}" DataField="SUBSIDY" UniqueName="SUBSIDY" SortExpression="SUBSIDY"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px" />
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Số tiền trợ cấp điều chỉnh %>" DataFormatString="{0:N0}" DataField="SUBSIDY_MODIFY" UniqueName="SUBSIDY_MODIFY" SortExpression="SUBSIDY_MODIFY"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Đợt khai báo %>" DataField="DECLARE_DATE" UniqueName="DECLARE_DATE" SortExpression="DECLARE_DATE" DataFormatString="{0:dd/MM/yyyy}"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" HeaderStyle-Width="80px"/>
@@ -227,7 +231,7 @@
 
         function gridRowDblClick(sender, eventArgs) {
             OpenEdit(1);
-            args.set_cancel(true);
+            //args.set_cancel(true);
         }
 
         function popupclose(sender, args) {

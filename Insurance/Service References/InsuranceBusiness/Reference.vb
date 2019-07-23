@@ -10296,6 +10296,9 @@ Namespace InsuranceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="InsuranceBusiness.IInsuranceBusiness")>  _
     Public Interface IInsuranceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_MLTTC", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_MLTTCResponse")>  _
+        Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ModifyINS_CHANGE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ModifyINS_CHANGEResponse")>  _
         Function ModifyINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
@@ -10594,7 +10597,8 @@ Namespace InsuranceBusiness
                     ByVal note As String,  _
                     ByVal money_advance As System.Nullable(Of Double),  _
                     ByVal off_together As System.Nullable(Of Double),  _
-                    ByVal off_in_house As System.Nullable(Of Double)) As Double
+                    ByVal off_in_house As System.Nullable(Of Double),  _
+                    ByVal regimes_sal As System.Nullable(Of Double)) As Double
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimes", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsRegimesResponse")>  _
         Function DeleteInsRegimes(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double
@@ -10769,7 +10773,6 @@ Namespace InsuranceBusiness
         Function ModifyEntitledType(ByVal objTitle As InsuranceBusiness.INS_ENTITLED_TYPE_DTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateRegimeManager", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateRegimeManagerResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
@@ -10822,12 +10825,12 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
         Function ValidateRegimeManager(ByVal _validate As InsuranceBusiness.INS_REMIGE_MANAGER_DTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateGroupRegime", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateGroupRegimeResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
@@ -10880,12 +10883,12 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
         Function ValidateGroupRegime(ByVal _validate As InsuranceBusiness.INS_GROUP_REGIMESDTO) As Object
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/ValidateEntitledType", ReplyAction:="http://tempuri.org/IInsuranceBusiness/ValidateEntitledTypeResponse"),  _
-         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_CHANGEDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_CHANGEDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.INS_SUN_CARE_DTO)),  _
@@ -10938,6 +10941,7 @@ Namespace InsuranceBusiness
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFOOLDDTO))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(InsuranceBusiness.EmployeeDTO)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of InsuranceBusiness.INS_INFORMATIONDTO))),  _
+         System.ServiceModel.ServiceKnownTypeAttribute(GetType(Common.CommonBusiness.UserLog)),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of Decimal))),  _
          System.ServiceModel.ServiceKnownTypeAttribute(GetType(System.Collections.Generic.List(Of String)))>  _
         Function ValidateEntitledType(ByVal _validate As InsuranceBusiness.INS_ENTITLED_TYPE_DTO) As Object
@@ -11135,6 +11139,10 @@ Namespace InsuranceBusiness
         Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
             MyBase.New(binding, remoteAddress)
         End Sub
+        
+        Public Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GET_MLTTC
+            Return MyBase.Channel.GET_MLTTC(p_date)
+        End Function
         
         Public Function ModifyINS_CHANGE(ByVal objLeave As InsuranceBusiness.INS_CHANGEDTO, ByVal log As Common.CommonBusiness.UserLog, ByRef gID As Decimal) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.ModifyINS_CHANGE
             Return MyBase.Channel.ModifyINS_CHANGE(objLeave, log, gID)
@@ -11496,8 +11504,9 @@ Namespace InsuranceBusiness
                     ByVal note As String,  _
                     ByVal money_advance As System.Nullable(Of Double),  _
                     ByVal off_together As System.Nullable(Of Double),  _
-                    ByVal off_in_house As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsRegimes
-            Return MyBase.Channel.UpdateInsRegimes(username, id, employee_id, regime_id, pay_form, from_date, to_date, day_calculator, born_date, name_children, children_no, accumulate_day, subsidy_salary, subsidy, subsidy_amount, payroll_date, declare_date, condition, ins_pay_amount, pay_approve_date, approv_day_num, note, money_advance, off_together, off_in_house)
+                    ByVal off_in_house As System.Nullable(Of Double),  _
+                    ByVal regimes_sal As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsRegimes
+            Return MyBase.Channel.UpdateInsRegimes(username, id, employee_id, regime_id, pay_form, from_date, to_date, day_calculator, born_date, name_children, children_no, accumulate_day, subsidy_salary, subsidy, subsidy_amount, payroll_date, declare_date, condition, ins_pay_amount, pay_approve_date, approv_day_num, note, money_advance, off_together, off_in_house, regimes_sal)
         End Function
         
         Public Function DeleteInsRegimes(ByVal username As String, ByVal id As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsRegimes
