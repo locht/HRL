@@ -33,6 +33,25 @@ Public Class ctrlTimeTimesheet_machine
             ViewState(Me.ID & "_PERIOD") = value
         End Set
     End Property
+    Property dtData As DataTable
+        Get
+            If ViewState(Me.ID & "_dtData") Is Nothing Then
+                Dim dt As New DataTable
+                dt.Columns.Add("STT", GetType(String))
+                dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
+                dt.Columns.Add("WORKINGDAY", GetType(String))
+                dt.Columns.Add("TIMEIN_REALITY", GetType(String))
+                dt.Columns.Add("TIMEOUT_REALITY", GetType(String))
+                dt.Columns.Add("NOTE", GetType(String))
+                ViewState(Me.ID & "_dtData") = dt
+            End If
+            Return ViewState(Me.ID & "_dtData")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtData") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -142,6 +161,15 @@ Public Class ctrlTimeTimesheet_machine
             Me.MainToolBar = tbarMainToolBar
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Calculate,
                                        ToolbarItem.Export)
+
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("EXPORT_TEMP",
+                                                                     ToolbarIcons.Export,
+                                                                     ToolbarAuthorize.Export,
+                                                                     Translate("Xuất file mẫu")))
+            Me.MainToolBar.Items.Add(Common.Common.CreateToolbarItem("IMPORT_TEMP",
+                                                                     ToolbarIcons.Import,
+                                                                     ToolbarAuthorize.Import,
+                                                                     Translate("Nhập file mẫu")))
             MainToolBar.Items(0).Text = Translate("Tổng hợp")
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
@@ -277,6 +305,10 @@ Public Class ctrlTimeTimesheet_machine
                             rgTimeTimesheet_machine.ExportExcel(Server, Response, dtDatas, "DataTimeSheetMachine")
                         End If
                     End Using
+                Case "IMPORT_TEMP"
+                    ctrlUpload1.Show()
+                Case "EXPORT_TEMP"
+                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Timesheet_machineExport&PERIOD_ID=" & "1" & "&orgid=" & "1" & "&IS_DISSOLVE=" & IIf(1, "1", "0") & "');", True)
             End Select
             ' 
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -473,6 +505,135 @@ Public Class ctrlTimeTimesheet_machine
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
-#End Region
 
+    ''' <lastupdate>
+    ''' 17/08/2017 08:40
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xử lý sự kiện OkClicked của ctrlUpload1
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ctrlUpload1_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload1.OkClicked
+
+        Dim fileName As String
+        Dim dsDataPrepare As New DataSet
+        Dim workbook As Aspose.Cells.Workbook
+        Dim worksheet As Aspose.Cells.Worksheet
+        Dim dtDataHeader As DataTable = New DataTable()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+            For Each file As UploadedFile In ctrlUpload1.UploadedFiles
+                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xlsx")
+                file.SaveAs(fileName, True)
+                workbook = New Aspose.Cells.Workbook(fileName)
+                If workbook.Worksheets.GetSheetByCodeName("DATA") Is Nothing Then
+                    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
+                    Exit Sub
+                End If
+                worksheet = workbook.Worksheets(0)
+                dtDataHeader = worksheet.Cells.ExportDataTableAsString(0, 0, 2, worksheet.Cells.MaxColumn + 1, True)
+                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(1, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
+                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
+            Next
+            dtData = dtData.Clone()
+            'dtDataHeader.Rows.RemoveAt(0)
+            For col As Integer = 0 To dtDataHeader.Columns.Count - 1
+                Dim colName = dtDataHeader.Rows(0)(col)
+                If colName IsNot DBNull.Value Then
+                    dtDataHeader.Columns(col).ColumnName = colName
+                End If
+            Next
+            dtDataHeader.Rows.RemoveAt(0)
+            For Each dt As DataTable In dsDataPrepare.Tables
+                For Each row In dt.Rows
+                    Dim isRow = ImportValidate.TrimRow(row)
+                    If isRow Then
+                        dtData.ImportRow(row)
+                    End If
+                Next
+            Next
+            If loadToGrid(dtDataHeader) = False Then
+            Else
+                'If saveGrid() Then
+                '    Refresh("InsertView")
+                '    CurrentState = CommonMessage.STATE_NORMAL
+                '    UpdateControlState()
+                'Else
+                '    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                'End If
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                         CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
+        Finally
+            dsDataPrepare.Dispose()
+            dtDataHeader.Dispose()
+        End Try
+    End Sub
+#End Region
+#Region "FUNCTION/PROCEDURE"
+    Function loadToGrid(dtDataHeader As DataTable) As Boolean
+        Dim dtError As New DataTable("ERROR")
+        Dim rep As New AttendanceRepository
+        Dim period As New AT_PERIODDTO
+        Dim rowError As DataRow
+        Dim isError As Boolean = False
+        Dim sError As String = String.Empty
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If dtData.Rows.Count = 0 Then
+                ShowMessage("File mẫu không đúng định dạng", NotifyType.Warning)
+                Return False
+            End If
+            dtError = dtData.Clone
+            For Each row As DataRow In dtData.Rows
+                Dim isRow = ImportValidate.TrimRow(row)
+                If Not isRow Then
+                    Continue For
+                End If
+                isError = False
+                ImportValidate.TrimRow(row)
+                rowError = dtError.NewRow
+                sError = "Chưa nhập mã nhân viên"
+                ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
+                If isError Then
+                    rowError("STT") = row("STT")
+                    If rowError("EMPLOYEE_CODE").ToString = "" Then
+                        rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
+                    End If
+                    rowError("WORKINGDAY") = row("WORKINGDAY").ToString
+                    rowError("TIMEIN_REALITY") = row("TIMEIN_REALITY").ToString
+                    rowError("TIMEOUT_REALITY") = row("TIMEOUT_REALITY").ToString
+                    rowError("NOTE") = row("NOTE").ToString
+                    dtError.Rows.Add(rowError)
+                End If
+            Next
+            If dtError.Rows.Count > 0 Then
+                dtError.TableName = "DATA"
+                dtDataHeader.TableName = "DATA_HEADER"
+                Dim dsData As New DataSet
+                dsData.Tables.Add(dtError)
+                dsData.Tables.Add(dtDataHeader)
+                Session("EXPORTREPORT") = dsData
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportShift_error')", True)
+                ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
+                Return False
+            End If
+            Return True
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                       CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class

@@ -117,6 +117,8 @@ Public Class Export
                         HU_ANNUALLEAVE_PLANS_ERROR()
                     Case "Template_ImportHoSoLuong"
                         Template_ImportHoSoLuong()
+                    Case "Timesheet_machineExport"
+                        Timesheet_machineExport()
                 End Select
             Catch ex As Exception
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
@@ -490,6 +492,16 @@ Public Class Export
                                       "Template_importTimesheet_OT" & Format(Date.Now, "yyyyMMdd"))
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub Timesheet_machineExport()
+        Try
+            ExportTemplate("Attendance\Import\Template_GiaiTrinhNgayCong.xlsx",
+                                      New DataSet(), Nothing,
+                                      "Template_GiaiTrinhNgayCong" & Format(Date.Now, "yyyyMMdd"))
+        Catch ex As Exception
+
         End Try
     End Sub
 
