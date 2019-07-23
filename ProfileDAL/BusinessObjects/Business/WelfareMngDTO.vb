@@ -11,6 +11,7 @@
     Public Property EMPLOYEE_NAME As String
     Public Property TITLE_NAME As String
     Public Property MONEY As Decimal?
+    Public Property MONEY_PL As Decimal? 'so tien phuc loi
     Public Property EFFECT_DATE As Date?
     Public Property EXPIRE_DATE As Date?
     Public Property EFFECT_FROM As Date?

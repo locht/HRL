@@ -9,6 +9,16 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "WelfareMng"
+        Public Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO) Implements ServiceContracts.IProfileBusiness.GetlistWelfareEMP
+            Try
+                Using rep As New ProfileRepository
+                    Dim dt = rep.GetlistWelfareEMP(Id)
+                    Return dt
+                End Using
+            Catch ex As Exception
+
+            End Try
+        End Function
         Function GetWelfareListAuto(ByVal _filter As WelfareMngDTO, ByVal PageIndex As Integer,
                                        ByVal PageSize As Integer,
                                        ByRef Total As Integer,
