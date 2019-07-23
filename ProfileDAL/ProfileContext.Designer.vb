@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("21a84f31-0dd6-47fc-8682-6e9e57db1f2e")>
+<Assembly: EdmSchemaAttribute("3e39e75a-d79b-47e4-8f1a-75fb0ab5b18c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -2099,6 +2099,20 @@ Public Partial Class ProfileContext
 
     Private _SE_USER_ORG_ACCESS As ObjectSet(Of SE_USER_ORG_ACCESS)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property HU_WELFARE_MNG_EMP() As ObjectSet(Of HU_WELFARE_MNG_EMP)
+        Get
+            If (_HU_WELFARE_MNG_EMP Is Nothing) Then
+                _HU_WELFARE_MNG_EMP = MyBase.CreateObjectSet(Of HU_WELFARE_MNG_EMP)("HU_WELFARE_MNG_EMP")
+            End If
+            Return _HU_WELFARE_MNG_EMP
+        End Get
+    End Property
+
+    Private _HU_WELFARE_MNG_EMP As ObjectSet(Of HU_WELFARE_MNG_EMP)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -3102,6 +3116,13 @@ Public Partial Class ProfileContext
     ''' </summary>
     Public Sub AddToSE_USER_ORG_ACCESS(ByVal sE_USER_ORG_ACCESS As SE_USER_ORG_ACCESS)
         MyBase.AddObject("SE_USER_ORG_ACCESS", sE_USER_ORG_ACCESS)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the HU_WELFARE_MNG_EMP EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddToHU_WELFARE_MNG_EMP(ByVal hU_WELFARE_MNG_EMP As HU_WELFARE_MNG_EMP)
+        MyBase.AddObject("HU_WELFARE_MNG_EMP", hU_WELFARE_MNG_EMP)
     End Sub
 
     #End Region
@@ -54506,6 +54527,465 @@ Public Partial Class HU_WELFARE_MNG
     End Sub
 
     Private Partial Sub OnPERIOD_IDChanged()
+    End Sub
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="ProfileModel", Name:="HU_WELFARE_MNG_EMP")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class HU_WELFARE_MNG_EMP
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new HU_WELFARE_MNG_EMP object.
+    ''' </summary>
+    ''' <param name="wELFARE_ID">Initial value of the WELFARE_ID property.</param>
+    ''' <param name="eMPLOYEE_ID">Initial value of the EMPLOYEE_ID property.</param>
+    Public Shared Function CreateHU_WELFARE_MNG_EMP(wELFARE_ID As Global.System.Decimal, eMPLOYEE_ID As Global.System.Decimal) As HU_WELFARE_MNG_EMP
+        Dim hU_WELFARE_MNG_EMP as HU_WELFARE_MNG_EMP = New HU_WELFARE_MNG_EMP
+        hU_WELFARE_MNG_EMP.WELFARE_ID = wELFARE_ID
+        hU_WELFARE_MNG_EMP.EMPLOYEE_ID = eMPLOYEE_ID
+        Return hU_WELFARE_MNG_EMP
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property WELFARE_ID() As Global.System.Decimal
+        Get
+            Return _WELFARE_ID
+        End Get
+        Set
+            If (_WELFARE_ID <> Value) Then
+                OnWELFARE_IDChanging(value)
+                ReportPropertyChanging("WELFARE_ID")
+                _WELFARE_ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("WELFARE_ID")
+                OnWELFARE_IDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _WELFARE_ID As Global.System.Decimal
+    Private Partial Sub OnWELFARE_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnWELFARE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property EMPLOYEE_ID() As Global.System.Decimal
+        Get
+            Return _EMPLOYEE_ID
+        End Get
+        Set
+            If (_EMPLOYEE_ID <> Value) Then
+                OnEMPLOYEE_IDChanging(value)
+                ReportPropertyChanging("EMPLOYEE_ID")
+                _EMPLOYEE_ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("EMPLOYEE_ID")
+                OnEMPLOYEE_IDChanged()
+            End If
+        End Set
+    End Property
+
+    Private _EMPLOYEE_ID As Global.System.Decimal
+    Private Partial Sub OnEMPLOYEE_IDChanging(value As Global.System.Decimal)
+    End Sub
+
+    Private Partial Sub OnEMPLOYEE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TITLE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TITLE_ID
+        End Get
+        Set
+            OnTITLE_IDChanging(value)
+            ReportPropertyChanging("TITLE_ID")
+            _TITLE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TITLE_ID")
+            OnTITLE_IDChanged()
+        End Set
+    End Property
+
+    Private _TITLE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTITLE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTITLE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property ORG_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _ORG_ID
+        End Get
+        Set
+            OnORG_IDChanging(value)
+            ReportPropertyChanging("ORG_ID")
+            _ORG_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ORG_ID")
+            OnORG_IDChanged()
+        End Set
+    End Property
+
+    Private _ORG_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnORG_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnORG_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GENDER_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GENDER_ID
+        End Get
+        Set
+            OnGENDER_IDChanging(value)
+            ReportPropertyChanging("GENDER_ID")
+            _GENDER_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GENDER_ID")
+            OnGENDER_IDChanged()
+        End Set
+    End Property
+
+    Private _GENDER_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGENDER_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGENDER_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTRACT_TYPE() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _CONTRACT_TYPE
+        End Get
+        Set
+            OnCONTRACT_TYPEChanging(value)
+            ReportPropertyChanging("CONTRACT_TYPE")
+            _CONTRACT_TYPE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CONTRACT_TYPE")
+            OnCONTRACT_TYPEChanged()
+        End Set
+    End Property
+
+    Private _CONTRACT_TYPE As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCONTRACT_TYPEChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnCONTRACT_TYPEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SENIORITY() As Global.System.String
+        Get
+            Return _SENIORITY
+        End Get
+        Set
+            OnSENIORITYChanging(value)
+            ReportPropertyChanging("SENIORITY")
+            _SENIORITY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("SENIORITY")
+            OnSENIORITYChanged()
+        End Set
+    End Property
+
+    Private _SENIORITY As Global.System.String
+    Private Partial Sub OnSENIORITYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnSENIORITYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property TOTAL_CHILD() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _TOTAL_CHILD
+        End Get
+        Set
+            OnTOTAL_CHILDChanging(value)
+            ReportPropertyChanging("TOTAL_CHILD")
+            _TOTAL_CHILD = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("TOTAL_CHILD")
+            OnTOTAL_CHILDChanged()
+        End Set
+    End Property
+
+    Private _TOTAL_CHILD As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnTOTAL_CHILDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnTOTAL_CHILDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MONEY_PL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MONEY_PL
+        End Get
+        Set
+            OnMONEY_PLChanging(value)
+            ReportPropertyChanging("MONEY_PL")
+            _MONEY_PL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MONEY_PL")
+            OnMONEY_PLChanged()
+        End Set
+    End Property
+
+    Private _MONEY_PL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMONEY_PLChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMONEY_PLChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MONEY_TOTAL() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MONEY_TOTAL
+        End Get
+        Set
+            OnMONEY_TOTALChanging(value)
+            ReportPropertyChanging("MONEY_TOTAL")
+            _MONEY_TOTAL = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MONEY_TOTAL")
+            OnMONEY_TOTALChanged()
+        End Set
+    End Property
+
+    Private _MONEY_TOTAL As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMONEY_TOTALChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMONEY_TOTALChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _CREATED_DATE
+        End Get
+        Set
+            OnCREATED_DATEChanging(value)
+            ReportPropertyChanging("CREATED_DATE")
+            _CREATED_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CREATED_DATE")
+            OnCREATED_DATEChanged()
+        End Set
+    End Property
+
+    Private _CREATED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnCREATED_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnCREATED_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_BY() As Global.System.String
+        Get
+            Return _CREATED_BY
+        End Get
+        Set
+            OnCREATED_BYChanging(value)
+            ReportPropertyChanging("CREATED_BY")
+            _CREATED_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATED_BY")
+            OnCREATED_BYChanged()
+        End Set
+    End Property
+
+    Private _CREATED_BY As Global.System.String
+    Private Partial Sub OnCREATED_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CREATED_LOG() As Global.System.String
+        Get
+            Return _CREATED_LOG
+        End Get
+        Set
+            OnCREATED_LOGChanging(value)
+            ReportPropertyChanging("CREATED_LOG")
+            _CREATED_LOG = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CREATED_LOG")
+            OnCREATED_LOGChanged()
+        End Set
+    End Property
+
+    Private _CREATED_LOG As Global.System.String
+    Private Partial Sub OnCREATED_LOGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCREATED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_DATE() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _MODIFIED_DATE
+        End Get
+        Set
+            OnMODIFIED_DATEChanging(value)
+            ReportPropertyChanging("MODIFIED_DATE")
+            _MODIFIED_DATE = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MODIFIED_DATE")
+            OnMODIFIED_DATEChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_DATE As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnMODIFIED_DATEChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnMODIFIED_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_BY() As Global.System.String
+        Get
+            Return _MODIFIED_BY
+        End Get
+        Set
+            OnMODIFIED_BYChanging(value)
+            ReportPropertyChanging("MODIFIED_BY")
+            _MODIFIED_BY = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MODIFIED_BY")
+            OnMODIFIED_BYChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_BY As Global.System.String
+    Private Partial Sub OnMODIFIED_BYChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMODIFIED_BYChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFIED_LOG() As Global.System.String
+        Get
+            Return _MODIFIED_LOG
+        End Get
+        Set
+            OnMODIFIED_LOGChanging(value)
+            ReportPropertyChanging("MODIFIED_LOG")
+            _MODIFIED_LOG = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("MODIFIED_LOG")
+            OnMODIFIED_LOGChanged()
+        End Set
+    End Property
+
+    Private _MODIFIED_LOG As Global.System.String
+    Private Partial Sub OnMODIFIED_LOGChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnMODIFIED_LOGChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GROUP_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _GROUP_ID
+        End Get
+        Set
+            OnGROUP_IDChanging(value)
+            ReportPropertyChanging("GROUP_ID")
+            _GROUP_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("GROUP_ID")
+            OnGROUP_IDChanged()
+        End Set
+    End Property
+
+    Private _GROUP_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnGROUP_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnGROUP_IDChanged()
     End Sub
 
     #End Region
