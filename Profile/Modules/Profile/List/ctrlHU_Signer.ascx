@@ -72,7 +72,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,COMPANY_NAME">
+            <MasterTableView CommandItemDisplay="None" DataKeyNames="ID" ClientDataKeyNames="ID,SIGNER_CODE,TITLE_NAME,REMARK,NAME,ORG_ID,ORG_NAME">
                 <Columns>
                 </Columns>
             </MasterTableView>

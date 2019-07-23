@@ -4838,7 +4838,7 @@ Namespace ProfileBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
-        Private ACTFLGField As System.Nullable(Of Decimal)
+        Private ACTFLGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
@@ -4917,12 +4917,12 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
-        Public Property ACTFLG() As System.Nullable(Of Decimal)
+        Public Property ACTFLG() As String
             Get
                 Return Me.ACTFLGField
             End Get
             Set
-                If (Me.ACTFLGField.Equals(value) <> true) Then
+                If (Object.ReferenceEquals(Me.ACTFLGField, value) <> true) Then
                     Me.ACTFLGField = value
                     Me.RaisePropertyChanged("ACTFLG")
                 End If
