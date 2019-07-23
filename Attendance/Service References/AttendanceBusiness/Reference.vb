@@ -23643,7 +23643,16 @@ Namespace AttendanceBusiness
         Private END_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_MID_HOURSField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private FROM_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HOURS_STARTField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HOURS_STOPField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private HOUR_LEAVEField As System.Nullable(Of Date)
@@ -23718,6 +23727,9 @@ Namespace AttendanceBusiness
         Private MORNING_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private NOTEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private NOTSALARIED_HOURField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -23760,10 +23772,28 @@ Namespace AttendanceBusiness
         Private SHIFT_CODEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_DAYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SHIFT_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_TYPE_CODEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SHIFT_TYPE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STAFF_RANK_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private START_MID_HOURSField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEIN_REALITYField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TIMEOUT_REALITYField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TIMEVALINField As System.Nullable(Of Date)
@@ -23806,6 +23836,9 @@ Namespace AttendanceBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORKINGHOURField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private WORKING_VALUEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WORK_HOURField As System.Nullable(Of Decimal)
@@ -23977,6 +24010,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_MID_HOURS() As System.Nullable(Of Date)
+            Get
+                Return Me.END_MID_HOURSField
+            End Get
+            Set
+                If (Me.END_MID_HOURSField.Equals(value) <> true) Then
+                    Me.END_MID_HOURSField = value
+                    Me.RaisePropertyChanged("END_MID_HOURS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property FROM_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.FROM_DATEField
@@ -23985,6 +24031,32 @@ Namespace AttendanceBusiness
                 If (Me.FROM_DATEField.Equals(value) <> true) Then
                     Me.FROM_DATEField = value
                     Me.RaisePropertyChanged("FROM_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HOURS_START() As System.Nullable(Of Date)
+            Get
+                Return Me.HOURS_STARTField
+            End Get
+            Set
+                If (Me.HOURS_STARTField.Equals(value) <> true) Then
+                    Me.HOURS_STARTField = value
+                    Me.RaisePropertyChanged("HOURS_START")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HOURS_STOP() As System.Nullable(Of Date)
+            Get
+                Return Me.HOURS_STOPField
+            End Get
+            Set
+                If (Me.HOURS_STOPField.Equals(value) <> true) Then
+                    Me.HOURS_STOPField = value
+                    Me.RaisePropertyChanged("HOURS_STOP")
                 End If
             End Set
         End Property
@@ -24302,6 +24374,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NOTE() As String
+            Get
+                Return Me.NOTEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.NOTEField, value) <> true) Then
+                    Me.NOTEField = value
+                    Me.RaisePropertyChanged("NOTE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property NOTSALARIED_HOUR() As System.Nullable(Of Decimal)
             Get
                 Return Me.NOTSALARIED_HOURField
@@ -24484,6 +24569,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_DAY() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SHIFT_DAYField
+            End Get
+            Set
+                If (Me.SHIFT_DAYField.Equals(value) <> true) Then
+                    Me.SHIFT_DAYField = value
+                    Me.RaisePropertyChanged("SHIFT_DAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SHIFT_ID() As System.Nullable(Of Decimal)
             Get
                 Return Me.SHIFT_IDField
@@ -24497,6 +24595,32 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_TYPE_CODE() As String
+            Get
+                Return Me.SHIFT_TYPE_CODEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SHIFT_TYPE_CODEField, value) <> true) Then
+                    Me.SHIFT_TYPE_CODEField = value
+                    Me.RaisePropertyChanged("SHIFT_TYPE_CODE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SHIFT_TYPE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SHIFT_TYPE_IDField
+            End Get
+            Set
+                If (Me.SHIFT_TYPE_IDField.Equals(value) <> true) Then
+                    Me.SHIFT_TYPE_IDField = value
+                    Me.RaisePropertyChanged("SHIFT_TYPE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property STAFF_RANK_NAME() As String
             Get
                 Return Me.STAFF_RANK_NAMEField
@@ -24505,6 +24629,45 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.STAFF_RANK_NAMEField, value) <> true) Then
                     Me.STAFF_RANK_NAMEField = value
                     Me.RaisePropertyChanged("STAFF_RANK_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property START_MID_HOURS() As System.Nullable(Of Date)
+            Get
+                Return Me.START_MID_HOURSField
+            End Get
+            Set
+                If (Me.START_MID_HOURSField.Equals(value) <> true) Then
+                    Me.START_MID_HOURSField = value
+                    Me.RaisePropertyChanged("START_MID_HOURS")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEIN_REALITY() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEIN_REALITYField
+            End Get
+            Set
+                If (Me.TIMEIN_REALITYField.Equals(value) <> true) Then
+                    Me.TIMEIN_REALITYField = value
+                    Me.RaisePropertyChanged("TIMEIN_REALITY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TIMEOUT_REALITY() As System.Nullable(Of Date)
+            Get
+                Return Me.TIMEOUT_REALITYField
+            End Get
+            Set
+                If (Me.TIMEOUT_REALITYField.Equals(value) <> true) Then
+                    Me.TIMEOUT_REALITYField = value
+                    Me.RaisePropertyChanged("TIMEOUT_REALITY")
                 End If
             End Set
         End Property
@@ -24687,6 +24850,19 @@ Namespace AttendanceBusiness
                 If (Me.WORKINGHOURField.Equals(value) <> true) Then
                     Me.WORKINGHOURField = value
                     Me.RaisePropertyChanged("WORKINGHOUR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property WORKING_VALUE() As System.Nullable(Of Decimal)
+            Get
+                Return Me.WORKING_VALUEField
+            End Get
+            Set
+                If (Me.WORKING_VALUEField.Equals(value) <> true) Then
+                    Me.WORKING_VALUEField = value
+                    Me.RaisePropertyChanged("WORKING_VALUE")
                 End If
             End Set
         End Property

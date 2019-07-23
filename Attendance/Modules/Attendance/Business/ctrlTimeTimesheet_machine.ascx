@@ -57,10 +57,10 @@
                                 SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
-                    </tr>
+                    </tr>S
                 </table>
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
+            <tlk:RadPane ID="RadPane1" runat="server" Scrolling="X">
                 <tlk:RadGrid PageSize="50" ID="rgTimeTimesheet_machine" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID">
                         <Columns>
