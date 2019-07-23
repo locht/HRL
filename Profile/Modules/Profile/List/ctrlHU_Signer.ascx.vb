@@ -439,7 +439,7 @@ Public Class ctrlHU_Signer
 
             filter.USER_ID = LogHelper.CurrentUser.ID
             Dim rep As New ProfileRepository
-            'dtData = rep.GET_HU_SIGNER(filter)
+            dtData = rep.GET_HU_SIGNER(filter)
             If Not IsPostBack Then
                 DesignGrid(dtData)
             End If

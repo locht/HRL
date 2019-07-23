@@ -406,7 +406,7 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
-    Public Function InsertWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO)) As Boolean
+    Public Function InsertWelfareMng(ByVal lstWelfareMng As WelfareMngDTO) As Boolean
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.InsertWelfareMng(lstWelfareMng, Me.Log)
@@ -417,8 +417,17 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
-
-    Public Function ModifyWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO)) As Boolean
+    Public Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetlistWelfareEMP(Id)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function ModifyWelfareMng(ByVal lstWelfareMng As WelfareMngDTO) As Boolean
         Using rep As New ProfileBusinessClient
             Try
                 Return rep.ModifyWelfareMng(lstWelfareMng, Me.Log)

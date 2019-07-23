@@ -245,6 +245,16 @@ Public Class ctrlRemindConfig
                 rntxtNoneSalary.Value = CommonConfig.ReminderNoneSalaryDays
             End If
 
+            If CommonConfig.ReminderExpiredCertificate = 0 Then
+                chkExpiredCertificate.Checked = False
+                rntxtExpiredCertificate.Enabled = False
+                rntxtExpiredCertificate.Value = Nothing
+            Else
+                chkExpiredCertificate.Checked = True
+                rntxtExpiredCertificate.Enabled = True
+                rntxtExpiredCertificate.Value = CommonConfig.ReminderExpiredCertificate
+            End If
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                       CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -408,6 +418,14 @@ Public Class ctrlRemindConfig
                             rntxtNoneSalary.Enabled = False
                         End If
 
+                        If chkExpiredCertificate.Checked Then
+                            CommonConfig.ReminderExpiredCertificate = rntxtExpiredCertificate.Value
+                            rntxtExpiredCertificate.Enabled = True
+                        Else
+                            CommonConfig.ReminderExpiredCertificate = 0
+                            rntxtExpiredCertificate.Enabled = False
+                        End If
+
                         CommonConfig.SaveReminderPerUser()
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
                         Common.Common.Reminder = Nothing
@@ -557,6 +575,22 @@ Public Class ctrlRemindConfig
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             If chkNoneSalary.Checked And (rntxtNoneSalary.Value Is Nothing OrElse rntxtNoneSalary.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+    End Sub
+    Private Sub cvaExpiredCertificate_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvaExpiredCertificate.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkExpiredCertificate.Checked And (rntxtExpiredCertificate.Value Is Nothing OrElse rntxtExpiredCertificate.Value = 0) Then
                 args.IsValid = False
             Else
                 args.IsValid = True

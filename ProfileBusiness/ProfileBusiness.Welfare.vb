@@ -9,6 +9,16 @@ Namespace ProfileBusiness.ServiceImplementations
     Partial Class ProfileBusiness
 
 #Region "WelfareMng"
+        Public Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO) Implements ServiceContracts.IProfileBusiness.GetlistWelfareEMP
+            Try
+                Using rep As New ProfileRepository
+                    Dim dt = rep.GetlistWelfareEMP(Id)
+                    Return dt
+                End Using
+            Catch ex As Exception
+
+            End Try
+        End Function
         Function GetWelfareListAuto(ByVal _filter As WelfareMngDTO, ByVal PageIndex As Integer,
                                        ByVal PageSize As Integer,
                                        ByRef Total As Integer,
@@ -64,7 +74,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function InsertWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertWelfareMng
+        Public Function InsertWelfareMng(ByVal lstWelfareMng As WelfareMngDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.InsertWelfareMng
             Using rep As New ProfileRepository
                 Try
 
@@ -76,7 +86,7 @@ Namespace ProfileBusiness.ServiceImplementations
             End Using
         End Function
 
-        Public Function ModifyWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO), ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyWelfareMng
+        Public Function ModifyWelfareMng(ByVal lstWelfareMng As WelfareMngDTO, ByVal log As UserLog) As Boolean Implements ServiceContracts.IProfileBusiness.ModifyWelfareMng
             Using rep As New ProfileRepository
                 Try
 

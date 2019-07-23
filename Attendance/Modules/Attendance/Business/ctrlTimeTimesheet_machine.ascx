@@ -57,10 +57,10 @@
                                 SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
-                    </tr>
+                    </tr>S
                 </table>
             </tlk:RadPane>
-            <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
+            <tlk:RadPane ID="RadPane1" runat="server" Scrolling="X">
                 <tlk:RadGrid PageSize="50" ID="rgTimeTimesheet_machine" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID">
                         <Columns>
@@ -193,6 +193,7 @@
         </tlk:RadWindow>
     </Windows>
 </tlk:RadWindowManager>
+<Common:ctrlUpload ID="ctrlUpload1" runat="server" />
 <tlk:RadScriptBlock ID="scriptBlock" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
@@ -242,6 +243,9 @@
                     args.set_cancel(true);
                     return;
                 }
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == 'EXPORT_TEMP') {
                 enableAjax = false;
             }
         }

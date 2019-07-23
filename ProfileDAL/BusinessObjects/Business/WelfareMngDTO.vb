@@ -11,6 +11,7 @@
     Public Property EMPLOYEE_NAME As String
     Public Property TITLE_NAME As String
     Public Property MONEY As Decimal?
+    Public Property MONEY_PL As Decimal? 'so tien phuc loi
     Public Property EFFECT_DATE As Date?
     Public Property EXPIRE_DATE As Date?
     Public Property EFFECT_FROM As Date?
@@ -29,7 +30,7 @@
     Public Property NAME_PERIOD As String
     Public Property PARAM As ParamDTO
     Public Property IS_TER As Boolean
-
+    Public Property LST_WELFATE_EMP As List(Of Welfatemng_empDTO)
     Public Property WORK_STATUS As Decimal?
     Public Property TER_LAST_DATE As Date?
 End Class

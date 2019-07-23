@@ -16,6 +16,8 @@ Public Class ctrlHU_WelfareMngNewEdit
     'asign: hdx
     Dim _mylog As New MyLog()
     Dim _pathLog As String = _mylog._pathLog
+    Public WithEvents AjaxManager As RadAjaxManager
+    Public Property AjaxManagerId As String
     Dim _classPath As String = "Profile\Modules\Profile\Business" + Me.GetType().Name.ToString()
 #Region "Property"
 
@@ -46,6 +48,14 @@ Public Class ctrlHU_WelfareMngNewEdit
         End Get
         Set(ByVal value As WelfareMngDTO)
             ViewState(Me.ID & "_WelfareMngDTO") = value
+        End Set
+    End Property
+    Property Employee_PL As List(Of Welfatemng_empDTO)
+        Get
+            Return ViewState(Me.ID & "_Employee_PL")
+        End Get
+        Set(value As List(Of Welfatemng_empDTO))
+            ViewState(Me.ID & "_Employee_PL") = value
         End Set
     End Property
 
@@ -101,8 +111,9 @@ Public Class ctrlHU_WelfareMngNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             If Not Page.IsPostBack Then
-                GetParams()
+                '  GetParams()
             End If
+            UpdateControlState()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -120,6 +131,11 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
+        SetGridFilter(rgEmployee)
+        AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
+        AjaxManagerId = AjaxManager.ClientID
+        rgEmployee.AllowCustomPaging = True
+        rgEmployee.ClientSettings.EnablePostBackOnRowClick = False
         InitControl()
     End Sub
 
@@ -139,19 +155,99 @@ Public Class ctrlHU_WelfareMngNewEdit
                                        ToolbarItem.Save,
                                         ToolbarItem.Seperator, ToolbarItem.Cancel)
             CType(Me.MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
-            cboIS_TAXION.CausesValidation = False
-            nmYear.CausesValidation = False
             cboWELFARE_ID.CausesValidation = False
             'Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-            LoadControlPopup()
+            'LoadControlPopup()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    Private Sub rgEmployee_ItemCommand(sender As Object, e As Telerik.Web.UI.GridCommandEventArgs) Handles rgEmployee.ItemCommand
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Select Case e.CommandName
+                Case "FindEmployee"
+                    isLoadPopup = 1
+                    UpdateControlState()
+                    ctrlFindEmployeePopup.Show()
+                Case "DeleteEmployee"
+                    For Each i As GridDataItem In rgEmployee.SelectedItems
+                        Dim s = (From q In Employee_PL Where
+                                 q.ID = i.GetDataKeyValue("ID")).FirstOrDefault
+                        Employee_PL.Remove(s)
+                    Next
+                    '_result = False
+                    rgEmployee.Rebind()
+            End Select
+        Catch ex As Exception
 
+        End Try
+    End Sub
+    Public Overrides Sub UpdateControlState()
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            Try
+                If phFindEmp.Controls.Contains(ctrlFindEmployeePopup) Then
+                    phFindEmp.Controls.Remove(ctrlFindEmployeePopup)
+                    'Me.Views.Remove(ctrlFindEmployeePopup.ID.ToUpper)
+                End If
+                Select Case isLoadPopup
+                    Case 1
+                        ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+                        ctrlFindEmployeePopup.MustHaveContract = True
+                        ctrlFindEmployeePopup.IsOnlyWorkingWithoutTer = True
+                        phFindEmp.Controls.Add(ctrlFindEmployeePopup)
+                End Select
+            Catch ex As Exception
+                Throw ex
+            End Try
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+
+
+    
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+            If lstCommonEmployee.Count <> 0 Then
+                If Employee_PL Is Nothing Then
+                    Employee_PL = New List(Of Welfatemng_empDTO)
+                End If
+                For Each emp As CommonBusiness.EmployeePopupFindDTO In lstCommonEmployee
+                    Dim employee As New Welfatemng_empDTO
+                    employee.EMPLOYEE_CODE = emp.EMPLOYEE_CODE
+                    employee.EMPLOYEE_ID = emp.EMPLOYEE_ID
+                    employee.ID = emp.ID
+                    employee.EMPLOYEE_NAME = emp.FULLNAME_VN
+                    employee.ORG_NAME = emp.ORG_NAME
+                    employee.TITLE_NAME = emp.TITLE_NAME
+                    employee.ORG_ID = emp.ORG_ID
+                    employee.TITLE_ID = emp.TITLE_ID
+                    Employee_PL.Add(employee)
+                Next
+                '_result = False
+                rgEmployee.Rebind()
+            End If
+            _mylog.WriteLog(_mylog._info, _classPath, method,
+                                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 10/07/2017 09:40
     ''' </lastupdate>
@@ -164,7 +260,6 @@ Public Class ctrlHU_WelfareMngNewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             GetDataCombo()
-            cboIS_TAXION.SelectedIndex = 0
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -176,6 +271,10 @@ Public Class ctrlHU_WelfareMngNewEdit
 
 #Region "Event"
 
+    Private Sub ctrlFindEmployeePopup_CancelClicked(sender As Object, e As System.EventArgs) Handles ctrlFindEmployeePopup.CancelClicked
+        isLoadPopup = 0
+    End Sub
+
     ''' <lastupdate>
     ''' 10/07/2017 10:10
     ''' </lastupdate>
@@ -185,26 +284,26 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
-        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            If lstCommonEmployee.Count <> 0 Then
-                hidIDEmp.Value = lstCommonEmployee(0).EMPLOYEE_ID
-                txtEmployeeCode.Text = lstCommonEmployee(0).EMPLOYEE_CODE
-                txtEMPLOYEE.Text = lstCommonEmployee(0).FULLNAME_VN
-                txtORG.Text = lstCommonEmployee(0).ORG_NAME
-                txtTITLE.Text = lstCommonEmployee(0).TITLE_NAME
-                ' txtSTAFF_RANK.Text = lstCommonEmployee(0).STAFF_RANK_NAME
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+    '    Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
+    '        If lstCommonEmployee.Count <> 0 Then
+    '            hidIDEmp.Value = lstCommonEmployee(0).EMPLOYEE_ID
+    '            'txtEmployeeCode.Text = lstCommonEmployee(0).EMPLOYEE_CODE
+    '            'txtEMPLOYEE.Text = lstCommonEmployee(0).FULLNAME_VN
+    '            'txtORG.Text = lstCommonEmployee(0).ORG_NAME
+    '            'txtTITLE.Text = lstCommonEmployee(0).TITLE_NAME
+    '            ' txtSTAFF_RANK.Text = lstCommonEmployee(0).STAFF_RANK_NAME
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>
     ''' 10/07/2017 10:10
@@ -217,18 +316,18 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnFindEmployee_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnFindEmployee.Click
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            LoadControlPopup()
-            ctrlFindEmployeePopup.Show()
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
+    'Private Sub btnFindEmployee_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnFindEmployee.Click
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        LoadControlPopup()
+    '        ctrlFindEmployeePopup.Show()
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
 
-    End Sub
+    'End Sub
 
     ''' <lastupdate>
     ''' 10/07/2017 10:10
@@ -247,30 +346,38 @@ Public Class ctrlHU_WelfareMngNewEdit
         Try
             Dim objdata As WelfareMngDTO
             Dim objList As New List(Of WelfareMngDTO)
+            Dim lstemp As New List(Of Welfatemng_empDTO)
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     objdata = New WelfareMngDTO
-                    objdata.WELFARE_ID = Utilities.ObjToDecima(cboWELFARE_ID.SelectedValue)
-                    objdata.EMPLOYEE_ID = hidIDEmp.Value
-                    objdata.MONEY = rntxtAmount.Value
+                    objdata.WELFARE_ID = cboWELFARE_ID.SelectedValue
+                    'objdata.EMPLOYEE_ID = hidIDEmp.Value
                     objdata.EFFECT_DATE = dpEFFECT_DATE.SelectedDate
                     objdata.SDESC = txtSDESC.Text
-                    objdata.IS_TAXION = Utilities.ObjToDecima(cboIS_TAXION.SelectedValue)
-                    If Utilities.ObjToDecima(cboIS_TAXION.SelectedValue) > 0 Then
-                        If cboPeriod.SelectedValue = "" Then
-                            ShowMessage(Translate("Bạn phải chọn kỳ lương"), NotifyType.Error)
-                            Return
-                        End If
-                        objdata.PERIOD_ID = cboPeriod.SelectedValue
-                    End If
-                    objList.Add(objdata)
+                    For Each item In Employee_PL
+                        Dim o As New Welfatemng_empDTO
+                        o.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        o.EMPLOYEE_CODE = item.EMPLOYEE_CODE
+                        o.GENDER_ID = item.GENDER_ID
+                        o.TITLE_ID = item.TITLE_ID
+                        o.ORG_ID = item.ORG_ID
+                        o.TOTAL_CHILD = item.TOTAL_CHILD
+                        o.MONEY_TOTAL = item.MONEY_TOTAL
+                        o.MONEY_PL = item.MONEY_PL
+                        o.CONTRACT_TYPE = item.CONTRACT_TYPE
+                        o.WELFARE_ID = cboWELFARE_ID.SelectedValue
+                        o.SENIORITY = item.SENIORITY
+                        objdata.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        lstemp.Add(o)
+                    Next
+                    objdata.LST_WELFATE_EMP = lstemp
+                    'objList.Add(objdata)
                     If CurrentState = CommonMessage.STATE_NEW Then
                         Dim rep As New ProfileBusinessRepository
-                        If rep.InsertWelfareMng(objList) Then
+                        If rep.InsertWelfareMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMng&group=Business")
-
                         Else
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), NotifyType.Error)
                         End If
@@ -284,7 +391,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                             ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
                             Exit Sub
                         End If
-                        If rep.ModifyWelfareMng(objList) Then
+                        If rep.ModifyWelfareMng(objdata) Then
                             ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                             ''POPUPTOLINK
                             Response.Redirect("/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMng&group=Business")
@@ -339,27 +446,7 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub cboIS_TAXION_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboIS_TAXION.SelectedIndexChanged
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If Utilities.ObjToInt(cboIS_TAXION.SelectedValue) > 0 Then
-                cboPeriod.Enabled = True
-                nmYear.Enabled = True
-                nmYear.Value = Date.Now.Year
-                nmYear_TextChanged(Nothing, Nothing)
-                cboPeriod.SelectedIndex = 0
-            Else
-                nmYear.Enabled = False
-                cboPeriod.Enabled = False
-                nmYear.ClearValue()
-                cboPeriod.ClearValue()
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+
 
     ''' <lastupdate>
     ''' 10/07/2017 10:10
@@ -370,22 +457,7 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub nmYear_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles nmYear.TextChanged
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If nmYear.Text.Length = 4 Then
-                Using rep As New ProfileRepository
-                    FillDropDownList(cboPeriod, rep.GetPeriodbyYear(nmYear.Value), "PERIOD_NAME", "ID", Common.Common.SystemLanguage, False, cboPeriod.SelectedValue)
-                End Using
-            Else
-                cboPeriod.ClearValue()
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+
 
     ''' <lastupdate>
     ''' 10/07/2017 10:10
@@ -430,23 +502,23 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' Phương thức xử lý việc load các control cho popup ctrlFindEmployeePopup
     ''' </summary>
     ''' <remarks></remarks>
-    Sub LoadControlPopup()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If Not phFindSign.Controls.Contains(ctrlFindEmployeePopup) Then
-                ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
-                phFindSign.Controls.Add(ctrlFindEmployeePopup)
-                ctrlFindEmployeePopup.MultiSelect = False
-                ctrlFindEmployeePopup.LoadAllOrganization = False
-                ctrlFindEmployeePopup.MustHaveContract = True
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
+    'Sub LoadControlPopup()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        If Not phFindSign.Controls.Contains(ctrlFindEmployeePopup) Then
+    '            ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
+    '            phFindSign.Controls.Add(ctrlFindEmployeePopup)
+    '            ctrlFindEmployeePopup.MultiSelect = False
+    '            ctrlFindEmployeePopup.LoadAllOrganization = False
+    '            ctrlFindEmployeePopup.MustHaveContract = True
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
 
-    End Sub
+    'End Sub
 
     ''' <lastupdate>
     ''' 10/07/2017 10:20
@@ -457,23 +529,23 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' Fill du lieu cho View nếu parameter là "gUID"
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub GetParams()
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            If Request.Params("gUID") IsNot Nothing Then
-                _Id = Integer.Parse(Request.Params("gUID"))
-                CurrentState = CommonMessage.STATE_EDIT
-                LoadData()
-            Else
-                CurrentState = CommonMessage.STATE_NEW
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            Throw ex
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
+    'Private Sub GetParams()
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Try
+    '        If Request.Params("gUID") IsNot Nothing Then
+    '            _Id = Integer.Parse(Request.Params("gUID"))
+    '            CurrentState = CommonMessage.STATE_EDIT
+    '            LoadData()
+    '        Else
+    '            CurrentState = CommonMessage.STATE_NEW
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        Throw ex
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+    'End Sub
 
     ''' <lastupdate>
     ''' 10/07/2017 10:20
@@ -516,45 +588,21 @@ Public Class ctrlHU_WelfareMngNewEdit
             If Not WelfareMng Is Nothing Then
                 cboWELFARE_ID.AutoPostBack = False
                 hidIDEmp.Value = WelfareMng.EMPLOYEE_ID
-                txtEmployeeCode.Text = WelfareMng.EMPLOYEE_CODE
-                txtTITLE.Text = WelfareMng.TITLE_NAME
-                txtEMPLOYEE.Text = WelfareMng.EMPLOYEE_NAME
-                txtORG.Text = WelfareMng.ORG_NAME
-
+                'txtEmployeeCode.Text = WelfareMng.EMPLOYEE_CODE
+                'txtTITLE.Text = WelfareMng.TITLE_NAME
+                'txtEMPLOYEE.Text = WelfareMng.EMPLOYEE_NAME
+                'txtORG.Text = WelfareMng.ORG_NAME
                 If Utilities.ObjToInt(WelfareMng.WELFARE_ID) > 0 Then
                     cboWELFARE_ID.SelectedValue = WelfareMng.WELFARE_ID
                 End If
-
-                rntxtAmount.Value = WelfareMng.MONEY
                 dpEFFECT_DATE.SelectedDate = WelfareMng.EFFECT_DATE
-
-                If Utilities.ObjToInt(WelfareMng.IS_TAXION) > 0 Then
-                    cboIS_TAXION.SelectedValue = WelfareMng.IS_TAXION
-                End If
-
-                If Utilities.ObjToInt(WelfareMng.IS_TAXION) > 0 Then
-                    nmYear.Enabled = True
-                    cboPeriod.Enabled = True
-                    nmYear.Value = WelfareMng.YEAR_PERIOD
-                    nmYear_TextChanged(Nothing, Nothing)
-                    If Utilities.ObjToInt(WelfareMng.PERIOD_ID) > 0 Then
-                        cboPeriod.SelectedValue = WelfareMng.PERIOD_ID
-                    End If
-
-                Else
-                    nmYear.Enabled = False
-                    cboPeriod.Enabled = False
-                    nmYear.ClearValue()
-                    cboPeriod.ClearValue()
-                End If
                 txtSDESC.Text = WelfareMng.SDESC
                 cboWELFARE_ID.AutoPostBack = True
-
                 If WelfareMng.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
                     MainToolBar.Items(0).Enabled = False
                     LeftPane.Enabled = False
                 End If
-
+                Employee_PL = rep.GetlistWelfareEMP(_Id)
             End If
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -563,6 +611,25 @@ Public Class ctrlHU_WelfareMngNewEdit
         End Try
     End Sub
 #End Region
+    Private Sub rgEmployee_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgEmployee.NeedDataSource
+        Try
+            Dim rep As New ProfileBusinessRepository
+            If Request.Params("gUID") IsNot Nothing Then
+                _Id = Integer.Parse(Request.Params("gUID"))
+                CurrentState = CommonMessage.STATE_EDIT
+                LoadData()
 
+            Else
+                CurrentState = CommonMessage.STATE_NEW
+                If Not IsPostBack Then
+                    Employee_PL = New List(Of Welfatemng_empDTO)
+                End If
+            End If
+            rgEmployee.VirtualItemCount = Employee_PL.Count
+            rgEmployee.DataSource = Employee_PL
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 End Class

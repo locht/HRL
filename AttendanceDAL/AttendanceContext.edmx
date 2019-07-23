@@ -1241,6 +1241,16 @@
             <Property Name="WORK_HOUR" Type="number" Nullable="true" Precision="38" />
             <Property Name="TIMEVALIN_TEMP" Type="date" Nullable="true" />
             <Property Name="OBJECT_ATTENDANCE_CODE" Type="nclob" Nullable="true" />
+            <Property Name="HOURS_STOP" Type="date" Nullable="true" />
+            <Property Name="HOURS_START" Type="date" Nullable="true" />
+            <Property Name="TIMEIN_REALITY" Type="date" Nullable="true" />
+            <Property Name="TIMEOUT_REALITY" Type="date" Nullable="true" />
+            <Property Name="START_MID_HOURS" Type="date" Nullable="true" />
+            <Property Name="WORKING_VALUE" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFT_DAY" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="NOTE" Type="nclob" Nullable="true" />
+            <Property Name="SHIFT_TYPE_CODE" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_DATA_INOUT">
             <Key>
@@ -3926,6 +3936,16 @@
           <Property Type="Decimal" Name="WORK_HOUR" Nullable="true" />
           <Property Type="DateTime" Name="TIMEVALIN_TEMP" Nullable="true" />
           <Property Type="String" Name="OBJECT_ATTENDANCE_CODE" Nullable="true" />
+          <Property Type="DateTime" Name="HOURS_STOP" />
+          <Property Type="DateTime" Name="HOURS_START" />
+          <Property Type="DateTime" Name="TIMEIN_REALITY" />
+          <Property Type="DateTime" Name="TIMEOUT_REALITY" />
+          <Property Type="DateTime" Name="START_MID_HOURS" />
+          <Property Type="Decimal" Name="WORKING_VALUE" />
+          <Property Type="Decimal" Name="SHIFT_DAY" />
+          <Property Type="Decimal" Name="SHIFT_TYPE_ID" />
+          <Property Type="String" Name="NOTE" />
+          <Property Type="String" Name="SHIFT_TYPE_CODE" />
         </EntityType>
         <EntityType Name="AT_DATA_INOUT">
           <Key>
@@ -6209,6 +6229,16 @@
                     <ScalarProperty Name="WORK_HOUR" ColumnName="WORK_HOUR" />
                     <ScalarProperty Name="TIMEVALIN_TEMP" ColumnName="TIMEVALIN_TEMP" />
                     <ScalarProperty Name="OBJECT_ATTENDANCE_CODE" ColumnName="OBJECT_ATTENDANCE_CODE" />
+                    <ScalarProperty Name="HOURS_STOP" ColumnName="HOURS_STOP" />
+                    <ScalarProperty Name="HOURS_START" ColumnName="HOURS_START" />
+                    <ScalarProperty Name="TIMEIN_REALITY" ColumnName="TIMEIN_REALITY" />
+                    <ScalarProperty Name="TIMEOUT_REALITY" ColumnName="TIMEOUT_REALITY" />
+                    <ScalarProperty Name="START_MID_HOURS" ColumnName="START_MID_HOURS" />
+                    <ScalarProperty Name="WORKING_VALUE" ColumnName="WORKING_VALUE" />
+                    <ScalarProperty Name="SHIFT_DAY" ColumnName="SHIFT_DAY" />
+                    <ScalarProperty Name="SHIFT_TYPE_ID" ColumnName="SHIFT_TYPE_ID" />
+                    <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                    <ScalarProperty Name="SHIFT_TYPE_CODE" ColumnName="SHIFT_TYPE_CODE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7410,7 +7440,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="81" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="57" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7503,7 +7533,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_MANUAL" Width="1.875" PointX="13.625" PointY="10.5" Height="3.5186979166666656" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_RICE" Width="1.5" PointX="14.625" PointY="0.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_DAILY" Width="2.375" PointX="14.625" PointY="2.5" Height="0.39999999999999147" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_MACHINET" Width="2.5" PointX="14.625" PointY="4.5" Height="16.979798177083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_MACHINET" Width="2.5" PointX="27.375" PointY="9.5" Height="18.902812500000003" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DATA_INOUT" Width="1.5" PointX="4.625" PointY="14.5" Height="9.0954394531250031" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="10.375" PointY="15.5" Height="4.0956022135416674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TERMINALS" Width="1.875" PointX="10.375" PointY="11.25" Height="5.4417122395833353" IsExpanded="true" />

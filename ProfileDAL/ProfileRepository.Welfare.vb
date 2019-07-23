@@ -43,11 +43,10 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WELFARE_MNG
+                        From plst In Context.HU_WELFARE_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID)
                         From t In Context.HU_TITLE.Where(Function(t) e.TITLE_ID = t.ID)
-                        From l In Context.HU_WELFARE_LIST.Where(Function(l) p.WELFARE_ID = l.ID)
-                        From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
                         From se In Context.SE_CHOSEN_ORG.Where(Function(se) se.ORG_ID = o.ID And _
                                                                    se.USERNAME = UserLog.Username.ToUpper)
 
@@ -72,7 +71,7 @@ Partial Class ProfileRepository
                 query = query.Where(Function(p) p.t.NAME_VN.ToUpper.Contains(_filter.TITLE_NAME.ToUpper))
             End If
             If _filter.WELFARE_NAME IsNot Nothing Then
-                query = query.Where(Function(p) p.l.NAME.ToUpper.Contains(_filter.WELFARE_NAME.ToUpper))
+                query = query.Where(Function(p) p.plst.NAME.ToUpper.Contains(_filter.WELFARE_NAME.ToUpper))
             End If
             If _filter.MONEY IsNot Nothing Then
                 query = query.Where(Function(p) p.p.MONEY = _filter.MONEY)
@@ -90,8 +89,6 @@ Partial Class ProfileRepository
             Dim wel = query.Select(Function(p) New WelfareMngDTO With {
                                        .ID = p.p.ID,
                                        .PERIOD_ID = p.p.PERIOD_ID,
-                                       .YEAR_PERIOD = p.pe.YEAR,
-                                       .NAME_PERIOD = p.pe.PERIOD_NAME,
                                        .EFFECT_DATE = p.p.EFFECT_DATE,
                                        .EMPLOYEE_ID = p.e.ID,
                                        .IS_TAXION = p.p.IS_TAXION,
@@ -100,13 +97,14 @@ Partial Class ProfileRepository
                                        .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                        .EXPIRE_DATE = p.p.EXPIRE_DATE,
                                        .MONEY = p.p.MONEY,
+                                       .MONEY_PL = p.plst.MONEY,
                                        .ORG_ID = p.o.ID,
                                        .ORG_NAME = p.o.NAME_VN,
                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
                                        .SDESC = p.p.SDESC,
                                        .TITLE_NAME = p.t.NAME_VN,
                                        .WELFARE_ID = p.p.WELFARE_ID,
-                                       .WELFARE_NAME = p.l.NAME,
+                                       .WELFARE_NAME = p.plst.NAME,
                                        .WORK_STATUS = p.e.WORK_STATUS,
                                        .TER_LAST_DATE = p.e.TER_EFFECT_DATE,
                                        .CREATED_DATE = p.p.CREATED_DATE})
@@ -119,9 +117,40 @@ Partial Class ProfileRepository
             Throw ex
         End Try
     End Function
+    Public Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
+        Try
+            Dim query = From p In Context.HU_WELFARE_MNG
+                        From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID).DefaultIfEmpty
+                        From cttype In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = ce.CONTRACT_TYPE).DefaultIfEmpty
+                      From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = ce.EMPLOYEE_ID).DefaultIfEmpty
+                      From t In Context.HU_TITLE.Where(Function(t) t.ID = e.TITLE_ID).DefaultIfEmpty
+                      From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = ce.GENDER_ID).DefaultIfEmpty
+                      From o In Context.HU_ORGANIZATION.Where(Function(o) o.ID = ce.ORG_ID)
+                      From w In Context.HU_WELFARE_LIST.Where(Function(w) w.ID = p.WELFARE_ID).DefaultIfEmpty
+                      From pe In Context.AT_PERIOD.Where(Function(pe) pe.ID = p.PERIOD_ID).DefaultIfEmpty
+                      Where p.ID = Id
+                   Order By p.EMPLOYEE_ID
+
+            Dim lst = query.Select(Function(p) New Welfatemng_empDTO With {
+                                      .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
+                                      .EMPLOYEE_NAME = p.e.FULLNAME_VN,
+                                      .TITLE_NAME = p.t.NAME_VN,
+                                      .ORG_NAME = p.o.NAME_VN,
+                                      .TOTAL_CHILD = p.ce.TOTAL_CHILD,
+                                      .MONEY_TOTAL = p.ce.MONEY_TOTAL,
+                                      .MONEY_PL = p.ce.MONEY_PL,
+                                      .GENDER_NAME = p.gender.NAME_VN,
+                                      .CONTRACT_TYPE = p.ce.CONTRACT_TYPE,
+                                      .CONTRACT_NAME = p.cttype.NAME,
+                                      .SENIORITY = p.ce.SENIORITY
+                                      })
+            Return lst.ToList
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetWelfareMngById(ByVal Id As Integer
                                         ) As WelfareMngDTO
-
         Try
             Dim query = From p In Context.HU_WELFARE_MNG
                         From e In Context.HU_EMPLOYEE.Where(Function(e) e.ID = p.EMPLOYEE_ID).DefaultIfEmpty
@@ -241,31 +270,26 @@ Partial Class ProfileRepository
         End Try
     End Function
 
-    Public Function InsertWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO),
+    Public Function InsertWelfareMng(ByVal lstWelfareMng As WelfareMngDTO,
                                    ByVal log As UserLog) As Boolean
         Dim iCount As Integer = 0
         Try
-            For idx = 0 To lstWelfareMng.Count - 1
-                Dim item As WelfareMngDTO = lstWelfareMng(idx)
-                Dim objWelfareMngData As New HU_WELFARE_MNG
-                objWelfareMngData.ID = Utilities.GetNextSequence(Context, Context.HU_WELFARE_MNG.EntitySet.Name)
-                objWelfareMngData.EFFECT_DATE = item.EFFECT_DATE
-                objWelfareMngData.EMPLOYEE_ID = item.EMPLOYEE_ID
-                objWelfareMngData.EXPIRE_DATE = item.EXPIRE_DATE
-                objWelfareMngData.MONEY = item.MONEY
-                objWelfareMngData.SDESC = item.SDESC
-                objWelfareMngData.IS_TAXION = item.IS_TAXION
-                objWelfareMngData.WELFARE_ID = item.WELFARE_ID
-                objWelfareMngData.PERIOD_ID = item.PERIOD_ID
-                objWelfareMngData.CREATED_DATE = DateTime.Now
-                objWelfareMngData.CREATED_BY = log.Username
-                objWelfareMngData.CREATED_LOG = log.ComputerName
-                objWelfareMngData.MODIFIED_DATE = DateTime.Now
-                objWelfareMngData.MODIFIED_BY = log.Username
-                objWelfareMngData.MODIFIED_LOG = log.ComputerName
-                Context.HU_WELFARE_MNG.AddObject(objWelfareMngData)
-            Next
+            Dim objWelfareMngData As New HU_WELFARE_MNG
+            objWelfareMngData.ID = Utilities.GetNextSequence(Context, Context.HU_WELFARE_MNG.EntitySet.Name)
+            lstWelfareMng.ID = objWelfareMngData.ID
+            objWelfareMngData.EFFECT_DATE = lstWelfareMng.EFFECT_DATE
+            objWelfareMngData.EMPLOYEE_ID = lstWelfareMng.EMPLOYEE_ID
+            objWelfareMngData.SDESC = lstWelfareMng.SDESC
+            objWelfareMngData.WELFARE_ID = lstWelfareMng.WELFARE_ID
+            objWelfareMngData.CREATED_DATE = DateTime.Now
+            objWelfareMngData.CREATED_BY = log.Username
+            objWelfareMngData.CREATED_LOG = log.ComputerName
+            objWelfareMngData.MODIFIED_DATE = DateTime.Now
+            objWelfareMngData.MODIFIED_BY = log.Username
+            objWelfareMngData.MODIFIED_LOG = log.ComputerName
+            Context.HU_WELFARE_MNG.AddObject(objWelfareMngData)
 
+            InsertObjectLstEmp(lstWelfareMng)
             Context.SaveChanges(log)
             Return True
         Catch ex As Exception
@@ -274,27 +298,62 @@ Partial Class ProfileRepository
         End Try
 
     End Function
-
-    Public Function ModifyWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO),
-                                   ByVal log As UserLog) As Boolean
-        Dim lstID As List(Of Decimal) = (From p In lstWelfareMng Select p.ID).ToList
-        Dim lstWelfareMngData As New List(Of HU_WELFARE_MNG)
+    Private Sub InsertObjectLstEmp(ByVal lstWelfareMng As WelfareMngDTO)
+        Dim objDataEmp As HU_WELFARE_MNG_EMP
         Try
-            lstWelfareMngData = (From p In Context.HU_WELFARE_MNG Where lstID.Contains(p.ID)).ToList
+            If lstWelfareMng.LST_WELFATE_EMP IsNot Nothing Then
+                Dim objD = (From d In Context.HU_WELFARE_MNG_EMP Where d.GROUP_ID = lstWelfareMng.ID).ToList
+                For Each obj As HU_WELFARE_MNG_EMP In objD
+                    Context.HU_WELFARE_MNG_EMP.DeleteObject(obj)
+                Next
+                'insert nhan vien mới
+                For Each obj As Welfatemng_empDTO In lstWelfareMng.LST_WELFATE_EMP
+                    objDataEmp = New HU_WELFARE_MNG_EMP
+                    objDataEmp.ID = Utilities.GetNextSequence(Context, Context.HU_WELFARE_MNG_EMP.EntitySet.Name)
+                    objDataEmp.GROUP_ID = lstWelfareMng.ID
+                    objDataEmp.EMPLOYEE_ID = obj.EMPLOYEE_ID
+                    objDataEmp.TITLE_ID = obj.TITLE_ID
+                    objDataEmp.ORG_ID = obj.ORG_ID
+                    objDataEmp.TOTAL_CHILD = obj.TOTAL_CHILD
+                    objDataEmp.MONEY_TOTAL = obj.MONEY_TOTAL
+                    objDataEmp.MONEY_PL = obj.MONEY_PL
+                    objDataEmp.CONTRACT_TYPE = obj.CONTRACT_TYPE
+                    objDataEmp.GENDER_ID = obj.GENDER_ID
+                    objDataEmp.SENIORITY = obj.SENIORITY
+                    objDataEmp.WELFARE_ID = lstWelfareMng.WELFARE_ID
+                    Context.HU_WELFARE_MNG_EMP.AddObject(objDataEmp)
+                Next
+            End If
+        Catch ex As Exception
 
-            For idx = 0 To lstWelfareMngData.Count - 1
-                lstWelfareMngData(idx).WELFARE_ID = lstWelfareMng(idx).WELFARE_ID
-                lstWelfareMngData(idx).EFFECT_DATE = lstWelfareMng(idx).EFFECT_DATE
-                lstWelfareMngData(idx).EXPIRE_DATE = lstWelfareMng(idx).EXPIRE_DATE
-                lstWelfareMngData(idx).MONEY = lstWelfareMng(idx).MONEY
-                lstWelfareMngData(idx).SDESC = lstWelfareMng(idx).SDESC
-                lstWelfareMngData(idx).IS_TAXION = lstWelfareMng(idx).IS_TAXION
-                lstWelfareMngData(idx).WELFARE_ID = lstWelfareMng(idx).WELFARE_ID
-                lstWelfareMngData(idx).PERIOD_ID = lstWelfareMng(idx).PERIOD_ID
-                lstWelfareMngData(idx).MODIFIED_DATE = DateTime.Now
-                lstWelfareMngData(idx).MODIFIED_BY = log.Username
-                lstWelfareMngData(idx).MODIFIED_LOG = log.ComputerName
-            Next
+        End Try
+    End Sub
+    Public Function ModifyWelfareMng(ByVal lstWelfareMng As WelfareMngDTO,
+                                   ByVal log As UserLog) As Boolean
+        'Dim lstID As List(Of Decimal) = (From p In lstWelfareMng Select p.ID).ToList
+        Dim lstWelfareMngData As New HU_WELFARE_MNG With {.ID = lstWelfareMng.ID}
+        Try
+            'lstWelfareMngData = (From p In Context.HU_WELFARE_MNG Where lstID.Contains(p.ID)).ToList
+            'lstWelfareMngData(idx).WELFARE_ID = lstWelfareMng(idx).WELFARE_ID
+            'lstWelfareMngData(idx).EFFECT_DATE = lstWelfareMng(idx).EFFECT_DATE
+            'lstWelfareMngData(idx).EXPIRE_DATE = lstWelfareMng(idx).EXPIRE_DATE
+            'lstWelfareMngData(idx).MONEY = lstWelfareMng(idx).MONEY
+            'lstWelfareMngData(idx).SDESC = lstWelfareMng(idx).SDESC
+            'lstWelfareMngData(idx).IS_TAXION = lstWelfareMng(idx).IS_TAXION
+            'lstWelfareMngData(idx).WELFARE_ID = lstWelfareMng(idx).WELFARE_ID
+            'lstWelfareMngData(idx).PERIOD_ID = lstWelfareMng(idx).PERIOD_ID
+            'lstWelfareMngData(idx).MODIFIED_DATE = DateTime.Now
+            'lstWelfareMngData(idx).MODIFIED_BY = log.Username
+            'lstWelfareMngData(idx).MODIFIED_LOG = log.ComputerName
+            Context.HU_WELFARE_MNG.Attach(lstWelfareMngData)
+            lstWelfareMngData.ID = lstWelfareMng.ID
+            lstWelfareMngData.EFFECT_DATE = lstWelfareMng.EFFECT_DATE
+            lstWelfareMngData.WELFARE_ID = lstWelfareMng.WELFARE_ID
+            lstWelfareMngData.SDESC = lstWelfareMng.SDESC
+            lstWelfareMngData.MODIFIED_DATE = DateTime.Now
+            lstWelfareMngData.MODIFIED_BY = log.Username
+            lstWelfareMngData.MODIFIED_LOG = log.ComputerName
+            InsertObjectLstEmp(lstWelfareMng)
             Context.SaveChanges(log)
             Return True
         Catch ex As Exception

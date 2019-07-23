@@ -489,6 +489,22 @@ Public Class CommonConfig
 
         End Set
     End Property
+    Public Shared Property ReminderExpiredCertificate() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpiredCertificate, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.ExpiredCertificate, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.ExpiredCertificate, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.ExpiredCertificate, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.ExpiredCertificate, Integer), value)
+            End If
+
+        End Set
+    End Property
     Public Shared Property ReminderApproveDays() As Integer
         Get
             If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.Approve, Integer)) Then
@@ -1032,6 +1048,7 @@ Public Class CommonConfig
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Materniti, Integer), ReminderMaternitiDays)
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Retirement, Integer), ReminderRetirementDays)
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.NoneSalary, Integer), ReminderNoneSalaryDays)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpiredCertificate, Integer), ReminderExpiredCertificate)
             End Using
 
             Return True

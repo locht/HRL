@@ -64,9 +64,21 @@
     Public Property MIN_EARLY As Decimal?
     Public Property MIN_LATE_EARLY As Decimal?
 
-    Public Property TIMEVALIN As Date?
-    Public Property TIMEVALOUT As Date?
     Public Property WORK_HOUR As Decimal?
     Public Property TIMEVALIN_TEMP As Date?
     Public Property OBJECT_ATTENDANCE_CODE As String
+    Public Property HOURS_STOP As Date?
+    Public Property HOURS_START As Date?
+    Public Property TIMEIN_REALITY As Date?
+    Public Property TIMEOUT_REALITY As Date?
+    Public Property START_MID_HOURS As Date?
+    Public Property END_MID_HOURS As Date?
+    Public Property WORKING_VALUE As Decimal?
+    Public Property SHIFT_DAY As Decimal?
+    Public Property SHIFT_TYPE_CODE As String
+    Public Property SHIFT_TYPE_ID As Decimal?
+    Public Property NOTE As String
+    Public Property TIMEVALIN As Date?
+    Public Property TIMEVALOUT As Date?
+
 End Class

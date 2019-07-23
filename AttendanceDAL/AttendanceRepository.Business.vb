@@ -462,6 +462,7 @@ Partial Public Class AttendanceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
+                        From SH In Context.AT_SHIFT.Where(Function(F) F.ID = p.SHIFT_ID).DefaultIfEmpty
                         From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And
                                                                   f.USERNAME.ToUpper = log.Username.ToUpper.ToUpper)
@@ -550,6 +551,13 @@ Partial Public Class AttendanceRepository
                                        .MIN_LATE_EARLY = p.p.MIN_LATE_EARLY,
                                        .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
                                        .MIN_OUT_WORK = p.p.MIN_OUT_WORK,
+                                       .HOURS_STOP = p.p.HOURS_START,
+                                       .HOURS_START = p.p.HOURS_START,
+                                       .TIMEIN_REALITY = p.p.TIMEIN_REALITY,
+                                       .TIMEOUT_REALITY = p.p.TIMEOUT_REALITY,
+                                       .WORKING_VALUE = p.p.WORKING_VALUE,
+                                       .SHIFT_TYPE_CODE = p.p.SHIFT_TYPE_CODE,
+                                       .NOTE = p.p.NOTE,
                                        .MIN_OUT_WORK_DEDUCT = p.p.MIN_OUT_WORK_DEDUCT})
             lst = lst.OrderBy(Sorts)
             Total = lst.Count

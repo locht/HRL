@@ -310,6 +310,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 
 #Region "WelfareList"
+        <OperationContract()>
+        Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
 
         <OperationContract()>
         Function GetWelfareList(ByVal _filter As WelfareListDTO,
@@ -1622,10 +1624,10 @@ Namespace ProfileBusiness.ServiceContracts
         Function CheckWelfareMngEffect(ByVal _filter As List(Of WelfareMngDTO)) As Boolean
 
         <OperationContract()>
-        Function InsertWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO), ByVal log As UserLog) As Boolean
+        Function InsertWelfareMng(ByVal lstWelfareMng As WelfareMngDTO, ByVal log As UserLog) As Boolean
 
         <OperationContract()>
-        Function ModifyWelfareMng(ByVal lstWelfareMng As List(Of WelfareMngDTO), ByVal log As UserLog) As Boolean
+        Function ModifyWelfareMng(ByVal lstWelfareMng As WelfareMngDTO, ByVal log As UserLog) As Boolean
 
         <OperationContract()>
         Function DeleteWelfareMng(ByVal lstWelfareMng() As WelfareMngDTO, ByVal log As UserLog) As Boolean
