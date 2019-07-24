@@ -33,6 +33,16 @@ Namespace ProfileBusiness.ServiceImplementations
                 Throw ex
             End Try
         End Function
+        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal) As DataTable Implements ServiceContracts.IProfileBusiness.GET_DETAILS_EMP
+            Try
+                Using rep As New ProfileRepository
+                    Dim dt = rep.GET_DETAILS_EMP(P_ID)
+                    Return dt
+                End Using
+            Catch ex As Exception
+
+            End Try
+        End Function
         Public Function GetWelfareMng(ByVal _filter As WelfareMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,

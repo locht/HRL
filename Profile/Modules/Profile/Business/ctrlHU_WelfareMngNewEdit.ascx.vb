@@ -73,7 +73,14 @@ Public Class ctrlHU_WelfareMngNewEdit
             ViewState(Me.ID & "_Id") = value
         End Set
     End Property
-
+    Property checkDelete As Integer
+        Get
+            Return ViewState(Me.ID & "_checkDelete")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_checkDelete") = value
+        End Set
+    End Property
     ''' <summary>
     ''' Obj popupID
     ''' 0 - normal
@@ -181,6 +188,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                         Employee_PL.Remove(s)
                     Next
                     '_result = False
+                    checkDelete = 1
                     rgEmployee.Rebind()
             End Select
         Catch ex As Exception
@@ -206,16 +214,16 @@ Public Class ctrlHU_WelfareMngNewEdit
             Catch ex As Exception
                 Throw ex
             End Try
-            _myLog.WriteLog(_myLog._info, _classPath, method,
+            _mylog.WriteLog(_mylog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
     End Sub
 
 
-    
+
     Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
         Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
@@ -236,6 +244,27 @@ Public Class ctrlHU_WelfareMngNewEdit
                     employee.TITLE_NAME = emp.TITLE_NAME
                     employee.ORG_ID = emp.ORG_ID
                     employee.TITLE_ID = emp.TITLE_ID
+                    Using rep As New ProfileBusinessRepository
+                        Dim dtdata = rep.GET_DETAILS_EMP(emp.ID)
+                        If dtdata.Rows.Count > 0 Then
+                            Dim total_child = dtdata(0)("TOTAL_CHILD").ToString()
+                            Dim money_total = dtdata(0)("MONEY_TOTAL").ToString()
+                            Dim money_pl = dtdata(0)("MONEY_PL").ToString()
+                            Dim gender_id = dtdata(0)("GENDER_ID").ToString()
+                            Dim contract_type = dtdata(0)("CONTRACT_ID").ToString()
+                            Dim contract_name = dtdata(0)("CONTRACT_TYPE").ToString()
+                            Dim seniority = dtdata(0)("SENIORITY").ToString()
+                            Dim gender_name = dtdata(0)("GENDER_NAME").ToString()
+                            employee.TOTAL_CHILD = total_child
+                            employee.MONEY_TOTAL = money_total
+                            employee.SENIORITY = seniority
+                            employee.MONEY_PL = money_pl
+                            employee.GENDER_NAME = gender_name
+                            employee.GENDER_ID = gender_id
+                            employee.CONTRACT_TYPE = contract_type
+                            employee.CONTRACT_NAME = contract_name
+                        End If
+                    End Using
                     Employee_PL.Add(employee)
                 Next
                 '_result = False
@@ -602,7 +631,11 @@ Public Class ctrlHU_WelfareMngNewEdit
                     MainToolBar.Items(0).Enabled = False
                     LeftPane.Enabled = False
                 End If
-                Employee_PL = rep.GetlistWelfareEMP(_Id)
+                If checkDelete <> 1 Then
+                    Employee_PL = rep.GetlistWelfareEMP(_Id)
+                End If
+
+
             End If
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
