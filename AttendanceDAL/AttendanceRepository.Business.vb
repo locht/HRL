@@ -412,8 +412,12 @@ Partial Public Class AttendanceRepository
                 Dim LstobjData = (From p In Context.AT_TIME_TIMESHEET_MACHINET Where p.EMPLOYEE_ID = emp_id And p.WORKINGDAY = obj.WORKINGDAY Select p)
                 If LstobjData Is Nothing Then Continue For
                 For Each objdata In LstobjData
-                    objdata.TIMEIN_REALITY = obj.TIMEIN_REALITY
-                    objdata.TIMEOUT_REALITY = obj.TIMEOUT_REALITY
+                    If obj.TIMEIN_REALITY IsNot Nothing Then
+                        objdata.TIMEIN_REALITY = obj.TIMEIN_REALITY
+                    End If
+                    If obj.TIMEOUT_REALITY IsNot Nothing Then
+                        objdata.TIMEOUT_REALITY = obj.TIMEOUT_REALITY
+                    End If
                     objdata.NOTE = obj.NOTE
                 Next
             Next
