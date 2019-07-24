@@ -10344,6 +10344,12 @@ Namespace InsuranceBusiness
      System.ServiceModel.ServiceContractAttribute(ConfigurationName:="InsuranceBusiness.IInsuranceBusiness")>  _
     Public Interface IInsuranceBusiness
         
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExtResponse")>  _
+        Function UpdateInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As Double
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExtResponse")>  _
+        Function DeleteInsHealthExt(ByVal username As String, ByVal id As String) As Double
+        
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GET_MLTTC", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GET_MLTTCResponse")>  _
         Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable
         
@@ -10382,6 +10388,12 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteSunCare", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteSunCareResponse")>  _
         Function DeleteSunCare(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/CHECK_EMPLOYEE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/CHECK_EMPLOYEEResponse")>  _
+        Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/INPORT_MANAGER_SUN_CARE", ReplyAction:="http://tempuri.org/IInsuranceBusiness/INPORT_MANAGER_SUN_CAREResponse")>  _
+        Function INPORT_MANAGER_SUN_CARE(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetRegimeManager", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetRegimeManagerResponse")>  _
         Function GetRegimeManager(ByVal _filter As InsuranceBusiness.INS_REMIGE_MANAGER_DTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EntiledID As Integer, ByVal Fillter As String, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO)
@@ -10729,12 +10741,6 @@ Namespace InsuranceBusiness
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetInsHealthExtResponse")>  _
         Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/UpdateInsHealthExtResponse")>  _
-        Function UpdateInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As Double
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExt", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsHealthExtResponse")>  _
-        Function DeleteInsHealthExt(ByVal username As String, ByVal id As String) As Double
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/GetComboboxData", ReplyAction:="http://tempuri.org/IInsuranceBusiness/GetComboboxDataResponse")>  _
         Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean
@@ -11188,6 +11194,14 @@ Namespace InsuranceBusiness
             MyBase.New(binding, remoteAddress)
         End Sub
         
+        Public Function UpdateInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsHealthExt
+            Return MyBase.Channel.UpdateInsHealthExt(username, id, employee_id, ins_org_id, health_ins_card, effective_from_date, effective_to_date, health_from_date, health_to_date)
+        End Function
+        
+        Public Function DeleteInsHealthExt(ByVal username As String, ByVal id As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsHealthExt
+            Return MyBase.Channel.DeleteInsHealthExt(username, id)
+        End Function
+        
         Public Function GET_MLTTC(ByVal p_date As Date) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GET_MLTTC
             Return MyBase.Channel.GET_MLTTC(p_date)
         End Function
@@ -11238,6 +11252,14 @@ Namespace InsuranceBusiness
         
         Public Function DeleteSunCare(ByVal lstID As System.Collections.Generic.List(Of Decimal)) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.DeleteSunCare
             Return MyBase.Channel.DeleteSunCare(lstID)
+        End Function
+        
+        Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements InsuranceBusiness.IInsuranceBusiness.CHECK_EMPLOYEE
+            Return MyBase.Channel.CHECK_EMPLOYEE(P_EMP_CODE)
+        End Function
+        
+        Public Function INPORT_MANAGER_SUN_CARE(ByVal P_DOCXML As String, ByVal log As Common.CommonBusiness.UserLog) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.INPORT_MANAGER_SUN_CARE
+            Return MyBase.Channel.INPORT_MANAGER_SUN_CARE(P_DOCXML, log)
         End Function
         
         Public Function GetRegimeManager(ByVal _filter As InsuranceBusiness.INS_REMIGE_MANAGER_DTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal OrgId As Integer, ByVal IsDissolve As Integer, ByVal EntiledID As Integer, ByVal Fillter As String, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of InsuranceBusiness.INS_REMIGE_MANAGER_DTO) Implements InsuranceBusiness.IInsuranceBusiness.GetRegimeManager
@@ -11656,14 +11678,6 @@ Namespace InsuranceBusiness
         
         Public Function GetInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As System.Data.DataTable Implements InsuranceBusiness.IInsuranceBusiness.GetInsHealthExt
             Return MyBase.Channel.GetInsHealthExt(username, id, employee_id, ins_org_id, health_ins_card, effective_from_date, effective_to_date, health_from_date, health_to_date)
-        End Function
-        
-        Public Function UpdateInsHealthExt(ByVal username As String, ByVal id As System.Nullable(Of Double), ByVal employee_id As String, ByVal ins_org_id As System.Nullable(Of Double), ByVal health_ins_card As String, ByVal effective_from_date As System.Nullable(Of Date), ByVal effective_to_date As System.Nullable(Of Date), ByVal health_from_date As System.Nullable(Of Date), ByVal health_to_date As System.Nullable(Of Date)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsHealthExt
-            Return MyBase.Channel.UpdateInsHealthExt(username, id, employee_id, ins_org_id, health_ins_card, effective_from_date, effective_to_date, health_from_date, health_to_date)
-        End Function
-        
-        Public Function DeleteInsHealthExt(ByVal username As String, ByVal id As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsHealthExt
-            Return MyBase.Channel.DeleteInsHealthExt(username, id)
         End Function
         
         Public Function GetComboboxData(ByRef cbxData As InsuranceBusiness.ComboBoxDataDTO) As Boolean Implements InsuranceBusiness.IInsuranceBusiness.GetComboboxData

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 7/23/2019 2:44:07 PM
--- Generated from EDMX file: C:\workspaces\TNG\TNG\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 24/07/2019 4:27:48 PM
+-- Generated from EDMX file: E:\TNG-New\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -1342,7 +1342,8 @@ CREATE TABLE "dbo"."AT_FML" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "IS_LEAVE" NUMBER(38,0) NULL,
    "IS_CALHOLIDAY" NUMBER(5,0) NULL,
-   "HOURS" NUMBER(38,0) NULL
+   "HOURS" NUMBER(38,0) NULL,
+   "IS_REG_SHIFT" NUMBER(10,0) NULL
 );
 
 -- Creating table 'AT_TERMINALS'
@@ -1794,7 +1795,10 @@ CREATE TABLE "dbo"."AT_DECLARE_ENTITLEMENT" (
    "MONTH_EXTENSION_NB" NUMBER(38,0) NULL,
    "COM_PAY" NUMBER(38,0) NULL,
    "ENT_PAY" NUMBER(38,0) NULL,
-   "JOIN_DATE" DATE NULL
+   "JOIN_DATE" DATE NULL,
+   "MODIFY_TYPE_ID" NUMBER(38,0) NULL,
+   "END_MONTH_TN" NUMBER(38,0) NULL,
+   "EXPIRE_YEAR" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_PROJECT'

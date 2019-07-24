@@ -29,6 +29,8 @@
     Public Property WORK_INVOLVE_ID As Decimal?
     Public Property IMAGE As String
     Public Property DIRECT_MANAGER As Decimal?
+    Public Property HURT_TYPE_ID As Decimal?
+    Public Property HURT_TYPE_NAME As String
 End Class
 Public Class EmployeePopupFindListDTO
     Public Property ID As Decimal

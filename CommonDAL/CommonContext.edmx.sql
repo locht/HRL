@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 23/07/2019 11:52:45 AM
+-- Date Created: 24/07/2019 4:01:42 PM
 -- Generated from EDMX file: E:\TNG-New\CommonDAL\CommonContext.edmx
 -- --------------------------------------------------
 
@@ -421,7 +421,8 @@ CREATE TABLE "dbo"."HU_TITLE" (
    "NAME_VN" NVARCHAR2(255) NOT NULL,
    "ACTFLG" NVARCHAR2(1) NOT NULL,
    "TITLE_GROUP_ID" NUMBER(38,0) NULL,
-   "ORG_ID" NUMBER(38,0) NULL
+   "ORG_ID" NUMBER(38,0) NULL,
+   "HURT_TYPE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'SE_APP_PROCESS'

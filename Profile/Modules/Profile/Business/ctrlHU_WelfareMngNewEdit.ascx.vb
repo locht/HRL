@@ -255,13 +255,19 @@ Public Class ctrlHU_WelfareMngNewEdit
                             Dim contract_name = dtdata(0)("CONTRACT_TYPE").ToString()
                             Dim seniority = dtdata(0)("SENIORITY").ToString()
                             Dim gender_name = dtdata(0)("GENDER_NAME").ToString()
-                            employee.TOTAL_CHILD = total_child
-                            employee.MONEY_TOTAL = money_total
+                            If total_child <> "" Then
+                                employee.TOTAL_CHILD = Decimal.Parse(total_child)
+                            End If
+                            If money_total <> "" Then
+                                employee.MONEY_TOTAL = Decimal.Parse(money_total)
+                            End If
+                            If money_pl <> "" Then
+                                employee.MONEY_PL = Decimal.Parse(money_pl)
+                            End If
                             employee.SENIORITY = seniority
-                            employee.MONEY_PL = money_pl
                             employee.GENDER_NAME = gender_name
-                            employee.GENDER_ID = gender_id
-                            employee.CONTRACT_TYPE = contract_type
+                            employee.GENDER_ID = Decimal.Parse(gender_id)
+                            employee.CONTRACT_TYPE = Decimal.Parse(contract_type)
                             employee.CONTRACT_NAME = contract_name
                         End If
                     End Using

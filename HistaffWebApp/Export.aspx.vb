@@ -1449,7 +1449,7 @@ Public Class Export
             dtDataCost.TableName = "Cost"
             dsData.Tables.Add(dtDataCost)
 
-            ExportTemplate("Insurance\Import\Import_INS_SUNCARE.xlsx", _
+            ExportTemplate("Insurance\Import\Import_INS_SUNCARE.xls", _
                                       dsData, Nothing, _
                                       "Template_DeclareOT" & Format(Date.Now, "yyyyMMdd"))
         Catch ex As Exception

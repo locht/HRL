@@ -443,6 +443,28 @@ Namespace InsuranceBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+
+        Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer Implements ServiceContracts.IInsuranceBusiness.CHECK_EMPLOYEE
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.CHECK_EMPLOYEE(P_EMP_CODE)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
+
+        Public Function INPORT_MANAGER_SUN_CARE(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean Implements ServiceContracts.IInsuranceBusiness.INPORT_MANAGER_SUN_CARE
+            Using rep As New InsuranceRepository
+                Try
+
+                    Return rep.INPORT_MANAGER_SUN_CARE(P_DOCXML, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 #End Region
 
 #Region "Quản lý chế độ bảo hiểm"

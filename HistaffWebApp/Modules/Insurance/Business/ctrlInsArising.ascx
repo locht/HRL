@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="ctrlInsArising.ascx.vb"
     Inherits="Insurance.ctrlInsArising" %>
 <%@ Import Namespace="Common" %>
+<%@ Import Namespace="Framework.UI.Utilities" %>
 <link href="/Styles/StyleCustom.css" rel="stylesheet" type="text/css" />
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
 <tlk:RadSplitter ID="RadSplitter1" runat="server" Width="100%" Height="100%">
@@ -155,13 +156,36 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULL_NAME"
                                 UniqueName="FULL_NAME" SortExpression="FULL_NAME" HeaderStyle-Width="150px" FilterControlWidth="99%"
                                 ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEP_NAME"
+                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEP_NAME"
                                 UniqueName="DEP_NAME" HeaderStyle-Width="150px" SortExpression="DEP_NAME" FilterControlWidth="99%"
-                                ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
+                                ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />--%>
+
+
+                             <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="DEP_NAME" SortExpression="ORG_NAME"
+                                UniqueName="DEP_NAME">
+                                <HeaderStyle Width="200px" />
+                                <ItemTemplate>
+                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DEP_NAME")%>'>
+                                </asp:Label>
+                                <tlk:RadToolTip RenderMode="Lightweight" ID="RadToolTip1" runat="server" TargetControlID="Label1"
+                                                    RelativeTo="Element" Position="BottomCenter">
+                                <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
+                                </tlk:RadToolTip>
+                            </ItemTemplate>
+                            </tlk:GridTemplateColumn>
+
+
+
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Số sổ bảo hiểm %>" DataField="SOCIAL_NUMBER"
+                                UniqueName="SOCIAL_NUMBER" HeaderStyle-Width="150px" SortExpression="SOCIAL_NUMBER"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+
+                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Chức danh %>" DataField="TITLE_NAME"
                                 UniqueName="TITLE_NAME" HeaderStyle-Width="150px" SortExpression="TITLE_NAME"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
                                 AutoPostBackOnFilter="true" />
+
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataField="EFFECT_DATE"
                                 DataFormatString="{0:dd/MM/yyyy}" UniqueName="EFFECT_DATE" SortExpression="EFFECT_DATE"
                                 HeaderStyle-Width="85px" FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
@@ -186,6 +210,10 @@
                                 AutoPostBackOnFilter="true" />
                             <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: BHTN %>" DataField="UI" DataType="System.Boolean"
                                 ItemStyle-VerticalAlign="Middle" UniqueName="UI" SortExpression="UI" HeaderStyle-Width="40px"
+                                FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
+                                AutoPostBackOnFilter="true" />
+                            <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: BHTNLD-BNN %>" DataField="BHTNLD_BNN" DataType="System.Boolean"
+                                ItemStyle-VerticalAlign="Middle" UniqueName="BHTNLD_BNN" SortExpression="BHTNLD_BNN" HeaderStyle-Width="40px"
                                 FilterControlWidth="99%" ShowFilterIcon="false" CurrentFilterFunction="Contains"
                                 AutoPostBackOnFilter="true" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Sử dụng %>" DataField="ARISING_TYPE_ID"

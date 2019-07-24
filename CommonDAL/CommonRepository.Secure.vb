@@ -2396,8 +2396,10 @@ Partial Public Class CommonRepository
         Dim result = (From p In Context.HU_EMPLOYEE
                       From cv In Context.HU_EMPLOYEE_CV.Where(Function(cv) cv.EMPLOYEE_ID = p.ID).DefaultIfEmpty
                       From s In Context.HU_STAFF_RANK.Where(Function(s) s.ID = p.STAFF_RANK_ID).DefaultIfEmpty
+                      From t In Context.HU_TITLE.Where(Function(f) f.ID = p.TITLE_ID).DefaultIfEmpty
+                      From ot In Context.OT_OTHER_LIST.Where(Function(f) f.ID = t.HURT_TYPE_ID).DefaultIfEmpty
                       Order By p.EMPLOYEE_CODE
-                      Where _empId.Contains(p.ID)
+                      Where (_empId.Contains(p.ID))
                       Select New EmployeePopupFindDTO With {
                           .EMPLOYEE_CODE = p.EMPLOYEE_CODE,
                           .ID = p.ID,
@@ -2413,8 +2415,9 @@ Partial Public Class CommonRepository
                           .BIRTH_PLACE = cv.BIRTH_PLACE,
                           .STAFF_RANK_ID = p.STAFF_RANK_ID,
                           .STAFF_RANK_NAME = s.NAME,
-                          .IMAGE = cv.IMAGE})
-
+                          .IMAGE = cv.IMAGE,
+                          .HURT_TYPE_ID = t.HURT_TYPE_ID,
+                          .HURT_TYPE_NAME = ot.NAME_VN})
         Return result.ToList
     End Function
 

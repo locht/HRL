@@ -4,6 +4,9 @@ Imports Insurance.InsuranceBusiness
 Imports Common
 Imports Telerik.Web.UI
 Imports WebAppLog
+Imports System.IO
+Imports HistaffFrameworkPublic
+Imports System.Globalization
 
 Public Class ctrlInsManagerSunCare
     Inherits Common.CommonView
@@ -38,21 +41,24 @@ Public Class ctrlInsManagerSunCare
         End Set
     End Property
 
+    Private Property dtLogs As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtLogs")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtLogs") = value
+        End Set
+    End Property
+
     Property dtData As DataTable
         Get
             If ViewState(Me.ID & "_dtData") Is Nothing Then
                 Dim dt As New DataTable
-                dt.Columns.Add("STT", GetType(String))
-                dt.Columns.Add("EMPLOYEE_ID", GetType(String))
                 dt.Columns.Add("EMPLOYEE_CODE", GetType(String))
-                dt.Columns.Add("VN_FULLNAME", GetType(String))
-                dt.Columns.Add("THOIDIEMHUONG", GetType(String))
                 dt.Columns.Add("START_DATE", GetType(String))
                 dt.Columns.Add("END_DATE", GetType(String))
-                dt.Columns.Add("LEVEL_NAME", GetType(String))
                 dt.Columns.Add("LEVEL_ID", GetType(String))
                 dt.Columns.Add("COST", GetType(String))
-                dt.Columns.Add("NOTE", GetType(String))
                 ViewState(Me.ID & "_dtData") = dt
             End If
             Return ViewState(Me.ID & "_dtData")
@@ -289,64 +295,174 @@ Public Class ctrlInsManagerSunCare
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
-
-        Dim fileName As String
-        Dim dsDataPrepare As New DataSet
-        Dim workbook As Aspose.Cells.Workbook
-        Dim worksheet As Aspose.Cells.Worksheet
-        Dim objShift As New INS_INFORMATIONDTO
-        Dim rep As New InsuranceRepository
-        dtDataImp = New DataTable
-        'Dim gID As Decimal
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If ctrlUpload.UploadedFiles.Count = 0 Then
-                ShowMessage(Translate("Bạn chưa chọn biễu mẫu import"), NotifyType.Warning)
-                Exit Sub
-            End If
-            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
-            Dim savepath = Context.Server.MapPath(tempPath)
-            For Each file As UploadedFile In ctrlUpload.UploadedFiles
-                fileName = System.IO.Path.Combine(savepath, Guid.NewGuid().ToString() & ".xls")
-                file.SaveAs(fileName, True)
-                workbook = New Aspose.Cells.Workbook(fileName)
-                If workbook.Worksheets.GetSheetByCodeName("ImportInsSunCare") Is Nothing Then
-                    ShowMessage(Translate("File mẫu không đúng định dạng"), NotifyType.Warning)
-                    Exit Sub
-                End If
-                worksheet = workbook.Worksheets(0)
-                dsDataPrepare.Tables.Add(worksheet.Cells.ExportDataTableAsString(5, 0, worksheet.Cells.MaxRow + 1, worksheet.Cells.MaxColumn + 1, True))
-                If System.IO.File.Exists(fileName) Then System.IO.File.Delete(fileName)
-            Next
-            dtData = dtData.Clone()
-            dtDataImp = dsDataPrepare.Tables(0).Clone()
-            For Each dt As DataTable In dsDataPrepare.Tables
-                For Each row As DataRow In dt.Rows
-                    Dim isRow = ImportValidate.TrimRow(row)
-                    If Not isRow Then
-                        Continue For
-                    End If
-                    dtData.ImportRow(row)
-                    dtDataImp.ImportRow(row)
-                Next
-            Next
-            If loadToGrid() Then
-                If SaveData() Then
-                    CurrentState = CommonMessage.STATE_NORMAL
-                    Refresh("InsertView")
-                    UpdateControlState()
-                Else
-                    ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_FAIL), Utilities.NotifyType.Error)
-                End If
-            End If
-            _mylog.WriteLog(_mylog._info, _classPath, method,
-                                              CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Import_Data()
         Catch ex As Exception
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
             ShowMessage(Translate("Import bị lỗi. Kiểm tra lại biểu mẫu Import"), NotifyType.Error)
         End Try
     End Sub
+
+    Private Sub Import_Data()
+        Try
+            Dim rep As New InsuranceRepository
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim countFile As Integer = ctrlUpload.UploadedFiles.Count
+            Dim fileName As String
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim ds As New DataSet
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                file.SaveAs(fileName, True)
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+            End If
+            If ds Is Nothing Then
+                Exit Sub
+            End If
+            TableMapping(ds.Tables(0))
+
+            If dtLogs Is Nothing Or dtLogs.Rows.Count <= 0 Then
+                'Dim count As Integer = ds.Tables(0).Columns.Count - 6
+                'For i = 0 To count
+                '    If ds.Tables(0).Columns(i).ColumnName.Contains("Column") Then
+                '        ds.Tables(0).Columns.RemoveAt(i)
+                '        i = i - 1
+                '    End If
+                'Next
+
+                Dim DocXml As String = String.Empty
+                Dim sw As New StringWriter()
+                If ds.Tables(0) IsNot Nothing AndAlso ds.Tables(0).Rows.Count > 0 Then
+                    ds.Tables(0).WriteXml(sw, False)
+                    DocXml = sw.ToString
+                    If rep.INPORT_MANAGER_SUN_CARE(DocXml) Then
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Framework.UI.Utilities.NotifyType.Success)
+                        rgData.Rebind()
+                    Else
+                        ShowMessage(Translate(Common.CommonMessage.MESSAGE_TRANSACTION_FAIL), Framework.UI.Utilities.NotifyType.Warning)
+                    End If
+                End If
+            Else
+                Session("EXPORTREPORT") = dtLogs
+                ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('HU_ANNUALLEAVE_PLANS_ERROR')", True)
+                ShowMessage(Translate("Có lỗi trong quá trình import. Lưu file lỗi chi tiết"), Utilities.NotifyType.Error)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TableMapping(ByVal dtTemp As System.Data.DataTable)
+        Dim rep As New InsuranceRepository
+        ' lấy dữ liệu thô từ excel vào và tinh chỉnh dữ liệu
+        dtTemp.Columns(0).ColumnName = "EMPLOYEE_CODE"
+        dtTemp.Columns(5).ColumnName = "THOIDIEMHUONG"
+        dtTemp.Columns(6).ColumnName = "START_DATE"
+        dtTemp.Columns(7).ColumnName = "END_DATE"
+        dtTemp.Columns(9).ColumnName = "LEVEL_ID"
+        dtTemp.Columns(10).ColumnName = "COST"
+
+        'XOA DONG TIEU DE VA HEADER
+        dtTemp.Rows(0).Delete()
+
+        ' add Log
+        Dim _error As Boolean = True
+        Dim count As Integer
+        Dim newRow As DataRow
+        Dim dsEMP As DataTable
+        If dtLogs Is Nothing Then
+            dtLogs = New DataTable("data")
+            dtLogs.Columns.Add("ID", GetType(Integer))
+            dtLogs.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtLogs.Columns.Add("DISCIPTION", GetType(String))
+        End If
+        dtLogs.Clear()
+
+        'XOA NHUNG DONG DU LIEU NULL EMPLOYYE CODE
+        Dim rowDel As DataRow
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            If dtTemp.Rows(i).RowState = DataRowState.Deleted OrElse dtTemp.Rows(i).RowState = DataRowState.Detached Then Continue For
+            rowDel = dtTemp.Rows(i)
+            If rowDel("EMPLOYEE_CODE").ToString.Trim = "" Then
+                dtTemp.Rows(i).Delete()
+            End If
+        Next
+
+        For Each rows As DataRow In dtTemp.Rows
+            If rows.RowState = DataRowState.Deleted OrElse rows.RowState = DataRowState.Detached Then Continue For
+
+            newRow = dtLogs.NewRow
+            newRow("ID") = count + 1
+            newRow("EMPLOYEE_CODE") = rows("EMPLOYEE_CODE")
+
+            'dsEMP = psp.GET_SIGN_ID(rows("EMPLOYEE_CODE"))
+            ' Nhân viên k có trong hệ thống
+            If rep.CHECK_EMPLOYEE(rows("EMPLOYEE_CODE")) = 0 Then
+                newRow("DISCIPTION") = "Mã nhân viên - Không tồn tại,"
+                _error = False
+            End If
+
+            If Not IsDBNull(rows("THOIDIEMHUONG")) And rows("THOIDIEMHUONG") <> "" Then
+                If CheckDate(rows("THOIDIEMHUONG")) = False Then
+                    rows("THOIDIEMHUONG") = "NULL"
+                    newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày cấp - Không đúng định dạng,"
+                    _error = False
+                End If
+            End If
+
+            If IsDBNull(rows("START_DATE")) OrElse rows("START_DATE") = "" OrElse CheckDate(rows("START_DATE")) = False Then
+                rows("START_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày hiệu lực - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If IsDBNull(rows("END_DATE")) OrElse rows("END_DATE") = "" OrElse CheckDate(rows("END_DATE")) = False Then
+                rows("END_DATE") = "NULL"
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Ngày kết thúc - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("LEVEL_ID"))) Then
+                rows("LEVEL_ID") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Đơn vị cung cấp BH - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If Not (IsNumeric(rows("COST"))) Then
+                rows("COST") = 0
+                newRow("DISCIPTION") = newRow("DISCIPTION") + "Chi phí - Không đúng định dạng,"
+                _error = False
+            End If
+
+            If _error = False Then
+                dtLogs.Rows.Add(newRow)
+                _error = True
+            End If
+        Next
+        dtTemp.AcceptChanges()
+    End Sub
+
+    Private Function CheckDate(ByVal value As String) As Boolean
+        Dim dateCheck As Boolean
+        Dim result As Date
+
+        If value = "" Or value = "&nbsp;" Then
+            value = ""
+            Return True
+        End If
+
+        Try
+            dateCheck = DateTime.TryParseExact(value, "dd/MM/yyyy", New CultureInfo("en-US"), DateTimeStyles.None, result)
+            Return dateCheck
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 
     ''' <lastupdate>
     ''' 06/09/2017 14:00

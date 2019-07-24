@@ -26,15 +26,6 @@
                         ErrorMessage="Bạn phải nhập nhân viên." ToolTip="Bạn phải nhập nhân viên."> </asp:RequiredFieldValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbChucDanh" runat="server" Text="Chức danh"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadTextBox ID="txtChucDanh" SkinID="ReadOnly" ReadOnly="True" runat="server">
-                    </tlk:RadTextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="lb">
                   <asp:Label ID="lbName" runat="server" Text="Họ tên"></asp:Label>
                 </td>
                 <td>
@@ -42,17 +33,40 @@
                     </tlk:RadTextBox>
                 </td>
                 <td class="lb">
+                    <asp:Label ID="lbChucDanh" runat="server" Text="Chức danh"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtChucDanh" SkinID="ReadOnly" ReadOnly="True" runat="server">
+                    </tlk:RadTextBox>
+                </td>
+            </tr>
+            <tr>                
+                <td class="lb">
                      <asp:Label ID="lbDonVi" runat="server" Text="Phòng ban"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtDonVi" SkinID="ReadOnly" ReadOnly="True" runat="server">
                     </tlk:RadTextBox>
                 </td>
+                <td class="lb">
+                    <asp:Label ID="lbStartDate" runat="server" Text="Ngày vào công ty"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadDatePicker ID="rdStartDate" SkinID="ReadOnly" runat="server" AutoPostBack="True">
+                    </tlk:RadDatePicker>
+                </td>
+                <td class="lb">
+                     <asp:Label ID="lbHurtType" runat="server" Text="Đối tượng độc hại"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadTextBox ID="txtHurtType" SkinID="ReadOnly" ReadOnly="True" runat="server">
+                    </tlk:RadTextBox>
+                </td>
             </tr>
             <tr>
                 <td class="lb">
-                 <asp:Label ID="lbYear" runat="server" Text="Năm khai báo"></asp:Label>
-                  <span class="lbReq">*</span>
+                    <asp:Label ID="lbYear" runat="server" Text="Hiệu lực"></asp:Label>
+                    <span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="txtYear" MaxLength="4" SkinID="Number" runat="server">
@@ -61,25 +75,10 @@
                         runat="server" ErrorMessage="<%$ Translate: Bạn phải nhập Năm khai báo %>" ToolTip="<%$ Translate: Bạn phải nhập Năm khai báo %>"> </asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="rvyear" MinimumValue="1901" MaximumValue="2999" ControlToValidate="txtYear"
                         runat="server" ErrorMessage="<%$ Translate: Năm khai báo phải nằm trong khoảng từ 1901 đến 2999 %>"
-                        ToolTip="<%$ Translate: Năm khai báo phải nằm trong khoảng từ 1901 đến 2999 %>"> </asp:RangeValidator>
+                        ToolTip="<%$ Translate: Năm khai báo phải nằm trong khoảng từ 1901 đến 2999 %>"></asp:RangeValidator>
                 </td>
-                 <td class="lb">
-                    <asp:Label ID="lbStartDate" runat="server" Text="Ngày vào công ty"></asp:Label>
-                </td>
-                <td>
-                    <tlk:RadDatePicker ID="rdStartDate" SkinID="ReadOnly" runat="server" AutoPostBack="True">
-                    </tlk:RadDatePicker>
-                </td>
-            </tr>
-            <tr>
-                <td class="item-head" colspan="4">
-                 <asp:Label ID="lbInfo" runat="server" Text="Thông tin thâm niên"></asp:Label>
-                        <hr />
-                </td>
-            </tr>
-            <tr>
                 <td class="lb">
-                   <asp:Label ID="lbStartMonth" runat="server" Text="Tháng điều chỉnh"></asp:Label>
+                    <asp:Label ID="lbStartMonth" runat="server" Text="Tháng"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboStartMonth" runat="server" SkinID="dDropdownList">
@@ -101,7 +100,16 @@
                     </tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                <asp:Label ID="lbADJUST_MONTH_TN2" runat="server" Text="Số tháng điều chỉnh"></asp:Label>
+                    <asp:Label ID="lbModifyType" runat="server" Text="Loại điều chỉnh"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboModifyType" runat="server" SkinID="dDropdownList">
+                    </tlk:RadComboBox>
+                </td>                
+            </tr>
+            <tr>
+                <td class="lb">
+                    <asp:Label ID="lbADJUST_MONTH_TN2" runat="server" Text="Giá trị điều chỉnh"></asp:Label>
                 </td>
                 <td>
                     <tlk:RadTextBox ID="txtADJUST_MONTH_TN2" runat="server" EnabledStyle-HorizontalAlign="Right">

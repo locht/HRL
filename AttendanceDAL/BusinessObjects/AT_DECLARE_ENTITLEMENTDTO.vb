@@ -47,4 +47,9 @@
     Public Property MODIFIED_BY As String
     Public Property MODIFIED_LOG As String
     Public Property JOIN_DATE As Date?
+
+    Public Property MODIFY_TYPE_ID As Decimal?
+    Public Property MODIFY_TYPE_NAME As String
+    Public Property END_MONTH_TN As Decimal?
+    Public Property EXPIRE_YEAR As Decimal?
 End Class
