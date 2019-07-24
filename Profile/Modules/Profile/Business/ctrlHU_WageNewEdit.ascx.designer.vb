@@ -500,15 +500,6 @@ Partial Public Class ctrlHU_WageNewEdit
     Protected WithEvents basicSalary As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
-    '''RequiredFieldBasicSalary control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldBasicSalary As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''lbPercentSalary control.
     '''</summary>
     '''<remarks>
