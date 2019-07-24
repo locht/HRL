@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("895bbe3f-1d76-47a7-8a34-380251bcbdeb")>
+<Assembly: EdmSchemaAttribute("05ac9af0-e5f2-4c23-9f83-f1fa0a8ae7e9")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -9597,6 +9597,31 @@ Public Partial Class AT_FML
     End Sub
 
     Private Partial Sub OnHOURSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property IS_REG_SHIFT() As Nullable(Of Global.System.Int32)
+        Get
+            Return _IS_REG_SHIFT
+        End Get
+        Set
+            OnIS_REG_SHIFTChanging(value)
+            ReportPropertyChanging("IS_REG_SHIFT")
+            _IS_REG_SHIFT = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("IS_REG_SHIFT")
+            OnIS_REG_SHIFTChanged()
+        End Set
+    End Property
+
+    Private _IS_REG_SHIFT As Nullable(Of Global.System.Int32)
+    Private Partial Sub OnIS_REG_SHIFTChanging(value As Nullable(Of Global.System.Int32))
+    End Sub
+
+    Private Partial Sub OnIS_REG_SHIFTChanged()
     End Sub
 
     #End Region

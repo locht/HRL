@@ -569,7 +569,7 @@ Partial Public Class AttendanceRepository
                                        .MIN_LATE_EARLY = p.p.MIN_LATE_EARLY,
                                        .MIN_ON_LEAVE = p.p.MIN_ON_LEAVE,
                                        .MIN_OUT_WORK = p.p.MIN_OUT_WORK,
-                                       .HOURS_STOP = p.p.HOURS_START,
+                                       .HOURS_STOP = p.p.HOURS_STOP,
                                        .HOURS_START = p.p.HOURS_START,
                                        .TIMEIN_REALITY = p.p.TIMEIN_REALITY,
                                        .TIMEOUT_REALITY = p.p.TIMEOUT_REALITY,
