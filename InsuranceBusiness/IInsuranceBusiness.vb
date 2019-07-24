@@ -362,6 +362,12 @@ Namespace InsuranceBusiness.ServiceContracts
         Function ActiveSunCare(ByVal lstID As List(Of Decimal), ByVal log As UserLog, ByVal bActive As Decimal) As Boolean
         <OperationContract()>
         Function DeleteSunCare(ByVal lstID As List(Of Decimal)) As Boolean
+
+        <OperationContract()>
+        Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+
+        <OperationContract()>
+        Function INPORT_MANAGER_SUN_CARE(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
 #End Region
 
 #Region "Quản lý chế độ bảo hiểm"

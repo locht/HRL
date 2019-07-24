@@ -1671,6 +1671,37 @@ Partial Public Class InsuranceRepository
         End Try
     End Function
 
+    Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        Try
+            Dim result As Integer
+            If (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = P_EMP_CODE).Count > 0 Then
+                result = 1
+            Else
+                result = 0
+            End If
+
+            Return result
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function INPORT_MANAGER_SUN_CARE(ByVal P_DOCXML As String, ByVal log As UserLog) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                cls.ExecuteStore("PKG_INS_BUSINESS.INPORT_MANAGER_SUN_CARE",
+                                 New With {.P_DOCXML = P_DOCXML,
+                                           .P_USERNAME = log.Username})
+            End Using
+            Return True
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iInsurance")
+            Throw ex
+            Return False
+        End Try
+    End Function
+
     Public Function ModifySunCare(ByVal objTitle As INS_SUN_CARE_DTO,
                                    ByVal log As UserLog, ByRef gID As Decimal) As Boolean
         Dim objTitleData As INS_SUN_CARE

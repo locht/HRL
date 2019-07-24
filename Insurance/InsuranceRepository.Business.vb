@@ -418,6 +418,30 @@ Partial Class InsuranceRepository
             End Try
         End Using
     End Function
+
+    Public Function CHECK_EMPLOYEE(ByVal P_EMP_CODE As String) As Integer
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.CHECK_EMPLOYEE(P_EMP_CODE)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+    Public Function INPORT_MANAGER_SUN_CARE(ByVal P_DOCXML As String) As Boolean
+        Using rep As New InsuranceBusinessClient
+            Try
+                Return rep.INPORT_MANAGER_SUN_CARE(P_DOCXML, Me.Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+
+
 #End Region
 
 #Region "Quản lý chế độ hưởng bảo hiểm "
