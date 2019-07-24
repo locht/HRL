@@ -312,7 +312,8 @@ Namespace ProfileBusiness.ServiceContracts
 #Region "WelfareList"
         <OperationContract()>
         Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
-
+        <OperationContract()>
+        Function GET_DETAILS_EMP(ByVal P_ID As Decimal) As DataTable
         <OperationContract()>
         Function GetWelfareList(ByVal _filter As WelfareListDTO,
                                         ByVal PageIndex As Integer,

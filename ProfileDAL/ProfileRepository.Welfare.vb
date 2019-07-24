@@ -350,6 +350,7 @@ Partial Class ProfileRepository
             lstWelfareMngData.EFFECT_DATE = lstWelfareMng.EFFECT_DATE
             lstWelfareMngData.WELFARE_ID = lstWelfareMng.WELFARE_ID
             lstWelfareMngData.SDESC = lstWelfareMng.SDESC
+            lstWelfareMngData.EMPLOYEE_ID = lstWelfareMng.EMPLOYEE_ID
             lstWelfareMngData.MODIFIED_DATE = DateTime.Now
             lstWelfareMngData.MODIFIED_BY = log.Username
             lstWelfareMngData.MODIFIED_LOG = log.ComputerName
@@ -375,6 +376,20 @@ Partial Class ProfileRepository
         Return True
     End Function
 
+    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_DETAILS_EMP",
+                                           New With {.P_EMP_ID = P_ID,
+                                                     .P_CUR = cls.OUT_CURSOR})
+
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 End Class

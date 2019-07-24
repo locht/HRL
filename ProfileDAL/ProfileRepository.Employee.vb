@@ -813,12 +813,34 @@ Partial Class ProfileRepository
 
             objEmpData.ID = Utilities.GetNextSequence(Context, Context.HU_EMPLOYEE.EntitySet.Name)
             'Sinh mã nhân viên động
+            'Dim empCodeDB As Double = (From p In Context.HU_EMPLOYEE Order By p.EMPLOYEE_CODE Descending Select p.EMPLOYEE_CODE).FirstOrDefault
+            'Dim checkEMP As Integer = 0
+
+            'Do
+            '    empCodeDB += 1
+            '    EMPCODE = String.Format("{0}", Format(empCodeDB, "00000"))
+            '    checkEMP = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = EMPCODE Select p.ID).Count
+            'Loop Until checkEMP = 0
+
+            'Sinh mã nv tự động theo giá trị se_case_config
+            Dim strFormat As String = String.Empty
+            Dim valueFormat As Integer = 0
+            Using cls As New DataAccess.QueryData
+                Dim obj = New With {.P_CODENAME = "ctrlHUAutoCreateEmpCode",
+                                           .P_CODECASE = "ctrlHUAutoCreateEmpCode",
+                                           .P_OUT = cls.OUT_NUMBER}
+                cls.ExecuteStore("PKG_COMMON_LIST.GET_VALUE_CASE_CONFIG", obj)
+                valueFormat = Integer.Parse(obj.P_OUT)
+            End Using
+            For i As Int16 = 0 To valueFormat - 1
+                strFormat += "0"
+            Next
             Dim empCodeDB As Double = (From p In Context.HU_EMPLOYEE Order By p.EMPLOYEE_CODE Descending Select p.EMPLOYEE_CODE).FirstOrDefault
             Dim checkEMP As Integer = 0
 
             Do
                 empCodeDB += 1
-                EMPCODE = String.Format("{0}", Format(empCodeDB, "00000"))
+                EMPCODE = String.Format("{0}", Format(empCodeDB, strFormat))
                 checkEMP = (From p In Context.HU_EMPLOYEE Where p.EMPLOYEE_CODE = EMPCODE Select p.ID).Count
             Loop Until checkEMP = 0
 
