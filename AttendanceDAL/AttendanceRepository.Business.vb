@@ -2488,6 +2488,7 @@ Partial Public Class AttendanceRepository
                                        .MONTH_EXTENSION_NB = p.p.MONTH_EXTENSION_NB,
                                        .COM_PAY = p.p.COM_PAY,
                                        .ENT_PAY = p.p.ENT_PAY,
+                                       .MODIFY_TYPE_ID = p.p.MODIFY_TYPE_ID,
                                        .CREATED_BY = p.p.CREATED_BY,
                                        .CREATED_DATE = p.p.CREATED_DATE,
                                        .CREATED_LOG = p.p.CREATED_LOG,
@@ -2626,6 +2627,7 @@ Partial Public Class AttendanceRepository
                     obj.COM_PAY = objDelareEntitlementNB.COM_PAY
                     obj.ENT_PAY = objDelareEntitlementNB.ENT_PAY
                     obj.JOIN_DATE = objDelareEntitlementNB.JOIN_DATE
+                    obj.MODIFY_TYPE_ID = objDelareEntitlementNB.MODIFY_TYPE_ID
                 Else
                     Dim objDelareEntitlementNBData As New AT_DECLARE_ENTITLEMENT
                     objDelareEntitlementNBData.ID = Utilities.GetNextSequence(Context, Context.AT_DECLARE_ENTITLEMENT.EntitySet.Name)
@@ -2647,6 +2649,7 @@ Partial Public Class AttendanceRepository
                     objDelareEntitlementNBData.COM_PAY = objDelareEntitlementNB.COM_PAY
                     objDelareEntitlementNBData.ENT_PAY = objDelareEntitlementNB.ENT_PAY
                     objDelareEntitlementNBData.JOIN_DATE = objDelareEntitlementNB.JOIN_DATE
+                    objDelareEntitlementNBData.MODIFY_TYPE_ID = objDelareEntitlementNB.MODIFY_TYPE_ID
                     Context.AT_DECLARE_ENTITLEMENT.AddObject(objDelareEntitlementNBData)
                 End If
                 Context.SaveChanges(log)
