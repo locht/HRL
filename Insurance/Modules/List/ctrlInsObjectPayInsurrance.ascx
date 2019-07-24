@@ -18,6 +18,7 @@
                                     <tlk:RadListBoxItem Text="Bảo hiểm xã hội" Value="BHXH" />
                                     <tlk:RadListBoxItem Text="Bảo hiểm y tế" Value="BHYT" />
                                     <tlk:RadListBoxItem Text="Bảo hiểm thất nghiệp" Value="BHTN" />
+                                    <tlk:RadListBoxItem Text="BHTNLD-BNN" Value="BHTNLD_BNN" />
                                 </Items>
                             </tlk:RadListBox>
                         </td>
