@@ -7,7 +7,7 @@
         <Item Value="ctrlHU_WageMng"  Text="Quản lý hồ sơ lương" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_WageMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Contract" Text="Quản lý hợp đồng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Contract&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_ContractAppendix" Text="Quản lý phụ lục hợp đồng" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ContractAppendix&amp;group=Business" CheckPermission="true" CausesValidation="False" />
-        <Item Value="ctrlHU_ChangeInfoMng"  Text="Quản lý quyết định" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ChangeInfoMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
+        <Item Value="ctrlHU_ChangeInfoMng"  Text="Quản lý quá trình công tác" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_ChangeInfoMng&amp;group=Business" CheckPermission="true" CausesValidation="False" />
         <Item Value="ctrlHU_Discipline" Text="Quản lý kỷ luật" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_Discipline&amp;group=Business" CheckPermission="true"/>
         <Item Value="ctrlHU_EmpInfomations" Text="Xem thông tin nhân viên" PostBack="True" NavigateUrl="Default.aspx?mid=Profile&amp;fid=ctrlHU_EmpInfomations&amp;group=Business" CheckPermission="true"/>
         <Item Text="Phúc lợi"  PostBack="False">

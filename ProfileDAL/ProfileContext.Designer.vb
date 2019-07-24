@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ad3bddc4-ef9c-47a8-820b-1cfe89e390ff")>
+<Assembly: EdmSchemaAttribute("12ed64dd-9026-44ee-bd1c-595f05887b97")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -55007,6 +55007,56 @@ Public Partial Class HU_WELFARE_MNG_EMP
     End Sub
 
     Private Partial Sub OnIDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property CONTRACT_NAME() As Global.System.String
+        Get
+            Return _CONTRACT_NAME
+        End Get
+        Set
+            OnCONTRACT_NAMEChanging(value)
+            ReportPropertyChanging("CONTRACT_NAME")
+            _CONTRACT_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("CONTRACT_NAME")
+            OnCONTRACT_NAMEChanged()
+        End Set
+    End Property
+
+    Private _CONTRACT_NAME As Global.System.String
+    Private Partial Sub OnCONTRACT_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnCONTRACT_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property GENDER_NAME() As Global.System.String
+        Get
+            Return _GENDER_NAME
+        End Get
+        Set
+            OnGENDER_NAMEChanging(value)
+            ReportPropertyChanging("GENDER_NAME")
+            _GENDER_NAME = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("GENDER_NAME")
+            OnGENDER_NAMEChanged()
+        End Set
+    End Property
+
+    Private _GENDER_NAME As Global.System.String
+    Private Partial Sub OnGENDER_NAMEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnGENDER_NAMEChanged()
     End Sub
 
     #End Region

@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 24/04/2019 10:45:27 AM
--- Generated from EDMX file: E:\histaffhcm-18-04-2019\InsuranceDAL\InsuranceContext.edmx
+-- Date Created: 7/23/2019 4:49:22 PM
+-- Generated from EDMX file: D:\TNG_SOURCE_NEW\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -906,7 +906,10 @@ CREATE TABLE "dbo"."INS_SPECIFIED_OBJECTS" (
    "SI_DATE" NUMBER(38,0) NULL,
    "HI_DATE" NUMBER(38,0) NULL,
    "BHTNLD_BNN_COM" NUMBER(38,0) NULL,
-   "BHTNLD_BNN_EMP" NUMBER(38,0) NULL
+   "BHTNLD_BNN_EMP" NUMBER(38,0) NULL,
+   "SI_NN" NUMBER(38,0) NULL,
+   "SI_EMP_NN" NUMBER(38,0) NULL,
+   "SI_COM_NN" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_WORKING_ALLOW1'

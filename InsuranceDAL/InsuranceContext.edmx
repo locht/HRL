@@ -932,6 +932,9 @@
             <Property Name="HI_DATE" Type="number" Nullable="true" Precision="38" />
             <Property Name="BHTNLD_BNN_COM" Type="number" Nullable="true" Precision="38" />
             <Property Name="BHTNLD_BNN_EMP" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SI_NN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SI_EMP_NN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SI_COM_NN" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_WORKING_ALLOW1">
             <Key>
@@ -2631,7 +2634,10 @@
           <Property Type="Decimal" Name="SI_DATE" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="HI_DATE" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="BHTNLD_BNN_COM" Nullable="true" />
-          <Property Type="Decimal" Name="BHTNLD_BNN_EMP" Nullable="true" />
+          <Property Type="Decimal" Name="BHTNLD_BNN_EMP" />
+          <Property Type="Decimal" Name="SI_NN" />
+          <Property Type="Decimal" Name="SI_EMP_NN" />
+          <Property Type="Decimal" Name="SI_COM_NN" />
         </EntityType>
         <EntityType Name="HU_WORKING_ALLOW1">
           <Key>
@@ -3683,6 +3689,9 @@
                     <ScalarProperty Name="HI_DATE" ColumnName="HI_DATE" />
                     <ScalarProperty Name="BHTNLD_BNN_COM" ColumnName="BHTNLD_BNN_COM" />
                     <ScalarProperty Name="BHTNLD_BNN_EMP" ColumnName="BHTNLD_BNN_EMP" />
+                    <ScalarProperty Name="SI_NN" ColumnName="SI_NN" />
+                    <ScalarProperty Name="SI_EMP_NN" ColumnName="SI_EMP_NN" />
+                    <ScalarProperty Name="SI_COM_NN" ColumnName="SI_COM_NN" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -3932,7 +3941,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InsuranceContext" ZoomLevel="62">
+      <Diagram Name="InsuranceContext" ZoomLevel="88">
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE" Width="1.5" PointX="3" PointY="4.75" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_EDUCATION" Width="1.5" PointX="5.25" PointY="5.875" Height="0.40000000000000036" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_FILES" Width="2" PointX="5.25" PointY="4.75" Height="0.40000000000000036" IsExpanded="false" />
@@ -4072,7 +4081,7 @@
         <EntityTypeShape EntityType="InsuranceModel.HU_EMPLOYEE_CV" Width="2" PointX="12.75" PointY="8.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_ALLOW" Width="1.75" PointX="12.75" PointY="10.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_MAX" Width="2" PointX="10.75" PointY="12.875" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.INS_SPECIFIED_OBJECTS" Width="1.5" PointX="13.75" PointY="1.625" Height="6.787822265625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceModel.INS_SPECIFIED_OBJECTS" Width="1.5" PointX="13.75" PointY="1.625" Height="7.3647265625" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.HU_WORKING_ALLOW1" Width="1.5" PointX="13.375" PointY="12.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_INFOOLD" Width="1.5" PointX="10.75" PointY="10.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_INFORMATION" Width="1.875" PointX="7.75" PointY="12.75" Height="0.4" IsExpanded="false" />

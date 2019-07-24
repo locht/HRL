@@ -181,6 +181,38 @@
                 </td>
             </tr>
             <tr>
+                <td class="lb">
+                    <%# Translate("BHXH-NN")%>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="radnmSI_NN" runat="server" SkinID="Money">
+                    </tlk:RadNumericTextBox>
+                    (VND)
+                </td>
+                <td class="lb">
+                    <%# Translate("BHXH-NN")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="radnmSI_COM_NN" MinValue="0" MaxValue="100" runat="server" 
+                        SkinID="Decimal">
+                    </tlk:RadNumericTextBox>
+                    (%)
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="radnmSI_COM_NN" 
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tỷ lệ công ty đóng BHXH. %>"></asp:RequiredFieldValidator>
+                </td>
+                <td class="lb">
+                    <%# Translate("BHXH-NN")%><span class="lbReq">*</span>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="radnmSI_EMP_NN" MinValue="0" MaxValue="100" runat="server"
+                        SkinID="Decimal">
+                    </tlk:RadNumericTextBox>
+                    (%)
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ControlToValidate="radnmSI_EMP_NN"  
+                        runat="server" Text="*" ErrorMessage="<%$ Translate: Bạn phải nhập tỷ lệ nhân viên đóng BHXH. %>"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
                 <td class="item-head" colspan="2">
                         <%# Translate("Hệ số hưởng ốm đau thai sản")%>
                     <hr />
@@ -261,7 +293,7 @@
                 <ClientEvents OnCommand="ValidateFilter" />
                 <KeyboardNavigationSettings AllowSubmitOnEnter="true" EnableKeyboardShortcuts="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EFFECTIVE_DATE,SI,SI_EMP,SI_COM,HI,HI_EMP,HI_COM,UI,UI_EMP,UI_COM,BHTNLD_BNN_EMP,BHTNLD_BNN_COM,SICK,MATERNITY,OFF_IN_HOUSE,OFF_TOGETHER,RETIRE_MALE,RETIRE_FEMALE,SI_DATE,HI_DATE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,EFFECTIVE_DATE,SI,SI_EMP,SI_COM,HI,HI_EMP,HI_COM,UI,UI_EMP,UI_COM,BHTNLD_BNN_EMP,BHTNLD_BNN_COM,SICK,MATERNITY,OFF_IN_HOUSE,OFF_TOGETHER,RETIRE_MALE,RETIRE_FEMALE,SI_DATE,HI_DATE,SI_NN,SI_EMP_NN,SI_COM_NN">
                 <Columns>
                     <tlk:GridBoundColumn DataField="ID" UniqueName="ID" Visible="false" />
                     <tlk:GridDateTimeColumn HeaderText="<%$ Translate: Ngày hiệu lực %>" DataFormatString="{0:dd/MM/yyyy}"
@@ -292,6 +324,15 @@
                         UniqueName="BHTNLD_BNN_EMP" SortExpression="BHTNLD_BNN_EMP" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % Công ty BH TNLD, BNN %>" DataField="BHTNLD_BNN_COM"
                         UniqueName="BHTNLD_BNN_COM" SortExpression="BHTNLD_BNN_COM" />
+
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức trần BHXH-NN %>" DataFormatString="{0:N0}"
+                        DataField="SI_NN" UniqueName="SI_NN" SortExpression="SI_NN" />
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: % Nhân viên BHXH-NN  %>" DataFormatString="{0:N2}"
+                        DataField="SI_EMP_NN" UniqueName="SI_EMP_NN" SortExpression="SI_EMP_NN" />
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: % Công ty BHXH-NN  %>" DataFormatString="{0:N2}"
+                        DataField="SI_COM_NN" UniqueName="SI_COM_NN" SortExpression="SI_COM_NN" />
+
+
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % hường chế độ ốm đau %>" DataFormatString="{0:N0}"
                         DataField="SICK" UniqueName="SICK" SortExpression="SICK" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % hưởng chế độ thai sản %>" DataFormatString="{0:N0}"
