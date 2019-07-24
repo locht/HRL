@@ -34,6 +34,19 @@
                                 MaxLength="80" runat="server" ToolTip="">
                             </tlk:RadComboBox>
                         </td>
+                         <td class="lb">
+                            <asp:Label  runat ="server" ID="lbFilter" Text ="Dữ liệu phát sinh"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox  ID="cbFilter" SkinID="dDropdownList" Width="160px"
+                               RenderMode="Lightweight" runat="server" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" >
+                               <Items>
+                                    <tlk:RadComboBoxItem Text="Đi trễ" Value ="1" />
+                                    <tlk:RadComboBoxItem Text="Về sớm" Value ="2" />
+                                    <tlk:RadComboBoxItem Text="Dữ liệu có giải trình" Value ="3" />
+                                </Items>
+                            </tlk:RadComboBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="lb">
@@ -57,7 +70,7 @@
                                 SkinID="ButtonFind">
                             </tlk:RadButton>
                         </td>
-                    </tr>S
+                    </tr>
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane1" runat="server" Scrolling="X">

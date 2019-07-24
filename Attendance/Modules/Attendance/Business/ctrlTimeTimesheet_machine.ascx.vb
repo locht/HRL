@@ -343,6 +343,23 @@ Public Class ctrlTimeTimesheet_machine
             If rdDenngay.SelectedDate IsNot Nothing Then
                 obj.END_DATE = rdDenngay.SelectedDate
             End If
+            For Each item In cbFilter.CheckedItems
+                If item.Value = 1 Then
+                    obj.IS_LATE = True
+                Else
+                    obj.IS_LATE = False
+                End If
+                If item.Value = 2 Then
+                    obj.IS_EARLY = True
+                Else
+                    obj.IS_EARLY = False
+                End If
+                If item.Value = 3 Then
+                    obj.IS_REALITY = True
+                Else
+                    obj.IS_REALITY = False
+                End If
+            Next
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.TIME_TIMESHEET_MACHINETDTO = rep.GetMachines(obj, _param, MaximumRows, rgTimeTimesheet_machine.CurrentPageIndex, rgTimeTimesheet_machine.PageSize, Sorts) '"CREATED_DATE desc")

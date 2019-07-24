@@ -34,6 +34,19 @@
                                 MaxLength="80" runat="server" ToolTip="">
                             </tlk:RadComboBox>
                         </td>
+                         <td class="lb">
+                            <asp:Label  runat ="server" ID="lbFilter" Text ="Dữ liệu phát sinh"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox  ID="cbFilter" SkinID="dDropdownList" Width="160px" 
+                                RenderMode="Lightweight" runat="server" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" >
+                                <Items>
+                                    <tlk:RadComboBoxItem Text="Đi trễ" Value ="1" />
+                                    <tlk:RadComboBoxItem Text="Về sớm" Value ="2" />
+                                    <tlk:RadComboBoxItem Text="Dữ liệu có giải trình" Value ="3" />
+                                </Items>
+                            </tlk:RadComboBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="lb">
@@ -61,7 +74,7 @@
                 </table>
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane1" runat="server" Scrolling="X">
-                <tlk:RadGrid PageSize="50" ID="rgTimeTimesheet_machine" runat="server" Height="100%" Width ="100%">
+                <tlk:RadGrid PageSize="50" ID="rgTimeTimesheet_machine" runat="server" Height="100%">
                     <MasterTableView DataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID,ORG_DESC" ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPLOYEE_ID">
                         <Columns>
                             <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
