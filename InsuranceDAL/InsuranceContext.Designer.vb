@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("32b18dbc-578e-490f-8445-bfa5b232e402")>
+<Assembly: EdmSchemaAttribute("78359f40-9395-469e-a5b7-f940739f0d75")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HEE", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_EDUCATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_EDUCATION), True)>
@@ -20320,6 +20320,81 @@ Public Partial Class INS_SPECIFIED_OBJECTS
     End Sub
 
     Private Partial Sub OnBHTNLD_BNN_EMPChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SI_NN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SI_NN
+        End Get
+        Set
+            OnSI_NNChanging(value)
+            ReportPropertyChanging("SI_NN")
+            _SI_NN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SI_NN")
+            OnSI_NNChanged()
+        End Set
+    End Property
+
+    Private _SI_NN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSI_NNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSI_NNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SI_EMP_NN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SI_EMP_NN
+        End Get
+        Set
+            OnSI_EMP_NNChanging(value)
+            ReportPropertyChanging("SI_EMP_NN")
+            _SI_EMP_NN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SI_EMP_NN")
+            OnSI_EMP_NNChanged()
+        End Set
+    End Property
+
+    Private _SI_EMP_NN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSI_EMP_NNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSI_EMP_NNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property SI_COM_NN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _SI_COM_NN
+        End Get
+        Set
+            OnSI_COM_NNChanging(value)
+            ReportPropertyChanging("SI_COM_NN")
+            _SI_COM_NN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("SI_COM_NN")
+            OnSI_COM_NNChanged()
+        End Set
+    End Property
+
+    Private _SI_COM_NN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnSI_COM_NNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnSI_COM_NNChanged()
     End Sub
 
     #End Region

@@ -8478,10 +8478,19 @@ Namespace InsuranceBusiness
         Private SI_COMField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SI_COM_NNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SI_DATEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SI_EMPField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SI_EMP_NNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SI_NNField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private STATUSField As System.Nullable(Of Decimal)
@@ -8831,6 +8840,19 @@ Namespace InsuranceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SI_COM_NN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SI_COM_NNField
+            End Get
+            Set
+                If (Me.SI_COM_NNField.Equals(value) <> true) Then
+                    Me.SI_COM_NNField = value
+                    Me.RaisePropertyChanged("SI_COM_NN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property SI_DATE() As System.Nullable(Of Decimal)
             Get
                 Return Me.SI_DATEField
@@ -8852,6 +8874,32 @@ Namespace InsuranceBusiness
                 If (Me.SI_EMPField.Equals(value) <> true) Then
                     Me.SI_EMPField = value
                     Me.RaisePropertyChanged("SI_EMP")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SI_EMP_NN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SI_EMP_NNField
+            End Get
+            Set
+                If (Me.SI_EMP_NNField.Equals(value) <> true) Then
+                    Me.SI_EMP_NNField = value
+                    Me.RaisePropertyChanged("SI_EMP_NN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SI_NN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.SI_NNField
+            End Get
+            Set
+                If (Me.SI_NNField.Equals(value) <> true) Then
+                    Me.SI_NNField = value
+                    Me.RaisePropertyChanged("SI_NN")
                 End If
             End Set
         End Property

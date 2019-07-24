@@ -226,6 +226,9 @@ Partial Public Class InsuranceRepository
                                           .RETIRE_MALE = s.p.RETIRE_MALE,
                                           .RETIRE_FEMALE = s.p.RETIRE_FEMALE,
                                           .STATUS = s.p.STATUS,
+                                          .SI_NN = s.p.SI_NN,
+                                          .SI_EMP_NN = s.p.SI_EMP_NN,
+                                          .SI_COM_NN = s.p.SI_COM_NN,
                                           .CREATED_DATE = s.p.CREATED_DATE,
                                           .CREATED_BY = s.p.CREATED_BY,
                                           .CREATED_LOG = s.p.CREATED_LOG})
@@ -290,6 +293,17 @@ Partial Public Class InsuranceRepository
             If _filter.SALARY_MIN.HasValue Then
                 lst = lst.Where(Function(f) f.SALARY_MIN.Value = _filter.SALARY_MIN)
             End If
+
+            If _filter.SI_NN.HasValue Then
+                lst = lst.Where(Function(f) f.SI_NN.Value = _filter.SI_NN)
+            End If
+            If _filter.SI_EMP_NN.HasValue Then
+                lst = lst.Where(Function(f) f.SI_EMP_NN.Value = _filter.SI_EMP_NN)
+            End If
+            If _filter.SI_COM_NN.HasValue Then
+                lst = lst.Where(Function(f) f.SI_COM_NN.Value = _filter.SI_COM_NN)
+            End If
+
             lst = lst.OrderBy(Sorts)
             Total = lst.Count
             lst = lst.Skip(PageIndex * PageSize).Take(PageSize)
@@ -328,6 +342,9 @@ Partial Public Class InsuranceRepository
             objTitleData.STATUS = objTitle.STATUS
             objTitleData.SI_DATE = objTitle.SI_DATE
             objTitleData.HI_DATE = objTitle.HI_DATE
+            objTitleData.SI_NN = objTitle.SI_NN
+            objTitleData.SI_EMP_NN = objTitle.SI_EMP_NN
+            objTitleData.SI_COM_NN = objTitle.SI_COM_NN
             Context.INS_SPECIFIED_OBJECTS.AddObject(objTitleData)
             Context.SaveChanges(log)
             gID = objTitleData.ID
@@ -365,6 +382,9 @@ Partial Public Class InsuranceRepository
             objTitleData.RETIRE_FEMALE = objTitle.RETIRE_FEMALE
             objTitleData.SI_DATE = objTitle.SI_DATE
             objTitleData.HI_DATE = objTitle.HI_DATE
+            objTitleData.SI_NN = objTitle.SI_NN
+            objTitleData.SI_EMP_NN = objTitle.SI_EMP_NN
+            objTitleData.SI_COM_NN = objTitle.SI_COM_NN
             Context.SaveChanges(log)
             gID = objTitleData.ID
             Return True

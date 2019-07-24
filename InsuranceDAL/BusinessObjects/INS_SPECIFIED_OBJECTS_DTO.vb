@@ -30,4 +30,7 @@
     Public Property MODIFIED_LOG As String
     Public Property SI_DATE As Decimal?
     Public Property HI_DATE As Decimal?
+    Public Property SI_NN As Decimal?
+    Public Property SI_COM_NN As Decimal?
+    Public Property SI_EMP_NN As Decimal?
 End Class
