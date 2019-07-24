@@ -476,6 +476,9 @@ Public Class ctrlInsArising
             dtb.Columns.Add("ARISING_GROUP_TYPE", GetType(String))
             dtb.Columns.Add("REASONS", GetType(String))
             dtb.Columns.Add("NOTE", GetType(String))
+            dtb.Columns.Add("BHTNLD_BNN", GetType(Boolean))
+            dtb.Columns.Add("ORG_DESC", GetType(String))
+            dtb.Columns.Add("SOCIAL_NUMBER", GetType(String))
 
             If lstSource.Rows.Count > 0 Then
                 Dim filterExp = rgGridData.MasterTableView.FilterExpression
@@ -513,6 +516,9 @@ Public Class ctrlInsArising
                     drI("ARISING_GROUP_TYPE") = dr("ARISING_GROUP_TYPE")
                     drI("REASONS") = dr("REASONS")
                     drI("NOTE") = dr("NOTE")
+                    drI("BHTNLD_BNN") = IIf(dr("BHTNLD_BNN") = "0", False, True)
+                    drI("ORG_DESC") = dr("ORG_DESC")
+                    drI("SOCIAL_NUMBER") = dr("SOCIAL_NUMBER")
                     dtb.Rows.Add(drI)
                 Next
             End If
