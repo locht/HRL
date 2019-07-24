@@ -365,6 +365,7 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                     txtName.Text = item.VN_FULLNAME
                     txtChucDanh.Text = item.TITLE_NAME
                     txtDonVi.Text = item.ORG_NAME
+                    txtHurtType.Text = lstCommonEmployee(idx).HURT_TYPE_NAME
                     rdStartDate.SelectedDate = lstCommonEmployee(idx).JOIN_DATE
                 Next
             End If

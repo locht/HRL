@@ -14138,7 +14138,13 @@ Namespace AttendanceBusiness
         Private EMPLOYEE_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private END_MONTH_TNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private ENT_PAYField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private EXPIRE_YEARField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As System.Nullable(Of Decimal)
@@ -14403,6 +14409,19 @@ Namespace AttendanceBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property END_MONTH_TN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.END_MONTH_TNField
+            End Get
+            Set
+                If (Me.END_MONTH_TNField.Equals(value) <> true) Then
+                    Me.END_MONTH_TNField = value
+                    Me.RaisePropertyChanged("END_MONTH_TN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property ENT_PAY() As System.Nullable(Of Decimal)
             Get
                 Return Me.ENT_PAYField
@@ -14411,6 +14430,19 @@ Namespace AttendanceBusiness
                 If (Me.ENT_PAYField.Equals(value) <> true) Then
                     Me.ENT_PAYField = value
                     Me.RaisePropertyChanged("ENT_PAY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property EXPIRE_YEAR() As System.Nullable(Of Decimal)
+            Get
+                Return Me.EXPIRE_YEARField
+            End Get
+            Set
+                If (Me.EXPIRE_YEARField.Equals(value) <> true) Then
+                    Me.EXPIRE_YEARField = value
+                    Me.RaisePropertyChanged("EXPIRE_YEAR")
                 End If
             End Set
         End Property

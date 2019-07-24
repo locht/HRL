@@ -56,10 +56,10 @@
                     </tlk:RadDatePicker>
                 </td>
                 <td class="lb">
-                     <asp:Label ID="lbToxicObj" runat="server" Text="Đối tượng độc hại"></asp:Label>
+                     <asp:Label ID="lbHurtType" runat="server" Text="Đối tượng độc hại"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtToxicObj" SkinID="ReadOnly" ReadOnly="True" runat="server">
+                    <tlk:RadTextBox ID="txtHurtType" SkinID="ReadOnly" ReadOnly="True" runat="server">
                     </tlk:RadTextBox>
                 </td>
             </tr>

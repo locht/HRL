@@ -212,22 +212,22 @@ Partial Public Class ctrlDeclareEntitlementNBNewEdit
     Protected WithEvents rdStartDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''lbToxicObj control.
+    '''lbHurtType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbToxicObj As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbHurtType As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtToxicObj control.
+    '''txtHurtType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtToxicObj As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtHurtType As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbYear control.

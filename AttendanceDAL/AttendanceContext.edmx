@@ -1789,6 +1789,8 @@
             <Property Name="ENT_PAY" Type="number" Nullable="true" Precision="38" />
             <Property Name="JOIN_DATE" Type="date" Nullable="true" />
             <Property Name="MODIFY_TYPE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="END_MONTH_TN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="EXPIRE_YEAR" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_PROJECT">
             <Key>
@@ -4492,6 +4494,8 @@
           <Property Type="Decimal" Name="ENT_PAY" Precision="38" Scale="0" />
           <Property Type="DateTime" Name="JOIN_DATE" />
           <Property Type="Decimal" Name="MODIFY_TYPE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="END_MONTH_TN" Nullable="true" />
+          <Property Type="Decimal" Name="EXPIRE_YEAR" Nullable="true" />
         </EntityType>
         <EntityType Name="AT_PROJECT">
           <Key>
@@ -6795,6 +6799,8 @@
                     <ScalarProperty Name="ENT_PAY" ColumnName="ENT_PAY" />
                     <ScalarProperty Name="JOIN_DATE" ColumnName="JOIN_DATE" />
                     <ScalarProperty Name="MODIFY_TYPE_ID" ColumnName="MODIFY_TYPE_ID" />
+                    <ScalarProperty Name="END_MONTH_TN" ColumnName="END_MONTH_TN" />
+                    <ScalarProperty Name="EXPIRE_YEAR" ColumnName="EXPIRE_YEAR" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7446,7 +7452,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="127" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="92" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7559,7 +7565,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="AttendanceModel.AT_COMPENSATORY" Width="1.5" PointX="4.625" PointY="16.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ACTION_LOG" Width="1.5" PointX="6.625" PointY="16.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_DECLARE_ENTITLEMENT" Width="2.125" PointX="8.125" PointY="16.25" Height="6.0186165364583353" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_DECLARE_ENTITLEMENT" Width="2.125" PointX="8.125" PointY="16.25" Height="6.4032194010416674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT" Width="1.5" PointX="13.25" PointY="16.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_TITLE" Width="1.5" PointX="19.125" PointY="15.625" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PROJECT_EMP" Width="1.5" PointX="18.875" PointY="14.375" Height="0.4" IsExpanded="false" />

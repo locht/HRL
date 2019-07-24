@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("8d18f7ac-1b74-45e5-8de4-6ee47b6d7206")>
+<Assembly: EdmSchemaAttribute("3218df47-9eda-47f2-b5e8-800087a5da8f")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -6151,6 +6151,56 @@ Public Partial Class AT_DECLARE_ENTITLEMENT
     End Sub
 
     Private Partial Sub OnMODIFY_TYPE_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property END_MONTH_TN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _END_MONTH_TN
+        End Get
+        Set
+            OnEND_MONTH_TNChanging(value)
+            ReportPropertyChanging("END_MONTH_TN")
+            _END_MONTH_TN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("END_MONTH_TN")
+            OnEND_MONTH_TNChanged()
+        End Set
+    End Property
+
+    Private _END_MONTH_TN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEND_MONTH_TNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEND_MONTH_TNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property EXPIRE_YEAR() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _EXPIRE_YEAR
+        End Get
+        Set
+            OnEXPIRE_YEARChanging(value)
+            ReportPropertyChanging("EXPIRE_YEAR")
+            _EXPIRE_YEAR = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("EXPIRE_YEAR")
+            OnEXPIRE_YEARChanged()
+        End Set
+    End Property
+
+    Private _EXPIRE_YEAR As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnEXPIRE_YEARChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnEXPIRE_YEARChanged()
     End Sub
 
     #End Region
