@@ -107,10 +107,10 @@ Public Class ctrlHU_WageNewEdit
             'rgAllowCur.AllowSorting = False
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             InitControl()
-            If Not IsPostBack Then
-                ViewConfig(LeftPane)
-                GirdConfig(rgAllow)
-            End If
+            'If Not IsPostBack Then
+            '    ViewConfig(LeftPane)
+            '    GirdConfig(rgAllow)
+            'End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -278,6 +278,14 @@ Public Class ctrlHU_WageNewEdit
                     If Working.SAL_TOTAL IsNot Nothing Then
                         Salary_Total.Text = Working.SAL_TOTAL
                     End If
+                    cbSalaryGroup.Enabled = False
+                    cbSalaryLevel.Enabled = False
+                    cbSalaryRank.Enabled = False
+                    rnFactorSalary.Enabled = False
+                    basicSalary.Enabled = False
+                    rnPercentSalary.Enabled = False
+                    Salary_Total.Enabled = False
+                    rnOtherSalary1.Enabled = False
                     'GetDATA_IN()
                     CalculatorSalary()
                 Case "NormalView"
@@ -374,7 +382,7 @@ Public Class ctrlHU_WageNewEdit
             End Using
             CalculatorSalary()
             basicSalary.AutoPostBack = True
-            ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+            'ClearControlValue(rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -391,8 +399,8 @@ Public Class ctrlHU_WageNewEdit
                 End If
             End Using
             CalculatorSalary()
-            ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+            'ClearControlValue(cbSalaryLevel, cbSalaryRank, rnFactorSalary, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+            '                  rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -408,8 +416,8 @@ Public Class ctrlHU_WageNewEdit
                     FillRadCombobox(cbSalaryRank, dtData, "NAME", "ID", True)
                 End If
             End Using
-            ClearControlValue(rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
-                              rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
+            'ClearControlValue(rnFactorSalary, cbSalaryRank, SalaryInsurance, basicSalary, Salary_Total, rnOtherSalary1, _
+            '                  rnOtherSalary2, rnOtherSalary3, rnOtherSalary4, rnOtherSalary5)
         Catch ex As Exception
             Throw ex
         End Try
@@ -447,6 +455,20 @@ Public Class ctrlHU_WageNewEdit
                             ShowMessage(Translate("Bạn phải chọn % hưởng lương"), NotifyType.Warning)
                             Exit Sub
                         End If
+                        If cboSalTYPE.Text = "Kiêm nhiệm" Then
+                            If rnOtherSalary2.Text = "" Then
+                                ShowMessage(Translate("Bạn phải nhập mức phụ cấp kiêm nhiệm"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        Else
+                            If basicSalary.Text <> "" And basicSalary.Text = 0 Then
+                                ShowMessage(Translate("Bạn phải nhập lương cơ bản"), NotifyType.Warning)
+                                Exit Sub
+                            End If
+                        End If
+
+
+
                         Dim gID As Decimal
                         With objWorking
                             .EMPLOYEE_ID = hidEmp.Value
@@ -968,7 +990,7 @@ Public Class ctrlHU_WageNewEdit
             Throw ex
         End Try
     End Sub
-    
+
     ''' <summary>
     ''' Event selected item combobox phu cap
     ''' </summary>
@@ -1340,10 +1362,41 @@ Public Class ctrlHU_WageNewEdit
         Select Case cboSalTYPE.Text
             Case "Thử việc"
                 rnPercentSalary.Value = _tyLeThuViec
+                cbSalaryGroup.Enabled = True
+                cbSalaryLevel.Enabled = True
+                cbSalaryRank.Enabled = True
+                rnFactorSalary.Enabled = True
+                basicSalary.Enabled = True
+                rnPercentSalary.Enabled = True
+                Salary_Total.Enabled = True
+                rnOtherSalary1.Enabled = True
             Case "Chính thức"
                 rnPercentSalary.Value = _tyLeChinhThuc
+                cbSalaryGroup.Enabled = True
+                cbSalaryLevel.Enabled = True
+                cbSalaryRank.Enabled = True
+                rnFactorSalary.Enabled = True
+                basicSalary.Enabled = True
+                rnPercentSalary.Enabled = True
+                Salary_Total.Enabled = True
+                rnOtherSalary1.Enabled = True
+            Case "Kiêm nhiệm"
+                cbSalaryGroup.Enabled = False
+                cbSalaryLevel.Enabled = False
+                cbSalaryRank.Enabled = False
+                rnFactorSalary.Enabled = False
+                basicSalary.Enabled = False
+                rnPercentSalary.Enabled = False
+                Salary_Total.Enabled = False
+                rnOtherSalary1.Enabled = False
+                rnFactorSalary.Text = 0
+                basicSalary.Text = 0
+                rnPercentSalary.Text = 0
+                Salary_Total.Text = 0
+                rnOtherSalary1.Text = 0
+                ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank)
         End Select
-        ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
+        'ClearControlValue(cbSalaryGroup, cbSalaryLevel, cbSalaryRank, rnFactorSalary, basicSalary, Salary_Total)
     End Sub
     Private Sub SetTaxTableByCode(ByVal taxTables As List(Of OtherListDTO), ByVal code As String)
         Dim taxTable = taxTables.FirstOrDefault(Function(f) f.CODE = code)

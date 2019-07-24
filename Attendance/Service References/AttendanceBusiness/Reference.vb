@@ -14162,6 +14162,12 @@ Namespace AttendanceBusiness
         Private MODIFIED_LOGField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFY_TYPE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private MODIFY_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MONTH_EXTENSION_NBField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14496,6 +14502,32 @@ Namespace AttendanceBusiness
                 If (Object.ReferenceEquals(Me.MODIFIED_LOGField, value) <> true) Then
                     Me.MODIFIED_LOGField = value
                     Me.RaisePropertyChanged("MODIFIED_LOG")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFY_TYPE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.MODIFY_TYPE_IDField
+            End Get
+            Set
+                If (Me.MODIFY_TYPE_IDField.Equals(value) <> true) Then
+                    Me.MODIFY_TYPE_IDField = value
+                    Me.RaisePropertyChanged("MODIFY_TYPE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property MODIFY_TYPE_NAME() As String
+            Get
+                Return Me.MODIFY_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.MODIFY_TYPE_NAMEField, value) <> true) Then
+                    Me.MODIFY_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("MODIFY_TYPE_NAME")
                 End If
             End Set
         End Property

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("05ac9af0-e5f2-4c23-9f83-f1fa0a8ae7e9")>
+<Assembly: EdmSchemaAttribute("8d18f7ac-1b74-45e5-8de4-6ee47b6d7206")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -6126,6 +6126,31 @@ Public Partial Class AT_DECLARE_ENTITLEMENT
     End Sub
 
     Private Partial Sub OnJOIN_DATEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property MODIFY_TYPE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _MODIFY_TYPE_ID
+        End Get
+        Set
+            OnMODIFY_TYPE_IDChanging(value)
+            ReportPropertyChanging("MODIFY_TYPE_ID")
+            _MODIFY_TYPE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("MODIFY_TYPE_ID")
+            OnMODIFY_TYPE_IDChanged()
+        End Set
+    End Property
+
+    Private _MODIFY_TYPE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnMODIFY_TYPE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnMODIFY_TYPE_IDChanged()
     End Sub
 
     #End Region

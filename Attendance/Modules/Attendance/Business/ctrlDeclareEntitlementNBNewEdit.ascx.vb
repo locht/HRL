@@ -96,7 +96,7 @@ Public Class ctrlDeclareEntitlementNBNewEdit
         Try
             InitControl()
             If Not IsPostBack Then
-                ViewConfig(RadPane2)
+                'ViewConfig(RadPane2)
             End If
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -110,7 +110,14 @@ Public Class ctrlDeclareEntitlementNBNewEdit
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub BindData()
+        Dim dt As DataTable
         Try
+            Using rep As New AttendanceRepository
+                dt = rep.GetOtherList("AT_MODIFY_TYPE", False)
+                If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                    FillRadCombobox(cboModifyType, dt, "NAME", "ID")
+                End If
+            End Using
             txtYear.Value = Date.Now.Year
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
@@ -164,7 +171,9 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         If obj.START_MONTH_TN IsNot Nothing Then
                             cboStartMonth.SelectedValue = obj.START_MONTH_TN
                         End If
-                    
+                        If obj.MODIFY_TYPE_ID IsNot Nothing Then
+                            cboModifyType.SelectedValue = obj.MODIFY_TYPE_ID
+                        End If
                         txtYear.Value = obj.YEAR
                         If obj.JOIN_DATE IsNot Nothing Then
                             rdStartDate.SelectedDate = obj.JOIN_DATE
@@ -254,7 +263,9 @@ Public Class ctrlDeclareEntitlementNBNewEdit
                         Else
                             obj.ADJUST_MONTH_TN = If(IsNumeric(txtADJUST_MONTH_TN2.Text), Decimal.Parse(txtADJUST_MONTH_TN2.Text), Nothing)
                         End If
-
+                        If cboModifyType.SelectedValue <> "" Then
+                            obj.MODIFY_TYPE_ID = cboModifyType.SelectedValue
+                        End If
                         If cboStartMonth.SelectedValue <> "" Then
                             obj.START_MONTH_TN = cboStartMonth.SelectedValue
                         End If
