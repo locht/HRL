@@ -1319,6 +1319,7 @@
             <Property Name="IS_LEAVE" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_CALHOLIDAY" Type="number" Nullable="true" Precision="5" />
             <Property Name="HOURS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="IS_REG_SHIFT" Type="number" Nullable="true" Precision="10" />
         </EntityType>
         <EntityType Name="AT_TERMINALS">
             <Key>
@@ -4014,6 +4015,7 @@
           <Property Type="Decimal" Name="IS_LEAVE" Precision="38" Scale="0" />
           <Property Type="Int16" Name="IS_CALHOLIDAY" />
           <Property Type="Decimal" Name="HOURS" Nullable="true" />
+          <Property Type="Int32" Name="IS_REG_SHIFT" />
         </EntityType>
         <EntityType Name="AT_TERMINALS">
           <Key>
@@ -6309,6 +6311,7 @@
                     <ScalarProperty Name="IS_LEAVE" ColumnName="IS_LEAVE" />
                     <ScalarProperty Name="IS_CALHOLIDAY" ColumnName="IS_CALHOLIDAY" />
                     <ScalarProperty Name="HOURS" ColumnName="HOURS" />
+                    <ScalarProperty Name="IS_REG_SHIFT" ColumnName="IS_REG_SHIFT" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7440,7 +7443,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="57" >
+      <Diagram Name="AttendanceContext" ShowGrid="false" DisplayType="true" ZoomLevel="127" >
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST" Width="1.5" PointX="5.125" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="0.625" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.OT_OTHER_LIST_TYPE" Width="1.5" PointX="2.875" PointY="7.625" Height="0.40000000037252903" IsExpanded="false" />
@@ -7535,7 +7538,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_DAILY" Width="2.375" PointX="14.625" PointY="2.5" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TIME_TIMESHEET_MACHINET" Width="2.5" PointX="27.375" PointY="9.5" Height="18.902812500000003" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_DATA_INOUT" Width="1.5" PointX="4.625" PointY="14.5" Height="9.0954394531250031" IsExpanded="true" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="10.375" PointY="15.5" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_FML" Width="1.5" PointX="12.375" PointY="17.125" Height="4.2879036458333353" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_TERMINALS" Width="1.875" PointX="10.375" PointY="11.25" Height="5.4417122395833353" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_ACTION_ORG_LOG" Width="1.5" PointX="10.625" PointY="14.5" Height="0.39999999999999147" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_EMPLOYEE_CV" Width="2.625" PointX="15.25" PointY="12.25" Height="0.4" IsExpanded="false" />
