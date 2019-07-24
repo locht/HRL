@@ -503,7 +503,7 @@ Public Class Export
                                       New DataSet(), Nothing,
                                       "Template_GiaiTrinhNgayCong" & Format(Date.Now, "yyyyMMdd"))
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 

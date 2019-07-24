@@ -539,10 +539,10 @@ Partial Public Class AttendanceRepository
                 query = query.Where(Function(f) f.p.WORKINGDAY <= _filter.END_DATE)
             End If
             If _filter.IS_LATE Then
-                query = query.Where(Function(f) f.p.TIMEIN_REALITY >= f.p.HOURS_START)
+                query = query.Where(Function(f) f.p.TIMEIN_REALITY > f.p.HOURS_START)
             End If
             If _filter.IS_EARLY Then
-                query = query.Where(Function(f) f.p.TIMEOUT_REALITY <= f.p.HOURS_STOP)
+                query = query.Where(Function(f) f.p.TIMEOUT_REALITY < f.p.HOURS_STOP)
             End If
             If _filter.IS_REALITY Then
                 query = query.Where(Function(f) f.p.NOTE IsNot Nothing)

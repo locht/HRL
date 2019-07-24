@@ -309,6 +309,7 @@ Public Class ctrlTimeTimesheet_machine
                     ctrlUpload1.Show()
                 Case "EXPORT_TEMP"
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Timesheet_machineExport&PERIOD_ID=" & "1" & "&orgid=" & "1" & "&IS_DISSOLVE=" & IIf(1, "1", "0") & "');", True)
+                    Refresh("UpdateView")
             End Select
             ' 
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -346,18 +347,12 @@ Public Class ctrlTimeTimesheet_machine
             For Each item In cbFilter.CheckedItems
                 If item.Value = 1 Then
                     obj.IS_LATE = True
-                Else
-                    obj.IS_LATE = False
                 End If
                 If item.Value = 2 Then
                     obj.IS_EARLY = True
-                Else
-                    obj.IS_EARLY = False
                 End If
                 If item.Value = 3 Then
                     obj.IS_REALITY = True
-                Else
-                    obj.IS_REALITY = False
                 End If
             Next
             If Not isFull Then
