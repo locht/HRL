@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("3218df47-9eda-47f2-b5e8-800087a5da8f")>
+<Assembly: EdmSchemaAttribute("725755fe-314f-4124-b166-858000f21a1c")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLT_OOL", "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_TYPE), "OT_OTHER_LIST", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST), True)>
 <Assembly: EdmRelationshipAttribute("AttendanceModel", "FK_OOLG_OOLT", "OT_OTHER_LIST_GROUP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(OT_OTHER_LIST_GROUP), "OT_OTHER_LIST_TYPE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(OT_OTHER_LIST_TYPE), True)>
@@ -44987,6 +44987,31 @@ Public Partial Class HU_TITLE
     End Sub
 
     Private Partial Sub OnTITLE_GROUP_IDChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property HURT_TYPE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _HURT_TYPE_ID
+        End Get
+        Set
+            OnHURT_TYPE_IDChanging(value)
+            ReportPropertyChanging("HURT_TYPE_ID")
+            _HURT_TYPE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("HURT_TYPE_ID")
+            OnHURT_TYPE_IDChanged()
+        End Set
+    End Property
+
+    Private _HURT_TYPE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnHURT_TYPE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnHURT_TYPE_IDChanged()
     End Sub
 
     #End Region

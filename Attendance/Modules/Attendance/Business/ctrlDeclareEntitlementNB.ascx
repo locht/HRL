@@ -22,7 +22,7 @@
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,ORG_DESC" ClientDataKeyNames="ID">
                         <Columns>
-                          <%--  <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                            <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn HeaderText="Mã nhân viên" HeaderStyle-Font-Bold="true"
@@ -48,7 +48,7 @@
                                 DataField="ADJUST_MONTH_TN" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:n0}"
                                 SortExpression="ADJUST_MONTH_TN" UniqueName="ADJUST_MONTH_TN">
                             </tlk:GridNumericColumn>
-                         <tlk:GridBoundColumn HeaderText="Lý do điều chỉnh" DataField="REMARK_TN"
+                            <tlk:GridBoundColumn HeaderText="Lý do điều chỉnh" DataField="REMARK_TN"
                                 ItemStyle-HorizontalAlign="Left" SortExpression="REMARK_TN" HeaderStyle-Width="150px"
                                 UniqueName="REMARK_TN">
                                 <HeaderStyle Width="300px" />

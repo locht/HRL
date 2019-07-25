@@ -14147,6 +14147,12 @@ Namespace AttendanceBusiness
         Private EXPIRE_YEARField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HURT_TYPE_IDField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private HURT_TYPE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -14443,6 +14449,32 @@ Namespace AttendanceBusiness
                 If (Me.EXPIRE_YEARField.Equals(value) <> true) Then
                     Me.EXPIRE_YEARField = value
                     Me.RaisePropertyChanged("EXPIRE_YEAR")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HURT_TYPE_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.HURT_TYPE_IDField
+            End Get
+            Set
+                If (Me.HURT_TYPE_IDField.Equals(value) <> true) Then
+                    Me.HURT_TYPE_IDField = value
+                    Me.RaisePropertyChanged("HURT_TYPE_ID")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property HURT_TYPE_NAME() As String
+            Get
+                Return Me.HURT_TYPE_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.HURT_TYPE_NAMEField, value) <> true) Then
+                    Me.HURT_TYPE_NAMEField = value
+                    Me.RaisePropertyChanged("HURT_TYPE_NAME")
                 End If
             End Set
         End Property
