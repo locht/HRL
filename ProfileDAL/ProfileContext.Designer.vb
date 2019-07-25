@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("12ed64dd-9026-44ee-bd1c-595f05887b97")>
+<Assembly: EdmSchemaAttribute("2de858bd-6587-444e-bbf6-c81ed5e23e49")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -50198,6 +50198,31 @@ Public Partial Class HU_TITLE
     End Sub
 
     Private Partial Sub OnFILENAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property HURT_TYPE_ID() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _HURT_TYPE_ID
+        End Get
+        Set
+            OnHURT_TYPE_IDChanging(value)
+            ReportPropertyChanging("HURT_TYPE_ID")
+            _HURT_TYPE_ID = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("HURT_TYPE_ID")
+            OnHURT_TYPE_IDChanged()
+        End Set
+    End Property
+
+    Private _HURT_TYPE_ID As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnHURT_TYPE_IDChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnHURT_TYPE_IDChanged()
     End Sub
 
     #End Region

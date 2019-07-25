@@ -69,10 +69,14 @@
                         ControlToValidate="txtNameVN" ValidationExpression="^(?!.*<[^>]+>).*"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <asp:CheckBox ID="ckDH" runat="server" Text="Độc hại" />
+                    <%--<asp:CheckBox ID="ckDH" runat="server" Text="Độc hại" />--%>
+                    <asp:Label runat="server" ID="lbHurtType" Text = "Đối tượng độc hại"></asp:Label>
                 </td>
                 <td>
-                    <asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />
+                    <tlk:RadComboBox runat="server" ID="cboHurtType"></tlk:RadComboBox>
+                </td>
+                <td>
+                    <%--<asp:CheckBox ID="ckSpecDH" runat="server" Text="Đặc biệt độc hại" />--%>
                     <asp:CheckBox ID="ckOVT" runat="server" Text="Tính OVT" />
                 </td>
             </tr>
@@ -115,7 +119,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,TITLE_GROUP_NAME,TITLE_GROUP_ID,REMARK,ORG_ID,ORG_TYPE,FILENAME,HURTFUL,HURTFUL_CHECK,OVT,OVT_CHECK,SPEC_HURFUL,SPEC_HURFUL_CHECK,UPLOAD_FILE,HURT_TYPE_ID,HURT_TYPE_NAME">
                 <Columns>
                     <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

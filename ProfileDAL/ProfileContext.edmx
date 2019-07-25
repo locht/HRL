@@ -2324,6 +2324,7 @@
             <Property Name="ORG_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="ORG_TYPE" Type="number" Nullable="true" Precision="38" />
             <Property Name="FILENAME" Type="nclob" Nullable="true" />
+            <Property Name="HURT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="PA_PAYMENTSOURCES">
             <Key>
@@ -6711,6 +6712,7 @@
           <Property Type="Decimal" Name="ORG_ID" />
           <Property Type="Decimal" Name="ORG_TYPE" />
           <Property Type="String" Name="FILENAME" />
+          <Property Type="Decimal" Name="HURT_TYPE_ID" Nullable="true" />
         </EntityType>
         <EntityType Name="PA_PAYMENTSOURCES">
           <Key>
@@ -10198,6 +10200,7 @@
                     <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
                     <ScalarProperty Name="ORG_TYPE" ColumnName="ORG_TYPE" />
                     <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                    <ScalarProperty Name="HURT_TYPE_ID" ColumnName="HURT_TYPE_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11827,7 +11830,7 @@
         <EntityTypeShape EntityType="ProfileModel.OT_OTHER_LIST1" Width="1.5" PointX="25.375" PointY="25.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND_EMP" Width="2.625" PointX="0.75" PointY="26.75" Height="3.3263964843750031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.HU_TITLE1" Width="1.5" PointX="3.375" PointY="26.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="ProfileModel.HU_TITLE" Width="2.125" PointX="8.125" PointY="24.125" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="ProfileModel.HU_TITLE" Width="2.125" PointX="9.25" PointY="23.875" Height="6.0186165364583353" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfileModel.PA_PAYMENTSOURCES" Width="1.5" PointX="26.375" PointY="5.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND_LEVEL" Width="1.5" PointX="11.375" PointY="26.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_COMMEND" Width="4.25" PointX="10.75" PointY="29.375" Height="0.4" IsExpanded="false" />

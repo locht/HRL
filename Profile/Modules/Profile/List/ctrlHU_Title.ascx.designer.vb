@@ -212,22 +212,22 @@ Partial Public Class ctrlHU_Title
     Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''ckDH control.
+    '''lbHurtType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ckDH As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents lbHurtType As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''ckSpecDH control.
+    '''cboHurtType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ckSpecDH As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents cboHurtType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''ckOVT control.

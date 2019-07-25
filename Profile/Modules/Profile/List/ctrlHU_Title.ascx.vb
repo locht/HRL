@@ -156,18 +156,18 @@ Public Class ctrlHU_Title
                     Case "UpdateView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "InsertView"
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), NotifyType.Success)
                         rgMain.CurrentPageIndex = 0
                         rgMain.MasterTableView.SortExpressions.Clear()
                         rgMain.Rebind()
-                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
+                        ClearControlValue(txtCode, txtNameVN, txtRemark, cboTitleGroup, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile)
                         CurrentState = CommonMessage.STATE_NORMAL
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
-                        ClearControlValue(txtNameVN, txtRemark, cboOrgType, ckDH, ckOVT, ckSpecDH, txtRemindLink, txtUpload, txtUploadFile)
+                        ClearControlValue(txtNameVN, txtRemark, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile)
                 End Select
             End If
             rep.Dispose()
@@ -235,17 +235,17 @@ Public Class ctrlHU_Title
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
                     EnabledGridNotPostback(rgMain, False)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, btnDownload, btnUploadFile)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
                     Refresh("Cancel")
 
                 Case CommonMessage.STATE_NORMAL
                     EnabledGridNotPostback(rgMain, True)
-                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, btnDownload, btnUploadFile)
+                    EnableControlAll(False, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
 
                 Case CommonMessage.STATE_EDIT
                     EnabledGridNotPostback(rgMain, False)
                     Utilities.EnableRadCombo(cboTitleGroup, True)
-                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, ckDH, ckOVT, ckSpecDH, btnDownload, btnUploadFile)
+                    EnableControlAll(True, cboTitleGroup, txtNameVN, txtRemark, cboOrgLevel, cboOrgType, cboHurtType, ckOVT, btnDownload, btnUploadFile)
 
                 Case CommonMessage.STATE_DELETE
                     Dim lstDeletes As New List(Of Decimal)
@@ -319,6 +319,8 @@ Public Class ctrlHU_Title
             Using rep As New ProfileRepository
                 dtData = rep.GetOtherList("HU_TITLE_GROUP", True)
                 FillRadCombobox(cboTitleGroup, dtData, "NAME", "ID")
+                dtData = rep.GetOtherList("HURT_TYPE", True)
+                FillRadCombobox(cboHurtType, dtData, "NAME", "ID")
             End Using
 
             Dim dtOrgLevel As DataTable
@@ -336,8 +338,7 @@ Public Class ctrlHU_Title
             dic.Add("TITLE_GROUP_ID", cboTitleGroup)
             dic.Add("ORG_ID", cboOrgLevel)
             dic.Add("ORG_TYPE", cboOrgType)
-            dic.Add("HURTFUL_CHECK", ckDH)
-            dic.Add("SPEC_HURFUL_CHECK", ckSpecDH)
+            dic.Add("HURT_TYPE_ID", cboHurtType)
             dic.Add("OVT_CHECK", ckOVT)
             dic.Add("FILENAME", txtUpload)
             dic.Add("UPLOAD_FILE", txtRemindLink)
@@ -493,8 +494,9 @@ Public Class ctrlHU_Title
                             objTitle.ORG_TYPE = cboOrgType.SelectedValue
                         End If
 
-                        objTitle.HURTFUL = If(ckDH.Checked = True, -1, 0)
-                        objTitle.SPEC_HURFUL = If(ckSpecDH.Checked = True, -1, 0)
+                        If cboHurtType.SelectedValue <> "" Then
+                            objTitle.HURT_TYPE_ID = cboHurtType.SelectedValue
+                        End If
                         objTitle.OVT = If(ckOVT.Checked = True, -1, 0)
 
                         'Attach File

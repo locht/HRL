@@ -530,6 +530,7 @@ Public Class ctrlDMCaLamViec
             
 
             ' Add five rows with those columns filled in the DataTable.
+            table.Rows.Add(0, "0")
             table.Rows.Add(0.5, "0.5")
             table.Rows.Add(1, "1")
             table.Rows.Add(1.5, "1.5")

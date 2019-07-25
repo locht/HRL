@@ -27,6 +27,8 @@
     Public Property HURTFUL_CHECK As Boolean
     Public Property SPEC_HURFUL As Decimal?
     Public Property SPEC_HURFUL_CHECK As Boolean
+    Public Property HURT_TYPE_ID As Decimal?
+    Public Property HURT_TYPE_NAME As String
     Public Property ORG_ID As Decimal?
     Public Property ORG_ID_NAME As String
     Public Property ORG_TYPE As Decimal?
