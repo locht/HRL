@@ -309,6 +309,7 @@ Public Class ctrlTimeTimesheet_machine
                     ctrlUpload1.Show()
                 Case "EXPORT_TEMP"
                     ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Timesheet_machineExport&PERIOD_ID=" & "1" & "&orgid=" & "1" & "&IS_DISSOLVE=" & IIf(1, "1", "0") & "');", True)
+                    Refresh("UpdateView")
             End Select
             ' 
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -343,6 +344,17 @@ Public Class ctrlTimeTimesheet_machine
             If rdDenngay.SelectedDate IsNot Nothing Then
                 obj.END_DATE = rdDenngay.SelectedDate
             End If
+            For Each item In cbFilter.CheckedItems
+                If item.Value = 1 Then
+                    obj.IS_LATE = True
+                End If
+                If item.Value = 2 Then
+                    obj.IS_EARLY = True
+                End If
+                If item.Value = 3 Then
+                    obj.IS_REALITY = True
+                End If
+            Next
             If Not isFull Then
                 If Sorts IsNot Nothing Then
                     Me.TIME_TIMESHEET_MACHINETDTO = rep.GetMachines(obj, _param, MaximumRows, rgTimeTimesheet_machine.CurrentPageIndex, rgTimeTimesheet_machine.PageSize, Sorts) '"CREATED_DATE desc")
@@ -624,17 +636,30 @@ Public Class ctrlTimeTimesheet_machine
                 isError = False
                 ImportValidate.TrimRow(row)
                 rowError = dtError.NewRow
-                sError = "Chưa nhập mã nhân viên"
-                ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
+
+                If row("EMPLOYEE_CODE") Is DBNull.Value OrElse row("EMPLOYEE_CODE") = "" Then
+                    sError = "Chưa nhập mã nhân viên"
+                    ImportValidate.EmptyValue("EMPLOYEE_CODE", row, rowError, isError, sError)
+                End If
+                If row("NOTE") Is DBNull.Value OrElse row("NOTE") = "" Then
+                    sError = "Chưa nhập lý do giải trình"
+                    ImportValidate.EmptyValue("NOTE", row, rowError, isError, sError)
+                End If
+                If row("WORKINGDAY") Is DBNull.Value OrElse row("WORKINGDAY") = "" Then
+                    sError = "Chưa nhập ngày giải trình"
+                    ImportValidate.IsValidTime("WORKINGDAY", row, rowError, isError, sError)
+                End If
+                If (row("TIMEIN_REALITY") Is DBNull.Value OrElse row("TIMEIN_REALITY") = "") AndAlso (row("TIMEOUT_REALITY") Is DBNull.Value OrElse row("TIMEOUT_REALITY") = "") Then
+                    sError = "Chưa nhập giờ vào giải trình"
+                    ImportValidate.EmptyValue("TIMEIN_REALITY", row, rowError, isError, sError)
+                    sError = "Chưa nhập giờ ra giải trình"
+                    ImportValidate.EmptyValue("TIMEOUT_REALITY", row, rowError, isError, sError)
+                End If
                 If isError Then
                     rowError("STT") = row("STT")
                     If rowError("EMPLOYEE_CODE").ToString = "" Then
                         rowError("EMPLOYEE_CODE") = row("EMPLOYEE_CODE").ToString
                     End If
-                    rowError("WORKINGDAY") = row("WORKINGDAY").ToString
-                    rowError("TIMEIN_REALITY") = row("TIMEIN_REALITY").ToString
-                    rowError("TIMEOUT_REALITY") = row("TIMEOUT_REALITY").ToString
-                    rowError("NOTE") = row("NOTE").ToString
                     dtError.Rows.Add(rowError)
                 End If
             Next

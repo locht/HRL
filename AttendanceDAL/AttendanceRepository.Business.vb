@@ -412,8 +412,12 @@ Partial Public Class AttendanceRepository
                 Dim LstobjData = (From p In Context.AT_TIME_TIMESHEET_MACHINET Where p.EMPLOYEE_ID = emp_id And p.WORKINGDAY = obj.WORKINGDAY Select p)
                 If LstobjData Is Nothing Then Continue For
                 For Each objdata In LstobjData
-                    objdata.TIMEIN_REALITY = obj.TIMEIN_REALITY
-                    objdata.TIMEOUT_REALITY = obj.TIMEOUT_REALITY
+                    If obj.TIMEIN_REALITY IsNot Nothing Then
+                        objdata.TIMEIN_REALITY = obj.TIMEIN_REALITY
+                    End If
+                    If obj.TIMEOUT_REALITY IsNot Nothing Then
+                        objdata.TIMEOUT_REALITY = obj.TIMEOUT_REALITY
+                    End If
                     objdata.NOTE = obj.NOTE
                 Next
             Next
@@ -480,7 +484,7 @@ Partial Public Class AttendanceRepository
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From m In Context.AT_TIME_MANUAL.Where(Function(f) f.ID = p.MANUAL_ID).DefaultIfEmpty
                         From s In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
-                        From SH In Context.AT_SHIFT.Where(Function(F) F.ID = p.SHIFT_ID).DefaultIfEmpty
+                        From SH In Context.AT_SHIFT.Where(Function(F) F.ID = p.SHIFT_ID)
                         From obj_att In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.OBJECT_ATTENDANCE).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And
                                                                   f.USERNAME.ToUpper = log.Username.ToUpper.ToUpper)
@@ -533,6 +537,15 @@ Partial Public Class AttendanceRepository
             End If
             If _filter.END_DATE.HasValue Then
                 query = query.Where(Function(f) f.p.WORKINGDAY <= _filter.END_DATE)
+            End If
+            If _filter.IS_LATE Then
+                query = query.Where(Function(f) f.p.TIMEIN_REALITY > f.p.HOURS_START)
+            End If
+            If _filter.IS_EARLY Then
+                query = query.Where(Function(f) f.p.TIMEOUT_REALITY < f.p.HOURS_STOP)
+            End If
+            If _filter.IS_REALITY Then
+                query = query.Where(Function(f) f.p.NOTE IsNot Nothing)
             End If
 
             Dim lst = query.Select(Function(p) New AT_TIME_TIMESHEET_MACHINETDTO With {

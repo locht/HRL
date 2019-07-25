@@ -51,7 +51,6 @@
     Public Property MODIFIED_LOG As String
     Public Property SALARIED_HOUR As Decimal?
     Public Property NOTSALARIED_HOUR As Decimal?
-
     Public Property OBJECT_ATTENDANCE As Decimal?
     Public Property OBJECT_ATTENDANCE_NAME As String
     Public Property MIN_IN_WORK As Decimal?
@@ -63,7 +62,6 @@
     Public Property MIN_LATE As Decimal?
     Public Property MIN_EARLY As Decimal?
     Public Property MIN_LATE_EARLY As Decimal?
-
     Public Property WORK_HOUR As Decimal?
     Public Property TIMEVALIN_TEMP As Date?
     Public Property OBJECT_ATTENDANCE_CODE As String
@@ -80,5 +78,8 @@
     Public Property NOTE As String
     Public Property TIMEVALIN As Date?
     Public Property TIMEVALOUT As Date?
+    Public Property IS_LATE As Boolean?
+    Public Property IS_EARLY As Boolean?
+    Public Property IS_REALITY As Boolean?
 
 End Class

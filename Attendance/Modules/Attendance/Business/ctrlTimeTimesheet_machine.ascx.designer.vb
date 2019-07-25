@@ -122,6 +122,24 @@ Partial Public Class ctrlTimeTimesheet_machine
     Protected WithEvents cboPeriod As Global.Telerik.Web.UI.RadComboBox
     
     '''<summary>
+    '''lbFilter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbFilter As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''cbFilter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbFilter As Global.Telerik.Web.UI.RadComboBox
+    
+    '''<summary>
     '''rdtungay control.
     '''</summary>
     '''<remarks>

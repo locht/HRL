@@ -21540,6 +21540,15 @@ Namespace AttendanceBusiness
         Private IS_DISSOLVEField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_EARLYField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_LATEField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_REALITYField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_TERMINATEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -21972,6 +21981,45 @@ Namespace AttendanceBusiness
                 If (Me.IS_DISSOLVEField.Equals(value) <> true) Then
                     Me.IS_DISSOLVEField = value
                     Me.RaisePropertyChanged("IS_DISSOLVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_EARLY() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_EARLYField
+            End Get
+            Set
+                If (Me.IS_EARLYField.Equals(value) <> true) Then
+                    Me.IS_EARLYField = value
+                    Me.RaisePropertyChanged("IS_EARLY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_LATE() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_LATEField
+            End Get
+            Set
+                If (Me.IS_LATEField.Equals(value) <> true) Then
+                    Me.IS_LATEField = value
+                    Me.RaisePropertyChanged("IS_LATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_REALITY() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_REALITYField
+            End Get
+            Set
+                If (Me.IS_REALITYField.Equals(value) <> true) Then
+                    Me.IS_REALITYField = value
+                    Me.RaisePropertyChanged("IS_REALITY")
                 End If
             End Set
         End Property

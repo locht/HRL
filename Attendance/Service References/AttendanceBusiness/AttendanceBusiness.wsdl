@@ -23,6 +23,12 @@
       <xsd:import schemaLocation="http://localhost:9999/AttendanceBusiness.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IAttendanceBusiness_InsertPortalRegList_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPortalRegList" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_InsertPortalRegList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPortalRegListResponse" />
+  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_ModifyPortalRegList_InputMessage">
     <wsdl:part name="parameters" element="tns:ModifyPortalRegList" />
   </wsdl:message>
@@ -52,6 +58,12 @@
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_PRS_DASHBOARD_BY_APPROVE_OutputMessage">
     <wsdl:part name="parameters" element="tns:PRS_DASHBOARD_BY_APPROVEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetHolidayByCalender_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHolidayByCalender" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_GetHolidayByCalender_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHolidayByCalenderResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GetRegisterAppointmentInPortalByEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRegisterAppointmentInPortalByEmployee" />
@@ -557,11 +569,11 @@
   <wsdl:message name="IAttendanceBusiness_GetLeaveRegistrationDetailById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLeaveRegistrationDetailByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertPortalRegList_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertPortalRegList" />
+  <wsdl:message name="IAttendanceBusiness_DeleteAT_GSIGN_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAT_GSIGN" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_InsertPortalRegList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertPortalRegListResponse" />
+  <wsdl:message name="IAttendanceBusiness_DeleteAT_GSIGN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAT_GSIGNResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GetAT_DMVS_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAT_DMVS" />
@@ -1067,11 +1079,11 @@
   <wsdl:message name="IAttendanceBusiness_InsertPortalRegister_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertPortalRegisterResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetHolidayByCalender_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetHolidayByCalender" />
+  <wsdl:message name="IAttendanceBusiness_ActiveDelareEntitlementNB_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveDelareEntitlementNB" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_GetHolidayByCalender_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetHolidayByCalenderResponse" />
+  <wsdl:message name="IAttendanceBusiness_ActiveDelareEntitlementNB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActiveDelareEntitlementNBResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_ModifyDelareEntitlementNB_InputMessage">
     <wsdl:part name="parameters" element="tns:ModifyDelareEntitlementNB" />
@@ -1577,12 +1589,6 @@
   <wsdl:message name="IAttendanceBusiness_ActiveAT_GSIGN_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActiveAT_GSIGNResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteAT_GSIGN_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAT_GSIGN" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_DeleteAT_GSIGN_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAT_GSIGNResponse" />
-  </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GETIDFROMPROCESS_InputMessage">
     <wsdl:part name="parameters" element="tns:GETIDFROMPROCESS" />
   </wsdl:message>
@@ -1654,6 +1660,12 @@
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GetLeaveRegistrationListByLM_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLeaveRegistrationListByLMResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_Upd_TimeTImesheetMachines_InputMessage">
+    <wsdl:part name="parameters" element="tns:Upd_TimeTImesheetMachines" />
+  </wsdl:message>
+  <wsdl:message name="IAttendanceBusiness_Upd_TimeTImesheetMachines_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Upd_TimeTImesheetMachinesResponse" />
   </wsdl:message>
   <wsdl:message name="IAttendanceBusiness_GET_CONFIG_TEMPLATE_InputMessage">
     <wsdl:part name="parameters" element="tns:GET_CONFIG_TEMPLATE" />
@@ -2087,13 +2099,11 @@
   <wsdl:message name="IAttendanceBusiness_ImportDelareEntitlementNB_OutputMessage">
     <wsdl:part name="parameters" element="tns:ImportDelareEntitlementNBResponse" />
   </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveDelareEntitlementNB_InputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveDelareEntitlementNB" />
-  </wsdl:message>
-  <wsdl:message name="IAttendanceBusiness_ActiveDelareEntitlementNB_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ActiveDelareEntitlementNBResponse" />
-  </wsdl:message>
   <wsdl:portType name="IAttendanceBusiness">
+    <wsdl:operation name="InsertPortalRegList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertPortalRegList" message="tns:IAttendanceBusiness_InsertPortalRegList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertPortalRegListResponse" message="tns:IAttendanceBusiness_InsertPortalRegList_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ModifyPortalRegList">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyPortalRegList" message="tns:IAttendanceBusiness_ModifyPortalRegList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyPortalRegListResponse" message="tns:IAttendanceBusiness_ModifyPortalRegList_OutputMessage" />
@@ -2113,6 +2123,10 @@
     <wsdl:operation name="PRS_DASHBOARD_BY_APPROVE">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVE" message="tns:IAttendanceBusiness_PRS_DASHBOARD_BY_APPROVE_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVEResponse" message="tns:IAttendanceBusiness_PRS_DASHBOARD_BY_APPROVE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHolidayByCalender">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalender" message="tns:IAttendanceBusiness_GetHolidayByCalender_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalenderResponse" message="tns:IAttendanceBusiness_GetHolidayByCalender_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetRegisterAppointmentInPortalByEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetRegisterAppointmentInPortalByEmployee" message="tns:IAttendanceBusiness_GetRegisterAppointmentInPortalByEmployee_InputMessage" />
@@ -2450,9 +2464,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationDetailById" message="tns:IAttendanceBusiness_GetLeaveRegistrationDetailById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationDetailByIdResponse" message="tns:IAttendanceBusiness_GetLeaveRegistrationDetailById_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertPortalRegList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertPortalRegList" message="tns:IAttendanceBusiness_InsertPortalRegList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertPortalRegListResponse" message="tns:IAttendanceBusiness_InsertPortalRegList_OutputMessage" />
+    <wsdl:operation name="DeleteAT_GSIGN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_GSIGN" message="tns:IAttendanceBusiness_DeleteAT_GSIGN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_GSIGNResponse" message="tns:IAttendanceBusiness_DeleteAT_GSIGN_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAT_DMVS">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetAT_DMVS" message="tns:IAttendanceBusiness_GetAT_DMVS_InputMessage" />
@@ -2790,9 +2804,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertPortalRegister" message="tns:IAttendanceBusiness_InsertPortalRegister_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/InsertPortalRegisterResponse" message="tns:IAttendanceBusiness_InsertPortalRegister_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetHolidayByCalender">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalender" message="tns:IAttendanceBusiness_GetHolidayByCalender_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalenderResponse" message="tns:IAttendanceBusiness_GetHolidayByCalender_OutputMessage" />
+    <wsdl:operation name="ActiveDelareEntitlementNB">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveDelareEntitlementNB" message="tns:IAttendanceBusiness_ActiveDelareEntitlementNB_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveDelareEntitlementNBResponse" message="tns:IAttendanceBusiness_ActiveDelareEntitlementNB_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ModifyDelareEntitlementNB">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ModifyDelareEntitlementNB" message="tns:IAttendanceBusiness_ModifyDelareEntitlementNB_InputMessage" />
@@ -3130,10 +3144,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_GSIGN" message="tns:IAttendanceBusiness_ActiveAT_GSIGN_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveAT_GSIGNResponse" message="tns:IAttendanceBusiness_ActiveAT_GSIGN_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteAT_GSIGN">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_GSIGN" message="tns:IAttendanceBusiness_DeleteAT_GSIGN_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/DeleteAT_GSIGNResponse" message="tns:IAttendanceBusiness_DeleteAT_GSIGN_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GETIDFROMPROCESS">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GETIDFROMPROCESS" message="tns:IAttendanceBusiness_GETIDFROMPROCESS_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GETIDFROMPROCESSResponse" message="tns:IAttendanceBusiness_GETIDFROMPROCESS_OutputMessage" />
@@ -3181,6 +3191,10 @@
     <wsdl:operation name="GetLeaveRegistrationListByLM">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationListByLM" message="tns:IAttendanceBusiness_GetLeaveRegistrationListByLM_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationListByLMResponse" message="tns:IAttendanceBusiness_GetLeaveRegistrationListByLM_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Upd_TimeTImesheetMachines">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/Upd_TimeTImesheetMachines" message="tns:IAttendanceBusiness_Upd_TimeTImesheetMachines_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/Upd_TimeTImesheetMachinesResponse" message="tns:IAttendanceBusiness_Upd_TimeTImesheetMachines_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GET_CONFIG_TEMPLATE">
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/GET_CONFIG_TEMPLATE" message="tns:IAttendanceBusiness_GET_CONFIG_TEMPLATE_InputMessage" />
@@ -3470,14 +3484,19 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportDelareEntitlementNB" message="tns:IAttendanceBusiness_ImportDelareEntitlementNB_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ImportDelareEntitlementNBResponse" message="tns:IAttendanceBusiness_ImportDelareEntitlementNB_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ActiveDelareEntitlementNB">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveDelareEntitlementNB" message="tns:IAttendanceBusiness_ActiveDelareEntitlementNB_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAttendanceBusiness/ActiveDelareEntitlementNBResponse" message="tns:IAttendanceBusiness_ActiveDelareEntitlementNB_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IAttendanceBusiness" type="tns:IAttendanceBusiness">
     <wsp:PolicyReference URI="#WSHttpBinding_IAttendanceBusiness_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertPortalRegList">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertPortalRegList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ModifyPortalRegList">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ModifyPortalRegList" style="document" />
       <wsdl:input>
@@ -3516,6 +3535,15 @@
     </wsdl:operation>
     <wsdl:operation name="PRS_DASHBOARD_BY_APPROVE">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/PRS_DASHBOARD_BY_APPROVE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHolidayByCalender">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalender" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4279,8 +4307,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertPortalRegList">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/InsertPortalRegList" style="document" />
+    <wsdl:operation name="DeleteAT_GSIGN">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteAT_GSIGN" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5044,8 +5072,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetHolidayByCalender">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetHolidayByCalender" style="document" />
+    <wsdl:operation name="ActiveDelareEntitlementNB">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveDelareEntitlementNB" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5809,15 +5837,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteAT_GSIGN">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/DeleteAT_GSIGN" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GETIDFROMPROCESS">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GETIDFROMPROCESS" style="document" />
       <wsdl:input>
@@ -5919,6 +5938,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetLeaveRegistrationListByLM">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/GetLeaveRegistrationListByLM" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Upd_TimeTImesheetMachines">
+      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/Upd_TimeTImesheetMachines" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6567,15 +6595,6 @@
     </wsdl:operation>
     <wsdl:operation name="ImportDelareEntitlementNB">
       <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ImportDelareEntitlementNB" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ActiveDelareEntitlementNB">
-      <soap12:operation soapAction="http://tempuri.org/IAttendanceBusiness/ActiveDelareEntitlementNB" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
