@@ -21514,6 +21514,9 @@ Namespace AttendanceBusiness
         Private IS_LATEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_NON_WORKING_VALUEField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IS_REALITYField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -21975,6 +21978,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_LATEField.Equals(value) <> true) Then
                     Me.IS_LATEField = value
                     Me.RaisePropertyChanged("IS_LATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_NON_WORKING_VALUE() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_NON_WORKING_VALUEField
+            End Get
+            Set
+                If (Me.IS_NON_WORKING_VALUEField.Equals(value) <> true) Then
+                    Me.IS_NON_WORKING_VALUEField = value
+                    Me.RaisePropertyChanged("IS_NON_WORKING_VALUE")
                 End If
             End Set
         End Property

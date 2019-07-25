@@ -547,7 +547,9 @@ Partial Public Class AttendanceRepository
             If _filter.IS_REALITY Then
                 query = query.Where(Function(f) f.p.NOTE IsNot Nothing)
             End If
-
+            If _filter.IS_NON_WORKING_VALUE Then
+                query = query.Where(Function(f) f.p.WORKING_VALUE IsNot Nothing)
+            End If
             Dim lst = query.Select(Function(p) New AT_TIME_TIMESHEET_MACHINETDTO With {
                                        .ID = p.p.ID,
                                        .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
