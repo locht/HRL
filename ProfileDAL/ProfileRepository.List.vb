@@ -100,6 +100,7 @@ Partial Class ProfileRepository
                         From group In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.TITLE_GROUP_ID).DefaultIfEmpty
                         From orgLv In Context.HU_ORGANIZATION.Where(Function(f) f.ID = p.ORG_ID).DefaultIfEmpty
                         From orgType In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.ORG_TYPE).DefaultIfEmpty
+                        From hurtType In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.HURT_TYPE_ID).DefaultIfEmpty
                         Select New TitleDTO With {
                                    .ID = p.ID,
                                    .CODE = p.CODE,
@@ -114,9 +115,9 @@ Partial Class ProfileRepository
                                    .ORG_ID_NAME = orgLv.NAME_VN,
                                    .ORG_TYPE = p.ORG_TYPE,
                                    .ORG_TYPE_NAME = orgType.NAME_VN,
-                                   .HURTFUL_CHECK = If(p.HURTFUL = -1, True, False),
+                                   .HURT_TYPE_ID = p.HURT_TYPE_ID,
+                                   .HURT_TYPE_NAME = hurtType.NAME_VN,
                                    .OVT_CHECK = If(p.OVT = -1, True, False),
-                                   .SPEC_HURFUL_CHECK = If(p.SPEC_HURFUL = -1, True, False),
                                    .UPLOAD_FILE = p.UPLOAD_FILE,
                                    .FILENAME = p.FILENAME}
 
@@ -197,8 +198,9 @@ Partial Class ProfileRepository
             objTitleData.ACTFLG = objTitle.ACTFLG
             objTitleData.REMARK = objTitle.REMARK
             objTitleData.TITLE_GROUP_ID = objTitle.TITLE_GROUP_ID
-            objTitleData.HURTFUL = objTitle.HURTFUL
-            objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            'objTitleData.HURTFUL = objTitle.HURTFUL
+            'objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            objTitleData.HURT_TYPE_ID = objTitle.HURT_TYPE_ID
             objTitleData.OVT = objTitle.OVT
             objTitleData.ORG_ID = objTitle.ORG_ID
             objTitleData.ORG_TYPE = objTitle.ORG_TYPE
@@ -259,8 +261,9 @@ Partial Class ProfileRepository
             objTitleData.NAME_VN = objTitle.NAME_VN
             objTitleData.REMARK = objTitle.REMARK
             objTitleData.TITLE_GROUP_ID = objTitle.TITLE_GROUP_ID
-            objTitleData.HURTFUL = objTitle.HURTFUL
-            objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            'objTitleData.HURTFUL = objTitle.HURTFUL
+            'objTitleData.SPEC_HURFUL = objTitle.SPEC_HURFUL
+            objTitleData.HURT_TYPE_ID = objTitle.HURT_TYPE_ID
             objTitleData.OVT = objTitle.OVT
             objTitleData.ORG_ID = objTitle.ORG_ID
             objTitleData.ORG_TYPE = objTitle.ORG_TYPE
