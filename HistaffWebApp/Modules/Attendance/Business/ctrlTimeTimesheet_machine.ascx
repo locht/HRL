@@ -44,6 +44,7 @@
                                     <tlk:RadComboBoxItem Text="Đi trễ" Value ="1" />
                                     <tlk:RadComboBoxItem Text="Về sớm" Value ="2" />
                                     <tlk:RadComboBoxItem Text="Dữ liệu có giải trình" Value ="3" />
+                                    <tlk:RadComboBoxItem Text="Ngày làm không công" Value ="4" />
                                 </Items>
                             </tlk:RadComboBox>
                         </td>

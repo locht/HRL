@@ -354,6 +354,9 @@ Public Class ctrlTimeTimesheet_machine
                 If item.Value = 3 Then
                     obj.IS_REALITY = True
                 End If
+                If item.Value = 4 Then
+                    obj.IS_NON_WORKING_VALUE = True
+                End If
             Next
             If Not isFull Then
                 If Sorts IsNot Nothing Then

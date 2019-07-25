@@ -81,5 +81,5 @@
     Public Property IS_LATE As Boolean?
     Public Property IS_EARLY As Boolean?
     Public Property IS_REALITY As Boolean?
-
+    Public Property IS_NON_WORKING_VALUE As Boolean?
 End Class
