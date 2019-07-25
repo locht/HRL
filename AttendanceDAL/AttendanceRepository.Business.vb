@@ -2323,8 +2323,10 @@ Partial Public Class AttendanceRepository
             Dim query = From p In Context.AT_DECLARE_ENTITLEMENT
                         From e In Context.HU_EMPLOYEE.Where(Function(f) f.ID = p.EMPLOYEE_ID)
                         From t In Context.HU_TITLE.Where(Function(f) f.ID = e.TITLE_ID).DefaultIfEmpty
+                        From hurt_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = t.HURT_TYPE_ID).DefaultIfEmpty
                         From o In Context.HU_ORGANIZATION.Where(Function(f) f.ID = e.ORG_ID).DefaultIfEmpty
                         From c In Context.HU_STAFF_RANK.Where(Function(f) f.ID = e.STAFF_RANK_ID).DefaultIfEmpty
+                        From mod_type In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.MODIFY_TYPE_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) e.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
 
             Dim lst = query.Select(Function(p) New AT_DECLARE_ENTITLEMENTDTO With {
@@ -2350,6 +2352,12 @@ Partial Public Class AttendanceRepository
                                        .START_MONTH_EXTEND = p.p.START_MONTH_EXTEND,
                                        .ADJUST_NB = p.p.ADJUST_NB,
                                        .START_MONTH_NB = p.p.START_MONTH_NB,
+                                       .MODIFY_TYPE_ID = p.p.MODIFY_TYPE_ID,
+                                       .MODIFY_TYPE_NAME = p.mod_type.NAME_VN,
+                                       .END_MONTH_TN = p.p.END_MONTH_TN,
+                                       .EXPIRE_YEAR = p.p.EXPIRE_YEAR,
+                                       .HURT_TYPE_ID = p.t.HURT_TYPE_ID,
+                                       .HURT_TYPE_NAME = p.hurt_type.NAME_VN,
                                        .REMARK_NB = p.p.REMARK_NB,
                                        .MONTH_EXTENSION_NB = p.p.MONTH_EXTENSION_NB,
                                        .COM_PAY = p.p.COM_PAY,
@@ -2489,6 +2497,8 @@ Partial Public Class AttendanceRepository
                                        .COM_PAY = p.p.COM_PAY,
                                        .ENT_PAY = p.p.ENT_PAY,
                                        .MODIFY_TYPE_ID = p.p.MODIFY_TYPE_ID,
+                                       .END_MONTH_TN = p.p.END_MONTH_TN,
+                                       .EXPIRE_YEAR = p.p.EXPIRE_YEAR,
                                        .CREATED_BY = p.p.CREATED_BY,
                                        .CREATED_DATE = p.p.CREATED_DATE,
                                        .CREATED_LOG = p.p.CREATED_LOG,
@@ -2628,6 +2638,8 @@ Partial Public Class AttendanceRepository
                     obj.ENT_PAY = objDelareEntitlementNB.ENT_PAY
                     obj.JOIN_DATE = objDelareEntitlementNB.JOIN_DATE
                     obj.MODIFY_TYPE_ID = objDelareEntitlementNB.MODIFY_TYPE_ID
+                    obj.END_MONTH_TN = objDelareEntitlementNB.END_MONTH_TN
+                    obj.EXPIRE_YEAR = objDelareEntitlementNB.EXPIRE_YEAR
                 Else
                     Dim objDelareEntitlementNBData As New AT_DECLARE_ENTITLEMENT
                     objDelareEntitlementNBData.ID = Utilities.GetNextSequence(Context, Context.AT_DECLARE_ENTITLEMENT.EntitySet.Name)
@@ -2650,6 +2662,8 @@ Partial Public Class AttendanceRepository
                     objDelareEntitlementNBData.ENT_PAY = objDelareEntitlementNB.ENT_PAY
                     objDelareEntitlementNBData.JOIN_DATE = objDelareEntitlementNB.JOIN_DATE
                     objDelareEntitlementNBData.MODIFY_TYPE_ID = objDelareEntitlementNB.MODIFY_TYPE_ID
+                    objDelareEntitlementNBData.END_MONTH_TN = objDelareEntitlementNB.END_MONTH_TN
+                    objDelareEntitlementNBData.EXPIRE_YEAR = objDelareEntitlementNB.EXPIRE_YEAR
                     Context.AT_DECLARE_ENTITLEMENT.AddObject(objDelareEntitlementNBData)
                 End If
                 Context.SaveChanges(log)

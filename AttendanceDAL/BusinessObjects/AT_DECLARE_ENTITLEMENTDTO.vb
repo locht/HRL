@@ -9,6 +9,8 @@
     Public Property ORG_DESC As String
     Public Property TITLE_NAME As String
     Public Property TITLE_ID As Decimal?
+    Public Property HURT_TYPE_ID As Decimal?
+    Public Property HURT_TYPE_NAME As String
     Public Property PERIOD_ID As Decimal?
     Public Property STAFF_RANK_ID As Decimal?
     Public Property IS_DISSOLVE As Decimal?

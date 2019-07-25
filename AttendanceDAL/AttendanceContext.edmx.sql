@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 24/07/2019 4:27:48 PM
+-- Date Created: 25/07/2019 9:45:50 AM
 -- Generated from EDMX file: E:\TNG-New\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
@@ -743,7 +743,8 @@ CREATE TABLE "dbo"."HU_TITLE" (
    "MODIFIED_BY" NVARCHAR2(255) NULL,
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "REMARK" NVARCHAR2(255) NULL,
-   "TITLE_GROUP_ID" NUMBER(38,0) NULL
+   "TITLE_GROUP_ID" NUMBER(38,0) NULL,
+   "HURT_TYPE_ID" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_WORKSIGN'

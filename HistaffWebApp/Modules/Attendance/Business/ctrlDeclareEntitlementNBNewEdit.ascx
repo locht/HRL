@@ -109,11 +109,33 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbADJUST_MONTH_TN2" runat="server" Text="Giá trị điều chỉnh"></asp:Label>
+                    <asp:Label ID="lbExpireYear" runat="server" Text="Hết hiệu lực"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadTextBox ID="txtADJUST_MONTH_TN2" runat="server" EnabledStyle-HorizontalAlign="Right">
-                    </tlk:RadTextBox>
+                    <tlk:RadNumericTextBox ID="txtExpireYear" MaxLength="4" SkinID="Number" runat="server">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label ID="lbEndMonth" runat="server" Text="Tháng"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadComboBox ID="cboEndMonth" runat="server" SkinID="dDropdownList">
+                        <Items>
+                            <tlk:RadComboBoxItem Text="" Value="" />
+                            <tlk:RadComboBoxItem Text="1" Value="1" />
+                            <tlk:RadComboBoxItem Text="2" Value="2" />
+                            <tlk:RadComboBoxItem Text="3" Value="3" />
+                            <tlk:RadComboBoxItem Text="4" Value="4" />
+                            <tlk:RadComboBoxItem Text="5" Value="5" />
+                            <tlk:RadComboBoxItem Text="6" Value="6" />
+                            <tlk:RadComboBoxItem Text="7" Value="7" />
+                            <tlk:RadComboBoxItem Text="8" Value="8" />
+                            <tlk:RadComboBoxItem Text="9" Value="9" />
+                            <tlk:RadComboBoxItem Text="10" Value="10" />
+                            <tlk:RadComboBoxItem Text="11" Value="11" />
+                            <tlk:RadComboBoxItem Text="12" Value="12" />
+                        </Items>
+                    </tlk:RadComboBox>
                 </td>
             </tr>
             <tr>

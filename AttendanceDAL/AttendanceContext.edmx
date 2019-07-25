@@ -700,6 +700,7 @@
             <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="REMARK" Type="nvarchar2" Nullable="true" MaxLength="255" />
             <Property Name="TITLE_GROUP_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="HURT_TYPE_ID" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_WORKSIGN">
             <Key>
@@ -3387,6 +3388,7 @@
           <Property Type="String" Name="REMARK" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="TITLE_GROUP_ID" Precision="38" Scale="0" />
           <NavigationProperty Name="HU_ORG_TITLE" Relationship="AttendanceModel.FK_HUTL_HUOT" FromRole="HU_TITLE" ToRole="HU_ORG_TITLE" />
+          <Property Type="Decimal" Name="HURT_TYPE_ID" Nullable="true" />
         </EntityType>
         <Association Name="FK_HUTL_HUOT">
           <End Type="AttendanceModel.HU_TITLE" Role="HU_TITLE" Multiplicity="0..1" />
@@ -5678,6 +5680,7 @@
                     <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
                     <ScalarProperty Name="REMARK" ColumnName="REMARK" />
                     <ScalarProperty Name="TITLE_GROUP_ID" ColumnName="TITLE_GROUP_ID" />
+                    <ScalarProperty Name="HURT_TYPE_ID" ColumnName="HURT_TYPE_ID" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7523,7 +7526,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_PORTAL_APP" Width="1.5" PointX="2.875" PointY="10.5" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_RGT" Width="1.5" PointX="4.625" PointY="11.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HU_ORG_TITLE" Width="1.5" PointX="9.875" PointY="4.625" Height="0.40000000037252903" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.HU_TITLE" Width="1.5" PointX="7.625" PointY="4.625" Height="0.40000000037252903" IsExpanded="false" />
+        <EntityTypeShape EntityType="AttendanceModel.HU_TITLE" Width="1.5" PointX="7.625" PointY="4.625" Height="3.9033007812499996" IsExpanded="true" />
         <AssociationConnector Association="AttendanceModel.FK_HUTL_HUOT" >
           <ConnectorPoint PointX="9.125" PointY="4.8250000001862645" />
           <ConnectorPoint PointX="9.875" PointY="4.8250000001862645" />

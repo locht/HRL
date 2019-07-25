@@ -302,22 +302,40 @@ Partial Public Class ctrlDeclareEntitlementNBNewEdit
     Protected WithEvents cboModifyType As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''lbADJUST_MONTH_TN2 control.
+    '''lbExpireYear control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbADJUST_MONTH_TN2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbExpireYear As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtADJUST_MONTH_TN2 control.
+    '''txtExpireYear control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtADJUST_MONTH_TN2 As Global.Telerik.Web.UI.RadTextBox
+    Protected WithEvents txtExpireYear As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''lbEndMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEndMonth As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''cboEndMonth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboEndMonth As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''lbREMARK_TN control.
