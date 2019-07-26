@@ -33,4 +33,8 @@
     Public Property LST_WELFATE_EMP As List(Of Welfatemng_empDTO)
     Public Property WORK_STATUS As Decimal?
     Public Property TER_LAST_DATE As Date?
+    Public Property TOTAL_CHILD As Decimal?
+    Public Property GENDER_NAME As String
+    Public Property CONTRACT_NAME As String
+    Public Property SENIORITY As String
 End Class

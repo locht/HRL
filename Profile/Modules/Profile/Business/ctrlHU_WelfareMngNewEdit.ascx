@@ -6,7 +6,7 @@
     <tlk:RadPane ID="TopPane" runat="server" Scrolling="None" Height="35px">
         <tlk:RadToolBar ID="tbarMenu" runat="server" OnClientButtonClicking="clientButtonClicking" />
     </tlk:RadPane>
-    <tlk:RadPane ID="LeftPane" runat="server" Height="100px">
+    <tlk:RadPane ID="LeftPane" runat="server" Height="110px">
         <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary"
             ValidationGroup="" />
         <table class="table-form">
@@ -42,14 +42,26 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất Excel %>"
+                        CausesValidation="false" OnClientClicking="btnExportClicking"  Width="150px">
+                    </tlk:RadButton>
+                </td>
+                <td>
+                    <tlk:RadButton ID="btnExportFile" runat="server" Text="<%$ Translate: Xuất file mẫu %>"
+                        CausesValidation="false" OnClientClicking="btnExportClicking"  Width="150px">
+                    </tlk:RadButton>
+                </td>
+            </tr>
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgEmployee" AllowPaging="true" AllowMultiRowEdit="true" runat="server"
             PageSize="50" Height="100%">
             <GroupingSettings CaseSensitive="false" />
-            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID"
-                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL"
+            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID,MONEY_TOTAL"
+                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,GENDER_ID,CONTRACT_TYPE,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -62,6 +74,11 @@
                                 CausesValidation="false" CommandName="FindEmployeeImport" TabIndex="3">
                             </tlk:RadButton>--%>
                         </div>
+                        <%--                       <div style="float: left">
+                            <tlk:RadButton Width="150px" ID="btnExport" runat="server" Text="Xuất Excel" 
+                                CausesValidation="false" CommandName="Export" TabIndex="3">
+                            </tlk:RadButton>
+                        </div>--%>
                         <div style="float: right">
                             <tlk:RadButton Width="100px" ID="btnDeleteEmp" runat="server" Text="Xóa" CausesValidation="false"
                                 CommandName="DeleteEmployee" TabIndex="3">
@@ -81,18 +98,36 @@
                         ReadOnly="true" SortExpression="ORG_NAME" />
                     <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_NAME" UniqueName="TITLE_NAME"
                         ReadOnly="true" SortExpression="TITLE_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Giới tính" DataField="GENDER_NAME" UniqueName="GENDER_NAME" ReadOnly="true"
-                        SortExpression="GENDER_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Loại hợp đồng gần nhất" DataField="CONTRACT_NAME" UniqueName="CONTRACT_NAME"
-                        ReadOnly="true" SortExpression="CONTRACT_NAME" />
-                    <tlk:GridBoundColumn HeaderText="Thâm niên" DataField="SENIORITY" UniqueName="SENIORITY" ReadOnly="true"
-                        SortExpression="SENIORITY" />
-                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="TOTAL_CHILD" UniqueName="TOTAL_CHILD" ReadOnly="true"
-                        SortExpression="TOTAL_CHILD" />
-                    <tlk:GridBoundColumn HeaderText="Số tiền phúc lợi" DataField="MONEY_PL" UniqueName="MONEY_PL" ReadOnly="true"
-                        SortExpression="MONEY_PL" />
-                    <tlk:GridBoundColumn HeaderText="Tổng số tiền" DataField="MONEY_TOTAL" UniqueName="MONEY_TOTAL" ReadOnly="true"
-                        SortExpression="MONEY_TOTAL" />
+                    <tlk:GridBoundColumn HeaderText="Giới tính" DataField="GENDER_NAME" UniqueName="GENDER_NAME"
+                        ReadOnly="true" SortExpression="GENDER_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Loại hợp đồng gần nhất" DataField="CONTRACT_NAME"
+                        UniqueName="CONTRACT_NAME" ReadOnly="true" SortExpression="CONTRACT_NAME" />
+                    <tlk:GridBoundColumn HeaderText="Thâm niên" DataField="SENIORITY" UniqueName="SENIORITY"
+                        ReadOnly="true" SortExpression="SENIORITY" />
+                    <tlk:GridBoundColumn HeaderText="Tổng số con" DataField="TOTAL_CHILD" UniqueName="TOTAL_CHILD"
+                        ReadOnly="true" SortExpression="TOTAL_CHILD" />
+                    <tlk:GridBoundColumn HeaderText="Số tiền phúc lợi" DataField="MONEY_PL" UniqueName="MONEY_PL"
+                        ReadOnly="true" SortExpression="MONEY_PL" />
+                    <%-- <tlk:GridBoundColumn HeaderText="Tổng số tiền" DataField="MONEY_TOTAL" UniqueName="MONEY_TOTAL"
+                        ReadOnly="true" SortExpression="MONEY_TOTAL" />--%>
+                    <tlk:GridTemplateColumn HeaderText="Tổng số tiền" HeaderStyle-Width="100px" DataField="MONEY_TOTAL"
+                        UniqueName="MONEY_TOTAL">
+                        <EditItemTemplate>
+                            <tlk:RadNumericTextBox SkinID="Money" DataFormatString="{0:N2}" Width="90px" runat="server"
+                                ID="rnMONEY">
+                            </tlk:RadNumericTextBox>
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
+                    <tlk:GridBoundColumn HeaderText="NHÂN VIÊN" DataField="EMPLOYEE_ID" UniqueName="EMPLOYEE_ID"
+                        ReadOnly="true" SortExpression="EMPLOYEE_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="GIOI TINH" DataField="GENDER_ID" UniqueName="GENDER_ID"
+                        ReadOnly="true" SortExpression="GENDER_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="GIOI TINH" DataField="CONTRACT_TYPE" UniqueName="CONTRACT_TYPE"
+                        ReadOnly="true" SortExpression="CONTRACT_TYPE" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="CHỨC DANH" DataField="TITLE_ID" UniqueName="TITLE_ID"
+                        ReadOnly="true" SortExpression="TITLE_ID" Visible="false" />
+                    <tlk:GridBoundColumn HeaderText="TÊN PHÒNG BAN" DataField="ORG_ID" UniqueName="ORG_ID"
+                        ReadOnly="true" SortExpression="ORG_ID" Visible="false" />
                 </Columns>
             </MasterTableView>
             <HeaderStyle HorizontalAlign="Center" />
@@ -133,6 +168,9 @@
             }
             return null;
         }
+        function btnExportClicking(sender, args) {
+            enableAjax = false;
+        }
 
         function clientButtonClicking(sender, args) {
             //            if (args.get_item().get_commandName() == 'CANCEL') {
@@ -140,6 +178,9 @@
             //                args.set_cancel(true);
             //            }
             if (args.get_item().get_commandName() == "PRINT") {
+                enableAjax = false;
+            }
+            if (args.get_item().get_commandName() == 'Export') {
                 enableAjax = false;
             }
         }

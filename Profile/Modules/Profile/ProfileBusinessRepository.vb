@@ -349,10 +349,10 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
-    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal) As DataTable
+    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
         Using rep As New ProfileBusinessClient
             Try
-                Dim dt = rep.GET_DETAILS_EMP(P_ID)
+                Dim dt = rep.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE)
                 Return dt
             Catch ex As Exception
                 rep.Abort()

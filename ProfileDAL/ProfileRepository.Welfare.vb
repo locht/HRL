@@ -43,6 +43,7 @@ Partial Class ProfileRepository
             End Using
 
             Dim query = From p In Context.HU_WELFARE_MNG
+                        From ce In Context.HU_WELFARE_MNG_EMP.Where(Function(f) f.GROUP_ID = p.ID And f.EMPLOYEE_ID = p.EMPLOYEE_ID)
                         From plst In Context.HU_WELFARE_LIST.Where(Function(f) f.ID = p.WELFARE_ID).DefaultIfEmpty
                         From e In Context.HU_EMPLOYEE.Where(Function(e) p.EMPLOYEE_ID = e.ID)
                         From o In Context.HU_ORGANIZATION.Where(Function(o) e.ORG_ID = o.ID)
@@ -96,8 +97,12 @@ Partial Class ProfileRepository
                                        .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                        .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                        .EXPIRE_DATE = p.p.EXPIRE_DATE,
-                                       .MONEY = p.p.MONEY,
+                                       .MONEY = p.ce.MONEY_TOTAL,
                                        .MONEY_PL = p.plst.MONEY,
+                                       .TOTAL_CHILD = p.ce.TOTAL_CHILD,
+                                       .GENDER_NAME = p.ce.GENDER_NAME,
+                                       .CONTRACT_NAME = p.ce.CONTRACT_NAME,
+                                       .SENIORITY = p.ce.SENIORITY,
                                        .ORG_ID = p.o.ID,
                                        .ORG_NAME = p.o.NAME_VN,
                                        .ORG_DESC = p.o.DESCRIPTION_PATH,
@@ -136,13 +141,18 @@ Partial Class ProfileRepository
                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                       .TITLE_NAME = p.t.NAME_VN,
                                       .ORG_NAME = p.o.NAME_VN,
+                                      .ORG_ID = p.ce.ORG_ID,
+                                      .TITLE_ID = p.ce.TITLE_ID,
                                       .TOTAL_CHILD = p.ce.TOTAL_CHILD,
                                       .MONEY_TOTAL = p.ce.MONEY_TOTAL,
                                       .MONEY_PL = p.ce.MONEY_PL,
+                                      .GENDER_ID = p.ce.GENDER_ID,
                                       .GENDER_NAME = p.gender.NAME_VN,
                                       .CONTRACT_TYPE = p.ce.CONTRACT_TYPE,
                                       .CONTRACT_NAME = p.cttype.NAME,
-                                      .SENIORITY = p.ce.SENIORITY
+                                      .SENIORITY = p.ce.SENIORITY,
+                                      .EMPLOYEE_ID = p.ce.EMPLOYEE_ID,
+                                      .GROUP_ID = p.ce.GROUP_ID
                                       })
             Return lst.ToList
         Catch ex As Exception
@@ -319,6 +329,8 @@ Partial Class ProfileRepository
                     objDataEmp.MONEY_PL = obj.MONEY_PL
                     objDataEmp.CONTRACT_TYPE = obj.CONTRACT_TYPE
                     objDataEmp.GENDER_ID = obj.GENDER_ID
+                    objDataEmp.GENDER_NAME = obj.GENDER_NAME
+                    objDataEmp.CONTRACT_NAME = obj.CONTRACT_NAME
                     objDataEmp.SENIORITY = obj.SENIORITY
                     objDataEmp.WELFARE_ID = lstWelfareMng.WELFARE_ID
                     Context.HU_WELFARE_MNG_EMP.AddObject(objDataEmp)
@@ -367,20 +379,28 @@ Partial Class ProfileRepository
     Public Function DeleteWelfareMng(ByVal lstWelfareMng() As WelfareMngDTO,
                                    ByVal log As UserLog) As Boolean
         Dim lstWelfareMngData As List(Of HU_WELFARE_MNG)
+        Dim lstWelfareEmpData As List(Of HU_WELFARE_MNG_EMP)
         Dim lstIDWelfareMng As List(Of Decimal) = (From p In lstWelfareMng.ToList Select p.ID).ToList
+
         lstWelfareMngData = (From p In Context.HU_WELFARE_MNG Where lstIDWelfareMng.Contains(p.ID)).ToList
         For index = 0 To lstWelfareMngData.Count - 1
             Context.HU_WELFARE_MNG.DeleteObject(lstWelfareMngData(index))
+        Next
+        lstWelfareEmpData = (From p In Context.HU_WELFARE_MNG_EMP Where lstIDWelfareMng.Contains(p.GROUP_ID)).ToList
+        For index = 0 To lstWelfareEmpData.Count - 1
+            Context.HU_WELFARE_MNG_EMP.DeleteObject(lstWelfareEmpData(index))
         Next
         Context.SaveChanges(log)
         Return True
     End Function
 
-    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal) As DataTable
+    Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_DETAILS_EMP",
                                            New With {.P_EMP_ID = P_ID,
+                                                     .P_WELFARE_ID = P_WELFARE_ID,
+                                                     .P_DATE = P_DATE,
                                                      .P_CUR = cls.OUT_CURSOR})
 
                 Return dtData

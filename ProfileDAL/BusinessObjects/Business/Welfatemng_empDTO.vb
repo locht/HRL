@@ -18,4 +18,5 @@
     Public Property TOTAL_CHILD As Decimal?
     Public Property MONEY_PL As Decimal?
     Public Property MONEY_TOTAL As Decimal?
+    Public Property GROUP_ID As Decimal?
 End Class

@@ -211,13 +211,18 @@ Public Class ctrlHU_WelfareMng
                         Exit Sub
                     End If
 
+                    'For Each item As GridDataItem In rgWelfareMng.SelectedItems
+                    '    If item.GetDataKeyValue("WORK_STATUS") = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
+                    '        ShowMessage(Translate("Nhân viên nghỉ việc. Không được xóa thông tin."), Utilities.NotifyType.Warning)
+                    '        Exit Sub
+                    '    End If
+                    'Next
                     For Each item As GridDataItem In rgWelfareMng.SelectedItems
-                        If item.GetDataKeyValue("WORK_STATUS") = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
-                            ShowMessage(Translate("Nhân viên nghỉ việc. Không được xóa thông tin."), Utilities.NotifyType.Warning)
+                        If item.GetDataKeyValue("EFFECT_DATE") <= Date.Now Then
+                            ShowMessage(Translate("Không được xóa những phúc lợi đã tới ngày hiệu lực"), Utilities.NotifyType.Warning)
                             Exit Sub
                         End If
                     Next
-
                     ctrlMessageBox.MessageText = Translate(CommonMessage.MESSAGE_CONFIRM_DELETE)
                     ctrlMessageBox.ActionName = CommonMessage.TOOLBARITEM_DELETE
                     ctrlMessageBox.DataBind()

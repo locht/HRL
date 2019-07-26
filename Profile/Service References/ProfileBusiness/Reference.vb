@@ -26691,6 +26691,9 @@ Namespace ProfileBusiness
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private CONTRACT_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private CREATED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -26719,6 +26722,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private EXPIRE_DATEField As System.Nullable(Of Date)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GENDER_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As Decimal
@@ -26775,10 +26781,16 @@ Namespace ProfileBusiness
         Private SDESCField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private SENIORITYField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TER_LAST_DATEField As System.Nullable(Of Date)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private TITLE_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private TOTAL_CHILDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private WELFARE_IDField As Decimal
@@ -26799,6 +26811,19 @@ Namespace ProfileBusiness
             End Get
             Set
                 Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property CONTRACT_NAME() As String
+            Get
+                Return Me.CONTRACT_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.CONTRACT_NAMEField, value) <> true) Then
+                    Me.CONTRACT_NAMEField = value
+                    Me.RaisePropertyChanged("CONTRACT_NAME")
+                End If
             End Set
         End Property
         
@@ -26928,6 +26953,19 @@ Namespace ProfileBusiness
                 If (Me.EXPIRE_DATEField.Equals(value) <> true) Then
                     Me.EXPIRE_DATEField = value
                     Me.RaisePropertyChanged("EXPIRE_DATE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GENDER_NAME() As String
+            Get
+                Return Me.GENDER_NAMEField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.GENDER_NAMEField, value) <> true) Then
+                    Me.GENDER_NAMEField = value
+                    Me.RaisePropertyChanged("GENDER_NAME")
                 End If
             End Set
         End Property
@@ -27167,6 +27205,19 @@ Namespace ProfileBusiness
         End Property
         
         <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property SENIORITY() As String
+            Get
+                Return Me.SENIORITYField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.SENIORITYField, value) <> true) Then
+                    Me.SENIORITYField = value
+                    Me.RaisePropertyChanged("SENIORITY")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property TER_LAST_DATE() As System.Nullable(Of Date)
             Get
                 Return Me.TER_LAST_DATEField
@@ -27188,6 +27239,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.TITLE_NAMEField, value) <> true) Then
                     Me.TITLE_NAMEField = value
                     Me.RaisePropertyChanged("TITLE_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property TOTAL_CHILD() As System.Nullable(Of Decimal)
+            Get
+                Return Me.TOTAL_CHILDField
+            End Get
+            Set
+                If (Me.TOTAL_CHILDField.Equals(value) <> true) Then
+                    Me.TOTAL_CHILDField = value
+                    Me.RaisePropertyChanged("TOTAL_CHILD")
                 End If
             End Set
         End Property
@@ -27285,6 +27349,9 @@ Namespace ProfileBusiness
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private GENDER_NAMEField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private GROUP_IDField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private IDField As System.Nullable(Of Decimal)
@@ -27419,6 +27486,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.GENDER_NAMEField, value) <> true) Then
                     Me.GENDER_NAMEField = value
                     Me.RaisePropertyChanged("GENDER_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property GROUP_ID() As System.Nullable(Of Decimal)
+            Get
+                Return Me.GROUP_IDField
+            End Get
+            Set
+                If (Me.GROUP_IDField.Equals(value) <> true) Then
+                    Me.GROUP_IDField = value
+                    Me.RaisePropertyChanged("GROUP_ID")
                 End If
             End Set
         End Property
@@ -50176,7 +50256,7 @@ Namespace ProfileBusiness
         Function GetlistWelfareEMP(ByVal Id As Integer) As System.Collections.Generic.List(Of ProfileBusiness.Welfatemng_empDTO)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_DETAILS_EMPResponse")>  _
-        Function GET_DETAILS_EMP(ByVal P_ID As Decimal) As System.Data.DataTable
+        Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetWelfareList", ReplyAction:="http://tempuri.org/IProfileBusiness/GetWelfareListResponse")>  _
         Function GetWelfareList(ByVal _filter As ProfileBusiness.WelfareListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO)
@@ -52330,8 +52410,8 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GetlistWelfareEMP(Id)
         End Function
         
-        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
-            Return MyBase.Channel.GET_DETAILS_EMP(P_ID)
+        Public Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As System.Data.DataTable Implements ProfileBusiness.IProfileBusiness.GET_DETAILS_EMP
+            Return MyBase.Channel.GET_DETAILS_EMP(P_ID, P_WELFARE_ID, P_DATE)
         End Function
         
         Public Function GetWelfareList(ByVal _filter As ProfileBusiness.WelfareListDTO, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef Total As Integer, ByVal log As Common.CommonBusiness.UserLog, ByVal Sorts As String) As System.Collections.Generic.List(Of ProfileBusiness.WelfareListDTO) Implements ProfileBusiness.IProfileBusiness.GetWelfareList

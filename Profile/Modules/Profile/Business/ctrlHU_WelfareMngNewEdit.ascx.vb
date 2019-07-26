@@ -81,6 +81,14 @@ Public Class ctrlHU_WelfareMngNewEdit
             ViewState(Me.ID & "_checkDelete") = value
         End Set
     End Property
+    Property Total_money As Decimal
+        Get
+            Return ViewState(Me.ID & "_Total_money")
+        End Get
+        Set(ByVal value As Decimal)
+            ViewState(Me.ID & "_Total_money") = value
+        End Set
+    End Property
     ''' <summary>
     ''' Obj popupID
     ''' 0 - normal
@@ -120,14 +128,35 @@ Public Class ctrlHU_WelfareMngNewEdit
             If Not Page.IsPostBack Then
                 '  GetParams()
             End If
+
             UpdateControlState()
+            Refresh()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    Public Overrides Sub Refresh(Optional ByVal Message As String = "")
+        Dim rep As New ProfileBusinessRepository
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If Request.Params("gUID") IsNot Nothing Then
+                _Id = Integer.Parse(Request.Params("gUID"))
+                LoadData()
+                rgEmployee.Rebind()
+                For Each i As GridItem In rgEmployee.Items
+                    i.Edit = True
+                Next
+                rgEmployee.Rebind()
+            End If
 
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 10/07/2017 10:00
     ''' </lastupdate>
@@ -180,7 +209,12 @@ Public Class ctrlHU_WelfareMngNewEdit
                 Case "FindEmployee"
                     isLoadPopup = 1
                     UpdateControlState()
-                    ctrlFindEmployeePopup.Show()
+                    If cboWELFARE_ID.SelectedValue <> "" And dpEFFECT_DATE.SelectedDate IsNot Nothing Then
+                        ctrlFindEmployeePopup.Show()
+                    Else
+                        ShowMessage(Translate("chọn loại phúc lợi và ngày thanh toán"), NotifyType.Warning)
+                        Exit Sub
+                    End If
                 Case "DeleteEmployee"
                     For Each i As GridDataItem In rgEmployee.SelectedItems
                         Dim s = (From q In Employee_PL Where
@@ -190,6 +224,9 @@ Public Class ctrlHU_WelfareMngNewEdit
                     '_result = False
                     checkDelete = 1
                     rgEmployee.Rebind()
+
+
+
             End Select
         Catch ex As Exception
 
@@ -245,7 +282,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                     employee.ORG_ID = emp.ORG_ID
                     employee.TITLE_ID = emp.TITLE_ID
                     Using rep As New ProfileBusinessRepository
-                        Dim dtdata = rep.GET_DETAILS_EMP(emp.ID)
+                        Dim dtdata = rep.GET_DETAILS_EMP(emp.ID, cboWELFARE_ID.SelectedValue, dpEFFECT_DATE.SelectedDate)
                         If dtdata.Rows.Count > 0 Then
                             Dim total_child = dtdata(0)("TOTAL_CHILD").ToString()
                             Dim money_total = dtdata(0)("MONEY_TOTAL").ToString()
@@ -266,14 +303,22 @@ Public Class ctrlHU_WelfareMngNewEdit
                             End If
                             employee.SENIORITY = seniority
                             employee.GENDER_NAME = gender_name
-                            employee.GENDER_ID = Decimal.Parse(gender_id)
-                            employee.CONTRACT_TYPE = Decimal.Parse(contract_type)
+                            If gender_id <> "" Then
+                                employee.GENDER_ID = Decimal.Parse(gender_id)
+                            End If
+                            If contract_type <> "" Then
+                                employee.CONTRACT_TYPE = Decimal.Parse(contract_type)
+                            End If
                             employee.CONTRACT_NAME = contract_name
                         End If
                     End Using
                     Employee_PL.Add(employee)
                 Next
                 '_result = False
+                rgEmployee.Rebind()
+                For Each i As GridItem In rgEmployee.Items
+                    i.Edit = True
+                Next
                 rgEmployee.Rebind()
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method,
@@ -389,20 +434,71 @@ Public Class ctrlHU_WelfareMngNewEdit
                     'objdata.EMPLOYEE_ID = hidIDEmp.Value
                     objdata.EFFECT_DATE = dpEFFECT_DATE.SelectedDate
                     objdata.SDESC = txtSDESC.Text
-                    For Each item In Employee_PL
+                    Dim ValidGrid As Tuple(Of Boolean, String)
+                    ValidGrid = ValidateGrid_Emp()
+                    If ValidateGrid_Emp.Item1 = False Then
+                        ShowMessage(ValidateGrid_Emp.Item2, NotifyType.Warning)
+                        Exit Sub
+                    End If
+                    'For Each items As GridDataItem In rgEmployee.Items
+                    '    Dim txtMoney = CType(items.FindControl("rnMONEY"), RadNumericTextBox)
+                    '    Dim o As New Welfatemng_empDTO
+                    '    o.EMPLOYEE_ID = items.GetDataKeyValue("EMPLOYEE_ID")
+                    '    o.EMPLOYEE_CODE = items.GetDataKeyValue("EMPLOYEE_CODE")
+                    '    o.GENDER_ID = items.GetDataKeyValue("GENDER_ID")
+                    '    o.GENDER_NAME = items.GetDataKeyValue("GENDER_NAME")
+                    '    o.TITLE_ID = items.GetDataKeyValue("TITLE_ID")
+                    '    o.ORG_ID = items.GetDataKeyValue("ORG_ID")
+                    '    o.TOTAL_CHILD = items.GetDataKeyValue("TOTAL_CHILD")
+                    '    o.MONEY_TOTAL = txtMoney.Value
+                    '    o.MONEY_PL = items.GetDataKeyValue("MONEY_PL")
+                    '    o.CONTRACT_TYPE = items.GetDataKeyValue("CONTRACT_TYPE")
+                    '    o.CONTRACT_NAME = items.GetDataKeyValue("CONTRACT_NAME")
+                    '    o.WELFARE_ID = cboWELFARE_ID.SelectedValue
+                    '    o.SENIORITY = items.GetDataKeyValue("SENIORITY")
+                    '    objdata.EMPLOYEE_ID = items.GetDataKeyValue("EMPLOYEE_ID")
+                    '    lstemp.Add(o)
+                    '    ' Total_money = txtMoney.Value
+                    'Next
+                    'For Each item In Employee_PL
+                    '    Dim o As New Welfatemng_empDTO
+                    '    o.EMPLOYEE_ID = item.EMPLOYEE_ID
+                    '    o.EMPLOYEE_CODE = item.EMPLOYEE_CODE
+                    '    o.GENDER_ID = item.GENDER_ID
+                    '    o.GENDER_NAME = item.GENDER_NAME
+                    '    o.TITLE_ID = item.TITLE_ID
+                    '    o.ORG_ID = item.ORG_ID
+                    '    o.TOTAL_CHILD = item.TOTAL_CHILD
+                    '    o.MONEY_TOTAL = Total_money
+                    '    o.MONEY_PL = item.MONEY_PL
+                    '    o.CONTRACT_TYPE = item.CONTRACT_TYPE
+                    '    o.CONTRACT_NAME = item.CONTRACT_NAME
+                    '    o.WELFARE_ID = cboWELFARE_ID.SelectedValue
+                    '    o.SENIORITY = item.SENIORITY
+                    '    objdata.EMPLOYEE_ID = item.EMPLOYEE_ID
+                    '    lstemp.Add(o)
+                    'Next
+                    Dim dtrgEmployee As DataTable = GetDataFromGrid(rgEmployee)
+                    For Each row As DataRow In dtrgEmployee.Rows
                         Dim o As New Welfatemng_empDTO
-                        o.EMPLOYEE_ID = item.EMPLOYEE_ID
-                        o.EMPLOYEE_CODE = item.EMPLOYEE_CODE
-                        o.GENDER_ID = item.GENDER_ID
-                        o.TITLE_ID = item.TITLE_ID
-                        o.ORG_ID = item.ORG_ID
-                        o.TOTAL_CHILD = item.TOTAL_CHILD
-                        o.MONEY_TOTAL = item.MONEY_TOTAL
-                        o.MONEY_PL = item.MONEY_PL
-                        o.CONTRACT_TYPE = item.CONTRACT_TYPE
+                        o.EMPLOYEE_ID = If(row("EMPLOYEE_ID") <> "", Decimal.Parse(row("EMPLOYEE_ID")), Nothing)
+                        o.EMPLOYEE_CODE = row("EMPLOYEE_CODE").ToString
+                        o.GENDER_ID = If(row("GENDER_ID") <> "", Decimal.Parse(row("GENDER_ID")), Nothing)
+                        o.GENDER_NAME = row("GENDER_NAME").ToString
+                        o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
+                        o.ORG_ID = If(row("ORG_ID") <> "", Decimal.Parse(row("ORG_ID")), Nothing)
+                        o.TOTAL_CHILD = If(row("TOTAL_CHILD") <> "", Decimal.Parse(row("TOTAL_CHILD")), Nothing)
+                        o.MONEY_TOTAL = If(row("MONEY_TOTAL") <> "", Decimal.Parse(row("MONEY_TOTAL")), Nothing)
+                        o.MONEY_PL = If(row("MONEY_PL") <> "", Decimal.Parse(row("MONEY_PL")), Nothing)
+                        o.CONTRACT_TYPE = If(row("CONTRACT_TYPE") <> "", Decimal.Parse(row("CONTRACT_TYPE")), Nothing)
+                        o.CONTRACT_NAME = row("CONTRACT_NAME").ToString
                         o.WELFARE_ID = cboWELFARE_ID.SelectedValue
-                        o.SENIORITY = item.SENIORITY
-                        objdata.EMPLOYEE_ID = item.EMPLOYEE_ID
+                        o.SENIORITY = row("SENIORITY").ToString
+                        objdata.EMPLOYEE_ID = If(row("EMPLOYEE_ID") <> "", Decimal.Parse(row("EMPLOYEE_ID")), Nothing)
+                        'o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
+                        'o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
+                        'o.ORG_ID = If(row("ORG_ID") <> "", Decimal.Parse(row("ORG_ID")), Nothing)
+                        'o.TITLE_ID = If(row("TITLE_ID") <> "", Decimal.Parse(row("TITLE_ID")), Nothing)
                         lstemp.Add(o)
                     Next
                     objdata.LST_WELFATE_EMP = lstemp
@@ -447,7 +543,78 @@ Public Class ctrlHU_WelfareMngNewEdit
             _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
+    Private Sub btnExport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExport.Click
+        Try
+            Dim dtData As DataTable
+            Using xls As New ExcelCommon
+                dtData = Employee_PL.ToTable
+                If dtData.Rows.Count = 0 Then
+                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                    Exit Sub
+                ElseIf dtData.Rows.Count > 0 Then
+                    rgEmployee.ExportExcel(Server, Response, dtData, "Welfare")
+                Else
+                    ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXPORT_EMPTY), NotifyType.Warning)
+                End If
+            End Using
+        Catch ex As Exception
 
+        End Try
+    End Sub
+    Private Sub btnExportFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExportFile.Click
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Function GetDataFromGrid(ByVal gr As RadGrid) As DataTable
+        Dim bsSource As DataTable
+        Try
+            bsSource = New DataTable()
+            For Each Col As GridColumn In gr.Columns
+                Dim DataColumn As DataColumn = New DataColumn(Col.UniqueName)
+                bsSource.Columns.Add(DataColumn)
+            Next
+            'coppy data to grid
+            For Each Item As GridDataItem In gr.EditItems
+                If Item.Display = False Then Continue For
+                Dim Dr As DataRow = bsSource.NewRow()
+                For Each col As GridColumn In gr.Columns
+                    Try
+                        If col.UniqueName = "cbStatus" Then
+                            If Item.Selected = True Then
+                                Dr(col.UniqueName) = 1
+                            Else
+                                Dr(col.UniqueName) = 0
+                            End If
+                            Continue For
+                        End If
+                        If InStr(",MONEY_TOTAL,", "," + col.UniqueName + ",") > 0 Then
+                            Select Case Item(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
+                                Case "cb"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadComboBox).SelectedValue
+                                Case "rn"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox).Value
+                                Case "rt"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadTextBox).Text.Trim
+                                Case "rd"
+                                    Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadDatePicker).SelectedDate
+                            End Select
+                        Else
+                            Dr(col.UniqueName) = Item.GetDataKeyValue(col.UniqueName)
+                        End If
+                    Catch ex As Exception
+                        Continue For
+                    End Try
+                Next
+                bsSource.Rows.Add(Dr)
+            Next
+            bsSource.AcceptChanges()
+            Return bsSource
+        Catch ex As Exception
+        End Try
+    End Function
     ''' <lastupdate>
     ''' 10/07/2017 10:10
     ''' </lastupdate>
@@ -457,21 +624,35 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Protected Sub cboWELFARE_ID_ItemDataBound(ByVal sender As Object, ByVal e As RadComboBoxItemEventArgs) Handles cboWELFARE_ID.ItemDataBound
-        Dim startTime As DateTime = DateTime.UtcNow
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Dim dataItem As WelfareListDTO = CType(e.Item.DataItem, WelfareListDTO)
+    'Protected Sub cboWELFARE_ID_ItemDataBound(ByVal sender As Object, ByVal e As RadComboBoxItemEventArgs) Handles cboWELFARE_ID.ItemDataBound
+    '    Dim startTime As DateTime = DateTime.UtcNow
+    '    Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    '    Dim dataItem As WelfareListDTO = CType(e.Item.DataItem, WelfareListDTO)
+    '    Try
+    '        If dataItem.MONEY IsNot Nothing Then
+    '            e.Item.Attributes("MONEY") = dataItem.MONEY
+    '        End If
+    '        _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+    '    Catch ex As Exception
+    '        _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+    '    End Try
+
+    'End Sub
+    Private Sub rgEmployee_ItemDataBound(sender As Object, e As Telerik.Web.UI.GridItemEventArgs) Handles rgEmployee.ItemDataBound
         Try
-            If dataItem.MONEY IsNot Nothing Then
-                e.Item.Attributes("MONEY") = dataItem.MONEY
+            If e.Item.Edit Then
+                Dim edit = CType(e.Item, GridEditableItem)
+                Dim item As GridDataItem = CType(e.Item, GridDataItem)
+                Dim rtxtmoney As New RadNumericTextBox
+                rtxtmoney = CType(edit.FindControl("rnMONEY"), RadNumericTextBox)
+                SetDataToGrid_Org(edit)
+                edit.Dispose()
+                item.Dispose()
             End If
-            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+
         End Try
-
     End Sub
-
     ''' <lastupdate>
     ''' 10/07/2017 10:10
     ''' </lastupdate>
@@ -641,7 +822,6 @@ Public Class ctrlHU_WelfareMngNewEdit
                     Employee_PL = rep.GetlistWelfareEMP(_Id)
                 End If
 
-
             End If
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -656,7 +836,6 @@ Public Class ctrlHU_WelfareMngNewEdit
             If Request.Params("gUID") IsNot Nothing Then
                 _Id = Integer.Parse(Request.Params("gUID"))
                 CurrentState = CommonMessage.STATE_EDIT
-                LoadData()
 
             Else
                 CurrentState = CommonMessage.STATE_NEW
@@ -664,11 +843,71 @@ Public Class ctrlHU_WelfareMngNewEdit
                     Employee_PL = New List(Of Welfatemng_empDTO)
                 End If
             End If
+            'For Each i As GridItem In rgEmployee.Items
+            '    i.Edit = True
+            'Next
             rgEmployee.VirtualItemCount = Employee_PL.Count
             rgEmployee.DataSource = Employee_PL
         Catch ex As Exception
 
         End Try
     End Sub
+
+    Private Sub SetDataToGrid_Org(ByVal EditItem As GridEditableItem)
+        Try
+            For Each col As GridColumn In rgEmployee.Columns
+                Try
+                    'Dim groupid
+                    'For Each LINE In Employee_PL
+                    '    groupid = LINE.GROUP_ID
+                    'Next
+                    Dim empployee_id = EditItem.GetDataKeyValue("EMPLOYEE_ID")
+                    Dim rowData As Welfatemng_empDTO = Employee_PL.Find(Function(f) f.EMPLOYEE_ID = empployee_id)
+                    If rowData Is Nothing Then
+                        Exit Sub
+                    End If
+                    If InStr(",MONEY_TOTAL,", "," + col.UniqueName + ",") > 0 Then
+                        Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
+                            Case "cb"
+
+                            Case "rn"
+                                Dim radNumber As New RadNumericTextBox
+                                radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)
+                                radNumber.ClearValue()
+                                radNumber.NumberFormat.AllowRounding = False
+                                radNumber.NumberFormat.DecimalDigits = 2
+                                radNumber.Text = rowData.MONEY_TOTAL.ToString()
+                        End Select
+                    Else
+                        Continue For
+                    End If
+                Catch ex As Exception
+                    Continue For
+                End Try
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Function ValidateGrid_Emp() As Object
+        Dim flag As Boolean = True
+        Dim msgError As String = "Bạn chưa nhập đầy đủ thông tin. Vui lòng xem vị trí tô màu đỏ và gợi nhắc ở lưới."
+        Try
+            For Each items In rgEmployee.Items
+                Dim txtMoney = CType(items.FindControl("rnMONEY"), RadNumericTextBox)
+                If IsNumeric(txtMoney.Value) = False Then
+                    txtMoney.BackColor = System.Drawing.Color.Red
+                    txtMoney.ToolTip = "Bạn phải nhập mức thưởng"
+                    flag = False
+                End If
+                Total_money = txtMoney.Value
+            Next
+        Catch ex As Exception
+        End Try
+        Dim Tuple As New Tuple(Of Boolean, String)(flag, msgError)
+        Return Tuple
+    End Function
+
 
 End Class

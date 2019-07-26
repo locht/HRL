@@ -122,6 +122,24 @@ Partial Public Class ctrlHU_WelfareMngNewEdit
     Protected WithEvents txtSDESC As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
+    '''btnExport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExport As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
+    '''btnExportFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnExportFile As Global.Telerik.Web.UI.RadButton
+
+    '''<summary>
     '''RadPane3 control.
     '''</summary>
     '''<remarks>

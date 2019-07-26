@@ -43,7 +43,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None" Height="100%">
                 <tlk:RadGrid PageSize="50" ID="rgWelfareMng" runat="server" Height="100%">
-                    <MasterTableView DataKeyNames="ID,WORK_STATUS" EditMode="InPlace" ClientDataKeyNames="ID">
+                    <MasterTableView DataKeyNames="ID,WORK_STATUS,EFFECT_DATE" EditMode="InPlace" ClientDataKeyNames="ID,EFFECT_DATE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -61,14 +61,14 @@
                                 ReadOnly="true" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
                                 ReadOnly="true" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="" ReadOnly="true"
-                                UniqueName="" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng gần nhất %>" DataField=""
-                                ReadOnly="true" UniqueName="" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên %>" DataField="" ReadOnly="true"
-                                UniqueName="" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="" ReadOnly="true"
-                                UniqueName="" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER_NAME" ReadOnly="true"
+                                UniqueName="GENDER_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng gần nhất %>" DataField="CONTRACT_NAME"
+                                ReadOnly="true" UniqueName="CONTRACT_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên %>" DataField="SENIORITY" ReadOnly="true"
+                                UniqueName="SENIORITY" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="TOTAL_CHILD" ReadOnly="true"
+                                UniqueName="TOTAL_CHILD" HeaderStyle-Width="200px" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" />
