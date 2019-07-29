@@ -19,4 +19,5 @@
     Public Property MONEY_PL As Decimal?
     Public Property MONEY_TOTAL As Decimal?
     Public Property GROUP_ID As Decimal?
+    Public Property REMARK As String
 End Class

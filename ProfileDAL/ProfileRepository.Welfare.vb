@@ -62,6 +62,10 @@ Partial Class ProfileRepository
 
 
             ' lọc điều kiện
+            If _filter.WELFARE_ID <> 0 Then
+                query = query.Where(Function(p) p.p.WELFARE_ID = _filter.WELFARE_ID)
+            End If
+
             If _filter.EMPLOYEE_CODE IsNot Nothing Then
                 query = query.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
             End If
@@ -152,7 +156,8 @@ Partial Class ProfileRepository
                                       .CONTRACT_NAME = p.cttype.NAME,
                                       .SENIORITY = p.ce.SENIORITY,
                                       .EMPLOYEE_ID = p.ce.EMPLOYEE_ID,
-                                      .GROUP_ID = p.ce.GROUP_ID
+                                      .GROUP_ID = p.ce.GROUP_ID,
+                                      .REMARK = p.ce.REMARK
                                       })
             Return lst.ToList
         Catch ex As Exception
@@ -333,6 +338,7 @@ Partial Class ProfileRepository
                     objDataEmp.CONTRACT_NAME = obj.CONTRACT_NAME
                     objDataEmp.SENIORITY = obj.SENIORITY
                     objDataEmp.WELFARE_ID = lstWelfareMng.WELFARE_ID
+                    objDataEmp.REMARK = obj.REMARK
                     Context.HU_WELFARE_MNG_EMP.AddObject(objDataEmp)
                 Next
             End If

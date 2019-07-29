@@ -27372,6 +27372,9 @@ Namespace ProfileBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SENIORITYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27577,6 +27580,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
                     Me.ORG_NAMEField = value
                     Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
                 End If
             End Set
         End Property

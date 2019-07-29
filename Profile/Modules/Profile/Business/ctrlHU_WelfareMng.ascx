@@ -31,8 +31,15 @@
                             <tlk:RadDatePicker ID="rdToDate" runat="server">
                             </tlk:RadDatePicker>
                         </td>
-                        <td>
+                        <%-- <td>
                             <asp:CheckBox ID="chkTerminate" runat="server" Text="<%$ Translate: Liệt kê cả nhân viên nghỉ việc %>" />
+                        </td>--%>
+                        <td class="lb">
+                            <%# Translate("Loại phúc lợi")%>
+                        </td>
+                        <td>
+                            <tlk:RadComboBox ID="cbTyleWelfare" runat="server">
+                            </tlk:RadComboBox>
                         </td>
                         <td>
                             <tlk:RadButton ID="btnSearch" runat="server" Text="<%$ Translate: Tìm %>" SkinID="ButtonFind">
@@ -49,10 +56,10 @@
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                             </tlk:GridClientSelectColumn>
                             <tlk:GridBoundColumn DataField="ID" Visible="false" ReadOnly="true" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME" ReadOnly="true"
-                                UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại phúc lợi %>" DataField="WELFARE_NAME"
+                                ReadOnly="true" UniqueName="WELFARE_NAME" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Ngày thanh toán %>" DataField="EFFECT_DATE"
-                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="150px" DataFormatString="{0:dd/MM/yyyy}"  />
+                                ReadOnly="true" UniqueName="EFFECT_DATE" HeaderStyle-Width="150px" DataFormatString="{0:dd/MM/yyyy}" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Mã nhân viên %>" DataField="EMPLOYEE_CODE"
                                 ReadOnly="true" UniqueName="EMPLOYEE_CODE" HeaderStyle-Width="100px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên nhân viên %>" DataField="EMPLOYEE_NAME"
@@ -61,14 +68,14 @@
                                 ReadOnly="true" UniqueName="TITLE_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="ORG_NAME"
                                 ReadOnly="true" UniqueName="ORG_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER_NAME" ReadOnly="true"
-                                UniqueName="GENDER_NAME" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Giới tính %>" DataField="GENDER_NAME"
+                                ReadOnly="true" UniqueName="GENDER_NAME" HeaderStyle-Width="200px" />
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Loại hợp đồng gần nhất %>" DataField="CONTRACT_NAME"
                                 ReadOnly="true" UniqueName="CONTRACT_NAME" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên %>" DataField="SENIORITY" ReadOnly="true"
-                                UniqueName="SENIORITY" HeaderStyle-Width="200px" />
-                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="TOTAL_CHILD" ReadOnly="true"
-                                UniqueName="TOTAL_CHILD" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Thâm niên %>" DataField="SENIORITY"
+                                ReadOnly="true" UniqueName="SENIORITY" HeaderStyle-Width="200px" />
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Tổng số con %>" DataField="TOTAL_CHILD"
+                                ReadOnly="true" UniqueName="TOTAL_CHILD" HeaderStyle-Width="200px" />
                             <tlk:GridNumericColumn HeaderText="<%$ Translate: Số tiền phúc lợi %>" DataField="MONEY_PL"
                                 ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" UniqueName="MONEY_PL"
                                 DataType="System.UInt64" HeaderStyle-Width="100px" />
@@ -136,6 +143,7 @@
         }
 
         function OpenEdit() {
+           
             if ($find('<%= rgWelfareMng.ClientID%>').get_masterTableView().get_selectedItems().length == 1) {
                 var id = $find('<%= rgWelfareMng.ClientID%>').get_masterTableView().get_selectedItems()[0].getDataKeyValue('ID');
                 window.open('/Default.aspx?mid=Profile&fid=ctrlHU_WelfareMngNewEdit&group=Business&gUID=' + id + '', "_self");

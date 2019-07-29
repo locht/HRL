@@ -5,6 +5,9 @@ Imports Common
 Imports Telerik.Web.UI
 Imports System.IO
 Imports WebAppLog
+Imports System.Globalization
+Imports HistaffFrameworkPublic
+
 Public Class ctrlHU_WelfareMngNewEdit
     Inherits CommonView
     Protected WithEvents ctrlFindEmployeePopup As ctrlFindEmployeePopup
@@ -33,6 +36,46 @@ Public Class ctrlHU_WelfareMngNewEdit
         End Get
         Set(ByVal value As ComboBoxDataDTO)
             ViewState(Me.ID & "_ListComboData") = value
+        End Set
+    End Property
+    Private Property dtTable As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtTable")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtTable") = value
+        End Set
+    End Property
+    Private Property dtbImport As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtbImport")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtbImport") = value
+        End Set
+    End Property
+    Public Property dem As Integer
+        Get
+            Return ViewState(Me.ID & "_dem")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_dem") = value
+        End Set
+    End Property
+    Private Property dtAllowList As DataTable
+        Get
+            Return PageViewState(Me.ID & "_dtAllowList")
+        End Get
+        Set(ByVal value As DataTable)
+            PageViewState(Me.ID & "_dtAllowList") = value
+        End Set
+    End Property
+    Public Property ColumnImportWelfare As Integer
+        Get
+            Return ViewState(Me.ID & "_ColumnImportWelfare")
+        End Get
+        Set(ByVal value As Integer)
+            ViewState(Me.ID & "_ColumnImportWelfare") = value
         End Set
     End Property
 
@@ -167,6 +210,7 @@ Public Class ctrlHU_WelfareMngNewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
+        ColumnImportWelfare = 11
         SetGridFilter(rgEmployee)
         AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
         AjaxManagerId = AjaxManager.ClientID
@@ -490,10 +534,15 @@ Public Class ctrlHU_WelfareMngNewEdit
                         o.TOTAL_CHILD = If(row("TOTAL_CHILD") <> "", Decimal.Parse(row("TOTAL_CHILD")), Nothing)
                         o.MONEY_TOTAL = If(row("MONEY_TOTAL") <> "", Decimal.Parse(row("MONEY_TOTAL")), Nothing)
                         o.MONEY_PL = If(row("MONEY_PL") <> "", Decimal.Parse(row("MONEY_PL")), Nothing)
-                        o.CONTRACT_TYPE = If(row("CONTRACT_TYPE") <> "", Decimal.Parse(row("CONTRACT_TYPE")), Nothing)
+                        If IsDBNull(row("CONTRACT_TYPE")) = False Then
+                            o.CONTRACT_TYPE = If(row("CONTRACT_TYPE") <> "", Decimal.Parse(row("CONTRACT_TYPE")), Nothing)
+                        Else
+                            o.CONTRACT_TYPE = Nothing
+                        End If
                         o.CONTRACT_NAME = row("CONTRACT_NAME").ToString
                         o.WELFARE_ID = cboWELFARE_ID.SelectedValue
                         o.SENIORITY = row("SENIORITY").ToString
+                        o.REMARK = row("REMARK").ToString
                         objdata.EMPLOYEE_ID = If(row("EMPLOYEE_ID") <> "", Decimal.Parse(row("EMPLOYEE_ID")), Nothing)
                         'o.MONEY = If(row("MONEY") <> "", Decimal.Parse(row("MONEY")), Nothing)
                         'o.COMMEND_PAY = If(row("COMMEND_PAY") <> "", Decimal.Parse(row("COMMEND_PAY")), Nothing)
@@ -561,13 +610,102 @@ Public Class ctrlHU_WelfareMngNewEdit
 
         End Try
     End Sub
-    Private Sub btnExportFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExportFile.Click
+    Private Sub btnImportFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnImportFile.Click
         Try
-
+            ctrlUpload.isMultiple = False
+            ctrlUpload.Show()
+            CurrentState = CommonMessage.TOOLBARITEM_IMPORT
         Catch ex As Exception
 
         End Try
     End Sub
+    Private Sub ctrlUpload_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload.OkClicked
+        Import_Welfare()
+    End Sub
+    Private Sub Import_Welfare()
+        Dim SumAllColImport As Integer
+        Dim fileName As String
+        Dim value As String
+        Try
+            '1. Đọc dữ liệu từ file Excel
+            Dim tempPath As String = ConfigurationManager.AppSettings("ExcelFileFolder")
+            Dim savepath = Context.Server.MapPath(tempPath)
+            Dim countFile As Integer = ctrlUpload.UploadedFiles.Count
+            Dim ds As New DataSet
+            Dim dt As New DataTable
+            Dim newRow1 As DataRow
+            Dim newRow2 As DataRow
+            'colStart = 0            'Bat dau doc tu cot
+            'rowStart = 1            'Bat dau doc tu dong
+            SumAllColImport = Count_All_Column() 'Tong so cot
+            dtbImport = Employee_PL.ToTable()
+            dtbImport.Clear()
+            CreateDataTableUpdate()
+            If countFile > 0 Then
+                Dim file As UploadedFile = ctrlUpload.UploadedFiles(countFile - 1)
+                fileName = System.IO.Path.Combine(savepath, file.FileName)
+                '1.1 Lưu file lên server
+                file.SaveAs(fileName, True)
+
+                '2.1 Đọc dữ liệu trong file Excel
+                Using ep As New ExcelPackage
+                    ds = ep.ReadExcelToDataSet(fileName, False)
+                End Using
+
+                dt = ds.Tables(0)
+                For i = 1 To dt.Rows.Count - 1
+                    value = dt(i)("column1").ToString
+                    If value <> "" Then
+                        newRow1 = dtbImport.NewRow()
+                        newRow2 = dt.NewRow()
+                        newRow2 = dt(i)
+
+                        For j = 0 To SumAllColImport - 1
+                            newRow1(j + 1) = newRow2(j)
+                        Next
+                        dtbImport.Rows.Add(newRow1)
+                    End If
+                Next
+                rgEmployee.DataSource = dtbImport
+                dem = 0
+                'AssignHeader()
+                rgEmployee.DataBind()
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+    Private Function CreateDataTableUpdate() As DataTable
+        Try
+            dtbImport = New DataTable
+            dtbImport.TableName = "DATA"
+            dtbImport.Columns.Add("EMPLOYEE_CODE", GetType(String))
+            dtbImport.Columns.Add("EMPLOYEE_NAME", GetType(String))
+            dtbImport.Columns.Add("ORG_NAME", GetType(String))
+            dtbImport.Columns.Add("TITLE_NAME", GetType(String))
+            dtbImport.Columns.Add("GENDER_NAME", GetType(String))
+            dtbImport.Columns.Add("CONTRACT_NAME", GetType(String))
+            dtbImport.Columns.Add("SENIORITY", GetType(String))
+            dtbImport.Columns.Add("TOTAL_CHILD", GetType(Decimal))
+            dtbImport.Columns.Add("MONEY_PL", GetType(Decimal))
+            dtbImport.Columns.Add("MONEY_TOTAL", GetType(Decimal))
+            dtbImport.Columns.Add("REMARK", GetType(String))
+            Return dtbImport
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Private Function Count_All_Column() As Integer
+        If dtAllowList Is Nothing Then
+            dtAllowList = Employee_PL.ToTable()
+        End If
+
+        Dim count As Integer
+        Dim SumAllColImport As Integer
+
+        count = dtAllowList.Rows.Count
+        SumAllColImport = ColumnImportWelfare + count
+        Return SumAllColImport
+    End Function
     Private Function GetDataFromGrid(ByVal gr As RadGrid) As DataTable
         Dim bsSource As DataTable
         Try
@@ -590,7 +728,7 @@ Public Class ctrlHU_WelfareMngNewEdit
                             End If
                             Continue For
                         End If
-                        If InStr(",MONEY_TOTAL,", "," + col.UniqueName + ",") > 0 Then
+                        If InStr(",MONEY_TOTAL,REMARK,", "," + col.UniqueName + ",") > 0 Then
                             Select Case Item(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
                                 Case "cb"
                                     Dr(col.UniqueName) = CType(Item.FindControl(Item(col.UniqueName).Controls(1).ID.ToString), RadComboBox).SelectedValue
@@ -812,6 +950,10 @@ Public Class ctrlHU_WelfareMngNewEdit
                     cboWELFARE_ID.SelectedValue = WelfareMng.WELFARE_ID
                 End If
                 dpEFFECT_DATE.SelectedDate = WelfareMng.EFFECT_DATE
+                If WelfareMng.EFFECT_DATE < Date.Now Then
+                    MainToolBar.Items(0).Enabled = False
+                    'LeftPane.Enabled = False
+                End If
                 txtSDESC.Text = WelfareMng.SDESC
                 cboWELFARE_ID.AutoPostBack = True
                 If WelfareMng.WORK_STATUS = ProfileCommon.OT_WORK_STATUS.TERMINATE_ID Then
@@ -866,10 +1008,15 @@ Public Class ctrlHU_WelfareMngNewEdit
                     If rowData Is Nothing Then
                         Exit Sub
                     End If
-                    If InStr(",MONEY_TOTAL,", "," + col.UniqueName + ",") > 0 Then
+                    If InStr(",MONEY_TOTAL,REMARK,", "," + col.UniqueName + ",") > 0 Then
                         Select Case EditItem(col.UniqueName).Controls(1).ID.ToString.Substring(0, 2)
                             Case "cb"
 
+                            Case "rt"
+                                Dim radTextBox As New RadTextBox
+                                radTextBox = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadTextBox)
+                                radTextBox.ClearValue()
+                                radTextBox.Text = rowData.REMARK
                             Case "rn"
                                 Dim radNumber As New RadNumericTextBox
                                 radNumber = CType(EditItem.FindControl(EditItem(col.UniqueName).Controls(1).ID.ToString), RadNumericTextBox)

@@ -131,13 +131,13 @@ Partial Public Class ctrlHU_WelfareMngNewEdit
     Protected WithEvents btnExport As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
-    '''btnExportFile control.
+    '''btnImportFile control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnExportFile As Global.Telerik.Web.UI.RadButton
+    Protected WithEvents btnImportFile As Global.Telerik.Web.UI.RadButton
 
     '''<summary>
     '''RadPane3 control.
@@ -165,6 +165,15 @@ Partial Public Class ctrlHU_WelfareMngNewEdit
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ctrlMessageBox As Global.Common.ctrlMessageBox
+
+    '''<summary>
+    '''ctrlUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ctrlUpload As Global.Common.ctrlUpload
 
     '''<summary>
     '''phFindEmp control.
