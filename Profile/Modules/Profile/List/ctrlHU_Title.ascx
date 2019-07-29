@@ -114,7 +114,7 @@
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-        <tlk:RadGrid PageSize="50" ID="rgMain" runat="server" AutoGenerateColumns="False"
+        <tlk:RadGrid PageSize="50" ID="rgMain" runat="server" AutoGenerateColumns="false"
             AllowPaging="True" Height="100%" AllowSorting="True" AllowMultiRowSelection="true">
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
@@ -141,6 +141,8 @@
                         UniqueName="HURTFUL_CHECK" SortExpression="HURTFUL_CHECK" AllowFiltering="false" />
                     <tlk:GridCheckBoxColumn HeaderText="Đặc biệt độc hại" DataField="SPEC_HURFUL_CHECK"
                         UniqueName="SPEC_HURFUL_CHECK" SortExpression="SPEC_HURFUL_CHECK" AllowFiltering="false" />
+                    <tlk:GridBoundColumn HeaderText="Đối tượng độc hại" DataField="HURT_TYPE_NAME"
+                        UniqueName="HURT_TYPE_NAME" SortExpression="HURT_TYPE_NAME" />
                     <tlk:GridCheckBoxColumn HeaderText="Tính OVT" DataField="OVT_CHECK" UniqueName="OVT_CHECK"
                         SortExpression="OVT_CHECK" AllowFiltering="false" />
                     <tlk:GridBoundColumn HeaderText="Trạng thái" DataField="ACTFLG"
@@ -151,7 +153,7 @@
             </MasterTableView>
             <ClientSettings EnableRowHoverStyle="true">
                 <ClientEvents OnGridCreated="GridCreated" />
-                <ClientEvents OnCommand="ValidateFilter" />
+                <ClientEvents OnCommand="ValidateFilter" />                
             </ClientSettings>
         </tlk:RadGrid>
     </tlk:RadPane>
@@ -207,9 +209,9 @@
                 ResizeSplitterDefault(splitterID, pane1ID, pane2ID, oldSize);
                 var bCheck = $find('<%= rgMain.ClientID %>').get_masterTableView().get_selectedItems().length;
                 if (bCheck > 1) {
-                    var m = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
-                    var n = noty({ text: m, dismissQueue: true, type: 'warning' });
-                    setTimeout(function () { $.noty.close(n.options.id); }, 5000);
+                    var l = '<%= Translate(CommonMessage.MESSAGE_NOT_SELECT_MULTI_ROW) %>';
+                    var k = noty({ text: l, dismissQueue: true, type: 'warning' });
+                    setTimeout(function () { $.noty.close(k.options.id); }, 5000);
                     args.set_cancel(true);
                     return;
                 }

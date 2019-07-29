@@ -168,6 +168,9 @@ Public Class ctrlHU_Title
                     Case "Cancel"
                         rgMain.MasterTableView.ClearSelectedItems()
                         ClearControlValue(txtNameVN, txtRemark, cboOrgType, cboHurtType, ckOVT, txtRemindLink, txtUpload, txtUploadFile)
+                    Case ""
+                        cboTitleGroup.AutoPostBack = False
+                        cboOrgLevel.AutoPostBack = False
                 End Select
             End If
             rep.Dispose()
