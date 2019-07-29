@@ -2860,7 +2860,7 @@ Public Class ProfileRepository
         End Try
     End Function
 
-    Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+    Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.INSERT_CONCURRENTLY",
@@ -2896,7 +2896,7 @@ Public Class ProfileRepository
                                                      .P_IS_CHUYEN = concurrently.IS_CHUYEN,
                                                      .P_OUT = cls.OUT_NUMBER})
 
-                Return True
+                Return Integer.Parse(dtData.P_OUT)
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -2904,7 +2904,7 @@ Public Class ProfileRepository
         End Try
     End Function
 
-    Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+    Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_CONCURRENTLY",
@@ -2941,7 +2941,7 @@ Public Class ProfileRepository
                                                      .P_IS_CHUYEN = concurrently.IS_CHUYEN,
                                                      .P_OUT = cls.OUT_NUMBER})
 
-                Return True
+                Return Integer.Parse(dtData.P_OUT)
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -3177,13 +3177,32 @@ Public Class ProfileRepository
     Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
                                        ByVal P_ORG_ID As Decimal,
                                        ByVal P_TITLE As Decimal,
-                                       ByVal P_DATE As Date) As Boolean
+                                       ByVal P_DATE As Date,
+                                       ByVal P_ID_KN As Decimal) As Boolean
         Try
             Using cls As New DataAccess.QueryData
                 Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.INSERT_EMPLOYEE_KN",
                                            New With {.P_EMPLOYEE_CODE = P_EMPLOYEE_CODE,
                                                      .P_ORG_ID = P_ORG_ID,
                                                      .P_TITLE = P_TITLE,
+                                                     .P_DATE = P_DATE,
+                                                     .P_ID_KN = P_ID_KN
+                                                     })
+
+                Return True
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+
+    Public Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal,
+                                       ByVal P_DATE As Date) As Boolean
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_EMPLOYEE_KN",
+                                           New With {.P_ID_KN = P_ID_KN,
                                                      .P_DATE = P_DATE
                                                      })
 
