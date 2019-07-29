@@ -1010,7 +1010,8 @@ Partial Public Class AttendanceRepository
                                        .IS_LEAVE = p.IS_LEAVE,
                                        .IS_CALHOLIDAY = p.IS_CALHOLIDAY,
                                        .ACTFLG = If(p.ACTFLG = "A", "Áp dụng", "Ngừng Áp dụng"),
-                                       .CREATED_DATE = p.CREATED_DATE})
+                                       .CREATED_DATE = p.CREATED_DATE,
+                                       .IS_REG_SHIFT = p.IS_REG_SHIFT})
 
             If Not String.IsNullOrEmpty(_filter.CODE) Then
                 lst = lst.Where(Function(f) f.CODE.ToLower().Contains(_filter.CODE.ToLower()))
@@ -1049,6 +1050,7 @@ Partial Public Class AttendanceRepository
             objTitleData.IS_CALHOLIDAY = objTitle.IS_CALHOLIDAY
             objTitleData.NOTE = objTitle.NOTE
             objTitleData.IS_LEAVE = objTitle.IS_LEAVE
+            objTitleData.IS_REG_SHIFT = objTitle.IS_REG_SHIFT
             objTitleData.ACTFLG = objTitle.ACTFLG
             Context.AT_FML.AddObject(objTitleData)
             Context.SaveChanges(log)
@@ -1105,6 +1107,7 @@ Partial Public Class AttendanceRepository
             objTitleData.IS_CALHOLIDAY = objTitle.IS_CALHOLIDAY
             objTitleData.NAME_VN = objTitle.NAME_VN.Trim
             objTitleData.IS_LEAVE = objTitle.IS_LEAVE
+            objTitleData.IS_REG_SHIFT = objTitle.IS_REG_SHIFT
             'objTitleData.EFFECT_DATE = objTitle.EFFECT_DATE
             objTitleData.NOTE = objTitle.NOTE
             Context.SaveChanges(log)

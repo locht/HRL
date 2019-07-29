@@ -10713,6 +10713,9 @@ Namespace AttendanceBusiness
         Private IS_LEAVEField As System.Nullable(Of Boolean)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private IS_REG_SHIFTField As System.Nullable(Of Boolean)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private MODIFIED_BYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -10853,6 +10856,19 @@ Namespace AttendanceBusiness
                 If (Me.IS_LEAVEField.Equals(value) <> true) Then
                     Me.IS_LEAVEField = value
                     Me.RaisePropertyChanged("IS_LEAVE")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property IS_REG_SHIFT() As System.Nullable(Of Boolean)
+            Get
+                Return Me.IS_REG_SHIFTField
+            End Get
+            Set
+                If (Me.IS_REG_SHIFTField.Equals(value) <> true) Then
+                    Me.IS_REG_SHIFTField = value
+                    Me.RaisePropertyChanged("IS_REG_SHIFT")
                 End If
             End Set
         End Property
