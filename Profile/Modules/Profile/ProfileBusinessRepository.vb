@@ -725,8 +725,8 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
-    Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
-        Dim dtdata As Boolean
+    Public Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
+        Dim dtdata As Integer
 
         Using rep As New ProfileBusinessClient
             Try
@@ -741,8 +741,8 @@ Partial Public Class ProfileBusinessRepository
         Return Nothing
     End Function
 
-    Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
-        Dim dtdata As Boolean
+    Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
+        Dim dtdata As Integer
 
         Using rep As New ProfileBusinessClient
             Try
@@ -792,12 +792,30 @@ Partial Public Class ProfileBusinessRepository
     Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
                                        ByVal P_ORG_ID As Decimal,
                                        ByVal P_TITLE As Decimal,
+                                       ByVal P_DATE As Date,
+                                       ByVal P_ID_KN As Decimal) As Boolean
+        Dim dtdata As Boolean
+
+        Using rep As New ProfileBusinessClient
+            Try
+                dtdata = rep.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE, P_ID_KN)
+                Return dtdata
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+        Return Nothing
+    End Function
+
+    Public Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal,
                                        ByVal P_DATE As Date) As Boolean
         Dim dtdata As Boolean
 
         Using rep As New ProfileBusinessClient
             Try
-                dtdata = rep.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE)
+                dtdata = rep.UPDATE_EMPLOYEE_KN(P_ID_KN, P_DATE)
                 Return dtdata
             Catch ex As Exception
                 rep.Abort()

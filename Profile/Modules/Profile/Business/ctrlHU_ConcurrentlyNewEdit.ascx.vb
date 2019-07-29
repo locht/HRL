@@ -1157,8 +1157,12 @@ Public Class ctrlHU_ConcurrentlyNewEdit
             result = rep.INSERT_CONCURRENTLY(CON)
         End If
 
-        If cboStatus.SelectedValue = "1" And chkIsChuyen.Checked = True Then
-            rep.INSERT_EMPLOYEE_KN(txtEmpCode.Text, hidOrgCOn.Value, cboTITLE_CON.SelectedValue, rdEFFECT_DATE_CON.SelectedDate)
+        If cboStatus.SelectedValue = "1" AndAlso chkIsChuyen.Checked = True AndAlso rdEFFECT_DATE_STOP.SelectedDate Is Nothing Then
+            rep.INSERT_EMPLOYEE_KN(txtEmpCode.Text, hidOrgCOn.Value, cboTITLE_CON.SelectedValue, rdEFFECT_DATE_CON.SelectedDate, result)
+        End If
+
+        If rdEFFECT_DATE_STOP.SelectedDate IsNot Nothing AndAlso cbSTATUS_STOP.SelectedValue = "1" Then
+            rep.UPDATE_EMPLOYEE_KN(result, rdEFFECT_DATE_STOP.SelectedDate)
         End If
 
         rep.Dispose()

@@ -39340,4 +39340,276 @@ Xin cám ơn!
       <string>Trạng thái</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>NHÂN VIÊN SẮP HẾT HẠN CHỨNG CHỈ</string>
+    </Key>
+    <Value>
+      <string>Nhân viên sắp hết hạn chứng chỉ</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_CONCURRENTLY</string>
+    </Key>
+    <Value>
+      <string>Quản lý kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>LIỆT KÊ NV NGHỈ VIỆC</string>
+    </Key>
+    <Value>
+      <string>Liệt kê NV nghỉ việc</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHAI BÁO KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Khai báo kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>KHAI BÁO THÔI KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Khai báo thôi kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC NĂNG NÀY CHỈ SỬ DỤNG ĐỂ SỬA NHỮNG BẢN GHI ĐÃ PHÊ DUYỆT!</string>
+    </Key>
+    <Value>
+      <string>Chức năng này chỉ sử dụng để sửa những bản ghi đã phê duyệt!</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CTRLHU_CONCURRENTLYNEWEDIT</string>
+    </Key>
+    <Value>
+      <string>Thông tin kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP ĐƠN VỊ KIÊM NHIỆM.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập đơn vị kiêm nhiệm.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ KIÊM NHIỆM TRẢ PHỤ CẤP?</string>
+    </Key>
+    <Value>
+      <string>Đơn vị kiêm nhiệm trả phụ cấp?</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP NGÀY HƯỞNG PC.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập Ngày hưởng PC.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐĂNG</string>
+    </Key>
+    <Value>
+      <string>Đăng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TẠO NHÂN VIÊN MỚI</string>
+    </Key>
+    <Value>
+      <string>Tạo nhân viên mới</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN SỐ QUYẾT ĐỊNH</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn số quyết định</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>MÃ SỐ BỊ TRÙNG</string>
+    </Key>
+    <Value>
+      <string>Mã số bị trùng</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI CHỌN NGÀY KÝ</string>
+    </Key>
+    <Value>
+      <string>Bạn phải chọn Ngày ký</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>BẠN PHẢI NHẬP NGƯỜI PHÊ DUYỆT.</string>
+    </Key>
+    <Value>
+      <string>Bạn phải nhập người phê duyệt.</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Thông tin kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>ĐƠN VỊ KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Đơn vị kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC HƯỞNG PHỤ CẤP KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực hưởng phụ cấp kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN PHÊ DUYỆT KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Thông tin phê duyệt kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRẠNG THÁI CỦA QUYẾT ĐỊNH</string>
+    </Key>
+    <Value>
+      <string>Trạng thái của quyết định</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI KÝ 1</string>
+    </Key>
+    <Value>
+      <string>Người ký 1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH NGƯỜI KÝ 1</string>
+    </Key>
+    <Value>
+      <string>Chức danh người ký 1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI KÝ 2</string>
+    </Key>
+    <Value>
+      <string>Người ký 2</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH NGƯỜI KÝ 2</string>
+    </Key>
+    <Value>
+      <string>Chức danh người ký 2</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>THÔNG TIN THÔI KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Thông tin thôi kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>SỐ QUYẾT ĐỊNH THÔI KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Số quyết định thôi kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY HIỆU LỰC CỦA QUYẾT ĐỊNH THÔI KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Ngày hiệu lực của quyết định thôi kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGÀY KÝ QUYẾT ĐỊNH THÔI KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Ngày ký quyết định thôi kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>TRẠNG THÁI CỦA QUYẾT ĐỊNH THÔI KIÊM NHIỆM</string>
+    </Key>
+    <Value>
+      <string>Trạng thái của quyết định thôi kiêm nhiệm</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI KÝ QUYẾT ĐỊNH THÔI KIÊM NHIỆM 1</string>
+    </Key>
+    <Value>
+      <string>Người ký quyết định thôi kiêm nhiệm 1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH NGƯỜI KÝ QUYẾT ĐỊNH THÔI KIÊM NHIỆM 1</string>
+    </Key>
+    <Value>
+      <string>Chức danh người ký quyết định thôi kiêm nhiệm 1</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>NGƯỜI KÝ QUYẾT ĐỊNH THÔI KIÊM NHIỆM 2</string>
+    </Key>
+    <Value>
+      <string>Người ký quyết định thôi kiêm nhiệm 2</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>CHỨC DANH NGƯỜI KÝ QUYẾT ĐỊNH THÔI KIÊM NHIỆM 2</string>
+    </Key>
+    <Value>
+      <string>Chức danh người ký quyết định thôi kiêm nhiệm 2</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>
