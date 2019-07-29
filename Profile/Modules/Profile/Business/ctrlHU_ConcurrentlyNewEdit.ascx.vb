@@ -1167,7 +1167,7 @@ Public Class ctrlHU_ConcurrentlyNewEdit
 
         rep.Dispose()
 
-        If result = True Then
+        If result <> 0 Then
             hidID.Value = result
             IDSelect = result
             Return True

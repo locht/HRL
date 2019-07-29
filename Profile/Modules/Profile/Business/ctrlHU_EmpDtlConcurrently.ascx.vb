@@ -82,9 +82,9 @@ Public Class ctrlHU_EmpDtlConcurrently
             Dim MaximumRows As Integer
             Dim Sorts As String = rgGrid.MasterTableView.SortExpressions.GetSortString()
             If Sorts IsNot Nothing Then
-                Me.Concurrently = rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, rgGrid.CurrentPageIndex, rgGrid.PageSize, MaximumRows, EmployeeInfo.EMPLOYEE_CODE, Sorts)
+                Me.Concurrently = rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, rgGrid.CurrentPageIndex, rgGrid.PageSize, MaximumRows, EmployeeInfo.ID, Sorts)
             Else
-                Me.Concurrently = rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, rgGrid.CurrentPageIndex, rgGrid.PageSize, MaximumRows, EmployeeInfo.EMPLOYEE_CODE)
+                Me.Concurrently = rep.GET_LIST_CONCURRENTLY_BY_ID(_filter, rgGrid.CurrentPageIndex, rgGrid.PageSize, MaximumRows, EmployeeInfo.ID)
             End If
             rep.Dispose()
             rgGrid.VirtualItemCount = MaximumRows

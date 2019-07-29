@@ -2894,9 +2894,9 @@ Public Class ProfileRepository
                                                      .P_FILE_BYTE = concurrently.FILE_BYTE,
                                                      .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
                                                      .P_IS_CHUYEN = concurrently.IS_CHUYEN,
-                                                     .P_OUT = cls.OUT_NUMBER})
+                                                     .P_OUT = cls.OUT_CURSOR})
 
-                Return Integer.Parse(dtData.P_OUT)
+                Return Integer.Parse(dtData(0)("ID"))
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
@@ -2907,7 +2907,8 @@ Public Class ProfileRepository
     Public Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
         Try
             Using cls As New DataAccess.QueryData
-                Dim dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_CONCURRENTLY",
+                Dim dtData As DataTable
+                 dtData = cls.ExecuteStore("PKG_HU_IPROFILE_CONCURRENTLY.UPDATE_CONCURRENTLY",
                                            New With {.P_ID = concurrently.ID,
                                                      .P_EMPLOYEE_ID = concurrently.EMPLOYEE_ID,
                                                      .P_ORG_ID = concurrently.ORG_ID,
@@ -2939,9 +2940,9 @@ Public Class ProfileRepository
                                                      .P_FILE_BYTE = concurrently.FILE_BYTE,
                                                      .P_FILE_BYTE1 = concurrently.FILE_BYTE1,
                                                      .P_IS_CHUYEN = concurrently.IS_CHUYEN,
-                                                     .P_OUT = cls.OUT_NUMBER})
+                                                     .P_OUT = cls.OUT_CURSOR})
 
-                Return Integer.Parse(dtData.P_OUT)
+                Return Integer.Parse(dtData(0)("ID"))
             End Using
         Catch ex As Exception
             WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
