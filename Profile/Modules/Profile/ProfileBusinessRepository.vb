@@ -360,6 +360,16 @@ Partial Public Class ProfileBusinessRepository
             End Try
         End Using
     End Function
+    Public Function GET_INFO_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
+        Using rep As New ProfileBusinessClient
+            Try
+                Dim dt = rep.GET_INFO_EMPLOYEE(P_EMP_CODE)
+                Return dt
+            Catch ex As Exception
+
+            End Try
+        End Using
+    End Function
     Public Function GetWelfareMng(ByVal _filter As WelfareMngDTO, ByVal IsDissolve As Integer, ByVal PageIndex As Integer,
                                         ByVal PageSize As Integer,
                                         ByRef Total As Integer,
