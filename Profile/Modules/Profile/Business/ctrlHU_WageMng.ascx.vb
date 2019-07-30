@@ -545,6 +545,7 @@ Public Class ctrlHU_WageMng
             'Dim org_id = Decimal.Parse(Request.Params("ORG_ID"))
             'param.ORG_ID = org_id
             'param.IS_DISSOLVE = is_disolve
+            Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
             Dim dsData As DataSet = rep.GetHoSoLuongImport()
             dsData.Tables(0).TableName = "Table"
             dsData.Tables(1).TableName = "Table1"
@@ -553,7 +554,7 @@ Public Class ctrlHU_WageMng
             dsData.Tables(4).TableName = "Table4"
             dsData.Tables(5).TableName = "Table5"
             rep.Dispose()
-            ExportTemplate("Payroll/Business/TEMP_IMPORT_HOSOLUONG.xlsx",
+            ExportTemplate(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xlsx",
                                       dsData, Nothing, "Template_HoSoLuong_" & Format(Date.Now, "yyyyMMdd"))
 
         Catch ex As Exception
