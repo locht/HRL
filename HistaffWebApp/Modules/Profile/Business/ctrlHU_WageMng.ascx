@@ -43,10 +43,9 @@
                         </td>
                     </tr>
                 </table>
-            </tlk:RadPane>
+            </tlk:RadPane>            
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize="50" ID="rgWorking" runat="server" AllowMultiRowSelection="true"
-                    Height="100%">
+                <tlk:RadGrid PageSize="50" ID="rgWorking" runat="server" AllowMultiRowSelection="true" Height="100%">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
@@ -161,6 +160,7 @@
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
+
         function OpenWage() {
             var extented = '';
             var bCheck = $find('<%= rgWorking.ClientID %>').get_masterTableView().get_selectedItems().length;
@@ -249,7 +249,6 @@
                 vars[key] = value;
             });
             return vars;
-        }
-
+        }        
     </script>
 </tlk:RadCodeBlock>
