@@ -47,4 +47,13 @@
     Public Property QUALIFICATION As String
     Public Property DESCRIPTIONATTACHFILE As String
     Public Property COMPUTER_LEVEL As String
+    Public Property RC_RECRUIT_PROPERTY As Decimal?
+    Public Property RC_RECRUIT_PROPERTY_NAME As String
+    Public Property IS_OVER_LIMIT As Boolean?
+    Public Property IS_SUPPORT As Boolean?
+    Public Property FOREIGN_ABILITY As String
+    Public Property COMPUTER_APP_LEVEL As String
+    Public Property GENDER_PRIORITY As Decimal?
+    Public Property GENDER_PRIORITY_NAME As String
+    Public Property UPLOAD_FILE As String
 End Class
