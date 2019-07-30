@@ -28,6 +28,9 @@ Public Class Site
     Dim retirementRemind As Integer
     Dim noneSalaryRemind As Integer
     Dim noneExpiredCertificateRemind As Integer
+    Dim noneBIRTHDAY_LD As Integer
+    Dim noneConcurrently As Integer
+    Dim noneEmpDtlFamily As Integer
 
     Dim workingRemind As Integer
     Dim terminateRemind As Integer
@@ -392,6 +395,9 @@ Public Class Site
             retirementRemind = CommonConfig.ReminderRetirementDays
             noneSalaryRemind = CommonConfig.ReminderNoneSalaryDays
             noneExpiredCertificateRemind = CommonConfig.ReminderExpiredCertificate
+            noneBIRTHDAY_LD = CommonConfig.ReminderBIRTHDAY_LD
+            noneConcurrently = CommonConfig.ReminderConcurrently
+            noneEmpDtlFamily = CommonConfig.ReminderEmpDtlFamily
 
             If approveRemind <> 0 Then
                 dApproveRemind.Visible = True
@@ -428,7 +434,21 @@ Public Class Site
             Else
                 dExpiredCertificateRemind.Visible = False
             End If
-
+            If noneBIRTHDAY_LD <> 0 Then
+                dBIRTHDAY_LD.Visible = True
+            Else
+                dBIRTHDAY_LD.Visible = False
+            End If
+            If noneConcurrently <> 0 Then
+                dConcurrently.Visible = True
+            Else
+                dConcurrently.Visible = False
+            End If
+            If noneEmpDtlFamily <> 0 Then
+                dEmpDtlFamily.Visible = True
+            Else
+                dEmpDtlFamily.Visible = False
+            End If
             If probationRemind <> 0 Then
                 dProbationRemind.Visible = True
             Else
@@ -521,7 +541,10 @@ Public Class Site
                                                maternitiRemind.ToString & "," & _
                                                retirementRemind.ToString & "," & _
                                                noneSalaryRemind.ToString & "," & _
-                                               noneExpiredCertificateRemind.ToString
+                                               noneExpiredCertificateRemind.ToString & "," & _
+                                               noneBIRTHDAY_LD.ToString & "," & _
+                                               noneConcurrently.ToString & "," & _
+                                               noneEmpDtlFamily.ToString
                                                )
                     'For Each item In RemindList
                     '    item.REMIND_NAME = Translate(item.REMIND_NAME)
@@ -568,6 +591,24 @@ Public Class Site
                 ltrExpiredCertificate.DataSource = listExpiredCertificate
                 ltrExpiredCertificate.DataBind()
                 lbExpiredCertificate.Text = Utilities.ObjToInt(listExpiredCertificate.Count)
+
+                'Sinh nhật lãnh đạo
+                Dim listBIRTHDAY_LD = From p In RemindList Where p.REMIND_TYPE = 28
+                ltrBIRTHDAY_LD.DataSource = listBIRTHDAY_LD
+                ltrBIRTHDAY_LD.DataBind()
+                lbBIRTHDAY_LD.Text = Utilities.ObjToInt(listBIRTHDAY_LD.Count)
+
+                'Hết hiệu lực kiêm nhiệm
+                Dim listConcurrently = From p In RemindList Where p.REMIND_TYPE = 29
+                ltrConcurrently.DataSource = listConcurrently
+                ltrConcurrently.DataBind()
+                lbConcurrently.Text = Utilities.ObjToInt(listConcurrently.Count)
+
+                'Hết hạn giảm trừ gia cảnh
+                Dim listEmpDtlFamily = From p In RemindList Where p.REMIND_TYPE = 30
+                ltrEmpDtlFamily.DataSource = listEmpDtlFamily
+                ltrEmpDtlFamily.DataBind()
+                lbEmpDtlFamily.Text = Utilities.ObjToInt(listEmpDtlFamily.Count)
 
                 'Nhân viên sắp hết hạn hợp đồng
                 Dim listApproveDMVS = From p In RemindList Where p.REMIND_TYPE = 1

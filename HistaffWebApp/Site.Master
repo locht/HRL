@@ -322,6 +322,64 @@
                                         </ItemTemplate>
                                     </asp:ListView>
                                 </div>
+
+                                <%----------------%>
+
+                                <div id="dBIRTHDAY_LD" runat="server" class='box48' data="18">
+                                    <%# Translate("Sinh nhật lãnh đạo")%> (<asp:Label ID="lbBIRTHDAY_LD" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-18" style="display: none;">
+                                    <asp:ListView ID="ltrBIRTHDAY_LD" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&state=Normal'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
+
+                                <%---------------------%>
+
+                                 <%----------------%>
+
+                                <div id="dConcurrently" runat="server" class='box48' data="19">
+                                    <%# Translate("Hết hiệu lực kiêm nhiệm")%> (<asp:Label ID="lbConcurrently" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-19" style="display: none;">
+                                    <asp:ListView ID="ltrConcurrently" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Profile&fid=ctrlHU_ConcurrentlyNewEdit&group=Business&noscroll=1&Is_con=1&FormType=1&empID=<%# Eval("EMPLOYEE_ID")%>&IDSelect=<%# Eval("VALUE")%>'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
+
+                                <%---------------------%>
+
+                                 <%----------------%>
+
+                                <div id="dEmpDtlFamily" runat="server" class='box48' data="20">
+                                    <%# Translate("Hết hạn giảm trừ gia cảnh")%> (<asp:Label ID="lbEmpDtlFamily" CssClass="lblNotiItem" runat="server"></asp:Label>) <i class='fa fa-chevron-down'></i>
+                                </div>
+                                <div id="collapse-20" style="display: none;">
+                                    <asp:ListView ID="ltrEmpDtlFamily" runat="server">
+                                        <ItemTemplate>
+                                            <div class='box25'>
+                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&Place=ctrlHU_EmpDtlTrainingOutCompany&state=Normal'
+                                                    target="_blank">
+                                                    <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
+
+                                <%---------------------%>
+
                             </div>
                         </div>
                     </div>

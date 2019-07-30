@@ -412,7 +412,91 @@
                     </tr>
                 </table>
             </fieldset>
-        </asp:Panel>         
+        </asp:Panel>
+        
+                <%-------------------------%> 
+          <asp:Panel ID="radBIRTHDAY_LD" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkBIRTHDAY_LD" runat="server" Text="<%$ Translate: Sắp đến sinh nhật lãnh đạo %>"
+                        onclick="CheckChangeBirthday_LD(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtBIRTHDAY_LD" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                           <asp:CustomValidator ID="cvalBIRTHDAY_LD" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước sắp đến sinh nhật lãnh đạo. %>"
+                                        ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước sắp đến sinh nhật lãnh đạo. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>      
+        <%-------------------------------%> 
+
+        <%-------------------------%> 
+          <asp:Panel ID="radConcurrently" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkConcurrently" runat="server" Text="<%$ Translate: Nhân viên sắp hết hiệu lực kiêm nhiệm %>"
+                        onclick="CheckConcurrently(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtConcurrently" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                           <asp:CustomValidator ID="cvalConcurrently" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên sắp hết hiệu lực kiêm nhiệm. %>"
+                                        ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên sắp hết hiệu lực kiêm nhiệm. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>      
+        <%-------------------------------%> 
+    
+         <%-------------------------%> 
+          <asp:Panel ID="radEmpDtlFamily" runat="server" CssClass = "Pane"> 
+            <fieldset>
+                <legend>
+                    <asp:CheckBox ID="chkEmpDtlFamily" runat="server" Text="<%$ Translate: Nhân viên có người thân sắp hết hạn giảm trừ gia cảnh %>"
+                        onclick="CheckEmpDtlFamily(this)" />
+                </legend>
+                <table class="table-form">
+                    <tr>
+                        <td class="lb lbRemind">
+                            <%# Translate("Thời gian báo trước")%><span class="lbReq">*</span>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rntxtEmpDtlFamily" runat="server" SkinID="Number">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td>
+                            (<%# Translate("ngày")%>)
+                           <asp:CustomValidator ID="cvalEmpDtlFamily" runat="server" ErrorMessage="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên có người thân sắp hết hạn giảm trừ gia cảnh. %>"
+                                        ToolTip="<%$ Translate: Bạn chưa nhập thời gian báo trước nhân viên có người thân sắp hết hạn giảm trừ gia cảnh. %>">
+                            </asp:CustomValidator>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </asp:Panel>      
+        <%-------------------------------%>          
 
     </tlk:RadPane>
 </tlk:RadSplitter>
@@ -577,7 +661,35 @@
             } else {
                 $find("<%=rntxtExpiredCertificate.ClientID %>").clear();
                 $find("<%=rntxtExpiredCertificate.ClientID %>").disable();
-            } 
+            }
+        }
+
+        function CheckChangeBirthday_LD(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtBIRTHDAY_LD.ClientID %>").enable();
+                $find("<%=rntxtBIRTHDAY_LD.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtBIRTHDAY_LD.ClientID %>").clear();
+                $find("<%=rntxtBIRTHDAY_LD.ClientID %>").disable();
+            }
+        }
+        function CheckConcurrently(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtConcurrently.ClientID %>").enable();
+                $find("<%=rntxtConcurrently.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtConcurrently.ClientID %>").clear();
+                $find("<%=rntxtConcurrently.ClientID %>").disable();
+            }
+        }
+        function CheckEmpDtlFamily(chk) {
+            if (chk.checked) {
+                $find("<%=rntxtEmpDtlFamily.ClientID %>").enable();
+                $find("<%=rntxtEmpDtlFamily.ClientID %>").focus();
+            } else {
+                $find("<%=rntxtEmpDtlFamily.ClientID %>").clear();
+                $find("<%=rntxtEmpDtlFamily.ClientID %>").disable();
+            }
         } 
 
     </script>
