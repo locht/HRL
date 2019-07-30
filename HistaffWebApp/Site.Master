@@ -273,7 +273,7 @@
                                     <asp:ListView ID="ltrMaterniti" runat="server">
                                         <ItemTemplate>
                                             <div class='box25'>
-                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Attendance&fid=ctrlRegisterCONewEdit&group=Business&VIEW=TRUE&FormType=0&ID=<%# Eval("VALUE")%>&periodid=91'
+                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Insurance&fid=ctrlInsMaternityDetail&group=Business&Status=1&IDSelect=<%# Eval("VALUE")%>&EmployeeID=<%# Eval("EMPLOYEE_ID")%>'
                                                     target="_blank">
                                                     <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
                                             </div>
