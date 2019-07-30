@@ -21,10 +21,16 @@
                         ControlToValidate="txtCode" ValidationExpression="^[a-zA-Z0-9_]*$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbIsLeave" Text ="Công nghỉ" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbIsLeave" Text ="Công nghỉ"  ></asp:Label>
                 </td>
                 <td>
-                    <asp:CheckBox ID="chkIsLeave" runat="server" />
+                    <asp:CheckBox ID="chkIsLeave" runat="server" onclick="enableTextbox(this.id) "/>
+                </td>
+                <td class="lb">
+                    <asp:Label runat ="server" ID ="lbIS_REG_SHIFT" Text ="Đăng ký nghỉ theo ca" ></asp:Label>
+                </td>
+                <td>
+                    <asp:CheckBox ID="chkIS_REG_SHIFT" runat="server" Checked = "false"/>
                 </td>
                 <td class="lb">
                     <asp:Label runat ="server" ID ="lbIsCalHoliday" Text ="Tính ngày nghỉ, lễ/tết " ></asp:Label>
@@ -61,7 +67,7 @@
             <ClientSettings EnableRowHoverStyle="true">
                 <Selecting AllowRowSelect="true" />
             </ClientSettings>
-            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,EFFECT_DATE,IS_LEAVE,ACTFLG,NOTE,IS_CALHOLIDAY">
+            <MasterTableView DataKeyNames="ID" ClientDataKeyNames="CODE,NAME_VN,NAME_EN,EFFECT_DATE,IS_LEAVE,ACTFLG,NOTE,IS_CALHOLIDAY,IS_REG_SHIFT">
                 <Columns>
                     <%--<tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                         HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
@@ -130,6 +136,9 @@
                 pane.set_height(oldSize);
                 pane2.set_height(splitter.get_height() - oldSize - 1);
             }
+        }
+        function enableTextbox(checkbox) {
+            document.getElementById('<%= chkIS_REG_SHIFT.ClientID %>').disabled = !document.getElementById(checkbox).checked;
         }
     </script>
 </tlk:RadCodeBlock>

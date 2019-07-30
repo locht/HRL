@@ -113,6 +113,24 @@ Partial Public Class ctrlDMKieuCong
     Protected WithEvents chkIsLeave As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''lbIS_REG_SHIFT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbIS_REG_SHIFT As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkIS_REG_SHIFT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkIS_REG_SHIFT As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''lbIsCalHoliday control.
     '''</summary>
     '''<remarks>

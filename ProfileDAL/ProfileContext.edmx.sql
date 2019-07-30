@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 25/07/2019 10:21:01 AM
--- Generated from EDMX file: E:\TNG-New\ProfileDAL\ProfileContext.edmx
+-- Date Created: 07/29/2019 2:02:34 PM
+-- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -3575,7 +3575,8 @@ CREATE TABLE "dbo"."HU_WELFARE_MNG_EMP" (
    "GROUP_ID" NUMBER(38,0) NULL,
    "ID" NUMBER(38,0) NOT NULL,
    "CONTRACT_NAME" NCLOB NULL,
-   "GENDER_NAME" NCLOB NULL
+   "GENDER_NAME" NCLOB NULL,
+   "REMARK" NCLOB NULL
 );
 
 -- Creating table 'SE_USER_REPORT'

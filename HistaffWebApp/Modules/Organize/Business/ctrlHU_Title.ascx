@@ -9,7 +9,7 @@
         <table class="table-form">
             <tr>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbTitleGroup" Text ="Nhóm chức danh" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbTitleGroup" Text ="Nhóm chức danh" ></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboTitleGroup" runat="server" AutoPostBack ="true" CausesValidation="false">
@@ -23,7 +23,7 @@
                     </asp:CustomValidator>
                 </td>
                 <td class="lb">
-                    <asp:Label runat ="server" ID ="lbOrgLevel" Text ="Tên công ty" ></asp:Label>
+                    <asp:Label runat ="server" ID ="lbOrgLevel" Text ="Tên công ty" ></asp:Label><span class="lbReq">*</span>
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboOrgLevel" runat="server" AutoPostBack ="true" >

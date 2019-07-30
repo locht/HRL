@@ -79,8 +79,8 @@
                                 SortExpression="ORG_CON_NAME" UniqueName="ORG_CON_NAME" HeaderStyle-Width="200px" />  
                             <tlk:GridBoundColumn HeaderText="Chức danh" DataField="TITLE_CON_NAME"
                                 SortExpression="TITLE_CON_NAME" UniqueName="TITLE_CON_NAME"  HeaderStyle-Width="150px" />
-                            <tlk:GridBoundColumn HeaderText="Phụ cấp kiêm nhiệm" DataField="ALLOW_MONEY_NUMBER"  HeaderStyle-Width="150px"
-                                SortExpression="ALLOW_MONEY_NUMBER" UniqueName="ALLOW_MONEY_NUMBER" DataFormatString="{0:N0}" />
+                           <%-- <tlk:GridBoundColumn HeaderText="Phụ cấp kiêm nhiệm" DataField="ALLOW_MONEY_NUMBER"  HeaderStyle-Width="150px"
+                                SortExpression="ALLOW_MONEY_NUMBER" UniqueName="ALLOW_MONEY_NUMBER" DataFormatString="{0:N0}" />--%>
                             <tlk:GridDateTimeColumn HeaderText="Ngày hiệu lực" DataField="EFFECT_DATE_CON"  HeaderStyle-Width="150px"
                                 ItemStyle-HorizontalAlign="Center" SortExpression="EFFECT_DATE_CON" UniqueName="EFFECT_DATE_CON"
                                 DataFormatString="{0:dd/MM/yyyy}">

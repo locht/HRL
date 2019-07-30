@@ -2666,10 +2666,10 @@ Namespace ProfileBusiness.ServiceContracts
         Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
 
         <OperationContract()>
-        Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
 
         <OperationContract()>
-        Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
 
         <OperationContract()>
         Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable
@@ -2681,6 +2681,11 @@ Namespace ProfileBusiness.ServiceContracts
         Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
                                        ByVal P_ORG_ID As Decimal,
                                        ByVal P_TITLE As Decimal,
+                                       ByVal P_DATE As Date,
+                                       ByVal P_ID_KN As Decimal) As Boolean
+
+        <OperationContract()>
+        Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal,
                                        ByVal P_DATE As Date) As Boolean
 #End Region
     End Interface

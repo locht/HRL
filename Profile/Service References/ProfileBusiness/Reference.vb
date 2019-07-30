@@ -27372,6 +27372,9 @@ Namespace ProfileBusiness
         Private ORG_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private REMARKField As String
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private SENIORITYField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -27577,6 +27580,19 @@ Namespace ProfileBusiness
                 If (Object.ReferenceEquals(Me.ORG_NAMEField, value) <> true) Then
                     Me.ORG_NAMEField = value
                     Me.RaisePropertyChanged("ORG_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property REMARK() As String
+            Get
+                Return Me.REMARKField
+            End Get
+            Set
+                If (Object.ReferenceEquals(Me.REMARKField, value) <> true) Then
+                    Me.REMARKField = value
+                    Me.RaisePropertyChanged("REMARK")
                 End If
             End Set
         End Property
@@ -48336,10 +48352,10 @@ Namespace ProfileBusiness
         Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_CONCURRENTLYResponse")>  _
-        Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Boolean
+        Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLY", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_CONCURRENTLYResponse")>  _
-        Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Boolean
+        Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMP", ReplyAction:="http://tempuri.org/IProfileBusiness/GET_CONCURRENTLY_BY_EMPResponse")>  _
         Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As System.Data.DataTable
@@ -48348,7 +48364,10 @@ Namespace ProfileBusiness
         Function GET_TITLE_ORG(ByVal P_ID As Decimal) As System.Data.DataTable
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/INSERT_EMPLOYEE_KNResponse")>  _
-        Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date) As Boolean
+        Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date, ByVal P_ID_KN As Decimal) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KN", ReplyAction:="http://tempuri.org/IProfileBusiness/UPDATE_EMPLOYEE_KNResponse")>  _
+        Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IProfileBusiness/GetConditionColumn", ReplyAction:="http://tempuri.org/IProfileBusiness/GetConditionColumnResponse")>  _
         Function GetConditionColumn(ByVal _ConditionID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO)
@@ -50370,11 +50389,11 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_CONCURRENTLY_BY_ID(P_ID)
         End Function
         
-        Public Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_CONCURRENTLY
+        Public Function INSERT_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer Implements ProfileBusiness.IProfileBusiness.INSERT_CONCURRENTLY
             Return MyBase.Channel.INSERT_CONCURRENTLY(concurrently)
         End Function
         
-        Public Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_CONCURRENTLY
+        Public Function UPDATE_CONCURRENTLY(ByVal concurrently As ProfileBusiness.Temp_ConcurrentlyDTO) As Integer Implements ProfileBusiness.IProfileBusiness.UPDATE_CONCURRENTLY
             Return MyBase.Channel.UPDATE_CONCURRENTLY(concurrently)
         End Function
         
@@ -50386,8 +50405,12 @@ Namespace ProfileBusiness
             Return MyBase.Channel.GET_TITLE_ORG(P_ID)
         End Function
         
-        Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_EMPLOYEE_KN
-            Return MyBase.Channel.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE)
+        Public Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String, ByVal P_ORG_ID As Decimal, ByVal P_TITLE As Decimal, ByVal P_DATE As Date, ByVal P_ID_KN As Decimal) As Boolean Implements ProfileBusiness.IProfileBusiness.INSERT_EMPLOYEE_KN
+            Return MyBase.Channel.INSERT_EMPLOYEE_KN(P_EMPLOYEE_CODE, P_ORG_ID, P_TITLE, P_DATE, P_ID_KN)
+        End Function
+        
+        Public Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal, ByVal P_DATE As Date) As Boolean Implements ProfileBusiness.IProfileBusiness.UPDATE_EMPLOYEE_KN
+            Return MyBase.Channel.UPDATE_EMPLOYEE_KN(P_ID_KN, P_DATE)
         End Function
         
         Public Function GetConditionColumn(ByVal _ConditionID As Decimal) As System.Collections.Generic.List(Of ProfileBusiness.RptDynamicColumnDTO) Implements ProfileBusiness.IProfileBusiness.GetConditionColumn

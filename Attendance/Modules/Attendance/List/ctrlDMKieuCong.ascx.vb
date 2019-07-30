@@ -176,6 +176,10 @@ Public Class ctrlDMKieuCong
                     txtNameVN.Enabled = True
                     txtNote.Enabled = True
                     chkIsLeave.Enabled = True
+                    If (chkIsLeave.Checked = False) Then
+                        chkIS_REG_SHIFT.Enabled = False
+                        chkIS_REG_SHIFT.Checked = False
+                    End If
                     ckIsCalHoliday.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
@@ -188,6 +192,10 @@ Public Class ctrlDMKieuCong
                     txtNameVN.Enabled = False
                     txtNote.Enabled = False
                     chkIsLeave.Enabled = False
+                    If (chkIsLeave.Checked = False) Then
+                        chkIS_REG_SHIFT.Enabled = False
+                    End If
+                    chkIS_REG_SHIFT.Enabled = False
                     ckIsCalHoliday.Enabled = False
                     EnabledGridNotPostback(rgDanhMuc, True)
                 Case CommonMessage.STATE_EDIT
@@ -195,6 +203,9 @@ Public Class ctrlDMKieuCong
                     txtNameVN.Enabled = True
                     txtNote.Enabled = True
                     chkIsLeave.Enabled = True
+                    If (chkIsLeave.Checked = True) Then
+                        chkIS_REG_SHIFT.Enabled = True
+                    End If
                     ckIsCalHoliday.Enabled = True
                     EnabledGridNotPostback(rgDanhMuc, False)
 
@@ -269,6 +280,7 @@ Public Class ctrlDMKieuCong
             dic.Add("NAME_VN", txtNameVN)
             dic.Add("NOTE", txtNote)
             dic.Add("IS_LEAVE", chkIsLeave)
+            dic.Add("IS_REG_SHIFT", chkIS_REG_SHIFT)
             dic.Add("IS_CALHOLIDAY", ckIsCalHoliday)
             Utilities.OnClientRowSelectedChanged(rgDanhMuc, dic)
             _myLog.WriteLog(_myLog._info, _classPath, method,
@@ -356,6 +368,7 @@ Public Class ctrlDMKieuCong
                         objAT_FML.NAME_VN = txtNameVN.Text.Trim
                         objAT_FML.NOTE = txtNote.Text.Trim
                         objAT_FML.IS_LEAVE = chkIsLeave.Checked
+                        objAT_FML.IS_REG_SHIFT = chkIS_REG_SHIFT.Checked
                         objAT_FML.IS_CALHOLIDAY = ckIsCalHoliday.Checked
                         Select Case CurrentState
                             Case CommonMessage.STATE_NEW

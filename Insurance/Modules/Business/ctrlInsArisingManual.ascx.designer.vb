@@ -203,6 +203,24 @@ Partial Public Class ctrlInsArisingManual
     Protected WithEvents txtDateIssue As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''BIRTH_PLACE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BIRTH_PLACE As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbDoB control.
     '''</summary>
     '''<remarks>
@@ -237,6 +255,24 @@ Partial Public Class ctrlInsArisingManual
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtBirthPlace As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''SOCIAL_NUMBER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SOCIAL_NUMBER As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbInsInfo control.

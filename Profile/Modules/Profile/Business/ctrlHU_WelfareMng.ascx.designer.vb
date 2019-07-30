@@ -113,13 +113,13 @@ Partial Public Class ctrlHU_WelfareMng
     Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''chkTerminate control.
+    '''cbTyleWelfare control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkTerminate As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents cbTyleWelfare As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
     '''btnSearch control.

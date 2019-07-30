@@ -49,7 +49,7 @@
                             </tlk:RadTextBox>
                         </td>
                         <td class="lb">
-                            <asp:Label runat="server" ID="lbPOSITION" Text="Chức danh bảo hiểm"></asp:Label>
+                            <asp:Label runat="server" ID="lbPOSITION" Text="Chức danh"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtPOSITION" ReadOnly="true" runat="server">
@@ -72,6 +72,14 @@
                                 ID="txtDateIssue" TabIndex="5">
                             </tlk:RadDatePicker>
                         </td>
+                        >
+                        <td class="lb">
+                            <asp:Label runat="server" ID="Label1" Text="Nơi cấp"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="BIRTH_PLACE" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="lb">
@@ -87,6 +95,13 @@
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtBirthPlace" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
+                         <td class="lb">
+                            <asp:Label runat="server" ID="Label2" Text="Số sổ bảo hiểm"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="SOCIAL_NUMBER" ReadOnly="true" runat="server">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
