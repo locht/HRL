@@ -347,7 +347,8 @@ Public Class ctrlHU_WageMng
                     ctrlMessageBox.DataBind()
                     ctrlMessageBox.Show()
                 Case CommonMessage.TOOLBARITEM_NEXT
-                    ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportHoSoLuong');", True)
+                    Template_ImportHoSoLuong()
+                    'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType(), "javascriptfunction", "ExportReport('Template_ImportHoSoLuong');", True)
                 Case CommonMessage.TOOLBARITEM_IMPORT
                     ctrlUpload1.Show()
             End Select
@@ -536,6 +537,70 @@ Public Class ctrlHU_WageMng
 #End Region
 
 #Region "Custom"
+    Private Sub Template_ImportHoSoLuong()
+        Dim rep As New Profile.ProfileBusinessRepository
+        'Dim param As New Profile.ProfileBusiness.ParamDTO
+        Try
+            'Dim is_disolve = Request.Params("IS_DISSOLVE")
+            'Dim org_id = Decimal.Parse(Request.Params("ORG_ID"))
+            'param.ORG_ID = org_id
+            'param.IS_DISSOLVE = is_disolve
+            Dim configPath As String = ConfigurationManager.AppSettings("PathImportFolder")
+            Dim dsData As DataSet = rep.GetHoSoLuongImport()
+            dsData.Tables(0).TableName = "Table"
+            dsData.Tables(1).TableName = "Table1"
+            dsData.Tables(2).TableName = "Table2"
+            dsData.Tables(3).TableName = "Table3"
+            dsData.Tables(4).TableName = "Table4"
+            dsData.Tables(5).TableName = "Table5"
+            rep.Dispose()
+            ExportTemplate(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xlsx",
+                                      dsData, Nothing, "Template_HoSoLuong_" & Format(Date.Now, "yyyyMMdd"))
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Function ExportTemplate(ByVal sReportFileName As String,
+                                                    ByVal dsData As DataSet,
+                                                    ByVal dtVariable As DataTable,
+                                                    ByVal filename As String) As Boolean
+
+        Dim filePath As String
+        Dim templatefolder As String
+
+        Dim designer As WorkbookDesigner
+        Try
+
+            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+
+            If Not File.Exists(filePath) Then
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
+                Return False
+            End If
+
+            designer = New WorkbookDesigner
+            designer.Open(filePath)
+            designer.SetDataSource(dsData)
+
+            If dtVariable IsNot Nothing Then
+                Dim intCols As Integer = dtVariable.Columns.Count
+                For i As Integer = 0 To intCols - 1
+                    designer.SetDataSource(dtVariable.Columns(i).ColumnName.ToString(), dtVariable.Rows(0).ItemArray(i).ToString())
+                Next
+            End If
+            designer.Process()
+            designer.Workbook.CalculateFormula()
+            designer.Workbook.Save(HttpContext.Current.Response, filename & ".xls", ContentDisposition.Attachment, New XlsSaveOptions())
+
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+
     ''' <lastupdate>17/08/2017</lastupdate>
     ''' <summary>
     ''' Check data khi upload

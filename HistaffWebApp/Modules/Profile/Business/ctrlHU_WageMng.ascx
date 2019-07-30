@@ -43,13 +43,13 @@
                         </td>
                     </tr>
                 </table>
-            </tlk:RadPane>
+            </tlk:RadPane>            
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
-                <tlk:RadGrid PageSize="50" ID="rgWorking" runat="server" AllowMultiRowSelection="true"
-                    Height="100%">
+                <tlk:RadGrid PageSize="50" ID="rgWorking" runat="server" AllowMultiRowSelection="true" Height="100%">
                     <ClientSettings EnableRowHoverStyle="true">
                         <Selecting AllowRowSelect="true" />
                         <ClientEvents OnRowDblClick="gridRowDblClick" />
+                        <ClientEvents OnGridCreated="GridCreated" />
                         <ClientEvents OnCommand="ValidateFilter" />
                     </ClientSettings>
                     <MasterTableView DataKeyNames="ID,STATUS_ID,DECISION_TYPE_ID,EMPLOYEE_CODE" ClientDataKeyNames="ID,EMPLOYEE_ID">
@@ -151,12 +151,16 @@
             }
         }
 
+        function GridCreated(sender, eventArgs) {
+            registerOnfocusOut('RAD_SPLITTER_ctl00_MainContent_ctrlHU_WageMng_RadSplitter3');
+        }
 
         var enableAjax = true;
         function onRequestStart(sender, eventArgs) {
             eventArgs.set_enableAjax(enableAjax);
             enableAjax = true;
         }
+
         function OpenWage() {
             var extented = '';
             var bCheck = $find('<%= rgWorking.ClientID %>').get_masterTableView().get_selectedItems().length;
@@ -245,7 +249,6 @@
                 vars[key] = value;
             });
             return vars;
-        }
-
+        }        
     </script>
 </tlk:RadCodeBlock>

@@ -1424,6 +1424,7 @@
     <Content Include="ReportTemplates\Insurance\Business\InsMaternityMng.xlsx" />
     <Content Include="ReportTemplates\Attendance\Import\Template_GiaiTrinhNgayCong.xlsx" />
     <Content Include="ReportTemplates\Attendance\Import\Template_GiaiTrinhNgayCong_error.xlsx" />
+    <Content Include="ReportTemplates\Payroll\Business\TEMP_IMPORT_HOSOLUONG.xlsx" />
     <None Include="Styles\ImgConfig.jquery.css" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\img\icon-tree.png" />

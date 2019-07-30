@@ -51,6 +51,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ref\Aspose.Cells.dll</HintPath>
     </Reference>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -230,11 +231,11 @@
     <Content Include="Modules\Recruitment\Business\ctrlRC_Program.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ProgramUpdateResult.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_Request.ascx" />
-    <Content Include="Modules\Recruitment\Business\ctrlRC_RequestNewEdit.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_PlanSummary.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ProgramExams.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_ProgramScheduleNewEdit.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_Cost.ascx" />
+    <Content Include="Modules\Recruitment\Business\ctrlRC_RequestNewEdit.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_RequestReject.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_Stage.ascx" />
     <Content Include="Modules\Recruitment\Business\ctrlRC_StageCost.ascx" />
@@ -327,6 +328,13 @@
     </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_Request.ascx.vb">
       <DependentUpon>ctrlRC_Request.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_RequestNewEdit.ascx.designer.vb">
+      <DependentUpon>ctrlRC_RequestNewEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Recruitment\Business\ctrlRC_RequestNewEdit.ascx.vb">
+      <DependentUpon>ctrlRC_RequestNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_RequestReject.ascx.designer.vb">
@@ -529,13 +537,6 @@
     </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_ProgramUpdateResult.ascx.vb">
       <DependentUpon>ctrlRC_ProgramUpdateResult.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Modules\Recruitment\Business\ctrlRC_RequestNewEdit.ascx.designer.vb">
-      <DependentUpon>ctrlRC_RequestNewEdit.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Recruitment\Business\ctrlRC_RequestNewEdit.ascx.vb">
-      <DependentUpon>ctrlRC_RequestNewEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Recruitment\Business\ctrlRC_PlanSummary.ascx.designer.vb">

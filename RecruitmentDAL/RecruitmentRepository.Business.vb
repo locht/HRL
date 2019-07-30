@@ -329,6 +329,8 @@ Partial Class RecruitmentRepository
                         From reason In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RECRUIT_REASON_ID).DefaultIfEmpty
                         From status In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.STATUS_ID).DefaultIfEmpty
                         From learning In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.LEARNING_LEVEL_ID).DefaultIfEmpty
+                        From rc_prop In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.RC_RECRUIT_PROPERTY).DefaultIfEmpty
+                        From gender In Context.OT_OTHER_LIST.Where(Function(f) f.ID = p.GENDER_PRIORITY).DefaultIfEmpty
                         From ctracttype In Context.HU_CONTRACT_TYPE.Where(Function(f) f.ID = p.LEARNING_LEVEL_ID).DefaultIfEmpty
                         From k In Context.SE_CHOSEN_ORG.Where(Function(f) p.ORG_ID = f.ORG_ID And f.USERNAME.ToUpper = log.Username.ToUpper)
                         Select New RequestDTO With {
@@ -360,7 +362,17 @@ Partial Class RecruitmentRepository
                                        .STATUS_ID = p.STATUS_ID,
                                        .STATUS_NAME = status.NAME_VN,
                                        .CREATED_DATE = p.CREATED_DATE,
-                                       .REMARK_REJECT = p.REMARK_REJECT}
+                                       .REMARK_REJECT = p.REMARK_REJECT,
+                                       .RC_RECRUIT_PROPERTY = p.RC_RECRUIT_PROPERTY,
+                                       .RC_RECRUIT_PROPERTY_NAME = rc_prop.NAME_VN,
+                                       .IS_OVER_LIMIT = p.IS_OVER_LIMIT,
+                                       .IS_SUPPORT = p.IS_SUPPORT,
+                                       .FOREIGN_ABILITY = p.FOREIGN_ABILITY,
+                                       .COMPUTER_APP_LEVEL = p.COMPUTER_APP_LEVEL,
+                                       .GENDER_PRIORITY = p.GENDER_PRIORITY,
+                                       .GENDER_PRIORITY_NAME = gender.NAME_VN,
+                                       .RECRUIT_NUMBER = p.RECRUIT_NUMBER,
+                                       .UPLOAD_FILE = p.UPLOAD_FILE}
 
             Dim lst = query
             If _filter.FROM_DATE IsNot Nothing Then
@@ -481,7 +493,15 @@ Partial Class RecruitmentRepository
                                        .QUALIFICATION = p.QUALIFICATION,
                                        .DESCRIPTIONATTACHFILE = p.DESCRIPTIONATTACHFILE,
                                        .COMPUTER_LEVEL = p.COMPUTER_LEVEL,
-                                       .RC_PLAN_ID = p.RC_PLAN_ID}
+                                       .RC_PLAN_ID = p.RC_PLAN_ID,
+                                       .RC_RECRUIT_PROPERTY = p.RC_RECRUIT_PROPERTY,
+                                       .IS_OVER_LIMIT = p.IS_OVER_LIMIT,
+                                       .IS_SUPPORT = p.IS_SUPPORT,
+                                       .FOREIGN_ABILITY = p.FOREIGN_ABILITY,
+                                       .COMPUTER_APP_LEVEL = p.COMPUTER_APP_LEVEL,
+                                       .GENDER_PRIORITY = p.GENDER_PRIORITY,
+                                       .RECRUIT_NUMBER = p.RECRUIT_NUMBER,
+                                       .UPLOAD_FILE = p.UPLOAD_FILE}
 
             Dim obj = query.FirstOrDefault
             Dim lstEmp = (From p In Context.RC_REQUEST_EMP
@@ -604,6 +624,14 @@ Partial Class RecruitmentRepository
             objRequestData.COMPUTER_LEVEL = objRequest.COMPUTER_LEVEL
             objRequestData.STATUS_ID = RecruitmentCommon.RC_REQUEST_STATUS.WAIT_ID
             objRequestData.RC_PLAN_ID = objRequest.RC_PLAN_ID
+            objRequestData.RC_RECRUIT_PROPERTY = objRequest.RC_RECRUIT_PROPERTY
+            objRequestData.IS_OVER_LIMIT = objRequest.IS_OVER_LIMIT
+            objRequestData.IS_SUPPORT = objRequest.IS_SUPPORT
+            objRequestData.FOREIGN_ABILITY = objRequest.FOREIGN_ABILITY
+            objRequestData.COMPUTER_APP_LEVEL = objRequest.COMPUTER_APP_LEVEL
+            objRequestData.GENDER_PRIORITY = objRequest.GENDER_PRIORITY
+            objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
+            objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             Context.RC_REQUEST.AddObject(objRequestData)
             If objRequest.lstEmp IsNot Nothing Then
                 For Each item In objRequest.lstEmp
@@ -657,6 +685,14 @@ Partial Class RecruitmentRepository
             objRequestData.MAINTASK = objRequest.MAINTASK
             objRequestData.DESCRIPTIONATTACHFILE = objRequest.DESCRIPTIONATTACHFILE
             objRequestData.COMPUTER_LEVEL = objRequest.COMPUTER_LEVEL
+            objRequestData.RC_RECRUIT_PROPERTY = objRequest.RC_RECRUIT_PROPERTY
+            objRequestData.IS_OVER_LIMIT = objRequest.IS_OVER_LIMIT
+            objRequestData.IS_SUPPORT = objRequest.IS_SUPPORT
+            objRequestData.FOREIGN_ABILITY = objRequest.FOREIGN_ABILITY
+            objRequestData.COMPUTER_APP_LEVEL = objRequest.COMPUTER_APP_LEVEL
+            objRequestData.GENDER_PRIORITY = objRequest.GENDER_PRIORITY
+            objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
+            objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = objRequestData.ID).ToList
             For Each item In lstRegEmp
                 Context.RC_REQUEST_EMP.DeleteObject(item)
