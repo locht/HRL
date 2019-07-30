@@ -236,7 +236,7 @@
                 </table>
             </fieldset>
         </div>
-        <div style="margin-left:30px; margin-top: 5px; width: 1270px; display: none;">
+        <div style="margin-left:30px; margin-top: 5px; width: 1270px;">
             <fieldset style="width: auto; height: auto">
                 <legend>
                     <b><asp:Label runat="server" ID="lbA_SInfo" Text="Thông tin truy thu/ thoái thu"></asp:Label></b>

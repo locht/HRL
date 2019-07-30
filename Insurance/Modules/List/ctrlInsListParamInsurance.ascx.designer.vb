@@ -176,15 +176,6 @@ Partial Public Class ctrlInsListParamInsurance
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''radnmUI control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents radnmUI As Global.Telerik.Web.UI.RadNumericTextBox
-
-    '''<summary>
     '''radnmUI_COM control.
     '''</summary>
     '''<remarks>
@@ -221,13 +212,13 @@ Partial Public Class ctrlInsListParamInsurance
     Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''RadNumericTextBox1 control.
+    '''radnmUI control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RadNumericTextBox1 As Global.Telerik.Web.UI.RadNumericTextBox
+    Protected WithEvents radnmUI As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''radnmTNLD_BNN_COM control.

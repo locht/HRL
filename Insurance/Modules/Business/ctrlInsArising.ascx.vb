@@ -593,6 +593,28 @@ Public Class ctrlInsArising
         End Try
     End Sub
 
+    ''' <lastupdate>
+    ''' 17/08/2017 08:40
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xử lý sự kiện ItemDataBound của rad grid
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub rgGridData_ItemDataBound(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridItemEventArgs) Handles rgGridData.ItemDataBound
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            If e.Item.ItemType = GridItemType.Item Or e.Item.ItemType = GridItemType.AlternatingItem Then
+                Dim datarow As GridDataItem = DirectCast(e.Item, GridDataItem)
+                datarow("DEP_NAME").ToolTip = Utilities.DrawTreeByString(datarow.GetDataKeyValue("ORG_DESC").ToString)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 #End Region
 
 End Class
