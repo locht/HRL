@@ -371,6 +371,7 @@ Partial Class RecruitmentRepository
                                        .COMPUTER_APP_LEVEL = p.COMPUTER_APP_LEVEL,
                                        .GENDER_PRIORITY = p.GENDER_PRIORITY,
                                        .GENDER_PRIORITY_NAME = gender.NAME_VN,
+                                       .RECRUIT_NUMBER = p.RECRUIT_NUMBER,
                                        .UPLOAD_FILE = p.UPLOAD_FILE}
 
             Dim lst = query
@@ -499,6 +500,7 @@ Partial Class RecruitmentRepository
                                        .FOREIGN_ABILITY = p.FOREIGN_ABILITY,
                                        .COMPUTER_APP_LEVEL = p.COMPUTER_APP_LEVEL,
                                        .GENDER_PRIORITY = p.GENDER_PRIORITY,
+                                       .RECRUIT_NUMBER = p.RECRUIT_NUMBER,
                                        .UPLOAD_FILE = p.UPLOAD_FILE}
 
             Dim obj = query.FirstOrDefault
@@ -628,6 +630,7 @@ Partial Class RecruitmentRepository
             objRequestData.FOREIGN_ABILITY = objRequest.FOREIGN_ABILITY
             objRequestData.COMPUTER_APP_LEVEL = objRequest.COMPUTER_APP_LEVEL
             objRequestData.GENDER_PRIORITY = objRequest.GENDER_PRIORITY
+            objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             Context.RC_REQUEST.AddObject(objRequestData)
             If objRequest.lstEmp IsNot Nothing Then
@@ -688,6 +691,7 @@ Partial Class RecruitmentRepository
             objRequestData.FOREIGN_ABILITY = objRequest.FOREIGN_ABILITY
             objRequestData.COMPUTER_APP_LEVEL = objRequest.COMPUTER_APP_LEVEL
             objRequestData.GENDER_PRIORITY = objRequest.GENDER_PRIORITY
+            objRequestData.RECRUIT_NUMBER = objRequest.RECRUIT_NUMBER
             objRequestData.UPLOAD_FILE = objRequest.UPLOAD_FILE
             Dim lstRegEmp = (From p In Context.RC_REQUEST_EMP Where p.RC_REQUEST_ID = objRequestData.ID).ToList
             For Each item In lstRegEmp

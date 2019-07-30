@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("5db0c520-eb0e-4257-8cda-6d218b5d94e5")>
+<Assembly: EdmSchemaAttribute("29ef5842-bc38-4a83-8ef7-1d7e77341637")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH1), True)>
 <Assembly: EdmRelationshipAttribute("RecruitmentModel", "FK_HE_HEC", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_CV", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_CV), True)>
@@ -32126,6 +32126,31 @@ Public Partial Class RC_REQUEST
     End Sub
 
     Private Partial Sub OnUPLOAD_FILEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property RECRUIT_NUMBER() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _RECRUIT_NUMBER
+        End Get
+        Set
+            OnRECRUIT_NUMBERChanging(value)
+            ReportPropertyChanging("RECRUIT_NUMBER")
+            _RECRUIT_NUMBER = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("RECRUIT_NUMBER")
+            OnRECRUIT_NUMBERChanged()
+        End Set
+    End Property
+
+    Private _RECRUIT_NUMBER As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnRECRUIT_NUMBERChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnRECRUIT_NUMBERChanged()
     End Sub
 
     #End Region

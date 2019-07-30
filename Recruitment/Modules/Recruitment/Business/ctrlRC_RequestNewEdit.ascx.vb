@@ -4,6 +4,7 @@ Imports Recruitment.RecruitmentBusiness
 Imports Telerik.Web.UI
 Imports Framework.UI.Utilities
 Imports HistaffFrameworkPublic
+Imports Profile.ProfileBusiness
 
 Public Class ctrlRC_RequestNewEdit
     Inherits CommonView
@@ -40,7 +41,14 @@ Public Class ctrlRC_RequestNewEdit
             ViewState(Me.ID & "_STATUSCODE") = value
         End Set
     End Property
-
+    Property ListAttachFile As List(Of AttachFilesDTO)
+        Get
+            Return ViewState(Me.ID & "_ListAttachFile")
+        End Get
+        Set(ByVal value As List(Of AttachFilesDTO))
+            ViewState(Me.ID & "_ListAttachFile") = value
+        End Set
+    End Property
 
 #End Region
 
@@ -213,14 +221,14 @@ Public Class ctrlRC_RequestNewEdit
 
                     'rntxtFemaleNumber.Value = obj.FEMALE_NUMBER
                     'rntxtMaleNumber.Value = obj.MALE_NUMBER
-                    Dim sumNumber As Decimal = 0
+                    'Dim sumNumber As Decimal = 0
                     'If rntxtFemaleNumber.Value IsNot Nothing Then
                     '    sumNumber += rntxtFemaleNumber.Value
                     'End If
                     'If rntxtMaleNumber.Value IsNot Nothing Then
                     '    sumNumber += rntxtMaleNumber.Value
                     'End If
-                    'rntxtRecruitNumber.Value = sumNumber
+                    rntxtRecruitNumber.Value = obj.RECRUIT_NUMBER
                     If obj.RC_RECRUIT_PROPERTY IsNot Nothing Then
                         cboRecruitProperty.SelectedValue = obj.RC_RECRUIT_PROPERTY
                     End If
@@ -309,12 +317,17 @@ Public Class ctrlRC_RequestNewEdit
                         obj.AGE_TO = rntxtAgeTo.Value
                         obj.QUALIFICATION = cboQualification.SelectedValue
 
-                        obj.RC_RECRUIT_PROPERTY = cboRecruitProperty.SelectedValue
+                        If cboRecruitProperty.SelectedValue <> "" Then
+                            obj.RC_RECRUIT_PROPERTY = cboRecruitProperty.SelectedValue
+                        End If
                         obj.IS_OVER_LIMIT = chkIsOver.Checked
                         obj.IS_SUPPORT = chkIsSupport.Checked
                         obj.FOREIGN_ABILITY = txtForeignAbility.Text
                         obj.COMPUTER_APP_LEVEL = txtComputerAppLevel.Text
-                        obj.GENDER_PRIORITY = cboGenderPriority.SelectedValue
+                        If cboGenderPriority.SelectedValue <> "" Then
+                            obj.GENDER_PRIORITY = cboGenderPriority.SelectedValue
+                        End If
+                        obj.RECRUIT_NUMBER = rntxtRecruitNumber.Value
                         obj.UPLOAD_FILE = txtUpload.Text
 
                         obj.DESCRIPTION = txtDescription.Text
@@ -585,6 +598,62 @@ Public Class ctrlRC_RequestNewEdit
             End If
         Catch ex As Exception
             ShowMessage(Translate("Import bị lỗi"), NotifyType.Error)
+        End Try
+    End Sub
+
+    Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            ctrlUpload2.Show()
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ctrlUpload2_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload2.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            txtUpload.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".pdf")
+            listExtension.Add(".jpg")
+            listExtension.Add(".png")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Recruitment/RecruitmentAttachFile/")
+            If ctrlUpload2.UploadedFiles.Count >= 1 Then
+                Dim finfo As New AttachFilesDTO
+                ListAttachFile = New List(Of AttachFilesDTO)
+                Dim file As UploadedFile = ctrlUpload2.UploadedFiles(ctrlUpload2.UploadedFiles.Count - 1)
+                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                    System.IO.Directory.CreateDirectory(strPath)
+                    strPath = strPath
+                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+                    file.SaveAs(fileName, True)
+                    txtUpload.Text = file.FileName
+                    finfo.FILE_PATH = strPath + file.FileName
+                    finfo.ATTACHFILE_NAME = file.FileName
+                    finfo.CONTROL_NAME = "ctrlRC_RequestNewEdit"
+                    finfo.FILE_TYPE = file.GetExtension
+                    ListAttachFile.Add(finfo)
+                Else
+                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                    Exit Sub
+                End If
+            End If
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            Throw ex
         End Try
     End Sub
 

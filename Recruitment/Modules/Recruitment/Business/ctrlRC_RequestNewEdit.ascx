@@ -303,7 +303,7 @@
                 <td>
                     <tlk:RadNumericTextBox ID="rntxtRecruitNumber" runat="server" NumberFormat-DecimalDigits="1"
                         NumberFormat-GroupSeparator="" ShowSpinButtons="true" MaxLength="3" MinValue="0"
-                        MaxValue="100">
+                        MaxValue="100" AutoPostBack="true">
                         <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" DecimalDigits="1" />
                     </tlk:RadNumericTextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="rntxtRecruitNumber"
@@ -389,6 +389,7 @@
 <asp:PlaceHolder ID="phFindEmployee" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindOrg" runat="server"></asp:PlaceHolder>
 <Common:ctrlUpload ID="ctrlUpload1" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload2" runat="server" />
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
 

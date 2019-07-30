@@ -349,6 +349,7 @@
             <Property Name="COMPUTER_APP_LEVEL" Type="nclob" Nullable="true" />
             <Property Name="GENDER_PRIORITY" Type="number" Nullable="true" Precision="38" />
             <Property Name="UPLOAD_FILE" Type="nclob" Nullable="true" />
+            <Property Name="RECRUIT_NUMBER" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="RC_REQUEST_EMP">
             <Key>
@@ -2154,6 +2155,7 @@
           <Property Type="String" Name="COMPUTER_APP_LEVEL" />
           <Property Type="Decimal" Name="GENDER_PRIORITY" Nullable="true" />
           <Property Type="String" Name="UPLOAD_FILE" />
+          <Property Type="Decimal" Name="RECRUIT_NUMBER" Nullable="true" />
         </EntityType>
         <EntityType Name="RC_REQUEST_EMP">
           <Key>
@@ -3853,6 +3855,7 @@
                     <ScalarProperty Name="COMPUTER_APP_LEVEL" ColumnName="COMPUTER_APP_LEVEL" />
                     <ScalarProperty Name="GENDER_PRIORITY" ColumnName="GENDER_PRIORITY" />
                     <ScalarProperty Name="UPLOAD_FILE" ColumnName="UPLOAD_FILE" />
+                    <ScalarProperty Name="RECRUIT_NUMBER" ColumnName="RECRUIT_NUMBER" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -5201,7 +5204,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="RecruitmentContext" ZoomLevel="62" >
+      <Diagram Name="RecruitmentContext" ZoomLevel="58" >
         <EntityTypeShape EntityType="RecruitmentModel.RC_COST_CENTER" Width="1.5" PointX="1.0267800153357816" PointY="25.482005682532677" />
         <EntityTypeShape EntityType="RecruitmentModel.SE_CHOSEN_ORG" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4033821614583246" />
         <EntityTypeShape EntityType="RecruitmentModel.HU_FAMILY" Width="1.5" PointX="3.875" PointY="32.625" Height="0.4" IsExpanded="false" />
@@ -5214,7 +5217,7 @@
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_EXAMS" Width="1.75" PointX="13.75" PointY="6.75" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SCOPE" Width="2" PointX="13.75" PointY="9.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_PROGRAM_SOFT_SKILL" Width="2.375" PointX="13.75" PointY="12.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST" Width="1.5" PointX="17.5" PointY="0.5" Height="9.4800423177083335" />
+        <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST" Width="1.5" PointX="17.5" PointY="0.5" Height="9.67234375" />
         <EntityTypeShape EntityType="RecruitmentModel.RC_REQUEST_EMP" Width="1.5" PointX="15.75" PointY="7.75" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST" Width="1.5" PointX="14" PointY="15.5" Height="4.48020507812501" />
         <EntityTypeShape EntityType="RecruitmentModel.OT_OTHER_LIST_GROUP" Width="1.5" PointX="16.375" PointY="10.75" Height="2.7494921875000102" />

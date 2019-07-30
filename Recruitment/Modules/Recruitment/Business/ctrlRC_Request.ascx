@@ -49,7 +49,7 @@
             </tlk:RadPane>
             <tlk:RadPane ID="RadPane2" runat="server" Scrolling="None">
                 <tlk:RadGrid ID="rgData" runat="server" Height="100%" AllowMultiRowSelection="True">
-                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_ID">
+                    <MasterTableView DataKeyNames="ID" ClientDataKeyNames="ID,STATUS_ID,RC_RECRUIT_PROPERTY,RC_RECRUIT_PROPERTY_NAME,IS_OVER_LIMIT,IS_SUPPORT,FOREIGN_ABILITY,COMPUTER_APP_LEVEL,GENDER_PRIORITY,GENDER_PRIORITY_NAME,RECRUIT_NUMBER,UPLOAD_FILE">
                         <Columns>
                             <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="30px" ItemStyle-HorizontalAlign="Center">

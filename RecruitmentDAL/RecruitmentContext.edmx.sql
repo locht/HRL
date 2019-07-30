@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 30/07/2019 9:35:55 AM
+-- Date Created: 30/07/2019 11:50:33 AM
 -- Generated from EDMX file: E:\TNG\RecruitmentDAL\RecruitmentContext.edmx
 -- --------------------------------------------------
 
@@ -381,7 +381,8 @@ CREATE TABLE "dbo"."RC_REQUEST" (
    "FOREIGN_ABILITY" NCLOB NULL,
    "COMPUTER_APP_LEVEL" NCLOB NULL,
    "GENDER_PRIORITY" NUMBER(38,0) NULL,
-   "UPLOAD_FILE" NCLOB NULL
+   "UPLOAD_FILE" NCLOB NULL,
+   "RECRUIT_NUMBER" NUMBER(38,0) NULL
 );
 
 -- Creating table 'RC_REQUEST_EMP'

@@ -56,4 +56,5 @@
     Public Property GENDER_PRIORITY As Decimal?
     Public Property GENDER_PRIORITY_NAME As String
     Public Property UPLOAD_FILE As String
+    Public Property RECRUIT_NUMBER As Decimal?
 End Class

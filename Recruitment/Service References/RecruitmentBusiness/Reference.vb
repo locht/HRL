@@ -6807,6 +6807,9 @@ Namespace RecruitmentBusiness
         Private RC_RECRUIT_PROPERTY_NAMEField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private RECRUIT_NUMBERField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private RECRUIT_REASONField As String
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -7393,6 +7396,19 @@ Namespace RecruitmentBusiness
                 If (Object.ReferenceEquals(Me.RC_RECRUIT_PROPERTY_NAMEField, value) <> true) Then
                     Me.RC_RECRUIT_PROPERTY_NAMEField = value
                     Me.RaisePropertyChanged("RC_RECRUIT_PROPERTY_NAME")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property RECRUIT_NUMBER() As System.Nullable(Of Decimal)
+            Get
+                Return Me.RECRUIT_NUMBERField
+            End Get
+            Set
+                If (Me.RECRUIT_NUMBERField.Equals(value) <> true) Then
+                    Me.RECRUIT_NUMBERField = value
+                    Me.RaisePropertyChanged("RECRUIT_NUMBER")
                 End If
             End Set
         End Property
