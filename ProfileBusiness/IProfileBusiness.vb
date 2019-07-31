@@ -1448,6 +1448,13 @@ Namespace ProfileBusiness.ServiceContracts
                                          ByRef Total As Integer, ByVal _param As ParamDTO,
                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
                                          Optional ByVal log As UserLog = Nothing) As List(Of FamilyEditDTO)
+        <OperationContract()>
+        Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of CETIFICATE_EDITDTO)
 
 #End Region
 

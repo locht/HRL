@@ -176,6 +176,7 @@
     <Content Include="Modules\Portal\Dashboard\ctrlDBCertificateExpires.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALP.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx" />
+    <Content Include="Modules\Profile\Business\ctrlHU_ApproveCertificateEmployee.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_Concurrently.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_ConcurrentlyNewEdit.ascx" />
     <Content Include="Modules\Profile\Business\ctrlHU_EmpDtlConcurrently.ascx" />
@@ -707,6 +708,13 @@
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_ALPNewEdit.ascx.vb">
       <DependentUpon>ctrlHU_ALPNewEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ApproveCertificateEmployee.ascx.designer.vb">
+      <DependentUpon>ctrlHU_ApproveCertificateEmployee.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Profile\Business\ctrlHU_ApproveCertificateEmployee.ascx.vb">
+      <DependentUpon>ctrlHU_ApproveCertificateEmployee.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\Profile\Business\ctrlHU_Concurrently.ascx.designer.vb">

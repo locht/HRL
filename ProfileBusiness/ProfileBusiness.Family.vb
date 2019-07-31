@@ -227,6 +227,21 @@ Namespace ProfileBusiness.ServiceImplementations
                 End Try
             End Using
         End Function
+        Public Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO,
+                                         ByVal PageIndex As Integer,
+                                         ByVal PageSize As Integer,
+                                         ByRef Total As Integer, ByVal _param As ParamDTO,
+                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                         Optional ByVal log As UserLog = Nothing) As List(Of CETIFICATE_EDITDTO) _
+             Implements ServiceContracts.IProfileBusiness.GetApproveEmployeeCertificateEdit
+            Using rep As New ProfileRepository
+                Try
+                    Return rep.GetApproveEmployeeCertificateEdit(_filter, PageIndex, PageSize, Total, _param, Sorts, log)
+                Catch ex As Exception
+                    Throw ex
+                End Try
+            End Using
+        End Function
 
 #End Region
 

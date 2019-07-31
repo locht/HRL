@@ -235,6 +235,32 @@ Partial Public Class ProfileBusinessRepository
         End Using
 
     End Function
+    Public Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO,
+                                   ByVal PageIndex As Integer,
+                                   ByVal PageSize As Integer,
+                                   ByRef Total As Integer, ByVal _param As ParamDTO,
+                                   Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of CETIFICATE_EDITDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetApproveEmployeeCertificateEdit(_filter, PageIndex, PageSize, Total, _param, Sorts, Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO, ByVal _param As ParamDTO,
+                                         Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of CETIFICATE_EDITDTO)
+        Using rep As New ProfileBusinessClient
+            Try
+                Return rep.GetApproveEmployeeCertificateEdit(_filter, 0, Integer.MaxValue, 0, _param, Sorts, Log)
+            Catch ex As Exception
+                rep.Abort()
+                Throw ex
+            End Try
+        End Using
+
+    End Function
 
     Public Function GetApproveFamilyEdit(ByVal _filter As FamilyEditDTO, ByVal _param As ParamDTO,
                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc") As List(Of FamilyEditDTO)

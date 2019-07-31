@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 07/29/2019 2:02:34 PM
+-- Date Created: 07/31/2019 4:11:44 PM
 -- Generated from EDMX file: D:\MyProject\TNG\TNG\ProfileDAL\ProfileContext.edmx
 -- --------------------------------------------------
 
@@ -3526,7 +3526,8 @@ CREATE TABLE "dbo"."HU_CERTIFICATE_EDIT" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "EMPLOYEE_ID" NUMBER(38,0) NULL,
    "FK_PKEY" NUMBER(38,0) NULL,
-   "STATUS" NUMBER(38,0) NULL
+   "STATUS" NUMBER(38,0) NULL,
+   "REASON_UNAPROVE" NCLOB NULL
 );
 
 -- Creating table 'HU_SIGNER'

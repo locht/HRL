@@ -74,7 +74,7 @@ Partial Public Class ctrlInfoCertificate
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents rdFromDate As Global.Telerik.Web.UI.RadMonthYearPicker
 
     '''<summary>
     '''rdToDate control.
@@ -83,7 +83,7 @@ Partial Public Class ctrlInfoCertificate
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents rdToDate As Global.Telerik.Web.UI.RadMonthYearPicker
 
     '''<summary>
     '''txtSchool control.

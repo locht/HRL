@@ -3588,6 +3588,7 @@
             <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
             <Property Name="FK_PKEY" Type="number" Nullable="true" Precision="38" />
             <Property Name="STATUS" Type="number" Nullable="true" Precision="38" />
+            <Property Name="REASON_UNAPROVE" Type="nclob" Nullable="true" />
         </EntityType>
         <EntityType Name="HU_SIGNER">
             <Key>
@@ -7998,6 +7999,7 @@
           <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="FK_PKEY" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="STATUS" />
+          <Property Type="String" Name="REASON_UNAPROVE" />
         </EntityType>
         <EntityType Name="HU_SIGNER">
           <Key>
@@ -11504,6 +11506,7 @@
                     <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                     <ScalarProperty Name="FK_PKEY" ColumnName="FK_PKEY" />
                     <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                    <ScalarProperty Name="REASON_UNAPROVE" ColumnName="REASON_UNAPROVE" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -11602,7 +11605,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ProfileContext" ZoomLevel="66" ShowGrid="false" DisplayType="true" SnapToGrid="true">
+      <Diagram Name="ProfileContext" ZoomLevel="85" ShowGrid="false" DisplayType="true" SnapToGrid="true">
         <EntityTypeShape EntityType="ProfileModel.HU_PROVINCE" Width="1.5" PointX="3" PointY="9.625" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_DISTRICT" Width="1.75" PointX="5.25" PointY="9" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_NATION" Width="1.5" PointX="0.75" PointY="9.625" Height="0.40000000000000213" IsExpanded="false" />
@@ -11893,7 +11896,7 @@
         <EntityTypeShape EntityType="ProfileModel.HU_LOCATION" Width="1.75" PointX="19.375" PointY="28" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="ProfileModel.HU_CONCURRENTLY" Width="1.5" PointX="17.375" PointY="29.75" Height="9.0954394531249818" />
         <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE" Width="1.5" PointX="19.375" PointY="30.375" Height="6.018616536458353" />
-        <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="2.125" PointX="9.375" PointY="31.375" Height="6.4032194010416674" />
+        <EntityTypeShape EntityType="ProfileModel.HU_CERTIFICATE_EDIT" Width="3.125" PointX="9.375" PointY="31.375" Height="6.5955208333333317" />
         <EntityTypeShape EntityType="ProfileModel.HU_SIGNER" Width="1.5" PointX="30" PointY="7.25" Height="3.7109993489583335" />
         <EntityTypeShape EntityType="ProfileModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="33.5" PointY="7" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="ProfileModel.HU_WELFARE_MNG_EMP" Width="2.5" PointX="7.375" PointY="26.25" Height="5.0571093750000031" />
