@@ -204,8 +204,7 @@
                     <tlk:RadComboBox ID="cboSalTYPE" runat="server" SkinID="LoadDemand" Enabled="False"></tlk:RadComboBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbTaxTable" runat="server" Text="<%# UI.Wage_TaxTable %>"></asp:Label>
-                    
+                    <asp:Label ID="lbTaxTable" runat="server" Text="<%# UI.Wage_TaxTable %>"></asp:Label>                    
                 </td>
                 <td>
                     <tlk:RadComboBox ID="cboTaxTable" runat="server" SkinID="LoadDemand" Enabled="False"></tlk:RadComboBox>                  
@@ -213,19 +212,25 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <asp:Label ID="lbBasicSal" runat="server" Text="<%# UI.Wage_BasicSalary %>"></asp:Label>
-                    
+                    <asp:Label ID="lbBasicSal" runat="server" Text="<%# UI.Wage_BasicSalary %>"></asp:Label>                    
                 </td>
                 <td>
                     <tlk:RadNumericTextBox ID="rnBasicSal" runat="server" MinValue="0" SkinID="ReadOnly" ReadOnly="true">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
-                    <asp:Label ID="lbSalaryInsurance" runat="server" Text="<%# UI.Wage_Sal_Ins %>"></asp:Label>
+                    <asp:Label ID="lbPercentSalary" runat="server" Text="% hưởng lương"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="SalaryInsurance"  runat="server" SkinID="Money" Enabled="False" >
+                    <tlk:RadNumericTextBox ID="PercentSalary"  runat="server" Enabled="False" >
                     </tlk:RadNumericTextBox>                                     
+                </td>                
+                <td class="lb">
+                    <asp:Label ID="lbSalary_Total" runat="server" Text="<%# UI.Wage_Salary_Total %>"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox ID="Salary_Total" runat="server" SkinID="Money" Enabled="False">
+                    </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
                     <asp:Label ID="lbAllowance_Total" runat="server" Text="<%# UI.Wage_Allowance_total %>"></asp:Label>
@@ -234,26 +239,37 @@
                     <tlk:RadNumericTextBox ID="Allowance_Total"  runat="server" SkinID="Money" Enabled="False">
                     </tlk:RadNumericTextBox> 
                 </td>
-                
             </tr>
-            <tr>
+            <tr >
                 <td class="lb">
-                    <asp:Label ID="lbSalary_Total" runat="server" Text="<%# UI.Wage_Salary_Total %>"></asp:Label>
+                    <asp:Label runat="server" ID="lbOtherSalary1" Text="Thưởng hiệu quả công việc"></asp:Label>
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="Salary_Total" runat="server" SkinID="Money" Enabled="False">
-                    </tlk:RadNumericTextBox>                  
+                    <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary1" SkinID="Money" Enabled="False">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbOtherSalary2" Text="Phụ cấp kiêm nhiệm"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary2" SkinID="Money" Enabled="False">
+                    </tlk:RadNumericTextBox>
+                </td>
+                <td class="lb">
+                    <asp:Label runat="server" ID="lbOtherSalary3" Text="Chi phí hỗ trợ khác"></asp:Label>
+                </td>
+                <td>
+                    <tlk:RadNumericTextBox runat="server" ID="rnOtherSalary3" SkinID="Money" Enabled="False">
+                    </tlk:RadNumericTextBox>
                 </td>
             </tr>
-            <tr>
-           <td colspan="6">
-                   <tlk:RadGrid PageSize="50" ID="rgAllow" runat="server" 
-                        SkinID="GridNotPaging">
+            <%--<tr>
+                <td colspan="6">
+                   <tlk:RadGrid PageSize="50" ID="rgAllow" runat="server" SkinID="GridNotPaging">
                         <MasterTableView DataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE"
-                            ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE"
-                           >                            
+                            ClientDataKeyNames="ID,ALLOWANCE_LIST_ID,AMOUNT,IS_INSURRANCE,ALLOWANCE_LIST_NAME,EFFECT_DATE,EXPIRE_DATE">                            
                             <Columns>
-                               <%-- <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
+                                <tlk:GridClientSelectColumn UniqueName="cbStatus" HeaderStyle-HorizontalAlign="Center"
                                     HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                                 </tlk:GridClientSelectColumn>
                                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Tên phụ cấp %>" DataField="ALLOWANCE_LIST_NAME"
@@ -268,12 +284,12 @@
                                 <tlk:GridCheckBoxColumn HeaderText="<%$ Translate: Đóng bảo hiểm %>" DataField="IS_INSURRANCE"
                                     SortExpression="IS_INSURRANCE" UniqueName="IS_INSURRANCE" HeaderStyle-Width="100px">
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </tlk:GridCheckBoxColumn>--%>
+                                </tlk:GridCheckBoxColumn>
                             </Columns>
                         </MasterTableView>
                     </tlk:RadGrid>
-           </td>
-            </tr>
+                </td>
+            </tr>--%>
         </table>
     </tlk:RadPane>
 </tlk:RadSplitter>
