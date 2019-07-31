@@ -117,14 +117,16 @@
                 </td>
             </tr>
             <tr>
-                <td class="lb">
-                    <%--<%# Translate("BHTN")%>--%>
+                <%--<td class="lb">
+                    <%# Translate("BHTN")%>
                     &nbsp;
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="radnmUI" runat="server" SkinID="Money" Visible ="false">
+                    <tlk:RadNumericTextBox ID="radnmUI" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
-                </td>
+                </td>--%>
+                <td></td>
+                <td></td>
                 <td class="lb">
                     <%# Translate("BHTN")%><span class="lbReq">*</span>
                 </td>
@@ -150,11 +152,11 @@
             </tr>
             <tr>
                 <td class="lb">
-                    <%--<%# Translate("BH TNLD, BNN")%>--%>
+                    <%# Translate("BH TNLD,BNN")%>
                     &nbsp;
                 </td>
                 <td>
-                    <tlk:RadNumericTextBox ID="RadNumericTextBox1" runat="server" SkinID="Money" Visible ="false">
+                    <tlk:RadNumericTextBox ID="radnmUI" runat="server" SkinID="Money">
                     </tlk:RadNumericTextBox>
                 </td>
                 <td class="lb">
@@ -314,12 +316,12 @@
                         UniqueName="HI_EMP" SortExpression="HI_EMP" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % Công ty BHYT %>" DataField="HI_COM"
                         UniqueName="HI_COM" SortExpression="HI_COM" />
-                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức trần BHTN %>" DataFormatString="{0:N0}"
-                        DataField="UI" UniqueName="UI" SortExpression="UI" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % Nhân viên BHTN %>" DataField="UI_EMP"
                         UniqueName="UI_EMP" SortExpression="UI_EMP" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % Công ty BHTN %>" DataField="UI_COM"
                         UniqueName="UI_COM" SortExpression="UI_COM" />
+                    <tlk:GridNumericColumn HeaderText="<%$ Translate: Mức trần BH TNLD,BNN %>" DataFormatString="{0:N0}"
+                        DataField="UI" UniqueName="UI" SortExpression="UI" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % Nhân viên BH TNLD, BNN %>" DataField="BHTNLD_BNN_EMP"
                         UniqueName="BHTNLD_BNN_EMP" SortExpression="BHTNLD_BNN_EMP" />
                     <tlk:GridNumericColumn HeaderText="<%$ Translate: % Công ty BH TNLD, BNN %>" DataField="BHTNLD_BNN_COM"

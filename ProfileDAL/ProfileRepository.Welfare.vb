@@ -141,6 +141,7 @@ Partial Class ProfileRepository
                    Order By p.EMPLOYEE_ID
 
             Dim lst = query.Select(Function(p) New Welfatemng_empDTO With {
+                                       .ID = p.ce.ID,
                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                       .TITLE_NAME = p.t.NAME_VN,
@@ -409,6 +410,19 @@ Partial Class ProfileRepository
                                                      .P_DATE = P_DATE,
                                                      .P_CUR = cls.OUT_CURSOR})
 
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GET_INFO_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_INFO_EMPLOYEE",
+                                           New With {.P_EMP_CODE = P_EMP_CODE,
+                                                     .P_CUR = cls.OUT_CURSOR})
                 Return dtData
             End Using
         Catch ex As Exception

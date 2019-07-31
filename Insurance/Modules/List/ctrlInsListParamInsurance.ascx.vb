@@ -79,7 +79,7 @@ Public Class ctrlInsListParamInsurance
             dic.Add("EFFECTIVE_DATE", rdEffectiveDate)
             dic.Add("SI", radnmSI)
             dic.Add("HI", radnmHI)
-            'dic.Add("UI", radnmUI)
+            dic.Add("UI", radnmUI)
             dic.Add("SI_COM", radnmSI_COM)
             dic.Add("SI_EMP", radnmSI_EMP)
             dic.Add("HI_COM", radnmHI_COM)

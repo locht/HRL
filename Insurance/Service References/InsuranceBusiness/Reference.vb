@@ -4949,6 +4949,9 @@ Namespace InsuranceBusiness
         Private BHTNField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
+        Private BHTNLD_BNNField As System.Nullable(Of Decimal)
+        
+        <System.Runtime.Serialization.OptionalFieldAttribute()>  _
         Private BHXHField As System.Nullable(Of Decimal)
         
         <System.Runtime.Serialization.OptionalFieldAttribute()>  _
@@ -5016,6 +5019,19 @@ Namespace InsuranceBusiness
                 If (Me.BHTNField.Equals(value) <> true) Then
                     Me.BHTNField = value
                     Me.RaisePropertyChanged("BHTN")
+                End If
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property BHTNLD_BNN() As System.Nullable(Of Decimal)
+            Get
+                Return Me.BHTNLD_BNNField
+            End Get
+            Set
+                If (Me.BHTNLD_BNNField.Equals(value) <> true) Then
+                    Me.BHTNLD_BNNField = value
+                    Me.RaisePropertyChanged("BHTNLD_BNN")
                 End If
             End Set
         End Property

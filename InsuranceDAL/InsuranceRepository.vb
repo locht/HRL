@@ -37,6 +37,7 @@ Partial Public Class InsuranceRepository
                             .BHXH = p.BHXH,
                             .BHYT = p.BHYT,
                             .BHTN = p.BHTN,
+                            .BHTNLD_BNN = p.BHTNLD_BNN,
                             .PERIOD = p.PERIOD}).ToList
             End If
             'Danh sách loại chế độ

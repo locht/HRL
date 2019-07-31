@@ -180,6 +180,9 @@ Public Class ctrlInsObjectPayInsurrance
                 Case "BHTN"
                     listCheck = (From s In ListComboData.LIST_CONTRACTTYPE
                                 Where s.BHTN = 1).ToList
+                Case "BHTNLD_BNN"
+                    listCheck = (From s In ListComboData.LIST_CONTRACTTYPE
+                                Where s.BHTNLD_BNN = 1).ToList
             End Select
             radLstContact.ClearChecked()
             For Each chk As RadListBoxItem In radLstContact.Items

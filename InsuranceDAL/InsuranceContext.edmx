@@ -562,6 +562,7 @@
             <Property Name="BHXH" Type="number" Nullable="true" Precision="38" />
             <Property Name="BHYT" Type="number" Nullable="true" Precision="38" />
             <Property Name="BHTN" Type="number" Nullable="true" Precision="38" />
+            <Property Name="BHTNLD_BNN" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="HU_CONTRACT_MAX_V">
             <Key>
@@ -2265,6 +2266,7 @@
           <Property Type="Decimal" Name="BHXH" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="BHYT" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="BHTN" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BHTNLD_BNN" />
         </EntityType>
         <EntityType Name="HU_CONTRACT_MAX_V">
           <Key>
@@ -3305,6 +3307,7 @@
                     <ScalarProperty Name="BHXH" ColumnName="BHXH" />
                     <ScalarProperty Name="BHYT" ColumnName="BHYT" />
                     <ScalarProperty Name="BHTN" ColumnName="BHTN" />
+                    <ScalarProperty Name="BHTNLD_BNN" ColumnName="BHTNLD_BNN" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -4067,7 +4070,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="InsuranceModel.SE_CHOSEN_ORG" Width="2.125" PointX="7.75" PointY="2.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_CONTRACT" Width="1.5" PointX="7.75" PointY="4.875" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="InsuranceModel.HU_CONTRACT_TYPE" Width="1.75" PointX="7.75" PointY="6.875" Height="0.39999999999999858" IsExpanded="false" />
+        <EntityTypeShape EntityType="InsuranceModel.HU_CONTRACT_TYPE" Width="1.75" PointX="7.75" PointY="6.875" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="InsuranceModel.HU_CONTRACT_MAX_V" Width="1.5" PointX="7.75" PointY="8.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.HU_STAFF_RANK" Width="1.5" PointX="0.75" PointY="9.875" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="InsuranceModel.INS_ARISING" Width="1.5" PointX="2.75" PointY="9.875" Height="0.39999999999999858" IsExpanded="false" />
