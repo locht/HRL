@@ -839,7 +839,10 @@ Partial Class ProfileRepository
                             .SAL_TOTAL = p.SAL_TOTAL,
                             .ALLOWANCE_TOTAL = p.ALLOWANCE_TOTAL,
                             .TAX_TABLE_ID = p.TAX_TABLE_ID,
-                            .TAX_TABLE_Name = taxTable.NAME_VN
+                            .TAX_TABLE_Name = taxTable.NAME_VN,
+                             .OTHERSALARY1 = p.OTHERSALARY1,
+                             .OTHERSALARY2 = p.OTHERSALARY2,
+                             .OTHERSALARY3 = p.OTHERSALARY3
                             }
 
             Dim working = query.FirstOrDefault
