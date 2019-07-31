@@ -554,8 +554,14 @@ Public Class ctrlHU_WageMng
             dsData.Tables(4).TableName = "Table4"
             dsData.Tables(5).TableName = "Table5"
             rep.Dispose()
-            ExportTemplate(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xlsx",
+            If File.Exists(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xlsx") Then
+                ExportTemplate(configPath + "Payroll\TEMP_IMPORT_HOSOLUONG.xlsx",
                                       dsData, Nothing, "Template_HoSoLuong_" & Format(Date.Now, "yyyyMMdd"))
+            Else
+                ShowMessage(Translate("Template không tồn tại"), Utilities.NotifyType.Error)
+                Exit Sub
+            End If
+            
 
         Catch ex As Exception
             Throw ex
@@ -568,13 +574,16 @@ Public Class ctrlHU_WageMng
                                                     ByVal filename As String) As Boolean
 
         Dim filePath As String
-        Dim templatefolder As String
+        'Dim templatefolder As String
 
         Dim designer As WorkbookDesigner
         Try
 
-            templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
-            filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+            'templatefolder = ConfigurationManager.AppSettings("ReportTemplatesFolder")
+            'filePath = AppDomain.CurrentDomain.BaseDirectory & templatefolder & "\" & sReportFileName
+
+            'cau hinh lai duong dan tren server
+            filePath = sReportFileName
 
             If Not File.Exists(filePath) Then
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "javascriptfunction", "goBack()", True)
