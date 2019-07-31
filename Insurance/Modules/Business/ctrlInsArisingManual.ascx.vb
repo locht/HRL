@@ -66,15 +66,6 @@ Public Class ctrlInsArisingManual
         End Get
     End Property
 
-    'Private Property ListPeriod As List(Of PERIOD_DTO)
-    '    Get
-    '        Return ViewState(Me.ID & "_ListPeriod")
-    '    End Get
-    '    Set(ByVal value As List(Of PERIOD_DTO))
-    '        ViewState(Me.ID & "_ListPeriod") = value
-    '    End Set
-    'End Property
-
     Public Property InsCompList As DataTable
         Get
             Return ViewState(Me.ID & "_InsCompList")
@@ -116,10 +107,7 @@ Public Class ctrlInsArisingManual
 
             Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
-            'If Not IsPostBack Then
-            '    ViewConfig(RadPane1)
-            '    'GirdConfig(rgGrid)
-            'End If
+
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
         End Try
@@ -233,8 +221,6 @@ Public Class ctrlInsArisingManual
                     txtA_HI.Enabled = True
                     txtA_UI.Enabled = True
 
-
-
                 Case CommonMessage.STATE_DELETE
 
                 Case "Nothing"
@@ -314,6 +300,16 @@ Public Class ctrlInsArisingManual
             txtA_SI.Text = "0"
             txtA_HI.Text = "0"
             txtA_UI.Text = "0"
+            txtSI_SAL_NEW.Text = ""
+            txtSI_SAL_OLD.Text = ""
+            txtHI_SAL_NEW.Text = ""
+            txtHI_SAL_OLD.Text = ""
+            txtUI_SAL_NEW.Text = ""
+            txtUI_SAL_OLD.Text = ""
+            rdBHTNLD_BNN_NEW.Text = ""
+            rdBHTNLD_BNN_OLD.Text = ""
+            rdA_BHTNLD_BNN.Text = "0"
+            rdR_BHTNLD_BNN.Text = "0"
 
         Catch ex As Exception
         End Try
@@ -373,8 +369,17 @@ Public Class ctrlInsArisingManual
                                                     , InsCommon.getNumber(IIf(chkSI.Checked, -1, 0)) _
                                                     , InsCommon.getNumber(IIf(chkHI.Checked, -1, 0)) _
                                                     , InsCommon.getNumber(IIf(chkUI.Checked, -1, 0)) _
-                                                    , InsCommon.getNumber(IIf(chkTNLD_BNN.Checked, -1, 0))
-                                                    ) Then
+                                                    , InsCommon.getNumber(IIf(chkTNLD_BNN.Checked, -1, 0)) _
+                                                    , InsCommon.getNumber(txtSI_SAL_NEW.Text) _
+                                                    , InsCommon.getNumber(txtHI_SAL_NEW.Text) _
+                                                    , InsCommon.getNumber(txtUI_SAL_NEW.Text) _
+                                                    , InsCommon.getNumber(rdBHTNLD_BNN_NEW.Text) _
+                                                    , InsCommon.getNumber(txtSI_SAL_OLD.Text) _
+                                                    , InsCommon.getNumber(txtHI_SAL_OLD.Text) _
+                                                    , InsCommon.getNumber(txtUI_SAL_OLD.Text) _
+                                                    , InsCommon.getNumber(rdBHTNLD_BNN_OLD.Text) _
+                                                    , InsCommon.getNumber(rdA_BHTNLD_BNN.Text) _
+                                                    , InsCommon.getNumber(rdR_BHTNLD_BNN.Text)) Then
 
                         Refresh("InsertView")
                         'Common.Common.OrganizationLocationDataSession = Nothing
@@ -438,8 +443,17 @@ Public Class ctrlInsArisingManual
                                                                     , InsCommon.getNumber(IIf(chkSI.Checked, -1, 0)) _
                                                                     , InsCommon.getNumber(IIf(chkHI.Checked, -1, 0)) _
                                                                     , InsCommon.getNumber(IIf(chkUI.Checked, -1, 0)) _
-                                                                    , InsCommon.getNumber(IIf(chkTNLD_BNN.Checked, -1, 0))
-                                                                    ) Then
+                                                                    , InsCommon.getNumber(IIf(chkTNLD_BNN.Checked, -1, 0)) _
+                                                                    , InsCommon.getNumber(txtSI_SAL_NEW.Text) _
+                                                                    , InsCommon.getNumber(txtHI_SAL_NEW.Text) _
+                                                                    , InsCommon.getNumber(txtUI_SAL_NEW.Text) _
+                                                                    , InsCommon.getNumber(rdBHTNLD_BNN_NEW.Text) _
+                                                                    , InsCommon.getNumber(txtSI_SAL_OLD.Text) _
+                                                                    , InsCommon.getNumber(txtHI_SAL_OLD.Text) _
+                                                                    , InsCommon.getNumber(txtUI_SAL_OLD.Text) _
+                                                                    , InsCommon.getNumber(rdBHTNLD_BNN_OLD.Text) _
+                                                                    , InsCommon.getNumber(rdA_BHTNLD_BNN.Text) _
+                                                                    , InsCommon.getNumber(rdR_BHTNLD_BNN.Text)) Then
                         Refresh("UpdateView")
                         ShowMessage(Translate(CommonMessage.MESSAGE_TRANSACTION_SUCCESS), Utilities.NotifyType.Success)
                         Dim str As String = "getRadWindow().close('1');"
@@ -560,6 +574,19 @@ Public Class ctrlInsArisingManual
             InsCommon.SetNumber(txtSALARY_PRE_PERIOD, lstSource.Rows(0)("SALARY_PRE_PERIOD"))
             InsCommon.SetNumber(txtSALARY_NOW_PERIOD, lstSource.Rows(0)("SALARY_NOW_PERIOD"))
 
+
+            InsCommon.SetNumber(txtSI_SAL_OLD, lstSource.Rows(0)("SI_SAL_OLD"))
+            InsCommon.SetNumber(txtSI_SAL_NEW, lstSource.Rows(0)("SI_SAL"))
+
+            InsCommon.SetNumber(txtHI_SAL_OLD, lstSource.Rows(0)("HI_SAL_OLD"))
+            InsCommon.SetNumber(txtHI_SAL_NEW, lstSource.Rows(0)("HI_SAL"))
+
+            InsCommon.SetNumber(txtUI_SAL_OLD, lstSource.Rows(0)("UI_SAL_OLD"))
+            InsCommon.SetNumber(txtUI_SAL_NEW, lstSource.Rows(0)("UI_SAL"))
+
+            InsCommon.SetNumber(rdBHTNLD_BNN_OLD, lstSource.Rows(0)("TNLD_BNN_SAL_OLD"))
+            InsCommon.SetNumber(rdBHTNLD_BNN_NEW, lstSource.Rows(0)("TNLD_BNN_SAL"))
+
             'ThanhNT added 26/07/2016
             '[2:39:36 PM] Luyen Nguyen Pham Bao: giảm => không cho nhập mức lương kỳ này
             '[2:39:47 PM] Luyen Nguyen Pham Bao: Tăng => không cho nhập mức lương kỳ trước
@@ -567,12 +594,41 @@ Public Class ctrlInsArisingManual
             If Arising_Type = 1 Then 'TANG
                 txtSALARY_PRE_PERIOD.ReadOnly = True
                 txtSALARY_NOW_PERIOD.ReadOnly = False
+
+                txtSI_SAL_OLD.ReadOnly = True
+                txtSI_SAL_NEW.ReadOnly = False
+                txtHI_SAL_OLD.ReadOnly = True
+                txtHI_SAL_NEW.ReadOnly = False
+                txtUI_SAL_OLD.ReadOnly = True
+                txtUI_SAL_NEW.ReadOnly = False
+                rdBHTNLD_BNN_OLD.ReadOnly = True
+                rdBHTNLD_BNN_NEW.ReadOnly = False
+
+
             ElseIf lstSource.Rows(0)("ARISING_TYPE") = 2 Then 'giam
                 txtSALARY_NOW_PERIOD.ReadOnly = True
                 txtSALARY_PRE_PERIOD.ReadOnly = False
+
+                txtSI_SAL_OLD.ReadOnly = False
+                txtSI_SAL_NEW.ReadOnly = True
+                txtHI_SAL_OLD.ReadOnly = False
+                txtHI_SAL_NEW.ReadOnly = True
+                txtUI_SAL_OLD.ReadOnly = False
+                txtUI_SAL_NEW.ReadOnly = True
+                rdBHTNLD_BNN_OLD.ReadOnly = False
+                rdBHTNLD_BNN_NEW.ReadOnly = True
             Else
                 txtSALARY_PRE_PERIOD.ReadOnly = False
                 txtSALARY_NOW_PERIOD.ReadOnly = False
+
+                txtSI_SAL_OLD.ReadOnly = False
+                txtSI_SAL_NEW.ReadOnly = False
+                txtHI_SAL_OLD.ReadOnly = False
+                txtHI_SAL_NEW.ReadOnly = False
+                txtUI_SAL_OLD.ReadOnly = False
+                txtUI_SAL_NEW.ReadOnly = False
+                rdBHTNLD_BNN_OLD.ReadOnly = False
+                rdBHTNLD_BNN_NEW.ReadOnly = False
             End If
             InsCommon.SetDate(txtA_FROM, lstSource.Rows(0)("A_FROM"))
             InsCommon.SetDate(txtA_TO, lstSource.Rows(0)("A_TO"))
@@ -592,6 +648,10 @@ Public Class ctrlInsArisingManual
             Else
                 txtA_SI.Value = Nothing
                 txtR_SI.Value = Nothing
+
+                txtSI_SAL_OLD.Value = Nothing
+                txtSI_SAL_NEW.Value = Nothing
+               
             End If
 
             If chkHI.Checked Then
@@ -609,6 +669,11 @@ Public Class ctrlInsArisingManual
                 txtA_HI.Value = Nothing
                 txtR_HI.Value = Nothing
                 txtO_HI.Value = Nothing
+
+
+                txtHI_SAL_OLD.Value = Nothing
+                txtHI_SAL_NEW.Value = Nothing
+               
             End If
 
             If chkUI.Checked Then
@@ -617,7 +682,23 @@ Public Class ctrlInsArisingManual
             Else
                 txtA_UI.Value = Nothing
                 txtR_UI.Value = Nothing
+
+                txtUI_SAL_OLD.Value = Nothing
+                txtUI_SAL_NEW.Value = Nothing
+
             End If
+
+            If chkTNLD_BNN.Checked Then
+                InsCommon.SetNumber(rdA_BHTNLD_BNN, lstSource.Rows(0)("A_TNLD_BNN"))
+                InsCommon.SetNumber(rdR_BHTNLD_BNN, lstSource.Rows(0)("R_TNLD_BNN"))
+            Else
+                rdA_BHTNLD_BNN.Value = Nothing
+                rdR_BHTNLD_BNN.Value = Nothing
+
+                rdBHTNLD_BNN_OLD.Value = Nothing
+                rdBHTNLD_BNN_NEW.Value = Nothing
+            End If
+
         Catch ex As Exception
 
         End Try
@@ -691,6 +772,23 @@ Public Class ctrlInsArisingManual
                 'InsCommon.SetNumber(txtO_SI, lstSource.Rows(0)("O_SI"))
                 InsCommon.SetNumber(txtO_HI, lstSource.Rows(0)("O_HI"))
                 InsCommon.SetNumber(txtO_UI, lstSource.Rows(0)("O_UI"))
+
+
+                InsCommon.SetNumber(txtSI_SAL_OLD, lstSource.Rows(0)("SI_SAL_OLD"))
+                InsCommon.SetNumber(txtSI_SAL_NEW, lstSource.Rows(0)("SI_SAL"))
+
+                InsCommon.SetNumber(txtHI_SAL_OLD, lstSource.Rows(0)("HI_SAL_OLD"))
+                InsCommon.SetNumber(txtHI_SAL_NEW, lstSource.Rows(0)("HI_SAL"))
+
+                InsCommon.SetNumber(txtUI_SAL_OLD, lstSource.Rows(0)("UI_SAL_OLD"))
+                InsCommon.SetNumber(txtUI_SAL_NEW, lstSource.Rows(0)("UI_SAL"))
+
+                InsCommon.SetNumber(rdBHTNLD_BNN_OLD, lstSource.Rows(0)("BHTNLD_BNN_SAL_OLD"))
+                InsCommon.SetNumber(rdBHTNLD_BNN_NEW, lstSource.Rows(0)("BHTNLD_BNN_SAL"))
+
+                InsCommon.SetNumber(rdA_BHTNLD_BNN, lstSource.Rows(0)("A_TNLD_BNN"))
+
+                InsCommon.SetNumber(rdR_BHTNLD_BNN, lstSource.Rows(0)("R_TNLD_BNN"))
 
             End If
 
@@ -894,7 +992,7 @@ Public Class ctrlInsArisingManual
                             Exit Sub
                         End If
                     End If
-                    
+
                     txtEMPLOYEE_ID.Text = lstSource.Rows(0)("EMPLOYEE_ID")
                     InsCommon.SetString(txtFULLNAME, lstSource.Rows(0)("VN_FULLNAME"))
                     InsCommon.SetString(txtDEP, lstSource.Rows(0)("ORG_NAME"))
