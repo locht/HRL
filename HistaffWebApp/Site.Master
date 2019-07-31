@@ -370,7 +370,7 @@
                                     <asp:ListView ID="ltrEmpDtlFamily" runat="server">
                                         <ItemTemplate>
                                             <div class='box25'>
-                                                <i class='fa fa-exclamation-circle'></i><a href='/Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&Place=ctrlHU_EmpDtlTrainingOutCompany&state=Normal'
+                                                <i class='fa fa-exclamation-circle'></i><a href='Default.aspx?mid=Profile&fid=ctrlHU_EmpDtl&group=Business&emp=<%# Eval("EMPLOYEE_ID")%>&Place=ctrlHU_EmpDtlFamily&state=Normal'
                                                     target="_blank">
                                                     <%# Eval("EMPLOYEE_CODE") + " - " + Eval("FULLNAME")%></a>
                                             </div>
