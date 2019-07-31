@@ -236,56 +236,11 @@ Public Class ctrlInsMaternityDetail
             Select Case CurrentState
                 Case CommonMessage.STATE_NEW
 
-                    'If rep.UpdateInsArisingManual(Common.Common.GetUserName(), InsCommon.getNumber(0) _
-                    '                                , InsCommon.getNumber(txtEMPID.Text) _
-                    '                                , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
-                    '                                , InsCommon.getNumber(ddlINS_ARISING_TYPE_ID.SelectedValue) _
-                    '                                , InsCommon.getNumber(txtSALARY_PRE_PERIOD.Text) _
-                    '                                , InsCommon.getNumber(txtSALARY_NOW_PERIOD.Text) _
-                    '                                , InsCommon.getNumber(0) _
-                    '                                , (txtEFFECTIVE_DATE.SelectedDate) _
-                    '                                , txtEXPRIE_DATE.SelectedDate _
-                    '                                , (txtDECLARE_DATE.SelectedDate) _
-                    '                                , (txtARISING_FROM_MONTH.SelectedDate) _
-                    '                                , (txtARISING_TO_MONTH.SelectedDate) _
-                    '                                , txtNOTE.Text _
-                    '                                , "" _
-                    '                                , "" _
-                    '                                , InsCommon.getNumber(0) _
-                    '                                , Nothing _
-                    '                                , Nothing _
-                    '                                , InsCommon.getNumber(0) _
-                    '                                , (txtR_FROM.SelectedDate) _
-                    '                                , "" _
-                    '                                , txtHEALTH_RETURN_DATE.SelectedDate _
-                    '                                , (txtR_FROM.SelectedDate) _
-                    '                                , (txtR_FROM.SelectedDate) _
-                    '                                , (txtR_FROM.SelectedDate) _
-                    '                                , (txtR_FROM.SelectedDate) _
-                    '                                , (txtO_FROM.SelectedDate) _
-                    '                                , (txtR_TO.SelectedDate) _
-                    '                                , (txtO_TO.SelectedDate) _
-                    '                                , InsCommon.getNumber(txtR_SI.Text) _
-                    '                                , InsCommon.getNumber(0) _
-                    '                                , InsCommon.getNumber(txtR_HI.Text) _
-                    '                                , InsCommon.getNumber(txtO_HI.Text) _
-                    '                                , InsCommon.getNumber(txtR_UI.Text) _
-                    '                                , InsCommon.getNumber(txtO_UI.Text) _
-                    '                                , (txtA_FROM.SelectedDate) _
-                    '                                , (txtA_TO.SelectedDate) _
-                    '                                , InsCommon.getNumber(txtA_SI.Text) _
-                    '                                , InsCommon.getNumber(txtA_HI.Text) _
-                    '                                , InsCommon.getNumber(txtA_UI.Text) _
-                    '                                , InsCommon.getNumber(IIf(chkSI.Checked, 1, 0)) _
-                    '                                , InsCommon.getNumber(IIf(chkHI.Checked, 1, 0)) _
-                    '                                , InsCommon.getNumber(IIf(chkUI.Checked, 1, 0))
-                    '                                ) Then
-
                     Dim id As Int32 = store_business.SAVE_INS_MATERNITY_MNG(0, InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), dateNgayDiLamSom.SelectedDate, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip))
 
                     'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
                     If cbNghiThaiSan.Checked = True Then
-                        'store_business.PRI_INS_ARISING_MATERNITY(id, InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
+                        store_business.PRI_INS_ARISING_MATERNITY(id, InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
                     End If
 
                     If dateNgayDiLamSom.SelectedDate IsNot Nothing Then
@@ -301,52 +256,14 @@ Public Class ctrlInsMaternityDetail
                     End If
                     'Common.Common.OrganizationLocationDataSession = Nothing
                 Case CommonMessage.STATE_EDIT
-                    'objOrgFunction.ID = Decimal.Parse(hidID.Value)
-                    'If rep.UpdateInsArisingManual(Common.Common.GetUserName(), InsCommon.getNumber(txtID.Text) _
-                    '                                                , InsCommon.getNumber(txtEMPID.Text) _
-                    '                                                , InsCommon.getNumber(ddlINS_ORG_ID.SelectedValue) _
-                    '                                                , InsCommon.getNumber(ddlINS_ARISING_TYPE_ID.SelectedValue) _
-                    '                                                , InsCommon.getNumber(txtSALARY_PRE_PERIOD.Text) _
-                    '                                                , InsCommon.getNumber(txtSALARY_NOW_PERIOD.Text) _
-                    '                                                , InsCommon.getNumber(0) _
-                    '                                                , (txtEFFECTIVE_DATE.SelectedDate) _
-                    '                                                , txtEXPRIE_DATE.SelectedDate _
-                    '                                                , (txtDECLARE_DATE.SelectedDate) _
-                    '                                                , (txtARISING_FROM_MONTH.SelectedDate) _
-                    '                                                , (txtARISING_TO_MONTH.SelectedDate) _
-                    '                                                , txtNOTE.Text _
-                    '                                                , "" _
-                    '                                                , "" _
-                    '                                                , InsCommon.getNumber(0) _
-                    '                                                , Nothing _
-                    '                                                , Nothing _
-                    '                                                , InsCommon.getNumber(0) _
-                    '                                                , (txtR_FROM.SelectedDate) _
-                    '                                                , "" _
-                    '                                                , txtHEALTH_RETURN_DATE.SelectedDate _
-                    '                                                , (txtR_FROM.SelectedDate) _
-                    '                                                , (txtR_FROM.SelectedDate) _
-                    '                                                , (txtR_FROM.SelectedDate) _
-                    '                                                , (txtR_FROM.SelectedDate) _
-                    '                                                , (txtO_FROM.SelectedDate) _
-                    '                                                , (txtR_TO.SelectedDate) _
-                    '                                                , (txtO_TO.SelectedDate) _
-                    '                                                , InsCommon.getNumber(txtR_SI.Text) _
-                    '                                                , InsCommon.getNumber(0) _
-                    '                                                , InsCommon.getNumber(txtR_HI.Text) _
-                    '                                                , InsCommon.getNumber(txtO_HI.Text) _
-                    '                                                , InsCommon.getNumber(txtR_UI.Text) _
-                    '                                                , InsCommon.getNumber(txtO_UI.Text) _
-                    '                                                , (txtA_FROM.SelectedDate) _
-                    '                                                , (txtA_TO.SelectedDate) _
-                    '                                                , InsCommon.getNumber(txtA_SI.Text) _
-                    '                                                , InsCommon.getNumber(txtA_HI.Text) _
-                    '                                                , InsCommon.getNumber(txtA_UI.Text) _
-                    '                                                , InsCommon.getNumber(IIf(chkSI.Checked, 1, 0)) _
-                    '                                                , InsCommon.getNumber(IIf(chkHI.Checked, 1, 0)) _
-                    '                                                , InsCommon.getNumber(IIf(chkUI.Checked, 1, 0))
-                    '                                                ) Then
+                    
                     If store_business.SAVE_INS_MATERNITY_MNG(InsCommon.getNumber(txtID.Text), InsCommon.getNumber(txtEMPID.Text), dateNgayDuSinh.SelectedDate, InsCommon.getNumber(IIf(cbNghiThaiSan.Checked, 1, 0)), dateFrom.SelectedDate, dateTo.SelectedDate, dataFromEnjoy.SelectedDate, dataToEnjoy.SelectedDate, dateNgaySinh.SelectedDate, InsCommon.getNumber(txtSoCon.Text), InsCommon.getNumber(txtTamUng.Text), dateNgayDiLamSom.SelectedDate, txtRemark.Text, userlog.Username, String.Format("{0}-{1}", userlog.ComputerName, userlog.Ip)) Then
+
+                        'P_INS_ARISING_TYPE = 3: Cập nhật biến động BH giảm do nghỉ thai sản
+                        If cbNghiThaiSan.Checked = True Then
+                            store_business.PRI_INS_ARISING_MATERNITY(InsCommon.getNumber(txtID.Text), InsCommon.getNumber(txtEMPID.Text), dateFrom.SelectedDate, 3, userlog.Username)
+                        End If
+
                         If dateNgayDiLamSom.SelectedDate IsNot Nothing Then
                             'Dim result = store_business.DELETE_INS_THAISAN(txtEMPLOYEE_ID.Text, dateNgayDiLamSom.SelectedDate, dateTo.SelectedDate)
                         End If
