@@ -92,6 +92,7 @@
             <EntitySet Name="ATV_OFFSETTING" EntityType="AttendanceModel.Store.ATV_OFFSETTING" store:Type="Tables"  />
             <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="AttendanceModel.Store.SE_USER_ORG_ACCESS" store:Type="Tables"  />
             <EntitySet Name="AT_SHIFT" EntityType="AttendanceModel.Store.AT_SHIFT" store:Type="Tables"  />
+            <EntitySet Name="AT_LEAVESHEET_DETAIL" EntityType="AttendanceModel.Store.AT_LEAVESHEET_DETAIL" store:Type="Tables"  />
             <EntitySet Name="SE_USER_REPORT" EntityType="AttendanceModel.Store.SE_USER_REPORT" store:Type="Tables"  />
             <AssociationSet Name="FK_OOLT_OOL" Association="AttendanceModel.Store.FK_OOLT_OOL">
                 <End Role="OT_OTHER_LIST_TYPE" EntitySet="OT_OTHER_LIST_TYPE" />
@@ -1024,6 +1025,7 @@
             <Property Name="NOT_IN_PLAN_DAYS" Type="number" Nullable="true" Precision="38" />
             <Property Name="DAY_NUM" Type="number" Nullable="true" Precision="38" />
             <Property Name="EMP_APPROVES_NAME" Type="nclob" Nullable="true" />
+            <Property Name="IS_APP" Type="number" Nullable="true" Precision="38" />
         </EntityType>
         <EntityType Name="AT_PERIOD">
             <Key>
@@ -2386,6 +2388,25 @@
             <Property Name="IS_HOURS_CHECKOUT" Type="number" Nullable="true" Precision="38" />
             <Property Name="IS_MID_END" Type="number" Nullable="true" Precision="38" />
         </EntityType>
+        <EntityType Name="AT_LEAVESHEET_DETAIL">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="LEAVESHEET_ID" Type="number" Nullable="false" Precision="38" />
+            <Property Name="EMPLOYEE_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="LEAVE_DAY" Type="date" Nullable="true" />
+            <Property Name="MANUAL_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="DAY_NUM" Type="number" Nullable="true" Precision="38" />
+            <Property Name="STATUS_SHIFT" Type="number" Nullable="true" Precision="38" />
+            <Property Name="SHIFT_ID" Type="number" Nullable="true" Precision="38" />
+            <Property Name="CREATED_DATE" Type="date" Nullable="true" />
+            <Property Name="CREATED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CREATED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_DATE" Type="date" Nullable="true" />
+            <Property Name="MODIFIED_BY" Type="nvarchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFIED_LOG" Type="nvarchar2" Nullable="true" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SE_USER_REPORT">
             <Key>
                 <PropertyRef Name="SE_REPORT_ID" />
@@ -2697,6 +2718,7 @@
           <EntitySet Name="ATV_OFFSETTING" EntityType="AttendanceModel.ATV_OFFSETTING" />
           <EntitySet Name="SE_USER_ORG_ACCESS" EntityType="AttendanceModel.SE_USER_ORG_ACCESS" />
           <EntitySet Name="AT_SHIFT" EntityType="AttendanceModel.AT_SHIFT" />
+          <EntitySet Name="AT_LEAVESHEET_DETAIL" EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" />
           </EntityContainer>
         <EntityType Name="OT_OTHER_LIST">
           <Key>
@@ -3724,6 +3746,7 @@
           <Property Type="Decimal" Name="NOT_IN_PLAN_DAYS" Nullable="true" />
           <Property Type="Decimal" Name="DAY_NUM" Nullable="true" />
           <Property Type="String" Name="EMP_APPROVES_NAME" Nullable="true" />
+          <Property Type="Decimal" Name="IS_APP" />
         </EntityType>
         <EntityType Name="AT_PERIOD">
           <Key>
@@ -5092,6 +5115,25 @@
           <Property Type="Decimal" Name="IS_HOURS_CHECKOUT" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="IS_MID_END" Precision="38" Scale="0" />
         </EntityType>
+        <EntityType Name="AT_LEAVESHEET_DETAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LEAVESHEET_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="EMPLOYEE_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="LEAVE_DAY" />
+          <Property Type="Decimal" Name="MANUAL_ID" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DAY_NUM" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="STATUS_SHIFT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="SHIFT_ID" Precision="38" Scale="0" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CREATED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MODIFIED_LOG" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6015,6 +6057,7 @@
                     <ScalarProperty Name="NOT_IN_PLAN_DAYS" ColumnName="NOT_IN_PLAN_DAYS" />
                     <ScalarProperty Name="DAY_NUM" ColumnName="DAY_NUM" />
                     <ScalarProperty Name="EMP_APPROVES_NAME" ColumnName="EMP_APPROVES_NAME" />
+                    <ScalarProperty Name="IS_APP" ColumnName="IS_APP" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
@@ -7425,6 +7468,26 @@
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
+        <EntitySetMapping Name="AT_LEAVESHEET_DETAIL">
+            <EntityTypeMapping TypeName="AttendanceModel.AT_LEAVESHEET_DETAIL">
+                <MappingFragment StoreEntitySet="AT_LEAVESHEET_DETAIL">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="LEAVESHEET_ID" ColumnName="LEAVESHEET_ID" />
+                    <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                    <ScalarProperty Name="LEAVE_DAY" ColumnName="LEAVE_DAY" />
+                    <ScalarProperty Name="MANUAL_ID" ColumnName="MANUAL_ID" />
+                    <ScalarProperty Name="DAY_NUM" ColumnName="DAY_NUM" />
+                    <ScalarProperty Name="STATUS_SHIFT" ColumnName="STATUS_SHIFT" />
+                    <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                    <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                    <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                    <ScalarProperty Name="CREATED_LOG" ColumnName="CREATED_LOG" />
+                    <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                    <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                    <ScalarProperty Name="MODIFIED_LOG" ColumnName="MODIFIED_LOG" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
         <AssociationSetMapping Name="SE_USER_REPORT" TypeName="AttendanceModel.SE_USER_REPORT" StoreEntitySet="SE_USER_REPORT">
             <EndProperty Name="SE_REPORT">
                 <ScalarProperty Name="ID" ColumnName="SE_REPORT_ID" />
@@ -7541,7 +7604,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_GENERAL" Width="1.5" PointX="8.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_HOLIDAY_OBJECT" Width="1.5" PointX="10.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_LATE_COMBACKOUT" Width="1.5" PointX="12.625" PointY="12.5" Height="0.39999999999999858" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="25.625" PointY="15.125" Height="5.2494108072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET" Width="1.5" PointX="25.625" PointY="15.125" Height="5.4417122395833353" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_PERIOD" Width="2" PointX="2.75" PointY="11.375" Height="3.7109993489583335" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_SPECIAL" Width="1.5" PointX="13.625" PointY="6.5" Height="0.39999999999999858" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SIGNDEFAULT" Width="1.5" PointX="12.625" PointY="7.125" Height="3.9033007812499996" IsExpanded="true" />
@@ -7582,7 +7645,7 @@
         <EntityTypeShape EntityType="AttendanceModel.AT_SETUP_ATT_EMP" Width="1.5" PointX="11.375" PointY="21.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_OT_REGISTRATION" Width="1.5" PointX="20.875" PointY="10.75" Height="7.5570279947916674" IsExpanded="true" />
         <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING" Width="1.5" PointX="21.75" PointY="22.75" Height="0.4" IsExpanded="false" />
-        <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" Width="3.25" PointX="23.75" PointY="13.75" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_OFFSETTING_TIMEKEEPING_EMP" Width="3.25" PointX="23.75" PointY="13.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.HUV_AT_PORTAL" Width="1.5" PointX="23.75" PointY="18.75" Height="0.4" IsExpanded="false" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE" Width="1.5" PointX="5.1826480241411588" PointY="26.960923237242234" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFTCYCLE_EMP" Width="1.5" PointX="6.375" PointY="0.5" IsExpanded="false" Height="0.4" />
@@ -7594,6 +7657,7 @@
         <EntityTypeShape EntityType="AttendanceModel.ATV_OFFSETTING" Width="2.375" PointX="20.375" PointY="0.75" Height="1.9802864583333331" />
         <EntityTypeShape EntityType="AttendanceModel.SE_USER_ORG_ACCESS" Width="1.5" PointX="10.625" PointY="23.125" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="AttendanceModel.AT_SHIFT" Width="1.5" PointX="13.375" PointY="22.75" Height="7.9416308593749818" />
+        <EntityTypeShape EntityType="AttendanceModel.AT_LEAVESHEET_DETAIL" Width="1.5" PointX="18.375" PointY="22.75" Height="3.710999348958353" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

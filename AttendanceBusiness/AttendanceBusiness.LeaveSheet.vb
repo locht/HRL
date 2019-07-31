@@ -1,0 +1,49 @@
+﻿
+Imports AttendanceBusiness.ServiceContracts
+Imports AttendanceDAL
+Imports Framework.Data
+Imports System.Collections.Generic
+Namespace AttendanceBusiness.ServiceImplementations
+    Partial Public Class AttendanceBusiness
+        'Implements IAttendanceBusiness
+        Public Function GetLeaveSheet_ById(ByVal Leave_SheetID As Decimal, ByVal Struct As Decimal) As DataSet Implements IAttendanceBusiness.GetLeaveSheet_ById
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.GetLeaveSheet_ById(Leave_SheetID, Struct)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Public Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, manualId As Decimal) As DataTable Implements IAttendanceBusiness.GetLeaveSheet_Detail_ByDate
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.GetLeaveSheet_Detail_ByDate(employee_id, fromDate, toDate, manualId)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Function
+        Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet, Optional ByVal log As UserLog = Nothing) As Boolean Implements IAttendanceBusiness.SaveLeaveSheet
+            Try
+                Using rep As New AttendanceRepository
+                    Try
+                        Return rep.SaveLeaveSheet(dsLeaveSheet, log)
+                    Catch ex As Exception
+                        Throw ex
+                    End Try
+                End Using
+            Catch ex As Exception
+                Return False
+            End Try
+        End Function
+    End Class
+End Namespace

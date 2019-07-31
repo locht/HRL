@@ -1,8 +1,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 25/07/2019 9:45:50 AM
--- Generated from EDMX file: E:\TNG-New\AttendanceDAL\AttendanceContext.edmx
+-- Date Created: 7/31/2019 9:53:29 PM
+-- Generated from EDMX file: C:\workspaces\TNG\AttendanceDAL\AttendanceContext.edmx
 -- --------------------------------------------------
 
 -- --------------------------------------------------
@@ -208,6 +208,8 @@
 -- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_ORG_ACCESS";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."AT_SHIFT";
+
+-- DROP TABLE "AttendanceModelStoreContainer"."AT_LEAVESHEET_DETAIL";
 
 -- DROP TABLE "AttendanceModelStoreContainer"."SE_USER_REPORT";
 
@@ -1056,7 +1058,8 @@ CREATE TABLE "dbo"."AT_LEAVESHEET" (
    "IN_PLAN_DAYS" NUMBER(38,0) NULL,
    "NOT_IN_PLAN_DAYS" NUMBER(38,0) NULL,
    "DAY_NUM" NUMBER(38,0) NULL,
-   "EMP_APPROVES_NAME" NCLOB NULL
+   "EMP_APPROVES_NAME" NCLOB NULL,
+   "IS_APP" NUMBER(38,0) NULL
 );
 
 -- Creating table 'AT_PERIOD'
@@ -2370,6 +2373,24 @@ CREATE TABLE "dbo"."AT_SHIFT" (
    "IS_MID_END" NUMBER(38,0) NULL
 );
 
+-- Creating table 'AT_LEAVESHEET_DETAIL'
+CREATE TABLE "dbo"."AT_LEAVESHEET_DETAIL" (
+   "ID" NUMBER(38,0) NOT NULL,
+   "LEAVESHEET_ID" NUMBER(38,0) NOT NULL,
+   "EMPLOYEE_ID" NUMBER(38,0) NULL,
+   "LEAVE_DAY" DATE NULL,
+   "MANUAL_ID" NUMBER(38,0) NULL,
+   "DAY_NUM" NUMBER(38,0) NULL,
+   "STATUS_SHIFT" NUMBER(38,0) NULL,
+   "SHIFT_ID" NUMBER(38,0) NULL,
+   "CREATED_DATE" DATE NULL,
+   "CREATED_BY" NVARCHAR2(255) NULL,
+   "CREATED_LOG" NVARCHAR2(255) NULL,
+   "MODIFIED_DATE" DATE NULL,
+   "MODIFIED_BY" NVARCHAR2(255) NULL,
+   "MODIFIED_LOG" NVARCHAR2(255) NULL
+);
+
 -- Creating table 'SE_USER_REPORT'
 CREATE TABLE "dbo"."SE_USER_REPORT" (
    "SE_REPORT_ID" NUMBER(38,0) NOT NULL,
@@ -3064,6 +3085,14 @@ ADD CONSTRAINT "PK_SE_USER_ORG_ACCESS"
 -- Creating primary key on "ID"in table 'AT_SHIFT'
 ALTER TABLE "dbo"."AT_SHIFT"
 ADD CONSTRAINT "PK_AT_SHIFT"
+   PRIMARY KEY ("ID" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'AT_LEAVESHEET_DETAIL'
+ALTER TABLE "dbo"."AT_LEAVESHEET_DETAIL"
+ADD CONSTRAINT "PK_AT_LEAVESHEET_DETAIL"
    PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;

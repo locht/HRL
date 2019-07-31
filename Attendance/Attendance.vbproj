@@ -448,6 +448,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ATConstant.vb" />
+    <Compile Include="AttendanceRepository.LeaveSheet.vb" />
     <Compile Include="AttendanceRepository.List.vb" />
     <Compile Include="AttendanceRepository.vb" />
     <Compile Include="AttendanceRepositoryBase.vb" />

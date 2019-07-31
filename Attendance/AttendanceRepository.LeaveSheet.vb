@@ -1,0 +1,32 @@
+﻿Imports Attendance.AttendanceBusiness
+Imports Framework.UI
+Imports Common.CommonBusiness
+Partial Class AttendanceRepository
+    Public Function GetLeaveSheet_ById(ByVal Leave_SheetID As Decimal, ByVal Struct As Decimal) As DataSet
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetLeaveSheet_ById(Leave_SheetID, Struct)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function GetLeaveSheet_Detail_ByDate(ByVal employee_id As Decimal, ByVal fromDate As Date, ByVal toDate As Date, manualId As Decimal) As DataTable
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.GetLeaveSheet_Detail_ByDate(employee_id, fromDate, toDate, manualId)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+    Public Function SaveLeaveSheet(ByVal dsLeaveSheet As DataSet) As Boolean
+        Using rep As New AttendanceBusinessClient
+            Try
+                Return rep.SaveLeaveSheet(dsLeaveSheet, Me.Log)
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Using
+    End Function
+End Class

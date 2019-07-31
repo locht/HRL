@@ -1,13 +1,14 @@
-﻿
-Imports Framework.UI
+﻿Imports Framework.UI
 Imports Common
 Imports Attendance.ctrlNewInOut
 Imports Telerik.Web.UI
 Imports Framework.UI.Utilities
 Imports Attendance.AttendanceRepository
+Imports Profile.ProfileBusiness
 Imports Attendance.AttendanceBusiness
 Imports Common.CommonBusiness
 Imports WebAppLog
+Imports Telerik.Web.UI.Calendar
 
 Public Class ctrlRegisterCONewEdit
     Inherits CommonView
@@ -67,15 +68,6 @@ Public Class ctrlRegisterCONewEdit
         End Set
     End Property
 
-    Property RegisterLeaveList As List(Of AT_LEAVESHEETDTO)
-        Get
-            Return ViewState(Me.ID & "_AT_LEAVESHEETLISTDTO")
-        End Get
-        Set(ByVal value As List(Of AT_LEAVESHEETDTO))
-            ViewState(Me.ID & "_AT_LEAVESHEETLISTDTO") = value
-        End Set
-    End Property
-
     Property ListComboData As Attendance.AttendanceBusiness.ComboBoxDataDTO
         Get
             Return ViewState(Me.ID & "_ListComboData")
@@ -99,6 +91,24 @@ Public Class ctrlRegisterCONewEdit
             ViewState(Me.ID & "_totalDayResOld") = value
         End Set
     End Property
+
+    Property dtDetail As DataTable
+        Get
+            Return ViewState(Me.ID & "_dtDetail")
+        End Get
+        Set(ByVal value As DataTable)
+            ViewState(Me.ID & "_dtDetail") = value
+        End Set
+    End Property
+    Property rPH As DataRow
+        Get
+            Return ViewState(Me.ID & "_rPH")
+        End Get
+        Set(ByVal value As DataRow)
+            ViewState(Me.ID & "_rPH") = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Page"
@@ -141,11 +151,6 @@ Public Class ctrlRegisterCONewEdit
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
-            SetGridFilter(rgWorkschedule)
-            AjaxManager = CType(Me.Page, AjaxPage).AjaxManager
-            AjaxManagerId = AjaxManager.ClientID
-            rgWorkschedule.AllowCustomPaging = True
-            rgWorkschedule.ClientSettings.EnablePostBackOnRowClick = False
             InitControl()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -166,81 +171,42 @@ Public Class ctrlRegisterCONewEdit
     ''' <param name="Message"></param>
     ''' <remarks></remarks>
     Public Overrides Sub Refresh(Optional ByVal Message As String = "")
-        Dim rep As New AttendanceRepository
-        'Dim periodid As Decimal
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim dsLeaveSheet As New DataSet()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Message = Request.Params("VIEW")
-            'If Not IsPostBack Then
-            '    If Request.Params("periodid") IsNot Nothing AndAlso Request.Params("periodid").ToString <> "" Then
-            '        periodid = Request.Params("periodid")
-            '        Dim period = rep.LOAD_PERIODByID(New AT_PERIODDTO With {.PERIOD_ID = periodid})
-            '        'rdFromdate.SelectedDate = period.START_DATE
-            '        'rdEnddate.SelectedDate = period.END_DATE
-            '        rdLeaveFrom.MinDate = period.START_DATE
-            '        rdLeaveFrom.MaxDate = period.END_DATE
-            '        rdLeaveTo.MinDate = period.START_DATE
-            '        rdLeaveTo.MaxDate = period.END_DATE
-            '    End If
-            'End If
+            Dim Struct As Decimal = 1
+            Dim ID_PH As Decimal = 0
+            If IsNumeric(Request.Params("ID")) Then
+                Struct = 0
+                ID_PH = Decimal.Parse(Request.Params("ID"))
+            End If
+            Using rep As New AttendanceRepository
+                dsLeaveSheet = rep.GetLeaveSheet_ById(ID_PH, Struct)
+            End Using
+            If dsLeaveSheet IsNot Nothing Then
+                If dsLeaveSheet.Tables(0) IsNot Nothing Then
+                    rPH = dsLeaveSheet.Tables(0).NewRow
+                    If dsLeaveSheet.Tables(0).Rows.Count > 0 Then
+                        rPH = dsLeaveSheet.Tables(0).Rows(0)
+                    End If
+                End If
+                If dsLeaveSheet.Tables(1) IsNot Nothing Then
+                    dtDetail = dsLeaveSheet.Tables(1).Clone()
+                    dtDetail = dsLeaveSheet.Tables(1)
+                End If
+            End If
             Select Case Message
                 Case "TRUE"
-                    Dim obj As New AT_LEAVESHEETDTO
-                    obj.ID = Decimal.Parse(Request.Params("ID"))
-                    CurrentState = CommonMessage.STATE_EDIT
-                    obj = rep.GetLeaveById(obj.ID)
-                    RegisterLeave = New AT_LEAVESHEETDTO
-                    If obj IsNot Nothing Then
-                        rgWorkschedule.Enabled = False
-                        RegisterLeaveList = New List(Of AT_LEAVESHEETDTO)
-                        Dim item As New AT_LEAVESHEETDTO
-                        item.EMPLOYEE_CODE = obj.EMPLOYEE_CODE
-                        item.VN_FULLNAME = obj.VN_FULLNAME
-                        item.TITLE_NAME = obj.TITLE_NAME
-                        item.ORG_ID = obj.ORG_ID
-                        item.ORG_NAME = obj.ORG_NAME
-                        item.EMPLOYEE_ID = obj.EMPLOYEE_ID
-                        item.BALANCE_NOW = obj.BALANCE_NOW
-                        item.NBCL = obj.NBCL
-                        RegisterLeaveList.Add(item)
-
-                        Employee_id = obj.EMPLOYEE_ID
-
-                        RegisterLeave.ORG_ID = obj.ORG_ID
-                        Employee_id = obj.EMPLOYEE_ID
-                        txtnote.Text = obj.NOTE_APP
-                        rdLeaveFrom.SelectedDate = obj.LEAVE_FROM
-                        rdLeaveTo.SelectedDate = obj.LEAVE_TO
-                        If obj.DAY_NUM.HasValue Then
-                            txtDayNum.Text = obj.DAY_NUM.ToString
-                        End If
-                        chkIsWorkingDay.Checked = obj.IS_WORKING_DAY
-                        cboKieuCong.SelectedValue = obj.MANUAL_ID
-                        For Each x As AttendanceBusiness.AT_TIME_MANUALDTO In ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE
-                            If (x.ID = obj.MANUAL_ID) Then
-                                cboKieuCong.SelectedValue = obj.MANUAL_ID
-                            End If
-                        Next
-                        For Each x As AttendanceBusiness.AT_FMLDTO In ListComboData.LIST_LIST_SIGN
-                            If (x.ID = obj.MORNING_ID) Then
-                                cbosang.SelectedValue = obj.MORNING_ID
-                            End If
-                        Next
-                        For Each x As AttendanceBusiness.AT_FMLDTO In ListComboData.LIST_LIST_SIGN
-                            If (x.ID = obj.AFTERNOON_ID) Then
-                                cboChieu.SelectedValue = obj.AFTERNOON_ID
-                            End If
-                        Next
-                        _Value = obj.ID
-                        ' tính số ngày đăng ký cũ trước khi sửa
-                        totalDayResOld = rep.GetCAL_DAY_LEAVE_OLD(obj.EMPLOYEE_ID, obj.LEAVE_FROM, obj.LEAVE_TO).Rows(0)(0)
-                    End If
+                    CreateDataBinDing(1)
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        Finally
+            dsLeaveSheet.Dispose()
         End Try
     End Sub
 
@@ -276,11 +242,34 @@ Public Class ctrlRegisterCONewEdit
     Protected Sub InitControl()
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
             Me.MainToolBar = tbarOT
             Common.Common.BuildToolbar(Me.MainToolBar, ToolbarItem.Save,
                                        ToolbarItem.Cancel)
+
             CType(MainToolBar.Items(0), RadToolBarButton).CausesValidation = True
+            Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
+            CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    ''' <lastupdate>
+    ''' 15/08/2017 10:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Xu ly su kien NeedDataSource cho rgRegisterLeave
+    ''' </summary>
+    ''' <param name="source"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Protected Sub RadGrid_NeedDataSource(ByVal source As Object, ByVal e As GridNeedDataSourceEventArgs) Handles rgData.NeedDataSource
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            CreateDataFilter(False)
+            'GetLeaveSheet_Detail()
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                     CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -289,8 +278,79 @@ Public Class ctrlRegisterCONewEdit
         End Try
     End Sub
 #End Region
-
 #Region "Event"
+    Protected Sub cbSTATUS_SHIFT_SelectedIndexChanged(ByVal sender As Object, ByVal e As RadComboBoxSelectedIndexChangedEventArgs)
+        Try
+            Dim edit = CType(sender, RadComboBox)
+            Dim item = CType(edit.NamingContainer, GridEditableItem)
+            ' If Not IsNumeric(edit.SelectedValue) Then Exit Sub
+            Dim EMPLOYEE_ID = item.GetDataKeyValue("EMPLOYEE_ID")
+            Dim LEAVE_DAY = item.GetDataKeyValue("LEAVE_DAY")
+            For Each rows In dtDetail.Rows
+                If rows("LEAVE_DAY") = LEAVE_DAY Then
+                    rows("STATUS_SHIFT") = If(IsNumeric(edit.SelectedValue), edit.SelectedValue, 0)
+                    If edit.SelectedValue <> "" Then
+                        rows("DAY_NUM") = 0.5
+                    Else
+                        rows("DAY_NUM") = 1
+                    End If
+                    Exit For
+                End If
+            Next
+            rgData.Rebind()
+            For Each items As GridDataItem In rgData.MasterTableView.Items
+                items.Edit = True
+            Next
+            rgData.MasterTableView.Rebind()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+        End Try
+    End Sub
+    Private Sub rdFROM_LEAVE_SelectedDateChanged(sender As Object, e As SelectedDateChangedEventArgs) Handles rdLEAVE_FROM.SelectedDateChanged, rdLEAVE_TO.SelectedDateChanged
+        If (Not IsDate(rdLEAVE_FROM.SelectedDate) OrElse Not IsDate(rdLEAVE_TO.SelectedDate) OrElse dtDetail Is Nothing OrElse Not IsNumeric(rtEmployee_id.Text)) Then Exit Sub
+        Try
+            GetLeaveSheet_Detail()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+            Throw ex
+        Finally
+        End Try
+    End Sub
+    Private Sub cbMANUAL_ID_SelectedIndexChanged(sender As Object, e As RadComboBoxSelectedIndexChangedEventArgs) Handles cbMANUAL_ID.SelectedIndexChanged
+        Try
+            GetLeaveSheet_Detail()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Event click button search ma nhan vien
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Protected Sub btnFindCommon_Click(ByVal sender As Object,
+                                    ByVal e As EventArgs) Handles _
+                                btnFindEmployee.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Select Case sender.ID
+                Case btnFindEmployee.ID
+                    isLoadPopup = 1
+            End Select
+            UpdateControlState()
+            ctrlFindEmployeePopup.Show()
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            DisplayException(Me.ViewName, Me.ID, ex)
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+
+    End Sub
 
     ''' <lastupdate>
     ''' 15/08/2017 10:00
@@ -322,124 +382,16 @@ Public Class ctrlRegisterCONewEdit
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Public Sub OnToolbar_Command(ByVal sender As Object, ByVal e As RadToolBarEventArgs) Handles Me.OnMainToolbarClick
-        Dim obj As AT_LEAVESHEETDTO
         Dim rep As New AttendanceRepository
-        Dim gCODE As String = ""
-        Dim gstatus As Integer = 0
-        Dim lstEmp As New List(Of EmployeeDTO)
-        Dim sAction As String
-        Dim dtDataUserPHEPNAM As New DataTable
-        Dim dtDataUserPHEPBU As New DataTable
-        Dim totalDayRes As New DataTable
-        Dim at_entilement As New AT_ENTITLEMENTDTO
-        Dim at_compensatory As New AT_COMPENSATORYDTO
-        Dim gListPhepEmp As String = ""
-        Dim gListBuEmp As String = ""
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case CType(e.Item, RadToolBarButton).CommandName
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
-                        If Decimal.Parse(cboChieu.SelectedValue) = 121 And Decimal.Parse(cbosang.SelectedValue) = 121 Then
-                            ShowMessage(Translate("Không thể chọn kiểu công sáng và chiều là đi làm"), Utilities.NotifyType.Error)
-                            Exit Sub
-                        End If
-                        If RegisterLeaveList() Is Nothing Then
-                            ShowMessage(Translate("Vui lòng chọn nhân viên cần đăng ký làm thêm!"), NotifyType.Error)
-                            Exit Sub
-                        End If
-                        If _Value.HasValue Then
-                            Dim repCheck As New CommonRepository
-                            Dim lstCheck As New List(Of Decimal)
-                            lstCheck.Add(_Value)
-                            If repCheck.CheckExistIDTable(lstCheck, "AT_LEAVESHEET", "ID") Then
-                                ShowMessage(Translate(CommonMessage.MESSAGE_WARNING_EXIST_DATABASE), NotifyType.Error)
-                                Exit Sub
-                            End If
-                        End If
-                        For index = 0 To RegisterLeaveList.Count - 1
-                            lstEmp.Add(New EmployeeDTO With {.ID = RegisterLeaveList(index).EMPLOYEE_ID,
-                                                        .EMPLOYEE_CODE = RegisterLeaveList(index).EMPLOYEE_CODE,
-                                                        .FULLNAME_VN = RegisterLeaveList(index).VN_FULLNAME})
 
-                            If Not AttendanceRepositoryStatic.Instance.CheckPeriodClose(lstEmp.Select(Function(f) f.ID).ToList,
-                                                                                        rdLeaveFrom.SelectedDate, rdLeaveTo.SelectedDate, sAction) Then
-                                ShowMessage(Translate(sAction), NotifyType.Warning)
-                                Exit Sub
-                            End If
-
-                            dtDataUserPHEPNAM = rep.GetTotalPHEPNAM(RegisterLeaveList(index).EMPLOYEE_ID, rdLeaveTo.SelectedDate.Value.Year, cboKieuCong.SelectedValue)
-                            at_entilement = rep.GetPhepNam(RegisterLeaveList(index).EMPLOYEE_ID, rdLeaveTo.SelectedDate.Value.Year)
-                            at_compensatory = rep.GetNghiBu(RegisterLeaveList(index).EMPLOYEE_ID, rdLeaveTo.SelectedDate.Value.Year)
-                            totalDayRes = rep.GetTotalDAY(RegisterLeaveList(index).EMPLOYEE_ID, 251, rdLeaveFrom.SelectedDate, rdLeaveTo.SelectedDate)
-                            ' nếu là kiểu đăng ký nghỉ phép
-                            If cbosang.SelectedValue = 251 And cboChieu.SelectedValue = 251 Then
-                                If dtDataUserPHEPNAM IsNot Nothing And at_entilement IsNot Nothing Then
-                                    If at_entilement.TOTAL_HAVE.Value - (dtDataUserPHEPNAM.Rows(0)(0) + totalDayRes.Rows(0)(0)) + totalDayResOld < -3 Then
-                                        gListPhepEmp = gListPhepEmp & RegisterLeaveList(index).EMPLOYEE_CODE & ","
-                                        Continue For
-                                    End If
-                                End If
-                            ElseIf cbosang.SelectedValue = 251 Or cboChieu.SelectedValue = 251 Then
-                                If dtDataUserPHEPNAM IsNot Nothing And at_entilement IsNot Nothing Then
-                                    If at_entilement.TOTAL_HAVE.Value - (dtDataUserPHEPNAM.Rows(0)(0) + totalDayRes.Rows(0)(0) / 2) + totalDayResOld < -3 Then
-                                        gListPhepEmp = gListPhepEmp & RegisterLeaveList(index).EMPLOYEE_CODE & ","
-                                        Continue For
-                                    End If
-                                End If
-                            End If
-                            ' nếu là kiểu đăng ký nghỉ bù
-                            dtDataUserPHEPBU = rep.GetTotalPHEPBU(RegisterLeaveList(index).EMPLOYEE_ID, rdLeaveTo.SelectedDate.Value.Year, cboKieuCong.SelectedValue)
-                            totalDayRes = rep.GetTotalDAY(RegisterLeaveList(index).EMPLOYEE_ID, 255, rdLeaveFrom.SelectedDate, rdLeaveTo.SelectedDate)
-                            If cbosang.SelectedValue = 255 And cboChieu.SelectedValue = 255 Then
-                                If dtDataUserPHEPBU IsNot Nothing And at_compensatory IsNot Nothing Then
-                                    If at_compensatory.TOTAL_HAVE.Value - (dtDataUserPHEPBU.Rows(0)(0) + totalDayRes.Rows(0)(0)) + totalDayResOld < 0 Then
-                                        gListBuEmp = gListBuEmp & RegisterLeaveList(index).EMPLOYEE_CODE & ","
-                                        Continue For
-                                    End If
-                                End If
-                            ElseIf cbosang.SelectedValue = 255 Or cboChieu.SelectedValue = 255 Then
-                                If dtDataUserPHEPBU IsNot Nothing And at_compensatory IsNot Nothing Then
-                                    If at_compensatory.TOTAL_HAVE.Value - (dtDataUserPHEPBU.Rows(0)(0) + totalDayRes.Rows(0)(0) / 2) + totalDayResOld < 0 Then
-                                        gListBuEmp = gListBuEmp & RegisterLeaveList(index).EMPLOYEE_CODE & ","
-                                        Continue For
-                                    End If
-                                End If
-                            End If
-                        Next
-                        If Not gListBuEmp.Equals("") Or Not gListPhepEmp.Equals("") Then
-                            ShowMessage("Nhân viên đăng ký nghỉ phép vượt quá mức cho phép: " & gListPhepEmp & " Nhân viên đăng ký nghỉ bù vượt quá mức cho phép: " & gListBuEmp, NotifyType.Error)
-                            Exit Sub
-                        End If
-
-                        If _Value.HasValue Then
-                            obj = New AT_LEAVESHEETDTO
-                            obj.ID = _Value
-                            obj.LEAVE_FROM = rdLeaveFrom.SelectedDate
-                            obj.LEAVE_TO = rdLeaveTo.SelectedDate
-                            obj.MANUAL_ID = cboKieuCong.SelectedValue
-                            obj.NOTE_APP = txtnote.Text
-                            obj.IS_WORKING_DAY = chkIsWorkingDay.Checked
-                            obj.DAY_NUM = If(IsNumeric(txtDayNum.Text.ToString), Decimal.Parse(txtDayNum.Text.ToString), 0)
-                            Dim employeeData = rgWorkschedule.MasterTableView.Items(0)
-                            obj.EMPLOYEE_ID = employeeData.GetDataKeyValue("EMPLOYEE_ID")
-                            obj.EMPLOYEE_CODE = employeeData.GetDataKeyValue("EMPLOYEE_CODE")
-                            rep.ModifyLeaveSheet(obj, gstatus)
-                        Else
-                            obj = New AT_LEAVESHEETDTO
-                            obj.LEAVE_FROM = rdLeaveFrom.SelectedDate
-                            obj.LEAVE_TO = rdLeaveTo.SelectedDate
-                            obj.MANUAL_ID = cboKieuCong.SelectedValue
-                            obj.NOTE_APP = txtnote.Text
-                            obj.IS_WORKING_DAY = chkIsWorkingDay.Checked
-                            obj.DAY_NUM = If(IsNumeric(txtDayNum.Text.ToString), Decimal.Parse(txtDayNum.Text.ToString), 0)
-                            rep.InsertLeaveSheetList(RegisterLeaveList, obj, gstatus)
-                        End If
-
-                        'Dim str As String = "getRadWindow().close('1');"
-                        'ScriptManager.RegisterStartupScript(Me.Page, Me.Page.GetType, "clientButtonClicking", str, True)
-                        ''POPUPTOLINK
+                        CreateDataBinDing(0)
+                        SaveDB()
                         Response.Redirect("/Default.aspx?mid=Attendance&fid=ctrlRegisterCO&group=Business")
                     Else
                         ExcuteScript("Resize", "ResizeSplitter(splitterID, pane1ID, pane2ID, validateID, oldSize, 'rgWorkschedule')")
@@ -455,147 +407,81 @@ Public Class ctrlRegisterCONewEdit
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
-    ''' <lastupdate>
-    ''' 15/08/2017 10:00
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien SelectedIndexChanged cho cboKieuCong
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub cboKieuCong_SelectedIndexChanged(ByVal sender As Object, ByVal e As Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs) Handles cboKieuCong.SelectedIndexChanged
-        Dim dtData As AT_TIME_MANUALDTO
+    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
+        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
         Dim rep As New AttendanceRepository
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If Not String.IsNullOrEmpty(cboKieuCong.SelectedValue) Then
-                dtData = rep.GetAT_TIME_MANUALById(cboKieuCong.SelectedValue)
-                cbosang.SelectedValue = dtData.MORNING_ID
-                cboChieu.SelectedValue = dtData.AFTERNOON_ID
-            End If
-            'rdLeaveFrom_SelectedDateChanged(Nothing, Nothing)
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+            Dim empID = ctrlFindEmployeePopup.SelectedEmployeeID(0)
+            FillData(empID)
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
-    ''' <lastupdate>
-    ''' 15/08/2017 10:00
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien NeedDataSource cho rgWorkschedule
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub rgWorkschedule_NeedDataSource(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridNeedDataSourceEventArgs) Handles rgWorkschedule.NeedDataSource
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+    Private Sub rgData_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles rgData.ItemDataBound
+        Dim cbo As New RadComboBox
+        Dim arr As New ArrayList()
         Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If RegisterLeaveList() Is Nothing Then
-                rgWorkschedule.VirtualItemCount = 0
-                rgWorkschedule.DataSource = New List(Of String)
-            Else
-                'check employee exist in the rad gird
-                If (rgWorkschedule.VirtualItemCount > 0) Then
-                    For idx = 0 To rgWorkschedule.VirtualItemCount - 1
-                        Dim item As GridDataItem = rgWorkschedule.Items(idx)
-                        Dim at_item As List(Of AT_LEAVESHEETDTO) = RegisterLeaveList.Where(Function(s) s.EMPLOYEE_CODE = item.GetDataKeyValue("EMPLOYEE_CODE")).ToList()
-                        If (at_item IsNot Nothing) Then
-                            If (at_item.Count = 2) Then
-                                RegisterLeaveList.Remove(at_item.Item(0))
-                            End If
-                        End If
-                    Next
-                End If
-
-                rgWorkschedule.VirtualItemCount = RegisterLeaveList.Count
-                rgWorkschedule.DataSource = RegisterLeaveList()
+            If e.Item.Edit Then
+                Dim edit = CType(e.Item, GridEditableItem)
+                Dim item As GridDataItem = CType(e.Item, GridDataItem)
+                cbo = CType(edit.FindControl("cbSTATUS_SHIFT"), RadComboBox)
+                arr.Add(New DictionaryEntry("", Nothing))
+                arr.Add(New DictionaryEntry("Đầu ca", 1))
+                arr.Add(New DictionaryEntry("Cuối ca", 2))
+                With cbo
+                    .DataSource = arr
+                    .DataValueField = "Value"
+                    .DataTextField = "Key"
+                    cbo.DataBind()
+                    .SelectedIndex = 0
+                End With
+                SetDataToGrid(edit)
             End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    ''' <lastupdate>
-    ''' 15/08/2017 10:00
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien ItemCommand cho rgWorkschedule
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub rgWorkschedule_ItemCommand(ByVal sender As Object, ByVal e As Telerik.Web.UI.GridCommandEventArgs) Handles rgWorkschedule.ItemCommand
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            Select Case e.CommandName
-                Case "FindEmployee"
-                    isLoadPopup = 1
-                    UpdateControlState()
-                    ctrlFindEmployeePopup.Show()
-                Case "DeleteEmployee"
-                    For Each i As GridDataItem In rgWorkschedule.SelectedItems
-                        Dim s = (From q In RegisterLeaveList() Where
-                                 q.EMPLOYEE_ID = i.GetDataKeyValue("EMPLOYEE_ID")).FirstOrDefault
-                        RegisterLeaveList.Remove(s)
-                    Next
-                    rgWorkschedule.Rebind()
-            End Select
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    ''' <lastupdate>
-    ''' 15/08/2017 10:00
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien ServerValidate cho cboKieuCong
-    ''' </summary>
-    ''' <param name="source"></param>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
-    Private Sub cvalKieuCong_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalKieuCong.ServerValidate
-        Dim rep As New AttendanceRepository
-        Dim validate As New AT_TIME_MANUALDTO
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            If CurrentState = CommonMessage.STATE_EDIT Or CurrentState = CommonMessage.STATE_NEW Then
-                validate.ID = cboKieuCong.SelectedValue
-                validate.ACTFLG = "A"
-                args.IsValid = rep.ValidateAT_TIME_MANUAL(validate)
-            End If
-            If Not args.IsValid Then
-                ListComboData.GET_LIST_TYPE_MANUAL_LEAVE = True
-                FillRadCombobox(cboKieuCong, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
-            End If
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                    CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        Finally
+            cbo.Dispose()
+            arr = Nothing
         End Try
     End Sub
 
 #End Region
 
 #Region "Custom"
+    Private Sub GetLeaveSheet_Detail()
+        Dim dtSource As New DataTable()
+        Try
+            Using rep As New AttendanceRepository
+                Dim employee_id As Decimal = Decimal.Parse(rtEmployee_id.Text.Trim)
+                Dim manualID As Decimal = Decimal.Parse(cbMANUAL_ID.SelectedValue)
+                dtSource = rep.GetLeaveSheet_Detail_ByDate(employee_id, rdLEAVE_FROM.SelectedDate, rdLEAVE_TO.SelectedDate, manualID)
+            End Using
+            dtDetail = dtSource
+            rgData.Rebind()
+            For Each item As GridDataItem In rgData.MasterTableView.Items
+                item.Edit = True
+            Next
+            rgData.MasterTableView.Rebind()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            dtSource.Dispose()
+        End Try
+    End Sub
 
+    Private Sub Cal_DayLeaveSheet()
+        Try
+            Dim sumDay As Decimal = dtDetail.Compute("SUM(DAY_NUM)", "1=1")
+            rnDAY_NUM.NumberFormat.AllowRounding = False
+            rnDAY_NUM.NumberFormat.DecimalDigits = 2
+            rnDAY_NUM.Value = sumDay
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 15/08/2017 10:00
     ''' </lastupdate>
@@ -609,56 +495,17 @@ Public Class ctrlRegisterCONewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             Select Case isLoadPopup
                 Case 1
-                    If Not phFindEmployee.Controls.Contains(ctrlFindEmployeePopup) Then
+                    If Not phFindEmp.Controls.Contains(ctrlFindEmployeePopup) Then
                         ctrlFindEmployeePopup = Me.Register("ctrlFindEmployeePopup", "Common", "ctrlFindEmployeePopup")
-                        phFindEmployee.Controls.Add(ctrlFindEmployeePopup)
-                        ctrlFindEmployeePopup.MultiSelect = True
-                        ctrlFindEmployeePopup.IsHideTerminate = False
+                        phFindEmp.Controls.Add(ctrlFindEmployeePopup)
+                        ctrlFindEmployeePopup.MultiSelect = False
+                        ctrlFindEmployeePopup.LoadAllOrganization = False
+                        ctrlFindEmployeePopup.MustHaveContract = False
                     End If
             End Select
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
-            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
-        End Try
-    End Sub
-
-    ''' <lastupdate>
-    ''' 15/08/2017 10:00
-    ''' </lastupdate>
-    ''' <summary>
-    ''' Xu ly su kien EmployeeSelected cho ctrlFindEmployeePopup
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub ctrlFindEmployeePopup_EmployeeSelected(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlFindEmployeePopup.EmployeeSelected
-        Dim lstCommonEmployee As New List(Of CommonBusiness.EmployeePopupFindDTO)
-        Dim rep As New AttendanceRepository
-        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
-        Try
-            Dim startTime As DateTime = DateTime.UtcNow
-            lstCommonEmployee = CType(ctrlFindEmployeePopup.SelectedEmployee, List(Of CommonBusiness.EmployeePopupFindDTO))
-            If lstCommonEmployee.Count <> 0 Then
-                If RegisterLeaveList Is Nothing Then
-                    RegisterLeaveList = New List(Of AT_LEAVESHEETDTO)
-                End If
-
-                For idx = 0 To lstCommonEmployee.Count - 1
-                    Dim item As New AT_LEAVESHEETDTO
-                    item.EMPLOYEE_ID = lstCommonEmployee(idx).ID
-                    RegisterLeaveList.Add(item)
-                Next
-                RegisterLeaveList = rep.GetPHEPBUCONLAI(RegisterLeaveList, Date.Now.Year)
-                isLoadPopup = 0
-            Else
-                isLoadPopup = 0
-            End If
-            rgWorkschedule.Rebind()
-            _myLog.WriteLog(_myLog._info, _classPath, method,
-                                CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
-        Catch ex As Exception
-            DisplayException(Me.ViewName, Me.ID, ex)
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
@@ -677,17 +524,11 @@ Public Class ctrlRegisterCONewEdit
             Dim startTime As DateTime = DateTime.UtcNow
             If ListComboData Is Nothing Then
                 ListComboData = New Attendance.AttendanceBusiness.ComboBoxDataDTO
-                ListComboData.GET_LIST_SIGN = True
                 ListComboData.GET_LIST_TYPE_MANUAL_LEAVE = True
                 rep.GetComboboxData(ListComboData)
+                FillRadCombobox(cbMANUAL_ID, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
             End If
-            FillRadCombobox(cboKieuCong, ListComboData.LIST_LIST_TYPE_MANUAL_LEAVE, "NAME_VN", "ID", True)
-            FillRadCombobox(cbosang, ListComboData.LIST_LIST_SIGN, "NAME_VN", "ID", True)
-            FillRadCombobox(cboChieu, ListComboData.LIST_LIST_SIGN, "NAME_VN", "ID", True)
-            If ListComboData.LIST_LIST_SIGN.Count > 0 Then
-                cbosang.SelectedIndex = 0
-                cboChieu.SelectedIndex = 0
-            End If
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                 CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -696,7 +537,164 @@ Public Class ctrlRegisterCONewEdit
         End Try
     End Sub
 
-#End Region
+    ''' <lastupdate>
+    ''' 15/08/2017 10:00
+    ''' </lastupdate>
+    ''' <summary>
+    ''' Phương thức lấy data cho rgRegisterLeave
+    ''' </summary>
+    ''' <param name="isFull"></param>
+    ''' <remarks></remarks>
+    Protected Function CreateDataFilter(Optional ByVal isFull As Boolean = False) As DataTable
+        Dim rep As New AttendanceRepository
+        Dim obj As New AT_LEAVESHEETDTO
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            rgData.VirtualItemCount = dtDetail.Rows.Count
+            rgData.DataSource = dtDetail
+            'rgData.Rebind()
+            'For Each item As GridDataItem In rgData.MasterTableView.Items
+            '    item.Edit = True
+            'Next
+            'rgData.MasterTableView.Rebind()
+            Cal_DayLeaveSheet()
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+        Return New DataTable()
+    End Function
 
+    ''' <summary>
+    ''' Fill data len control theo ID
+    ''' </summary>
+    ''' <param name="empid">Ma nhan vien</param>
+    ''' <remarks></remarks>
+    Private Sub FillData(ByVal empid As Decimal)
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim dtData As New DataTable()
+        Dim dateValue = Date.Now
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            Using rep As New Profile.ProfileBusinessRepository
+                Dim obj = rep.GetEmployeCurrentByID(New WorkingDTO With {.EMPLOYEE_ID = empid})
+                If IsNumeric(obj.ID) Then
+                    rtEmployee_id.Text = obj.EMPLOYEE_ID.ToString()
+                End If
+                rtEmployee_Name.Text = obj.EMPLOYEE_NAME
+                rtEmployee_Code.Text = obj.EMPLOYEE_CODE
+                rtOrg_Name.Text = obj.ORG_NAME
+                If IsNumeric(obj.ORG_ID) Then
+                    rtOrg_id.Text = obj.ORG_ID.ToString()
+                End If
+                rtTitle_Name.Text = obj.TITLE_NAME
+                If IsNumeric(obj.TITLE_ID) Then
+                    rtTitle_Id.Text = obj.TITLE_ID.ToString()
+                End If
+
+            End Using
+            _myLog.WriteLog(_myLog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+        End Try
+    End Sub
+
+    Private Sub SetDataToGrid(ByVal EditItem As GridEditableItem)
+        Dim cbo As New RadComboBox
+        Dim arr As New ArrayList()
+        Try
+            Dim LEAVE_DAY = EditItem.GetDataKeyValue("LEAVE_DAY")
+            Dim STATUS_SHIFT
+            For Each rows As DataRow In dtDetail.Rows
+                If rows("LEAVE_DAY") = LEAVE_DAY Then
+                    STATUS_SHIFT = rows("STATUS_SHIFT")
+                    Exit For
+                End If
+            Next
+            cbo = CType(EditItem.FindControl("cbSTATUS_SHIFT"), RadComboBox)
+            arr.Add(New DictionaryEntry("", Nothing))
+            arr.Add(New DictionaryEntry("Đầu ca", 1))
+            arr.Add(New DictionaryEntry("Cuối ca", 2))
+            With cbo
+                .DataSource = arr
+                .DataValueField = "Value"
+                .DataTextField = "Key"
+                cbo.DataBind()
+                .SelectedIndex = 0
+            End With
+            If IsNumeric(STATUS_SHIFT) Then
+                cbo.SelectedValue = STATUS_SHIFT
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Public Sub CreateDataBinDing(ByVal Mode As Decimal)
+        '1 set data in list control
+        '0 get data to list control
+        Select Case Mode
+            Case 1
+                For Each ctrs As Control In RadPane1.Controls
+                    Try
+                        Select Case ctrs.ID.ToString.ToUpper.Substring(0, 2)
+                            Case "cb".ToUpper
+                                CType(ctrs, RadComboBox).SelectedValue = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case "rt".ToUpper
+                                CType(ctrs, RadTextBox).Text = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case "rn".ToUpper
+                                CType(ctrs, RadNumericTextBox).Value = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case "rd".ToUpper
+                                CType(ctrs, RadDatePicker).SelectedDate = rPH(ctrs.ID.ToString.ToUpper.Substring(2))
+                            Case Else
+                                Continue For
+                        End Select
+                    Catch ex As Exception
+                        Continue For
+                    End Try
+                Next
+            Case 0
+                For Each ctrs As Control In RadPane1.Controls
+                    Try
+                        Select Case ctrs.ID.ToString.ToUpper.Substring(0, 2)
+                            Case "cb".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadComboBox).SelectedValue
+                            Case "rt".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadTextBox).Text
+                            Case "rn".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadNumericTextBox).Value
+                            Case "rd".ToUpper
+                                rPH(ctrs.ID.ToString.ToUpper.Substring(2)) = CType(ctrs, RadDatePicker).SelectedDate
+                            Case Else
+                                Continue For
+                        End Select
+                    Catch ex As Exception
+                        Continue For
+                    End Try
+                Next
+        End Select
+
+    End Sub
+
+    Private Function SaveDB() As Boolean
+        Dim rep As New AttendanceRepository
+        Dim PH As DataTable = New DataTable()
+        Dim dr As DataRow() = New DataRow() {rPH}
+        PH = dr.CopyToDataTable()
+        'PH.ImportRow(rPH)
+        Dim dsLeaveSheet As New DataSet()
+        Dim CT As DataTable = dtDetail
+
+        dsLeaveSheet.Tables.Add(PH)
+        dsLeaveSheet.Tables.Add(CT)
+        Try
+            Return rep.SaveLeaveSheet(dsLeaveSheet)
+        Catch ex As Exception
+            Return False
+        Finally
+            rep.Dispose()
+            CT.Dispose()
+            PH.Dispose()
+        End Try
+    End Function
+#End Region
 End Class
 
