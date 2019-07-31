@@ -311,6 +311,8 @@ Namespace ProfileBusiness.ServiceContracts
 
 #Region "WelfareList"
         <OperationContract()>
+        Function GET_INFO_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
+        <OperationContract()>
         Function GetlistWelfareEMP(ByVal Id As Integer) As List(Of Welfatemng_empDTO)
         <OperationContract()>
         Function GET_DETAILS_EMP(ByVal P_ID As Decimal, ByVal P_WELFARE_ID As Decimal, ByVal P_DATE As Date) As DataTable
@@ -1446,6 +1448,13 @@ Namespace ProfileBusiness.ServiceContracts
                                          ByRef Total As Integer, ByVal _param As ParamDTO,
                                          Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
                                          Optional ByVal log As UserLog = Nothing) As List(Of FamilyEditDTO)
+        <OperationContract()>
+        Function GetApproveEmployeeCertificateEdit(ByVal _filter As CETIFICATE_EDITDTO,
+                                        ByVal PageIndex As Integer,
+                                        ByVal PageSize As Integer,
+                                        ByRef Total As Integer, ByVal _param As ParamDTO,
+                                        Optional ByVal Sorts As String = "EMPLOYEE_CODE desc",
+                                        Optional ByVal log As UserLog = Nothing) As List(Of CETIFICATE_EDITDTO)
 
 #End Region
 
@@ -2666,10 +2675,10 @@ Namespace ProfileBusiness.ServiceContracts
         Function GET_CONCURRENTLY_BY_ID(ByVal P_ID As Decimal) As DataTable
 
         <OperationContract()>
-        Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Function INSERT_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
 
         <OperationContract()>
-        Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Boolean
+        Function UPDATE_CONCURRENTLY(ByVal concurrently As Temp_ConcurrentlyDTO) As Integer
 
         <OperationContract()>
         Function GET_CONCURRENTLY_BY_EMP(ByVal P_ID As Decimal) As DataTable
@@ -2681,6 +2690,11 @@ Namespace ProfileBusiness.ServiceContracts
         Function INSERT_EMPLOYEE_KN(ByVal P_EMPLOYEE_CODE As String,
                                        ByVal P_ORG_ID As Decimal,
                                        ByVal P_TITLE As Decimal,
+                                       ByVal P_DATE As Date,
+                                       ByVal P_ID_KN As Decimal) As Boolean
+
+        <OperationContract()>
+        Function UPDATE_EMPLOYEE_KN(ByVal P_ID_KN As Decimal,
                                        ByVal P_DATE As Date) As Boolean
 #End Region
     End Interface

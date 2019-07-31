@@ -4,6 +4,7 @@ Imports Recruitment.RecruitmentBusiness
 Imports Telerik.Web.UI
 Imports Framework.UI.Utilities
 Imports HistaffFrameworkPublic
+Imports Profile.ProfileBusiness
 
 Public Class ctrlRC_RequestNewEdit
     Inherits CommonView
@@ -40,7 +41,14 @@ Public Class ctrlRC_RequestNewEdit
             ViewState(Me.ID & "_STATUSCODE") = value
         End Set
     End Property
-
+    Property ListAttachFile As List(Of AttachFilesDTO)
+        Get
+            Return ViewState(Me.ID & "_ListAttachFile")
+        End Get
+        Set(ByVal value As List(Of AttachFilesDTO))
+            ViewState(Me.ID & "_ListAttachFile") = value
+        End Set
+    End Property
 
 #End Region
 
@@ -95,7 +103,7 @@ Public Class ctrlRC_RequestNewEdit
                     If obj.ORG_DESC IsNot Nothing AndAlso obj.ORG_DESC <> "" Then
                         txtOrgName.ToolTip = DrawTreeByString(obj.ORG_DESC)
                     End If
-                    chkIsInPlan.Checked = obj.IS_IN_PLAN
+                    'chkIsInPlan.Checked = obj.IS_IN_PLAN
 
                     LoadComboTitle()
                     If obj.IS_IN_PLAN Then
@@ -211,17 +219,27 @@ Public Class ctrlRC_RequestNewEdit
                     txtMainTask.Text = obj.MAINTASK
                     txtRequestExperience.Text = obj.REQUEST_EXPERIENCE
 
-                    rntxtFemaleNumber.Value = obj.FEMALE_NUMBER
-                    rntxtMaleNumber.Value = obj.MALE_NUMBER
-                    Dim sumNumber As Decimal = 0
-                    If rntxtFemaleNumber.Value IsNot Nothing Then
-                        sumNumber += rntxtFemaleNumber.Value
+                    'rntxtFemaleNumber.Value = obj.FEMALE_NUMBER
+                    'rntxtMaleNumber.Value = obj.MALE_NUMBER
+                    'Dim sumNumber As Decimal = 0
+                    'If rntxtFemaleNumber.Value IsNot Nothing Then
+                    '    sumNumber += rntxtFemaleNumber.Value
+                    'End If
+                    'If rntxtMaleNumber.Value IsNot Nothing Then
+                    '    sumNumber += rntxtMaleNumber.Value
+                    'End If
+                    rntxtRecruitNumber.Value = obj.RECRUIT_NUMBER
+                    If obj.RC_RECRUIT_PROPERTY IsNot Nothing Then
+                        cboRecruitProperty.SelectedValue = obj.RC_RECRUIT_PROPERTY
                     End If
-                    If rntxtMaleNumber.Value IsNot Nothing Then
-                        sumNumber += rntxtMaleNumber.Value
+                    If obj.GENDER_PRIORITY IsNot Nothing Then
+                        cboGenderPriority.SelectedValue = obj.GENDER_PRIORITY
                     End If
-                    rntxtRecruitNumber.Value = sumNumber
-
+                    chkIsOver.Checked = obj.IS_OVER_LIMIT
+                    chkIsSupport.Checked = obj.IS_SUPPORT
+                    txtForeignAbility.Text = obj.FOREIGN_ABILITY
+                    txtComputerAppLevel.Text = obj.COMPUTER_APP_LEVEL
+                    txtUpload.Text = obj.UPLOAD_FILE
 
                     txtDescription.Text = obj.DESCRIPTION
                     txtRemark.Text = obj.REMARK
@@ -247,7 +265,7 @@ Public Class ctrlRC_RequestNewEdit
 
                 Case "InsertView"
                     CurrentState = CommonMessage.STATE_NEW
-                    chkIsInPlan.Checked = True
+                    'chkIsInPlan.Checked = True
                     rdSendDate.AutoPostBack = True
 
                     Me.MainToolBar = tbarMain
@@ -276,16 +294,17 @@ Public Class ctrlRC_RequestNewEdit
                         Dim obj As New RequestDTO
                         Dim lstEmp As New List(Of RequestEmpDTO)
                         obj.ORG_ID = hidOrgID.Value
-                        obj.IS_IN_PLAN = chkIsInPlan.Checked
-                        If obj.IS_IN_PLAN Then
-                            obj.RC_PLAN_ID = cboTitle.SelectedValue
-                            Dim dt As DataTable = store.PLAN_GET_BY_ID(obj.RC_PLAN_ID)
-                            If dt.Rows.Count > 0 Then
-                                obj.TITLE_ID = Decimal.Parse(dt.Rows(0)("TITLE_ID").ToString())
-                            End If
-                        Else
-                            obj.TITLE_ID = cboTitle.SelectedValue
-                        End If
+                        'obj.IS_IN_PLAN = chkIsInPlan.Checked
+                        'If obj.IS_IN_PLAN Then
+                        '    obj.RC_PLAN_ID = cboTitle.SelectedValue
+                        '    Dim dt As DataTable = store.PLAN_GET_BY_ID(obj.RC_PLAN_ID)
+                        '    If dt.Rows.Count > 0 Then
+                        '        obj.TITLE_ID = Decimal.Parse(dt.Rows(0)("TITLE_ID").ToString())
+                        '    End If
+                        'Else
+                        '    obj.TITLE_ID = cboTitle.SelectedValue
+                        'End If
+                        obj.TITLE_ID = cboTitle.SelectedValue
                         obj.SEND_DATE = rdSendDate.SelectedDate
                         If cboContractType.SelectedValue <> "" Then
                             obj.CONTRACT_TYPE_ID = cboContractType.SelectedValue
@@ -298,13 +317,25 @@ Public Class ctrlRC_RequestNewEdit
                         obj.AGE_TO = rntxtAgeTo.Value
                         obj.QUALIFICATION = cboQualification.SelectedValue
 
+                        If cboRecruitProperty.SelectedValue <> "" Then
+                            obj.RC_RECRUIT_PROPERTY = cboRecruitProperty.SelectedValue
+                        End If
+                        obj.IS_OVER_LIMIT = chkIsOver.Checked
+                        obj.IS_SUPPORT = chkIsSupport.Checked
+                        obj.FOREIGN_ABILITY = txtForeignAbility.Text
+                        obj.COMPUTER_APP_LEVEL = txtComputerAppLevel.Text
+                        If cboGenderPriority.SelectedValue <> "" Then
+                            obj.GENDER_PRIORITY = cboGenderPriority.SelectedValue
+                        End If
+                        obj.RECRUIT_NUMBER = rntxtRecruitNumber.Value
+                        obj.UPLOAD_FILE = txtUpload.Text
 
                         obj.DESCRIPTION = txtDescription.Text
                         obj.EXPERIENCE_NUMBER = rntxtExperienceNumber.Value
-                        obj.FEMALE_NUMBER = rntxtFemaleNumber.Value
+                        'obj.FEMALE_NUMBER = rntxtFemaleNumber.Value
 
 
-                        obj.MALE_NUMBER = rntxtMaleNumber.Value
+                        'obj.MALE_NUMBER = rntxtMaleNumber.Value
 
                         obj.REQUEST_EXPERIENCE = txtRequestExperience.Text
                         obj.REQUEST_OTHER = txtRequestOther.Text
@@ -492,6 +523,15 @@ Public Class ctrlRC_RequestNewEdit
                 'COMPUTERLEVEL
                 dtData = rep.GetOtherList("RC_COMPUTER_LEVEL", True)
                 FillRadCombobox(cboComputerLevel, dtData, "NAME", "ID", True)
+                'CONTRACT TYPE
+                dtData = rep.GetOtherList("CONTRACT_TYPE", True)
+                FillRadCombobox(cboContractType, dtData, "NAME", "ID", True)
+                'RECRUIT PROPERTY
+                dtData = rep.GetOtherList("RC_RECRUIT_PROPERTY")
+                FillRadCombobox(cboRecruitProperty, dtData, "NAME", "ID", True)
+                'GENDER
+                dtData = rep.GetOtherList("GENDER")
+                FillRadCombobox(cboGenderPriority, dtData, "NAME", "ID", True)
             End Using
         Catch ex As Exception
             Throw ex
@@ -561,6 +601,62 @@ Public Class ctrlRC_RequestNewEdit
         End Try
     End Sub
 
+    Protected Sub btnUpload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUpload.Click
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Try
+            ctrlUpload2.Show()
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ctrlUpload2_OkClicked(ByVal sender As Object, ByVal e As System.EventArgs) Handles ctrlUpload2.OkClicked
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+
+        Try
+            txtUpload.Text = ""
+            Dim listExtension = New List(Of String)
+            listExtension.Add(".xls")
+            listExtension.Add(".xlsx")
+            listExtension.Add(".doc")
+            listExtension.Add(".docx")
+            listExtension.Add(".pdf")
+            listExtension.Add(".jpg")
+            listExtension.Add(".png")
+            Dim fileName As String
+
+            Dim strPath As String = Server.MapPath("~/ReportTemplates/Recruitment/RecruitmentAttachFile/")
+            If ctrlUpload2.UploadedFiles.Count >= 1 Then
+                Dim finfo As New AttachFilesDTO
+                ListAttachFile = New List(Of AttachFilesDTO)
+                Dim file As UploadedFile = ctrlUpload2.UploadedFiles(ctrlUpload2.UploadedFiles.Count - 1)
+                If listExtension.Any(Function(x) x.ToUpper().Trim() = file.GetExtension.ToUpper().Trim()) Then
+                    System.IO.Directory.CreateDirectory(strPath)
+                    strPath = strPath
+                    fileName = System.IO.Path.Combine(strPath, file.FileName)
+                    file.SaveAs(fileName, True)
+                    txtUpload.Text = file.FileName
+                    finfo.FILE_PATH = strPath + file.FileName
+                    finfo.ATTACHFILE_NAME = file.FileName
+                    finfo.CONTROL_NAME = "ctrlRC_RequestNewEdit"
+                    finfo.FILE_TYPE = file.GetExtension
+                    ListAttachFile.Add(finfo)
+                Else
+                    ShowMessage(Translate("Vui lòng chọn file đúng định dạng. !!! Hệ thống chỉ nhận file xls,xlsx,txt,ctr,doc,docx,xml,png,jpg,bitmap,jpeg,gif"), NotifyType.Warning)
+                    Exit Sub
+                End If
+            End If
+            '_mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            '_mylog.WriteLog(_mylog._error, _classPath, method, 0, ex, "")
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub SetVisibleFileAttach()
         If hddFile.Value <> "" Then
             btnDeleteFile.Visible = True
@@ -575,24 +671,38 @@ Public Class ctrlRC_RequestNewEdit
     End Sub
 #End Region
 
-    Private Sub chkIsInPlan_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkIsInPlan.CheckedChanged
+    Private Sub rntxtRecruitNumber_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles rntxtRecruitNumber.TextChanged
         Try
-            'If chkIsInPlan.Checked Then
-            '    rdSendDate.AutoPostBack = True
-            'Else
-            '    rdSendDate.AutoPostBack = False
-            'End If
-
-            cboTitle.Items.Clear()
-            cboTitle.ClearSelection()
-            cboTitle.Text = ""
-
-            LoadComboTitle()
+            Dim recruitNum As Decimal = If(IsNumeric(rntxtRecruitNumber.Value), Decimal.Parse(rntxtRecruitNumber.Value), 0)
+            Dim payrolLimit As Decimal = If(IsNumeric(txtPayrollLimit.Text), Decimal.Parse(txtPayrollLimit.Text), 0)
+            If recruitNum > payrolLimit Then
+                chkIsOver.Checked = True
+            Else
+                chkIsOver.Checked = False
+            End If
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
-
         End Try
     End Sub
+
+    'Private Sub chkIsInPlan_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkIsInPlan.CheckedChanged
+    '    Try
+    '        'If chkIsInPlan.Checked Then
+    '        '    rdSendDate.AutoPostBack = True
+    '        'Else
+    '        '    rdSendDate.AutoPostBack = False
+    '        'End If
+
+    '        cboTitle.Items.Clear()
+    '        cboTitle.ClearSelection()
+    '        cboTitle.Text = ""
+
+    '        LoadComboTitle()
+    '    Catch ex As Exception
+    '        DisplayException(Me.ViewName, Me.ID, ex)
+
+    '    End Try
+    'End Sub
 
     'Private Sub rdSendDate_SelectedDateChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs) Handles rdSendDate.SelectedDateChanged
     '    Try
@@ -607,7 +717,7 @@ Public Class ctrlRC_RequestNewEdit
 
         If hidOrgID.Value <> "" Then
             Dim dtData As DataTable
-            dtData = store.GET_TITLE_IN_PLAN(hidOrgID.Value, If(chkIsInPlan.Checked = False, 0, 1))
+            dtData = store.GET_TITLE_IN_PLAN(hidOrgID.Value, 0)
             FillRadCombobox(cboTitle, dtData, "NAME", "ID")
         Else
             cboTitle.Items.Clear()
@@ -647,150 +757,151 @@ Public Class ctrlRC_RequestNewEdit
         Dim rep As New RecruitmentRepository
         GetTotalEmployeeByTitleID()
 
-        If chkIsInPlan.Checked Then
-            If hidID.Value <> "" Then
-                Dim obj = rep.GetRequestByID(New RequestDTO With {.ID = Decimal.Parse(hidID.Value)})
-                If obj.ID > 0 And cboTitle.SelectedValue = obj.RC_PLAN_ID Then
-                    If obj.LEARNING_LEVEL_ID IsNot Nothing Then
-                        cboLearningLevel.SelectedValue = obj.LEARNING_LEVEL_ID
-                    End If
-                    If obj.AGE_FROM IsNot Nothing Then
-                        rntxtAgeFrom.Value = obj.AGE_FROM
-                    End If
-                    If obj.AGE_TO IsNot Nothing Then
-                        rntxtAgeTo.Value = obj.AGE_TO
-                    End If
-                    If obj.QUALIFICATION IsNot Nothing Then
-                        cboQualification.SelectedValue = obj.QUALIFICATION
-                    End If
-                    If obj.SPECIALSKILLS IsNot Nothing Then
-                        cboSpecialSkills.SelectedValue = obj.SPECIALSKILLS
-                    End If
-                    If obj.LANGUAGE IsNot Nothing Then
-                        cboLanguage.SelectedValue = obj.LANGUAGE
-                    End If
-                    If obj.LANGUAGELEVEL IsNot Nothing Then
-                        cboLanguageLevel.SelectedValue = obj.LANGUAGELEVEL
-                    End If
+        'If chkIsInPlan.Checked Then
 
-                    txtScores.Text = If(obj.LANGUAGESCORES Is Nothing, String.Empty, obj.LANGUAGESCORES)
-                    rdExpectedJoinDate.SelectedDate = obj.EXPECTED_JOIN_DATE
-                    rntxtExperienceNumber.Value = obj.EXPERIENCE_NUMBER
-                    If obj.COMPUTER_LEVEL IsNot Nothing Then
-                        cboComputerLevel.SelectedValue = obj.COMPUTER_LEVEL
-                    End If
-                    txtMainTask.Text = obj.MAINTASK
-                    txtRequestExperience.Text = obj.REQUEST_EXPERIENCE
-                Else
-                    Dim dt As DataTable = store.PLAN_GET_BY_ID(Int32.Parse(cboTitle.SelectedValue))
-                    If dt.Rows.Count > 0 Then
-                        If dt.Rows(0)("EDUCATIONLEVEL") IsNot Nothing And dt.Rows(0)("EDUCATIONLEVEL").ToString() <> String.Empty Then
-                            cboLearningLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("EDUCATIONLEVEL").ToString())
-                        End If
-                        If dt.Rows(0)("AGESFROM") IsNot Nothing And dt.Rows(0)("AGESFROM").ToString() <> String.Empty Then
-                            rntxtAgeFrom.Value = Double.Parse(dt.Rows(0)("AGESFROM").ToString())
-                        End If
-                        If dt.Rows(0)("AGESTO") IsNot Nothing And dt.Rows(0)("AGESTO").ToString() <> String.Empty Then
-                            rntxtAgeTo.Value = Double.Parse(dt.Rows(0)("AGESTO").ToString())
-                        End If
-                        If dt.Rows(0)("QUALIFICATION") IsNot Nothing And dt.Rows(0)("QUALIFICATION").ToString() <> String.Empty Then
-                            cboQualification.SelectedValue = Decimal.Parse(dt.Rows(0)("QUALIFICATION").ToString())
-                        End If
-                        If dt.Rows(0)("SPECIALSKILLS") IsNot Nothing And dt.Rows(0)("SPECIALSKILLS").ToString() <> String.Empty Then
-                            cboSpecialSkills.SelectedValue = Decimal.Parse(dt.Rows(0)("SPECIALSKILLS").ToString())
-                        End If
-                        If dt.Rows(0)("LANGUAGE") IsNot Nothing And dt.Rows(0)("LANGUAGE").ToString() <> String.Empty Then
-                            cboLanguage.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGE").ToString())
-                        End If
-                        If dt.Rows(0)("LANGUAGELEVEL") IsNot Nothing And dt.Rows(0)("LANGUAGELEVEL").ToString() <> String.Empty Then
-                            cboLanguageLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGELEVEL").ToString())
-                        End If
-
-                        txtScores.Text = dt.Rows(0)("LANGUAGESCORES").ToString()
-                        If dt.Rows(0)("EXPECTED_JOIN_DATE") IsNot Nothing And dt.Rows(0)("EXPECTED_JOIN_DATE").ToString() <> String.Empty Then
-                            rdExpectedJoinDate.SelectedDate = DateTime.Parse(dt.Rows(0)("EXPECTED_JOIN_DATE").ToString())
-                        End If
-                        If dt.Rows(0)("COMPUTER_LEVEL") IsNot Nothing And dt.Rows(0)("COMPUTER_LEVEL").ToString() <> String.Empty Then
-                            cboComputerLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("COMPUTER_LEVEL").ToString())
-                        End If
-                        txtMainTask.Text = dt.Rows(0)("MAINTASK").ToString()
-                        txtRequestExperience.Text = dt.Rows(0)("QUALIFICATIONREQUEST").ToString()
-                    Else
-                        cboLearningLevel.Text = ""
-                        rntxtAgeFrom.Text = ""
-                        rntxtAgeTo.Text = ""
-                        cboQualification.Text = ""
-                        cboSpecialSkills.Text = ""
-                        cboLanguage.Text = ""
-                        cboLanguageLevel.Text = ""
-                        rdExpectedJoinDate.SelectedDate = Nothing
-                        cboComputerLevel.Text = ""
-                        txtMainTask.Text = ""
-                        txtRequestExperience.Text = ""
-                    End If
+        'Else
+        '    cboLearningLevel.Text = ""
+        '    rntxtAgeFrom.Text = ""
+        '    rntxtAgeTo.Text = ""
+        '    cboQualification.Text = ""
+        '    cboSpecialSkills.Text = ""
+        '    cboLanguage.Text = ""
+        '    cboLanguageLevel.Text = ""
+        '    rdExpectedJoinDate.SelectedDate = Nothing
+        '    cboComputerLevel.Text = ""
+        '    txtMainTask.Text = ""
+        '    txtRequestExperience.Text = ""
+        'End If
+        If hidID.Value <> "" Then
+            Dim obj = rep.GetRequestByID(New RequestDTO With {.ID = Decimal.Parse(hidID.Value)})
+            If obj.ID > 0 And cboTitle.SelectedValue = obj.RC_PLAN_ID Then
+                If obj.LEARNING_LEVEL_ID IsNot Nothing Then
+                    cboLearningLevel.SelectedValue = obj.LEARNING_LEVEL_ID
                 End If
-            Else
-                If cboTitle.SelectedValue <> "" Then
-                    Dim dt As DataTable = store.PLAN_GET_BY_ID(Int32.Parse(cboTitle.SelectedValue))
-                    If dt.Rows.Count > 0 Then
-                        If dt.Rows(0)("EDUCATIONLEVEL") IsNot Nothing And dt.Rows(0)("EDUCATIONLEVEL").ToString() <> String.Empty Then
-                            cboLearningLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("EDUCATIONLEVEL").ToString())
-                        End If
-                        If dt.Rows(0)("AGESFROM") IsNot Nothing And dt.Rows(0)("AGESFROM").ToString() <> String.Empty Then
-                            rntxtAgeFrom.Value = Double.Parse(dt.Rows(0)("AGESFROM").ToString())
-                        End If
-                        If dt.Rows(0)("AGESTO") IsNot Nothing And dt.Rows(0)("AGESTO").ToString() <> String.Empty Then
-                            rntxtAgeTo.Value = Double.Parse(dt.Rows(0)("AGESTO").ToString())
-                        End If
-                        If dt.Rows(0)("QUALIFICATION") IsNot Nothing And dt.Rows(0)("QUALIFICATION").ToString() <> String.Empty Then
-                            cboQualification.SelectedValue = Decimal.Parse(dt.Rows(0)("QUALIFICATION").ToString())
-                        End If
-                        If dt.Rows(0)("SPECIALSKILLS") IsNot Nothing And dt.Rows(0)("SPECIALSKILLS").ToString() <> String.Empty Then
-                            cboSpecialSkills.SelectedValue = Decimal.Parse(dt.Rows(0)("SPECIALSKILLS").ToString())
-                        End If
-                        If dt.Rows(0)("LANGUAGE") IsNot Nothing And dt.Rows(0)("LANGUAGE").ToString() <> String.Empty Then
-                            cboLanguage.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGE").ToString())
-                        End If
-                        If dt.Rows(0)("LANGUAGELEVEL") IsNot Nothing And dt.Rows(0)("LANGUAGELEVEL").ToString() <> String.Empty Then
-                            cboLanguageLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGELEVEL").ToString())
-                        End If
+                If obj.AGE_FROM IsNot Nothing Then
+                    rntxtAgeFrom.Value = obj.AGE_FROM
+                End If
+                If obj.AGE_TO IsNot Nothing Then
+                    rntxtAgeTo.Value = obj.AGE_TO
+                End If
+                If obj.QUALIFICATION IsNot Nothing Then
+                    cboQualification.SelectedValue = obj.QUALIFICATION
+                End If
+                If obj.SPECIALSKILLS IsNot Nothing Then
+                    cboSpecialSkills.SelectedValue = obj.SPECIALSKILLS
+                End If
+                If obj.LANGUAGE IsNot Nothing Then
+                    cboLanguage.SelectedValue = obj.LANGUAGE
+                End If
+                If obj.LANGUAGELEVEL IsNot Nothing Then
+                    cboLanguageLevel.SelectedValue = obj.LANGUAGELEVEL
+                End If
 
-                        txtScores.Text = dt.Rows(0)("LANGUAGESCORES").ToString()
-                        If dt.Rows(0)("EXPECTED_JOIN_DATE") IsNot Nothing And dt.Rows(0)("EXPECTED_JOIN_DATE").ToString() <> String.Empty Then
-                            rdExpectedJoinDate.SelectedDate = DateTime.Parse(dt.Rows(0)("EXPECTED_JOIN_DATE").ToString())
-                        End If
-                        If dt.Rows(0)("COMPUTER_LEVEL") IsNot Nothing And dt.Rows(0)("COMPUTER_LEVEL").ToString() <> String.Empty Then
-                            cboComputerLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("COMPUTER_LEVEL").ToString())
-                        End If
-                        txtMainTask.Text = dt.Rows(0)("MAINTASK").ToString()
-                        txtRequestExperience.Text = dt.Rows(0)("QUALIFICATIONREQUEST").ToString()
-                    Else
-                        cboLearningLevel.Text = ""
-                        rntxtAgeFrom.Text = ""
-                        rntxtAgeTo.Text = ""
-                        cboQualification.Text = ""
-                        cboSpecialSkills.Text = ""
-                        cboLanguage.Text = ""
-                        cboLanguageLevel.Text = ""
-                        rdExpectedJoinDate.SelectedDate = Nothing
-                        cboComputerLevel.Text = ""
-                        txtMainTask.Text = ""
-                        txtRequestExperience.Text = ""
+                txtScores.Text = If(obj.LANGUAGESCORES Is Nothing, String.Empty, obj.LANGUAGESCORES)
+                rdExpectedJoinDate.SelectedDate = obj.EXPECTED_JOIN_DATE
+                rntxtExperienceNumber.Value = obj.EXPERIENCE_NUMBER
+                If obj.COMPUTER_LEVEL IsNot Nothing Then
+                    cboComputerLevel.SelectedValue = obj.COMPUTER_LEVEL
+                End If
+                txtMainTask.Text = obj.MAINTASK
+                txtRequestExperience.Text = obj.REQUEST_EXPERIENCE
+            Else
+                Dim dt As DataTable = store.PLAN_GET_BY_ID(Int32.Parse(cboTitle.SelectedValue))
+                If dt.Rows.Count > 0 Then
+                    If dt.Rows(0)("EDUCATIONLEVEL") IsNot Nothing And dt.Rows(0)("EDUCATIONLEVEL").ToString() <> String.Empty Then
+                        cboLearningLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("EDUCATIONLEVEL").ToString())
                     End If
+                    If dt.Rows(0)("AGESFROM") IsNot Nothing And dt.Rows(0)("AGESFROM").ToString() <> String.Empty Then
+                        rntxtAgeFrom.Value = Double.Parse(dt.Rows(0)("AGESFROM").ToString())
+                    End If
+                    If dt.Rows(0)("AGESTO") IsNot Nothing And dt.Rows(0)("AGESTO").ToString() <> String.Empty Then
+                        rntxtAgeTo.Value = Double.Parse(dt.Rows(0)("AGESTO").ToString())
+                    End If
+                    If dt.Rows(0)("QUALIFICATION") IsNot Nothing And dt.Rows(0)("QUALIFICATION").ToString() <> String.Empty Then
+                        cboQualification.SelectedValue = Decimal.Parse(dt.Rows(0)("QUALIFICATION").ToString())
+                    End If
+                    If dt.Rows(0)("SPECIALSKILLS") IsNot Nothing And dt.Rows(0)("SPECIALSKILLS").ToString() <> String.Empty Then
+                        cboSpecialSkills.SelectedValue = Decimal.Parse(dt.Rows(0)("SPECIALSKILLS").ToString())
+                    End If
+                    If dt.Rows(0)("LANGUAGE") IsNot Nothing And dt.Rows(0)("LANGUAGE").ToString() <> String.Empty Then
+                        cboLanguage.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGE").ToString())
+                    End If
+                    If dt.Rows(0)("LANGUAGELEVEL") IsNot Nothing And dt.Rows(0)("LANGUAGELEVEL").ToString() <> String.Empty Then
+                        cboLanguageLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGELEVEL").ToString())
+                    End If
+
+                    txtScores.Text = dt.Rows(0)("LANGUAGESCORES").ToString()
+                    If dt.Rows(0)("EXPECTED_JOIN_DATE") IsNot Nothing And dt.Rows(0)("EXPECTED_JOIN_DATE").ToString() <> String.Empty Then
+                        rdExpectedJoinDate.SelectedDate = DateTime.Parse(dt.Rows(0)("EXPECTED_JOIN_DATE").ToString())
+                    End If
+                    If dt.Rows(0)("COMPUTER_LEVEL") IsNot Nothing And dt.Rows(0)("COMPUTER_LEVEL").ToString() <> String.Empty Then
+                        cboComputerLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("COMPUTER_LEVEL").ToString())
+                    End If
+                    txtMainTask.Text = dt.Rows(0)("MAINTASK").ToString()
+                    txtRequestExperience.Text = dt.Rows(0)("QUALIFICATIONREQUEST").ToString()
+                Else
+                    cboLearningLevel.Text = ""
+                    rntxtAgeFrom.Text = ""
+                    rntxtAgeTo.Text = ""
+                    cboQualification.Text = ""
+                    cboSpecialSkills.Text = ""
+                    cboLanguage.Text = ""
+                    cboLanguageLevel.Text = ""
+                    rdExpectedJoinDate.SelectedDate = Nothing
+                    cboComputerLevel.Text = ""
+                    txtMainTask.Text = ""
+                    txtRequestExperience.Text = ""
                 End If
             End If
         Else
-            cboLearningLevel.Text = ""
-            rntxtAgeFrom.Text = ""
-            rntxtAgeTo.Text = ""
-            cboQualification.Text = ""
-            cboSpecialSkills.Text = ""
-            cboLanguage.Text = ""
-            cboLanguageLevel.Text = ""
-            rdExpectedJoinDate.SelectedDate = Nothing
-            cboComputerLevel.Text = ""
-            txtMainTask.Text = ""
-            txtRequestExperience.Text = ""
+            If cboTitle.SelectedValue <> "" Then
+                Dim dt As DataTable = store.PLAN_GET_BY_ID(Int32.Parse(cboTitle.SelectedValue))
+                If dt.Rows.Count > 0 Then
+                    If dt.Rows(0)("EDUCATIONLEVEL") IsNot Nothing And dt.Rows(0)("EDUCATIONLEVEL").ToString() <> String.Empty Then
+                        cboLearningLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("EDUCATIONLEVEL").ToString())
+                    End If
+                    If dt.Rows(0)("AGESFROM") IsNot Nothing And dt.Rows(0)("AGESFROM").ToString() <> String.Empty Then
+                        rntxtAgeFrom.Value = Double.Parse(dt.Rows(0)("AGESFROM").ToString())
+                    End If
+                    If dt.Rows(0)("AGESTO") IsNot Nothing And dt.Rows(0)("AGESTO").ToString() <> String.Empty Then
+                        rntxtAgeTo.Value = Double.Parse(dt.Rows(0)("AGESTO").ToString())
+                    End If
+                    If dt.Rows(0)("QUALIFICATION") IsNot Nothing And dt.Rows(0)("QUALIFICATION").ToString() <> String.Empty Then
+                        cboQualification.SelectedValue = Decimal.Parse(dt.Rows(0)("QUALIFICATION").ToString())
+                    End If
+                    If dt.Rows(0)("SPECIALSKILLS") IsNot Nothing And dt.Rows(0)("SPECIALSKILLS").ToString() <> String.Empty Then
+                        cboSpecialSkills.SelectedValue = Decimal.Parse(dt.Rows(0)("SPECIALSKILLS").ToString())
+                    End If
+                    If dt.Rows(0)("LANGUAGE") IsNot Nothing And dt.Rows(0)("LANGUAGE").ToString() <> String.Empty Then
+                        cboLanguage.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGE").ToString())
+                    End If
+                    If dt.Rows(0)("LANGUAGELEVEL") IsNot Nothing And dt.Rows(0)("LANGUAGELEVEL").ToString() <> String.Empty Then
+                        cboLanguageLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("LANGUAGELEVEL").ToString())
+                    End If
+
+                    txtScores.Text = dt.Rows(0)("LANGUAGESCORES").ToString()
+                    If dt.Rows(0)("EXPECTED_JOIN_DATE") IsNot Nothing And dt.Rows(0)("EXPECTED_JOIN_DATE").ToString() <> String.Empty Then
+                        rdExpectedJoinDate.SelectedDate = DateTime.Parse(dt.Rows(0)("EXPECTED_JOIN_DATE").ToString())
+                    End If
+                    If dt.Rows(0)("COMPUTER_LEVEL") IsNot Nothing And dt.Rows(0)("COMPUTER_LEVEL").ToString() <> String.Empty Then
+                        cboComputerLevel.SelectedValue = Decimal.Parse(dt.Rows(0)("COMPUTER_LEVEL").ToString())
+                    End If
+                    txtMainTask.Text = dt.Rows(0)("MAINTASK").ToString()
+                    txtRequestExperience.Text = dt.Rows(0)("QUALIFICATIONREQUEST").ToString()
+                Else
+                    cboLearningLevel.Text = ""
+                    rntxtAgeFrom.Text = ""
+                    rntxtAgeTo.Text = ""
+                    cboQualification.Text = ""
+                    cboSpecialSkills.Text = ""
+                    cboLanguage.Text = ""
+                    cboLanguageLevel.Text = ""
+                    rdExpectedJoinDate.SelectedDate = Nothing
+                    cboComputerLevel.Text = ""
+                    txtMainTask.Text = ""
+                    txtRequestExperience.Text = ""
+                End If
+            End If
         End If
     End Sub
 

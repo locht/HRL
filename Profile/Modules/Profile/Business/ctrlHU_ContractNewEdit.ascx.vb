@@ -129,7 +129,7 @@ Public Class ctrlHU_ContractNewEdit
             InitControl()
             If Not IsPostBack Then
                 ViewConfig(LeftPane)
-                GirdConfig(rgAllow)
+                'GirdConfig(rgAllow)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -228,17 +228,21 @@ Public Class ctrlHU_ContractNewEdit
                         If Contract.Working IsNot Nothing Then
                             SetValueComboBox(cboSalTYPE, Contract.Working.SAL_TYPE_ID, Contract.Working.SAL_TYPE_NAME)
                             SetValueComboBox(cboTaxTable, Contract.Working.TAX_TABLE_ID, Contract.Working.TAX_TABLE_Name)
-                            SalaryInsurance.Value = Contract.Working.SAL_INS
+                            'SalaryInsurance.Value = Contract.Working.SAL_INS
+                            PercentSalary.Value = Contract.Working.PERCENT_SALARY
+                            rnOtherSalary1.Value = Contract.Working.OTHERSALARY1
+                            rnOtherSalary2.Value = Contract.Working.OTHERSALARY2
+                            rnOtherSalary3.Value = Contract.Working.OTHERSALARY3
                             Allowance_Total.Value = Contract.Working.ALLOWANCE_TOTAL
                             Salary_Total.Value = Contract.Working.SAL_TOTAL
                             rnBasicSal.Value = Contract.Working.SAL_BASIC
-                            rgAllow.DataSource = Contract.Working.lstAllowance
-                            rgAllow.DataBind()
-                            Working_ID.Text = Contract.WORKING_ID
+                            'rgAllow.DataSource = Contract.Working.lstAllowance
+                            'rgAllow.DataBind()
+                            Working_ID.Text = If(Contract.Working.DECISION_NO <> "", Contract.Working.DECISION_NO, Contract.Working.EFFECT_DATE.Value.Date)
                         Else
                             Dim dt As New DataTable
-                            rgAllow.DataSource = dt
-                            rgAllow.DataBind()
+                            'rgAllow.DataSource = dt
+                            'rgAllow.DataBind()
 
                         End If
                         If Contract.STATUS_ID IsNot Nothing Then
@@ -259,8 +263,8 @@ Public Class ctrlHU_ContractNewEdit
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
                     Dim dt As New DataTable
-                    rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
-                    rgAllow.DataBind()
+                    'rgAllow.DataSource = New List(Of WorkingAllowanceDTO)
+                    'rgAllow.DataBind()
             End Select
             rep.Dispose()
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -557,11 +561,15 @@ Public Class ctrlHU_ContractNewEdit
             cboSalTYPE.Text = working.SAL_TYPE_NAME
             cboTaxTable.Text = working.TAX_TABLE_Name
             rnBasicSal.Value = working.SAL_BASIC
-            SalaryInsurance.Value = working.SAL_INS
+            'SalaryInsurance.Value = working.SAL_INS
+            PercentSalary.Value = working.PERCENT_SALARY
+            rnOtherSalary1.Value = working.OTHERSALARY1
+            rnOtherSalary2.Value = working.OTHERSALARY2
+            rnOtherSalary3.Value = working.OTHERSALARY3
             Allowance_Total.Value = working.ALLOWANCE_TOTAL
             Salary_Total.Value = working.SAL_TOTAL
         Else
-            ClearControlValue(cboSalTYPE, cboTaxTable, rnBasicSal, SalaryInsurance, Allowance_Total, Salary_Total)
+            ClearControlValue(cboSalTYPE, cboTaxTable, rnBasicSal, PercentSalary, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, Allowance_Total, Salary_Total)
         End If
     End Sub
     ''' <lastupdate>
@@ -584,15 +592,19 @@ Public Class ctrlHU_ContractNewEdit
                 Dim item = lstCommon(0)
                 hidWorkingID.Value = item.ID
                 Dim working = rep.GetWorkingByID(New WorkingDTO() With {.ID = item.ID})
-                Working_ID.Text = working.ID
+                Working_ID.Text = If(working.DECISION_NO <> "", working.DECISION_NO, working.EFFECT_DATE.Value.Date)
                 rnBasicSal.Value = working.SAL_BASIC
                 Salary_Total.Value = working.SAL_TOTAL
-                SalaryInsurance.Value = working.SAL_INS
+                'SalaryInsurance.Value = working.SAL_INS
+                PercentSalary.Value = working.PERCENT_SALARY
+                rnOtherSalary1.Value = working.OTHERSALARY1
+                rnOtherSalary2.Value = working.OTHERSALARY2
+                rnOtherSalary3.Value = working.OTHERSALARY3
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
                 SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
                 SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
-                rgAllow.DataSource = working.lstAllowance
-                rgAllow.Rebind()
+                'rgAllow.DataSource = working.lstAllowance
+                'rgAllow.Rebind()
             End If
             rep.Dispose()
             isLoadPopup = 0
@@ -1088,17 +1100,21 @@ Public Class ctrlHU_ContractNewEdit
                 SetValueComboBox(cboSalTYPE, working.SAL_TYPE_ID, working.SAL_TYPE_NAME)
                 SetValueComboBox(cboTaxTable, working.TAX_TABLE_ID, working.TAX_TABLE_Name)
                 rnBasicSal.Value = working.SAL_BASIC
-                SalaryInsurance.Value = working.SAL_INS
+                'SalaryInsurance.Value = working.SAL_INS
+                PercentSalary.Value = working.PERCENT_SALARY
+                rnOtherSalary1.Value = working.OTHERSALARY1
+                rnOtherSalary2.Value = working.OTHERSALARY2
+                rnOtherSalary3.Value = working.OTHERSALARY3
                 Allowance_Total.Value = working.ALLOWANCE_TOTAL
                 Salary_Total.Value = working.SAL_TOTAL
-                Working_ID.Text = working.ID
+                Working_ID.Text = If(working.DECISION_NO <> "", working.DECISION_NO, working.EFFECT_DATE.Value.Date)
                 If rdStartDate.SelectedDate Is Nothing Then
                     rdStartDate.SelectedDate = working.EFFECT_DATE
                 End If
-                rgAllow.DataSource = working.lstAllowance
-                rgAllow.Rebind()
+                'rgAllow.DataSource = working.lstAllowance
+                'rgAllow.Rebind()
             Else
-                ClearControlValue(cboSalTYPE, cboTaxTable, rnBasicSal, SalaryInsurance, Allowance_Total, Salary_Total, rdSignDate)
+                ClearControlValue(cboSalTYPE, cboTaxTable, rnBasicSal, PercentSalary, rnOtherSalary1, rnOtherSalary2, rnOtherSalary3, Allowance_Total, Salary_Total, rdSignDate)
             End If
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception

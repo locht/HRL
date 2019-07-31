@@ -134,7 +134,7 @@
                         <Resizing AllowColumnResize="true" />
                     </ClientSettings>
                     <MasterTableView TableLayout="Fixed" CommandItemDisplay="None" DataKeyNames="ID"
-                        ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,TITLE_NAME,EFFECT_DATE,ARISING_TYPE_NAME,ARISING_GROUP_TYPE,NOTE">
+                        ClientDataKeyNames="ID,EMPLOYEE_CODE,EMPID,FULL_NAME,DEP_NAME,TITLE_NAME,EFFECT_DATE,ARISING_TYPE_NAME,ARISING_GROUP_TYPE,NOTE,ORG_DESC">
                         <GroupByExpressions>
                             <tlk:GridGroupByExpression>
                                 <SelectFields>
@@ -156,12 +156,12 @@
                             <tlk:GridBoundColumn HeaderText="<%$ Translate: Họ tên %>" DataField="FULL_NAME"
                                 UniqueName="FULL_NAME" SortExpression="FULL_NAME" HeaderStyle-Width="150px" FilterControlWidth="99%"
                                 ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
-                            <%--<tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEP_NAME"
+                            <tlk:GridBoundColumn HeaderText="<%$ Translate: Phòng ban %>" DataField="DEP_NAME"
                                 UniqueName="DEP_NAME" HeaderStyle-Width="150px" SortExpression="DEP_NAME" FilterControlWidth="99%"
-                                ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />--%>
+                                ShowFilterIcon="false" CurrentFilterFunction="Contains" AutoPostBackOnFilter="true" />
 
 
-                             <tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="DEP_NAME" SortExpression="ORG_NAME"
+                             <%--<tlk:GridTemplateColumn HeaderText="Đơn vị" DataField="DEP_NAME" SortExpression="ORG_NAME"
                                 UniqueName="DEP_NAME">
                                 <HeaderStyle Width="200px" />
                                 <ItemTemplate>
@@ -172,7 +172,7 @@
                                 <%# DrawTreeByString(DataBinder.Eval(Container, "DataItem.ORG_DESC"))%>
                                 </tlk:RadToolTip>
                             </ItemTemplate>
-                            </tlk:GridTemplateColumn>
+                            </tlk:GridTemplateColumn>--%>
 
 
 

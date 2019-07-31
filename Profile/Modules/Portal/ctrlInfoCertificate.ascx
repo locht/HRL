@@ -31,15 +31,21 @@
                 <%# Translate("Thời gian đào tạo từ tháng")%>
             </td>
             <td>
-                <tlk:RadDatePicker runat="server" ID="rdFromDate">
-                </tlk:RadDatePicker>
+                <tlk:RadMonthYearPicker ID="rdFromDate" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
+                    DateInput-DateFormat="dd/MM/yyyy">
+                </tlk:RadMonthYearPicker>
+                <%-- <tlk:RadDatePicker runat="server" ID="rdFromDate">
+                </tlk:RadDatePicker>--%>
             </td>
             <td class="lb">
                 <%# Translate("Đến tháng")%>
             </td>
             <td>
-                <tlk:RadDatePicker runat="server" ID="rdToDate">
-                </tlk:RadDatePicker>
+             <tlk:RadMonthYearPicker ID="rdToDate" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
+                    DateInput-DateFormat="dd/MM/yyyy">
+                </tlk:RadMonthYearPicker>
+              <%--  <tlk:RadDatePicker runat="server" ID="rdToDate">
+                </tlk:RadDatePicker>--%>
                 <%--  <asp:CheckBox runat="server" ID="chkIs_Owner" AutoPostBack="true" Text="<%$ Translate : Là chủ hộ %>" />--%>
             </td>
         </tr>
@@ -146,10 +152,10 @@
             </td>
         </tr>
         <tr>
-            <td class="lb">
+            <td class="lb" style="display:none">
                 <%# Translate("Ghi chú")%>
             </td>
-            <td>
+            <td style="display:none">
                 <tlk:RadTextBox runat="server" ID="txtRemark" SkinID="Textbox1023">
                 </tlk:RadTextBox>
             </td>
@@ -245,8 +251,8 @@
                     UniqueName="YEAR" SortExpression="YEAR">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
-                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tệp tin %>" DataField="FILENAME" UniqueName="FILENAME"
-                    SortExpression="FILENAME">
+                <tlk:GridBoundColumn HeaderText="<%$ Translate: Tệp tin %>" DataField="FILENAME"
+                    UniqueName="FILENAME" SortExpression="FILENAME">
                     <HeaderStyle HorizontalAlign="Center" />
                 </tlk:GridBoundColumn>
                 <tlk:GridBoundColumn HeaderText="<%$ Translate: Ghi chú %>" DataField="REMARK" UniqueName="REMARK"

@@ -96,17 +96,17 @@
                             </td>
                         </tr>
                         <tr> 
-                            <td style="text-align: left" class="lb">
+                            <td style="display:none">
                                 <%# Translate("Phụ cấp kiêm nhiệm")%>
                             </td>
-                            <td>
+                            <td style="display:none">
                                 <tlk:RadNumericTextBox ID="rntxtALLOW_MONEY" MinValue="0" runat="server">
                                     <NumberFormat DecimalDigits="0" ZeroPattern="n" />
                                 </tlk:RadNumericTextBox>
                             </td>
                              <td>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <asp:CheckBox ID="chkALLOW" runat="server" Text="<%$ Translate: Đơn vị kiêm nhiệm trả phụ cấp? %>"
                                 AutoPostBack="false"/>
                         </td>

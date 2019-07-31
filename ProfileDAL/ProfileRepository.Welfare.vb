@@ -62,6 +62,10 @@ Partial Class ProfileRepository
 
 
             ' lọc điều kiện
+            If _filter.WELFARE_ID <> 0 Then
+                query = query.Where(Function(p) p.p.WELFARE_ID = _filter.WELFARE_ID)
+            End If
+
             If _filter.EMPLOYEE_CODE IsNot Nothing Then
                 query = query.Where(Function(p) p.e.EMPLOYEE_CODE.ToUpper.Contains(_filter.EMPLOYEE_CODE.ToUpper))
             End If
@@ -137,6 +141,7 @@ Partial Class ProfileRepository
                    Order By p.EMPLOYEE_ID
 
             Dim lst = query.Select(Function(p) New Welfatemng_empDTO With {
+                                       .ID = p.ce.ID,
                                       .EMPLOYEE_CODE = p.e.EMPLOYEE_CODE,
                                       .EMPLOYEE_NAME = p.e.FULLNAME_VN,
                                       .TITLE_NAME = p.t.NAME_VN,
@@ -152,7 +157,8 @@ Partial Class ProfileRepository
                                       .CONTRACT_NAME = p.cttype.NAME,
                                       .SENIORITY = p.ce.SENIORITY,
                                       .EMPLOYEE_ID = p.ce.EMPLOYEE_ID,
-                                      .GROUP_ID = p.ce.GROUP_ID
+                                      .GROUP_ID = p.ce.GROUP_ID,
+                                      .REMARK = p.ce.REMARK
                                       })
             Return lst.ToList
         Catch ex As Exception
@@ -333,6 +339,7 @@ Partial Class ProfileRepository
                     objDataEmp.CONTRACT_NAME = obj.CONTRACT_NAME
                     objDataEmp.SENIORITY = obj.SENIORITY
                     objDataEmp.WELFARE_ID = lstWelfareMng.WELFARE_ID
+                    objDataEmp.REMARK = obj.REMARK
                     Context.HU_WELFARE_MNG_EMP.AddObject(objDataEmp)
                 Next
             End If
@@ -403,6 +410,19 @@ Partial Class ProfileRepository
                                                      .P_DATE = P_DATE,
                                                      .P_CUR = cls.OUT_CURSOR})
 
+                Return dtData
+            End Using
+        Catch ex As Exception
+            WriteExceptionLog(ex, MethodBase.GetCurrentMethod.Name, "iProfile")
+            Throw ex
+        End Try
+    End Function
+    Public Function GET_INFO_EMPLOYEE(ByVal P_EMP_CODE As String) As DataTable
+        Try
+            Using cls As New DataAccess.QueryData
+                Dim dtData As DataTable = cls.ExecuteStore("PKG_HU_IPROFILE_LIST.GET_INFO_EMPLOYEE",
+                                           New With {.P_EMP_CODE = P_EMP_CODE,
+                                                     .P_CUR = cls.OUT_CURSOR})
                 Return dtData
             End Using
         Catch ex As Exception

@@ -255,6 +255,36 @@ Public Class ctrlRemindConfig
                 rntxtExpiredCertificate.Value = CommonConfig.ReminderExpiredCertificate
             End If
 
+            If CommonConfig.ReminderBIRTHDAY_LD = 0 Then
+                chkBIRTHDAY_LD.Checked = False
+                rntxtBIRTHDAY_LD.Enabled = False
+                rntxtBIRTHDAY_LD.Value = Nothing
+            Else
+                chkBIRTHDAY_LD.Checked = True
+                rntxtBIRTHDAY_LD.Enabled = True
+                rntxtBIRTHDAY_LD.Value = CommonConfig.ReminderBIRTHDAY_LD
+            End If
+
+            If CommonConfig.ReminderConcurrently = 0 Then
+                chkConcurrently.Checked = False
+                rntxtConcurrently.Enabled = False
+                rntxtConcurrently.Value = Nothing
+            Else
+                chkConcurrently.Checked = True
+                rntxtConcurrently.Enabled = True
+                rntxtConcurrently.Value = CommonConfig.ReminderConcurrently
+            End If
+
+            If CommonConfig.ReminderEmpDtlFamily = 0 Then
+                chkEmpDtlFamily.Checked = False
+                rntxtEmpDtlFamily.Enabled = False
+                rntxtEmpDtlFamily.Value = Nothing
+            Else
+                chkEmpDtlFamily.Checked = True
+                rntxtEmpDtlFamily.Enabled = True
+                rntxtEmpDtlFamily.Value = CommonConfig.ReminderEmpDtlFamily
+            End If
+
             _myLog.WriteLog(_myLog._info, _classPath, method,
                                       CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
         Catch ex As Exception
@@ -424,6 +454,30 @@ Public Class ctrlRemindConfig
                         Else
                             CommonConfig.ReminderExpiredCertificate = 0
                             rntxtExpiredCertificate.Enabled = False
+                        End If
+
+                        If chkBIRTHDAY_LD.Checked Then
+                            CommonConfig.ReminderBIRTHDAY_LD = rntxtBIRTHDAY_LD.Value
+                            rntxtBIRTHDAY_LD.Enabled = True
+                        Else
+                            CommonConfig.ReminderBIRTHDAY_LD = 0
+                            rntxtBIRTHDAY_LD.Enabled = False
+                        End If
+
+                        If chkConcurrently.Checked Then
+                            CommonConfig.ReminderConcurrently = rntxtConcurrently.Value
+                            rntxtConcurrently.Enabled = True
+                        Else
+                            CommonConfig.ReminderConcurrently = 0
+                            rntxtConcurrently.Enabled = False
+                        End If
+
+                        If chkEmpDtlFamily.Checked Then
+                            CommonConfig.ReminderEmpDtlFamily = rntxtEmpDtlFamily.Value
+                            rntxtEmpDtlFamily.Enabled = True
+                        Else
+                            CommonConfig.ReminderEmpDtlFamily = 0
+                            rntxtEmpDtlFamily.Enabled = False
                         End If
 
                         CommonConfig.SaveReminderPerUser()
@@ -602,6 +656,56 @@ Public Class ctrlRemindConfig
 
         End Try
     End Sub
+
+    Private Sub cvalBIRTHDAY_LD_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalBIRTHDAY_LD.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkBIRTHDAY_LD.Checked And (rntxtBIRTHDAY_LD.Value Is Nothing OrElse rntxtBIRTHDAY_LD.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+    End Sub
+    Private Sub cvalConcurrently_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalConcurrently.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkConcurrently.Checked And (rntxtConcurrently.Value Is Nothing OrElse rntxtConcurrently.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+    End Sub
+    Private Sub cvalEmpDtlFamily_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalEmpDtlFamily.ServerValidate
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Try
+            Dim startTime As DateTime = DateTime.UtcNow
+            If chkEmpDtlFamily.Checked And (rntxtEmpDtlFamily.Value Is Nothing OrElse rntxtEmpDtlFamily.Value = 0) Then
+                args.IsValid = False
+            Else
+                args.IsValid = True
+            End If
+            _myLog.WriteLog(_myLog._info, _classPath, method,
+                                   CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
+
+        End Try
+    End Sub
+
     ''' <summary>
     ''' Validate hết hạn visa
     ''' </summary>

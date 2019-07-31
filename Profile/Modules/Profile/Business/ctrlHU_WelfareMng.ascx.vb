@@ -30,7 +30,14 @@ Public Class ctrlHU_WelfareMng
             ViewState(Me.ID & "_WelfareMng") = value
         End Set
     End Property
-
+    Property ListComboData As ComboBoxDataDTO
+        Get
+            Return ViewState(Me.ID & "_ListComboData")
+        End Get
+        Set(ByVal value As ComboBoxDataDTO)
+            ViewState(Me.ID & "_ListComboData") = value
+        End Set
+    End Property
 #End Region
 
 #Region "Page"
@@ -94,14 +101,29 @@ Public Class ctrlHU_WelfareMng
     Public Overrides Sub BindData()
         Dim startTime As DateTime = DateTime.UtcNow
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New ProfileRepository
         Try
-
+            GetDataCombo()
         Catch ex As Exception
             DisplayException(Me.ViewName, Me.ID, ex)
             _myLog.WriteLog(_myLog._error, _classPath, method, 0, ex, "")
         End Try
     End Sub
-
+    Private Sub GetDataCombo()
+        Dim startTime As DateTime = DateTime.UtcNow
+        Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
+        Dim rep As New ProfileRepository
+        Try
+            ListComboData = New ComboBoxDataDTO
+            ListComboData.GET_WELFARE = True
+            rep.GetComboList(ListComboData)
+            FillRadCombobox(cbTyleWelfare, ListComboData.LIST_WELFARE, "NAME", "ID")
+            rep.Dispose()
+            _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     ''' <lastupdate>
     ''' 10/07/2017 09:40
     ''' </lastupdate>
@@ -121,6 +143,7 @@ Public Class ctrlHU_WelfareMng
                                        ToolbarItem.Delete)
 
             CType(MainToolBar.Items(3), RadToolBarButton).CausesValidation = True
+
             'Me.MainToolBar.OnClientButtonClicking = "OnClientButtonClicking"
             CType(Me.Page, AjaxPage).AjaxManager.ClientEvents.OnRequestStart = "onRequestStart"
             _mylog.WriteLog(_mylog._info, _classPath, method, CLng(DateTime.UtcNow.Subtract(startTime).TotalSeconds).ToString(), Nothing, "")
@@ -407,10 +430,13 @@ Public Class ctrlHU_WelfareMng
             Else
                 _filter.ORG_ID = 0
             End If
+            If cbTyleWelfare.SelectedValue <> "" Then
+                _filter.WELFARE_ID = cbTyleWelfare.SelectedValue
+            End If
             Dim MaximumRows As Integer
             Dim Sorts As String = rgWelfareMng.MasterTableView.SortExpressions.GetSortString()
             SetValueObjectByRadGrid(rgWelfareMng, _filter)
-            _filter.IS_TER = chkTerminate.Checked
+            '_filter.IS_TER = chkTerminate.Checked
             _filter.EFFECT_FROM = rdFromDate.SelectedDate
             _filter.EFFECT_TO = rdToDate.SelectedDate
             If isFull Then

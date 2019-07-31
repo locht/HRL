@@ -2,8 +2,8 @@
     Inherits="Insurance.ctrlInsArisingManual" %>
 <%@ Register Src="~/Modules/Common/ctrlMessageBox.ascx" TagName="ctrlMessageBox"
     TagPrefix="Common" %>
-<tlk:RadSplitter ID="RadSplitter3" runat="server" Orientation="Horizontal">
-    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="None">
+<tlk:RadSplitter ID="RadSplitter3" runat="server" Width="100%" Height="100%" Orientation="Horizontal">
+    <tlk:RadPane ID="RadPane1" runat="server" Scrolling="Both">
     <tlk:RadToolBar ID="rtbMain" runat="server" />
     <asp:ValidationSummary ID="valSum" runat="server" DisplayMode="BulletList" CssClass="validationsummary" />        
         <div style="display: none;">
@@ -49,7 +49,7 @@
                             </tlk:RadTextBox>
                         </td>
                         <td class="lb">
-                            <asp:Label runat="server" ID="lbPOSITION" Text="Chức danh bảo hiểm"></asp:Label>
+                            <asp:Label runat="server" ID="lbPOSITION" Text="Chức danh"></asp:Label>
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtPOSITION" ReadOnly="true" runat="server">
@@ -72,6 +72,14 @@
                                 ID="txtDateIssue" TabIndex="5">
                             </tlk:RadDatePicker>
                         </td>
+                        >
+                        <td class="lb">
+                            <asp:Label runat="server" ID="Label1" Text="Nơi cấp"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="BIRTH_PLACE" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="lb">
@@ -87,6 +95,13 @@
                         </td>
                         <td>
                             <tlk:RadTextBox ID="txtBirthPlace" ReadOnly="true" runat="server">
+                            </tlk:RadTextBox>
+                        </td>
+                         <td class="lb">
+                            <asp:Label runat="server" ID="Label2" Text="Số sổ bảo hiểm"></asp:Label>
+                        </td>
+                        <td>
+                            <tlk:RadTextBox ID="SOCIAL_NUMBER" ReadOnly="true" runat="server">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
@@ -172,6 +187,22 @@
                     </tr>
                     <tr>
                         <td class="lb">
+                            <%# Translate("Mức đóng BHXH cũ")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="txtSI_SAL_OLD" runat="server" SkinID="Money"
+                                >
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Mức đóng BHXH mới")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="txtSI_SAL_NEW" runat="server" SkinID="Money"
+                                >
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
                             <asp:Label runat="server" ID="lbARISING_FROM_MONTH" Text="Biến động Từ tháng"></asp:Label>
                         </td>
                         <td>
@@ -187,6 +218,25 @@
                                 TabIndex="12" Culture="en-US">
                             </tlk:RadMonthYearPicker>
                         </td>
+                    </tr>
+                    <tr>
+                        <td class="lb">
+                            <%# Translate("Mức đóng BHYT cũ")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="txtHI_SAL_OLD" runat="server" SkinID="Money"
+                                >
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Mức đóng BHYT mới")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="txtHI_SAL_NEW" runat="server" SkinID="Money"
+                                >
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        
                         <td class="lb">
                             <asp:Label runat="server" ID="lbDECLARE_DATE" Text="Đợt khai báo"></asp:Label>
                         </td>
@@ -211,17 +261,50 @@
                     </tr>
                     <tr>
                         <td class="lb">
-                            <asp:Label runat="server" ID="lbNOTE" Text="Ghi chú"></asp:Label>
+                            <%# Translate("Mức đóng BHTN cũ")%>
                         </td>
-                        <td colspan="7">
+                        <td>
+                            <tlk:RadNumericTextBox ID="txtUI_SAL_OLD" runat="server" SkinID="Money"
+                                >
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Mức đóng BHTN mới")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="txtUI_SAL_NEW" runat="server" SkinID="Money"
+                                >
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Ghi chú")%>
+                        </td>
+                        <td colspan="3">
                             <tlk:RadTextBox ID="txtNOTE" Width="100%" runat="server" TabIndex="16">
                             </tlk:RadTextBox>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="lb">
+                            <%# Translate("Mức đóng BHTNLD_BNN cũ")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rdBHTNLD_BNN_OLD" runat="server" SkinID="Money"
+                                >
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        <td class="lb">
+                            <%# Translate("Mức đóng BHTNLD_BNN mới")%>
+                        </td>
+                        <td>
+                            <tlk:RadNumericTextBox ID="rdBHTNLD_BNN_NEW" runat="server" SkinID="Money">
+                            </tlk:RadNumericTextBox>
+                        </td>
+                        </tr>
                 </table>
             </fieldset>
         </div>
-        <div style="margin-left:30px; margin-top: 5px; width: 1270px; display: none;">
+        <div style="margin-left:30px; margin-top: 5px; width: 1270px;">
             <fieldset style="width: auto; height: auto">
                 <legend>
                     <b><asp:Label runat="server" ID="lbA_SInfo" Text="Thông tin truy thu/ thoái thu"></asp:Label></b>
@@ -282,6 +365,16 @@
                                     </tlk:RadNumericTextBox>
                                 </td>
                             </tr>
+                             <tr>
+                                <td class="lb">
+                                    <%# Translate("BHTNLD_BNN")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="rdA_BHTNLD_BNN" runat="server" SkinID="Money"
+                                        IncrementSettings-Step="5000">
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                            </tr>
                         </table>
                     </fieldset>
                 </div>
@@ -338,6 +431,18 @@
                                 <td>
                                     <tlk:RadNumericTextBox MinValue="0" Value="0" ID="txtR_UI" runat="server">
                                         <NumberFormat GroupSeparator="," DecimalDigits="0" />
+                                    </tlk:RadNumericTextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lb">
+                                    <%# Translate("BHTNLD_BNN")%>
+                                </td>
+                                <td>
+                                    <tlk:RadNumericTextBox ID="rdR_BHTNLD_BNN" runat="server"
+                                        IncrementSettings-Step="5000">
+                                       <%-- <NumberFormat AllowRounding="false" KeepNotRoundedValue="true" />
+                                        <ClientEvents OnValueChanged="setDisplayValue" OnLoad="setDisplayValue" />--%>
                                     </tlk:RadNumericTextBox>
                                 </td>
                             </tr>
@@ -406,6 +511,8 @@
         </div>
     </tlk:RadPane>
 </tlk:RadSplitter>
+<%--<tlk:RadAjaxPanel ID="RadAjaxPanel1" runat="server" OnAjaxRequest="RadAjaxPanel1_AjaxRequest">
+</tlk:RadAjaxPanel>--%>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">
     <script type="text/javascript">
         var enableAjax = true;
@@ -440,6 +547,7 @@
                 e.preventDefault();
             }
         });
+
     </script>
 </tlk:RadCodeBlock>
 <asp:PlaceHolder ID="FindEmployee" runat="server"></asp:PlaceHolder>

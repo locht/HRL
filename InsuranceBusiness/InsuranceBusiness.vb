@@ -490,8 +490,17 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , ByVal hi As Double? _
                                             , ByVal ui As Double? _
                                             , ByVal tnld_bnn As Double? _
-                                            ) As Double _
-                 Implements ServiceContracts.IInsuranceBusiness.UpdateInsArisingManual
+                                            , ByVal si_sal As Double? _
+                                            , ByVal hi_sal As Double? _
+                                            , ByVal ui_sal As Double? _
+                                            , ByVal tnld_bnn_sal As Double? _
+                                            , ByVal si_sal_old As Double? _
+                                            , ByVal hi_sal_old As Double? _
+                                            , ByVal ui_sal_old As Double? _
+                                            , ByVal tnld_bnn_sal_old As Double? _
+                                            , ByVal a_tnld_bnn As Double? _
+                                            , ByVal r_tnld_bnn As Double?) As Double _
+                                             Implements ServiceContracts.IInsuranceBusiness.UpdateInsArisingManual
             Try
                 Dim rep As New DataAccess.QueryData
                 Dim objU As Object = rep.ExecuteStore("PKG_INS_BUSINESS.SPU_INS_ARISING_MANUAL", New With {.P_USERID = username, .P_ID = IIf(id Is Nothing, System.DBNull.Value, id) _
@@ -537,7 +546,17 @@ Namespace InsuranceBusiness.ServiceImplementations
                                             , .P_SI = IIf(si Is Nothing, System.DBNull.Value, si) _
                                             , .P_HI = IIf(hi Is Nothing, System.DBNull.Value, hi) _
                                             , .P_UI = IIf(ui Is Nothing, System.DBNull.Value, ui) _
-                                            , .P_TNLD_BNN = IIf(tnld_bnn Is Nothing, System.DBNull.Value, tnld_bnn)
+                                            , .P_TNLD_BNN = IIf(tnld_bnn Is Nothing, System.DBNull.Value, tnld_bnn) _
+                                            , .P_SI_SAL = IIf(si_sal Is Nothing, System.DBNull.Value, si_sal) _
+                                            , .P_HI_SAL = IIf(hi_sal Is Nothing, System.DBNull.Value, hi_sal) _
+                                            , .P_UI_SAL = IIf(ui_sal Is Nothing, System.DBNull.Value, ui_sal) _
+                                            , .P_TNLD_BNN_SAL = IIf(tnld_bnn_sal Is Nothing, System.DBNull.Value, tnld_bnn_sal) _
+                                            , .P_SI_SAL_OLD = IIf(si_sal_old Is Nothing, System.DBNull.Value, si_sal_old) _
+                                            , .P_HI_SAL_OLD = IIf(hi_sal_old Is Nothing, System.DBNull.Value, hi_sal_old) _
+                                            , .P_UI_SAL_OLD = IIf(ui_sal_old Is Nothing, System.DBNull.Value, ui_sal_old) _
+                                            , .P_TNLD_BNN_SAL_OLD = IIf(tnld_bnn_sal_old Is Nothing, System.DBNull.Value, tnld_bnn_sal_old) _
+                                            , .P_A_TNLD_BNN = IIf(a_tnld_bnn Is Nothing, System.DBNull.Value, a_tnld_bnn) _
+                                            , .P_R_TNLD_BNN = IIf(r_tnld_bnn Is Nothing, System.DBNull.Value, r_tnld_bnn)
                                             })
 
                 Return 1

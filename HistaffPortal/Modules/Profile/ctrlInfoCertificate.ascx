@@ -31,15 +31,17 @@
                 <%# Translate("Thời gian đào tạo từ tháng")%>
             </td>
             <td>
-                <tlk:RadDatePicker runat="server" ID="rdFromDate">
-                </tlk:RadDatePicker>
+               <tlk:RadMonthYearPicker ID="rdFromDate" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
+                    DateInput-DateFormat="dd/MM/yyyy">
+                </tlk:RadMonthYearPicker>
             </td>
             <td class="lb">
                 <%# Translate("Đến tháng")%>
             </td>
             <td>
-                <tlk:RadDatePicker runat="server" ID="rdToDate">
-                </tlk:RadDatePicker>
+              <tlk:RadMonthYearPicker ID="rdToDate" runat="server" DateInput-DisplayDateFormat="MM/yyyy"
+                    DateInput-DateFormat="dd/MM/yyyy">
+                </tlk:RadMonthYearPicker>
                 <%--  <asp:CheckBox runat="server" ID="chkIs_Owner" AutoPostBack="true" Text="<%$ Translate : Là chủ hộ %>" />--%>
             </td>
         </tr>
@@ -146,10 +148,10 @@
             </td>
         </tr>
         <tr>
-            <td class="lb">
+            <td class="lb" style="display:none">
                 <%# Translate("Ghi chú")%>
             </td>
-            <td>
+            <td style="display:none">
                 <tlk:RadTextBox runat="server" ID="txtRemark" SkinID="Textbox1023">
                 </tlk:RadTextBox>
             </td>

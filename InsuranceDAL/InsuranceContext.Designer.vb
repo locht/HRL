@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("78359f40-9395-469e-a5b7-f940739f0d75")>
+<Assembly: EdmSchemaAttribute("b5ab46b4-87e4-41c8-ad4b-c9f539441748")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_FE_HEH", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_HEALTH", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_HEALTH), True)>
 <Assembly: EdmRelationshipAttribute("InsuranceModel", "FK_HE_HEE", "HU_EMPLOYEE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_EMPLOYEE), "HU_EMPLOYEE_EDUCATION", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(HU_EMPLOYEE_EDUCATION), True)>
@@ -2519,6 +2519,31 @@ Public Partial Class HU_CONTRACT_TYPE
     End Sub
 
     Private Partial Sub OnBHTNChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property BHTNLD_BNN() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _BHTNLD_BNN
+        End Get
+        Set
+            OnBHTNLD_BNNChanging(value)
+            ReportPropertyChanging("BHTNLD_BNN")
+            _BHTNLD_BNN = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("BHTNLD_BNN")
+            OnBHTNLD_BNNChanged()
+        End Set
+    End Property
+
+    Private _BHTNLD_BNN As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnBHTNLD_BNNChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OnBHTNLD_BNNChanged()
     End Sub
 
     #End Region

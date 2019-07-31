@@ -13,5 +13,6 @@
     Public Property BHXH As Decimal?
     Public Property BHYT As Decimal?
     Public Property BHTN As Decimal?
+    Public Property BHTNLD_BNN As Decimal?
 
 End Class

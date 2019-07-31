@@ -1056,7 +1056,11 @@ Partial Class ProfileRepository
                                 .SAL_BASIC = w.SAL_BASIC,
                             .ID = w.ID,
                             .TAX_TABLE_Name = taxTable.NAME_VN,
-                            .SAL_TYPE_NAME = sal_type.NAME
+                            .SAL_TYPE_NAME = sal_type.NAME,
+                                .PERCENT_SALARY = w.PERCENT_SALARY,
+                                .OTHERSALARY1 = w.OTHERSALARY1,
+                                .OTHERSALARY2 = w.OTHERSALARY2,
+                                .OTHERSALARY3 = w.OTHERSALARY3
                                 }).FirstOrDefault
                 End If
                 If result.Working IsNot Nothing Then

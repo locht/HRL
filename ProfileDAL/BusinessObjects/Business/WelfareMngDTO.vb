@@ -37,4 +37,5 @@
     Public Property GENDER_NAME As String
     Public Property CONTRACT_NAME As String
     Public Property SENIORITY As String
+    'Public Property REMARK As String
 End Class

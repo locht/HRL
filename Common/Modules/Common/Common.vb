@@ -518,6 +518,9 @@ Public Enum RemindConfigType
     Retirement = 25 ' Nhân viên đến tuổi nghỉ hưu
     NoneSalary = 26 '  Nhân viên nghỉ không lương đi làm lại
     ExpiredCertificate = 27 ' Nhân viên sắp hết hạn chứng chỉ
+    BIRTHDAY_LD = 28 ' Sắp đến sinh nhật lãnh đạo
+    Concurrently = 29 ' Nhân viên sắp hết hạn kiêm nhiêm
+    EmpDtlFamily = 30 ' Nhân viên có người thân sắp hết giảm trừ gia cảnh
 End Enum
 
 Public Enum ToolbarItem

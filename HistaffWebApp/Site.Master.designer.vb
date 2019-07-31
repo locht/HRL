@@ -554,6 +554,87 @@ Partial Public Class Site
     Protected WithEvents ltrExpiredCertificate As Global.System.Web.UI.WebControls.ListView
 
     '''<summary>
+    '''dBIRTHDAY_LD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dBIRTHDAY_LD As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lbBIRTHDAY_LD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbBIRTHDAY_LD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrBIRTHDAY_LD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrBIRTHDAY_LD As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''dConcurrently control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dConcurrently As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lbConcurrently control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbConcurrently As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrConcurrently control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrConcurrently As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''dEmpDtlFamily control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dEmpDtlFamily As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lbEmpDtlFamily control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbEmpDtlFamily As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ltrEmpDtlFamily control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ltrEmpDtlFamily As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
     '''LoginView1 control.
     '''</summary>
     '''<remarks>

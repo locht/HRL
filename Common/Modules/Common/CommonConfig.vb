@@ -505,6 +505,54 @@ Public Class CommonConfig
 
         End Set
     End Property
+    Public Shared Property ReminderBIRTHDAY_LD() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.BIRTHDAY_LD, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.BIRTHDAY_LD, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.BIRTHDAY_LD, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.BIRTHDAY_LD, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.BIRTHDAY_LD, Integer), value)
+            End If
+
+        End Set
+    End Property
+    Public Shared Property ReminderConcurrently() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.Concurrently, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.Concurrently, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.Concurrently, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.Concurrently, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.Concurrently, Integer), value)
+            End If
+
+        End Set
+    End Property
+    Public Shared Property ReminderEmpDtlFamily() As Integer
+        Get
+            If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.EmpDtlFamily, Integer)) Then
+                Return 0
+            End If
+            Return Integer.Parse("0" & dicReminderConfig(CType(RemindConfigType.EmpDtlFamily, Integer)).ToString)
+        End Get
+        Set(ByVal value As Integer)
+            If dicReminderConfig.ContainsKey(CType(RemindConfigType.EmpDtlFamily, Integer)) Then
+                dicReminderConfig(CType(RemindConfigType.EmpDtlFamily, Integer)) = value
+            Else
+                dicReminderConfig.Add(CType(RemindConfigType.EmpDtlFamily, Integer), value)
+            End If
+
+        End Set
+    End Property
     Public Shared Property ReminderApproveDays() As Integer
         Get
             If Not dicReminderConfig.ContainsKey(CType(RemindConfigType.Approve, Integer)) Then
@@ -1049,6 +1097,9 @@ Public Class CommonConfig
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Retirement, Integer), ReminderRetirementDays)
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.NoneSalary, Integer), ReminderNoneSalaryDays)
                 rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.ExpiredCertificate, Integer), ReminderExpiredCertificate)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.BIRTHDAY_LD, Integer), ReminderBIRTHDAY_LD)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.Concurrently, Integer), ReminderConcurrently)
+                rep.SetReminderConfig(CurrentUser, CType(RemindConfigType.EmpDtlFamily, Integer), ReminderEmpDtlFamily)
             End Using
 
             Return True

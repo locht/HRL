@@ -57,11 +57,7 @@ Public Class ctrlInfoCertificate
 
     Public Overrides Sub ViewInit(ByVal e As System.EventArgs)
         InitControl()
-        'If Not IsPostBack Then
-        '    ViewConfig(RadPane2)
-        '    GirdConfig(rgFamily)
-        '    GirdConfig(rgFamilyEdit)
-        'End If
+      
     End Sub
 
     Protected Sub InitControl()
@@ -92,8 +88,7 @@ Public Class ctrlInfoCertificate
         Try
             Dim ComboBoxDataDTO As New ComboBoxDataDTO
             Using rep As New ProfileRepository
-                'ComboBoxDataDTO.GET_RELATION = True
-                'ComboBoxDataDTO.GET_PROVINCE = True
+                
                 ComboBoxDataDTO.GET_FIELD_TRAIN = True
                 ComboBoxDataDTO.GET_MAJOR_TRAIN = True
                 ComboBoxDataDTO.GET_LEVEL_TRAIN = True
@@ -210,7 +205,7 @@ Public Class ctrlInfoCertificate
                     'dung
                     ClearControlValue(cbField, rdFromDate, rdToDate, txtSchool, cbMajor, cbLevel,
                                      txtMark, txtContentTrain, txtTypeTrain, txtCodeCertificate, rdEffectFrom,
-                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload)
+                                     rdEffectTo, txtClassification, txtYear, is_Renew, txtRemark, txtUploadFile, btnUploadFile, btnDownload, hidFamilyID)
                     UpdateControlState()
                 Case CommonMessage.TOOLBARITEM_SAVE
                     If Page.IsValid Then
@@ -511,48 +506,7 @@ Public Class ctrlInfoCertificate
         End Try
     End Sub
 
-    'Protected Sub chkIsDeduct_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIsDeduct.CheckedChanged
-    '    rdDeductFrom.Enabled = chkIsDeduct.Checked
-    '    rdDeductTo.Enabled = chkIsDeduct.Checked
-    'End Sub
-
-    'Protected Sub chkIsOwner_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Owner.CheckedChanged
-    '    Try
-    '        If CurrentState = CommonMessage.STATE_NEW Then
-    '            If chkIs_Owner.Checked Then
-    '                txtHouseCertificate_Num.ReadOnly = False
-    '                txtHouseCertificate_Code.ReadOnly = False
-    '            Else
-    '                txtHouseCertificate_Num.ReadOnly = True
-    '                txtHouseCertificate_Code.ReadOnly = True
-    '            End If
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-
-    'End Sub
-
-    'Protected Sub chkIs_Pass_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkIs_Pass.CheckedChanged
-    '    If chkIs_Pass.Checked Then
-    '        chkIsDeduct.Checked = False
-    '        chkIsDeduct.Enabled = False
-    '    Else
-    '        chkIsDeduct.Enabled = True
-    '    End If
-    'End Sub
-
-    'Private Sub cvalRelationship_ServerValidate(ByVal source As Object, ByVal args As System.Web.UI.WebControls.ServerValidateEventArgs) Handles cvalRelationship.ServerValidate
-    '    Try
-    '        If cboRelationship.SelectedValue <> "" Then
-    '            args.IsValid = True
-    '        Else
-    '            args.IsValid = False
-    '        End If
-    '    Catch ex As Exception
-    '        DisplayException(Me.ViewName, Me.ID, ex)
-    '    End Try
-    'End Sub
+ 
 
     Private Sub ctrlMessageBox_ButtonCommand(ByVal sender As Object, ByVal e As MessageBoxEventArgs) Handles ctrlMessageBox.ButtonCommand
         Try
@@ -686,34 +640,11 @@ Public Class ctrlInfoCertificate
         Dim method As String = System.Reflection.MethodBase.GetCurrentMethod().Name.ToString()
 
         Try
-            'Dim data As New DataTable
-            'data.Columns.Add("FileName")
-            'Dim row As DataRow
-            'Dim str() As String
-
             If strUpload <> "" Then
                 txtUploadFile.Text = strUpload
                 FileOldName = txtRemark.Text
                 txtRemark.Text = strUpload
-                'str = strUpload.Split(";")
-
-                'For Each s As String In str
-                '    If s <> "" Then
-                '        row = data.NewRow
-                '        row("FileName") = s
-                '        data.Rows.Add(row)
-                '    End If
-                'Next
-
-                'txtRemark.DataSource = data
-                'txtRemark.DataTextField = "FileName"
-                'txtRemark.DataValueField = "FileName"
-                'txtRemark.DataBind()
             Else
-                'txtRemark.DataSource = Nothing
-                'txtRemark.ClearSelection()
-                'txtRemark.ClearCheckedItems()
-                'txtRemark.Items.Clear()
                 strUpload = String.Empty
             End If
         Catch ex As Exception
@@ -732,62 +663,27 @@ Public Class ctrlInfoCertificate
             Dim item = CType(rgCetificateEdit.SelectedItems(rgCetificateEdit.SelectedItems.Count - 1), GridDataItem)
             CurrentState = CommonMessage.STATE_NORMAL
             hidFamilyID.Value = item.GetDataKeyValue("ID")
-            'txtAdress.Text = item.GetDataKeyValue("ADDRESS")
-            'txtIDNO.Text = item.GetDataKeyValue("ID_NO")
-            'txtFullName.Text = item.GetDataKeyValue("FULLNAME")
-            'txtTax.Text = item.GetDataKeyValue("TAXTATION")
-            'txtRemark.Text = item.GetDataKeyValue("REMARK")
-            'rdBirthDate.SelectedDate = item.GetDataKeyValue("BIRTH_DATE")
-            'chkIsDeduct.Checked = item.GetDataKeyValue("IS_DEDUCT")
-            'rdDeductReg.SelectedDate = item.GetDataKeyValue("DEDUCT_REG")
-            'rdDeductFrom.SelectedDate = item.GetDataKeyValue("DEDUCT_FROM")
-            'rdDeductTo.SelectedDate = item.GetDataKeyValue("DEDUCT_TO")
-            'cboRelationship.SelectedValue = item.GetDataKeyValue("RELATION_ID")
-            'txtCareer.Text = item.GetDataKeyValue("CAREER")
-            'txtTitle.Text = item.GetDataKeyValue("TITLE_NAME")
-            'cboNguyenQuan.SelectedValue = item.GetDataKeyValue("PROVINCE_ID")
-            'txtHouseCertificate_Code.Text = item.GetDataKeyValue("CERTIFICATE_CODE")
-            'txtHouseCertificate_Num.Text = item.GetDataKeyValue("CERTIFICATE_NUM")
-            'txtTempAdress.Text = item.GetDataKeyValue("ADDRESS_TT")
-            'If IsNumeric(item.GetDataKeyValue("AD_PROVINCE_ID")) Then
-            '    cbPROVINCE_ID.SelectedValue = item.GetDataKeyValue("AD_PROVINCE_ID")
-            'End If
-            'If IsNumeric(item.GetDataKeyValue("TT_PROVINCE_ID")) Then
-            '    cbTempPROVINCE_ID.SelectedValue = item.GetDataKeyValue("TT_PROVINCE_ID")
-            'End If
-            'Using rep As New ProfileRepository
-            '    If cbPROVINCE_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetDistrictList(cbPROVINCE_ID.SelectedValue, False)
-            '        FillRadCombobox(cbDISTRICT_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("AD_DISTRICT_ID")) Then
-            '        cbDISTRICT_ID.SelectedValue = item.GetDataKeyValue("AD_DISTRICT_ID")
-            '    End If
-            '    If cbDISTRICT_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetWardList(cbDISTRICT_ID.SelectedValue, False)
-            '        FillRadCombobox(cbWARD_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("AD_WARD_ID")) Then
-            '        cbWARD_ID.SelectedValue = item.GetDataKeyValue("AD_WARD_ID")
-            '    End If
-            '    If cbTempPROVINCE_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetDistrictList(cbTempPROVINCE_ID.SelectedValue, False)
-            '        FillRadCombobox(cbTempDISTRICT_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("TT_DISTRICT_ID")) Then
-            '        cbTempDISTRICT_ID.SelectedValue = item.GetDataKeyValue("TT_DISTRICT_ID")
-            '    End If
-            '    If cbTempDISTRICT_ID.SelectedValue <> "" Then
-            '        Dim dt As DataTable = rep.GetWardList(cbTempDISTRICT_ID.SelectedValue, False)
-            '        FillRadCombobox(cbTempWARD_ID, dt, "NAME", "ID")
-            '    End If
-            '    If IsNumeric(item.GetDataKeyValue("TT_WARD_ID")) Then
-            '        cbTempWARD_ID.SelectedValue = item.GetDataKeyValue("TT_WARD_ID")
-            '    End If
-            'End Using
-            'txtAD_Village.Text = item.GetDataKeyValue("AD_VILLAGE")
-            'chkIs_Owner.Checked = item.GetDataKeyValue("IS_OWNER")
-            'chkIs_Pass.Checked = item.GetDataKeyValue("IS_PASS")
+            cbField.SelectedValue = item.GetDataKeyValue("FIELD")
+            cbField.Text = item.GetDataKeyValue("FIELD_NAME")
+            rdFromDate.SelectedDate = item.GetDataKeyValue("FROM_DATE")
+            rdToDate.SelectedDate = item.GetDataKeyValue("TO_DATE")
+            txtSchool.Text = item.GetDataKeyValue("SCHOOL_NAME")
+            cbMajor.SelectedValue = item.GetDataKeyValue("MAJOR")
+            cbMajor.Text = item.GetDataKeyValue("MAJOR_NAME")
+            cbLevel.SelectedValue = item.GetDataKeyValue("LEVEL")
+            cbLevel.Text = item.GetDataKeyValue("LEVEL_NAME")
+            txtMark.Text = item.GetDataKeyValue("MARK")
+            txtContentTrain.Text = item.GetDataKeyValue("CONTENT_NAME")
+            txtTypeTrain.Text = item.GetDataKeyValue("TYPE_NAME")
+            txtCodeCertificate.Text = item.GetDataKeyValue("CODE_CERTIFICATE")
+            rdEffectFrom.SelectedDate = item.GetDataKeyValue("EFFECT_FROM")
+            rdEffectTo.SelectedDate = item.GetDataKeyValue("EFFECT_TO")
+            txtClassification.Text = item.GetDataKeyValue("CLASSIFICATION")
+            txtYear.Text = item.GetDataKeyValue("YEAR")
+            is_Renew.Checked = item.GetDataKeyValue("RENEW")
+            txtRemark.Text = item.GetDataKeyValue("REMARK")
+            txtUploadFile.Text = item.GetDataKeyValue("FILENAME")
+            txtRemindLink.Text = item.GetDataKeyValue("UPLOAD")
             If item.GetDataKeyValue("FK_PKEY") IsNot Nothing Then
                 hidFamilyID.Value = item.GetDataKeyValue("FK_PKEY")
             End If

@@ -42,28 +42,26 @@
                     </tlk:RadTextBox>
                 </td>
             </tr>
-            
             <tr>
                 <td>
-                    <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất Excel %>"
-                        CausesValidation="false" OnClientClicking="btnExportClicking"  Width="150px">
+                    <tlk:RadButton ID="btnExport" runat="server" Text="<%$ Translate: Xuất file %>"
+                        CausesValidation="false" OnClientClicking="btnExportClicking" Width="150px">
                     </tlk:RadButton>
                 </td>
                 <td>
-                    <tlk:RadButton ID="btnExportFile" runat="server" Text="<%$ Translate: Xuất file mẫu %>"
+                    <tlk:RadButton ID="btnImportFile" runat="server" Text="<%$ Translate: Nhập file  %>"
                         CausesValidation="false" OnClientClicking="btnExportClicking" Width="150px">
                     </tlk:RadButton>
                 </td>
             </tr>
-         
         </table>
     </tlk:RadPane>
     <tlk:RadPane ID="RadPane3" runat="server" Scrolling="None">
         <tlk:RadGrid ID="rgEmployee" AllowPaging="true" AllowMultiRowEdit="true" runat="server"
             PageSize="50" Height="100%">
             <GroupingSettings CaseSensitive="false" />
-            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="ID,EMPLOYEE_CODE,ORG_ID,TITLE_ID,MONEY_TOTAL"
-                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,GENDER_ID,CONTRACT_TYPE,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL"
+            <MasterTableView EditMode="InPlace" AllowPaging="true" AllowCustomPaging="true" DataKeyNames="EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,TITLE_NAME,ORG_NAME,GENDER_ID,CONTRACT_TYPE,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL,REMARK"
+                ClientDataKeyNames="ID,EMPLOYEE_ID,EMPLOYEE_NAME,TITLE_ID,ORG_ID,GENDER_ID,CONTRACT_TYPE,TITLE_NAME,ORG_NAME,EMPLOYEE_CODE,GENDER_NAME,CONTRACT_NAME,SENIORITY,TOTAL_CHILD,MONEY_PL,MONEY_TOTAL,REMARK"
                 CommandItemDisplay="Top">
                 <CommandItemStyle Height="25px" />
                 <CommandItemTemplate>
@@ -120,6 +118,13 @@
                             </tlk:RadNumericTextBox>
                         </EditItemTemplate>
                     </tlk:GridTemplateColumn>
+                    <tlk:GridTemplateColumn HeaderText="Ghi chú" HeaderStyle-Width="100px" DataField="REMARK"
+                        UniqueName="REMARK">
+                        <EditItemTemplate>
+                            <tlk:RadTextBox runat="server" ID="rtRemark" Width="90px">
+                            </tlk:RadTextBox>
+                        </EditItemTemplate>
+                    </tlk:GridTemplateColumn>
                     <tlk:GridBoundColumn HeaderText="NHÂN VIÊN" DataField="EMPLOYEE_ID" UniqueName="EMPLOYEE_ID"
                         ReadOnly="true" SortExpression="EMPLOYEE_ID" Visible="false" />
                     <tlk:GridBoundColumn HeaderText="GIOI TINH" DataField="GENDER_ID" UniqueName="GENDER_ID"
@@ -141,6 +146,7 @@
     </tlk:RadPane>
 </tlk:RadSplitter>
 <Common:ctrlMessageBox ID="ctrlMessageBox" runat="server" />
+<Common:ctrlUpload ID="ctrlUpload" runat="server" />
 <asp:PlaceHolder ID="phFindEmp" runat="server"></asp:PlaceHolder>
 <asp:PlaceHolder ID="phFindSign" runat="server"></asp:PlaceHolder>
 <tlk:RadCodeBlock ID="RadCodeBlock1" runat="server">

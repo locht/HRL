@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("2de858bd-6587-444e-bbf6-c81ed5e23e49")>
+<Assembly: EdmSchemaAttribute("81c64e92-3a16-4c1a-8d06-b39d60d7c6d6")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_NAT_HU_PRO", "HU_NATION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_NATION), "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_PROVINCE), True)>
 <Assembly: EdmRelationshipAttribute("ProfileModel", "FK_HU_PRO_HU_DIS", "HU_PROVINCE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(HU_PROVINCE), "HU_DISTRICT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(HU_DISTRICT), True)>
@@ -10277,6 +10277,31 @@ Public Partial Class HU_CERTIFICATE_EDIT
     End Sub
 
     Private Partial Sub OnSTATUSChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REASON_UNAPROVE() As Global.System.String
+        Get
+            Return _REASON_UNAPROVE
+        End Get
+        Set
+            OnREASON_UNAPROVEChanging(value)
+            ReportPropertyChanging("REASON_UNAPROVE")
+            _REASON_UNAPROVE = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REASON_UNAPROVE")
+            OnREASON_UNAPROVEChanged()
+        End Set
+    End Property
+
+    Private _REASON_UNAPROVE As Global.System.String
+    Private Partial Sub OnREASON_UNAPROVEChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREASON_UNAPROVEChanged()
     End Sub
 
     #End Region
@@ -55082,6 +55107,31 @@ Public Partial Class HU_WELFARE_MNG_EMP
     End Sub
 
     Private Partial Sub OnGENDER_NAMEChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property REMARK() As Global.System.String
+        Get
+            Return _REMARK
+        End Get
+        Set
+            OnREMARKChanging(value)
+            ReportPropertyChanging("REMARK")
+            _REMARK = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("REMARK")
+            OnREMARKChanged()
+        End Set
+    End Property
+
+    Private _REMARK As Global.System.String
+    Private Partial Sub OnREMARKChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnREMARKChanged()
     End Sub
 
     #End Region

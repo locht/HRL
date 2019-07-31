@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 7/23/2019 4:49:22 PM
+-- Date Created: 7/30/2019 10:35:59 AM
 -- Generated from EDMX file: D:\TNG_SOURCE_NEW\InsuranceDAL\InsuranceContext.edmx
 -- --------------------------------------------------
 
@@ -550,7 +550,8 @@ CREATE TABLE "dbo"."HU_CONTRACT_TYPE" (
    "MODIFIED_LOG" NVARCHAR2(255) NULL,
    "BHXH" NUMBER(38,0) NULL,
    "BHYT" NUMBER(38,0) NULL,
-   "BHTN" NUMBER(38,0) NULL
+   "BHTN" NUMBER(38,0) NULL,
+   "BHTNLD_BNN" NUMBER(38,0) NULL
 );
 
 -- Creating table 'HU_CONTRACT_MAX_V'

@@ -203,6 +203,24 @@ Partial Public Class ctrlInsArisingManual
     Protected WithEvents txtDateIssue As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''BIRTH_PLACE control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BIRTH_PLACE As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
     '''lbDoB control.
     '''</summary>
     '''<remarks>
@@ -237,6 +255,24 @@ Partial Public Class ctrlInsArisingManual
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtBirthPlace As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''SOCIAL_NUMBER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SOCIAL_NUMBER As Global.Telerik.Web.UI.RadTextBox
 
     '''<summary>
     '''lbInsInfo control.
@@ -410,6 +446,24 @@ Partial Public Class ctrlInsArisingManual
     Protected WithEvents txtEXPRIE_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
+    '''txtSI_SAL_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSI_SAL_OLD As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtSI_SAL_NEW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSI_SAL_NEW As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''lbARISING_FROM_MONTH control.
     '''</summary>
     '''<remarks>
@@ -444,6 +498,24 @@ Partial Public Class ctrlInsArisingManual
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtARISING_TO_MONTH As Global.Telerik.Web.UI.RadMonthYearPicker
+
+    '''<summary>
+    '''txtHI_SAL_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHI_SAL_OLD As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtHI_SAL_NEW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtHI_SAL_NEW As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbDECLARE_DATE control.
@@ -491,13 +563,22 @@ Partial Public Class ctrlInsArisingManual
     Protected WithEvents txtHEALTH_RETURN_DATE As Global.Telerik.Web.UI.RadDatePicker
 
     '''<summary>
-    '''lbNOTE control.
+    '''txtUI_SAL_OLD control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbNOTE As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents txtUI_SAL_OLD As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''txtUI_SAL_NEW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUI_SAL_NEW As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''txtNOTE control.
@@ -507,6 +588,24 @@ Partial Public Class ctrlInsArisingManual
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtNOTE As Global.Telerik.Web.UI.RadTextBox
+
+    '''<summary>
+    '''rdBHTNLD_BNN_OLD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdBHTNLD_BNN_OLD As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rdBHTNLD_BNN_NEW control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdBHTNLD_BNN_NEW As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbA_SInfo control.
@@ -617,6 +716,15 @@ Partial Public Class ctrlInsArisingManual
     Protected WithEvents txtA_UI As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
+    '''rdA_BHTNLD_BNN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdA_BHTNLD_BNN As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
     '''lbS_Info control.
     '''</summary>
     '''<remarks>
@@ -714,6 +822,15 @@ Partial Public Class ctrlInsArisingManual
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtR_UI As Global.Telerik.Web.UI.RadNumericTextBox
+
+    '''<summary>
+    '''rdR_BHTNLD_BNN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rdR_BHTNLD_BNN As Global.Telerik.Web.UI.RadNumericTextBox
 
     '''<summary>
     '''lbBonusInfo control.
