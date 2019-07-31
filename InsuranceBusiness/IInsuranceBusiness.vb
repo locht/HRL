@@ -612,7 +612,17 @@ Namespace InsuranceBusiness.ServiceContracts
                                     , ByVal si As Double? _
                                     , ByVal hi As Double? _
                                     , ByVal ui As Double? _
-                                    , ByVal tnld_bnn As Double?) As Double
+                                    , ByVal tnld_bnn As Double? _
+                                    , ByVal si_sal As Double? _
+                                    , ByVal hi_sal As Double? _
+                                    , ByVal ui_sal As Double? _
+                                    , ByVal tnld_bnn_sal As Double? _
+                                    , ByVal si_sal_old As Double? _
+                                    , ByVal hi_sal_old As Double? _
+                                    , ByVal ui_sal_old As Double? _
+                                    , ByVal tnld_bnn_sal_old As Double? _
+                                    , ByVal a_tnld_bnn As Double? _
+                                    , ByVal r_tnld_bnn As Double?) As Double
         <OperationContract()>
         Function DeleteInsArisingManual(ByVal username As String, ByVal lstid As String) As Double
 

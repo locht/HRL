@@ -10633,7 +10633,17 @@ Namespace InsuranceBusiness
                     ByVal si As System.Nullable(Of Double),  _
                     ByVal hi As System.Nullable(Of Double),  _
                     ByVal ui As System.Nullable(Of Double),  _
-                    ByVal tnld_bnn As System.Nullable(Of Double)) As Double
+                    ByVal tnld_bnn As System.Nullable(Of Double),  _
+                    ByVal si_sal As System.Nullable(Of Double),  _
+                    ByVal hi_sal As System.Nullable(Of Double),  _
+                    ByVal ui_sal As System.Nullable(Of Double),  _
+                    ByVal tnld_bnn_sal As System.Nullable(Of Double),  _
+                    ByVal si_sal_old As System.Nullable(Of Double),  _
+                    ByVal hi_sal_old As System.Nullable(Of Double),  _
+                    ByVal ui_sal_old As System.Nullable(Of Double),  _
+                    ByVal tnld_bnn_sal_old As System.Nullable(Of Double),  _
+                    ByVal a_tnld_bnn As System.Nullable(Of Double),  _
+                    ByVal r_tnld_bnn As System.Nullable(Of Double)) As Double
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IInsuranceBusiness/DeleteInsArisingManual", ReplyAction:="http://tempuri.org/IInsuranceBusiness/DeleteInsArisingManualResponse")>  _
         Function DeleteInsArisingManual(ByVal username As String, ByVal lstid As String) As Double
@@ -11545,8 +11555,18 @@ Namespace InsuranceBusiness
                     ByVal si As System.Nullable(Of Double),  _
                     ByVal hi As System.Nullable(Of Double),  _
                     ByVal ui As System.Nullable(Of Double),  _
-                    ByVal tnld_bnn As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsArisingManual
-            Return MyBase.Channel.UpdateInsArisingManual(username, id, employee_id, ins_org_id, ins_arising_type_id, salary_pre_period, salary_now_period, from_health_ins_card, effective_date, expire_date, declare_date, arising_from_month, arising_to_month, note, social_note, health_number, health_status, health_effect_from_date, health_effect_to_date, health_area_ins_id, health_receive_date, health_receiver, health_return_date, unemp_from_moth, unemp_to_month, unemp_register_month, r_from, o_from, r_to, o_to, r_si, o_si, r_hi, o_hi, r_ui, o_ui, a_from, a_to, a_si, a_hi, a_ui, si, hi, ui, tnld_bnn)
+                    ByVal tnld_bnn As System.Nullable(Of Double),  _
+                    ByVal si_sal As System.Nullable(Of Double),  _
+                    ByVal hi_sal As System.Nullable(Of Double),  _
+                    ByVal ui_sal As System.Nullable(Of Double),  _
+                    ByVal tnld_bnn_sal As System.Nullable(Of Double),  _
+                    ByVal si_sal_old As System.Nullable(Of Double),  _
+                    ByVal hi_sal_old As System.Nullable(Of Double),  _
+                    ByVal ui_sal_old As System.Nullable(Of Double),  _
+                    ByVal tnld_bnn_sal_old As System.Nullable(Of Double),  _
+                    ByVal a_tnld_bnn As System.Nullable(Of Double),  _
+                    ByVal r_tnld_bnn As System.Nullable(Of Double)) As Double Implements InsuranceBusiness.IInsuranceBusiness.UpdateInsArisingManual
+            Return MyBase.Channel.UpdateInsArisingManual(username, id, employee_id, ins_org_id, ins_arising_type_id, salary_pre_period, salary_now_period, from_health_ins_card, effective_date, expire_date, declare_date, arising_from_month, arising_to_month, note, social_note, health_number, health_status, health_effect_from_date, health_effect_to_date, health_area_ins_id, health_receive_date, health_receiver, health_return_date, unemp_from_moth, unemp_to_month, unemp_register_month, r_from, o_from, r_to, o_to, r_si, o_si, r_hi, o_hi, r_ui, o_ui, a_from, a_to, a_si, a_hi, a_ui, si, hi, ui, tnld_bnn, si_sal, hi_sal, ui_sal, tnld_bnn_sal, si_sal_old, hi_sal_old, ui_sal_old, tnld_bnn_sal_old, a_tnld_bnn, r_tnld_bnn)
         End Function
         
         Public Function DeleteInsArisingManual(ByVal username As String, ByVal lstid As String) As Double Implements InsuranceBusiness.IInsuranceBusiness.DeleteInsArisingManual

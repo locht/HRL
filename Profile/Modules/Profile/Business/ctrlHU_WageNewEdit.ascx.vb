@@ -269,6 +269,9 @@ Public Class ctrlHU_WageNewEdit
                         cboTaxTable.SelectedValue = Working.TAX_TABLE_ID
                         cboTaxTable.Text = Working.TAX_TABLE_Name
                     End If
+                    If Working.SAL_BASIC IsNot Nothing Then
+                        basicSalary.Text = Working.SAL_BASIC
+                    End If
                     If Working.SAL_INS IsNot Nothing Then
                         SalaryInsurance.Text = Working.SAL_INS
                     End If
@@ -287,7 +290,7 @@ Public Class ctrlHU_WageNewEdit
                     Salary_Total.Enabled = False
                     rnOtherSalary1.Enabled = False
                     'GetDATA_IN()
-                    CalculatorSalary()
+                    'CalculatorSalary()
                 Case "NormalView"
                     CurrentState = CommonMessage.STATE_NEW
                     cboStatus.SelectedIndex = 1
@@ -1298,6 +1301,8 @@ Public Class ctrlHU_WageNewEdit
                     basicSal = rnFactorSalary.Value * _lttv1
                     basicSalary.Value = basicSal
                 End If
+
+
                 If rnPercentSalary.Value.HasValue Then
                     total = basicSal * rnPercentSalary.Value / 100 + _
                             If(rnOtherSalary1.Value.HasValue, rnOtherSalary1.Value, 0) + _
