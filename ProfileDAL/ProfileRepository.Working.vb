@@ -1350,7 +1350,7 @@ Partial Class ProfileRepository
             objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
             objWorkingData.SAL_INS = objWorking.SAL_INS
             objWorkingData.ALLOWANCE_TOTAL = objWorking.ALLOWANCE_TOTAL
-            objWorkingData.SAL_INS = objWorking.SAL_INS
+            objWorkingData.SAL_INS = objWorking.SAL_BASIC
             objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
             objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
             objWorkingData.FACTORSALARY = objWorking.FACTORSALARY
@@ -1623,7 +1623,7 @@ Partial Class ProfileRepository
             objWorkingData.IS_WAGE = objWorking.IS_WAGE
             objWorkingData.IS_3B = False
             objWorkingData.SAL_TOTAL = objWorking.SAL_TOTAL
-            objWorkingData.SAL_INS = objWorking.SAL_INS
+            objWorkingData.SAL_INS = objWorking.SAL_BASIC
             objWorkingData.TAX_TABLE_ID = objWorking.TAX_TABLE_ID
             objWorkingData.ATTACH_FILE = objWorking.ATTACH_FILE
             objWorkingData.PERCENTSALARY = objWorking.PERCENTSALARY
@@ -1682,7 +1682,7 @@ Partial Class ProfileRepository
             If insurranceAllow.HasValue = False Then
                 insurranceAllow = 0
             End If
-            objWorkingData.SAL_INS = objWorkingData.SAL_INS
+            'objWorkingData.SAL_INS = objWorkingData.SAL_INS
 
             'Dim sumAllowIns As Decimal?
             'Dim sumAllow = GetAllowanceTotalByDate(objWorking.EMPLOYEE_ID, objWorking.EFFECT_DATE, sumAllowIns)
